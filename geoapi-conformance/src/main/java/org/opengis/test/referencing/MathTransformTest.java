@@ -189,7 +189,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     protected void createMathTransform(final int code) throws FactoryException {
         final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, code);
-        validate(parameters);
         transform = factory.createParameterizedTransform(parameters);
         tolerance = TRANSFORM_TOLERANCE;
         derivativeDeltas = new double[transform.getSourceDimensions()];

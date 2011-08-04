@@ -128,8 +128,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
-     * Tests the creation of the WGS84 {@linkplain CoordinateReferenceSystem crs} from the
-     * EPSG code.
+     * Tests the creation of the EPSG:4326 {@link GeographicCRS}.
      *
      * @throws NoSuchAuthorityCodeException
      *          If the specified code is not found among the ones present in the database.

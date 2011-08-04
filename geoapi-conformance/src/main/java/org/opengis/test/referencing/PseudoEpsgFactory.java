@@ -31,14 +31,28 @@
  */
 package org.opengis.test.referencing;
 
-import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.crs.CRSAuthorityFactory;
-import org.opengis.referencing.crs.ProjectedCRS;
-import org.opengis.referencing.operation.CoordinateOperation;
-import org.opengis.referencing.operation.MathTransformFactory;
-import org.opengis.parameter.ParameterValueGroup;
+import java.util.Map;
+import java.util.Set;
+import java.util.Collections;
+import javax.measure.unit.SI;
+import javax.measure.unit.Unit;
+import javax.measure.unit.NonSI;
+import javax.measure.quantity.Angle;
+import javax.measure.quantity.Length;
+
+import org.opengis.parameter.*;
+import org.opengis.referencing.*;
+import org.opengis.referencing.cs.*;
+import org.opengis.referencing.crs.*;
+import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.*;
+import org.opengis.metadata.citation.Citation;
 import org.opengis.util.FactoryException;
+import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
+
+import static org.junit.Assume.*;
+import static org.opengis.test.Validators.*;
 
 
 /**
@@ -51,11 +65,33 @@ import org.opengis.test.util.PseudoFactory;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class PseudoEpsgFactory extends PseudoFactory {
+public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAuthorityFactory,
+        CSAuthorityFactory, CRSAuthorityFactory
+{
     /**
      * Number of US survey feet in 1 metre.
      */
     static final double FEET = 3.2808333333333333333;
+
+    /**
+     * Factory to build {@link Datum} instances, or {@code null} if none.
+     */
+    protected final DatumFactory datumFactory;
+
+    /**
+     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
+     */
+    protected final CSFactory csFactory;
+
+    /**
+     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
+     */
+    protected final CRSFactory crsFactory;
+
+    /**
+     * Factory to build {@link Conversion} instances, or {@code null} if none.
+     */
+    protected final CoordinateOperationFactory opFactory;
 
     /**
      * The factory to use for creating math transforms.
@@ -65,11 +101,643 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory {
     /**
      * Creates a new pseudo-factory which will use the given factories.
      *
-     * @param mtFactory The factory to use for creating math transforms.
+     * @param datumFactory Factory for creating {@link Datum} instances.
+     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
+     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param opFactory    Factory for creating {@link Conversion} instances.
+     * @param mtFactory    Factory for creating {@link MathTransform} instances.
      */
-    public PseudoEpsgFactory(final MathTransformFactory mtFactory) {
-        this.mtFactory = mtFactory;
+    public PseudoEpsgFactory(
+            final DatumFactory            datumFactory,
+            final CSFactory                  csFactory,
+            final CRSFactory                crsFactory,
+            final CoordinateOperationFactory opFactory,
+            final MathTransformFactory       mtFactory)
+    {
+        this.datumFactory = datumFactory;
+        this.csFactory    = csFactory;
+        this.crsFactory   = crsFactory;
+        this.opFactory    = opFactory;
+        this.mtFactory    = mtFactory;
     }
+
+    /**
+     * Returns the given EPSG code as an integer.
+     *
+     * @param  code The EPSG code to parse.
+     * @return The EPSG code as an integer.
+     * @throws NoSuchAuthorityCodeException if the given code can not be parsed as an integer.
+     */
+    private static int parseCode(String code) throws NoSuchAuthorityCodeException {
+        final int s = code.lastIndexOf(':');
+        if (s >= 0) {
+            final String authority = code.substring(0, s).trim();
+            if (!authority.equalsIgnoreCase("EPSG")) {
+                throw new NoSuchAuthorityCodeException("Unsupported \"" + authority + "\" authority.", "EPSG", code);
+            }
+            code = code.substring(s+1).trim();
+        }
+        try {
+            return Integer.parseInt(code);
+        } catch (NumberFormatException cause) {
+            NoSuchAuthorityCodeException e = new NoSuchAuthorityCodeException(
+                    "Unparseable EPSG code: " + code, "EPSG", code);
+            e.initCause(cause);
+            throw e;
+        }
+    }
+
+    /**
+     * Creates the exception to be thrown when the given code has not been recognized.
+     *
+     * @param  code The code which has been requested.
+     * @return The exception to throw.
+     */
+    private static NoSuchAuthorityCodeException noSuchAuthorityCode(final int id, final String code) {
+        final String idAsText = String.valueOf(id);
+        return new NoSuchAuthorityCodeException("No case implemented for EPSG:" + idAsText,
+                "EPSG", idAsText, code);
+    }
+
+    /**
+     * The default implementation returns {@code null}.
+     */
+    @Override
+    public Citation getAuthority() {
+        return null;
+    }
+
+    /**
+     * The default implementation returns an empty set.
+     *
+     * @todo Needs to be implemented.
+     */
+    @Override
+    public Set<String> getAuthorityCodes(final Class<? extends IdentifiedObject> type) throws FactoryException {
+        return Collections.emptySet();
+    }
+
+    /**
+     * The default implementation returns {@code null}.
+     */
+    @Override
+    public InternationalString getDescriptionText(final String code) throws FactoryException {
+        return null;
+    }
+
+    /**
+     * Builds a map of properties for a referencing object to be build. The map shall contains
+     * at least the {@link IdentifiedObject#NAME_KEY} identifier associated to the given value.
+     * Subclasses can override this method in order to provide more information if they wish.
+     *
+     * @param  code  The EPSG code of the object being build.
+     * @param  value The value for the name key.
+     * @return A map containing only the value specified for the name key.
+     */
+    protected Map<String,?> createPropertiesMap(final int code, final String value) {
+        return Collections.singletonMap(IdentifiedObject.NAME_KEY, value);
+    }
+
+    /**
+     * Returns an arbitrary object from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>4326</td> <td>WGS 84</td></tr>
+     *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
+     *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The datum for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public IdentifiedObject createObject(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            case 6326: return createDatum(code);
+            case 6422: return createCoordinateSystem(code);
+            case 4326: return createCoordinateReferenceSystem(code);
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////                                 ///////////////////////////////
+    ///////////////////////////////    D A T U M   F A C T O R Y    ///////////////////////////////
+    ///////////////////////////////                                 ///////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns an arbitrary {@linkplain Datum datum} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The datum for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public Datum createDatum(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            case 6326: return createGeodeticDatum(code);
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public EngineeringDatum createEngineeringDatum(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public ImageDatum createImageDatum(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public VerticalDatum createVerticalDatum(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public TemporalDatum createTemporalDatum(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The datum for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public GeodeticDatum createGeodeticDatum(final String code) throws FactoryException {
+        final String name;
+        final int ellipsoid;
+        final int primeMeridian;
+        final int id = parseCode(code);
+        switch (id) {
+            case 6326: name="World Geodetic System 1984"; ellipsoid=7030; primeMeridian=8901; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        assumeNotNull(datumFactory);
+        final GeodeticDatum object = datumFactory.createGeodeticDatum(createPropertiesMap(id, name),
+                createEllipsoid    (String.valueOf(ellipsoid)),
+                createPrimeMeridian(String.valueOf(primeMeridian)));
+        validate(object);
+        return object;
+    }
+
+    /**
+     * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>7030</td> <td>WGS 84</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The ellipsoid for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public Ellipsoid createEllipsoid(final String code) throws FactoryException {
+        final String name;
+        final double semiMajorAxis;
+        final double inverseFlattening;
+        final int    unit;
+        final int id = parseCode(code);
+        switch (id) {
+            case 7030: name="WGS 84"; semiMajorAxis=6378137; inverseFlattening=298.257223563; unit=9001; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        assumeNotNull(datumFactory);
+        final Ellipsoid object = datumFactory.createFlattenedSphere(createPropertiesMap(id, name),
+                semiMajorAxis, inverseFlattening, createUnit(String.valueOf(unit)).asType(Length.class));
+        validate(object);
+        return object;
+    }
+
+    /**
+     * Returns a {@linkplain PrimeMeridian prime meridian} from a EPSG code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>8901</td> <td>Greenwich</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The prime meridian for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public PrimeMeridian createPrimeMeridian(final String code) throws FactoryException {
+        final String name;
+        final double longitude;
+        final int    unit;
+        final int id = parseCode(code);
+        switch (id) {
+            case 8901: name="Greenwich"; longitude=0.0; unit=9102; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        assumeNotNull(datumFactory);
+        final PrimeMeridian object = datumFactory.createPrimeMeridian(createPropertiesMap(id, name),
+                longitude, createUnit(String.valueOf(unit)).asType(Angle.class));
+        validate(object);
+        return object;
+    }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////                                                         ///////////////////
+    ///////////////////    C O O R D I N A T E   S Y S T E M   F A C T O R Y    ///////////////////
+    ///////////////////                                                         ///////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public CoordinateSystem createCoordinateSystem(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            case 6422: return createEllipsoidalCS(code);
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public CartesianCS createCartesianCS(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public PolarCS createPolarCS(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public CylindricalCS createCylindricalCS(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public SphericalCS createSphericalCS(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * Creates an ellipsoidal coordinate system from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public EllipsoidalCS createEllipsoidalCS(final String code) throws FactoryException {
+        final String name;
+        final int axis0;
+        final int axis1;
+        final int id = parseCode(code);
+        switch (id) {
+            case 6422: name="Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree"; axis0=106; axis1=107; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        assumeNotNull(csFactory);
+        final EllipsoidalCS object = csFactory.createEllipsoidalCS(createPropertiesMap(id, name),
+                createCoordinateSystemAxis(String.valueOf(axis0)),
+                createCoordinateSystemAxis(String.valueOf(axis1)));
+        validate(object);
+        return object;
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public VerticalCS createVerticalCS(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public TimeCS createTimeCS(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>106</td>  <td>Geodetic latitude</td></tr>
+     *   <tr><td>107</td>  <td>Geodetic longitude</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The axis for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public CoordinateSystemAxis createCoordinateSystemAxis(final String code) throws FactoryException {
+        final String name;
+        final String abbreviation;
+        final AxisDirection direction;
+        final int unit;
+        final int id = parseCode(code);
+        switch (id) {
+            case 106: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH; unit=9122; break;
+            case 107: name="Geodetic longitude"; abbreviation="Long"; direction=AxisDirection.EAST;  unit=9122; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        assumeNotNull(csFactory);
+        final CoordinateSystemAxis object = csFactory.createCoordinateSystemAxis(createPropertiesMap(id, name),
+                abbreviation, direction, createUnit(String.valueOf(unit)));
+        validate(object);
+        return object;
+    }
+
+    /**
+     * Returns an {@linkplain Unit unit} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>9001</td> <td>metre</td></tr>
+     *   <tr><td>9102</td> <td>degree</td></tr>
+     *   <tr><td>9122</td> <td>degree (supplier to define representation)</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The unit for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public Unit<?> createUnit(final String code) throws FactoryException {
+        final Unit<?> unit;
+        final int id = parseCode(code);
+        switch (id) {
+            case 9001: unit=SI.METRE; break;
+            case 9122: // Fall through
+            case 9102: unit=NonSI.DEGREE_ANGLE; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        return unit;
+    }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    /////////                                                                             /////////
+    /////////    C O O R D I N A T E   R E F E R E N C E   S Y S T E M   F A C T O R Y    /////////
+    /////////                                                                             /////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system}
+     * from a code. The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>4326</td> <td>WGS 84</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public CoordinateReferenceSystem createCoordinateReferenceSystem(final String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            case 4326: return createGeographicCRS(code);
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public CompoundCRS createCompoundCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public DerivedCRS createDerivedCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>4326</td> <td>WGS 84</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
+     * @throws FactoryException if the object creation failed.
+     */
+    @Override
+    public GeographicCRS createGeographicCRS(final String code) throws FactoryException {
+        final String name;
+        final int datum;
+        final int coordinateSystem;
+        final int id = parseCode(code);
+        switch (id) {
+            case 4326: name="WGS 84"; datum=6326; coordinateSystem=6422; break;
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+        assumeNotNull(crsFactory);
+        final GeographicCRS object = crsFactory.createGeographicCRS(createPropertiesMap(id, name),
+                createGeodeticDatum(String.valueOf(datum)),
+                createEllipsoidalCS(String.valueOf(coordinateSystem)));
+        validate(object);
+        return object;
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public ImageCRS createImageCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public ProjectedCRS createProjectedCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public TemporalCRS createTemporalCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     */
+    @Override
+    public VerticalCRS createVerticalCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////                                                               ////////////////
+    ////////////////    C O O R D I N A T E   O P E R A T I O N   F A C T O R Y    ////////////////
+    ////////////////                                                               ////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * Returns the parameters to use for creating the {@linkplain CoordinateOperation coordinate
@@ -178,9 +846,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory {
                 break;
             }
             default: {
-                throw new FactoryException("No case implemented for EPSG:" + code);
+                throw noSuchAuthorityCode(code, String.valueOf(code));
             }
         }
+        validate(parameters);
         return parameters;
     }
 }
