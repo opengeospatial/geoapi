@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -50,6 +51,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @navassoc 1 - - VerticalDatumType
+ *
+ * @see DatumAuthorityFactory#createVerticalDatum(String)
+ * @see DatumFactory#createVerticalDatum(Map, VerticalDatumType)
  */
 @UML(identifier="CD_VerticalDatum", specification=ISO_19111)
 public interface VerticalDatum extends Datum {

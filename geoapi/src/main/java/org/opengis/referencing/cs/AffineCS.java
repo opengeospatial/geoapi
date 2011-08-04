@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -50,7 +51,8 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.0
  *
- * @see CartesianCS
+ * @see CSFactory#createAffineCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
+ * @see CSFactory#createAffineCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
 @UML(identifier="CS_AffineCS", specification=ISO_19111)
 public interface AffineCS extends CoordinateSystem {

@@ -31,6 +31,7 @@
  */
 package org.opengis.util;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -59,6 +60,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.1
  *
  * @navassoc 1 - - GenericName
+ *
+ * @see NameFactory#createNameSpace(GenericName, Map)
  */
 @UML(identifier="NameSpace", specification=ISO_19103)
 public interface NameSpace {

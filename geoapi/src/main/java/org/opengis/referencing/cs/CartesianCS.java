@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -56,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  *   ISO also defines <code>ImageCS</code> as the union of <code>AffineCS</code> and <code>CartesianCS</code>,
  *   for use by <code>ImageCRS</code>. Because the <code>union</code> construct found in some languages like
  *   C/C++ does not exist in Java, GeoAPI defines <code>CartesianCS</code> as a sub-type of <code>AffineCS</code>
- *   in order to achieve the same type safety; also, GeoAPI does not define <code>ImageCS</code> but uses 
+ *   in order to achieve the same type safety; also, GeoAPI does not define <code>ImageCS</code> but uses
  *   <code>AffineCS</code> instead. In this hierarchy, <code>CartesianCS</code> is considered
  *   a special case of <code>AffineCS</code> where all axes are perpendicular to each other.
  *
@@ -64,7 +65,9 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @see AffineCS
+ * @see CSAuthorityFactory#createCartesianCS(String)
+ * @see CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
+ * @see CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
 @UML(identifier="CS_CartesianCS", specification=ISO_19111)
 public interface CartesianCS extends AffineCS {

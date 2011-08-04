@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Map;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.annotation.UML;
@@ -48,10 +49,14 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @see CoordinateOperation
- *
  * @navassoc 1 - - Formula
  * @navassoc 1 - - ParameterDescriptorGroup
+ *
+ * @see CoordinateOperation
+ * @see MathTransformFactory#getAvailableMethods(Class)
+ * @see CoordinateOperationFactory#getOperationMethod(String)
+ * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
+ * @see CoordinateOperationFactory#createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)
  */
 @UML(identifier="CC_OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {

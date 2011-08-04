@@ -31,6 +31,8 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Map;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
@@ -49,6 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see Transformation
+ * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
  */
 @UML(identifier="CC_Conversion", specification=ISO_19111)
 public interface Conversion extends SingleOperation {

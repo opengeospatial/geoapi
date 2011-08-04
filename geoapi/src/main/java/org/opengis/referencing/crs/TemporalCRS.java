@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.annotation.UML;
@@ -54,6 +55,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - TemporalDatum
  * @navassoc 1 - - TimeCS
+ *
+ * @see CRSAuthorityFactory#createTemporalCRS(String)
+ * @see CRSFactory#createTemporalCRS(Map, TemporalDatum, TimeCS)
  */
 @UML(identifier="SC_TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {

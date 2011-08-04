@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -45,6 +46,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see DatumAuthorityFactory#createTemporalDatum(String)
+ * @see DatumFactory#createTemporalDatum(Map, Date)
  */
 @UML(identifier="CD_TemporalDatum", specification=ISO_19111)
 public interface TemporalDatum extends Datum {

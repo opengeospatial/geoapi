@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import org.opengis.referencing.IdentifiedObject;
@@ -51,6 +52,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @navassoc 1 - - Unit
+ *
+ * @see DatumAuthorityFactory#createPrimeMeridian(String)
+ * @see DatumFactory#createPrimeMeridian(Map, double, Unit)
  */
 @UML(identifier="CD_PrimeMeridian", specification=ISO_19111)
 public interface PrimeMeridian extends IdentifiedObject {

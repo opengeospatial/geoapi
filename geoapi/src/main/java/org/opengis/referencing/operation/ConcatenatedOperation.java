@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Map;
 import java.util.List;
 import org.opengis.annotation.UML;
 
@@ -53,6 +54,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @navassoc - - - SingleOperation
+ *
+ * @see CoordinateOperationFactory#createConcatenatedOperation(Map, CoordinateOperation[])
  */
 @UML(identifier="CC_ConcatenatedOperation", specification=ISO_19111)
 public interface ConcatenatedOperation extends CoordinateOperation {

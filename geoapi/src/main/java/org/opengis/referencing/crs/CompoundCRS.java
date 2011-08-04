@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import java.util.List;
 import org.opengis.annotation.UML;
 
@@ -75,6 +76,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @navassoc - - - CoordinateReferenceSystem
+ *
+ * @see CRSAuthorityFactory#createCompoundCRS(String)
+ * @see CRSFactory#createCompoundCRS(Map, CoordinateReferenceSystem[])
  */
 @UML(identifier="SC_CompoundCRS", specification=ISO_19111)
 public interface CompoundCRS extends CoordinateReferenceSystem {

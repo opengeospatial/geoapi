@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import javax.measure.unit.Unit;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
@@ -47,12 +48,13 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @see CoordinateSystem
- * @see Unit
- *
  * @navassoc 1 - - AxisDirection
  * @navassoc 1 - - RangeMeaning
  * @navassoc 1 - - Unit
+ *
+ * @see CoordinateSystem
+ * @see CSAuthorityFactory#createCoordinateSystemAxis(String)
+ * @see CSFactory#createCoordinateSystemAxis(Map, String, AxisDirection, Unit)
  */
 @UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
 public interface CoordinateSystemAxis extends IdentifiedObject {

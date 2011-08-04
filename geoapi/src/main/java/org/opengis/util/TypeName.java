@@ -43,6 +43,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.1
+ *
+ * @see NameFactory#createTypeName(NameSpace, CharSequence)
  */
 @UML(identifier="TypeName", specification=ISO_19103)
 public interface TypeName extends LocalName {
