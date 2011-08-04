@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.annotation.UML;
@@ -74,6 +75,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - VerticalDatum
  * @navassoc 1 - - VerticalCS
+ *
+ * @see CRSAuthorityFactory#createVerticalCRS(String)
+ * @see CRSFactory#createVerticalCRS(Map, VerticalDatum, VerticalCS)
  */
 @UML(identifier="SC_VerticalCRS", specification=ISO_19111)
 public interface VerticalCRS extends SingleCRS {

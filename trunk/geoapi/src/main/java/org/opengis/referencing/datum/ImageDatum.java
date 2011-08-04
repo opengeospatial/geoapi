@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -47,6 +48,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @navassoc 1 - - PixelInCell
+ *
+ * @see DatumAuthorityFactory#createImageDatum(String)
+ * @see DatumFactory#createImageDatum(Map, PixelInCell)
  */
 @UML(identifier="CD_ImageDatum", specification=ISO_19111)
 public interface ImageDatum extends Datum {

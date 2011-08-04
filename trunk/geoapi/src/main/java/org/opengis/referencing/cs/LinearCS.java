@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -51,6 +52,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see CSFactory#createLinearCS(Map, CoordinateSystemAxis)
  */
 @UML(identifier="CS_LinearCS", specification=ISO_19111)
 public interface LinearCS extends CoordinateSystem {

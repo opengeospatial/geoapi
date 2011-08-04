@@ -31,8 +31,10 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.Projection;
 import org.opengis.annotation.UML;
 
@@ -58,6 +60,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - GeodeticDatum
  * @navassoc 1 - - CartesianCS
+ *
+ * @see CRSAuthorityFactory#createProjectedCRS(String)
+ * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
  */
 @UML(identifier="SC_ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {
@@ -72,7 +77,7 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     Projection getConversionFromBase();
 
     /**
-     * Returns the coordinate system, which must be cartesian.
+     * Returns the coordinate system, which must be Cartesian.
      */
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CartesianCS getCoordinateSystem();

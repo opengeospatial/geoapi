@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -44,6 +45,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see DatumAuthorityFactory#createEngineeringDatum(String)
+ * @see DatumFactory#createEngineeringDatum(Map)
  */
 @UML(identifier="CD_EngineeringDatum", specification=ISO_19111)
 public interface EngineeringDatum extends Datum {

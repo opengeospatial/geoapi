@@ -152,6 +152,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see javax.naming.Name
+ * @see NameFactory#createGenericName(NameSpace, CharSequence[])
+ * @see NameFactory#parseGenericName(NameSpace, CharSequence)
  *
  * @navassoc 1 - - NameSpace
  */

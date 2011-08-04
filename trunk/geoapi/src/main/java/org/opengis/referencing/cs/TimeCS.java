@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -49,6 +50,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @see CSAuthorityFactory#createTimeCS(String)
+ * @see CSFactory#createTimeCS(Map, CoordinateSystemAxis)
  */
 @UML(identifier="CS_TimeCS", specification=ISO_19111)
 public interface TimeCS extends CoordinateSystem {

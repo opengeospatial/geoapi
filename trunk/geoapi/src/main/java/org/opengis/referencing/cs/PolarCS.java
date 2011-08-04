@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -51,6 +52,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see CylindricalCS
+ * @see CSAuthorityFactory#createPolarCS(String)
+ * @see CSFactory#createPolarCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  */
 @UML(identifier="CS_PolarCS", specification=ISO_19111)
 public interface PolarCS extends CoordinateSystem {

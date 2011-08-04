@@ -31,6 +31,8 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
+import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.annotation.UML;
 
@@ -85,6 +87,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - EngineeringDatum
  * @navassoc 1 - - CoordinateSystem
+ *
+ * @see CRSAuthorityFactory#createEngineeringCRS(String)
+ * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, CoordinateSystem)
  */
 @UML(identifier="SC_EngineeringCRS", specification=ISO_19111)
 public interface EngineeringCRS extends SingleCRS {

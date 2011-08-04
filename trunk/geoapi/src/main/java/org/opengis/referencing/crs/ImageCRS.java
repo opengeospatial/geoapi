@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.ImageDatum;
@@ -58,11 +59,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - ImageDatum
  * @navassoc 1 - - AffineCS
+ *
+ * @see CRSAuthorityFactory#createImageCRS(String)
+ * @see CRSFactory#createImageCRS(Map, ImageDatum, AffineCS)
  */
 @UML(identifier="SC_ImageCRS", specification=ISO_19111)
 public interface ImageCRS extends SingleCRS {
     /**
-     * Returns the cartesian coordinate system.
+     * Returns the affine coordinate system.
      */
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     AffineCS getCoordinateSystem();

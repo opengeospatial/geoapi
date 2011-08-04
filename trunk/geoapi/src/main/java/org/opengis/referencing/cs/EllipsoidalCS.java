@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -50,6 +51,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see CSAuthorityFactory#createEllipsoidalCS(String)
+ * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
+ * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
 @UML(identifier="CS_EllipsoidalCS", specification=ISO_19111)
 public interface EllipsoidalCS extends CoordinateSystem {

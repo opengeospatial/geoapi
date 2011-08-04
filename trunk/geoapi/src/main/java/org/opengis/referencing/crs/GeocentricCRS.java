@@ -31,9 +31,11 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -53,8 +55,8 @@ import static org.opengis.annotation.Specification.*;
  * </TD></TR></TABLE>
  *
  * @departure historic
- *   This interface is kept conformant with the specification published in 2003. 
- *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and 
+ *   This interface is kept conformant with the specification published in 2003.
+ *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and
  *   <code>GeocentricCRS</code> types, handling both using the <code>GeodeticCRS</code> parent type.
  *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
@@ -63,6 +65,10 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @navassoc 1 - - GeodeticDatum
+ *
+ * @see CRSAuthorityFactory#createGeocentricCRS(String)
+ * @see CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)
+ * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
  */
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111)
 public interface GeocentricCRS extends GeodeticCRS {

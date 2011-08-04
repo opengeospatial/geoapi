@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -51,6 +52,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - Ellipsoid
  * @navassoc 1 - - PrimeMeridian
+ *
+ * @see DatumAuthorityFactory#createGeodeticDatum(String)
+ * @see DatumFactory#createGeodeticDatum(Map, Ellipsoid, PrimeMeridian)
  */
 @UML(identifier="CD_GeodeticDatum", specification=ISO_19111)
 public interface GeodeticDatum extends Datum {

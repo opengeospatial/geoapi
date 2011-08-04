@@ -66,6 +66,10 @@ import static org.opengis.annotation.Specification.*;
  * @navassoc - - - PositionalAccuracy
  * @navassoc - - - Extent
  * @navassoc 1 - - MathTransform
+ *
+ * @see CoordinateOperationAuthorityFactory#createCoordinateOperation(String)
+ * @see CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes(String, String)
+ * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
  */
 @UML(identifier="CC_CoordinateOperation", specification=ISO_19111)
 public interface CoordinateOperation extends IdentifiedObject {
@@ -173,7 +177,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003.
      *   The revision published in 2007 replaced the singleton by a collection and changed the
-     *   obligation from "optional" to "mandatory", requiring a return value of 
+     *   obligation from "optional" to "mandatory", requiring a return value of
      *   "<cite>not known</cite>" if the scope is unknown. This change is still under review.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
