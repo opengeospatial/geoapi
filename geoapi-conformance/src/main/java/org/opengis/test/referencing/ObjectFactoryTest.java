@@ -67,10 +67,10 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.ReferencingFactoryTest;
+ *import org.opengis.test.referencing.ObjectFactoryTest;
  *
  *&#64;RunWith(JUnit4.class)
- *public class MyTest extends ReferencingFactoryTest {
+ *public class MyTest extends ObjectFactoryTest {
  *    public MyTest() {
  *        super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory(), new MyOpFactory());
  *    }
@@ -79,13 +79,15 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
  * which combine every tests defined in the GeoAPI conformance module.
  *
+ * @see AuthorityFactoryTest
+ *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.3
  */
 @RunWith(Parameterized.class)
-public strictfp class ReferencingFactoryTest extends TestCase {
+public strictfp class ObjectFactoryTest extends TestCase {
     /**
      * Factory to build {@link Datum} instances, or {@code null} if none.
      */
@@ -113,7 +115,7 @@ public strictfp class ReferencingFactoryTest extends TestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code ReferencingFactoryTest} constructor.
+     * @return The default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
      *
      * @since 3.1
      */
@@ -131,7 +133,7 @@ public strictfp class ReferencingFactoryTest extends TestCase {
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
      * @param opFactory    Factory for creating {@link Conversion} instances.
      */
-    public ReferencingFactoryTest(
+    public ObjectFactoryTest(
             final DatumFactory            datumFactory,
             final CSFactory                  csFactory,
             final CRSFactory                crsFactory,

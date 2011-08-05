@@ -73,6 +73,8 @@ import static org.opengis.test.Validators.*;
  * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
  * which combine every tests defined in the GeoAPI conformance module.
  *
+ * @see ObjectFactoryTest
+ *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
