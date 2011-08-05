@@ -171,6 +171,9 @@ public strictfp class TestSuite {
      */
     public static void clear() {
         synchronized (TestCase.FACTORIES) {
+            synchronized (TestCase.IMPLEMENTATION_DETAILS) {
+                TestCase.IMPLEMENTATION_DETAILS.reload();
+            }
             final Iterator<Iterable<? extends Factory>> it = TestCase.FACTORIES.values().iterator();
             while (it.hasNext()) {
                 final Iterable<? extends Factory> factories = it.next();
