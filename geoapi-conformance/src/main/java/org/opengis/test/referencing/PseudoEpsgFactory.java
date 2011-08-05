@@ -94,7 +94,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     protected final CoordinateOperationFactory opFactory;
 
     /**
-     * The factory to use for creating math transforms.
+     * Factory to build {@link MathTransform} instances, or {@code null} if none.
      */
     protected final MathTransformFactory mtFactory;
 

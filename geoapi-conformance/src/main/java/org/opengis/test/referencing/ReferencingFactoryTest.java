@@ -225,6 +225,7 @@ public strictfp class ReferencingFactoryTest extends TestCase {
         final PrimeMeridian primeMeridian = datum.getPrimeMeridian();
         assertEquals(0.0, primeMeridian.getGreenwichLongitude(), 0.0);
         assertEquals(DEGREE_ANGLE, primeMeridian.getAngularUnit());
+        assertAxisDirectionsEqual(crs.getCoordinateSystem(), NORTH, EAST, UP);
     }
 
     /**
@@ -254,6 +255,7 @@ public strictfp class ReferencingFactoryTest extends TestCase {
 
         assumeNotNull(crsFactory);
         validate(crs = crsFactory.createGeocentricCRS(name("Geocentric CRS"), datum, cs));
+        assertAxisDirectionsEqual(crs.getCoordinateSystem(), GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y);
     }
 
     /**
@@ -315,5 +317,6 @@ public strictfp class ReferencingFactoryTest extends TestCase {
         validate(baseToUTM    = opFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
         validate(projectedCRS = crsFactory.createProjectedCRS(name("WGS 84 / UTM Zone 12 (2D)"), baseCRS, baseToUTM, projectedCS));
         validate(crs3D        = crsFactory.createCompoundCRS(name("3D Compound WGS 84 / UTM Zone 12"), projectedCRS, heightCRS));
+        assertAxisDirectionsEqual(crs3D.getCoordinateSystem(), NORTH, EAST, UP);
     }
 }
