@@ -234,17 +234,23 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi-major axis</td><td>6377397.155</td></tr>
-     * <tr><td>semi-minor axis</td><td>6356078.962818189</td></tr>
-     * <tr><td>Latitude of natural origin</td><td>0.0</td></tr>
-     * <tr><td>Longitude of natural origin</td><td>110.0</td></tr>
-     * <tr><td>Scale factor at natural origin</td><td>0.997</td></tr>
-     * <tr><td>False easting</td><td>3900000.0</td></tr>
-     * <tr><td>False northing</td><td>900000.0</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                <td nowrap>6377397.155 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td nowrap>6356078.962818189 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td nowrap>0.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td nowrap>110.0°</td></tr>
+     * <tr><td>Scale factor at natural origin</td> <td nowrap>0.997</td></tr>
+     * <tr><td>False easting</td>                  <td nowrap>3900000.0 m</td></tr>
+     * <tr><td>False northing</td>                 <td nowrap>900000.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>110°E<br>0°N</td> <td nowrap>3900000.00 m<br>900000.00 m</td></tr>
+     * <tr align="right"><td>120°E<br>3°S</td> <td nowrap>5009726.58 m<br>569150.82 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -263,16 +269,22 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi-major axis</td><td>6378245.0</td></tr>
-     * <tr><td>semi-minor axis</td><td>6356863.018773047</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td><td>42.0</td></tr>
-     * <tr><td>Longitude of natural origin</td><td>51.0</td></tr>
-     * <tr><td>False easting</td><td>0.0</td></tr>
-     * <tr><td>False northing</td><td>0.0</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                   <td nowrap>6378245.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td nowrap>6356863.018773047 m</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td> <td nowrap>42.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>       <td nowrap>51.0°</td></tr>
+     * <tr><td>False easting</td>                     <td nowrap>0.0 m</td></tr>
+     * <tr><td>False northing</td>                    <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>51°E<br>0°N</td>  <td nowrap>0.00 m<br>0.00 m</td></tr>
+     * <tr align="right"><td>53°E<br>53°N</td> <td nowrap>165704.29 m<br>5171848.07 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -291,16 +303,23 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi-major axis</td><td>6378137.0</td></tr>
-     * <tr><td>semi-minor axis</td><td>6356752.314245179</td></tr>
-     * <tr><td>Latitude of natural origin</td><td>0.0</td></tr>
-     * <tr><td>Longitude of natural origin</td><td>0.0</td></tr>
-     * <tr><td>False easting</td><td>0.0</td></tr>
-     * <tr><td>False northing</td><td>0.0</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>                   <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>             <td nowrap>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td nowrap>6356752.314245179 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>  <td nowrap>0.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td> <td nowrap>0.0°</td></tr>
+     * <tr><td>False easting</td>               <td nowrap>0.0 m</td></tr>
+     * <tr><td>False northing</td>              <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr align="right"><td>0°E<br>0°N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
+     * <tr align="right"><td>100°20'00.000"W<br>24°22'54.433"N</td>
+     * <td nowrap>-11169055.58 m<br>2800000.00 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -319,17 +338,24 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi-major axis</td><td>6378206.4</td></tr>
-     * <tr><td>semi-minor axis</td><td>6356583.8</td></tr>
-     * <tr><td>Latitude of natural origin</td><td>18.0</td></tr>
-     * <tr><td>Longitude of natural origin</td><td>-77.0</td></tr>
-     * <tr><td>Scale factor at natural origin</td><td>1.0</td></tr>
-     * <tr><td>False easting</td><td>250000.0</td></tr>
-     * <tr><td>False northing</td><td>150000.0</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>                       <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                 <td nowrap>6378206.4 m</td></tr>
+     * <tr><td>semi-minor axis</td>                 <td nowrap>6356583.8 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>      <td nowrap>18.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>     <td nowrap>-77.0°</td></tr>
+     * <tr><td>Scale factor at natural origin</td>  <td nowrap>1.0</td></tr>
+     * <tr><td>False easting</td>                   <td nowrap>250000.0 m</td></tr>
+     * <tr><td>False northing</td>                  <td nowrap>150000.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>77°W<br>18°N</td> <td nowrap>250000.00 m<br>150000.00 m</td></tr>
+     * <tr align="right"><td>76°56'37.26"W<br>17°55'55.80"N</td>
+     * <td nowrap>255966.58 m<br>142493.51 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -348,18 +374,24 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi-major axis</td><td>6378206.4</td></tr>
-     * <tr><td>semi-minor axis</td><td>6356583.8</td></tr>
-     * <tr><td>Latitude of false origin</td><td>27.833333333333333</td></tr>
-     * <tr><td>Longitude of false origin</td><td>-99.0</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td><td>28.383333333333333</td></tr>
-     * <tr><td>Latitude of 2nd standard parallel</td><td>30.283333333333333</td></tr>
-     * <tr><td>Easting at false origin</td><td>609601.2192024385</td></tr>
-     * <tr><td>Northing at false origin</td><td>0.0</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                   <td nowrap>6378206.4 m</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td nowrap>6356583.8 m</td></tr>
+     * <tr><td>Latitude of false origin</td>          <td nowrap>27.833333333333333°</td></tr>
+     * <tr><td>Longitude of false origin</td>         <td nowrap>-99.0°</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td> <td nowrap>28.383333333333333°</td></tr>
+     * <tr><td>Latitude of 2nd standard parallel</td> <td nowrap>30.283333333333333°</td></tr>
+     * <tr><td>Easting at false origin</td>           <td nowrap>609601.2192024385 m</td></tr>
+     * <tr><td>Northing at false origin</td>          <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
+     * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 feet<br>0 feet</td></tr>
+     * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 feet<br>254759.80 feet</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -378,18 +410,24 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi-major axis</td><td>6378388.0</td></tr>
-     * <tr><td>semi-minor axis</td><td>6356911.9461279465</td></tr>
-     * <tr><td>Latitude of false origin</td><td>90.0</td></tr>
-     * <tr><td>Longitude of false origin</td><td>4.356939722222222</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td><td>49.83333333333333</td></tr>
-     * <tr><td>Latitude of 2nd standard parallel</td><td>51.16666666666667</td></tr>
-     * <tr><td>Easting at false origin</td><td>150000.01256</td></tr>
-     * <tr><td>Northing at false origin</td><td>5400088.4378</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                   <td nowrap>6378388.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td nowrap>6356911.9461279465 m</td></tr>
+     * <tr><td>Latitude of false origin</td>          <td nowrap>90.0°</td></tr>
+     * <tr><td>Longitude of false origin</td>         <td nowrap>4.356939722222222°</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td> <td nowrap>49.83333333333333°</td></tr>
+     * <tr><td>Latitude of 2nd standard parallel</td> <td nowrap>51.16666666666667°</td></tr>
+     * <tr><td>Easting at false origin</td>           <td nowrap>150000.01256 m</td></tr>
+     * <tr><td>Northing at false origin</td>          <td nowrap>5400088.4378 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
+     * <tr align="right"><td>4°21'24.983"E<br>90°00'00.000"N</td> <td nowrap>150000.01 m<br>5400088.44 m</td></tr>
+     * <tr align="right"><td>5°48'26.533"E<br>50°40'46.461"N</td> <td nowrap>251763.20 m<br>153034.13 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -409,16 +447,22 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      * <p>
-     * The math transform parameters are:
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th><th>Value</th></tr>
-     * <tr><td>semi_major</td><td>6378137.0</td></tr>
-     * <tr><td>semi_minor</td><td>6378137.0</td></tr>
-     * <tr><td>latitude_of_center</td><td>0.0</td></tr>
-     * <tr><td>longitude_of_center</td><td>0.0</td></tr>
-     * <tr><td>false_easting</td><td>0.0</td></tr>
-     * <tr><td>false_northing</td><td>0.0</td></tr>
-     * </table>
+     * <tr><th>Parameter</th>           <th>Value</th></tr>
+     * <tr><td>semi_major</td>          <td nowrap>6378137.0 m</td></tr>
+     * <tr><td>semi_minor</td>          <td nowrap>6378137.0 m</td></tr>
+     * <tr><td>latitude_of_center</td>  <td nowrap>0.0°</td></tr>
+     * <tr><td>longitude_of_center</td> <td nowrap>0.0°</td></tr>
+     * <tr><td>false_easting</td>       <td nowrap>0.0 m</td></tr>
+     * <tr><td>false_northing</td>      <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>                        <th>Expected results</th></tr>
+     * <tr align="right"><td>0°E<br>0°N</td>                <td nowrap>0.00 m<br>0.00 m</td></tr>
+     * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td nowrap>275951.78 m<br>5910061.78 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.

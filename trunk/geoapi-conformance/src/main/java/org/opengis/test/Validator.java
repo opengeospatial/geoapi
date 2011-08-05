@@ -77,7 +77,7 @@ public abstract class Validator {
      *
      * <p>The default value is {@code true}.</p>
      *
-     * @see #mandatory
+     * @see #mandatory(String, Object)
      */
     public boolean requireMandatoryAttributes = true;
 
@@ -90,7 +90,7 @@ public abstract class Validator {
      *
      * <p>The default value is {@code true}.</p>
      *
-     * @see #forbidden
+     * @see #forbidden(String, Object)
      */
     public boolean enforceForbiddenAttributes = true;
 

@@ -32,6 +32,8 @@
 package org.opengis.test;
 
 import java.util.Collection;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CoordinateSystem;
 
 
 /**
@@ -48,7 +50,7 @@ import java.util.Collection;
  * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class Assert extends org.junit.Assert {
@@ -224,6 +226,22 @@ public class Assert extends org.junit.Assert {
                 fail(message + " Looked for value \"" + value + "\" in a collection of " +
                         collection.size() + "elements.");
             }
+        }
+    }
+
+    /**
+     * Asserts that all axes in the given coordinate system are pointing toward the given
+     * directions, in the same order.
+     *
+     * @param cs The coordinate system to test.
+     * @param expected The expected axis directions.
+     *
+     * @since 3.1
+     */
+    public static void assertAxisDirectionsEqual(final CoordinateSystem cs, final AxisDirection... expected) {
+        assertEquals("Wrong coordinate system dimension.", expected.length, cs.getDimension());
+        for (int i=0; i<expected.length; i++) {
+            assertEquals("Wrong axis direction.", expected[i], cs.getAxis(i).getDirection());
         }
     }
 }
