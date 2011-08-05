@@ -35,6 +35,7 @@ import java.util.Random;
 import java.util.Arrays;
 import java.awt.geom.Point2D;
 
+import org.opengis.util.Factory;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
@@ -113,7 +114,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #isFloatToDoubleSupported
      * @see #verifyConsistency(float[])
      */
-    protected boolean isDoubleToDoubleSupported = true;
+    protected boolean isDoubleToDoubleSupported;
 
     /**
      * {@code true} if {@link MathTransform#transform(float[],int,float[],int,int)}
@@ -125,7 +126,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #isFloatToDoubleSupported
      * @see #verifyConsistency(float[])
      */
-    protected boolean isFloatToFloatSupported = true;
+    protected boolean isFloatToFloatSupported;
 
     /**
      * {@code true} if {@link MathTransform#transform(double[],int,float[],int,int)}
@@ -137,7 +138,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #isFloatToDoubleSupported
      * @see #verifyConsistency(float[])
      */
-    protected boolean isDoubleToFloatSupported = true;
+    protected boolean isDoubleToFloatSupported;
 
     /**
      * {@code true} if {@link MathTransform#transform(float[],int,double[],int,int)}
@@ -149,7 +150,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #isDoubleToFloatSupported
      * @see #verifyConsistency(float[])
      */
-    protected boolean isFloatToDoubleSupported = true;
+    protected boolean isFloatToDoubleSupported;
 
     /**
      * {@code true} if the destination array can be the same than the source array,
@@ -159,7 +160,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @see #verifyConsistency(float[])
      */
-    protected boolean isOverlappingArraySupported = true;
+    protected boolean isOverlappingArraySupported;
 
     /**
      * {@code true} if {@link MathTransform#inverse()} is supported. The default value
@@ -168,7 +169,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @see #verifyTransform(double[], double[])
      */
-    protected boolean isInverseTransformSupported = true;
+    protected boolean isInverseTransformSupported;
 
     /**
      * {@code true} if {@link MathTransform#derivative(DirectPosition)} is supported. The
@@ -180,7 +181,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @since 3.1
      */
-    protected boolean isDerivativeSupported = true;
+    protected boolean isDerivativeSupported;
 
     /**
      * The deltas to use for approximating {@linkplain MathTransform#derivative(DirectPosition) math
@@ -226,12 +227,40 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected double tolerance;
 
     /**
+     * @deprecated Use {@link #TransformTestCase(Factory[])} instead.
+     */
+    @Deprecated
+    protected TransformTestCase() {
+        this(new Factory[0]);
+    }
+
+    /**
      * Creates a test case initialized to default values. The {@linkplain #transform}
      * is initially null, the {@linkplain #tolerance} threshold is initially zero and
      * all <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> are set
-     * to {@code true}.
+     * to {@code true} unless at least one {@link org.opengis.test.ImplementationDetails}
+     * object disabled some tests.
+     *
+     * @param factories The factories to be used by the test. Those factories will be given to
+     *        {@link org.opengis.test.ImplementationDetails#configuration(Factory[])} in order
+     *        to decide which tests should be enabled.
      */
-    protected TransformTestCase() {
+    protected TransformTestCase(final Factory... factories) {
+        final boolean[] isEnabled = getEnabledFlags(factories,
+                "isDoubleToDoubleSupported",
+                "isFloatToFloatSupported",
+                "isDoubleToFloatSupported",
+                "isFloatToDoubleSupported",
+                "isOverlappingArraySupported",
+                "isInverseTransformSupported",
+                "isDerivativeSupported");
+        isDoubleToDoubleSupported   = isEnabled[0];
+        isFloatToFloatSupported     = isEnabled[1];
+        isDoubleToFloatSupported    = isEnabled[2];
+        isFloatToDoubleSupported    = isEnabled[3];
+        isOverlappingArraySupported = isEnabled[4];
+        isInverseTransformSupported = isEnabled[5];
+        isDerivativeSupported       = isEnabled[6];
     }
 
     /**

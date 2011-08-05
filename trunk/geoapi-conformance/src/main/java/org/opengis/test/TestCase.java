@@ -31,11 +31,13 @@
  */
 package org.opengis.test;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.ServiceLoader;
 import org.opengis.util.Factory;
 
@@ -56,11 +58,23 @@ public strictfp abstract class TestCase {
     /**
      * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
      * to use for loading those factories.
+     * <p>
+     * Accesses to this field must be synchronized on itself.
      *
      * @see TestSuite#setFactories(Class, Factory[])
      */
     static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES =
             new HashMap<Class<? extends Factory>, Iterable<? extends Factory>>();
+
+    /**
+     * The service loader to use for loading {@link ImplementationDetails}.
+     * <p>
+     * Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
+     * and {@code IMPLEMENTATION_DETAILS} are synchronized, than {@code FACTORIES} must
+     * be synchronized first.
+     */
+    static final ServiceLoader<ImplementationDetails> IMPLEMENTATION_DETAILS =
+            ServiceLoader.load(ImplementationDetails.class);
 
     /**
      * Creates a new test.
@@ -128,20 +142,83 @@ public strictfp abstract class TestCase {
                 }
                 List<Factory[]> toUpdate = factories;
                 for (final Factory factory : choices) {
-                    if (toUpdate == factories) {
-                        toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
-                    } else {
-                        for (int j=toUpdate.size(); --j>=0;) {
-                            toUpdate.set(j, toUpdate.get(j).clone());
+                    if (filter(type, factory)) {
+                        if (toUpdate == factories) {
+                            toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
+                        } else {
+                            for (int j=toUpdate.size(); --j>=0;) {
+                                toUpdate.set(j, toUpdate.get(j).clone());
+                            }
+                            factories.addAll(toUpdate);
                         }
-                        factories.addAll(toUpdate);
-                    }
-                    for (final Factory[] previous : toUpdate) {
-                        previous[i] = factory;
+                        for (final Factory[] previous : toUpdate) {
+                            previous[i] = factory;
+                        }
                     }
                 }
             }
         }
         return factories;
+    }
+
+    /**
+     * Returns {@code true} if the given factory can be tested. This method iterates over all
+     * registered {@link ImplementationDetails} and ensures that all of them accept the given
+     * factory.
+     */
+    private static <T extends Factory> boolean filter(final Class<T> category, final Factory factory) {
+        final T checked = category.cast(factory);
+        synchronized (IMPLEMENTATION_DETAILS) {
+            for (final ImplementationDetails impl : IMPLEMENTATION_DETAILS) {
+                if (!impl.filter(category, checked)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns booleans indicating whatever the given tests are enabled. By default, every tests
+     * are enabled. However if any {@link ImplementationDetails} instance found on the classpath
+     * returns a {@linkplain ImplementationDetails#configuration configuration} properties map
+     * having the value {@code "false"} for a given property, then the boolean value corresponding
+     * to this property is set to {@code false}.
+     *
+     * @param  factories  The factories used by the test case to execute.
+     * @param  properties The key for which the flags are wanted.
+     * @return An array of the same length than {@code properties} in which each element at
+     *         index <var>i</var> indicates whatever the {@code properties[i]} test should
+     *         be enabled.
+     */
+    protected static boolean[] getEnabledFlags(final Factory[] factories, final String... properties) {
+        final boolean[] isEnabled = new boolean[properties.length];
+        Arrays.fill(isEnabled, true);
+        synchronized (IMPLEMENTATION_DETAILS) {
+            for (final ImplementationDetails impl : IMPLEMENTATION_DETAILS) {
+                final Properties prop;
+                try {
+                    prop = impl.configuration(factories);
+                } catch (IOException e) {
+                    throw new AssertionError(e);
+                }
+                if (prop != null) {
+                    boolean atLeastOneTestIsEnabled = false;
+                    for (int i=0; i<properties.length; i++) {
+                        if (isEnabled[i]) {
+                            final String value = prop.getProperty(properties[i]);
+                            if (value != null && !(isEnabled[i] = Boolean.parseBoolean(value))) {
+                                continue; // Leave 'atLeastOneTestIsEnabled' unchanged.
+                            }
+                            atLeastOneTestIsEnabled = true;
+                        }
+                    }
+                    if (!atLeastOneTestIsEnabled) {
+                        break; // No need to continue scanning the classpath.
+                    }
+                }
+            }
+        }
+        return isEnabled;
     }
 }

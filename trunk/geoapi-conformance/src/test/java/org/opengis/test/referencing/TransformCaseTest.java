@@ -34,6 +34,7 @@ package org.opengis.test.referencing;
 import java.util.Random;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.Validators;
+import org.opengis.util.Factory;
 import org.junit.*;
 
 import static java.lang.StrictMath.*;
@@ -64,6 +65,13 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      * An array of coordinates point to be tested.
      */
     protected final float[] coordinates = new float[256];
+
+    /**
+     * Default constructor without factories.
+     */
+    public TransformCaseTest() {
+        super(new Factory[0]);
+    }
 
     /**
      * Initializes {@link #transform} to a new affine transform.

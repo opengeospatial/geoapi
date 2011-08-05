@@ -156,6 +156,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * @param factory Factory for creating {@link MathTransform} instances.
      */
     public MathTransformTest(final MathTransformFactory factory) {
+        super(factory);
         this.factory = factory;
     }
 
