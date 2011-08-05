@@ -65,11 +65,11 @@ import org.junit.runners.Parameterized;
  * @version 3.1
  * @since   2.3
  *
- * @deprecated Renamed {@link ReferencingFactoryTest}.
+ * @deprecated Renamed {@link ObjectFactoryTest}.
  */
 @Deprecated
 @RunWith(Parameterized.class)
-public strictfp class ReferencingTest extends ReferencingFactoryTest {
+public strictfp class ReferencingTest extends ObjectFactoryTest {
     /**
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.

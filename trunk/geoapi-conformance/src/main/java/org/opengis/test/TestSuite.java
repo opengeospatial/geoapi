@@ -47,7 +47,7 @@ import org.opengis.util.Factory;
  * <p>
  * <ul>
  *   <li>{@link org.opengis.test.util.NameTest}</li>
- *   <li>{@link org.opengis.test.referencing.ReferencingFactoryTest}</li>
+ *   <li>{@link org.opengis.test.referencing.ObjectFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.MathTransformTest}</li>
  * </ul>
@@ -95,7 +95,7 @@ import org.opengis.util.Factory;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
   org.opengis.test.util.NameTest.class,
-  org.opengis.test.referencing.ReferencingFactoryTest.class,
+  org.opengis.test.referencing.ObjectFactoryTest.class,
   org.opengis.test.referencing.AuthorityFactoryTest.class,
   org.opengis.test.referencing.MathTransformTest.class
 })
