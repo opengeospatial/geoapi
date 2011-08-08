@@ -32,7 +32,9 @@
 package org.opengis.test;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Collections;
 import org.opengis.util.Factory;
 
 
@@ -58,6 +60,39 @@ import org.opengis.util.Factory;
  * @since   3.1
  */
 public interface ImplementationDetails {
+    /**
+     * A map of all flags supported by the {@code geoapi-conformance} module, associated to
+     * the {@code "false"} value.
+     * <p>
+     * By default, implementations are assumed to support all features and implementors can
+     * disable some features on a case-by-case basis like below:
+     *
+     * <blockquote><pre>Properties config = new Properties();
+     * config.setProperty("isDerivativeSupported", "false");</pre></blockquote>
+     *
+     * This {@code ALL_DISABLED} map provides a way to apply the opposite approach: implementors
+     * can disable all features, then enable some of them on a case-by-case basis like below:
+     *
+     * <blockquote><pre>Properties config = new Properties();
+     * config.putAll(ALL_DISABLED);
+     * assertNotNull(config.setProperty("isDoubleToDoubleSupported", "true"));</pre></blockquote>
+     *
+     * The {@code assertNotNull} call is an opportunist way to ensure that the argument value
+     * is not misspelled. Note that an equivalent check can also be performed as below, after
+     * the {@code Properties} object has been fully constructed:
+     *
+     * <blockquote><pre>assertTrue(ALL_DISABLED.keySet().containsAll(config.keySet());</pre></blockquote>
+     */
+    Map<String,String> ALL_DISABLED = Collections.unmodifiableMap(TestCase.toMap(new String[] {
+        "isDoubleToDoubleSupported",
+        "isFloatToFloatSupported",
+        "isDoubleToFloatSupported",
+        "isFloatToDoubleSupported",
+        "isOverlappingArraySupported",
+        "isInverseTransformSupported",
+        "isDerivativeSupported"
+    }, "false"));
+
     /**
      * Returns {@code true} if the given factory can be tested. Implementors shall return
      * {@code false} only when they really want to exclude a particular factory. For every

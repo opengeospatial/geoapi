@@ -37,9 +37,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Properties;
 import java.util.ServiceLoader;
 import org.opengis.util.Factory;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -220,5 +223,18 @@ public strictfp abstract class TestCase {
             }
         }
         return isEnabled;
+    }
+
+    /**
+     * Returns a modifiable map filled with the given keys, where each key have the given value.
+     * This is used only for initializing the {@link ImplementationDetails#ALL_DISABLED} field,
+     * because we are not allowed to define static initializer in interface.
+     */
+    static Map<String, String> toMap(final String[] keys, final String value) {
+        final Map<String, String> map = new LinkedHashMap<String, String>(keys.length + keys.length/4 + 1);
+        for (final String key : keys) {
+            assertNull(map.put(key, value));
+        }
+        return map;
     }
 }
