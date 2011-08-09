@@ -370,17 +370,23 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     expected, targetOffset, target.ordinates, 0, 1, CalculationType.DIRECT_TRANSFORM, i);
             assertCoordinatesEqual("Source coordinate has been modified.", sourceDimension,
                     coordinates, sourceOffset, source.ordinates, 0, 1, CalculationType.STRICT, i);
-
-            if (inverse == null) {
-                continue;
+            /*
+             * Tests the inverse transform, if supported. We could use the 'target' point directly,
+             * which contain the result of the transform performed by the application under testing.
+             * Nevertheless we overwrite the 'target' point with the 'expected' coordinate provided
+             * in argument to this method. It is not necessarily more accurate since the expected
+             * coordinates are often provided with limited precision. However this allow more
+             * consistent behavior.
+             */
+            if (inverse != null) {
+                System.arraycopy(expected, targetOffset, target.ordinates, 0, targetDimension);
+                assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+                        back, inverse.transform(target, back));
+                assertCoordinateEquals("Unexpected result of inverse transform.",
+                        source.ordinates, back.ordinates, i, CalculationType.INVERSE_TRANSFORM);
+                assertCoordinatesEqual("Source coordinate has been modified.", targetDimension,
+                        expected, targetOffset, target.ordinates, 0, 1, CalculationType.STRICT, i);
             }
-            System.arraycopy(expected, targetOffset, target.ordinates, 0, targetDimension);
-            assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
-                    back, inverse.transform(target, back));
-            assertCoordinateEquals("Unexpected result of inverse transform.",
-                    source.ordinates, back.ordinates, i, CalculationType.INVERSE_TRANSFORM);
-            assertCoordinatesEqual("Source coordinate has been modified.", targetDimension,
-                    expected, targetOffset, target.ordinates, 0, 1, CalculationType.STRICT, i);
         }
     }
 
@@ -1010,9 +1016,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
                  * The next condition working on bit patterns is for NaN and Infinity values.
                  */
                 final double delta = abs(e - a);
-                if (!(delta <= tolerance(expected, mismatch, mode)) &&
-                        Double.doubleToLongBits(a) != Double.doubleToLongBits(e))
-                {
+                final double tol = tolerance(expected, mismatch, mode);
+                if (!(delta <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     /*
                      * Format an error message with the coordinate values followed by the
                      * difference with the expected value.
@@ -1027,6 +1032,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     } else {
                         buffer.append((float) delta);
                     }
+                    buffer.append(" which is ").append((float) (delta / tol)).append(" times the tolerance threshold.");
                     throw new TransformFailure(buffer.toString());
                 }
             }
