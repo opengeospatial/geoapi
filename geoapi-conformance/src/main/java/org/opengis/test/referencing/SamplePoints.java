@@ -164,6 +164,16 @@ final class SamplePoints {
                 λmax =  6.4; φmax = 51.5;
                 break;
             }
+            case 3035: {  // "ETRS89 / LAEA Europe"
+                operation = 19986;
+                fe =   4321000.00;  λ0 = 10;
+                fn =   3210000.00;  φ0 = 52;
+                e  =   3962799.45;  λ  =  5;
+                n  =   2999718.85;  φ  = 50;
+                λmin = -31.53; φmin = 27.75;
+                λmax =  45.00; φmax = 71.15;
+                break;
+            }
             case 310642901: {  // "IGNF:MILLER"
                 operation = 310642901;
                 fe =         0.00;  λ0 =  0;

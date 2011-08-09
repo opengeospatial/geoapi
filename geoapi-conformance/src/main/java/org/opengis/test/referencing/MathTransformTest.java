@@ -440,6 +440,41 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Testes the "<cite>Lambert Azimuthal Equal Area</cite>" (EPSG:9820) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                   <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td>6356752.314140356 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>  <td>52.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td> <td>10.0°</td></tr>
+     * <tr><td>False easting</td>               <td>4321000.0 m</td></tr>
+     * <tr><td>False northing</td>              <td>3210000.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>10°E<br>52°N</td> <td nowrap>4321000.00 m<br>3210000.00 m</td></tr>
+     * <tr align="right"><td>5°E<br>50°N</td>  <td nowrap>3962799.45 m<br>2999718.85 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    @org.junit.Ignore // TODO: Do we need to relax the tolerance threshold for this one?
+    public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
+        isProjection = true;
+        run(3035);  // "ETRS89 / LAEA Europe"
+    }
+
+    /**
      * Testes the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
      * First, this method transforms the point given by the
      * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
@@ -517,10 +552,13 @@ public strictfp class MathTransformTest extends TransformTestCase {
             }
             case INVERSE_TRANSFORM: {
                 if (isProjection) {
-                    if (dimension == 0 && abs(coordinate.getOrdinate(1)) == 90) {
-                        tol = 360;
-                    } else {
-                        tol /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
+                    tol /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
+                    if (dimension == 0) {
+                        final double φ = coordinate.getOrdinate(1);
+                        tol /= cos(toRadians(φ)); // Adjust longitude tolerance for the latitude.
+                        if (!(tol < 360)) { // !(a<b) rather than (a>=b) in order to catch NaN.
+                            tol = 360;
+                        }
                     }
                 }
                 break;

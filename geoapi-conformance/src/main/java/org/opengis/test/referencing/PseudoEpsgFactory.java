@@ -757,6 +757,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
      *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe </td>               <td>Lambert Azimuthal Equal Area</td></tr>
      *   <tr><td>310642901</td> <td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
      * </table>
      *
@@ -843,6 +844,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of false origin")        .setValue(4 + (21 + 24.983/60)/60); // 4°21'24.983"E
                 parameters.parameter("Easting at false origin") .setValue( 150000.01);
                 parameters.parameter("Northing at false origin").setValue(5400088.44);
+                break;
+            }
+            case 19986: { // "Europe Equal Area 2001" using operation method 9820
+                parameters = factory.getDefaultParameters("Lambert Azimuthal Equal Area");
+                parameters.parameter("semi-major axis").setValue(6378137.0);
+                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572221));
+                parameters.parameter("Latitude of natural origin") .setValue(52.0);
+                parameters.parameter("Longitude of natural origin").setValue(10.0);
+                parameters.parameter("False easting") .setValue(4321000.00);
+                parameters.parameter("False northing").setValue(3210000.00);
                 break;
             }
             default: {
