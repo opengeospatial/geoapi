@@ -43,14 +43,16 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.test.ToleranceModifier;
+import org.opengis.test.CalculationType;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static java.lang.StrictMath.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
 
@@ -86,6 +88,19 @@ import static org.opengis.test.Validators.*;
  *   <li>{@link #tolerance(DirectPosition, int, CalculationType)}</li>
  *   <li>{@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}</li>
  * </ul>
+ * <p>
+ * Implementors can also alter some particular tests. The example below increases the tolerance
+ * value for the <cite>Lambert Azimuthal Equal Area</cite> projection to 10 centimetres before
+ * to run the test, then ensures that the {@linkplain #transform transform} implements the
+ * {@link MathTransform2D} interface:
+ *
+ * <blockquote><pre>&#64;Test
+ *&#64;Override
+ *public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
+ *    tolerance = 0.1; // Value in metres.
+ *    super.testLambertAzimuthalEqualArea();
+ *    assertTrue(transform instanceof MathTransform2D);
+ *}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -128,14 +143,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
     protected final MathTransformFactory factory;
 
     /**
-     * {@code true} if the {@linkplain #transform} being tested is a map projection
-     * from a geographic CRS to a projected CRS. This flag shall be set together
-     * with the {@link #tolerance} threshold before the {@code verify(...)} methods
-     * are invoked.
-     */
-    private transient boolean isProjection;
-
-    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -173,7 +180,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * <ul>
      *   <li><p>{@link TransformTestCase#tolerance} is sets to half the precision of the sample
-     *       coordinate points given in the EPSG guidance document.</p></li>
+     *       coordinate points given in the EPSG guidance document, unless a greater tolerance
+     *       threshold is already set in which case the existing value is left unchanged.</p></li>
      *   <li><p>{@link #derivativeDeltas} is set to a value in degrees corresponding to
      *       approximatively 1 metre on Earth (calculated using the standard nautical mile length).
      *       A finer value can lead to more accurate derivative approximation by the
@@ -191,7 +199,9 @@ public strictfp class MathTransformTest extends TransformTestCase {
     protected void createMathTransform(final int code) throws FactoryException {
         final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, code);
         transform = factory.createParameterizedTransform(parameters);
-        tolerance = TRANSFORM_TOLERANCE;
+        if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
+            tolerance = TRANSFORM_TOLERANCE;
+        }
         derivativeDeltas = new double[transform.getSourceDimensions()];
         Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * 1852));
     }
@@ -258,7 +268,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testMercator1SP() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(3002);  // "Makassar / NEIEZ"
     }
 
@@ -292,7 +302,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testMercator2SP() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(3388);  // "Pulkovo 1942 / Caspian Sea Mercator"
     }
 
@@ -327,7 +337,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testPseudoMercator() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(3857);  // "WGS 84 / Pseudo-Mercator"
     }
 
@@ -363,7 +373,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertConicConformal1SP() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(24200);  // "JAD69 / Jamaica National Grid"
     }
 
@@ -399,7 +409,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertConicConformal2SP() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(32040);  // "NAD27 / Texas South Central"
     }
 
@@ -435,7 +445,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertConicConformalBelgium() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(31300);  // "Belge 1972 / Belge Lambert 72"
     }
 
@@ -468,9 +478,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * @throws TransformException If the example point can not be transformed.
      */
     @Test
-    @org.junit.Ignore // TODO: Do we need to relax the tolerance threshold for this one?
     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(3035);  // "ETRS89 / LAEA Europe"
     }
 
@@ -505,7 +514,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testMiller() throws FactoryException, TransformException {
-        isProjection = true;
+        toleranceModifier = ToleranceModifier.PROJECTION;
         run(310642901);  // "IGNF:MILLER"
     }
 
@@ -524,46 +533,5 @@ public strictfp class MathTransformTest extends TransformTestCase {
             }
         }
         super.assertMatrixEquals(message, expected, actual, tolmat);
-    }
-
-    /**
-     * Returns the tolerance threshold for comparing the given ordinate value. The default
-     * implementation applies the following rules:
-     * <p>
-     * <ul>
-     *   <li>For {@linkplain CalculationType#DIRECT_TRANSFORM direct transforms},
-     *       return directly the {@linkplain #tolerance tolerance} value. When the transform to
-     *       be tested is a map projection, this tolerance value is measured in metres.</li>
-     *   <li>For {@linkplain CalculationType#INVERSE_TRANSFORM inverse transforms},
-     *       if the transform being tested is a map projection, then the {@linkplain #tolerance
-     *       tolerance} value is converted from metres to decimal degrees except for longitudes
-     *       at a pole in which case the tolerance value is set to 360°.</li>
-     *   <li>For {@linkplain CalculationType#STRICT strict} comparisons,
-     *       unconditionally returns 0.</li>
-     * </ul>
-     */
-    @Override
-    protected double tolerance(final DirectPosition coordinate, final int dimension, final CalculationType mode) {
-        double tol = tolerance;
-        switch (mode) {
-            case STRICT: {
-                tol = 0;
-                break;
-            }
-            case INVERSE_TRANSFORM: {
-                if (isProjection) {
-                    tol /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
-                    if (dimension == 0) {
-                        final double φ = coordinate.getOrdinate(1);
-                        tol /= cos(toRadians(φ)); // Adjust longitude tolerance for the latitude.
-                        if (!(tol < 360)) { // !(a<b) rather than (a>=b) in order to catch NaN.
-                            tol = 360;
-                        }
-                    }
-                }
-                break;
-            }
-        }
-        return tol;
     }
 }

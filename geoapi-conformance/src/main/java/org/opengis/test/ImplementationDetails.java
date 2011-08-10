@@ -35,24 +35,38 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Collections;
+
 import org.opengis.util.Factory;
+import org.opengis.referencing.operation.MathTransform;
 
 
 /**
  * Provides optional information about the implementation being tested. Implementors can
  * provide instance of this interface in their test packages, and declare their instance
- * in the {@code META-INF/services/org.opengis.test.ImplementationDetails} file. Before
- * to run any {@link TestCase}, the GeoAPI {@link TestSuite} will iterate over every
- * {@code ImplementationDetails} found on the classpath and checks whatever a particular
- * factory can be tested, and which tests should be disabled (if any).
+ * in the {@code META-INF/services/org.opengis.test.ImplementationDetails} file. GeoAPI
+ * will iterate over every {@code ImplementationDetails} found on the classpath when needed:
+ * <p>
+ * <ul>
+ *   <li>Before the first execution of any particular {@link TestCase} subclass, in order to
+ *   check whatever a particular factory can be tested. See {@link #filter(Class, Factory)}.</li>
+ *
+ *   <li>Before each execution of a configurable {@link TestCase}, in order to check which tests
+ *   (if any) should be disabled. See {@link #configuration(Factory[])}.</li>
+ *
+ *   <li>Before each execution of a {@link TestCase} performing numerical calculation, in
+ *   order to determine if a specific implementation needs to relax the tolerance threshold.
+ *   See {@link #needsRelaxedTolerance(MathTransform)}.</li>
+ * </ul>
  * <p>
  * If no instance of {@code ImplementationDetails} is registered, then GeoAPI assumes that
- * every factories found on the classpath shall be tested and all tests are enabled. This
- * is equivalent to using a {@code ImplementationDetails} instance where:
+ * every factories found on the classpath shall be tested and all tests are enabled with
+ * the default tolerance threshold. This is equivalent to using a {@code ImplementationDetails}
+ * instance where:
  * <p>
  * <ul>
  *   <li>{@link #filter(Class, Factory)} returns unconditionally {@code true}</li>
  *   <li>{@link #configuration(Factory[])} returns unconditionally {@code null}</li>
+ *   <li>{@link #needsRelaxedTolerance(MathTransform)} returns unconditionally {@code null}</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -62,26 +76,25 @@ import org.opengis.util.Factory;
 public interface ImplementationDetails {
     /**
      * A map of all flags supported by the {@code geoapi-conformance} module, associated to
-     * the {@code "false"} value.
-     * <p>
-     * By default, implementations are assumed to support all features and implementors can
-     * disable some features on a case-by-case basis like below:
+     * the {@code "false"} value. This map provides a way to disable all configurable tests
+     * before to enable them on case-by-case basis, as opposed to the default approach which
+     * is to disable tests on a case-by-case basis. Examples:
      *
+     * <p><b>All tests initially enabled, then disable some of them:</b></p>
      * <blockquote><pre>Properties config = new Properties();
-     * config.setProperty("isDerivativeSupported", "false");</pre></blockquote>
+     *config.setProperty("isOverlappingArraySupported", "false");
+     *config.setProperty("isDerivativeSupported", "false");
+     *assertTrue(ALL_DISABLED.keySet().containsAll(config.keySet());</pre></blockquote>
      *
-     * This {@code ALL_DISABLED} map provides a way to apply the opposite approach: implementors
-     * can disable all features, then enable some of them on a case-by-case basis like below:
-     *
+     * <p><b>All configurable tests initially disabled, then enable some of them:</b></p>
      * <blockquote><pre>Properties config = new Properties();
-     * config.putAll(ALL_DISABLED);
-     * assertNotNull(config.setProperty("isDoubleToDoubleSupported", "true"));</pre></blockquote>
+     *config.putAll(ALL_DISABLED);
+     *assertNotNull(config.setProperty("isDoubleToDoubleSupported", "true"));
+     *assertNotNull(config.setProperty("isFloatToFloatSupported", "true"));</pre></blockquote>
      *
      * The {@code assertNotNull} call is an opportunist way to ensure that the argument value
-     * is not misspelled. Note that an equivalent check can also be performed as below, after
-     * the {@code Properties} object has been fully constructed:
-     *
-     * <blockquote><pre>assertTrue(ALL_DISABLED.keySet().containsAll(config.keySet());</pre></blockquote>
+     * is not misspelled. An equivalent check was performed in the first example using the
+     * {@code assertTrue} statement after the {@code Properties} object has been fully constructed.
      */
     Map<String,String> ALL_DISABLED = Collections.unmodifiableMap(TestCase.toMap(new String[] {
         "isDoubleToDoubleSupported",
@@ -138,4 +151,18 @@ public interface ImplementationDetails {
      *         load} the properties from a file and that operation failed.
      */
     Properties configuration(Factory... factories) throws IOException;
+
+    /**
+     * Returns an object for modifying the tolerance thresholds when testing the given math transform,
+     * or {@code null} if no change is needed. This method should return a non-null value only if the
+     * implementation being tested does not have the accuracy expected by the {@link TestCase}. In
+     * such case, the object returned by this method can be used for relaxing the tolerance threshold.
+     * <p>
+     * If more than one {@code ImplementationDetails} return a non-null value, then the threshold
+     * used by GeoAPI will be the maximal value returned by all {@code ToleranceModifier} objects.
+     *
+     * @param  transform The transform being tested.
+     * @return An object for modifying the tolerance thresholds, or {@code null} if no change is needed.
+     */
+    ToleranceModifier needsRelaxedTolerance(MathTransform transform);
 }

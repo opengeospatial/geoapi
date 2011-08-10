@@ -41,8 +41,10 @@ import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.test.ToleranceModifiers;
+import org.opengis.test.ToleranceModifier;
+import org.opengis.test.CalculationType;
 
-import org.junit.Before;
 import org.opengis.test.TestCase;
 
 import static java.lang.StrictMath.*;
@@ -95,10 +97,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * The transform being tested. Subclasses should assign a value to this field,
-     * typically in some method annotated with JUnit {@link Before} annotation.
-     * <p>
-     * Subclasses should consider setting a {@linkplain #tolerance} threshold value
-     * together with the transform.
+     * together with the {@link #tolerance} field, before any test is run.
      *
      * @see #tolerance
      */
@@ -212,19 +211,38 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Maximum difference to be accepted when comparing a transformed ordinate value with
-     * the expected one. By default this threshold is absolute; no special computation is
-     * performed for taking in account the magnitude of the ordinate being compared. If a
-     * subclass needs to set a relative tolerance threshold instead than an absolute one,
-     * it should override the {@link #tolerance(DirectPosition, int, CalculationType)} method.
+     * the expected value. By default this threshold is constant for all dimensions of all
+     * coordinates to be compared. If a subclass needs to adjust the tolerance threshold
+     * according the dimension or the coordinates values, then it should assign a value to
+     * the {@link #toleranceModifier} field in addition to this one.
+     * <p>
+     * <b>Example:</b> the comparisons of geographic coordinates require increasing tolerance
+     * in longitude values as the latitude get closer to a pole. For such comparisons, this
+     * {@code tolerance} field shall be set to a threshold value in <em>metres</em> and the
+     * {@link #toleranceModifier} field shall be assigned the {@link ToleranceModifier#GEOGRAPHIC}
+     * value. See the {@code GEOGRAPHIC} modifier javadoc for more information.
      * <p>
      * The default value is 0, which means that strict equality will be required. Subclasses
      * should set a more suitable tolerance threshold when {@linkplain #transform} is assigned
      * a value.
      *
      * @see #transform
-     * @see #tolerance(DirectPosition, int, CalculationType)
+     * @see #toleranceModifier
      */
     protected double tolerance;
+
+    /**
+     * Optional modification to the {@linkplain #tolerance} threshold before to compare a
+     * coordinate points. {@link ToleranceModifier} instance assigned to this field (if any)
+     * are {@linkplain #transform}-dependent. The modifications applied by a particular
+     * {@code ToleranceModifier} instance to the tolerance thresholds is position-dependent.
+     * <p>
+     * Common values assigned to this field are {@link ToleranceModifier#PROJECTION} and
+     * {@link ToleranceModifier#GEOGRAPHIC}.
+     *
+     * @since 3.1
+     */
+    protected ToleranceModifier toleranceModifier;
 
     /**
      * @deprecated Use {@link #TransformTestCase(Factory[])} instead.
@@ -276,7 +294,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  ordinate The ordinate value being compared.
      * @return The absolute tolerance threshold to use for comparing the given ordinate.
      *
-     * @deprecated Replaced by {@link #tolerance(DirectPosition, int, CalculationType)}.
+     * @deprecated Replaced by {@link #toleranceModifier}.
      */
     @Deprecated
     protected double tolerance(final double ordinate) {
@@ -301,8 +319,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates and verifies that the result is equals (within a positive
      * delta) to the expected ones. If the difference between an expected and actual ordinate value
-     * is greater than the {@linkplain #tolerance(DirectPosition, int, CalculationType) tolerance}
-     * threshold, then the assertion fails.
+     * is greater than the {@linkplain #tolerance tolerance} threshold (after optional
+     * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
      * <p>
      * If {@link #isInverseTransformSupported} is {@code true}, then this method will also
      * transform the expected coordinate points using the {@linkplain MathTransform#inverse
@@ -393,8 +411,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates, applies the inverse transform and compares with the
      * original values. If a difference between the expected and actual ordinate values is
-     * greater than the {@linkplain #tolerance(DirectPosition, int, CalculationType) tolerance}
-     * threshold, then the assertion fails.
+     * greater than the {@linkplain #tolerance tolerance} threshold (after optional
+     * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
      * <p>
      * At the difference of {@link #verifyTransform(double[],double[])}, this method do
      * not require an array of expected values. The expected values are calculated from
@@ -454,8 +472,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Transforms the given coordinates, applies the inverse transform and compares with the
      * original values. If a difference between the expected and actual ordinate values is
-     * greater than the {@linkplain #tolerance(DirectPosition, int, CalculationType) tolerance}
-     * threshold, then the assertion fails.
+     * greater than the {@linkplain #tolerance tolerance} threshold (after optional
+     * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
      * <p>
      * The default implementation delegates to {@link #verifyInverse(double[])}.
      *
@@ -1004,10 +1022,17 @@ public strictfp abstract class TransformTestCase extends TestCase {
         final boolean useDouble = isDoubleArray(expectedPts) && isDoubleArray(actualPts);
         final SimpleDirectPosition actual   = new SimpleDirectPosition(dimension);
         final SimpleDirectPosition expected = new SimpleDirectPosition(dimension);
+        final double[] tolerances = new double[dimension];
+        final ToleranceModifier modifier = ToleranceModifiers.concatenate(toleranceModifier,
+                ToleranceModifiers.maximum(ToleranceModifiers.getImplementationSpecific(transform)));
         for (int i=0; i<numPoints; i++) {
             actual  .setCoordinate(actualPts,   actualOffset,   useDouble);
             expected.setCoordinate(expectedPts, expectedOffset, useDouble);
             normalize(expected, actual, mode);
+            Arrays.fill(tolerances, tolerance);
+            if (modifier != null) {
+                modifier.adjust(tolerances, expected, mode);
+            }
             for (int mismatch=0; mismatch<dimension; mismatch++) {
                 final double a = actual  .getOrdinate(mismatch);
                 final double e = expected.getOrdinate(mismatch);
@@ -1016,7 +1041,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                  * The next condition working on bit patterns is for NaN and Infinity values.
                  */
                 final double delta = abs(e - a);
-                final double tol = tolerance(expected, mismatch, mode);
+                final double tol = tolerances[mismatch];
                 if (!(delta <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     /*
                      * Format an error message with the coordinate values followed by the
@@ -1287,54 +1312,19 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Invoked by all {@code assertCoordinateEqual(...)} methods before two positions are compared.
      * This method allows subclasses to replace some equivalent ordinate values by a unique value.
-     * For example subclasses may ensure that longitude values are contained in the ±180° range,
-     * applying 360° shifts if needed.
+     * For example implementations may ensure that longitude values are contained in the ±180°
+     * range, applying 360° shifts if needed.
      * <p>
-     * The default implementation does nothing. Subclasses that override this method can modify the
-     * ordinate values directly using the {@link DirectPosition#setOrdinate(int, double)} method.
+     * The default implementation does nothing. Subclasses can modify the {@code actual} ordinate
+     * values directly using the {@link DirectPosition#setOrdinate(int, double)} method.
      *
      * @param expected The expected ordinate value provided by the test case.
-     * @param actual   The ordinate value computed by the {@linkplain #transform}.
-     * @param  mode    Whatever the coordinates being compared are the result of a direct
+     * @param actual   The ordinate value computed by the {@linkplain #transform} being tested.
+     * @param mode     Whatever the coordinates being compared are the result of a direct
      *                 or inverse transform, or whatever strict equality is requested.
      *
      * @since 3.1
      */
     protected void normalize(DirectPosition expected, DirectPosition actual, CalculationType mode) {
-    }
-
-    /**
-     * Returns the tolerance threshold for comparing an ordinate value. The default
-     * implementation returns the {@link #tolerance} value directly (except for strict mode),
-     * thus implementing an absolute tolerance threshold. If a subclass needs a relative
-     * tolerance threshold instead, it can override this method as below:
-     *
-     * <blockquote><code>
-     * return super.tolerance(coordinate, dimension, mode) * Math.abs(coordinate.getOrdinate(dimension));
-     * </code></blockquote>
-     * <p>
-     * Subclasses can also override this method for handling some dimensions in a special way.
-     * Some typical special cases are:
-     * <p>
-     * <ul>
-     *   <li>Allowing a greater tolerance threshold along the vertical axis compared to the
-     *       horizontal axis.</li>
-     *   <li>In a geographic CRS, ignoring offsets of 360° in longitude.</li>
-     *   <li>In a geographic CRS, ignoring the longitude value if the latitude is at a pole.</li>
-     * </ul>
-     * <p>
-     * The default implementation does not implement any of the above special cases.
-     * It is up to subclasses to implement their own special cases if they need to.
-     *
-     * @param  coordinate The coordinate being compared.
-     * @param  dimension  The dimension of the ordinate being compared. The first dimension is 0.
-     * @param  mode       Whatever the coordinates being compared are the result of a direct
-     *                    or inverse transform, or whatever strict equality is requested.
-     * @return The absolute tolerance threshold to use for comparing the given ordinate.
-     *
-     * @since 3.1
-     */
-    protected double tolerance(final DirectPosition coordinate, final int dimension, final CalculationType mode) {
-        return (mode != CalculationType.STRICT) ? tolerance(coordinate.getOrdinate(dimension)) : 0;
     }
 }

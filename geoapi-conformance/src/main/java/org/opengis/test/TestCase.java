@@ -73,7 +73,7 @@ public strictfp abstract class TestCase {
      * The service loader to use for loading {@link ImplementationDetails}.
      * <p>
      * Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
-     * and {@code IMPLEMENTATION_DETAILS} are synchronized, than {@code FACTORIES} must
+     * and {@code IMPLEMENTATION_DETAILS} are synchronized, then {@code FACTORIES} must
      * be synchronized first.
      */
     static final ServiceLoader<ImplementationDetails> IMPLEMENTATION_DETAILS =

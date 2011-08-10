@@ -29,10 +29,11 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.test.referencing;
+package org.opengis.test;
 
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.test.referencing.TransformTestCase;
 
 
 /**
@@ -43,16 +44,13 @@ import org.opengis.referencing.operation.MathTransform;
  * <p>
  * <ul>
  *   <li>{@link TransformTestCase#normalize(DirectPosition, DirectPosition, CalculationType)}</li>
- *   <li>{@link TransformTestCase#tolerance(DirectPosition, int, CalculationType)}</li>
+ *   <li>{@link ToleranceModifier#adjust(double[], DirectPosition, CalculationType)}</li>
  * </ul>
  * <p>
- * The above methods are hooks for implementors. Subclasses can override those methods for
- * controlling the {@linkplain TransformTestCase#tolerance tolerance} threshold on a case-by-case
- * basis. For example when testing the conversions from a geographic CRS (axes in degrees) to a
- * projected CRS (axes in metres), a precision of 10 centimetres can be requested by setting the
- * {@link TransformTestCase#tolerance} value to 0.1. However when testing the inverse transform,
- * the tolerance threshold must be converted to decimal degrees, which is approximatively 1E-6°
- * for the above-cited precision.
+ * For example if a precision of 10 centimetres is requested for a map projection, then that
+ * tolerance threshold must be converted from metres to decimal degrees (approximatively 1E-6°)
+ * when testing the inverse projection. This enumeration allows {@link ToleranceModifier}
+ * implementations to know when such conversion is needed.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -61,14 +59,13 @@ import org.opengis.referencing.operation.MathTransform;
 public enum CalculationType {
     /**
      * The ordinate values to compare are the result of an identity operation (a plain copy).
-     * Ordinate values are checked for strict equality;
-     * the {@linkplain TransformTestCase#tolerance tolerance} threshold shall be ignored.
+     * Ordinate values are checked for strict equality.
      */
     STRICT,
 
     /**
-     * The ordinate values to compare are the result of a direct operation
-     * performed by the {@linkplain TransformTestCase#transform transform tested}.
+     * The ordinate values to compare are the result of a direct operation performed by the
+     * {@linkplain TransformTestCase#transform transform to test}.
      */
     DIRECT_TRANSFORM,
 
