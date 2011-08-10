@@ -43,12 +43,15 @@ import static org.opengis.annotation.Specification.*;
  * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS source
  * coordinate reference system} to coordinate value for the same point in the
  * {@linkplain CoordinateOperation#getTargetCRS target coordinate reference system}.
- *
- * In a {@linkplain Conversion conversion}, the transformation is accurate to within the
- * limitations of the computer making the calculations. In a {@linkplain Transformation
- * transformation}, where some of the operational parameters are derived from observations,
- * the transformation is accurate to within the limitations of those observations.
- *
+ * <p>
+ * <ul>
+ *   <li>In a {@linkplain Conversion conversion}, the transformation is accurate to within the
+ *   limitations of the computer making the calculations.</li>
+ *   <li>In a {@linkplain Transformation transformation}, where some of the operational parameters
+ *   are derived from observations, the transformation is accurate to within the limitations of
+ *   those observations.</li>
+ * </ul>
+ * <p>
  * If a client application wishes to query the source and target
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
