@@ -31,6 +31,7 @@
  */
 package org.opengis.test;
 
+import java.util.EnumSet;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.SingleCRS;
 
@@ -140,11 +141,15 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
      */
     @Test
     public void testScale() {
-        assertNull("Testing with identity conversion.", ToleranceModifiers.scale(1, 1));
+        final EnumSet<CalculationType> types = EnumSet.of(CalculationType.INVERSE_TRANSFORM);
+        assertNull("Testing with identity conversion.", ToleranceModifiers.scale(types, 1, 1));
 
-        final ToleranceModifier modifier = ToleranceModifiers.scale(1, 2, 1);
+        final ToleranceModifier modifier = ToleranceModifiers.scale(types, 1, 2, 1);
         assertEquals("Object should be equals to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Scale[·,×2,…]", modifier.toString());
+
+        modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
+        assertArrayEquals("Expected unmodified values.", new double[] {1, 3, 2}, tolerance, 0);
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);
         assertArrayEquals("Expected scaled values.", new double[] {1, 6, 2}, tolerance, 0);

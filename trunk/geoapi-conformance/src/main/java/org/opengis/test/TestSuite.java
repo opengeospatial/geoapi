@@ -39,6 +39,7 @@ import java.lang.reflect.Array;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.opengis.util.Factory;
+import org.opengis.referencing.operation.MathTransform;
 
 
 /**
@@ -56,35 +57,52 @@ import org.opengis.util.Factory;
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
  * on the classpath. However implementors can override this default mechanism with explicit calls
- * to the {@link #setFactories(Class, Factory[])} method. The following example overrides the CRS
- * and datum factories in its static initializer - all other factories will be fetch by the service
- * loader:
+ * to the {@link #setFactories(Class, Factory[])} method.
+ * <p>
+ * Implementors can have some control on the tests (factories to use, features to test, tolerance
+ * thresholds) by registering their {@link ImplementationDetails} in the {@code META-INF/services}
+ * directory. As an alternative, implementors can also extends directly the various {@link TestCase}
+ * subclasses.
+ * <p>
+ * <b>Example:</b> The test suite below declares that the tolerance threshold for {@code MyProjection}
+ * needs to be relaxed by a factor 10 during inverse projections.
  *
- * <blockquote><pre>org.opengis.test.TestSuite;
+ * <blockquote><pre>package org.myproject;
  *
- *public class AllTests extends TestSuite {
- *    static {
- *        setFactories(CRSFactory.class,   new MyCRSFactory());
- *        setFactories(DatumFactory.class, new MyDatumFactory());
- *        <i>// etc.</i>
+ *import org.opengis.test.TestSuite;
+ *import org.opengis.test.CalculationType;
+ *import org.opengis.test.ToleranceModifier;
+ *import org.opengis.test.ToleranceModifiers;
+ *import org.opengis.test.ImplementationDetails;
+ *import org.opengis.referencing.operation.MathTransform;
+ *import org.opengis.util.Factory;
+ *import java.util.Properties;
+ *
+ *public class GeoapiTest extends TestSuite implements {@linkplain ImplementationDetails} {
+ *    &#64;Override
+ *    public &lt;T extends {@linkplain Factory}&gt; boolean {@linkplain ImplementationDetails#filter filter}(Class&lt;T&gt; category, T factory) {
+ *        return true;
+ *    }
+ *
+ *    &#64;Override
+ *    public Properties {@linkplain ImplementationDetails#configuration configuration}({@linkplain Factory}... factories) {
+ *        return null;
+ *    }
+ *
+ *    &#64;Override
+ *    public {@linkplain ToleranceModifier} {@linkplain ImplementationDetails#needsRelaxedTolerance needsRelaxedTolerance}({@linkplain MathTransform} transform) {
+ *        if (transform instanceof <var>MyProjection</var>) {
+ *            return {@linkplain ToleranceModifiers#scale ToleranceModifiers.scale}(EnumSet.of({@linkplain CalculationType#INVERSE_TRANSFORM}), 1, 10);
+ *        }
+ *        return null;
  *    }
  *}</pre></blockquote>
  *
- * Notes:
- * <p>
- * <ul>
- *   <li>There is no need for explicit JUnit annotations, because they are inherited from
- *       this {@code TestSuite} class.</li>
- *   <li>The above example works in NetBeans, but the static initializer is not executed
- *       during a Maven build. In the later case, only the service loader is used.</li>
- * </ul>
- * <p>
- * This {@code TestSuite} class is provided as a convenience for implementations that do not need
- * fine-grain control on the tests being executed. If more control is required (for example in
- * order to specify whatever {@link org.opengis.referencing.operation.MathTransform} instances
- * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported support derivative}
- * functions), then the various {@link TestCase} subclasses shall be used directly.
+ * The above {@code AllTests} class needs to be registered in the {@code META-INF/services}
+ * directory if the implementation details shall be honored (otherwise the tests will be run,
+ * but the implementation details will be ignored).
  *
+ * @see ImplementationDetails
  * @see TestCase
  * @see Factory
  *

@@ -126,7 +126,7 @@ public strictfp abstract class TestCase {
      *         having the same length than {@code types}.
      *
      * @see org.opengis.test.util.NameTest#factories()
-     * @see org.opengis.test.referencing.ReferencingFactoryTest#factories()
+     * @see org.opengis.test.referencing.ObjectFactoryTest#factories()
      * @see org.opengis.test.referencing.AuthorityFactoryTest#factories()
      * @see org.opengis.test.referencing.MathTransformTest#factories()
      *

@@ -31,8 +31,10 @@
  */
 package org.opengis.test;
 
+import java.util.Set;
 import java.util.Map;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.LinkedHashMap;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
@@ -232,11 +234,16 @@ public strictfp final class ToleranceModifiers {
      * unchanged. If the tolerance array is shorter than the factors array, the extra factors values
      * are ignored.
      *
+     * @param  types The calculation types for which to apply the given scale factors.
      * @param  factors The factors by which to multiply the tolerance values.
-     * @return A tolerance modifier that scale the tolerance thresholds, or {@code null}
-     *         if the given array is empty or all the given scale factors are equals to 1.
+     * @return A tolerance modifier that scale the tolerance thresholds, or {@code null} if
+     *         the given set or array is empty or all the given scale factors are equals to 1.
      */
-    public static ToleranceModifier scale(final double... factors) {
+    public static ToleranceModifier scale(Set<CalculationType> types, final double... factors) {
+        types = EnumSet.copyOf(types);
+        if (types.isEmpty()) {
+            return null;
+        }
         int upper = 0;
         for (int i=0; i<factors.length;) {
             final double factor = factors[i];
@@ -248,26 +255,32 @@ public strictfp final class ToleranceModifiers {
                 upper = i;
             }
         }
-        return (upper != 0) ? new Scale(Arrays.copyOf(factors, upper)) : null;
+        return (upper != 0) ? new Scale(types, Arrays.copyOf(factors, upper)) : null;
     }
 
     /**
      * Implementation of the value returned by {@link ToleranceModifiers#scale(double[])}.
      */
     strictfp static class Scale extends Abstract {
+        /** The types for which to apply the scale factors. */
+        private final Set<CalculationType> types;
+
         /** The scale factors. */
-        final double[] factors;
+        private final double[] factors;
 
         /** Invoked by the public static method only. */
-        Scale(final double[] factors) {
+        Scale(final Set<CalculationType> types, final double[] factors) {
+            this.types   = types;
             this.factors = factors;
         }
 
         /** Gets the scaled tolerance threshold as documented in the enclosing class. */
         @Override
         public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            for (int i=min(tolerance.length, factors.length); --i>=0;) {
-                tolerance[i] *= factors[i];
+            if (types.contains(mode)) {
+                for (int i=min(tolerance.length, factors.length); --i>=0;) {
+                    tolerance[i] *= factors[i];
+                }
             }
         }
 
@@ -345,7 +358,7 @@ public strictfp final class ToleranceModifiers {
      */
     private strictfp static final class Maximum extends Abstract {
         /** The modifiers from which to get the maximal tolerance. */
-        final ToleranceModifier[] modifiers;
+        private final ToleranceModifier[] modifiers;
 
         /** Invoked by the public static method only. */
         Maximum(final ToleranceModifier[] modifiers) {
@@ -409,7 +422,7 @@ public strictfp final class ToleranceModifiers {
      */
     private strictfp static final class Concatenate extends Abstract {
         /** The modifiers to concatenate. */
-        final ToleranceModifier first, second;
+        private final ToleranceModifier first, second;
 
         /** Invoked by the public static method only. */
         Concatenate(final ToleranceModifier first, final ToleranceModifier second) {
