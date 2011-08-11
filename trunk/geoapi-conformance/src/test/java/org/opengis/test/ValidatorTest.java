@@ -42,7 +42,7 @@ import org.junit.*;
  * @version 3.1
  * @since   3.1
  */
-public class ValidatorTest {
+public strictfp class ValidatorTest {
     /**
      * Tests the {@link Validator#validate(Collection)} method.
      */

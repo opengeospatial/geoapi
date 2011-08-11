@@ -94,7 +94,7 @@ public interface ToleranceModifier {
      */
     ToleranceModifier PROJECTION = new ToleranceModifiers.Projection(0, 1);
 
-    /*
+    /**
      * Makes the tolerance values relative to the ordinate values being compared. For each
      * dimension, this modifier multiplies the tolerance threshold by the ordinate value and
      * ensure that the result is not lower than the original threshold (in order to allow
