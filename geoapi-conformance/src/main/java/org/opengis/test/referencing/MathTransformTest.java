@@ -401,7 +401,9 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
      * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 feet<br>0 feet</td></tr>
      * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 feet<br>254759.80 feet</td></tr>
-     * </table></td></tr></table>
+     * </table>
+     * <p align="right">1 feet = 0.3048 metre</p>
+     * </td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -480,6 +482,42 @@ public strictfp class MathTransformTest extends TransformTestCase {
     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
         toleranceModifier = ToleranceModifier.PROJECTION;
         run(3035);  // "ETRS89 / LAEA Europe"
+    }
+
+    /**
+     * Testes the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                   <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>             <td>6378293.645208759 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td>6356617.987679838 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>  <td>10.441666666666666°</td></tr>
+     * <tr><td>Longitude of natural origin</td> <td>-61.33333333333333°</td></tr>
+     * <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
+     * <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>61°20'00"W<br>10°26'30"N</td> <td nowrap>430000.00 links<br>325000.00 links</td></tr>
+     * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td nowrap>66644.94 links<br>82536.22 links</td></tr>
+     * </table>
+     * <p align="right">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
+     * </td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testCassiniSoldner() throws FactoryException, TransformException {
+        toleranceModifier = ToleranceModifier.PROJECTION;
+        run(2314);  // "Trinidad 1903 / Trinidad Grid"
     }
 
     /**

@@ -245,6 +245,32 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected ToleranceModifier toleranceModifier;
 
     /**
+     * Cached information for {@link #getToleranceModifier()} purpose. The {@code cachedModifier}
+     * field contains the value returned by {@code getToleranceModifier()}, cached because needed
+     * every time an {@code assertCoordinateEquals(...)} method is invoked (which typically occur
+     * often).  The {@link #modifierUsedByCache} and {@link #transformUsedByCache} fields contain
+     * the values of {@link #toleranceModifier} and {@link #transform} respectively at the time
+     * the {@code cachedModifier} value has been computed. They are used in order to detect when
+     * {@code cachedModifier} needs to be recalculated.
+     * <p>
+     * Note that the above checks will not detect the case where the user invoke
+     * {@link org.opengis.test.TestSuite#clear()}. We presume that typical users
+     * will not invoke that method in the middle of a test (it is okay if that
+     * method is invoked between two tests however).
+     *
+     * @see #getToleranceModifier()
+     */
+    private transient ToleranceModifier cachedModifier, modifierUsedByCache;
+
+    /**
+     * Cached information for {@link #getToleranceModifier()} purpose.
+     * See the {@link #cachedModifier} javadoc for more information.
+     *
+     * @see #getToleranceModifier()
+     */
+    private transient MathTransform transformUsedByCache;
+
+    /**
      * @deprecated Use {@link #TransformTestCase(Factory[])} instead.
      */
     @Deprecated
@@ -1023,8 +1049,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         final SimpleDirectPosition actual   = new SimpleDirectPosition(dimension);
         final SimpleDirectPosition expected = new SimpleDirectPosition(dimension);
         final double[] tolerances = new double[dimension];
-        final ToleranceModifier modifier = ToleranceModifiers.concatenate(toleranceModifier,
-                ToleranceModifiers.maximum(ToleranceModifiers.getImplementationSpecific(transform)));
+        final ToleranceModifier modifier = getToleranceModifier();
         for (int i=0; i<numPoints; i++) {
             actual  .setCoordinate(actualPts,   actualOffset,   useDouble);
             expected.setCoordinate(expectedPts, expectedOffset, useDouble);
@@ -1064,6 +1089,24 @@ public strictfp abstract class TransformTestCase extends TestCase {
             expectedOffset += dimension;
             actualOffset   += dimension;
         }
+    }
+
+    /**
+     * Returns the tolerance modifier to use for comparing coordinate values. The user-specified
+     * value in {@link #toleranceModifier} is merged with any implementation-specific modifiers,
+     * and the result is cached in {@link #cachedModifier} for reuse.
+     *
+     * @see #cachedModifier
+     * @see #modifierUsedByCache
+     * @see #transformUsedByCache
+     */
+    private ToleranceModifier getToleranceModifier() {
+        if (cachedModifier == null || modifierUsedByCache != toleranceModifier || transformUsedByCache != transform) {
+            cachedModifier = ToleranceModifiers.concatenate(modifierUsedByCache = toleranceModifier,
+                    ToleranceModifiers.maximum(ToleranceModifiers.getImplementationSpecific(
+                    transformUsedByCache = transform)));
+        }
+        return cachedModifier;
     }
 
     /**
