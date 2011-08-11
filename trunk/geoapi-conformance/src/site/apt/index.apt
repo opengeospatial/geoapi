@@ -69,7 +69,7 @@ public class GeoapiTest extends TestSuite implements ImplementationDetails {
     }
 
     /**
-     * Returns the enabled/disabled state of tests, or null to enable all tests.
+     * Returns the enabled/disabled state of tests, or null to keep all tests enabled.
      */
     @Override
     public Properties configuration(Factory... factories) {

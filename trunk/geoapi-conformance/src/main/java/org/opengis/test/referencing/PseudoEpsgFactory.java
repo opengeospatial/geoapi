@@ -69,9 +69,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         CSAuthorityFactory, CRSAuthorityFactory
 {
     /**
-     * Number of US survey feet in 1 metre.
+     * The reciprocal of the conversion from US feets to metres.
      */
-    static final double FEET = 3.2808333333333333333;
+    static final double R_US_FEET = 3.2808333333333333333;
+
+    /**
+     * Conversion from feets to metres.
+     */
+    static final double FEET = 0.3048;
+
+    /**
+     * Conversion from links to metres
+     */
+    static final double LINKS = 0.66 * FEET;
 
     /**
      * Factory to build {@link Datum} instances, or {@code null} if none.
@@ -757,7 +767,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
      *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
-     *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe </td>               <td>Lambert Azimuthal Equal Area</td></tr>
+     *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe</td>                <td>Lambert Azimuthal Equal Area</td></tr>
+     *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
      *   <tr><td>310642901</td> <td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
      * </table>
      *
@@ -830,8 +841,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Latitude of 2nd standard parallel").setValue(30 + 17.0/60); // 30°17'00"N
                 parameters.parameter("Latitude of false origin")         .setValue(27 + 50.0/60); // 27°50'00"N
                 parameters.parameter("Longitude of false origin")        .setValue(-99.0);        // 99°00'00"W
-                parameters.parameter("Easting at false origin") .setValue(2000000 / FEET);
-                parameters.parameter("Northing at false origin").setValue(      0 / FEET);
+                parameters.parameter("Easting at false origin") .setValue(2000000 / R_US_FEET);
+                parameters.parameter("Northing at false origin").setValue(      0 / R_US_FEET);
                 break;
             }
             case 19902: { // "Belge 1972 / Belge Lambert 72" using operation method 9803
@@ -854,6 +865,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of natural origin").setValue(10.0);
                 parameters.parameter("False easting") .setValue(4321000.00);
                 parameters.parameter("False northing").setValue(3210000.00);
+                break;
+            }
+            case 19975: { // "Trinidad 1903 / Trinidad Grid" using operation method 9806
+                parameters = factory.getDefaultParameters("Cassini-Soldner");
+                parameters.parameter("semi-major axis").setValue(20926348 * FEET); // Clarke 1858
+                parameters.parameter("semi-minor axis").setValue(20855233 * FEET);
+                parameters.parameter("Latitude of natural origin") .setValue(10 + (26 + 30.0/60)/60); // 10°26'30"N
+                parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));        // 61°20'00"W
+                parameters.parameter("False easting") .setValue(430000.00 * LINKS);
+                parameters.parameter("False northing").setValue(325000.00 * LINKS);
                 break;
             }
             default: {

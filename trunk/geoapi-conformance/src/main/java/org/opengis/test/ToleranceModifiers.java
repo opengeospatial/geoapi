@@ -287,13 +287,17 @@ public strictfp final class ToleranceModifiers {
         /** Compares this object with the given object for equality. */
         @Override
         public boolean equals(final Object object) {
-            return super.equals(object) && Arrays.equals(((Scale) object).factors, factors);
+            if (super.equals(object)) {
+                final Scale other = (Scale) object;
+                return types.equals(other.types) && Arrays.equals(factors, other.factors);
+            }
+            return false;
         }
 
         /** Returns a hash code value for this object. */
         @Override
         public int hashCode() {
-            return super.hashCode() ^ Arrays.hashCode(factors);
+            return super.hashCode() + 31*(types.hashCode() + 31*Arrays.hashCode(factors));
         }
 
         /** Appends the scale factors. */

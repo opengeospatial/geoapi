@@ -35,7 +35,9 @@ import java.util.Arrays;
 import java.awt.geom.Rectangle2D;
 import org.opengis.referencing.operation.CoordinateOperation;
 
-import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
+import static org.junit.Assert.*;
+import static org.opengis.test.referencing.PseudoEpsgFactory.R_US_FEET;
+import static org.opengis.test.referencing.PseudoEpsgFactory.LINKS;
 
 
 /**
@@ -88,6 +90,7 @@ final class SamplePoints {
         this.sourcePoints   = sourcePoints;
         this.targetPoints   = targetPoints;
         this.areaOfValidity = areaOfValidity;
+        assertFalse(areaOfValidity.isEmpty());
     }
 
     /**
@@ -146,10 +149,10 @@ final class SamplePoints {
             }
             case 32040: { // "NAD27 / Texas South Central"
                 operation = 14204;
-                fe = 2000000.00/FEET;  λ0 = -99.0;
-                fn =       0.00/FEET;  φ0 =  27 + 50.0/60;
-                e  = 2963503.91/FEET;  λ  = -96.0;          // 96°00'00.00"W
-                n  =  254759.80/FEET;  φ  =  28 + 30.0/60;  // 28°30'00.00"N
+                fe = 2000000.00/R_US_FEET;  λ0 = -99.0;
+                fn =       0.00/R_US_FEET;  φ0 =  27 + 50.0/60;
+                e  = 2963503.91/R_US_FEET;  λ  = -96.0;          // 96°00'00.00"W
+                n  =  254759.80/R_US_FEET;  φ  =  28 + 30.0/60;  // 28°30'00.00"N
                 λmin = -105.0; φmin = 27.82;
                 λmax = -93.41; φmax = 30.66;
                 break;
@@ -172,6 +175,16 @@ final class SamplePoints {
                 n  =   2999718.85;  φ  = 50;
                 λmin = -31.53; φmin = 27.75;
                 λmax =  45.00; φmax = 71.15;
+                break;
+            }
+            case 2314: {  // "Trinidad 1903 / Trinidad Grid"
+                operation = 19975;
+                fe =   430000.00*LINKS;  λ0 = -(61 + 20.0/60);         // 61°20'00"W
+                fn =   325000.00*LINKS;  φ0 = 10 + (26 + 30.0/60)/60;  // 10°26'30"N
+                e  =    66644.94*LINKS;  λ  = -62;
+                n  =    82536.22*LINKS;  φ  =  10;
+                λmin = -62.08; φmin =  9.83;
+                λmax = -60.00; φmax = 11.50;
                 break;
             }
             case 310642901: {  // "IGNF:MILLER"
