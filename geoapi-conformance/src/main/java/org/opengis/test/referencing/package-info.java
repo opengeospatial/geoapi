@@ -44,7 +44,7 @@
  * derivatives are supported}. Implementors can extend this class in order to define their own
  * tests.</p>
  *
- * <p>The {@link org.opengis.test.referencing.ReferencingFactoryTest},
+ * <p>The {@link org.opengis.test.referencing.ObjectFactoryTest},
  * {@link org.opengis.test.referencing.AuthorityFactoryTest} and
  * {@link org.opengis.test.referencing.MathTransformTest} concrete classes can also be extended by
  * implementors in order to inherit pre-defined test cases. Many of those test cases are derived

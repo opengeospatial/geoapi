@@ -85,7 +85,6 @@ import static org.opengis.test.Validators.*;
  * <ul>
  *   <li>{@link #createMathTransform(int)}</li>
  *   <li>{@link #normalize(DirectPosition, DirectPosition, CalculationType) normalize(DirectPosition, DirectPosition, CalculationType)}</li>
- *   <li>{@link #tolerance(DirectPosition, int, CalculationType)}</li>
  *   <li>{@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}</li>
  * </ul>
  * <p>

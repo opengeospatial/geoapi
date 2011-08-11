@@ -48,14 +48,13 @@ import org.opengis.referencing.operation.MathTransform;
  * <p>
  * <ul>
  *   <li>Before the first execution of any particular {@link TestCase} subclass, in order to
- *   check whatever a particular factory can be tested. See {@link #filter(Class, Factory)}.</li>
+ *   check whatever a particular factory can be tested.</li>
  *
  *   <li>Before each execution of a configurable {@link TestCase}, in order to check which tests
- *   (if any) should be disabled. See {@link #configuration(Factory[])}.</li>
+ *   (if any) should be disabled.</li>
  *
  *   <li>Before each execution of a {@link TestCase} performing numerical calculation, in
- *   order to determine if a specific implementation needs to relax the tolerance threshold.
- *   See {@link #needsRelaxedTolerance(MathTransform)}.</li>
+ *   order to determine if a specific implementation needs to relax the tolerance threshold.</li>
  * </ul>
  * <p>
  * If no instance of {@code ImplementationDetails} is registered, then GeoAPI assumes that
