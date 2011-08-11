@@ -33,7 +33,7 @@ package org.opengis.test;
 
 import java.util.Map;
 import java.util.Arrays;
-import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -65,6 +65,18 @@ public strictfp final class ToleranceModifiers {
      * Base implementation of all {@link ToleranceModifier} defined in the enclosing class.
      */
     strictfp static abstract class Abstract implements ToleranceModifier {
+        /** Compares this object with the given object for equality. */
+        @Override
+        public boolean equals(final Object object) {
+            return (object != null) && object.getClass() == getClass();
+        }
+
+        /** Returns a hash code value for this object. */
+        @Override
+        public int hashCode() {
+            return getClass().hashCode() ^ 434184245;
+        }
+
         /** Returns a string representation for debugging purpose. */
         @Override
         public String toString() {
@@ -145,6 +157,22 @@ public strictfp final class ToleranceModifiers {
             }
         }
 
+        /** Compares this object with the given object for equality. */
+        @Override
+        public boolean equals(final Object object) {
+            if (super.equals(object)) {
+                final Geographic other = (Geographic) object;
+                return other.λDimension == λDimension && other.φDimension == φDimension;
+            }
+            return false;
+        }
+
+        /** Returns a hash code value for this object. */
+        @Override
+        public int hashCode() {
+            return (super.hashCode()*31 + λDimension)*31 + φDimension;
+        }
+
         /** Formats λ and φ symbols at the position of their dimension. */
         @Override
         final void toString(final StringBuilder buffer) {
@@ -197,6 +225,86 @@ public strictfp final class ToleranceModifiers {
     };
 
     /**
+     * Multiplies tolerance values by the given factors. For every dimension <var>i</var>, this
+     * modifier multiplies <code>tolerance[<var>i</var>]</code> by <code>factors[<var>i</var>]</code>.
+     * <p>
+     * If the tolerance array is longer than the factors array, all extra tolerance values are left
+     * unchanged. If the tolerance array is shorter than the factors array, the extra factors values
+     * are ignored.
+     *
+     * @param  factors The factors by which to multiply the tolerance values.
+     * @return A tolerance modifier that scale the tolerance thresholds, or {@code null}
+     *         if the given array is empty or all the given scale factors are equals to 1.
+     */
+    public static ToleranceModifier scale(final double... factors) {
+        int upper = 0;
+        for (int i=0; i<factors.length;) {
+            final double factor = factors[i];
+            if (!(factor >= 0)) { // !(a>=0) instead than (a<0) for catching NaN.
+                throw new IllegalArgumentException("Illegal scale: factors[" + i + "] = " + factor);
+            }
+            i++;
+            if (factor != 1) {
+                upper = i;
+            }
+        }
+        return (upper != 0) ? new Scale(Arrays.copyOf(factors, upper)) : null;
+    }
+
+    /**
+     * Implementation of the value returned by {@link ToleranceModifiers#scale(double[])}.
+     */
+    strictfp static class Scale extends Abstract {
+        /** The scale factors. */
+        final double[] factors;
+
+        /** Invoked by the public static method only. */
+        Scale(final double[] factors) {
+            this.factors = factors;
+        }
+
+        /** Gets the scaled tolerance threshold as documented in the enclosing class. */
+        @Override
+        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
+            for (int i=min(tolerance.length, factors.length); --i>=0;) {
+                tolerance[i] *= factors[i];
+            }
+        }
+
+        /** Compares this object with the given object for equality. */
+        @Override
+        public boolean equals(final Object object) {
+            return super.equals(object) && Arrays.equals(((Scale) object).factors, factors);
+        }
+
+        /** Returns a hash code value for this object. */
+        @Override
+        public int hashCode() {
+            return super.hashCode() ^ Arrays.hashCode(factors);
+        }
+
+        /** Appends the scale factors. */
+        @Override
+        void toString(final StringBuilder buffer) {
+            for (final double factor : factors) {
+                if (factor == 1) {
+                    buffer.append('·');
+                } else {
+                    buffer.append('×');
+                    final int casted = (int) factor;
+                    if (casted == factor) {
+                        buffer.append(casted);
+                    } else {
+                        buffer.append(factor);
+                    }
+                }
+                buffer.append(',');
+            }
+            super.toString(buffer);
+        }
+    }
+
+    /**
      * Returns a modifier which will return the maximal tolerance threshold of all the given
      * modifiers for each dimension.
      *
@@ -229,7 +337,7 @@ public strictfp final class ToleranceModifiers {
                 expanded[t++] = modifier;
             }
         }
-        return new Maximum(modifiers);
+        return new Maximum(expanded);
     }
 
     /**
@@ -259,6 +367,18 @@ public strictfp final class ToleranceModifiers {
                     }
                 }
             }
+        }
+
+        /** Compares this object with the given object for equality. */
+        @Override
+        public boolean equals(final Object object) {
+            return super.equals(object) && Arrays.equals(((Maximum) object).modifiers, modifiers);
+        }
+
+        /** Returns a hash code value for this object. */
+        @Override
+        public int hashCode() {
+            return super.hashCode() ^ Arrays.hashCode(modifiers);
         }
 
         /** Concatenates the string representations of the enclosed modifiers. */
@@ -304,6 +424,22 @@ public strictfp final class ToleranceModifiers {
             second.adjust(tolerance, coordinate, mode);
         }
 
+        /** Compares this object with the given object for equality. */
+        @Override
+        public boolean equals(final Object object) {
+            if (super.equals(object)) {
+                final Concatenate other = (Concatenate) object;
+                return first.equals(other.first) && second.equals(other.second);
+            }
+            return false;
+        }
+
+        /** Returns a hash code value for this object. */
+        @Override
+        public int hashCode() {
+            return (super.hashCode()*31 + first.hashCode())*31 + second.hashCode();
+        }
+
         /** Concatenates the string representations of the enclosed modifiers. */
         @Override
         void toString(final StringBuilder buffer) {
@@ -341,7 +477,7 @@ public strictfp final class ToleranceModifiers {
                 final ToleranceModifier modifier = impl.needsRelaxedTolerance(transform);
                 if (modifier != null) {
                     if (modifiers == null) {
-                        modifiers = new IdentityHashMap<ToleranceModifier,Boolean>();
+                        modifiers = new LinkedHashMap<ToleranceModifier,Boolean>();
                     }
                     modifiers.put(modifier, null);
                 }
