@@ -74,6 +74,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     static final double R_US_FEET = 3.2808333333333333333;
 
     /**
+     * Conversion from Clarke's 1865 feet to metres.
+     */
+    static final double CLARKE_KEET = 0.3047972654;
+
+    /**
      * Conversion from feets to metres.
      */
     static final double FEET = 0.3048;

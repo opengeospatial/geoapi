@@ -420,7 +420,7 @@ public strictfp final class ToleranceModifiers {
         /** Concatenates the string representations of the enclosed modifiers. */
         @Override
         void toString(final StringBuilder buffer) {
-            Concatenate.toString(buffer, modifiers);
+            Concatenate.toString(buffer, ", ", modifiers);
         }
     }
 
@@ -479,19 +479,19 @@ public strictfp final class ToleranceModifiers {
         /** Concatenates the string representations of the enclosed modifiers. */
         @Override
         void toString(final StringBuilder buffer) {
-            toString(buffer, first, second);
+            toString(buffer, " → ", first, second);
         }
 
         /** Concatenates the string representations of the given modifiers. */
-        static void toString(final StringBuilder buffer, final ToleranceModifier... modifiers) {
-            String separator = "";
+        static void toString(final StringBuilder buffer, final String separator, final ToleranceModifier... modifiers) {
+            String next = "";
             for (final ToleranceModifier modifier : modifiers) {
                 String st = modifier.toString();
                 if (modifier instanceof Abstract) {
                     st = st.substring(st.indexOf('.') + 1);
                 }
-                buffer.append(separator).append(st);
-                separator = ", ";
+                buffer.append(next).append(st);
+                next = separator;
             }
         }
     }

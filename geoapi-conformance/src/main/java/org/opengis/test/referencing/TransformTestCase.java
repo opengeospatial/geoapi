@@ -1084,6 +1084,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
                         buffer.append((float) delta);
                     }
                     buffer.append(" which is ").append((float) (delta / tol)).append(" times the tolerance threshold.");
+                    if (modifier != null) {
+                        buffer.append(lineSeparator).append("The tolerance were calculated by ").append(modifier);
+                    }
                     throw new TransformFailure(buffer.toString());
                 }
             }
