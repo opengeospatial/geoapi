@@ -95,6 +95,16 @@ public interface ToleranceModifier {
     ToleranceModifier PROJECTION = new ToleranceModifiers.Projection(0, 1);
 
     /**
+     * Converts &phi; and &lambda; tolerance values from metres to degrees before comparing
+     * the result of an <cite>inverse projection</cite>. This modifier is identical to the
+     * {@link #PROJECTION} tolerance modifier, except that &phi; and &lambda; axes are
+     * interchanged.
+     *
+     * @see ToleranceModifiers#projection(int, int)
+     */
+    ToleranceModifier PROJECTION_φλ = new ToleranceModifiers.Projection(1, 0);
+
+    /**
      * Makes the tolerance values relative to the ordinate values being compared. For each
      * dimension, this modifier multiplies the tolerance threshold by the ordinate value and
      * ensure that the result is not lower than the original threshold (in order to allow

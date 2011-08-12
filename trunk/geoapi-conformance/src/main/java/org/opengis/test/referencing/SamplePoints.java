@@ -214,6 +214,18 @@ final class SamplePoints {
     }
 
     /**
+     * Swap the (λ,φ) or (x,y) ordinate values in the given array.
+     * The coordinate points are assumed two-dimensional.
+     */
+    static void swap(final double[] ordinates) {
+        for (int i=0; i<ordinates.length; i++) {
+            final double t = ordinates[i];
+            ordinates[i] = ordinates[++i];
+            ordinates[i] = t;
+        }
+    }
+
+    /**
      * Returns a string representation of the sample points, for debugging purpose.
      */
     @Override

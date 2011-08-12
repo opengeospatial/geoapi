@@ -52,6 +52,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
 
@@ -140,6 +141,13 @@ public strictfp class MathTransformTest extends TransformTestCase {
     protected final MathTransformFactory factory;
 
     /**
+     * The name of the target {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem
+     * Coordinate Reference System} of the {@linkplain #transform transform} being tested. This
+     * field is provided only for information purpose; it is not actually used by the tests.
+     */
+    protected String nameOfTargetCRS;
+
+    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -190,31 +198,49 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * Finally, run the test.
      *
      * @param  code The EPSG code of a target Coordinate Reference System.
-     * @param  name The CRS name. Not yet used, but future version may use it for formatting messages.
+     * @param  name The CRS name. May be used for formatting messages.
      * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws TransformException If a point can not be transformed.
      */
     private void runProjectionTest(final int code, final String name)
             throws FactoryException, TransformException
     {
+        nameOfTargetCRS = name;
         assumeNotNull(factory);
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
         final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, sample.operation);
         transform = factory.createParameterizedTransform(parameters);
+        assertNotNull(name, transform);
+        verifyKnownSamplePoints(sample);
+        verifyInDomainOfValidity(sample.areaOfValidity, code);
+    }
+
+    /**
+     * Tests the transform using the sample points from some authoritative source.
+     *
+     * @param  modifier The tolerance modifier to use.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    final void verifyKnownSamplePoints(final SamplePoints sample) throws TransformException {
+        validate(transform);
         if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }
-        toleranceModifier = ToleranceModifier.PROJECTION;
+        if (toleranceModifier == null) {
+            toleranceModifier = ToleranceModifier.PROJECTION;
+        }
         derivativeDeltas = new double[transform.getSourceDimensions()];
         Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * 1852));
-        validate(transform);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
-        /*
-         * At this point, we have been able to transform the sample points.
-         * Now test the transform consistency using many random points inside
-         * the area of validity.
-         */
-        final Rectangle2D areaOfValidity = sample.areaOfValidity;
+    }
+
+    /**
+     * Tests the transform consistency using many random points inside the area of validity.
+     *
+     * @param  seed The random seed. We recommend a constant value for each transform or CRS to be tested.
+     * @throws TransformException If a point can not be transformed.
+     */
+    final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity, final long seed) throws TransformException {
         verifyInDomain(new double[] {
             areaOfValidity.getMinX(),
             areaOfValidity.getMinY()
@@ -223,11 +249,11 @@ public strictfp class MathTransformTest extends TransformTestCase {
             areaOfValidity.getMaxY()
         }, new int[] {
             50, 50
-        }, new Random(code));
+        }, new Random(seed));
     }
 
     /**
-     * Testes the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection.
+     * Tests the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -254,6 +280,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG3002()
      */
     @Test
     public void testMercator1SP() throws FactoryException, TransformException {
@@ -261,7 +289,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection.
+     * Tests the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -294,7 +322,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Mercator Popular Visualisation Pseudo Mercator</cite>" (EPSG:1024) projection.
+     * Tests the "<cite>Mercator Popular Visualisation Pseudo Mercator</cite>" (EPSG:1024) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -328,7 +356,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection.
+     * Tests the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -363,7 +391,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Lambert Conic Conformal (2SP)</cite>" (EPSG:9802) projection.
+     * Tests the "<cite>Lambert Conic Conformal (2SP)</cite>" (EPSG:9802) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -400,7 +428,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Lambert Conic Conformal (2SP Belgium)</cite>" (EPSG:9803) projection.
+     * Tests the "<cite>Lambert Conic Conformal (2SP Belgium)</cite>" (EPSG:9803) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -435,7 +463,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Lambert Azimuthal Equal Area</cite>" (EPSG:9820) projection.
+     * Tests the "<cite>Lambert Azimuthal Equal Area</cite>" (EPSG:9820) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -468,7 +496,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection.
+     * Tests the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -503,7 +531,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>Krovak</cite>" (EPSG:9819) projection.
+     * Tests the "<cite>Krovak</cite>" (EPSG:9819) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -539,7 +567,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Testes the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
+     * Tests the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
      * First, this method transforms the point given by the
      * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
      * and compares the {@link MathTransform} result with the expected result. Next, this method

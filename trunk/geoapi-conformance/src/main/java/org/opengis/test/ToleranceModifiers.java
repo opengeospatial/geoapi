@@ -205,6 +205,9 @@ public strictfp final class ToleranceModifiers {
         if (λDimension == 0 && φDimension == 1) {
             return ToleranceModifier.PROJECTION;
         }
+        if (φDimension == 0 && λDimension == 1) {
+            return ToleranceModifier.PROJECTION_φλ;
+        }
         return new Projection(λDimension, φDimension);
     }
 
