@@ -191,7 +191,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
 
         final ToleranceModifier modifier = ToleranceModifiers.concatenate(GEOGRAPHIC, RELATIVE);
         assertEquals("Object should be equals to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Concatenate[Geographic[λ,φ,…], Relative[…]]", modifier.toString());
+        assertEquals("toString()", "ToleranceModifier.Concatenate[Geographic[λ,φ,…] → Relative[…]]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);
         assertArrayEquals("Expected converted and scaled values.",

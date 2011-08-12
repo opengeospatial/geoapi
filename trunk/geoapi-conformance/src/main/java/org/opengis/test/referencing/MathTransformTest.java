@@ -33,6 +33,7 @@ package org.opengis.test.referencing;
 
 import java.util.List;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.Random;
 import java.awt.geom.Rectangle2D;
 
@@ -45,6 +46,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.CalculationType;
 
@@ -221,6 +223,26 @@ public strictfp class MathTransformTest extends TransformTestCase {
         assertNotNull(name, transform);
         verifyKnownSamplePoints(sample);
         verifyInDomainOfValidity(sample.areaOfValidity, code);
+    }
+
+    /**
+     * Applies a unit conversion on the given coordinate values. This method is invoked by
+     * {@link AuthorityFactoryTest} before to test a {@link ProjectedCRS} using different
+     * units than the standard one. In addition to scale the units, this method scales also
+     * the tolerance factor by the same factor.
+     *
+     * @param mode {@link CalculationType#DIRECT_TRANSFORM} for scaling the output units (from
+     *        metres to an other linear unit), or {@link CalculationType#INVERSE_TRANSFORM} for
+     *        scaling the input units (from degrees to an other angular unit).
+     * @param coordinates The source or expected target points to scale.
+     * @param scale The scale factor, from standard units to the CRS units.
+     */
+    final void applyUnitConversion(final CalculationType mode, final double[] coordinates, final double scale) {
+        for (int i=coordinates.length; --i>=0;) {
+            coordinates[i] *= scale;
+        }
+        toleranceModifier = ToleranceModifiers.concatenate(toleranceModifier,
+                ToleranceModifiers.scale(EnumSet.of(mode), scale, scale));
     }
 
     /**
@@ -472,6 +494,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_31300()
      */
     @Test
     public void testLambertConicConformalBelgium() throws FactoryException, TransformException {
@@ -505,6 +529,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3035()
      */
     @Test
     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
@@ -540,6 +566,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_2314()
      */
     @Test
     public void testCassiniSoldner() throws FactoryException, TransformException {

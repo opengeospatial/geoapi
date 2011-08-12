@@ -32,6 +32,7 @@
 package org.opengis.test.referencing;
 
 import java.util.List;
+import java.util.EnumSet;
 import java.awt.geom.Rectangle2D;
 import javax.measure.unit.NonSI;
 
@@ -51,7 +52,9 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.test.TestCase;
+import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
+import org.opengis.test.ToleranceModifiers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -229,10 +232,12 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @param  code The EPSG code of a target Coordinate Reference System.
      * @param  swapλφ If the longitude and latitude axes shall be swapped.
      * @param  swapxy If the easting and northing axes shall be swapped.
+     * @param  toAngularUnit Conversion factor from degrees to the input linear unit.
+     * @param  toLinearUnit Conversion factor from metres to the output linear unit.
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If a point can not be transformed.
      */
-    private void runProjectionTest(final int code, boolean swapλφ, boolean swapxy)
+    private void runProjectionTest(final int code, boolean swapλφ, boolean swapxy, final double toAngularUnit, final double toLinearUnit)
             throws FactoryException, TransformException
     {
         if (!isAxisSwappingSupported) {
@@ -272,13 +277,14 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                 test.transform = projection;
                 /*
                  * Get the sample points and swap ordinate values if needed.
+                 * Finally apply a unit conversion if the CRS doesn't use the usual units.
                  */
                 final SamplePoints sample = SamplePoints.getSamplePoints(code);
                 if (swapλφ) SamplePoints.swap(sample.sourcePoints);
                 if (swapxy) SamplePoints.swap(sample.targetPoints);
-                if (swapλφ) {
-                    test.toleranceModifier = ToleranceModifier.PROJECTION_FROM_φλ;
-                }
+                test.toleranceModifier = swapλφ ? ToleranceModifier.PROJECTION_FROM_φλ : ToleranceModifier.PROJECTION;
+                if (toLinearUnit  != 1) test.applyUnitConversion(CalculationType.DIRECT_TRANSFORM,  sample.targetPoints, toLinearUnit);
+                if (toAngularUnit != 1) test.applyUnitConversion(CalculationType.INVERSE_TRANSFORM, sample.sourcePoints, toAngularUnit);
                 test.verifyKnownSamplePoints(sample);
                 /*
                  * Tests random points in every domains of validity declared in the CRS.
@@ -301,8 +307,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                             λmax = bbox.getEastBoundLongitude();
                             φmin = bbox.getSouthBoundLatitude();
                             φmax = bbox.getNorthBoundLatitude();
-                            if (swapλφ) areaOfValidity.setRect(φmin, λmin, φmax-φmin, λmax-λmin);
-                            else        areaOfValidity.setRect(λmin, φmin, λmax-λmin, φmax-φmin);
+                            setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
                             assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
                             test.verifyInDomainOfValidity(areaOfValidity, code);
                             tested = true;
@@ -310,13 +315,30 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                     }
                 }
                 if (!tested) {
-                    if (swapλφ) {
-                        areaOfValidity.setRect(φmin, λmin, φmax-φmin, λmax-λmin);
-                    }
+                    setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
                     test.verifyInDomainOfValidity(areaOfValidity, code);
                 }
             }
         }
+    }
+
+    /**
+     * Sets the area of validity, swapping axis and converting units if necessary.
+     */
+    private static void setRect(final Rectangle2D areaOfValidity,
+            double λmin, double φmin, double λmax, double φmax,
+            final boolean swapλφ, final double toAngularUnit)
+    {
+        λmin *= toAngularUnit;
+        λmax *= toAngularUnit;
+        φmin *= toAngularUnit;
+        φmax *= toAngularUnit;
+        if (swapλφ) {
+            double t;
+            t=λmin; λmin=φmin; φmin=t;
+            t=λmax; λmax=φmax; φmax=t;
+        }
+        areaOfValidity.setRect(λmin, φmin, λmax-λmin, φmax-φmin);
     }
 
     /**
@@ -335,7 +357,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3002() throws FactoryException, TransformException {
-        runProjectionTest(3002, true, false);
+        runProjectionTest(3002, true, false, 1, 1);
     }
 
     /**
@@ -354,7 +376,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3388() throws FactoryException, TransformException {
-        runProjectionTest(3388, true, true);
+        runProjectionTest(3388, true, true, 1, 1);
     }
 
     /**
@@ -373,7 +395,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3857() throws FactoryException, TransformException {
-        runProjectionTest(3857, true, false);
+        runProjectionTest(3857, true, false, 1, 1);
     }
 
     /**
@@ -392,7 +414,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_24200() throws FactoryException, TransformException {
-        runProjectionTest(24200, true, false);
+        runProjectionTest(24200, true, false, 1, 1);
     }
 
     /**
@@ -410,8 +432,84 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @see MathTransformTest#testLambertConicConformal2SP()
      */
     @Test
-    @org.junit.Ignore // TODO: needs to implement conversion to feets.
     public void testEPSG_32040() throws FactoryException, TransformException {
-        runProjectionTest(32040, true, false);
+        runProjectionTest(32040, true, false, 1, PseudoEpsgFactory.R_US_FEET);
+    }
+
+    /**
+     * Tests the EPSG:31300 (<cite>Belge 1972 / Belge Lambert 72</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testLambertConicConformalBelgium()
+     */
+    @Test
+    public void testEPSG_31300() throws FactoryException, TransformException {
+        runProjectionTest(31300, true, false, 1, 1);
+    }
+
+    /**
+     * Tests the EPSG:3035 (<cite>ETRS89 / LAEA Europe</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Azimuthal Equal Area</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testLambertAzimuthalEqualArea()
+     */
+    @Test
+    public void testEPSG_3035() throws FactoryException, TransformException {
+        runProjectionTest(3035, true, true, 1, 1);
+    }
+
+    /**
+     * Tests the EPSG:2314 (<cite>Trinidad 1903 / Trinidad Grid</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Cassini-Soldner</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testCassiniSoldner()
+     */
+    @Test
+    public void testEPSG_2314() throws FactoryException, TransformException {
+        runProjectionTest(2314, true, false, 1, 1/PseudoEpsgFactory.CLARKE_KEET);
+    }
+
+    /**
+     * Tests the EPSG:2065 (<cite>CRS S-JTSK (Ferro) / Krovak</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Krovak</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres, <strong>south oriented</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testKrovak()
+     */
+    @Test
+    @org.junit.Ignore // TODO: need to support South-oriented projection
+    public void testEPSG_2065() throws FactoryException, TransformException {
+        runProjectionTest(2065, true, false, 1, 1);
     }
 }
