@@ -38,18 +38,18 @@ import org.opengis.referencing.operation.MathTransform;
 /**
  * Modifies the tolerance threshold before to compare a calculated value against its expected value.
  * When a {@link TestCase} is run, GeoAPI performs the following steps:
- *
+ * <p>
  * <ul>
- *   <li><p>Scan every {@link ImplementationDetails} on the classpath and invoke their
+ *   <li>Scan every {@link ImplementationDetails} on the classpath and invoke their
  *       {@link ImplementationDetails#needsRelaxedTolerance(MathTransform) needsRelaxedTolerance}
- *       method for the {@link MathTransform} being tested.</p></li>
+ *       method for the {@link MathTransform} being tested.</li>
  *
- *   <li><p>For each non-null {@code ToleranceModifier}, invoke the {@link #adjust(double[],
+ *   <li>For each non-null {@code ToleranceModifier}, invoke the {@link #adjust(double[],
  *       DirectPosition, CalculationType) tolerance} method. The first given argument will be
  *       the default tolerance thresholds computed by the {@link TestCase} being run. Implementation
- *       can modify those tolerances in an arbitrary number of dimensions.</p></li>
+ *       can modify those tolerances in an arbitrary number of dimensions.</li>
  * </ul>
- *
+ * <p>
  * Different implementations are available for different cases. For example:
  * <p>
  * <ul>

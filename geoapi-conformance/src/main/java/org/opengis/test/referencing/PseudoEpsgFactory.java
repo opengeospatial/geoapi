@@ -769,14 +769,13 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
      *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe</td>                <td>Lambert Azimuthal Equal Area</td></tr>
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
+     *   <tr><td>19952</td>     <td>2065</td>      <td>CRS S-JTSK (Ferro) / Krovak</td>         <td>Krovak</td></tr>
      *   <tr><td>310642901</td> <td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
      * </table>
      *
      * @param  code The EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
      * @return The coordinate operation (typically a map projection) parameters.
      * @throws FactoryException If the given EPSG code is unknown to this factory.
-     *
-     * @see MathTransformTest#createMathTransform(int)
      */
     protected ParameterValueGroup createParameters(final int code) throws FactoryException {
         return createParameters(mtFactory, code);
@@ -875,6 +874,17 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));        // 61°20'00"W
                 parameters.parameter("False easting") .setValue(430000.00 * LINKS);
                 parameters.parameter("False northing").setValue(325000.00 * LINKS);
+                break;
+            }
+            case 19952: { // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
+                parameters = factory.getDefaultParameters("Krovak");
+                parameters.parameter("semi-major axis").setValue(6377397.155);  // Bessel
+                parameters.parameter("semi-minor axis").setValue(6377397.155 * (1 - 1/299.15281));
+                parameters.parameter("Latitude of projection centre").setValue(49.5);  // 49°30'00"N
+                parameters.parameter("Longitude of origin").setValue(24 + 50.0/60);    // 24°30'00"E
+                parameters.parameter("Co-latitude of cone axis").setValue(30 + (17 + 17.3031/60)/60);
+                parameters.parameter("Latitude of pseudo standard parallel").setValue(78.5);
+                parameters.parameter("Scale factor on pseudo standard parallel").setValue(0.99990);
                 break;
             }
             default: {
