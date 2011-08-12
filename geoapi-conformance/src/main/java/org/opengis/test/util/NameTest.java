@@ -52,7 +52,7 @@ import static org.opengis.test.Validators.*;
 /**
  * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
- *
+ * <p>
  * In order to specify their factory and run the tests in a JUnit framework, implementors can
  * define a subclass as below:
  *
@@ -69,6 +69,8 @@ import static org.opengis.test.Validators.*;
  *
  * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
  * which combine every tests defined in the GeoAPI conformance module.
+ *
+ * @see org.opengis.test.TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

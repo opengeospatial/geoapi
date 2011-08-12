@@ -51,6 +51,14 @@ import static java.lang.StrictMath.*;
  */
 public strictfp final class ToleranceModifiers {
     /**
+     * The standard length of one nautical mile, which is {@value} metres. This is the length
+     * of about one minute of arc of latitude along any meridian. This distance is used by
+     * {@linkplain ToleranceModifier#GEOGRAPHIC geographic tolerance modifiers} for converting
+     * linear units to angular units.
+     */
+    public static final double NAUTICAL_MILE = 1852;
+
+    /**
      * An empty array of tolerance modifiers, to be returned by
      * {@link #getImplementationSpecific(MathTransform)} in the common case where
      * there is no specific implementation needed for a given math transform.
@@ -110,19 +118,24 @@ public strictfp final class ToleranceModifiers {
      * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
      * geographic coordinates. The tolerance for the longitude (&lambda;) and latitude (&phi;)
      * ordinate values are converted from metres to degrees using the standard length of one
-     * nautical mile (1852 metres per minute of angle). Next, the &lambda; tolerance is adjusted
-     * according the distance of the &phi; ordinate value to the pole. In the extreme case where
-     * the coordinate to compare is located at a pole, then the tolerance is 360° in longitude values.
+     * nautical mile ({@value #NAUTICAL_MILE} metres per minute of angle). Next, the &lambda;
+     * tolerance is adjusted according the distance of the &phi; ordinate value to the pole.
+     * In the extreme case where the coordinate to compare is located at a pole, then the
+     * tolerance is 360° in longitude values.
      *
      * @param  λDimension The dimension of longitude ordinate values (typically 0 or 1).
      * @param  φDimension The dimension of latitude ordinate values (typically 0 or 1).
      * @return A tolerance modifier suitable for comparing geographic coordinates.
      *
      * @see ToleranceModifier#GEOGRAPHIC
+     * @see ToleranceModifier#GEOGRAPHIC_φλ
      */
     public static ToleranceModifier geographic(final int λDimension, final int φDimension) {
         if (λDimension == 0 && φDimension == 1) {
             return ToleranceModifier.GEOGRAPHIC;
+        }
+        if (φDimension == 0 && λDimension == 1) {
+            return ToleranceModifier.GEOGRAPHIC_φλ;
         }
         return new Geographic(λDimension, φDimension);
     }
@@ -148,10 +161,10 @@ public strictfp final class ToleranceModifiers {
         /** Adjusts the (λ,φ) tolerances as documented in the enclosing class. */
         @Override
         public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            tolerance[φDimension] /= (1852 * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
+            tolerance[φDimension] /= (NAUTICAL_MILE * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
             double tol = tolerance[λDimension];
             if (tol != 0) {
-                tol /= (1852*60 * cos(toRadians(coordinate.getOrdinate(φDimension))));
+                tol /= (NAUTICAL_MILE*60 * cos(toRadians(coordinate.getOrdinate(φDimension))));
                 if (!(tol <= 360)) { // !(a<=b) rather than (a>b) in order to catch NaN.
                     tol = 360;
                 }
@@ -200,13 +213,14 @@ public strictfp final class ToleranceModifiers {
      * @return A tolerance modifier suitable for comparing projected coordinates.
      *
      * @see ToleranceModifier#PROJECTION
+     * @see ToleranceModifier#PROJECTION_FROM_φλ
      */
     public static ToleranceModifier projection(final int λDimension, final int φDimension) {
         if (λDimension == 0 && φDimension == 1) {
             return ToleranceModifier.PROJECTION;
         }
         if (φDimension == 0 && λDimension == 1) {
-            return ToleranceModifier.PROJECTION_φλ;
+            return ToleranceModifier.PROJECTION_FROM_φλ;
         }
         return new Projection(λDimension, φDimension);
     }
@@ -306,6 +320,8 @@ public strictfp final class ToleranceModifiers {
         /** Appends the scale factors. */
         @Override
         void toString(final StringBuilder buffer) {
+            final String typeList = types.toString();
+            buffer.append('{').append(typeList.substring(1, typeList.length()-1)).append("}: ");
             for (final double factor : factors) {
                 if (factor == 1) {
                     buffer.append('·');

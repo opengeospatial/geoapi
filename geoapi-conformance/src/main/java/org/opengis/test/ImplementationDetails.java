@@ -102,7 +102,8 @@ public interface ImplementationDetails {
         "isFloatToDoubleSupported",
         "isOverlappingArraySupported",
         "isInverseTransformSupported",
-        "isDerivativeSupported"
+        "isDerivativeSupported",
+        "isAxisSwappingSupported"
     }, "false"));
 
     /**
@@ -136,6 +137,7 @@ public interface ImplementationDetails {
      *   <li>{@link org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported isOverlappingArraySupported}</li>
      *   <li>{@link org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported isInverseTransformSupported}</li>
      *   <li>{@link org.opengis.test.referencing.TransformTestCase#isDerivativeSupported       isDerivativeSupported}</li>
+     *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported  isAxisSwappingSupported}</li>
      * </ul>
      * <p>
      * If more than one {@code ImplementationDetails} is found on the classpath, then the above
