@@ -32,6 +32,8 @@
 package org.opengis.test;
 
 import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.MathTransform;
 
 
@@ -68,9 +70,10 @@ public interface ToleranceModifier {
      * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
      * geographic coordinates. The tolerance for the longitude (&lambda;) and latitude (&phi;)
      * ordinate values are converted from metres to degrees using the standard length of one
-     * nautical mile (1852 metres per minute of angle). Next, the &lambda; tolerance is adjusted
-     * according the distance of the &phi; ordinate value to the pole. In the extreme case where
-     * the coordinate to compare is located at a pole, then the tolerance is 360° in longitude values.
+     * nautical mile ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE} metres per
+     * minute of angle). Next, the &lambda; tolerance is adjusted according the distance of
+     * the &phi; ordinate value to the pole. In the extreme case where the coordinate to compare
+     * is located at a pole, then the tolerance is 360° in longitude values.
      * <p>
      * This modifier assumes that geographic coordinates are expressed in decimal degrees in
      * (<var>longitude</var>, <var>latitude</var>) order, as documented in the {@linkplain
@@ -80,6 +83,17 @@ public interface ToleranceModifier {
      * @see ToleranceModifiers#geographic(int, int)
      */
     ToleranceModifier GEOGRAPHIC = new ToleranceModifiers.Geographic(0, 1);
+
+    /**
+     * Converts &phi; and &lambda; tolerance values from metres to degrees before comparing
+     * geographic coordinates. This modifier is identical to the {@link #GEOGRAPHIC} tolerance
+     * modifier, except that &phi; and &lambda; axes are interchanged. This is the most common
+     * modifier used when testing {@link GeographicCRS} instances created from the
+     * <a href="http://www.epsg.org">EPSG</a> database.
+     *
+     * @see ToleranceModifiers#geographic(int, int)
+     */
+    ToleranceModifier GEOGRAPHIC_φλ = new ToleranceModifiers.Geographic(1, 0);
 
     /**
      * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
@@ -98,11 +112,12 @@ public interface ToleranceModifier {
      * Converts &phi; and &lambda; tolerance values from metres to degrees before comparing
      * the result of an <cite>inverse projection</cite>. This modifier is identical to the
      * {@link #PROJECTION} tolerance modifier, except that &phi; and &lambda; axes are
-     * interchanged.
+     * interchanged. This is the most common modifier used when testing {@link ProjectedCRS}
+     * instances created from the <a href="http://www.epsg.org">EPSG</a> database.
      *
      * @see ToleranceModifiers#projection(int, int)
      */
-    ToleranceModifier PROJECTION_φλ = new ToleranceModifiers.Projection(1, 0);
+    ToleranceModifier PROJECTION_FROM_φλ = new ToleranceModifiers.Projection(1, 0);
 
     /**
      * Makes the tolerance values relative to the ordinate values being compared. For each

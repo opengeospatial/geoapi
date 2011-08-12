@@ -55,50 +55,58 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
+import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 
 
 /**
  * Tests {@link MathTransform}s from the {@code org.opengis.referencing.operation} package.
- * Math transform instances are created using the factory given at construction time.
+ * Math transform instances are created using the factory given at construction time. Every
+ * tests expect an accuracy of 5 millimetres. This accuracy matches the precision of most
+ * example points given in the EPSG guidance notice.
+ * <p>
+ * In order to specify their factory and run the tests in a JUnit framework, implementors can define
+ * a subclass as in the example below. That example shows also how implementors can alter some tests
+ * (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection) and add
+ * more checks to be executed after every tests (here ensuring that the {@linkplain #transform
+ * transform} implements the {@link MathTransform2D} interface):
  *
- * In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as below:
- *
- * <blockquote><pre>import org.junit.runner.RunWith;
+ * <blockquote><pre>import org.junit.*;
+ *import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
  *import org.opengis.test.referencing.MathTransformTest;
+ *import static org.junit.Assert.*;
  *
  *&#64;RunWith(JUnit4.class)
  *public class MyTest extends MathTransformTest {
  *    public MyTest() {
  *        super(new MyMathTransformFactory());
  *    }
+ *
+ *    &#64;Test
+ *    &#64;Override
+ *    public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
+ *        tolerance = 0.1; // Increase the tolerance value to 10 cm.
+ *        super.testLambertAzimuthalEqualArea();
+ *        // If more tests specific to this projection are wanted, do them here.
+ *    }
+ *
+ *    &#64;After
+ *    public void ensureAllTransformAreMath2D() {
+ *        assertTrue(transform instanceof MathTransform2D);
+ *    }
  *}</pre></blockquote>
  *
- * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
- * which combine every tests defined in the GeoAPI conformance module.
- * <p>
- * Implementors can extend this class and alter the way the tests are performed by setting some
- * <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}, or by overriding
- * any of the following methods:
+ * Implementors can also alter the way the tests are performed by setting some
+ * <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false},
+ * or by overriding any of the following methods:
  * <p>
  * <ul>
  *   <li>{@link #normalize(DirectPosition, DirectPosition, CalculationType) normalize(DirectPosition, DirectPosition, CalculationType)}</li>
  *   <li>{@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}</li>
  * </ul>
- * <p>
- * Implementors can also alter some particular tests. The example below increases the tolerance
- * value for the <cite>Lambert Azimuthal Equal Area</cite> projection to 10 centimetres before
- * to run the test, then ensures that the {@linkplain #transform transform} implements the
- * {@link MathTransform2D} interface:
  *
- * <blockquote><pre>&#64;Test
- *&#64;Override
- *public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
- *    tolerance = 0.1; // Value in metres.
- *    super.testLambertAzimuthalEqualArea();
- *    assertTrue(transform instanceof MathTransform2D);
- *}</pre></blockquote>
+ * @see AuthorityFactoryTest
+ * @see org.opengis.test.TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -230,7 +238,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
             toleranceModifier = ToleranceModifier.PROJECTION;
         }
         derivativeDeltas = new double[transform.getSourceDimensions()];
-        Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * 1852));
+        Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * NAUTICAL_MILE));
         verifyTransform(sample.sourcePoints, sample.targetPoints);
     }
 
@@ -281,7 +289,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see AuthorityFactoryTest#testEPSG3002()
+     * @see AuthorityFactoryTest#testEPSG_3002()
      */
     @Test
     public void testMercator1SP() throws FactoryException, TransformException {
@@ -315,6 +323,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3388()
      */
     @Test
     public void testMercator2SP() throws FactoryException, TransformException {
@@ -349,6 +359,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3857()
      */
     @Test
     public void testPseudoMercator() throws FactoryException, TransformException {
@@ -384,6 +396,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_24200()
      */
     @Test
     public void testLambertConicConformal1SP() throws FactoryException, TransformException {
@@ -413,14 +427,16 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
-     * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 feet<br>0 US feet</td></tr>
-     * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 feet<br>254759.80 US feet</td></tr>
+     * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 US feet<br>0 US feet</td></tr>
+     * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 US feet<br>254759.80 US feet</td></tr>
      * </table>
      * <p align="right">1 metre = 3.2808333&hellip; US feet</p>
      * </td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_32040()
      */
     @Test
     public void testLambertConicConformal2SP() throws FactoryException, TransformException {

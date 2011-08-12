@@ -110,6 +110,9 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
      */
     @Test
     public void testGeographic() {
+        assertSame(GEOGRAPHIC,    ToleranceModifiers.geographic(0, 1));
+        assertSame(GEOGRAPHIC_φλ, ToleranceModifiers.geographic(1, 0));
+
         final ToleranceModifier modifier = GEOGRAPHIC;
         assertEquals("Object should be equals to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Geographic[λ,φ,…]", modifier.toString());
@@ -124,6 +127,9 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
      */
     @Test
     public void testProjection() {
+        assertSame(PROJECTION,         ToleranceModifiers.projection(0, 1));
+        assertSame(PROJECTION_FROM_φλ, ToleranceModifiers.projection(1, 0));
+
         final ToleranceModifier modifier = PROJECTION;
         assertEquals("Object should be equals to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Projection[λ,φ,…]", modifier.toString());
@@ -146,7 +152,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
 
         final ToleranceModifier modifier = ToleranceModifiers.scale(types, 1, 2, 1);
         assertEquals("Object should be equals to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Scale[·,×2,…]", modifier.toString());
+        assertEquals("toString()", "ToleranceModifier.Scale[{INVERSE_TRANSFORM}: ·,×2,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
         assertArrayEquals("Expected unmodified values.", new double[] {1, 3, 2}, tolerance, 0);

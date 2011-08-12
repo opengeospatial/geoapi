@@ -197,8 +197,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * However in practice too small deltas <em>decrease</em> the precision, because of floating
      * point errors when subtracting big numbers that are close in magnitude. In the particular
      * case of map projections, experience suggests that a distance of one metre converted to
-     * decimal degrees is a good compromise. The conversion from metre to degrees can be done
-     * using the standard nautical mile length (1852 metres by minute of angle) as below:
+     * decimal degrees is a good compromise. The conversion from metre to degrees can be done using
+     * the standard nautical mile length ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE}
+     * metres by minute of angle) as below:
      *
      * <blockquote><pre>derivativeDeltas = new double[] {1.0 / (60 * 1852)}</pre></blockquote>
      *
