@@ -613,6 +613,7 @@
     <module>geoapi-conformance</module>
     <module>geoapi-pending</module>
     <module>geoapi-examples</module>
+    <module>geoapi-proj4</module>
     <module>tools</module>
   </modules>
 </project>

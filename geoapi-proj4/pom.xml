@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================
+         Maven 2 project configuration file
+         http://maven.apache.org/maven2/
+     ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi-parent</artifactId>
+    <version>3.1-SNAPSHOT</version>
+  </parent>
+
+
+
+  <!-- ====================================================
+           Project description
+       ==================================================== -->
+  <groupId>org.opengis</groupId>
+  <artifactId>geoapi-proj4</artifactId>
+  <packaging>jar</packaging>
+  <name>Proj4 bindings</name>
+  <description>
+    A "proof of concept" implementation of GeoAPI using JNI binding to the Proj.4 library.
+  </description>
+
+
+
+  <!-- ====================================================
+           Developers and contributors
+       ==================================================== -->
+  <developers>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>martin.desruisseaux@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+
+
+  <!-- ====================================================
+           Dependencies
+       ==================================================== -->
+  <dependencies>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>
