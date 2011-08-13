@@ -31,11 +31,14 @@
  */
 package org.opengis.wrapper.proj4;
 
+import java.util.Date;
 import java.util.Set;
 import java.util.Collection;
 import java.util.Collections;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
+import javax.measure.unit.NonSI;
+import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
 import org.proj4.PJ;
@@ -44,23 +47,27 @@ import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.datum.PrimeMeridian;
+import org.opengis.metadata.extent.Extent;
 
 
 /**
  * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure
- * in an ellipsoid.
+ * in a geodetic datum. The PJ structure combines datum, ellipsoid and prime meridian
+ * information.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class PJEllipsoid extends PJ implements Ellipsoid {
+final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoid {
     /**
      * Creates a new {@code PJ} structure from the given Proj4 data.
      *
      * @param definition The Proj4 definition string.
      */
-    PJEllipsoid(final String definition) throws FactoryException {
+    PJDatum(final String definition) throws FactoryException {
         super(definition);
     }
 
@@ -69,28 +76,29 @@ final class PJEllipsoid extends PJ implements Ellipsoid {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * Returns an empty set since there is no alias in the Proj4 library.
+    /*
+     * Various GeoAPI method having no direct mapping in the Proj4 library.
      */
-    @Override
-    public Collection<GenericName> getAlias() {
-        return Collections.emptySet();
+    @Override public Collection<GenericName>  getAlias()            {return Collections.emptySet();}
+    @Override public Set<ReferenceIdentifier> getIdentifiers()      {return Collections.emptySet();}
+    @Override public InternationalString      getScope()            {return null;}
+    @Override public InternationalString      getRemarks()          {return null;}
+    @Override public InternationalString      getAnchorPoint()      {return null;}
+    @Override public Date                     getRealizationEpoch() {return null;}
+    @Override public Extent                   getDomainOfValidity() {return null;}
+
+    /**
+     * Returns the ellipsoid associated with the geodetic datum.
+     */
+    public Ellipsoid getEllipsoid() {
+        return this;
     }
 
     /**
-     * Returns an empty set since there is no identifier explicitely defined.
+     * Returns the prime meridian associated with the geodetic datum.
      */
-    @Override
-    public Set<ReferenceIdentifier> getIdentifiers() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Returns {@code null} since there is no remarks field.
-     */
-    @Override
-    public InternationalString getRemarks() {
-        return null;
+    public PrimeMeridian getPrimeMeridian() {
+        return this;
     }
 
     /**
@@ -99,6 +107,15 @@ final class PJEllipsoid extends PJ implements Ellipsoid {
     @Override
     public Unit<Length> getAxisUnit() {
         return SI.METRE;
+    }
+
+    /**
+     * Returns the units of the prime meridian. All angular units are converted from
+     * radians to degrees in those wrappers.
+     */
+    @Override
+    public Unit<Angle> getAngularUnit() {
+        return NonSI.DEGREE_ANGLE;
     }
 
     /**

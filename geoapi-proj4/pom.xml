@@ -18,7 +18,7 @@
   <!-- ====================================================
            Project description
        ==================================================== -->
-  <groupId>org.opengis</groupId>
+  <groupId>org.opengis.wrapper</groupId>
   <artifactId>geoapi-proj4</artifactId>
   <packaging>jar</packaging>
   <name>Proj4 bindings</name>
