@@ -31,10 +31,14 @@
  */
 
 /**
- * Wrappers for the <a href="http://proj.osgeo.org/">Proj4</a> library. Those wrappers have no
- * dependency to GeoAPI, except the exception classes which can easily be refactored to remove
- * that dependency if desired. The actual GeoAPI implementation on top of this package is
- * provided in the {@link org.opengis.wrapper.proj4} package.
+ * Wrappers for the <a href="http://proj.osgeo.org/">Proj4</a> library almost without GeoAPI
+ * dependency. The only GeoAPI dependencies are the {@link org.opengis.util.FactoryException}
+ * and {@link org.opengis.referencing.operation.TransformException} classes. Those dependencies
+ * can easily be removed without breaking the JNI native code.
+ * <p>
+ * This package is for internal use by the {@link org.opengis.wrapper.proj4} package. It should
+ * generally not be used directly, unless an implementor wants more direct access to the Proj.4
+ * functions.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

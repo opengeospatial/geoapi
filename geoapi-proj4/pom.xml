@@ -87,6 +87,7 @@
                 <breakiterator>true</breakiterator>
                 <links>
                   <link>http://download.oracle.com/javase/6/docs/api/</link>
+                  <link>http://www.geoapi.org/snapshot/javadoc/</link>
                   <link>http://jscience.org/api/</link>
                 </links>
               </configuration>

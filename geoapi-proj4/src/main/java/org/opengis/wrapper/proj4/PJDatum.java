@@ -63,17 +63,26 @@ import org.opengis.metadata.extent.Extent;
  */
 final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoid {
     /**
+     * The datum or ellipsoid name.
+     */
+    private final ReferenceIdentifier name;
+
+    /**
      * Creates a new {@code PJ} structure from the given Proj4 data.
      *
      * @param definition The Proj4 definition string.
      */
-    PJDatum(final String definition) throws FactoryException {
+    PJDatum(final ReferenceIdentifier name, final String definition) throws FactoryException {
         super(definition);
+        this.name = name;
     }
 
+    /**
+     * Returns the name given at construction time.
+     */
     @Override
     public ReferenceIdentifier getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return name;
     }
 
     /*

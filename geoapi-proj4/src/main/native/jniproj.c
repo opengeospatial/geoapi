@@ -1,5 +1,6 @@
 /*
  * Copyright header to be determined.
+ * It depends if this file will live in the GeoAPI or in the Proj.4 project.
  */
 
 #include "proj_config.h"
@@ -12,12 +13,17 @@
 #include "org_proj4_PJ.h"
 #include <jni.h>
 
+PJ_CVSID("$Id$");
+
+#define PJ_FIELD_NAME "ptr"
+#define PJ_FIELD_TYPE "J"
+
 /*!
  * \brief
  * Returns the Proj4 release number.
  *
- * \param env   - The JNI environment.
- * \param class - The class from which this method has been invoked.
+ * \param  env   - The JNI environment.
+ * \param  class - The class from which this method has been invoked.
  * \return The Proj4 release number, or NULL.
  */
 JNIEXPORT jstring JNICALL Java_org_proj4_PJ_getVersion
@@ -31,9 +37,9 @@ JNIEXPORT jstring JNICALL Java_org_proj4_PJ_getVersion
  * \brief
  * Allocates a new PJ structure from a definition string.
  *
- * \param env - The JNI environment.
- * \param class - The class from which this method has been invoked.
- * \param definition - The string definition to be given to Proj4.
+ * \param  env        - The JNI environment.
+ * \param  class      - The class from which this method has been invoked.
+ * \param  definition - The string definition to be given to Proj4.
  * \return The address of the new PJ structure, or 0 in case of failure.
  */
 JNIEXPORT jlong JNICALL Java_org_proj4_PJ_allocatePJ
@@ -52,35 +58,32 @@ JNIEXPORT jlong JNICALL Java_org_proj4_PJ_allocatePJ
  * This function looks for a field named "ptr" and of type "long" (Java signature "J") in the
  * given object.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The address of the PJ structure, or NULL if the operation fails (for example
  *         because the "ptr" field was not found).
  */
 PJ *getPJ(JNIEnv *env, jobject object)
 {
-    jfieldID id = (*env)->GetFieldID(env, (*env)->GetObjectClass(env, object), "ptr", "J");
-    if (!id) return NULL;
-    return (PJ*) (*env)->GetLongField(env, object, id);
+    jfieldID id = (*env)->GetFieldID(env, (*env)->GetObjectClass(env, object), PJ_FIELD_NAME, PJ_FIELD_TYPE);
+    return (id) ? (PJ*) (*env)->GetLongField(env, object, id) : NULL;
 }
 
 /*!
  * \brief
  * Returns the definition string.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The definition string.
  */
 JNIEXPORT jstring JNICALL Java_org_proj4_PJ_getDefinition
   (JNIEnv *env, jobject object)
 {
     PJ *pj = getPJ(env, object);
-    if (pj)
-    {
+    if (pj) {
         const char *desc = pj_get_def(pj, 0);
-        if (desc)
-        {
+        if (desc) {
             return (*env)->NewStringUTF(env, desc);
         }
     }
@@ -91,20 +94,52 @@ JNIEXPORT jstring JNICALL Java_org_proj4_PJ_getDefinition
  * \brief
  * Returns the description associated to the PJ structure.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The description associated to the PJ structure.
  */
 JNIEXPORT jstring JNICALL Java_org_proj4_PJ_toString
   (JNIEnv *env, jobject object)
 {
     PJ *pj = getPJ(env, object);
-    if (pj)
-    {
+    if (pj) {
         const char *desc = pj->descr;
-        if (desc)
-        {
+        if (desc) {
             return (*env)->NewStringUTF(env, desc);
+        }
+    }
+    return NULL;
+}
+
+/*!
+ * \brief
+ * Returns the CRS type as one of the PJ.Type enum: GEOGRAPHIC, GEOCENTRIC or PROJECTED.
+ * This function should never return NULL, unless class or fields have been renamed in
+ * such a way that we can not find anymore the expected enum values.
+ *
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \return The CRS type as one of the PJ.Type enum.
+ */
+JNIEXPORT jobject JNICALL Java_org_proj4_PJ_getType
+  (JNIEnv *env, jobject object)
+{
+    PJ *pj = getPJ(env, object);
+    if (pj) {
+        const char *type;
+        if (pj_is_latlong(pj)) {
+            type = "GEOGRAPHIC";
+        } else if (pj_is_geocent(pj)) {
+            type = "GEOCENTRIC";
+        } else {
+            type = "PROJECTED";
+        }
+        jclass c = (*env)->FindClass(env, "org/proj4/PJ$Type");
+        if (c) {
+            jfieldID id = (*env)->GetStaticFieldID(env, c, type, "Lorg/proj4/PJ$Type;");
+            if (id) {
+                return (*env)->GetStaticObjectField(env, c, id);
+            }
         }
     }
     return NULL;
@@ -114,8 +149,8 @@ JNIEXPORT jstring JNICALL Java_org_proj4_PJ_toString
  * \brief
  * Returns the semi-major axis length.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The semi-major axis length.
  */
 JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getSemiMajorAxis
@@ -130,8 +165,8 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getSemiMajorAxis
  * Computes the semi-minor axis length from the semi-major axis length and the excentricity
  * squared.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The semi-minor axis length.
  */
 JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getSemiMinorAxis
@@ -147,8 +182,8 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getSemiMinorAxis
  * \brief
  * Computes the inverse flattening from the excentricity squared.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The inverse flattening.
  */
 JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getInverseFlattening
@@ -162,8 +197,8 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getInverseFlattening
  * \brief
  * Returns JNI_TRUE if the ellipsoid is actually a sphere, or JNI_FALSE otherwise.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return Whatever the ellipsoid is a sphere.
  */
 JNIEXPORT jboolean JNICALL Java_org_proj4_PJ_isSphere
@@ -175,44 +210,10 @@ JNIEXPORT jboolean JNICALL Java_org_proj4_PJ_isSphere
 
 /*!
  * \brief
- * Returns JNI_TRUE if the coordinate reference system is geographic, or JNI_FALSE otherwise.
- * Note that the Proj4 function already checks against NULL value, so we don't need to perform
- * this check again in this method body.
- *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
- * \return Whatever the CRS is geographic.
- */
-JNIEXPORT jboolean JNICALL Java_org_proj4_PJ_isGeographic
-  (JNIEnv *env, jobject object)
-{
-    PJ *pj = getPJ(env, object);
-    return pj_is_latlong(pj) ? JNI_TRUE : JNI_FALSE;
-}
-
-/*!
- * \brief
- * Returns JNI_TRUE if the coordinate reference system is geocentric, or JNI_FALSE otherwise.
- * Note that the Proj4 function already checks against NULL value, so we don't need to perform
- * this check again in this method body.
- *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
- * \return Whatever the CRS is geocentric.
- */
-JNIEXPORT jboolean JNICALL Java_org_proj4_PJ_isGeocentric
-  (JNIEnv *env, jobject object)
-{
-    PJ *pj = getPJ(env, object);
-    return pj_is_geocent(pj) ? JNI_TRUE : JNI_FALSE;
-}
-
-/*!
- * \brief
  * Returns an array of character indicating the direction of each axis.
  *
- * \param env - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
  * \return The axis directions.
  */
 JNIEXPORT jcharArray JNICALL Java_org_proj4_PJ_getAxisDirections
@@ -220,7 +221,7 @@ JNIEXPORT jcharArray JNICALL Java_org_proj4_PJ_getAxisDirections
 {
     PJ *pj = getPJ(env, object);
     if (pj) {
-        int length = sizeof(pj->axis) / sizeof(char);
+        int length = strlen(pj->axis);
         jcharArray array = (*env)->NewCharArray(env, length);
         if (array) {
             jchar* axis = (*env)->GetCharArrayElements(env, array, NULL);
@@ -255,26 +256,66 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getGreenwichLongitude
 
 /*!
  * \brief
+ * Converts input values from degrees to radians before coordinate operation, or the output
+ * values from radians to degrees after the coordinate operation.
+ *
+ * \param pj        - The Proj.4 PJ structure.
+ * \param data      - The coordinate array to transform.
+ * \param numPts    - Number of points to transform.
+ * \param dimension - Dimension of points in the coordinate array.
+ * \param factor    - The scale factor to apply: M_PI/180 for inputs or 180/M_PI for outputs.
+ */
+void convertAngularOrdinates(PJ *pj, double* data, jint numPts, int dimension, double factor) {
+    int dimToSkip;
+    if (pj_is_latlong(pj)) {
+        // Convert only the 2 first ordinates and skip all the other dimensions.
+        dimToSkip = dimension - 2;
+    } else if (pj_is_geocent(pj)) {
+        // Convert only the 3 first ordinates and skip all the other dimensions.
+        dimToSkip = dimension - 3;
+    } else {
+        // Not a geographic or geocentric CRS: nothing to convert.
+        return;
+    }
+    double *stop = data + dimension*numPts;
+    if (dimToSkip > 0) {
+        while (data != stop) {
+            (*data++) *= factor;
+            (*data++) *= factor;
+            data += dimToSkip;
+        }
+    } else {
+        while (data != stop) {
+            (*data++) *= factor;
+        }
+    }
+}
+
+/*!
+ * \brief
  * Transforms in-place the coordinates in the given array.
  *
- * \param env    - The JNI environment.
- * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
- * \param target - The target CRS.
- * \param hasZ   - TRUE if the given coordinate array is two-dimensional (with z component),
- *                 or FALSE if two-dimensional.
- * \param coordinates - The coordinates to transform, packed as (x,y) or (x,y,z) tuples.
- * \param offset - Offset of the first coordinate in the given array.
- * \param numPts - Number of points to transform.
+ * \param env         - The JNI environment.
+ * \param object      - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param target      - The target CRS.
+ * \param dimension   - The dimension of each coordinate value. Must be equals or greater than 2.
+ * \param coordinates - The coordinates to transform, as a sequence of (x,y,<z>,...) tuples.
+ * \param offset      - Offset of the first coordinate in the given array.
+ * \param numPts      - Number of points to transform.
  */
 JNIEXPORT void JNICALL Java_org_proj4_PJ_transform
-  (JNIEnv *env, jobject object, jobject target, jboolean hasZ, jdoubleArray coordinates, jint offset, jint numPts)
+  (JNIEnv *env, jobject object, jobject target, jint dimension, jdoubleArray coordinates, jint offset, jint numPts)
 {
     if (!target || !coordinates) {
         jclass c = (*env)->FindClass(env, "java/lang/NullPointerException");
         if (c) (*env)->ThrowNew(env, c, "The target CRS and the coordinates array can not be null.");
         return;
     }
-    int dimension = hasZ ? 3 : 2;
+    if (dimension < 2 || dimension > 100) { // Arbitrary upper value for catching potential misuse.
+        jclass c = (*env)->FindClass(env, "java/lang/IllegalArgumentException");
+        if (c) (*env)->ThrowNew(env, c, "Illegal dimension. Must be in the [2-100] range.");
+        return;
+    }
     if ((offset < 0) || (numPts < 0) || (offset + dimension*numPts) > (*env)->GetArrayLength(env, coordinates)) {
         jclass c = (*env)->FindClass(env, "java/lang/ArrayIndexOutOfBoundsException");
         if (c) (*env)->ThrowNew(env, c, "Illegal offset or illegal number of points.");
@@ -292,8 +333,10 @@ JNIEXPORT void JNICALL Java_org_proj4_PJ_transform
         if (data) {
             double *x = data + offset;
             double *y = x + 1;
-            double *z = hasZ ? y+1 : NULL;
+            double *z = (dimension >= 3) ? y+1 : NULL;
+            convertAngularOrdinates(src_pj, x, numPts, dimension, M_PI/180);
             int err = pj_transform(src_pj, dst_pj, numPts, dimension, x, y, z);
+            convertAngularOrdinates(dst_pj, x, numPts, dimension, 180/M_PI);
             (*env)->ReleasePrimitiveArrayCritical(env, coordinates, data, 0);
             if (err) {
                 jclass c = (*env)->FindClass(env, "org/proj4/PJException");
@@ -306,15 +349,26 @@ JNIEXPORT void JNICALL Java_org_proj4_PJ_transform
 /*!
  * \brief
  * Deallocate the PJ structure. This method is invoked by the garbage collector exactly once.
+ * This method will also set the Java "ptr" final field to 0 as a safety. In theory we are not
+ * supposed to change the value of a final field. But no Java code should use this field, and
+ * the PJ object is being garbage collected anyway. We set the field to 0 as a safety in case
+ * some user invoked the finalize() method explicitely despite our warning in the Javadoc to
+ * never do such thing.
  *
- * \param env - The JNI environment.
+ * \param env    - The JNI environment.
  * \param object - The Java object wrapping the PJ structure (not allowed to be NULL).
  */
 JNIEXPORT void JNICALL Java_org_proj4_PJ_finalize
   (JNIEnv *env, jobject object)
 {
-    PJ *pj = getPJ(env, object);
-    if (pj) pj_free(pj);
+    jfieldID id = (*env)->GetFieldID(env, (*env)->GetObjectClass(env, object), PJ_FIELD_NAME, PJ_FIELD_TYPE);
+    if (id) {
+        PJ *pj = (PJ*) (*env)->GetLongField(env, object, id);
+        if (pj) {
+            (*env)->SetLongField(env, object, id, (jlong) 0);
+            pj_free(pj);
+        }
+    }
 }
 
 #endif
