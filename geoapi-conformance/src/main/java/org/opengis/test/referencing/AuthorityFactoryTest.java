@@ -423,7 +423,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP)</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in US feet</td> - <strong>note the units!</strong></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException If the math transform can not be created.
