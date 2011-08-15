@@ -36,9 +36,12 @@ import org.opengis.util.FactoryException;
 
 /**
  * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure.
- * The PJ structure contains in a single place many of the information that ISO 19111 was
- * use to split in different interfaces: {@link org.opengis.referencing.datum.Ellipsoid},
- * {@link org.opengis.referencing.datum.Datum}, a {@link org.opengis.referencing.datum.PrimeMeridian},
+ * Almost every methods defined in this class are native methods mapping to the Proj.4
+ * library. This class is also the only place where such native methods are defined.
+ * <p>
+ * The Proj.4 {@code PJ} structure aggregates in a single place the information usually splitted
+ * in many different ISO 19111 interfaces: {@link org.opengis.referencing.datum.Ellipsoid},
+ * {@link org.opengis.referencing.datum.Datum}, {@link org.opengis.referencing.datum.PrimeMeridian},
  * {@link org.opengis.referencing.cs.CoordinateSystem}, {@link org.opengis.referencing.crs.CoordinateReferenceSystem}
  * and their sub-interfaces. The relationship with the GeoAPI methods is indicated in the
  * "See" tags when appropriate.
@@ -63,9 +66,9 @@ public class PJ {
     private final long ptr;
 
     /**
-     * Creates a new {@code PJ} structure from the given Proj4 data.
+     * Creates a new {@code PJ} structure from the given Proj4 definition string.
      *
-     * @param  definition The Proj4 definition string.
+     * @param  definition The Proj.4 definition string.
      * @throws FactoryException If the PJ structure can not be created from the given string.
      */
     public PJ(final String definition) throws FactoryException {
@@ -89,7 +92,7 @@ public class PJ {
     /**
      * Returns the version number of the Proj4 library.
      *
-     * @return The Proj4 release string.
+     * @return The Proj.4 release string.
      */
     public static native String getVersion();
 
@@ -102,54 +105,81 @@ public class PJ {
     public native String getDefinition();
 
     /**
-     * Returns the {@code pj.a_orig} value.
+     * Returns the Coordinate Reference System type.
      *
-     * @return The axis length stored in {@code pj.a_orig}.
+     * @return The CRS type.
+     */
+    public native Type getType();
+
+    /**
+     * The coordinate reference system (CRS) type returned by {@link PJ#getType()}.
+     * In the Proj.4 library, a CRS can only be geographic, geocentric or projected,
+     * without distinction between 2D and 3D CRS.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    public static enum Type {
+        /*
+         * IMPLEMENTATION NOTE: Do not rename those fields, unless you update the
+         * native C code accordingly.
+         */
+
+        /**
+         * The CRS is of type {@link org.opengis.referencing.crs.GeographicCRS}.
+         * The CRS can be two-dimensional or three-dimensional.
+         */
+        GEOGRAPHIC,
+
+        /**
+         * The CRS is of type {@link org.opengis.referencing.crs.GeocentricCRS}.
+         * The CRS can only be three-dimensional.
+         */
+        GEOCENTRIC,
+
+        /**
+         * The CRS is of type {@link org.opengis.referencing.crs.ProjectedCRS}.
+         * The CRS can be two-dimensional or three-dimensional.
+         */
+        PROJECTED
+    }
+
+    /**
+     * Returns the value stored in the {@code a_orig} PJ field.
+     *
+     * @return The axis length stored in {@code a_orig}.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#getSemiMajorAxis()
      */
     public native double getSemiMajorAxis();
 
     /**
-     * Returns the {@code sqrt((pj.a_orig)² * (1 - pj.es_orig))} value.
+     * Returns the value computed from PJ fields by {@code sqrt((a_orig)² * (1 - es_orig))}.
      *
-     * @return The axis length computed by {@code sqrt((pj.a_orig)² * (1 - pj.es_orig))}.
+     * @return The axis length computed by {@code sqrt((a_orig)² * (1 - es_orig))}.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#getSemiMinorAxis()
      */
     public native double getSemiMinorAxis();
 
     /**
-     * Returns the {@code sqrt((pj.a_orig)² * (1 - pj.es_orig))} value.
+     * Returns the value computed from PJ fields by {@code 1/(1 - sqrt(one_es))}.
      *
-     * @return The inverse flattening computed by {@code sqrt((pj.a_orig)² * (1 - pj.es_orig))}.
+     * @return The inverse flattening computed by {@code 1/(1 - sqrt(one_es))}.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#getInverseFlattening()
      */
     public native double getInverseFlattening();
 
     /**
-     * Returns {@code true} if this ellipsoid is a sphere.
+     * Returns {@code true} if the ellipsoid is a sphere.
      *
-     * @return {@code true} if this ellipsoid is a sphere.
+     * @return {@code true} if the ellipsoid is a sphere.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#isSphere()
      */
     public native boolean isSphere();
-
-    /**
-     * Returns {@code true} if this PJ structure is for a geographic coordinate system.
-     *
-     * @return {@code true} if the CRS is geographic.
-     */
-    public native boolean isGeographic();
-
-    /**
-     * Returns {@code true} if this PJ structure is for a geocentric coordinate system.
-     *
-     * @return {@code true} if the CRS is geocentric.
-     */
-    public native boolean isGeocentric();
 
     /**
      * Returns an array of character indicating the direction of each axis. Directions are
@@ -171,13 +201,22 @@ public class PJ {
     public native double getGreenwichLongitude();
 
     /**
-     * Transforms in-place the coordinates in the given array.
+     * Transforms in-place the coordinates in the given array. The coordinates array shall contain
+     * (<var>x</var>,<var>y</var>,<var>z</var>,&hellip;) tuples, where the <var>z</var> and
+     * following dimensions are optional. Note that any dimension after the <var>z</var> value
+     * are ignored.
+     * <p>
+     * Input and output units:
+     * <p>
+     * <ul>
+     *   <li>Angular units (as in longitude and latitudes) are decimal degrees.</li>
+     *   <li>Linear units are usually metres, but this is actually projection-dependent.</li>
+     * </ul>
      *
      * @param  target The target CRS.
-     * @param  hasZ {@code true} if the given coordinate array is two-dimensional (with <var>z</var>
-     *         component), or {@code false} if two-dimensional.
-     * @param  coordinates The coordinates to transform, packed as (<var>x</var>,<var>y</var>)
-     *         or (<var>x</var>,<var>y</var>,<var>z</var>) tuples.
+     * @param  dimension The dimension of each coordinate value. Must be equals or greater than 2.
+     * @param  coordinates The coordinates to transform, as a sequence of
+     *         (<var>x</var>,<var>y</var>,&lt;<var>z</var>&gt;,&hellip;) tuples.
      * @param  offset Offset of the first coordinate in the given array.
      * @param  numPts Number of points to transform.
      * @throws NullPointerException If the {@code target} or {@code coordinates} argument is null.
@@ -186,7 +225,7 @@ public class PJ {
      *
      * @see org.opengis.referencing.operation.MathTransform#transform(double[], int, double[], int, int)
      */
-    public native void transform(final PJ target, boolean hasZ, double[] coordinates, int offset, int numPts)
+    public native void transform(PJ target, int dimension, double[] coordinates, int offset, int numPts)
             throws PJException;
 
     /**
@@ -198,9 +237,9 @@ public class PJ {
     public native String toString();
 
     /**
+     * Deallocates the native PJ data structure. This method can be invoked only by the garbage
+     * collector, and must be invoked exactly once (no more, no less).
      * <strong>NEVER INVOKE THIS METHOD EXPLICITELY, NEVER OVERRIDE</strong>.
-     * This method deallocates the native PJ data structure. This method can be invoked
-     * only by the garbage collector, and must be invoked exactly once (no more, no less).
      */
     @Override
     protected final native void finalize();
