@@ -51,19 +51,23 @@ import org.opengis.referencing.ReferenceIdentifier;
  */
 class PJObject implements IdentifiedObject {
     /**
-     * The name of this referencing object.
+     * The name of this referencing object, or {@code null} if none.
      */
     final ReferenceIdentifier name;
 
     /**
      * Creates a new object of the given name.
+     *
+     * @param identifier The name of the new object, or {@code null} if none.
      */
     PJObject(final ReferenceIdentifier name) {
         this.name = name;
     }
 
     /**
-     * Returns the name of this referencing object.
+     * Returns the name of this referencing object, or {@code null} if none.
+     * Note that this attribute is mandatory according ISO 19111, but this
+     * simple Proj.4 wrapper is lenient about that.
      */
     @Override
     public ReferenceIdentifier getName() {

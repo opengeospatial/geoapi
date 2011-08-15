@@ -62,11 +62,6 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
     private final PJCRS source, target;
 
     /**
-     * The number of dimensions, which must be the same for both CRS.
-     */
-    private final int dimension;
-
-    /**
      * The inverse transform, created only when first needed.
      */
     private transient PJOperation inverse;
@@ -76,12 +71,8 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
      */
     PJOperation(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
         super(name);
-        this.source    = source;
-        this.target    = target;
-        this.dimension = source.dimension;
-        if (dimension != target.dimension) {
-            throw new IllegalArgumentException("Source and target CRS must have the same number of dimensions.");
-        }
+        this.source = source;
+        this.target = target;
     }
 
     /**
@@ -109,13 +100,22 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
      */
     @Override public CoordinateReferenceSystem getSourceCRS() {return source;}
     @Override public CoordinateReferenceSystem getTargetCRS() {return target;}
-    @Override public final int     getSourceDimensions()      {return dimension;}
-    @Override public final int     getTargetDimensions()      {return dimension;}
+    @Override public final int     getSourceDimensions()      {return source.dimension;}
+    @Override public final int     getTargetDimensions()      {return target.dimension;}
     @Override public MathTransform getMathTransform()         {return this;}
-    @Override public boolean       isIdentity()               {return source.pj.equals(target.pj);}
     @Override public String        getOperationVersion()      {return PJ.getVersion();}
     @Override public Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
         return Collections.emptySet();
+    }
+
+    /**
+     * Returns {@code true} if this transform is the identity transform. Note that a value of
+     * {@code false} does not mean that the transform is not an identity transform, since this
+     * case is a bit difficult to determine from Proj.4 API.
+     */
+    @Override
+    public boolean isIdentity() {
+        return source.pj.equals(target.pj) && source.dimension == target.dimension;
     }
 
     /**
@@ -136,29 +136,51 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                           final double[] dstPts, final int dstOff,
                           final int numPts) throws TransformException
     {
-        if (srcPts != dstPts || srcOff != dstOff) {
-            final int length = dimension * numPts;
-            System.arraycopy(srcPts, srcOff, dstPts, dstOff, length);
+        if (source.dimension == target.dimension) {
+            if (srcPts != dstPts || srcOff != dstOff) {
+                final int length = target.dimension * numPts;
+                System.arraycopy(srcPts, srcOff, dstPts, dstOff, length);
+            }
+        } else {
+            // TODO: need special check for overlapping arrays.
+            throw new TransformException("Transformation between CRS of different dimensions not yet supported.");
         }
-        transform(dstPts, dstOff, numPts);
+        source.pj.transform(target.pj, target.dimension, dstPts, dstOff, numPts);
     }
 
     /**
      * Transforms an array of coordinate tuples.
      */
     @Override
-    public void transform(final float[] srcPts, final int srcOff,
-                          final float[] dstPts, final int dstOff,
+    public void transform(final float[] srcPts, int srcOff,
+                          final float[] dstPts, int dstOff,
                           int numPts) throws TransformException
     {
-        int length = dimension * numPts;
-        final double[] copy = new double[length];
-        for (int i=0; i<length; i++) {
-            copy[i] = srcPts[srcOff + i];
-        }
-        transform(copy, 0, numPts);
-        for (int i=0; i<length; i++) {
-            dstPts[dstOff + i] = (float) copy[i];
+        if (numPts > 0) {
+            final int dimension = Math.min(source.dimension, target.dimension);
+            final int length = dimension * numPts;
+            final double[] copy = new double[length];
+            int skip = source.dimension - dimension;
+            int stop = (skip == 0) ? length : dimension;
+            for (int i=0;;) {
+                copy[i] = srcPts[srcOff + i];
+                if (++i == stop) {
+                    if (i == length) break;
+                    srcOff += skip;
+                    stop += dimension;
+                }
+            }
+            source.pj.transform(target.pj, dimension, copy, 0, numPts);
+            skip = target.dimension - dimension;
+            stop = (skip == 0) ? length : dimension;
+            for (int i=0;;) {
+                dstPts[dstOff + i] = (float) copy[i];
+                if (++i == stop) {
+                    if (i == length) break;
+                    dstOff += skip;
+                    stop += dimension;
+                }
+            }
         }
     }
 
@@ -166,39 +188,65 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
      * Transforms an array of coordinate tuples.
      */
     @Override
-    public void transform(final float[]  srcPts, final int srcOff,
-                          final double[] dstPts, final int dstOff,
+    public void transform(final float[]  srcPts, int srcOff,
+                          final double[] dstPts, int dstOff,
                           final int numPts) throws TransformException
     {
-        int length = dimension * numPts;
-        for (int i=0; i<length; i++) {
-            dstPts[dstOff + i] = srcPts[srcOff + i];
+        if (numPts > 0) {
+            final int dimension = Math.min(source.dimension, target.dimension);
+            final int skipS  = source.dimension - dimension;
+            final int skipT  = target.dimension - dimension;
+            final int length = dimension * numPts;
+            int stop = (skipS == 0 && skipT == 0) ? length : dimension;
+            if (skipT != 0) {
+                Arrays.fill(dstPts, dstOff, dstOff + target.dimension * numPts, Double.NaN);
+            }
+            for (int i=0;;) {
+                dstPts[dstOff + i] = srcPts[srcOff + i];
+                if (++i == stop) {
+                    if (i == length) break;
+                    srcOff += skipS;
+                    dstOff += skipT;
+                    stop += dimension;
+                }
+            }
+            source.pj.transform(target.pj, target.dimension, dstPts, dstOff, numPts);
         }
-        transform(dstPts, dstOff, numPts);
     }
 
     /**
      * Transforms an array of coordinate tuples.
      */
     @Override
-    public void transform(final double[] srcPts, final int srcOff,
-                          final float[]  dstPts, final int dstOff,
+    public void transform(final double[] srcPts, int srcOff,
+                          final float[]  dstPts, int dstOff,
                           final int numPts) throws TransformException
     {
-        int length = dimension * numPts;
-        final double[] copy = Arrays.copyOfRange(srcPts, srcOff, srcOff + length);
-        transform(copy, 0, numPts);
-        for (int i=0; i<length; i++) {
-            dstPts[dstOff + i] = (float) copy[i];
+        if (numPts > 0) {
+            final int dimension = Math.min(source.dimension, target.dimension);
+            final int length = dimension * numPts;
+            final double[] copy;
+            if (source.dimension == dimension) {
+                copy = Arrays.copyOfRange(srcPts, srcOff, srcOff + length);
+            } else {
+                copy = new double[length];
+                for (int i=0; i!=length; i+=dimension) {
+                    System.arraycopy(srcPts, srcOff, copy, i, dimension);
+                    srcOff += source.dimension;
+                }
+            }
+            source.pj.transform(target.pj, dimension, copy, 0, numPts);
+            final int skip = target.dimension - dimension;
+            int stop = (skip == 0) ? length : dimension;
+            for (int i=0;;) {
+                dstPts[dstOff + i] = (float) copy[i];
+                if (++i == stop) {
+                    if (i == length) break;
+                    dstOff += skip;
+                    stop += dimension;
+                }
+            }
         }
-    }
-
-    /**
-     * Performs the actual coordinate transformation. This method delegates
-     * to the native Proj4 code.
-     */
-    private void transform(final double[] data, final int offset, final int numPts) throws TransformException {
-        source.pj.transform(target.pj, dimension, data, offset, numPts);
     }
 
     /**

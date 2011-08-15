@@ -60,12 +60,16 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
     final PJDatum pj;
 
     /**
-     * The number of dimensions.
+     * The number of dimensions. Must be greater than or equals to 2.
      */
     final int dimension;
 
     /**
      * Creates a new CRS using the given identifier, Proj4 peer and number of dimensions.
+     *
+     * @param identifier The name of the new CRS, or {@code null} if none.
+     * @param datum The geodetic datum, which is also the wrapper for Proj.4 native methods.
+     * @param dimension The number of dimensions of the new CRS. Must be at least 2.
      */
     PJCRS(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
         super(identifier);

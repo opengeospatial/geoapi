@@ -53,6 +53,9 @@ final class PJIdentifier implements ReferenceIdentifier {
 
     /**
      * Creates a new identifier for the given code.
+     *
+     * @param codespace The codespace, or {@code null} if none.
+     * @param code The code (mandatory).
      */
     PJIdentifier(final String codespace, final String code) {
         this.codespace = code;
@@ -68,7 +71,7 @@ final class PJIdentifier implements ReferenceIdentifier {
     }
 
     /**
-     * Returns the code space given at construction time.
+     * Returns the code space given at construction time, which may be {@code null}.
      */
     @Override
     public String getCodeSpace() {
@@ -98,7 +101,11 @@ final class PJIdentifier implements ReferenceIdentifier {
      */
     @Override
     public int hashCode() {
-        return (codespace.hashCode() + 31*code.hashCode()) ^ 777006122;
+        int hash = code.hashCode() ^ 777006122;
+        if (codespace != null) {
+            hash += codespace.hashCode() * 31;
+        }
+        return hash;
     }
 
     /**
@@ -108,7 +115,8 @@ final class PJIdentifier implements ReferenceIdentifier {
     public boolean equals(final Object object) {
         if (object instanceof PJIdentifier) {
             final PJIdentifier other = (PJIdentifier) object;
-            return code.equals(other.code) && codespace.equals(other.codespace);
+            return code.equals(other.code) && (codespace == other.codespace || (codespace != null && codespace.equals(other.codespace)));
+            // TODO: Use Objects.equals(...) with JDK 7.
         }
         return false;
     }
@@ -118,6 +126,6 @@ final class PJIdentifier implements ReferenceIdentifier {
      */
     @Override
     public String toString() {
-        return codespace + ':' + code;
+        return (codespace != null) ? codespace + ':' + code : code;
     }
 }
