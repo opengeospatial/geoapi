@@ -32,10 +32,12 @@
 package org.opengis.wrapper.proj4;
 
 import java.util.Map;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.OperationMethod;
@@ -45,45 +47,82 @@ import org.proj4.PJ;
 
 
 /**
- * A factory of {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects created
- * from a Proj4 definition strings.
+ * The base class for factories of Proj4 wrappers. This base class provides static methods working
+ * directly with the Proj.4 definition strings. Subclasses provides implementation of GeoAPI
+ * factory interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public class PJFactory implements CoordinateOperationFactory {
+public class PJFactory implements Factory {
     /**
-     * Returns the vendor responsible for creating this factory implementation.
-     * The current implementation returns {@code null} (this may change in a future version).
+     * An arbitrary maximal number of dimension. This arbitrary limit is used only in order
+     * to avoid potential misuse, and also as a paranoiac safety for reducing the risk of
+     * integer arithmetic overflow in the native code.
      */
-    @Override
-    public Citation getVendor() {
-        return null;
+    private static final int DIMENSION_MAX = 100;
+
+    /**
+     * For sub-class constructors only.
+     */
+    protected PJFactory() {
     }
 
     /**
-     * Creates a new CRS from the given Proj4 definition string.
+     * Returns the implementor responsible for creating this factory implementation.
+     */
+    @Override
+    public Citation getVendor() {
+        return SimpleCitation.VENDOR;
+    }
+
+    /**
+     * Creates a simple identifier from the given code and codespace. Identifiers are code
+     * under the control of some authority (the code space). For example a widely used
+     * identifier is {@code EPSG:4326}.
+     * <p>
+     * In principle, every ISO 19111 compliant {@linkplain org.opengis.referencing.IdentifiedObject
+     * identified object} must have an identifier. However this {@code proj4} package is not strict
+     * about that. Users are nevertheless encouraged to use this method for creating an identifier
+     * before to invoke the other static methods in this {@code PJFactory} class.
      *
-     * @param  codespace  The code space, for example {@code "EPSG"}.
-     * @param  code       The code, for example {@code "4326"}.
+     * @param  codespace  The code space (for example {@code "EPSG"}), or {@code null} if none.
+     * @param  code The code, for example {@code "4326"}.
+     * @return A reference identifier for the given code space and code.
+     * @throws NullPointerException If the code argument is {@code null}.
+     * @throws IllegalArgumentException If any of the given argument is an empty string.
+     */
+    public static ReferenceIdentifier createIdentifier(String codespace, String code) {
+        if ((code = code.trim()).isEmpty() || (codespace != null && (codespace = codespace.trim()).isEmpty())) {
+            throw new IllegalArgumentException("Codespace and code must be non-empty.");
+        }
+        return new PJIdentifier(codespace, code);
+    }
+
+    /**
+     * Creates a new CRS from the given Proj4 definition string. The CRS can have an arbitrary
+     * number of dimensions in the [2-{@value #DIMENSION_MAX}] range. However Proj.4 will handle
+     * at most the 3 first dimensions. All supplemental dimensions will be simply copied unchanged
+     * by {@link MathTransform} implementations.
+     *
+     * @param  identifier The name of the CRS is create, or {@code null} if none.
      * @param  definition The Proj.4 definition string.
-     * @param  dimension  The number of dimension of the CRS to created (usually 2).
-     * @return A CRS created from the given definition string.
-     * @throws NullPointerException If any of the given argument is {@code null}.
+     * @param  dimension  The number of dimension of the CRS to create.
+     * @return A CRS created from the given definition string and number of dimension.
+     * @throws NullPointerException If the definition string is {@code null}.
      * @throws IllegalArgumentException If one of the given argument has an invalid value.
      * @throws FactoryException If the creation of the CRS object failed for an other reason.
      */
-    public CoordinateReferenceSystem createFromProj4Definition(
-            String codespace, String code, String definition, final int dimension) throws FactoryException
+    public static CoordinateReferenceSystem createCRS(final ReferenceIdentifier identifier,
+            String definition, final int dimension) throws FactoryException
     {
-        if ((codespace = codespace.trim()).isEmpty() || (code = code.trim()).isEmpty() || (definition = definition.trim()).isEmpty()) {
-            throw new IllegalArgumentException("Codespace, code and definition must be non-empty.");
+        if ((definition = definition.trim()).isEmpty()) {
+            throw new IllegalArgumentException("The definition must be non-empty.");
         }
-        if (dimension < 2 || dimension > 100) { // Arbitrary upper limit to catch potential misuse.
+        if (dimension < 2 || dimension > DIMENSION_MAX) {
             throw new IllegalArgumentException("Illegal number of dimensions: " + dimension);
         }
-        final PJIdentifier identifier = new PJIdentifier(codespace, code);
         final PJDatum datum = new PJDatum(identifier, definition);
         final PJ.Type type = datum.getType();
         final CoordinateReferenceSystem crs;
@@ -98,67 +137,132 @@ public class PJFactory implements CoordinateOperationFactory {
 
     /**
      * Creates an operation for conversion or transformation between two coordinate reference systems.
-     * This method expects the given source and target to be CRS instances created by this factory.
+     * This given source and target CRS must be instances created by this factory.
+     *
+     * @param  identifier The name of the operation to create, or {@code null} if none.
+     * @param  sourceCRS  The source coordinate reference system.
+     * @param  targetCRS  The target coordinate reference system.
+     * @return A coordinate operation for transforming coordinates from the given source CRS
+     *         to the given target CRS.
+     * @throws FactoryException If the given CRS are not instances created by this class.
      */
-    @Override
-    public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
-                                               final CoordinateReferenceSystem targetCRS)
+    public static CoordinateOperation createOperation(final ReferenceIdentifier identifier,
+            final CoordinateReferenceSystem sourceCRS, final CoordinateReferenceSystem targetCRS)
             throws FactoryException
     {
         try {
-            return new PJOperation(null, (PJCRS) sourceCRS, (PJCRS) targetCRS);
+            return new PJOperation(identifier, (PJCRS) sourceCRS, (PJCRS) targetCRS);
         } catch (ClassCastException e) {
             throw new FactoryException("The CRS must be instances created by PJFactory.", e);
         }
     }
 
     /**
-     * Ignores the given {@code method} argument and delegates to
-     * {@code createOperation(sourceCRS, targetCRS)}.
+     * A factory for {@linkplain CoordinateOperation coordinate operation} objects created from
+     * a source and a target CRS.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
      */
-    @Override
-    public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
-                                               final CoordinateReferenceSystem targetCRS,
-                                               final OperationMethod method)
-            throws FactoryException
-    {
-        return createOperation(sourceCRS, targetCRS);
-    }
+    public static class Operation extends PJFactory implements CoordinateOperationFactory {
+        /**
+         * Creates a new coordinate operation factory.
+         */
+        public Operation() {
+        }
 
-    /**
-     * Unsupported method.
-     */
-    @Override
-    public CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
-            CoordinateOperation... operations) throws FactoryException
-    {
-        throw new FactoryException("Not supported yet.");
-    }
+        /**
+         * Creates an operation for conversion or transformation between two coordinate reference systems.
+         * This given source and target CRS must be instances created by a {@link PJFactory}.
+         *
+         * @param  sourceCRS The source coordinate reference system.
+         * @param  targetCRS The target coordinate reference system.
+         * @return A coordinate operation for transforming coordinates from the given source CRS
+         *         to the given target CRS.
+         * @throws FactoryException If the given CRS are not instances created by this class.
+         */
+        @Override
+        public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
+                                                   final CoordinateReferenceSystem targetCRS)
+                throws FactoryException
+        {
+            ReferenceIdentifier id;
+            String src=null, tgt=null, space=null;
+            if ((id = sourceCRS.getName()) != null) {
+                src = id.getCode();
+                space = id.getCodeSpace();
+            }
+            if ((id = targetCRS.getName()) != null) {
+                tgt = id.getCode();
+                if (space == null) {
+                    space = id.getCodeSpace();
+                }
+            }
+            id = null;
+            if (src != null || tgt != null) {
+                final StringBuilder buffer = new StringBuilder();
+                if (src != null) buffer.append("From ").append(src);
+                if (tgt != null) buffer.append(buffer.length() == 0 ? "To " : " to ").append(tgt);
+                id = createIdentifier(space, buffer.toString());
+            }
+            return createOperation(id, sourceCRS, targetCRS);
+        }
 
-    /**
-     * Unsupported method.
-     */
-    @Override
-    public Conversion createDefiningConversion(Map<String, ?> properties,
-            OperationMethod method, ParameterValueGroup parameters) throws FactoryException
-    {
-        throw new FactoryException("Not supported yet.");
-    }
+        /**
+         * Ignores the given {@code method} argument and delegates to
+         * {@code createOperation(sourceCRS, targetCRS)}.
+         *
+         * @param  sourceCRS The source coordinate reference system.
+         * @param  targetCRS The target coordinate reference system.
+         * @return A coordinate operation for transforming coordinates from the given source CRS
+         *         to the given target CRS.
+         * @throws FactoryException If the given CRS are not instances created by this class.
+         */
+        @Override
+        public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
+                                                   final CoordinateReferenceSystem targetCRS,
+                                                   final OperationMethod method)
+                throws FactoryException
+        {
+            return createOperation(sourceCRS, targetCRS);
+        }
 
-    /**
-     * Unsupported method.
-     */
-    @Override
-    public OperationMethod createOperationMethod(Map<String, ?> properties,
-            Integer sourceDimension, Integer targetDimension, ParameterDescriptorGroup parameters) throws FactoryException {
-        throw new FactoryException("Not supported yet.");
-    }
+        /**
+         * Unsupported method.
+         */
+        @Override
+        public CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
+                CoordinateOperation... operations) throws FactoryException
+        {
+            throw new FactoryException("Not supported yet.");
+        }
 
-    /**
-     * Unsupported method.
-     */
-    @Override
-    public OperationMethod getOperationMethod(String name) throws FactoryException {
-        throw new FactoryException("Not supported yet.");
+        /**
+         * Unsupported method.
+         */
+        @Override
+        public Conversion createDefiningConversion(Map<String, ?> properties,
+                OperationMethod method, ParameterValueGroup parameters) throws FactoryException
+        {
+            throw new FactoryException("Not supported yet.");
+        }
+
+        /**
+         * Unsupported method.
+         */
+        @Override
+        public OperationMethod createOperationMethod(Map<String, ?> properties,
+                Integer sourceDimension, Integer targetDimension, ParameterDescriptorGroup parameters) throws FactoryException {
+            throw new FactoryException("Not supported yet.");
+        }
+
+        /**
+         * Unsupported method.
+         */
+        @Override
+        public OperationMethod getOperationMethod(String name) throws FactoryException {
+            throw new FactoryException("Not supported yet.");
+        }
     }
 }

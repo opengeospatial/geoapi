@@ -63,13 +63,14 @@ import org.opengis.metadata.extent.Extent;
  */
 final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoid {
     /**
-     * The datum or ellipsoid name.
+     * The datum or ellipsoid name, or {@code null} if none.
      */
     private final ReferenceIdentifier name;
 
     /**
      * Creates a new {@code PJ} structure from the given Proj4 data.
      *
+     * @param identifier The datum identifier, or {@code null} if none.
      * @param definition The Proj4 definition string.
      */
     PJDatum(final ReferenceIdentifier name, final String definition) throws FactoryException {
@@ -78,7 +79,9 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns the name given at construction time.
+     * Returns the name given at construction time, or {@code null} if none.
+     * Note that this attribute is mandatory according ISO 19111, but this
+     * simple Proj.4 wrapper is lenient about that.
      */
     @Override
     public ReferenceIdentifier getName() {
