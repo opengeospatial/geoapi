@@ -240,13 +240,12 @@ public interface MathTransform {
      * are the matrix elements):
      *
      * <pre>
-     * ┌    ┐     ┌                    ┐ ┌    ┐
-     * │ y₀ │     │ e₀₀  e₀₁  e₀₂  e₀₃ │ │ x₀ │
-     * │ y₁ │  =  │ e₁₀  e₁₁  e₁₂  e₁₃ │ │ x₁ │
-     * │ y₂ │     │ e₂₀  e₂₁  e₂₂  e₂₃ │ │ x₂ │
-     * └    ┘     └                    ┘ │ x₃ │
-     *                                   └    ┘
-     * </pre>
+     *┌    ┐     ┌                    ┐ ┌    ┐
+     *│ y₀ │     │ e₀₀  e₀₁  e₀₂  e₀₃ │ │ x₀ │
+     *│ y₁ │  =  │ e₁₀  e₁₁  e₁₂  e₁₃ │ │ x₁ │
+     *│ y₂ │     │ e₂₀  e₂₁  e₂₂  e₂₃ │ │ x₂ │
+     *└    ┘     └                    ┘ │ x₃ │
+     *                                  └    ┘</pre>
      *
      * @param  point The coordinate point where to evaluate the derivative. Null
      *         value is accepted only if the derivative is the same everywhere.
