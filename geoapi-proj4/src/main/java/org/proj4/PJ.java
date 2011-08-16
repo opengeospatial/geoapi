@@ -79,7 +79,29 @@ public class PJ {
     }
 
     /**
-     * Allocate a PJ native data structure and returns the pointer to it. This method should be
+     * Creates a new {@code PJ} structure derived from an existing {@code PJ} object.
+     * This constructor is usually for getting the base geographic CRS from a projected CRS.
+     *
+     * @param  crs The CRS (usually projected) from which to derive a new CRS.
+     * @param  type The type of the new CRS. Currently, only {@link Type#GEOGRAPHIC} is supported.
+     * @throws FactoryException If the PJ structure can not be created.
+     */
+    public PJ(final PJ crs, final Type type) throws FactoryException {
+        if (crs == null) {
+            // TODO: Use Objects with JDK 7.
+            throw new NullPointerException("The CRS must be non-null.");
+        }
+        if (type != Type.GEOGRAPHIC) {
+            throw new IllegalArgumentException("Can not derive the " + type + " type.");
+        }
+        ptr = allocateGeoPJ(crs);
+        if (ptr == 0) {
+            throw new FactoryException(crs.getLastError());
+        }
+    }
+
+    /**
+     * Allocates a PJ native data structure and returns the pointer to it. This method should be
      * invoked by the constructor only, and the return value <strong>must</strong> be assigned
      * to the {@link #ptr} field. The allocated structure is released by the {@link #finalize()}
      * method.
@@ -88,6 +110,17 @@ public class PJ {
      * @return A pointer to the PJ native data structure, or 0 if the operation failed.
      */
     private static native long allocatePJ(String definition);
+
+    /**
+     * Allocates a PJ native data structure for the base geographic CRS of the given CRS, and
+     * returns the pointer to it. This method should be invoked by the constructor only, and
+     * the return value <strong>must</strong> be assigned to the {@link #ptr} field.
+     * The allocated structure is released by the {@link #finalize()} method.
+     *
+     * @param  projected The CRS from which to derive the base geographic CRS.
+     * @return A pointer to the PJ native data structure, or 0 if the operation failed.
+     */
+    private static native long allocateGeoPJ(PJ projected);
 
     /**
      * Returns the version number of the Proj4 library.
@@ -227,6 +260,13 @@ public class PJ {
      */
     public native void transform(PJ target, int dimension, double[] coordinates, int offset, int numPts)
             throws PJException;
+
+    /**
+     * Returns a description of the last error that occurred, or {@code null} if none.
+     *
+     * @return The last error that occurred, or {@code null}.
+     */
+    public native String getLastError();
 
     /**
      * Returns the string representation of the PJ structure.

@@ -32,17 +32,21 @@
 package org.opengis.wrapper.proj4;
 
 import java.util.Map;
+import java.util.Set;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.referencing.crs.*;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.parameter.ParameterDescriptorGroup;
 import org.proj4.PJ;
 
 
@@ -154,6 +158,70 @@ public class PJFactory implements Factory {
             return new PJOperation(identifier, (PJCRS) sourceCRS, (PJCRS) targetCRS);
         } catch (ClassCastException e) {
             throw new FactoryException("The CRS must be instances created by PJFactory.", e);
+        }
+    }
+
+    /**
+     * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
+     * created an EPSG code.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    public static class CRS extends PJFactory implements CRSAuthorityFactory {
+        /**
+         * Creates a new coordinate operation factory.
+         */
+        public CRS() {
+        }
+
+        @Override
+        public Citation getAuthority() {
+            return null;
+        }
+
+        @Override
+        public Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
+            throw new FactoryException("Not supported yet.");
+        }
+
+        @Override
+        public InternationalString getDescriptionText(String code) throws FactoryException {
+            return null;
+        }
+
+        @Override
+        public IdentifiedObject createObject(String code) throws FactoryException {
+            return createCoordinateReferenceSystem(code);
+        }
+
+        @Override
+        public CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException {
+            return createCRS(createIdentifier("EPSG", code), "+init=epsg:" + code, 2);
+        }
+
+        @Override public GeographicCRS  createGeographicCRS (String code) throws FactoryException {return cast(GeographicCRS .class, code);}
+        @Override public GeocentricCRS  createGeocentricCRS (String code) throws FactoryException {return cast(GeocentricCRS .class, code);}
+        @Override public ProjectedCRS   createProjectedCRS  (String code) throws FactoryException {return cast(ProjectedCRS  .class, code);}
+        @Override public CompoundCRS    createCompoundCRS   (String code) throws FactoryException {return cast(CompoundCRS   .class, code);}
+        @Override public DerivedCRS     createDerivedCRS    (String code) throws FactoryException {return cast(DerivedCRS    .class, code);}
+        @Override public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {return cast(EngineeringCRS.class, code);}
+        @Override public ImageCRS       createImageCRS      (String code) throws FactoryException {return cast(ImageCRS      .class, code);}
+        @Override public TemporalCRS    createTemporalCRS   (String code) throws FactoryException {return cast(TemporalCRS   .class, code);}
+        @Override public VerticalCRS    createVerticalCRS   (String code) throws FactoryException {return cast(VerticalCRS   .class, code);}
+
+        /**
+         * Invokes {@link #createCoordinateReferenceSystem(String)} and casts the result
+         * to the given type. If the result can not be casted, a factory exception is thrown.
+         */
+        private <T extends CoordinateReferenceSystem> T cast(final Class<T> type, final String code) throws FactoryException {
+            final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
+            try {
+                return type.cast(crs);
+            } catch (ClassCastException e) {
+                throw new FactoryException("Not the appropriate type.", e);
+            }
         }
     }
 
