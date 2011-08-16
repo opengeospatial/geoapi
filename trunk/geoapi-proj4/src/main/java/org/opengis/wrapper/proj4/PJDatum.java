@@ -79,6 +79,14 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
+     * Creates the base CRS of the given projected CRS.
+     */
+    PJDatum(final PJDatum projected) throws FactoryException {
+        super(projected, Type.GEOGRAPHIC);
+        name = projected.name;
+    }
+
+    /**
      * Returns the name given at construction time, or {@code null} if none.
      * Note that this attribute is mandatory according ISO 19111, but this
      * simple Proj.4 wrapper is lenient about that.

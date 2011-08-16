@@ -29,37 +29,72 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.proj4;
+package org.opengis.wrapper.proj4;
 
-import org.opengis.referencing.operation.TransformException;
+import javax.measure.unit.Unit;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
- * Exception thrown when a call to {@link PJ#transform(PJ, int, double[], int, int)} failed.
+ * An axis of a {@link PJCRS} object.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public class PJException extends TransformException {
+final class PJAxis extends PJObject implements CoordinateSystemAxis {
     /**
-     * For cross-version compatibility.
+     * The direction, as a 'e', 'w', 'n', 's', 'u' or 'd' letter.
      */
-    private static final long serialVersionUID = -2580747577812829763L;
+    private final char direction;
 
     /**
-     * Constructs a new exception with no message.
+     * Creates a new axis.
      */
-    public PJException() {
-        super();
+    PJAxis(final char direction) {
+        super(null);
+        this.direction = direction;
     }
 
-    /**
-     * Constructs a new exception with the given message.
-     *
-     * @param message A message that describe the cause for the failure.
-     */
-    public PJException(final String message) {
-        super(message);
+    @Override
+    public String getAbbreviation() {
+        return null;
+    }
+
+    @Override
+    public AxisDirection getDirection() {
+        final AxisDirection dir;
+        switch (direction) {
+            case 'e': dir = AxisDirection.EAST;  break;
+            case 'w': dir = AxisDirection.WEST;  break;
+            case 'n': dir = AxisDirection.NORTH; break;
+            case 's': dir = AxisDirection.SOUTH; break;
+            case 'u': dir = AxisDirection.UP;    break;
+            case 'd': dir = AxisDirection.DOWN;  break;
+            default:  dir = null; break;
+        }
+        return dir;
+    }
+
+    @Override
+    public double getMinimumValue() {
+        return Double.NEGATIVE_INFINITY;
+    }
+
+    @Override
+    public double getMaximumValue() {
+        return Double.POSITIVE_INFINITY;
+    }
+
+    @Override
+    public RangeMeaning getRangeMeaning() {
+        return null;
+    }
+
+    @Override
+    public Unit<?> getUnit() {
+        return null;
     }
 }

@@ -55,7 +55,7 @@ import org.proj4.PJ;
  * @version 3.1
  * @since   3.1
  */
-final class PJOperation extends PJObject implements SingleOperation, MathTransform {
+class PJOperation extends PJObject implements SingleOperation, MathTransform {
     /**
      * The source and target CRS.
      */
@@ -100,8 +100,8 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
      */
     @Override public CoordinateReferenceSystem getSourceCRS() {return source;}
     @Override public CoordinateReferenceSystem getTargetCRS() {return target;}
-    @Override public final int     getSourceDimensions()      {return source.dimension;}
-    @Override public final int     getTargetDimensions()      {return target.dimension;}
+    @Override public final int     getSourceDimensions()      {return source.getDimension();}
+    @Override public final int     getTargetDimensions()      {return target.getDimension();}
     @Override public MathTransform getMathTransform()         {return this;}
     @Override public String        getOperationVersion()      {return PJ.getVersion();}
     @Override public Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
@@ -115,17 +115,40 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
      */
     @Override
     public boolean isIdentity() {
-        return source.pj.equals(target.pj) && source.dimension == target.dimension;
+        return source.pj.equals(target.pj) && source.getDimension() == target.getDimension();
     }
 
     /**
      * Transforms a single coordinate point.
-     *
-     * @todo Not yet implemented.
      */
     @Override
-    public DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst) throws MismatchedDimensionException, TransformException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public DirectPosition transform(final DirectPosition ptSrc, DirectPosition ptDst)
+            throws MismatchedDimensionException, TransformException
+    {
+        final int srcDim = source.getDimension();
+        final int tgtDim = target.getDimension();
+        if (ptSrc.getDimension() != srcDim) {
+            throw new MismatchedDimensionException();
+        }
+        double[] ordinates = new double[Math.max(srcDim, tgtDim)];
+        for (int i=0; i<srcDim; i++) {
+            ordinates[i] = ptSrc.getOrdinate(i);
+        }
+        source.pj.transform(target.pj, ordinates.length, ordinates, 0, 1);
+        if (ptDst != null) {
+            if (ptDst.getDimension() != tgtDim) {
+                throw new MismatchedDimensionException();
+            }
+            for (int i=0; i<tgtDim; i++) {
+                ptDst.setOrdinate(i, ordinates[i]);
+            }
+        } else {
+            if (ordinates.length != tgtDim) {
+                ordinates = Arrays.copyOf(ordinates, tgtDim);
+            }
+            ptDst = new SimpleDirectPosition(ordinates);
+        }
+        return ptDst;
     }
 
     /**
@@ -136,16 +159,18 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                           final double[] dstPts, final int dstOff,
                           final int numPts) throws TransformException
     {
-        if (source.dimension == target.dimension) {
+        final int srcDim = source.getDimension();
+        final int tgtDim = target.getDimension();
+        if (srcDim == tgtDim) {
             if (srcPts != dstPts || srcOff != dstOff) {
-                final int length = target.dimension * numPts;
+                final int length = tgtDim * numPts;
                 System.arraycopy(srcPts, srcOff, dstPts, dstOff, length);
             }
         } else {
             // TODO: need special check for overlapping arrays.
             throw new TransformException("Transformation between CRS of different dimensions not yet supported.");
         }
-        source.pj.transform(target.pj, target.dimension, dstPts, dstOff, numPts);
+        source.pj.transform(target.pj, tgtDim, dstPts, dstOff, numPts);
     }
 
     /**
@@ -157,10 +182,12 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                           int numPts) throws TransformException
     {
         if (numPts > 0) {
-            final int dimension = Math.min(source.dimension, target.dimension);
+            final int srcDim = source.getDimension();
+            final int tgtDim = target.getDimension();
+            final int dimension = Math.min(srcDim, tgtDim);
             final int length = dimension * numPts;
             final double[] copy = new double[length];
-            int skip = source.dimension - dimension;
+            int skip = srcDim - dimension;
             int stop = (skip == 0) ? length : dimension;
             for (int i=0;;) {
                 copy[i] = srcPts[srcOff + i];
@@ -171,7 +198,7 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                 }
             }
             source.pj.transform(target.pj, dimension, copy, 0, numPts);
-            skip = target.dimension - dimension;
+            skip = tgtDim - dimension;
             stop = (skip == 0) ? length : dimension;
             for (int i=0;;) {
                 dstPts[dstOff + i] = (float) copy[i];
@@ -193,13 +220,15 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                           final int numPts) throws TransformException
     {
         if (numPts > 0) {
-            final int dimension = Math.min(source.dimension, target.dimension);
-            final int skipS  = source.dimension - dimension;
-            final int skipT  = target.dimension - dimension;
+            final int srcDim = source.getDimension();
+            final int tgtDim = target.getDimension();
+            final int dimension = Math.min(srcDim, tgtDim);
+            final int skipS  = srcDim - dimension;
+            final int skipT  = tgtDim - dimension;
             final int length = dimension * numPts;
             int stop = (skipS == 0 && skipT == 0) ? length : dimension;
             if (skipT != 0) {
-                Arrays.fill(dstPts, dstOff, dstOff + target.dimension * numPts, Double.NaN);
+                Arrays.fill(dstPts, dstOff, dstOff + tgtDim * numPts, Double.NaN);
             }
             for (int i=0;;) {
                 dstPts[dstOff + i] = srcPts[srcOff + i];
@@ -210,7 +239,7 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                     stop += dimension;
                 }
             }
-            source.pj.transform(target.pj, target.dimension, dstPts, dstOff, numPts);
+            source.pj.transform(target.pj, tgtDim, dstPts, dstOff, numPts);
         }
     }
 
@@ -223,20 +252,22 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
                           final int numPts) throws TransformException
     {
         if (numPts > 0) {
-            final int dimension = Math.min(source.dimension, target.dimension);
+            final int srcDim = source.getDimension();
+            final int tgtDim = target.getDimension();
+            final int dimension = Math.min(srcDim, tgtDim);
             final int length = dimension * numPts;
             final double[] copy;
-            if (source.dimension == dimension) {
+            if (srcDim == dimension) {
                 copy = Arrays.copyOfRange(srcPts, srcOff, srcOff + length);
             } else {
                 copy = new double[length];
                 for (int i=0; i!=length; i+=dimension) {
                     System.arraycopy(srcPts, srcOff, copy, i, dimension);
-                    srcOff += source.dimension;
+                    srcOff += srcDim;
                 }
             }
             source.pj.transform(target.pj, dimension, copy, 0, numPts);
-            final int skip = target.dimension - dimension;
+            final int skip = tgtDim - dimension;
             int stop = (skip == 0) ? length : dimension;
             for (int i=0;;) {
                 dstPts[dstOff + i] = (float) copy[i];
@@ -267,5 +298,14 @@ final class PJOperation extends PJObject implements SingleOperation, MathTransfo
             inverse.inverse = this;
         }
         return inverse;
+    }
+
+    /**
+     * A specialization of {@link PJOperation} for map projections.
+     */
+    static final class Projection extends PJOperation implements org.opengis.referencing.operation.Projection {
+        Projection(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
+            super(name, source, target);
+        }
     }
 }

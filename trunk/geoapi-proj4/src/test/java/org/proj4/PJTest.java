@@ -46,13 +46,9 @@ import static org.junit.Assert.*;
  */
 public class PJTest {
     /**
-     * Tests the creation of a simple WGS84 object.
-     *
-     * @throws FactoryException Should never happen.
+     * Ensures that the given object is the WGS84 definition.
      */
-    @Test
-    public void testWGS84() throws FactoryException {
-        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
+    private static void assertIsWGS84(final PJ pj) {
         assertEquals("+proj=latlong +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0", pj.getDefinition().trim());
         assertEquals("Lat/long (Geodetic alias)", pj.toString().trim());
         assertEquals(PJ.Type.GEOGRAPHIC, pj.getType());
@@ -62,6 +58,17 @@ public class PJTest {
         assertEquals(0.0,                pj.getGreenwichLongitude(), 0.0);
         assertFalse(pj.isSphere());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
+    }
+
+    /**
+     * Tests the creation of a simple WGS84 object.
+     *
+     * @throws FactoryException Should never happen.
+     */
+    @Test
+    public void testWGS84() throws FactoryException {
+        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
+        assertIsWGS84(pj);
         /*
          * Finalize should never be invoked explicitely. However we do an exception in this
          * test suite in order to ensure that no error is thrown, and that all properties
@@ -73,5 +80,18 @@ public class PJTest {
         assertTrue(Double.isNaN(pj.getSemiMinorAxis()));
         assertTrue(Double.isNaN(pj.getInverseFlattening()));
         assertTrue(Double.isNaN(pj.getGreenwichLongitude()));
+    }
+
+    /**
+     * Tests the creation of the EPSG:3395 projected CRS
+     *
+     * @throws FactoryException Should never happen.
+     */
+    @Test
+    public void testEPSG3395() throws FactoryException {
+        final PJ pj = new PJ("+init=epsg:3395");
+        assertEquals(PJ.Type.PROJECTED, pj.getType());
+        assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
+        assertIsWGS84(new PJ(pj, PJ.Type.GEOGRAPHIC));
     }
 }
