@@ -20,6 +20,23 @@ PJ_CVSID("$Id$");
 
 /*!
  * \brief
+ * Internal method returning the address of the PJ structure wrapped by the given Java object.
+ * This function looks for a field named "ptr" and of type "long" (Java signature "J") in the
+ * given object.
+ *
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \return The address of the PJ structure, or NULL if the operation fails (for example
+ *         because the "ptr" field was not found).
+ */
+PJ *getPJ(JNIEnv *env, jobject object)
+{
+    jfieldID id = (*env)->GetFieldID(env, (*env)->GetObjectClass(env, object), PJ_FIELD_NAME, PJ_FIELD_TYPE);
+    return (id) ? (PJ*) (*env)->GetLongField(env, object, id) : NULL;
+}
+
+/*!
+ * \brief
  * Returns the Proj4 release number.
  *
  * \param  env   - The JNI environment.
@@ -54,19 +71,18 @@ JNIEXPORT jlong JNICALL Java_org_proj4_PJ_allocatePJ
 
 /*!
  * \brief
- * Internal method returning the address of the PJ structure wrapped by the given Java object.
- * This function looks for a field named "ptr" and of type "long" (Java signature "J") in the
- * given object.
+ * Allocates a new geographic PJ structure from an existing one.
  *
- * \param  env    - The JNI environment.
- * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
- * \return The address of the PJ structure, or NULL if the operation fails (for example
- *         because the "ptr" field was not found).
+ * \param  env       - The JNI environment.
+ * \param  class     - The class from which this method has been invoked.
+ * \param  projected - The PJ object from which to derive a new one.
+ * \return The address of the new PJ structure, or 0 in case of failure.
  */
-PJ *getPJ(JNIEnv *env, jobject object)
+JNIEXPORT jlong JNICALL Java_org_proj4_PJ_allocateGeoPJ
+  (JNIEnv *env, jclass class, jobject projected)
 {
-    jfieldID id = (*env)->GetFieldID(env, (*env)->GetObjectClass(env, object), PJ_FIELD_NAME, PJ_FIELD_TYPE);
-    return (id) ? (PJ*) (*env)->GetLongField(env, object, id) : NULL;
+    PJ *pj = getPJ(env, projected);
+    return (pj) ? (jlong) pj_latlong_from_proj(pj) : 0;
 }
 
 /*!
@@ -251,7 +267,7 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getGreenwichLongitude
   (JNIEnv *env, jobject object)
 {
     PJ *pj = getPJ(env, object);
-    return (pj) ? (pj->from_greenwich)*(180/M_PI) : 0.0;
+    return (pj) ? (pj->from_greenwich)*(180/M_PI) : NAN;
 }
 
 /*!
@@ -344,6 +360,27 @@ JNIEXPORT void JNICALL Java_org_proj4_PJ_transform
             }
         }
     }
+}
+
+/*!
+ * \brief
+ * Returns a description of the last error that occurred, or NULL if none.
+ *
+ * \param  env    - The JNI environment.
+ * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \return The last error, or NULL.
+ */
+JNIEXPORT jstring JNICALL Java_org_proj4_PJ_getLastError
+  (JNIEnv *env, jobject object)
+{
+    PJ *pj = getPJ(env, object);
+    if (pj) {
+        int err = pj_ctx_get_errno(pj->ctx);
+        if (err) {
+            return (*env)->NewStringUTF(env, pj_strerrno(err));
+        }
+    }
+    return NULL;
 }
 
 /*!
