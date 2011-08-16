@@ -137,6 +137,16 @@ final class SamplePoints {
                 λmax =  180.0; φmax =  85.0;
                 break;
             }
+            case 29873: {  // "Timbalai 1948 / RSO Borneo (m)"
+                operation = 19958;
+                fe = 590476.87;  λ0 = 115;
+                fn = 442857.65;  φ0 =   4;
+                e  = 679245.73;  λ  = 115 + (48 + 19.8196/60)/60; // 115°48'19.8196"E
+                n  = 596562.78;  φ  =   5 + (23 + 14.1129/60)/60; //   5°23'14.1129"N
+                λmin = 109.55; φmin = 0.85;
+                λmax = 119.26; φmax = 7.35;
+                break;
+            }
             case 24200: {  // "JAD69 / Jamaica National Grid"
                 operation = 19910;
                 fe =    250000.00;  λ0 = -77.0;

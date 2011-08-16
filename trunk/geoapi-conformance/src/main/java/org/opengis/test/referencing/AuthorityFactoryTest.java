@@ -457,6 +457,26 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
+     * Tests the EPSG:29873 (<cite>Timbalai 1948 / RSO Borneo (m)</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Hotine Oblique Mercator (variant B)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testHotineObliqueMercator()
+     */
+    @Test
+    public void testEPSG_29873() throws FactoryException, TransformException {
+        runProjectionTest(29873, true, false, false, 0, 1, 1);
+    }
+
+    /**
      * Tests the EPSG:24200 (<cite>JAD69 / Jamaica National Grid</cite>) projected CRS.
      * <p>
      * <table cellspacing="0" cellpadding="0">
