@@ -577,6 +577,26 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
+     * Tests the EPSG:28992 (<cite>Amersfoort / RD New</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Oblique Stereographic</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testObliqueStereographic()
+     */
+    @Test
+    public void testEPSG_28992() throws FactoryException, TransformException {
+        runProjectionTest(28992, true, false, false, 0, 1, 1);
+    }
+
+    /**
      * Tests the EPSG:2065 (<cite>CRS S-JTSK (Ferro) / Krovak</cite>) projected CRS.
      * <p>
      * <table cellspacing="0" cellpadding="0">

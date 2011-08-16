@@ -283,7 +283,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection.
+     * Tests the "<cite>Mercator (variant A)</cite>" (EPSG:9804) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -319,7 +319,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection.
+     * Tests the "<cite>Mercator (variant B)</cite>" (EPSG:9805) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -354,8 +354,8 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Mercator Popular Visualisation Pseudo Mercator</cite>" (EPSG:1024) projection.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the "<cite>Mercator Popular Visualisation Pseudo Mercator</cite>" (EPSG:1024) projection
+     * method. First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -390,7 +390,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Hotine Oblique Mercator (variant B)</cite>" (EPSG:9815) projection.
+     * Tests the "<cite>Hotine Oblique Mercator (variant B)</cite>" (EPSG:9815) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -429,7 +429,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection.
+     * Tests the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -466,7 +466,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Lambert Conic Conformal (2SP)</cite>" (EPSG:9802) projection.
+     * Tests the "<cite>Lambert Conic Conformal (2SP)</cite>" (EPSG:9802) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -505,7 +505,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Lambert Conic Conformal (2SP Belgium)</cite>" (EPSG:9803) projection.
+     * Tests the "<cite>Lambert Conic Conformal (2SP Belgium)</cite>" (EPSG:9803) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -542,7 +542,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Lambert Azimuthal Equal Area</cite>" (EPSG:9820) projection.
+     * Tests the "<cite>Lambert Azimuthal Equal Area</cite>" (EPSG:9820) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -577,7 +577,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection.
+     * Tests the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -611,6 +611,43 @@ public strictfp class MathTransformTest extends TransformTestCase {
     @Test
     public void testCassiniSoldner() throws FactoryException, TransformException {
         runProjectionTest(2314, "Trinidad 1903 / Trinidad Grid");
+    }
+
+    /**
+     * Tests the "<cite>Oblique Stereographic</cite>" (EPSG:9809) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6377397.155</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356078.962818189</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>52.15616055555556</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>5.38763888888889</td></tr>
+     * <tr><td>Scale factor at natural origin</td> <td>0.9999079</td></tr>
+     * <tr><td>False easting</td>                  <td>155000.0</td></tr>
+     * <tr><td>False northing</td>                 <td>463000.0</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr align="right"><td>5°23'15.500"E<br>52°09'22.178"N</td> <td nowrap>155000.000 m<br>463000.000 m</td></tr>
+     * <tr align="right"><td>6°E<br>53°N</td>
+     * <td nowrap>196105.283 m<br>557057.739 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_28992()
+     */
+    @Test
+    public void testObliqueStereographic() throws FactoryException, TransformException {
+        runProjectionTest(28992, "Amersfoort / RD New");
     }
 
     /**
