@@ -4,7 +4,7 @@
 
 Conformance tests
 
-  The GeoAPI conformance module provides two kind of Java classes:
+  The GeoAPI conformance module provides three kinds of Java classes:
 
     * {{{./apidocs/org/opengis/test/Validators.html}Validators}} for testing the conformance of
       existing instances of GeoAPI interfaces.
@@ -20,7 +20,7 @@ Conformance tests
 
   The easiest way to test an implementation is to add the following class in the implementation
   test package. There is nothing else needed if all factories are registered in the
-  {{{META-INF/services/}}} directory and all objects are fully implemented:
+  <<<META-INF/services/>>> directory and all objects are fully implemented:
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -37,6 +37,8 @@ public class GeoapiTest extends TestSuite {
 }
 +--------------------------------------------------------------------------------------------------+
 
+
+* Configuring the tests
 
   In the more common case where the implementor needs to configure some tests
   (skip some tests, relax some tolerance thresholds, <etc.>), the above class can implements the

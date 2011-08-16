@@ -32,7 +32,6 @@
 package org.opengis.test.referencing;
 
 import java.util.List;
-import java.util.EnumSet;
 import java.awt.geom.Rectangle2D;
 import javax.measure.unit.NonSI;
 
@@ -54,7 +53,6 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.test.TestCase;
 import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
-import org.opengis.test.ToleranceModifiers;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,6 +61,7 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
 import static org.opengis.test.Validators.*;
+import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
 
 
 /**
@@ -120,11 +119,26 @@ public strictfp class AuthorityFactoryTest extends TestCase {
 
     /**
      * {@code true} if {@link #crsFactory} and {@link #csFactory} supports the creating of
-     * coordinate system with (<var>y</var>,<var>x</var>) axis order.
+     * coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is set
+     * to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
+     * axis order or South Oriented CRS will test for (<var>x</var>,<var>y</var>) axis order
+     * and North orientation instead.
      *
      * @since 3.1
      */
     protected boolean isAxisSwappingSupported;
+
+    /**
+     * {@code true} if the {@link #crsFactory} supports the creation of CRS objects from
+     * unofficial EPSG codes. Unofficial codes used in this test suite are:
+     * <p>
+     * <ul>
+     *   <li>310642901 - Miller projection</li>
+     * </ul>
+     *
+     * @since 3.1
+     */
+    protected boolean isUnofficialEpsgSupported;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -157,8 +171,10 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
-                "isAxisSwappingSupported");
-        isAxisSwappingSupported = isEnabled[0];
+                "isAxisSwappingSupported",
+                "isUnofficialEpsgSupported");
+        isAxisSwappingSupported   = isEnabled[0];
+        isUnofficialEpsgSupported = isEnabled[1];
     }
 
     /**
@@ -172,6 +188,16 @@ public strictfp class AuthorityFactoryTest extends TestCase {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns the longitude value relative to the Greenwich Meridian, expressed in decimal degrees.
+     *
+     * @param  pm The prime meridian from which to get the Greenwich longitude, or {@code null}.
+     * @return The prime meridian in the given units, or 0 if the given prime meridian was null.
+     */
+    public static double getGreenwichLongitude(final PrimeMeridian pm) {
+        return (pm != null) ? pm.getAngularUnit().getConverterTo(NonSI.DEGREE_ANGLE).convert(pm.getGreenwichLongitude()) : 0;
     }
 
     /**
@@ -225,6 +251,33 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
+     * Verifies the horizontal axis direction of the given coordinate system. The standard
+     * directions are (East,North), but the boolean argument allows to swap and flip those
+     * directions.
+     *
+     * @param cs   The coordinate system to check, or {@code null}.
+     * @param swap {@code true} if the the easting and northing axes should be interchanged.
+     * @param flip {@code true} if the sign of both axes should be reversed.
+     */
+    private static void verifyAxisDirection(final CoordinateSystem cs, final boolean swap, final boolean flip) {
+        if (cs != null) {
+            AxisDirection X,Y;
+            if (flip) {
+                X = AxisDirection.WEST;
+                Y = AxisDirection.SOUTH;
+            } else {
+                X = AxisDirection.EAST;
+                Y = AxisDirection.NORTH;
+            }
+            if (swap) {
+                final AxisDirection t = X;
+                X=Y; Y=t;
+            }
+            assertAxisDirectionsEqual(cs, X, Y);
+        }
+    }
+
+    /**
      * Creates a {@link ProjectedCRS} identified by the given EPSG code, and tests its
      * math transform. The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
@@ -232,16 +285,19 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @param  code The EPSG code of a target Coordinate Reference System.
      * @param  swapλφ If the longitude and latitude axes shall be swapped.
      * @param  swapxy If the easting and northing axes shall be swapped.
+     * @param  flipxy If {@code true}, reverse the sign of both projected axes.
+     * @param  primeMeridian Prime meridian from Greenwich, in decimal degrees.
      * @param  toAngularUnit Conversion factor from degrees to the input linear unit.
      * @param  toLinearUnit Conversion factor from metres to the output linear unit.
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If a point can not be transformed.
      */
-    private void runProjectionTest(final int code, boolean swapλφ, boolean swapxy, final double toAngularUnit, final double toLinearUnit)
+    private void runProjectionTest(final int code, boolean swapλφ, boolean swapxy, boolean flipxy,
+            final double primeMeridian, final double toAngularUnit, final double toLinearUnit)
             throws FactoryException, TransformException
     {
         if (!isAxisSwappingSupported) {
-            swapλφ = swapxy = false;
+            swapλφ = swapxy = flipxy = false;
         }
         assumeNotNull(crsFactory);
         final ProjectedCRS crs = crsFactory.createProjectedCRS("EPSG:" + code);
@@ -251,21 +307,18 @@ public strictfp class AuthorityFactoryTest extends TestCase {
          * Coordinate system validation. In theory, the coordinate system is mandatory.
          * This is verified by the above call to validate(crs). However the user could
          * have set the Validator.requireMandatoryAttributes to 'false', in which case
-         * we need to be lenient as the user wish.
+         * we need to be lenient as the user wishes.
          */
         final GeographicCRS baseCRS = crs.getBaseCRS();
         if (baseCRS != null) {
-            final EllipsoidalCS cs = baseCRS.getCoordinateSystem();
-            if (cs != null) {
-                if (swapλφ) assertAxisDirectionsEqual(cs, AxisDirection.NORTH, AxisDirection.EAST);
-                else        assertAxisDirectionsEqual(cs, AxisDirection.EAST, AxisDirection.NORTH);
+            verifyAxisDirection(baseCRS.getCoordinateSystem(), swapλφ, false);
+            final GeodeticDatum datum = baseCRS.getDatum();
+            if (datum != null) {
+                assertEquals("PrimeMeridian.greenwichLongitude", primeMeridian,
+                        getGreenwichLongitude(datum.getPrimeMeridian()), DEFAULT_TOLERANCE);
             }
         }
-        final CartesianCS cs = crs.getCoordinateSystem();
-        if (cs != null) {
-            if (swapxy) assertAxisDirectionsEqual(cs, AxisDirection.NORTH, AxisDirection.EAST);
-            else        assertAxisDirectionsEqual(cs, AxisDirection.EAST, AxisDirection.NORTH);
-        }
+        verifyAxisDirection(crs.getCoordinateSystem(), swapxy, flipxy);
         /*
          * Test the projection of sample point values.
          */
@@ -280,8 +333,10 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                  * Finally apply a unit conversion if the CRS doesn't use the usual units.
                  */
                 final SamplePoints sample = SamplePoints.getSamplePoints(code);
+                if (primeMeridian != 0) sample.rotateLongitude(primeMeridian);
                 if (swapλφ) SamplePoints.swap(sample.sourcePoints);
                 if (swapxy) SamplePoints.swap(sample.targetPoints);
+                if (flipxy) SamplePoints.flip(sample.targetPoints);
                 test.toleranceModifier = swapλφ ? ToleranceModifier.PROJECTION_FROM_φλ : ToleranceModifier.PROJECTION;
                 if (toLinearUnit  != 1) test.applyUnitConversion(CalculationType.DIRECT_TRANSFORM,  sample.targetPoints, toLinearUnit);
                 if (toAngularUnit != 1) test.applyUnitConversion(CalculationType.INVERSE_TRANSFORM, sample.sourcePoints, toAngularUnit);
@@ -346,6 +401,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Mercator (variant A)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
@@ -357,7 +413,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3002() throws FactoryException, TransformException {
-        runProjectionTest(3002, true, false, 1, 1);
+        runProjectionTest(3002, true, false, false, 0, 1, 1);
     }
 
     /**
@@ -365,6 +421,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Mercator (variant B)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
@@ -376,7 +433,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3388() throws FactoryException, TransformException {
-        runProjectionTest(3388, true, true, 1, 1);
+        runProjectionTest(3388, true, true, false, 0, 1, 1);
     }
 
     /**
@@ -384,6 +441,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Mercator Popular Visualisation Pseudo Mercator</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
@@ -395,7 +453,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3857() throws FactoryException, TransformException {
-        runProjectionTest(3857, true, false, 1, 1);
+        runProjectionTest(3857, true, false, false, 0, 1, 1);
     }
 
     /**
@@ -403,6 +461,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (1SP)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
@@ -414,7 +473,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_24200() throws FactoryException, TransformException {
-        runProjectionTest(24200, true, false, 1, 1);
+        runProjectionTest(24200, true, false, false, 0, 1, 1);
     }
 
     /**
@@ -422,6 +481,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
      * </table>
@@ -433,7 +493,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_32040() throws FactoryException, TransformException {
-        runProjectionTest(32040, true, false, 1, PseudoEpsgFactory.R_US_FEET);
+        runProjectionTest(32040, true, false, false, 0, 1, PseudoEpsgFactory.R_US_FEET);
     }
 
     /**
@@ -441,6 +501,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
@@ -452,7 +513,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_31300() throws FactoryException, TransformException {
-        runProjectionTest(31300, true, false, 1, 1);
+        runProjectionTest(31300, true, false, false, 0, 1, 1);
     }
 
     /**
@@ -460,6 +521,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Lambert Azimuthal Equal Area</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
@@ -471,7 +533,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3035() throws FactoryException, TransformException {
-        runProjectionTest(3035, true, true, 1, 1);
+        runProjectionTest(3035, true, true, false, 0, 1, 1);
     }
 
     /**
@@ -479,6 +541,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Cassini-Soldner</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
      * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
      * </table>
@@ -490,7 +553,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_2314() throws FactoryException, TransformException {
-        runProjectionTest(2314, true, false, 1, 1/PseudoEpsgFactory.CLARKE_KEET);
+        runProjectionTest(2314, true, false, false, 0, 1, 1/PseudoEpsgFactory.CLARKE_KEET);
     }
 
     /**
@@ -498,8 +561,9 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Krovak</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Ferro <strong>(17°40'W of Greenwich)</strong></td></tr>
      * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres, <strong>south oriented</strong></td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
      * </table>
      *
      * @throws FactoryException If the math transform can not be created.
@@ -508,8 +572,30 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @see MathTransformTest#testKrovak()
      */
     @Test
-    @org.junit.Ignore // TODO: need to support South-oriented projection
     public void testEPSG_2065() throws FactoryException, TransformException {
-        runProjectionTest(2065, true, false, 1, 1);
+        runProjectionTest(2065, true, true, true, -(17 + 40.0/60), 1, 1);
+    }
+
+    /**
+     * Tests the EPSG:310642901 (<cite>Miller</cite>) projected CRS.
+     * This is not an official EPSG code. This test can be disabled by setting the
+     * {@link #isUnofficialEpsgSupported} to {@code false}.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Miller</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testMiller()
+     */
+    @Test
+    public void testEPSG_310642901() throws FactoryException, TransformException {
+        assumeTrue(isUnofficialEpsgSupported);
+        runProjectionTest(310642901, true, false, false, 0, 1, 1);
     }
 }
