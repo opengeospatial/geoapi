@@ -31,6 +31,7 @@
  */
 package org.opengis.wrapper.proj4;
 
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
@@ -60,9 +61,10 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
     final PJDatum pj;
 
     /**
-     * The number of dimensions. Must be greater than or equals to 2.
+     * The coordinate system axes. The length of this array is the dimension,
+     * which must be greater than or equals to 2.
      */
-    final int dimension;
+    final CoordinateSystemAxis[] axes;
 
     /**
      * Creates a new CRS using the given identifier, Proj4 peer and number of dimensions.
@@ -73,8 +75,12 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      */
     PJCRS(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
         super(identifier);
-        this.pj = datum;
-        this.dimension = dimension;
+        pj = datum;
+        axes = new CoordinateSystemAxis[dimension];
+        final char[] dir = datum.getAxisDirections();
+        for (int i=0; i<dimension; i++) {
+            axes[i] = new PJAxis((i < dir.length) ? dir[i] : ' ');
+        }
     }
 
     /**
@@ -97,7 +103,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      */
     @Override
     public final CoordinateSystemAxis getAxis(final int dimension) throws IndexOutOfBoundsException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return axes[dimension];
     }
 
     /**
@@ -105,7 +111,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      */
     @Override
     public final int getDimension() {
-        return dimension;
+        return axes.length;
     }
 
     /**
@@ -135,23 +141,53 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      * The projected specialization of {@link PJCRS}.
      */
     static final class Projected extends PJCRS implements ProjectedCRS, CartesianCS {
+        /**
+         * The value returned by {@link #getBaseCRS()}, created when first needed.
+         */
+        private transient Geographic baseCRS;
+
+        /**
+         * The value returned by {@link #getConversionFromBase()}, created when first needed.
+         */
+        private transient Projection conversion;
+
+        /**
+         * Creates a new projected CRS.
+         */
         Projected(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
             super(identifier, datum, dimension);
         }
 
+        /**
+         * Returns the coordinate system, which is {@code this} object.
+         */
         @Override
         public CartesianCS getCoordinateSystem() {
             return this;
         }
 
+        /**
+         * Returns the base CRS, which is inferred by the Proj.4 library.
+         */
         @Override
-        public GeographicCRS getBaseCRS() {
-            throw new UnsupportedOperationException("Not supported yet.");
+        public synchronized Geographic getBaseCRS() {
+            if (baseCRS == null) try {
+                baseCRS = new Geographic(name, new PJDatum(pj), axes.length);
+            } catch (FactoryException e) {
+                throw new IllegalStateException(e.getLocalizedMessage(), e);
+            }
+            return baseCRS;
         }
 
+        /**
+         * Returns the conversion from the projected CRS to the base CRS.
+         */
         @Override
-        public Projection getConversionFromBase() {
-            throw new UnsupportedOperationException("Not supported yet.");
+        public synchronized Projection getConversionFromBase() {
+            if (conversion == null) {
+                conversion = new PJOperation.Projection(name, baseCRS, this);
+            }
+            return conversion;
         }
     }
 }

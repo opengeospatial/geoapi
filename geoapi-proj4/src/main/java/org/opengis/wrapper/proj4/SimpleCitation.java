@@ -59,6 +59,11 @@ final class SimpleCitation implements Citation, InternationalString {
     static final Citation VENDOR = new SimpleCitation("GeoAPI-Proj.4");
 
     /**
+     * The citation to be returned by {@link PJFactory.EPSG#getAuthority()}.
+     */
+    static final Citation EPSG = new SimpleCitation("EPSG");
+
+    /**
      * The citation title to be returned by {@link #getTitle()}.
      */
     private final String title;

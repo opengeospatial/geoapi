@@ -31,6 +31,9 @@
  */
 package org.opengis.wrapper.proj4;
 
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 
 /**
  * Tests creation of CRS through the authority factory.
@@ -39,6 +42,14 @@ package org.opengis.wrapper.proj4;
  * @version 3.1
  * @since   3.1
  */
-public class AuthorityFactoryTest {
-
+@RunWith(JUnit4.class)
+public class AuthorityFactoryTest extends org.opengis.test.referencing.AuthorityFactoryTest {
+    /**
+     * Creates a new test case using an {@link PJFactory.EPSG} instance.
+     */
+    public AuthorityFactoryTest() {
+        super(new PJFactory.EPSG(), null, null);
+        isAxisSwappingSupported   = false;
+        isUnofficialEpsgSupported = false;
+    }
 }

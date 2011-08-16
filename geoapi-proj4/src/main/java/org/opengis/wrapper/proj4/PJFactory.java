@@ -169,16 +169,19 @@ public class PJFactory implements Factory {
      * @version 3.1
      * @since   3.1
      */
-    public static class CRS extends PJFactory implements CRSAuthorityFactory {
+    public static class EPSG extends PJFactory implements CRSAuthorityFactory {
         /**
          * Creates a new coordinate operation factory.
          */
-        public CRS() {
+        public EPSG() {
         }
 
+        /**
+         * Returns the authority for this factory, which is EPSG.
+         */
         @Override
         public Citation getAuthority() {
-            return null;
+            return SimpleCitation.EPSG;
         }
 
         @Override
@@ -191,6 +194,9 @@ public class PJFactory implements Factory {
             return null;
         }
 
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)}.
+         */
         @Override
         public IdentifiedObject createObject(String code) throws FactoryException {
             return createCoordinateReferenceSystem(code);
@@ -198,7 +204,14 @@ public class PJFactory implements Factory {
 
         @Override
         public CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException {
-            return createCRS(createIdentifier("EPSG", code), "+init=epsg:" + code, 2);
+            String codespace = "EPSG";
+            code = code.trim();
+            final int s = code.indexOf(':');
+            if (s >= 0) {
+                codespace = code.substring(0, s).trim();
+                code = code.substring(s+1).trim();
+            }
+            return createCRS(createIdentifier(codespace, code), "+init=" + codespace + ':' + code, 2);
         }
 
         @Override public GeographicCRS  createGeographicCRS (String code) throws FactoryException {return cast(GeographicCRS .class, code);}
