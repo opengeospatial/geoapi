@@ -53,8 +53,9 @@ import static org.opengis.test.Assert.*;
 public abstract class Validator {
     /**
      * The default tolerance value for comparisons of floating point numbers.
+     * The current value is {@value}.
      */
-    protected static final double DEFAULT_TOLERANCE = 1E-6;
+    public static final double DEFAULT_TOLERANCE = 1E-6;
 
     /**
      * The container of this validator.

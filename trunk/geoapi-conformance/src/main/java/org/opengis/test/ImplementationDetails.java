@@ -37,6 +37,7 @@ import java.util.Properties;
 import java.util.Collections;
 
 import org.opengis.util.Factory;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
 
 
@@ -103,7 +104,8 @@ public interface ImplementationDetails {
         "isOverlappingArraySupported",
         "isInverseTransformSupported",
         "isDerivativeSupported",
-        "isAxisSwappingSupported"
+        "isAxisSwappingSupported",
+        "isUnofficialEpsgSupported"
     }, "false"));
 
     /**
@@ -129,16 +131,17 @@ public interface ImplementationDetails {
      * If non-null, then the returned map can assign the value {@code "false"} to
      * any of the following keys:
      * <p>
-     * <ul>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported   isDoubleToDoubleSupported}</li>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported     isFloatToFloatSupported}</li>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported    isDoubleToFloatSupported}</li>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported    isFloatToDoubleSupported}</li>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported isOverlappingArraySupported}</li>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported isInverseTransformSupported}</li>
-     *   <li>{@link org.opengis.test.referencing.TransformTestCase#isDerivativeSupported       isDerivativeSupported}</li>
-     *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported  isAxisSwappingSupported}</li>
-     * </ul>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported    isDoubleToDoubleSupported}&nbsp;</td>  <td>Whatever {@link MathTransform#transform(double[],int,double[],int,int)} is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported      isFloatToFloatSupported}&nbsp;</td>    <td>Whatever {@link MathTransform#transform(float[],int,float[],int,int)} is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported     isDoubleToFloatSupported}&nbsp;</td>   <td>Whatever {@link MathTransform#transform(double[],int,float[],int,int)} is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported     isFloatToDoubleSupported}&nbsp;</td>   <td>Whatever {@link MathTransform#transform(float[],int,double[],int,int)} is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported  isOverlappingArraySupported}&nbsp;</td><td>Whatever source and destination arrays can overlap in {@link MathTransform} operations.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported  isInverseTransformSupported}&nbsp;</td><td>Whatever {@link MathTransform#inverse()} is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.TransformTestCase#isDerivativeSupported        isDerivativeSupported}&nbsp;</td>      <td>Whatever {@link MathTransform#derivative(DirectPosition)} is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported   isAxisSwappingSupported}&nbsp;</td>    <td>Whatever (<var>y</var>,<var>x</var>) axis order is supported.</td></tr>
+     * <tr><td>{@link org.opengis.test.referencing.AuthorityFactoryTest#isUnofficialEpsgSupported isUnofficialEpsgSupported}&nbsp;</td>  <td>Whatever unofficial EPSG codes (like Miller projection) are supported.</td></tr>
+     * </table>
      * <p>
      * If more than one {@code ImplementationDetails} is found on the classpath, then the above
      * tests are enabled only if none of the {@code ImplementationDetails.configuration(...)}

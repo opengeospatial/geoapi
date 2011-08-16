@@ -214,6 +214,18 @@ final class SamplePoints {
     }
 
     /**
+     * Subtracts the given amount to every longitudes in the source coordinates. This method shall
+     * be invoked, if needed, before the {@link #swap(double[])} and {@link #flip(double[])} methods.
+     *
+     * @param primeMeridian The amount to subtracts to longitude.
+     */
+    final void rotateLongitude(final double primeMeridian) {
+        for (int i=0; i<sourcePoints.length; i+=2) {
+            sourcePoints[i] -= primeMeridian;
+        }
+    }
+
+    /**
      * Swap the (λ,φ) or (x,y) ordinate values in the given array.
      * The coordinate points are assumed two-dimensional.
      */
@@ -222,6 +234,15 @@ final class SamplePoints {
             final double t = ordinates[i];
             ordinates[i] = ordinates[++i];
             ordinates[i] = t;
+        }
+    }
+
+    /**
+     * Reverses the sign of all ordinate values in the given array.
+     */
+    static void flip(final double[] ordinates) {
+        for (int i=0; i<ordinates.length; i++) {
+            ordinates[i] = -ordinates[i];
         }
     }
 
