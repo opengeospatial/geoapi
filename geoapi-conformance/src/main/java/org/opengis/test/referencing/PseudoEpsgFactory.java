@@ -769,6 +769,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19905</td>     <td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
      *   <tr><td>19884</td>     <td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>
      *   <tr><td>3856</td>      <td>3857</td>      <td>WGS 84 / Pseudo-Mercator</td>            <td>Popular Visualisation Pseudo Mercator</td></tr>
+     *   <tr><td>19958</td>     <td>29873</td>     <td>Timbalai 1948 / RSO Borneo (m)</td>      <td>Hotine Oblique Mercator (variant B)</td></tr>
      *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
      *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
@@ -820,6 +821,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572236));
                 break;
             }
+            case 19958: { // "[Rectified Skew Orthomorphic Borneo Grid (metres)" using operation method 9815
+                parameters = factory.getDefaultParameters("Hotine Oblique Mercator (variant B)");
+                parameters.parameter("semi-major axis").setValue(6377298.556);  // Everest 1830
+                parameters.parameter("semi-minor axis").setValue(6377298.556 * (1 - 1/300.8017));
+                parameters.parameter("Latitude of projection centre") .setValue(  4.0); //   4°00'00"N
+                parameters.parameter("Longitude of projection centre").setValue(115.0); // 115°00'00"E
+                parameters.parameter("Azimuth of initial line").setValue(53 + (18 + 56.9537/60)/60);          //  53°18'56.9537"
+                parameters.parameter("Angle from Rectified to Skew Grid").setValue(53 + (7 + 48.3685/60)/60); //  53°07'48.3685"
+                parameters.parameter("Scale factor on initial line") .setValue(0.99984);
+                parameters.parameter("Easting at projection centre") .setValue(590476.87);
+                parameters.parameter("Northing at projection centre").setValue(442857.65);
+                break;
+            }
             case 310642901: { // "IGNF:MILLER" (not an official EPSG code)
                 parameters = factory.getDefaultParameters("Miller_Cylindrical");
                 parameters.parameter("semi-major axis").setValue(6378137);
@@ -853,10 +867,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Belgium)");
                 parameters.parameter("semi-major axis").setValue(6378388); // International 1924
                 parameters.parameter("semi-minor axis").setValue(6378388 * (1 - 1/297.0));
-                parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60); // 49°50'00"N
-                parameters.parameter("Latitude of 2nd standard parallel").setValue(51 + 10.0/60); // 51°10'00"N
-                parameters.parameter("Latitude of false origin")         .setValue(90.0);         // 90°00'00"N
-                parameters.parameter("Longitude of false origin")        .setValue(4 + (21 + 24.983/60)/60); // 4°21'24.983"E
+                parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60);    // 49°50'00.000"N
+                parameters.parameter("Latitude of 2nd standard parallel").setValue(51 + 10.0/60);    // 51°10'00.000"N
+                parameters.parameter("Latitude of false origin")         .setValue(90.0);            // 90°00'00.000"N
+                parameters.parameter("Longitude of false origin").setValue(4 + (21 + 24.983/60)/60); //  4°21'24.983"E
                 parameters.parameter("Easting at false origin") .setValue( 150000.01);
                 parameters.parameter("Northing at false origin").setValue(5400088.44);
                 break;

@@ -390,6 +390,45 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the "<cite>Hotine Oblique Mercator (variant B)</cite>" (EPSG:9815) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                   <td>6377298.556</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td>6356097.550300896</td></tr>
+     * <tr><td>Latitude of projection centre</td>     <td>4.0</td></tr>
+     * <tr><td>Longitude of projection centre</td>    <td>109.6855202029758</td></tr>
+     * <tr><td>Azimuth of initial line</td>           <td>53.31582047222222</td></tr>
+     * <tr><td>Angle from Rectified to Skew Grid</td> <td>53.13010236111111</td></tr>
+     * <tr><td>Scale factor on initial line</td>      <td>0.99984</td></tr>
+     * <tr><td>Easting at projection centre</td>      <td>590476.87</td></tr>
+     * <tr><td>Northing at projection centre</td>     <td>442857.65</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr align="right"><td>115°E<br>4°N</td> <td nowrap>590476.87 m<br>442857.65 m</td></tr>
+     * <tr align="right"><td>115°48'19.8196"E<br>5°23'14.1129"N</td>
+     * <td nowrap>679245.73 m<br>596562.78 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_29873()
+     */
+    @Test
+    public void testHotineObliqueMercator() throws FactoryException, TransformException {
+        runProjectionTest(29873, "Timbalai 1948 / RSO Borneo (m)");
+    }
+
+    /**
      * Tests the "<cite>Lambert Conic Conformal (1SP)</cite>" (EPSG:9801) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
