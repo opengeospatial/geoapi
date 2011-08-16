@@ -197,6 +197,16 @@ final class SamplePoints {
                 λmax = -60.00; φmax = 11.50;
                 break;
             }
+            case 28992: {  // "Amersfoort / RD New"
+                operation = 19914;
+                fe =  155000.000;  λ0 =  5 + (23 + 15.500/60)/60; //  5°23'15.500"E
+                fn =  463000.000;  φ0 = 52 + ( 9 + 22.178/60)/60; // 52°09'22.178"N
+                e  =  196105.283;  λ =  6;
+                n  =  557057.739;  φ = 53;
+                λmin =  3.2; φmin = 50.75;
+                λmax = 7.24; φmax = 53.75;
+                break;
+            }
             case 2065: {  // "CRS S-JTSK (Ferro) / Krovak"
                 operation = 19952;
                 fe =         0.00;   λ0 = 24 + 50.0/60;              // 24°30'00"E

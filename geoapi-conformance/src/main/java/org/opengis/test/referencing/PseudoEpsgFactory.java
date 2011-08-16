@@ -776,6 +776,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe</td>                <td>Lambert Azimuthal Equal Area</td></tr>
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
      *   <tr><td>19952</td>     <td>2065</td>      <td>CRS S-JTSK (Ferro) / Krovak</td>         <td>Krovak</td></tr>
+     *   <tr><td>19914</td>     <td>28992</td>     <td>Amersfoort / RD New</td>                 <td>Oblique Stereographic</td></tr>
      *   <tr><td>310642901</td> <td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
      * </table>
      *
@@ -893,6 +894,17 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));        // 61°20'00"W
                 parameters.parameter("False easting") .setValue(430000.00 * LINKS);
                 parameters.parameter("False northing").setValue(325000.00 * LINKS);
+                break;
+            }
+            case 19914: { // "RD New" using operation method 9809
+                parameters = factory.getDefaultParameters("Oblique Stereographic");
+                parameters.parameter("semi-major axis").setValue(6377397.155); // Bessel 1841
+                parameters.parameter("semi-minor axis").setValue(6377397.155 * (1 - 1/299.15281));
+                parameters.parameter("Latitude of natural origin").setValue(52 + ( 9 + 22.178/60)/60); // 52°09'22.178"N
+                parameters.parameter("Longitude of natural origin").setValue(5 + (23 + 15.500/60)/60); //  5°23'15.500"E
+                parameters.parameter("Scale factor at natural origin").setValue(0.9999079);
+                parameters.parameter("False easting") .setValue(155000.00);
+                parameters.parameter("False northing").setValue(463000.00);
                 break;
             }
             case 19952: { // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
