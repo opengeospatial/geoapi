@@ -759,6 +759,40 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the "<cite>American Polyconic</cite>" (EPSG:9818) projection.
+     * First, this method transforms the some of the points given in Table 19, p 132 of
+     * <a href="http://pubs.er.usgs.gov/usgspubs/pp/pp1395">Map Projections, a working manual</a>
+     * by John P.Snyder</A>. Next, this method transforms a random set of points in the projection
+     * area of validity and ensures that the {@linkplain MathTransform#inverse() inverse transform}
+     * and the {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                                <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                          <td>6378206.4 m</td></tr>
+     * <tr><td>semi-minor axis</td>                          <td>6356583.8 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>               <td>0.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>              <td>0.0°</td></tr>
+     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
+     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr align="right"><td>See source</td> <td nowrap>See source</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testPolyconic() throws FactoryException, TransformException {
+        tolerance = 0.5; // The sample points are only accurate to 1 metre.
+        isDerivativeSupported = false; // TODO!!
+        runProjectionTest(9818, "American Polyconic");
+    }
+
+    /**
      * Tests the "<cite>Krovak</cite>" (EPSG:9819) projection.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.

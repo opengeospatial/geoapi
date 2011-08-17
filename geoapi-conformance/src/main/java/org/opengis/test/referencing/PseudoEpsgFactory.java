@@ -930,6 +930,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(463000.00);
                 break;
             }
+            case 9818: {  // (not an official EPSG code) using operation method 9818
+                parameters = factory.getDefaultParameters("Polyconic");
+                parameters.parameter("semi-major axis").setValue(6378206.4);
+                parameters.parameter("semi-minor axis").setValue(6378206.4 * (1 - 1/294.97870));
+                parameters.parameter("Latitude of natural origin") .setValue(0);
+                parameters.parameter("Longitude of natural origin").setValue(0);
+                parameters.parameter("False easting") .setValue(0);
+                parameters.parameter("False northing").setValue(0);
+                break;
+            }
             case 19952: { // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
                 parameters = factory.getDefaultParameters("Krovak");
                 parameters.parameter("semi-major axis").setValue(6377397.155);  // Bessel
