@@ -54,6 +54,16 @@ final class PJIdentifier implements ReferenceIdentifier {
     /**
      * Creates a new identifier for the given code.
      *
+     * @param code The code (mandatory).
+     */
+    PJIdentifier(final String code) {
+        codespace = null;
+        this.code = code;
+    }
+
+    /**
+     * Creates a new identifier for the given code and codespace.
+     *
      * @param codespace The codespace, or {@code null} if none.
      * @param code The code (mandatory).
      */

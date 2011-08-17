@@ -42,12 +42,15 @@ import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.operation.Conversion;
+import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.proj4.PJ;
+
+import static org.proj4.PJ.DIMENSION_MAX;
 
 
 /**
@@ -60,13 +63,6 @@ import org.proj4.PJ;
  * @since   3.1
  */
 public class PJFactory implements Factory {
-    /**
-     * An arbitrary maximal number of dimension. This arbitrary limit is used only in order
-     * to avoid potential misuse, and also as a paranoiac safety for reducing the risk of
-     * integer arithmetic overflow in the native code.
-     */
-    private static final int DIMENSION_MAX = 100;
-
     /**
      * For sub-class constructors only.
      */
@@ -106,9 +102,9 @@ public class PJFactory implements Factory {
 
     /**
      * Creates a new CRS from the given Proj4 definition string. The CRS can have an arbitrary
-     * number of dimensions in the [2-{@value #DIMENSION_MAX}] range. However Proj.4 will handle
-     * at most the 3 first dimensions. All supplemental dimensions will be simply copied unchanged
-     * by {@link MathTransform} implementations.
+     * number of dimensions in the [2-{@value org.proj4.PJ#DIMENSION_MAX}] range. However Proj.4
+     * will handle at most the 3 first dimensions. All supplemental dimensions will be simply
+     * copied unchanged by {@link MathTransform} implementations.
      *
      * @param  identifier The name of the CRS is create, or {@code null} if none.
      * @param  definition The Proj.4 definition string.
@@ -163,7 +159,28 @@ public class PJFactory implements Factory {
 
     /**
      * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
-     * created an EPSG code.
+     * created from an EPSG code. While this factory is primarily designed for EPSG codes, it
+     * accepts also any other codespaces supported by the Proj.4 library.
+     * <p>
+     * The main methods of this class are:
+     * <p>
+     * <ul>
+     *   <li>{@link #getAuthority()}</li>
+     *   <li>{@link #createCoordinateReferenceSystem(String)}</li>
+     * </ul>
+     * <p>
+     * The following methods delegate to {@link #createCoordinateReferenceSystem(String)} and cast
+     * the result if possible, or throw a {@link FactoryException} otherwise.
+     * <ul>
+     *   <li>{@link #createGeographicCRS(String)}</li>
+     *   <li>{@link #createGeocentricCRS(String)}</li>
+     *   <li>{@link #createProjectedCRS(String)}</li>
+     *   <li>{@link #createObject(String)}</li>
+     * </ul>
+     * <p>
+     * All other methods are not supported by the default implementation of this factory.
+     * However those methods will work if the {@link #createCoordinateReferenceSystem(String)}
+     * method is overridden in order to return CRS objects of the appropriate type.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -177,31 +194,44 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Returns the authority for this factory, which is EPSG.
+         * Returns the authority for this factory, which is EPSG. This is actually the default
+         * authority when no codespace is explicitely given to a {@code createFoo(String)}
+         * method. If a codespace is explicitely given, any authority recognized by the Proj.4
+         * library will be accepted.
          */
         @Override
         public Citation getAuthority() {
             return SimpleCitation.EPSG;
         }
 
+        /**
+         * Unconditionally returns {@code null}, since this functionality is not supported yet.
+         * Note that {@code null} is not the same than an empty set, since the later would mean
+         * that there is no supported code.
+         */
         @Override
         public Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
-            throw new FactoryException("Not supported yet.");
+            return null;
         }
 
+        /**
+         * Unconditionally returns {@code null}, since this functionality is not supported yet.
+         */
         @Override
         public InternationalString getDescriptionText(String code) throws FactoryException {
             return null;
         }
 
         /**
-         * Delegates to {@link #createCoordinateReferenceSystem(String)}.
+         * Creates a new CRS from the given code. If the given string is of the form
+         * {@code "AUTHORITY:CODE"}, then any authority recognized by the Proj.4 library will be
+         * accepted (it doesn't need to be EPSG). If no authority is given, then {@code "EPSG:"}
+         * is assumed.
+         *
+         * @param  code The code of the CRS object to create.
+         * @return A CRS created from the given code.
+         * @throws FactoryException If the CRS object can not be created for the given code.
          */
-        @Override
-        public IdentifiedObject createObject(String code) throws FactoryException {
-            return createCoordinateReferenceSystem(code);
-        }
-
         @Override
         public CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException {
             String codespace = "EPSG";
@@ -211,18 +241,23 @@ public class PJFactory implements Factory {
                 codespace = code.substring(0, s).trim();
                 code = code.substring(s+1).trim();
             }
-            return createCRS(createIdentifier(codespace, code), "+init=" + codespace + ':' + code, 2);
+            try {
+                return createCRS(createIdentifier(codespace, code), "+init=" + codespace + ':' + code, 2);
+            } catch (FactoryException e) {
+                throw new NoSuchAuthorityCodeException(e.getMessage(), codespace, code);
+            }
         }
 
-        @Override public GeographicCRS  createGeographicCRS (String code) throws FactoryException {return cast(GeographicCRS .class, code);}
-        @Override public GeocentricCRS  createGeocentricCRS (String code) throws FactoryException {return cast(GeocentricCRS .class, code);}
-        @Override public ProjectedCRS   createProjectedCRS  (String code) throws FactoryException {return cast(ProjectedCRS  .class, code);}
-        @Override public CompoundCRS    createCompoundCRS   (String code) throws FactoryException {return cast(CompoundCRS   .class, code);}
-        @Override public DerivedCRS     createDerivedCRS    (String code) throws FactoryException {return cast(DerivedCRS    .class, code);}
-        @Override public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {return cast(EngineeringCRS.class, code);}
-        @Override public ImageCRS       createImageCRS      (String code) throws FactoryException {return cast(ImageCRS      .class, code);}
-        @Override public TemporalCRS    createTemporalCRS   (String code) throws FactoryException {return cast(TemporalCRS   .class, code);}
-        @Override public VerticalCRS    createVerticalCRS   (String code) throws FactoryException {return cast(VerticalCRS   .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public GeographicCRS    createGeographicCRS (String code) throws FactoryException {return cast(GeographicCRS .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public GeocentricCRS    createGeocentricCRS (String code) throws FactoryException {return cast(GeocentricCRS .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public ProjectedCRS     createProjectedCRS  (String code) throws FactoryException {return cast(ProjectedCRS  .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public CompoundCRS      createCompoundCRS   (String code) throws FactoryException {return cast(CompoundCRS   .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public DerivedCRS       createDerivedCRS    (String code) throws FactoryException {return cast(DerivedCRS    .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public EngineeringCRS   createEngineeringCRS(String code) throws FactoryException {return cast(EngineeringCRS.class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public ImageCRS         createImageCRS      (String code) throws FactoryException {return cast(ImageCRS      .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public TemporalCRS      createTemporalCRS   (String code) throws FactoryException {return cast(TemporalCRS   .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public VerticalCRS      createVerticalCRS   (String code) throws FactoryException {return cast(VerticalCRS   .class, code);}
+        /** Delegates to {@link #createCoordinateReferenceSystem(String)}. */                      @Override public IdentifiedObject createObject        (String code) throws FactoryException {return createCoordinateReferenceSystem(code);}
 
         /**
          * Invokes {@link #createCoordinateReferenceSystem(String)} and casts the result
@@ -233,14 +268,24 @@ public class PJFactory implements Factory {
             try {
                 return type.cast(crs);
             } catch (ClassCastException e) {
-                throw new FactoryException("Not the appropriate type.", e);
+                throw new FactoryException("The \"" + code + "\" object is not a " + type.getSimpleName(), e);
             }
         }
     }
 
     /**
      * A factory for {@linkplain CoordinateOperation coordinate operation} objects created from
-     * a source and a target CRS.
+     * a source and a target CRS. Current implementation accepts only CRS objects created by
+     * {@link PJFactory} or {@link PJFactory.EPSG}.
+     * <p>
+     * The only supported methods are:
+     * <p>
+     * <ul>
+     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
+     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
+     * </ul>
+     * <p>
+     * All other methods unconditionally throw a {@link FactoryException}.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -254,14 +299,15 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Creates an operation for conversion or transformation between two coordinate reference systems.
-         * This given source and target CRS must be instances created by a {@link PJFactory}.
+         * Creates an operation for conversion or transformation between two coordinate reference
+         * systems. This given source and target CRS must be instances created by {@link PJFactory}
+         * or {@link PJFactory.EPSG}.
          *
          * @param  sourceCRS The source coordinate reference system.
          * @param  targetCRS The target coordinate reference system.
          * @return A coordinate operation for transforming coordinates from the given source CRS
          *         to the given target CRS.
-         * @throws FactoryException If the given CRS are not instances created by this class.
+         * @throws FactoryException If the given CRS are not instances recognized by this class.
          */
         @Override
         public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
@@ -292,13 +338,14 @@ public class PJFactory implements Factory {
 
         /**
          * Ignores the given {@code method} argument and delegates to
-         * {@code createOperation(sourceCRS, targetCRS)}.
+         * <code>{@linkplain #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
+         * createOperation}(sourceCRS, targetCRS)</code>.
          *
          * @param  sourceCRS The source coordinate reference system.
          * @param  targetCRS The target coordinate reference system.
          * @return A coordinate operation for transforming coordinates from the given source CRS
          *         to the given target CRS.
-         * @throws FactoryException If the given CRS are not instances created by this class.
+         * @throws FactoryException If the given CRS are not instances recognized by this class.
          */
         @Override
         public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
@@ -310,7 +357,7 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unsupported method.
+         * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
         public CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
@@ -320,7 +367,7 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unsupported method.
+         * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
         public Conversion createDefiningConversion(Map<String, ?> properties,
@@ -330,7 +377,7 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unsupported method.
+         * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
         public OperationMethod createOperationMethod(Map<String, ?> properties,
@@ -339,7 +386,7 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unsupported method.
+         * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
         public OperationMethod getOperationMethod(String name) throws FactoryException {

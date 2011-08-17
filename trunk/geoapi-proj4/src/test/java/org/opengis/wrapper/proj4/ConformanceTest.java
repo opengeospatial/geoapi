@@ -31,25 +31,62 @@
  */
 package org.opengis.wrapper.proj4;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import java.util.Properties;
+import org.opengis.util.Factory;
+import org.opengis.test.TestSuite;
+import org.opengis.test.Validators;
+import org.opengis.test.ToleranceModifier;
+import org.opengis.test.ImplementationDetails;
+import org.opengis.referencing.operation.MathTransform;
+
+import static org.junit.Assert.*;
 
 
 /**
- * Tests creation of CRS through the authority factory.
+ * Runs all supported tests from the {@code geoapi-conformance} module.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@RunWith(JUnit4.class)
-public class AuthorityFactoryTest extends org.opengis.test.referencing.AuthorityFactoryTest {
+public class ConformanceTest extends TestSuite implements ImplementationDetails {
     /**
-     * Creates a new test case using an {@link PJFactory.EPSG} instance.
+     * The configuration of our Proj4 tests.
      */
-    public AuthorityFactoryTest() {
-        super(new PJFactory.EPSG(), null, null);
-        isAxisSwappingSupported   = false;
-        isUnofficialEpsgSupported = false;
+    private static final Properties CONFIGURATION = new Properties();
+    static {
+        CONFIGURATION.put("isDerivativeSupported",     "false");
+        CONFIGURATION.put("isAxisSwappingSupported",   "false");
+        CONFIGURATION.put("isUnofficialEpsgSupported", "false");
+        assertTrue("Typo in a key name?", ALL_DISABLED.keySet().containsAll(CONFIGURATION.keySet()));
+        /*
+         * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
+         */
+        Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
+        Validators.DEFAULT.coordinateOperation.enforceForbiddenAttributes = false;
+    }
+
+    /**
+     * Accepts all factories.
+     */
+    @Override
+    public <T extends Factory> boolean filter(final Class<T> category, T factory) {
+        return true;
+    }
+
+    /**
+     * Returns the map of tests to disable for this implementation.
+     */
+    @Override
+    public Properties configuration(final Factory... factories) {
+        return CONFIGURATION;
+    }
+
+    /**
+     * Unconditionally returns {@code null}, since we do not relax any tolerance threshold yet.
+     */
+    @Override
+    public ToleranceModifier needsRelaxedTolerance(final MathTransform transform) {
+        return null;
     }
 }
