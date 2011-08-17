@@ -54,6 +54,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import static java.lang.StrictMath.*;
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Validators.*;
@@ -787,7 +788,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      */
     @Test
     public void testPolyconic() throws FactoryException, TransformException {
-        tolerance = 0.5; // The sample points are only accurate to 1 metre.
+        tolerance = max(tolerance, 0.5); // The sample points are only accurate to 1 metre.
         isDerivativeSupported = false; // TODO!!
         runProjectionTest(9818, "American Polyconic");
     }
