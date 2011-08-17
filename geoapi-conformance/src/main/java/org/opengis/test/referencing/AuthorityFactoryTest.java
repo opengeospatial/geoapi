@@ -701,7 +701,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testPolarStereographic()
+     * @see MathTransformTest#testPolarStereographicA()
      */
     @Test
     public void testEPSG_5041() throws FactoryException, TransformException {
@@ -723,13 +723,34 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testPolarStereographic()
+     * @see MathTransformTest#testPolarStereographicA()
      */
     @Test
     public void testEPSG_32661() throws FactoryException, TransformException {
         isPolar = true;
         swapxy  = true;
         runProjectionTest(32661);
+    }
+
+    /**
+     * Tests the EPSG:3032 (<cite>WGS 84 / Australian Antarctic Polar Stereographic</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Polar Stereographic (variant B)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testPolarStereographicB()
+     */
+    @Test
+    public void testEPSG_3032() throws FactoryException, TransformException {
+        isPolar = true;
+        runProjectionTest(3032);
     }
 
     /**

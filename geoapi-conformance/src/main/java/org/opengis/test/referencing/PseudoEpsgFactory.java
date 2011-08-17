@@ -777,6 +777,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
      *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe</td>                <td>Lambert Azimuthal Equal Area</td></tr>
      *   <tr><td>16061</td>     <td>5041</td>      <td>WGS 84 / UPS North (E,N)</td>            <td>Polar Stereographic (variant A)</td></tr>
+     *   <tr><td>19993</td>     <td>3032</td>      <td>WGS 84 / Australian Antarctic Polar</td> <td>Polar Stereographic (variant B)</td></tr>
      *   <tr><td>19914</td>     <td>28992</td>     <td>Amersfoort / RD New</td>                 <td>Oblique Stereographic</td></tr>
      *   <tr><td>19952</td>     <td>2065</td>      <td>CRS S-JTSK (Ferro) / Krovak</td>         <td>Krovak</td></tr>
      * </table>
@@ -904,8 +905,18 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Latitude of natural origin").setValue(90);
                 parameters.parameter("Longitude of natural origin").setValue(0);
                 parameters.parameter("Scale factor at natural origin").setValue(0.994);
-                parameters.parameter("False easting").setValue(2000000.00);
+                parameters.parameter("False easting") .setValue(2000000.00);
                 parameters.parameter("False northing").setValue(2000000.00);
+                break;
+            }
+            case 19993: { // "Australian Antarctic Polar Stereographic" using operation method 9829
+                parameters = factory.getDefaultParameters("Polar Stereographic (variant B)");
+                parameters.parameter("semi-major axis").setValue(6378137.0);  // WGS84
+                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Latitude of standard parallel").setValue(-71);
+                parameters.parameter("Longitude of origin").setValue(70);
+                parameters.parameter("False easting") .setValue(6000000.00);
+                parameters.parameter("False northing").setValue(6000000.00);
                 break;
             }
             case 19914: { // "RD New" using operation method 9809
