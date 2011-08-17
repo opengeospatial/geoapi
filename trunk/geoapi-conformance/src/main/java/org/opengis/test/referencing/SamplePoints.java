@@ -106,6 +106,8 @@ final class SamplePoints {
         final double λ, φ, e, n;
         final double λmin, λmax, φmin, φmax;
         final int operation;
+        double[] sourcePoints = null;
+        double[] targetPoints = null;
         switch (crs) {
             case 3002: {  // "Makassar / NEIEZ"
                 operation = 19905;
@@ -238,6 +240,24 @@ final class SamplePoints {
                 λmax = 7.24; φmax = 53.75;
                 break;
             }
+            case 9818: {  // Not an official EPSG code.
+                operation = 9818;
+                fe =       0;  λ0 =  0;
+                fn =       0;  φ0 =  0;
+                e  =       0;  λ  =  0;
+                n  = 5540628;  φ  = 50;
+                sourcePoints = new double[] {
+                    0, 50,   1, 49,   2, 48,   3, 47,
+                    0, 30,   1, 29,   2, 28,   3, 27
+                };
+                targetPoints = new double[] {
+                    0, 5540628,   73172, 5429890,   149239, 5320144,   228119, 5211397,
+                    0, 3319933,   97440, 3209506,   196719, 3099882,   297742, 2991002
+                };
+                λmin = 0; φmin =  23; // Domain of table 19 of Synder.
+                λmax = 3; φmax =  50;
+                break;
+            }
             case 2065: {  // "CRS S-JTSK (Ferro) / Krovak"
                 operation = 19952;
                 fe =         0.00;   λ0 = 24 + 50.0/60;              // 24°30'00"E
@@ -250,7 +270,9 @@ final class SamplePoints {
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
         }
-        return new SamplePoints(crs, operation, new double[] {λ0, φ0, λ, φ}, new double[] {fe, fn, e, n},
+        if (sourcePoints == null) sourcePoints = new double[] {λ0, φ0, λ, φ};
+        if (targetPoints == null) targetPoints = new double[] {fe, fn, e, n};
+        return new SamplePoints(crs, operation, sourcePoints, targetPoints,
                 new Rectangle2D.Double(λmin, φmin, λmax - λmin, φmax - φmin));
     }
 

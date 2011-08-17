@@ -740,14 +740,14 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2); // Forward difference
                 final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2); // Backward difference
                 approx.setElement(j, i, dc);
-                tolmat.setElement(j, i, max(abs(df - db), max(abs(dc - db), abs(dc - df))));
+                tolmat.setElement(j, i, max(tolerance, max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
             }
         }
         /*
          * Now compare the matrixes elements. If the transform implements
          * the MathTransform2D interface, check also the consistency.
          */
-        assertMatrixEquals("MathTransform.derivative(DirectPosition) error.", approx, matrix, tolmat);
+        assertMatrixEquals("MathTransform.derivative(" + S0 + ") error.", approx, matrix, tolmat);
         if (transform instanceof MathTransform2D) {
             assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
             assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);
@@ -1342,7 +1342,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                  * because the actual value is probably more accurate than the one approximated from
                  * finite differences.
                  */
-                final double tol = max(tolerance, (tolmat != null) ? tolmat.getElement(j, i) : 0);
+                final double tol = (tolmat != null) ? tolmat.getElement(j, i) : 0;
                 if (!(d <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     final StringBuilder buffer = new StringBuilder(512);
                     final String lineSeparator = System.getProperty("line.separator", "\n");
