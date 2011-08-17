@@ -137,6 +137,16 @@ final class SamplePoints {
                 λmax =  180.0; φmax =  85.0;
                 break;
             }
+            case 310642901: {  // "IGNF:MILLER"
+                operation = 310642901;
+                fe =         0.00;  λ0 =  0;
+                fn =         0.00;  φ0 =  0;
+                e  =    275951.78;  λ  =  2.478917;
+                n  =   5910061.78;  φ  = 48.805639;
+                λmin = -180.0; φmin = -90.0;
+                λmax =  180.0; φmax =  90.0;
+                break;
+            }
             case 29873: {  // "Timbalai 1948 / RSO Borneo (m)"
                 operation = 19958;
                 fe = 590476.87;  λ0 = 115;
@@ -145,6 +155,16 @@ final class SamplePoints {
                 n  = 596562.78;  φ  =   5 + (23 + 14.1129/60)/60; //   5°23'14.1129"N
                 λmin = 109.55; φmin = 0.85;
                 λmax = 119.26; φmax = 7.35;
+                break;
+            }
+            case 2314: {  // "Trinidad 1903 / Trinidad Grid"
+                operation = 19975;
+                fe =   430000.00*LINKS;  λ0 = -(61 + 20.0/60);         // 61°20'00"W
+                fn =   325000.00*LINKS;  φ0 = 10 + (26 + 30.0/60)/60;  // 10°26'30"N
+                e  =    66644.94*LINKS;  λ  = -62;
+                n  =    82536.22*LINKS;  φ  =  10;
+                λmin = -62.08; φmin =  9.83;
+                λmax = -60.00; φmax = 11.50;
                 break;
             }
             case 24200: {  // "JAD69 / Jamaica National Grid"
@@ -187,14 +207,14 @@ final class SamplePoints {
                 λmax =  45.00; φmax = 71.15;
                 break;
             }
-            case 2314: {  // "Trinidad 1903 / Trinidad Grid"
-                operation = 19975;
-                fe =   430000.00*LINKS;  λ0 = -(61 + 20.0/60);         // 61°20'00"W
-                fn =   325000.00*LINKS;  φ0 = 10 + (26 + 30.0/60)/60;  // 10°26'30"N
-                e  =    66644.94*LINKS;  λ  = -62;
-                n  =    82536.22*LINKS;  φ  =  10;
-                λmin = -62.08; φmin =  9.83;
-                λmax = -60.00; φmax = 11.50;
+            case 5041: { // "WGS 84 / UPS North (E,N)"
+                operation = 16061;
+                fe =  2000000.00;  λ0 =  0;
+                fn =  2000000.00;  φ0 = 90;
+                e  =  3320416.75;  λ = 44;
+                n  =   632668.43;  φ = 73;
+                λmin = -180.0; φmin = 60.0;
+                λmax =  180.0; φmax = 90.0;
                 break;
             }
             case 28992: {  // "Amersfoort / RD New"
@@ -215,16 +235,6 @@ final class SamplePoints {
                 n  =  -1050538.643;  φ  = 50 + (12 + 32.4416/60)/60; // 50°12'32.442"N
                 λmin = 12.09; φmin = 47.74;
                 λmax = 22.56; φmax = 51.05;
-                break;
-            }
-            case 310642901: {  // "IGNF:MILLER"
-                operation = 310642901;
-                fe =         0.00;  λ0 =  0;
-                fn =         0.00;  φ0 =  0;
-                e  =    275951.78;  λ  =  2.478917;
-                n  =   5910061.78;  φ  = 48.805639;
-                λmin = -180.0; φmin = -90.0;
-                λmax =  180.0; φmax =  90.0;
                 break;
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
