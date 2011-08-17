@@ -740,7 +740,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2); // Forward difference
                 final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2); // Backward difference
                 approx.setElement(j, i, dc);
-                tolmat.setElement(j, i, max(tolerance, max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
+                tolmat.setElement(j, i, max(abs(df - db), max(abs(dc - db), abs(dc - df))));
             }
         }
         /*
@@ -1342,7 +1342,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                  * because the actual value is probably more accurate than the one approximated from
                  * finite differences.
                  */
-                final double tol = (tolmat != null) ? tolmat.getElement(j, i) : 0;
+                final double tol = max(tolerance, (tolmat != null) ? tolmat.getElement(j, i) : 0);
                 if (!(d <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     final StringBuilder buffer = new StringBuilder(512);
                     final String lineSeparator = System.getProperty("line.separator", "\n");
