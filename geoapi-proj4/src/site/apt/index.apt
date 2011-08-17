@@ -5,7 +5,6 @@
 Proj.4 bindings
 
   This module is a "proof of concept" implementation of GeoAPI referencing interfaces using
-  JNI binding to the Proj.4 library. The <<<org.proj4>>> package contains the native methods.
-  This package does not depend on GeoAPI except for the <<<FactoryException>>> and
-  <<<TransformException>>> classes. The <<<org.opengis.wrapper.proj4>>> package contains GeoAPI
-  implementations on top of the <<<org.proj4>>> package.
+  JNI binding to the Proj.4 library. The <<<org.proj4>>> package contains the native methods,
+  mostly independent from GeoAPI interfaces. The <<<org.opengis.wrapper.proj4>>> package contains
+  GeoAPI implementations on top of the <<<org.proj4>>> package.

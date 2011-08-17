@@ -36,11 +36,11 @@ import org.opengis.util.FactoryException;
 
 /**
  * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure.
- * Almost every methods defined in this class are native methods mapping to the Proj.4
- * library. This class is also the only place where such native methods are defined.
+ * Almost every methods defined in this class are native methods delegating the work to the
+ * Proj.4 library. This class is the only place where such native methods are defined.
  * <p>
- * The Proj.4 {@code PJ} structure aggregates in a single place the information usually splitted
- * in many different ISO 19111 interfaces: {@link org.opengis.referencing.datum.Ellipsoid},
+ * In the Proj.4 library, the {@code PJ} structure aggregates in a single place information usually
+ * splitted in many different ISO 19111 interfaces: {@link org.opengis.referencing.datum.Ellipsoid},
  * {@link org.opengis.referencing.datum.Datum}, {@link org.opengis.referencing.datum.PrimeMeridian},
  * {@link org.opengis.referencing.cs.CoordinateSystem}, {@link org.opengis.referencing.crs.CoordinateReferenceSystem}
  * and their sub-interfaces. The relationship with the GeoAPI methods is indicated in the
@@ -51,6 +51,14 @@ import org.opengis.util.FactoryException;
  * @since   3.1
  */
 public class PJ {
+    /**
+     * The maximal number of dimension accepted by the {@link #transform(PJ, int, double[], int, int)}
+     * method. This upper limit is actually somewhat arbitrary. This limit exists mostly as a safety
+     * against potential misuse.
+     */
+    public static final int DIMENSION_MAX = 100;
+    // IMPLEMENTATION NOTE: if the value is modified, edit also the native C file.
+
     /**
      * Loads the Proj4 library.
      */
@@ -80,7 +88,9 @@ public class PJ {
 
     /**
      * Creates a new {@code PJ} structure derived from an existing {@code PJ} object.
-     * This constructor is usually for getting the base geographic CRS from a projected CRS.
+     * This constructor is usually for getting the
+     * {@linkplain org.opengis.referencing.crs.ProjectedCRS#getBaseCRS() base geographic CRS}
+     * from a {@linkplain org.opengis.referencing.crs.ProjectedCRS projected CRS}.
      *
      * @param  crs The CRS (usually projected) from which to derive a new CRS.
      * @param  type The type of the new CRS. Currently, only {@link Type#GEOGRAPHIC} is supported.
@@ -188,18 +198,18 @@ public class PJ {
     public native double getSemiMajorAxis();
 
     /**
-     * Returns the value computed from PJ fields by {@code sqrt((a_orig)² * (1 - es_orig))}.
+     * Returns the value computed from PJ fields by {@code √((a_orig)² × (1 - es_orig))}.
      *
-     * @return The axis length computed by {@code sqrt((a_orig)² * (1 - es_orig))}.
+     * @return The axis length computed by {@code √((a_orig)² × (1 - es_orig))}.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#getSemiMinorAxis()
      */
     public native double getSemiMinorAxis();
 
     /**
-     * Returns the value computed from PJ fields by {@code 1/(1 - sqrt(one_es))}.
+     * Returns the value computed from PJ fields by {@code 1/(1 - √(one_es))}.
      *
-     * @return The inverse flattening computed by {@code 1/(1 - sqrt(one_es))}.
+     * @return The inverse flattening computed by {@code 1/(1 - √(one_es))}.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#getInverseFlattening()
      */
@@ -247,7 +257,7 @@ public class PJ {
      * </ul>
      *
      * @param  target The target CRS.
-     * @param  dimension The dimension of each coordinate value. Must be equals or greater than 2.
+     * @param  dimension The dimension of each coordinate value. Must be in the [2-{@value #DIMENSION_MAX}] range.
      * @param  coordinates The coordinates to transform, as a sequence of
      *         (<var>x</var>,<var>y</var>,&lt;<var>z</var>&gt;,&hellip;) tuples.
      * @param  offset Offset of the first coordinate in the given array.

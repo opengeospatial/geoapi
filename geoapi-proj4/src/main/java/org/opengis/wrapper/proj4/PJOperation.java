@@ -82,7 +82,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
      */
     @Override
     public OperationMethod getMethod() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
 
     /**
@@ -92,7 +92,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
      */
     @Override
     public ParameterValueGroup getParameterValues() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
 
     /*
@@ -285,7 +285,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
      */
     @Override
     public Matrix derivative(DirectPosition point) throws TransformException {
-        throw new TransformException("Not supported yet.");
+        return null;
     }
 
     /**

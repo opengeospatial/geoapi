@@ -715,6 +715,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         S0.setCoordinate(coordinate);
         assertSame(T0, transform.transform(S0, T0));
         final Matrix matrix = transform.derivative(S0);
+        final String message = "MathTransform.derivative(" + S0 + ')';
+        assertNotNull(message, matrix);
         assertEquals("Unexpected number of columns.", sourceDim, matrix.getNumCol());
         assertEquals("Unexpected number of rows.",    targetDim, matrix.getNumRow());
         /*
@@ -747,7 +749,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * Now compare the matrixes elements. If the transform implements
          * the MathTransform2D interface, check also the consistency.
          */
-        assertMatrixEquals("MathTransform.derivative(" + S0 + ") error.", approx, matrix, tolmat);
+        assertMatrixEquals(message, approx, matrix, tolmat);
         if (transform instanceof MathTransform2D) {
             assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
             assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);

@@ -32,6 +32,7 @@
 package org.proj4;
 
 import org.opengis.util.FactoryException;
+import org.opengis.referencing.operation.TransformException;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -93,5 +94,31 @@ public class PJTest {
         assertEquals(PJ.Type.PROJECTED, pj.getType());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
         assertIsWGS84(new PJ(pj, PJ.Type.GEOGRAPHIC));
+    }
+
+    /**
+     * Ensures that the native code correctly detects the case of null pointers.
+     * This is important in order to ensure that we don't have a JVM crash.
+     *
+     * @throws FactoryException Should never happen.
+     * @throws TransformException Should never happen.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testNullPointerException() throws FactoryException, TransformException {
+        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
+        pj.transform(null, 2, null, 0, 1);
+    }
+
+    /**
+     * Ensures that the native code correctly detects the case of index out of bounds.
+     * This is important in order to ensure that we don't have a JVM crash.
+     *
+     * @throws FactoryException Should never happen.
+     * @throws TransformException Should never happen.
+     */
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testIndexOutOfBoundsException() throws FactoryException, TransformException {
+        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
+        pj.transform(pj, 2, new double[5], 2, 2);
     }
 }

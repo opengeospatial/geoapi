@@ -320,8 +320,13 @@ public strictfp final class ToleranceModifiers {
         /** Appends the scale factors. */
         @Override
         void toString(final StringBuilder buffer) {
-            final String typeList = types.toString();
-            buffer.append('{').append(typeList.substring(1, typeList.length()-1)).append("}: ");
+            boolean more = false;
+            for (final CalculationType type : types) {
+                if (more) buffer.append(',');
+                buffer.append(type);
+                more = true;
+            }
+            buffer.append(':');
             for (final double factor : factors) {
                 if (factor == 1) {
                     buffer.append('·');

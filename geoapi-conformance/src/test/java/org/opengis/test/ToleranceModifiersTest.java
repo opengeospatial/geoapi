@@ -152,7 +152,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
 
         final ToleranceModifier modifier = ToleranceModifiers.scale(types, 1, 2, 1);
         assertEquals("Object should be equals to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Scale[{INVERSE_TRANSFORM}: ·,×2,…]", modifier.toString());
+        assertEquals("toString()", "ToleranceModifier.Scale[INVERSE_TRANSFORM:·,×2,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
         assertArrayEquals("Expected unmodified values.", new double[] {1, 3, 2}, tolerance, 0);
