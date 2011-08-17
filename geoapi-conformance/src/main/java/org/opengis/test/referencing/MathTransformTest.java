@@ -390,6 +390,42 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
+     * First, this method transforms the point given by the
+     * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
+     * and compares the {@link MathTransform} result with the expected result. Next, this method
+     * transforms a random set of points in the projection area of validity and ensures that the
+     * {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>           <th>Value</th></tr>
+     * <tr><td>semi_major</td>          <td nowrap>6378137.0 m</td></tr>
+     * <tr><td>semi_minor</td>          <td nowrap>6378137.0 m</td></tr>
+     * <tr><td>latitude_of_center</td>  <td nowrap>0.0°</td></tr>
+     * <tr><td>longitude_of_center</td> <td nowrap>0.0°</td></tr>
+     * <tr><td>false_easting</td>       <td nowrap>0.0 m</td></tr>
+     * <tr><td>false_northing</td>      <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>                        <th>Expected results</th></tr>
+     * <tr align="right"><td>0°E<br>0°N</td>                <td nowrap>0.00 m<br>0.00 m</td></tr>
+     * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td nowrap>275951.78 m<br>5910061.78 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_310642901()
+     */
+    @Test
+    public void testMiller() throws FactoryException, TransformException {
+        runProjectionTest(310642901, "IGNF:MILLER");
+    }
+
+    /**
      * Tests the "<cite>Hotine Oblique Mercator (variant B)</cite>" (EPSG:9815) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
@@ -426,6 +462,43 @@ public strictfp class MathTransformTest extends TransformTestCase {
     @Test
     public void testHotineObliqueMercator() throws FactoryException, TransformException {
         runProjectionTest(29873, "Timbalai 1948 / RSO Borneo (m)");
+    }
+
+    /**
+     * Tests the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                   <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>             <td>6378293.645208759 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td>6356617.987679838 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>  <td>10.441666666666666°</td></tr>
+     * <tr><td>Longitude of natural origin</td> <td>-61.33333333333333°</td></tr>
+     * <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
+     * <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>                       <th>Expected results</th></tr>
+     * <tr align="right"><td>61°20'00"W<br>10°26'30"N</td> <td nowrap>430000.00 links<br>325000.00 links</td></tr>
+     * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td nowrap>66644.94 links<br>82536.22 links</td></tr>
+     * </table>
+     * <p align="right">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
+     * </td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_2314()
+     */
+    @Test
+    public void testCassiniSoldner() throws FactoryException, TransformException {
+        runProjectionTest(2314, "Trinidad 1903 / Trinidad Grid");
     }
 
     /**
@@ -577,7 +650,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection method.
+     * Tests the "<cite>Polar Stereographic (variant A)</cite>" (EPSG:9810) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
@@ -587,30 +660,30 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * The math transform parameters and the sample coordinates are:
      * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th>                   <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>             <td>6378293.645208759 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td>6356617.987679838 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>  <td>10.441666666666666°</td></tr>
-     * <tr><td>Longitude of natural origin</td> <td>-61.33333333333333°</td></tr>
-     * <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
-     * <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6378137.0</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314245179</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>90.0</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>0.0</td></tr>
+     * <tr><td>Scale factor at natural origin</td> <td>0.994</td></tr>
+     * <tr><td>False easting</td>                  <td>2000000.0</td></tr>
+     * <tr><td>False northing</td>                 <td>2000000.0</td></tr>
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Source ordinates</th>                       <th>Expected results</th></tr>
-     * <tr align="right"><td>61°20'00"W<br>10°26'30"N</td> <td nowrap>430000.00 links<br>325000.00 links</td></tr>
-     * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td nowrap>66644.94 links<br>82536.22 links</td></tr>
-     * </table>
-     * <p align="right">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
-     * </td></tr></table>
+     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr align="right"><td>0°E<br>90°N</td> <td nowrap>2000000.00 m<br>2000000.00 m</td></tr>
+     * <tr align="right"><td>44°E<br>73°N</td>
+     * <td nowrap>3320416.75 m<br>632668.43 m</td></tr>
+     * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see AuthorityFactoryTest#testEPSG_2314()
+     * @see AuthorityFactoryTest#testEPSG_5041()
      */
     @Test
-    public void testCassiniSoldner() throws FactoryException, TransformException {
-        runProjectionTest(2314, "Trinidad 1903 / Trinidad Grid");
+    public void testPolarStereographic() throws FactoryException, TransformException {
+        runProjectionTest(5041, "WGS 84 / UPS North (E,N)");
     }
 
     /**
@@ -686,42 +759,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
     @Test
     public void testKrovak() throws FactoryException, TransformException {
         runProjectionTest(2065, "CRS S-JTSK (Ferro) / Krovak");
-    }
-
-    /**
-     * Tests the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
-     * First, this method transforms the point given by the
-     * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
-     * and compares the {@link MathTransform} result with the expected result. Next, this method
-     * transforms a random set of points in the projection area of validity and ensures that the
-     * {@linkplain MathTransform#inverse() inverse transform} and the
-     * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Parameter</th>           <th>Value</th></tr>
-     * <tr><td>semi_major</td>          <td nowrap>6378137.0 m</td></tr>
-     * <tr><td>semi_minor</td>          <td nowrap>6378137.0 m</td></tr>
-     * <tr><td>latitude_of_center</td>  <td nowrap>0.0°</td></tr>
-     * <tr><td>longitude_of_center</td> <td nowrap>0.0°</td></tr>
-     * <tr><td>false_easting</td>       <td nowrap>0.0 m</td></tr>
-     * <tr><td>false_northing</td>      <td nowrap>0.0 m</td></tr>
-     * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Source ordinates</th>                        <th>Expected results</th></tr>
-     * <tr align="right"><td>0°E<br>0°N</td>                <td nowrap>0.00 m<br>0.00 m</td></tr>
-     * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td nowrap>275951.78 m<br>5910061.78 m</td></tr>
-     * </table></td></tr></table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see AuthorityFactoryTest#testEPSG_310642901()
-     */
-    @Test
-    public void testMiller() throws FactoryException, TransformException {
-        runProjectionTest(310642901, "IGNF:MILLER");
     }
 
     /**

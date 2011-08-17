@@ -118,6 +118,90 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     protected final DatumAuthorityFactory datumFactory;
 
     /**
+     * The identified object (typically a {@link CoordinateReferenceSystem}) being tested.
+     * Every test methods in this class will set this field to a non-null value.
+     * Implementors can use this value for their own assertions after any test has been run.
+     *
+     * @since 3.1
+     */
+    protected IdentifiedObject object;
+
+    /**
+     * {@code true} if the longitude and latitude axes shall be swapped. This flag applies
+     * only to geographic coordinates.
+     * <p>
+     * <b>Default value:</b> {@code true}, since the majority of {@link GeographicCRS}
+     * defined in the EPSG database uses the (&phi;&lambda;) axis order.
+     *
+     * @since 3.1
+     */
+    protected boolean swapλφ = true;
+
+    /**
+     * {@code true} If the easting and northing axes shall be swapped. This flag applies only
+     * to projected coordinates.
+     * <p>
+     * <b>Default value:</b> {@code false}, since the majority of {@link ProjectedCRS} defined
+     * in the EPSG database uses the (<var>x</var>,<var>y</var>) axis order.
+     *
+     * @since 3.1
+     */
+    protected boolean swapxy = false;
+
+    /**
+     * {@code true} if the sign of ordinate values shall be reversed in both projected axes.
+     * This flag applies only to projected coordinates. This flag is set to {@code true} for
+     * <cite>South Oriented</cite> {@link ProjectedCRS}.
+     * <p>
+     * <b>Default value:</b> {@code false}.
+     *
+     * @since 3.1
+     */
+    private boolean flipxy = false;
+
+    /**
+     * {@code true} if the {@linkplain CoordinateReferenceSystem Coordinate Reference System} being
+     * tested is a polar CRS. Such CRS have axis orientation like "<cite>South along 90°E</cite>"
+     * instead than {@linkplain AxisDirection#EAST East} or {@linkplain AxisDirection#NORTH North}.
+     * <p>
+     * <b>Default value:</b> {@code false}.
+     *
+     * @since 3.1
+     */
+    private boolean isPolar = false;
+
+    /**
+     * The expected prime meridian of the CRS being tested, in decimal degrees from Greenwich.
+     * <p>
+     * <b>Default value:</b> {@code 0.0}.
+     *
+     * @since 3.1
+     */
+    protected double primeMeridian = 0.0;
+
+    /**
+     * Conversion factor from degrees to the CRS-specific angular units. This value is different
+     * than one when the latitude or longitude angles need to be converted from degrees before to
+     * run a test.
+     * <p>
+     * <b>Default value:</b> {@code 1.0}.
+     *
+     * @since 3.1
+     */
+    protected double toAngularUnit = 1.0;
+
+    /**
+     * Conversion factor from metres to the CRS-specific linear units. This value is different
+     * than one when the easting or northing values need to be converted from metres before to
+     * run a test.
+     * <p>
+     * <b>Default value:</b> {@code 1.0}.
+     *
+     * @since 3.1
+     */
+    protected double toLinearUnit = 1.0;
+
+    /**
      * {@code true} if {@link #crsFactory} and {@link #csFactory} supports the creating of
      * coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is set
      * to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
@@ -213,6 +297,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         assumeNotNull(crsFactory);
         final GeographicCRS crs = crsFactory.createGeographicCRS("EPSG:4326");
         assertNotNull("CRSAuthorityFactory.createGeographicCRS()", crs);
+        object = crs;
         validate(crs);
         assertEquals("GeographicCRS.getName()", "WGS 84", getName(crs));
         /*
@@ -283,25 +368,17 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      *
      * @param  code The EPSG code of a target Coordinate Reference System.
-     * @param  swapλφ If the longitude and latitude axes shall be swapped.
-     * @param  swapxy If the easting and northing axes shall be swapped.
-     * @param  flipxy If {@code true}, reverse the sign of both projected axes.
-     * @param  primeMeridian Prime meridian from Greenwich, in decimal degrees.
-     * @param  toAngularUnit Conversion factor from degrees to the input linear unit.
-     * @param  toLinearUnit Conversion factor from metres to the output linear unit.
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If a point can not be transformed.
      */
-    private void runProjectionTest(final int code, boolean swapλφ, boolean swapxy, boolean flipxy,
-            final double primeMeridian, final double toAngularUnit, final double toLinearUnit)
-            throws FactoryException, TransformException
-    {
+    private void runProjectionTest(final int code) throws FactoryException, TransformException {
         if (!isAxisSwappingSupported) {
             swapλφ = swapxy = flipxy = false;
         }
         assumeNotNull(crsFactory);
         final ProjectedCRS crs = crsFactory.createProjectedCRS("EPSG:" + code);
         assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
+        object = crs;
         validate(crs);
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
@@ -318,7 +395,14 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                         getGreenwichLongitude(datum.getPrimeMeridian()), DEFAULT_TOLERANCE);
             }
         }
-        verifyAxisDirection(crs.getCoordinateSystem(), swapxy, flipxy);
+        /*
+         * Verifies axis direction only if the CRS is not polar. Polar CRS has unusual
+         * axis directions like "South along 90°E". Since there is no GeoAPI code list
+         * for such direction, we consider them as implementation-dependent.
+         */
+        if (!isPolar) {
+            verifyAxisDirection(crs.getCoordinateSystem(), swapxy, flipxy);
+        }
         /*
          * Test the projection of sample point values.
          */
@@ -413,7 +497,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3002() throws FactoryException, TransformException {
-        runProjectionTest(3002, true, false, false, 0, 1, 1);
+        runProjectionTest(3002);
     }
 
     /**
@@ -433,7 +517,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3388() throws FactoryException, TransformException {
-        runProjectionTest(3388, true, true, false, 0, 1, 1);
+        swapxy = true;
+        runProjectionTest(3388);
     }
 
     /**
@@ -453,167 +538,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testEPSG_3857() throws FactoryException, TransformException {
-        runProjectionTest(3857, true, false, false, 0, 1, 1);
-    }
-
-    /**
-     * Tests the EPSG:29873 (<cite>Timbalai 1948 / RSO Borneo (m)</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Hotine Oblique Mercator (variant B)</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testHotineObliqueMercator()
-     */
-    @Test
-    public void testEPSG_29873() throws FactoryException, TransformException {
-        runProjectionTest(29873, true, false, false, 0, 1, 1);
-    }
-
-    /**
-     * Tests the EPSG:24200 (<cite>JAD69 / Jamaica National Grid</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (1SP)</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testLambertConicConformal1SP()
-     */
-    @Test
-    public void testEPSG_24200() throws FactoryException, TransformException {
-        runProjectionTest(24200, true, false, false, 0, 1, 1);
-    }
-
-    /**
-     * Tests the EPSG:32040 (<cite>NAD27 / Texas South Central</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP)</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testLambertConicConformal2SP()
-     */
-    @Test
-    public void testEPSG_32040() throws FactoryException, TransformException {
-        runProjectionTest(32040, true, false, false, 0, 1, PseudoEpsgFactory.R_US_FEET);
-    }
-
-    /**
-     * Tests the EPSG:31300 (<cite>Belge 1972 / Belge Lambert 72</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testLambertConicConformalBelgium()
-     */
-    @Test
-    public void testEPSG_31300() throws FactoryException, TransformException {
-        runProjectionTest(31300, true, false, false, 0, 1, 1);
-    }
-
-    /**
-     * Tests the EPSG:3035 (<cite>ETRS89 / LAEA Europe</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Azimuthal Equal Area</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testLambertAzimuthalEqualArea()
-     */
-    @Test
-    public void testEPSG_3035() throws FactoryException, TransformException {
-        runProjectionTest(3035, true, true, false, 0, 1, 1);
-    }
-
-    /**
-     * Tests the EPSG:2314 (<cite>Trinidad 1903 / Trinidad Grid</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Cassini-Soldner</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testCassiniSoldner()
-     */
-    @Test
-    public void testEPSG_2314() throws FactoryException, TransformException {
-        runProjectionTest(2314, true, false, false, 0, 1, 1/PseudoEpsgFactory.CLARKE_KEET);
-    }
-
-    /**
-     * Tests the EPSG:28992 (<cite>Amersfoort / RD New</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Oblique Stereographic</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testObliqueStereographic()
-     */
-    @Test
-    public void testEPSG_28992() throws FactoryException, TransformException {
-        runProjectionTest(28992, true, false, false, 0, 1, 1);
-    }
-
-    /**
-     * Tests the EPSG:2065 (<cite>CRS S-JTSK (Ferro) / Krovak</cite>) projected CRS.
-     * <p>
-     * <table cellspacing="0" cellpadding="0">
-     * <tr><td>Projection method:&nbsp;</td> <td>Krovak</td></tr>
-     * <tr><td>Prime meridian:&nbsp;</td>    <td>Ferro <strong>(17°40'W of Greenwich)</strong></td></tr>
-     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
-     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
-     * </table>
-     *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
-     *
-     * @see MathTransformTest#testKrovak()
-     */
-    @Test
-    public void testEPSG_2065() throws FactoryException, TransformException {
-        runProjectionTest(2065, true, true, true, -(17 + 40.0/60), 1, 1);
+        runProjectionTest(3857);
     }
 
     /**
@@ -636,6 +561,193 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     @Test
     public void testEPSG_310642901() throws FactoryException, TransformException {
         assumeTrue(isUnofficialEpsgSupported);
-        runProjectionTest(310642901, true, false, false, 0, 1, 1);
+        runProjectionTest(310642901);
+    }
+
+    /**
+     * Tests the EPSG:29873 (<cite>Timbalai 1948 / RSO Borneo (m)</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Hotine Oblique Mercator (variant B)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testHotineObliqueMercator()
+     */
+    @Test
+    public void testEPSG_29873() throws FactoryException, TransformException {
+        runProjectionTest(29873);
+    }
+
+    /**
+     * Tests the EPSG:2314 (<cite>Trinidad 1903 / Trinidad Grid</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Cassini-Soldner</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testCassiniSoldner()
+     */
+    @Test
+    public void testEPSG_2314() throws FactoryException, TransformException {
+        toLinearUnit = 1/PseudoEpsgFactory.CLARKE_KEET;
+        runProjectionTest(2314);
+    }
+
+    /**
+     * Tests the EPSG:24200 (<cite>JAD69 / Jamaica National Grid</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (1SP)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testLambertConicConformal1SP()
+     */
+    @Test
+    public void testEPSG_24200() throws FactoryException, TransformException {
+        runProjectionTest(24200);
+    }
+
+    /**
+     * Tests the EPSG:32040 (<cite>NAD27 / Texas South Central</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testLambertConicConformal2SP()
+     */
+    @Test
+    public void testEPSG_32040() throws FactoryException, TransformException {
+        toLinearUnit = PseudoEpsgFactory.R_US_FEET;
+        runProjectionTest(32040);
+    }
+
+    /**
+     * Tests the EPSG:31300 (<cite>Belge 1972 / Belge Lambert 72</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testLambertConicConformalBelgium()
+     */
+    @Test
+    public void testEPSG_31300() throws FactoryException, TransformException {
+        runProjectionTest(31300);
+    }
+
+    /**
+     * Tests the EPSG:3035 (<cite>ETRS89 / LAEA Europe</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Lambert Azimuthal Equal Area</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testLambertAzimuthalEqualArea()
+     */
+    @Test
+    public void testEPSG_3035() throws FactoryException, TransformException {
+        swapxy = true;
+        runProjectionTest(3035);
+    }
+
+    /**
+     * Tests the EPSG:5041 (<cite>WGS 84 / UPS North (E,N)</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Polar Stereographic (variant A)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testPolarStereographic()
+     */
+    @Test
+    public void testEPSG_5041() throws FactoryException, TransformException {
+        isPolar = true;
+        runProjectionTest(5041);
+    }
+
+    /**
+     * Tests the EPSG:28992 (<cite>Amersfoort / RD New</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Oblique Stereographic</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testObliqueStereographic()
+     */
+    @Test
+    public void testEPSG_28992() throws FactoryException, TransformException {
+        runProjectionTest(28992);
+    }
+
+    /**
+     * Tests the EPSG:2065 (<cite>CRS S-JTSK (Ferro) / Krovak</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Krovak</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Ferro <strong>(17°40'W from Greenwich)</strong></td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testKrovak()
+     */
+    @Test
+    public void testEPSG_2065() throws FactoryException, TransformException {
+        swapxy = true;
+        flipxy = true;
+        primeMeridian = -(17 + 40.0/60);
+        runProjectionTest(2065);
     }
 }

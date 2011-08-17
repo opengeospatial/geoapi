@@ -98,6 +98,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * The transform being tested. Subclasses should assign a value to this field,
      * together with the {@link #tolerance} field, before any test is run.
+     * <p>
+     * All {@link MathTransformTest} test methods will set this field to a non-null value.
+     * Implementors can use this value for their own assertions after any {@code MathTransformTest}
+     * method has been run.
      *
      * @see #tolerance
      */
@@ -1077,7 +1081,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     final StringBuilder buffer = new StringBuilder(message).append(lineSeparator)
                             .append("DirectPosition").append(dimension).append("D[").append(reportedIndex + i)
                             .append("]: Expected ").append(expected).append(" but got ").append(actual).append('.')
-                            .append(lineSeparator).append("The delta at ordinate ").append(mismatch).append(" is ");
+                            .append(lineSeparator).append("• The delta at ordinate ").append(mismatch).append(" is ");
                     if (useDouble) {
                         buffer.append(delta);
                     } else {
@@ -1085,7 +1089,17 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     }
                     buffer.append(" which is ").append((float) (delta / tol)).append(" times the tolerance threshold.");
                     if (modifier != null) {
-                        buffer.append(lineSeparator).append("The tolerance were calculated by ").append(modifier);
+                        buffer.append(lineSeparator).append("• The tolerance were calculated by ").append(modifier);
+                    }
+                    String wkt = null;
+                    try {
+                        wkt = transform.toWKT();
+                    } catch (Exception ignore) {
+                        // WKT formatting is optional, so ignore.
+                    }
+                    if (wkt != null) {
+                        buffer.append(lineSeparator).append("• The transform Well Known Text (WKT) is below:")
+                              .append(lineSeparator).append(wkt);
                     }
                     throw new TransformFailure(buffer.toString());
                 }
