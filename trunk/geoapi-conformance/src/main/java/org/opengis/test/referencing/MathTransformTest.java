@@ -437,15 +437,15 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6377298.556</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356097.550300896</td></tr>
-     * <tr><td>Latitude of projection centre</td>     <td>4.0</td></tr>
-     * <tr><td>Longitude of projection centre</td>    <td>109.6855202029758</td></tr>
-     * <tr><td>Azimuth of initial line</td>           <td>53.31582047222222</td></tr>
-     * <tr><td>Angle from Rectified to Skew Grid</td> <td>53.13010236111111</td></tr>
+     * <tr><td>semi-major axis</td>                   <td>6377298.556 m</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td>6356097.550300896 m</td></tr>
+     * <tr><td>Latitude of projection centre</td>     <td>4.0°</td></tr>
+     * <tr><td>Longitude of projection centre</td>    <td>109.6855202029758°</td></tr>
+     * <tr><td>Azimuth of initial line</td>           <td>53.31582047222222°</td></tr>
+     * <tr><td>Angle from Rectified to Skew Grid</td> <td>53.13010236111111°</td></tr>
      * <tr><td>Scale factor on initial line</td>      <td>0.99984</td></tr>
-     * <tr><td>Easting at projection centre</td>      <td>590476.87</td></tr>
-     * <tr><td>Northing at projection centre</td>     <td>442857.65</td></tr>
+     * <tr><td>Easting at projection centre</td>      <td>590476.87 m</td></tr>
+     * <tr><td>Northing at projection centre</td>     <td>442857.65 m</td></tr>
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
@@ -661,19 +661,18 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6378137.0</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356752.314245179</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>90.0</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>0.0</td></tr>
+     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314245179 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>90.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>0.0°</td></tr>
      * <tr><td>Scale factor at natural origin</td> <td>0.994</td></tr>
-     * <tr><td>False easting</td>                  <td>2000000.0</td></tr>
-     * <tr><td>False northing</td>                 <td>2000000.0</td></tr>
+     * <tr><td>False easting</td>                  <td>2000000.0 m</td></tr>
+     * <tr><td>False northing</td>                 <td>2000000.0 m</td></tr>
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
-     * <tr align="right"><td>0°E<br>90°N</td> <td nowrap>2000000.00 m<br>2000000.00 m</td></tr>
-     * <tr align="right"><td>44°E<br>73°N</td>
-     * <td nowrap>3320416.75 m<br>632668.43 m</td></tr>
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>0°E<br>90°N</td>  <td nowrap>2000000.00 m<br>2000000.00 m</td></tr>
+     * <tr align="right"><td>44°E<br>73°N</td> <td nowrap>3320416.75 m<br>632668.43 m</td></tr>
      * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
@@ -683,8 +682,44 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * @see AuthorityFactoryTest#testEPSG_32661()
      */
     @Test
-    public void testPolarStereographic() throws FactoryException, TransformException {
+    public void testPolarStereographicA() throws FactoryException, TransformException {
         runProjectionTest(5041, "WGS 84 / UPS North (E,N)");
+    }
+
+    /**
+     * Tests the "<cite>Polar Stereographic (variant B)</cite>" (EPSG:9829) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314245179 m</td></tr>
+     * <tr><td>Latitude of standard parallel</td>  <td>-71.0°</td></tr>
+     * <tr><td>Longitude of origin</td>            <td>70.0°</td></tr>
+     * <tr><td>False easting</td>                  <td>6000000.0 m</td></tr>
+     * <tr><td>False northing</td>                 <td>6000000.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
+     * <tr align="right"><td>70°E<br>90°S</td>  <td nowrap>6000000.00 m<br>6000000.00 m</td></tr>
+     * <tr align="right"><td>120°E<br>75°S</td> <td nowrap>7255380.79 m<br>7053389.56 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3032()
+     */
+    @Test
+    public void testPolarStereographicB() throws FactoryException, TransformException {
+        runProjectionTest(3032, "Australian Antarctic Polar Stereographic");
     }
 
     /**
@@ -699,19 +734,18 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6377397.155</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356078.962818189</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>52.15616055555556</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>5.38763888888889</td></tr>
+     * <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356078.962818189 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>52.15616055555556°</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>5.38763888888889°</td></tr>
      * <tr><td>Scale factor at natural origin</td> <td>0.9999079</td></tr>
-     * <tr><td>False easting</td>                  <td>155000.0</td></tr>
-     * <tr><td>False northing</td>                 <td>463000.0</td></tr>
+     * <tr><td>False easting</td>                  <td>155000.0 m</td></tr>
+     * <tr><td>False northing</td>                 <td>463000.0 m</td></tr>
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
      * <tr align="right"><td>5°23'15.500"E<br>52°09'22.178"N</td> <td nowrap>155000.000 m<br>463000.000 m</td></tr>
-     * <tr align="right"><td>6°E<br>53°N</td>
-     * <td nowrap>196105.283 m<br>557057.739 m</td></tr>
+     * <tr align="right"><td>6°E<br>53°N</td>                     <td nowrap>196105.283 m<br>557057.739 m</td></tr>
      * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
@@ -743,11 +777,11 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <tr><td>Co-latitude of cone axis</td>                 <td>30.288139722222222°</td></tr>
      * <tr><td>Latitude of pseudo standard parallel</td>     <td>78.5°</td></tr>
      * <tr><td>Scale factor on pseudo standard parallel</td> <td>0.9999</td></tr>
-     * <tr><td>False easting</td>                            <td>0.00 m</td></tr>
-     * <tr><td>False northing</td>                           <td>0.00 m</td></tr>
+     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
+     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr><th>Source ordinates</th>                               <th>Expected results</th></tr>
      * <tr align="right"><td>24°30'00.000"E<br>59°45'27.355"N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>16°50'59.179"E<br>50°12'32.442"N</td> <td nowrap>-568990.997 m<br>-1050538.643 m</td></tr>
      * </table></td></tr></table>

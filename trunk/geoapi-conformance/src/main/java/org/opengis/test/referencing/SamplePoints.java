@@ -212,10 +212,20 @@ final class SamplePoints {
                 operation = 16061;
                 fe =  2000000.00;  λ0 =  0;
                 fn =  2000000.00;  φ0 = 90;
-                e  =  3320416.75;  λ = 44;
-                n  =   632668.43;  φ = 73;
+                e  =  3320416.75;  λ  = 44;
+                n  =   632668.43;  φ  = 73;
                 λmin = -180.0; φmin = 60.0;
                 λmax =  180.0; φmax = 90.0;
+                break;
+            }
+            case 3032: {  // "WGS 84 / Australian Antarctic Polar Stereographic"
+                operation = 19993;
+                fe =  6000000.00;  λ0 =  70;
+                fn =  6000000.00;  φ0 = -90;
+                e  =  7255380.79;  λ  = 120;
+                n  =  7053389.56;  φ  = -75;
+                λmin =  45.0; φmin = -90.0;
+                λmax = 160.0; φmax = -60.0;
                 break;
             }
             case 28992: {  // "Amersfoort / RD New"
