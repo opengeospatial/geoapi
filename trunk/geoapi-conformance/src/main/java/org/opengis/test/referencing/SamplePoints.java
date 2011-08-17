@@ -207,6 +207,7 @@ final class SamplePoints {
                 λmax =  45.00; φmax = 71.15;
                 break;
             }
+            case 32661:  // "WGS 84 / UPS North (N,E)"
             case 5041: { // "WGS 84 / UPS North (E,N)"
                 operation = 16061;
                 fe =  2000000.00;  λ0 =  0;

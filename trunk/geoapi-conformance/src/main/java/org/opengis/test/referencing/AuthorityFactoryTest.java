@@ -411,6 +411,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
             final MathTransform projection = conversion.getMathTransform();
             if (projection != null) {
                 final MathTransformTest test = new MathTransformTest(null);
+                test.nameOfTargetCRS = getName(crs);
                 test.transform = projection;
                 /*
                  * Get the sample points and swap ordinate values if needed.
@@ -706,6 +707,29 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     public void testEPSG_5041() throws FactoryException, TransformException {
         isPolar = true;
         runProjectionTest(5041);
+    }
+
+    /**
+     * Tests the EPSG:32661 (<cite>WGS 84 / UPS North (N,E)</cite>) projected CRS.
+     * This CRS is identical to EPSG:5041 except for axis order.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Polar Stereographic (variant A)</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testPolarStereographic()
+     */
+    @Test
+    public void testEPSG_32661() throws FactoryException, TransformException {
+        isPolar = true;
+        swapxy  = true;
+        runProjectionTest(32661);
     }
 
     /**

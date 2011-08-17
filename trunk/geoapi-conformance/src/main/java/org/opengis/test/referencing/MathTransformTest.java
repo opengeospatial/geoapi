@@ -133,7 +133,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * difference</cite> and <cite>backward difference</cite> can be close to 0.25, so we must
      * be prepared to increase this tolerance threshold.
      */
-    private static final double DERIVATIVE_TOLERANCE = 0.005;
+    private static final double DERIVATIVE_TOLERANCE = 0.01;
 
     /**
      * The delta value to use for computing an approximation of the derivative by finite
@@ -680,6 +680,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * @throws TransformException If the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_5041()
+     * @see AuthorityFactoryTest#testEPSG_32661()
      */
     @Test
     public void testPolarStereographic() throws FactoryException, TransformException {
