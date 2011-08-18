@@ -50,6 +50,7 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.util.NameTest}</li>
  *   <li>{@link org.opengis.test.referencing.ObjectFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
+ *   <li>{@link org.opengis.test.referencing.AffineTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest}</li>
  * </ul>
  * <p>
@@ -115,6 +116,7 @@ import org.opengis.referencing.operation.MathTransform;
   org.opengis.test.util.NameTest.class,
   org.opengis.test.referencing.ObjectFactoryTest.class,
   org.opengis.test.referencing.AuthorityFactoryTest.class,
+  org.opengis.test.referencing.AffineTransformTest.class,
   org.opengis.test.referencing.ParameterizedTransformTest.class
 })
 public strictfp class TestSuite {

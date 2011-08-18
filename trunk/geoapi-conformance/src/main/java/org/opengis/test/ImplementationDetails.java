@@ -38,7 +38,9 @@ import java.util.Collections;
 
 import org.opengis.util.Factory;
 import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransformFactory;
 
 
 /**
@@ -104,6 +106,7 @@ public interface ImplementationDetails {
         "isOverlappingArraySupported",
         "isInverseTransformSupported",
         "isDerivativeSupported",
+        "isNonSquareMatrixSupported",
         "isAxisSwappingSupported",
         "isUnofficialEpsgSupported"
     }, "false"));
@@ -139,6 +142,7 @@ public interface ImplementationDetails {
      * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported  isOverlappingArraySupported}:&nbsp;</td><td>whatever source and destination arrays can overlap in {@link MathTransform} operations.</td></tr>
      * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported  isInverseTransformSupported}:&nbsp;</td><td>whatever {@link MathTransform#inverse()} is supported.</td></tr>
      * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isDerivativeSupported        isDerivativeSupported}:&nbsp;</td>      <td>whatever {@link MathTransform#derivative(DirectPosition)} is supported.</td></tr>
+     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.AffineTransformTest#isNonSquareMatrixSupported isNonSquareMatrixSupported}:&nbsp;</td> <td>whatever {@link MathTransformFactory#createAffineTransform(Matrix)} accepts non-square matrixes.</td></tr>
      * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported   isAxisSwappingSupported}:&nbsp;</td>    <td>whatever (<var>y</var>,<var>x</var>) axis order is supported.</td></tr>
      * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.AuthorityFactoryTest#isUnofficialEpsgSupported isUnofficialEpsgSupported}:&nbsp;</td>  <td>whatever unofficial EPSG codes (like Miller projection) are supported.</td></tr>
      * </table>
