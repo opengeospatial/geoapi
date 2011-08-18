@@ -62,11 +62,25 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 
 
 /**
- * Tests {@link MathTransform}s from the {@code org.opengis.referencing.operation} package.
- * Math transform instances are created using the factory given at construction time. Every
- * tests expect an accuracy of 5 millimetres. This accuracy matches the precision of most
- * example points given in the EPSG guidance notice.
+ * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
+ * parameterized math tranform}s from the {@code org.opengis.referencing.operation} package.
+ * Math transform instances are created using the factory given at construction time.
  * <p>
+ * <b>Tests and accuracy:</b><br>
+ * By default, every tests expect an accuracy of 5 millimetres. This accuracy matches the precision
+ * of most example points given in the EPSG guidance notice. Implementors can modify the kind of
+ * tests being executed and the tolerance threshold in different ways:
+ * <p>
+ * <ul>
+ *   <li>Set some <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}.</li>
+ *   <li>Override some of the {@code testFoo()} method and set the {@link #tolerance tolerance} field
+ *       before to invoke {@code super.testFoo()}.</li>
+ *   <li>Override {@link #normalize(DirectPosition, DirectPosition, CalculationType)
+ *       normalize(DirectPosition, DirectPosition, CalculationType)}.</li>
+ *   <li>Override {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}.</li>
+ * </ul>
+ * <p>
+ * <b>Example:</b><br>
  * In order to specify their factory and run the tests in a JUnit framework, implementors can define
  * a subclass as in the example below. That example shows also how implementors can alter some tests
  * (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection) and add
@@ -76,11 +90,11 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * <blockquote><pre>import org.junit.*;
  *import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.MathTransformTest;
+ *import org.opengis.test.referencing.ParameterizedTransformTest;
  *import static org.junit.Assert.*;
  *
  *&#64;RunWith(JUnit4.class)
- *public class MyTest extends MathTransformTest {
+ *public class MyTest extends ParameterizedTransformTest {
  *    public MyTest() {
  *        super(new MyMathTransformFactory());
  *    }
@@ -91,6 +105,12 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *        tolerance = 0.1; // Increase the tolerance value to 10 cm.
  *        super.testLambertAzimuthalEqualArea();
  *        // If more tests specific to this projection are wanted, do them here.
+ *        // In this example, we replace the ellipsoid by a sphere and test again.
+ *        // Note that spherical formulas can have an error up to 30 km compared
+ *        // to ellipsoidal formulas, so we have to relax again the tolerance threshold.
+ *        parameters.parameter("semi-minor axis").setValue(parameters.parameter("semi-major axis").doubleValue());
+ *        tolerance = 30000; // Increase the tolerance value to 30 km.
+ *        super.testLambertAzimuthalEqualArea();
  *    }
  *
  *    &#64;After
@@ -98,15 +118,6 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *        assertTrue(transform instanceof MathTransform2D);
  *    }
  *}</pre></blockquote>
- *
- * Implementors can also alter the way the tests are performed by setting some
- * <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false},
- * or by overriding any of the following methods:
- * <p>
- * <ul>
- *   <li>{@link #normalize(DirectPosition, DirectPosition, CalculationType) normalize(DirectPosition, DirectPosition, CalculationType)}</li>
- *   <li>{@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}</li>
- * </ul>
  *
  * @see AuthorityFactoryTest
  * @see org.opengis.test.TestSuite
@@ -116,7 +127,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class MathTransformTest extends TransformTestCase {
+public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * The default tolerance threshold for comparing the results of direct transforms.
      * This is set to half the precision of coordinate point givens in the EPSG and
@@ -159,13 +170,24 @@ public strictfp class MathTransformTest extends TransformTestCase {
     protected String nameOfTargetCRS;
 
     /**
+     * The parameters of the math transform being tested. This field is set, together with the
+     * {@link #transform transform} field, after the execution of every {@code testFoo()} method
+     * in this class.
+     * <p>
+     * If this field is non-null before a test is run, than those parameters will be used
+     * directly. This allow implementors to alter the parameters before to run the test one
+     * more time.
+     */
+    protected ParameterValueGroup parameters;
+
+    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code MathTransformTest} constructor.
+     * @return The default set of arguments to be given to the {@code ParameterizedTransformTest} constructor.
      */
     @Parameterized.Parameters
     public static List<Factory[]> factories() {
@@ -178,7 +200,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      *
      * @param factory Factory for creating {@link MathTransform} instances.
      */
-    public MathTransformTest(final MathTransformFactory factory) {
+    public ParameterizedTransformTest(final MathTransformFactory factory) {
         super(factory);
         this.factory = factory;
     }
@@ -219,7 +241,9 @@ public strictfp class MathTransformTest extends TransformTestCase {
         nameOfTargetCRS = name;
         assumeNotNull(factory);
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
-        final ParameterValueGroup parameters = PseudoEpsgFactory.createParameters(factory, sample.operation);
+        if (parameters == null) {
+            parameters = PseudoEpsgFactory.createParameters(factory, sample.operation);
+        }
         transform = factory.createParameterizedTransform(parameters);
         assertNotNull(name, transform);
         verifyKnownSamplePoints(sample);
@@ -825,7 +849,6 @@ public strictfp class MathTransformTest extends TransformTestCase {
     @Test
     public void testPolyconic() throws FactoryException, TransformException {
         tolerance = max(tolerance, 0.5); // The sample points are only accurate to 1 metre.
-        isDerivativeSupported = false; // TODO!!
         runProjectionTest(9818, "American Polyconic");
     }
 

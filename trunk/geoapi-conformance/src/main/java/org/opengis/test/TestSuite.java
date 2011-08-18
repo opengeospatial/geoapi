@@ -50,7 +50,7 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.util.NameTest}</li>
  *   <li>{@link org.opengis.test.referencing.ObjectFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
- *   <li>{@link org.opengis.test.referencing.MathTransformTest}</li>
+ *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest}</li>
  * </ul>
  * <p>
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
@@ -115,7 +115,7 @@ import org.opengis.referencing.operation.MathTransform;
   org.opengis.test.util.NameTest.class,
   org.opengis.test.referencing.ObjectFactoryTest.class,
   org.opengis.test.referencing.AuthorityFactoryTest.class,
-  org.opengis.test.referencing.MathTransformTest.class
+  org.opengis.test.referencing.ParameterizedTransformTest.class
 })
 public strictfp class TestSuite {
     /**
