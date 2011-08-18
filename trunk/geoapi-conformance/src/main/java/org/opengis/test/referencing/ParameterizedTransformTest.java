@@ -245,8 +245,10 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         if (parameters == null) {
             parameters = PseudoEpsgFactory.createParameters(factory, sample.operation);
         }
-        transform = factory.createParameterizedTransform(parameters);
-        assertNotNull(name, transform);
+        if (transform == null) {
+            transform = factory.createParameterizedTransform(parameters);
+            assertNotNull(name, transform);
+        }
         verifyKnownSamplePoints(sample);
         verifyInDomainOfValidity(sample.areaOfValidity, code);
     }

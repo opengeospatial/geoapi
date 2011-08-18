@@ -178,7 +178,7 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getSemiMajorAxis
 
 /*!
  * \brief
- * Computes the semi-minor axis length from the semi-major axis length and the excentricity
+ * Computes the semi-minor axis length from the semi-major axis length and the eccentricity
  * squared.
  *
  * \param  env    - The JNI environment.
@@ -196,32 +196,17 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getSemiMinorAxis
 
 /*!
  * \brief
- * Computes the inverse flattening from the excentricity squared.
+ * Returns the eccentricity squared.
  *
  * \param  env    - The JNI environment.
  * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
- * \return The inverse flattening.
+ * \return The eccentricity.
  */
-JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getInverseFlattening
+JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getEccentricitySquared
   (JNIEnv *env, jobject object)
 {
     PJ *pj = getPJ(env, object);
-    return pj ? 1.0/(1.0 - sqrt(pj->one_es)) : NAN;
-}
-
-/*!
- * \brief
- * Returns JNI_TRUE if the ellipsoid is actually a sphere, or JNI_FALSE otherwise.
- *
- * \param  env    - The JNI environment.
- * \param  object - The Java object wrapping the PJ structure (not allowed to be NULL).
- * \return Whatever the ellipsoid is a sphere.
- */
-JNIEXPORT jboolean JNICALL Java_org_proj4_PJ_isSphere
-  (JNIEnv *env, jobject object)
-{
-    PJ *pj = getPJ(env, object);
-    return (pj && pj->es == 0) ? JNI_TRUE : JNI_FALSE;
+    return pj ? pj->es_orig : NAN;
 }
 
 /*!
@@ -268,6 +253,25 @@ JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getGreenwichLongitude
 {
     PJ *pj = getPJ(env, object);
     return (pj) ? (pj->from_greenwich)*(180/M_PI) : NAN;
+}
+
+/*!
+ * \brief
+ * Returns the conversion factor from linear units to metres.
+ *
+ * \param env      - The JNI environment.
+ * \param object   - The Java object wrapping the PJ structure (not allowed to be NULL).
+ * \param vertical - JNI_FALSE for horizontal axes, or JNI_TRUE for the vertical axis.
+ * \return The conversion factor to metres.
+ */
+JNIEXPORT jdouble JNICALL Java_org_proj4_PJ_getLinearUnitToMetre
+  (JNIEnv *env, jobject object, jboolean vertical)
+{
+    PJ *pj = getPJ(env, object);
+    if (pj) {
+        return (vertical) ? pj->vto_meter : pj->to_meter;
+    }
+    return NAN;
 }
 
 /*!
