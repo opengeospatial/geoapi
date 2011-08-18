@@ -86,13 +86,13 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * which combine every tests defined in the GeoAPI conformance module.
  * <p>
  * Many {@link ProjectedCRS} instances tested in this class use the same projections than the
- * {@link MathTransform} instances tested in {@link MathTransformTest}. However the later test
- * class expects (&lambda;,&phi;) input ordinates in degrees and (<var>x</var>,<var>y</var>)
+ * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the later
+ * test class expects (&lambda;,&phi;) input ordinates in degrees and (<var>x</var>,<var>y</var>)
  * output ordinates in metres, while this {@code AuthorityFactoryTest} class expects input and
  * output ordinates in CRS-dependent units and axis order.
  *
  * @see ObjectFactoryTest
- * @see MathTransformTest
+ * @see ParameterizedTransformTest
  * @see org.opengis.test.TestSuite
  *
  * @author  Cédric Briançon (Geomatys)
@@ -410,7 +410,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         if (conversion != null) {
             final MathTransform projection = conversion.getMathTransform();
             if (projection != null) {
-                final MathTransformTest test = new MathTransformTest(null);
+                final ParameterizedTransformTest test = new ParameterizedTransformTest(null);
                 test.nameOfTargetCRS = getName(crs);
                 test.transform = projection;
                 /*
@@ -494,7 +494,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testMercator1SP()
+     * @see ParameterizedTransformTest#testMercator1SP()
      */
     @Test
     public void testEPSG_3002() throws FactoryException, TransformException {
@@ -514,7 +514,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testMercator2SP()
+     * @see ParameterizedTransformTest#testMercator2SP()
      */
     @Test
     public void testEPSG_3388() throws FactoryException, TransformException {
@@ -535,7 +535,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testPseudoMercator()
+     * @see ParameterizedTransformTest#testPseudoMercator()
      */
     @Test
     public void testEPSG_3857() throws FactoryException, TransformException {
@@ -557,7 +557,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testMiller()
+     * @see ParameterizedTransformTest#testMiller()
      */
     @Test
     public void testEPSG_310642901() throws FactoryException, TransformException {
@@ -578,7 +578,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testHotineObliqueMercator()
+     * @see ParameterizedTransformTest#testHotineObliqueMercator()
      */
     @Test
     public void testEPSG_29873() throws FactoryException, TransformException {
@@ -598,7 +598,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testTransverseMercator()
+     * @see ParameterizedTransformTest#testTransverseMercator()
      */
     @Test
     public void testEPSG_27700() throws FactoryException, TransformException {
@@ -618,7 +618,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testCassiniSoldner()
+     * @see ParameterizedTransformTest#testCassiniSoldner()
      */
     @Test
     public void testEPSG_2314() throws FactoryException, TransformException {
@@ -639,7 +639,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testLambertConicConformal1SP()
+     * @see ParameterizedTransformTest#testLambertConicConformal1SP()
      */
     @Test
     public void testEPSG_24200() throws FactoryException, TransformException {
@@ -659,7 +659,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testLambertConicConformal2SP()
+     * @see ParameterizedTransformTest#testLambertConicConformal2SP()
      */
     @Test
     public void testEPSG_32040() throws FactoryException, TransformException {
@@ -680,7 +680,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testLambertConicConformalBelgium()
+     * @see ParameterizedTransformTest#testLambertConicConformalBelgium()
      */
     @Test
     public void testEPSG_31300() throws FactoryException, TransformException {
@@ -700,7 +700,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testLambertAzimuthalEqualArea()
+     * @see ParameterizedTransformTest#testLambertAzimuthalEqualArea()
      */
     @Test
     public void testEPSG_3035() throws FactoryException, TransformException {
@@ -721,7 +721,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testPolarStereographicA()
+     * @see ParameterizedTransformTest#testPolarStereographicA()
      */
     @Test
     public void testEPSG_5041() throws FactoryException, TransformException {
@@ -743,7 +743,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testPolarStereographicA()
+     * @see ParameterizedTransformTest#testPolarStereographicA()
      */
     @Test
     public void testEPSG_32661() throws FactoryException, TransformException {
@@ -765,7 +765,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testPolarStereographicB()
+     * @see ParameterizedTransformTest#testPolarStereographicB()
      */
     @Test
     public void testEPSG_3032() throws FactoryException, TransformException {
@@ -786,7 +786,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testObliqueStereographic()
+     * @see ParameterizedTransformTest#testObliqueStereographic()
      */
     @Test
     public void testEPSG_28992() throws FactoryException, TransformException {
@@ -806,7 +806,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see MathTransformTest#testKrovak()
+     * @see ParameterizedTransformTest#testKrovak()
      */
     @Test
     public void testEPSG_2065() throws FactoryException, TransformException {

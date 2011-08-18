@@ -285,7 +285,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
      */
     @Override
     public Matrix derivative(DirectPosition point) throws TransformException {
-        return null;
+        throw new TransformException("Not supported yet.");
     }
 
     /**
