@@ -466,6 +466,42 @@ public strictfp class MathTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the "<cite>Transverse Mercator</cite>" (EPSG:9807) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6377563.396 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356256.909237285 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>49.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>-2.0°</td></tr>
+     * <tr><td>Scale factor at natural origin</td> <td>0.9996012717</td></tr>
+     * <tr><td>False easting</td>                  <td>400000.0 m</td></tr>
+     * <tr><td>False northing</td>                 <td>-100000.0 m</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
+     * <tr align="right"><td>2°W<br>49°N</td>        <td nowrap>400000.00 m<br>-100000.00 m</td></tr>
+     * <tr align="right"><td>00°30'E<br>50°30'N</td> <td nowrap>577274.99 m<br>69740.50 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_27700()
+     */
+    @Test
+    public void testTransverseMercator() throws FactoryException, TransformException {
+        runProjectionTest(27700, "OSGB 1936 / British National Grid");
+    }
+
+    /**
      * Tests the "<cite>Cassini-Soldner</cite>" (EPSG:9806) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
@@ -808,7 +844,7 @@ public strictfp class MathTransformTest extends TransformTestCase {
      * <tr><td>semi-major axis</td>                          <td>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                          <td>6356078.962818189 m</td></tr>
      * <tr><td>Latitude of projection centre</td>            <td>49.5°</td></tr>
-     * <tr><td>Longitude of origin</td>                      <td>42.5°</td></tr>
+     * <tr><td>Longitude of origin</td>                      <td>24.5°</td></tr>
      * <tr><td>Co-latitude of cone axis</td>                 <td>30.288139722222222°</td></tr>
      * <tr><td>Latitude of pseudo standard parallel</td>     <td>78.5°</td></tr>
      * <tr><td>Scale factor on pseudo standard parallel</td> <td>0.9999</td></tr>

@@ -159,6 +159,16 @@ final class SamplePoints {
                 λmax = 119.26; φmax = 7.35;
                 break;
             }
+            case 27700: { // "OSGB 1936 / British National Grid"
+                operation = 19916;
+                fe =  400000.00;  λ0 =  -2;
+                fn = -100000.00;  φ0 =  49;
+                e  =  577274.99;  λ  =    30.0/60; // 00°30'00.00"E
+                n  =   69740.50;  φ  = 50+30.0/60; // 50°30'00.00"N
+                λmin = -7.56; φmin = 49.96;
+                λmax =  1.78; φmax = 60.84;
+                break;
+            }
             case 2314: {  // "Trinidad 1903 / Trinidad Grid"
                 operation = 19975;
                 fe =   430000.00*LINKS;  λ0 = -(61 + 20.0/60);         // 61°20'00"W
