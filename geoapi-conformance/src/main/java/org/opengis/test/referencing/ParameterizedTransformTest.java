@@ -63,7 +63,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 
 /**
  * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
- * parameterized math tranform}s from the {@code org.opengis.referencing.operation} package.
+ * parameterized math tranforms} from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
  * <p>
  * <b>Tests and accuracy:</b><br>
@@ -119,6 +119,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *    }
  *}</pre></blockquote>
  *
+ * @see AffineTransformTest
  * @see AuthorityFactoryTest
  * @see org.opengis.test.TestSuite
  *
@@ -174,7 +175,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * {@link #transform transform} field, after the execution of every {@code testFoo()} method
      * in this class.
      * <p>
-     * If this field is non-null before a test is run, than those parameters will be used
+     * If this field is non-null before a test is run, then those parameters will be used
      * directly. This allow implementors to alter the parameters before to run the test one
      * more time.
      */

@@ -228,6 +228,27 @@ public strictfp class TransformCaseTest extends TransformTestCase {
         derivativeDeltas = new double[] {0.1};
         assertAllTestsEnabled();
         Validators.validate(transform);
-        verifyInDomain(new double[] {10, 100}, new double[] {20, 400}, new int[] {10, 30}, random);
+        testVerifyInDomain(new double[] {10, 100}, new double[] {20, 400}, 10,  30);
+    }
+
+    /**
+     * Implementation of {@code testVerifyInDomain} for an arbitrary number of dimensions.
+     */
+    private void testVerifyInDomain(final double[] min, final double[] max, final int... num)
+            throws TransformException
+    {
+        assertEquals(num.length, min.length);
+        assertEquals(num.length, max.length);
+        int expectedLength = num.length;
+        for (int s : num) {
+            expectedLength *= s;
+        }
+        final float[] coordinates = verifyInDomain(min, max, num, random);
+        assertEquals(expectedLength, coordinates.length);
+        for (int i=0; i<coordinates.length; i++) {
+            final float c = coordinates[i];
+            final int   j = i % num.length;
+            assertTrue(c >= min[j] && c <= max[j]);
+        }
     }
 }

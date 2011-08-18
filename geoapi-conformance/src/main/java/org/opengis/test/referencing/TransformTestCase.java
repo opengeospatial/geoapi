@@ -445,7 +445,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * greater than the {@linkplain #tolerance tolerance} threshold (after optional
      * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
      * <p>
-     * At the difference of {@link #verifyTransform(double[],double[])}, this method do
+     * At the difference of {@link #verifyTransform(double[],double[])}, this method does
      * not require an array of expected values. The expected values are calculated from
      * the transform itself.
      *
@@ -482,7 +482,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * Now performs the test.
          */
         final SimpleDirectPosition source = new SimpleDirectPosition(sourceDimension);
-        final SimpleDirectPosition back   = new SimpleDirectPosition(targetDimension);
+        final SimpleDirectPosition back   = new SimpleDirectPosition(sourceDimension);
         DirectPosition target = null;
         for (int i=0; i<numPts; i++) {
             final int offset = i*sourceDimension;
@@ -771,17 +771,21 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *   <li>{@link #verifyInverse(float[])}</li>
      *   <li>{@link #verifyDerivative(double[])}</li>
      * </ul>
+     * <p>
+     * The generated coordinates array is returned in case callers want to perform more tests
+     * in addition to the above-cited verifications.
      *
      * @param  minOrdinates The minimal ordinate values of the domain where to test the transform.
      * @param  maxOrdinates The maximal ordinate values of the domain where to test the transform.
      * @param  numOrdinates The number of points along each dimension.
      * @param  randomGenerator An optional random number generator, or {@code null} for testing
      *         using a regular grid.
+     * @return The generated random coordinates inside the given domain of validity.
      * @throws TransformException If a transform or a derivative can not be computed.
      *
      * @since 3.1
      */
-    protected void verifyInDomain(final double[] minOrdinates, final double[] maxOrdinates,
+    protected float[] verifyInDomain(final double[] minOrdinates, final double[] maxOrdinates,
             final int[] numOrdinates, final Random randomGenerator) throws TransformException
     {
         final MathTransform transform = this.transform; // Protect from changes.
@@ -847,6 +851,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 verifyDerivative(point);
             }
         }
+        return coordinates;
     }
 
     /**
