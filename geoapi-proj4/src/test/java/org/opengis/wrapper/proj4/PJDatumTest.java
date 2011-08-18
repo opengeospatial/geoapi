@@ -29,34 +29,36 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.proj4;
+package org.opengis.wrapper.proj4;
 
+import javax.measure.unit.SI;
 import org.opengis.util.FactoryException;
-import org.opengis.referencing.operation.TransformException;
 
-import org.junit.*;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 
 /**
- * Tests the {@link PJ} class.
+ * Tests the {@link PJDatum} class.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public class PJTest {
+public class PJDatumTest {
     /**
      * Ensures that the given object is the WGS84 definition.
      */
-    private static void assertIsWGS84(final PJ pj) {
+    private static void assertIsWGS84(final PJDatum pj) {
         assertEquals("+proj=latlong +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0", pj.getDefinition().trim());
         assertEquals("Lat/long (Geodetic alias)", pj.toString().trim());
-        assertEquals(PJ.Type.GEOGRAPHIC, pj.getType());
-        assertEquals(6378137.0,          pj.getSemiMajorAxis(),         1E-9);
-        assertEquals(6356752.314245179,  pj.getSemiMinorAxis(),         1E-9);
-        assertEquals(0.0,                pj.getGreenwichLongitude(),    0.0);
-        assertEquals(1.0,                pj.getLinearUnitToMetre(true), 0.0);
+        assertEquals(PJDatum.Type.GEOGRAPHIC, pj.getType());
+        assertEquals(6378137.0,               pj.getSemiMajorAxis(),     1E-9);
+        assertEquals(6356752.314245179,       pj.getSemiMinorAxis(),     1E-9);
+        assertEquals(298.257223563,           pj.getInverseFlattening(), 1E-9);
+        assertEquals(0.0,                     pj.getGreenwichLongitude(), 0.0);
+        assertSame  (SI.METRE,                pj.getAxisUnit());
+        assertFalse(pj.isSphere());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
     }
 
@@ -67,18 +69,8 @@ public class PJTest {
      */
     @Test
     public void testWGS84() throws FactoryException {
-        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
+        final PJDatum pj = new PJDatum(null, "+proj=latlong +datum=WGS84");
         assertIsWGS84(pj);
-        /*
-         * Finalize should never be invoked explicitely. However we do an exception in this
-         * test suite in order to ensure that no error is thrown, and that all properties
-         * are correctly mapped to 0 (as a safety).
-         */
-        pj.finalize();
-        assertNull(pj.getType());
-        assertTrue(Double.isNaN(pj.getSemiMajorAxis()));
-        assertTrue(Double.isNaN(pj.getSemiMinorAxis()));
-        assertTrue(Double.isNaN(pj.getGreenwichLongitude()));
     }
 
     /**
@@ -88,36 +80,24 @@ public class PJTest {
      */
     @Test
     public void testEPSG3395() throws FactoryException {
-        final PJ pj = new PJ("+init=epsg:3395");
-        assertEquals(PJ.Type.PROJECTED, pj.getType());
+        final PJDatum pj = new PJDatum(null, "+init=epsg:3395");
+        assertEquals(PJDatum.Type.PROJECTED, pj.getType());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
-        assertEquals(1.0, pj.getLinearUnitToMetre(true), 0.0);
-        assertIsWGS84(new PJ(pj, PJ.Type.GEOGRAPHIC));
+        assertIsWGS84(new PJDatum(pj));
     }
 
     /**
-     * Ensures that the native code correctly detects the case of null pointers.
-     * This is important in order to ensure that we don't have a JVM crash.
+     * Tests the {@link PJDatum#getLinearUnit(double)} method using values close but not
+     * identical to the expected values.
      *
      * @throws FactoryException Should never happen.
-     * @throws TransformException Should never happen.
      */
-    @Test(expected = NullPointerException.class)
-    public void testNullPointerException() throws FactoryException, TransformException {
-        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
-        pj.transform(null, 2, null, 0, 1);
-    }
-
-    /**
-     * Ensures that the native code correctly detects the case of index out of bounds.
-     * This is important in order to ensure that we don't have a JVM crash.
-     *
-     * @throws FactoryException Should never happen.
-     * @throws TransformException Should never happen.
-     */
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testIndexOutOfBoundsException() throws FactoryException, TransformException {
-        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
-        pj.transform(pj, 2, new double[5], 2, 2);
+    @Test
+    public void testGetLinearUnit() throws FactoryException {
+        PJDatum pj;
+        pj = new PJDatum(null, "+proj=merc +to_meter=" + (1 + PJDatum.EPS/2));
+        assertSame(SI.METRE, pj.getLinearUnit(false));
+        pj = new PJDatum(null, "+proj=merc +to_meter=" + (1000 - PJDatum.EPS/2));
+        assertSame(SI.KILOMETRE, pj.getLinearUnit(false));
     }
 }

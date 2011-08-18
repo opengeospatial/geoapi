@@ -207,22 +207,16 @@ public class PJ {
     public native double getSemiMinorAxis();
 
     /**
-     * Returns the value computed from PJ fields by {@code 1/(1 - √(one_es))}.
+     * Returns the square of the ellipsoid eccentricity (&epsilon;&sup2;). The eccentricity
+     * is related to axis length by &epsilon;=√(1-(<var>b</var>/<var>a</var>)&sup2;). The
+     * eccentricity of a sphere is zero.
      *
-     * @return The inverse flattening computed by {@code 1/(1 - √(one_es))}.
-     *
-     * @see org.opengis.referencing.datum.Ellipsoid#getInverseFlattening()
-     */
-    public native double getInverseFlattening();
-
-    /**
-     * Returns {@code true} if the ellipsoid is a sphere.
-     *
-     * @return {@code true} if the ellipsoid is a sphere.
+     * @return The eccentricity.
      *
      * @see org.opengis.referencing.datum.Ellipsoid#isSphere()
+     * @see org.opengis.referencing.datum.Ellipsoid#getInverseFlattening()
      */
-    public native boolean isSphere();
+    public native double getEccentricitySquared();
 
     /**
      * Returns an array of character indicating the direction of each axis. Directions are
@@ -242,6 +236,15 @@ public class PJ {
      * @see org.opengis.referencing.datum.PrimeMeridian#getGreenwichLongitude()
      */
     public native double getGreenwichLongitude();
+
+    /**
+     * Returns the conversion factor from the linear units to metres.
+     *
+     * @param  vertical {@code false} for the conversion factor of horizontal axes,
+     *         or {@code true} for the conversion factor of the vertical axis.
+     * @return The conversion factor to metres for the given axis.
+     */
+    public native double getLinearUnitToMetre(boolean vertical);
 
     /**
      * Transforms in-place the coordinates in the given array. The coordinates array shall contain

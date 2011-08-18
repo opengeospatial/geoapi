@@ -278,7 +278,7 @@ public strictfp final class ToleranceModifiers {
     /**
      * Implementation of the value returned by {@link ToleranceModifiers#scale(double[])}.
      */
-    strictfp static class Scale extends Abstract {
+    strictfp static final class Scale extends Abstract {
         /** The types for which to apply the scale factors. */
         private final Set<CalculationType> types;
 
@@ -461,7 +461,7 @@ public strictfp final class ToleranceModifiers {
         /** Gets the concatenated threshold as documented in the enclosing class. */
         @Override
         public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            first.adjust (tolerance, coordinate, mode);
+            first .adjust(tolerance, coordinate, mode);
             second.adjust(tolerance, coordinate, mode);
         }
 

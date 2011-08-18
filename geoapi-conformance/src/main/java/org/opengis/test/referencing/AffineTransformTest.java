@@ -166,8 +166,10 @@ public strictfp class AffineTransformTest extends TransformTestCase {
                     reference.getShearY(), reference.getScaleY(), reference.getTranslateY(),
                                  0,              0,                  1);
         }
-        transform = factory.createAffineTransform(matrix);
-        assertNotNull(transform);
+        if (transform == null) {
+            transform = factory.createAffineTransform(matrix);
+            assertNotNull(transform);
+        }
         final float[] coordinates = verifyInternalConsistency(reference.hashCode());
         /*
          * At this point, we have performed internal consistency check of the
@@ -197,8 +199,10 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         if (matrix == null) {
             matrix = new SimpleMatrix(numRow, numCol, elements);
         }
-        transform = factory.createAffineTransform(matrix);
-        assertNotNull(transform);
+        if (transform == null) {
+            transform = factory.createAffineTransform(matrix);
+            assertNotNull(transform);
+        }
         verifyInternalConsistency(Arrays.hashCode(elements));
     }
 
@@ -269,7 +273,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests a transform wrapping the axes in a two-dimensional space.
+     * Tests a transform swapping the axes in a two-dimensional space.
      *
      * @throws FactoryException should never happen.
      * @throws TransformException should never happen.

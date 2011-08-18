@@ -33,6 +33,7 @@ package org.opengis.wrapper.proj4;
 
 import java.util.Date;
 import java.util.Set;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import javax.measure.unit.SI;
@@ -51,6 +52,8 @@ import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.metadata.extent.Extent;
 
+import static java.lang.Math.*;
+
 
 /**
  * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure
@@ -63,9 +66,49 @@ import org.opengis.metadata.extent.Extent;
  */
 final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoid {
     /**
+     * Tolerance factor for comparison of floating point numbers.
+     * Must be fine enough for distinguish {@code FOOT} from {@code FOOT_SURVEY_US}.
+     */
+    static final double EPS = 1E-7;
+
+    /**
+     * Pre-defined linear units to be returned by {@link #getLinearUnit(double)}.
+     */
+    @SuppressWarnings({"unchecked","rawtypes"})
+    private static final Unit<Length>[] LINEAR_UNITS = new Unit[] {
+        SI.MILLIMETRE,
+        SI.CENTIMETRE,
+        NonSI.INCH,
+        NonSI.FOOT,
+        NonSI.FOOT_SURVEY_US,
+        NonSI.YARD,
+        SI.METRE,
+        SI.KILOMETRE
+    };
+
+    /**
+     * The conversion factors for the units in the {@link #LINEAR_UNITS} array.
+     */
+    private static final double[] LINEAR_FACTORS = {
+        0.0010,
+        0.0100,
+        0.0254,
+        0.3048,
+        0.3048006096012192,
+        0.9144,
+        1.0000,
+        1000
+    };
+
+    /**
      * The datum or ellipsoid name, or {@code null} if none.
      */
     private final ReferenceIdentifier name;
+
+    /**
+     * The Proj4 parameters, formatted at construction time because often used.
+     */
+    final String definition;
 
     /**
      * Creates a new {@code PJ} structure from the given Proj4 data.
@@ -75,6 +118,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      */
     PJDatum(final ReferenceIdentifier name, final String definition) throws FactoryException {
         super(definition);
+        this.definition = getDefinition();
         this.name = name;
     }
 
@@ -83,6 +127,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      */
     PJDatum(final PJDatum projected) throws FactoryException {
         super(projected, Type.GEOGRAPHIC);
+        definition = getDefinition();
         name = projected.name;
     }
 
@@ -122,11 +167,28 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns the axis unit, which is assumed metres in the case of the Proj4 library.
+     * Returns the ellipsoid axis unit, which is assumed metres in the case of the Proj4 library.
      */
     @Override
     public Unit<Length> getAxisUnit() {
         return SI.METRE;
+    }
+
+    /**
+     * Returns the linear unit for the horizontal or the vertical axes.
+     */
+    public Unit<Length> getLinearUnit(final boolean vertical) {
+        final double factor = getLinearUnitToMetre(vertical);
+        int i = Arrays.binarySearch(LINEAR_FACTORS, factor);
+        if (i < 0) {
+            i = ~i;
+            if (i == LINEAR_FACTORS.length || !(abs(factor - LINEAR_FACTORS[i]) <= EPS)) {
+                if (i == 0 || !(abs(factor - LINEAR_FACTORS[--i]) <= EPS)) {
+                    return (factor == 0 || Double.isNaN(factor)) ? null : SI.METRE.times(factor);
+                }
+            }
+        }
+        return LINEAR_UNITS[i];
     }
 
     /**
@@ -139,12 +201,48 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns {@code true} unconditionally since the inverse excentricy squared in definitive
-     * in the Proj4 library, and the excentricity is directly related to the flattening.
+     * Returns {@code true} unconditionally since the inverse eccentricity squared in definitive
+     * in the Proj4 library, and the eccentricity is directly related to the flattening.
      */
     @Override
     public boolean isIvfDefinitive() {
         return true;
+    }
+
+    /**
+     * Returns the inverse flattening, computed from the eccentricity.
+     */
+    @Override
+    public double getInverseFlattening() {
+        return 1 / (1 - sqrt(1 - getEccentricitySquared()));
+    }
+
+    /**
+     * Returns {@code true} if the ellipsoid is a sphere.
+     */
+    @Override
+    public boolean isSphere() {
+        return getEccentricitySquared() == 0;
+    }
+
+    /**
+     * Returns the value of the given parameter, or {@code null} if none. The given parameter key
+     * shall include the {@code '+'} prefix and {@code '='} suffix, for example {@code "+proj="}.
+     *
+     * @param  key The parameter name.
+     * @return The parameter value.
+     */
+    final String getParameter(final String key) {
+        int i = definition.indexOf(key);
+        if (i >= 0) {
+            i += key.length();
+            final int stop = definition.indexOf(' ', i);
+            String value = (stop >= 0) ? definition.substring(i, stop) : definition.substring(i);
+            if (!(value = value.trim()).isEmpty()) {
+                return value;
+            }
+        }
+        return null;
     }
 
     /**

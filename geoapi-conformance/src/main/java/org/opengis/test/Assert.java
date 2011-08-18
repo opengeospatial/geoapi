@@ -53,7 +53,7 @@ import org.opengis.referencing.cs.CoordinateSystem;
  * @version 3.1
  * @since   2.2
  */
-public class Assert extends org.junit.Assert {
+public strictfp class Assert extends org.junit.Assert {
     /**
      * For subclass constructors only.
      */
@@ -61,18 +61,25 @@ public class Assert extends org.junit.Assert {
     }
 
     /**
+     * Returns the given message, or an empty string if the message is null.
+     */
+    private static String nonNull(final String message) {
+        return (message != null) ? message.trim().concat(" ") : "";
+    }
+
+    /**
      * Asserts that the given value is an instance of the given class. No tests are performed if
      * the type is {@code null}. If the type is not-null but the value is null, this is considered
      * as a failure.
      *
-     * @param message      The message to send in case of failure.
+     * @param message      Header of the exception message in case of failure, or {@code null} if none.
      * @param expectedType The expected parent class of the value, or {@code null}.
      * @param value        The value to test, or {@code null} (which is a failure).
      */
     public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
         if (expectedType != null) {
             if (!expectedType.isInstance(value)) {
-                fail(message + " Value \"" + value + "\" is of type " + value.getClass().getSimpleName() +
+                fail(nonNull(message) + "Value \"" + value + "\" is of type " + value.getClass().getSimpleName() +
                         " while the expected type was " + expectedType.getSimpleName() + '.');
             }
         }
@@ -81,24 +88,24 @@ public class Assert extends org.junit.Assert {
     /**
      * Asserts that the given integer value is positive, including zero.
      *
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param value   The value to test.
      */
     public static void assertPositive(final String message, final int value) {
         if (value < 0) {
-            fail(message + " Value is " + value + '.');
+            fail(nonNull(message) + "Value is " + value + '.');
         }
     }
 
     /**
      * Asserts that the given integer value is strictly positive, excluding zero.
      *
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param value   The value to test.
      */
     public static void assertStrictlyPositive(final String message, final int value) {
         if (value <= 0) {
-            fail(message + " Value is " + value + '.');
+            fail(nonNull(message) + "Value is " + value + '.');
         }
     }
 
@@ -108,7 +115,7 @@ public class Assert extends org.junit.Assert {
      * maximum value.
      *
      * @param <T>     The type of values being compared.
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range to test, or {@code null} if unbounded.
      * @param maximum The upper bound of the range to test, or {@code null} if unbounded.
      */
@@ -116,7 +123,7 @@ public class Assert extends org.junit.Assert {
     public static <T> void assertValidRange(final String message, final Comparable<T> minimum, final Comparable<T> maximum) {
         if (minimum != null && maximum != null) {
             if (minimum.compareTo((T) maximum) > 0) {
-                fail(message + " Range found is [" + minimum + " ... " + maximum + "].");
+                fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
             }
         }
     }
@@ -125,13 +132,13 @@ public class Assert extends org.junit.Assert {
      * Asserts that the given minimum and maximum values make a valid range. More specifically
      * asserts that the minimum value is not greater than the maximum value.
      *
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range to test.
      * @param maximum The upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final int minimum, final int maximum) {
         if (minimum > maximum) {
-            fail(message + " Range found is [" + minimum + " ... " + maximum + "].");
+            fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
     }
 
@@ -140,13 +147,13 @@ public class Assert extends org.junit.Assert {
      * asserts that the minimum value is not greater than the maximum value. If one bound is or
      * both bounds are {@linkplain Double#NaN NaN}, then the test fails.
      *
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range to test.
      * @param maximum The upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final double minimum, final double maximum) {
         if (!(minimum <= maximum)) { // Use '!' for catching NaN.
-            fail(message + " Range found is [" + minimum + " ... " + maximum + "].");
+            fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
     }
 
@@ -155,7 +162,7 @@ public class Assert extends org.junit.Assert {
      * tests the validity of the given range.
      *
      * @param <T>     The type of values being compared.
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range (inclusive), or {@code null} if unbounded.
      * @param maximum The upper bound of the range (inclusive), or {@code null} if unbounded.
      * @param value   The value to test, or {@code null} (which is a failure).
@@ -163,12 +170,12 @@ public class Assert extends org.junit.Assert {
     public static <T> void assertBetween(final String message, final Comparable<T> minimum, final Comparable<T> maximum, T value) {
         if (minimum != null) {
             if (minimum.compareTo(value) > 0) {
-                fail(message + " Value " + value + " is less than " + minimum + '.');
+                fail(nonNull(message) + "Value " + value + " is less than " + minimum + '.');
             }
         }
         if (maximum != null) {
             if (maximum.compareTo(value) < 0) {
-                fail(message + " Value " + value + " is greater than " + maximum + '.');
+                fail(nonNull(message) + "Value " + value + " is greater than " + maximum + '.');
             }
         }
     }
@@ -177,17 +184,17 @@ public class Assert extends org.junit.Assert {
      * Asserts that the given value is between the given range. This method do <strong>not</strong>
      * tests the validity of the given range.
      *
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range, inclusive.
      * @param maximum The upper bound of the range, inclusive.
      * @param value   The value to test.
      */
     public static void assertBetween(final String message, final int minimum, final int maximum, final int value) {
         if (value < minimum) {
-            fail(message + " Value is " + value + " is less than " + minimum + '.');
+            fail(nonNull(message) + "Value is " + value + " is less than " + minimum + '.');
         }
         if (value > maximum) {
-            fail(message + " Value is " + value + " is greater than " + maximum + '.');
+            fail(nonNull(message) + "Value is " + value + " is greater than " + maximum + '.');
         }
     }
 
@@ -196,17 +203,17 @@ public class Assert extends org.junit.Assert {
      * {@linkplain Double#NaN NaN}, then this test passes silently. This method
      * do <strong>not</strong> tests the validity of the given range.
      *
-     * @param message The message to send in case of failure.
+     * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range, inclusive.
      * @param maximum The upper bound of the range, inclusive.
      * @param value   The value to test.
      */
     public static void assertBetween(final String message, final double minimum, final double maximum, final double value) {
         if (value < minimum) {
-            fail(message + " Value is " + value + " is less than " + minimum + '.');
+            fail(nonNull(message) + "Value is " + value + " is less than " + minimum + '.');
         }
         if (value > maximum) {
-            fail(message + " Value is " + value + " is greater than " + maximum + '.');
+            fail(nonNull(message) + "Value is " + value + " is greater than " + maximum + '.');
         }
     }
 
@@ -216,17 +223,76 @@ public class Assert extends org.junit.Assert {
      * empty). If the given value is null, then the test passes only if the given collection
      * contains the null element.
      *
-     * @param message    The message to send in case of failure.
+     * @param message    Header of the exception message in case of failure, or {@code null} if none.
      * @param collection The collection where to look for inclusion, or {@code null}.
      * @param value      The value to test for inclusion.
      */
     public static void assertContains(final String message, final Collection<?> collection, final Object value) {
         if (collection != null) {
             if (!collection.contains(value)) {
-                fail(message + " Looked for value \"" + value + "\" in a collection of " +
+                fail(nonNull(message) + "Looked for value \"" + value + "\" in a collection of " +
                         collection.size() + "elements.");
             }
         }
+    }
+
+    /**
+     * Performs a lenient comparison of the given character sequences. First, this method locates
+     * the {@linkplain Character#isUnicodeIdentifierStart(int) Unicode identifier start} in each
+     * sequences, ignoring every characters before them. Then, starting from the identifier starts,
+     * this method compares only the {@linkplain Character#isUnicodeIdentifierPart(int) Unicode
+     * identifier parts} in a case-insensitive way.
+     *
+     * @param message  Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected The expected character sequence.
+     * @param value The character sequence to compare.
+     */
+    public static void assertLenientEquals(final String message, final CharSequence expected, final CharSequence value) {
+        final int expLength = expected.length();
+        final int valLength = value.length();
+        int       expOffset = 0;
+        int       valOffset = 0;
+        boolean   expPart   = false;
+        boolean   valPart   = false;
+        while (expOffset < expLength) {
+            int expCode = Character.codePointAt(expected, expOffset);
+            if (isUnicodeIdentifier(expCode, expPart)) {
+                expPart = true;
+                int valCode;
+                do {
+                    if (valOffset >= valLength) {
+                        fail(nonNull(message) + "Missing trailing string: \"" +
+                                expected.subSequence(expOffset, expLength) + "\".");
+                        return;
+                    }
+                    valCode = Character.codePointAt(value, valOffset);
+                    valOffset += Character.charCount(valCode);
+                } while (!isUnicodeIdentifier(valCode, valPart));
+                valPart = true;
+                expCode = Character.toLowerCase(expCode);
+                valCode = Character.toLowerCase(valCode);
+                if (valCode != expCode) {
+                    fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + value + "\".");
+                    return;
+                }
+            }
+            expOffset += Character.charCount(expCode);
+        }
+        while (valOffset < valLength) {
+            final int valCode = Character.codePointAt(value, valOffset);
+            if (isUnicodeIdentifier(valCode, valPart)) {
+                fail(nonNull(message) + "Unexpected trailing string: \"" + value.subSequence(valOffset, valLength) + "\".");
+            }
+            valOffset += Character.charCount(valCode);
+        }
+    }
+
+    /**
+     * Returns {@code true} if the given codepoint is an unicode identifier start or part.
+     */
+    private static boolean isUnicodeIdentifier(final int codepoint, final boolean part) {
+        return part ? Character.isUnicodeIdentifierPart (codepoint)
+                    : Character.isUnicodeIdentifierStart(codepoint);
     }
 
     /**

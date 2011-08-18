@@ -59,7 +59,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     /**
      * The source and target CRS.
      */
-    private final PJCRS source, target;
+    final PJCRS source, target;
 
     /**
      * The inverse transform, created only when first needed.
@@ -104,7 +104,8 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     @Override public final int     getTargetDimensions()      {return target.getDimension();}
     @Override public MathTransform getMathTransform()         {return this;}
     @Override public String        getOperationVersion()      {return PJ.getVersion();}
-    @Override public Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
+    @Override
+    public Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
         return Collections.emptySet();
     }
 
@@ -306,6 +307,14 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     static final class Projection extends PJOperation implements org.opengis.referencing.operation.Projection {
         Projection(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
             super(name, source, target);
+        }
+
+        /**
+         * Always {@code null} by definition for map projection, according ISO 19111.
+         */
+        @Override
+        public String getOperationVersion() {
+            return null;
         }
     }
 }

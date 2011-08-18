@@ -33,7 +33,6 @@ package org.opengis.wrapper.proj4;
 
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
-import javax.measure.unit.SI;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.cs.CartesianCS;
@@ -75,7 +74,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      * @param identifier The name of the new CRS, or {@code null} if none.
      * @param datum The geodetic datum, which is also the wrapper for Proj.4 native methods.
      * @param dimension The number of dimensions of the new CRS. Must be at least 2.
-     * @param unit The axis unit.
+     * @param unit The horizontal axes unit.
      */
     PJCRS(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension, final Unit<?> unit) {
         super(identifier);
@@ -83,7 +82,8 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         axes = new CoordinateSystemAxis[dimension];
         final char[] dir = datum.getAxisDirections();
         for (int i=0; i<dimension; i++) {
-            axes[i] = new PJAxis((i < dir.length) ? dir[i] : ' ', unit);
+            final char d = (i < dir.length) ? Character.toLowerCase(dir[i]) : ' ';
+            axes[i] = new PJAxis(d, (d == 'u' || d == 'd') ? datum.getLinearUnit(true) : unit);
         }
     }
 
@@ -157,11 +157,9 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
 
         /**
          * Creates a new projected CRS.
-         *
-         * @todo Infer the units from the Proj.4 API.
          */
         Projected(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
-            super(identifier, datum, dimension, SI.METRE);
+            super(identifier, datum, dimension, datum.getLinearUnit(false));
         }
 
         /**

@@ -31,15 +31,18 @@
  */
 package org.opengis.wrapper.proj4;
 
+import java.util.EnumSet;
 import java.util.Properties;
 import org.opengis.util.Factory;
 import org.opengis.test.TestSuite;
 import org.opengis.test.Validators;
 import org.opengis.test.ToleranceModifier;
+import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ImplementationDetails;
 import org.opengis.referencing.operation.MathTransform;
 
 import static org.junit.Assert.*;
+import static org.opengis.test.CalculationType.*;
 
 
 /**
@@ -63,7 +66,6 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
          * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
          */
         Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
-        Validators.DEFAULT.coordinateOperation.enforceForbiddenAttributes = false;
     }
 
     /**
@@ -83,10 +85,34 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
     }
 
     /**
-     * Unconditionally returns {@code null}, since we do not relax any tolerance threshold yet.
+     * Relaxes the tolerance threshold for some transform.
+     * <p>
+     * <b>Note:</b> {@link org.opengis.test.referencing.ParameterizedTransformTest#testLambertConicConformalBelgium()}
+     * still fail because Proj.4 seems to have a wrong definition of the prime meridian. The Proj.4 definition is:
+     *
+     * <blockquote><code>+init=EPSG:31300 +proj=lcc +lat_1=49.83333333333334 +lat_2=51.16666666666666
+     * +lat_0=90 +lon_0=4.356939722222222 +x_0=150000.01256 +y_0=5400088.4378 +ellps=intl
+     * +towgs84=-106.869,52.2978,-103.724,0.3366,-0.457,1.8422,-1.2747 +units=m +no_defs</code></blockquote>
+     *
+     * But according <a href="http://www.epsg-registry.org/">http://www.epsg-registry.org/</a> the
+     * prime meridian shall be Greenwich.
      */
     @Override
     public ToleranceModifier needsRelaxedTolerance(final MathTransform transform) {
+        if (transform instanceof PJOperation.Projection) {
+            final PJDatum pj = (((PJOperation) transform).target).pj;
+            final String projection = pj.getParameter("+proj=");
+            if (projection != null) {
+                if (projection.equals("tmerc")) {
+                    return ToleranceModifiers.maximum(
+                           ToleranceModifiers.scale(EnumSet.of( DIRECT_TRANSFORM), 2, 30),
+                           ToleranceModifiers.scale(EnumSet.of(INVERSE_TRANSFORM), 2, 2));
+                }
+                if (projection.equals("cass")) {
+                    return ToleranceModifiers.scale(EnumSet.of(DIRECT_TRANSFORM, INVERSE_TRANSFORM), 200, 200);
+                }
+            }
+        }
         return null;
     }
 }
