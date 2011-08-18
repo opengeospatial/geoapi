@@ -586,6 +586,26 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
+     * Tests the EPSG:27700 (<cite>OSGB 1936 / British National Grid</cite>) projected CRS.
+     * <p>
+     * <table cellspacing="0" cellpadding="0">
+     * <tr><td>Projection method:&nbsp;</td> <td>Transverse Mercator</td></tr>
+     * <tr><td>Prime meridian:&nbsp;</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:&nbsp;</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Output ordinates:&nbsp;</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * </table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see MathTransformTest#testTransverseMercator()
+     */
+    @Test
+    public void testEPSG_27700() throws FactoryException, TransformException {
+        runProjectionTest(27700);
+    }
+
+    /**
      * Tests the EPSG:2314 (<cite>Trinidad 1903 / Trinidad Grid</cite>) projected CRS.
      * <p>
      * <table cellspacing="0" cellpadding="0">

@@ -771,6 +771,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>3856</td>      <td>3857</td>      <td>WGS 84 / Pseudo-Mercator</td>            <td>Popular Visualisation Pseudo Mercator</td></tr>
      *   <tr><td>310642901</td> <td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
      *   <tr><td>19958</td>     <td>29873</td>     <td>Timbalai 1948 / RSO Borneo (m)</td>      <td>Hotine Oblique Mercator (variant B)</td></tr>
+     *   <tr><td>19916</td>     <td>27700</td>     <td>OSGB 1936 / British National Grid</td>   <td>Transverse Mercator</td></tr>
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
      *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
@@ -841,6 +842,17 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Scale factor on initial line") .setValue(0.99984);
                 parameters.parameter("Easting at projection centre") .setValue(590476.87);
                 parameters.parameter("Northing at projection centre").setValue(442857.65);
+                break;
+            }
+            case 19916: { // "British National Grid" using operation method 9807
+                parameters = factory.getDefaultParameters("Transverse Mercator");
+                parameters.parameter("semi-major axis").setValue(6377563.396);  // Airy
+                parameters.parameter("semi-minor axis").setValue(6377563.396 * (1 - 1/299.32496));
+                parameters.parameter("Latitude of natural origin") .setValue(49.0);
+                parameters.parameter("Longitude of natural origin").setValue(-2.0);
+                parameters.parameter("Scale factor at natural origin").setValue(0.9996013);
+                parameters.parameter("False easting") .setValue( 400000.00);
+                parameters.parameter("False northing").setValue(-100000.00);
                 break;
             }
             case 19975: { // "Trinidad 1903 / Trinidad Grid" using operation method 9806
