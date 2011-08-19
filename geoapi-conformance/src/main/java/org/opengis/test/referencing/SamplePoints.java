@@ -163,8 +163,10 @@ final class SamplePoints {
                 operation = 19916;
                 fe =  400000.00;  λ0 =  -2;
                 fn = -100000.00;  φ0 =  49;
-                e  =  577274.99;  λ  =    30.0/60; // 00°30'00.00"E
-                n  =   69740.50;  φ  = 50+30.0/60; // 50°30'00.00"N
+                e  =  577274.98;  λ  =    30.0/60; // 00°30'00.00"E
+                n  =   69740.49;  φ  = 50+30.0/60; // 50°30'00.00"N
+                // The above (e,n) values are 1 cm less than the values documented in the EPSG
+                // guidance notes. This shift is caused by the slightly different scale factor.
                 λmin = -7.56; φmin = 49.96;
                 λmax =  1.78; φmax = 60.84;
                 break;

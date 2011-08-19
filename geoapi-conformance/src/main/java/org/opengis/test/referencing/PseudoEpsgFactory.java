@@ -850,7 +850,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("semi-minor axis").setValue(6377563.396 * (1 - 1/299.32496));
                 parameters.parameter("Latitude of natural origin") .setValue(49.0);
                 parameters.parameter("Longitude of natural origin").setValue(-2.0);
-                parameters.parameter("Scale factor at natural origin").setValue(0.9996013);
+                parameters.parameter("Scale factor at natural origin").setValue(0.9996012717); // EPSG guidance notes rounded this value to 0.9996013
                 parameters.parameter("False easting") .setValue( 400000.00);
                 parameters.parameter("False northing").setValue(-100000.00);
                 break;

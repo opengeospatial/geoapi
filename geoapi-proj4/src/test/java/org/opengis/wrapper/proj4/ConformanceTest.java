@@ -93,11 +93,6 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
             final PJDatum pj = (((PJOperation) transform).target).pj;
             final String projection = pj.getParameter("+proj=");
             if (projection != null) {
-                if (projection.equals("tmerc")) {
-                    return ToleranceModifiers.maximum(
-                           ToleranceModifiers.scale(EnumSet.of( DIRECT_TRANSFORM), 2, 30),
-                           ToleranceModifiers.scale(EnumSet.of(INVERSE_TRANSFORM), 2, 2));
-                }
                 if (projection.equals("cass")) {
                     return ToleranceModifiers.scale(EnumSet.of(DIRECT_TRANSFORM, INVERSE_TRANSFORM), 200, 200);
                 }
