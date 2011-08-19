@@ -280,7 +280,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @param  pm The prime meridian from which to get the Greenwich longitude, or {@code null}.
      * @return The prime meridian in the given units, or 0 if the given prime meridian was null.
      */
-    public static double getGreenwichLongitude(final PrimeMeridian pm) {
+    private static double getGreenwichLongitude(final PrimeMeridian pm) {
         return (pm != null) ? pm.getAngularUnit().getConverterTo(NonSI.DEGREE_ANGLE).convert(pm.getGreenwichLongitude()) : 0;
     }
 

@@ -55,6 +55,16 @@ final class SimpleDirectPosition implements DirectPosition {
     protected final double[] ordinates;
 
     /**
+     * {@code true} to freeze this position. If {@code true}, then any attempts to invoke
+     * a {@link #setOrdinate(int, double)} method will cause a JUnit test failure.
+     * <p>
+     * Note that setting this field to {@code true} does not prevent {@link TransformTestCase} to
+     * write directly in the {@link #ordinates} array. But since this class is package-private,
+     * the code writing directly in the ordinates array should know what they are doing...
+     */
+    boolean unmodifiable;
+
+    /**
      * Creates a new direct position of the given dimension.
      *
      * @param dimension The dimension.
@@ -116,6 +126,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * @since 3.1
      */
     public void setCoordinate(final double... ordinates) {
+        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
         assertEquals("Unexpected dimension.", this.ordinates.length, ordinates.length);
         System.arraycopy(ordinates, 0, this.ordinates, 0, ordinates.length);
     }
@@ -129,6 +140,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * @param useDouble If {@code false}, cast the values to floats.
      */
     final void setCoordinate(final Object ordinates, int offset, final boolean useDouble) {
+        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
         final int dimension = this.ordinates.length;
         for (int i=0; i<dimension; i++) {
             double ordinate = Array.getDouble(ordinates, offset++);
@@ -152,6 +164,7 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     @Override
     public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
+        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
         ordinates[dimension] = value;
     }
 

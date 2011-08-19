@@ -90,7 +90,7 @@ import static org.opengis.test.Assert.*;
 public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * The maximal offset (in number of coordinate points), exclusive, to apply when testing
-     * {@code MathTransform.transform(...)} with overlapping arrays.  Higher values make the
+     * {@code MathTransform.transform(…)} with overlapping arrays.  Higher values make the
      * tests more extensive but slower. Small values like 8 are usually enough.
      */
     private static final int POINTS_OFFSET = 8;
@@ -252,7 +252,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Cached information for {@link #getToleranceModifier()} purpose. The {@code cachedModifier}
      * field contains the value returned by {@code getToleranceModifier()}, cached because needed
-     * every time an {@code assertCoordinateEquals(...)} method is invoked (which typically occur
+     * every time an {@code assertCoordinateEquals(…)} method is invoked (which typically occur
      * often).  The {@link #modifierUsedByCache} and {@link #transformUsedByCache} fields contain
      * the values of {@link #toleranceModifier} and {@link #transform} respectively at the time
      * the {@code cachedModifier} value has been computed. They are used in order to detect when
@@ -413,7 +413,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final int sourceOffset = i * sourceDimension;
             final int targetOffset = i * targetDimension;
             System.arraycopy(coordinates, sourceOffset, source.ordinates, 0, sourceDimension);
-            assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+            assertSame("MathTransform.transform(DirectPosition, …) shall use the given target.",
                     target, transform.transform(source, target));
             assertCoordinatesEqual("Unexpected transform result.", targetDimension,
                     expected, targetOffset, target.ordinates, 0, 1, CalculationType.DIRECT_TRANSFORM, i);
@@ -429,7 +429,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
              */
             if (inverse != null) {
                 System.arraycopy(expected, targetOffset, target.ordinates, 0, targetDimension);
-                assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+                assertSame("MathTransform.transform(DirectPosition, …) shall use the given target.",
                         back, inverse.transform(target, back));
                 assertCoordinateEquals("Unexpected result of inverse transform.",
                         source.ordinates, back.ordinates, i, CalculationType.INVERSE_TRANSFORM);
@@ -488,10 +488,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final int offset = i*sourceDimension;
             System.arraycopy(coordinates, offset, source.ordinates, 0, sourceDimension);
             target = transform.transform(source, target);
-            assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", target);
+            assertNotNull("MathTransform.transform(DirectPosition, …) shall not return null.", target);
             assertEquals("Transformed point has wrong dimension.",
                     targetDimension, target.getDimension());
-            assertSame("MathTransform.transform(DirectPosition,...) shall use the given target.",
+            assertSame("MathTransform.transform(DirectPosition, …) shall use the given target.",
                     back, inverse.transform(target, back));
             assertCoordinateEquals("Unexpected result of inverse transform.",
                     source.ordinates, back.ordinates, i, CalculationType.INVERSE_TRANSFORM);
@@ -524,15 +524,15 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Transforms coordinates using various versions of {@code MathTransform.transform(...)}
+     * Transforms coordinates using various versions of {@code MathTransform.transform(…)}
      * and verifies that they produce the same numerical values. The values calculated by
      * {@link MathTransform#transform(DirectPosition,DirectPosition)} are used as the reference.
      * Other transform methods (operating on arrays) will be compared against that reference,
      * unless their checks were disabled (see class javadoc for details).
      * <p>
      * This method expects an array of {@code float} values instead than {@code double}
-     * for making sure that the {@code MathTransform.transform(float[], ...)} and
-     * {@code MathTransform.transform(double[], ...)} methods produces the same numerical values.
+     * for making sure that the {@code MathTransform.transform(float[], …)} and
+     * {@code MathTransform.transform(double[], …)} methods produces the same numerical values.
      * The {@code double} values may show extra digits when formatted in base 10, but this is not
      * significant if their IEEE 754 representation (which use base 2) are equivalent.
      * <p>
@@ -578,8 +578,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
             for (int i=0; i < sourceDoubles.length; i += sourceDimension) {
                 System.arraycopy(sourceDoubles, i, sourcePosition.ordinates, 0, sourceDimension);
                 targetPosition = transform.transform(sourcePosition, targetPosition);
-                assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", targetPosition);
-                assertNotSame("MathTransform.transform(DirectPosition,...) shall not overwrite " +
+                assertNotNull("MathTransform.transform(DirectPosition, …) shall not return null.", targetPosition);
+                assertNotSame("MathTransform.transform(DirectPosition, …) shall not overwrite " +
                         "the source position.", sourcePosition, targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
                         "the same dimension than MathTransform.getTargetDimension().",
@@ -655,9 +655,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
             for (int i=0; i<sourceFloats.length;) {
                 source.x = sourceFloats[i];
                 source.y = sourceFloats[i+1];
-                assertSame("MathTransform2D.transform(Point2D,...) shall use the given target.",
+                assertSame("MathTransform2D.transform(Point2D, …) shall use the given target.",
                         target, transform2D.transform(source, target));
-                assertNotNull("MathTransform2D.transform(Point2D,...) shall not return null.", target);
+                assertNotNull("MathTransform2D.transform(Point2D, …) shall not return null.", target);
                 targetDoubles[i++] = target.x;
                 targetDoubles[i++] = target.y;
             }
@@ -674,10 +674,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * <p>
      * All the three common forms of finite differences (<cite>forward difference</cite>,
      * <cite>backward difference</cite> and <cite>central difference</cite>) are computed.
-     * For each matrix element, the tolerance value will be set to the largest difference
-     * between the results of the different forms. Developers can override the
-     * {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)} method in order to use
-     * different tolerance values.
+     * If the finite difference method was a "perfect" approximation, all those three forms
+     * would produce identical results. In practice the results will differ, especially in
+     * areas where the derivative function varies fast. The difference between the results
+     * will be used as an estimation of the approximation accuracy.
      * <p>
      * The distance between the two points used by the <cite>central difference</cite>
      * approximation shall be specified in the {@link #derivativeDeltas} array, in units
@@ -685,6 +685,21 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * than the number of source dimensions, then the last delta value is used for all
      * additional dimensions. This allows specifying a single delta value (in an array
      * of length 1) for all dimensions.
+     * <p>
+     * This method created the following objects:
+     * <p>
+     * <ul>
+     *   <li>{@code expected} - the expected derivative result estimated by the central
+     *       difference method.</li>
+     *   <li>{@code tolmat} - a <cite>tolerance matrix</cite> containing, for each matrix element,
+     *       the largest difference found between the three approximation methods. The values in
+     *       this matrix will not be lower than the {@linkplain #toleranceModifier modified}
+     *       {@linkplain #tolerance} threshold.</li>
+     * </ul>
+     * <p>
+     * Those information are then passed to the {@link #assertMatrixEquals(String, Matrix, Matrix,
+     * Matrix)} method. Implementors can override the later method, for example in order to overwrite
+     * the tolerance values.
      *
      * @param  coordinate The point where to compute the derivative, in units of the source CRS.
      * @throws TransformException If the derivative can not be computed, or a point can not be
@@ -713,12 +728,23 @@ public strictfp abstract class TransformTestCase extends TestCase {
         final SimpleDirectPosition S0 = new SimpleDirectPosition(sourceDim);
         final SimpleDirectPosition T0 = new SimpleDirectPosition(targetDim);
         S0.setCoordinate(coordinate);
+        S0.unmodifiable = true;
         assertSame(T0, transform.transform(S0, T0));
+        T0.unmodifiable = true;
         final Matrix matrix = transform.derivative(S0);
         final String message = "MathTransform.derivative(" + S0 + ')';
         assertNotNull(message, matrix);
         assertEquals("Unexpected number of columns.", sourceDim, matrix.getNumCol());
         assertEquals("Unexpected number of rows.",    targetDim, matrix.getNumRow());
+        /*
+         * Get the user-specified tolerances.
+         */
+        final double[] tolerances = new double[targetDim];
+        Arrays.fill(tolerances, tolerance);
+        final ToleranceModifier modifier = getToleranceModifier();
+        if (modifier != null) {
+            modifier.adjust(tolerances, T0, CalculationType.TRANSFORM_DERIVATIVE);
+        }
         /*
          * Compute an approximation of the expected derivative.
          */
@@ -742,7 +768,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2); // Forward difference
                 final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2); // Backward difference
                 approx.setElement(j, i, dc);
-                tolmat.setElement(j, i, max(tolerance, max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
+                tolmat.setElement(j, i, max(tolerances[j], max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
             }
         }
         /*
@@ -865,9 +891,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param index    The index of the coordinate point being compared, for message formatting.
      * @param mode     Whatever the coordinates being compared are the result of a direct or
      *                 inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
-            final float[] actual, final int index, final CalculationType mode)
+            final float[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -885,9 +912,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param index    The index of the coordinate point being compared, for message formatting.
      * @param mode     Whatever the coordinates being compared are the result of a direct or
      *                 inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
-            final double[] actual, final int index, final CalculationType mode)
+            final double[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -905,9 +933,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param index    The index of the coordinate point being compared, for message formatting.
      * @param mode     Whatever the coordinates being compared are the result of a direct or
      *                 inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final double[] expected,
-            final float[] actual, final int index, final CalculationType mode)
+            final float[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -925,9 +954,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param index    The index of the coordinate point being compared, for message formatting.
      * @param mode     Whatever the coordinates being compared are the result of a direct or
      *                 inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final double[] expected,
-            final double[] actual, final int index, final CalculationType mode)
+            final double[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
         assertEquals(dimension, actual.length);
@@ -948,12 +978,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param numPoints      Number of coordinate points to compare.
      * @param mode           Whatever the coordinates being compared are the result of a direct
      *                       or inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
             final String  message,     final int dimension,
             final float[] expectedPts, final int expectedOffset,
             final float[] actualPts,   final int actualOffset,
-            final int     numPoints,   final CalculationType mode)
+            final int     numPoints,   final CalculationType mode) throws TransformFailure
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -973,12 +1004,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param numPoints      Number of coordinate points to compare.
      * @param mode           Whatever the coordinates being compared are the result of a direct
      *                       or inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final float[]  expectedPts, final int expectedOffset,
             final double[] actualPts,   final int actualOffset,
-            final int      numPoints,   final CalculationType mode)
+            final int      numPoints,   final CalculationType mode) throws TransformFailure
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -998,12 +1030,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param numPoints      Number of coordinate points to compare.
      * @param mode           Whatever the coordinates being compared are the result of a direct
      *                       or inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final double[] expectedPts, final int expectedOffset,
             final float [] actualPts,   final int actualOffset,
-            final int      numPoints,   final CalculationType mode)
+            final int      numPoints,   final CalculationType mode) throws TransformFailure
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -1023,12 +1056,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param numPoints      Number of coordinate points to compare.
      * @param mode           Whatever the coordinates being compared are the result of a direct
      *                       or inverse transform, or whatever strict equality is requested.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final double[] expectedPts, final int expectedOffset,
             final double[] actualPts,   final int actualOffset,
-            final int      numPoints,   final CalculationType mode)
+            final int      numPoints,   final CalculationType mode) throws TransformFailure
     {
         assertCoordinatesEqual(message, dimension, expectedPts, expectedOffset,
                 actualPts, actualOffset, numPoints, mode, 0);
@@ -1050,12 +1084,14 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *                       or inverse transform, or whatever strict equality is requested.
      * @param reportedIndex  In case of failure, index of the point (not ordinate) to report in
      *                       the error message.
+     * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     private void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final Object   expectedPts, int expectedOffset,
             final Object   actualPts,   int actualOffset,
             final int      numPoints,   final CalculationType mode, final int reportedIndex)
+            throws TransformFailure
     {
         final boolean useDouble = isDoubleArray(expectedPts) && isDoubleArray(actualPts);
         final SimpleDirectPosition actual   = new SimpleDirectPosition(dimension);
@@ -1066,7 +1102,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             actual  .setCoordinate(actualPts,   actualOffset,   useDouble);
             expected.setCoordinate(expectedPts, expectedOffset, useDouble);
             normalize(expected, actual, mode);
-            Arrays.fill(tolerances, tolerance);
+            Arrays.fill(tolerances, (mode != CalculationType.STRICT) ? tolerance : 0);
             if (modifier != null) {
                 modifier.adjust(tolerances, expected, mode);
             }
@@ -1319,36 +1355,27 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * wish different tolerance values.
      *
      * @param message  The message to print in case of failure.
-     * @param expected The expected matrix.
-     * @param actual   The actual matrix.
+     * @param expected The expected matrix of derivative values, estimated by finite differences.
+     * @param actual   The actual matrix computed by the transform to be tested.
      * @param tolmat   The tolerance value for each matrix elements, or {@code null} for a strict comparison.
+     * @throws DerivativeFailure If at least one matrix element is not equal to the expected value.
+     *
+     * @see #verifyDerivative(double[])
      *
      * @since 3.1
      */
-    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat) {
+    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat)
+            throws DerivativeFailure
+    {
         final int numRow = expected.getNumRow();
         final int numCol = expected.getNumCol();
         assertEquals("Wrong number of rows.",    numRow, actual.getNumRow());
         assertEquals("Wrong number of columns.", numCol, actual.getNumCol());
-        final SimpleDirectPosition offset = new SimpleDirectPosition(numRow);
         for (int i=0; i<numCol; i++) {
-            for (int j=0; j<numRow; j++) {
-                offset.ordinates[j] = actual.getElement(j, i);
-            }
             for (int j=0; j<numRow; j++) {
                 final double e = expected.getElement(j, i);
                 final double a = actual  .getElement(j, i);
                 final double d = abs(e - a);
-                /*
-                 * Now compare the matrixes elements. Note that we still invoke the tolerance(...)
-                 * method even if the given arguments are not ordinate values. We do that because the
-                 * matrix can be interpreted as the displacement in target CRS space when the ordinate
-                 * values are increased by 1 in the source CRS space, so it still related to ordinates.
-                 *
-                 * The argument value given to the tolerance method is 'actual' rather than 'expected'
-                 * because the actual value is probably more accurate than the one approximated from
-                 * finite differences.
-                 */
                 final double tol = (tolmat != null) ? tolmat.getElement(j, i) : 0;
                 if (!(d <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
                     final StringBuilder buffer = new StringBuilder(512);
@@ -1378,7 +1405,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Invoked by all {@code assertCoordinateEqual(...)} methods before two positions are compared.
+     * Invoked by all {@code assertCoordinateEqual(…)} methods before two positions are compared.
      * This method allows subclasses to replace some equivalent ordinate values by a unique value.
      * For example implementations may ensure that longitude values are contained in the ±180°
      * range, applying 360° shifts if needed.

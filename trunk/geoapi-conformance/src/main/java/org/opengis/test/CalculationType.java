@@ -70,8 +70,18 @@ public enum CalculationType {
     DIRECT_TRANSFORM,
 
     /**
-     * The ordinate values to compare are the result of the
+     * The ordinate values to compare are the result of an
      * {@linkplain MathTransform#inverse() inverse transform}.
      */
-    INVERSE_TRANSFORM
+    INVERSE_TRANSFORM,
+
+    /**
+     * The numbers to compare is a column of a {@linkplain MathTransform#derivative(DirectPosition)
+     * transform derivative}. Each column of the derivative matrix is the displacement in the
+     * <em>target</em> CRS when an ordinate value in the source CRS is increased by one. Those
+     * derivative values are comparable to the target ordinate values: they use the same units
+     * in the same order. Consequently in case of doubt, implementors can use the same policy
+     * than for {@link #DIRECT_TRANSFORM}.
+     */
+    TRANSFORM_DERIVATIVE
 }

@@ -146,7 +146,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * difference</cite> and <cite>backward difference</cite> can be close to 0.25, so we must
      * be prepared to increase this tolerance threshold.
      */
-    private static final double DERIVATIVE_TOLERANCE = 0.01;
+    private static final double DERIVATIVE_TOLERANCE = 0.02;
 
     /**
      * The delta value to use for computing an approximation of the derivative by finite
@@ -897,7 +897,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
      */
     @Override
-    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat) {
+    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat)
+            throws DerivativeFailure
+    {
         if (tolmat != null) {
             final int numRow = tolmat.getNumRow();
             final int numCol = tolmat.getNumCol();
