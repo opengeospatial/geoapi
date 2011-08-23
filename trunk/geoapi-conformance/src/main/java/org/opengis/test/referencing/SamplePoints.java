@@ -272,12 +272,17 @@ final class SamplePoints {
             }
             case 2065: {  // "CRS S-JTSK (Ferro) / Krovak"
                 operation = 19952;
-                fe =         0.00;   λ0 = 24 + 50.0/60;              // 24°30'00"E
+                fe =         0.00;   λ0 = 24 + 50.0/60;              // 24°50'00"E
                 fn =         0.00;   φ0 = 59 + (45 + 27.3548/60)/60; // 59°45'27.355"N
                 e  =   -568990.997;  λ  = 16 + (50 + 59.1790/60)/60; // 16°50'59.179"E
                 n  =  -1050538.643;  φ  = 50 + (12 + 32.4416/60)/60; // 50°12'32.442"N
                 λmin = 12.09; φmin = 47.74;
                 λmax = 22.56; φmax = 51.05;
+                // I found documentation on the web saying that 24°50'E 59°45'27"N is the
+                // cartographic pole, but I did not found a documentation having the .355
+                // digits. Exclude the cartographic pole for now...
+                sourcePoints = new double[] {λ, φ};
+                targetPoints = new double[] {e, n};
                 break;
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
