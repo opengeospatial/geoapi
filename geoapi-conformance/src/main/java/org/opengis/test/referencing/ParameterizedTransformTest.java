@@ -146,7 +146,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * difference</cite> and <cite>backward difference</cite> can be close to 0.25, so we must
      * be prepared to increase this tolerance threshold.
      */
-    private static final double DERIVATIVE_TOLERANCE = 0.02;
+    private static final double DERIVATIVE_TOLERANCE = 0.01;
 
     /**
      * The delta value to use for computing an approximation of the derivative by finite
@@ -521,7 +521,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <b>NOTE:</b> The scale factor given in the EPSG guidance notes is 0.9996013, while the actual
      * value in the EPSG database is 0.9996012717. This tiny difference shifts the expected results
      * by 0.5 cm toward zero compared to the value documented in the EPSG guidance notes. The values
-     * used in this GeoAPI tests has been adjusted accordingly.
+     * used in this GeoAPI test have been adjusted accordingly.
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
