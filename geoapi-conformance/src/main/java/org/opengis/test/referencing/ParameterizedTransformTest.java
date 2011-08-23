@@ -884,7 +884,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * </table></td><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Source ordinates</th>                               <th>Expected results</th></tr>
-     * <tr align="right"><td>24°30'00.000"E<br>59°45'27.355"N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>16°50'59.179"E<br>50°12'32.442"N</td> <td nowrap>-568990.997 m<br>-1050538.643 m</td></tr>
      * </table></td></tr></table>
      *
