@@ -394,7 +394,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td nowrap>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td nowrap>6356752.314245179 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td nowrap>6356752.314247833 m</td></tr>
      * <tr><td>Latitude of natural origin</td>  <td nowrap>0.0°</td></tr>
      * <tr><td>Longitude of natural origin</td> <td nowrap>0.0°</td></tr>
      * <tr><td>False easting</td>               <td nowrap>0.0 m</td></tr>
@@ -505,7 +505,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6377563.396 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356256.909237285 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356256.908909849 m</td></tr>
      * <tr><td>Latitude of natural origin</td>     <td>49.0°</td></tr>
      * <tr><td>Longitude of natural origin</td>    <td>-2.0°</td></tr>
      * <tr><td>Scale factor at natural origin</td> <td>0.9996012717</td></tr>
@@ -545,8 +545,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table cellspacing="15"><tr valign="top"><td>
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>             <td>6378293.645208759 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td>6356617.987679838 m</td></tr>
+     * <tr><td>semi-major axis</td>             <td>6378350.8704 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td>6356675.0184 m</td></tr>
      * <tr><td>Latitude of natural origin</td>  <td>10.441666666666666°</td></tr>
      * <tr><td>Longitude of natural origin</td> <td>-61.33333333333333°</td></tr>
      * <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
@@ -696,7 +696,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td>6356752.314140356 m</td></tr>
+     * <tr><td>semi-minor axis</td>             <td>6356752.314140284 m</td></tr>
      * <tr><td>Latitude of natural origin</td>  <td>52.0°</td></tr>
      * <tr><td>Longitude of natural origin</td> <td>10.0°</td></tr>
      * <tr><td>False easting</td>               <td>4321000.0 m</td></tr>
@@ -731,7 +731,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356752.314245179 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
      * <tr><td>Latitude of natural origin</td>     <td>90.0°</td></tr>
      * <tr><td>Longitude of natural origin</td>    <td>0.0°</td></tr>
      * <tr><td>Scale factor at natural origin</td> <td>0.994</td></tr>
@@ -769,7 +769,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
      * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356752.314245179 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
      * <tr><td>Latitude of standard parallel</td>  <td>-71.0°</td></tr>
      * <tr><td>Longitude of origin</td>            <td>70.0°</td></tr>
      * <tr><td>False easting</td>                  <td>6000000.0 m</td></tr>
@@ -804,7 +804,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356078.962818189 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356078.9626186555 m</td></tr>
      * <tr><td>Latitude of natural origin</td>     <td>52.15616055555556°</td></tr>
      * <tr><td>Longitude of natural origin</td>    <td>5.38763888888889°</td></tr>
      * <tr><td>Scale factor at natural origin</td> <td>0.9999079</td></tr>
@@ -873,7 +873,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <table border="1" cellspacing="0" cellpadding="2">
      * <tr><th>Parameter</th>                                <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                          <td>6377397.155 m</td></tr>
-     * <tr><td>semi-minor axis</td>                          <td>6356078.962818189 m</td></tr>
+     * <tr><td>semi-minor axis</td>                          <td>6356078.9626186555 m</td></tr>
      * <tr><td>Latitude of projection centre</td>            <td>49.5°</td></tr>
      * <tr><td>Longitude of origin</td>                      <td>24.5°</td></tr>
      * <tr><td>Co-latitude of cone axis</td>                 <td>30.288139722222222°</td></tr>

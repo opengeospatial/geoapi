@@ -945,7 +945,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 9818: {  // (not an official EPSG code) using operation method 9818
                 parameters = factory.getDefaultParameters("Polyconic");
                 parameters.parameter("semi-major axis").setValue(6378206.4);
-                parameters.parameter("semi-minor axis").setValue(6378206.4 * (1 - 1/294.97870));
+                parameters.parameter("semi-minor axis").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin") .setValue(0);
                 parameters.parameter("Longitude of natural origin").setValue(0);
                 parameters.parameter("False easting") .setValue(0);
