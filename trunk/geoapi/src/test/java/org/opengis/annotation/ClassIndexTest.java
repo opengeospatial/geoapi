@@ -34,8 +34,10 @@ package org.opengis.annotation;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.Set;
 import java.util.List;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.ArrayList;
@@ -89,7 +91,17 @@ public final class ClassIndexTest implements FileFilter {
      */
     @Test
     public void generateOrVerifyIndex() throws IOException {
-        final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111));
+        final Map<String,String> merged = new HashMap<String,String>();
+        assertNull(merged.put("LI_ProcessStep",         "LE_ProcessStep"));
+        assertNull(merged.put("LI_Source",              "LE_Source"));
+        assertNull(merged.put("MD_Band",                "MI_Band"));
+        assertNull(merged.put("MD_CoverageDescription", "MI_CoverageDescription"));
+        assertNull(merged.put("MD_Georectified",        "MI_Georectified"));
+        assertNull(merged.put("MD_Georeferenceable",    "MI_Georeferenceable"));
+        assertNull(merged.put("MD_ImageDescription",    "MI_ImageDescription"));
+        assertNull(merged.put("MD_Metadata",            "MI_Metadata"));
+
+        final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111), merged);
         final InputStream in = ClassIndexTest.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
             assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +
@@ -159,18 +171,27 @@ public final class ClassIndexTest implements FileFilter {
      * separator in order to keep the build platform-independent.
      *
      * @param  standards The standards to include in the index.
+     * @param  merged List of ISO 19115 interfaces (keys) which were merged with corresponding
+     *         ISO 19115-2 interfaces (values). This map can also be used for the types of any
+     *         other standards that have been merged like the ISO 19115[-2] ones. Note that this
+     *         map will be destroyed by this method.
      * @return The index content.
      */
-    private String createIndex(final Set<Specification> standards) {
+    private String createIndex(final Set<Specification> standards, final Map<String,String> merged) {
         final StringBuilder buffer = new StringBuilder(20000);
         final List<String> lines = new ArrayList<String>();
         for (final Class<?> c : listClasses(UML.class)) {
             final UML uml = c.getAnnotation(UML.class);
             if (uml != null && standards.contains(uml.specification())) {
-                assertTrue(lines.add(buffer.append(uml.identifier()).append('=').append(c.getName()).toString()));
-                buffer.setLength(0);
+                String identifier = uml.identifier();
+                final String classname = c.getName();
+                do {
+                    assertTrue(lines.add(buffer.append(identifier).append('=').append(classname).toString()));
+                    buffer.setLength(0);
+                } while ((identifier = merged.remove(identifier)) != null);
             }
         }
+        assertTrue(merged.toString(), merged.isEmpty());
         Collections.sort(lines);
         for (final String line : lines) {
             buffer.append(line).append('\n');
