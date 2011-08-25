@@ -53,6 +53,7 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.test.TestCase;
 import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
+import org.opengis.test.SupportedOperation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -255,8 +256,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
-                "isAxisSwappingSupported",
-                "isUnofficialEpsgSupported");
+                SupportedOperation.AXIS_SWAPPING.key,
+                SupportedOperation.UNOFFICIAL_EPSG_CODES.key);
         isAxisSwappingSupported   = isEnabled[0];
         isUnofficialEpsgSupported = isEnabled[1];
     }

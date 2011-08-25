@@ -43,6 +43,7 @@ import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ToleranceModifier;
+import org.opengis.test.SupportedOperation;
 import org.opengis.test.CalculationType;
 
 import org.opengis.test.TestCase;
@@ -296,13 +297,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      */
     protected TransformTestCase(final Factory... factories) {
         final boolean[] isEnabled = getEnabledFlags(factories,
-                "isDoubleToDoubleSupported",
-                "isFloatToFloatSupported",
-                "isDoubleToFloatSupported",
-                "isFloatToDoubleSupported",
-                "isOverlappingArraySupported",
-                "isInverseTransformSupported",
-                "isDerivativeSupported");
+                SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE .key,
+                SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT   .key,
+                SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT  .key,
+                SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE  .key,
+                SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY.key,
+                SupportedOperation.INVERSE_TRANSFORM          .key,
+                SupportedOperation.DERIVATIVE_TRANSFORM       .key);
         isDoubleToDoubleSupported   = isEnabled[0];
         isFloatToFloatSupported     = isEnabled[1];
         isDoubleToFloatSupported    = isEnabled[2];

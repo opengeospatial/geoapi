@@ -38,10 +38,10 @@ import org.opengis.test.TestSuite;
 import org.opengis.test.Validators;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.ToleranceModifiers;
+import org.opengis.test.SupportedOperation;
 import org.opengis.test.ImplementationDetails;
 import org.opengis.referencing.operation.MathTransform;
 
-import static org.junit.Assert.*;
 import static org.opengis.test.CalculationType.*;
 
 
@@ -58,10 +58,10 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
      */
     private static final Properties CONFIGURATION = new Properties();
     static {
-        CONFIGURATION.put("isDerivativeSupported",     "false");
-        CONFIGURATION.put("isAxisSwappingSupported",   "false");
-        CONFIGURATION.put("isUnofficialEpsgSupported", "false");
-        assertTrue("Typo in a key name?", ALL_DISABLED.keySet().containsAll(CONFIGURATION.keySet()));
+        SupportedOperation.unsupported(CONFIGURATION,
+                SupportedOperation.DERIVATIVE_TRANSFORM,
+                SupportedOperation.AXIS_SWAPPING,
+                SupportedOperation.UNOFFICIAL_EPSG_CODES);
         /*
          * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
          */
