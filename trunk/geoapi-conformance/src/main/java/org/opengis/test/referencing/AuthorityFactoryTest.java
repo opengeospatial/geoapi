@@ -206,8 +206,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * {@code true} if {@link #crsFactory} and {@link #csFactory} supports the creating of
      * coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is set
      * to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
-     * axis order or South Oriented CRS will test for (<var>x</var>,<var>y</var>) axis order
-     * and North orientation instead.
+     * axis order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
+     * axis order and <cite>North Oriented</cite> CRS in their test.
      *
      * @since 3.1
      */
