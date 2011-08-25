@@ -32,6 +32,7 @@
 package org.opengis.test;
 
 import java.util.Properties;
+import org.opengis.util.Factory;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
@@ -40,7 +41,16 @@ import org.opengis.referencing.operation.MathTransformFactory;
 
 /**
  * The keys that can be used in a {@link Properties} map for declaring which aspects of a
- * particular implementation can be tested.
+ * particular implementation can be tested. Implementors will typically use this enumeration
+ * in their {@link ImplementationDetails#configuration(Factory[])} method as in the example
+ * below:
+ *
+ * <blockquote><pre>&#64;Override
+ *Properties configuration(Factory... factories) {
+ *    Properties configuration = new Properties();
+ *    unsupported(configuration, DERIVATIVE_TRANSFORM, NON_SQUARE_MATRIX, UNOFFICIAL_EPSG_CODES);
+ *    return configuration;
+ *}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -49,6 +59,8 @@ import org.opengis.referencing.operation.MathTransformFactory;
 public enum SupportedOperation {
     /**
      * Whatever {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
+     * Implementors can set the value for this key to {@code false} in order to test
+     * {@linkplain MathTransform math transforms} which are not yet fully implemented.
      *
      * @see org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported
      */
@@ -56,6 +68,8 @@ public enum SupportedOperation {
 
     /**
      * Whatever {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
+     * Implementors can set the value for this key to {@code false} in order to test
+     * {@linkplain MathTransform math transforms} which are not yet fully implemented.
      *
      * @see org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported
      */
@@ -63,6 +77,8 @@ public enum SupportedOperation {
 
     /**
      * Whatever {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
+     * Implementors can set the value for this key to {@code false} in order to test
+     * {@linkplain MathTransform math transforms} which are not yet fully implemented.
      *
      * @see org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported
      */
@@ -70,6 +86,8 @@ public enum SupportedOperation {
 
     /**
      * Whatever {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
+     * Implementors can set the value for this key to {@code false} in order to test
+     * {@linkplain MathTransform math transforms} which are not yet fully implemented.
      *
      * @see org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported
      */
@@ -77,6 +95,18 @@ public enum SupportedOperation {
 
     /**
      * Whatever source and destination arrays can overlap in {@link MathTransform} operations.
+     * Overlapping occur when:
+     * <p>
+     * <ul>
+     *   <li>The invoked method is one of the following:
+     *     <ul>
+     *       <li>{@link MathTransform#transform(double[], int, double[], int, int)}</li>
+     *       <li>{@link MathTransform#transform(float[], int, float[], int, int)}</li>
+     *     </ul></li>
+     *   <li>The {@code srcPts} and {@code dstPts} arguments are references to the same array.</li>
+     *   <li>The {@code srcOff} and {@code dstOff} offsets are such that the source region of
+     *       the array overlaps with the target region.</li>
+     * </ul>
      *
      * @see org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported
      */
@@ -84,6 +114,8 @@ public enum SupportedOperation {
 
     /**
      * Whatever {@link MathTransform#inverse()} is supported.
+     * Implementors can set the value for this key to {@code false} in order to test
+     * {@linkplain MathTransform math transforms} which are not yet fully implemented.
      *
      * @see org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported
      */
@@ -91,6 +123,8 @@ public enum SupportedOperation {
 
     /**
      * Whatever {@link MathTransform#derivative(DirectPosition)} is supported.
+     * Implementors can set the value for this key to {@code false} in order to test
+     * {@linkplain MathTransform math transforms} which are not yet fully implemented.
      *
      * @see org.opengis.test.referencing.TransformTestCase#isDerivativeSupported
      */
@@ -104,14 +138,22 @@ public enum SupportedOperation {
     NON_SQUARE_MATRIX("isNonSquareMatrixSupported"),
 
     /**
-     * Whatever (<var>y</var>,<var>x</var>) axis order is supported.
+     * Whatever (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
+     * supported, then the tests that would normally expect (<var>y</var>,<var>x</var>) axis
+     * order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
+     * axis order and <cite>North Oriented</cite> CRS in their test.
      *
      * @see org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported
      */
     AXIS_SWAPPING("isAxisSwappingSupported"),
 
     /**
-     * Whatever unofficial EPSG codes (like Miller projection) are supported.
+     * Whatever the {@link org.opengis.referencing.AuthorityFactory} support the objects creation
+     * from unofficial EPSG codes. Some example of unofficial codes used in this test suite are:
+     * <p>
+     * <ul>
+     *   <li>310642901 - Miller projection</li>
+     * </ul>
      *
      * @see org.opengis.test.referencing.AuthorityFactoryTest#isUnofficialEpsgSupported
      */

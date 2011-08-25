@@ -184,6 +184,10 @@ public strictfp abstract class TestCase {
      * returns a {@linkplain ImplementationDetails#configuration configuration} properties map
      * having the value {@code "false"} for a given property, then the boolean value corresponding
      * to this property is set to {@code false}.
+     * <p>
+     * The {@code properties} argument is typically some {@link SupportedOperation#key} values.
+     * The {@link String} argument type is used instead than the {@code SupportedOperation} enum
+     * type in order to allow implementors to use their own keys if they wish.
      *
      * @param  factories  The factories used by the test case to execute.
      * @param  properties The key for which the flags are wanted.
