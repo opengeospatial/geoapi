@@ -42,6 +42,8 @@ import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.test.SupportedOperation;
+
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -149,7 +151,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         super(factory);
         this.factory = factory;
         final boolean[] isEnabled = getEnabledFlags(new MathTransformFactory[] {factory},
-                "isNonSquareMatrixSupported");
+                SupportedOperation.NON_SQUARE_MATRIX.key);
         isNonSquareMatrixSupported = isEnabled[0];
     }
 

@@ -32,15 +32,10 @@
 package org.opengis.test;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.Properties;
-import java.util.Collections;
 
 import org.opengis.util.Factory;
-import org.opengis.geometry.DirectPosition;
-import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
-import org.opengis.referencing.operation.MathTransformFactory;
 
 
 /**
@@ -77,41 +72,6 @@ import org.opengis.referencing.operation.MathTransformFactory;
  */
 public interface ImplementationDetails {
     /**
-     * A map of all flags supported by the {@code geoapi-conformance} module, associated to
-     * the {@code "false"} value. This map provides a way to disable all configurable tests
-     * before to enable them on case-by-case basis, as opposed to the default approach which
-     * is to disable tests on a case-by-case basis. Examples:
-     *
-     * <p><b>All tests initially enabled, then disable some of them:</b></p>
-     * <blockquote><pre>Properties config = new Properties();
-     *config.setProperty("isOverlappingArraySupported", "false");
-     *config.setProperty("isDerivativeSupported", "false");
-     *assertTrue(ALL_DISABLED.keySet().containsAll(config.keySet());</pre></blockquote>
-     *
-     * <p><b>All configurable tests initially disabled, then enable some of them:</b></p>
-     * <blockquote><pre>Properties config = new Properties();
-     *config.putAll(ALL_DISABLED);
-     *assertNotNull(config.setProperty("isDoubleToDoubleSupported", "true"));
-     *assertNotNull(config.setProperty("isFloatToFloatSupported", "true"));</pre></blockquote>
-     *
-     * The {@code assertNotNull} call is an opportunist way to ensure that the argument value
-     * is not misspelled. An equivalent check was performed in the first example using the
-     * {@code assertTrue} statement after the {@code Properties} object has been fully constructed.
-     */
-    Map<String,String> ALL_DISABLED = Collections.unmodifiableMap(TestCase.toMap(new String[] {
-        "isDoubleToDoubleSupported",
-        "isFloatToFloatSupported",
-        "isDoubleToFloatSupported",
-        "isFloatToDoubleSupported",
-        "isOverlappingArraySupported",
-        "isInverseTransformSupported",
-        "isDerivativeSupported",
-        "isNonSquareMatrixSupported",
-        "isAxisSwappingSupported",
-        "isUnofficialEpsgSupported"
-    }, "false"));
-
-    /**
      * Returns {@code true} if the given factory can be tested. Implementors shall return
      * {@code false} only when they really want to exclude a particular factory. For every
      * unknown factory, this method should return {@code true}.
@@ -132,20 +92,7 @@ public interface ImplementationDetails {
     /**
      * Returns the set of tests that should be disabled, or {@code null} if none.
      * If non-null, then the returned map can assign the value {@code "false"} to
-     * any of the following keys:
-     * <p>
-     * <table cellspacing="0" cellpadding="1">
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported    isDoubleToDoubleSupported}:&nbsp;</td>  <td>whatever {@link MathTransform#transform(double[],int,double[],int,int)} is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported      isFloatToFloatSupported}:&nbsp;</td>    <td>whatever {@link MathTransform#transform(float[],int,float[],int,int)} is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported     isDoubleToFloatSupported}:&nbsp;</td>   <td>whatever {@link MathTransform#transform(double[],int,float[],int,int)} is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported     isFloatToDoubleSupported}:&nbsp;</td>   <td>whatever {@link MathTransform#transform(float[],int,double[],int,int)} is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported  isOverlappingArraySupported}:&nbsp;</td><td>whatever source and destination arrays can overlap in {@link MathTransform} operations.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported  isInverseTransformSupported}:&nbsp;</td><td>whatever {@link MathTransform#inverse()} is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.TransformTestCase#isDerivativeSupported        isDerivativeSupported}:&nbsp;</td>      <td>whatever {@link MathTransform#derivative(DirectPosition)} is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.AffineTransformTest#isNonSquareMatrixSupported isNonSquareMatrixSupported}:&nbsp;</td> <td>whatever {@link MathTransformFactory#createAffineTransform(Matrix)} accepts non-square matrixes.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported   isAxisSwappingSupported}:&nbsp;</td>    <td>whatever (<var>y</var>,<var>x</var>) axis order is supported.</td></tr>
-     * <tr><td>&#8226;&nbsp;{@link org.opengis.test.referencing.AuthorityFactoryTest#isUnofficialEpsgSupported isUnofficialEpsgSupported}:&nbsp;</td>  <td>whatever unofficial EPSG codes (like Miller projection) are supported.</td></tr>
-     * </table>
+     * any of the {@link SupportedOperation#key}.
      * <p>
      * If more than one {@code ImplementationDetails} is found on the classpath, then the above
      * tests are enabled only if none of the {@code ImplementationDetails.configuration(...)}
