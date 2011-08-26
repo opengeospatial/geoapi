@@ -153,10 +153,12 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * difference, in metres. The conversion from metres to degrees is performed using
      * the standard length of a nautical mile.
      * <p>
-     * Experience show that smaller values <em>decrease</em> the precision, because of
-     * floating point errors when subtracting big numbers that are close in magnitude.
+     * The 100 metres value has been determined empirically as a good compromise for map
+     * projections.  Experience suggests that smaller values often <em>decrease</em> the
+     * precision, because of floating point errors when subtracting big numbers that are
+     * close in magnitude.
      */
-    private static final double DERIVATIVE_DELTA = 1;
+    private static final double DERIVATIVE_DELTA = 100;
 
     /**
      * The factory for creating {@link MathTransform} objects, or {@code null} if none.
