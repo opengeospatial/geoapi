@@ -215,10 +215,28 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unconditionally returns {@code null}, since this functionality is not supported yet.
+         * Returns the name of the CRS identified by the given code. The default implementation
+         * returns a non-null value only for a few common codes.
          */
         @Override
-        public InternationalString getDescriptionText(String code) throws FactoryException {
+        public InternationalString getDescriptionText(final String code) throws FactoryException {
+            final String name = getName(code);
+            return (name != null) ? new SimpleCitation(code) : null;
+        }
+
+        /**
+         * Returns a hard-coded name for the given code, or {@code null} if none.
+         * Only the most frequent CRS are recognized by this method.
+         */
+        private static String getName(String code) {
+            final int s = code.indexOf(':');
+            if (s<0 || code.substring(0,s).trim().equalsIgnoreCase("epsg")) try {
+                switch (Integer.parseInt(code.substring(s+1).trim())) {
+                    case 4326: return "WGS84";
+                }
+            } catch (NumberFormatException e) {
+                // Ignore - this is okay for this method contract.
+            }
             return null;
         }
 
@@ -241,8 +259,13 @@ public class PJFactory implements Factory {
                 codespace = code.substring(0, s).trim();
                 code = code.substring(s+1).trim();
             }
+            final String definition = "+init=" + codespace + ':' + code;
+            final String name = getName(code);
+            if (name != null) {
+                code = name;
+            }
             try {
-                return createCRS(createIdentifier(codespace, code), "+init=" + codespace + ':' + code, 2);
+                return createCRS(createIdentifier(codespace, code), definition, 2);
             } catch (FactoryException e) {
                 throw new NoSuchAuthorityCodeException(e.getMessage(), codespace, code);
             }

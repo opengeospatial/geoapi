@@ -52,6 +52,7 @@ public class PJDatumTest {
     private static void assertIsWGS84(final PJDatum pj) {
         assertEquals("+proj=latlong +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0", pj.getDefinition().trim());
         assertEquals("Lat/long (Geodetic alias)", pj.toString().trim());
+        assertEquals("WGS84",                 pj.getName().toString());
         assertEquals(PJDatum.Type.GEOGRAPHIC, pj.getType());
         assertEquals(6378137.0,               pj.getSemiMajorAxis(),     1E-9);
         assertEquals(6356752.314245179,       pj.getSemiMinorAxis(),     1E-9);
