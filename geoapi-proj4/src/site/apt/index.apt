@@ -4,7 +4,89 @@
 
 Proj.4 bindings
 
-  This module is a "proof of concept" implementation of GeoAPI referencing interfaces using
-  JNI binding to the Proj.4 library. The <<<org.proj4>>> package contains the native methods,
-  mostly independent from GeoAPI interfaces. The <<<org.opengis.wrapper.proj4>>> package contains
-  GeoAPI implementations on top of the <<<org.proj4>>> package.
+  This module is a "proof of concept" implementation of GeoAPI referencing interfaces using JNI
+  bindings to the {{{http://proj.osgeo.org/}Proj4}} library. This module contains two packages:
+
+    * The <<<org.proj4>>> package contains a slightly modified copy of the classes provided in the
+      <<<jniwrap>>> directory of the Proj.4 project. The slight modifications are binary-compatible.
+
+    * The <<<org.opengis.wrapper.proj4>>> package contains implementations of GeoAPI interfaces
+      on top of the <<<org.proj4>>> package.
+
+  This module requires Proj.4 version 4.8.0 or above.
+
+
+* Usage example
+
+  Proj.4 functionality can be used directly (without GeoAPI interfaces) by the
+  {{{./apidocs/org/proj4/PJ.html}PJ}} class as below:
+
++--------------------------------------------------------------------------------------------------+
+package org.myproject;
+
+import org.proj4.*;
+import java.util.Arrays;
+
+
+/**
+ * Converts coordinates from EPSG:32632 (WGS 84 / UTM zone 32N) to WGS84,
+ * then prints the result to the standard output stream.
+ */
+public class MyApp {
+    public static void main(String[] args) throws PJException {
+        PJ sourcePJ = new PJ("+init=epsg:32632");           // (x,y) axis order
+        PJ targetPJ = new PJ("+proj=latlong +datum=WGS84"); // (λ,φ) axis order
+        double[] coordinates = {
+            500000,   0,   // First coordinate
+            400000,  10,   // Second coordinate
+            600000, -10    // Third coordinate
+        };
+        sourcePJ.transform(targetPJ, 2, coordinates, 0, 3);
+        System.out.println(Arrays.toString(coordinates));
+    }
+}
++--------------------------------------------------------------------------------------------------+
+
+
+  The above example was specific to the Proj.4 binding API. The CRS definition in particular
+  uses a Proj.4-specific syntax. The same functionality can be achieved through the
+  implementation-neutral GeoAPI interfaces as below:
+
++--------------------------------------------------------------------------------------------------+
+package org.myproject;
+
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.referencing.operation.TransformException;
+import org.opengis.util.FactoryException;
+import org.opengis.wrapper.proj4.PJFactory;
+import java.util.Arrays;
+
+
+/**
+ * Converts coordinates from EPSG:32632 (WGS 84 / UTM zone 32N) to WGS84,
+ * then prints the result to the standard output stream.
+ */
+public class MyApp {
+    public static void main(String[] args) throws FactoryException, TransformException {
+        // The following lines instantiate directly the factories for the Proj.4 bindings
+        // for simplicity reasons, but a real application would be encouraged to use some
+        // kind of Service Registry instead.
+        CRSAuthorityFactory crsFactory       = new PJFactory.EPSG();
+        CoordinateOperationFactory opFactory = new PJFactory.Operation();
+
+        CoordinateReferenceSystem sourceCRS = crsFactory.createCoordinateReferenceSystem("32632");
+        CoordinateReferenceSystem targetCRS = crsFactory.createCoordinateReferenceSystem("4326");
+        CoordinateOperation operation = opFactory.createOperation(sourceCRS, targetCRS);
+        double[] coordinates = {
+            500000,   0,   // First coordinate
+            400000,  10,   // Second coordinate
+            600000, -10    // Third coordinate
+        };
+        operation.getMathTransform().transform(coordinates, 0, coordinates, 0, 3);
+        System.out.println(Arrays.toString(coordinates));
+    }
+}
++--------------------------------------------------------------------------------------------------+

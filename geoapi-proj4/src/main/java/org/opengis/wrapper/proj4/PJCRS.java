@@ -33,7 +33,6 @@ package org.opengis.wrapper.proj4;
 
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
-import org.opengis.util.FactoryException;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
@@ -175,10 +174,8 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
          */
         @Override
         public synchronized Geographic getBaseCRS() {
-            if (baseCRS == null) try {
+            if (baseCRS == null) {
                 baseCRS = new Geographic(name, new PJDatum(pj), axes.length);
-            } catch (FactoryException e) {
-                throw new IllegalStateException(e.getLocalizedMessage(), e);
             }
             return baseCRS;
         }

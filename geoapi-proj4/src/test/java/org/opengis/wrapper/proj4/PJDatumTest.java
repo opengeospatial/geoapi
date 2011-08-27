@@ -32,7 +32,6 @@
 package org.opengis.wrapper.proj4;
 
 import javax.measure.unit.SI;
-import org.opengis.util.FactoryException;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -65,22 +64,18 @@ public class PJDatumTest {
 
     /**
      * Tests the creation of a simple WGS84 object.
-     *
-     * @throws FactoryException Should never happen.
      */
     @Test
-    public void testWGS84() throws FactoryException {
+    public void testWGS84() {
         final PJDatum pj = new PJDatum(null, "+proj=latlong +datum=WGS84");
         assertIsWGS84(pj);
     }
 
     /**
      * Tests the creation of the EPSG:3395 projected CRS
-     *
-     * @throws FactoryException Should never happen.
      */
     @Test
-    public void testEPSG3395() throws FactoryException {
+    public void testEPSG3395() {
         final PJDatum pj = new PJDatum(null, "+init=epsg:3395");
         assertEquals(PJDatum.Type.PROJECTED, pj.getType());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
@@ -90,11 +85,9 @@ public class PJDatumTest {
     /**
      * Tests the {@link PJDatum#getLinearUnit(double)} method using values close but not
      * identical to the expected values.
-     *
-     * @throws FactoryException Should never happen.
      */
     @Test
-    public void testGetLinearUnit() throws FactoryException {
+    public void testGetLinearUnit() {
         PJDatum pj;
         pj = new PJDatum(null, "+proj=merc +to_meter=" + (1 + PJDatum.EPS/2));
         assertSame(SI.METRE, pj.getLinearUnit(false));

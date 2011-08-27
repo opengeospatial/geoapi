@@ -28,13 +28,24 @@
  *    publicity pertaining to the software without specific, written prior permission.
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
+ *
+ *
+ *    Dual licensing:
+ *    A copy of this file is given to the Proj.4 project under their own Open Source license.
+ *    Because the "org.proj4" namespace is the property of the Proj.4 project, change to this
+ *    file shall be made in collaboration with the Proj.4 project.
  */
 
 /**
- * Wrappers for the <a href="http://proj.osgeo.org/">Proj4</a> library almost without GeoAPI
- * dependency. The only GeoAPI dependencies are the {@link org.opengis.util.FactoryException}
- * and {@link org.opengis.referencing.operation.TransformException} classes. Those dependencies
- * can easily be removed without breaking the JNI native code.
+ * Wrappers for the <a href="http://proj.osgeo.org/">Proj4</a> library. A copy of this package
+ * exists also in the <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/jniwrap/">jniwrap</a>
+ * directory of the Proj.4 project. This GeoAPI package differs from the Proj.4 package in the
+ * following (note that this is a compatible difference):
+ * <p>
+ * <ul>
+ *   <li>{@link org.proj4.PJException} extends {@link org.opengis.referencing.operation.TransformException}
+ *       instead than {@link java.lang.Exception}.</li>
+ * </ul>
  * <p>
  * This package is for internal use by the {@link org.opengis.wrapper.proj4} package. It should
  * generally not be used directly, unless an implementor wants more direct access to the Proj.4
