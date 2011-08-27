@@ -63,7 +63,7 @@ JNIEXPORT jlong JNICALL Java_org_proj4_PJ_allocatePJ
   (JNIEnv *env, jclass class, jstring definition)
 {
     const char *def_utf = (*env)->GetStringUTFChars(env, definition, NULL);
-    if (!def_utf) return 0;
+    if (!def_utf) return 0; // OutOfMemoryError already thrown.
     PJ *pj = pj_init_plus(def_utf);
     (*env)->ReleaseStringUTFChars(env, definition, def_utf);
     return (jlong) pj;
@@ -100,7 +100,9 @@ JNIEXPORT jstring JNICALL Java_org_proj4_PJ_getDefinition
     if (pj) {
         const char *desc = pj_get_def(pj, 0);
         if (desc) {
-            return (*env)->NewStringUTF(env, desc);
+            jstring str = (*env)->NewStringUTF(env, desc);
+            pj_dalloc(desc);
+            return str;
         }
     }
     return NULL;
