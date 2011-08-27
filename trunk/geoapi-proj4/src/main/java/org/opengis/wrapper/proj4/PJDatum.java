@@ -43,7 +43,6 @@ import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
 import org.proj4.PJ;
-import org.opengis.util.FactoryException;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.datum.Ellipsoid;
@@ -116,7 +115,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      * @param identifier The datum identifier, or {@code null} for inferring it from the definition.
      * @param definition The Proj4 definition string.
      */
-    PJDatum(ReferenceIdentifier name, final String definition) throws FactoryException {
+    PJDatum(ReferenceIdentifier name, final String definition) throws IllegalArgumentException {
         super(definition);
         this.definition = super.getDefinition();
         if (name == null) {
@@ -131,7 +130,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     /**
      * Creates the base CRS of the given projected CRS.
      */
-    PJDatum(final PJDatum projected) throws FactoryException {
+    PJDatum(final PJDatum projected) throws IllegalArgumentException {
         super(projected, Type.GEOGRAPHIC);
         definition = super.getDefinition();
         name = projected.name;

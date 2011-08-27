@@ -28,10 +28,14 @@
  *    publicity pertaining to the software without specific, written prior permission.
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
+ *
+ *
+ *    Dual licensing:
+ *    A copy of this file is given to the Proj.4 project under their own Open Source license.
+ *    Because the "org.proj4" namespace is the property of the Proj.4 project, change to this
+ *    file shall be made in collaboration with the Proj.4 project.
  */
 package org.proj4;
-
-import org.opengis.util.FactoryException;
 
 
 /**
@@ -77,12 +81,12 @@ public class PJ {
      * Creates a new {@code PJ} structure from the given Proj4 definition string.
      *
      * @param  definition The Proj.4 definition string.
-     * @throws FactoryException If the PJ structure can not be created from the given string.
+     * @throws IllegalArgumentException If the PJ structure can not be created from the given string.
      */
-    public PJ(final String definition) throws FactoryException {
+    public PJ(final String definition) throws IllegalArgumentException {
         ptr = allocatePJ(definition);
         if (ptr == 0) {
-            throw new FactoryException(definition);
+            throw new IllegalArgumentException(definition);
         }
     }
 
@@ -94,9 +98,9 @@ public class PJ {
      *
      * @param  crs The CRS (usually projected) from which to derive a new CRS.
      * @param  type The type of the new CRS. Currently, only {@link Type#GEOGRAPHIC} is supported.
-     * @throws FactoryException If the PJ structure can not be created.
+     * @throws IllegalArgumentException If the PJ structure can not be created.
      */
-    public PJ(final PJ crs, final Type type) throws FactoryException {
+    public PJ(final PJ crs, final Type type) throws IllegalArgumentException {
         if (crs == null) {
             // TODO: Use Objects with JDK 7.
             throw new NullPointerException("The CRS must be non-null.");
@@ -106,7 +110,7 @@ public class PJ {
         }
         ptr = allocateGeoPJ(crs);
         if (ptr == 0) {
-            throw new FactoryException(crs.getLastError());
+            throw new IllegalArgumentException(crs.getLastError());
         }
     }
 

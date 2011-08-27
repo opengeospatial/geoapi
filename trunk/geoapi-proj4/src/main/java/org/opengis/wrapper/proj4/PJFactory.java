@@ -112,10 +112,9 @@ public class PJFactory implements Factory {
      * @return A CRS created from the given definition string and number of dimension.
      * @throws NullPointerException If the definition string is {@code null}.
      * @throws IllegalArgumentException If one of the given argument has an invalid value.
-     * @throws FactoryException If the creation of the CRS object failed for an other reason.
      */
     public static CoordinateReferenceSystem createCRS(final ReferenceIdentifier identifier,
-            String definition, final int dimension) throws FactoryException
+            String definition, final int dimension) throws IllegalArgumentException
     {
         if ((definition = definition.trim()).isEmpty()) {
             throw new IllegalArgumentException("The definition must be non-empty.");
@@ -130,7 +129,7 @@ public class PJFactory implements Factory {
             case GEOCENTRIC: crs = new PJCRS.Geocentric(identifier, datum, dimension); break;
             case GEOGRAPHIC: crs = new PJCRS.Geographic(identifier, datum, dimension); break;
             case PROJECTED:  crs = new PJCRS.Projected (identifier, datum, dimension); break;
-            default: throw new IllegalStateException("Unknown CRS type: " + type);
+            default: throw new UnsupportedOperationException("Unknown CRS type: " + type);
         }
         return crs;
     }
@@ -144,17 +143,13 @@ public class PJFactory implements Factory {
      * @param  targetCRS  The target coordinate reference system.
      * @return A coordinate operation for transforming coordinates from the given source CRS
      *         to the given target CRS.
-     * @throws FactoryException If the given CRS are not instances created by this class.
+     * @throws ClassCastException If the given CRS are not instances created by this class.
      */
     public static CoordinateOperation createOperation(final ReferenceIdentifier identifier,
             final CoordinateReferenceSystem sourceCRS, final CoordinateReferenceSystem targetCRS)
-            throws FactoryException
+            throws ClassCastException
     {
-        try {
-            return new PJOperation(identifier, (PJCRS) sourceCRS, (PJCRS) targetCRS);
-        } catch (ClassCastException e) {
-            throw new FactoryException("The CRS must be instances created by PJFactory.", e);
-        }
+        return new PJOperation(identifier, (PJCRS) sourceCRS, (PJCRS) targetCRS);
     }
 
     /**
@@ -266,7 +261,7 @@ public class PJFactory implements Factory {
             }
             try {
                 return createCRS(createIdentifier(codespace, code), definition, 2);
-            } catch (FactoryException e) {
+            } catch (IllegalArgumentException e) {
                 throw new NoSuchAuthorityCodeException(e.getMessage(), codespace, code);
             }
         }
@@ -356,7 +351,11 @@ public class PJFactory implements Factory {
                 if (tgt != null) buffer.append(buffer.length() == 0 ? "To " : " to ").append(tgt);
                 id = createIdentifier(space, buffer.toString());
             }
-            return createOperation(id, sourceCRS, targetCRS);
+            try {
+                return createOperation(id, sourceCRS, targetCRS);
+            } catch (ClassCastException e) {
+                throw new FactoryException("The CRS must be instances created by PJFactory.", e);
+            }
         }
 
         /**

@@ -28,6 +28,12 @@
  *    publicity pertaining to the software without specific, written prior permission.
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
+ *
+ *
+ *    Dual licensing:
+ *    A copy of this file is given to the Proj.4 project under their own Open Source license.
+ *    Because the "org.proj4" namespace is the property of the Proj.4 project, change to this
+ *    file shall be made in collaboration with the Proj.4 project.
  */
 package org.proj4;
 

@@ -13,10 +13,10 @@
 #include "org_proj4_PJ.h"
 #include <jni.h>
 
-PJ_CVSID("$Id$");
-
 #define PJ_FIELD_NAME "ptr"
 #define PJ_FIELD_TYPE "J"
+
+PJ_CVSID("$Id$");
 
 /*!
  * \brief
