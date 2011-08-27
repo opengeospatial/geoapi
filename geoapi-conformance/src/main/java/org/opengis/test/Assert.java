@@ -261,8 +261,8 @@ public strictfp class Assert extends org.junit.Assert {
                 int valCode;
                 do {
                     if (valOffset >= valLength) {
-                        fail(nonNull(message) + "Missing trailing string: \"" +
-                                expected.subSequence(expOffset, expLength) + "\".");
+                    fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + value + "\". "
+                            + "Missing part: \"" + expected.subSequence(expOffset, expLength) + "\".");
                         return;
                     }
                     valCode = Character.codePointAt(value, valOffset);
@@ -281,7 +281,8 @@ public strictfp class Assert extends org.junit.Assert {
         while (valOffset < valLength) {
             final int valCode = Character.codePointAt(value, valOffset);
             if (isUnicodeIdentifier(valCode, valPart)) {
-                fail(nonNull(message) + "Unexpected trailing string: \"" + value.subSequence(valOffset, valLength) + "\".");
+                fail(nonNull(message) + "Expected \"" + expected + "\", but found it with a unexpected "
+                        + "trailing string: \"" + value.subSequence(valOffset, valLength) + "\".");
             }
             valOffset += Character.charCount(valCode);
         }

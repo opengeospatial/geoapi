@@ -56,12 +56,12 @@ public strictfp class AssertTest {
         try {
             Assert.assertLenientEquals(null, "WGS84 and more" , "WGS84" );
         } catch (AssertionError e) {
-            assertEquals("Missing trailing string: \"and more\".", e.getMessage());
+            assertEquals("Expected \"WGS84 and more\" but got \"WGS84\". Missing part: \"and more\".", e.getMessage());
         }
         try {
             Assert.assertLenientEquals(null, "WGS84" , "WGS84 and more" );
         } catch (AssertionError e) {
-            assertEquals("Unexpected trailing string: \"and more\".", e.getMessage());
+            assertEquals("Expected \"WGS84\", but found it with a unexpected trailing string: \"and more\".", e.getMessage());
         }
         try {
             Assert.assertLenientEquals(null, "WGS84" , "WBS84" );

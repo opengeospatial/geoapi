@@ -46,9 +46,9 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * below:
  *
  * <blockquote><pre>&#64;Override
- *Properties configuration(Factory... factories) {
+ *public {@linkplain Properties} configuration({@linkplain Factory}... factories) {
  *    Properties configuration = new Properties();
- *    unsupported(configuration, DERIVATIVE_TRANSFORM, NON_SQUARE_MATRIX, UNOFFICIAL_EPSG_CODES);
+ *    {@linkplain #unsupported unsupported}(configuration, {@linkplain #DERIVATIVE_TRANSFORM}, {@linkplain #NON_SQUARE_MATRIX}, {@linkplain #UNOFFICIAL_EPSG_CODES});
  *    return configuration;
  *}</pre></blockquote>
  *

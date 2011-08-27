@@ -108,17 +108,23 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     /**
      * The Proj4 parameters, formatted at construction time because often used.
      */
-    final String definition;
+    private final String definition;
 
     /**
      * Creates a new {@code PJ} structure from the given Proj4 data.
      *
-     * @param identifier The datum identifier, or {@code null} if none.
+     * @param identifier The datum identifier, or {@code null} for inferring it from the definition.
      * @param definition The Proj4 definition string.
      */
-    PJDatum(final ReferenceIdentifier name, final String definition) throws FactoryException {
+    PJDatum(ReferenceIdentifier name, final String definition) throws FactoryException {
         super(definition);
-        this.definition = getDefinition();
+        this.definition = super.getDefinition();
+        if (name == null) {
+            final String param = getParameter("+datum=");
+            if (param != null) {
+                name = new PJIdentifier(param);
+            }
+        }
         this.name = name;
     }
 
@@ -127,8 +133,17 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      */
     PJDatum(final PJDatum projected) throws FactoryException {
         super(projected, Type.GEOGRAPHIC);
-        definition = getDefinition();
+        definition = super.getDefinition();
         name = projected.name;
+    }
+
+    /**
+     * Returns the definition cached at construction time. This avoid the need to
+     * recreate the definition from Proj.4 native definition at every method call.
+     */
+    @Override
+    public String getDefinition() {
+        return definition;
     }
 
     /**
