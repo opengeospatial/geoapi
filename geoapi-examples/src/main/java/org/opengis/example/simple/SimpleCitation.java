@@ -42,6 +42,12 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
     private static final long serialVersionUID = 5270363538303937381L;
 
     /**
+     * The <cite>European Petroleum Survey Group</cite> authority. This authority provides
+     * many CRS definitions.
+     */
+    public static final Citation EPSG = new SimpleCitation("EPSG");
+
+    /**
      * The citation title to be returned by {@link #getTitle()} as an {@link InternationalString}.
      * This is also the value returned by the {@code InternationalString} methods like
      * {@link #toString(Locale)} and {@link #toString()}.
@@ -60,7 +66,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * @param title The citation title to be returned indirectly by {@link #getTitle()}.
      */
     public SimpleCitation(final String title) {
-//      Objects.requireNonNull(title); // JDK7
+        Objects.requireNonNull(title);
         this.title = title;
     }
 

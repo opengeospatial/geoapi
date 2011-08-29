@@ -20,7 +20,7 @@ import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * Simple base class of referencing objects containing only the {@linkplain #getName() name}
+ * Base class of referencing objects, which contain only the {@linkplain #getName() name}
  * attribute. All other {@link IdentifiedObject} attributes are {@code null} or empty collections.
  * <p>
  * Since the {@linkplain #getName() name} is the only identifier contained by this class,
@@ -58,10 +58,10 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Creates a new object of the given authority and name.
      *
      * @param authority The value to be returned by {@link #getAuthority()}, or {@code null} if none.
-     * @param name The name of the new object.
+     * @param name      The name of the new object.
      */
     public SimpleIdentifiedObject(final Citation authority, final String name) {
-//      Objects.requireNonNull(name); // JDK7
+        Objects.requireNonNull(name);
         this.authority = authority;
         this.code = name;
     }
@@ -213,7 +213,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     public boolean equals(final Object object) {
         if (object != null && object.getClass() == getClass()) {
             final SimpleIdentifiedObject other = (SimpleIdentifiedObject) object;
-            return code.equals(other.code) && SimplePosition.equals(authority, other.authority);
+            return code.equals(other.code) && Objects.equals(authority, other.authority);
         }
         return false;
     }

@@ -8,7 +8,11 @@
 package org.opengis.example.simple;
 
 import org.junit.Test;
-import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.cs.RangeMeaning;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.EllipsoidalCS;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.datum.GeodeticDatum;
 
 import static org.junit.Assert.*;
 
@@ -22,21 +26,30 @@ import static org.junit.Assert.*;
  */
 public class SimpleTest {
     /**
-     * Tests the creation of a simple WGS84 CRS.
+     * Tests the {@link SimpleDatum#WGS84} constant.
      */
     @Test
-    public void testCRS() {
-        final SimpleCitation space = new SimpleCitation("MyAuthority");
-        final SimpleDatum    datum = new SimpleDatum(space, "WGS84", 6378137.0, 298.257223563);
-        final CoordinateSystemAxis latitude  = null; // TODO: not yet defined.
-        final CoordinateSystemAxis longitude = null; // TODO: not yet defined.
-        final SimpleCRS      crs   = new SimpleCRS(space, "WGS84", datum, latitude, longitude);
-
-        assertEquals("Object shall be equals to itself.", space, space);
-        assertEquals("Object shall be equals to itself.", datum, datum);
-        assertEquals("Object shall be equals to itself.", crs,   crs  );
+    public void testDatum() {
+        final GeodeticDatum datum = SimpleDatum.WGS84;
         assertEquals(0, datum.getPrimeMeridian().getGreenwichLongitude(), 0);
-        assertSame(datum, crs.getDatum());
-        assertEquals("MyAuthority:WGS84", crs.toString());
+        assertEquals("EPSG:World Geodetic System 1984", datum.toString());
+        assertEquals("Object shall be equals to itself.", datum, datum);
+    }
+
+    /**
+     * Tests the {@link SimpleCRS.GeographicCRS#WGS84} constant.
+     */
+    @Test
+    public void testGeographicCRS() {
+        final GeographicCRS crs = SimpleCRS.Geographic.WGS84;
+        assertSame(SimpleDatum.WGS84, crs.getDatum());
+        final EllipsoidalCS cs = crs.getCoordinateSystem();
+        assertEquals(2, cs.getDimension());
+        assertSame  (AxisDirection.NORTH,     cs.getAxis(0).getDirection());
+        assertSame  (AxisDirection.EAST,      cs.getAxis(1).getDirection());
+        assertSame  (RangeMeaning.EXACT,      cs.getAxis(0).getRangeMeaning());
+        assertSame  (RangeMeaning.WRAPAROUND, cs.getAxis(1).getRangeMeaning());
+        assertEquals("EPSG:WGS 84", crs.toString());
+        assertEquals("Object shall be equals to itself.", crs, crs);
     }
 }
