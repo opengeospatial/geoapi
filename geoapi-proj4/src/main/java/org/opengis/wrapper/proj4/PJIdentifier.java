@@ -47,7 +47,6 @@ import org.proj4.PJ;
 final class PJIdentifier implements ReferenceIdentifier {
     /**
      * The identifier code and codespace.
-     * The codespace will also be the authority.
      */
     private final String codespace, code;
 

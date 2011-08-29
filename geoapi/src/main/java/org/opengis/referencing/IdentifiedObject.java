@@ -122,7 +122,7 @@ public interface IdentifiedObject {
      * An identifier which references elsewhere the object's defining information.
      * Alternatively an identifier by which this object can be referenced.
      *
-     * @return This object identifiers, or an empty set if there is none.
+     * @return This object identifiers, or an empty collection if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     Set<ReferenceIdentifier> getIdentifiers();

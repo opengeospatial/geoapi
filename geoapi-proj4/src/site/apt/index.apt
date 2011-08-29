@@ -37,9 +37,9 @@ public class MyApp {
         PJ sourcePJ = new PJ("+init=epsg:32632");           // (x,y) axis order
         PJ targetPJ = new PJ("+proj=latlong +datum=WGS84"); // (λ,φ) axis order
         double[] coordinates = {
-            500000,   0,   // First coordinate
-            400000,  10,   // Second coordinate
-            600000, -10    // Third coordinate
+            500000,       0,   // First coordinate
+            400000,  100000,   // Second coordinate
+            600000, -100000    // Third coordinate
         };
         sourcePJ.transform(targetPJ, 2, coordinates, 0, 3);
         System.out.println(Arrays.toString(coordinates));
@@ -47,9 +47,8 @@ public class MyApp {
 }
 +--------------------------------------------------------------------------------------------------+
 
-
-  The above example was specific to the Proj.4 binding API. The CRS definition in particular
-  uses a Proj.4-specific syntax. The same functionality can be achieved through the
+  The above example - especially the CRS definitions given to the <<<PJ>>> constructors -
+  was specific to the Proj.4 library. The same functionality can be achieved through the
   implementation-neutral GeoAPI interfaces as below:
 
 +--------------------------------------------------------------------------------------------------+
@@ -74,16 +73,17 @@ public class MyApp {
         // The following lines instantiate directly the factories for the Proj.4 bindings
         // for simplicity reasons, but a real application would be encouraged to use some
         // kind of Service Registry instead.
-        CRSAuthorityFactory crsFactory       = new PJFactory.EPSG();
+        CRSAuthorityFactory       crsFactory = new PJFactory.EPSG();
         CoordinateOperationFactory opFactory = new PJFactory.Operation();
 
+        // From this point, use only the GeoAPI interfaces.
         CoordinateReferenceSystem sourceCRS = crsFactory.createCoordinateReferenceSystem("32632");
         CoordinateReferenceSystem targetCRS = crsFactory.createCoordinateReferenceSystem("4326");
         CoordinateOperation operation = opFactory.createOperation(sourceCRS, targetCRS);
         double[] coordinates = {
-            500000,   0,   // First coordinate
-            400000,  10,   // Second coordinate
-            600000, -10    // Third coordinate
+            500000,       0,   // First coordinate
+            400000,  100000,   // Second coordinate
+            600000, -100000    // Third coordinate
         };
         operation.getMathTransform().transform(coordinates, 0, coordinates, 0, 3);
         System.out.println(Arrays.toString(coordinates));
