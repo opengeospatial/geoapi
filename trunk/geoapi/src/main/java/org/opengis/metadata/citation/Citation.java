@@ -121,7 +121,7 @@ public interface Citation {
 
     /**
      * Name and position information for an individual or organization that is responsible
-     * for the resource. Returns an empty string if there is none.
+     * for the resource. Returns an empty collection if there is none.
      *
      * @return The individual or organization that is responsible, or an empty collection if none.
      */
@@ -129,7 +129,7 @@ public interface Citation {
     Collection<? extends ResponsibleParty> getCitedResponsibleParties();
 
     /**
-     * Mode in which the resource is represented, or an empty string if none.
+     * Mode in which the resource is represented, or an empty collection if none.
      *
      * @return The presentation mode, or an empty collection if none.
      */
