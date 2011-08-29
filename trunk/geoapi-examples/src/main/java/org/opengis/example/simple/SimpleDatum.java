@@ -77,6 +77,14 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     }
 
     /**
+     * The WGS84 datum. The {@linkplain #getSemiMajorAxis() semi major axis} length is
+     * 6378137.0 metres and the {@linkplain #getInverseFlattening() inverse flattening}
+     * factor is 298.257223563.
+     */
+    public static final GeodeticDatum WGS84 = new SimpleDatum(SimpleCitation.EPSG,
+            "World Geodetic System 1984", 6378137.0, 298.257223563);
+
+    /**
      * The semi-major axis length, in metres.
      *
      * @see #getSemiMajorAxis().
@@ -93,7 +101,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Creates a new geodetic datum for the given authority, name, and ellipsoid axis length.
      *
-     * @param authority Organization responsible for definition of the name, or {@code null}.
+     * @param authority         Organization responsible for definition of the name, or {@code null}.
      * @param name              The name of the new CRS.
      * @param semiMajorAxis     The value to be returned by {@link #getSemiMajorAxis()}, in metres.
      * @param inverseFlattening The value to be returned by {@link #getInverseFlattening()}.

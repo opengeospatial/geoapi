@@ -136,18 +136,11 @@ public class SimplePosition implements DirectPosition, Serializable {
     public boolean equals(final Object object) {
         if (object instanceof DirectPosition) {
             final DirectPosition other = (DirectPosition) object;
-            if (equals(other.getCoordinateReferenceSystem(), crs)) {
+            if (Objects.equals(other.getCoordinateReferenceSystem(), crs)) {
                 return Arrays.equals(ordinates, other.getCoordinate());
             }
         }
         return false;
-    }
-
-    /**
-     * To be replaced by {@link Objects#equals(Object, Object)} in JDK7.
-     */
-    static boolean equals(final Object o1, final Object o2) {
-        return (o1 == o2) || (o1 != null && o1.equals(o2));
     }
 
     /**

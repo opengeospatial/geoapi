@@ -57,7 +57,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     protected final CoordinateReferenceSystem targetCRS;
 
     /**
-     * Creates a new operation for the given name, datum and axes.
+     * Creates a new operation for the given name and CRS.
      *
      * @param authority Organization responsible for definition of the name, or {@code null}.
      * @param name      The name of the new CRS.
@@ -355,7 +355,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      */
     @Override
     public boolean isIdentity() {
-        return SimplePosition.equals(sourceCRS, targetCRS);
+        return Objects.equals(sourceCRS, targetCRS);
     }
 
     /**
@@ -390,8 +390,8 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     public boolean equals(final Object object) {
         if (super.equals(object)) {
             final SimpleTransform other = (SimpleTransform) object;
-            return SimplePosition.equals(sourceCRS, other.sourceCRS) &&
-                   SimplePosition.equals(targetCRS, other.targetCRS);
+            return Objects.equals(sourceCRS, other.sourceCRS) &&
+                   Objects.equals(targetCRS, other.targetCRS);
         }
         return false;
     }

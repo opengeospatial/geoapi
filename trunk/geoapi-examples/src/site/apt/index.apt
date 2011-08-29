@@ -5,13 +5,16 @@
 GeoAPI examples
 
   An example of a very simple GeoAPI implementation. This implementation is not complete, but
-  can be used as a starting point for implementors. Every files in this module are hereby placed
-  into the Public Domain. This means anyone is free to do whatever they wish with those files.
+  can be used as a starting point for implementors.
+
+  Every files in this module are hereby placed into the Public Domain.
+  This means anyone is free to do whatever they wish with those files.
 
 
-* Simplifications made in this module
+* Simplifications
 
-  Many existing libraries make no distinction between different ISO 19111 concepts:
+  The ISO 19111 model contains lot of details, some of them being ignored by existing libraries.
+  For example some libraries make no distinction between:
 
     * <Ellipsoid> and <Geodetic Datum>
 
@@ -20,9 +23,9 @@ GeoAPI examples
     * <Coordinate Operation> and <Math Transform>
 
 
-  This <<<geoapi-examples>>> module follows the path of such simple libraries by implementing more
-  than one GeoAPI interfaces by the same class. While this is not a recommended approach for strict
-  ISO 19111 compliance, the intend is to demonstrate to implementors are not forced to follow all
-  the ISO 19111 complexity.
+  This <<<geoapi-examples>>> module follows the path of simpler libraries by merging different
+  ISO concepts in the same class. While this is not a recommended approach for strict ISO 19111
+  compliance, the intend is to demonstrate that implementors can hide some of the ISO 19111
+  complexity.
 
   To see the examples, {{{./apidocs/index.html}browse the javadoc}}.
