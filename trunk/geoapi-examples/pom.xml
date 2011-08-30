@@ -65,7 +65,7 @@
     <dependency>
       <groupId>java3d</groupId>
       <artifactId>vecmath</artifactId>
-      <version>1.3.1</version>
+      <version>1.3.1</version> <!-- More recent versions are available on other repositories. -->
     </dependency>
   </dependencies>
 
@@ -104,6 +104,14 @@
                   <link>http://jscience.org/jsr-275/api/</link>
                 </links>
               </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
           </reportPlugins>
         </configuration>

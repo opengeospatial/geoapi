@@ -175,7 +175,7 @@ public enum SupportedOperation {
     /**
      * Returns whatever the operation represented by this enum is declared as supported in the
      * given configuration map. If the given map is {@code null} of if it does not contain the
-     * @seeplain #key} for this enum, then the default value is {@code true}.
+     * {@linkplain #key} for this enum, then the default value is {@code true}.
      *
      * @param  configuration The map from which to read the support flag, or {@code null} if none.
      * @return {@code false} if the operation represented by this enum has been explicitely

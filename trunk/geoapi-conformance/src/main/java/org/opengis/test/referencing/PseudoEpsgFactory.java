@@ -793,7 +793,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Implementation of the above {@link #createParameters(int)} method,
-     * as a static method for direct access by {@link MathTransformTest}.
+     * as a static method for direct access by {@link ParameterizedTransformTest}.
      */
     static ParameterValueGroup createParameters(final MathTransformFactory factory, final int code)
             throws FactoryException

@@ -45,12 +45,12 @@
  * tests.</p>
  *
  * <p>The {@link org.opengis.test.referencing.ObjectFactoryTest},
- * {@link org.opengis.test.referencing.AuthorityFactoryTest} and
- * {@link org.opengis.test.referencing.MathTransformTest} concrete classes can also be extended by
- * implementors in order to inherit pre-defined test cases. Many of those test cases are derived
- * from publications of authoritative sources like EPSG or national mapping agencies. By
- * extending the test classes directly, implementors can control which factories are used
- * and alter the way the tests are performed as documented in the above-cited
+ * {@link org.opengis.test.referencing.AuthorityFactoryTest},
+ * {@link org.opengis.test.referencing.ParameterizedTransformTest} and other concrete classes can
+ * also be extended by implementors in order to inherit pre-defined test cases. Many of those test
+ * cases are derived from publications of authoritative sources like EPSG or national mapping
+ * agencies. By extending the test classes directly, implementors can control which factories
+ * are used and alter the way the tests are performed as documented in the above-cited
  * {@link org.opengis.test.referencing.TransformTestCase} class.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)

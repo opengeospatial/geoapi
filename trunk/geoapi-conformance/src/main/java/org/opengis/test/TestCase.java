@@ -125,7 +125,8 @@ public strictfp abstract class TestCase {
      * @see org.opengis.test.util.NameTest#factories()
      * @see org.opengis.test.referencing.ObjectFactoryTest#factories()
      * @see org.opengis.test.referencing.AuthorityFactoryTest#factories()
-     * @see org.opengis.test.referencing.MathTransformTest#factories()
+     * @see org.opengis.test.referencing.AffineTransformTest#factories()
+     * @see org.opengis.test.referencing.ParameterizedTransformTest#factories()
      *
      * @since 3.1
      */

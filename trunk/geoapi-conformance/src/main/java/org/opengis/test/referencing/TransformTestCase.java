@@ -100,9 +100,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * The transform being tested. Subclasses should assign a value to this field,
      * together with the {@link #tolerance} field, before any test is run.
      * <p>
-     * All {@link MathTransformTest} test methods will set this field to a non-null value.
-     * Implementors can use this value for their own assertions after any {@code MathTransformTest}
-     * method has been run.
+     * All {@link ParameterizedTransformTest} test methods will set this field to a non-null value.
+     * Implementors can use this value for their own assertions after any test method has been run.
      *
      * @see #tolerance
      */
