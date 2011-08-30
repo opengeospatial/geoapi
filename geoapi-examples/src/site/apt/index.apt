@@ -5,13 +5,23 @@
 GeoAPI examples
 
   An example of a very simple GeoAPI implementation. This implementation is not complete, but
-  can be used as a starting point for implementors.
+  can be used as a starting point for implementors. Since every files in this module are placed
+  into the Public Domain, anyone is free to do whatever they wish with those files.
 
-  Every files in this module are hereby placed into the Public Domain.
-  This means anyone is free to do whatever they wish with those files.
+  {{{./apidocs/index.html}Browse the javadoc}}.
+  Links to the source code are provided in the javadoc.
 
 
-* Simplifications
+* Metadata
+
+  The <<<org.opengis.metadata>>> package and sub-packages contain a large amount of interfaces,
+  which may give the impression that implementing metadata is very tedious. However the
+  <<<java.lang.reflect.Proxy>>> class can provide dynamically generated implementations.
+  The metadata example in this module shows how to implement every metadata interfaces
+  with only two small classes.
+
+
+* Referencing
 
   The ISO 19111 model contains lot of details, some of them being ignored by existing libraries.
   For example some libraries make no distinction between:
@@ -27,5 +37,3 @@ GeoAPI examples
   ISO concepts in the same class. While this is not a recommended approach for strict ISO 19111
   compliance, the intend is to demonstrate that implementors can hide some of the ISO 19111
   complexity.
-
-  To see the examples, {{{./apidocs/index.html}browse the javadoc}}.
