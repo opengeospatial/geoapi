@@ -106,9 +106,8 @@ public class ProjectiveTransform extends SimpleTransform {
      * ┌     ┐     ┌      ┐ ┌     ┐
      * │ptDst│  =  │{@linkplain #matrix}│ │ptSrc│
      * │  w  │     │      │ │  1  │
-     * └     ┘     └      ┘ └     ┘
-     * </pre></blockquote>
-     *
+     * └     ┘     └      ┘ └     ┘</pre></blockquote>
+     * <p>
      * Then, the destination ordinate values are divided by <var>w</var>. Note that in the
      * common case where the transform is affine, <var>w</var> = 1.
      */

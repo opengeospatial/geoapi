@@ -94,7 +94,7 @@
                 <links>
                   <link>http://download.oracle.com/javase/6/docs/api/</link>
                   <link>http://www.geoapi.org/snapshot/javadoc/</link>
-                  <link>http://jscience.org/api/</link>
+                  <link>http://jscience.org/jsr-275/api/</link>
                 </links>
               </configuration>
             </plugin>
