@@ -5,10 +5,12 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  */
-package org.opengis.example.simple;
+package org.opengis.example.referencing;
 
 import java.util.Arrays;
+
 import org.opengis.metadata.citation.Citation;
+import org.opengis.example.metadata.SimpleCitation;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;

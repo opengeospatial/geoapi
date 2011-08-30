@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  */
-package org.opengis.example.simple;
+package org.opengis.example.referencing;
 
 import java.util.Date;
 import javax.measure.quantity.Angle;
@@ -13,8 +13,10 @@ import javax.measure.unit.Unit;
 import javax.measure.quantity.Length;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
+
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.example.metadata.SimpleCitation;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;

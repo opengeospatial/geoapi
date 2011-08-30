@@ -5,13 +5,15 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  */
-package org.opengis.example.simple;
+package org.opengis.example.referencing;
 
 import java.util.Set;
 import java.util.Collections;
+
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.example.metadata.SimpleCitation;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
