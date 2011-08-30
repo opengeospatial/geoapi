@@ -24,6 +24,7 @@
   <name>Proj4 bindings</name>
   <description>
     A "proof of concept" implementation of GeoAPI using JNI binding to the Proj.4 library.
+    This module requires the Proj.4 native library version 4.8 or above.
   </description>
 
 
@@ -97,6 +98,14 @@
                   <link>http://jscience.org/jsr-275/api/</link>
                 </links>
               </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
           </reportPlugins>
         </configuration>
