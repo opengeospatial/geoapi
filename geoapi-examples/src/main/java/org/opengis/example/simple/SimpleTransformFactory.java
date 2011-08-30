@@ -40,6 +40,7 @@ import org.opengis.referencing.operation.SingleOperation;
 public class SimpleTransformFactory implements MathTransformFactory {
     /**
      * The value to be returned by {@link #getVendor()}.
+     * Implementors should replace {@code "GeoAPI-example"} by their name.
      */
     private static final Citation VENDOR = new SimpleCitation("GeoAPI-example");
 

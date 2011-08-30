@@ -8,7 +8,6 @@
 package org.opengis.example.simple;
 
 import javax.vecmath.GMatrix;
-import javax.vecmath.SingularMatrixException;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
@@ -28,6 +27,11 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
  *   <li>The {@linkplain Matrix#getNumRow() number of rows} in the matrix must be equals
  *       to the number of target dimensions + 1.</li>
  * </ul>
+ * <p>
+ * <b>Performance note:</b>
+ * This implementation is known to be slow. However the intend is to be pedagogic, not to be
+ * efficient. Performance enhancements are left to implementors (<i>Tip:</i> override all
+ * {@code transform} methods expecting array arguments).
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -63,7 +67,8 @@ public class ProjectiveTransform extends SimpleTransform {
     public ProjectiveTransform(final Citation authority, final String name,
             final CoordinateReferenceSystem sourceCRS,
             final CoordinateReferenceSystem targetCRS,
-            final SimpleMatrix matrix) {
+            final SimpleMatrix matrix)
+    {
         super(authority, name, sourceCRS, targetCRS);
         Objects.requireNonNull(matrix);
         this.matrix = matrix;
@@ -76,8 +81,8 @@ public class ProjectiveTransform extends SimpleTransform {
     }
 
     /**
-     * Gets the dimension of input points. This is equals to the {@linkplain Matrix#getNumCol()
-     * number of columns} in the matrix minus one.
+     * Gets the dimension of input points. This is equals to the
+     * {@linkplain Matrix#getNumCol() number of columns} in the matrix minus one.
      */
     @Override
     public int getSourceDimensions() {
@@ -85,8 +90,8 @@ public class ProjectiveTransform extends SimpleTransform {
     }
 
     /**
-     * Gets the dimension of target points. This is equals to the {@linkplain Matrix#getNumRow()
-     * number of rows} in the matrix minus one.
+     * Gets the dimension of target points. This is equals to the
+     * {@linkplain Matrix#getNumRow() number of rows} in the matrix minus one.
      */
     @Override
     public int getTargetDimensions() {
@@ -94,10 +99,24 @@ public class ProjectiveTransform extends SimpleTransform {
     }
 
     /**
-     * {@inheritDoc}
+     * Transforms the specified {@code ptSrc}. First, this implementation computes the
+     * following matrix product:
+     *
+     * <blockquote><pre>
+     * ┌     ┐     ┌      ┐ ┌     ┐
+     * │ptDst│  =  │{@linkplain #matrix}│ │ptSrc│
+     * │  w  │     │      │ │  1  │
+     * └     ┘     └      ┘ └     ┘
+     * </pre></blockquote>
+     *
+     * Then, the destination ordinate values are divided by <var>w</var>. Note that in the
+     * common case where the transform is affine, <var>w</var> = 1.
      */
     @Override
     public DirectPosition transform(final DirectPosition ptSrc, DirectPosition ptDst) throws MismatchedDimensionException {
+        //
+        // Check arguments validity.
+        //
         final int srcDim = matrix.getNumCol() - 1;
         final int dstDim = matrix.getNumRow() - 1;
         if (ptSrc.getDimension() != srcDim) {
@@ -110,12 +129,20 @@ public class ProjectiveTransform extends SimpleTransform {
         } else {
             ptDst = new SimplePosition(dstDim);
         }
+        //
+        // Create two matrixes of 1 column, which will
+        // represent the source and target coordinates.
+        //
         final GMatrix source = new GMatrix(srcDim+1, 1);
         final GMatrix target = new GMatrix(dstDim+1, 1);
         source.setElement(srcDim, 0, 1);
         for (int j=0; j<srcDim; j++) {
             source.setElement(j, 0, ptSrc.getOrdinate(j));
         }
+        //
+        // Compute [target] = [matrix]*[source]
+        // as documented in the method javadoc.
+        //
         target.mul(matrix, source);
         final double w = target.getElement(dstDim, 0); // =1 if the transform is affine.
         for (int j=0; j<dstDim; j++) {
@@ -142,7 +169,9 @@ public class ProjectiveTransform extends SimpleTransform {
     }
 
     /**
-     * Returns the inverse transform of this object.
+     * Returns the inverse transform of this object. The default implementation
+     * {@linkplain SimpleMatrix#invert() invert} the {@linkplain #matrix} and
+     * build a new {@code ProjectiveTransform} from it.
      */
     @Override
     public synchronized ProjectiveTransform inverse() throws NoninvertibleTransformException {
@@ -150,16 +179,18 @@ public class ProjectiveTransform extends SimpleTransform {
             final SimpleMatrix invert = matrix.clone();
             try {
                 invert.invert();
-            } catch (SingularMatrixException e) {
+            } catch (RuntimeException e) { // SingularMatrixException & MismatchedSizeException
                 throw new NoninvertibleTransformException("Can not invert \"" + code + '"', e);
             }
             inverse = new ProjectiveTransform(authority, "Inverse of " + code, targetCRS, sourceCRS, invert);
+            inverse.inverse = this;
         }
         return inverse;
     }
 
     /**
      * Tests whether this transform does not move any points.
+     * The default implementation delegates to {@link SimpleMatrix#isIdentity()}.
      */
     @Override
     public boolean isIdentity() {

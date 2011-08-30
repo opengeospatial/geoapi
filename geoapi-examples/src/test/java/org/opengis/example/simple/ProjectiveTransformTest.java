@@ -7,15 +7,16 @@
  */
 package org.opengis.example.simple;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+import org.opengis.util.FactoryException;
 import org.opengis.test.referencing.AffineTransformTest;
+import org.opengis.referencing.operation.TransformException;
 
 
 /**
  * Tests {@link ProjectiveTransform} using the {@code geoapi-conformance} module.
- * This test case sets {@link #isNonSquareMatrixSupported} to {@code false} because
- * {@link javax.vecmath.GMatrix} can not invert non-square matrix.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -28,6 +29,16 @@ public class ProjectiveTransformTest extends AffineTransformTest {
      */
     public ProjectiveTransformTest() {
         super(new SimpleTransformFactory());
-        isNonSquareMatrixSupported = false;
+    }
+
+    /**
+     * Declares that our implementation can not invert such transform before
+     * to delegate to the parent class.
+     */
+    @Test
+    @Override
+    public void testNonSquare() throws FactoryException, TransformException {
+        isInverseTransformSupported = false;
+        super.testNonSquare();
     }
 }

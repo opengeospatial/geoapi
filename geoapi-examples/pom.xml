@@ -18,7 +18,7 @@
   <!-- ====================================================
            Project description
        ==================================================== -->
-  <groupId>org.opengis</groupId>
+  <groupId>org.opengis.example</groupId>
   <artifactId>geoapi-examples</artifactId>
   <packaging>jar</packaging>
   <name>GeoAPI examples</name>

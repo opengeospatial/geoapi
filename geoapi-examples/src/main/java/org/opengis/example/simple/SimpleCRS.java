@@ -8,14 +8,12 @@
 package org.opengis.example.simple;
 
 import java.util.Arrays;
-import javax.measure.unit.NonSI;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.referencing.crs.GeographicCRS;
-import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.datum.GeodeticDatum;
 
@@ -142,9 +140,8 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
         /**
          * The WGS84 CRS, as defined by EPSG:4326. The axis order is (&phi;,&lambda;).
          */
-        public static final GeographicCRS WGS84 = new Geographic(SimpleCitation.EPSG, "WGS 84", SimpleDatum.WGS84,
-                new SimpleAxis(SimpleCitation.EPSG, "Geodetic latitude",  'φ', AxisDirection.NORTH, NonSI.DEGREE_ANGLE),
-                new SimpleAxis(SimpleCitation.EPSG, "Geodetic longitude", 'λ', AxisDirection.EAST,  NonSI.DEGREE_ANGLE));
+        public static final GeographicCRS WGS84 = new Geographic(SimpleCitation.EPSG, "WGS 84",
+                SimpleDatum.WGS84, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);
 
         /**
          * Creates a new CRS for the given name, datum and axes.
