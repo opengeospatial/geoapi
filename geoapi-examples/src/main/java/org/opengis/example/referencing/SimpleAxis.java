@@ -5,13 +5,15 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  */
-package org.opengis.example.simple;
+package org.opengis.example.referencing;
 
 import javax.measure.unit.Unit;
 import javax.measure.unit.SI;
 import javax.measure.unit.NonSI;
 import javax.measure.converter.ConversionException;
+
 import org.opengis.metadata.citation.Citation;
+import org.opengis.example.metadata.SimpleCitation;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.cs.RangeMeaning;

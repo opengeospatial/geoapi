@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  */
-package org.opengis.example.simple;
+package org.opengis.example.referencing;
 
 import java.util.Set;
 import java.util.Arrays;
