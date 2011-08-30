@@ -150,6 +150,16 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
 
     /**
      * Returns {@code true} if the source array need to be copied before to write in the target array.
+     * This method can be invoked if:
+     * <p>
+     * <ul>
+     *   <li>The source array and the target array are the same array (note that it can never be
+     *       the case if the arrays are not of the same type)</li>
+     *   <li>Each source coordinate is read atomically, and each target coordinate is written
+     *       atomically (i.e. no target ordinate is written before the source ordinates are
+     *       fully read)</li>
+     *   <li>The coordinates are read and written in increasing array index order.</li>
+     * </ul>
      *
      * @param  srcOff The offset in the source coordinate array.
      * @param  srcDim The dimension of input points.
@@ -162,15 +172,15 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
         if (numPts <= 1) {
             return false;
         }
-        int delta = srcOff - dstOff;
-        if (delta >= 0) {
-            final int d = srcDim - dstDim;
-            if (d >= 0 || delta >= (1-numPts)*d) {
+        int ΔOff = srcOff - dstOff;
+        if (ΔOff >= 0) {
+            final int ΔDim = srcDim - dstDim;
+            if (ΔDim >= 0 || ΔOff >= (1-numPts)*ΔDim) {
                 return false;
             }
         } else {
-            delta = -delta;
-            if (delta >= numPts*srcDim) {
+            ΔOff = -ΔOff;
+            if (ΔOff >= numPts*srcDim) {
                 return false;
             }
         }
