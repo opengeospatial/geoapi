@@ -8,15 +8,30 @@ Implementations
 
     * {{{http://www.geotoolkit.org/}Geotoolkit.org}} version 3.18 or above
 
-    * {{{geoapi-proj4/index.html}Proj.4 bindings}} (implementation of projections)
+    * {{{geoapi-proj4/index.html}Proj.4 bindings}} (<experimental>)
+
+  GeoAPI provides also some {{{geoapi-examples/index.html}implementation examples}} placed into
+  the Public Domain. Implementors can use those examples as a starting point, for Open Source or
+  commercial products.
 
   If you would like to add your product to this list, please let us known on the
   {{{./mail-lists.html}mailing list}}.
 
 
-* Historical implementations (GeoAPI 2)
+* Researches
 
-  The following projects implemented various development versions of GeoAPI:
+  Ph.D thesis related to GeoAPI:
+
+    * Jena, S.D. and J. Roehrig. {{{http://www.tt.fh-koeln.de/e/itt/staff/jackson_roehrig/download/TechnicalReportISO19107_V01.pdf}A
+      Java Implementation of the OpenGIS Feature Geometry Abstract Specification (ISO 19107 Spatial Schema)}}. University of Applied
+      Sciences Cologne. 102 p.
+
+
+* Other resources
+
+  The following projects implemented various development versions of GeoAPI, or created their
+  own interfaces inspired by GeoAPI. Those implementations are not compatible with GeoAPI 3.0.
+  However, their API are generally similar.
 
     * {{{http://www.geotools.org/}GeoTools}} version 2.7 or before (GeoAPI 2.x implementation)
 
@@ -24,9 +39,7 @@ Implementations
 
     * {{{http://jscience.org/}JScience}} (implementation of Coordinate Reference Systems)
 
-
-* Others projects
-
-  Others projects derived from GeoAPI but not formally related:
-
     * {{{http://code.google.com/p/geoapi-mgd/}Visual Basic interfaces}}
+
+    * {{{http://geoapi.codeplex.com/}GeoAPI.NET}} (derived from OGC 01-009 before ISO 19111 has
+      been adopted - this is similar to {{{0.1/index.html}GeoAPI 0.1}})
