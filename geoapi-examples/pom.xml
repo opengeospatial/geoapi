@@ -26,6 +26,13 @@
     Examples of a simple GeoAPI implementations.
   </description>
 
+  <licenses>
+    <license>
+      <name>Public Domain</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
 
 
   <!-- ====================================================
