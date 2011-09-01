@@ -37,8 +37,8 @@ public class ProjectiveTransformTest extends AffineTransformTest {
      */
     @Test
     @Override
-    public void testNonSquare() throws FactoryException, TransformException {
+    public void testDimensionReduction() throws FactoryException, TransformException {
         isInverseTransformSupported = false;
-        super.testNonSquare();
+        super.testDimensionReduction();
     }
 }
