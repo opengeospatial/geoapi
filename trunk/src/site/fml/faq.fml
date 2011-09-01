@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<faqs title="Frequently Asked Questions">
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs xmlns="http://maven.apache.org/FML/1.0.1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"
+      title="Frequently Asked Questions" toplink="false">
   <part id="general">
     <title>General</title>
 
     <faq id="start">
       <question>How did the GeoAPI project get started, and what is its history?</question>
       <answer>
-        <p>The GeoAPI project emerged from the collaboration of several free software projects and 
+        <p>The GeoAPI project emerged from the collaboration of several free software projects and
         from the work on various specifications at the Open Geospatial Consortium (OGC).</p>
-        
+
         <p>You can follow the early, pre-history of GeoAPI by reading the following three posts to the
         DigitalEarth.org website; at this point it had no name, only a goal of bringing together multiple
         Java GIS projects.</p>
@@ -19,19 +22,19 @@
           <li><a href="http://web.archive.org/web/20030501122912/http://digitalearth.org/story/2002/12/12/121814/73">Java GeoSpatial API Part III</a></li>
         </ul>
 
-        <p>As you can see in part III, the OGC had just anounced a Geographic Objects initiative 
+        <p>As you can see in part III, the OGC had just announced a Geographic Objects initiative
         which intended to define Java interfaces for geographic software. This followed earlier work
-        on the OGC Implementation Specification 01-009 <i>Coordinate Transformation Services</i> 
-        which included interfaces defined in the <code>org.opengis</code> namespace ultimately
-        adopted by GeoAPI.</p>
-        
-        <p>The GeoAPI project eventually formed to persue this work. The interfaces defined in the 
-        OGC specification 01-009 became GeoAPI version 0.1. GeoAPI 1.0 was released with the draft 
-        of OGC specification 03-064 <i>GO-1 Application Objects</i>. In May 2005, the final draft 
+        on the OGC Implementation Specification 01-009 <cite>Coordinate Transformation Services</cite>
+        which included interfaces defined in the <code>org.opengis</code> namespace ultimately adopted
+        by GeoAPI.</p>
+
+        <p>The GeoAPI project eventually formed to persue this work. The interfaces defined in the
+        OGC specification 01-009 became GeoAPI version 0.1. GeoAPI 1.0 was released with the draft
+        of OGC specification 03-064 <cite>GO-1 Application Objects</cite>. In May 2005, the final draft
         of the GO-1 specification, which included GeoAPI interfaces, was accepted as an OGC standard
         and the matching version of GeoAPI was released as version 2.0.</p>
-        
-        <p>The GeoAPI working group of the OGC has formed more recently to formalized and continue 
+
+        <p>The GeoAPI 3.0 working group of the OGC has formed in January 2009 to formalized and continue
         the work of standardizing the most stable interfaces produced by the GeoAPI project.</p>
       </answer>
     </faq>
@@ -40,24 +43,24 @@
       <question>What is the relationship between GeoAPI and OGC?</question>
       <answer>
         <p>GeoAPI is closely tied to the OGC both in its origins and in its ongoing work.</p>
-        
-        <p>The GeoAPI project is a collaboration of participants from various institutions and 
-        software communities. The GeoAPI project is developing a set of interfaces in the Java 
-        language to help software projects produce high quality geospatial software. The core 
-        interfaces follow closely the specifications produced in the 19100 series of the 
-        International Organization for Standradization (ISO) and by the OGC. The interfaces use the 
-        <code>org.opengis</code> namespace and copyright to the code is assigned to the OGC. The 
-        project started with the code produced by the OGC Implementation Specification 01-009 
-        <i>Coordinate Transformation Services</i> and refactored this code in collaboration with the 
-        standradization work surrounding the OGC specification 03-064 
-        <i>GO-1 Application Objects</i>.</p>
-        
-        <p>The GeoAPI working group of the OGC is a separate effort made up principally of members 
-        of the OGC and formed to continue the work of formalizing the interfaces developed by the 
-        GeoAPI project as ratified standards of the OGC. The working group decided to start the 
-        <i>GeoAPI Implementation Specification</i> as a new standard focused exclusively on the 
-        interfaces produced by the GeoAPI project. In acknoledgement to the earlier work and to 
-        match the numbering scheme of GeoAPI, the first specification released under this name is 
+
+        <p>The GeoAPI project is a collaboration of participants from various institutions and
+        software communities. The GeoAPI project is developing a set of interfaces in the Java
+        language to help software projects produce high quality geospatial software. The core
+        interfaces follow closely the specifications produced in the 19100 series of the
+        International Organization for Standardization (ISO) and by the OGC. The interfaces use the
+        <code>org.opengis</code> namespace and copyright to the code is assigned to the OGC. The
+        project started with the code produced by the OGC Implementation Specification 01-009
+        <cite>Coordinate Transformation Services</cite> and refactored this code in collaboration
+        with the standardization work surrounding the OGC specification 03-064
+        <cite>GO-1 Application Objects</cite>.</p>
+
+        <p>The GeoAPI working group of the OGC is a separate effort made up principally of members
+        of the OGC and formed to continue the work of formalizing the interfaces developed by the
+        GeoAPI project as ratified standards of the OGC. The working group decided to start the
+        <cite>GeoAPI Implementation Specification</cite> as a new standard focused exclusively on the
+        interfaces produced by the GeoAPI project. In acknoledgement to the earlier work and to
+        match the numbering scheme of GeoAPI, the first specification released under this name is
         expected to carry the 3.0 version number.</p>
       </answer>
     </faq>
@@ -71,7 +74,7 @@
         toolkits, but each toolkit has its own learning curve, and one can not easily switch from one toolkit to
         another or mix components from different toolkits. Using standardized interfaces, a significant part of the
         API can stay constant across different toolkits, thus reducing both the learning curve (especially since the
-        interfaces are derived from published abstract UML) and the interoperability pain points.</p>
+        interfaces are derived from published abstract UML) and the inter-operability pain points.</p>
 
         <p>The situation is quite similar to JDBC (Java DataBase Connectivity)'s one. The fact that a high-level language
         already exists for database queries (SQL) doesn't means that low-level programming interfaces are not needed.
@@ -106,34 +109,8 @@
       <answer>
         <p>We tried that path at the beginning of GeoAPI project, and abandoned it. Automatic scripts provide
         useful starting points, but a lot of human intervention is still essential. The relationship between
-        UML and Java interfaces is not always straightforward.</p>
-
-        <p><b>Example 1:</b><br/>
-        In the Coordinate Reference System (CRS) framework, a <code>GeocentricCRS</code> interface is defined.
-        The ISO 19111's UML defines two associations for this class: <code>usesCartesianCS</code> and
-        <code>usesSphericalCS</code>. In addition, this class inherits the <code>usesCS</code> association from
-        its parent <code>SingleCRS</code> class. Translating this UML blindly into Java interfaces leads to three
-        getter methods: <code>getCartesianCS()</code>, <code>getSphericalCS()</code> and <code>getCS()</code>.
-        Now, lets look at the intend of those associations. The documentation said that one and only one of
-        <code>usesCartesianCS</code> and <code>usesSphericalCS</code> can be defined for a given <code>GeocentricCRS</code>.
-        In others words, we still have conseptually only one association (<code>usesCS</code>), but the type is constrained
-        to <code>CartesianCS</code> or <code>SphericalCS</code>. In Java language, we feel preferable to keep only
-        the <code>getCS()</code> method inherited from <code>SingleCRS</code>, and enforce the constraints at
-        <code>GeocentricCRS</code> creation time (i.e. in <code>CRSFactory</code>). In addition, we follow the
-        Java usage of avoiding abbreviations and renamed <code>getCS()</code> as <code>getCoordinateSystem()</code>.
-        Of course, the constraints must be explained in <code>GeocentricCRS</code>'s javadoc, which involve one more
-        hand editing.</p>
-
-        <p><b>Example 2:</b><br/>
-        The XML schema defines two attributes (among other) in Layer: <code>CRS</code> and <code>BoundingBox</code>.
-        Those two attributes can have an arbitrary amount of elements. From an automatic tool's point of view, they look
-        like independent attributes and can be translated into <code>getCRSs()</code> and <code>getBoundingBoxes()</code>
-        methods, each of them returning a List. However, reading the documentation, one can realize that those two methods
-        form together a <code>Map</code> of <code>CoordinateReferenceSystem</code> keys with <code>Envelope</code> values.
-        Whatever we should replace the two above-cited methods by a single one returning a <code>Map</code> is subject to
-        debate. But it is reasonable to expect <code>getCRSs()</code> to returns a <code>Set</code> and
-        <code>getBoundingBoxes()</code> to returns a <code>Collection</code>, so that implementations backed by a
-        <code>Map</code> can associate them to <code>Map.keySet()</code> and <code>Map.values()</code> methods respectively.</p>
+        UML and Java interfaces is not always straightforward. The changes applied by human intervention is
+        documented in the <a href="snapshot/javadoc/departures.html">departures</a> page.</p>
       </answer>
     </faq>
 
@@ -144,11 +121,13 @@
 
         <p><b>Performance (including memory usage)</b><br/>
         Some robust implementations will want to protect their internal state against uncontrolled changes.
-        In such implementations, getter methods need to make defensive copies of their mutable attributes (see
-        <a href="http://java.sun.com/docs/books/effective/chapters.html">Effective Java</a>, chapter 6, item 24).
+        In such implementations, getter methods need to make defensive copies of their mutable attributes
+        (see <a href="http://java.sun.com/docs/books/effective/chapters.html">Effective Java</a>).
         Arrays are mutable objects; nothing prevent an user from writing <code>PointArray.positions()[1000] = null</code>,
         and thus altering the <code>PointArray</code> state if <code>positions()</code> was returning a direct reference
-        to its internal array. The box below compares two ways to protect an implementation from changes. Note that in both
+        to its internal array.</p>
+
+        <p>The box below compares two ways to protect an implementation from changes. Note that in both
         case, the internal data are stored as an array but the getter return type differ.</p>
 
         <table>
@@ -156,14 +135,14 @@
             <th>Array return type</th>
             <th>Collection return type</th>
           </tr>
-<tr><td><source>public class PointArray {
+<tr><td><pre>public class PointArray {
     private Position[] p = ...;
 
     public Position[] positions() {
         return (Position[]) p.clone();
     }
-}</source></td>
-<td><source>public class PointArray {
+}</pre></td>
+<td><pre>public class PointArray {
     private Position[] p = ...;
 
     private List&lt;Position&gt; pl = Collections.unmodifiableList(Arrays.asList(p));
@@ -171,7 +150,7 @@
     public List&lt;Position&gt; positions() {
         return pl;
     }
-}</source></td></tr>
+}</pre></td></tr>
 </table>
 
         <p>Since the collection is read-only in the above example, it doesn't need to be cloned (note: the <em>elements</em>
@@ -250,14 +229,5 @@
         </p>
       </answer>
     </faq>
-
-<!-- Empty FAQ for easy copy-and-paste
-    <faq id="">
-      <question></question>
-      <answer>
-        <p></p>
-      </answer>
-    </faq>
--->
   </part>
 </faqs>
