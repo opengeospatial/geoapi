@@ -366,14 +366,15 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests using a non-square matrix. This test is executed only if the
-     * {@link #isNonSquareMatrixSupported} flag is set to {@code true}.
+     * Tests a transform which reduce the number of dimensions from 4 to 2.
+     * This test is executed only if the {@link #isNonSquareMatrixSupported}
+     * flag is set to {@code true}.
      *
      * @throws FactoryException should never happen.
      * @throws TransformException should never happen.
      */
     @Test
-    public void testNonSquare() throws FactoryException, TransformException {
+    public void testDimensionReduction() throws FactoryException, TransformException {
         assumeTrue(isNonSquareMatrixSupported);
         final int sourceDim = 4;
         final int targetDim = 2;
