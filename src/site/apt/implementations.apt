@@ -8,9 +8,9 @@ Implementations
 
     * {{{http://www.geotoolkit.org/}Geotoolkit.org}} version 3.18 or above
 
-    * {{{geoapi-proj4/index.html}Proj.4 bindings}} (<experimental>)
+    * {{{./geoapi-proj4/index.html}Proj.4 bindings}} (<experimental>)
 
-  GeoAPI provides also some {{{geoapi-examples/index.html}implementation examples}} placed into
+  GeoAPI provides also some {{{./geoapi-examples/index.html}implementation examples}} placed into
   the Public Domain. Implementors can use those examples as a starting point, for Open Source or
   commercial products.
 
@@ -42,4 +42,4 @@ Implementations
     * {{{http://code.google.com/p/geoapi-mgd/}Visual Basic interfaces}}
 
     * {{{http://geoapi.codeplex.com/}GeoAPI.NET}} (derived from OGC 01-009 before ISO 19111 has
-      been adopted - this is similar to {{{0.1/index.html}GeoAPI 0.1}})
+      been adopted - this is similar to {{{./0.1/index.html}GeoAPI 0.1}})

@@ -261,11 +261,11 @@ public strictfp class Assert extends org.junit.Assert {
                 int valCode;
                 do {
                     if (valOffset >= valLength) {
-                    fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + value + "\". "
-                            + "Missing part: \"" + expected.subSequence(expOffset, expLength) + "\".");
+                        fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + value + "\". "
+                                + "Missing part: \"" + expected.subSequence(expOffset, expLength) + "\".");
                         return;
                     }
-                    valCode = Character.codePointAt(value, valOffset);
+                    valCode    = Character.codePointAt(value, valOffset);
                     valOffset += Character.charCount(valCode);
                 } while (!isUnicodeIdentifier(valCode, valPart));
                 valPart = true;
