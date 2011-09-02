@@ -412,7 +412,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
             final MathTransform projection = conversion.getMathTransform();
             if (projection != null) {
                 final ParameterizedTransformTest test = new ParameterizedTransformTest(null);
-                test.nameOfTargetCRS = getName(crs);
+                test.description = getName(crs);
                 test.transform = projection;
                 /*
                  * Get the sample points and swap ordinate values if needed.
@@ -426,7 +426,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                 test.toleranceModifier = swapλφ ? ToleranceModifier.PROJECTION_FROM_φλ : ToleranceModifier.PROJECTION;
                 if (toLinearUnit  != 1) test.applyUnitConversion(CalculationType.DIRECT_TRANSFORM,  sample.targetPoints, toLinearUnit);
                 if (toAngularUnit != 1) test.applyUnitConversion(CalculationType.INVERSE_TRANSFORM, sample.sourcePoints, toAngularUnit);
-                test.verifyKnownSamplePoints(sample);
+                test.verifyKnownSamplePoints(sample, ToleranceModifier.PROJECTION);
                 /*
                  * Tests random points in every domains of validity declared in the CRS.
                  * If the CRS does not declare any domain of validity, then we will use

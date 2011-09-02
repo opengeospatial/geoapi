@@ -1121,8 +1121,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
                      * difference with the expected value.
                      */
                     final String lineSeparator = System.getProperty("line.separator", "\n");
-                    final StringBuilder buffer = new StringBuilder(message).append(lineSeparator)
-                            .append("DirectPosition").append(dimension).append("D[").append(reportedIndex + i)
+                    final StringBuilder buffer = new StringBuilder(1000);
+                    appendErrorHeader(buffer, message);
+                    buffer.append(lineSeparator)
+                            .append("• DirectPosition").append(dimension).append("D[").append(reportedIndex + i)
                             .append("]: Expected ").append(expected).append(" but got ").append(actual).append('.')
                             .append(lineSeparator).append("• The delta at ordinate ").append(mismatch).append(" is ");
                     if (useDouble) {
@@ -1378,9 +1380,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 final double d = abs(e - a);
                 final double tol = (tolmat != null) ? tolmat.getElement(j, i) : 0;
                 if (!(d <= tol) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
-                    final StringBuilder buffer = new StringBuilder(512);
                     final String lineSeparator = System.getProperty("line.separator", "\n");
-                    buffer.append(message).append(lineSeparator).append("Matrix(").append(j).append(',').append(i)
+                    final StringBuilder buffer = new StringBuilder(1000);
+                    appendErrorHeader(buffer, message);
+                    buffer.append(lineSeparator).append("Matrix(").append(j).append(',').append(i)
                             .append("): expected ").append(e).append(" but got ").append(a)
                             .append(" (a difference of ").append(d).append(')').append(lineSeparator)
                             .append("Expected matrix (may be approximative):").append(lineSeparator);
@@ -1394,6 +1397,20 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     throw new DerivativeFailure(buffer.toString());
                 }
             }
+        }
+    }
+
+    /**
+     * Invoked for preparing the header of a test failure message. The default implementation
+     * just append the given message. Subclasses can override this message in order to provide
+     * additional information.
+     *
+     * @param buffer  The buffer in which to append the header.
+     * @param message User-supplied message to append, or {@code null}.
+     */
+    void appendErrorHeader(final StringBuilder buffer, final String message) {
+        if (message != null) {
+            buffer.append(message.trim());
         }
     }
 

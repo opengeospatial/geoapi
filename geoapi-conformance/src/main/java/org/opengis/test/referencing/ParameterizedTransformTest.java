@@ -41,6 +41,7 @@ import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
@@ -166,13 +167,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     protected final MathTransformFactory factory;
 
     /**
-     * The name of the target {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem
-     * Coordinate Reference System} of the {@linkplain #transform transform} being tested. This
-     * field is provided only for information purpose; it is not actually used by the tests.
-     */
-    protected String nameOfTargetCRS;
-
-    /**
      * The parameters of the math transform being tested. This field is set, together with the
      * {@link #transform transform} field, after the execution of every {@code testFoo()} method
      * in this class.
@@ -182,6 +176,20 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * more time.
      */
     protected ParameterValueGroup parameters;
+
+    /**
+     * A description of the test being run. This field is provided only for information purpose
+     * (typically for producing logging or error messages); it is not actually used by the tests.
+     * The value can be:
+     * <p>
+     * <ul>
+     *   <li>The name of the target {@link ProjectedCRS} when the {@linkplain #transform transform}
+     *       being tested is a map projection</li>
+     *   <li>The transformation name when the {@linkplain #transform transform} being tested is a
+     *       datum shift operation.</li>
+     * </ul>
+     */
+    protected String description;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -209,9 +217,23 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates a math transform for the {@linkplain CoordinateReferenceSystem Coordinate Reference
-     * System} identified by the given EPSG code, and stores the result in the {@link #transform}
-     * field. The set of allowed codes is documented in second column of the
+     * Invoked for preparing the header of a test failure message.
+     *
+     * @param buffer  The buffer in which to append the header.
+     * @param message User-supplied message to append, or {@code null}.
+     */
+    @Override
+    final void appendErrorHeader(final StringBuilder buffer, final String message) {
+        if (description != null) {
+            buffer.append("Error in “").append(description).append("”: ");
+        }
+        super.appendErrorHeader(buffer, message);
+    }
+
+    /**
+     * Creates a math transform from the base CRS to the {@linkplain ProjectedCRS projected CRS}
+     * identified by the given EPSG code, and stores the result in the {@link #transform} field.
+     * The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      * <p>
      * This method shall also set the {@linkplain TransformTestCase#tolerance tolerance} threshold
@@ -233,7 +255,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * Finally, run the test.
      *
-     * @param  code The EPSG code of a target Coordinate Reference System.
+     * @param  code The EPSG code of a target Projected CRS.
      * @param  name The CRS name. May be used for formatting messages.
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If a point can not be transformed.
@@ -241,7 +263,48 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     private void runProjectionTest(final int code, final String name)
             throws FactoryException, TransformException
     {
-        nameOfTargetCRS = name;
+        description = name;
+        final SamplePoints sample = initialize(code);
+        verifyKnownSamplePoints(sample, ToleranceModifier.PROJECTION);
+        verifyInDomainOfValidity(sample.areaOfValidity, code);
+    }
+
+    /**
+     * Creates a math transform for a datum shift between WGS84 and the {@linkplain GeographicCRS
+     * geographic CRS} identified by the given EPSG code, and runs the tests. This method shall
+     * set the {@link #transform} and {@link #tolerance} fields in the same way than
+     * {@link #runProjectionTest(int, String)}.
+     *
+     * @param  code The EPSG code of a source Geographic CRS.
+     * @param  name The CRS name. May be used for formatting messages.
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If a point can not be transformed.
+     */
+    private void runDatumShiftTest(final int code, final String name)
+            throws FactoryException, TransformException
+    {
+        description = name;
+        final SamplePoints sample = initialize(code);
+        verifyKnownSamplePoints(sample, ToleranceModifier.GEOGRAPHIC);
+        final Rectangle2D areaOfValidity = sample.areaOfValidity;
+        verifyInDomain(new double[] {
+            areaOfValidity.getMinX(),
+            areaOfValidity.getMinY(),
+            -1000
+        }, new double[] {
+            areaOfValidity.getMaxX(),
+            areaOfValidity.getMaxY(),
+            +1000
+        }, new int[] {
+            10, 10, 10
+        }, new Random(code));
+    }
+
+    /**
+     * Fetches the {@link MathTransform} for the given CRS code, and initializes the fields
+     * describing the test to be executed. This method does not run any test by itself.
+     */
+    private SamplePoints initialize(final int code) throws FactoryException {
         assumeNotNull(factory);
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
         if (parameters == null) {
@@ -249,10 +312,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         }
         if (transform == null) {
             transform = factory.createParameterizedTransform(parameters);
-            assertNotNull(name, transform);
+            assertNotNull(description, transform);
         }
-        verifyKnownSamplePoints(sample);
-        verifyInDomainOfValidity(sample.areaOfValidity, code);
+        return sample;
     }
 
     /**
@@ -281,13 +343,15 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * @param  modifier The tolerance modifier to use.
      * @throws TransformException If the example point can not be transformed.
      */
-    final void verifyKnownSamplePoints(final SamplePoints sample) throws TransformException {
+    final void verifyKnownSamplePoints(final SamplePoints sample, final ToleranceModifier modifier)
+            throws TransformException
+    {
         validate(transform);
         if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }
         if (toleranceModifier == null) {
-            toleranceModifier = ToleranceModifier.PROJECTION;
+            toleranceModifier = modifier;
         }
         derivativeDeltas = new double[transform.getSourceDimensions()];
         Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * NAUTICAL_MILE));
@@ -300,7 +364,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * @param  seed The random seed. We recommend a constant value for each transform or CRS to be tested.
      * @throws TransformException If a point can not be transformed.
      */
-    final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity, final long seed) throws TransformException {
+    final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity, final long seed)
+            throws TransformException
+    {
         verifyInDomain(new double[] {
             areaOfValidity.getMinX(),
             areaOfValidity.getMinY()
@@ -897,6 +963,44 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     @Test
     public void testKrovak() throws FactoryException, TransformException {
         runProjectionTest(2065, "CRS S-JTSK (Ferro) / Krovak");
+    }
+
+    /**
+     * Tests the "<cite>Abridged Molodensky</cite>" (EPSG:9605) datum shift operation.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of geographic coordinates
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     * <p>
+     * The math transform parameters and the sample coordinates are:
+     * <table cellspacing="15"><tr valign="top"><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>dim</td>                               <td>3</td></tr>
+     * <tr><td>src_semi_major</td>                    <td>6378137.0 m</td></tr>
+     * <tr><td>src_semi_minor</td>                    <td>6356752.314247833 m</td></tr>
+     * <tr><td>X-axis translation</td>                <td>84.87 m</td></tr>
+     * <tr><td>Y-axis translation</td>                <td>96.49 m</td></tr>
+     * <tr><td>Z-axis translation</td>                <td>116.95 m</td></tr>
+     * <tr><td>Semi-major axis length difference</td> <td>251 m</td></tr>
+     * <tr><td>Flattening difference</td>             <td>1.41927E-05</td></tr>
+     * </table></td><td>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     * <tr><th>Source ordinates</th><th>Expected results</th></tr>
+     * <tr align="right">
+     *   <td nowrap>2°7'46.380"E<br>53°48'33.820"N<br>73.000 m</td>
+     *   <td nowrap>2°7'51.477"E<br>53°48'36.563"N<br>28.091 m</td>
+     * </tr></table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_2065()
+     */
+    @Test
+    public void testAbridgedMolodensky() throws FactoryException, TransformException {
+        runDatumShiftTest(4230, "WGS84 to ED50");
     }
 
     /**

@@ -761,15 +761,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * the second column for information purpose.
      * <p>
      * The supported codes are determined from the set of examples published in the EPSG guidance
-     * document, augmented with other sources. The other sources are identified by the
-     * {@code "IGNF:"} prefix before the CRS name. The supported codes are:
+     * document, augmented with other sources (IGNF).
+     * The following table lists the supported codes.
+     * <i>Codes in italics are not official EPSG codes.</i>
      * <p>
      * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr><th>Code</th>      <th>Used by CRS</th><th>CRS Name</th>                           <th>Operation method</th></tr>
+     *   <tr><th>Code</th>      <th>Used by CRS</th><th>CRS or transformation name</th>         <th>Operation method</th></tr>
      *   <tr><td>19905</td>     <td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
      *   <tr><td>19884</td>     <td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>
      *   <tr><td>3856</td>      <td>3857</td>      <td>WGS 84 / Pseudo-Mercator</td>            <td>Popular Visualisation Pseudo Mercator</td></tr>
-     *   <tr><td>310642901</td> <td>310642901</td> <td>IGNF:MILLER</td>                         <td>Miller_Cylindrical</td></tr>
+     *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>           <td>Miller_Cylindrical</td></tr>
      *   <tr><td>19958</td>     <td>29873</td>     <td>Timbalai 1948 / RSO Borneo (m)</td>      <td>Hotine Oblique Mercator (variant B)</td></tr>
      *   <tr><td>19916</td>     <td>27700</td>     <td>OSGB 1936 / British National Grid</td>   <td>Transverse Mercator</td></tr>
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
@@ -780,12 +781,17 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>16061</td>     <td>5041</td>      <td>WGS 84 / UPS North (E,N)</td>            <td>Polar Stereographic (variant A)</td></tr>
      *   <tr><td>19993</td>     <td>3032</td>      <td>WGS 84 / Australian Antarctic Polar</td> <td>Polar Stereographic (variant B)</td></tr>
      *   <tr><td>19914</td>     <td>28992</td>     <td>Amersfoort / RD New</td>                 <td>Oblique Stereographic</td></tr>
+     *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                <td>Polyconic</td></tr>
      *   <tr><td>19952</td>     <td>2065</td>      <td>CRS S-JTSK (Ferro) / Krovak</td>         <td>Krovak</td></tr>
+     *   <tr><td><i>9605</i></td> <td>4230</td>    <td>ED50 to WGS 84</td>                      <td>Abridged Molodensky</td></tr>
      * </table>
      *
      * @param  code The EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
      * @return The coordinate operation (typically a map projection) parameters.
      * @throws FactoryException If the given EPSG code is unknown to this factory.
+     *
+     * @see ParameterizedTransformTest
+     * @see AuthorityFactoryTest
      */
     protected ParameterValueGroup createParameters(final int code) throws FactoryException {
         return createParameters(mtFactory, code);
@@ -961,6 +967,18 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Co-latitude of cone axis").setValue(30 + (17 + 17.3031/60)/60);
                 parameters.parameter("Latitude of pseudo standard parallel").setValue(78.5);
                 parameters.parameter("Scale factor on pseudo standard parallel").setValue(0.99990);
+                break;
+            }
+            case 9605: {  // (not an official EPSG code) using operation method 9605
+                parameters = factory.getDefaultParameters("Abridged Molodensky");
+                parameters.parameter("dim").setValue(3); // Parameter defined by OGC 01-009
+                parameters.parameter("src_semi_major").setValue(6378137.0);  // WGS84
+                parameters.parameter("src_semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("X-axis translation").setValue( 84.87);
+                parameters.parameter("Y-axis translation").setValue( 96.49);
+                parameters.parameter("Z-axis translation").setValue(116.95);
+                parameters.parameter("Semi-major axis length difference").setValue(251);
+                parameters.parameter("Flattening difference").setValue(1.41927E-05);
                 break;
             }
             default: {

@@ -52,15 +52,15 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.LINKS;
  */
 final class SamplePoints {
     /**
-     * The EPSG code for the <em>target</em> Coordinate Reference System of the sample points.
-     * This is typically a projected CRS. The <em>source</em> CRS is typically the base CRS of
-     * that projected CRS.
+     * The EPSG code for the Coordinate Reference System using the sample points.
+     * Whatever it is the source or the target CRS is test-dependent. This field
+     * is used only for information purpose in the {@link #toString()} method.
      */
-    final int targetCRS;
+    private final int usedByCRS;
 
     /**
-     * The EPSG code of the {@linkplain CoordinateOperation coordinate operation} from the
-     * base CRS to the {@linkplain #targetCRS target CRS}.
+     * The EPSG code of the {@linkplain CoordinateOperation coordinate operation}
+     * being tested.
      */
     final int operation;
 
@@ -82,10 +82,10 @@ final class SamplePoints {
     /**
      * Creates a new instance for the given sample points.
      */
-    private SamplePoints(final int targetCRS, final int operation,
+    private SamplePoints(final int usedByCRS, final int operation,
             double[] sourcePoints, double[] targetPoints, final Rectangle2D areaOfValidity)
     {
-        this.targetCRS      = targetCRS;
+        this.usedByCRS      = usedByCRS;
         this.operation      = operation;
         this.sourcePoints   = sourcePoints;
         this.targetPoints   = targetPoints;
@@ -94,9 +94,19 @@ final class SamplePoints {
     }
 
     /**
-     * Creates an object containing sample values for a map projection from the base to the given
-     * projected CRS. The CRS codes accepted by this method are the same than the ones documented
-     * in the second column of {@link PseudoEpsgFactory#createParameters(int)}.
+     * Creates an object containing sample values for an operation method using the given CRS.
+     * The CRS codes accepted by this method are documented in the second column of the table
+     * in {@link PseudoEpsgFactory#createParameters(int)} javadoc.
+     * <p>
+     * <ul>
+     *   <li>For map projection tests, this method returns the sample points for a conversion
+     *       from the base CRS to the given projected CRS.</li>
+     *   <li>For datum shift tests, this method returns the sample points for a transformation
+     *       from WGS84 to the given CRS.</li>
+     * </ul>
+     *
+     * @param  crs A code from the second column of {@link PseudoEpsgFactory#createParameters(int)}.
+     * @return Sample points (never {@code null}).
      */
     static SamplePoints getSamplePoints(final int crs) {
         final double λ0;   // Longitude of natural origin
@@ -252,7 +262,7 @@ final class SamplePoints {
                 λmax = 7.24; φmax = 53.75;
                 break;
             }
-            case 9818: {  // Not an official EPSG code.
+            case 9818: {  // "Polyconic" (not an official EPSG code)
                 operation = 9818;
                 fe =       0;  λ0 =  0;
                 fn =       0;  φ0 =  0;
@@ -283,6 +293,27 @@ final class SamplePoints {
                 // digits. Exclude the cartographic pole for now...
                 sourcePoints = new double[] {λ, φ};
                 targetPoints = new double[] {e, n};
+                break;
+            }
+            //
+            // END OF PROJECTION CODES - now testing datum shifts
+            //
+            case 4230: {  // "ED50" (a GeographicCRS for testing Abridged Molodensky)
+                operation = 9605;
+                λ0 = φ0 = λ = φ = Double.NaN;
+                fe = fn = e = n = Double.NaN;
+                sourcePoints = new double[] {
+                     2 + ( 7 + 46.38/60)/60,   // Longitude
+                    53 + (48 + 33.82/60)/60,   // Latitude
+                    73.0                       // Height (m)
+                };
+                targetPoints = new double[] {
+                     2 + ( 7 + 51.477/60)/60,  // Longitude
+                    53 + (48 + 36.563/60)/60,  // Latitude
+                    28.091                     // Height (m)
+                };
+                λmin = -180; φmin = -80;
+                λmax = +180; φmax = +80;
                 break;
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
@@ -331,7 +362,7 @@ final class SamplePoints {
      */
     @Override
     public String toString() {
-        return "SamplePoints[" + Arrays.toString(sourcePoints) + " ⇒ " +
-                Arrays.toString(targetPoints) + " in EPSG:" + targetCRS + ']';
+        return "SamplePoints[CRS=" + usedByCRS + ": "+ Arrays.toString(sourcePoints) + " ⇒ " +
+                Arrays.toString(targetPoints) + ']';
     }
 }
