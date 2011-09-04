@@ -191,10 +191,10 @@ public strictfp class Assert extends org.junit.Assert {
      */
     public static void assertBetween(final String message, final int minimum, final int maximum, final int value) {
         if (value < minimum) {
-            fail(nonNull(message) + "Value is " + value + " is less than " + minimum + '.');
+            fail(nonNull(message) + "Value " + value + " is less than " + minimum + '.');
         }
         if (value > maximum) {
-            fail(nonNull(message) + "Value is " + value + " is greater than " + maximum + '.');
+            fail(nonNull(message) + "Value " + value + " is greater than " + maximum + '.');
         }
     }
 
@@ -210,10 +210,10 @@ public strictfp class Assert extends org.junit.Assert {
      */
     public static void assertBetween(final String message, final double minimum, final double maximum, final double value) {
         if (value < minimum) {
-            fail(nonNull(message) + "Value is " + value + " is less than " + minimum + '.');
+            fail(nonNull(message) + "Value " + value + " is less than " + minimum + '.');
         }
         if (value > maximum) {
-            fail(nonNull(message) + "Value is " + value + " is greater than " + maximum + '.');
+            fail(nonNull(message) + "Value " + value + " is greater than " + maximum + '.');
         }
     }
 
