@@ -995,8 +995,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
-     *
-     * @see AuthorityFactoryTest#testEPSG_2065()
      */
     @Test
     public void testAbridgedMolodensky() throws FactoryException, TransformException {

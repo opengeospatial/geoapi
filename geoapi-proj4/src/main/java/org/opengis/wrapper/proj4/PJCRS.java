@@ -87,6 +87,15 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
     }
 
     /**
+     * Returns a string representation of this object, mostly for debugging purpose.
+     * This string representation may change in any future version.
+     */
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + '[' + pj.getDefinition() + ']';
+    }
+
+    /**
      * Returns the geodetic datum.
      */
     public final GeodeticDatum getDatum() {
@@ -145,6 +154,16 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      */
     static final class Projected extends PJCRS implements ProjectedCRS, CartesianCS {
         /**
+         * The axis orientation of this CRS, as a comma-separated list of Proj.4 declarations.
+         * The first element (typically {@code "enu"} is for the projected CRS itself - not
+         * really used since it should already be contained in the {@link #pj} object. The
+         * second element (typically {@code "neu"}) is for the base CRS.
+         * <p>
+         * This field may be {@code null} if this information was unspecified.
+         */
+        private final String axisOrientations;
+
+        /**
          * The value returned by {@link #getBaseCRS()}, created when first needed.
          */
         private transient Geographic baseCRS;
@@ -157,8 +176,11 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         /**
          * Creates a new projected CRS.
          */
-        Projected(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
+        Projected(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension,
+                final String axisOrientations)
+        {
             super(identifier, datum, dimension, datum.getLinearUnit(false));
+            this.axisOrientations = axisOrientations;
         }
 
         /**
@@ -170,12 +192,62 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         }
 
         /**
-         * Returns the base CRS, which is inferred by the Proj.4 library.
+         * Adds the vertical axis to the given Proj4 orientations code, if the vertical axis
+         * is missing. If this method is unsure about the given axis orientations, then it
+         * conservatively does nothing. This may cause Proj.4 to reject the axis orientations.
+         */
+        static String ensure3D(String orientations) {
+            if (orientations.length() == 2 && orientations.indexOf('u') < 0 & orientations.indexOf('d') < 0) {
+                orientations += 'u';
+            }
+            return orientations;
+        }
+
+        /**
+         * Returns the end index of the word beginning at the given index.
+         * Only ASCII characters are considered.
+         */
+        static int findWordEnd(final CharSequence definition, int startAt) {
+            final int length = definition.length();
+            while (startAt < length) {
+                final char c = definition.charAt(startAt);
+                if ((c<'a' || c>'z') && (c<'A' || c>'Z')) {
+                    break;
+                }
+                startAt++;
+            }
+            return startAt;
+        }
+
+        /**
+         * Returns the base CRS, which is inferred by the Proj4 library.
+         * This method may need to change the axis order compared to the one used by Proj.4.
          */
         @Override
         public synchronized Geographic getBaseCRS() {
             if (baseCRS == null) {
-                baseCRS = new Geographic(name, new PJDatum(pj), axes.length);
+                int dimension = axes.length;
+                PJDatum base = new PJDatum(pj);
+                if (axisOrientations != null) {
+                    final int s = axisOrientations.indexOf(PJFactory.AXIS_ORDER_SEPARATOR);
+                    if (s >= 0) {
+                        String orientation = axisOrientations.substring(s+1);
+                        dimension = orientation.length();
+                        orientation = ensure3D(orientation);
+                        if (!String.valueOf(base.getAxisDirections()).equals(orientation)) {
+                            final StringBuilder definition = new StringBuilder(base.getDefinition());
+                            int ap = definition.indexOf(PJFactory.AXIS_ORDER_PARAM);
+                            if (ap < 0) {
+                                ap = definition.append(' ').length();
+                                definition.append(PJFactory.AXIS_ORDER_PARAM);
+                            }
+                            ap += PJFactory.AXIS_ORDER_PARAM.length();
+                            definition.replace(ap, findWordEnd(definition, ap), orientation);
+                            base = new PJDatum(base.getName(), definition.toString());
+                        }
+                    }
+                }
+                baseCRS = new Geographic(name, base, dimension);
             }
             return baseCRS;
         }

@@ -124,4 +124,13 @@ class PJObject implements IdentifiedObject {
     public String toWKT() throws UnsupportedOperationException {
         throw new UnsupportedOperationException();
     }
+
+    /**
+     * Returns a string representation of this object, mostly for debugging purpose.
+     * This string representation may change in any future version.
+     */
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + '[' + name + ']';
+    }
 }

@@ -770,7 +770,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19905</td>     <td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
      *   <tr><td>19884</td>     <td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>
      *   <tr><td>3856</td>      <td>3857</td>      <td>WGS 84 / Pseudo-Mercator</td>            <td>Popular Visualisation Pseudo Mercator</td></tr>
-     *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>           <td>Miller_Cylindrical</td></tr>
+     *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>           <td><i>Miller_Cylindrical</i></td></tr>
      *   <tr><td>19958</td>     <td>29873</td>     <td>Timbalai 1948 / RSO Borneo (m)</td>      <td>Hotine Oblique Mercator (variant B)</td></tr>
      *   <tr><td>19916</td>     <td>27700</td>     <td>OSGB 1936 / British National Grid</td>   <td>Transverse Mercator</td></tr>
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
@@ -781,7 +781,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>16061</td>     <td>5041</td>      <td>WGS 84 / UPS North (E,N)</td>            <td>Polar Stereographic (variant A)</td></tr>
      *   <tr><td>19993</td>     <td>3032</td>      <td>WGS 84 / Australian Antarctic Polar</td> <td>Polar Stereographic (variant B)</td></tr>
      *   <tr><td>19914</td>     <td>28992</td>     <td>Amersfoort / RD New</td>                 <td>Oblique Stereographic</td></tr>
-     *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                <td>Polyconic</td></tr>
+     *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                <td><i>Polyconic</i></td></tr>
      *   <tr><td>19952</td>     <td>2065</td>      <td>CRS S-JTSK (Ferro) / Krovak</td>         <td>Krovak</td></tr>
      *   <tr><td><i>9605</i></td> <td>4230</td>    <td>ED50 to WGS 84</td>                      <td>Abridged Molodensky</td></tr>
      * </table>

@@ -31,8 +31,15 @@
  */
 package org.opengis.wrapper.proj4;
 
-import java.util.Map;
 import java.util.Set;
+import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Collections;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
@@ -63,6 +70,23 @@ import static org.proj4.PJ.DIMENSION_MAX;
  * @since   3.1
  */
 public class PJFactory implements Factory {
+    /**
+     * The Proj4 parameter used for declaration of axis order. This parameter is handled in a special
+     * way by this factory: it be a comma-separated list of axis order definitions, in which case the
+     * second value is used as the axis order of the {@link ProjectedCRS#getBaseCRS()}.
+     * <p>
+     * An other departure from Proj.4 is that Proj.4 expect the axis parameter to be exactly
+     * 3 characters long, which our code accepts 2 characters as well. We relax the Proj.4
+     * rule because we use the number of characters for determining the number of dimensions.
+     * This is okay since 1 character = 1 axis.
+     */
+    static final String AXIS_ORDER_PARAM = "+axis=";
+
+    /**
+     * The character used for separating the Proj4 axis order declarations.
+     */
+    static final char AXIS_ORDER_SEPARATOR = ',';
+
     /**
      * For sub-class constructors only.
      */
@@ -122,13 +146,40 @@ public class PJFactory implements Factory {
         if (dimension < 2 || dimension > DIMENSION_MAX) {
             throw new IllegalArgumentException("Illegal number of dimensions: " + dimension);
         }
+        //
+        // Custom parsing of the "+axis=" parameter.
+        // This code may modify the definition string.
+        //
+        String orientation = null;
+        int beginParam = definition.indexOf(AXIS_ORDER_PARAM);
+        if (beginParam >= 0) {
+            beginParam += AXIS_ORDER_PARAM.length();
+            final int length = definition.length();
+            while (beginParam<length && Character.isWhitespace(definition.charAt(beginParam))) {
+                beginParam++; // Skip whitespaces.
+            }
+            final StringBuilder modified = new StringBuilder(definition.length());
+            modified.append(definition, 0, beginParam);
+            int endParam = PJCRS.Projected.findWordEnd(definition, beginParam);
+            orientation = definition.substring(beginParam, endParam);
+            modified.append(PJCRS.Projected.ensure3D(orientation));
+            if (endParam < length && definition.charAt(endParam) == AXIS_ORDER_SEPARATOR) {
+                endParam = PJCRS.Projected.findWordEnd(definition, endParam+1);
+                orientation = definition.substring(beginParam, endParam);
+            }
+            modified.append(definition, endParam, length);
+            definition = modified.toString();
+        }
+        //
+        // Create the Proj.4 wrapper.
+        //
         final PJDatum datum = new PJDatum(identifier, definition);
         final PJ.Type type = datum.getType();
         final CoordinateReferenceSystem crs;
         switch (type) {
             case GEOCENTRIC: crs = new PJCRS.Geocentric(identifier, datum, dimension); break;
             case GEOGRAPHIC: crs = new PJCRS.Geographic(identifier, datum, dimension); break;
-            case PROJECTED:  crs = new PJCRS.Projected (identifier, datum, dimension); break;
+            case PROJECTED:  crs = new PJCRS.Projected (identifier, datum, dimension, orientation); break;
             default: throw new UnsupportedOperationException("Unknown CRS type: " + type);
         }
         return crs;
@@ -183,9 +234,45 @@ public class PJFactory implements Factory {
      */
     public static class EPSG extends PJFactory implements CRSAuthorityFactory {
         /**
-         * Creates a new coordinate operation factory.
+         * The file which contains the axis orientations for each CRS code.
+         */
+        static final String AXIS_FILE = "axis-orientations.txt";
+
+        /**
+         * {@code true} if the CRS created by this factory should use the axis order
+         * declared by the EPSG database. This is the default value.
+         */
+        private final boolean useEpsgAxisOrder;
+
+        /**
+         * The map of axis orientations for each CRS codes.
+         * This map will be loaded from the {@value #AXIS_FILE} file when first needed.
+         */
+        private Map<String,String> axisOrientations;
+
+        /**
+         * The set of all EPSG codes known to Proj.4, created when first needed.
+         */
+        private Set<String> codes;
+
+        /**
+         * Creates a new coordinate operation factory which will create CRS with axis order
+         * as declared in the EPSG database.
          */
         public EPSG() {
+            useEpsgAxisOrder = true;
+        }
+
+        /**
+         * Creates a new coordinate operation factory. Whatever the factory will follow
+         * EPSG axis order or not is specified by the given {@code useEpsgAxisOrder} argument.
+         *
+         * @param useEpsgAxisOrder {@code true} if the CRS created by this factory should
+         *        use the axis order declared by the EPSG database, or {@code false} for
+         *        the Proj.4 axis order. The default value is {@code true}.
+         */
+        public EPSG(final boolean useEpsgAxisOrder) {
+            this.useEpsgAxisOrder = useEpsgAxisOrder;
         }
 
         /**
@@ -200,13 +287,68 @@ public class PJFactory implements Factory {
         }
 
         /**
+         * Returns the axis orientation map. Callers shall not modify the returned map.
+         * The file format is the one created by {@link SupportedCodes#write()} in the
+         * test directory.
+         *
+         * @throws FactoryException If the resource file can not be loaded.
+         */
+        private synchronized Map<String,String> getAxisOrientations() throws FactoryException {
+            if (axisOrientations != null) {
+                return axisOrientations;
+            }
+            IOException cause = null;
+            final InputStream in = PJFactory.class.getResourceAsStream(AXIS_FILE);
+            if (in != null) try {
+                final Map<String,String> map = new LinkedHashMap<String,String>(5000);
+                final BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if ((line = line.trim()).isEmpty()) {
+                        continue; // Skip empty lines.
+                    }
+                    switch (line.charAt(0)) {
+                        case '#': {
+                            // A line of comment. Ignore.
+                            break;
+                        }
+                        case '[': {
+                            // The authority. Actually we don't parse yet
+                            // this element. Maybe a future version will do.
+                            break;
+                        }
+                        default: {
+                            int s = line.indexOf(':');
+                            final String orientation = line.substring(0, s).trim();
+                            do {
+                                final int p = s+1;
+                                s = line.indexOf(' ', p);
+                                final String code = (s >= 0) ? line.substring(p,s) : line.substring(p);
+                                map.put(code.trim(), orientation);
+                            } while (s >= 0);
+                            break;
+                        }
+                    }
+                }
+                reader.close();
+                return axisOrientations = map;
+            } catch (IOException e) {
+                cause = e;
+            }
+            throw new FactoryException("Can not read the \"" + AXIS_FILE + "\" resource", cause);
+        }
+
+        /**
          * Unconditionally returns {@code null}, since this functionality is not supported yet.
          * Note that {@code null} is not the same than an empty set, since the later would mean
          * that there is no supported code.
          */
         @Override
-        public Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
-            return null;
+        public synchronized Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
+            if (codes == null) {
+                codes = Collections.unmodifiableSet(getAxisOrientations().keySet());
+            }
+            return codes;
         }
 
         /**
@@ -254,13 +396,31 @@ public class PJFactory implements Factory {
                 codespace = code.substring(0, s).trim();
                 code = code.substring(s+1).trim();
             }
-            final String definition = "+init=" + codespace + ':' + code;
+            int dimension = 2;
+            final StringBuilder definition = new StringBuilder(40);
+            definition.append("+init=").append(codespace).append(':').append(code);
+            if (useEpsgAxisOrder) {
+                //
+                // If the user asked to honor the EPSG axis definitions, get the axis orientation
+                // from the "axis-orientations.txt" file.   This may be a comma-separated list if
+                // there is also a definition for the base CRS. It may be 2 or 3 characters long.
+                // The number of characters determine the number of dimensions. However this will
+                // have to be adjusted before to be given to Proj.4 since the later expects
+                // exactly 3 characters.
+                //
+                String orientation = getAxisOrientations().get(code);
+                if (orientation != null) {
+                    definition.append(' ').append(AXIS_ORDER_PARAM).append(orientation);
+                    final int end = orientation.indexOf(AXIS_ORDER_SEPARATOR);
+                    dimension = (end >= 0) ? end : orientation.length();
+                }
+            }
             final String name = getName(code);
             if (name != null) {
                 code = name;
             }
             try {
-                return createCRS(createIdentifier(codespace, code), definition, 2);
+                return createCRS(createIdentifier(codespace, code), definition.toString(), dimension);
             } catch (IllegalArgumentException e) {
                 throw new NoSuchAuthorityCodeException(e.getMessage(), codespace, code);
             }
