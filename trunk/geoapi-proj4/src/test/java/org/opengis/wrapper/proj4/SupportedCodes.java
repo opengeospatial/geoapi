@@ -76,6 +76,12 @@ public class SupportedCodes {
     private static final String DEFAULT_ORIENTATION = "enu";
 
     /**
+     * The text which appears before axis orientations in a Coordinate System name.
+     * Used for extracting axis orientations only if the formal way failed.
+     */
+    private static final String AXIS_IN_CS_NAME = "Axes:";
+
+    /**
      * The root directory of Proj.4 data files.
      */
     private final File projDataDirectory;
@@ -89,6 +95,12 @@ public class SupportedCodes {
      * The prepared statement for fetching the coordinate system code from a CRS code.
      */
     private final PreparedStatement coordSysStmt;
+
+    /**
+     * The prepared statement for fetching the name of a coordinate system.
+     * Used in order to get the axis order when we failed to use the axis table.
+     */
+    private final PreparedStatement coordSysNameStmt;
 
     /**
      * The prepared statement for fetching axis orientation from a coordinate system code.
@@ -126,6 +138,8 @@ public class SupportedCodes {
         this.epsgConnection    = epsgConnection;
         coordSysStmt = epsgConnection.prepareStatement(
                 "SELECT coord_sys_code, coord_ref_sys_kind, source_geogcrs_code FROM epsg_coordinatereferencesystem WHERE coord_ref_sys_code=?");
+        coordSysNameStmt = epsgConnection.prepareStatement(
+                "SELECT coord_sys_name FROM epsg_coordinatesystem WHERE coord_sys_code=?");
         axisOrientationStmt = epsgConnection.prepareStatement(
                 "SELECT coord_axis_orientation FROM epsg_coordinateaxis WHERE coord_sys_code=? ORDER BY coord_axis_order");
         cachedOrientations = new HashMap<Integer,String>(100);
@@ -216,8 +230,9 @@ public class SupportedCodes {
      */
     private String getAxisOrientationsForCS(final int code) throws SQLException {
         axisOrientationStmt.setInt(1, code);
-        final ResultSet rs = axisOrientationStmt.executeQuery();
+        ResultSet rs = axisOrientationStmt.executeQuery();
         final StringBuilder buffer = new StringBuilder();
+        final StringBuilder warning = new StringBuilder();
         while (rs.next()) {
             final char c;
             final String orientation = rs.getString(1);
@@ -229,18 +244,45 @@ public class SupportedCodes {
             else if (orientation.equals("up"))    c='u';
             else if (orientation.equals("down"))  c='d';
             else {
-                out.println("WARNING: unsupported axis orientation: " + orientation);
+                warning.append(warning.length() == 0 ?
+                        "WARNING: unsupported axis orientation: (" : ", ").append(orientation);
                 c = ' '; // Used after the loop for checking if an error occurred.
             }
             buffer.append(c);
         }
         rs.close();
         if (buffer.indexOf(" ") >= 0) {
-            // If we had unknown axis direction, use the default directions.
-            // But we need to preserve the number of axis.
+            //
+            // If we had unknown axis direction, try to infer the axis directions from the CS name. Example:
+            // "Cartesian 2D CS for UPS north. Axes: N,E. Orientations: N along 180°E meridian, E along 90°E meridian. UoM: m."
+            // This block of code will lock for the "Axes: N,E" part.
+            //
+            warning.append(')');
+            boolean found = false;
+            String def = DEFAULT_ORIENTATION;
+            coordSysNameStmt.setInt(1, code);
+            rs = coordSysNameStmt.executeQuery();
+            while (rs.next()) { // Should be executed only once.
+                final String name = rs.getString(1);
+                final int s = name.indexOf(AXIS_IN_CS_NAME);
+                if (s >= 0) {
+                    final String sn = name.substring(s + AXIS_IN_CS_NAME.length()).trim();
+                    if (sn.startsWith("E,N") || sn.startsWith("X,Y")) {def = "enu"; found=true; continue;}
+                    if (sn.startsWith("N,E") || sn.startsWith("Y,X")) {def = "neu"; found=true; continue;}
+                }
+                warning.append(" for ").append(name);
+            }
+            rs.close();
+            if (!found) {
+                out.println(warning);
+            }
+            //
+            // Trim the string to the number of axes found in the loop before this block of code.
+            // In most cases, this result in dropping the "u" in the string.
+            //
             final int length = buffer.length();
             buffer.setLength(0);
-            buffer.append(DEFAULT_ORIENTATION).setLength(length);
+            buffer.append(def).setLength(length);
         }
         return buffer.toString();
     }
@@ -289,6 +331,7 @@ public class SupportedCodes {
     private void close() throws SQLException {
         out.flush();
         axisOrientationStmt.close();
+        coordSysNameStmt   .close();
         coordSysStmt       .close();
         epsgConnection     .close();
     }
