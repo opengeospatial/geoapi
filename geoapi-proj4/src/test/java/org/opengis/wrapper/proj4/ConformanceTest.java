@@ -93,7 +93,8 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
             final String projection = pj.getParameter("+proj=");
             if (projection != null) {
                 if (projection.equals("cass")) {
-                    return ToleranceModifiers.scale(EnumSet.of(DIRECT_TRANSFORM, INVERSE_TRANSFORM), 200, 200);
+                    // Relax tolerance of Cassini-Soldner from 0.01 metre to 1 metre.
+                    return ToleranceModifiers.scale(EnumSet.of(DIRECT_TRANSFORM, INVERSE_TRANSFORM), 100, 100);
                 }
             }
         }

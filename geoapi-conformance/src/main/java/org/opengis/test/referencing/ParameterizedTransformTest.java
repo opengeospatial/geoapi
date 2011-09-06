@@ -68,7 +68,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * Math transform instances are created using the factory given at construction time.
  * <p>
  * <b>Tests and accuracy:</b><br>
- * By default, every tests expect an accuracy of 5 millimetres. This accuracy matches the precision
+ * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
  * of most example points given in the EPSG guidance notice. Implementors can modify the kind of
  * tests being executed and the tolerance threshold in different ways:
  * <p>
@@ -132,10 +132,10 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * The default tolerance threshold for comparing the results of direct transforms.
-     * This is set to half the precision of coordinate point givens in the EPSG and
-     * IGNF documentation.
+     * This is set to the precision of coordinate point givens in the EPSG and IGNF
+     * documentation.
      */
-    private static final double TRANSFORM_TOLERANCE = 0.005;
+    private static final double TRANSFORM_TOLERANCE = 0.01;
 
     /**
      * The tolerance threshold for comparing the derivative coefficients. In each column of the
