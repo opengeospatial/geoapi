@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================
+         Maven 2 project configuration file
+         http://maven.apache.org/maven2/
+     ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi-parent</artifactId>
+    <version>3.1-SNAPSHOT</version>
+  </parent>
+
+
+
+  <!-- ====================================================
+           Project description
+       ==================================================== -->
+  <groupId>org.opengis.wrapper</groupId>
+  <artifactId>geoapi-proj4</artifactId>
+  <packaging>jar</packaging>
+  <name>Proj4 bindings</name>
+  <description>
+    A "proof of concept" implementation of GeoAPI using JNI binding to the Proj.4 library.
+    This module requires the Proj.4 native library version 4.8 or above.
+  </description>
+
+
+
+  <!-- ====================================================
+           Developers and contributors
+       ==================================================== -->
+  <developers>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>martin.desruisseaux@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+
+
+  <!-- ====================================================
+           Dependencies
+       ==================================================== -->
+  <dependencies>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-pending</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-conformance</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+
+
+  <!-- ====================================================
+           Web site and Javadoc generation
+       ==================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <reportPlugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <configuration>
+                <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
+                <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
+                <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
+                <charset>UTF-8</charset>        <!-- Specifies the HTML character set for this document.                -->
+                <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
+                <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
+                <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
+                <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
+                <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
+                <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
+                <breakiterator>true</breakiterator>
+                <links>
+                  <link>http://download.oracle.com/javase/6/docs/api/</link>
+                  <link>http://www.geoapi.org/snapshot/javadoc/</link>
+                  <link>http://jscience.org/jsr-275/api/</link>
+                </links>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+          </reportPlugins>
+        </configuration>
+      </plugin>
+      <!-- Skips the tests, because they require native code. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

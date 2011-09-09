@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs xmlns="http://maven.apache.org/FML/1.0.1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"
+      title="Frequently Asked Questions" toplink="false">
+  <part id="general">
+    <title>General</title>
+
+    <faq id="start">
+      <question>How did the GeoAPI project get started, and what is its history?</question>
+      <answer>
+        <p>The GeoAPI project emerged from the collaboration of several free software projects and
+        from the work on various specifications at the Open Geospatial Consortium (OGC).</p>
+
+        <p>You can follow the early, pre-history of GeoAPI by reading the following three posts to the
+        DigitalEarth.org website; at this point it had no name, only a goal of bringing together multiple
+        Java GIS projects.</p>
+
+        <ul>
+          <li><a href="http://web.archive.org/web/20030509104308/http://digitalearth.org/story/2002/10/10/55046/206">Call for a Geo-Spatial API</a></li>
+          <li><a href="http://web.archive.org/web/20030510220525/http://digitalearth.org/story/2002/12/2/195021/503">Java GeoSpatial API Part II</a></li>
+          <li><a href="http://web.archive.org/web/20030501122912/http://digitalearth.org/story/2002/12/12/121814/73">Java GeoSpatial API Part III</a></li>
+        </ul>
+
+        <p>As you can see in part III, the OGC had just announced a Geographic Objects initiative
+        which intended to define Java interfaces for geographic software. This followed earlier work
+        on the OGC Implementation Specification 01-009 <cite>Coordinate Transformation Services</cite>
+        which included interfaces defined in the <code>org.opengis</code> namespace ultimately adopted
+        by GeoAPI.</p>
+
+        <p>The GeoAPI project eventually formed to persue this work. The interfaces defined in the
+        OGC specification 01-009 became GeoAPI version 0.1. GeoAPI 1.0 was released with the draft
+        of OGC specification 03-064 <cite>GO-1 Application Objects</cite>. In May 2005, the final draft
+        of the GO-1 specification, which included GeoAPI interfaces, was accepted as an OGC standard
+        and the matching version of GeoAPI was released as version 2.0.</p>
+
+        <p>The GeoAPI 3.0 working group of the OGC has formed in January 2009 to formalized and continue
+        the work of standardizing the most stable interfaces produced by the GeoAPI project.</p>
+      </answer>
+    </faq>
+
+    <faq id="OGC">
+      <question>What is the relationship between GeoAPI and OGC?</question>
+      <answer>
+        <p>GeoAPI is closely tied to the OGC both in its origins and in its ongoing work.</p>
+
+        <p>The GeoAPI project is a collaboration of participants from various institutions and
+        software communities. The GeoAPI project is developing a set of interfaces in the Java
+        language to help software projects produce high quality geospatial software. The core
+        interfaces follow closely the specifications produced in the 19100 series of the
+        International Organization for Standardization (ISO) and by the OGC. The interfaces use the
+        <code>org.opengis</code> namespace and copyright to the code is assigned to the OGC. The
+        project started with the code produced by the OGC Implementation Specification 01-009
+        <cite>Coordinate Transformation Services</cite> and refactored this code in collaboration
+        with the standardization work surrounding the OGC specification 03-064
+        <cite>GO-1 Application Objects</cite>.</p>
+
+        <p>The GeoAPI working group of the OGC is a separate effort made up principally of members
+        of the OGC and formed to continue the work of formalizing the interfaces developed by the
+        GeoAPI project as ratified standards of the OGC. The working group decided to start the
+        <cite>GeoAPI Implementation Specification</cite> as a new standard focused exclusively on the
+        interfaces produced by the GeoAPI project. In acknoledgement to the earlier work and to
+        match the numbering scheme of GeoAPI, the first specification released under this name is
+        expected to carry the 3.0 version number.</p>
+      </answer>
+    </faq>
+
+    <faq id="Why">
+      <question>Why a standardized set of programming interfaces? Shouldn't OGC standards stick to web services only?</question>
+      <answer>
+        <p>We believe that both approaches are complementary. Web services are efficient ways to publish geographic
+        information using existing software. But some users need to build their own solution, for example as a
+        wrapper on top of their own numerical model. Many existing software packages provide sophisticated developer
+        toolkits, but each toolkit has its own learning curve, and one can not easily switch from one toolkit to
+        another or mix components from different toolkits. Using standardized interfaces, a significant part of the
+        API can stay constant across different toolkits, thus reducing both the learning curve (especially since the
+        interfaces are derived from published abstract UML) and the inter-operability pain points.</p>
+
+        <p>The situation is quite similar to JDBC (Java DataBase Connectivity)'s one. The fact that a high-level language
+        already exists for database queries (SQL) doesn't means that low-level programming interfaces are not needed.
+        JDBC interfaces have been created as a developer tools in complement to SQL, and they proven to be quite useful.</p>
+      </answer>
+    </faq>
+
+    <faq id="forcing">
+      <question>With standardization of interfaces, aren't you forcing a particular implementation?</question>
+      <answer>
+        <p>We try to carefully avoid implementation-specific API. Again, JDBC is a good example of what we try to achieve.
+        JDBC is an example of successful interfaces-only specification implemented by many vendors. Four categories of
+        JDBC drivers exists (pure Java, wrappers around native code, etc.). Implementations exist for (in alphabetical
+        order) Access, Derby, HSQL, MySQL, Oracle, PostgreSQL and many others.</p>
+
+        <p>It is important to stress out that GeoAPI is all about interfaces. Concrete classes must implement all methods
+        declared in their interfaces, but those interfaces don't put any constraint on the class hierarchy. For example
+        GeoAPI provides a <code>MathTransform2D</code> interface which extends <code>MathTransform</code>. In no way do
+        implementation classes need to follow the same hierarchy. Actually, in the particular case of <code>MathTransforms</code>,
+        they usually don't! A class implementing <code>MathTransform2D</code> doesn't need to extend a class implementing
+        <code>MathTransform</code>. The only constraint is to implement all methods declared in the <code>MathTransform2D</code>
+        interface and its parent interfaces.</p>
+      </answer>
+    </faq>
+  </part>
+
+  <part id="technical">
+    <title>Technical</title>
+
+    <faq id="scripts">
+      <question>Why don't you translate all OGC's UML into Java interfaces using some automatic script?</question>
+      <answer>
+        <p>We tried that path at the beginning of GeoAPI project, and abandoned it. Automatic scripts provide
+        useful starting points, but a lot of human intervention is still essential. The relationship between
+        UML and Java interfaces is not always straightforward. The changes applied by human intervention is
+        documented in the <a href="snapshot/javadoc/departures.html">departures</a> page.</p>
+      </answer>
+    </faq>
+
+    <faq id="collections">
+      <question>Why do you favor Collections over arrays as a return type?</question>
+      <answer>
+        <p>For performance, more orthogonal API and more freedom on the implementer side.</p>
+
+        <p><b>Performance (including memory usage)</b><br/>
+        Some robust implementations will want to protect their internal state against uncontrolled changes.
+        In such implementations, getter methods need to make defensive copies of their mutable attributes
+        (see <a href="http://java.sun.com/docs/books/effective/chapters.html">Effective Java</a>).
+        Arrays are mutable objects; nothing prevent an user from writing <code>PointArray.positions()[1000] = null</code>,
+        and thus altering the <code>PointArray</code> state if <code>positions()</code> was returning a direct reference
+        to its internal array.</p>
+
+        <p>The box below compares two ways to protect an implementation from changes. Note that in both
+        case, the internal data are stored as an array but the getter return type differ.</p>
+
+        <table>
+          <tr>
+            <th>Array return type</th>
+            <th>Collection return type</th>
+          </tr>
+<tr><td><pre>public class PointArray {
+    private Position[] p = ...;
+
+    public Position[] positions() {
+        return (Position[]) p.clone();
+    }
+}</pre></td>
+<td><pre>public class PointArray {
+    private Position[] p = ...;
+
+    private List&lt;Position&gt; pl = Collections.unmodifiableList(Arrays.asList(p));
+
+    public List&lt;Position&gt; positions() {
+        return pl;
+    }
+}</pre></td></tr>
+</table>
+
+        <p>Since the collection is read-only in the above example, it doesn't need to be cloned (note: the <em>elements</em>
+        in an array or collection may still mutable, but this is a separated topic). The collection in this example is a
+        <strong>view</strong> over the array elements. This view doesn't copy the array, and any change in the array is
+        reflected in the view. This is different from <code>Collection.toArray()</code>, which always copy all elements
+        in an array. The conversion from collection to array using <code>Collection.toArray()</code> is usually more expensive
+        and consume more memory than the conversion from array to collection using <code>Arrays.asList(Object[])</code>. One
+        may argue that iteration over a collection is slower than iteration over an array. This slight advantage is compromised
+        (in regard of <code>array.clone()</code> cost) if the user doesn't want to iterate over the whole array. Furthermore,
+        if an array is really wanted, some <code>Collection.toArray()</code> implementations map directly to
+        <code>array.clone()</code>.</p>
+
+        <p>In addition of the above, collections allow on-the-fly object creation. For example positions may be stored
+        as a suite of (<var>x</var>,<var>y</var>) coordinates in a single <code>double[]</code> array for efficiency,
+        and temporary position objects created on the fly:</p>
+
+<source>public class PointArray {
+    private double[] coordinates = ...;
+
+    private List&lt;Position&gt; pl = new AbstractList&lt;Position&gt;() {
+        public int size() {
+            return coordinates.length / 2;
+        }
+
+        public Position get(int i) {
+            return new Position2D(coordinates[i*2], coordinates[i*2+1]);
+        }
+    };
+
+    public List&lt;Position&gt; positions() {
+        return pl;
+    }
+}</source>
+
+        <p>More sophisticated implementations may load or write their data directly to a database on a <em>per-element</em>
+        basis. In comparison, arrays require initialization of all array's element before the array is returned. It still
+        possible to initialize an array with elements that use deferred execution, but implementers have one less degree
+        of freedom with arrays compared to collections.</p>
+
+        <p><b>More orthogonal API</b><br/>
+        If a geometry is mutable (at implementer choice), an user may whish to add, edit or remove elements. With arrays
+        as return types, we would need to add some <code>add(...)</code> and <code>remove(...)</code> methods in most
+        interfaces. Using collections, such API weight is not needed since the user can write the following idiom:</p>
+
+        <source>pointArray.positions().add(someNewPosition);</source>
+
+        <p>The <code>PointArray</code> behavior in such case is left to implementers. It may throw an
+        <code>UnsupportedOperationException</code>, keep the point in memory, stores its coordinates immediately in a
+        database, <cite>etc.</cite></p>
+
+        <p>In addition of keeping the API lighter, collections as return types also give us for free many additional
+        methods like <code>contains(...)</code>, <code>addAll(...)</code>, <code>removeAll(...)</code>, <cite>etc.</cite>
+        Adding those kind of methods directly into the geometry interfaces would basically transforms geometries into
+        new kind of collections and duplicates the collection framework work without its "well accepted standard"
+        characteristic.</p>
+
+        <p><b>More freedom on implementer side</b><br/>
+        <ul>
+          <li>In the Java language, collections are more abstract than arrays. A collection can be a view over an
+          array (<code>using Arrays.asList(...)</code> for example). The converse is impossible in the general case
+          (<code>Collection.toArray()</code> doesn't create a view; it usually copies the array).</li>
+
+          <li>Collections are more abstract than arrays in .NET too: an array is a collection, but a collection
+          is not always an array (conversions from an arbitrary collection to an array may require a copy, like
+          in Java). The array type is more restrictive than the collection type.</li>
+
+          <li>A collection can be read-only or not, at implementer choice. Java arrays are always mutable and
+          need defensive copies (not to be confused with defensive copies of array or collection elements, which
+          is yet an other topic).</li>
+
+          <li>Collections allow one more degree of freedom for deferred execution or lazy data loading. Object
+          creations can occur on a per-element basis in collection getter methods. In an array, the reference to
+          all elements must be initialized before the array is returned.</li>
+        </ul>
+        </p>
+      </answer>
+    </faq>
+  </part>
+</faqs>
