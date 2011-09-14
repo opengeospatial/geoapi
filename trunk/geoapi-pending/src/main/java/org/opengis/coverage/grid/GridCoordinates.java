@@ -53,7 +53,7 @@ public interface GridCoordinates {
     /**
      * Returns the number of dimensions. This method is equivalent to
      * <code>{@linkplain #getCoordinateValues()}.length</code>. It is
-     * provided for efficienty.
+     * provided for efficiency.
      *
      * @return The number of dimensions.
      */
@@ -75,7 +75,7 @@ public interface GridCoordinates {
     /**
      * Returns the coordinate value at the specified dimension. This method is equivalent to
      * <code>{@linkplain #getCoordinateValues()}[<var>i</var>]</code>. It is provided for
-     * efficienty.
+     * efficiency.
      *
      * @param  dimension The dimension for which to obtain the coordinate value.
      * @return The coordinate value at the given dimension.
