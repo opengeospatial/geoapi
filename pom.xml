@@ -165,7 +165,7 @@
        ==================================================== -->
   <repositories>
     <repository>
-      <id>geotoolkit</id> <!-- For UmlGraph -->
+      <id>geotoolkit</id> <!-- For JSR-275 (legacy) and UmlGraph -->
       <name>Geotoolkit repository</name>
       <url>http://maven.geotoolkit.org/</url>
     </repository>
