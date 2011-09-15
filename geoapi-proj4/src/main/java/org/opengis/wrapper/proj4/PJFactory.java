@@ -33,18 +33,25 @@ package org.opengis.wrapper.proj4;
 
 import java.util.Set;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Collections;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import javax.measure.unit.Unit;
+import javax.measure.unit.NonSI;
+import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
+import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
+import org.opengis.referencing.datum.*;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
@@ -53,8 +60,11 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
+import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.parameter.GeneralParameterDescriptor;
 import org.proj4.PJ;
 
 import static org.proj4.PJ.DIMENSION_MAX;
@@ -99,6 +109,47 @@ public class PJFactory implements Factory {
     @Override
     public Citation getVendor() {
         return SimpleCitation.VENDOR;
+    }
+
+    /**
+     * Creates a simple identifier from the given properties. The full set of properties is
+     * documented in the {@link org.opengis.referencing.ObjectFactory} class. However this
+     * implementation uses only the following properties:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+     *     <th nowrap>Property name</th>
+     *     <th nowrap>Value type</th>
+     *     <th nowrap>Value given to</th>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link org.opengis.referencing.ReferenceIdentifier} or {@link String}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link IdentifiedObject#getName()}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link ReferenceIdentifier#getCodeSpace()} on the {@linkplain IdentifiedObject#getName name}</td>
+     *   </tr>
+     * </table>
+     *
+     * @param  properties The properties, or {@code null} if none.
+     * @return A reference identifier for the given code space and code, or {@code null}.
+     * @throws IllegalArgumentException If any of the requested value is an empty string.
+     */
+    public static ReferenceIdentifier createIdentifier(final Map<String,?> properties) {
+        if (properties != null) {
+            final Object name = properties.get(IdentifiedObject.NAME_KEY);
+            if (name != null) {
+                if (name instanceof ReferenceIdentifier) {
+                    return (ReferenceIdentifier) name;
+                }
+                final Object cs = properties.get(ReferenceIdentifier.CODESPACE_KEY);
+                return createIdentifier(cs != null ? cs.toString() : null, name.toString());
+            }
+        }
+        return null;
     }
 
     /**
@@ -201,6 +252,290 @@ public class PJFactory implements Factory {
             throws ClassCastException
     {
         return new PJOperation(identifier, (PJCRS) sourceCRS, (PJCRS) targetCRS);
+    }
+
+    /**
+     * Returns the exception to throw when a feature is not yet supported.
+     */
+    static FactoryException unsupportedOperation() {
+        return new FactoryException("Not supported yet.");
+    }
+
+    /**
+     * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
+     * created from property maps.
+     * <p>
+     * The supported methods of this class are:
+     * <p>
+     * <ul>
+     *   <li>{@link #createGeocentricCRS(Map, GeodeticDatum, CartesianCS)}</li>
+     *   <li>{@link #createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)}</li>
+     *   <li>{@link #createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)}</li>
+     * </ul>
+     * <p>
+     * All other methods throw a {@link FactoryException}.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    public static class Objects extends PJFactory implements CRSFactory {
+        /**
+         * The Proj.4 names for OGC, EPSG or GeoTIFF projection names.
+         * Will be created when first needed.
+         */
+        private static Map<String,String> projectionNames;
+
+        /**
+         * The Proj.4 names for OGC, EPSG or GeoTIFF parameter names.
+         * Will be created when first needed.
+         */
+        private static Map<String,String> parameterNames;
+
+        /**
+         * Creates a new factory.
+         */
+        public Objects() {
+        }
+
+        /**
+         * Appends the prime meridian to the given definition string buffer.
+         *
+         * @param def The definition string buffer.
+         * @param pm The prime meridian, or {@code null} if none.
+         */
+        private static void appendPrimeMeridian(final StringBuilder def, final PrimeMeridian pm) {
+            if (pm != null) {
+                double lon = pm.getGreenwichLongitude();
+                final Unit<Angle> unit = pm.getAngularUnit();
+                if (unit != null) {
+                    lon = unit.getConverterTo(NonSI.DEGREE_ANGLE).convert(lon);
+                }
+                def.append(" +pm=").append(lon);
+            }
+        }
+
+        /**
+         * Appends the axis directions in the given definition string buffer.
+         *
+         * @param  def The definition string buffer.
+         * @param  cs The coordinate system.
+         * @param  dimension The number of dimension to format (may be lower than the CS dimension).
+         * @throws FactoryException If an axis direction is not supported.
+         */
+        private static void appendAxisDirections(final StringBuilder def, final CoordinateSystem cs,
+                final int dimension) throws FactoryException
+        {
+            for (int i=0; i<dimension; i++) {
+                final AxisDirection dir = cs.getAxis(i).getDirection();
+                final char c;
+                     if (dir == AxisDirection.EAST ) c = 'e';
+                else if (dir == AxisDirection.WEST ) c = 'w';
+                else if (dir == AxisDirection.NORTH) c = 'n';
+                else if (dir == AxisDirection.SOUTH) c = 's';
+                else if (dir == AxisDirection.UP   ) c = 'u';
+                else if (dir == AxisDirection.DOWN ) c = 'd';
+                else throw new FactoryException("Unsupported axis direction: " + dir);
+                def.append(c);
+            }
+        }
+
+        /**
+         * Creates a geographic or geocentric coordinate reference system.
+         *
+         * @param  type {@code "latlon"} or {@code "geocent"}.
+         * @param  properties Name to give to the new object. Available properties
+         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  datum Geodetic datum to use in created CRS.
+         * @param  cs The ellipsoidal coordinate system for the created CRS.
+         * @return The coordinate reference system for the given properties.
+         * @throws FactoryException if the object creation failed.
+         */
+        private CoordinateReferenceSystem createGeodeticCRS(final String type, final Map<String,?> properties,
+                final GeodeticDatum datum, final CoordinateSystem cs) throws FactoryException
+        {
+            final int                 dimension  = cs.getDimension();
+            final ReferenceIdentifier name       = createIdentifier(properties);
+            final Ellipsoid           ellipsoid  = datum.getEllipsoid();
+            final StringBuilder       definition = new StringBuilder(100);
+            definition.append("+proj=").append(type)
+                    .append(" +a=").append(ellipsoid.getSemiMajorAxis())
+                    .append(" +b=").append(ellipsoid.getSemiMinorAxis());
+            appendPrimeMeridian(definition, datum.getPrimeMeridian());
+            appendAxisDirections(definition.append(' ').append(AXIS_ORDER_PARAM), cs, Math.min(dimension, 3));
+            try {
+                return createCRS(name, definition.toString(), dimension);
+            } catch (IllegalArgumentException e) {
+                throw new FactoryException(e.getMessage(), e);
+            }
+        }
+
+        /**
+         * Creates a geocentric coordinate reference system.
+         *
+         * @param  properties Name to give to the new object. Available properties
+         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  datum Geodetic datum to use in created CRS.
+         * @param  cs The coordinate system for the created CRS.
+         * @return The coordinate reference system for the given properties.
+         * @throws FactoryException if the object creation failed.
+         */
+        @Override
+        public GeocentricCRS createGeocentricCRS(final Map<String,?> properties,
+                final GeodeticDatum datum, final CartesianCS cs) throws FactoryException
+        {
+            return (GeocentricCRS) createGeodeticCRS("geocent", properties, datum, cs);
+        }
+
+        /**
+         * Creates a geographic coordinate reference system.
+         * It can be <var>Latitude</var>/<var>Longitude</var> or
+         * <var>Longitude</var>/<var>Latitude</var>.
+         *
+         * @param  properties Name to give to the new object. Available properties
+         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  datum Geodetic datum to use in created CRS.
+         * @param  cs The ellipsoidal coordinate system for the created CRS.
+         * @return The coordinate reference system for the given properties.
+         * @throws FactoryException if the object creation failed.
+         */
+        @Override
+        public GeographicCRS createGeographicCRS(final Map<String,?> properties,
+                final GeodeticDatum datum, final EllipsoidalCS cs) throws FactoryException
+        {
+            return (GeographicCRS) createGeodeticCRS("latlon", properties, datum, cs);
+        }
+
+        /**
+         * Loads the given list of projection or parameter names.
+         */
+        private static Map<String,String> load(final String file) throws FactoryException {
+            IOException cause = null;
+            final InputStream in = PJFactory.class.getResourceAsStream(file);
+            if (in != null) try {
+                final Map<String,String> map = new HashMap<String,String>(5000);
+                final BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                String parameter = null;
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if ((line = line.trim()).isEmpty()) {
+                        continue; // Skip empty lines.
+                    }
+                    switch (line.charAt(0)) {
+                        case '#': /* A line of comment */   break;
+                        case '+': parameter = line;         break;
+                        default:  map.put(line, parameter); break;
+                    }
+                }
+                reader.close();
+                return map;
+            } catch (IOException e) {
+                cause = e;
+            }
+            throw new FactoryException("Can not read the \"" + file + "\" resource", cause);
+        }
+
+        /**
+         * Returns the Proj.4 name for the given parameter or projection.
+         * If no mapping is found, then the parameter name is returned unchanged.
+         *
+         * @param  param The parameter value or group from which to get the name.
+         * @param  isParam {@code true} if we are looking for a parameter name rather
+         *         than a projection name.
+         * @return The Proj.4 name.
+         */
+        private String getProjName(final GeneralParameterValue param, final boolean isParam)
+                throws FactoryException
+        {
+            final GeneralParameterDescriptor descriptor = param.getDescriptor();
+            final String name = descriptor.getName().getCode();
+            Map<String,String> map;
+            synchronized (this) {
+                map = isParam ? parameterNames : projectionNames;
+                if (map == null) {
+                    if (isParam) parameterNames  = map = load("parameter-names.txt");
+                    else         projectionNames = map = load("projection-names.txt");
+                }
+            }
+            String proj = map.get(name);
+            if (proj == null) {
+                // If the name is not recognized, try the alias (if any).
+                // If no alias match, then return the name unchanged.
+                for (final GenericName alias : descriptor.getAlias()) {
+                    proj = map.get(alias.tip().toString());
+                    if (proj != null) {
+                        return proj;
+                    }
+                }
+                proj = name;
+            }
+            return proj;
+        }
+
+        /**
+         * Creates a projected coordinate reference system from a defining conversion.
+         * The projection and parameter names in the {@code conversionFromBase} can be
+         * Proj.4 names, OGC names, EPSG names or GeoTIFF names.
+         *
+         * @param  properties Name to give to the new object. Available properties
+         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  baseCRS Geographic coordinate reference system to base the projection on.
+         * @param  conversionFromBase The defining conversion.
+         * @param  derivedCS The coordinate system for the projected CRS.
+         * @return The coordinate reference system for the given properties.
+         * @throws FactoryException if the object creation failed.
+         */
+        @Override
+        public ProjectedCRS createProjectedCRS(final Map<String,?> properties, final GeographicCRS baseCRS,
+                final Conversion conversionFromBase, final CartesianCS derivedCS) throws FactoryException
+        {
+            final int                 dimension  = derivedCS.getDimension();
+            final ReferenceIdentifier name       = createIdentifier(properties);
+            final EllipsoidalCS       baseCS     = baseCRS.getCoordinateSystem();
+            final GeodeticDatum       datum      = baseCRS.getDatum();
+            final Ellipsoid           ellipsoid  = datum.getEllipsoid();
+            final ParameterValueGroup parameters = conversionFromBase.getParameterValues();
+            final StringBuilder       definition = new StringBuilder(200);
+            definition.append("+proj=").append(getProjName(parameters, false).substring(1));
+            boolean hasSemiMajor = false;
+            boolean hasSemiMinor = false;
+            for (final GeneralParameterValue parameter : parameters.values()) {
+                if (parameter instanceof ParameterValue) {
+                    final Object value = ((ParameterValue) parameter).getValue();
+                    if (value != null) {
+                        final String pn = getProjName(parameter, true);
+                        if (pn.equals("+a")) hasSemiMajor = true;
+                        if (pn.equals("+b")) hasSemiMinor = true;
+                        definition.append(' ').append(pn).append('=').append(value);
+                    }
+                }
+            }
+            if (!hasSemiMajor) definition.append(" +a=").append(ellipsoid.getSemiMajorAxis());
+            if (!hasSemiMinor) definition.append(" +b=").append(ellipsoid.getSemiMinorAxis());
+            appendPrimeMeridian (definition, datum.getPrimeMeridian());
+            appendAxisDirections(definition.append(' ').append(AXIS_ORDER_PARAM), derivedCS, Math.min(dimension, 3));
+            appendAxisDirections(definition.append(AXIS_ORDER_SEPARATOR), baseCS, Math.min(baseCS.getDimension(), 3));
+            final PJCRS.Projected crs;
+            try {
+                crs = (PJCRS.Projected) createCRS(name, definition.toString(), dimension);
+            } catch (IllegalArgumentException e) {
+                throw new FactoryException(e.getMessage(), e);
+            }
+            if (baseCRS instanceof PJCRS.Geographic) {
+                crs.baseCRS = (PJCRS.Geographic) baseCRS;
+            }
+            return crs;
+        }
+
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public GeocentricCRS  createGeocentricCRS (Map<String,?> properties, GeodeticDatum datum, SphericalCS cs)                                                          throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public VerticalCRS    createVerticalCRS   (Map<String,?> properties, VerticalDatum datum, VerticalCS cs)                                                           throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public TemporalCRS    createTemporalCRS   (Map<String,?> properties, TemporalDatum datum, TimeCS cs)                                                               throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public ImageCRS       createImageCRS      (Map<String,?> properties, ImageDatum datum, AffineCS cs)                                                                throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public EngineeringCRS createEngineeringCRS(Map<String,?> properties, EngineeringDatum datum, CoordinateSystem cs)                                                  throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public DerivedCRS     createDerivedCRS    (Map<String,?> properties, CoordinateReferenceSystem baseCRS, Conversion conversionFromBase, CoordinateSystem derivedCS) throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public CompoundCRS    createCompoundCRS   (Map<String,?> properties, CoordinateReferenceSystem... elements)                                                        throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public CoordinateReferenceSystem createFromXML(String xml)                                                                                                         throws FactoryException {throw unsupportedOperation();}
+        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public CoordinateReferenceSystem createFromWKT(String wkt)                                                                                                         throws FactoryException {throw unsupportedOperation();}
     }
 
     /**
@@ -542,29 +877,29 @@ public class PJFactory implements Factory {
          * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
-        public CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
+        public CoordinateOperation createConcatenatedOperation(Map<String,?> properties,
                 CoordinateOperation... operations) throws FactoryException
         {
-            throw new FactoryException("Not supported yet.");
+            throw unsupportedOperation();
         }
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
-        public Conversion createDefiningConversion(Map<String, ?> properties,
+        public Conversion createDefiningConversion(Map<String,?> properties,
                 OperationMethod method, ParameterValueGroup parameters) throws FactoryException
         {
-            throw new FactoryException("Not supported yet.");
+            throw unsupportedOperation();
         }
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          */
         @Override
-        public OperationMethod createOperationMethod(Map<String, ?> properties,
+        public OperationMethod createOperationMethod(Map<String,?> properties,
                 Integer sourceDimension, Integer targetDimension, ParameterDescriptorGroup parameters) throws FactoryException {
-            throw new FactoryException("Not supported yet.");
+            throw unsupportedOperation();
         }
 
         /**
@@ -572,7 +907,7 @@ public class PJFactory implements Factory {
          */
         @Override
         public OperationMethod getOperationMethod(String name) throws FactoryException {
-            throw new FactoryException("Not supported yet.");
+            throw unsupportedOperation();
         }
     }
 }
