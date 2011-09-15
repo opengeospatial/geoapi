@@ -67,7 +67,7 @@ final class PJIdentifier implements ReferenceIdentifier {
      * @param code The code (mandatory).
      */
     PJIdentifier(final String codespace, final String code) {
-        this.codespace = code;
+        this.codespace = codespace;
         this.code = code;
     }
 

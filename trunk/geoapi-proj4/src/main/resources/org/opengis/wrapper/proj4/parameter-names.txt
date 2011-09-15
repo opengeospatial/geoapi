@@ -1,0 +1,65 @@
++a
+semi_major
+Semi_Major
+Semi-major axis
+
++b
+semi_minor
+Semi_Minor
+Semi-minor axis
+
++lon_0
+Longitude of projection center
+Longitude of natural origin
+Longitude of false origin
+longitude_of_center
+central_meridian
+CenterLong
+ProjCenterLong
+NatOriginLong
+FalseOriginLong
+
++lat_0
+Latitude of projection center
+Latitude of natural origin
+Latitude of false origin
+latitude_of_center
+latitude_of_origin
+CenterLat
+ProjCenterLat
+NatOriginLat
+FalseOriginLat
+
++lat_1
+Latitude of first standard parallel
+standard_parallel_1
+StdParallel1
+
++lat_2
+Latitude of second standard parallel
+standard_parallel_2
+StdParallel2
+
++lat_ts
+Latitude of true scale
+
++k
+Scale factor at natural origin
+Scale factor on initial line
+scale_factor
+ScaleAtCenter
+ScaleAtNatOrigin
+
++x_0
+Easting of false origin
+Easting at projection center
+false_easting
+FalseEasting
+FalseOriginEasting
+
++y_0
+Northing of false origin
+Northing at projection center
+false_northing
+FalseNorthing
+FalseOriginNorthing

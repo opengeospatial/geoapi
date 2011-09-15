@@ -166,7 +166,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         /**
          * The value returned by {@link #getBaseCRS()}, created when first needed.
          */
-        private transient Geographic baseCRS;
+        transient Geographic baseCRS;
 
         /**
          * The value returned by {@link #getConversionFromBase()}, created when first needed.
