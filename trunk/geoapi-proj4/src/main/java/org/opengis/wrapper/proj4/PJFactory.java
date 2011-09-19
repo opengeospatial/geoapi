@@ -265,7 +265,7 @@ public class PJFactory implements Factory {
      * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
      * created from property maps.
      * <p>
-     * The supported methods of this class are:
+     * The supported methods in this class are:
      * <p>
      * <ul>
      *   <li>{@link #createGeocentricCRS(Map, GeodeticDatum, CartesianCS)}</li>
@@ -540,10 +540,10 @@ public class PJFactory implements Factory {
 
     /**
      * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
-     * created from an EPSG code. While this factory is primarily designed for EPSG codes, it
+     * created from EPSG codes. While this factory is primarily designed for EPSG codes, it
      * accepts also any other codespaces supported by the Proj.4 library.
      * <p>
-     * The main methods of this class are:
+     * The main methods in this class are:
      * <p>
      * <ul>
      *   <li>{@link #getAuthority()}</li>
@@ -787,9 +787,9 @@ public class PJFactory implements Factory {
     }
 
     /**
-     * A factory for {@linkplain CoordinateOperation coordinate operation} objects created from
-     * a source and a target CRS. Current implementation accepts only CRS objects created by
-     * {@link PJFactory} or {@link PJFactory.EPSG}.
+     * A factory for {@linkplain CoordinateOperation Coordinate Operation} objects created from
+     * source and target CRS. Current implementation accepts only CRS objects created by a
+     * {@link PJFactory}.
      * <p>
      * The only supported methods are:
      * <p>
