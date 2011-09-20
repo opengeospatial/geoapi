@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description xmlns="http://openoffice.org/extensions/description/2006"
+           xmlns:d="http://openoffice.org/extensions/description/2006"
+       xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <identifier value="org.opengis.openoffice"/>
+  <version    value="3.1.0"/> <!-- Actually 3.1-SNAPSHOT -->
+  <platform   value="all"/>
+
+  <publisher>
+    <name lang="en" xlink:href="http://www.geoapi.org/geoapi-openoffice/index.html">GeoAPI demo add-in for OpenOffice.org</name>
+  </publisher>
+
+  <display-name>
+    <name lang="en">GeoAPI demonstration add-in</name>
+    <name lang="fr">Extension de démonstration de GeoAPI</name>
+  </display-name>
+
+  <icon>
+    <default xlink:href="geoapi.png" />
+  </icon>
+
+</description>

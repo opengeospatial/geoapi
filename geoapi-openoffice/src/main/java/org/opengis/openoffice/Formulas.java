@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.LogRecord;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import com.sun.star.sheet.XAddIn;
 import com.sun.star.lang.Locale;
@@ -33,6 +35,11 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * The logger to use for all message to log in this package.
      */
     protected static final Logger LOGGER = Logger.getLogger("org.opengis.openoffice");
+
+    /**
+     * Sets to {@code true} for formatting full stack trace in cells in case of errors.
+     */
+    private static final boolean DEBUG = false;
 
     /**
      * Informations about exported methods.
@@ -249,6 +256,13 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * @return The localized message of the given exception.
      */
     static String getLocalizedMessage(final Throwable exception) {
+        if (DEBUG) {
+            final StringWriter buffer = new StringWriter();
+            final PrintWriter out = new PrintWriter(buffer);
+            exception.printStackTrace(out);
+            out.close();
+            return buffer.toString();
+        }
         final String message = exception.getLocalizedMessage();
         if (message != null) {
             return message;

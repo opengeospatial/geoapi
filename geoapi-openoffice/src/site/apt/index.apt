@@ -42,6 +42,14 @@ OpenOffice.org add-in
   names for formulas (<<<org.opengis.openoffice.XReferencing.getFoo>>>) and the same parameters.
 
 
+* Demo spreadsheets
+
+  The following files can be opened in OpenOffice.org after the demo add-in, or an alternative
+  implementation listed below, has been installed:
+
+  * {{{./referencing.ods}referencing.ods}}
+
+
 * Other implementations
 
   * {{{http://www.geotoolkit.org/modules/analytics/geotk-openoffice/index.html}Geotoolkit.org add-in for OpenOffice.org}} (pure Java)
