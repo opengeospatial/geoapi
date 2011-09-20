@@ -1,0 +1,56 @@
+                                    ---------------------
+                                    OpenOffice.org add-in
+                                    ---------------------
+
+OpenOffice.org add-in
+
+  This module demonstrates how GeoAPI services can be used from a complex software like
+  {{{http://www.openoffice.org}OpenOffice.org}}. This add-in adds the following formulas
+  to the Calc software, which can be used in spreadsheets for performing coordinate operations:
+
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+|| OOo Formulas     || Java method              || Parameters                         || Supported by this demo ||
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.DESCRIPTION    | getDescription            | EPSG code                           | yes but incomplete      |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.SCOPE          | getScope                  | EPSG code                           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.VALID.AREA     | getValidArea              | EPSG code                           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.BOUNDING.BOX   | getBoundingBox            | EPSG code                           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.REMARKS        | getRemarks                | EPSG code                           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.AXIS           | getAxis                   | EPSG code, dimension                | yes but incomplete      |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.PARAMETER      | getParameter              | EPSG code, parameter name           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| CRS.WKT            | getWKT                    | EPSG code, authority name           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| TRANSFORM.WKT      | getTransformWKT           | EPSG code, authority name           | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| TRANSFORM.ACCURACY | getAccuracy               | source CRS, target CRS              | no, see other impl.     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+| TRANSFORM.COORD    | getTransformedCoordinates | coordinates, source CRS, target CRS | yes                     |
+*--------------------+---------------------------+-------------------------------------+-------------------------*
+
+  This demo uses the {{{../geotk-proj4/index.html}Proj.4}} binding, which requires a native
+  library. However implementors are free to distribute this add-in with the <<<geotk-proj4.jar>>>
+  file replaced by their own implementation. See {{{./replace.html}here}} for instructions.
+
+  Users should be able to switch implementations as long as the add-ins use the same programmatic
+  names for formulas (<<<org.opengis.openoffice.XReferencing.getFoo>>>) and the same parameters.
+
+
+* Other implementations
+
+  * {{{http://www.geotoolkit.org/modules/analytics/geotk-openoffice/index.html}Geotoolkit.org add-in for OpenOffice.org}} (pure Java)
+
+
+* Links for developers
+
+  * {{{./replace.html}Inject other GeoAPI implementation}}
+
+  * {{{./build.html}Build instructions}}
+
+  * {{{http://download.openoffice.org/sdk}OpenOffice SDK}}

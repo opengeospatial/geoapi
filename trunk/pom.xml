@@ -609,6 +609,7 @@
     <module>geoapi-pending</module>
     <module>geoapi-examples</module>
     <module>geoapi-proj4</module>
+    <module>geoapi-openoffice</module>
     <module>tools</module>
   </modules>
 </project>
