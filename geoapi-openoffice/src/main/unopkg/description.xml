@@ -8,7 +8,7 @@
   <platform   value="all"/>
 
   <publisher>
-    <name lang="en" xlink:href="http://www.geoapi.org/geoapi-openoffice/index.html">GeoAPI demo add-in for OpenOffice.org</name>
+    <name lang="en" xlink:href="http://www.geoapi.org/geoapi-openoffice/index.html">OGC® GeoAPI</name>
   </publisher>
 
   <display-name>
