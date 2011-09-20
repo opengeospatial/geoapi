@@ -1,0 +1,15 @@
+                       ------------------------------------------------
+                       OpenOffice.org add-in implementation replacement
+                       ------------------------------------------------
+
+OpenOffice.org add-in implementation replacement
+
+  The easiest way to try the OpenOffice.org add-in with a different GeoAPI implementation is to
+  download the <<<geoapi.oxt>>> file, delete the <<<geoapi-proj4.jar>>> file and add the JAR files
+  of the new implementation.
+
++--------------------------------------------------------------------------------------------------------------------------------
+export GEOAPI_VERSION=3.1-SNAPSHOT
+zip -d geoapi-$GEOAPI_VERSION.oxt geoapi-proj4-$GEOAPI_VERSION.jar
+zip -9 geoapi-$GEOAPI_VERSION.oxt your-impl.jar
++--------------------------------------------------------------------------------------------------------------------------------
