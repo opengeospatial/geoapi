@@ -331,7 +331,7 @@ public final class Referencing extends Formulas implements XReferencing {
     {
         try {
             return toString(crsFactory().getDescriptionText(authorityCode));
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -345,7 +345,7 @@ public final class Referencing extends Formulas implements XReferencing {
     {
         try {
             return toString(crsFactory().createCoordinateReferenceSystem(authorityCode).getScope());
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -362,7 +362,7 @@ public final class Referencing extends Formulas implements XReferencing {
             if (validArea != null) {
                 return toString(validArea.getDescription());
             }
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
         return emptyString();
@@ -385,7 +385,7 @@ public final class Referencing extends Formulas implements XReferencing {
                     new double[] {box.getSouthBoundLatitude(),
                                   box.getEastBoundLongitude()}};
             }
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             reportException("getBoundingBox", exception);
         }
         return null;
@@ -400,7 +400,7 @@ public final class Referencing extends Formulas implements XReferencing {
     {
         try {
             return toString(crsFactory().createObject(authorityCode).getRemarks());
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -416,7 +416,7 @@ public final class Referencing extends Formulas implements XReferencing {
         try {
             return crsFactory().createCoordinateReferenceSystem(authorityCode)
                     .getCoordinateSystem().getAxis(dimension-1).getName().getCode();
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -432,7 +432,7 @@ public final class Referencing extends Formulas implements XReferencing {
         try {
             return crsFactory().createProjectedCRS(authorityCode).getConversionFromBase()
                     .getParameterValues().parameter(parameter).getValue();
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -447,7 +447,7 @@ public final class Referencing extends Formulas implements XReferencing {
     {
         try {
             return toWKT(crsFactory().createObject(authorityCode), authority);
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -463,7 +463,7 @@ public final class Referencing extends Formulas implements XReferencing {
     {
         try {
             return toWKT(getCoordinateOperation(sourceCRS, targetCRS).getMathTransform(), authority);
-        } catch (Exception exception) {
+        } catch (Throwable exception) {
             return getLocalizedMessage(exception);
         }
     }
@@ -496,7 +496,7 @@ public final class Referencing extends Formulas implements XReferencing {
         final CoordinateOperation operation;
         try {
              operation = getCoordinateOperation(sourceCRS, targetCRS);
-        } catch (Exception exception) {
+        } catch (FactoryException exception) {
             reportException("getTransformedCoordinates", exception);
             return null;
         }
