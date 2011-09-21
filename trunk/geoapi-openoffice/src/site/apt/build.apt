@@ -11,8 +11,8 @@ OpenOffice.org add-in build instructions
 
   All <<<XFoo>>> Java interfaces are generated from IDL files with the same name. As long as <<<XFoo>>>
   Java/IDL interfaces are not modified, there is no need for the OpenOffice.org SDK. But if any <<<XFoo>>>
-  interface is modified, then steps 1 to 4 below must be done. Step 5 shall be executed on the client
-  machine (users can also use the "<Tools / Package manager>" menu from OpenOffice.org GUI).
+  interface is modified, then the steps documented below must be done. The last step shall be executed on
+  the client machine (users can also use the "<Tools / Package manager>" menu from OpenOffice.org GUI).
 
 
 * Requirements
