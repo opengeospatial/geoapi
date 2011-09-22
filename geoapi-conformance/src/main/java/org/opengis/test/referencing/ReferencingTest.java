@@ -65,7 +65,7 @@ import org.junit.runners.Parameterized;
  * @version 3.1
  * @since   2.3
  *
- * @deprecated Renamed {@link ObjectFactoryTest}.
+ * @deprecated Renamed as {@link ObjectFactoryTest}.
  */
 @Deprecated
 @RunWith(Parameterized.class)

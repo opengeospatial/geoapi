@@ -544,9 +544,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
-     * Tests the EPSG:310642901 (<cite>Miller</cite>) projected CRS.
-     * This is not an official EPSG code. This test can be disabled by setting the
-     * {@link #isUnofficialEpsgSupported} to {@code false}.
+     * Tests the IGNF:MILLER (unofficial EPSG:310642901 code) projected CRS. This test can
+     * be disabled by setting the {@link #isUnofficialEpsgSupported} to {@code false}.
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Miller</td></tr>
@@ -561,7 +560,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @see ParameterizedTransformTest#testMiller()
      */
     @Test
-    public void testEPSG_310642901() throws FactoryException, TransformException {
+    public void testIGNF_MILLER() throws FactoryException, TransformException {
         assumeTrue(isUnofficialEpsgSupported);
         runProjectionTest(310642901);
     }

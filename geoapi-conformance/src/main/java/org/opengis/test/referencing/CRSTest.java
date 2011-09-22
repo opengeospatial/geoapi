@@ -71,7 +71,7 @@ import org.opengis.test.TestCase;
  * @version 3.1
  * @since   2.3
  *
- * @deprecated Renamed {@link AuthorityFactoryTest}.
+ * @deprecated Renamed as {@link AuthorityFactoryTest}.
  */
 @Deprecated
 @RunWith(Parameterized.class)
