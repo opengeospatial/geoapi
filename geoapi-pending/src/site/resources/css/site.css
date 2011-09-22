@@ -2,6 +2,12 @@
  * This file is a copy of the site.css file provided in
  * /src/site/resources/css, except for URL to images.
  */
+#leftColumn {
+ width: 180px;
+}
+#bodyColumn {
+  margin-left: 207px;
+}
 #banner {
   height: 90px;
   background: url(../../images/banner.png);
