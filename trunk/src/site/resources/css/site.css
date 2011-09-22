@@ -1,4 +1,10 @@
 /* Override styles in maven-base.css */
+#leftColumn {
+ width: 180px;
+}
+#bodyColumn {
+  margin-left: 207px;
+}
 #banner {
   height: 90px;
   background: url(../images/banner.png);
