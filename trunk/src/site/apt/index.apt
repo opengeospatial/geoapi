@@ -54,7 +54,8 @@ GeoAPI
     * The project uses a {{{http://jira.codehaus.org/browse/GEO}JIRA task tracker}}.
 
     * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Member/GeoAPI}OGC wiki}}
-      for Standard Working Group (SWG) tasks.
+      for the {{{https://portal.opengeospatial.org/?m=projects&a=view&project_id=294}Standard
+      Working Group}} (SWG) tasks.
 
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
   anyone for any purpose requiring only maintaining the copyright and license

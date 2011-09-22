@@ -514,7 +514,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
-     * @see AuthorityFactoryTest#testEPSG_310642901()
+     * @see AuthorityFactoryTest#testIGNF_MILLER()
      */
     @Test
     public void testMiller() throws FactoryException, TransformException {
