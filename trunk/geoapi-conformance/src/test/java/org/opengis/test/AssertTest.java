@@ -44,7 +44,7 @@ import static org.junit.Assert.*;
  */
 public strictfp class AssertTest {
     /**
-     * Tests {@link Assert#assertLenientEquals(CharSequence, CharSequence)}.
+     * Tests {@link Assert#assertLenientEquals(String, CharSequence, CharSequence)}.
      */
     @Test
     public void testLenientEquals() {

@@ -42,7 +42,8 @@ import static org.opengis.test.Assert.*;
 
 
 /**
- * Tests {@link TransformTestCase} using {@link AffineTransform} as a reference transform.
+ * Tests {@link TransformTestCase} using {@link java.awt.geom.AffineTransform}
+ * as a reference transform.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -216,7 +217,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Tests {@link #verifyInDomain(double[], double[], int, Random)}.
+     * Tests {@link TransformTestCase#verifyInDomain(double[], double[], int[], Random)}.
      *
      * @throws TransformException Should never happen.
      *
