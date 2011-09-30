@@ -68,57 +68,17 @@
 
 
   <!-- ====================================================
-           Web site and Javadoc generation
+           Skip the tests because they require native code
        ==================================================== -->
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <reportPlugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <configuration>
-                <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
-                <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
-                <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
-                <charset>UTF-8</charset>        <!-- Specifies the HTML character set for this document.                -->
-                <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
-                <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
-                <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
-                <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
-                <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
-                <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
-                <breakiterator>true</breakiterator>
-                <links>
-                  <link>http://download.oracle.com/javase/6/docs/api/</link>
-                  <link>http://www.geoapi.org/snapshot/javadoc/</link>
-                  <link>http://jscience.org/jsr-275/api/</link>
-                </links>
-              </configuration>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-report-plugin</artifactId>
-            </plugin>
-          </reportPlugins>
-        </configuration>
-      </plugin>
-      <!-- Skips the tests, because they require native code. -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <skipTests>true</skipTests>
+          <skipTests>${skipNativeLibraryTests}</skipTests>
         </configuration>
       </plugin>
     </plugins>
   </build>
-
 </project>

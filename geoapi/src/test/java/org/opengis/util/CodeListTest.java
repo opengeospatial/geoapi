@@ -245,7 +245,7 @@ public final class CodeListTest {
 
     /**
      * Tests the {@link CharacterSet} code list. At the difference of other code lists,
-     * its {@link CodeList#matches} method is overridden.
+     * its {@link CodeList#names()} method is overridden.
      */
     @Test
     public void testCharacterSet() {

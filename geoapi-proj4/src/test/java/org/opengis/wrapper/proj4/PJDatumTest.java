@@ -83,7 +83,7 @@ public class PJDatumTest {
     }
 
     /**
-     * Tests the {@link PJDatum#getLinearUnit(double)} method using values close but not
+     * Tests the {@link PJDatum#getLinearUnit(boolean)} method using values close but not
      * identical to the expected values.
      */
     @Test
