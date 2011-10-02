@@ -40,14 +40,11 @@ import org.opengis.referencing.operation.MathTransform;
 
 /**
  * Provides optional information about the implementation being tested. Implementors can
- * provide instance of this interface in their test packages, and declare their instance
+ * provide an instance of this interface in their test packages and declare their instance
  * in the {@code META-INF/services/org.opengis.test.ImplementationDetails} file. GeoAPI
  * will iterate over every {@code ImplementationDetails} found on the classpath when needed:
  * <p>
  * <ul>
- *   <li>Before the first execution of any particular {@link TestCase} subclass, in order to
- *   check whatever a particular factory can be tested.</li>
- *
  *   <li>Before each execution of a configurable {@link TestCase}, in order to check which tests
  *   (if any) should be disabled.</li>
  *
@@ -56,12 +53,10 @@ import org.opengis.referencing.operation.MathTransform;
  * </ul>
  * <p>
  * If no instance of {@code ImplementationDetails} is registered, then GeoAPI assumes that
- * every factories found on the classpath shall be tested and all tests are enabled with
- * the default tolerance threshold. This is equivalent to using a {@code ImplementationDetails}
- * instance where:
+ * all tests are enabled with their default tolerance threshold. This is equivalent to using
+ * an {@code ImplementationDetails} instance where:
  * <p>
  * <ul>
- *   <li>{@link #filter(Class, Factory)} returns unconditionally {@code true}</li>
  *   <li>{@link #configuration(Factory[])} returns unconditionally {@code null}</li>
  *   <li>{@link #needsRelaxedTolerance(MathTransform)} returns unconditionally {@code null}</li>
  * </ul>
@@ -71,24 +66,6 @@ import org.opengis.referencing.operation.MathTransform;
  * @since   3.1
  */
 public interface ImplementationDetails {
-    /**
-     * Returns {@code true} if the given factory can be tested. Implementors shall return
-     * {@code false} only when they really want to exclude a particular factory. For every
-     * unknown factory, this method should return {@code true}.
-     * <p>
-     * If more than one {@code ImplementationDetails} is found on the classpath, then the
-     * given factory will be tested only if all {@code ImplementationDetails.filter(...)}
-     * calls returned {@code true}.
-     *
-     * @param  <T>      The compile-time type of the {@code category} argument.
-     * @param  category The factory interface ({@link org.opengis.util.NameFactory},
-     *                  {@link org.opengis.referencing.crs.CRSFactory}, <i>etc.</i>).
-     * @param  factory  The factory instance.
-     * @return {@code false} if the given factory should be excluded from the tests,
-     *         or {@code true} otherwise.
-     */
-    <T extends Factory> boolean filter(Class<T> category, T factory);
-
     /**
      * Returns the set of tests that should be disabled, or {@code null} if none.
      * If non-null, then the returned map can assign the value {@code "false"} to

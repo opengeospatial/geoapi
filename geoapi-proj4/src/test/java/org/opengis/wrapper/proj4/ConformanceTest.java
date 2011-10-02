@@ -68,14 +68,6 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
     }
 
     /**
-     * Accepts all factories.
-     */
-    @Override
-    public <T extends Factory> boolean filter(final Class<T> category, T factory) {
-        return true;
-    }
-
-    /**
      * Returns the map of tests to disable for this implementation.
      */
     @Override

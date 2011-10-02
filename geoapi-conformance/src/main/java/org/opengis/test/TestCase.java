@@ -67,6 +67,16 @@ public strictfp abstract class TestCase {
             new HashMap<Class<? extends Factory>, Iterable<? extends Factory>>();
 
     /**
+     * The service loader to use for loading {@link FactoryFilter}.
+     * <p>
+     * Accesses to this field must be synchronized on itself. If both {@code FACTORIES} and
+     * {@code FACTORY_FILTER} are synchronized, then {@code FACTORIES} must be synchronized
+     * first.
+     */
+    static final ServiceLoader<FactoryFilter> FACTORY_FILTER =
+            ServiceLoader.load(FactoryFilter.class);
+
+    /**
      * The service loader to use for loading {@link ImplementationDetails}.
      * <p>
      * Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
@@ -131,6 +141,26 @@ public strictfp abstract class TestCase {
      * @since 3.1
      */
     protected static List<Factory[]> factories(final Class<? extends Factory>... types) {
+        return factories(null, types);
+    }
+
+    /**
+     * Returns factory instances for given factory interfaces, excluding the factories filtered
+     * by the given filter. This method performs the same work than {@link #factories(Class[])}
+     * except that the given filter is applied in addition to any filter found on the classpath.
+     * <p>
+     * The main purpose of this method is to get {@link org.opengis.referencing.AuthorityFactory}
+     * instances for a given authority name.
+     *
+     * @param  filter An optional factory filter to use in addition to any filter declared in
+     *         the classpath, or {@code null} if none.
+     * @param  types The kind of factories to fetch.
+     * @return All combinations of factories of the given kind. Each list element is an array
+     *         having the same length than {@code types}.
+     *
+     * @since 3.1
+     */
+    protected static List<Factory[]> factories(final FactoryFilter filter, final Class<? extends Factory>... types) {
         final List<Factory[]> factories = new ArrayList<Factory[]>(4);
         factories.add(new Factory[types.length]);
         synchronized (FACTORIES) {
@@ -143,7 +173,7 @@ public strictfp abstract class TestCase {
                 }
                 List<Factory[]> toUpdate = factories;
                 for (final Factory factory : choices) {
-                    if (filter(type, factory)) {
+                    if (filter(type, factory, filter)) {
                         if (toUpdate == factories) {
                             toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
                         } else {
@@ -167,10 +197,13 @@ public strictfp abstract class TestCase {
      * registered {@link ImplementationDetails} and ensures that all of them accept the given
      * factory.
      */
-    private static <T extends Factory> boolean filter(final Class<T> category, final Factory factory) {
+    private static <T extends Factory> boolean filter(final Class<T> category, final Factory factory, final FactoryFilter filter) {
         final T checked = category.cast(factory);
-        synchronized (IMPLEMENTATION_DETAILS) {
-            for (final ImplementationDetails impl : IMPLEMENTATION_DETAILS) {
+        if (filter != null && !filter.filter(category, checked)) {
+            return false;
+        }
+        synchronized (FACTORY_FILTER) {
+            for (final FactoryFilter impl : FACTORY_FILTER) {
                 if (!impl.filter(category, checked)) {
                     return false;
                 }

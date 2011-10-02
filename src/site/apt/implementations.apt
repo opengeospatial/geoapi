@@ -6,9 +6,13 @@ Implementations
 
   Some projects that are known to implement subsets of GeoAPI 3.0 are:
 
-    * {{{http://www.geotoolkit.org/}Geotoolkit.org}} version 3.18 or above
-
-    * {{{./geoapi-proj4/index.html}Proj.4 bindings}} (<experimental>)
+*------------------------------------------------+------------*-----------*------------------------------------------------*
+|| Project                                       || Language  || Metadata || Referencing                                   |
+*------------------------------------------------+------------*-----------*------------------------------------------------*
+| {{{http://www.geotoolkit.org/}Geotoolkit.org}} | Java       | yes       | {{{./definitions.html#bindings}late-binding}}  |
+*------------------------------------------------+------------*-----------*------------------------------------------------*
+| {{{./geoapi-proj4/index.html}Proj.4 bindings}} | Java and C | no        | {{{./definitions.html#bindings}early-binding}} |
+*------------------------------------------------+------------*-----------*------------------------------------------------*
 
   GeoAPI provides also some {{{./geoapi-examples/index.html}implementation examples}} placed into
   the Public Domain. Implementors can use those examples as a starting point, for Open Source or
