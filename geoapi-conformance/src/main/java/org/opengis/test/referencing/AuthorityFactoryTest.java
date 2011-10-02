@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Set;
 import java.util.List;
 import java.awt.geom.Rectangle2D;
 import javax.measure.unit.NonSI;
@@ -260,6 +261,20 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                 SupportedOperation.UNOFFICIAL_EPSG_CODES.key);
         isAxisSwappingSupported   = isEnabled[0];
         isUnofficialEpsgSupported = isEnabled[1];
+    }
+
+    /**
+     * Returns the set of all disabled operations. This set is constructed from all
+     * {@code isFooEnabled} fields declared in this class and all parent classes.
+     *
+     * @since 3.1
+     */
+    @Override
+    public Set<String> getDisabledOperations() {
+        final Set<String> op = super.getDisabledOperations();
+        if (!isAxisSwappingSupported)   assertTrue(op.add(SupportedOperation.AXIS_SWAPPING        .key));
+        if (!isUnofficialEpsgSupported) assertTrue(op.add(SupportedOperation.UNOFFICIAL_EPSG_CODES.key));
+        return op;
     }
 
     /**

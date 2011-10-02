@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
@@ -153,6 +154,17 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         final boolean[] isEnabled = getEnabledFlags(new MathTransformFactory[] {factory},
                 SupportedOperation.NON_SQUARE_MATRIX.key);
         isNonSquareMatrixSupported = isEnabled[0];
+    }
+
+    /**
+     * Returns the set of all disabled operations. This set is constructed from all
+     * {@code isFooEnabled} fields declared in this class and all parent classes.
+     */
+    @Override
+    public Set<String> getDisabledOperations() {
+        final Set<String> op = super.getDisabledOperations();
+        if (!isNonSquareMatrixSupported) assertTrue(op.add(SupportedOperation.NON_SQUARE_MATRIX.key));
+        return op;
     }
 
     /**

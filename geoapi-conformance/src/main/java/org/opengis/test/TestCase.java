@@ -37,6 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Properties;
 import java.util.ServiceLoader;
 import org.opengis.util.Factory;
@@ -213,9 +215,9 @@ public strictfp abstract class TestCase {
     }
 
     /**
-     * Returns booleans indicating whatever the given tests are enabled. By default, every tests
-     * are enabled. However if any {@link ImplementationDetails} instance found on the classpath
-     * returns a {@linkplain ImplementationDetails#configuration configuration} properties map
+     * Returns booleans indicating whatever the given operations are enabled. By default, every
+     * operations are enabled. However if any {@link ImplementationDetails} instance found on the
+     * classpath returns a {@linkplain ImplementationDetails#configuration configuration} map
      * having the value {@code "false"} for a given property, then the boolean value corresponding
      * to this property is set to {@code false}.
      * <p>
@@ -258,5 +260,20 @@ public strictfp abstract class TestCase {
             }
         }
         return isEnabled;
+    }
+
+    /**
+     * Returns the set of all disabled operations.
+     * <p>
+     * <b>Note:</b> this method returns a set of {@link String} rather than
+     * {@link SupportedOperation} in order to allow extension by testers.
+     *
+     * @return The disabled operations, or an empty set if none. This method returns
+     *         a modifiable set in order to allow subclasses to modify it.
+     *
+     * @since 3.1
+     */
+    public Set<String> getDisabledOperations() {
+        return new HashSet<String>();
     }
 }
