@@ -55,7 +55,7 @@ final class Utilities {
 
     /**
      * Returns {@code true} if the given {@link InternationalString} is equals to the given
-     * {@link String}. Only the US locale and the default locale string are compared.
+     * {@code String}. Only the US locale and the default locale string are compared.
      */
     private static boolean equals(final InternationalString i18n, final String string) {
         if (i18n == null) {

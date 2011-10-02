@@ -61,9 +61,9 @@ import org.opengis.referencing.operation.MathTransform;
  * to the {@link #setFactories(Class, Factory[])} method.
  * <p>
  * Implementors can have some control on the tests (factories to use, features to test, tolerance
- * thresholds) by registering their {@link ImplementationDetails} in the {@code META-INF/services}
- * directory. As an alternative, implementors can also extends directly the various {@link TestCase}
- * subclasses.
+ * thresholds) by registering their {@link FactoryFilter} or {@link ImplementationDetails} in the
+ * {@code META-INF/services/} directory. As an alternative, implementors can also extend directly
+ * the various {@link TestCase} subclasses.
  * <p>
  * <b>Example:</b> The test suite below declares that the tolerance threshold for {@code MyProjection}
  * needs to be relaxed by a factor 10 during inverse projections.
@@ -81,11 +81,6 @@ import org.opengis.referencing.operation.MathTransform;
  *
  *public class GeoapiTest extends TestSuite implements {@linkplain ImplementationDetails} {
  *    &#64;Override
- *    public &lt;T extends {@linkplain Factory}&gt; boolean {@linkplain ImplementationDetails#filter filter}(Class&lt;T&gt; category, T factory) {
- *        return true;
- *    }
- *
- *    &#64;Override
  *    public Properties {@linkplain ImplementationDetails#configuration configuration}({@linkplain Factory}... factories) {
  *        return null;
  *    }
@@ -99,7 +94,7 @@ import org.opengis.referencing.operation.MathTransform;
  *    }
  *}</pre></blockquote>
  *
- * The above {@code AllTests} class needs to be registered in the {@code META-INF/services}
+ * The above {@code AllTests} class needs to be registered in the {@code META-INF/services/}
  * directory if the implementation details shall be honored (otherwise the tests will be run,
  * but the implementation details will be ignored).
  *
@@ -191,6 +186,9 @@ public strictfp class TestSuite {
      */
     public static void clear() {
         synchronized (TestCase.FACTORIES) {
+            synchronized (TestCase.FACTORY_FILTER) {
+                TestCase.FACTORY_FILTER.reload();
+            }
             synchronized (TestCase.IMPLEMENTATION_DETAILS) {
                 TestCase.IMPLEMENTATION_DETAILS.reload();
             }
