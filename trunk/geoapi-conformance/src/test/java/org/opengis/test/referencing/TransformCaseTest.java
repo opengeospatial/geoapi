@@ -75,6 +75,14 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
+     * Verify before each test case that all GeoAPI tests were enabled.
+     */
+    @Before
+    public void assertAllTestsEnabled() {
+        assertTrue(getDisabledOperations().isEmpty());
+    }
+
+    /**
      * Initializes {@link #transform} to a new affine transform.
      * A slightly different affine transform is created during
      * each initialization.
@@ -106,7 +114,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testTransform() throws TransformException {
         tolerance = 0;
-        assertAllTestsEnabled();
         ((AffineTransform2D) transform).setToScale(10, 100);
         Validators.validate(transform);
         verifyTransform(new double[] { 1,  4,   2,  3},
@@ -135,7 +142,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testConsistencyUsingValidTransform() throws TransformException {
         tolerance = 0;
-        assertAllTestsEnabled();
         Validators.validate(transform);
         verifyConsistency(coordinates);
     }
@@ -149,7 +155,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test(expected=TransformFailure.class)
     public void testConsistencyUsingBogusTransform() throws TransformException {
         tolerance = 0;
-        assertAllTestsEnabled();
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongFloatToFloat = true;
         verifyConsistency(coordinates);
@@ -163,7 +168,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testInversionUsingValidTransform() throws TransformException {
         tolerance = 1E-10;
-        assertAllTestsEnabled();
         Validators.validate(transform);
         verifyInverse(coordinates);
     }
@@ -177,7 +181,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test(expected=TransformFailure.class)
     public void testInversionUsingBogusTransform() throws TransformException {
         tolerance = 1E-10;
-        assertAllTestsEnabled();
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
         verifyInverse(coordinates);
@@ -193,7 +196,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testDerivative() throws TransformException {
         tolerance = 1E-10;
         derivativeDeltas = new double[] {0.1};
-        assertAllTestsEnabled();
         Validators.validate(transform);
         verifyDerivative(10, 20);
     }
@@ -210,7 +212,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testDerivativeUsingBogusTransform() throws TransformException {
         tolerance = 1E-10;
         derivativeDeltas = new double[] {0.1};
-        assertAllTestsEnabled();
         Validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongDerivative = true;
         verifyDerivative(0, 0);
@@ -227,7 +228,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testVerifyInDomain() throws TransformException {
         tolerance = 1E-10;
         derivativeDeltas = new double[] {0.1};
-        assertAllTestsEnabled();
         Validators.validate(transform);
         testVerifyInDomain(new double[] {10, 100}, new double[] {20, 400}, 10,  30);
     }

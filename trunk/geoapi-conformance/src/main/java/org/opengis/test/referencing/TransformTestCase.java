@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Set;
 import java.util.Random;
 import java.util.Arrays;
 import java.awt.geom.Point2D;
@@ -313,6 +314,25 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
+     * Returns the set of all disabled operations. This set is constructed from all
+     * {@code isFooEnabled} fields declared in this class.
+     *
+     * @since 3.1
+     */
+    @Override
+    public Set<String> getDisabledOperations() {
+        final Set<String> op = super.getDisabledOperations();
+        if (!isDoubleToDoubleSupported)   assertTrue(op.add(SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE  .key));
+        if (!isFloatToFloatSupported)     assertTrue(op.add(SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT    .key));
+        if (!isDoubleToFloatSupported)    assertTrue(op.add(SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT   .key));
+        if (!isFloatToDoubleSupported)    assertTrue(op.add(SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE   .key));
+        if (!isOverlappingArraySupported) assertTrue(op.add(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key));
+        if (!isInverseTransformSupported) assertTrue(op.add(SupportedOperation.INVERSE_TRANSFORM           .key));
+        if (!isDerivativeSupported)       assertTrue(op.add(SupportedOperation.DERIVATIVE_TRANSFORM        .key));
+        return op;
+    }
+
+    /**
      * Returns the tolerance threshold for comparing the given ordinate value. The default
      * implementation returns the {@link #tolerance} value directly, thus implementing an
      * absolute tolerance threshold. If a subclass needs a relative tolerance threshold
@@ -336,7 +356,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Ensures that all <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> fields
      * are set to {@code true}. This method can be invoked before testing a math transform which
      * is expected to be fully implemented.
+     *
+     * @deprecated Replaced by {@code assertTrue(getDisabledOperations().isEmpty());}
      */
+    @Deprecated
     protected void assertAllTestsEnabled() {
         assertTrue("isDoubleToDoubleSupported",   isDoubleToDoubleSupported  );
         assertTrue("isFloatToFloatSupported",     isFloatToFloatSupported    );
