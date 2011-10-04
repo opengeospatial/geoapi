@@ -18,12 +18,12 @@
         <ul>
           <li><p>Some software resolves the multiplicity problem by associating one coordinate transformation
           only with each CRS. The relevant coordinate transformation is even treated as part of the definition
-          of the CRS. This solution to the problem of multiplicity is referred to as "early binding", as it
-          binds a coordinate transformation to the CRS before it is associated with any geospatial data.</p></li>
+          of the CRS. This solution to the problem of multiplicity is referred to as <cite>early-binding</cite>,
+          as it binds a coordinate transformation to the CRS before it is associated with any geospatial data.</p></li>
 
-          <li><p>"Late-binding" software solutions to the multiplicity problem will only require the
-          specification of a coordinate transformation at the time the coordinates are required to
-          be transformed.</p></li>
+          <li><p><cite>Late-binding</cite> software solutions to the multiplicity problem will only
+          require the specification of a coordinate transformation at the time the coordinates are
+          required to be transformed.</p></li>
         </ul>
       </answer>
     </faq>

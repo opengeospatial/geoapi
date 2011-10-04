@@ -38,11 +38,14 @@ import javax.measure.converter.ConversionException;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.metadata.Identifier;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.test.FactoryFilter;
@@ -70,6 +73,11 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @see org.opengis.test.referencing.AuthorityFactoryTest
  */
 public strictfp class Series2000Test extends TestCase {
+    /**
+     * Relative tolerance factor from GIGS documentation.
+     */
+    private static final double TOLERANCE = 1E-10;
+
     /**
      * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
@@ -119,6 +127,19 @@ public strictfp class Series2000Test extends TestCase {
     }
 
     /**
+     * Returns the name of the given object, or {@code null} if none.
+     */
+    private static String getName(final IdentifiedObject object) {
+        if (object != null) {
+            final Identifier name = object.getName();
+            if (name != null) {
+                return name.getCode();
+            }
+        }
+        return null;
+    }
+
+    /**
      * Reference Units of Measure test.
      * <p>
      * <table cellpadding="3"><tr>
@@ -129,7 +150,7 @@ public strictfp class Series2000Test extends TestCase {
      *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <code>GIGS_2001_libUnit_[version_date].xls</code>. This file
+     *   <td>EPSG Dataset and file {@code GIGS_2001_libUnit_v2-0_2011-06-28.xls}. This file
      *   contains three separate blocks of data for linear units, angular units and scaling units.
      *   It gives the EPSG code and name for the unit of measure, together with the ratio of the
      *   unit to the ISO base unit for that unit type.</td>
@@ -150,68 +171,116 @@ public strictfp class Series2000Test extends TestCase {
      */
     @Test
     public void test2001() throws FactoryException, ConversionException {
-        testUnitConversion(METRE, 9001, "metre",                                 1.0);
-        testUnitConversion(METRE, 9036, "kilometre",                          1000.0);
-        testUnitConversion(METRE, 9002, "foot",                                  0.3048);
-        testUnitConversion(METRE, 9003, "US survey foot",                        0.30480061);
-        testUnitConversion(METRE, 9031, "German legal metre",                    1.000013597);
-        testUnitConversion(METRE, 9005, "Clarke's foot",                         0.304797265);
-        testUnitConversion(METRE, 9039, "Clarke's link",                         0.201166195);
-        testUnitConversion(METRE, 9042, "British chain (Sears 1922)",           20.11676512);
-        testUnitConversion(METRE, 9051, "British foot (Sears 1922)",             0.304799472);
-        testUnitConversion(METRE, 9040, "British yard (Sears 1922)",             0.914398415);
-        testUnitConversion(METRE, 9301, "British chain (Sears 1922 truncated)", 20.116756);
-        testUnitConversion(METRE, 9084, "Indian yard",                           0.914398531);
-        testUnitConversion(METRE, 9094, "Gold Coast foot",                       0.30479971);
-        testUnitConversion(METRE, 9098, "link",                                  0.201168);
+        final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
+                Integer.class,  // [0]: EPSG UoM Code
+                String .class,  // [1]: Type
+                String .class,  // [2]: Name of Units used in EPSG db parameters
+                Double .class,  // [3]: Base units per unit
+                Boolean.class,  // [4]: Particularly important to E&P industry?
+                String .class); // [5]: Specific usage / Remarks
 
-        testUnitConversion(DEGREE_ANGLE, 9101, "radian",            1.0);
-        testUnitConversion(DEGREE_ANGLE, 9102, "degree",            0.017453293);
-        testUnitConversion(DEGREE_ANGLE, 9104, "arc-second",        4.85E-06);
-        testUnitConversion(DEGREE_ANGLE, 9105, "grad",              0.015707963);
-        testUnitConversion(DEGREE_ANGLE, 9109, "microradian",       0.000001);
-        testUnitConversion(DEGREE_ANGLE, 9110, "sexagesimal DMS",   Double.NaN); // Handled especially
-        testUnitConversion(DEGREE_ANGLE, 9113, "centesimal second", 1.57E-06);
-
-        testUnitConversion(ONE, 9201, "unity", 1);
-        testUnitConversion(ONE, 9202, "parts per million", 0.000001);
-        testUnitConversion(ONE, 9203, "coefficient", 1);
+        while (data.next()) {
+            final int    code   = data.getInt   (0);
+            final String type   = data.getString(1);
+            final String name   = data.getString(2);
+            final double factor = data.getDouble(3);
+            final Unit<?> unit, base;
+            try {
+                unit = csFactory.createUnit(String.valueOf(code));
+            } catch (NoSuchAuthorityCodeException e) {
+                // TODO: report this unsupported unit.
+                return;
+            }
+            if      (type.equalsIgnoreCase("Linear")) base = METRE;
+            else if (type.equalsIgnoreCase("Angle" )) base = DEGREE_ANGLE;
+            else if (type.equalsIgnoreCase("Scale" )) base = ONE;
+            else throw new DataException("Unknown type: " + type);
+            final UnitConverter converter = unit.getConverterToAny(base);
+            assertEquals(name,  0,      converter.convert( 0),  TOLERANCE);
+            assertEquals(name,  factor, converter.convert( 1),  TOLERANCE * factor);
+            assertEquals(name, -factor, converter.convert(-1), -TOLERANCE * factor);
+            if (Double.isNaN(factor)) {
+                // Special cases for sexagesimal degrees
+                assertEquals(name,  10.0000, converter.convert( 10.00), 10*TOLERANCE);
+                assertEquals(name, -10.0000, converter.convert(-10.00), 10*TOLERANCE);
+                assertEquals(name,  20.0036, converter.convert( 20.01), 20*TOLERANCE);
+                assertEquals(name, -20.0036, converter.convert(-20.01), 20*TOLERANCE);
+                assertEquals(name,  30.3000, converter.convert( 30.50), 30*TOLERANCE);
+                assertEquals(name, -30.3000, converter.convert(-30.50), 30*TOLERANCE);
+                assertEquals(name,  40.5924, converter.convert( 40.99), 40*TOLERANCE);
+                assertEquals(name, -40.5924, converter.convert(-40.99), 40*TOLERANCE);
+            } else {
+                for (double sample=-90; sample<=90; sample += 2.8125) {
+                    final double expected = sample * factor;
+                    assertEquals(name, expected, converter.convert(sample), (expected != 0) ? abs(expected)*TOLERANCE : TOLERANCE);
+                }
+            }
+        }
     }
 
     /**
-     * Invoked by {@link #test2001()} for each particular unit to be tested.
-     * This method tests the conversion of an arbitrary range of sample values.
+     * Reference ellipsoid test.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference ellipsoid parameters bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file {@code GIGS_2002_libEllipsoid_v2-0_2011-06-28.xls}. This file
+     *   gives the EPSG code and name for the ellipsoid, commonly encountered alternative name(s)
+     *   for the same object, the value and units for the semi-major axis, the conversion ratio to
+     *   metres for these units, and then a second parameter which will be either the value of the
+     *   inverse flattening (unitless) or the value of the semi-minor axis (in the same units as
+     *   the semi-major axis). It may additionally contain a flag to indicate that the figure is
+     *   a sphere: without this flag the figure is an oblate ellipsoid.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Ellipsoid definitions bundled with software, if any, should have same name and defining
+     *   parameters as in the EPSG Dataset. Equivalent alternative parameters are acceptable but
+     *   should be reported. The values of the parameters should be correct to at least 10 significant
+     *   figures. For ellipsoids defined by Clarke and Everest, as well as those adopted by IUGG as
+     *   International, several variants exist. These must be clearly distinguished. Ellipsoids
+     *   missing from the software or included in the software additional to those in the EPSG Dataset
+     *   or at variance with those in the EPSG Dataset should be reported.</td>
+     * </tr></table>
      *
-     * @param  base   The base unit.
-     * @param  code   The EPSG code of the unit to test.
-     * @param  name   The expected name of the tested unit.
-     * @param  factor The expected conversion factor from tested unit to base unit.
-     * @throws FactoryException If an error occurred while creating a Unit from an EPSG code.
+     * @throws FactoryException If an error occurred while creating an ellipsoid from an EPSG code.
      *         This does not include {@link NoSuchAuthorityCodeException}, which are reported
-     *         as unsupported unit rather than test failure.
-     * @throws ConversionException If an error occurred while converting a sample value from the
-     *         tested unit to the base unit.
+     *         as unsupported ellipsoid rather than test failure.
      */
-    private void testUnitConversion(final Unit<?> base, final int code, final String name, final double factor)
-            throws FactoryException, ConversionException
-    {
-        final Unit<?> unit;
-        try {
-            unit = csFactory.createUnit(String.valueOf(code));
-        } catch (NoSuchAuthorityCodeException e) {
-            // TODO: report this unsupported unit.
-            return;
-        }
-        final UnitConverter converter = unit.getConverterToAny(base);
-        for (double sample=-90; sample<=90; sample += 2.8125) {
-            final double expected;
-            if (Double.isNaN(factor)) {
-                expected = 0; // TODO
+    @Test
+    public void test2002() throws FactoryException {
+        final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
+            Integer.class,  // [ 0]: EPSG Ellipsoid Code
+            Boolean.class,  // [ 1]: Particularly important to E&P industry?
+            String .class,  // [ 2]: EPSG Ellipsoid Name
+            String .class,  // [ 3]: Alias(es) given by EPSG
+            Double .class,  // [ 4]: Semi-major axis (a)
+            String .class,  // [ 5]: Unit Name
+            Double .class,  // [ 6]: Unit Conversion Factor
+            Double .class,  // [ 7]: Semi-major axis (a) in metres
+            Double .class,  // [ 8]: Second defining parameter: Inverse flattening (1/f)
+            Double .class,  // [ 9]: Second defining parameter: Semi-minor axis (b)
+            Boolean.class); // [10]: Sphere?
+
+        while (data.next()) {
+            final int     code      = data.getInt    ( 0);
+            final String  name      = data.getString ( 2);
+            final double  semiMajor = data.getDouble ( 4);
+            final boolean isSphere  = data.getBoolean(10);
+            final Ellipsoid ellipsoid;
+            try {
+                ellipsoid = datumFactory.createEllipsoid(String.valueOf(code));
+            } catch (NoSuchAuthorityCodeException e) {
+                // TODO: report this unsupported unit.
                 return;
-            } else {
-                expected = sample * factor;
             }
-            assertEquals(name, expected, converter.convert(sample), (expected != 0) ? abs(expected) * 1E-10 : 1E-10);
+            assertEquals("Mismatched ellipsoid name",         name,      getName(ellipsoid));
+            assertEquals("Mismatched semi-major axis length", semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
+            assertEquals("Mismatched sphere flag",            isSphere,  ellipsoid.isSphere());
         }
     }
 }
