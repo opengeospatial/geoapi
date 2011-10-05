@@ -150,10 +150,10 @@ public strictfp class Series2000Test extends TestCase {
      *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@code GIGS_2001_libUnit_v2-0_2011-06-28.xls}. This file
-     *   contains three separate blocks of data for linear units, angular units and scaling units.
-     *   It gives the EPSG code and name for the unit of measure, together with the ratio of the
-     *   unit to the ISO base unit for that unit type.</td>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>.
+     *   This file contains three separate blocks of data for linear units, angular units and scaling
+     *   units. It gives the EPSG code and name for the unit of measure, together with the ratio of
+     *   the unit to the ISO base unit for that unit type.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Unit of measure definitions bundled with software should have the ratio to the
@@ -163,9 +163,8 @@ public strictfp class Series2000Test extends TestCase {
      *   those in the EPSG Dataset should be reported.</td>
      * </tr></table>
      *
-     * @throws FactoryException If an error occurred while creating a Unit from an EPSG code.
-     *         This does not include {@link NoSuchAuthorityCodeException}, which are reported
-     *         as unsupported unit rather than test failure.
+     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
+     *         unsupported code}) occurred while creating a unit from an EPSG code.
      * @throws ConversionException If an error occurred while converting a sample value from the
      *         tested unit to the base unit.
      */
@@ -229,13 +228,13 @@ public strictfp class Series2000Test extends TestCase {
      *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@code GIGS_2002_libEllipsoid_v2-0_2011-06-28.xls}. This file
-     *   gives the EPSG code and name for the ellipsoid, commonly encountered alternative name(s)
-     *   for the same object, the value and units for the semi-major axis, the conversion ratio to
-     *   metres for these units, and then a second parameter which will be either the value of the
-     *   inverse flattening (unitless) or the value of the semi-minor axis (in the same units as
-     *   the semi-major axis). It may additionally contain a flag to indicate that the figure is
-     *   a sphere: without this flag the figure is an oblate ellipsoid.</td>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a>.
+     *   This file gives the EPSG code and name for the ellipsoid, commonly encountered alternative
+     *   name(s) for the same object, the value and units for the semi-major axis, the conversion
+     *   ratio to metres for these units, and then a second parameter which will be either the value
+     *   of the inverse flattening (unitless) or the value of the semi-minor axis (in the same units
+     *   as the semi-major axis). It additionally contain a flag to indicate that the figure is a
+     *   sphere: if {@code false} the figure is an oblate ellipsoid.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Ellipsoid definitions bundled with software, if any, should have same name and defining
@@ -247,9 +246,8 @@ public strictfp class Series2000Test extends TestCase {
      *   or at variance with those in the EPSG Dataset should be reported.</td>
      * </tr></table>
      *
-     * @throws FactoryException If an error occurred while creating an ellipsoid from an EPSG code.
-     *         This does not include {@link NoSuchAuthorityCodeException}, which are reported
-     *         as unsupported ellipsoid rather than test failure.
+     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
+     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
      */
     @Test
     public void test2002() throws FactoryException {
@@ -267,10 +265,12 @@ public strictfp class Series2000Test extends TestCase {
             Boolean.class); // [10]: Sphere?
 
         while (data.next()) {
-            final int     code      = data.getInt    ( 0);
-            final String  name      = data.getString ( 2);
-            final double  semiMajor = data.getDouble ( 4);
-            final boolean isSphere  = data.getBoolean(10);
+            final int     code              = data.getInt    ( 0);
+            final String  name              = data.getString ( 2);
+            final double  semiMajor         = data.getDouble ( 4);
+            final double  semiMinor         = data.getDouble ( 9);
+            final double  inverseFlattening = data.getDouble ( 8);
+            final boolean isSphere          = data.getBoolean(10);
             final Ellipsoid ellipsoid;
             try {
                 ellipsoid = datumFactory.createEllipsoid(String.valueOf(code));
@@ -278,9 +278,17 @@ public strictfp class Series2000Test extends TestCase {
                 // TODO: report this unsupported unit.
                 return;
             }
-            assertEquals("Mismatched ellipsoid name",         name,      getName(ellipsoid));
-            assertEquals("Mismatched semi-major axis length", semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
-            assertEquals("Mismatched sphere flag",            isSphere,  ellipsoid.isSphere());
+            assertEquals("Ellipsoid.getName()",          name,      getName(ellipsoid));
+            assertEquals("Ellipsoid.isSphere()",         isSphere,  ellipsoid.isSphere());
+            assertEquals("Ellipsoid.getSemiMajorAxis()", semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
+            if (!Double.isNaN(semiMinor)) {
+                assertEquals("Ellipsoid.getSemiMinorAxis()", semiMinor,
+                        ellipsoid.getSemiMinorAxis(), TOLERANCE*semiMinor);
+            }
+            if (!Double.isNaN(inverseFlattening)) {
+                assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening,
+                        ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
+            }
         }
     }
 }

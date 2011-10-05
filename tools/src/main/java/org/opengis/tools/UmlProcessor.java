@@ -102,6 +102,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      *
      * @return The options recognized by this factory.
      */
+    @Override
     public Collection<String> supportedOptions() {
         return supportedOptions;
     }
@@ -111,6 +112,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      *
      * @return The annotation types recognized by this factory.
      */
+    @Override
     public Collection<String> supportedAnnotationTypes() {
         return supportedAnnotations;
     }
@@ -124,6 +126,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * @return This annotation processor.
      * @throws IllegalStateException if this method has already been invoked on this instance.
      */
+    @Override
     public AnnotationProcessor getProcessorFor(final Set<AnnotationTypeDeclaration> types,
                                                final AnnotationProcessorEnvironment environment)
     {
@@ -140,6 +143,7 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
      * invokes the {@code visitFoo} methods defined in {@link SimpleDeclarationVisitor} for every
      * declaration specified in the {@linkplain AnnotationProcessorEnvironment environment}.
      */
+    @Override
     public void process() {
         for (final TypeDeclaration declaration : environment.getSpecifiedTypeDeclarations()) {
             declaration.accept(DeclarationVisitors.getSourceOrderDeclarationScanner(this, DeclarationVisitors.NO_OP));
