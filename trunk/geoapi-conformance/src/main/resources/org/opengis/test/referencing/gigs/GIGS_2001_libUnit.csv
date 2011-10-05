@@ -4,7 +4,6 @@
 #
 # Instructions:
 # Compare the definitions of units in the application pre-defined library with those in the EPSG Dataset. Those listed below are the minimum that should be reviewed.
-# (The information below has been taken from EPSG Dataset v6.18 of November 2008. The most recent version of the Dataset should be used).
 # (This list identifies items of especial interest to the E&P industry for geodetic integrity testing purposes; it is not a fully inclusive list of items of interest).
 #
 # Columns:
@@ -29,6 +28,7 @@
 9084,Linear,Indian yard,0.914398531,false,south Asia - historic
 9094,Linear,Gold Coast foot,0.30479971,false,Ghana
 9098,Linear,link,0.201168,false,Fiji
+
 9101,Angle,radian,1,true,Some geocentric 7- and 10-parameter transformations for Colombia and US/Canada.
 9102,Angle,degree,0.017453293,true,Numerous
 9104,Angle,arc-second,4.85E-06,true,Numerous
@@ -36,6 +36,7 @@
 9109,Angle,microradian,0.000001,true,Some 7- and 10-parameter transformations for Netherlands and Norway.
 9110,Angle,sexagesimal DMS,,true,"Special EPSG construct for storing sexagesimal degree values as a single real number. Applications do not necessarily have to adopt this approach but should somehow exactly honour sexagesimal value. Sexagesimal degree (123º45'67.8\"[H]) should be used for display at human interface."
 9113,Angle,centesimal second,1.57E-06,,Used in one geocentric 7-parameter transformation for Switzerland.
+
 9201,Scale,unity,1,true,Numerous
 9202,Scale,parts per million,0.000001,true,Numerous
 9203,Scale,coefficient,,true,Numerous

@@ -131,6 +131,7 @@ final class DepartureElement implements Comparable<DepartureElement> {
     /**
      * For sorting in the order to be published on the HTML page.
      */
+    @Override
     public int compareTo(final DepartureElement other) {
         final String  n1 =  this.file.getName();
         final String  n2 = other.file.getName();

@@ -34,30 +34,40 @@ package org.opengis.tools.taglet;
 import java.util.Map;
 import com.sun.javadoc.Tag;
 import com.sun.tools.doclets.Taglet;
+import com.sun.tools.doclets.formats.html.ConfigurationImpl;
 
 
 /**
- * The <code>@note</code> tag for inserting a note in a javadoc comment.
+ * The <code>@svnurl</code> tag for inserting a SVN URL in a javadoc comment. This tag shall
+ * contains a keyword, for example <code>{@svnurl gigs}</code>.
+ * Valid keywords are:
+ * <p>
+ * <table>
+ *   <tr><th>Keyword</th> <th>path</th></tr>
+ *   <tr><td>gigs</td> <td>geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs</td></tr>
+ * </table>
+ * <p>
+ * The URL never contain trailing <code>'/'</code> character.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
- * @since   2.0
+ * @version 3.1
+ * @since   3.1
  */
-public final class Note implements Taglet {
+public final class SvnUrl implements Taglet {
     /**
      * Register this taglet.
      *
      * @param tagletMap the map to register this tag to.
      */
     public static void register(final Map<String,Taglet> tagletMap) {
-       final Note tag = new Note();
+       final SvnUrl tag = new SvnUrl();
        tagletMap.put(tag.getName(), tag);
     }
 
     /**
-     * Constructs a default <code>@note</code> taglet.
+     * Constructs a default <code>@svnurl</code> taglet.
      */
-    private Note() {
+    private SvnUrl() {
         super();
     }
 
@@ -68,11 +78,11 @@ public final class Note implements Taglet {
      */
     @Override
     public String getName() {
-        return "note";
+        return "svnurl";
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in overview.
+     * Returns {@code true} since <code>@svnurl</code> can be used in overview.
      *
      * @return Always {@code false}.
      */
@@ -82,7 +92,7 @@ public final class Note implements Taglet {
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in package documentation.
+     * Returns {@code true} since <code>@svnurl</code> can be used in package documentation.
      *
      * @return Always {@code true}.
      */
@@ -92,7 +102,7 @@ public final class Note implements Taglet {
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in type documentation
+     * Returns {@code true} since <code>@svnurl</code> can be used in type documentation
      * (classes or interfaces).
      *
      * @return Always {@code true}.
@@ -103,7 +113,7 @@ public final class Note implements Taglet {
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in constructor
+     * Returns {@code true} since <code>@svnurl</code> can be used in constructor
      *
      * @return Always {@code true}.
      */
@@ -113,7 +123,7 @@ public final class Note implements Taglet {
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in method documentation.
+     * Returns {@code true} since <code>@svnurl</code> can be used in method documentation.
      *
      * @return Always {@code true}.
      */
@@ -123,7 +133,7 @@ public final class Note implements Taglet {
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in field documentation.
+     * Returns {@code true} since <code>@svnurl</code> can be used in field documentation.
      *
      * @return Always {@code true}.
      */
@@ -133,10 +143,11 @@ public final class Note implements Taglet {
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> is an inline tag.
+     * Returns {@code true} since <code>@svnurl</code> is an inline tag.
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean isInlineTag() {
         return true;
     }
@@ -149,9 +160,14 @@ public final class Note implements Taglet {
      */
     @Override
     public String toString(final Tag tag) {
-        final StringBuilder buffer = new StringBuilder("<blockquote><font size=-1><b>Note:</b>\n");
-        buffer.append(tag.text());
-        return buffer.append("</font></blockquote>").toString();
+        String url = "https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk";
+        final String keyword = tag.text();
+        if (keyword.equals("gigs")) {
+            url += "/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs";
+        } else {
+            ConfigurationImpl.getInstance().root.printWarning(tag.position(), "Unknown keyword: " + keyword);
+        }
+        return url;
     }
 
     /**

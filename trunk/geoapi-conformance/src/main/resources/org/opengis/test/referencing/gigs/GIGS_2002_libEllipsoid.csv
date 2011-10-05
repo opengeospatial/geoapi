@@ -4,7 +4,6 @@
 #
 # Instructions:
 # Compare the definitions of ellipsoids in the application pre-defined library with those in the EPSG Dataset. Those listed below are the minimum that should be reviewed.
-# (The information below has been taken from EPSG Dataset v6.18 of November 2008. The most recent version of the Dataset should be used).
 # (This list identifies items of especial interest to the E&P industry for geodetic integrity testing purposes; it is not a fully inclusive list of items of interest).
 #
 # Columns:

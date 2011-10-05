@@ -186,6 +186,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
      * @return A negative number if {@code o1} should be printed before {@code o2}, or
      *         a positive number if {@code o1} should be printed after {@code o2}.
      */
+    @Override
     public int compare(final TypeDeclaration o1, final TypeDeclaration o2) {
         int c = o1.getPackage().getQualifiedName().compareToIgnoreCase(o2.getPackage().getQualifiedName());
         if (c == 0) {
