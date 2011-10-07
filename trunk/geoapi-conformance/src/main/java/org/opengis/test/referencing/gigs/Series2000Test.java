@@ -33,6 +33,7 @@ package org.opengis.test.referencing.gigs;
 
 import java.util.List;
 import javax.measure.unit.Unit;
+import javax.measure.quantity.Length;
 import javax.measure.converter.UnitConverter;
 import javax.measure.converter.ConversionException;
 
@@ -137,6 +138,17 @@ public strictfp class Series2000Test extends TestCase {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns the concatenation of the given prefix and suffix.
+     * This is used for building messages in JUnit assert statements.
+     */
+    private static String message(final StringBuilder prefix, final String suffix) {
+        final int length = prefix.length();
+        final String message = prefix.append(suffix).toString();
+        prefix.setLength(length);
+        return message;
     }
 
     /**
@@ -264,12 +276,15 @@ public strictfp class Series2000Test extends TestCase {
             Double .class,  // [ 9]: Second defining parameter: Semi-minor axis (b)
             Boolean.class); // [10]: Sphere?
 
-        while (data.next()) {
+         final StringBuilder prefix = new StringBuilder("Ellipsoid[");
+         final int prefixLength = prefix.length();
+         while (data.next()) {
             final int     code              = data.getInt    ( 0);
             final String  name              = data.getString ( 2);
-            final double  semiMajor         = data.getDouble ( 4);
-            final double  semiMinor         = data.getDouble ( 9);
+                  double  semiMajor         = data.getDouble ( 4);
+                  double  semiMinor         = data.getDouble ( 9);
             final double  inverseFlattening = data.getDouble ( 8);
+            final double  toMetres          = data.getDouble ( 6);
             final boolean isSphere          = data.getBoolean(10);
             final Ellipsoid ellipsoid;
             try {
@@ -278,15 +293,26 @@ public strictfp class Series2000Test extends TestCase {
                 // TODO: report this unsupported unit.
                 return;
             }
-            assertEquals("Ellipsoid.getName()",          name,      getName(ellipsoid));
-            assertEquals("Ellipsoid.isSphere()",         isSphere,  ellipsoid.isSphere());
-            assertEquals("Ellipsoid.getSemiMajorAxis()", semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
+            prefix.setLength(prefixLength);
+            prefix.append(code).append("].");
+            final Unit<Length> unit = ellipsoid.getAxisUnit();
+            assertNotNull(message(prefix, "getAxisUnit()"), unit);
+
+            // If the implementation uses metre units but the EPSG definition expected
+            // another unit, convert the axis lengths from the later units to metre units.
+            if (!Double.isNaN(toMetres) && unit.equals(METRE)) {
+                semiMajor  = data.getDouble(7);
+                semiMinor *= toMetres;
+            }
+            assertEquals(message(prefix, "getName()"),          name,      getName(ellipsoid));
+            assertEquals(message(prefix, "isSphere()"),         isSphere,  ellipsoid.isSphere());
+            assertEquals(message(prefix, "getSemiMajorAxis()"), semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
             if (!Double.isNaN(semiMinor)) {
-                assertEquals("Ellipsoid.getSemiMinorAxis()", semiMinor,
+                assertEquals(message(prefix, "getSemiMinorAxis()"), semiMinor,
                         ellipsoid.getSemiMinorAxis(), TOLERANCE*semiMinor);
             }
             if (!Double.isNaN(inverseFlattening)) {
-                assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening,
+                assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening,
                         ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
             }
         }
