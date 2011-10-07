@@ -26,7 +26,7 @@
 7046,true,Bessel Namibia (GLM),,6377397.155,German legal metre,1.000013597,6377483.865,299.1528128,,false
 7007,true,Clarke 1858,,20926348,Clarke's foot,0.304797265,6378293.645,,20855233,false
 7008,true,Clarke 1866,,6378206.4,metre,,,,6356583.8,false
-7009,true,Clarke 1866 Michigan,,20926631.53,US survey foot,0.30480061,6378450.048,,20855688.67,false
+7009,true,Clarke 1866 Michigan,,20926631.531,US survey foot,0.30480061,6378450.048,,20855688.674,false
 7011,true,Clarke 1880 (IGN),,6378249.2,metre,,,,6356515,false
 7012,true,Clarke 1880 (RGS),Clarke Modified 1880,6378249.145,metre,,,293.465,,false
 7015,true,Everest 1830 (1937 Adjustment),,6377276.345,metre,,,300.8017,,false
@@ -43,8 +43,8 @@
 7024,true,Krassowsky 1940,,6378245,metre,,,298.3,,false
 7029,true,War Office,McCaw 1924,6378300,metre,,,296,,false
 7043,true,WGS 72,NWL 10D,6378135,metre,,,298.26,,false
-7030,true,WGS 84,WGS84,6378137,metre,,,298.2572236,,false
-7049,true,Xian 1980,,6378140,metre,,,298.257,,false
+7030,true,WGS 84,WGS84,6378137,metre,,,298.257223563,,false
+7049,true,IAG 1975,Xian 1980,6378140,metre,,,298.257,,false
 7041,false,Average Terrestrial System 1977,,6378135,metre,,,298.257,,false
 7005,false,Bessel Modified,,6377492.018,metre,,,299.1528128,,false
 7052,false,Clarke 1866 Authalic Sphere,,6370997,metre,,,,6370997,true
@@ -56,14 +56,14 @@
 7051,false,Danish 1876,,6377019.27,metre,,,300,,false
 7042,false,Everest (1830 Definition),,20922931.8,Indian foot,0.30479951,6377299.366,,20853374.58,false
 7056,false,Everest 1830 (RSO 1969),,6377295.664,metre,,,300.8017,,false
-7031,false,GEM 10C,,6378137,metre,,,298.2572236,,false
+7031,false,GEM 10C,,6378137,metre,,,298.257223563,,false
 7048,false,GRS 1980 Authalic Sphere,,6371007,metre,,,,6371007,true
 7053,false,Hough 1960,,6378270,metre,,,297,,false
 7058,false,Hughes 1980,,6378273,metre,,,,6356889.449,false
 7057,false,International 1924 Authalic Sphere,,6371228,metre,,,,6371228,true
 7025,false,NWL 9D,WGS 66,6378145,metre,,,298.25,,false
-7032,false,OSU86F,,6378136.2,metre,,,298.2572236,,false
-7033,false,OSU91A,,6378136.3,metre,,,298.2572236,,false
+7032,false,OSU86F,,6378136.2,metre,,,298.257223563,,false
+7033,false,OSU91A,,6378136.3,metre,,,298.257223563,,false
 7027,false,Plessis 1817,,6376523,metre,,,308.64,,false
 7059,false,Popular Visualisation Sphere,,6378137,metre,,,,6378137,true
 7054,false,PZ-90,,6378136,metre,,,298.2578393,,false

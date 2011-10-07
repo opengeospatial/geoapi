@@ -223,7 +223,11 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * </ul>
      *
      * @since 3.1
+     *
+     * @deprecated To be replaced by a call to {@link AuthorityFactory#getAuthorityCodes(Class)}
+     *             before the 3.1 release.
      */
+    @Deprecated
     protected boolean isUnofficialEpsgSupported;
 
     /**
