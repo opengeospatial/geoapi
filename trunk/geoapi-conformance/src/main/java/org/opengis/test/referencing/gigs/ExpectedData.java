@@ -55,6 +55,11 @@ final class ExpectedData {
     private static final char COLUMN_SEPARATOR = ',';
 
     /**
+     * The separator for elements in a list.
+     */
+    private static final char LIST_ELEMENT_SEPARATOR = ';';
+
+    /**
      * The character used for quoting strings. The column separator
      * can be used as an ordinary character inside the quoted string.
      */
@@ -227,6 +232,35 @@ final class ExpectedData {
      */
     public boolean getBoolean(final int column) {
         return (Boolean) getValue(column);
+    }
+
+    /**
+     * Returns the value in the given column as a list of strings.
+     * The original data is assumed to be a semi-colon separated list.
+     *
+     * @param  column The column from which to get the value.
+     * @return The values in the given column, or an empty array if none.
+     * @throws NoSuchElementException If there is currently no active row.
+     * @throws ClassCastException If the value in the given column is not a string.
+     */
+    public String[] getStrings(final int column) {
+        final String data = getString(column);
+        final List<String> elements = new ArrayList<String>(4);
+        if (data != null) {
+            int lower = 0;
+            int upper = data.indexOf(LIST_ELEMENT_SEPARATOR);
+            boolean stop = false;
+            do {
+                if (upper < 0) {
+                    upper = data.length();
+                    stop = true;
+                }
+                elements.add(data.substring(lower, upper).trim());
+                lower = upper+1;
+                upper = data.indexOf(LIST_ELEMENT_SEPARATOR, lower);
+            } while (!stop);
+        }
+        return elements.toArray(new String[elements.size()]);
     }
 
     /**

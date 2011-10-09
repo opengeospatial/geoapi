@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.util.Collection;
+import java.util.Set;
 import java.util.List;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Length;
@@ -39,8 +41,10 @@ import javax.measure.converter.ConversionException;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CSAuthorityFactory;
@@ -49,6 +53,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.test.SupportedOperation;
 import org.opengis.test.FactoryFilter;
 import org.opengis.test.TestCase;
 
@@ -60,6 +65,7 @@ import static java.lang.StrictMath.*;
 import static javax.measure.unit.Unit.ONE;
 import static javax.measure.unit.SI.METRE;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
+import static org.opengis.test.Validators.*;
 
 
 /**
@@ -95,6 +101,15 @@ public strictfp class Series2000Test extends TestCase {
     protected final DatumAuthorityFactory datumFactory;
 
     /**
+     * {@code true} if the factories support {@linkplain IdentifiedObject#getAlias() aliases}.
+     * If {@code true} (the default), then the test methods will ensure that the identified
+     * objects created by the factories declare at least all the aliases enumerated in the
+     * GIGS tests - additional aliases, if any, are ignored. If {@code false}, then the aliases
+     * are ignored.
+     */
+    protected boolean isAliasSupported;
+
+    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -125,6 +140,22 @@ public strictfp class Series2000Test extends TestCase {
         this.crsFactory   = crsFactory;
         this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
+        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
+                SupportedOperation.ALIAS.key);
+        isAliasSupported = isEnabled[0];
+    }
+
+    /**
+     * Returns the set of all disabled operations. This set is constructed from all
+     * {@code isFooEnabled} fields declared in this class and all parent classes.
+     *
+     * @since 3.1
+     */
+    @Override
+    public Set<String> getDisabledOperations() {
+        final Set<String> op = super.getDisabledOperations();
+        if (!isAliasSupported) assertTrue(op.add(SupportedOperation.ALIAS.key));
+        return op;
     }
 
     /**
@@ -293,6 +324,7 @@ public strictfp class Series2000Test extends TestCase {
                 // TODO: report this unsupported unit.
                 return;
             }
+            validate(ellipsoid);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             final Unit<Length> unit = ellipsoid.getAxisUnit();
@@ -315,6 +347,33 @@ public strictfp class Series2000Test extends TestCase {
                 assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening,
                         ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
             }
+            if (isAliasSupported) {
+                testAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
+            }
+        }
+    }
+
+    /**
+     * Compares the given generic names with the given set of expected aliases. This method
+     * verifies that the given collection contains at least the expected aliases. However
+     * the collection may contain additional aliases, which will be ignored.
+     *
+     * @param message  The message to show in case of failure.
+     * @param expected The expected aliases.
+     * @param aliases  The actual aliases.
+     */
+    private static void testAliases(final String message, final String[] expected,
+            final Collection<GenericName> aliases)
+    {
+        assertNotNull(message, aliases);
+next:   for (final String search : expected) {
+            for (final GenericName alias : aliases) {
+                final String tip = alias.tip().toString();
+                if (search.equalsIgnoreCase(tip)) {
+                    continue next;
+                }
+            }
+            fail(message + ": alias not found: " + search);
         }
     }
 }
