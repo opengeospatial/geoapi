@@ -34,6 +34,7 @@ package org.opengis.test;
 import java.util.Properties;
 import org.opengis.util.Factory;
 import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -57,6 +58,14 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * @since   3.1
  */
 public enum SupportedOperation {
+    /**
+     * Whatever the {@link IdentifiedObject} instances declares
+     * {@linkplain IdentifiedObject#getAlias() aliases}.
+     *
+     * @see org.opengis.test.referencing.gigs.Series2000Test#isAliasSupported
+     */
+    ALIAS("isAliasSupported"),
+
     /**
      * Whatever {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
      * Implementors can set the value for this key to {@code false} in order to test
@@ -156,7 +165,10 @@ public enum SupportedOperation {
      * </ul>
      *
      * @see org.opengis.test.referencing.AuthorityFactoryTest#isUnofficialEpsgSupported
+     *
+     * @deprecated Will be removed before GeoAPI 3.1 release.
      */
+    @Deprecated
     UNOFFICIAL_EPSG_CODES("isUnofficialEpsgSupported");
 
     /**
