@@ -181,15 +181,17 @@ public class PJFactory implements Factory {
      * will handle at most the 3 first dimensions. All supplemental dimensions will be simply
      * copied unchanged by {@link MathTransform} implementations.
      *
-     * @param  identifier The name of the CRS is create, or {@code null} if none.
+     * @param  crsId The name of the CRS to create, or {@code null} if none.
+     * @param  datumId The name of the datum to create, or {@code null} if none.
      * @param  definition The Proj.4 definition string.
      * @param  dimension  The number of dimension of the CRS to create.
      * @return A CRS created from the given definition string and number of dimension.
      * @throws NullPointerException If the definition string is {@code null}.
      * @throws IllegalArgumentException If one of the given argument has an invalid value.
      */
-    public static CoordinateReferenceSystem createCRS(final ReferenceIdentifier identifier,
-            String definition, final int dimension) throws IllegalArgumentException
+    public static CoordinateReferenceSystem createCRS(final ReferenceIdentifier crsId,
+            final ReferenceIdentifier datumId, String definition, final int dimension)
+            throws IllegalArgumentException
     {
         if ((definition = definition.trim()).isEmpty()) {
             throw new IllegalArgumentException("The definition must be non-empty.");
@@ -224,13 +226,13 @@ public class PJFactory implements Factory {
         //
         // Create the Proj.4 wrapper.
         //
-        final PJDatum datum = new PJDatum(identifier, definition);
+        final PJDatum datum = new PJDatum(datumId, definition);
         final PJ.Type type = datum.getType();
         final CoordinateReferenceSystem crs;
         switch (type) {
-            case GEOCENTRIC: crs = new PJCRS.Geocentric(identifier, datum, dimension); break;
-            case GEOGRAPHIC: crs = new PJCRS.Geographic(identifier, datum, dimension); break;
-            case PROJECTED:  crs = new PJCRS.Projected (identifier, datum, dimension, orientation); break;
+            case GEOCENTRIC: crs = new PJCRS.Geocentric(crsId, datum, dimension); break;
+            case GEOGRAPHIC: crs = new PJCRS.Geographic(crsId, datum, dimension); break;
+            case PROJECTED:  crs = new PJCRS.Projected (crsId, datum, dimension, orientation); break;
             default: throw new UnsupportedOperationException("Unknown CRS type: " + type);
         }
         return crs;
@@ -364,7 +366,7 @@ public class PJFactory implements Factory {
             appendPrimeMeridian(definition, datum.getPrimeMeridian());
             appendAxisDirections(definition.append(' ').append(AXIS_ORDER_PARAM), cs, Math.min(dimension, 3));
             try {
-                return createCRS(name, definition.toString(), dimension);
+                return createCRS(name, datum.getName(), definition.toString(), dimension);
             } catch (IllegalArgumentException e) {
                 throw new FactoryException(e.getMessage(), e);
             }
@@ -517,7 +519,7 @@ public class PJFactory implements Factory {
             appendAxisDirections(definition.append(AXIS_ORDER_SEPARATOR), baseCS, Math.min(baseCS.getDimension(), 3));
             final PJCRS.Projected crs;
             try {
-                crs = (PJCRS.Projected) createCRS(name, definition.toString(), dimension);
+                crs = (PJCRS.Projected) createCRS(name, datum.getName(), definition.toString(), dimension);
             } catch (IllegalArgumentException e) {
                 throw new FactoryException(e.getMessage(), e);
             }
@@ -692,24 +694,27 @@ public class PJFactory implements Factory {
          */
         @Override
         public InternationalString getDescriptionText(final String code) throws FactoryException {
-            final String name = getName(code);
+            final String name = getName(code, null, false);
             return (name != null) ? new SimpleCitation(code) : null;
         }
 
         /**
          * Returns a hard-coded name for the given code, or {@code null} if none.
          * Only the most frequent CRS are recognized by this method.
+         *
+         * @param isDatum {@code false} for creating a CRS name (the usual case), or
+         *        {@code true} for creating a datum name.
          */
-        private static String getName(String code) {
+        private static String getName(String code, final String defaultValue, final boolean isDatum) {
             final int s = code.indexOf(':');
             if (s<0 || code.substring(0,s).trim().equalsIgnoreCase("epsg")) try {
                 switch (Integer.parseInt(code.substring(s+1).trim())) {
-                    case 4326: return "WGS84";
+                    case 4326: return isDatum ? "World Geodetic System 1984" : "WGS 84";
                 }
             } catch (NumberFormatException e) {
                 // Ignore - this is okay for this method contract.
             }
-            return null;
+            return defaultValue;
         }
 
         /**
@@ -750,12 +755,12 @@ public class PJFactory implements Factory {
                     dimension = (end >= 0) ? end : orientation.length();
                 }
             }
-            final String name = getName(code);
-            if (name != null) {
-                code = name;
-            }
+            final String crsName   = getName(code, code,   false);
+            final String datumName = getName(code, crsName, true);
+            final ReferenceIdentifier crsId   = createIdentifier(codespace, crsName);
+            final ReferenceIdentifier datumId = datumName.equals(crsName) ? crsId : createIdentifier(codespace, datumName);
             try {
-                return createCRS(createIdentifier(codespace, code), definition.toString(), dimension);
+                return createCRS(crsId, datumId, definition.toString(), dimension);
             } catch (IllegalArgumentException e) {
                 throw new NoSuchAuthorityCodeException(e.getMessage(), codespace, code);
             }
