@@ -48,17 +48,17 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
  */
 final class PJAxis extends PJObject implements CoordinateSystemAxis {
     /**
-     * Coordinate system axis names, close but not identical to the names restricted by the
-     * ISO 19111 specification. The names are not identical because we don't have enough
-     * information for inferring the exact names.
+     * Coordinate system axis names, close but not necessarily identical to the names restricted
+     * by the ISO 19111 specification. Some names may be slightly different because we don't have
+     * enough information for inferring the exact names.
      */
     private static final ReferenceIdentifier[] NAMES = new ReferenceIdentifier[] {
         new PJIdentifier("Easting"),
         new PJIdentifier("Westing"),
         new PJIdentifier("Northing"),
         new PJIdentifier("Southing"),
-        new PJIdentifier("Latitude"),
-        new PJIdentifier("Longitude"),
+        new PJIdentifier("Geodetic longitude"),
+        new PJIdentifier("Geodetic latitude"),
         new PJIdentifier("Height"),
         new PJIdentifier("Depth")
     };
