@@ -33,6 +33,7 @@ package org.opengis.referencing.operation;
 
 import java.awt.Shape;
 import java.awt.geom.Point2D;
+import java.awt.geom.AffineTransform;
 
 
 /**
@@ -40,9 +41,6 @@ import java.awt.geom.Point2D;
  * returns instance of this interface when source and destination coordinate systems are both two
  * dimensional. {@code MathTransform2D} extends {@link MathTransform} by adding some methods for
  * easier inter-operability with <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
- * <p>
- * If the transformation is affine, then {@code MathTransform} shall be an
- * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
  * @departure integration
  *   This interface is not part of OGC specification. It has been added in GeoAPI for
@@ -68,6 +66,8 @@ public interface MathTransform2D extends MathTransform {
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
      * @throws TransformException if the point can't be transformed.
+     *
+     * @see AffineTransform#transform(Point2D, Point2D)
      */
     Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException;
 
@@ -80,6 +80,8 @@ public interface MathTransform2D extends MathTransform {
      * @return The transformed shape. Some implementations may returns
      *         {@code shape} unmodified if this transform is identity.
      * @throws TransformException if a transform failed.
+     *
+     * @see AffineTransform#createTransformedShape(Shape)
      */
     Shape createTransformedShape(final Shape shape) throws TransformException;
 
@@ -108,6 +110,8 @@ public interface MathTransform2D extends MathTransform {
      *
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can not be inverted.
+     *
+     * @see AffineTransform#createInverse()
      *
      * @since 2.2
      */
