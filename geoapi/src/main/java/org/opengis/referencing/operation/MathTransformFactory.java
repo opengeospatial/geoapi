@@ -310,6 +310,8 @@ public interface MathTransformFactory extends Factory {
      * @return The math transform (never {@code null}).
      * @throws FactoryException if the Well-Known Text can't be parsed,
      *         or if the math transform creation failed from some other reason.
+     *
+     * @see MathTransform#toWKT()
      */
     @UML(identifier="createFromWKT", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createFromWKT(String wkt) throws FactoryException;

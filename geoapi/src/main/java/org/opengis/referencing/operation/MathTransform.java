@@ -31,6 +31,8 @@
  */
 package org.opengis.referencing.operation;
 
+import java.awt.geom.AffineTransform;
+
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.annotation.UML;
@@ -61,7 +63,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @see java.awt.geom.AffineTransform
+ * @see AffineTransform
  * @see javax.media.jai.PerspectiveTransform
  * @see javax.media.j3d.Transform3D
  * @see MathTransformFactory
@@ -129,6 +131,8 @@ public interface MathTransform {
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
      *         only at end. Implementations that fall in the later case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see AffineTransform#transform(double[], int, double[], int, int)
      */
     @UML(identifier="transformList", specification=OGC_01009)
     void transform(double[] srcPts, int srcOff,
@@ -156,6 +160,8 @@ public interface MathTransform {
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
      *         only at end. Implementations that fall in the later case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see AffineTransform#transform(float[], int, float[], int, int)
      */
     void transform(float[] srcPts, int srcOff,
                    float[] dstPts, int dstOff, int numPts) throws TransformException;
@@ -181,6 +187,8 @@ public interface MathTransform {
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
      *         only at end. Implementations that fall in the later case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see AffineTransform#transform(float[], int, double[], int, int)
      *
      * @since 2.2
      */
@@ -208,6 +216,8 @@ public interface MathTransform {
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
      *         only at end. Implementations that fall in the later case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see AffineTransform#transform(double[], int, float[], int, int)
      *
      * @since 2.2
      */
@@ -276,6 +286,8 @@ public interface MathTransform {
      *
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inverted.
+     *
+     * @see AffineTransform#createInverse()
      */
     @UML(identifier="inverse", specification=OGC_01009)
     MathTransform inverse() throws NoninvertibleTransformException;
@@ -285,6 +297,8 @@ public interface MathTransform {
      *
      * @return {@code true} if this {@code MathTransform} is
      *         an identity transform; {@code false} otherwise.
+     *
+     * @see AffineTransform#isIdentity()
      */
     @UML(identifier="isIdentity", specification=OGC_01009)
     boolean isIdentity();
@@ -296,6 +310,8 @@ public interface MathTransform {
      *
      * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     *
+     * @see MathTransformFactory#createFromWKT(String)
      */
     @UML(identifier="getWKT", specification=OGC_01009)
     String toWKT() throws UnsupportedOperationException;
