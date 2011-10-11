@@ -116,7 +116,7 @@ final class ExpectedData {
     /**
      * Parses a single row. The given line must be non-empty.
      */
-    private static Object[] parseRow(String line, final Class<?>[] columnTypes) {
+    static Object[] parseRow(String line, final Class<?>[] columnTypes) {
         final Object[] row = new Object[columnTypes.length];
         for (int i=0; i<columnTypes.length; i++) {
             // Find the start index and end index of substring to parse.
@@ -126,7 +126,7 @@ final class ExpectedData {
             if (line.charAt(0) == QUOTE) {
                 do if ((end = line.indexOf(QUOTE, end+1)) < 0) {
                     throw new DataException("Unbalanced quote.");
-                } while (line.charAt(end-1) != ESCAPE);
+                } while (line.charAt(end-1) == ESCAPE);
                 skip = 1; // Skip the quotes.
             }
             end = line.indexOf(COLUMN_SEPARATOR, end);

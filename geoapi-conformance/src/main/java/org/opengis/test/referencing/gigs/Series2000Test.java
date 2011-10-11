@@ -35,6 +35,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.List;
 import javax.measure.unit.Unit;
+import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.converter.UnitConverter;
 import javax.measure.converter.ConversionException;
@@ -51,6 +52,7 @@ import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.test.SupportedOperation;
@@ -86,6 +88,11 @@ public strictfp class Series2000Test extends TestCase {
     private static final double TOLERANCE = 1E-10;
 
     /**
+     * Angular tolerance from GIGS documentation.
+     */
+    private static final double ANGULAR_TOLERANCE = 1E-7;
+
+    /**
      * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
     protected final CRSAuthorityFactory crsFactory;
@@ -99,6 +106,14 @@ public strictfp class Series2000Test extends TestCase {
      * Factory to build {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumAuthorityFactory datumFactory;
+
+    /**
+     * {@code true} if the factories support {@linkplain IdentifiedObject#getName() name}.
+     * If {@code true} (the default), then the test methods will ensure that the identified
+     * objects created by the factories declare the same name than the GIGS tests.
+     * If {@code false}, then the names are ignored.
+     */
+    protected boolean isNameSupported;
 
     /**
      * {@code true} if the factories support {@linkplain IdentifiedObject#getAlias() aliases}.
@@ -141,8 +156,10 @@ public strictfp class Series2000Test extends TestCase {
         this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
+                SupportedOperation.NAME .key,
                 SupportedOperation.ALIAS.key);
-        isAliasSupported = isEnabled[0];
+        isNameSupported  = isEnabled[0];
+        isAliasSupported = isEnabled[1];
     }
 
     /**
@@ -154,8 +171,17 @@ public strictfp class Series2000Test extends TestCase {
     @Override
     public Set<String> getDisabledOperations() {
         final Set<String> op = super.getDisabledOperations();
+        if (!isNameSupported)  assertTrue(op.add(SupportedOperation.NAME .key));
         if (!isAliasSupported) assertTrue(op.add(SupportedOperation.ALIAS.key));
         return op;
+    }
+
+    /**
+     * Invoked when the implementation does not support one of the code defined in
+     * the GIGS test suite.
+     */
+    private void unsupportedCode(final Class<?> type, final int code, final NoSuchAuthorityCodeException e) {
+        // TODO
     }
 
     /**
@@ -169,6 +195,30 @@ public strictfp class Series2000Test extends TestCase {
             }
         }
         return null;
+    }
+
+    /**
+     * Compares the given generic names with the given set of expected aliases. This method
+     * verifies that the given collection contains at least the expected aliases. However
+     * the collection may contain additional aliases, which will be ignored.
+     *
+     * @param message  The message to show in case of failure.
+     * @param expected The expected aliases.
+     * @param aliases  The actual aliases.
+     */
+    private static void testAliases(final String message, final String[] expected,
+            final Collection<GenericName> aliases)
+    {
+        assertNotNull(message, aliases);
+next:   for (final String search : expected) {
+            for (final GenericName alias : aliases) {
+                final String tip = alias.tip().toString();
+                if (search.equalsIgnoreCase(tip)) {
+                    continue next;
+                }
+            }
+            fail(message + ": alias not found: " + search);
+        }
     }
 
     /**
@@ -230,8 +280,8 @@ public strictfp class Series2000Test extends TestCase {
             try {
                 unit = csFactory.createUnit(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                // TODO: report this unsupported unit.
-                return;
+                unsupportedCode(Unit.class, code, e);
+                continue;
             }
             if      (type.equalsIgnoreCase("Linear")) base = METRE;
             else if (type.equalsIgnoreCase("Angle" )) base = DEGREE_ANGLE;
@@ -310,33 +360,39 @@ public strictfp class Series2000Test extends TestCase {
          final StringBuilder prefix = new StringBuilder("Ellipsoid[");
          final int prefixLength = prefix.length();
          while (data.next()) {
-            final int     code              = data.getInt    ( 0);
-            final String  name              = data.getString ( 2);
-                  double  semiMajor         = data.getDouble ( 4);
-                  double  semiMinor         = data.getDouble ( 9);
-            final double  inverseFlattening = data.getDouble ( 8);
-            final double  toMetres          = data.getDouble ( 6);
-            final boolean isSphere          = data.getBoolean(10);
+            final int code = data.getInt(0);
             final Ellipsoid ellipsoid;
             try {
                 ellipsoid = datumFactory.createEllipsoid(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                // TODO: report this unsupported unit.
-                return;
+                unsupportedCode(Ellipsoid.class, code, e);
+                continue;
             }
             validate(ellipsoid);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
+            if (isNameSupported) {
+                assertEquals(message(prefix, "getName()"), data.getString(2), getName(ellipsoid));
+            }
+            if (isAliasSupported) {
+                testAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
+            }
+            /*
+             * Get the axis lengths and their unit. Null units are assumed to mean metres
+             * (whatever we accept null unit or not is determined by the validators).
+             * If the implementation uses metre units but the EPSG definition expected
+             * another unit, convert the axis lengths from the later units to metre units.
+             */
             final Unit<Length> unit = ellipsoid.getAxisUnit();
-            assertNotNull(message(prefix, "getAxisUnit()"), unit);
-
-            // If the implementation uses metre units but the EPSG definition expected
-            // another unit, convert the axis lengths from the later units to metre units.
-            if (!Double.isNaN(toMetres) && unit.equals(METRE)) {
+            double  semiMajor         = data.getDouble ( 4);
+            double  semiMinor         = data.getDouble ( 9);
+            double  inverseFlattening = data.getDouble ( 8);
+            double  toMetres          = data.getDouble ( 6);
+            boolean isSphere          = data.getBoolean(10);
+            if (!Double.isNaN(toMetres) && (unit == null || unit.equals(METRE))) {
                 semiMajor  = data.getDouble(7);
                 semiMinor *= toMetres;
             }
-            assertEquals(message(prefix, "getName()"),          name,      getName(ellipsoid));
             assertEquals(message(prefix, "isSphere()"),         isSphere,  ellipsoid.isSphere());
             assertEquals(message(prefix, "getSemiMajorAxis()"), semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
             if (!Double.isNaN(semiMinor)) {
@@ -347,33 +403,74 @@ public strictfp class Series2000Test extends TestCase {
                 assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening,
                         ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
             }
-            if (isAliasSupported) {
-                testAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
-            }
         }
     }
 
     /**
-     * Compares the given generic names with the given set of expected aliases. This method
-     * verifies that the given collection contains at least the expected aliases. However
-     * the collection may contain additional aliases, which will be ignored.
+     * Reference prime meridians.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference prime meridians bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Prime meridian definitions bundled with the software should have the same name and Greenwich
+     *   Longitude as in the EPSG Dataset. Equivalent alternative units are acceptable but should be reported.
+     *   The values of the Greenwich Longitude should be correct to at least 7 decimal places (of degrees or grads).
+     *   Meridians missing from the software or included in the software additional to those in the EPSG Dataset or
+     *   at variance with those in the EPSG Dataset should be reported.</td>
+     * </tr></table>
      *
-     * @param message  The message to show in case of failure.
-     * @param expected The expected aliases.
-     * @param aliases  The actual aliases.
+     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
+     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
      */
-    private static void testAliases(final String message, final String[] expected,
-            final Collection<GenericName> aliases)
-    {
-        assertNotNull(message, aliases);
-next:   for (final String search : expected) {
-            for (final GenericName alias : aliases) {
-                final String tip = alias.tip().toString();
-                if (search.equalsIgnoreCase(tip)) {
-                    continue next;
-                }
+    @Test
+    public void test2003() throws FactoryException {
+        final ExpectedData data = new ExpectedData("GIGS_2003_libPrimeMeridian.csv",
+            Integer.class,  // [0]: EPSG Prime Meridian Code
+            Boolean.class,  // [1]: Particularly important to E&P industry?
+            String .class,  // [2]: EPSG Prime Meridian Name
+            String .class,  // [3]: EPSG Alias
+            String .class,  // [4]: Longitude from Greenwich (sexagesimal)
+            String .class,  // [5]: Unit Name
+            Double .class,  // [6]: Longitude from Greenwich (decimal degrees)
+            String .class); // [7]: Remarks
+
+         final StringBuilder prefix = new StringBuilder("PrimeMeridian[");
+         final int prefixLength = prefix.length();
+         while (data.next()) {
+            final int code = data.getInt(0);
+            final PrimeMeridian pm;
+            try {
+                pm = datumFactory.createPrimeMeridian(String.valueOf(code));
+            } catch (NoSuchAuthorityCodeException e) {
+                unsupportedCode(PrimeMeridian.class, code, e);
+                continue;
             }
-            fail(message + ": alias not found: " + search);
+            validate(pm);
+            prefix.setLength(prefixLength);
+            prefix.append(code).append("].");
+            if (isNameSupported) {
+                assertEquals(message(prefix, "getName()"), data.getString(2), getName(pm));
+            }
+            if (isAliasSupported) {
+                testAliases(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
+            }
+            /*
+             */
+            final Unit<Angle> unit = pm.getAngularUnit();
+            double longitude = data.getDouble(6);
+            if (unit != null && !unit.equals(DEGREE_ANGLE)) {
+                longitude = DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
+            }
+            assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
+                    pm.getGreenwichLongitude(), ANGULAR_TOLERANCE*longitude);
         }
     }
 }
