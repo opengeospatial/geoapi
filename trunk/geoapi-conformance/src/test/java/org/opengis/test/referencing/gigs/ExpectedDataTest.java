@@ -44,6 +44,23 @@ import static org.junit.Assert.*;
  */
 public strictfp class ExpectedDataTest {
     /**
+     * Tests {@link ExpectedData#parseRow(String, Class<?>)}.
+     */
+    @Test
+    public void testParseRow() {
+        Object[] values = ExpectedData.parseRow("8901,true,Greenwich,,\"0°\",sexagesimal degree,0", new Class<?>[] {
+            Integer.class, Boolean.class, String.class, String.class, String.class, String.class, Double.class});
+
+        assertEquals("EPSG Prime Meridian Code",                Integer.valueOf(8901), values[0]);
+        assertEquals("Particularly important to E&P industry?", Boolean.TRUE,          values[1]);
+        assertEquals("EPSG Prime Meridian Name",                "Greenwich",           values[2]);
+        assertEquals("EPSG Alias",                              null,                  values[3]);
+        assertEquals("Longitude from Greenwich (sexagesimal)",  "0°",                  values[4]);
+        assertEquals("Unit Name",                               "sexagesimal degree",  values[5]);
+        assertEquals("Longitude from Greenwich (degrees)",      Double.valueOf(0.0),   values[6]);
+    }
+
+    /**
      * Tests loading the data from the
      * <a href="{@svnurl gigs}/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a> file.
      */

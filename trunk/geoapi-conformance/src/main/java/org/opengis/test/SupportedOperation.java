@@ -59,8 +59,16 @@ import org.opengis.referencing.operation.MathTransformFactory;
  */
 public enum SupportedOperation {
     /**
-     * Whatever the {@link IdentifiedObject} instances declares
-     * {@linkplain IdentifiedObject#getAlias() aliases}.
+     * Whatever the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
+     * names} matching the names declared in the EPSG database.
+     *
+     * @see org.opengis.test.referencing.gigs.Series2000Test#isNameSupported
+     */
+    NAME("isNameSupported"),
+
+    /**
+     * Whatever the {@link IdentifiedObject} instances have at least the
+     * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
      *
      * @see org.opengis.test.referencing.gigs.Series2000Test#isAliasSupported
      */
