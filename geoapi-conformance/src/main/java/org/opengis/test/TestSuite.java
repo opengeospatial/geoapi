@@ -177,6 +177,16 @@ public strictfp class TestSuite {
     }
 
     /**
+     * Sets the class loader to use for loading implementations. A {@code null} value restores
+     * the default {@linkplain Thread#getContextClassLoader() context class loader}.
+     *
+     * @param loader The class loader to use, or {@code null} for the default.
+     */
+    public static void setClassLoader(final ClassLoader loader) {
+        TestCase.setClassLoader(loader);
+    }
+
+    /**
      * Clears all factories specified to the {@link #setFactories(Class, Factory[])} method, and clears
      * all {@linkplain ServiceLoader service loader} caches. After this method call, all factories
      * will be reloaded when first needed. This method is intended for use in situations in which
@@ -186,11 +196,13 @@ public strictfp class TestSuite {
      */
     public static void clear() {
         synchronized (TestCase.FACTORIES) {
-            synchronized (TestCase.FACTORY_FILTER) {
-                TestCase.FACTORY_FILTER.reload();
+            ServiceLoader<?> services = TestCase.getFactoryFilter();
+            synchronized (services) {
+                services.reload();
             }
-            synchronized (TestCase.IMPLEMENTATION_DETAILS) {
-                TestCase.IMPLEMENTATION_DETAILS.reload();
+            services = TestCase.getImplementationDetails();
+            synchronized (services) {
+                services.reload();
             }
             final Iterator<Iterable<? extends Factory>> it = TestCase.FACTORIES.values().iterator();
             while (it.hasNext()) {

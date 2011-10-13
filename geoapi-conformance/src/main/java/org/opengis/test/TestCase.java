@@ -75,8 +75,7 @@ public strictfp abstract class TestCase {
      * {@code FACTORY_FILTER} are synchronized, then {@code FACTORIES} must be synchronized
      * first.
      */
-    static final ServiceLoader<FactoryFilter> FACTORY_FILTER =
-            ServiceLoader.load(FactoryFilter.class);
+    private static ServiceLoader<FactoryFilter> factoryFilter;
 
     /**
      * The service loader to use for loading {@link ImplementationDetails}.
@@ -85,8 +84,61 @@ public strictfp abstract class TestCase {
      * and {@code IMPLEMENTATION_DETAILS} are synchronized, then {@code FACTORIES} must
      * be synchronized first.
      */
-    static final ServiceLoader<ImplementationDetails> IMPLEMENTATION_DETAILS =
-            ServiceLoader.load(ImplementationDetails.class);
+    private static ServiceLoader<ImplementationDetails> implementationDetails;
+
+    /**
+     * The class loader to use for searching implementations, or {@code null} for the default.
+     */
+    private static ClassLoader classLoader;
+
+    /**
+     * Sets the class loader to use for loading implementations. A {@code null} value restores
+     * the default {@linkplain Thread#getContextClassLoader() context class loader}.
+     *
+     * @param loader The class loader to use, or {@code null} for the default.
+     */
+    static void setClassLoader(final ClassLoader loader) {
+        synchronized (FACTORIES) {
+            if (loader != classLoader) {
+                classLoader = loader;
+                factoryFilter = null;
+                implementationDetails = null;
+            }
+        }
+    }
+
+    /**
+     * Creates a service loader for the given type. This method must be invoked from a block
+     * synchronized on {@link FACTORIES}.
+     */
+    private static <T> ServiceLoader<T> load(final Class<T> service) {
+        return (classLoader == null) ? ServiceLoader.load(service)
+                : ServiceLoader.load(service, classLoader);
+    }
+
+    /**
+     * Returns the current {@link #factoryFilter} instance, creating a new one if needed.
+     */
+    static ServiceLoader<FactoryFilter> getFactoryFilter() {
+        synchronized (FACTORIES) {
+            if (factoryFilter == null) {
+                factoryFilter = load(FactoryFilter.class);
+            }
+            return factoryFilter;
+        }
+    }
+
+    /**
+     * Returns the current {@link #implementationDetails} instance, creating a new one if needed.
+     */
+    static ServiceLoader<ImplementationDetails> getImplementationDetails() {
+        synchronized (FACTORIES) {
+            if (implementationDetails == null) {
+                implementationDetails = load(ImplementationDetails.class);
+            }
+            return implementationDetails;
+        }
+    }
 
     /**
      * Creates a new test.
@@ -170,7 +222,7 @@ public strictfp abstract class TestCase {
                 final Class<? extends Factory> type = types[i];
                 Iterable<? extends Factory> choices = FACTORIES.get(type);
                 if (choices == null) {
-                    choices = ServiceLoader.load(type);
+                    choices = load(type);
                     FACTORIES.put(type, choices);
                 }
                 List<Factory[]> toUpdate = factories;
@@ -204,8 +256,9 @@ public strictfp abstract class TestCase {
         if (filter != null && !filter.filter(category, checked)) {
             return false;
         }
-        synchronized (FACTORY_FILTER) {
-            for (final FactoryFilter impl : FACTORY_FILTER) {
+        final ServiceLoader<FactoryFilter> services = getFactoryFilter();
+        synchronized (services) {
+            for (final FactoryFilter impl : services) {
                 if (!impl.filter(category, checked)) {
                     return false;
                 }
@@ -234,8 +287,9 @@ public strictfp abstract class TestCase {
     protected static boolean[] getEnabledFlags(final Factory[] factories, final String... properties) {
         final boolean[] isEnabled = new boolean[properties.length];
         Arrays.fill(isEnabled, true);
-        synchronized (IMPLEMENTATION_DETAILS) {
-            for (final ImplementationDetails impl : IMPLEMENTATION_DETAILS) {
+        final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
+        synchronized (services) {
+            for (final ImplementationDetails impl : services) {
                 final Properties prop;
                 try {
                     prop = impl.configuration(factories);

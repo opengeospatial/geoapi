@@ -36,6 +36,7 @@ import java.util.Map;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.LinkedHashMap;
+import java.util.ServiceLoader;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -513,8 +514,9 @@ public strictfp final class ToleranceModifiers {
      */
     public static ToleranceModifier[] getImplementationSpecific(final MathTransform transform) {
         Map<ToleranceModifier,Boolean> modifiers = null;
-        synchronized (TestCase.IMPLEMENTATION_DETAILS) {
-            for (final ImplementationDetails impl : TestCase.IMPLEMENTATION_DETAILS) {
+        final ServiceLoader<ImplementationDetails> services = TestCase.getImplementationDetails();
+        synchronized (services) {
+            for (final ImplementationDetails impl : services) {
                 final ToleranceModifier modifier = impl.needsRelaxedTolerance(transform);
                 if (modifier != null) {
                     if (modifiers == null) {
