@@ -136,8 +136,8 @@ final class Runner extends RunListener {
      * entries to be emitted: first an entry for the test failure, then another
      * entry because the test finished.
      */
-    private void addEntry(final Description description, final ReportEntry.Status status) {
-        final ReportEntry entry = new ReportEntry(description, status);
+    private void addEntry(final Description description, final ReportEntry.Status status, final Throwable exception) {
+        final ReportEntry entry = new ReportEntry(description, status, exception);
         final ChangeListener[] list;
         synchronized (entries) {
             if (entries.contains(entry)) {
@@ -156,7 +156,7 @@ final class Runner extends RunListener {
      */
     @Override
     public void testFinished(final Description description) throws Exception {
-        addEntry(description, SUCCESS);
+        addEntry(description, SUCCESS, null);
         super.testFinished(description);
     }
 
@@ -165,7 +165,7 @@ final class Runner extends RunListener {
      */
     @Override
     public void testFailure(final Failure failure) throws Exception {
-        addEntry(failure.getDescription(), FAILURE);
+        addEntry(failure.getDescription(), FAILURE, failure.getException());
         super.testFailure(failure);
     }
 
@@ -174,7 +174,7 @@ final class Runner extends RunListener {
      */
     @Override
     public void testAssumptionFailure(final Failure failure) {
-        addEntry(failure.getDescription(), ASSUMPTION_NOT_MET);
+        addEntry(failure.getDescription(), ASSUMPTION_NOT_MET, failure.getException());
         super.testAssumptionFailure(failure);
     }
 
@@ -184,7 +184,7 @@ final class Runner extends RunListener {
      */
     @Override
     public void testIgnored(final Description description) throws Exception {
-        addEntry(description, IGNORED);
+        addEntry(description, IGNORED, null);
         super.testIgnored(description);
     }
 

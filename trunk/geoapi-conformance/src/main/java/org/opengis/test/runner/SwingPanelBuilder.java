@@ -33,10 +33,11 @@ package org.opengis.test.runner;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.BorderFactory;
 
 
 /**
@@ -61,11 +62,8 @@ final class SwingPanelBuilder extends GridBagConstraints {
     JPanel createManifestPane(final JLabel title, final JLabel version, final JLabel vendor,
             final JLabel vendorID, final JLabel url)
     {
-        final Insets insets = this.insets;
-        insets.left = 12;
-        insets.top = 3;
         final JPanel panel = new JPanel(new GridBagLayout());
-        gridx=0; weightx=0; anchor=WEST;
+        gridx=0; weightx=0; anchor=WEST; insets.left = 12;
         gridy=0; panel.add(createLabel("Title:",     title),    this);
         gridy++; panel.add(createLabel("Version:",   version),  this);
         gridy++; panel.add(createLabel("Vendor:",    vendor),   this);
@@ -77,6 +75,12 @@ final class SwingPanelBuilder extends GridBagConstraints {
         gridy++; panel.add(vendor,   this);
         gridy++; panel.add(vendorID, this);
         gridy++; panel.add(url,      this);
+
+        final Border space = BorderFactory.createEmptyBorder(6, 6, 6, 6);
+        panel.setBorder(
+                BorderFactory.createCompoundBorder(space,
+                BorderFactory.createCompoundBorder(
+                    BorderFactory.createEtchedBorder(), space)));
         return panel;
     }
 

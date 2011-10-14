@@ -50,14 +50,30 @@ final class ReportEntry {
     };
 
     /**
-     * The name of the class containing the tests to be run.
+     * Typical suffix of test class name. This suffix is not mandatory. But if the suffix
+     * is found, it will be omitted from the {@linkplain #simpleName simple name} since it
+     * does not provide useful information.
+     */
+    private static final String CLASSNAME_SUFFIX = "Test";
+
+    /**
+     * The fully qualified name of the class containing the tests to be run.
+     * This is part of the object identity, as checked by the {@link #equals(Object)} method.
      */
     final String className;
 
     /**
      * The name of the test method.
+     * This is part of the object identity, as checked by the {@link #equals(Object)} method.
      */
     final String methodName;
+
+    /**
+     * A simpler name derived from {@link #className}. The package name and the
+     * {@value #CLASSNAME_SUFFIX} suffix are omitted, and spaces are added between
+     * words for readability.
+     */
+    final String simpleName;
 
     /**
      * The test status.
@@ -65,12 +81,31 @@ final class ReportEntry {
     final Status status;
 
     /**
+     * The exception, or {@code null} if none.
+     */
+    final Throwable exception;
+
+    /**
      * Creates a new entry for the given description.
      */
-    ReportEntry(final Description description, final Status status) {
-        className   = description.getClassName();
-        methodName  = description.getMethodName();
-        this.status = status;
+    ReportEntry(final Description description, final Status status, final Throwable exception) {
+        className  = description.getClassName();
+        methodName = description.getMethodName();
+        int nameLength = className.length();
+        if (className.endsWith(CLASSNAME_SUFFIX)) {
+            nameLength -= CLASSNAME_SUFFIX.length();
+        }
+        final StringBuilder buffer = new StringBuilder();
+        for (int i=className.lastIndexOf('.')+1; i<nameLength; i++) {
+            final char c = className.charAt(i);
+            if (Character.isUpperCase(c) && buffer.length() != 0) {
+                buffer.append(' ');
+            }
+            buffer.append(c);
+        }
+        this.simpleName = buffer.toString();
+        this.status     = status;
+        this.exception  = exception;
     }
 
     /**
