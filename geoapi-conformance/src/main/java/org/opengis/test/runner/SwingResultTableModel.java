@@ -45,12 +45,24 @@ import javax.swing.table.AbstractTableModel;
  * @since   3.1
  */
 @SuppressWarnings("serial")
-final class SwingTableModel extends AbstractTableModel implements ChangeListener, Runnable {
+final class SwingResultTableModel extends AbstractTableModel implements ChangeListener, Runnable {
+    /**
+     * Index of columns handled by this model.
+     */
+    static final int CLASS_COLUMN   = 0,
+                     METHOD_COLUMN  = 1,
+                     RESULT_COLUMN  = 2,
+                     MESSAGE_COLUMN = 3;
+
     /**
      * The titles of all columns.
      */
-    private static final String[] COLUMN_TITLES = {
-        "Class", "Method", "Result"
+    private static final String[] COLUMN_TITLES = new String[4];
+    {
+        COLUMN_TITLES[CLASS_COLUMN]   = "Class";
+        COLUMN_TITLES[METHOD_COLUMN]  = "Method";
+        COLUMN_TITLES[RESULT_COLUMN]  = "Status";
+        COLUMN_TITLES[MESSAGE_COLUMN] = "Message";
     };
 
     /**
@@ -66,7 +78,7 @@ final class SwingTableModel extends AbstractTableModel implements ChangeListener
     /**
      * Creates a table model for the given data.
      */
-    SwingTableModel(final Runner data) {
+    SwingResultTableModel(final Runner data) {
         this.data = data;
         entries = data.getEntries();
         data.addChangeListener(this);
@@ -105,15 +117,45 @@ final class SwingTableModel extends AbstractTableModel implements ChangeListener
     }
 
     /**
+     * Returns the values in the given row.
+     */
+    final ReportEntry getValueAt(final int row) {
+        return entries[row];
+    }
+
+    /**
      * Returns the value in the given cell.
      */
     @Override
     public Object getValueAt(final int row, final int column) {
         final ReportEntry entry = entries[row];
         switch (column) {
-            case 0:  return entry.className;
-            case 1:  return entry.methodName;
-            case 2:  return entry.status.name();
+            case CLASS_COLUMN:  return entry.simpleName;
+            case METHOD_COLUMN: return entry.methodName;
+            case RESULT_COLUMN: switch (entry.status) {
+                case SUCCESS: return "success";
+                case FAILURE: return "failure";
+                default:      return null;
+            }
+            case MESSAGE_COLUMN: {
+                if (entry.status != ReportEntry.Status.ASSUMPTION_NOT_MET) {
+                    final Throwable exception = entry.exception;
+                    if (exception != null) {
+                        String message = exception.getLocalizedMessage();
+                        if (message != null) {
+                            message = message.trim();
+                            final int stop = message.indexOf('\n');
+                            if (stop >= 0) {
+                                message = message.substring(0, stop).trim();
+                            }
+                            if (!message.isEmpty()) {
+                                return message;
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
             default: throw new IndexOutOfBoundsException(String.valueOf(column));
         }
     }

@@ -43,8 +43,10 @@ import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.TableColumnModel;
 
 
 /**
@@ -84,7 +86,7 @@ final class SwingFrame extends JFrame implements Runnable {
     SwingFrame() {
         super("GeoAPI conformance tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(800, 600);
+        setSize(800, 600); // If width is modified, please adjust column preferred widths below.
         setLocationByPlatform(true);
         add(new SwingPanelBuilder().createManifestPane(
                 title    = new JLabel(),
@@ -94,9 +96,19 @@ final class SwingFrame extends JFrame implements Runnable {
                 url      = new JLabel()), BorderLayout.NORTH);
 
         runner = new Runner();
-        results = new JTable(new SwingTableModel(runner));
+        results = new JTable(new SwingResultTableModel(runner));
+        results.setDefaultRenderer(String.class, new SwingResultCellRenderer());
         results.setAutoCreateRowSorter(true);
-        add(new JScrollPane(results), BorderLayout.CENTER);
+        results.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        final TableColumnModel columns = results.getColumnModel();
+        columns.getColumn(SwingResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
+        columns.getColumn(SwingResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
+        columns.getColumn(SwingResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
+        columns.getColumn(SwingResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
+
+        final JTabbedPane tabs = new JTabbedPane();
+        tabs.addTab("Tests", new JScrollPane(results));
+        add(tabs, BorderLayout.CENTER);
     }
 
     /**
