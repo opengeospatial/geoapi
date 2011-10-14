@@ -59,8 +59,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
     private static final Properties CONFIGURATION = new Properties();
     static {
         SupportedOperation.unsupported(CONFIGURATION,
-                SupportedOperation.DERIVATIVE_TRANSFORM,
-                SupportedOperation.UNOFFICIAL_EPSG_CODES);
+                SupportedOperation.DERIVATIVE_TRANSFORM);
         /*
          * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
          */

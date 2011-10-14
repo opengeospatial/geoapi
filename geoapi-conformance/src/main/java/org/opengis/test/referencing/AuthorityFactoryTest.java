@@ -215,22 +215,6 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     protected boolean isAxisSwappingSupported;
 
     /**
-     * {@code true} if the {@link #crsFactory} supports the creation of CRS objects from
-     * unofficial EPSG codes. Unofficial codes used in this test suite are:
-     * <p>
-     * <ul>
-     *   <li>310642901 - Miller projection</li>
-     * </ul>
-     *
-     * @since 3.1
-     *
-     * @deprecated To be replaced by a call to {@link AuthorityFactory#getAuthorityCodes(Class)}
-     *             before the 3.1 release.
-     */
-    @Deprecated
-    protected boolean isUnofficialEpsgSupported;
-
-    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -261,10 +245,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
-                SupportedOperation.AXIS_SWAPPING.key,
-                SupportedOperation.UNOFFICIAL_EPSG_CODES.key);
-        isAxisSwappingSupported   = isEnabled[0];
-        isUnofficialEpsgSupported = isEnabled[1];
+                SupportedOperation.AXIS_SWAPPING.key);
+        isAxisSwappingSupported = isEnabled[0];
     }
 
     /**
@@ -276,8 +258,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     @Override
     public Set<String> getDisabledOperations() {
         final Set<String> op = super.getDisabledOperations();
-        if (!isAxisSwappingSupported)   assertTrue(op.add(SupportedOperation.AXIS_SWAPPING        .key));
-        if (!isUnofficialEpsgSupported) assertTrue(op.add(SupportedOperation.UNOFFICIAL_EPSG_CODES.key));
+        if (!isAxisSwappingSupported) assertTrue(op.add(SupportedOperation.AXIS_SWAPPING        .key));
         return op;
     }
 
@@ -396,7 +377,16 @@ public strictfp class AuthorityFactoryTest extends TestCase {
             swapλφ = swapxy = flipxy = false;
         }
         assumeNotNull(crsFactory);
-        final ProjectedCRS crs = crsFactory.createProjectedCRS("EPSG:" + code);
+        final ProjectedCRS crs;
+        try {
+            crs = crsFactory.createProjectedCRS("EPSG:" + code);
+        } catch (NoSuchAuthorityCodeException e) {
+            // If a code was not found, ensure that the factory does not declare that it was
+            // a supported code. If the code was unsupported, then the test will be ignored.
+            final Set<String> authorityCodes = crsFactory.getAuthorityCodes(ProjectedCRS.class);
+            assumeTrue(authorityCodes != null && authorityCodes.contains(String.valueOf(code)));
+            throw e;
+        }
         assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
         object = crs;
         validate(crs);
@@ -563,8 +553,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
-     * Tests the IGNF:MILLER (unofficial EPSG:310642901 code) projected CRS. This test can
-     * be disabled by setting the {@link #isUnofficialEpsgSupported} to {@code false}.
+     * Tests the IGNF:MILLER (unofficial EPSG:310642901 code) projected CRS.
      * <p>
      * <table cellspacing="0" cellpadding="0">
      * <tr><td>Projection method:&nbsp;</td> <td>Miller</td></tr>
@@ -580,7 +569,6 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testIGNF_MILLER() throws FactoryException, TransformException {
-        assumeTrue(isUnofficialEpsgSupported);
         runProjectionTest(310642901);
     }
 

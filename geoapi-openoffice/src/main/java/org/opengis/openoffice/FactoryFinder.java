@@ -14,10 +14,8 @@ import java.util.NoSuchElementException;
 import org.opengis.util.Factory;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 
 
 /**

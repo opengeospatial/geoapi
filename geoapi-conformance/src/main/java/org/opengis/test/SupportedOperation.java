@@ -49,7 +49,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * <blockquote><pre>&#64;Override
  *public {@linkplain Properties} configuration({@linkplain Factory}... factories) {
  *    Properties configuration = new Properties();
- *    {@linkplain #unsupported unsupported}(configuration, {@linkplain #DERIVATIVE_TRANSFORM}, {@linkplain #NON_SQUARE_MATRIX}, {@linkplain #UNOFFICIAL_EPSG_CODES});
+ *    {@linkplain #unsupported unsupported}(configuration, {@linkplain #DERIVATIVE_TRANSFORM}, {@linkplain #NON_SQUARE_MATRIX});
  *    return configuration;
  *}</pre></blockquote>
  *
@@ -162,22 +162,7 @@ public enum SupportedOperation {
      *
      * @see org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported
      */
-    AXIS_SWAPPING("isAxisSwappingSupported"),
-
-    /**
-     * Whatever the {@link org.opengis.referencing.AuthorityFactory} support the objects creation
-     * from unofficial EPSG codes. Some example of unofficial codes used in this test suite are:
-     * <p>
-     * <ul>
-     *   <li>310642901 - Miller projection</li>
-     * </ul>
-     *
-     * @see org.opengis.test.referencing.AuthorityFactoryTest#isUnofficialEpsgSupported
-     *
-     * @deprecated Will be removed before GeoAPI 3.1 release.
-     */
-    @Deprecated
-    UNOFFICIAL_EPSG_CODES("isUnofficialEpsgSupported");
+    AXIS_SWAPPING("isAxisSwappingSupported");
 
     /**
      * The name of the key used in the {@link Properties} map. This is also the name of the
