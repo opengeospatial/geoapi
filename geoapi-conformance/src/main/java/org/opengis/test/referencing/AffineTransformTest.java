@@ -31,7 +31,7 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Set;
+import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
@@ -157,13 +157,22 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     }
 
     /**
-     * Returns the set of all disabled operations. This set is constructed from all
-     * {@code isFooEnabled} fields declared in this class and all parent classes.
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     * <p>
+     * <ul>
+     *   <li>All the entries defined in the {@link TransformTestCase#getConfiguration() parent class}.</li>
+     *   <li>All the following keys with value {@code true} or {@code false}:
+     *     <ul>
+     *       <li>{@link #isNonSquareMatrixSupported}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
      */
     @Override
-    public Set<String> getDisabledOperations() {
-        final Set<String> op = super.getDisabledOperations();
-        if (!isNonSquareMatrixSupported) assertTrue(op.add(SupportedOperation.NON_SQUARE_MATRIX.key));
+    public Map<String,String> getConfiguration() {
+        final Map<String,String> op = super.getConfiguration();
+        assertNull(op.put(SupportedOperation.NON_SQUARE_MATRIX.key, Boolean.toString(isNonSquareMatrixSupported)));
         return op;
     }
 

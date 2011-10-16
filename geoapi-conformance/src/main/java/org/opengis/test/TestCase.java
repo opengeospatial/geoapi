@@ -37,8 +37,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.Properties;
 import java.util.ServiceLoader;
 
@@ -248,8 +246,8 @@ public strictfp abstract class TestCase {
      * <p>
      * If many factory implementations were found for a given interface, then this method
      * returns all possible combinations of those factories. For example if two instances
-     * of interface {code A} are found (named {@code A1} and {@code A2}), and two instances
-     * of interface {code B} are also found (named {@code B1} and {@code B2}), then this
+     * of interface {@code A} are found (named {@code A1} and {@code A2}), and two instances
+     * of interface {@code B} are also found (named {@code B1} and {@code B2}), then this
      * method returns a list containing:
      *
      * <blockquote><pre>{A1, B1}
@@ -396,18 +394,27 @@ public strictfp abstract class TestCase {
     }
 
     /**
-     * Returns the set of all disabled operations.
+     * Returns information about the configuration of the test which has been run.
+     * The content of this map depends on the {@code TestCase} subclass and on the
+     * values returned by the {@link ImplementationDetails#configuration(Factory[])}
+     * method for the factories being tested. For a description of the map content,
+     * see any of the following subclasses:
      * <p>
-     * <b>Note:</b> this method returns a set of {@link String} rather than
-     * {@link SupportedOperation} in order to allow extension by testers.
+     * <ul>
+     *   <li>{@link org.opengis.test.referencing.AffineTransformTest#getConfiguration()}</li>
+     *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#getConfiguration()}</li>
+     *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test#getConfiguration()}</li>
+     * </ul>
      *
-     * @return The disabled operations, or an empty set if none. This method returns
-     *         a modifiable set in order to allow subclasses to modify it.
+     * @return The configuration of the test being run, or an empty map if none. This method
+     *         returns a modifiable map in order to allow subclasses to modify it.
+     *
+     * @see ImplementationDetails#configuration(Factory[])
      *
      * @since 3.1
      */
-    public Set<String> getDisabledOperations() {
-        return new HashSet<String>();
+    public Map<String,String> getConfiguration() {
+        return new HashMap<String,String>();
     }
 
     /**

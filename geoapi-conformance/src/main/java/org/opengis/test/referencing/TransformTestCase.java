@@ -31,7 +31,7 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Set;
+import java.util.Map;
 import java.util.Random;
 import java.util.Arrays;
 import java.awt.geom.Point2D;
@@ -314,21 +314,35 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Returns the set of all disabled operations. This set is constructed from all
-     * {@code isFooEnabled} fields declared in this class.
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     * <p>
+     * <ul>
+     *   <li>All the following keys with value {@code true} or {@code false}:
+     *     <ul>
+     *       <li>{@link #isDoubleToDoubleSupported}</li>
+     *       <li>{@link #isFloatToFloatSupported}</li>
+     *       <li>{@link #isDoubleToFloatSupported}</li>
+     *       <li>{@link #isFloatToDoubleSupported}</li>
+     *       <li>{@link #isOverlappingArraySupported}</li>
+     *       <li>{@link #isInverseTransformSupported}</li>
+     *       <li>{@link #isDerivativeSupported}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
      *
      * @since 3.1
      */
     @Override
-    public Set<String> getDisabledOperations() {
-        final Set<String> op = super.getDisabledOperations();
-        if (!isDoubleToDoubleSupported)   assertTrue(op.add(SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE  .key));
-        if (!isFloatToFloatSupported)     assertTrue(op.add(SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT    .key));
-        if (!isDoubleToFloatSupported)    assertTrue(op.add(SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT   .key));
-        if (!isFloatToDoubleSupported)    assertTrue(op.add(SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE   .key));
-        if (!isOverlappingArraySupported) assertTrue(op.add(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key));
-        if (!isInverseTransformSupported) assertTrue(op.add(SupportedOperation.INVERSE_TRANSFORM           .key));
-        if (!isDerivativeSupported)       assertTrue(op.add(SupportedOperation.DERIVATIVE_TRANSFORM        .key));
+    public Map<String,String> getConfiguration() {
+        final Map<String,String> op = super.getConfiguration();
+        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE  .key, Boolean.toString(isDoubleToDoubleSupported)));
+        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT    .key, Boolean.toString(isFloatToFloatSupported)));
+        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT   .key, Boolean.toString(isDoubleToFloatSupported)));
+        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE   .key, Boolean.toString(isFloatToDoubleSupported)));
+        assertNull(op.put(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key, Boolean.toString(isOverlappingArraySupported)));
+        assertNull(op.put(SupportedOperation.INVERSE_TRANSFORM           .key, Boolean.toString(isInverseTransformSupported)));
+        assertNull(op.put(SupportedOperation.DERIVATIVE_TRANSFORM        .key, Boolean.toString(isDerivativeSupported)));
         return op;
     }
 
@@ -357,7 +371,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * are set to {@code true}. This method can be invoked before testing a math transform which
      * is expected to be fully implemented.
      *
-     * @deprecated Replaced by {@code assertTrue(getDisabledOperations().isEmpty());}
+     * @deprecated Replaced by {@code assertFalse(getConfiguration().containsValue("false"));}
      */
     @Deprecated
     protected void assertAllTestsEnabled() {

@@ -78,7 +78,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
      * Relaxes the tolerance threshold for some transforms to be tested.
      */
     @Override
-    public ToleranceModifier needsRelaxedTolerance(final MathTransform transform) {
+    public ToleranceModifier tolerance(final MathTransform transform) {
         if (transform instanceof PJOperation.Projection) {
             final PJDatum pj = (((PJOperation) transform).target).pj;
             final String projection = pj.getParameter("+proj=");

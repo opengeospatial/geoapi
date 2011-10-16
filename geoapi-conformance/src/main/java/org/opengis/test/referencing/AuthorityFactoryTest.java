@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.awt.geom.Rectangle2D;
@@ -250,15 +251,23 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     }
 
     /**
-     * Returns the set of all disabled operations. This set is constructed from all
-     * {@code isFooEnabled} fields declared in this class and all parent classes.
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     * <p>
+     * <ul>
+     *   <li>All the following keys with value {@code true} or {@code false}:
+     *     <ul>
+     *       <li>{@link #isAxisSwappingSupported}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
      *
      * @since 3.1
      */
     @Override
-    public Set<String> getDisabledOperations() {
-        final Set<String> op = super.getDisabledOperations();
-        if (!isAxisSwappingSupported) assertTrue(op.add(SupportedOperation.AXIS_SWAPPING        .key));
+    public Map<String,String> getConfiguration() {
+        final Map<String,String> op = super.getConfiguration();
+        assertNull(op.put(SupportedOperation.AXIS_SWAPPING.key, Boolean.toString(isAxisSwappingSupported)));
         return op;
     }
 
