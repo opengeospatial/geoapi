@@ -1,12 +1,13 @@
-                                    ---------------------
-                                    OpenOffice.org add-in
-                                    ---------------------
+                              ---------------------------------
+                              LibreOffice/OpenOffice.org add-in
+                              ---------------------------------
 
-OpenOffice.org add-in
+LibreOffice/OpenOffice.org add-in
 
   This module demonstrates how GeoAPI services can be used from a complex software like
-  {{{http://www.openoffice.org}OpenOffice.org}}. This add-in adds the following formulas
-  to the Calc software, which can be used in spreadsheets for performing coordinate operations:
+  {{{http://www.libreoffice.org}LibreOffice}} or {{{http://www.openoffice.org}OpenOffice.org}}.
+  This add-in adds the following formulas to the Calc software, which can be used in spreadsheets
+  for performing coordinate operations:
 
 *--------------------+---------------------------------------------------------------------+-------------------------------------+-------------------------*
 || OOo Formulas     || Programmatic names                                                 || Parameters                         || Supported by this demo ||
