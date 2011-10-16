@@ -41,6 +41,11 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Properties;
 import java.util.ServiceLoader;
+
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+
 import org.opengis.util.Factory;
 
 
@@ -139,6 +144,80 @@ public strictfp abstract class TestCase {
             return implementationDetails;
         }
     }
+
+    /**
+     * The test listeners. We intentionally copy the full array every time a listener is
+     * added or removed. We do not clone the array used by the {@link #listener} field,
+     * so it is important that any array instance is never modified after creation.
+     *
+     * @see #addTestListener(TestListener)
+     * @see #removeTestListener(TestListener)
+     * @see #getTestListeners()
+     */
+    private static TestListener[] listeners = new TestListener[0];
+
+    /**
+     * A JUnit {@linkplain Rule rule} for listening to test execution events. This rule forwards
+     * events to all {@linkplain TestCase#addTestListener(TestListener) registered listeners}.
+     * <p>
+     * This field is public because JUnit requires us to do so, but should be considered as
+     * an implementation details (it should have been a private field).
+     *
+     * @since 3.1
+     */
+    @Rule
+    public final TestWatcher listener = new TestWatcher() {
+        /**
+         * A snapshot of the test listeners. We make this snapshot at rule creation time
+         * in order to be sure that the same set of listeners is notified for all phases
+         * of the test method being run.
+         */
+        private final TestListener[] listeners = getTestListeners();
+
+        /**
+         * Invoked when a test is about to start.
+         */
+        @Override
+        protected void starting(final Description description) {
+            final TestEvent event = new TestEvent(TestCase.this, description);
+            for (final TestListener listener : listeners) {
+                listener.starting(event);
+            }
+        }
+
+        /**
+         * Invoked when a test succeeds.
+         */
+        @Override
+        protected void succeeded(final Description description) {
+            final TestEvent event = new TestEvent(TestCase.this, description);
+            for (final TestListener listener : listeners) {
+                listener.succeeded(event);
+            }
+        }
+
+        /**
+         * Invoked when a test fails.
+         */
+        @Override
+        protected void failed(final Throwable exception, final Description description) {
+            final TestEvent event = new TestEvent(TestCase.this, description);
+            for (final TestListener listener : listeners) {
+                listener.failed(event, exception);
+            }
+        }
+
+        /**
+         * Invoked when a test method finishes (whether passing or failing)
+         */
+        @Override
+        protected void finished(final Description description) {
+            final TestEvent event = new TestEvent(TestCase.this, description);
+            for (final TestListener listener : listeners) {
+                listener.finished(event);
+            }
+        }
+    };
 
     /**
      * Creates a new test.
@@ -329,5 +408,51 @@ public strictfp abstract class TestCase {
      */
     public Set<String> getDisabledOperations() {
         return new HashSet<String>();
+    }
+
+    /**
+     * Adds a listener to be informed every time a test begin or finish, either on success
+     * or failure. This method does not check if the given listener was already registered
+     * (i.e. the same listener may be added more than once).
+     *
+     * @param listener The listener to add. {@code null} values are silently ignored.
+     *
+     * @since 3.1
+     */
+    public static synchronized void addTestListener(final TestListener listener) {
+        if (listener != null) {
+            final int length = listeners.length;
+            listeners = Arrays.copyOf(listeners, length + 1);
+            listeners[length] = listener;
+        }
+    }
+
+    /**
+     * Removes a previously {@linkplain #addTestListener(TestListener) added} listener. If the
+     * given listener has been added more than once, then only the last occurrence is removed.
+     * If the given listener is not found, then this method does nothing.
+     *
+     * @param listener The listener to remove. {@code null} values are silently ignored.
+     *
+     * @since 3.1
+     */
+    public static synchronized void removeTestListener(final TestListener listener) {
+        for (int i=listeners.length; --i>=0;) {
+            if (listeners[i] == listener) {
+                final int length = listeners.length - 1;
+                System.arraycopy(listeners, i, listeners, i+1, length-i);
+                listeners = Arrays.copyOf(listeners, length);
+                break;
+            }
+        }
+    }
+
+    /**
+     * Returns all currently registered test listeners, or an empty array if none.
+     * This method returns directly the internal array, so it is important to never
+     * modify it. This method is for internal usage by the {@link #listener} field only.
+     */
+    static synchronized TestListener[] getTestListeners() {
+        return listeners;
     }
 }

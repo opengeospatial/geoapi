@@ -50,7 +50,10 @@ import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
+import org.opengis.test.TestCase;
 import org.opengis.test.TestSuite;
+import org.opengis.test.TestEvent;
+import org.opengis.test.TestListener;
 
 import static org.opengis.test.runner.ReportEntry.Status.*;
 
@@ -63,7 +66,7 @@ import static org.opengis.test.runner.ReportEntry.Status.*;
  * @version 3.1
  * @since   3.1
  */
-final class Runner extends RunListener {
+final class Runner extends RunListener implements TestListener {
     /**
      * The logger for this package.
      */
@@ -117,7 +120,13 @@ final class Runner extends RunListener {
     void run() {
         final JUnitCore junit = new JUnitCore();
         junit.addListener(this);
-        final Result result = junit.run(TestSuite.class);
+        final Result result;
+        try {
+            TestCase.addTestListener(this);
+            result = junit.run(TestSuite.class);
+        } finally {
+            TestCase.removeTestListener(this);
+        }
     }
 
     /**
@@ -136,13 +145,9 @@ final class Runner extends RunListener {
      * entries to be emitted: first an entry for the test failure, then another
      * entry because the test finished.
      */
-    private void addEntry(final Description description, final ReportEntry.Status status, final Throwable exception) {
-        final ReportEntry entry = new ReportEntry(description, status, exception);
+    private void addEntry(final ReportEntry entry) {
         final ChangeListener[] list;
         synchronized (entries) {
-            if (entries.contains(entry)) {
-                return;
-            }
             entries.add(entry);
             list = listeners;
         }
@@ -152,21 +157,38 @@ final class Runner extends RunListener {
     }
 
     /**
-     * Called when an atomic test has finished, whether the test succeeds or fails.
+     * Called when a test is about to start.
+     * Current implementation does nothing.
      */
     @Override
-    public void testFinished(final Description description) throws Exception {
-        addEntry(description, SUCCESS, null);
-        super.testFinished(description);
+    public void starting(final TestEvent event) {
     }
 
     /**
-     * Called when an atomic test fails.
+     * Called when an atomic test has finished, whether the test succeeds or fails.
+     * Current implementation does nothing - we will rely instead on the more specific
+     * methods below.
      */
     @Override
-    public void testFailure(final Failure failure) throws Exception {
-        addEntry(failure.getDescription(), FAILURE, failure.getException());
-        super.testFailure(failure);
+    public void finished(final TestEvent event) {
+    }
+
+    /**
+     * Called when a test succeed. This method adds a new entry in the {@linkplain #entries} list
+     * with the {@code SUCCESS} status.
+     */
+    @Override
+    public void succeeded(final TestEvent event) {
+        addEntry(new ReportEntry(event, SUCCESS, null));
+    }
+
+    /**
+     * Called when a test failed. This method adds a new entry in the {@linkplain #entries} list
+     * with the {@code FAILURE} status and the stack trace.
+     */
+    @Override
+    public void failed(final TestEvent event, final Throwable exception) {
+        addEntry(new ReportEntry(event, FAILURE, exception));
     }
 
     /**
@@ -174,7 +196,7 @@ final class Runner extends RunListener {
      */
     @Override
     public void testAssumptionFailure(final Failure failure) {
-        addEntry(failure.getDescription(), ASSUMPTION_NOT_MET, failure.getException());
+        addEntry(new ReportEntry(failure.getDescription(), ASSUMPTION_NOT_MET, failure.getException()));
         super.testAssumptionFailure(failure);
     }
 
@@ -184,12 +206,14 @@ final class Runner extends RunListener {
      */
     @Override
     public void testIgnored(final Description description) throws Exception {
-        addEntry(description, IGNORED, null);
+        addEntry(new ReportEntry(description, IGNORED, null));
         super.testIgnored(description);
     }
 
     /**
-     * Adds a change listener.
+     * Adds a change listener to be invoked when new entries are added.
+     * This is of interest mostly to swing widgets - we don't use this
+     * listener for collecting new information.
      */
     void addChangeListener(final ChangeListener listener) {
         synchronized (entries) {

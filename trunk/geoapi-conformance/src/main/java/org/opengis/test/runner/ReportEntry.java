@@ -32,6 +32,7 @@
 package org.opengis.test.runner;
 
 import org.junit.runner.Description;
+import org.opengis.test.TestEvent;
 
 
 /**
@@ -86,11 +87,31 @@ final class ReportEntry {
     final Throwable exception;
 
     /**
+     * Creates a new entry for the given event.
+     */
+    ReportEntry(final TestEvent event, final Status status, final Throwable exception) {
+        this.className  = event.getClassName();
+        this.methodName = event.getMethodName();
+        this.simpleName = createSimpleName(className);
+        this.status     = status;
+        this.exception  = exception;
+    }
+
+    /**
      * Creates a new entry for the given description.
      */
     ReportEntry(final Description description, final Status status, final Throwable exception) {
-        className  = description.getClassName();
-        methodName = description.getMethodName();
+        this.className  = description.getClassName();
+        this.methodName = description.getMethodName();
+        this.simpleName = createSimpleName(className);
+        this.status     = status;
+        this.exception  = exception;
+    }
+
+    /**
+     * Creates a simple name from the given class name.
+     */
+    private static String createSimpleName(final String className) {
         int nameLength = className.length();
         if (className.endsWith(CLASSNAME_SUFFIX)) {
             nameLength -= CLASSNAME_SUFFIX.length();
@@ -103,9 +124,7 @@ final class ReportEntry {
             }
             buffer.append(c);
         }
-        this.simpleName = buffer.toString();
-        this.status     = status;
-        this.exception  = exception;
+        return buffer.toString();
     }
 
     /**
