@@ -86,7 +86,7 @@ import org.opengis.referencing.operation.MathTransform;
  *    }
  *
  *    &#64;Override
- *    public {@linkplain ToleranceModifier} {@linkplain ImplementationDetails#needsRelaxedTolerance needsRelaxedTolerance}({@linkplain MathTransform} transform) {
+ *    public {@linkplain ToleranceModifier} {@linkplain ImplementationDetails#tolerance tolerance}({@linkplain MathTransform} transform) {
  *        if (transform instanceof <var>MyProjection</var>) {
  *            return {@linkplain ToleranceModifiers#scale ToleranceModifiers.scale}(EnumSet.of({@linkplain CalculationType#INVERSE_TRANSFORM}), 1, 10);
  *        }

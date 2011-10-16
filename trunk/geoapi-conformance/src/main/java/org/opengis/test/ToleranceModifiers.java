@@ -510,14 +510,14 @@ public strictfp final class ToleranceModifiers {
      * @param  transform The transform for which to get implementation-specific modifiers.
      * @return All implementation-specific modifiers found, or an empty array if none.
      *
-     * @see ImplementationDetails#needsRelaxedTolerance(MathTransform)
+     * @see ImplementationDetails#tolerance(MathTransform)
      */
     public static ToleranceModifier[] getImplementationSpecific(final MathTransform transform) {
         Map<ToleranceModifier,Boolean> modifiers = null;
         final ServiceLoader<ImplementationDetails> services = TestCase.getImplementationDetails();
         synchronized (services) {
             for (final ImplementationDetails impl : services) {
-                final ToleranceModifier modifier = impl.needsRelaxedTolerance(transform);
+                final ToleranceModifier modifier = impl.tolerance(transform);
                 if (modifier != null) {
                     if (modifiers == null) {
                         modifiers = new LinkedHashMap<ToleranceModifier,Boolean>();

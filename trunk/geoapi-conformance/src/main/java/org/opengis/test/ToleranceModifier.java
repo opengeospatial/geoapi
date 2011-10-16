@@ -43,7 +43,7 @@ import org.opengis.referencing.operation.MathTransform;
  * <p>
  * <ul>
  *   <li>Scan every {@link ImplementationDetails} on the classpath and invoke their
- *       {@link ImplementationDetails#needsRelaxedTolerance(MathTransform) needsRelaxedTolerance}
+ *       {@link ImplementationDetails#tolerance(MathTransform) tolerance}
  *       method for the {@link MathTransform} being tested.</li>
  *
  *   <li>For each non-null {@code ToleranceModifier}, invoke the {@link #adjust(double[],

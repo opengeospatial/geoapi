@@ -79,7 +79,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      */
     @Before
     public void assertAllTestsEnabled() {
-        assertTrue(getDisabledOperations().isEmpty());
+        assertFalse(getConfiguration().containsValue("false"));
     }
 
     /**

@@ -58,7 +58,7 @@ import org.opengis.referencing.operation.MathTransform;
  * <p>
  * <ul>
  *   <li>{@link #configuration(Factory[])} returns unconditionally {@code null}</li>
- *   <li>{@link #needsRelaxedTolerance(MathTransform)} returns unconditionally {@code null}</li>
+ *   <li>{@link #tolerance(MathTransform)} returns unconditionally {@code null}</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -81,6 +81,8 @@ public interface ImplementationDetails {
      * @return The collection of tests to disable for the given factories, or {@code null} if none.
      * @throws IOException If the implementation tried to {@linkplain Properties#load(java.io.Reader)
      *         load} the properties from a file and that operation failed.
+     *
+     * @see TestCase#getConfiguration()
      */
     Properties configuration(Factory... factories) throws IOException;
 
@@ -96,5 +98,5 @@ public interface ImplementationDetails {
      * @param  transform The transform being tested.
      * @return An object for modifying the tolerance thresholds, or {@code null} if no change is needed.
      */
-    ToleranceModifier needsRelaxedTolerance(MathTransform transform);
+    ToleranceModifier tolerance(MathTransform transform);
 }
