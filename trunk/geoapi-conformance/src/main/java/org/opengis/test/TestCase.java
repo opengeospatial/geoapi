@@ -402,6 +402,7 @@ public strictfp abstract class TestCase {
      * <p>
      * <ul>
      *   <li>{@link org.opengis.test.referencing.AffineTransformTest#getConfiguration()}</li>
+     *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#getConfiguration()}</li>
      *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#getConfiguration()}</li>
      *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test#getConfiguration()}</li>
      * </ul>

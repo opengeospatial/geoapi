@@ -161,7 +161,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the entries defined in the {@link TransformTestCase#getConfiguration() parent class}.</li>
+     *   <li>All the entries defined in the {@linkplain TransformTestCase#getConfiguration() parent class}.</li>
      *   <li>All the following keys with value {@code true} or {@code false}:
      *     <ul>
      *       <li>{@link #isNonSquareMatrixSupported}</li>
