@@ -414,8 +414,8 @@ public strictfp abstract class TestCase {
      *
      * @since 3.1
      */
-    public Map<String,String> getConfiguration() {
-        return new HashMap<String,String>();
+    public Map<String,Object> getConfiguration() {
+        return new HashMap<String,Object>();
     }
 
     /**

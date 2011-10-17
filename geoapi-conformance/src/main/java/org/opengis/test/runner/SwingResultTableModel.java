@@ -61,7 +61,7 @@ final class SwingResultTableModel extends AbstractTableModel implements ChangeLi
     {
         COLUMN_TITLES[CLASS_COLUMN]   = "Class";
         COLUMN_TITLES[METHOD_COLUMN]  = "Method";
-        COLUMN_TITLES[RESULT_COLUMN]  = "Status";
+        COLUMN_TITLES[RESULT_COLUMN]  = "Result";
         COLUMN_TITLES[MESSAGE_COLUMN] = "Message";
     };
 

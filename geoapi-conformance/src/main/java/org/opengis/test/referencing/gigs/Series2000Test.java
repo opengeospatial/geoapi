@@ -167,7 +167,7 @@ public strictfp class Series2000Test extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys with value {@code true} or {@code false}:
+     *   <li>All the following keys with value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isNameSupported}</li>
      *       <li>{@link #isAliasSupported}</li>
@@ -176,10 +176,10 @@ public strictfp class Series2000Test extends TestCase {
      * </ul>
      */
     @Override
-    public Map<String,String> getConfiguration() {
-        final Map<String,String> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.NAME .key, Boolean.toString(isNameSupported)));
-        assertNull(op.put(SupportedOperation.ALIAS.key, Boolean.toString(isAliasSupported)));
+    public Map<String,Object> getConfiguration() {
+        final Map<String,Object> op = super.getConfiguration();
+        assertNull(op.put(SupportedOperation.NAME .key, isNameSupported));
+        assertNull(op.put(SupportedOperation.ALIAS.key, isAliasSupported));
         return op;
     }
 

@@ -31,6 +31,10 @@
  */
 package org.opengis.test.runner;
 
+import java.awt.Color;
+import java.util.Map;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import org.junit.runner.Description;
 import org.opengis.test.TestEvent;
 
@@ -87,6 +91,11 @@ final class ReportEntry {
     final Throwable exception;
 
     /**
+     * An estimation of the test coverage, as a floating point value between 0 and 1.
+     */
+    final float coverage;
+
+    /**
      * Creates a new entry for the given event.
      */
     ReportEntry(final TestEvent event, final Status status, final Throwable exception) {
@@ -95,10 +104,12 @@ final class ReportEntry {
         this.simpleName = createSimpleName(className);
         this.status     = status;
         this.exception  = exception;
+        this.coverage   = coverage(event);
     }
 
     /**
      * Creates a new entry for the given description.
+     * This constructor is used only for ignored tests.
      */
     ReportEntry(final Description description, final Status status, final Throwable exception) {
         this.className  = description.getClassName();
@@ -106,6 +117,7 @@ final class ReportEntry {
         this.simpleName = createSimpleName(className);
         this.status     = status;
         this.exception  = exception;
+        this.coverage   = 0;
     }
 
     /**
@@ -128,25 +140,47 @@ final class ReportEntry {
     }
 
     /**
-     * Comparison based on the description, but not on the result.
-     * This is for internal use by the {@link Runner} only.
+     * Computes an estimation of test coverage as a number between 0 and 1.
+     *
+     * Note: we assume that a test with every optional features marked as "unsupported"
+     * ({@code isFooSupported = false}) still do some test, so we unconditionally start
+     * the count with 1 supported test.
      */
-    @Override
-    public boolean equals(final Object other) {
-        if (other instanceof ReportEntry) {
-            final ReportEntry that = (ReportEntry) other;
-            return className.equals(that.className) && methodName.equals(that.methodName);
+    private static float coverage(final TestEvent event) {
+        int numTests=1, numSupported=1; // See the note in above javadoc.
+        for (Map.Entry<String,Object> entry : event.getSource().getConfiguration().entrySet()) {
+            final String key   = entry.getKey();
+            final Object value = entry.getValue();
+            if (key.startsWith("is") && key.endsWith("Supported") && (value instanceof Boolean)) {
+                if (((Boolean) value).booleanValue()) {
+                    numSupported++;
+                }
+                numTests++;
+            }
         }
-        return false;
+        return ((float) numSupported) / ((float) numTests);
     }
 
     /**
-     * Hash code value based on the description, but not on the result.
-     * This is for internal use by the {@link Runner} only.
+     * Draws a shape representing the test coverage using the given graphics handler.
+     * This method changes the graphics paint, so caller should restore it to whatever
+     * paint they want to use after this method call.
+     *
+     * @param graphics The graphics where to draw.
+     * @param bounds The region where to draw. <strong>Will be modified by this method</strong>.
      */
-    @Override
-    public int hashCode() {
-        return className.hashCode() + 31*methodName.hashCode();
+    void drawCoverage(final Graphics2D graphics, final Rectangle bounds) {
+        final Color color;
+        switch (status) {
+            case SUCCESS: color = Color.GREEN; break;
+            case FAILURE: color = Color.RED;   break;
+            default: return; // Don't paint anything.
+        }
+        graphics.setColor(color.darker());
+        graphics.draw(bounds);
+        bounds.width = Math.round(bounds.width * coverage);
+        graphics.setColor(color);
+        graphics.fill(bounds);
     }
 
     /**
