@@ -216,6 +216,17 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     protected boolean isAxisSwappingSupported;
 
     /**
+     * A helper class to use for running the tests. The {@link #runProjectionTest(int)} method
+     * will use the following {@code ParameterizedTransformTest} package-private methods:
+     * <p>
+     * <ul>
+     *   <li>{@link ParameterizedTransformTest#verifyKnownSamplePoints}</li>
+     *   <li>{@link ParameterizedTransformTest#verifyInDomainOfValidity}</li>
+     * </ul>
+     */
+    private final ParameterizedTransformTest test;
+
+    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -248,6 +259,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
                 SupportedOperation.AXIS_SWAPPING.key);
         isAxisSwappingSupported = isEnabled[0];
+        test = new ParameterizedTransformTest(null);
     }
 
     /**
@@ -255,7 +267,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys with value {@code true} or {@code false}:
+     *   <li>All the entries defined in the {@link ParameterizedTransformTest#getConfiguration() ParameterizedTransformTest} class.</li>
+     *   <li>All the following keys with value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isAxisSwappingSupported}</li>
      *     </ul>
@@ -265,9 +278,9 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @since 3.1
      */
     @Override
-    public Map<String,String> getConfiguration() {
-        final Map<String,String> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.AXIS_SWAPPING.key, Boolean.toString(isAxisSwappingSupported)));
+    public Map<String,Object> getConfiguration() {
+        final Map<String,Object> op = test.getConfiguration();
+        assertNull(op.put(SupportedOperation.AXIS_SWAPPING.key, isAxisSwappingSupported));
         return op;
     }
 
@@ -429,7 +442,6 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         if (conversion != null) {
             final MathTransform projection = conversion.getMathTransform();
             if (projection != null) {
-                final ParameterizedTransformTest test = new ParameterizedTransformTest(null);
                 test.description = getName(crs);
                 test.transform = projection;
                 /*

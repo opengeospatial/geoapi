@@ -318,7 +318,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys with value {@code true} or {@code false}:
+     *   <li>All the following keys with value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isDoubleToDoubleSupported}</li>
      *       <li>{@link #isFloatToFloatSupported}</li>
@@ -334,15 +334,15 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @since 3.1
      */
     @Override
-    public Map<String,String> getConfiguration() {
-        final Map<String,String> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE  .key, Boolean.toString(isDoubleToDoubleSupported)));
-        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT    .key, Boolean.toString(isFloatToFloatSupported)));
-        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT   .key, Boolean.toString(isDoubleToFloatSupported)));
-        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE   .key, Boolean.toString(isFloatToDoubleSupported)));
-        assertNull(op.put(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key, Boolean.toString(isOverlappingArraySupported)));
-        assertNull(op.put(SupportedOperation.INVERSE_TRANSFORM           .key, Boolean.toString(isInverseTransformSupported)));
-        assertNull(op.put(SupportedOperation.DERIVATIVE_TRANSFORM        .key, Boolean.toString(isDerivativeSupported)));
+    public Map<String,Object> getConfiguration() {
+        final Map<String,Object> op = super.getConfiguration();
+        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE  .key, isDoubleToDoubleSupported));
+        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT    .key, isFloatToFloatSupported));
+        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT   .key, isDoubleToFloatSupported));
+        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE   .key, isFloatToDoubleSupported));
+        assertNull(op.put(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key, isOverlappingArraySupported));
+        assertNull(op.put(SupportedOperation.INVERSE_TRANSFORM           .key, isInverseTransformSupported));
+        assertNull(op.put(SupportedOperation.DERIVATIVE_TRANSFORM        .key, isDerivativeSupported));
         return op;
     }
 

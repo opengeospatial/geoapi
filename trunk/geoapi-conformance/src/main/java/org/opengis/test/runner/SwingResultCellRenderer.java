@@ -33,6 +33,10 @@ package org.opengis.test.runner;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
@@ -58,6 +62,11 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
     private final Color successColor, ignoreColor, failureColor;
 
     /**
+     * The cell renderer for test coverage.
+     */
+    private final Coverage coverage;
+
+    /**
      * Creates a default cell renderer for {@link SwingResultTableModel}.
      */
     SwingResultCellRenderer() {
@@ -67,6 +76,7 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
         successColor = Color.GREEN.darker();
         ignoreColor  = Color.DARK_GRAY;
         failureColor = Color.RED;
+        coverage     = new Coverage();
     }
 
     /**
@@ -94,11 +104,15 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(final JTable table, final Object value,
             final boolean isSelected, final boolean hasFocus, final int row, final int column)
     {
+        final SwingResultTableModel model = (SwingResultTableModel) table.getModel();
+        final ReportEntry entry = model.getValueAt(row);
+        if (column == SwingResultTableModel.RESULT_COLUMN) {
+            coverage.report = entry;
+            return coverage;
+        }
         Color foreground = this.foreground;
         Color background = this.background;
         if (!isSelected) {
-            final SwingResultTableModel model = (SwingResultTableModel) table.getModel();
-            final ReportEntry entry = model.getValueAt(row);
             switch (entry.status) {
                 case IGNORED:
                 case ASSUMPTION_NOT_MET: {
@@ -120,5 +134,45 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
         super.setBackground(background);
         super.setForeground(foreground);
         return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+    }
+
+    /**
+     * The cell renderer for test coverage.
+     */
+    private static final class Coverage extends JPanel {
+        /**
+         * The space to keep between two cells.
+         */
+        private static final int MARGIN = 1;
+
+        /**
+         * The test report to paint. This value shall be set by
+         * {@link SwingResultCellRenderer#getTableCellRendererComponent}
+         * before this component is rendered.
+         */
+        ReportEntry report;
+
+        /**
+         * Creates a new instance.
+         */
+        Coverage() {
+            setOpaque(false);
+        }
+
+        /**
+         * Paints the test coverage.
+         */
+        @Override
+        protected void paintComponent(final Graphics graphics) {
+            super.paintComponent(graphics);
+            if (report != null) {
+                final Rectangle bounds = getBounds();
+                bounds.x       = MARGIN;
+                bounds.y       = MARGIN;
+                bounds.width  -= MARGIN*2;
+                bounds.height -= MARGIN*2;
+                report.drawCoverage((Graphics2D) graphics, bounds);
+            }
+        }
     }
 }

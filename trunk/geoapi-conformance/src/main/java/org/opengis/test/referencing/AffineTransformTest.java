@@ -162,7 +162,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * <p>
      * <ul>
      *   <li>All the entries defined in the {@linkplain TransformTestCase#getConfiguration() parent class}.</li>
-     *   <li>All the following keys with value {@code true} or {@code false}:
+     *   <li>All the following keys with value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isNonSquareMatrixSupported}</li>
      *     </ul>
@@ -170,9 +170,9 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * </ul>
      */
     @Override
-    public Map<String,String> getConfiguration() {
-        final Map<String,String> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.NON_SQUARE_MATRIX.key, Boolean.toString(isNonSquareMatrixSupported)));
+    public Map<String,Object> getConfiguration() {
+        final Map<String,Object> op = super.getConfiguration();
+        assertNull(op.put(SupportedOperation.NON_SQUARE_MATRIX.key, isNonSquareMatrixSupported));
         return op;
     }
 
