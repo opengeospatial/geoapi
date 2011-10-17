@@ -277,6 +277,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
     private transient MathTransform transformUsedByCache;
 
     /**
+     * {@code true} if the {@link #getToleranceModifier()} method found at least one
+     * {@link ToleranceModifier} registered on the classpath. We presume that the
+     * implementor specified such tolerance modifier in order to relax the tolerance
+     * threshold.
+     *
+     * @since 3.1
+     */
+    private boolean isToleranceRelaxed;
+
+    /**
      * @deprecated Use {@link #TransformTestCase(Factory[])} instead.
      */
     @Deprecated
@@ -318,7 +328,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys with value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
+     *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
+     *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isDoubleToDoubleSupported}</li>
      *       <li>{@link #isFloatToFloatSupported}</li>
@@ -329,6 +340,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *       <li>{@link #isDerivativeSupported}</li>
      *     </ul>
      *   </li>
+     *   <li>The {@code "isToleranceRelaxed"} key associated to the value {@link Boolean#TRUE}
+     *       if the {@link ToleranceModifiers#getImplementationSpecific(MathTransform)} method
+     *       found at least one {@link ToleranceModifier} on the classpath, or
+     *       {@link Boolean#FALSE} otherwise.</li>
      * </ul>
      *
      * @since 3.1
@@ -343,6 +358,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNull(op.put(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key, isOverlappingArraySupported));
         assertNull(op.put(SupportedOperation.INVERSE_TRANSFORM           .key, isInverseTransformSupported));
         assertNull(op.put(SupportedOperation.DERIVATIVE_TRANSFORM        .key, isDerivativeSupported));
+        assertNull(op.put("isToleranceRelaxed", isToleranceRelaxed));
         return op;
     }
 
@@ -1202,9 +1218,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
      */
     private ToleranceModifier getToleranceModifier() {
         if (cachedModifier == null || modifierUsedByCache != toleranceModifier || transformUsedByCache != transform) {
-            cachedModifier = ToleranceModifiers.concatenate(modifierUsedByCache = toleranceModifier,
-                    ToleranceModifiers.maximum(ToleranceModifiers.getImplementationSpecific(
-                    transformUsedByCache = transform)));
+            transformUsedByCache = transform;
+            modifierUsedByCache = toleranceModifier;
+            final ToleranceModifier foundOnTheClasspath = ToleranceModifiers.maximum(
+                    ToleranceModifiers.getImplementationSpecific(transform));
+            isToleranceRelaxed |= (foundOnTheClasspath != null);
+            cachedModifier = ToleranceModifiers.concatenate(toleranceModifier, foundOnTheClasspath);
         }
         return cachedModifier;
     }

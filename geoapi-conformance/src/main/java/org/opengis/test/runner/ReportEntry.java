@@ -93,7 +93,12 @@ final class ReportEntry {
     /**
      * An estimation of the test coverage, as a floating point value between 0 and 1.
      */
-    final float coverage;
+    private float coverage;
+
+    /**
+     * {@code true} if the tolerance threshold has been relaxed.
+     */
+    private boolean isToleranceRelaxed;
 
     /**
      * Creates a new entry for the given event.
@@ -104,7 +109,29 @@ final class ReportEntry {
         this.simpleName = createSimpleName(className);
         this.status     = status;
         this.exception  = exception;
-        this.coverage   = coverage(event);
+        /*
+         * Computes an estimation of test coverage as a number between 0 and 1.
+         *
+         * Note: we assume that a test with every optional features marked as "unsupported"
+         * ({@code isFooSupported = false}) still do some test, so we unconditionally start
+         * the count with 1 supported test.
+         */
+        int numTests=1, numSupported=1;
+        for (Map.Entry<String,Object> entry : event.getSource().getConfiguration().entrySet()) {
+            final String key   = entry.getKey();
+            final Object value = entry.getValue();
+            if ((value instanceof Boolean) && key.startsWith("is")) {
+                if (key.endsWith("Supported")) {
+                    if (((Boolean) value).booleanValue()) {
+                        numSupported++;
+                    }
+                    numTests++;
+                } else if (key.equals("isToleranceRelaxed")) {
+                    isToleranceRelaxed = ((Boolean) value).booleanValue();
+                }
+            }
+        }
+        coverage = ((float) numSupported) / ((float) numTests);
     }
 
     /**
@@ -117,7 +144,6 @@ final class ReportEntry {
         this.simpleName = createSimpleName(className);
         this.status     = status;
         this.exception  = exception;
-        this.coverage   = 0;
     }
 
     /**
@@ -140,28 +166,6 @@ final class ReportEntry {
     }
 
     /**
-     * Computes an estimation of test coverage as a number between 0 and 1.
-     *
-     * Note: we assume that a test with every optional features marked as "unsupported"
-     * ({@code isFooSupported = false}) still do some test, so we unconditionally start
-     * the count with 1 supported test.
-     */
-    private static float coverage(final TestEvent event) {
-        int numTests=1, numSupported=1; // See the note in above javadoc.
-        for (Map.Entry<String,Object> entry : event.getSource().getConfiguration().entrySet()) {
-            final String key   = entry.getKey();
-            final Object value = entry.getValue();
-            if (key.startsWith("is") && key.endsWith("Supported") && (value instanceof Boolean)) {
-                if (((Boolean) value).booleanValue()) {
-                    numSupported++;
-                }
-                numTests++;
-            }
-        }
-        return ((float) numSupported) / ((float) numTests);
-    }
-
-    /**
      * Draws a shape representing the test coverage using the given graphics handler.
      * This method changes the graphics paint, so caller should restore it to whatever
      * paint they want to use after this method call.
@@ -172,9 +176,17 @@ final class ReportEntry {
     void drawCoverage(final Graphics2D graphics, final Rectangle bounds) {
         final Color color;
         switch (status) {
-            case SUCCESS: color = Color.GREEN; break;
-            case FAILURE: color = Color.RED;   break;
-            default: return; // Don't paint anything.
+            case SUCCESS: {
+                color = isToleranceRelaxed ? Color.ORANGE : Color.GREEN;
+                break;
+            }
+            case FAILURE: {
+                color = Color.RED;
+                break;
+            }
+            default: {
+                return; // Don't paint anything.
+            }
         }
         graphics.setColor(color.darker());
         graphics.draw(bounds);

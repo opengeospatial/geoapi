@@ -162,7 +162,8 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * <p>
      * <ul>
      *   <li>All the entries defined in the {@linkplain TransformTestCase#getConfiguration() parent class}.</li>
-     *   <li>All the following keys with value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
+     *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
+     *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isNonSquareMatrixSupported}</li>
      *     </ul>
