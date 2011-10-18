@@ -478,7 +478,7 @@ next:   for (final String search : expected) {
                 longitude = DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
             }
             assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
-                    pm.getGreenwichLongitude(), ANGULAR_TOLERANCE*longitude);
+                    pm.getGreenwichLongitude(), ANGULAR_TOLERANCE*abs(longitude));
         }
     }
 }

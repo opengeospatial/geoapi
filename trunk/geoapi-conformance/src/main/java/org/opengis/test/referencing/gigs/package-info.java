@@ -33,6 +33,12 @@
 /**
  * Implements the <a href="http://www.epsg.org/gigs.html">Geospatial integrity of geoscience
  * software</a> tests.
+ * <p>
+ * <b>Changes compared to GIGS files</b><br>
+ * The GIGS <cite>Excel</cite> files have been converted to CSV files, and some values have been
+ * edited in order to reflect the current values in latest EPSG database. We also increased the
+ * precision of some numerical values when needed in order to meet the GIGS accuracy requirements
+ * in test results.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
