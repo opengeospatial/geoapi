@@ -80,6 +80,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      *
      * @return Always 2.
      */
+    @Override
     public final int getSourceDimensions() {
         return 2;
     }
@@ -89,6 +90,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      *
      * @return Always 2.
      */
+    @Override
     public final int getTargetDimensions() {
         return 2;
     }
@@ -118,6 +120,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * @return The transformed position.
      * @throws MismatchedDimensionException if a given position is not two-dimensional.
      */
+    @Override
     public final DirectPosition transform(final DirectPosition ptSrc, final DirectPosition ptDst)
             throws MismatchedDimensionException
     {
@@ -144,6 +147,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * @return The derivative at the given point.
      * @throws MismatchedDimensionException if the given position is not two-dimensional.
      */
+    @Override
     public Matrix derivative(final DirectPosition point) throws MismatchedDimensionException {
         return derivative(toPoint2D(point));
     }
@@ -154,6 +158,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * @param  point The point where to evaluate the derivative.
      * @return The derivative at the given point.
      */
+    @Override
     public Matrix derivative(final Point2D point) {
         return new SimpleMatrix(2, 2, getScaleX(), getShearX(), getShearY(), getScaleY());
     }
@@ -166,6 +171,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      *
      * @todo Use {@link AffineTransform#invert} when we will be allowed to compile for Java 6.
      */
+    @Override
     public MathTransform2D inverse() throws NoninvertibleTransformException {
         if (inverse == null) try {
             inverse = new AffineTransform2D(createInverse());
@@ -183,6 +189,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * @return The WKT of this transform.
      * @throws UnsupportedOperationException if this operation is not supported.
      */
+    @Override
     public String toWKT() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
