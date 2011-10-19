@@ -68,7 +68,7 @@ final class SwingFrame extends JFrame implements Runnable {
      *
      * @see #setManifest(ImplementationManifest)
      */
-    private final JLabel title, vendor, version, vendorID, url;
+    private final JLabel title, vendor, version, vendorID, url, specification, specVersion, specVendor;
 
     /**
      * The table showing the results.
@@ -89,11 +89,14 @@ final class SwingFrame extends JFrame implements Runnable {
         setSize(800, 600); // If width is modified, please adjust column preferred widths below.
         setLocationByPlatform(true);
         add(new SwingPanelBuilder().createManifestPane(
-                title    = new JLabel(),
-                version  = new JLabel(),
-                vendor   = new JLabel(),
-                vendorID = new JLabel(),
-                url      = new JLabel()), BorderLayout.NORTH);
+                title         = new JLabel(),
+                version       = new JLabel(),
+                vendor        = new JLabel(),
+                vendorID      = new JLabel(),
+                url           = new JLabel(),
+                specification = new JLabel(),
+                specVersion   = new JLabel(),
+                specVendor    = new JLabel()), BorderLayout.NORTH);
 
         runner = new Runner();
         results = new JTable(new SwingResultTableModel(runner));
@@ -134,11 +137,14 @@ final class SwingFrame extends JFrame implements Runnable {
      * Sets the implementation identification.
      */
     private void setManifest(final ImplementationManifest manifest) {
-        title   .setText(manifest != null ? manifest.title    : null);
-        version .setText(manifest != null ? manifest.version  : null);
-        vendor  .setText(manifest != null ? manifest.vendor   : null);
-        vendorID.setText(manifest != null ? manifest.vendorID : null);
-        url     .setText(manifest != null ? manifest.url      : null);
+        title        .setText(manifest != null ? manifest.title         : null);
+        version      .setText(manifest != null ? manifest.version       : null);
+        vendor       .setText(manifest != null ? manifest.vendor        : null);
+        vendorID     .setText(manifest != null ? manifest.vendorID      : null);
+        url          .setText(manifest != null ? manifest.url           : null);
+        specification.setText(manifest != null ? manifest.specification : null);
+        specVersion  .setText(manifest != null ? manifest.specVersion   : null);
+        specVendor   .setText(manifest != null ? manifest.specVendor    : null);
     }
 
     /**

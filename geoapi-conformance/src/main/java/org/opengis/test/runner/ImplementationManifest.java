@@ -71,7 +71,7 @@ final class ImplementationManifest {
      * The implementation title, version, vendor or URL.
      * Any of those attributes accept the title may be null.
      */
-    final String title, version, vendor, vendorID, url;
+    final String title, version, vendor, vendorID, url, specification, specVersion, specVendor;
 
     /**
      * Creates a new manifest for the given attributes.
@@ -79,10 +79,13 @@ final class ImplementationManifest {
     private ImplementationManifest(final int priority, final String title, final Attributes attributes) {
         this.priority = priority;
         this.title    = title;
-        version  = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VERSION);
-        vendor   = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR);
-        vendorID = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR_ID);
-        url      = (String) attributes.get(Attributes.Name.IMPLEMENTATION_URL);
+        version       = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VERSION);
+        vendor        = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR);
+        vendorID      = (String) attributes.get(Attributes.Name.IMPLEMENTATION_VENDOR_ID);
+        url           = (String) attributes.get(Attributes.Name.IMPLEMENTATION_URL);
+        specification = (String) attributes.get(Attributes.Name.SPECIFICATION_TITLE);
+        specVersion   = (String) attributes.get(Attributes.Name.SPECIFICATION_VERSION);
+        specVendor    = (String) attributes.get(Attributes.Name.SPECIFICATION_VENDOR);
     }
 
     /**
