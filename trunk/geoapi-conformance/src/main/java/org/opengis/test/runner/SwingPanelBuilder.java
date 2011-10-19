@@ -31,6 +31,7 @@
  */
 package org.opengis.test.runner;
 
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JComponent;
@@ -60,9 +61,11 @@ final class SwingPanelBuilder extends GridBagConstraints {
      * Creates the panel where to display {@link ImplementationManifest} information.
      */
     JPanel createManifestPane(final JLabel title, final JLabel version, final JLabel vendor,
-            final JLabel vendorID, final JLabel url)
+            final JLabel vendorID, final JLabel url, final JLabel specification,
+            final JLabel specVersion, final JLabel specVendor)
     {
         final JPanel panel = new JPanel(new GridBagLayout());
+        final JLabel implementsLabel;
         gridx=0; weightx=0; anchor=WEST; insets.left = 12;
         gridy=0; panel.add(createLabel("Title:",     title),    this);
         gridy++; panel.add(createLabel("Version:",   version),  this);
@@ -75,6 +78,14 @@ final class SwingPanelBuilder extends GridBagConstraints {
         gridy++; panel.add(vendor,   this);
         gridy++; panel.add(vendorID, this);
         gridy++; panel.add(url,      this);
+        gridx=2; weightx=0;
+        gridy=0; panel.add(implementsLabel = createLabel("implements:", specification), this);
+        gridx=3; weightx=1;
+        gridy=0; panel.add(specification, this);
+        gridy++; panel.add(specVersion,   this);
+        gridy++; panel.add(specVendor,    this);
+
+        implementsLabel.setFont(implementsLabel.getFont().deriveFont(Font.ITALIC));
 
         final Border space = BorderFactory.createEmptyBorder(6, 6, 6, 6);
         panel.setBorder(

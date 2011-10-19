@@ -38,7 +38,7 @@
  * The GIGS <cite>Excel</cite> files have been converted to CSV files, and some values have been
  * edited in order to reflect the current values in latest EPSG database. We also increased the
  * precision of some numerical values when needed in order to meet the GIGS accuracy requirements
- * in test results.
+ * in test results. The changes are <a href="doc-files/changes.html">documented here</a>.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
