@@ -59,7 +59,7 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
     /**
      * The color to use for successful tests.
      */
-    private final Color successColor, ignoreColor, failureColor;
+    private final Color ignoreColor, failureColor;
 
     /**
      * The cell renderer for test coverage.
@@ -73,8 +73,7 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
         super();
         foreground   = super.getForeground();
         background   = super.getBackground();
-        successColor = Color.GREEN.darker();
-        ignoreColor  = Color.DARK_GRAY;
+        ignoreColor  = Color.GRAY;
         failureColor = Color.RED;
         coverage     = new Coverage();
     }
@@ -117,12 +116,6 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
                 case IGNORED:
                 case ASSUMPTION_NOT_MET: {
                     foreground = ignoreColor;
-                    break;
-                }
-                case SUCCESS: {
-                    if (column == SwingResultTableModel.RESULT_COLUMN) {
-                        foreground = successColor;
-                    }
                     break;
                 }
                 case FAILURE: {
