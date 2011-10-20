@@ -60,6 +60,7 @@ import org.opengis.test.FactoryFilter;
 import org.opengis.test.TestCase;
 
 import org.junit.*;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assert.*;
@@ -83,6 +84,7 @@ import static org.opengis.test.Validators.*;
  * @version 3.1
  * @since   3.1
  */
+@RunWith(Parameterized.class)
 public strictfp class Series2000Test extends TestCase {
     /**
      * Relative tolerance factor from GIGS documentation.
