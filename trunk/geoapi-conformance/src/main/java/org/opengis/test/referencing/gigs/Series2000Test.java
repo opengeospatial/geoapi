@@ -66,6 +66,7 @@ import static org.junit.Assert.*;
 import static java.lang.StrictMath.*;
 import static javax.measure.unit.Unit.ONE;
 import static javax.measure.unit.SI.METRE;
+import static javax.measure.unit.SI.RADIAN;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 import static org.opengis.test.Validators.*;
 
@@ -75,11 +76,12 @@ import static org.opengis.test.Validators.*;
  * The tests for this series are designed to verify the correctness of geodetic parameters that
  * are delivered with the software. The comparison to be taken as truth is the EPSG Dataset.
  *
+ * @see org.opengis.test.referencing.AuthorityFactoryTest
+ * @see org.opengis.test.TestSuite
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
- *
- * @see org.opengis.test.referencing.AuthorityFactoryTest
  */
 public strictfp class Series2000Test extends TestCase {
     /**
@@ -292,27 +294,37 @@ next:   for (final String search : expected) {
                 continue;
             }
             if      (type.equalsIgnoreCase("Linear")) base = METRE;
-            else if (type.equalsIgnoreCase("Angle" )) base = DEGREE_ANGLE;
+            else if (type.equalsIgnoreCase("Angle" )) base = RADIAN;
             else if (type.equalsIgnoreCase("Scale" )) base = ONE;
             else throw new DataException("Unknown type: " + type);
-            final UnitConverter converter = unit.getConverterToAny(base);
-            assertEquals(name,  0,      converter.convert( 0),  TOLERANCE);
-            assertEquals(name,  factor, converter.convert( 1),  TOLERANCE * factor);
-            assertEquals(name, -factor, converter.convert(-1), -TOLERANCE * factor);
-            if (Double.isNaN(factor)) {
-                // Special cases for sexagesimal degrees
-                assertEquals(name,  10.0000, converter.convert( 10.00), 10*TOLERANCE);
-                assertEquals(name, -10.0000, converter.convert(-10.00), 10*TOLERANCE);
-                assertEquals(name,  20.0036, converter.convert( 20.01), 20*TOLERANCE);
-                assertEquals(name, -20.0036, converter.convert(-20.01), 20*TOLERANCE);
-                assertEquals(name,  30.3000, converter.convert( 30.50), 30*TOLERANCE);
-                assertEquals(name, -30.3000, converter.convert(-30.50), 30*TOLERANCE);
-                assertEquals(name,  40.5924, converter.convert( 40.99), 40*TOLERANCE);
-                assertEquals(name, -40.5924, converter.convert(-40.99), 40*TOLERANCE);
-            } else {
-                for (double sample=-90; sample<=90; sample += 2.8125) {
-                    final double expected = sample * factor;
-                    assertEquals(name, expected, converter.convert(sample), (expected != 0) ? abs(expected)*TOLERANCE : TOLERANCE);
+            UnitConverter converter = unit.getConverterToAny(base);
+            assertEquals(name, 0, converter.convert( 0), TOLERANCE);
+            switch (code) {
+                default: {
+                    assertEquals(name,  factor, converter.convert( 1), TOLERANCE * factor);
+                    assertEquals(name, -factor, converter.convert(-1), TOLERANCE * factor);
+                    for (double sample=-90; sample<=90; sample += 2.8125) {
+                        final double expected = sample * factor;
+                        assertEquals(name, expected, converter.convert(sample), (expected != 0) ? abs(expected)*TOLERANCE : TOLERANCE);
+                    }
+                    break;
+                }
+                case 9110: {
+                    // Special cases for sexagesimal degrees
+                    converter = unit.getConverterToAny(DEGREE_ANGLE);
+                    assertEquals(name,  10.00, converter.convert( 10.0000), 10*TOLERANCE);
+                    assertEquals(name, -10.00, converter.convert(-10.0000), 10*TOLERANCE);
+                    assertEquals(name,  20.01, converter.convert( 20.0036), 20*TOLERANCE);
+                    assertEquals(name, -20.01, converter.convert(-20.0036), 20*TOLERANCE);
+                    assertEquals(name,  30.50, converter.convert( 30.3000), 30*TOLERANCE);
+                    assertEquals(name, -30.50, converter.convert(-30.3000), 30*TOLERANCE);
+                    assertEquals(name,  40.99, converter.convert( 40.5924), 40*TOLERANCE);
+                    assertEquals(name, -40.99, converter.convert(-40.5924), 40*TOLERANCE);
+                    break;
+                }
+                case 9203: {
+                    // Special cases for dimensionless coefficient.
+                    break;
                 }
             }
         }
@@ -478,7 +490,7 @@ next:   for (final String search : expected) {
                 longitude = DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
             }
             assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
-                    pm.getGreenwichLongitude(), ANGULAR_TOLERANCE*abs(longitude));
+                    pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);
         }
     }
 }
