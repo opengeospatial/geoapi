@@ -833,7 +833,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
             assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);
             assertMatrixEquals("MathTransform2D.derivative(Point2D) error.", matrix,
-                    ((MathTransform2D) transform).derivative(new Point2D.Double(coordinate[0], coordinate[1])), null);
+                    ((MathTransform2D) transform).derivative(new Point2D.Double(coordinate[0], coordinate[1])), tolmat);
         }
     }
 

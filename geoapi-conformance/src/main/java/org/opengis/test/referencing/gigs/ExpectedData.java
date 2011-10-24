@@ -209,6 +209,18 @@ final class ExpectedData {
     }
 
     /**
+     * Returns the value in the given column as an integer, or {@code null} if none.
+     *
+     * @param  column The column from which to get the value.
+     * @return The value in the given column.
+     * @throws NoSuchElementException If there is currently no active row.
+     * @throws ClassCastException If the value in the given column is not an integer.
+     */
+    public Integer getIntOptional(final int column) {
+        return (Integer) getValue(column);
+    }
+
+    /**
      * Returns the value in the given column as a double.
      *
      * @param  column The column from which to get the value.
