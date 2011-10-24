@@ -43,18 +43,10 @@ import javax.measure.converter.ConversionException;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.GenericName;
-import org.opengis.metadata.Identifier;
-import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.AuthorityFactory;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.cs.CSAuthorityFactory;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.crs.CRSAuthorityFactory;
-import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.referencing.datum.PrimeMeridian;
-import org.opengis.referencing.datum.Datum;
-import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.referencing.*;
+import org.opengis.referencing.cs.*;
+import org.opengis.referencing.crs.*;
+import org.opengis.referencing.datum.*;
 import org.opengis.test.SupportedOperation;
 import org.opengis.test.FactoryFilter;
 import org.opengis.test.TestCase;
@@ -63,13 +55,14 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static org.junit.Assert.*;
+import static org.junit.Assume.*;
 import static java.lang.StrictMath.*;
 import static javax.measure.unit.Unit.ONE;
 import static javax.measure.unit.SI.METRE;
 import static javax.measure.unit.SI.RADIAN;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 import static org.opengis.test.Validators.*;
+import static org.opengis.test.Assert.*;
 
 
 /**
@@ -201,7 +194,7 @@ public strictfp class Series2000Test extends TestCase {
      */
     private static String getName(final IdentifiedObject object) {
         if (object != null) {
-            final Identifier name = object.getName();
+            final ReferenceIdentifier name = object.getName();
             if (name != null) {
                 return name.getCode();
             }
@@ -231,6 +224,32 @@ next:   for (final String search : expected) {
             }
             fail(message + ": alias not found: " + search);
         }
+    }
+
+    /**
+     * Ensures that the given collection contains at least one identifier having the EPSG
+     * codespace (ignoring case) and the given code.
+     *
+     * @param message     The message to show in case of failure.
+     * @param expected    The expected identifier code.
+     * @param identifiers The actual identifiers.
+     */
+    private static void testIdentifier(final String message, final int expected,
+            final Collection<? extends ReferenceIdentifier> identifiers)
+    {
+        assertNotNull(message, identifiers);
+        int found = 0;
+        for (final ReferenceIdentifier id : identifiers) {
+            if (id.getCodeSpace().trim().equalsIgnoreCase("EPSG")) {
+                found++;
+                try {
+                    assertEquals(message, expected, Integer.parseInt(id.getCode()));
+                } catch (NumberFormatException e) {
+                    fail(message + ".getCode(): " + e);
+                }
+            }
+        }
+        assertEquals(message + ": occurrence of EPSG:" + expected, 1, found);
     }
 
     /**
@@ -275,6 +294,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2001() throws FactoryException, ConversionException {
+        assumeNotNull(csFactory);
         final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
                 Integer.class,  // [0]: EPSG UoM Code
                 String .class,  // [1]: Type
@@ -366,6 +386,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2002() throws FactoryException {
+        assumeNotNull(datumFactory);
         final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
             Integer.class,  // [ 0]: EPSG Ellipsoid Code
             Boolean.class,  // [ 1]: Particularly important to E&P industry?
@@ -393,6 +414,7 @@ next:   for (final String search : expected) {
             validate(ellipsoid);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
+            testIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
             if (isNameSupported) {
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(ellipsoid));
             }
@@ -454,6 +476,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2003() throws FactoryException {
+        assumeNotNull(datumFactory);
         final ExpectedData data = new ExpectedData("GIGS_2003_libPrimeMeridian.csv",
             Integer.class,  // [0]: EPSG Prime Meridian Code
             Boolean.class,  // [1]: Particularly important to E&P industry?
@@ -478,6 +501,7 @@ next:   for (final String search : expected) {
             validate(pm);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
+            testIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
             if (isNameSupported) {
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(pm));
             }
@@ -485,6 +509,10 @@ next:   for (final String search : expected) {
                 testAliases(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
             }
             /*
+             * Before to compare the Greenwich longitude, convert the expected angular value
+             * from decimal degrees to the units actually used by the implementation. We do
+             * the conversion that way rather than the opposite way in order to have a more
+             * appropriate error message in case of failure.
              */
             final Unit<Angle> unit = pm.getAngularUnit();
             double longitude = data.getDouble(6);
@@ -493,6 +521,152 @@ next:   for (final String search : expected) {
             }
             assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
                     pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);
+        }
+    }
+
+    /**
+     * Reference geodetic datums/geodetic CRSs.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference geodetic datums and CRSs bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare geodetic datum and geocentric, geographic 3D and geographic 2D CRS definitions
+     *   included in the geoscience software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2004_libGeodeticDatumCRS.csv">{@code GIGS_2004_libGeodeticDatumCRS.csv}</a>.
+     *   Tests for component logical consistency is included: for example, if a higher-level
+     *   library-defined component such as ED50 datum is selected it should then not be possible
+     *   to change any of its lower-level components such as the ellipsoid from the pre-defined
+     *   value (in this example International 1924).</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Definitions bundled with the software should have the same name and associated ellipsoid
+     *   and prime meridian as in the EPSG Dataset. CRSs missing from the software or included in the
+     *   geoscience software additional to those in the EPSG Dataset or at variance with those in the
+     *   EPSG Dataset should be reported.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
+     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
+     */
+    @Test
+    @Ignore("Data need to be updated for EPSG 7.9")
+    public void test2004() throws FactoryException {
+        assumeNotNull(crsFactory);
+        final ExpectedData data = new ExpectedData("GIGS_2004_libGeodeticDatumCRS.csv",
+            Integer.class,  // [0]: EPSG Datum Code
+            String .class,  // [1]: Datum Name
+            Integer.class,  // [2]: EPSG geocen CRS Code
+            Integer.class,  // [3]: EPSG geog3D CRS Code
+            Integer.class,  // [4]: EPSG geog2D CRS Code
+            String .class,  // [5]: CRS Name
+            Boolean.class,  // [6]: Particularly important to E&P industry?
+            String .class,  // [7]: Ellipsoid Name
+            String .class,  // [8]: Prime Meridian Name
+            String .class); // [9]: Remarks
+
+         final StringBuilder prefix = new StringBuilder("GeodeticCRS[");
+         final int prefixLength = prefix.length();
+         while (data.next()) {
+            final int    datumCode = data.getInt(0);
+            final String datumName = data.getString(1);
+            final String crsName   = data.getString(5);
+            final String ellName   = data.getString(7);
+            final String pmName    = data.getString(8);
+            for (int column=2; column<=4; column++) {
+                // We should have only one non-null column, but let
+                // test all of them anyway as a matter of principle.
+                final Integer crsCode = data.getIntOptional(column);
+                if (crsCode != null) {
+                    final SingleCRS crs;
+                    try {
+                        switch (column) {
+                            case 4:  // fallthrough
+                            case 3:  crs = crsFactory.createGeographicCRS(String.valueOf(crsCode)); break;
+                            case 2:  crs = crsFactory.createGeocentricCRS(String.valueOf(crsCode)); break;
+                            default: throw new AssertionError(column);
+                        }
+                    } catch (NoSuchAuthorityCodeException e) {
+                        final Class<? extends SingleCRS> type;
+                        switch (column) {
+                            case 4:  // fallthrough
+                            case 3:  type = GeographicCRS.class; break;
+                            case 2:  type = GeocentricCRS.class; break;
+                            default: throw new AssertionError(column);
+                        }
+                        unsupportedCode(type, crsCode, e);
+                        continue;
+                    }
+                    validate(crs);
+                    prefix.setLength(prefixLength);
+                    prefix.append(crsCode).append("].");
+                    final int lengthAfterCRS = prefix.length();
+                    testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
+                    if (isNameSupported) {
+                        assertEquals(message(prefix, "getName()"), crsName, getName(crs));
+                    }
+                    /*
+                     * Tests the coordinate system.
+                     */
+                    final CoordinateSystem cs = crs.getCoordinateSystem();
+                    assertNotNull(message(prefix, "getCoordinateSystem()"), cs);
+                    prefix.append("coordinateSystem.").append(datumCode).append("].");
+                    final AxisDirection[] expectedDirections;
+                    switch (column) {
+                        case 4:  expectedDirections = new AxisDirection[] {
+                                     AxisDirection.NORTH,
+                                     AxisDirection.EAST};
+                                 break;
+                        case 3:  expectedDirections = new AxisDirection[] {
+                                     AxisDirection.NORTH,
+                                     AxisDirection.EAST,
+                                     AxisDirection.UP};
+                                 break;
+                        case 2:  expectedDirections = new AxisDirection[] {
+                                     AxisDirection.GEOCENTRIC_X,
+                                     AxisDirection.GEOCENTRIC_Y,
+                                     AxisDirection.GEOCENTRIC_Z};
+                                 break;
+                        default: throw new AssertionError(column);
+                    }
+                    assertEquals(message(prefix, "getDimension()"), expectedDirections.length, cs.getDimension());
+                    assertAxisDirectionsEqual(cs, expectedDirections);
+                    /*
+                     * Tests the datum.
+                     */
+                    prefix.setLength(lengthAfterCRS);
+                    final GeodeticDatum datum = (GeodeticDatum) crs.getDatum();
+                    assertNotNull(message(prefix, "getDatum()"), datum);
+                    prefix.append("datum[").append(datumCode).append("].");
+                    final int lengthAfterDatum = prefix.length();
+                    testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
+                    if (isNameSupported) {
+                        assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                    }
+                    /*
+                     * Tests the ellipsoid.
+                     */
+                    final Ellipsoid ellipsoid = datum.getEllipsoid();
+                    assertNotNull(message(prefix, "getEllipsoid()"), ellipsoid);
+                    prefix.append("ellipsoid.");
+                    if (isNameSupported) {
+                        assertEquals(message(prefix, "getName()"), ellName, getName(ellipsoid));
+                    }
+                    /*
+                     * Tests the prime meridian.
+                     */
+                    prefix.setLength(lengthAfterDatum);
+                    final PrimeMeridian pm = datum.getPrimeMeridian();
+                    assertNotNull(message(prefix, "getPrimeMeridian()"), pm);
+                    prefix.append("primeMeridian.");
+                    if (isNameSupported) {
+                        assertEquals(message(prefix, "getName()"), pmName, getName(pm));
+                    }
+                }
+            }
         }
     }
 }
