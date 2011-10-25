@@ -33,6 +33,8 @@ package org.opengis.test.runner;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.prefs.Preferences;
 import java.util.concurrent.ExecutionException;
 
@@ -45,6 +47,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
 
@@ -57,7 +63,7 @@ import javax.swing.table.TableColumnModel;
  * @since   3.1
  */
 @SuppressWarnings("serial")
-final class SwingFrame extends JFrame implements Runnable {
+final class SwingFrame extends JFrame implements Runnable, ListSelectionListener {
     /**
      * The preference key for the directory in which to select JAR files.
      */
@@ -73,7 +79,19 @@ final class SwingFrame extends JFrame implements Runnable {
     /**
      * The table showing the results.
      */
-    private final JTable results;
+    private final SwingResultTableModel results;
+
+    /**
+     * Labels used for rendering information about the selected test.
+     *
+     * @see #setDetails(ReportEntry)
+     */
+    private final JLabel className, methodName;
+
+    /**
+     * Where to report stack trace.
+     */
+    private final JTextArea exception;
 
     /**
      * The object to use for running the tests.
@@ -99,18 +117,24 @@ final class SwingFrame extends JFrame implements Runnable {
                 specVendor    = new JLabel()), BorderLayout.NORTH);
 
         runner = new Runner();
-        results = new JTable(new SwingResultTableModel(runner));
-        results.setDefaultRenderer(String.class, new SwingResultCellRenderer());
-        results.setAutoCreateRowSorter(true);
-        results.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        final TableColumnModel columns = results.getColumnModel();
+        results = new SwingResultTableModel(runner);
+        final JTable table = new JTable(results);
+        table.setDefaultRenderer(String.class, new SwingResultCellRenderer());
+        table.setAutoCreateRowSorter(true);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        table.getSelectionModel().addListSelectionListener(this);
+        final TableColumnModel columns = table.getColumnModel();
         columns.getColumn(SwingResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
         columns.getColumn(SwingResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
         columns.getColumn(SwingResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
         columns.getColumn(SwingResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
 
         final JTabbedPane tabs = new JTabbedPane();
-        tabs.addTab("Tests", new JScrollPane(results));
+        tabs.addTab("Tests", new JScrollPane(table));
+        tabs.addTab("Details", new SwingPanelBuilder().createDetailsPane(
+                exception  = new JTextArea(),
+                className  = new JLabel(),
+                methodName = new JLabel()));
         add(tabs, BorderLayout.CENTER);
     }
 
@@ -145,6 +169,52 @@ final class SwingFrame extends JFrame implements Runnable {
         specification.setText(manifest != null ? manifest.specification : null);
         specVersion  .setText(manifest != null ? manifest.specVersion   : null);
         specVendor   .setText(manifest != null ? manifest.specVendor    : null);
+    }
+
+    /**
+     * Updates the content of the "Details" pane with information relative to the given entry.
+     * A {@code null} entry clears the "Details" pane.
+     */
+    private void setDetails(final ReportEntry entry) {
+        String classText  = null;
+        String methodText = null;
+        String stacktrace = null;
+        if (entry != null) {
+            classText  = entry.className;
+            methodText = entry.methodName;
+            switch (entry.status) {
+                case FAILURE: {
+                    if (entry.exception != null) {
+                        final StringWriter buffer = new StringWriter();
+                        final PrintWriter printer = new PrintWriter(buffer);
+                        entry.exception.printStackTrace(printer);
+                        printer.flush();
+                        stacktrace = buffer.toString();
+                    }
+                    break;
+                }
+            }
+        }
+        className .setText(classText);
+        methodName.setText(methodText);
+        exception .setText(stacktrace);
+        exception .setEnabled(stacktrace != null);
+        exception .setCaretPosition(0);
+    }
+
+    /**
+     * Invoked when the user clicked on a new row in the table showing test results.
+     * This method updates the "Details" tab with information relative to the test
+     * in the selected row.
+     */
+    @Override
+    public void valueChanged(final ListSelectionEvent event) {
+        if (!event.getValueIsAdjusting()) {
+            final int row = ((ListSelectionModel) event.getSource()).getMinSelectionIndex();
+            if (row >= 0) {
+                setDetails(results.getValueAt(row));
+            }
+        }
     }
 
     /**
