@@ -105,17 +105,15 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
     {
         final SwingResultTableModel model = (SwingResultTableModel) table.getModel();
         final ReportEntry entry = model.getValueAt(row);
-        if (column == SwingResultTableModel.RESULT_COLUMN) {
-            coverage.report = entry;
-            return coverage;
-        }
         Color foreground = this.foreground;
         Color background = this.background;
+        boolean isIgnore = false;
         if (!isSelected) {
             switch (entry.status) {
                 case IGNORED:
                 case ASSUMPTION_NOT_MET: {
                     foreground = ignoreColor;
+                    isIgnore = true;
                     break;
                 }
                 case FAILURE: {
@@ -123,6 +121,10 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
                     break;
                 }
             }
+        }
+        if (!isIgnore && column == SwingResultTableModel.RESULT_COLUMN) {
+            coverage.report = entry;
+            return coverage;
         }
         super.setBackground(background);
         super.setForeground(foreground);

@@ -37,6 +37,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 
@@ -92,6 +94,39 @@ final class SwingPanelBuilder extends GridBagConstraints {
                 BorderFactory.createCompoundBorder(space,
                 BorderFactory.createCompoundBorder(
                     BorderFactory.createEtchedBorder(), space)));
+        panel.setOpaque(false);
+        return panel;
+    }
+
+    /**
+     * Creates the panel where to display details about a particular test.
+     */
+    JPanel createDetailsPane(final JTextArea exception, final JLabel className, final JLabel methodName) {
+        final Font monospaced = Font.decode("Monospaced");
+        className .setFont(monospaced);
+        methodName.setFont(monospaced);
+
+        final JPanel panel = new JPanel(new GridBagLayout());
+        gridx=0; weightx=0; anchor=WEST; insets.left = 12;
+        gridy=0; panel.add(createLabel("Class:",  className),  this);
+        gridy++; panel.add(createLabel("Method:", methodName), this);
+        gridx=1; weightx=1;
+        gridy=0; panel.add(className,  this);
+        gridy++; panel.add(methodName, this);
+
+        gridy++; gridx=0; gridwidth=2; weighty=1; fill=BOTH;
+        insets.left   = 24;
+        insets.top    = 18;
+        exception.setEnabled (false);
+        exception.setEditable(false);
+        exception.setFont(monospaced);
+        final JScrollPane scroll = new JScrollPane(exception);
+        scroll.setBorder(BorderFactory.createTitledBorder("Exception"));
+        panel.add(scroll, this);
+        exception.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
+        scroll.setOpaque(false);
+        panel.setOpaque(false);
         return panel;
     }
 

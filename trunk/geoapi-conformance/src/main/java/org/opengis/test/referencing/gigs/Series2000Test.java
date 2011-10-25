@@ -129,8 +129,6 @@ public strictfp class Series2000Test extends TestCase {
      * {@link #factories(Class[])} javadoc.
      *
      * @return The default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
-     *
-     * @since 3.1
      */
     @Parameterized.Parameters
     public static List<Factory[]> factories() {
