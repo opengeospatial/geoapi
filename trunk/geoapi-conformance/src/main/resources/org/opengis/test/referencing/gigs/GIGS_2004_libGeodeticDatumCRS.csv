@@ -74,10 +74,10 @@
 6265,Monte Mario,,,4265,Monte Mario,true,International 1924,Greenwich
 6266,M'poraloko,,,4266,M'poraloko,true,Clarke 1880 (IGN),Greenwich
 6267,North American Datum 1927,,,4267,NAD27,true,Clarke 1866,Greenwich
-6268,NAD Michigan,,,4268,NAD27 Michigan,true,Clarke 1866 Michigan,Greenwich
+6268,NAD27 Michigan,,,4268,NAD27 Michigan,true,Clarke 1866 Michigan,Greenwich
 6269,North American Datum 1983,,,4269,NAD83,true,GRS 1980,Greenwich
 6140,NAD83 Canadian Spatial Reference System,4954,4955,4617,NAD83(CSRS),true,GRS 1980,Greenwich
-6152,NAD83 (High Accuracy Regional Network),4956,4957,4152,NAD83(HARN),true,GRS 1980,Greenwich
+6152,NAD83 (High Accuracy Reference Network),4956,4957,4152,NAD83(HARN),true,GRS 1980,Greenwich
 6759,NAD83 (National Spatial Reference System 2007),4892,4893,4759,NAD83(NSRS2007),true,GRS 1980,Greenwich
 6270,Nahrwan 1967,,,4270,Nahrwan 1967,true,Clarke 1880 (RGS),Greenwich
 6158,Naparima 1955,,,4158,Naparima 1955,true,International 1924,Greenwich
@@ -89,7 +89,7 @@
 6277,OSGB 1936,,,4277,OSGB 1936,true,Airy 1830,Greenwich
 6280,Padang 1884,,,4280,Padang,true,Bessel 1841,Greenwich
 6808,Padang 1884 (Jakarta),,,4808,Padang (Jakarta),true,Bessel 1841,Jakarta
-6134,PDO Survey Datum 1993,,,4134,PDO Survey Datum 1993,true,Clarke 1880 (RGS),Greenwich
+6134,PDO Survey Datum 1993,,,4134,PSD93,true,Clarke 1880 (RGS),Greenwich
 6282,Congo 1960 Pointe Noire,,,4282,Pointe Noire,true,Clarke 1880 (IGN),Greenwich
 6694,Posiciones Geodesicas Argentinas 1994,4928,4929,4694,POSGAR 94,true,WGS 84,Greenwich
 6190,Posiciones Geodesicas Argentinas 1998,4960,4961,4190,POSGAR 98,true,GRS 1980,Greenwich
@@ -106,7 +106,7 @@
 6618,South American Datum 1969,,,4618,SAD69,true,GRS 1967 Modified,Greenwich
 6293,Schwarzeck,,,4293,Schwarzeck,true,Bessel Namibia (GLM),Greenwich
 6170,Sistema de Referencia Geocentrico para America del Sur 1995,4974,4975,4170,SIRGAS 1995,true,GRS 1980,Greenwich
-6674,Sistema de Referencia Geocentrico para America del Sur 2000,4988,4989,4674,SIRGAS 2000,true,GRS 1980,Greenwich
+6674,Sistema de Referencia Geocentrico para las AmericaS 2000,4988,4989,4674,SIRGAS 2000,true,GRS 1980,Greenwich
 6297,Tananarive 1925,,,4297,Tananarive,true,International 1924,Greenwich
 6810,Tananarive 1925 (Paris),,,4810,Tananarive (Paris),true,International 1924,Paris
 6303,Trucial Coast 1948,,,4303,TC(1948),true,Helmert 1906,Greenwich
@@ -117,8 +117,8 @@
 6322,World Geodetic System 1972,4984,4985,4322,WGS 72,true,WGS 72,Greenwich
 6324,WGS 72 Transit Broadcast Ephemeris,4986,4987,4324,WGS 72BE,true,WGS 72,Greenwich
 6326,World Geodetic System 1984,4978,4979,4326,WGS 84,true,WGS 84,Greenwich
-6610,Xian 1980,,,4610,Xian 1980,true,Xian 1980,Greenwich
-6163,Yemen National Geodetic Network 1996,4980,4989,4163,Yemen NGN96,true,WGS 84,Greenwich
+6610,Xian 1980,,,4610,Xian 1980,true,IAG 1975,Greenwich
+6163,Yemen National Geodetic Network 1996,4980,,4163,Yemen NGN96,true,WGS 84,Greenwich
 6201,Adindan,,,4201,Adindan,false,Clarke 1880 (RGS),Greenwich
 6205,Afgooye,,,4205,Afgooye,false,Krassowsky 1940,Greenwich
 6206,Agadez,,,4206,Agadez,false,Clarke 1880 (IGN),Greenwich
@@ -165,7 +165,7 @@
 6708,Cocos Islands 1965,,,4708,Cocos Islands 1965,false,Australian National Spheroid,Greenwich
 6632,Combani 1950,,,4632,Combani 1950,false,International 1924,Greenwich
 6315,Conakry 1905,,,4315,Conakry 1905,false,Clarke 1880 (IGN),Greenwich
-6225,Corrego Alegre,,,4225,Corrego Alegre,false,International 1924,Greenwich
+6225,Corrego Alegre 1970-72,,,4225,Corrego Alegre 1970-72,false,International 1924,Greenwich
 6623,Centre Spatial Guyanais 1967,,,4623,CSG67,false,International 1924,Greenwich
 6155,Dabola 1981,,,4155,Dabola 1981,false,Clarke 1880 (IGN),Greenwich
 6274,Datum 73,,,4274,Datum 73,false,International 1924,Greenwich
@@ -219,7 +219,7 @@
 6630,IGN72 Nuku Hiva,,,4630,IGN72 Nuku Hiva,false,International 1924,Greenwich
 6667,Iraq-Kuwait Boundary Datum 1992,,,4667,IKBD-92,false,WGS 84,Greenwich
 6173,IRENET95,,,4173,IRENET95,false,GRS 1980,Greenwich
-6659,Islands Network 1993,,,4659,ISN93,false,GRS 1980,Greenwich
+6659,Islands Net 1993,,,4659,ISN93,false,GRS 1980,Greenwich
 6141,Israel,,,4141,Israel,false,GRS 1980,Greenwich
 6709,Iwo Jima 1945,,,4709,Iwo Jima 1945,false,International 1924,Greenwich
 6758,Jamaica 2001,,,4758,JAD2001,false,WGS 84,Greenwich
@@ -230,7 +230,7 @@
 6679,Jouik 1961,,,4679,Jouik 1961,false,Clarke 1880 (RGS),Greenwich
 6243,Kalianpur 1880,,,4243,Kalianpur 1880,false,Everest (1830 Definition),Greenwich
 6244,Kandawala,,,4244,Kandawala,false,Everest 1830 (1937 Adjustment),Greenwich
-6743,Karbala 1979 (Polservice),,,4743,Karbala 1979 (Polservice),false,Clarke 1880 (RGS),Greenwich
+6743,Karbala 1979,,,4743,Karbala 1979,false,Clarke 1880 (RGS),Greenwich
 6696,Kasai 1953,,,4696,Kasai 1953,false,Clarke 1880 (RGS),Greenwich
 6695,Katanga 1955,,,4695,Katanga 1955,false,Clarke 1866,Greenwich
 6751,Kertau (RSO),,,4751,Kertau (RSO),false,Everest 1830 (RSO 1969),Greenwich
@@ -300,7 +300,7 @@
 6637,Pointe Geologie Perroud 1950,,,4637,Perroud 1950,false,International 1924,Greenwich
 6636,Petrels 1972,,,4636,Petrels 1972,false,International 1924,Greenwich
 6716,Phoenix Islands 1966,,,4716,Phoenix Islands 1966,false,International 1924,Greenwich
-6728,Pico de la Nieves,,,4728,Pico de la Nieves,false,International 1924,Greenwich
+6728,Pico de las Nieves 1984,,,4728,Pico de las Nieves 1984,false,International 1924,Greenwich
 6729,Pitcairn 1967,,,4729,Pitcairn 1967,false,International 1924,Greenwich
 6763,Pitcairn 2006,,,4763,Pitcairn 2006,false,WGS 84,Greenwich
 6620,Point 58,,,4620,Point 58,false,Clarke 1880 (RGS),Greenwich
@@ -334,8 +334,8 @@
 6295,Serindung,,,4295,Serindung,false,Bessel 1841,Greenwich
 6174,Sierra Leone Colony 1924,,,4174,Sierra Leone 1924,false,War Office,Greenwich
 6175,Sierra Leone 1968,,,4175,Sierra Leone 1968,false,Clarke 1880 (RGS),Greenwich
-6156,Jednotne Trigonometricke Site Katastralni,,,4156,S-JTSK,false,Bessel 1841,Greenwich
-6818,S-JTSK (Ferro),,,4818,S-JTSK (Ferro),false,Bessel 1841,Ferro
+6156,System Jednotne Trigonometricke Site Katastralni,,,4156,S-JTSK,false,Bessel 1841,Greenwich
+6818,System Jednotne Trigonometricke Site Katastralni (Ferro),,,4818,S-JTSK (Ferro),false,Bessel 1841,Ferro
 6765,Slovenia Geodetic Datum 1996,,,4765,Slovenia 1996,false,GRS 1980,Greenwich
 6718,Solomon 1968,,,4718,Solomon 1968,false,International 1924,Greenwich
 6722,South Georgia 1968,,,4722,South Georgia 1968,false,International 1924,Greenwich

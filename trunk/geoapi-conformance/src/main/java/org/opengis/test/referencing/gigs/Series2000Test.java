@@ -553,7 +553,6 @@ next:   for (final String search : expected) {
      *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
      */
     @Test
-    @Ignore("Data need to be updated for EPSG 7.9")
     public void test2004() throws FactoryException {
         assumeNotNull(crsFactory);
         final ExpectedData data = new ExpectedData("GIGS_2004_libGeodeticDatumCRS.csv",
@@ -568,20 +567,39 @@ next:   for (final String search : expected) {
             String .class,  // [8]: Prime Meridian Name
             String .class); // [9]: Remarks
 
-         final StringBuilder prefix = new StringBuilder("GeodeticCRS[");
-         final int prefixLength = prefix.length();
-         while (data.next()) {
+        final StringBuilder prefix = new StringBuilder();
+        while (data.next()) {
             final int    datumCode = data.getInt(0);
             final String datumName = data.getString(1);
             final String crsName   = data.getString(5);
             final String ellName   = data.getString(7);
             final String pmName    = data.getString(8);
-            for (int column=2; column<=4; column++) {
-                // We should have only one non-null column, but let
-                // test all of them anyway as a matter of principle.
-                final Integer crsCode = data.getIntOptional(column);
-                if (crsCode != null) {
-                    final SingleCRS crs;
+            for (int column=1; column<=4; column++) {
+                prefix.setLength(0);
+                final GeodeticDatum datum;
+                if (column == 1) {
+                    /*
+                     * First iteration: get directly the datum without building any CRS.
+                     * The datum will be tested after the "else" block testing the CRS.
+                     */
+                    try {
+                        datum = datumFactory.createGeodeticDatum(String.valueOf(datumCode));
+                    } catch (NoSuchAuthorityCodeException e) {
+                        unsupportedCode(GeodeticDatum.class, datumCode, e);
+                        continue;
+                    }
+                    validate(datum);
+                } else {
+                    /*
+                     * All other iterations (columns 2-4): get the geodetic CRS, test its
+                     * coordinate system, then extract the datum in order to perform the
+                     * same tests than the ones we did in the first iteration.
+                     */
+                    final Integer crsCode = data.getIntOptional(column);
+                    if (crsCode == null) {
+                        continue; // No CRS in the test file for that column.
+                    }
+                    final GeodeticCRS crs;
                     try {
                         switch (column) {
                             case 4:  // fallthrough
@@ -590,7 +608,7 @@ next:   for (final String search : expected) {
                             default: throw new AssertionError(column);
                         }
                     } catch (NoSuchAuthorityCodeException e) {
-                        final Class<? extends SingleCRS> type;
+                        final Class<? extends GeodeticCRS> type;
                         switch (column) {
                             case 4:  // fallthrough
                             case 3:  type = GeographicCRS.class; break;
@@ -601,8 +619,7 @@ next:   for (final String search : expected) {
                         continue;
                     }
                     validate(crs);
-                    prefix.setLength(prefixLength);
-                    prefix.append(crsCode).append("].");
+                    prefix.append("GeodeticCRS[").append(crsCode).append("].");
                     final int lengthAfterCRS = prefix.length();
                     testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
                     if (isNameSupported) {
@@ -613,7 +630,7 @@ next:   for (final String search : expected) {
                      */
                     final CoordinateSystem cs = crs.getCoordinateSystem();
                     assertNotNull(message(prefix, "getCoordinateSystem()"), cs);
-                    prefix.append("coordinateSystem.").append(datumCode).append("].");
+                    prefix.append("CoordinateSystem.").append(datumCode).append("].");
                     final AxisDirection[] expectedDirections;
                     switch (column) {
                         case 4:  expectedDirections = new AxisDirection[] {
@@ -634,37 +651,37 @@ next:   for (final String search : expected) {
                     }
                     assertEquals(message(prefix, "getDimension()"), expectedDirections.length, cs.getDimension());
                     assertAxisDirectionsEqual(cs, expectedDirections);
-                    /*
-                     * Tests the datum.
-                     */
                     prefix.setLength(lengthAfterCRS);
-                    final GeodeticDatum datum = (GeodeticDatum) crs.getDatum();
+                    datum = crs.getDatum();
                     assertNotNull(message(prefix, "getDatum()"), datum);
-                    prefix.append("datum[").append(datumCode).append("].");
-                    final int lengthAfterDatum = prefix.length();
-                    testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
-                    if (isNameSupported) {
-                        assertEquals(message(prefix, "getName()"), datumName, getName(datum));
-                    }
-                    /*
-                     * Tests the ellipsoid.
-                     */
-                    final Ellipsoid ellipsoid = datum.getEllipsoid();
-                    assertNotNull(message(prefix, "getEllipsoid()"), ellipsoid);
-                    prefix.append("ellipsoid.");
-                    if (isNameSupported) {
-                        assertEquals(message(prefix, "getName()"), ellName, getName(ellipsoid));
-                    }
-                    /*
-                     * Tests the prime meridian.
-                     */
-                    prefix.setLength(lengthAfterDatum);
-                    final PrimeMeridian pm = datum.getPrimeMeridian();
-                    assertNotNull(message(prefix, "getPrimeMeridian()"), pm);
-                    prefix.append("primeMeridian.");
-                    if (isNameSupported) {
-                        assertEquals(message(prefix, "getName()"), pmName, getName(pm));
-                    }
+                }
+                /*
+                 * Tests the datum.
+                 */
+                prefix.append("GeodeticDatum[").append(datumCode).append("].");
+                final int lengthAfterDatum = prefix.length();
+                testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
+                if (isNameSupported) {
+                    assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                }
+                /*
+                 * Tests the ellipsoid.
+                 */
+                final Ellipsoid ellipsoid = datum.getEllipsoid();
+                assertNotNull(message(prefix, "getEllipsoid()"), ellipsoid);
+                prefix.append("Ellipsoid.");
+                if (isNameSupported) {
+                    assertEquals(message(prefix, "getName()"), ellName, getName(ellipsoid));
+                }
+                /*
+                 * Tests the prime meridian.
+                 */
+                prefix.setLength(lengthAfterDatum);
+                final PrimeMeridian pm = datum.getPrimeMeridian();
+                assertNotNull(message(prefix, "getPrimeMeridian()"), pm);
+                prefix.append("PrimeMeridian.");
+                if (isNameSupported) {
+                    assertEquals(message(prefix, "getName()"), pmName, getName(pm));
                 }
             }
         }
