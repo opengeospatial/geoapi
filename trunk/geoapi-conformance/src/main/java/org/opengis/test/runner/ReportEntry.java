@@ -31,16 +31,29 @@
  */
 package org.opengis.test.runner;
 
-import java.awt.Color;
+import java.net.URI;
 import java.util.Map;
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+
 import org.junit.runner.Description;
+
 import org.opengis.test.TestEvent;
+import org.opengis.util.Factory;
+import org.opengis.referencing.AuthorityFactory;
+import org.opengis.metadata.Identifier;
+import org.opengis.metadata.citation.Citation;
 
 
 /**
- * A single entry in a {@link ReportData} object.
+ * The result of the execution of a single test. This object contains the test method name,
+ * some information about the configuration and the stack trace if an error occurred.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -55,30 +68,48 @@ final class ReportEntry {
     };
 
     /**
+     * The base URL of {@code geoapi-conformance} javadoc. The trailing slash is mandatory.
+     */
+    private static final String JAVADOC_BASEURL = "http://www.geoapi.org/geoapi-conformance/apidocs/";
+
+    /**
      * Typical suffix of test class name. This suffix is not mandatory. But if the suffix
-     * is found, it will be omitted from the {@linkplain #simpleName simple name} since it
-     * does not provide useful information.
+     * is found, it will be omitted from the {@linkplain #simpleClassName simple class name}
+     * since it does not provide useful information.
      */
     private static final String CLASSNAME_SUFFIX = "Test";
 
     /**
-     * The fully qualified name of the class containing the tests to be run.
-     * This is part of the object identity, as checked by the {@link #equals(Object)} method.
+     * Typical prefix of test method name. This prefix is not mandatory. But if the prefix
+     * is found, it will be omitted from the {@linkplain #simpleMethodName simple method name}
+     * since it does not provide useful information.
      */
-    final String className;
+    private static final String METHODNAME_PREFIX = "test";
 
     /**
-     * The name of the test method.
-     * This is part of the object identity, as checked by the {@link #equals(Object)} method.
+     * The fully qualified name {@code className} or the simplified name {@code simpleClassName}
+     * of the class containing the tests to be run.
      */
-    final String methodName;
+    final String className, simpleClassName;
 
     /**
-     * A simpler name derived from {@link #className}. The package name and the
-     * {@value #CLASSNAME_SUFFIX} suffix are omitted, and spaces are added between
-     * words for readability.
+     * The fully name {@code methodName} or the simplified name {@code simpleMethodName}
+     * of the test method being run.
      */
-    final String simpleName;
+    final String methodName, simpleMethodName;
+
+    /**
+     * The factories declared in the configuration. Each row in this list is an array of length 4.
+     * The array elements are:
+     * <p>
+     * <ol>
+     *   <li>The factory category (i.e. GeoAPI interface)</li>
+     *   <li>The implementation simple class name</li>
+     *   <li>The vendor name (may be null)</li>
+     *   <li>The authority name (may be null)</li>
+     * </ol>
+     */
+    final List<String[]> factories;
 
     /**
      * The test status.
@@ -104,22 +135,28 @@ final class ReportEntry {
      * Creates a new entry for the given event.
      */
     ReportEntry(final TestEvent event, final Status status, final Throwable exception) {
-        this.className  = event.getClassName();
-        this.methodName = event.getMethodName();
-        this.simpleName = createSimpleName(className);
-        this.status     = status;
-        this.exception  = exception;
+        this.className        = event.getClassName();
+        this.methodName       = event.getMethodName();
+        this.simpleClassName  = createSimpleClassName(className);
+        this.simpleMethodName = createSimpleMethodName(methodName);
+        this.status           = status;
+        this.exception        = exception;
+        trimStackTrace(exception);
         /*
-         * Computes an estimation of test coverage as a number between 0 and 1.
-         *
-         * Note: we assume that a test with every optional features marked as "unsupported"
-         * ({@code isFooSupported = false}) still do some test, so we unconditionally start
-         * the count with 1 supported test.
+         * Extract information from the configuration:
+         *  - Computes an estimation of test coverage as a number between 0 and 1.
+         *  - Get the list of factories.
          */
         int numTests=1, numSupported=1;
+        final List<String[]> factories = new ArrayList<String[]>();
         for (Map.Entry<String,Object> entry : event.getSource().getConfiguration().entrySet()) {
             final String key   = entry.getKey();
             final Object value = entry.getValue();
+            /*
+             * Note: we assume that a test with every optional features marked as "unsupported"
+             * ({@code isFooSupported = false}) still do some test, so we unconditionally start
+             * the count with 1 supported test.
+             */
             if ((value instanceof Boolean) && key.startsWith("is")) {
                 if (key.endsWith("Supported")) {
                     if (((Boolean) value).booleanValue()) {
@@ -130,8 +167,30 @@ final class ReportEntry {
                     isToleranceRelaxed = ((Boolean) value).booleanValue();
                 }
             }
+            /*
+             * Check for factories. See the javadoc of the 'factories' field for the
+             * meaning of array elements.
+             */
+            if (key.endsWith("Factory")) {
+                String impl = null;
+                if (value != null) {
+                    Class<?> type = value.getClass();
+                    impl = type.getSimpleName();
+                    while ((type = type.getEnclosingClass()) != null) {
+                        impl = type.getSimpleName() + '.' + impl;
+                    }
+                }
+                factories.add(new String[] {
+                    separateWords(key), impl,
+                    (value instanceof Factory) ?
+                        getIdentifier(((Factory) value).getVendor()) : null,
+                    (value instanceof AuthorityFactory) ?
+                        getIdentifier(((AuthorityFactory) value).getAuthority()) : null
+                });
+            }
         }
         coverage = ((float) numSupported) / ((float) numTests);
+        this.factories = Collections.unmodifiableList(factories);
     }
 
     /**
@@ -139,30 +198,118 @@ final class ReportEntry {
      * This constructor is used only for ignored tests.
      */
     ReportEntry(final Description description, final Status status, final Throwable exception) {
-        this.className  = description.getClassName();
-        this.methodName = description.getMethodName();
-        this.simpleName = createSimpleName(className);
-        this.status     = status;
-        this.exception  = exception;
+        this.className        = description.getClassName();
+        this.methodName       = description.getMethodName();
+        this.simpleClassName  = createSimpleClassName(className);
+        this.simpleMethodName = createSimpleMethodName(methodName);
+        this.status           = status;
+        this.exception        = exception;
+        this.factories        = Collections.emptyList();
+        trimStackTrace(exception);
     }
 
     /**
      * Creates a simple name from the given class name.
      */
-    private static String createSimpleName(final String className) {
-        int nameLength = className.length();
-        if (className.endsWith(CLASSNAME_SUFFIX)) {
-            nameLength -= CLASSNAME_SUFFIX.length();
+    private static String createSimpleClassName(final String name) {
+        int length = name.length();
+        if (name.endsWith(CLASSNAME_SUFFIX)) {
+            length -= CLASSNAME_SUFFIX.length();
         }
-        final StringBuilder buffer = new StringBuilder();
-        for (int i=className.lastIndexOf('.')+1; i<nameLength; i++) {
-            final char c = className.charAt(i);
-            if (Character.isUpperCase(c) && buffer.length() != 0) {
-                buffer.append(' ');
+        return separateWords(name.substring(name.lastIndexOf('.', length)+1, length));
+    }
+
+    /**
+     * Returns the method name without the {@code "test"} prefix (if any).
+     */
+    private static String createSimpleMethodName(String name) {
+        if (name.startsWith(METHODNAME_PREFIX)) {
+            name = name.substring(METHODNAME_PREFIX.length());
+        }
+        return separateWords(name.replace('_', ':'));
+    }
+
+    /**
+     * Puts space between words in the given string.
+     * The first letter is never modified.
+     */
+    private static String separateWords(final String name) {
+        StringBuilder buffer = null;
+        for (int i=name.length(); --i>=1;) {
+            final char c = name.charAt(i);
+            if (!Character.isLowerCase(c)) {
+                if (Character.isLowerCase(name.charAt(i-1)) ||
+                        (i != name.length()-1 && Character.isLowerCase(name.charAt(i+1))))
+                {
+                    if (buffer == null) {
+                        buffer = new StringBuilder(name);
+                    }
+                    buffer.insert(i, ' ');
+                }
             }
-            buffer.append(c);
         }
-        return buffer.toString();
+        return (buffer != null) ? buffer.toString() : name;
+    }
+
+    /**
+     * Returns the first identifier of the given citation. If no identifier is found, returns
+     * the title or {@code null} if none. We search for identifier first because they are
+     * typically more compact than the title.
+     */
+    private static String getIdentifier(final Citation citation) {
+        if (citation != null) {
+            final Collection<? extends Identifier> identifiers = citation.getIdentifiers();
+            if (identifiers != null) {
+                for (final Identifier id : identifiers) {
+                    if (id != null) {
+                        final String code = id.getCode();
+                        if (code != null) {
+                            return code;
+                        }
+                    }
+                }
+            }
+            final CharSequence title = citation.getTitle();
+            if (title != null) {
+                return title.toString();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Trims the stack trace of the given exception and all its cause, removing everything
+     * after the last {@code org.opengis.test} package which is not this runner package.
+     */
+    private static void trimStackTrace(Throwable exception) {
+        while (exception != null) {
+            final StackTraceElement[] stackTrace = exception.getStackTrace();
+            for (int i=stackTrace.length; --i>=0;) {
+                final String className = stackTrace[i].getClassName();
+                if (className.startsWith("org.opengis.test.") &&
+                   !className.startsWith("org.opengis.test.runner."))
+                {
+                    exception.setStackTrace(Arrays.copyOf(stackTrace, i+1));
+                    break;
+                }
+            }
+            exception = exception.getCause();
+        }
+    }
+
+    /**
+     * Returns the URL to the javadoc of the test method. Users can follow this URL in
+     * order to have more details about the test data or procedure.
+     *
+     * @return The URI to the javadoc of the test method (never {@code null}).
+     */
+    public URI getJavadocURL() {
+        String method = methodName;
+        final int s = method.indexOf('[');
+        if (s >= 0) {
+            method = method.substring(0, s);
+        }
+        return URI.create(JAVADOC_BASEURL + className.replace('.', '/') + ".html#" + method + "()");
     }
 
     /**

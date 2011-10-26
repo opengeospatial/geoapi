@@ -75,12 +75,13 @@ class PJObject implements IdentifiedObject {
     }
 
     /**
-     * Returns an empty set, since there is no additional identifiers
-     * associated with our Proj4 wrappers.
+     * Returns the name in a singleton set, since we don't have anything better for identifiers.
+     * The objects created by {@link PJFactory} will use {@code "EPSG:xxxx"} identifiers, so this
+     * is rather the name which is quite inaccurate.
      */
     @Override
     public Set<ReferenceIdentifier> getIdentifiers() {
-        return Collections.emptySet();
+        return Collections.singleton(name);
     }
 
     /**

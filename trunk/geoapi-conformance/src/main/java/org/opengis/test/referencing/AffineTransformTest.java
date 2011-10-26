@@ -168,12 +168,14 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      *       <li>{@link #isNonSquareMatrixSupported}</li>
      *     </ul>
      *   </li>
+     *   <li>A {@code MathTransformFactory} key associated to the {@linkplain #factory} value.</li>
      * </ul>
      */
     @Override
     public Map<String,Object> getConfiguration() {
         final Map<String,Object> op = super.getConfiguration();
         assertNull(op.put(SupportedOperation.NON_SQUARE_MATRIX.key, isNonSquareMatrixSupported));
+        assertNull(op.put("MathTransformFactory", factory));
         return op;
     }
 

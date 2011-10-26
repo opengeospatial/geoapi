@@ -35,12 +35,20 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.List;
+import java.util.Vector;
+import java.util.Arrays;
 import java.util.prefs.Preferences;
 import java.util.concurrent.ExecutionException;
 
+import java.awt.Desktop;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import javax.swing.JOptionPane;
 import javax.swing.JFileChooser;
@@ -53,6 +61,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -63,11 +72,16 @@ import javax.swing.table.TableColumnModel;
  * @since   3.1
  */
 @SuppressWarnings("serial")
-final class SwingFrame extends JFrame implements Runnable, ListSelectionListener {
+final class SwingFrame extends JFrame implements Runnable, ActionListener, ListSelectionListener {
     /**
      * The preference key for the directory in which to select JAR files.
      */
     private static final String JAR_DIRECTORY_KEY = "jar.directory";
+
+    /**
+     * The desktop for browse operations, or {@code null} if unsupported.
+     */
+    private final Desktop desktop;
 
     /**
      * Labels used for rendering information from {@link ImplementationManifest}.
@@ -86,7 +100,12 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
      *
      * @see #setDetails(ReportEntry)
      */
-    private final JLabel className, methodName;
+    private final JLabel testName;
+
+    /**
+     * The factories used for the test case reported in the "details" tab.
+     */
+    private final DefaultTableModel factories;
 
     /**
      * Where to report stack trace.
@@ -99,6 +118,11 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
     private final Runner runner;
 
     /**
+     * The test report which is currently shown in the "details" tab, or {@code null} if none.
+     */
+    private ReportEntry currentReport;
+
+    /**
      * Creates a new frame.
      */
     SwingFrame() {
@@ -106,6 +130,8 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(800, 600); // If width is modified, please adjust column preferred widths below.
         setLocationByPlatform(true);
+        desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+
         add(new SwingPanelBuilder().createManifestPane(
                 title         = new JLabel(),
                 version       = new JLabel(),
@@ -129,12 +155,23 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
         columns.getColumn(SwingResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
         columns.getColumn(SwingResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
 
+        final JButton viewJavadoc = new JButton(new ImageIcon(SwingFrame.class.getResource("documentinfo.png")));
+        viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
+        viewJavadoc.setToolTipText("View javadoc for this test");
+        viewJavadoc.addActionListener(this);
+
+        factories = new DefaultTableModel();
+        factories.setColumnIdentifiers(new String[] {
+            // See the javadoc of ReportEntry.factories
+            "Category", "Implementation", "Vendor", "Authority"
+        });
+
         final JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Tests", new JScrollPane(table));
         tabs.addTab("Details", new SwingPanelBuilder().createDetailsPane(
-                exception  = new JTextArea(),
-                className  = new JLabel(),
-                methodName = new JLabel()));
+                exception = new JTextArea(),
+                testName  = new JLabel(), viewJavadoc,
+                new JTable(factories)));
         add(tabs, BorderLayout.CENTER);
     }
 
@@ -176,12 +213,16 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
      * A {@code null} entry clears the "Details" pane.
      */
     private void setDetails(final ReportEntry entry) {
-        String classText  = null;
-        String methodText = null;
+        String className  = null;
+        String methodName = null;
         String stacktrace = null;
-        if (entry != null) {
-            classText  = entry.className;
-            methodText = entry.methodName;
+        @SuppressWarnings("unchecked")
+        final Vector<Vector<String>> factoryTableContent = factories.getDataVector();
+        if (entry == null) {
+            factoryTableContent.clear();
+        } else {
+            className  = entry.className;
+            methodName = entry.methodName;
             switch (entry.status) {
                 case FAILURE: {
                     if (entry.exception != null) {
@@ -194,12 +235,26 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
                     break;
                 }
             }
+            final List<String[]> newFactoryContent = entry.factories;
+            final int numFactories = newFactoryContent.size();
+            factoryTableContent.setSize(numFactories);
+            for (int i=0; i<numFactories; i++) {
+                final String[] values = newFactoryContent.get(i);
+                Vector<String> row = factoryTableContent.get(i);
+                if (row == null) {
+                    row = new Vector<String>(values.length);
+                    factoryTableContent.set(i, row);
+                }
+                row.clear();
+                row.addAll(Arrays.asList(values));
+            }
         }
-        className .setText(classText);
-        methodName.setText(methodText);
+        factories .fireTableDataChanged();
+        testName  .setText(className + '.' + methodName);
         exception .setText(stacktrace);
         exception .setEnabled(stacktrace != null);
         exception .setCaretPosition(0);
+        currentReport = entry;
     }
 
     /**
@@ -214,6 +269,19 @@ final class SwingFrame extends JFrame implements Runnable, ListSelectionListener
             if (row >= 0) {
                 setDetails(results.getValueAt(row));
             }
+        }
+    }
+
+    /**
+     * Invoked when the user pressed the "View javadoc" button.
+     */
+    @Override
+    public void actionPerformed(final ActionEvent event) {
+        if (currentReport != null) try {
+            desktop.browse(currentReport.getJavadocURL());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(SwingFrame.this, e.toString(),
+                    "Can not open the browser", JOptionPane.ERROR_MESSAGE);
         }
     }
 

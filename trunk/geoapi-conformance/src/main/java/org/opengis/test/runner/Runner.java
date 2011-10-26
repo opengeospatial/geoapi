@@ -34,6 +34,7 @@ package org.opengis.test.runner;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.io.File;
@@ -126,6 +127,13 @@ final class Runner extends RunListener implements TestListener {
             result = junit.run(TestSuite.class);
         } finally {
             TestCase.removeTestListener(this);
+        }
+        if (result.getRunCount() == 1 && result.getFailureCount() == 1) {
+            final Throwable exception = result.getFailures().get(0).getException();
+            LOGGER.log(Level.WARNING, exception.toString(), exception);
+            // Should never happen, unless a problem occurred very soon in
+            // the initialization process (typically a NoClassDefFoundError).
+            // Without this hack, JUnit just silently do nothing...
         }
     }
 

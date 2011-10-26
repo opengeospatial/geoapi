@@ -34,6 +34,7 @@ package org.opengis.test;
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -415,7 +416,7 @@ public strictfp abstract class TestCase {
      * @since 3.1
      */
     public Map<String,Object> getConfiguration() {
-        return new HashMap<String,Object>();
+        return new LinkedHashMap<String,Object>();
     }
 
     /**
