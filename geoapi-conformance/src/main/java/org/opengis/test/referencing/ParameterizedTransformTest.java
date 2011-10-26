@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -214,6 +215,22 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public ParameterizedTransformTest(final MathTransformFactory factory) {
         super(factory);
         this.factory = factory;
+    }
+
+    /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     * <p>
+     * <ul>
+     *   <li>All the entries defined in the {@linkplain TransformTestCase#getConfiguration() parent class}.</li>
+     *   <li>A {@code MathTransformFactory} key associated to the {@linkplain #factory} value.</li>
+     * </ul>
+     */
+    @Override
+    public Map<String,Object> getConfiguration() {
+        final Map<String,Object> op = super.getConfiguration();
+        assertNull(op.put("MathTransformFactory", factory));
+        return op;
     }
 
     /**

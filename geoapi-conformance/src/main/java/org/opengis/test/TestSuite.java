@@ -49,9 +49,9 @@ import org.opengis.referencing.operation.MathTransform;
  * <ul>
  *   <li>{@link org.opengis.test.util.NameTest}</li>
  *   <li>{@link org.opengis.test.referencing.ObjectFactoryTest}</li>
- *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.AffineTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest}</li>
+ *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test}</li>
  * </ul>
  * <p>
@@ -111,9 +111,9 @@ import org.opengis.referencing.operation.MathTransform;
 @Suite.SuiteClasses({
   org.opengis.test.util.NameTest.class,
   org.opengis.test.referencing.ObjectFactoryTest.class,
-  org.opengis.test.referencing.AuthorityFactoryTest.class,
   org.opengis.test.referencing.AffineTransformTest.class,
   org.opengis.test.referencing.ParameterizedTransformTest.class,
+  org.opengis.test.referencing.AuthorityFactoryTest.class,
   org.opengis.test.referencing.gigs.Series2000Test.class
 })
 public strictfp class TestSuite {

@@ -268,13 +268,16 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <p>
      * <ul>
      *   <li>All the entries defined in the {@link ParameterizedTransformTest#getConfiguration()
-     *       ParameterizedTransformTest} class.</li>
+     *       ParameterizedTransformTest} class except {@code MathTransformFactory}.</li>
      *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
      *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isAxisSwappingSupported}</li>
      *     </ul>
      *   </li>
+     *   <li>{@code CRSFactory}, {@code CSFactory} and {@code DatumFactory} keys associated to the
+     *       {@linkplain #crsFactory}, {@linkplain #csFactory} and {@linkplain #datumFactory} values
+     *       respectively.</li>
      * </ul>
      *
      * @since 3.1
@@ -283,6 +286,10 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     public Map<String,Object> getConfiguration() {
         final Map<String,Object> op = test.getConfiguration();
         assertNull(op.put(SupportedOperation.AXIS_SWAPPING.key, isAxisSwappingSupported));
+        assertNull(op.remove("MathTransformFactory"));
+        assertNull(op.put("CRSFactory",   crsFactory));
+        assertNull(op.put("CSFactory",    csFactory));
+        assertNull(op.put("DatumFactory", datumFactory));
         return op;
     }
 

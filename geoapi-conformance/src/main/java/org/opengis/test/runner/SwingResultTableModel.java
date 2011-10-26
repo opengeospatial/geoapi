@@ -130,8 +130,8 @@ final class SwingResultTableModel extends AbstractTableModel implements ChangeLi
     public Object getValueAt(final int row, final int column) {
         final ReportEntry entry = entries[row];
         switch (column) {
-            case CLASS_COLUMN:  return entry.simpleName;
-            case METHOD_COLUMN: return entry.methodName;
+            case CLASS_COLUMN:  return entry.simpleClassName;
+            case METHOD_COLUMN: return entry.simpleMethodName;
             case RESULT_COLUMN: switch (entry.status) {
                 case SUCCESS: return "success";
                 case FAILURE: return "failure";

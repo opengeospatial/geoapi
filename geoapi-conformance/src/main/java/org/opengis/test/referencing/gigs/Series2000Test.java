@@ -169,6 +169,9 @@ public strictfp class Series2000Test extends TestCase {
      *       <li>{@link #isAliasSupported}</li>
      *     </ul>
      *   </li>
+     *   <li>{@code CRSFactory}, {@code CSFactory} and {@code DatumFactory} keys associated to the
+     *       {@linkplain #crsFactory}, {@linkplain #csFactory} and {@linkplain #datumFactory} values
+     *       respectively.</li>
      * </ul>
      */
     @Override
@@ -176,6 +179,9 @@ public strictfp class Series2000Test extends TestCase {
         final Map<String,Object> op = super.getConfiguration();
         assertNull(op.put(SupportedOperation.NAME .key, isNameSupported));
         assertNull(op.put(SupportedOperation.ALIAS.key, isAliasSupported));
+        assertNull(op.put("CRSFactory",   crsFactory));
+        assertNull(op.put("CSFactory",    csFactory));
+        assertNull(op.put("DatumFactory", datumFactory));
         return op;
     }
 
@@ -552,7 +558,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2004() throws FactoryException {
-        assumeNotNull(crsFactory);
+        assumeTrue(datumFactory != null || crsFactory != null);
         final ExpectedData data = new ExpectedData("GIGS_2004_libGeodeticDatumCRS.csv",
             Integer.class,  // [0]: EPSG Datum Code
             String .class,  // [1]: Datum Name
@@ -580,6 +586,9 @@ next:   for (final String search : expected) {
                      * First iteration: get directly the datum without building any CRS.
                      * The datum will be tested after the "else" block testing the CRS.
                      */
+                    if (datumFactory == null) {
+                        continue;
+                    }
                     try {
                         datum = datumFactory.createGeodeticDatum(String.valueOf(datumCode));
                     } catch (NoSuchAuthorityCodeException e) {
@@ -593,6 +602,9 @@ next:   for (final String search : expected) {
                      * coordinate system, then extract the datum in order to perform the
                      * same tests than the ones we did in the first iteration.
                      */
+                    if (crsFactory == null) {
+                        continue;
+                    }
                     final Integer crsCode = data.getIntOptional(column);
                     if (crsCode == null) {
                         continue; // No CRS in the test file for that column.
