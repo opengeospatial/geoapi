@@ -31,28 +31,52 @@
  */
 package org.opengis.test;
 
+import org.opengis.referencing.operation.MathTransformFactory;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 
 /**
- * Tests {@link SupportedOperation}.
+ * Tests {@link Configuration}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp class SupportedOperationTest {
+public strictfp class ConfigurationTest {
     /**
-     * The {@link org.opengis.test.runner} package requires that all key name
-     * begin with {@code "is"} and end with {@code "Supported"}.
+     * The {@link org.opengis.test.runner} package requires that all key names related to
+     * enabling / disabling tests begin with {@code "is"} and end with {@code "Supported"}.
      */
     @Test
     public void testKeyNames() {
-        for (final SupportedOperation e : SupportedOperation.values()) {
-            final String key = e.key;
-            assertTrue("Expected \"is\" prefix.", key.startsWith("is"));
-            assertTrue("Expected \"Supported\" prefix.", key.endsWith("Supported"));
+        for (final Configuration.Key<?> e : Configuration.Key.values()) {
+            if (e.type == Boolean.class && e != Configuration.Key.isToleranceRelaxed) {
+                final String key = e.name();
+                assertTrue("Expected \"is\" prefix.", key.startsWith("is"));
+                assertTrue("Expected \"Supported\" prefix.", key.endsWith("Supported"));
+            }
         }
+    }
+
+    /**
+     * Asks for an existing key.
+     */
+    @Test
+    public void testValueOf() {
+        assertSame(Configuration.Key.isDoubleToDoubleSupported,
+                   Configuration.Key.valueOf("isDoubleToDoubleSupported", Boolean.class));
+        assertSame(Configuration.Key.mtFactory,
+                   Configuration.Key.valueOf("mtFactory", MathTransformFactory.class));
+    }
+
+    /**
+     * Tests the type checking.
+     */
+    @Test(expected=ClassCastException.class)
+    public void testWrongValueOf() {
+        assertSame(Configuration.Key.isDoubleToDoubleSupported,
+                   Configuration.Key.valueOf("isDoubleToDoubleSupported", String.class));
     }
 }

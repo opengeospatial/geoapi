@@ -31,7 +31,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.awt.geom.Rectangle2D;
@@ -55,7 +54,7 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.test.TestCase;
 import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
-import org.opengis.test.SupportedOperation;
+import org.opengis.test.Configuration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -108,17 +107,17 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     /**
      * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
-    protected final CRSAuthorityFactory crsFactory;
+    protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
      * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
      */
-    protected final CSAuthorityFactory csFactory;
+    protected final CSAuthorityFactory csAuthorityFactory;
 
     /**
      * Factory to build {@link Datum} instances, or {@code null} if none.
      */
-    protected final DatumAuthorityFactory datumFactory;
+    protected final DatumAuthorityFactory datumAuthorityFactory;
 
     /**
      * The identified object (typically a {@link CoordinateReferenceSystem}) being tested.
@@ -205,9 +204,9 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     protected double toLinearUnit = 1.0;
 
     /**
-     * {@code true} if {@link #crsFactory} and {@link #csFactory} supports the creating of
-     * coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is set
-     * to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
+     * {@code true} if {@link #crsAuthorityFactory} and {@link #csAuthorityFactory} supports the
+     * creation of coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is
+     * set to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
      * axis order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
      * axis order and <cite>North Oriented</cite> CRS in their test.
      *
@@ -253,11 +252,11 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
     {
-        this.crsFactory   = crsFactory;
-        this.csFactory    = csFactory;
-        this.datumFactory = datumFactory;
+        crsAuthorityFactory   = crsFactory;
+        csAuthorityFactory    = csFactory;
+        datumAuthorityFactory = datumFactory;
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
-                SupportedOperation.AXIS_SWAPPING.key);
+                Configuration.Key.isAxisSwappingSupported);
         isAxisSwappingSupported = isEnabled[0];
         test = new ParameterizedTransformTest(null);
     }
@@ -267,29 +266,28 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the entries defined in the {@link ParameterizedTransformTest#getConfiguration()
-     *       ParameterizedTransformTest} class except {@code MathTransformFactory}.</li>
-     *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
-     *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
+     *   <li>All the entries defined in the {@link ParameterizedTransformTest#configuration()
+     *       ParameterizedTransformTest} class except {@code mtFactory}.</li>
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isAxisSwappingSupported}</li>
+     *       <li>{@linkplain #crsAuthorityFactory}</li>
+     *       <li>{@linkplain #csAuthorityFactory}</li>
+     *       <li>{@linkplain #datumAuthorityFactory}</li>
      *     </ul>
      *   </li>
-     *   <li>{@code CRSFactory}, {@code CSFactory} and {@code DatumFactory} keys associated to the
-     *       {@linkplain #crsFactory}, {@linkplain #csFactory} and {@linkplain #datumFactory} values
-     *       respectively.</li>
      * </ul>
      *
      * @since 3.1
      */
     @Override
-    public Map<String,Object> getConfiguration() {
-        final Map<String,Object> op = test.getConfiguration();
-        assertNull(op.put(SupportedOperation.AXIS_SWAPPING.key, isAxisSwappingSupported));
-        assertNull(op.remove("MathTransformFactory"));
-        assertNull(op.put("CRSFactory",   crsFactory));
-        assertNull(op.put("CSFactory",    csFactory));
-        assertNull(op.put("DatumFactory", datumFactory));
+    public Configuration configuration() {
+        final Configuration op = test.configuration();
+        assertNull(op.remove(Configuration.Key.mtFactory));
+        assertNull(op.put(Configuration.Key.isAxisSwappingSupported, isAxisSwappingSupported));
+        assertNull(op.put(Configuration.Key.crsAuthorityFactory,     crsAuthorityFactory));
+        assertNull(op.put(Configuration.Key.csAuthorityFactory,      csAuthorityFactory));
+        assertNull(op.put(Configuration.Key.datumAuthorityFactory,   datumAuthorityFactory));
         return op;
     }
 
@@ -326,8 +324,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      */
     @Test
     public void testWGS84() throws NoSuchAuthorityCodeException, FactoryException {
-        assumeNotNull(crsFactory);
-        final GeographicCRS crs = crsFactory.createGeographicCRS("EPSG:4326");
+        assumeNotNull(crsAuthorityFactory);
+        final GeographicCRS crs = crsAuthorityFactory.createGeographicCRS("EPSG:4326");
         assertNotNull("CRSAuthorityFactory.createGeographicCRS()", crs);
         object = crs;
         validate(crs);
@@ -407,16 +405,18 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         if (!isAxisSwappingSupported) {
             swapλφ = swapxy = flipxy = false;
         }
-        assumeNotNull(crsFactory);
+        assumeNotNull(crsAuthorityFactory);
         final ProjectedCRS crs;
         try {
-            crs = crsFactory.createProjectedCRS("EPSG:" + code);
+            crs = crsAuthorityFactory.createProjectedCRS("EPSG:" + code);
         } catch (NoSuchAuthorityCodeException e) {
             // If a code was not found, ensure that the factory does not declare that it was
             // a supported code. If the code was unsupported, then the test will be ignored.
-            final Set<String> authorityCodes = crsFactory.getAuthorityCodes(ProjectedCRS.class);
-            assumeTrue(authorityCodes != null && authorityCodes.contains(String.valueOf(code)));
-            throw e;
+            final Set<String> authorityCodes = crsAuthorityFactory.getAuthorityCodes(ProjectedCRS.class);
+            if (authorityCodes == null || !authorityCodes.contains(String.valueOf(code))) {
+                assumeNoException(e); // Will mark the test as "ignored".
+            }
+            throw e; // Will mark the test as "failed".
         }
         assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
         object = crs;

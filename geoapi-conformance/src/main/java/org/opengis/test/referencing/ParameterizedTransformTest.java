@@ -31,7 +31,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -51,6 +50,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.CalculationType;
+import org.opengis.test.Configuration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -165,7 +165,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * The factory for creating {@link MathTransform} objects, or {@code null} if none.
      */
-    protected final MathTransformFactory factory;
+    protected final MathTransformFactory mtFactory;
 
     /**
      * The parameters of the math transform being tested. This field is set, together with the
@@ -214,7 +214,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     public ParameterizedTransformTest(final MathTransformFactory factory) {
         super(factory);
-        this.factory = factory;
+        this.mtFactory = factory;
     }
 
     /**
@@ -222,14 +222,18 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the entries defined in the {@linkplain TransformTestCase#getConfiguration() parent class}.</li>
-     *   <li>A {@code MathTransformFactory} key associated to the {@linkplain #factory} value.</li>
+     *   <li>All the entries defined in the {@linkplain TransformTestCase#configuration() parent class}.</li>
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #mtFactory}</li>
+     *     </ul>
+     *   </li>
      * </ul>
      */
     @Override
-    public Map<String,Object> getConfiguration() {
-        final Map<String,Object> op = super.getConfiguration();
-        assertNull(op.put("MathTransformFactory", factory));
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
         return op;
     }
 
@@ -322,13 +326,13 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * describing the test to be executed. This method does not run any test by itself.
      */
     private SamplePoints initialize(final int code) throws FactoryException {
-        assumeNotNull(factory);
+        assumeNotNull(mtFactory);
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
         if (parameters == null) {
-            parameters = PseudoEpsgFactory.createParameters(factory, sample.operation);
+            parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
         }
         if (transform == null) {
-            transform = factory.createParameterizedTransform(parameters);
+            transform = mtFactory.createParameterizedTransform(parameters);
             assertNotNull(description, transform);
         }
         return sample;

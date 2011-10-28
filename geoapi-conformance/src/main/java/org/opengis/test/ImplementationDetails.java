@@ -31,9 +31,6 @@
  */
 package org.opengis.test;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import org.opengis.util.Factory;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -54,12 +51,7 @@ import org.opengis.referencing.operation.MathTransform;
  * <p>
  * If no instance of {@code ImplementationDetails} is registered, then GeoAPI assumes that
  * all tests are enabled with their default tolerance threshold. This is equivalent to using
- * an {@code ImplementationDetails} instance where:
- * <p>
- * <ul>
- *   <li>{@link #configuration(Factory[])} returns unconditionally {@code null}</li>
- *   <li>{@link #tolerance(MathTransform)} returns unconditionally {@code null}</li>
- * </ul>
+ * an {@code ImplementationDetails} instance where every methods return {@code null}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -68,23 +60,28 @@ import org.opengis.referencing.operation.MathTransform;
 public interface ImplementationDetails {
     /**
      * Returns the set of tests that should be disabled, or {@code null} if none.
-     * If non-null, then the returned map can assign the value {@code "false"} to
-     * any of the {@link SupportedOperation#key}.
+     * If non-null, then the returned map can contain some {@link Configuration.Key}
+     * associated to the {@link Boolean#FALSE} value. Example:
+     *
+     * <blockquote><pre>&#64;Override
+     *public Configuration configuration(Factory... factories) {
+     *    Configuration config = new Configuration();
+     *    config.{@linkplain Configuration#unsupported unsupported}({@linkplain Configuration.Key#isDerivativeSupported}, {@linkplain Configuration.Key#isNonSquareMatrixSupported});
+     *    return config;
+     *}</pre></blockquote>
+     *
+     * If more than one {@code ImplementationDetails} is found on the classpath, then a logical AND
+     * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(...)}
+     * calls.
      * <p>
-     * If more than one {@code ImplementationDetails} is found on the classpath, then the above
-     * tests are enabled only if none of the {@code ImplementationDetails.configuration(...)}
-     * calls assigned {@code "false"} to the corresponding key.
-     * <p>
-     * This method may be invoked often, so implementors are advised to cache their properties map.
+     * This method may be invoked often, so implementors may want to cache their configuration map.
      *
      * @param  factories The factories to be tested.
      * @return The collection of tests to disable for the given factories, or {@code null} if none.
-     * @throws IOException If the implementation tried to {@linkplain Properties#load(java.io.Reader)
-     *         load} the properties from a file and that operation failed.
      *
-     * @see TestCase#getConfiguration()
+     * @see TestCase#configuration()
      */
-    Properties configuration(Factory... factories) throws IOException;
+    Configuration configuration(Factory... factories);
 
     /**
      * Returns an object for modifying the tolerance thresholds when testing the given math transform,
