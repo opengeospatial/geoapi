@@ -31,9 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
-import java.util.Collection;
-import java.util.Map;
 import java.util.List;
+import java.util.Collection;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -47,7 +46,7 @@ import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.test.SupportedOperation;
+import org.opengis.test.Configuration;
 import org.opengis.test.FactoryFilter;
 import org.opengis.test.TestCase;
 
@@ -92,17 +91,17 @@ public strictfp class Series2000Test extends TestCase {
     /**
      * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
-    protected final CRSAuthorityFactory crsFactory;
+    protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
      * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
      */
-    protected final CSAuthorityFactory csFactory;
+    protected final CSAuthorityFactory csAuthorityFactory;
 
     /**
      * Factory to build {@link Datum} instances, or {@code null} if none.
      */
-    protected final DatumAuthorityFactory datumFactory;
+    protected final DatumAuthorityFactory datumAuthorityFactory;
 
     /**
      * {@code true} if the factories support {@linkplain IdentifiedObject#getName() name}.
@@ -147,12 +146,12 @@ public strictfp class Series2000Test extends TestCase {
     public Series2000Test(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
     {
-        this.crsFactory   = crsFactory;
-        this.csFactory    = csFactory;
-        this.datumFactory = datumFactory;
+        crsAuthorityFactory   = crsFactory;
+        csAuthorityFactory    = csFactory;
+        datumAuthorityFactory = datumFactory;
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
-                SupportedOperation.NAME .key,
-                SupportedOperation.ALIAS.key);
+                Configuration.Key.isNameSupported,
+                Configuration.Key.isAliasSupported);
         isNameSupported  = isEnabled[0];
         isAliasSupported = isEnabled[1];
     }
@@ -162,26 +161,25 @@ public strictfp class Series2000Test extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
-     *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isNameSupported}</li>
      *       <li>{@link #isAliasSupported}</li>
+     *       <li>{@linkplain #crsAuthorityFactory}</li>
+     *       <li>{@linkplain #csAuthorityFactory}</li>
+     *       <li>{@linkplain #datumAuthorityFactory}</li>
      *     </ul>
      *   </li>
-     *   <li>{@code CRSFactory}, {@code CSFactory} and {@code DatumFactory} keys associated to the
-     *       {@linkplain #crsFactory}, {@linkplain #csFactory} and {@linkplain #datumFactory} values
-     *       respectively.</li>
      * </ul>
      */
     @Override
-    public Map<String,Object> getConfiguration() {
-        final Map<String,Object> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.NAME .key, isNameSupported));
-        assertNull(op.put(SupportedOperation.ALIAS.key, isAliasSupported));
-        assertNull(op.put("CRSFactory",   crsFactory));
-        assertNull(op.put("CSFactory",    csFactory));
-        assertNull(op.put("DatumFactory", datumFactory));
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isNameSupported,       isNameSupported));
+        assertNull(op.put(Configuration.Key.isAliasSupported,      isAliasSupported));
+        assertNull(op.put(Configuration.Key.crsAuthorityFactory,   crsAuthorityFactory));
+        assertNull(op.put(Configuration.Key.csAuthorityFactory,    csAuthorityFactory));
+        assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
         return op;
     }
 
@@ -298,7 +296,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2001() throws FactoryException, ConversionException {
-        assumeNotNull(csFactory);
+        assumeNotNull(csAuthorityFactory);
         final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
                 Integer.class,  // [0]: EPSG UoM Code
                 String .class,  // [1]: Type
@@ -314,7 +312,7 @@ next:   for (final String search : expected) {
             final double factor = data.getDouble(3);
             final Unit<?> unit, base;
             try {
-                unit = csFactory.createUnit(String.valueOf(code));
+                unit = csAuthorityFactory.createUnit(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
                 unsupportedCode(Unit.class, code, e);
                 continue;
@@ -390,7 +388,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2002() throws FactoryException {
-        assumeNotNull(datumFactory);
+        assumeNotNull(datumAuthorityFactory);
         final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
             Integer.class,  // [ 0]: EPSG Ellipsoid Code
             Boolean.class,  // [ 1]: Particularly important to E&P industry?
@@ -410,7 +408,7 @@ next:   for (final String search : expected) {
             final int code = data.getInt(0);
             final Ellipsoid ellipsoid;
             try {
-                ellipsoid = datumFactory.createEllipsoid(String.valueOf(code));
+                ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
                 unsupportedCode(Ellipsoid.class, code, e);
                 continue;
@@ -480,7 +478,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2003() throws FactoryException {
-        assumeNotNull(datumFactory);
+        assumeNotNull(datumAuthorityFactory);
         final ExpectedData data = new ExpectedData("GIGS_2003_libPrimeMeridian.csv",
             Integer.class,  // [0]: EPSG Prime Meridian Code
             Boolean.class,  // [1]: Particularly important to E&P industry?
@@ -497,7 +495,7 @@ next:   for (final String search : expected) {
             final int code = data.getInt(0);
             final PrimeMeridian pm;
             try {
-                pm = datumFactory.createPrimeMeridian(String.valueOf(code));
+                pm = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
                 unsupportedCode(PrimeMeridian.class, code, e);
                 continue;
@@ -558,7 +556,7 @@ next:   for (final String search : expected) {
      */
     @Test
     public void test2004() throws FactoryException {
-        assumeTrue(datumFactory != null || crsFactory != null);
+        assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
         final ExpectedData data = new ExpectedData("GIGS_2004_libGeodeticDatumCRS.csv",
             Integer.class,  // [0]: EPSG Datum Code
             String .class,  // [1]: Datum Name
@@ -586,11 +584,11 @@ next:   for (final String search : expected) {
                      * First iteration: get directly the datum without building any CRS.
                      * The datum will be tested after the "else" block testing the CRS.
                      */
-                    if (datumFactory == null) {
+                    if (datumAuthorityFactory == null) {
                         continue;
                     }
                     try {
-                        datum = datumFactory.createGeodeticDatum(String.valueOf(datumCode));
+                        datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(datumCode));
                     } catch (NoSuchAuthorityCodeException e) {
                         unsupportedCode(GeodeticDatum.class, datumCode, e);
                         continue;
@@ -602,7 +600,7 @@ next:   for (final String search : expected) {
                      * coordinate system, then extract the datum in order to perform the
                      * same tests than the ones we did in the first iteration.
                      */
-                    if (crsFactory == null) {
+                    if (crsAuthorityFactory == null) {
                         continue;
                     }
                     final Integer crsCode = data.getIntOptional(column);
@@ -613,8 +611,8 @@ next:   for (final String search : expected) {
                     try {
                         switch (column) {
                             case 4:  // fallthrough
-                            case 3:  crs = crsFactory.createGeographicCRS(String.valueOf(crsCode)); break;
-                            case 2:  crs = crsFactory.createGeocentricCRS(String.valueOf(crsCode)); break;
+                            case 3:  crs = crsAuthorityFactory.createGeographicCRS(String.valueOf(crsCode)); break;
+                            case 2:  crs = crsAuthorityFactory.createGeocentricCRS(String.valueOf(crsCode)); break;
                             default: throw new AssertionError(column);
                         }
                     } catch (NoSuchAuthorityCodeException e) {

@@ -75,14 +75,6 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     }
 
     /**
-     * Verify before each test case that all GeoAPI tests were enabled.
-     */
-    @Before
-    public void assertAllTestsEnabled() {
-        assertFalse(getConfiguration().containsValue("false"));
-    }
-
-    /**
      * Initializes {@link #transform} to a new affine transform.
      * A slightly different affine transform is created during
      * each initialization.

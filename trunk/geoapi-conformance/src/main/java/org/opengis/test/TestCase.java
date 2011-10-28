@@ -31,14 +31,11 @@
  */
 package org.opengis.test;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.ServiceLoader;
 
 import org.junit.Rule;
@@ -349,12 +346,8 @@ public strictfp abstract class TestCase {
      * Returns booleans indicating whatever the given operations are enabled. By default, every
      * operations are enabled. However if any {@link ImplementationDetails} instance found on the
      * classpath returns a {@linkplain ImplementationDetails#configuration configuration} map
-     * having the value {@code "false"} for a given property, then the boolean value corresponding
-     * to this property is set to {@code false}.
-     * <p>
-     * The {@code properties} argument is typically some {@link SupportedOperation#key} values.
-     * The {@link String} argument type is used instead than the {@code SupportedOperation} enum
-     * type in order to allow implementors to use their own keys if they wish.
+     * having the value {@link Boolean#FALSE} for a given key, then the boolean value corresponding
+     * to that key is set to {@code false}.
      *
      * @param  factories  The factories used by the test case to execute.
      * @param  properties The key for which the flags are wanted.
@@ -362,24 +355,19 @@ public strictfp abstract class TestCase {
      *         index <var>i</var> indicates whatever the {@code properties[i]} test should
      *         be enabled.
      */
-    protected static boolean[] getEnabledFlags(final Factory[] factories, final String... properties) {
+    protected static boolean[] getEnabledFlags(final Factory[] factories, final Configuration.Key<Boolean>... properties) {
         final boolean[] isEnabled = new boolean[properties.length];
         Arrays.fill(isEnabled, true);
         final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
         synchronized (services) {
             for (final ImplementationDetails impl : services) {
-                final Properties prop;
-                try {
-                    prop = impl.configuration(factories);
-                } catch (IOException e) {
-                    throw new AssertionError(e);
-                }
-                if (prop != null) {
+                final Configuration config = impl.configuration(factories);
+                if (config != null) {
                     boolean atLeastOneTestIsEnabled = false;
                     for (int i=0; i<properties.length; i++) {
                         if (isEnabled[i]) {
-                            final String value = prop.getProperty(properties[i]);
-                            if (value != null && !(isEnabled[i] = Boolean.parseBoolean(value))) {
+                            final Boolean value = config.get(properties[i]);
+                            if (value != null && !(isEnabled[i] = value.booleanValue())) {
                                 continue; // Leave 'atLeastOneTestIsEnabled' unchanged.
                             }
                             atLeastOneTestIsEnabled = true;
@@ -402,10 +390,10 @@ public strictfp abstract class TestCase {
      * see any of the following subclasses:
      * <p>
      * <ul>
-     *   <li>{@link org.opengis.test.referencing.AffineTransformTest#getConfiguration()}</li>
-     *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#getConfiguration()}</li>
-     *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#getConfiguration()}</li>
-     *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test#getConfiguration()}</li>
+     *   <li>{@link org.opengis.test.referencing.AffineTransformTest#configuration()}</li>
+     *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#configuration()}</li>
+     *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#configuration()}</li>
+     *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test#configuration()}</li>
      * </ul>
      *
      * @return The configuration of the test being run, or an empty map if none. This method
@@ -415,8 +403,8 @@ public strictfp abstract class TestCase {
      *
      * @since 3.1
      */
-    public Map<String,Object> getConfiguration() {
-        return new LinkedHashMap<String,Object>();
+    public Configuration configuration() {
+        return new Configuration();
     }
 
     /**

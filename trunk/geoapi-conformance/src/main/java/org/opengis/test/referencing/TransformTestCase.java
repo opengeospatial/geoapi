@@ -31,7 +31,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Map;
 import java.util.Random;
 import java.util.Arrays;
 import java.awt.geom.Point2D;
@@ -44,8 +43,8 @@ import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ToleranceModifier;
-import org.opengis.test.SupportedOperation;
 import org.opengis.test.CalculationType;
+import org.opengis.test.Configuration;
 
 import org.opengis.test.TestCase;
 
@@ -307,13 +306,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      */
     protected TransformTestCase(final Factory... factories) {
         final boolean[] isEnabled = getEnabledFlags(factories,
-                SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE .key,
-                SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT   .key,
-                SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT  .key,
-                SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE  .key,
-                SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY.key,
-                SupportedOperation.INVERSE_TRANSFORM          .key,
-                SupportedOperation.DERIVATIVE_TRANSFORM       .key);
+                Configuration.Key.isDoubleToDoubleSupported,
+                Configuration.Key.isFloatToFloatSupported,
+                Configuration.Key.isDoubleToFloatSupported,
+                Configuration.Key.isFloatToDoubleSupported,
+                Configuration.Key.isOverlappingArraySupported,
+                Configuration.Key.isInverseTransformSupported,
+                Configuration.Key.isDerivativeSupported);
         isDoubleToDoubleSupported   = isEnabled[0];
         isFloatToFloatSupported     = isEnabled[1];
         isDoubleToFloatSupported    = isEnabled[2];
@@ -328,7 +327,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
+     *   <li>All the following keys defined in the {@link Configuration.Key} enumeration,
      *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isDoubleToDoubleSupported}</li>
@@ -349,16 +348,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @since 3.1
      */
     @Override
-    public Map<String,Object> getConfiguration() {
-        final Map<String,Object> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_DOUBLE  .key, isDoubleToDoubleSupported));
-        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_FLOAT    .key, isFloatToFloatSupported));
-        assertNull(op.put(SupportedOperation.TRANSFORM_DOUBLE_TO_FLOAT   .key, isDoubleToFloatSupported));
-        assertNull(op.put(SupportedOperation.TRANSFORM_FLOAT_TO_DOUBLE   .key, isFloatToDoubleSupported));
-        assertNull(op.put(SupportedOperation.TRANSFORM_OVERLAPPING_ARRAY .key, isOverlappingArraySupported));
-        assertNull(op.put(SupportedOperation.INVERSE_TRANSFORM           .key, isInverseTransformSupported));
-        assertNull(op.put(SupportedOperation.DERIVATIVE_TRANSFORM        .key, isDerivativeSupported));
-        assertNull(op.put("isToleranceRelaxed", isToleranceRelaxed));
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isDoubleToDoubleSupported,   isDoubleToDoubleSupported));
+        assertNull(op.put(Configuration.Key.isFloatToFloatSupported,     isFloatToFloatSupported));
+        assertNull(op.put(Configuration.Key.isDoubleToFloatSupported,    isDoubleToFloatSupported));
+        assertNull(op.put(Configuration.Key.isFloatToDoubleSupported,    isFloatToDoubleSupported));
+        assertNull(op.put(Configuration.Key.isOverlappingArraySupported, isOverlappingArraySupported));
+        assertNull(op.put(Configuration.Key.isInverseTransformSupported, isInverseTransformSupported));
+        assertNull(op.put(Configuration.Key.isDerivativeSupported,       isDerivativeSupported));
+        assertNull(op.put(Configuration.Key.isToleranceRelaxed,          isToleranceRelaxed));
         return op;
     }
 
@@ -387,7 +386,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * are set to {@code true}. This method can be invoked before testing a math transform which
      * is expected to be fully implemented.
      *
-     * @deprecated Replaced by {@code assertFalse(getConfiguration().containsValue("false"));}
+     * @deprecated No replacement.
      */
     @Deprecated
     protected void assertAllTestsEnabled() {

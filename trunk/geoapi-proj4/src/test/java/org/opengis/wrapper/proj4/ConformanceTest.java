@@ -32,13 +32,12 @@
 package org.opengis.wrapper.proj4;
 
 import java.util.EnumSet;
-import java.util.Properties;
 import org.opengis.util.Factory;
 import org.opengis.test.TestSuite;
 import org.opengis.test.Validators;
+import org.opengis.test.Configuration;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.ToleranceModifiers;
-import org.opengis.test.SupportedOperation;
 import org.opengis.test.ImplementationDetails;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -56,12 +55,12 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
     /**
      * The configuration of our Proj4 tests.
      */
-    private static final Properties CONFIGURATION = new Properties();
+    private static final Configuration CONFIGURATION = new Configuration();
     static {
-        SupportedOperation.unsupported(CONFIGURATION,
-                SupportedOperation.NAME,
-                SupportedOperation.ALIAS,
-                SupportedOperation.DERIVATIVE_TRANSFORM);
+        CONFIGURATION.unsupported(
+                Configuration.Key.isNameSupported,
+                Configuration.Key.isAliasSupported,
+                Configuration.Key.isDerivativeSupported);
         /*
          * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
          */
@@ -72,7 +71,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
      * Returns the map of tests to disable for this implementation.
      */
     @Override
-    public Properties configuration(final Factory... factories) {
+    public Configuration configuration(final Factory... factories) {
         return CONFIGURATION;
     }
 

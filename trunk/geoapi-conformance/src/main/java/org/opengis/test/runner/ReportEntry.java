@@ -44,8 +44,9 @@ import java.awt.Rectangle;
 
 import org.junit.runner.Description;
 
-import org.opengis.test.TestEvent;
 import org.opengis.util.Factory;
+import org.opengis.test.TestEvent;
+import org.opengis.test.Configuration;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -149,21 +150,23 @@ final class ReportEntry {
          */
         int numTests=1, numSupported=1;
         final List<String[]> factories = new ArrayList<String[]>();
-        for (Map.Entry<String,Object> entry : event.getSource().getConfiguration().entrySet()) {
-            final String key   = entry.getKey();
-            final Object value = entry.getValue();
+        for (Map.Entry<Configuration.Key<?>,Object> entry : event.getSource().configuration().map().entrySet()) {
+            final Configuration.Key<?> key = entry.getKey();
+            final String   name  = key.name();
+            final Class<?> type  = key.valueType();
+            final Object   value = entry.getValue();
             /*
              * Note: we assume that a test with every optional features marked as "unsupported"
              * ({@code isFooSupported = false}) still do some test, so we unconditionally start
              * the count with 1 supported test.
              */
-            if ((value instanceof Boolean) && key.startsWith("is")) {
-                if (key.endsWith("Supported")) {
+            if ((value instanceof Boolean) && name.startsWith("is")) {
+                if (name.endsWith("Supported")) {
                     if (((Boolean) value).booleanValue()) {
                         numSupported++;
                     }
                     numTests++;
-                } else if (key.equals("isToleranceRelaxed")) {
+                } else if (name.equals("isToleranceRelaxed")) {
                     isToleranceRelaxed = ((Boolean) value).booleanValue();
                 }
             }
@@ -171,17 +174,17 @@ final class ReportEntry {
              * Check for factories. See the javadoc of the 'factories' field for the
              * meaning of array elements.
              */
-            if (key.endsWith("Factory")) {
+            if (Factory.class.isAssignableFrom(type)) {
                 String impl = null;
                 if (value != null) {
-                    Class<?> type = value.getClass();
-                    impl = type.getSimpleName();
-                    while ((type = type.getEnclosingClass()) != null) {
-                        impl = type.getSimpleName() + '.' + impl;
+                    Class<?> implType = value.getClass();
+                    impl = implType.getSimpleName();
+                    while ((implType = implType.getEnclosingClass()) != null) {
+                        impl = implType.getSimpleName() + '.' + impl;
                     }
                 }
                 factories.add(new String[] {
-                    separateWords(key), impl,
+                    separateWords(type.getSimpleName()), impl,
                     (value instanceof Factory) ?
                         getIdentifier(((Factory) value).getVendor()) : null,
                     (value instanceof AuthorityFactory) ?

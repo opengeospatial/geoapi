@@ -31,7 +31,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Map;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
@@ -43,7 +42,7 @@ import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
-import org.opengis.test.SupportedOperation;
+import org.opengis.test.Configuration;
 
 
 import org.junit.Test;
@@ -109,7 +108,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * The factory for creating {@link MathTransform} objects, or {@code null} if none.
      */
-    protected final MathTransformFactory factory;
+    protected final MathTransformFactory mtFactory;
 
     /**
      * The matrix of the math transform being tested. This field is set, together with the
@@ -150,9 +149,9 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     public AffineTransformTest(final MathTransformFactory factory) {
         super(factory);
-        this.factory = factory;
+        mtFactory = factory;
         final boolean[] isEnabled = getEnabledFlags(new MathTransformFactory[] {factory},
-                SupportedOperation.NON_SQUARE_MATRIX.key);
+                Configuration.Key.isNonSquareMatrixSupported);
         isNonSquareMatrixSupported = isEnabled[0];
     }
 
@@ -161,21 +160,20 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the entries defined in the {@linkplain TransformTestCase#getConfiguration() parent class}.</li>
-     *   <li>All the following keys defined in the {@link SupportedOperation} enumeration,
-     *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
+     *   <li>All the entries defined in the {@linkplain TransformTestCase#configuration() parent class}.</li>
+     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isNonSquareMatrixSupported}</li>
+     *       <li>{@link #mtFactory}</li>
      *     </ul>
      *   </li>
-     *   <li>A {@code MathTransformFactory} key associated to the {@linkplain #factory} value.</li>
      * </ul>
      */
     @Override
-    public Map<String,Object> getConfiguration() {
-        final Map<String,Object> op = super.getConfiguration();
-        assertNull(op.put(SupportedOperation.NON_SQUARE_MATRIX.key, isNonSquareMatrixSupported));
-        assertNull(op.put("MathTransformFactory", factory));
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isNonSquareMatrixSupported, isNonSquareMatrixSupported));
+        assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
         return op;
     }
 
@@ -185,7 +183,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * @param reference The affine transform to use as a reference for checking the results.
      */
     private void runTest(final AffineTransform reference) throws FactoryException, TransformException {
-        assumeNotNull(factory);
+        assumeNotNull(mtFactory);
         if (matrix == null) {
             matrix = new SimpleMatrix(3, 3,
                     reference.getScaleX(), reference.getShearX(), reference.getTranslateX(),
@@ -193,7 +191,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
                                  0,              0,                  1);
         }
         if (transform == null) {
-            transform = factory.createAffineTransform(matrix);
+            transform = mtFactory.createAffineTransform(matrix);
             assertNotNull(transform);
         }
         final float[] coordinates = verifyInternalConsistency(reference.hashCode());
@@ -221,12 +219,12 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     private void runTest(final int numRow, final int numCol, final double... elements)
             throws FactoryException, TransformException
     {
-        assumeNotNull(factory);
+        assumeNotNull(mtFactory);
         if (matrix == null) {
             matrix = new SimpleMatrix(numRow, numCol, elements);
         }
         if (transform == null) {
-            transform = factory.createAffineTransform(matrix);
+            transform = mtFactory.createAffineTransform(matrix);
             assertNotNull(transform);
         }
         verifyInternalConsistency(Arrays.hashCode(elements));
