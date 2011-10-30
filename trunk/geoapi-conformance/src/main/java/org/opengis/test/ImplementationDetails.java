@@ -70,7 +70,7 @@ public interface ImplementationDetails {
      *    return config;
      *}</pre></blockquote>
      *
-     * If more than one {@code ImplementationDetails} is found on the classpath, then a logical AND
+     * If more than one {@code ImplementationDetails} is found on the classpath, then a logical {@code AND}
      * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(...)}
      * calls.
      * <p>

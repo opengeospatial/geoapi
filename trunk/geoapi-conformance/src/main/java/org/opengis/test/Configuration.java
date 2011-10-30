@@ -70,6 +70,9 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  *       were used.</li>
  * </ul>
  *
+ * @see TestCase#configuration()
+ * @see ImplementationDetails#configuration(Factory[])
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
@@ -354,7 +357,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isToleranceRelaxed");
 
         /**
-         * The {@link MathTransformFactory Math Transform factory} instance used for a test.
+         * The {@linkplain MathTransformFactory Math Transform factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AffineTransformTest#mtFactory
          * @see org.opengis.test.referencing.ParameterizedTransformTest#mtFactory
@@ -364,7 +367,7 @@ public class Configuration implements Serializable {
                 new Key<MathTransformFactory>(MathTransformFactory.class, "mtFactory");
 
         /**
-         * The {@link CoordinateOperationFactory Coordinate Operation factory} instance used
+         * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used
          * for a test.
          *
          * @see org.opengis.test.referencing.PseudoEpsgFactory#opFactory
@@ -373,7 +376,7 @@ public class Configuration implements Serializable {
                 new Key<CoordinateOperationFactory>(CoordinateOperationFactory.class, "opFactory");
 
         /**
-         * The {@link CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
+         * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
          */
         public static final Key<CoordinateOperationAuthorityFactory> opAuthorityFactory =
@@ -399,7 +402,7 @@ public class Configuration implements Serializable {
                 new Key<CRSAuthorityFactory>(CRSAuthorityFactory.class, "crsAuthorityFactory");
 
         /**
-         * The {@link CSFactory Coordinate System factory} instance used for a test.
+         * The {@linkplain CSFactory Coordinate System factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.ObjectFactoryTest#csFactory
          * @see org.opengis.test.referencing.PseudoEpsgFactory#csFactory
@@ -408,7 +411,7 @@ public class Configuration implements Serializable {
                 new Key<CSFactory>(CSFactory.class, "csFactory");
 
         /**
-         * The {@link CSAuthorityFactory Coordinate System authority factory} instance used for a test.
+         * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#csAuthorityFactory
          * @see org.opengis.test.referencing.gigs.Series2000Test#csAuthorityFactory
@@ -417,7 +420,7 @@ public class Configuration implements Serializable {
                 new Key<CSAuthorityFactory>(CSAuthorityFactory.class, "csAuthorityFactory");
 
         /**
-         * The {@link DatumFactory Datum factory} instance used for a test.
+         * The {@linkplain DatumFactory Datum factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.ObjectFactoryTest#datumFactory
          * @see org.opengis.test.referencing.PseudoEpsgFactory#datumFactory
@@ -426,7 +429,7 @@ public class Configuration implements Serializable {
                 new Key<DatumFactory>(DatumFactory.class, "datumFactory");
 
         /**
-         * The {@link DatumAuthorityFactory Datum authority factory} instance used for a test.
+         * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#datumAuthorityFactory
          * @see org.opengis.test.referencing.gigs.Series2000Test#datumAuthorityFactory
