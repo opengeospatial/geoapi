@@ -46,6 +46,7 @@ import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.*;
 import org.opengis.test.Configuration;
 import org.opengis.test.FactoryFilter;
 import org.opengis.test.TestCase;
@@ -104,6 +105,11 @@ public strictfp class Series2000Test extends TestCase {
     protected final DatumAuthorityFactory datumAuthorityFactory;
 
     /**
+     * Factory to build {@link CoordinateOperation} instances, or {@code null} if none.
+     */
+    protected final CoordinateOperationAuthorityFactory opAuthorityFactory;
+
+    /**
      * {@code true} if the factories support {@linkplain IdentifiedObject#getName() name}.
      * If {@code true} (the default), then the test methods will ensure that the identified
      * objects created by the factories declare the same name than the GIGS tests.
@@ -132,7 +138,8 @@ public strictfp class Series2000Test extends TestCase {
     @Parameterized.Parameters
     public static List<Factory[]> factories() {
         return factories(FactoryFilter.ByAuthority.EPSG,
-                CRSAuthorityFactory.class, CSAuthorityFactory.class, DatumAuthorityFactory.class);
+                CRSAuthorityFactory.class, CSAuthorityFactory.class, DatumAuthorityFactory.class,
+                CoordinateOperationAuthorityFactory.class);
     }
 
     /**
@@ -142,14 +149,16 @@ public strictfp class Series2000Test extends TestCase {
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
      * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
      * @param datumFactory Factory for creating {@link Datum} instances.
+     * @param opFactory    Factory for creating {@link CoordinateOperation} instances.
      */
-    public Series2000Test(final CRSAuthorityFactory crsFactory,
-            final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
+    public Series2000Test(final CRSAuthorityFactory crsFactory, final CSAuthorityFactory csFactory,
+            final DatumAuthorityFactory datumFactory, final CoordinateOperationAuthorityFactory opFactory)
     {
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
-        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
+        opAuthorityFactory    = opFactory;
+        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory, opFactory},
                 Configuration.Key.isNameSupported,
                 Configuration.Key.isAliasSupported);
         isNameSupported  = isEnabled[0];
@@ -168,6 +177,7 @@ public strictfp class Series2000Test extends TestCase {
      *       <li>{@linkplain #crsAuthorityFactory}</li>
      *       <li>{@linkplain #csAuthorityFactory}</li>
      *       <li>{@linkplain #datumAuthorityFactory}</li>
+     *       <li>{@linkplain #opAuthorityFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
@@ -180,6 +190,7 @@ public strictfp class Series2000Test extends TestCase {
         assertNull(op.put(Configuration.Key.crsAuthorityFactory,   crsAuthorityFactory));
         assertNull(op.put(Configuration.Key.csAuthorityFactory,    csAuthorityFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
+        assertNull(op.put(Configuration.Key.opAuthorityFactory,    opAuthorityFactory));
         return op;
     }
 
@@ -691,6 +702,65 @@ next:   for (final String search : expected) {
                 if (isNameSupported) {
                     assertEquals(message(prefix, "getName()"), pmName, getName(pm));
                 }
+            }
+        }
+    }
+
+    /**
+     * Reference map projections.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference map projections bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare map projection definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Map projection definitions bundled with the software should have the same name, method
+     *   name, defining parameters and parameter values as in the EPSG Dataset. The values of the
+     *   parameters should be correct to at least 10 significant figures. Map projections missing
+     *   from the software or included in the software additional to those in the EPSG Dataset or
+     *   at variance with those in the EPSG Dataset should be reported.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
+     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
+     */
+    @Test
+    @Ignore("Not yet validated")
+    public void test2005() throws FactoryException {
+        assumeNotNull(opAuthorityFactory);
+        final ExpectedData data = new ExpectedData("GIGS_2005_libProjection.csv",
+            String .class,  // [0]: EPSG Coordinate Operation Code(s)
+            Boolean.class,  // [1]: Particularly important to E&P industry?
+            String .class,  // [2]: Map Projection Name(s)
+            String .class,  // [3]: Coordinate Operation Method
+            String .class); // [4]: Remarks
+
+         final StringBuilder prefix = new StringBuilder("Projection[");
+         final int prefixLength = prefix.length();
+         while (data.next()) {
+            final String name = data.getString(3);
+            final String projection = data.getString(2);
+            for (final int code : data.getInts(0)) {
+                final CoordinateOperation op;
+                try {
+                    op = opAuthorityFactory.createCoordinateOperation(String.valueOf(code));
+                } catch (NoSuchAuthorityCodeException e) {
+                    unsupportedCode(CoordinateOperation.class, code, e);
+                    continue;
+                }
+                validate(op);
+                prefix.setLength(prefixLength);
+                prefix.append(code).append("].");
+                testIdentifier(message(prefix, "getIdentifiers()"), code, op.getIdentifiers());
+                assertInstanceOf(message(prefix, "class"), SingleOperation.class, op);
+                final SingleOperation singleOp = (SingleOperation) op;
+                assertEquals(message(prefix, "getMethod().getName()"), projection, singleOp.getMethod().getName());
             }
         }
     }

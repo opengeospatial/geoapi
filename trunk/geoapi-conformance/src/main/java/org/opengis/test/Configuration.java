@@ -378,6 +378,8 @@ public class Configuration implements Serializable {
         /**
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
+         *
+         * @see org.opengis.test.referencing.gigs.Series2000Test#opAuthorityFactory
          */
         public static final Key<CoordinateOperationAuthorityFactory> opAuthorityFactory =
                 new Key<CoordinateOperationAuthorityFactory>(CoordinateOperationAuthorityFactory.class, "opAuthorityFactory");

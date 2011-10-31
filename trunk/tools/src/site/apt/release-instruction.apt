@@ -21,6 +21,9 @@ svn commit -m "Updated the list of GeoAPI classes and methods."
 
 * Create the tag and deploy
 
+  Edit the version number in the <<<description.xml>>> and <<<update.xml>>> files of the
+  <<<geoapi-openoffice>>> module.
+
   Defines the version number for the GeoAPI milesone. The example below
   uses 3.1-M1. Please edit as needed.
 
@@ -46,14 +49,13 @@ find . -name "pom.xml" -print | xargs sed -i '' "s/3.1-SNAPSHOT/$GEOAPI_VERSION/
 svn diff
 ---------------------------------------------------------------------------------------------
 
-  Test, commit and deploy. You may need to add <<<-Pgeotoolkit>>> or <<<-Popengeo>>>
-  to the <<<mvn deploy>>> command.
+  Test, commit and deploy.
 
 ---------------------------------------------------------------------------------------------
 mvn clean install
 svn status
 svn commit -m "Set the version number to $GEOAPI_VERSION."
-mvn clean deploy --activate-profiles geotoolkit
+mvn clean deploy
 ---------------------------------------------------------------------------------------------
 
 

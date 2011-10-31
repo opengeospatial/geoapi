@@ -32,6 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.io.IOException;
@@ -58,6 +59,18 @@ final class ExpectedData {
      * The separator for elements in a list.
      */
     private static final char LIST_ELEMENT_SEPARATOR = ';';
+
+    /**
+     * The character to use as a separator between the lower and the upper value in a range.
+     * Example: {@code "16362-16398"}.
+     */
+    private static final char RANGE_SEPARATOR = '-';
+
+    /**
+     * The character to use for specifying a step after a range.
+     * Example: {@code "16362-16398 +2"}.
+     */
+    private static final char STEP_PREFIX = '+';
 
     /**
      * The character used for quoting strings. The column separator
@@ -116,7 +129,7 @@ final class ExpectedData {
     /**
      * Parses a single row. The given line must be non-empty.
      */
-    static Object[] parseRow(String line, final Class<?>[] columnTypes) {
+    static Object[] parseRow(String line, final Class<?>... columnTypes) {
         final Object[] row = new Object[columnTypes.length];
         for (int i=0; i<columnTypes.length; i++) {
             // Find the start index and end index of substring to parse.
@@ -196,57 +209,6 @@ final class ExpectedData {
     }
 
     /**
-     * Returns the value in the given column as an integer.
-     *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not an integer.
-     * @throws NullPointerException If there is no value in the given column.
-     */
-    public int getInt(final int column) {
-        return (Integer) getValue(column);
-    }
-
-    /**
-     * Returns the value in the given column as an integer, or {@code null} if none.
-     *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not an integer.
-     */
-    public Integer getIntOptional(final int column) {
-        return (Integer) getValue(column);
-    }
-
-    /**
-     * Returns the value in the given column as a double.
-     *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column, or {@code Double#NaN} if none.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not a double.
-     */
-    public double getDouble(final int column) {
-        final Double value = (Double) getValue(column);
-        return (value != null) ? value : Double.NaN;
-    }
-
-    /**
-     * Returns the value in the given column as a boolean.
-     *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not a boolean.
-     * @throws NullPointerException If there is no value in the given column.
-     */
-    public boolean getBoolean(final int column) {
-        return (Boolean) getValue(column);
-    }
-
-    /**
      * Returns the value in the given column as a list of strings.
      * The original data is assumed to be a semi-colon separated list.
      *
@@ -273,6 +235,99 @@ final class ExpectedData {
             } while (!stop);
         }
         return elements.toArray(new String[elements.size()]);
+    }
+
+    /**
+     * Returns the value in the given column as an integer, or {@code null} if none.
+     *
+     * @param  column The column from which to get the value.
+     * @return The value in the given column.
+     * @throws NoSuchElementException If there is currently no active row.
+     * @throws ClassCastException If the value in the given column is not an integer.
+     */
+    public Integer getIntOptional(final int column) {
+        return (Integer) getValue(column);
+    }
+
+    /**
+     * Returns the value in the given column as an integer.
+     *
+     * @param  column The column from which to get the value.
+     * @return The value in the given column.
+     * @throws NoSuchElementException If there is currently no active row.
+     * @throws ClassCastException If the value in the given column is not an integer.
+     * @throws NullPointerException If there is no value in the given column.
+     */
+    public int getInt(final int column) {
+        return (Integer) getValue(column);
+    }
+
+    /**
+     * Returns the value in the given column as a sequence of integers. The original data is
+     * assumed to be a semi-colon separated list of values or range of values. Example:
+     * <p>
+     * <code>16261-16299; 16070-16089; 16099</code>
+     */
+    public int[] getInts(final int column) {
+        final String[] strings = getStrings(column);
+        int[] values = new int[strings.length];
+        int count = 0;
+        for (final String element : strings) {
+            final int lower, upper, step;
+            final int upperAt = element.indexOf(RANGE_SEPARATOR);
+            if (upperAt <= 0) {
+                // We have a single number, no range.
+                lower = upper = Integer.parseInt(element);
+                step = 1;
+            } else {
+                // We have a range of values. Get the upper value.
+                lower = Integer.parseInt(element.substring(0, upperAt).trim());
+                int stepAt = element.indexOf(STEP_PREFIX, upperAt);
+                if (stepAt < 0) {
+                    stepAt = element.length();
+                    step = 1;
+                } else {
+                    step = Integer.parseInt(element.substring(stepAt+1).trim());
+                }
+                upper = Integer.parseInt(element.substring(upperAt+1, stepAt).trim());
+            }
+            // At this point, we have all information to add in the array.
+            // First, we must ensure that the array as a suffisient capacity.
+            final int length = count + (upper - lower) / step + 1;
+            if (length > values.length) {
+                values = Arrays.copyOf(values, Math.max(values.length*2, length));
+            }
+            for (int value=lower; value<=upper; value+=step) {
+                values[count++] = value;
+            }
+        }
+        return Arrays.copyOf(values, count);
+    }
+
+    /**
+     * Returns the value in the given column as a double.
+     *
+     * @param  column The column from which to get the value.
+     * @return The value in the given column, or {@code Double#NaN} if none.
+     * @throws NoSuchElementException If there is currently no active row.
+     * @throws ClassCastException If the value in the given column is not a double.
+     */
+    public double getDouble(final int column) {
+        final Double value = (Double) getValue(column);
+        return (value != null) ? value : Double.NaN;
+    }
+
+    /**
+     * Returns the value in the given column as a boolean.
+     *
+     * @param  column The column from which to get the value.
+     * @return The value in the given column.
+     * @throws NoSuchElementException If there is currently no active row.
+     * @throws ClassCastException If the value in the given column is not a boolean.
+     * @throws NullPointerException If there is no value in the given column.
+     */
+    public boolean getBoolean(final int column) {
+        return (Boolean) getValue(column);
     }
 
     /**
