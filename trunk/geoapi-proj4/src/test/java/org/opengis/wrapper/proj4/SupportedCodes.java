@@ -342,21 +342,24 @@ public class SupportedCodes {
      * <p>
      * <ul>
      *   <li>{@code $PROJ4/proj/nad} where {@code $PROJ4} in the trunk directory of a Proj.4
-     *       Subversion (SVN) check out.</li>
+     *       Subversion (SVN) check out. If the code has been checkout from the SVN repository,
+     *       then this is the {@code "proj/nad"} subdirectory.</li>
      *   <li>{@code jdbc:postgresql://$HOST/$DATABASE?user=$USER&password=$PW} where the
      *       various {@code $FOO} variables are connection parameters to an EPSG database.
      *       Note that MySQL and Oracle databases should work too.</li>
      * </ul>
+     * <p>
+     * The output file will be written in the current directory.
      *
      * @param  args The command line arguments.
      * @throws IOException  If an error occurred while reading the file.
      * @throws SQLException If an error occurred while querying the database.
      */
     public static void main(final String[] args) throws IOException, SQLException {
-         if (args.length != 2) {
+        if (args.length != 2) {
             System.out.println("Expected arguments:");
             System.out.println("  Root of Proj.4 data directory");
-            System.out.println("  URL to an EPSG database (SQL syntax)");
+            System.out.println("  URL to an EPSG database (JDBC syntax)");
             return;
         }
         final SupportedCodes codes = new SupportedCodes(new File(args[0]), DriverManager.getConnection(args[1]));
