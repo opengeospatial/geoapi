@@ -8,12 +8,12 @@
     <h1>Changes compared to GIGS files</h1>
     <p>GIGS guidance notice typically requires an accuracy of 10 decimal figures. However some data
        declared in the original Excel files do not allow such precision. This page documents the
-       necessary changes applied in order to meet the required accuracy. The new values come either
-       from the EPSG database version 7.9.</p>
+       necessary changes applied in order to meet the required accuracy. All new values listed below
+       come from the EPSG database version 7.9.</p>
 
     <h2><a href="https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs/GIGS_2001_libUnit.csv">GIGS_2001_libUnit.csv</a></h2>
-    <table border="1">
-      <tr><th>EPSG Code</th><th>EPSG name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
+    <table border="3">
+      <tr><th>Unit Code</th><th>Unit name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
       <tr><td align="center">9003</td><td>US survey foot</td><td>Base units per unit</td><td align="right">0.30480061</td><td align="right">0.30480060960121924</td></tr>
       <tr><td align="center">9031</td><td>German legal metre</td><td>Base units per unit</td><td align="right">1.000013597</td><td align="right">1.0000135965</td></tr>
       <tr><td align="center">9005</td><td>Clarke's foot</td><td>Base units per unit</td><td align="right">0.304797265</td><td align="right">0.3047972654</td></tr>
@@ -30,8 +30,8 @@
     </table>
 
     <h2><a href="https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs/GIGS_2002_libEllipsoid.csv">GIGS_2002_libEllipsoid.csv</a></h2>
-    <table border="1">
-      <tr><th>EPSG Code</th><th>EPSG name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
+    <table border="3">
+      <tr><th>Ellipsoid Code</th><th>Ellipsoid name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
       <tr><td align="center">7009</td><td>Clarke 1866 Michigan</td><td>Semi-major axis</td><td align="right">20926631.53</td><td align="right">20926631.531</td></tr>
       <tr><td align="center">7049</td><td>IAG 1975</td><td>Ellipsoid Name & aliases</td><td>Xian 1980</td><td>IAG 1975, Xian 1980</td></tr>
       <tr><td align="center">7030</td><td>WGS 84</td><td>Inverse flattening</td><td align="right">298.2572236</td><td align="right">298.257223563</td></tr>
@@ -41,8 +41,8 @@
     </table>
 
     <h2><a href="https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs/GIGS_2003_libPrimeMeridian.csv">GIGS_2003_libPrimeMeridian.csv</a></h2>
-    <table border="1">
-      <tr><th>EPSG Code</th><th>EPSG name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
+    <table border="3">
+      <tr><th>Meridian Code</th><th>Meridian name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
       <tr><td align="center">8909</td><td>Ferro</td><td>Longitude from Greenwich (decimal degrees)</td><td align="right">-17.6666667</td><td align="right">-17.666666666666667</td></tr>
       <tr><td align="center">8908</td><td>Jakarta</td><td>Longitude from Greenwich (decimal degrees)</td><td align="right">106.8077194</td><td align="right">106.80771944444444</td></tr>
       <tr><td align="center">8903</td><td>Paris</td><td>Longitude from Greenwich (decimal degrees)</td><td align="right">2.3372292</td><td align="right">2.33722917</td></tr>
@@ -57,7 +57,7 @@
     </table>
 
     <h2><a href="https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs/GIGS_2004_libGeodeticDatumCRS.csv">GIGS_2004_libGeodeticDatumCRS.csv</a></h2>
-    <table border="1">
+    <table border="3">
       <tr><th>Datum Code</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
       <tr><td align="center">6268</td><td>Datum name</td><td>NAD Michigan</td><td>NAD27 Michigan</td></tr>
       <tr><td align="center">6152</td><td>Datum name</td><td>NAD83 (High Accuracy Regional Network)</td><td>NAD83 (High Accuracy Reference Network)</td></tr>
@@ -71,6 +71,20 @@
       <tr><td align="center">6728</td><td>Datum & CRS name</td><td>Pico de la Nieves</td><td>Pico de las Nieves 1984</td></tr>
       <tr><td align="center">6156</td><td>Datum name</td><td>Jednotne Trigonometricke Site Katastralni</td><td>System Jednotne Trigonometricke Site Katastralni</td></tr>
       <tr><td align="center">6818</td><td>Datum name</td><td>S-JTSK (Ferro)</td><td>System Jednotne Trigonometricke Site Katastralni (Ferro)</td></tr>
+    </table>
+
+    <h2><a href="https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs/GIGS_2005_libProjection.csv">GIGS_2005_libProjection.csv</a></h2>
+    <table border="3">
+      <tr><th>Operation Code</th><th>Operation name</th><th>Column of modified value</th><th>Old value</th><th>New value</th></tr>
+      <tr><td>19977</td><td>Aramco Lambert</td><td>Coordinate Operation Method</td><td>Transverse Mercator</td><td>Lambert Conic Conformal (2SP)</td></tr>
+      <tr><td>19931</td><td>EOV</td><td>Coordinate Operation Method</td><td>Oblique Mercator</td><td>Hotine Oblique Mercator (variant B)</td></tr>
+      <tr><td>18085</td><td>Lambert-93</td><td>Coordinate Operation Method</td><td>Lambert Conic Conformal (1SP)</td><td>Lambert Conic Conformal (2SP)</td></tr>
+      <tr><td>19911; 19861</td><td>Laborde</td><td>Coordinate Operation Method</td><td>Laborde Madagascar; Oblique Mercator</td><td>Hotine Oblique Mercator (variant B)</td></tr>
+      <tr><td>19905</td><td>NEIEZ</td><td>Coordinate Operation Method</td><td>Mercator (1SP)</td><td>Mercator (variant A)</td></tr>
+      <tr><td>19956-19958</td><td>Malaysia RSO grids</td><td>Coordinate Operation Method</td><td>Hotine Oblique Mercator; Oblique Mercator</td><td>Hotine Oblique Mercator (variant B)</td></tr>
+      <tr><td>19871-19872; 19894; 19895</td><td>Malaysia RSO grids</td><td>Coordinate Operation Method</td><td>Hotine Oblique Mercator; Oblique Mercator</td><td>Hotine Oblique Mercator (variant A)</td></tr>
+      <tr><td>15002-15009; <i>etc.</i></td><td>US State Plane zones</td><td>Coordinate Operation Method</td><td>Lambert Conic Conformal (2SP); Transverse Mercator</td><td>Transverse Mercator</td></tr>
+      <tr><td>10404-10406; <i>etc.</i></td><td>US State Plane zones</td><td>Coordinate Operation Method</td><td>Lambert Conic Conformal (2SP); Transverse Mercator</td><td>Lambert Conic Conformal (2SP)</td></tr>
     </table>
   </body>
 </html>

@@ -41,6 +41,7 @@ import javax.measure.converter.ConversionException;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.util.GenericName;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
@@ -107,7 +108,7 @@ public strictfp class Series2000Test extends TestCase {
     /**
      * Factory to build {@link CoordinateOperation} instances, or {@code null} if none.
      */
-    protected final CoordinateOperationAuthorityFactory opAuthorityFactory;
+    protected final CoordinateOperationAuthorityFactory copAuthorityFactory;
 
     /**
      * {@code true} if the factories support {@linkplain IdentifiedObject#getName() name}.
@@ -149,16 +150,16 @@ public strictfp class Series2000Test extends TestCase {
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
      * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
      * @param datumFactory Factory for creating {@link Datum} instances.
-     * @param opFactory    Factory for creating {@link CoordinateOperation} instances.
+     * @param copFactory   Factory for creating {@link CoordinateOperation} instances.
      */
     public Series2000Test(final CRSAuthorityFactory crsFactory, final CSAuthorityFactory csFactory,
-            final DatumAuthorityFactory datumFactory, final CoordinateOperationAuthorityFactory opFactory)
+            final DatumAuthorityFactory datumFactory, final CoordinateOperationAuthorityFactory copFactory)
     {
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
-        opAuthorityFactory    = opFactory;
-        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory, opFactory},
+        copAuthorityFactory   = copFactory;
+        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory, copFactory},
                 Configuration.Key.isNameSupported,
                 Configuration.Key.isAliasSupported);
         isNameSupported  = isEnabled[0];
@@ -177,7 +178,7 @@ public strictfp class Series2000Test extends TestCase {
      *       <li>{@linkplain #crsAuthorityFactory}</li>
      *       <li>{@linkplain #csAuthorityFactory}</li>
      *       <li>{@linkplain #datumAuthorityFactory}</li>
-     *       <li>{@linkplain #opAuthorityFactory}</li>
+     *       <li>{@linkplain #copAuthorityFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
@@ -190,7 +191,7 @@ public strictfp class Series2000Test extends TestCase {
         assertNull(op.put(Configuration.Key.crsAuthorityFactory,   crsAuthorityFactory));
         assertNull(op.put(Configuration.Key.csAuthorityFactory,    csAuthorityFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
-        assertNull(op.put(Configuration.Key.opAuthorityFactory,    opAuthorityFactory));
+        assertNull(op.put(Configuration.Key.copAuthorityFactory,   copAuthorityFactory));
         return op;
     }
 
@@ -198,7 +199,7 @@ public strictfp class Series2000Test extends TestCase {
      * Invoked when the implementation does not support one of the code defined in
      * the GIGS test suite.
      */
-    private void unsupportedCode(final Class<?> type, final int code, final NoSuchAuthorityCodeException e) {
+    private void unsupportedCode(final Class<?> type, final int code, final NoSuchIdentifierException e) {
         // TODO
     }
 
@@ -485,7 +486,7 @@ next:   for (final String search : expected) {
      * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
-     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
+     *         unsupported code}) occurred while creating a prime meridian from an EPSG code.
      */
     @Test
     public void test2003() throws FactoryException {
@@ -563,7 +564,7 @@ next:   for (final String search : expected) {
      * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
-     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
+     *         unsupported code}) occurred while creating a geodetic CRS from an EPSG code.
      */
     @Test
     public void test2004() throws FactoryException {
@@ -727,13 +728,12 @@ next:   for (final String search : expected) {
      *   at variance with those in the EPSG Dataset should be reported.</td>
      * </tr></table>
      *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
-     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
+     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
+     *         unsupported identifier}) occurred while creating an operation from an EPSG code.
      */
     @Test
-    @Ignore("Not yet validated")
     public void test2005() throws FactoryException {
-        assumeNotNull(opAuthorityFactory);
+        assumeNotNull(copAuthorityFactory);
         final ExpectedData data = new ExpectedData("GIGS_2005_libProjection.csv",
             String .class,  // [0]: EPSG Coordinate Operation Code(s)
             Boolean.class,  // [1]: Particularly important to E&P industry?
@@ -744,23 +744,28 @@ next:   for (final String search : expected) {
          final StringBuilder prefix = new StringBuilder("Projection[");
          final int prefixLength = prefix.length();
          while (data.next()) {
-            final String name = data.getString(3);
-            final String projection = data.getString(2);
             for (final int code : data.getInts(0)) {
-                final CoordinateOperation op;
+                final CoordinateOperation cop;
                 try {
-                    op = opAuthorityFactory.createCoordinateOperation(String.valueOf(code));
-                } catch (NoSuchAuthorityCodeException e) {
+                    cop = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
+                } catch (NoSuchIdentifierException e) {
+                    // Relaxed the exception type from NoSuchAuthorityCodeException because
+                    // CoordinateOperation creation will typically use MathTransformFactory
+                    // under the hood, which throws NoSuchIdentifierException for non-implemented
+                    // operation methods (may be identified by their name rather than EPSG code).
                     unsupportedCode(CoordinateOperation.class, code, e);
                     continue;
                 }
-                validate(op);
+                validate(cop);
                 prefix.setLength(prefixLength);
                 prefix.append(code).append("].");
-                testIdentifier(message(prefix, "getIdentifiers()"), code, op.getIdentifiers());
-                assertInstanceOf(message(prefix, "class"), SingleOperation.class, op);
-                final SingleOperation singleOp = (SingleOperation) op;
-                assertEquals(message(prefix, "getMethod().getName()"), projection, singleOp.getMethod().getName());
+                testIdentifier(message(prefix, "getIdentifiers()"), code, cop.getIdentifiers());
+                assertInstanceOf(message(prefix, "class"), Conversion.class, cop);
+                final Conversion conversion = (Conversion) cop;
+                if (isNameSupported) {
+                    final String method = data.getString(3);
+                    assertEquals(message(prefix, "getMethod().getName()"), method, getName(conversion.getMethod()));
+                }
             }
         }
     }

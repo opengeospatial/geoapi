@@ -106,7 +106,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Factory to build {@link Conversion} instances, or {@code null} if none.
      */
-    protected final CoordinateOperationFactory opFactory;
+    protected final CoordinateOperationFactory copFactory;
 
     /**
      * Factory to build {@link MathTransform} instances, or {@code null} if none.
@@ -119,20 +119,20 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @param datumFactory Factory for creating {@link Datum} instances.
      * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param opFactory    Factory for creating {@link Conversion} instances.
+     * @param copFactory   Factory for creating {@link Conversion} instances.
      * @param mtFactory    Factory for creating {@link MathTransform} instances.
      */
     public PseudoEpsgFactory(
-            final DatumFactory            datumFactory,
-            final CSFactory                  csFactory,
-            final CRSFactory                crsFactory,
-            final CoordinateOperationFactory opFactory,
-            final MathTransformFactory       mtFactory)
+            final DatumFactory             datumFactory,
+            final CSFactory                   csFactory,
+            final CRSFactory                 crsFactory,
+            final CoordinateOperationFactory copFactory,
+            final MathTransformFactory        mtFactory)
     {
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;
-        this.opFactory    = opFactory;
+        this.copFactory   = copFactory;
         this.mtFactory    = mtFactory;
     }
 

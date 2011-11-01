@@ -107,7 +107,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
     /**
      * Factory to build {@link Conversion} instances, or {@code null} if none.
      */
-    protected final CoordinateOperationFactory opFactory;
+    protected final CoordinateOperationFactory copFactory;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -132,25 +132,25 @@ public strictfp class ObjectFactoryTest extends TestCase {
      * @param datumFactory Factory for creating {@link Datum} instances.
      * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param opFactory    Factory for creating {@link Conversion} instances.
+     * @param copFactory   Factory for creating {@link Conversion} instances.
      */
     public ObjectFactoryTest(
-            final DatumFactory            datumFactory,
-            final CSFactory                  csFactory,
-            final CRSFactory                crsFactory,
-            final CoordinateOperationFactory opFactory)
+            final DatumFactory             datumFactory,
+            final CSFactory                   csFactory,
+            final CRSFactory                 crsFactory,
+            final CoordinateOperationFactory copFactory)
     {
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;
-        this.opFactory    = opFactory;
+        this.copFactory   = copFactory;
     }
 
     /**
      * Returns the authority factory tests backed by the object factories.
      */
     private AuthorityFactoryTest createAuthorityFactoryTest() {
-        final PseudoEpsgFactory factory = new PseudoEpsgFactory(datumFactory, csFactory, crsFactory, opFactory, null);
+        final PseudoEpsgFactory factory = new PseudoEpsgFactory(datumFactory, csFactory, crsFactory, copFactory, null);
         return new AuthorityFactoryTest(factory, factory, factory);
     }
 
@@ -307,8 +307,8 @@ public strictfp class ObjectFactoryTest extends TestCase {
         baseCRS   = crsFactory.createGeographicCRS(name("2D geographic CRS"), baseDatum, baseCS);
         heightCRS = crsFactory.createVerticalCRS  (name("Height CRS"),      heightDatum, heightCS);
 
-        assumeNotNull(opFactory);
-        validate(projectionMethod = opFactory.getOperationMethod("Transverse_Mercator"));
+        assumeNotNull(copFactory);
+        validate(projectionMethod = copFactory.getOperationMethod("Transverse_Mercator"));
         final ParameterValueGroup paramUTM = projectionMethod.getParameters().createValue();
         paramUTM.parameter("central_meridian")  .setValue(-180 + utmZone*6 - 3);
         paramUTM.parameter("latitude_of_origin").setValue(0.0);
@@ -317,7 +317,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
         paramUTM.parameter("false_northing")    .setValue(0.0);
         validate(paramUTM);
 
-        validate(baseToUTM    = opFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
+        validate(baseToUTM    = copFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
         validate(projectedCRS = crsFactory.createProjectedCRS(name("WGS 84 / UTM Zone 12 (2D)"), baseCRS, baseToUTM, projectedCS));
         validate(crs3D        = crsFactory.createCompoundCRS(name("3D Compound WGS 84 / UTM Zone 12"), projectedCRS, heightCRS));
         assertAxisDirectionsEqual(crs3D.getCoordinateSystem(), NORTH, EAST, UP);

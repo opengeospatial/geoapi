@@ -370,19 +370,19 @@ public class Configuration implements Serializable {
          * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used
          * for a test.
          *
-         * @see org.opengis.test.referencing.PseudoEpsgFactory#opFactory
+         * @see org.opengis.test.referencing.PseudoEpsgFactory#copFactory
          */
-        public static final Key<CoordinateOperationFactory> opFactory =
-                new Key<CoordinateOperationFactory>(CoordinateOperationFactory.class, "opFactory");
+        public static final Key<CoordinateOperationFactory> copFactory =
+                new Key<CoordinateOperationFactory>(CoordinateOperationFactory.class, "copFactory");
 
         /**
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
          *
-         * @see org.opengis.test.referencing.gigs.Series2000Test#opAuthorityFactory
+         * @see org.opengis.test.referencing.gigs.Series2000Test#copAuthorityFactory
          */
-        public static final Key<CoordinateOperationAuthorityFactory> opAuthorityFactory =
-                new Key<CoordinateOperationAuthorityFactory>(CoordinateOperationAuthorityFactory.class, "opAuthorityFactory");
+        public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
+                new Key<CoordinateOperationAuthorityFactory>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
 
         /**
          * The {@linkplain CRSFactory Coordinate Reference System factory} instance used for a test.
