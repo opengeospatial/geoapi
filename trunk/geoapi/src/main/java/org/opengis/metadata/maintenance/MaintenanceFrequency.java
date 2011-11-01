@@ -134,12 +134,6 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     public static final MaintenanceFrequency UNKNOWN = new MaintenanceFrequency("UNKNOWN");
 
     /**
-     * @deprecated Renamed {@link #UNKNOWN}.
-     */
-    @Deprecated
-    public static final MaintenanceFrequency UNKNOW = UNKNOWN;
-
-    /**
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *
