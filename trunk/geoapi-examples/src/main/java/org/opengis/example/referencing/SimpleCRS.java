@@ -53,7 +53,7 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
     /**
      * Creates a new CRS for the given name, datum and axes.
      *
-     * @param authority Organization responsible for definition of the name, or {@code null}.
+     * @param authority Organization responsible for definition of the CRS, or {@code null}.
      * @param name      The name of the new CRS.
      * @param datum     The value to be returned by {@link #getDatum()}.
      * @param axes      The axes to be returned by {@link #getAxis(int)}. The length of this array

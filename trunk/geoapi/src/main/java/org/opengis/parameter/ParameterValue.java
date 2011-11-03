@@ -66,6 +66,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The abstract definition of this parameter value.
      */
+    @Override
     ParameterDescriptor<T> getDescriptor();
 
     /**
@@ -83,7 +84,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     Unit<?> getUnit();
 
     /**
-     * Returns the numeric value of the coordinate operation parameter in the specified unit
+     * Returns the numeric value of the operation parameter in the specified unit
      * of measure. This convenience method applies unit conversion on the fly as needed.
      *
      * @param  unit The unit of measure for the value to be returned.
@@ -100,8 +101,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     double doubleValue(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
 
     /**
-     * Returns the numeric value of the coordinate operation parameter with its
-     * associated {@linkplain #getUnit unit of measure}.
+     * Returns the numeric value represented by this operation parameter.
+     * The units of measurement are specified by {@link #getUnit()}.
      *
      * @return The numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
@@ -138,7 +139,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     int intValue() throws IllegalStateException;
 
     /**
-     * Returns the boolean value of an operation parameter
+     * Returns the boolean value of an operation parameter.
      * A boolean value does not have an associated unit of measure.
      *
      * @return The boolean value represented by this parameter.
@@ -266,7 +267,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Sets the parameter value as a floating point and its associated unit.
      *
      * @param  value The parameter value.
-     * @param  unit The unit for the specified value.
+     * @param  unit The unit for the specified values.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
@@ -290,7 +291,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(double value) throws InvalidParameterValueException;
 
     /**
-     * Set the parameter value as an integer.
+     * Sets the parameter value as an integer.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the integer type is inappropriate for this parameter,
@@ -301,7 +302,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(int value) throws InvalidParameterValueException;
 
     /**
-     * Set the parameter value as a boolean.
+     * Sets the parameter value as a boolean.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the boolean type is inappropriate for this parameter.
@@ -311,7 +312,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(boolean value) throws InvalidParameterValueException;
 
     /**
-     * Set the parameter value as an object. The object type is typically a {@link Double},
+     * Sets the parameter value as an object. The object type is typically a {@link Double},
      * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]}
      * or {@code int[]}.
      * <p>
@@ -334,5 +335,6 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return A copy of this parameter value.
      */
+    @Override
     ParameterValue<T> clone();
 }

@@ -220,6 +220,14 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
 
     /**
      * Returns a string representation of the {@linkplain #getName() name} identifier.
+     * The default implementation build the string representation as below:
+     * <p>
+     * <ul>
+     *   <li>If this identifier has a {@linkplain #getCodeSpace() code space}, then returns
+     *       the concatenation of the code space, the {@code ':'} character, then the
+     *       {@linkplain #code}.</li>
+     *   <li>Otherwise returns the {@linkplain #code} directly.</li>
+     * </ul>
      */
     @Override
     public String toString() {
