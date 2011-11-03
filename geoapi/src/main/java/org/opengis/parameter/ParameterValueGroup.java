@@ -67,6 +67,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *   an abstract definition of parameters - not their actual values - and is consistent with
      *   usage in other Java libraries like the <cite>Java Advanced Imaging</cite> library.
      */
+    @Override
     @UML(identifier="group", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getDescriptor();
 
@@ -179,5 +180,6 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * @return A copy of this group of parameter values.
      */
+    @Override
     ParameterValueGroup clone();
 }
