@@ -96,6 +96,7 @@ public strictfp class NameTest extends TestCase {
      * @since 3.1
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(NameFactory.class);
     }

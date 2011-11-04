@@ -305,6 +305,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *        to decide which tests should be enabled.
      */
     protected TransformTestCase(final Factory... factories) {
+        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(factories,
                 Configuration.Key.isDoubleToDoubleSupported,
                 Configuration.Key.isFloatToFloatSupported,

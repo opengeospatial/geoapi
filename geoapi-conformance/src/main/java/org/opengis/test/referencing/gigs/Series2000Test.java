@@ -137,6 +137,7 @@ public strictfp class Series2000Test extends TestCase {
      * @return The default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(FactoryFilter.ByAuthority.EPSG,
                 CRSAuthorityFactory.class, CSAuthorityFactory.class, DatumAuthorityFactory.class,
@@ -159,6 +160,7 @@ public strictfp class Series2000Test extends TestCase {
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
         copAuthorityFactory   = copFactory;
+        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory, copFactory},
                 Configuration.Key.isNameSupported,
                 Configuration.Key.isAliasSupported);

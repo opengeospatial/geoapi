@@ -202,6 +202,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * @return The default set of arguments to be given to the {@code ParameterizedTransformTest} constructor.
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(MathTransformFactory.class);
     }

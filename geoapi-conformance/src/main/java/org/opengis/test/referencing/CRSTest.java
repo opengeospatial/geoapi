@@ -94,6 +94,7 @@ public strictfp class CRSTest extends TestCase {
      * @since 3.1
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(CRSAuthorityFactory.class);
     }

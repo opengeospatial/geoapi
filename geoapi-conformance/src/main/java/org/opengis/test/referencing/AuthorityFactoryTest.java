@@ -237,6 +237,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @since 3.1
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(CRSAuthorityFactory.class, CSAuthorityFactory.class, DatumAuthorityFactory.class);
     }
@@ -255,6 +256,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
+        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
                 Configuration.Key.isAxisSwappingSupported);
         isAxisSwappingSupported = isEnabled[0];
