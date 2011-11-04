@@ -49,7 +49,9 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  * </ul>
  * <p>
  * Other methods can be ignored, since they are metadata or methods designed for parameter values
- * of other kind than {@code double}.
+ * of other kind than {@code double}. To be strict, all methods working with any value type other
+ * than {@code double} should throw an {@link InvalidParameterTypeException}. However this
+ * implementation is {@linkplain #LENIENT lenient}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -60,6 +62,9 @@ public class SimpleParameter extends SimpleIdentifiedObject
 {
     /**
      * Determines the range of values and the unit of measurement of a parameter.
+     * This enum is stored in the {@link SimpleParameter#type} field, and used in
+     * order to determine the values returned by the methods implementing the
+     * {@link ParameterDescriptor} interface.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -69,12 +74,12 @@ public class SimpleParameter extends SimpleIdentifiedObject
         /**
          * Longitude as decimal degrees in the [-180° &hellip; +180°] range.
          */
-        LONGITUDE(NonSI.DEGREE_ANGLE, -90.0, +90.0),
+        LONGITUDE(NonSI.DEGREE_ANGLE, -180.0, +180.0),
 
         /**
          * Latitude as decimal degrees in the [-90° &hellip; +90°] range.
          */
-        LATITUDE(NonSI.DEGREE_ANGLE, -180.0, +180.0),
+        LATITUDE(NonSI.DEGREE_ANGLE, -90.0, +90.0),
 
         /**
          * Any linear value as metres, unbounded.
@@ -111,13 +116,37 @@ public class SimpleParameter extends SimpleIdentifiedObject
     private static final long serialVersionUID = -127301955366750847L;
 
     /**
+     * Controls whatever this implementation can convert values between the {@code double} type
+     * and other types. If {@code false}, methods {@link #intValue()}, {@link #intValueList()},
+     * {@link #doubleValueList()}, {@link #booleanValue()} and {@link #stringValue()} - together
+     * with their setter companions - will always throw an {@link InvalidParameterTypeException}.
+     * If {@code true}, some conversions will be attempted.
+     * <p>
+     * This field is defined for two purposes:
+     * <ul>
+     *   <li>Developers may find convenient to set this field to {@code false} during debugging,
+     *       since strict behavior often help to identify unexpected usage of parameters.</li>
+     *   <li>This field make easy to spot the codes implementing a lenient behavior. Library
+     *       implementors may want to remove such codes for making parameters definitively
+     *       strict.</li>
+     * </ul>
+     * <p>
+     * The current value is <code>{@value}</code>.
+     */
+    protected static final boolean LENIENT = true;
+
+    /**
      * The parameter type, which determines the range of values and the unit of measurement.
      * This field can be {@code null} if the parameter type is none of the enumerated ones.
      */
     protected final Type type;
 
     /**
-     * The parameter value.
+     * The parameter value. This is the only mutable property of the {@code SimpleParameter}
+     * class.
+     *
+     * @see #doubleValue()
+     * @see #setValue(double)
      */
     protected double value;
 
@@ -174,9 +203,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the unit of measurement. Because this class implements both the <cite>value</cite>
      * and <cite>descriptor</cite> interfaces, the unit of measurement applies to the
-     * {@linkplain #doubleValue() parameter value}, the {@linkplain #getDefaultValue default},
-     * the {@linkplain #getMinimumValue minimum} and the {@linkplain #getMaximumValue maximum}
-     * values.
+     * {@linkplain #doubleValue() parameter value} as well as the {@linkplain #getDefaultValue default},
+     * the {@linkplain #getMinimumValue minimum} and the {@linkplain #getMaximumValue maximum} values.
      *
      * @return The unit of measurement, or {@code null} if unknown.
      */
@@ -187,6 +215,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns the minimum parameter value, or {@code null} if none.
+     * The default implementation infers this property from the {@linkplain #type}.
      *
      * @return The minimum parameter value, or {@code null} if unbounded.
      */
@@ -197,6 +226,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns the maximum parameter value, or {@code null} if none.
+     * The default implementation infers this property from the {@linkplain #type}.
      *
      * @return The maximum parameter value, or {@code null} if unbounded.
      */
@@ -224,7 +254,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the parameter value as an object.
+     * Returns the parameter {@linkplain #value} as an object.
      *
      * @return The parameter value as an object.
      */
@@ -234,7 +264,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the numeric value represented by this parameter.
+     * Returns the numeric {@linkplain #value} represented by this parameter.
      *
      * @return The numeric value represented by this parameter.
      */
@@ -255,7 +285,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public double doubleValue(final Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
         if (type == null) {
-            throw new IllegalStateException("No unit for parameter " + code);
+            throw new IllegalStateException("No unit for parameter " + code + '.');
         }
         try {
             return type.unit.getConverterToAny(unit).convert(value);
@@ -266,94 +296,131 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns the integer value of an operation parameter, usually used for a count.
+     * If {@linkplain #LENIENT lenient}, this method returns the {@linkplain #value}
+     * casted to the {@code int} type only if this cast can be done without lost of
+     * information. In all other cases an exception is thrown.
      *
      * @return The numeric value represented by this parameter after conversion to type {@code int}.
-     * @throws InvalidParameterTypeException if the value can not be cast to an integer type.
+     * @throws InvalidParameterTypeException if the value can not be casted to an integer type.
      */
     @Override
     public int intValue() throws InvalidParameterTypeException {
-        final int candidate = (int) value;
-        if (candidate != value) {
-            throw new InvalidParameterTypeException("Value " + value + " is not an integer.", code);
+        if (LENIENT) {
+            final int candidate = (int) value;
+            if (candidate == value) {
+                return candidate;
+            }
         }
-        return candidate;
+        throw new InvalidParameterTypeException("Value " + value + " is not an integer.", code);
     }
 
     /**
-     * Returns the boolean value of an operation parameter. The default implementation returns
-     * {@code false} if the {@linkplain #value} is 0, {@code true} if the value is different
-     * than 0 and {@link Double#NaN NaN}, or thrown an exception otherwise.
+     * Returns the boolean value of an operation parameter.
+     * If {@linkplain #LENIENT lenient}, this method makes the following choice:
+     * <p>
+     * <ul>
+     *   <li>Returns {@code false} if the {@linkplain #value} is 0</li>
+     *   <li>Returns {@code true} if the {@linkplain #value} is 1</li>
+     *   <li>Throws an exception in all other cases</li>
+     * </ul>
      *
      * @return The boolean value represented by this parameter.
      * @throws InvalidParameterTypeException if the value can not be converted to a boolean.
      */
     @Override
     public boolean booleanValue() throws InvalidParameterTypeException {
-        if (Double.isNaN(value)) {
-            throw new InvalidParameterTypeException("Value " + value + " is not a boolean.", code);
+        if (LENIENT) {
+            if (value == 0) return false;
+            if (value == 1) return true;
         }
-        return (value != 0);
+        throw new InvalidParameterTypeException("Value " + value + " is not a boolean.", code);
     }
 
     /**
      * Returns the string representation of an operation parameter value.
+     * If {@linkplain #LENIENT lenient}, this method formats the {@linkplain #value}
+     * as a string and appends the units of measurement, if any.
+     *
+     * @return The numeric value and its units of measurement as a string.
+     * @throws InvalidParameterTypeException if the value can not be converted to a string.
      *
      * @see #toString()
      */
     @Override
-    public String stringValue() {
-        String s = String.valueOf(value);
-        if (type != null) {
-            s = s + ' ' + type.unit;
+    public String stringValue() throws InvalidParameterTypeException {
+        if (LENIENT) {
+            String s = String.valueOf(value);
+            if (type != null) {
+                s = s + ' ' + type.unit;
+            }
+            return s;
         }
-        return s;
+        throw new InvalidParameterTypeException("This parameter is not for strings.", code);
     }
 
     /**
      * Returns the string representation of this parameter value. The default implementation returns
-     * the concatenation of the {@linkplain SimpleIdentifiedObject#toString() identifier string},
-     * the {@code " = "} string, then the {@linkplain #stringValue() string value}.
+     * the concatenation of the {@linkplain SimpleIdentifiedObject#toString() identifier string}, the
+     * {@code " = "} string, then the same string than the {@linkplain #stringValue() string value}.
      *
      * @see #stringValue()
      */
     @Override
     public String toString() {
-        return super.toString() + " = " + stringValue();
+        final StringBuilder buffer = new StringBuilder(super.toString()).append(" = ").append(value);
+        if (type != null) {
+            buffer.append(' ').append(type.unit);
+        }
+        return buffer.toString();
     }
 
     /**
      * Returns an ordered sequence of numeric values in the specified unit of measure.
-     * The default implementation returns {@link #doubleValue(Unit)} in an array of length 1.
+     * If {@linkplain #LENIENT lenient}, this method returns {@link #doubleValue(Unit)}
+     * in an array of length 1.
      *
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws IllegalStateException if there is no unit associated to this parameter value.
+     * @throws InvalidParameterTypeException if the value can not be converted to an array.
      */
     @Override
     public double[] doubleValueList(final Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
-        return new double[] {doubleValue(unit)};
+        if (LENIENT) {
+            return new double[] {doubleValue(unit)};
+        }
+        throw new InvalidParameterTypeException("This parameter is not for arrays.", code);
     }
 
     /**
      * Returns an ordered sequence numeric values of an operation parameter list, where each value
-     * has the same associated {@linkplain Unit unit of measure}. The default implementation returns
-     * {@link #doubleValue()} in an array of length 1.
+     * has the same associated {@linkplain Unit unit of measure}. If {@linkplain #LENIENT lenient},
+     * this method returns {@link #doubleValue()} in an array of length 1.
      *
      * @return The sequence of values represented by this parameter.
+     * @throws InvalidParameterTypeException if the value can not be converted to an array.
      */
     @Override
-    public double[] doubleValueList() {
-        return new double[] {doubleValue()};
+    public double[] doubleValueList() throws InvalidParameterTypeException {
+        if (LENIENT) {
+            return new double[] {doubleValue()};
+        }
+        throw new InvalidParameterTypeException("This parameter is not for arrays.", code);
     }
 
     /**
      * Returns an ordered sequence integer values of an operation parameter list.
-     * The default implementation returns {@link #intValue()} in an array of length 1.
+     * If {@linkplain #LENIENT lenient}, this method returns {@link #intValue()}
+     * in an array of length 1.
      *
      * @return The sequence of values represented by this parameter.
+     * @throws InvalidParameterTypeException if the value can not be converted to an array.
      */
     @Override
-    public int[] intValueList() {
-        return new int[] {intValue()};
+    public int[] intValueList() throws InvalidParameterTypeException {
+        if (LENIENT) {
+            return new int[] {intValue()};
+        }
+        throw new InvalidParameterTypeException("This parameter is not for arrays.", code);
     }
 
     /**
@@ -365,24 +432,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      */
     @Override
     public URI valueFile() throws InvalidParameterTypeException {
-        throw new InvalidParameterTypeException("Value " + value + " is not a file.", code);
-    }
-
-    /**
-     * Sets the parameter value as an array of floating point and their associated unit.
-     * The default implementation ensures that the array length is exactly 1, then delegates
-     * to {@link #setValue(double, Unit)}.
-     *
-     * @param  values The parameter values.
-     * @param  unit The unit for the specified values.
-     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
-     */
-    @Override
-    public void setValue(final double[] values, final Unit<?> unit) throws InvalidParameterValueException {
-        if (values.length != 1) {
-            throw new InvalidParameterValueException("Expected an array of length 1.", code, values);
-        }
-        setValue(values[0], unit);
+        throw new InvalidParameterTypeException("This parameter is not for files.", code);
     }
 
     /**
@@ -407,12 +457,14 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Sets the parameter value as a floating point.
+     * Sets the parameter value as a floating point. This method ensures that the given value
+     * is inside the range of valid values, then assign the new value to the {@link #value}
+     * field.
      *
      * @throws InvalidParameterValueException if the parameter value is out of range.
      */
     @Override
-    public void setValue(final double value) {
+    public void setValue(final double value) throws InvalidParameterValueException {
         if (type != null) {
             Double limit = type.minimum;
             if (limit != null && value < limit) {
@@ -429,25 +481,58 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Sets the parameter value as an integer.
+     * Sets the parameter value as an array of floating point and their associated unit.
+     * If {@linkplain #LENIENT lenient}, this method ensures that the array length is exactly 1,
+     * then delegates to {@link #setValue(double, Unit)}.
+     *
+     * @param  values The parameter values.
+     * @param  unit The unit for the specified values.
+     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
      */
     @Override
-    public void setValue(final int value) {
-        setValue((double) value);
+    public void setValue(final double[] values, final Unit<?> unit) throws InvalidParameterValueException {
+        if (LENIENT && values.length == 1) {
+            setValue(values[0], unit);
+        } else {
+            throw new InvalidParameterValueException("This parameter is not for arrays.", code, values);
+        }
     }
 
     /**
-     * Sets the parameter value as a boolean. The boolean value {@code true} is stored as the
-     * numeric value 1, and the boolean value {@code false} is stored as the numeric value 0.
+     * Sets the parameter value as an integer. If {@linkplain #LENIENT lenient},
+     * this method delegates to {@link #setValue(double)}.
+     *
+     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
      */
     @Override
-    public void setValue(final boolean value) {
-        setValue(value ? 1 : 0);
+    public void setValue(final int value) throws InvalidParameterValueException {
+        if (LENIENT) {
+            setValue((double) value);
+        } else {
+            throw new InvalidParameterValueException("This parameter is not for integers.", code, value);
+        }
     }
 
     /**
-     * Sets the parameter value as an object. The object type can be any {@link Number},
-     * or a {@link String} parseable as a floating point number.
+     * Sets the parameter value as a boolean. If {@linkplain #LENIENT lenient}, the boolean value
+     * {@code true} is stored as the numeric value 1 and the boolean value {@code false} is stored
+     * as the numeric value 0.
+     *
+     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
+     */
+    @Override
+    public void setValue(final boolean value) throws InvalidParameterValueException {
+        if (LENIENT) {
+            setValue(value ? 1 : 0);
+        } else {
+            throw new InvalidParameterValueException("This parameter is not for booleans.", code, value);
+        }
+    }
+
+    /**
+     * Sets the parameter value as an object. If {@linkplain #LENIENT lenient}, then the object
+     * type can be any {@link Number} or {@link CharacterString} parseable as a floating point
+     * number. If not lenient, then the type must be restricted to {@link Double}.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the value can not be stored as a {@code double}.
@@ -455,17 +540,19 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public void setValue(final Object value) throws InvalidParameterValueException {
         final double number;
-        if (value instanceof Number) {
-            number = ((Number) value).doubleValue();
-        } else if (value instanceof CharSequence) {
-            final String s = value.toString();
-            try {
-                number = Double.parseDouble(s);
-            } catch (NumberFormatException e) {
-                throw new InvalidParameterValueException(e.toString(), code, s);
+        try {
+            if (!LENIENT) {
+                number = ((Double) value).doubleValue();
+            } else if (value instanceof CharSequence) {
+                number = Double.parseDouble(value.toString());
+            } else {
+                number = ((Number) value).doubleValue();
             }
-        } else {
-            throw new InvalidParameterValueException(value.getClass() + " is not valid.", code, value);
+        } catch (NumberFormatException e) {
+            // JDK7 developers would use multi-catch here.
+            throw new InvalidParameterValueException(e.toString(), code, value);
+        } catch (ClassCastException e) {
+            throw new InvalidParameterValueException(e.toString(), code, value);
         }
         setValue(number);
     }
