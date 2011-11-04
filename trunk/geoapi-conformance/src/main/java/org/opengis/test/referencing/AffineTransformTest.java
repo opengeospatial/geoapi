@@ -137,6 +137,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * @return The default set of arguments to be given to the {@code AffineTransformTest} constructor.
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(MathTransformFactory.class);
     }
@@ -150,6 +151,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     public AffineTransformTest(final MathTransformFactory factory) {
         super(factory);
         mtFactory = factory;
+        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(new MathTransformFactory[] {factory},
                 Configuration.Key.isNonSquareMatrixSupported);
         isNonSquareMatrixSupported = isEnabled[0];

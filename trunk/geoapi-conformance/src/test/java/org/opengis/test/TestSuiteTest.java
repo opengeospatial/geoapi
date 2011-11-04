@@ -76,6 +76,7 @@ public strictfp class TestSuiteTest {
      * shall return exactly 1 row.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testUniqueFactories() {
         //
         // Configure the TestSuite (system-wide)
@@ -104,6 +105,7 @@ public strictfp class TestSuiteTest {
      * The {@link TestCase#factories(Class[])} method may return up to 4 rows.
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void testMultipleFactories() {
         //
         // Configure the TestSuite (system-wide)

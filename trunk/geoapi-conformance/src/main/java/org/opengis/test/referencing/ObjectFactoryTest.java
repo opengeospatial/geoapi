@@ -121,6 +121,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
      * @since 3.1
      */
     @Parameterized.Parameters
+    @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
         return factories(DatumFactory.class, CSFactory.class, CRSFactory.class, CoordinateOperationFactory.class);
     }
