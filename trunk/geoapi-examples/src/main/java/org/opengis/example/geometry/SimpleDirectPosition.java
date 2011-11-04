@@ -86,7 +86,12 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the coordinate reference system in which the coordinate is given.
+     * May be {@code null} if no CRS were specified at construction time. In such case,
+     * this particular direct position is assumed included in a larger object with such
+     * a reference to a {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     *
+     * @return The coordinate reference system, or {@code null}.
      */
     @Override
     public CoordinateReferenceSystem getCoordinateReferenceSystem() {
@@ -94,7 +99,9 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * {@inheritDoc}
+     * The length of {@linkplain #ordinates coordinate sequence} (the number of entries).
+     *
+     * @return The length of the {@link #ordinates} array.
      */
     @Override
     public int getDimension() {
@@ -102,7 +109,9 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * {@inheritDoc}
+     * Returns a copy of the {@linkplain #ordinates}.
+     *
+     * @return A clone of the {@link #ordinates} array.
      */
     @Override
     public double[] getCoordinate() {
@@ -110,23 +119,33 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * {@inheritDoc}
+     * Returns the ordinate at the specified dimension.
+     *
+     * @param  dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @return The value in the {@link #ordinates} array at the given index.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
-    public double getOrdinate(int dimension) throws IndexOutOfBoundsException {
+    public double getOrdinate(final int dimension) throws IndexOutOfBoundsException {
         return ordinates[dimension];
     }
 
     /**
-     * {@inheritDoc}
+     * Sets the ordinate value along the specified dimension.
+     *
+     * @param  dimension the dimension for the ordinate of interest.
+     * @param  value the ordinate value of interest.
+     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
-    public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
+    public void setOrdinate(final int dimension, final double value) throws IndexOutOfBoundsException {
         ordinates[dimension] = value;
     }
 
     /**
-     * {@inheritDoc}
+     * Unconditionally returns {@code this}, since this object is already a direct position.
      */
     @Override
     public DirectPosition getDirectPosition() {
@@ -166,6 +185,8 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Returns a string representation of this direct position in <cite>Well Known Text</cite>
      * format.
+     *
+     * @see <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text on Wikipedia</a>
      */
     @Override
     public String toString() {
