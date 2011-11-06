@@ -164,7 +164,10 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the descriptor of the parameter value, which is this {@code this} object itself.
+     * Returns the descriptor of the parameter value. Since this simple class implements both the
+     * {@linkplain ParameterValue value} and the {@linkplain ParameterDescriptor descriptor}
+     * interfaces, this method returns {@code this}. However more sophisticated libraries are
+     * likely to return a different object.
      */
     @Override
     public ParameterDescriptor<Double> getDescriptor() {
@@ -559,12 +562,19 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns a new parameter with the same {@linkplain #authority authority}, {@linkplain #code code}
-     * and {@link #type} than this parameter. The {@linkplain #value} is left uninitialized.
+     * and {@linkplain #type} than this parameter. The {@linkplain #value} is left to their default
+     * value.
+     *
+     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * Since this simple class implements both the {@linkplain ParameterValue value} and the
+     * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to
+     * the {@link #clone()} method. However in more sophisticated libraries, those two methods
+     * are likely to be defined in different objects.</font></blockquote>
      *
      * @see #clone()
      */
     @Override
-    public ParameterValue<Double> createValue() {
+    public SimpleParameter createValue() {
         return new SimpleParameter(authority, code, type);
     }
 
@@ -580,10 +590,9 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * @see #createValue()
      */
     @Override
-    @SuppressWarnings("unchecked")
-    public ParameterValue<Double> clone() {
+    public SimpleParameter clone() {
         try {
-            return (ParameterValue<Double>) super.clone();
+            return (SimpleParameter) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e); // Should never happen, since we are cloneable.
         }

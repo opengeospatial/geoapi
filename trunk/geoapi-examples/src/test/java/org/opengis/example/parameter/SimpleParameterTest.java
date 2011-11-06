@@ -19,7 +19,13 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleParameterTest {
+public strictfp class SimpleParameterTest {
+    /**
+     * Tolerance factor for comparison of floating point numbers
+     * that are expected to be strictly equal.
+     */
+    private static final double STRICT = 0.0;
+
     /**
      * Small tolerance factor for comparison of floating point numbers.
      */
@@ -38,8 +44,8 @@ public class SimpleParameterTest {
         assertEquals("Lenient behavior",      false,                param.booleanValue());
         assertArrayEquals("Lenient behavior", new double[] {0.0},   param.doubleValueList(), 0.0);
         assertArrayEquals("Lenient behavior", new int[]    {0},     param.intValueList());
-        assertEquals     ("Unit conversion",  0.0,                  param.doubleValue(NonSI.GRADE), EPS);
-        assertArrayEquals("Unit conversion",  new double[] {0.0},   param.doubleValueList(NonSI.GRADE), EPS);
+        assertEquals     ("Unit conversion",  0.0,                  param.doubleValue(NonSI.GRADE), STRICT);
+        assertArrayEquals("Unit conversion",  new double[] {0.0},   param.doubleValueList(NonSI.GRADE), STRICT);
 
         param.setValue(18);
         assertEquals("value",                 18.0,                 param.doubleValue(), 0.0);

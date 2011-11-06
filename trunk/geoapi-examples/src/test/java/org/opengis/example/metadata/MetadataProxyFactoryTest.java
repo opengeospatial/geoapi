@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public class MetadataProxyFactoryTest {
+public strictfp class MetadataProxyFactoryTest {
     /**
      * Tests the creation of a {@link Metadata} containing a {@link ResponsibleParty}.
      */
