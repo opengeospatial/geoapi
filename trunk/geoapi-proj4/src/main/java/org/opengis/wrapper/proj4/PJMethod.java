@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,66 +29,61 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.util;
+package org.opengis.wrapper.proj4;
 
-import java.util.List;
-import java.util.Collections;
-import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import java.util.Collection;
+import org.opengis.util.GenericName;
+import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.referencing.operation.Formula;
+import org.opengis.referencing.operation.OperationMethod;
 
 
 /**
- * Identifier within a {@linkplain NameSpace name space} for a local object. Local names are names
- * which are directly accessible to and maintained by a {@linkplain NameSpace name space}. Names are
- * local to one and only one name space. The name space within which they are local is indicated by
- * the {@linkplain #scope scope}.
+ * Information about a Proj.4 projection method.
  *
- * @author  Martin Desruisseaux (IRD)
- * @author  Bryce Nordgren (USDA)
- * @version 3.0
- * @since   2.0
- *
- * @see NameFactory#createLocalName(NameSpace, CharSequence)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-@UML(identifier="LocalName", specification=ISO_19103)
-public interface LocalName extends GenericName {
+final class PJMethod extends PJObject implements OperationMethod {
     /**
-     * Returns the depth, which is always 1 for a local name.
+     * Creates a new operation method.
      */
-    @Override
-    int depth();
+    PJMethod(final ReferenceIdentifier name, final Collection<GenericName> aliases) {
+        super(name, aliases);
+    }
 
     /**
-     * Returns the sequence of local name. Since this object is itself a locale name,
-     * this method always returns a {@linkplain Collections#singleton singleton}
-     * containing only {@code this}.
+     * Returns {@code null}, since we have no information about the formulas used.
      */
     @Override
-    @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
-    List<? extends LocalName> getParsedNames();
+    public Formula getFormula() {
+        return null;
+    }
 
     /**
-     * Returns {@code this} since this object is already a local name.
-     *
-     * @since 2.2
+     * Returns the number of source dimensions, which is 2.
      */
     @Override
-    LocalName head();
+    public Integer getSourceDimensions() {
+        return 2;
+    }
 
     /**
-     * Returns {@code this} since this object is already a local name.
-     *
-     * @since 2.1
+     * Returns the number of target dimensions, which is 2.
      */
     @Override
-    LocalName tip();
+    public Integer getTargetDimensions() {
+        return 2;
+    }
 
     /**
-     * Returns a locale-independent string representation of this local name.
+     * Creates a parameter group. We can not provides the descriptors for parameter values,
+     * since we don't know them...
      */
     @Override
-    @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
-    String toString();
+    public ParameterDescriptorGroup getParameters() {
+        return new PJParameterGroup(name, aliases);
+    }
 }

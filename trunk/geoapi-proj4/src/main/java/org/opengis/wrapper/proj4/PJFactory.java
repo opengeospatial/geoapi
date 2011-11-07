@@ -33,38 +33,22 @@ package org.opengis.wrapper.proj4;
 
 import java.util.Set;
 import java.util.Map;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Collections;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
+import java.util.MissingResourceException;
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
 import javax.measure.quantity.Angle;
 
-import org.opengis.util.Factory;
-import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
-import org.opengis.util.GenericName;
-import org.opengis.metadata.citation.Citation;
+import org.opengis.util.*;
+import org.opengis.parameter.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.*;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
-import org.opengis.referencing.operation.Conversion;
-import org.opengis.referencing.operation.MathTransform;
-import org.opengis.referencing.operation.OperationMethod;
-import org.opengis.referencing.operation.CoordinateOperation;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.parameter.ParameterValue;
-import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.parameter.GeneralParameterValue;
-import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.parameter.GeneralParameterDescriptor;
+import org.opengis.metadata.citation.Citation;
 import org.proj4.PJ;
 
 import static org.proj4.PJ.DIMENSION_MAX;
@@ -283,18 +267,6 @@ public class PJFactory implements Factory {
      */
     public static class Objects extends PJFactory implements CRSFactory {
         /**
-         * The Proj.4 names for OGC, EPSG or GeoTIFF projection names.
-         * Will be created when first needed.
-         */
-        private static Map<String,String> projectionNames;
-
-        /**
-         * The Proj.4 names for OGC, EPSG or GeoTIFF parameter names.
-         * Will be created when first needed.
-         */
-        private static Map<String,String> parameterNames;
-
-        /**
          * Creates a new factory.
          */
         public Objects() {
@@ -409,72 +381,6 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Loads the given list of projection or parameter names.
-         */
-        private static Map<String,String> load(final String file) throws FactoryException {
-            IOException cause = null;
-            final InputStream in = PJFactory.class.getResourceAsStream(file);
-            if (in != null) try {
-                final Map<String,String> map = new HashMap<String,String>(5000);
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-                String parameter = null;
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if ((line = line.trim()).isEmpty()) {
-                        continue; // Skip empty lines.
-                    }
-                    switch (line.charAt(0)) {
-                        case '#': /* A line of comment */   break;
-                        case '+': parameter = line;         break;
-                        default:  map.put(line, parameter); break;
-                    }
-                }
-                reader.close();
-                return map;
-            } catch (IOException e) {
-                cause = e;
-            }
-            throw new FactoryException("Can not read the \"" + file + "\" resource", cause);
-        }
-
-        /**
-         * Returns the Proj.4 name for the given parameter or projection.
-         * If no mapping is found, then the parameter name is returned unchanged.
-         *
-         * @param  param The parameter value or group from which to get the name.
-         * @param  isParam {@code true} if we are looking for a parameter name rather
-         *         than a projection name.
-         * @return The Proj.4 name.
-         */
-        private String getProjName(final GeneralParameterValue param, final boolean isParam)
-                throws FactoryException
-        {
-            final GeneralParameterDescriptor descriptor = param.getDescriptor();
-            final String name = descriptor.getName().getCode();
-            Map<String,String> map;
-            synchronized (this) {
-                map = isParam ? parameterNames : projectionNames;
-                if (map == null) {
-                    if (isParam) parameterNames  = map = load("parameter-names.txt");
-                    else         projectionNames = map = load("projection-names.txt");
-                }
-            }
-            String proj = map.get(name);
-            if (proj == null) {
-                // If the name is not recognized, try the alias (if any).
-                // If no alias match, then return the name unchanged.
-                for (final GenericName alias : descriptor.getAlias()) {
-                    proj = map.get(alias.tip().toString());
-                    if (proj != null) {
-                        return proj;
-                    }
-                }
-                proj = name;
-            }
-            return proj;
-        }
-
-        /**
          * Creates a projected coordinate reference system from a defining conversion.
          * The projection and parameter names in the {@code conversionFromBase} can be
          * Proj.4 names, OGC names, EPSG names or GeoTIFF names.
@@ -498,14 +404,14 @@ public class PJFactory implements Factory {
             final Ellipsoid           ellipsoid  = datum.getEllipsoid();
             final ParameterValueGroup parameters = conversionFromBase.getParameterValues();
             final StringBuilder       definition = new StringBuilder(200);
-            definition.append("+proj=").append(getProjName(parameters, false).substring(1));
+            definition.append("+proj=").append(ResourcesLoader.getProjName(parameters, false).substring(1));
             boolean hasSemiMajor = false;
             boolean hasSemiMinor = false;
             for (final GeneralParameterValue parameter : parameters.values()) {
                 if (parameter instanceof ParameterValue) {
                     final Object value = ((ParameterValue) parameter).getValue();
                     if (value != null) {
-                        final String pn = getProjName(parameter, true);
+                        final String pn = ResourcesLoader.getProjName(parameter, true);
                         if (pn.equals("+a")) hasSemiMajor = true;
                         if (pn.equals("+b")) hasSemiMinor = true;
                         definition.append(' ').append(pn).append('=').append(value);
@@ -571,21 +477,10 @@ public class PJFactory implements Factory {
      */
     public static class EPSG extends PJFactory implements CRSAuthorityFactory {
         /**
-         * The file which contains the axis orientations for each CRS code.
-         */
-        static final String AXIS_FILE = "axis-orientations.txt";
-
-        /**
          * {@code true} if the CRS created by this factory should use the axis order
          * declared by the EPSG database. This is the default value.
          */
         private final boolean useEpsgAxisOrder;
-
-        /**
-         * The map of axis orientations for each CRS codes.
-         * This map will be loaded from the {@value #AXIS_FILE} file when first needed.
-         */
-        private Map<String,String> axisOrientations;
 
         /**
          * The set of all EPSG codes known to Proj.4, created when first needed.
@@ -624,58 +519,6 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Returns the axis orientation map. Callers shall not modify the returned map.
-         * The file format is the one created by {@link SupportedCodes#write()} in the
-         * test directory.
-         *
-         * @throws FactoryException If the resource file can not be loaded.
-         */
-        private synchronized Map<String,String> getAxisOrientations() throws FactoryException {
-            if (axisOrientations != null) {
-                return axisOrientations;
-            }
-            IOException cause = null;
-            final InputStream in = PJFactory.class.getResourceAsStream(AXIS_FILE);
-            if (in != null) try {
-                final Map<String,String> map = new LinkedHashMap<String,String>(5000);
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if ((line = line.trim()).isEmpty()) {
-                        continue; // Skip empty lines.
-                    }
-                    switch (line.charAt(0)) {
-                        case '#': {
-                            // A line of comment. Ignore.
-                            break;
-                        }
-                        case '[': {
-                            // The authority. Actually we don't parse yet
-                            // this element. Maybe a future version will do.
-                            break;
-                        }
-                        default: {
-                            int s = line.indexOf(':');
-                            final String orientation = line.substring(0, s).trim();
-                            do {
-                                final int p = s+1;
-                                s = line.indexOf(' ', p);
-                                final String code = (s >= 0) ? line.substring(p,s) : line.substring(p);
-                                map.put(code.trim(), orientation);
-                            } while (s >= 0);
-                            break;
-                        }
-                    }
-                }
-                reader.close();
-                return axisOrientations = map;
-            } catch (IOException e) {
-                cause = e;
-            }
-            throw new FactoryException("Can not read the \"" + AXIS_FILE + "\" resource", cause);
-        }
-
-        /**
          * Unconditionally returns {@code null}, since this functionality is not supported yet.
          * Note that {@code null} is not the same than an empty set, since the later would mean
          * that there is no supported code.
@@ -683,7 +526,7 @@ public class PJFactory implements Factory {
         @Override
         public synchronized Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
             if (codes == null) {
-                codes = Collections.unmodifiableSet(getAxisOrientations().keySet());
+                codes = Collections.unmodifiableSet(ResourcesLoader.getAxisOrientations().keySet());
             }
             return codes;
         }
@@ -748,7 +591,7 @@ public class PJFactory implements Factory {
                 // have to be adjusted before to be given to Proj.4 since the later expects
                 // exactly 3 characters.
                 //
-                String orientation = getAxisOrientations().get(code);
+                String orientation = ResourcesLoader.getAxisOrientations().get(code);
                 if (orientation != null) {
                     definition.append(' ').append(AXIS_ORDER_PARAM).append(orientation);
                     final int end = orientation.indexOf(AXIS_ORDER_SEPARATOR);
@@ -912,6 +755,142 @@ public class PJFactory implements Factory {
          */
         @Override
         public OperationMethod getOperationMethod(String name) throws FactoryException {
+            throw unsupportedOperation();
+        }
+    }
+
+    /**
+     * A factory for {@linkplain MathTransform Math Transform} objects created from a list
+     * of parameters.
+     * <p>
+     * The only supported methods are:
+     * <p>
+     * <ul>
+     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
+     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
+     * </ul>
+     * <p>
+     * All other methods unconditionally throw a {@link FactoryException}.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    public static class Transform extends PJFactory implements MathTransformFactory {
+        /**
+         * Creates a new coordinate operation factory.
+         */
+        public Transform() {
+        }
+
+        /**
+         * Returns the Proj.4 names of all projections supported by this class.
+         */
+        @Override
+        public Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type) {
+            if (type.isAssignableFrom(Projection.class)) try {
+                return ResourcesLoader.getMethods();
+            } catch (FactoryException e) { // Should never happen, unless there is an I/O error.
+                throw new MissingResourceException(e.getLocalizedMessage(), ResourcesLoader.PROJECTIONS_FILE, "<all>");
+            } else {
+                return Collections.emptySet();
+            }
+        }
+
+        /**
+         * Unconditionally returns {@code null}, since this functionality is not supported yet.
+         */
+        @Override
+        public OperationMethod getLastMethodUsed() {
+            return null;
+        }
+
+        /**
+         * Returns the parameter group for the given projection. The {@code method} argument can
+         * be the Proj.4 projection name, or one of its aliases. This method does not check the
+         * validity of the given argument, and the returned group does not enumerate the actual
+         * list of valid parameters, because Proj.4 does not supply this information.
+         */
+        @Override
+        public ParameterValueGroup getDefaultParameters(final String method) {
+            try {
+                return new PJParameterGroup(new PJIdentifier(method), ResourcesLoader.getAliases(method, false));
+            } catch (FactoryException e) { // Should never happen, unless there is an I/O error.
+                throw new MissingResourceException(e.getLocalizedMessage(), ResourcesLoader.PROJECTIONS_FILE, method);
+            }
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         */
+        @Override
+        public MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
+                ParameterValueGroup parameters, CoordinateSystem derivedCS) throws FactoryException
+        {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Creates a math transform from the given Proj.4 parameters.
+         */
+        @Override
+        public MathTransform createParameterizedTransform(final ParameterValueGroup parameters) throws FactoryException {
+            final StringBuilder definition = new StringBuilder(200);
+            definition.append("+proj=").append(ResourcesLoader.getProjName(parameters, false).substring(1));
+            for (final GeneralParameterValue parameter : parameters.values()) {
+                if (parameter instanceof ParameterValue) {
+                    final Object value = ((ParameterValue) parameter).getValue();
+                    if (value != null) {
+                        final String pn = ResourcesLoader.getProjName(parameter, true);
+                        definition.append(' ').append(pn).append('=').append(value);
+                    }
+                }
+            }
+            final ReferenceIdentifier id = parameters.getDescriptor().getName();
+            final CoordinateReferenceSystem targetCRS = createCRS(id, id, definition.toString(), 2);
+            final CoordinateReferenceSystem sourceCRS = (targetCRS instanceof ProjectedCRS)
+                    ? ((ProjectedCRS) targetCRS).getBaseCRS()
+                    : createCRS(PJIdentifier.WGS84, PJIdentifier.WGS84, "+init=epsg:4326", 2);
+            return createOperation(id, sourceCRS, targetCRS).getMathTransform();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         */
+        @Override
+        public MathTransform createAffineTransform(Matrix matrix) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         */
+        @Override
+        public MathTransform createConcatenatedTransform(MathTransform transform1, MathTransform transform2) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         */
+        @Override
+        public MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         */
+        @Override
+        public MathTransform createFromXML(String xml) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         */
+        @Override
+        public MathTransform createFromWKT(String wkt) throws FactoryException {
             throw unsupportedOperation();
         }
     }

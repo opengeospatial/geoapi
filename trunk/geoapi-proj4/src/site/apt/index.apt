@@ -16,13 +16,14 @@ Proj.4 bindings
   This module requires the Proj.4 native library version 4.8 or above.
 
 
-* Enhancement to the C/C++ library
+* Additional features compared to the C/C++ library
 
   The GeoAPI Java wrappers add the following functionalities, which are not present from the C/C++ API:
 
     * Coordinate Reference Systems created from EPSG code honor axis order as defined by EPSG.
+      This reordering can be disabled if the usual (λ,φ) order is desired.
 
-    * Coordinate Operations and Math Transforms can be created from EPSG and OGC parameter names
+    * Coordinate Operations and Math Transforms can be created from EPSG and OGC parameter names,
       in addition of Proj.4 parameter names.
 
 

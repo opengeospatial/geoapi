@@ -31,7 +31,6 @@
  */
 package org.proj4;
 
-import org.opengis.util.FactoryException;
 import org.opengis.referencing.operation.TransformException;
 
 import org.junit.*;
@@ -62,11 +61,9 @@ public class PJTest {
 
     /**
      * Tests the creation of a simple WGS84 object.
-     *
-     * @throws FactoryException Should never happen.
      */
     @Test
-    public void testWGS84() throws FactoryException {
+    public void testWGS84() {
         final PJ pj = new PJ("+proj=latlong +datum=WGS84");
         assertIsWGS84(pj);
         /*
@@ -83,11 +80,9 @@ public class PJTest {
 
     /**
      * Tests the creation of the EPSG:3395 projected CRS
-     *
-     * @throws FactoryException Should never happen.
      */
     @Test
-    public void testEPSG3395() throws FactoryException {
+    public void testEPSG3395() {
         final PJ pj = new PJ("+init=epsg:3395");
         assertEquals(PJ.Type.PROJECTED, pj.getType());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
@@ -99,11 +94,10 @@ public class PJTest {
      * Ensures that the native code correctly detects the case of null pointers.
      * This is important in order to ensure that we don't have a JVM crash.
      *
-     * @throws FactoryException Should never happen.
      * @throws TransformException Should never happen.
      */
     @Test(expected = NullPointerException.class)
-    public void testNullPointerException() throws FactoryException, TransformException {
+    public void testNullPointerException() throws TransformException {
         final PJ pj = new PJ("+proj=latlong +datum=WGS84");
         pj.transform(null, 2, null, 0, 1);
     }
@@ -112,11 +106,10 @@ public class PJTest {
      * Ensures that the native code correctly detects the case of index out of bounds.
      * This is important in order to ensure that we don't have a JVM crash.
      *
-     * @throws FactoryException Should never happen.
      * @throws TransformException Should never happen.
      */
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testIndexOutOfBoundsException() throws FactoryException, TransformException {
+    public void testIndexOutOfBoundsException() throws TransformException {
         final PJ pj = new PJ("+proj=latlong +datum=WGS84");
         pj.transform(pj, 2, new double[5], 2, 2);
     }
