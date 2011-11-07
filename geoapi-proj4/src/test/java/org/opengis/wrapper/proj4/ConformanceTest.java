@@ -64,6 +64,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
         /*
          * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
          */
+        Validators.DEFAULT.naming.requireMandatoryAttributes = false;
         Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
     }
 

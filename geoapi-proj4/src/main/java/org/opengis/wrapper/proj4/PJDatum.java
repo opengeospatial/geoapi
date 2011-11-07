@@ -169,6 +169,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     /**
      * Returns the ellipsoid associated with the geodetic datum.
      */
+    @Override
     public Ellipsoid getEllipsoid() {
         return this;
     }
@@ -176,6 +177,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     /**
      * Returns the prime meridian associated with the geodetic datum.
      */
+    @Override
     public PrimeMeridian getPrimeMeridian() {
         return this;
     }

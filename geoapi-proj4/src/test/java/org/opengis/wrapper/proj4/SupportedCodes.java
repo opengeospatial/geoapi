@@ -67,7 +67,7 @@ public class SupportedCodes {
     /**
      * The output file, to be written in the current directory.
      */
-    private static final String OUTPUT_FILE = PJFactory.EPSG.AXIS_FILE;
+    private static final String OUTPUT_FILE = ResourcesLoader.AXIS_FILE;
 
     /**
      * Defaults axis orientations (in Proj.4 syntax) when we have not been able to get this

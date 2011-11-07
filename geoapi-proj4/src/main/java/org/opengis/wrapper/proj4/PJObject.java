@@ -56,12 +56,36 @@ class PJObject implements IdentifiedObject {
     final ReferenceIdentifier name;
 
     /**
-     * Creates a new object of the given name.
+     * The aliases, or an empty list if none.
+     */
+    final Collection<GenericName> aliases;
+
+    /**
+     * Creates a new identified object of the given name.
      *
      * @param identifier The name of the new object, or {@code null} if none.
      */
     PJObject(final ReferenceIdentifier name) {
-        this.name = name;
+        this.name    = name;
+        this.aliases = Collections.emptyList();
+    }
+
+    /**
+     * Creates a new identified object of the given name and aliases.
+     *
+     * @param identifier The name of the new object, or {@code null} if none.
+     */
+    PJObject(final ReferenceIdentifier name, final Collection<GenericName> aliases) {
+        this.name    = name;
+        this.aliases = aliases;
+    }
+
+    /**
+     * Creates a new identified object as a copy of the given one.
+     */
+    PJObject(final IdentifiedObject object) {
+        name    = object.getName();
+        aliases = object.getAlias();
     }
 
     /**
@@ -85,11 +109,13 @@ class PJObject implements IdentifiedObject {
     }
 
     /**
-     * Returns an empty set, since there is no aliases associated with our Proj4 wrappers.
+     * Returns the aliases, or an empty set if none. The aliases are determined from
+     * the {@code "parameter-names.txt"} or {@code "projection-names.txt"} resources
+     * files.
      */
     @Override
     public Collection<GenericName> getAlias() {
-        return Collections.emptySet();
+        return aliases;
     }
 
     /**

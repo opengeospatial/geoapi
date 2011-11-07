@@ -1,18 +1,20 @@
 +a
 semi_major
 Semi_Major
-Semi-major axis
+semi-major axis
 
 +b
 semi_minor
 Semi_Minor
-Semi-minor axis
+semi-minor axis
 
 +lon_0
 Longitude of projection center
+Longitude of projection centre
 Longitude of natural origin
 Longitude of false origin
 longitude_of_center
+Longitude of origin
 central_meridian
 CenterLong
 ProjCenterLong
@@ -21,6 +23,7 @@ FalseOriginLong
 
 +lat_0
 Latitude of projection center
+Latitude of projection centre
 Latitude of natural origin
 Latitude of false origin
 latitude_of_center
@@ -32,11 +35,13 @@ FalseOriginLat
 
 +lat_1
 Latitude of first standard parallel
+Latitude of 1st standard parallel
 standard_parallel_1
 StdParallel1
 
 +lat_2
 Latitude of second standard parallel
+Latitude of 2nd standard parallel
 standard_parallel_2
 StdParallel2
 
@@ -52,14 +57,18 @@ ScaleAtNatOrigin
 
 +x_0
 Easting of false origin
+Easting at false origin
 Easting at projection center
 false_easting
+False easting
 FalseEasting
 FalseOriginEasting
 
 +y_0
 Northing of false origin
+Northing at false origin
 Northing at projection center
 false_northing
+False northing
 FalseNorthing
 FalseOriginNorthing

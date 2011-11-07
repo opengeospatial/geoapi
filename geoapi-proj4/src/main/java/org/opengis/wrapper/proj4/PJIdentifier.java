@@ -31,6 +31,13 @@
  */
 package org.opengis.wrapper.proj4;
 
+import java.util.List;
+import java.util.Collections;
+import org.opengis.util.NameSpace;
+import org.opengis.util.LocalName;
+import org.opengis.util.ScopedName;
+import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.proj4.PJ;
@@ -44,7 +51,12 @@ import org.proj4.PJ;
  * @version 3.1
  * @since   3.1
  */
-final class PJIdentifier implements ReferenceIdentifier {
+final class PJIdentifier implements ReferenceIdentifier, LocalName {
+    /**
+     * Useful constant.
+     */
+    static final ReferenceIdentifier WGS84 = new PJIdentifier("WGS84");
+
     /**
      * The identifier code and codespace.
      */
@@ -72,6 +84,16 @@ final class PJIdentifier implements ReferenceIdentifier {
     }
 
     /**
+     * Returns the Proj.4 version number as the version of this identifier. We do that because
+     * the identifier is typically associated to some Proj.4 resources, for example the list
+     * of Proj.4 definitions for EPSG codes. Such list depends on the Proj.4 library version.
+     */
+    @Override
+    public String getVersion() {
+        return PJ.getVersion();
+    }
+
+    /**
      * There is no authority associated with this identifier.
      */
     @Override
@@ -95,15 +117,22 @@ final class PJIdentifier implements ReferenceIdentifier {
         return code;
     }
 
-    /**
-     * Returns the Proj.4 version number as the version of this identifier. We do that because
-     * the identifier is typically associated to some Proj.4 resources, for example the list
-     * of Proj.4 definitions for EPSG codes. Such list depends on the Proj.4 library version.
+    /*
+     * LocalName implementation.
      */
-    @Override
-    public String getVersion() {
-        return PJ.getVersion();
-    }
+    @Override public int                 depth()                  {return 1;}
+    @Override public LocalName           head()                   {return this;}
+    @Override public LocalName           tip()                    {return this;}
+    @Override public List<LocalName>     getParsedNames()         {return Collections.<LocalName>singletonList(this);}
+    @Override public InternationalString toInternationalString()  {return new SimpleCitation(code);}
+    @Override public int                 compareTo(GenericName o) {return code.compareTo(o.tip().toString());}
+
+    /*
+     * Not yet implemented (todo).
+     */
+    @Override public NameSpace   scope()                 {return null;}
+    @Override public GenericName toFullyQualifiedName()  {return null;}
+    @Override public ScopedName  push(GenericName scope) {return null;}
 
     /**
      * Returns a hash code value for this identifier.
