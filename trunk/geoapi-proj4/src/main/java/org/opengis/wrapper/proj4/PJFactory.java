@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.Map;
 import java.util.Collections;
 import java.util.MissingResourceException;
+import java.awt.geom.AffineTransform;
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
 import javax.measure.quantity.Angle;
@@ -748,11 +749,15 @@ public class PJFactory implements Factory {
      * The only supported methods are:
      * <p>
      * <ul>
-     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
-     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
+     *   <li>{@link #getAvailableMethods(Class)}</li>
+     *   <li>{@link #getDefaultParameters(String)} - only partially implemented</li>
+     *   <li>{@link #createParameterizedTransform(ParameterValueGroup)}</li>
+     *   <li>{@link #createAffineTransform(Matrix)}</li>
+     *   <li>{@link #createConcatenatedTransform(MathTransform, MathTransform)}</li>
      * </ul>
      * <p>
-     * All other methods unconditionally throw a {@link FactoryException}.
+     * All other methods unconditionally throw a {@link FactoryException}, or return
+     * {@code null} when doing so is allowed.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -837,19 +842,50 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unconditionally throw an exception, since this functionality is not supported yet.
+         * Creates an affine transform from a matrix. If the transform input dimension is {@code M},
+         * and output dimension is {@code N}, then the matrix will have size {@code [N+1][M+1]}.
+         * The {@code [i][N]} element of the matrix must be 0 for <var>i</var> less than {@code M},
+         * and 1 for <var>i</var> equals {@code M}.
+         *
+         * @param  matrix The matrix used to define the affine transform.
+         * @return The affine transform.
+         * @throws FactoryException if the object creation failed.
          */
         @Override
-        public MathTransform createAffineTransform(Matrix matrix) throws FactoryException {
-            throw unsupportedOperation();
+        public MathTransform createAffineTransform(final Matrix matrix) throws FactoryException {
+            return Affine.create(matrix);
         }
 
         /**
-         * Unconditionally throw an exception, since this functionality is not supported yet.
+         * Creates a transform by concatenating two existing transforms.
+         * A concatenated transform acts in the same way as applying two
+         * transforms, one after the other.
+         * <p>
+         * This implementation can only concatenate two affine transforms,
+         * or to Proj.4 transforms. All other cases are unsupported.
+         *
+         * @param  transform1 The first transform to apply to points.
+         * @param  transform2 The second transform to apply to points.
+         * @return The concatenated transform.
+         * @throws FactoryException if the object creation failed.
          */
         @Override
-        public MathTransform createConcatenatedTransform(MathTransform transform1, MathTransform transform2) throws FactoryException {
-            throw unsupportedOperation();
+        public MathTransform createConcatenatedTransform(final MathTransform transform1,
+                final MathTransform transform2) throws FactoryException
+        {
+            if (transform1 instanceof AffineTransform && transform2 instanceof AffineTransform) {
+                final Affine c = new Affine((AffineTransform) transform1);
+                c.preConcatenate((AffineTransform) transform2);
+                return c;
+            }
+            final PJCRS sourceCRS, targetCRS;
+            try {
+                sourceCRS = ((PJOperation) transform1).source;
+                targetCRS = ((PJOperation) transform2).target;
+            } catch (ClassCastException e) {
+                throw new FactoryException(e);
+            }
+            return new PJOperation(null, sourceCRS, targetCRS);
         }
 
         /**

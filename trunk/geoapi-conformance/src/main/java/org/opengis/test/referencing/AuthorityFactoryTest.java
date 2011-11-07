@@ -376,7 +376,9 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * @param swap {@code true} if the the easting and northing axes should be interchanged.
      * @param flip {@code true} if the sign of both axes should be reversed.
      */
-    private static void verifyAxisDirection(final CoordinateSystem cs, final boolean swap, final boolean flip) {
+    private static void verifyAxisDirection(final String message, final CoordinateSystem cs,
+            final boolean swap, final boolean flip)
+    {
         if (cs != null) {
             AxisDirection X,Y;
             if (flip) {
@@ -390,7 +392,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                 final AxisDirection t = X;
                 X=Y; Y=t;
             }
-            assertAxisDirectionsEqual(cs, X, Y);
+            assertAxisDirectionsEqual(message, cs, X, Y);
         }
     }
 
@@ -431,7 +433,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
          */
         final GeographicCRS baseCRS = crs.getBaseCRS();
         if (baseCRS != null) {
-            verifyAxisDirection(baseCRS.getCoordinateSystem(), swapλφ, false);
+            verifyAxisDirection("BaseCRS", baseCRS.getCoordinateSystem(), swapλφ, false);
             final GeodeticDatum datum = baseCRS.getDatum();
             if (datum != null) {
                 assertEquals("PrimeMeridian.greenwichLongitude", primeMeridian,
@@ -444,7 +446,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
          * for such direction, we consider them as implementation-dependent.
          */
         if (!isPolar) {
-            verifyAxisDirection(crs.getCoordinateSystem(), swapxy, flipxy);
+            verifyAxisDirection("ProjectedCRS", crs.getCoordinateSystem(), swapxy, flipxy);
         }
         /*
          * Test the projection of sample point values.

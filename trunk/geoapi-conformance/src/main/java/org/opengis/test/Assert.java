@@ -300,15 +300,20 @@ public strictfp class Assert extends org.junit.Assert {
      * Asserts that all axes in the given coordinate system are pointing toward the given
      * directions, in the same order.
      *
-     * @param cs The coordinate system to test.
+     * @param message  Header of the exception message in case of failure, or {@code null} if none.
+     * @param cs       The coordinate system to test.
      * @param expected The expected axis directions.
      *
      * @since 3.1
      */
-    public static void assertAxisDirectionsEqual(final CoordinateSystem cs, final AxisDirection... expected) {
-        assertEquals("Wrong coordinate system dimension.", expected.length, cs.getDimension());
+    public static void assertAxisDirectionsEqual(String message,
+            final CoordinateSystem cs, final AxisDirection... expected)
+    {
+        message = nonNull(message);
+        assertEquals(message + "Wrong coordinate system dimension.", expected.length, cs.getDimension());
+        final String md = message + "Wrong axis direction.";
         for (int i=0; i<expected.length; i++) {
-            assertEquals("Wrong axis direction.", expected[i], cs.getAxis(i).getDirection());
+            assertEquals(md, expected[i], cs.getAxis(i).getDirection());
         }
     }
 }
