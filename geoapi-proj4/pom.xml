@@ -27,6 +27,13 @@
     This module requires the Proj.4 native library version 4.8 or above.
   </description>
 
+  <licenses>
+    <license>
+      <name>Public Domain</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
 
 
   <!-- ====================================================
