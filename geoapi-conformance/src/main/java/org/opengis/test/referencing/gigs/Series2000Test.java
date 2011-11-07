@@ -672,7 +672,7 @@ next:   for (final String search : expected) {
                         default: throw new AssertionError(column);
                     }
                     assertEquals(message(prefix, "getDimension()"), expectedDirections.length, cs.getDimension());
-                    assertAxisDirectionsEqual(cs, expectedDirections);
+                    assertAxisDirectionsEqual(message(prefix, "axes"), cs, expectedDirections);
                     prefix.setLength(lengthAfterCRS);
                     datum = crs.getDatum();
                     assertNotNull(message(prefix, "getDatum()"), datum);

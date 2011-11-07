@@ -282,7 +282,7 @@ final class PJParameter extends PJObject  implements ParameterValue<Double>, Par
      * Creates an exception for an invalid value.
      */
     private InvalidParameterValueException invalidValue(final String type, final Object value) {
-        return new InvalidParameterValueException("This parameter is not for " + type + '.', name.getCode(), value);
+        return new InvalidParameterValueException("This parameter does not support " + type + '.', name.getCode(), value);
     }
 
     /**

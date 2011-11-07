@@ -37,8 +37,10 @@ import java.util.EnumSet;
 import java.util.Random;
 import java.awt.geom.Rectangle2D;
 
+import java.util.Collections;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.ProjectedCRS;
@@ -47,6 +49,9 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.referencing.operation.Projection;
+import org.opengis.referencing.operation.Transformation;
+import org.opengis.referencing.operation.SingleOperation;
 import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.CalculationType;
@@ -286,7 +291,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
             throws FactoryException, TransformException
     {
         description = name;
-        final SamplePoints sample = initialize(code);
+        final SamplePoints sample = initialize(Projection.class, code);
         verifyKnownSamplePoints(sample, ToleranceModifier.PROJECTION);
         verifyInDomainOfValidity(sample.areaOfValidity, code);
     }
@@ -306,7 +311,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
             throws FactoryException, TransformException
     {
         description = name;
-        final SamplePoints sample = initialize(code);
+        final SamplePoints sample = initialize(Transformation.class, code);
         verifyKnownSamplePoints(sample, ToleranceModifier.GEOGRAPHIC);
         final Rectangle2D areaOfValidity = sample.areaOfValidity;
         verifyInDomain(new double[] {
@@ -326,14 +331,25 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Fetches the {@link MathTransform} for the given CRS code, and initializes the fields
      * describing the test to be executed. This method does not run any test by itself.
      */
-    private SamplePoints initialize(final int code) throws FactoryException {
+    private SamplePoints initialize(final Class<? extends SingleOperation> type, final int code) throws FactoryException {
         assumeNotNull(mtFactory);
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
         if (parameters == null) {
             parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
         }
         if (transform == null) {
-            transform = mtFactory.createParameterizedTransform(parameters);
+            try {
+                transform = mtFactory.createParameterizedTransform(parameters);
+            } catch (NoSuchIdentifierException e) {
+                // If a code was not found, ensure that the factory does not declare that it was
+                // a supported code. If the code was unsupported, then the test will be ignored.
+                if (Collections.disjoint(Utilities.getNameAndAliases(parameters.getDescriptor()),
+                        Utilities.getNameAndAliases(mtFactory.getAvailableMethods(type))))
+                {
+                    assumeNoException(e); // Will mark the test as "ignored".
+                }
+                throw e; // Will mark the test as "failed".
+            }
             assertNotNull(description, transform);
         }
         return sample;
