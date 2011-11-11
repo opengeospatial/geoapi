@@ -49,7 +49,7 @@ import static java.lang.annotation.ElementType.*;
 @Target(METHOD)
 public @interface Profile {
     /**
-     * The level for the annoted element. {@link ComplianceLevel#CORE CORE} means
+     * The level for the annotated element. {@link ComplianceLevel#CORE CORE} means
      * that all profiles should provides this element.
      *
      * @return The compliance level.

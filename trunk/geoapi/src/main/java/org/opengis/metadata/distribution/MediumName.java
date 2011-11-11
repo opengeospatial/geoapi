@@ -192,6 +192,7 @@ public final class MediumName extends CodeList<MediumName> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public MediumName[] family() {
         return values();
     }

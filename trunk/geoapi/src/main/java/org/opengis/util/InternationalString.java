@@ -74,13 +74,13 @@ public interface InternationalString extends CharSequence, Comparable<Internatio
      * It may or may not be the {@linkplain Locale#getDefault() system default}. If the default
      * locale is the {@linkplain Locale#getDefault() system default} (a recommended practice),
      * then invoking this method is equivalent to invoking
-     * <code>{@linkplain #toString(Locale) toString}({@linkplain Locale#getDefault})</code>.
+     * <code>{@linkplain #toString(Locale) toString}({@linkplain Locale#getDefault()})</code>.
      *
      * <P>All methods from {@link CharSequence} operate on this string. This string is also
      * used as the criterion for {@linkplain Comparable natural ordering}.</P>
      *
      * @return The string in the default locale.
      */
-    @Override    
+    @Override
     String toString();
 }

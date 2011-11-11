@@ -105,6 +105,7 @@ public final class OperationType extends CodeList<OperationType> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public OperationType[] family() {
         return values();
     }

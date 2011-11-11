@@ -115,5 +115,6 @@ public interface MathTransform2D extends MathTransform {
      *
      * @since 2.2
      */
+    @Override
     MathTransform2D inverse() throws NoninvertibleTransformException;
 }

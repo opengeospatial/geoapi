@@ -103,6 +103,7 @@ public final class Trigger extends CodeList<Trigger> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public Trigger[] family() {
         return values();
     }

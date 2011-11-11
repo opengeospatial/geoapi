@@ -121,6 +121,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public PolarizationOrientation[] family() {
         return values();
     }

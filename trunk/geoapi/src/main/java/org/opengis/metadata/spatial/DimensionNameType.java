@@ -133,6 +133,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public DimensionNameType[] family() {
         return values();
     }

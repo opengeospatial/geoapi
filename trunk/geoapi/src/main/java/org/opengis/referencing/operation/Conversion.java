@@ -62,6 +62,7 @@ public interface Conversion extends SingleOperation {
      *
      * @return The source CRS, or {@code null} if not available.
      */
+    @Override
     @UML(identifier="sourceCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
@@ -72,6 +73,7 @@ public interface Conversion extends SingleOperation {
      *
      * @return The target CRS, or {@code null} if not available.
      */
+    @Override
     @UML(identifier="targetCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
@@ -80,6 +82,7 @@ public interface Conversion extends SingleOperation {
      *
      * @return Always {@code null}.
      */
+    @Override
     @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)
     String getOperationVersion();
 }

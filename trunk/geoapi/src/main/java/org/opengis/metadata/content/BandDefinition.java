@@ -123,6 +123,7 @@ public final class BandDefinition extends CodeList<BandDefinition> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public BandDefinition[] family() {
         return values();
     }
