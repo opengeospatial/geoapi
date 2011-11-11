@@ -74,6 +74,7 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always {@code null}.
      */
+    @Override
     @UML(identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
     InternationalString getAnchorPoint();
 
@@ -91,6 +92,7 @@ public interface TemporalDatum extends Datum {
      *
      * @return Always {@code null}.
      */
+    @Override
     @UML(identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)
     Date getRealizationEpoch();
 }

@@ -103,6 +103,7 @@ public final class Sequence extends CodeList<Sequence> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public Sequence[] family() {
         return values();
     }

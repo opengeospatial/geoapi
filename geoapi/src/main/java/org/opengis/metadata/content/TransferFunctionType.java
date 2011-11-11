@@ -103,6 +103,7 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public TransferFunctionType[] family() {
         return values();
     }

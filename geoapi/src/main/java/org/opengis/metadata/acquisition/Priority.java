@@ -109,6 +109,7 @@ public final class Priority extends CodeList<Priority> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public Priority[] family() {
         return values();
     }

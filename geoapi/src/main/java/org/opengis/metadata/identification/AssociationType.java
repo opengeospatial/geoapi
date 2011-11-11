@@ -115,6 +115,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public AssociationType[] family() {
         return values();
     }

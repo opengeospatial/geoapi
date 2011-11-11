@@ -114,6 +114,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public KeywordType[] family() {
         return values();
     }

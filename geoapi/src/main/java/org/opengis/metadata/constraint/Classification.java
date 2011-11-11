@@ -115,6 +115,7 @@ public final class Classification extends CodeList<Classification> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public Classification[] family() {
         return values();
     }

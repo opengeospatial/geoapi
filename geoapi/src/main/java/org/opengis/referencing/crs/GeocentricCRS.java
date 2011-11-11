@@ -76,6 +76,7 @@ public interface GeocentricCRS extends GeodeticCRS {
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
      */
+    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 }

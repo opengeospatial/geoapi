@@ -48,7 +48,7 @@ package org.opengis.parameter;
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = -8074834945993975175L;
 

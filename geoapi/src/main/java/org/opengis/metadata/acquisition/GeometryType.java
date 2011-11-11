@@ -109,6 +109,7 @@ public final class GeometryType extends CodeList<GeometryType> {
     /**
      * Returns the list of enumerations of the same kind than this enum.
      */
+    @Override
     public GeometryType[] family() {
         return values();
     }

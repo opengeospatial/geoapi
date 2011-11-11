@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
  * A group of related parameter values. The same group can be repeated more than once in an
  * {@linkplain org.opengis.referencing.operation.CoordinateOperation coordinate operation}
  * or higher level {@code ParameterValueGroup}, if those instances contain different values
- * of one or more {@link ParameterValue}s which suitably distinquish among those groups.
+ * of one or more {@link ParameterValue}s which suitably distinguish among those groups.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
