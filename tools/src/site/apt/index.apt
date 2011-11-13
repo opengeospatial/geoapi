@@ -39,7 +39,7 @@ mvn site:deploy
 
     * Background color changed from blue to white.
 
-    * <<<{@linkplain}>>> annotations handled in the same way than <<<{@link}>>>.
+    * <<<\{@linkplain\}>>> annotations handled in the same way than <<<\{@link\}>>>.
 
     * Disabled the breaking of long sentences on two rows, since it made the changes
       more difficult to read.
