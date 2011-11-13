@@ -349,6 +349,10 @@
           a "doc-files" subdirectory. This allows shorter permanent URL for top-
           level pages like "content.html" which may be referenced from external
           sites.
+
+          Note: as of Maven 3.0.3, this goal is not executed by "mvn deploy".
+          We need an explicit "mvn install deploy" even if the "install" phase
+          was supposed to be implicit.
         -->
         <executions>
           <execution>

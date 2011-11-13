@@ -4,6 +4,42 @@ GeoAPI build tools
   after compilation. Those tools are used mostly for javadoc generation.
   They are internal to the GeoAPI project and may change at any time.
 
-* Related material
+  The steps for creating a GeoAPI milestone are documentes in a separated page:
 
-  * {{{./release-instruction.html}Steps for creating a GeoAPI milestone in a Unix environment}}
+    * {{{./release-instruction.html}Steps for creating a GeoAPI milestone in a Unix environment}}
+
+
+* Documenting the API changes
+
+  This module contains a <<<jdiff>>> directory, which is not used by the normal build process.
+  The <<<jdiff>>> directory allows the generation of HTML pages documenting the API changes
+  between the latest GeoAPI stable release and the current development (trunk). To generate
+  those pages, invoke the <<<jdiff.sh>>> script from any directory. There is no configuration
+  required - it should work <out of the box> on Unix machine with JDK6, and can be invoked
+  from a continuous integration tool.
+
+  The <<<jdiff.sh>>> script must be invoked explicitely - it is not invoked by the Maven build
+  process. It shall be invoked after <<<mvn install site>>> and before <<<mvn site:deploy>>>,
+  like below:
+
+-------------------------------------
+mvn install site
+trunk/tools/jdiff/jdiff.sh
+mvn site:deploy
+-------------------------------------
+
+  The HTML pages will be deployed on
+  {{{http://www.geoapi.org/changes/snapshot/changes.html}http://www.geoapi.org/changes/snapshot/}}.
+
+
+** Credit
+
+  The <<<jdiff.jar>>> file is derived from the {{{http://jdiff.sourceforge.net/}JDiff}} project,
+  with the following slight modifications:
+
+    * Background color changed from blue to white.
+
+    * <<<{@linkplain}>>> annotations handled in the same way than <<<{@link}>>>.
+
+    * Disabled the breaking of long sentences on two rows, since it made the changes
+      more difficult to read.
