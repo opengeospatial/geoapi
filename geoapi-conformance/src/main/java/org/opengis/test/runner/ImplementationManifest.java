@@ -33,6 +33,9 @@ package org.opengis.test.runner;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.StringTokenizer;
 import java.util.Enumeration;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
@@ -74,6 +77,11 @@ final class ImplementationManifest {
     final String title, version, vendor, vendorID, url, specification, specVersion, specVendor;
 
     /**
+     * The set of dependencies built from the {@linkplain #classpath}, or {@code null}.
+     */
+    File[] dependencies;
+
+    /**
      * Creates a new manifest for the given attributes.
      */
     private ImplementationManifest(final int priority, final String title, final Attributes attributes) {
@@ -96,12 +104,18 @@ final class ImplementationManifest {
      * @return Information about the implementation, or {@code null} if none.
      */
     static ImplementationManifest parse(final File[] files) throws IOException {
+        final Set<File> classpath = new LinkedHashSet<File>();
         ImplementationManifest manifest = null;
         for (final File file : files) {
-            final ImplementationManifest candidate = ImplementationManifest.parse(file);
-            if (candidate != null && (manifest == null || candidate.priority < manifest.priority)) {
-                manifest = candidate;
+            final ImplementationManifest candidate = ImplementationManifest.parse(file, classpath);
+            if (candidate != null) {
+                if (manifest == null || candidate.priority < manifest.priority) {
+                    manifest = candidate;
+                }
             }
+        }
+        if (manifest != null) {
+            manifest.dependencies = classpath.toArray(new File[classpath.size()]);
         }
         return manifest;
     }
@@ -113,35 +127,47 @@ final class ImplementationManifest {
      * returns {@code null}.
      *
      * @param  file The JAR file to parse.
+     * @param  classpath A set in which to add classpath information.
      * @return Information about the implementation, or {@code null} if none.
      * @throws IOException If an error occurred while reading the JAR file.
      */
-    private static ImplementationManifest parse(final File file) throws IOException {
-        int priority = 0;
-        Manifest manifest = null;
+    private static ImplementationManifest parse(final File file, final Set<File> classpath) throws IOException {
+        classpath.add(file.getAbsoluteFile());
+        int priority = -1;
         final JarFile jar = new JarFile(file, false);
         final Enumeration<JarEntry> entries = jar.entries();
 scan:   while (entries.hasMoreElements()) {
             final String name = entries.nextElement().getName();
             for (int i=0; i<SERVICES.length; i++) {
                 if (name.startsWith(SERVICES[i])) {
-                    manifest = jar.getManifest();
                     priority = i;
                     break scan;
                 }
             }
         }
-        jar.close();
+        ImplementationManifest impl = null;
+        final Manifest manifest = jar.getManifest();
         if (manifest != null) {
             final Attributes attributes = manifest.getMainAttributes();
             if (attributes != null) {
-                final String title = (String) attributes.get(Attributes.Name.IMPLEMENTATION_TITLE);
-                if (title != null) {
-                    return new ImplementationManifest(priority, title, attributes);
+                if (priority >= 0) {
+                    final String title = (String) attributes.get(Attributes.Name.IMPLEMENTATION_TITLE);
+                    if (title != null) {
+                        impl = new ImplementationManifest(priority, title, attributes);
+                    }
+                }
+                final String cp = (String) attributes.get(Attributes.Name.CLASS_PATH);
+                if (cp != null) {
+                    final File directory = file.getParentFile();
+                    final StringTokenizer tokens = new StringTokenizer(cp);
+                    while (tokens.hasMoreTokens()) {
+                        classpath.add(new File(directory, tokens.nextToken()).getAbsoluteFile());
+                    }
                 }
             }
         }
-        return null;
+        jar.close();
+        return impl;
     }
 
     /**
