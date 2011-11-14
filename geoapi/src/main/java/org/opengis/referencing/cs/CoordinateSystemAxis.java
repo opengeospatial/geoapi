@@ -118,6 +118,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * included, the meaning is unspecified.
      *
      * @return The range meaning, or {@code null} in none.
+     *
+     * @see RangeMeaning#EXACT
+     * @see RangeMeaning#WRAPAROUND
      */
     @UML(identifier="rangeMeaning", obligation=CONDITIONAL, specification=ISO_19111)
     RangeMeaning getRangeMeaning();
