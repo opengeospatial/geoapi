@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.tools;
+package org.opengis.tools.apt;
 
 // J2SE dependencies
 import java.util.Set;

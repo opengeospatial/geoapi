@@ -38,4 +38,4 @@
  * @version 3.0
  * @since   2.0
  */
-package org.opengis.tools;
+package org.opengis.tools.apt;

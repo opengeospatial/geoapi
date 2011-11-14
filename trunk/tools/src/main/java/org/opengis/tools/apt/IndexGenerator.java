@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.tools;
+package org.opengis.tools.apt;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,7 +78,7 @@ import org.opengis.geometry.coordinate.PointArray;
  * export CLASSPATH=~/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
  * export CLASSPATH=$CLASSPATH:../../../../geoapi-pending/target/geoapi-pending-3.1-SNAPSHOT.jar
  * export CLASSPATH=$CLASSPATH:../../../../tools/target/tools-3.1-SNAPSHOT.jar
- * apt -classpath $CLASSPATH -nocompile -factory org.opengis.tools.IndexGenerator @content.txt
+ * apt -classpath $CLASSPATH -nocompile -factory org.opengis.tools.apt.IndexGenerator @content.txt
  * rm content.txt
  * </pre></blockquote>
  *
