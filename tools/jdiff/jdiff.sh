@@ -30,15 +30,22 @@ export NEW_URL=http://www.geoapi.org/snapshot/javadoc/
 export GEOAPI_HOME=../..
 export SOURCE_PATH=$GEOAPI_HOME/geoapi/src/main/java
 export TARGET_PATH=$GEOAPI_HOME/geoapi/target
-export REPORT_PATH=$GEOAPI_HOME/target/site/changes/snapshot
+export CHANGES_API=$GEOAPI_HOME/target/site/changes/snapshot
+export CHANGES_DOC=$GEOAPI_HOME/target/site/changes/document
 export CLASSPATH=$TARGET_PATH/classes:$HOME/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
 
 #
-# Generate a XML file containing API information. The "-apiname" and "-firstsentence"
-# options are specifics to the JDiff doclet.
+# Generate a XML file containing API information.
+# The "-apiname" option is specific to the JDiff doclet.
 #
-javadoc -docletpath jdiff.jar -doclet jdiff.JDiff -apiname $NEW_NAME -firstsentence \
+javadoc -docletpath jdiff.jar -doclet jdiff.JDiff -apiname $NEW_NAME \
     -encoding UTF-8 -sourcepath $SOURCE_PATH -subpackages org.opengis \
+
+#
+# Remove the @author, @version, @since, @see and other javadoc tags.
+# We don't want to report changes in those tags, or formatting changes.
+#
+java -classpath $GEOAPI_HOME/tools/target/classes org.opengis.tools.console.JDiffPostProcessing "$NEW_NAME.xml"
 
 #
 # JDiff is bundled with the "xerces.jar" XML parser, but we will ignore it.
@@ -51,9 +58,16 @@ javadoc -docletpath jdiff.jar -doclet jdiff.JDiff -apiname $NEW_NAME -firstsente
 # The path to UML.java is declared because Javadoc needs at least one class,
 # but is not used by the JDiff doclet.
 #
-mkdir -p $REPORT_PATH
+mkdir -p $CHANGES_API
 javadoc -docletpath jdiff.jar -doclet jdiff.JDiff \
     -J-Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
     -oldapi "$OLD_NAME" -javadocold $OLD_URL \
     -newapi "$NEW_NAME" -javadocnew $NEW_URL \
-    -d $REPORT_PATH -encoding UTF-8 $SOURCE_PATH/org/opengis/annotation/UML.java
+    -d $CHANGES_API -encoding UTF-8 $SOURCE_PATH/org/opengis/annotation/UML.java
+
+mkdir -p $CHANGES_DOC
+javadoc -docletpath jdiff.jar -doclet jdiff.JDiff -docchanges \
+    -J-Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
+    -oldapi "$OLD_NAME" -javadocold $OLD_URL \
+    -newapi "$NEW_NAME" -javadocnew $NEW_URL \
+    -d $CHANGES_DOC -encoding UTF-8 $SOURCE_PATH/org/opengis/annotation/UML.java
