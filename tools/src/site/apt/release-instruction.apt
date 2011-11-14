@@ -13,7 +13,7 @@ $PWD/geoapi/target/geoapi-3.1-SNAPSHOT.jar:\
 $PWD/geoapi-pending/target/geoapi-pending-3.1-SNAPSHOT.jar:\
 $PWD/tools/target/tools-3.1-SNAPSHOT.jar
 cd geoapi/src/main/java
-find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.IndexGenerator
+find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.apt.IndexGenerator
 cd -
 svn commit -m "Updated the list of GeoAPI classes and methods."
 ---------------------------------------------------------------------------------------------
