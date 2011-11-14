@@ -137,6 +137,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean isInlineTag() {
         return true;
     }
