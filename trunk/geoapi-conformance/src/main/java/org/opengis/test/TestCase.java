@@ -37,6 +37,10 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.ServiceLoader;
+import java.util.ServiceConfigurationError;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.LogRecord;
 
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -292,31 +296,43 @@ public strictfp abstract class TestCase {
     protected static List<Factory[]> factories(final FactoryFilter filter, final Class<? extends Factory>... types) {
         final List<Factory[]> factories = new ArrayList<Factory[]>(4);
         factories.add(new Factory[types.length]);
-        synchronized (FACTORIES) {
-            for (int i=0; i<types.length; i++) {
-                final Class<? extends Factory> type = types[i];
-                Iterable<? extends Factory> choices = FACTORIES.get(type);
-                if (choices == null) {
-                    choices = load(type);
-                    FACTORIES.put(type, choices);
-                }
-                List<Factory[]> toUpdate = factories;
-                for (final Factory factory : choices) {
-                    if (filter(type, factory, filter)) {
-                        if (toUpdate == factories) {
-                            toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
-                        } else {
-                            for (int j=toUpdate.size(); --j>=0;) {
-                                toUpdate.set(j, toUpdate.get(j).clone());
+        try {
+            synchronized (FACTORIES) {
+                for (int i=0; i<types.length; i++) {
+                    final Class<? extends Factory> type = types[i];
+                    Iterable<? extends Factory> choices = FACTORIES.get(type);
+                    if (choices == null) {
+                        choices = load(type);
+                        FACTORIES.put(type, choices);
+                    }
+                    List<Factory[]> toUpdate = factories;
+                    for (final Factory factory : choices) {
+                        if (filter(type, factory, filter)) {
+                            if (toUpdate == factories) {
+                                toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
+                            } else {
+                                for (int j=toUpdate.size(); --j>=0;) {
+                                    toUpdate.set(j, toUpdate.get(j).clone());
+                                }
+                                factories.addAll(toUpdate);
                             }
-                            factories.addAll(toUpdate);
-                        }
-                        for (final Factory[] previous : toUpdate) {
-                            previous[i] = factory;
+                            for (final Factory[] previous : toUpdate) {
+                                previous[i] = factory;
+                            }
                         }
                     }
                 }
             }
+        } catch (ServiceConfigurationError e) {
+            // JUnit 4.10 eats the exception silently, so we need to log
+            // it in order to allow user to figure out what is going.
+            final LogRecord record = new LogRecord(Level.WARNING, e.toString());
+            record.setSourceClassName(TestCase.class.getName());
+            record.setSourceMethodName("factories");
+            record.setThrown(e);
+            record.setLoggerName("org.opengis.test");
+            Logger.getLogger("org.opengis.test").log(record);
+            throw e;
         }
         return factories;
     }

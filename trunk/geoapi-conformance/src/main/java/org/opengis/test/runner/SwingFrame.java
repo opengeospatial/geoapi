@@ -306,8 +306,9 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
          */
         @Override
         protected Object doInBackground() throws IOException {
-            setManifest(ImplementationManifest.parse(files));
-            Runner.setClassLoader(files);
+            final ImplementationManifest manifest = ImplementationManifest.parse(files);
+            setManifest(manifest);
+            Runner.setClassLoader(manifest != null ? manifest.dependencies : files);
             runner.run();
             return null;
         }
