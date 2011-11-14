@@ -32,6 +32,9 @@
 package org.opengis.geometry;
 
 import java.awt.geom.Rectangle2D; // Used in @see javadoc tags
+
+import org.opengis.referencing.cs.RangeMeaning;         // For javadoc
+import org.opengis.referencing.cs.CoordinateSystemAxis; // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 
@@ -102,6 +105,18 @@ public interface Envelope {
      * A coordinate position consisting of all the minimal ordinates for each
      * dimension for all points within the {@code Envelope}.
      *
+     * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
+     * of the bounding box definition. In a WCS 1.1 data structure, the lower corner defines the
+     * edges region in the directions of <em>decreasing</em> coordinate values in the envelope CRS.
+     * This is usually the algebraic minimum coordinates, but not always. For example, an envelope
+     * crossing the anti-meridian could have a lower corner longitude greater than the
+     * {@linkplain #getUpperCorner() upper corner} longitude.
+     * <p>
+     * Whatever this envelope supports the extended bounding box interpretation is
+     * implementation-dependent. If supported, the extended interpretation is applicable only to
+     * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning.</font></blockquote>
+     *
      * @return The lower corner.
      */
     @UML(identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
@@ -111,23 +126,40 @@ public interface Envelope {
      * A coordinate position consisting of all the maximal ordinates for each
      * dimension for all points within the {@code Envelope}.
      *
+     * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
+     * of the bounding box definition. In a WCS 1.1 data structure, the upper corner defines the
+     * edges region in the directions of <em>increasing</em> coordinate values in the envelope CRS.
+     * This is usually the algebraic maximum coordinates, but not always. For example, an envelope
+     * crossing the anti-meridian could have an upper corner longitude less than the
+     * {@linkplain #getLowerCorner() lower corner} longitude.
+     * <p>
+     * Whatever this envelope supports the extended bounding box interpretation is
+     * implementation-dependent. If supported, the extended interpretation is applicable only to
+     * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning.</font></blockquote>
+     *
      * @return The upper corner.
      */
     @UML(identifier="upperCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getUpperCorner();
 
     /**
-     * Returns the minimal ordinate along the specified dimension. This is a shortcut for
-     * the following without the cost of creating a temporary {@link DirectPosition} object:
+     * Returns the limit in the direction of decreasing ordinate values in the specified dimension.
+     * This method is a shortcut for the following code without the cost of creating a temporary
+     * {@link DirectPosition} object:
      *
      * <blockquote><code>
      * {@linkplain #getLowerCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)
      * </code></blockquote>
      *
+     * Despite the method name, the value returned by this method may in some occasions be
+     * greater than the {@linkplain #getMaximum(int) maximum} value. See {@link #getLowerCorner()}
+     * for more information.
+     *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The minimal ordinate at the given dimension.
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension envelope dimension}.
+     *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
@@ -143,17 +175,22 @@ public interface Envelope {
     double getMinimum(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the maximal ordinate along the specified dimension. This is a shortcut for
-     * the following without the cost of creating a temporary {@link DirectPosition} object:
+     * Returns the limit in the direction of increasing ordinate values in the specified dimension.
+     * This method is a shortcut for the following code without the cost of creating a temporary
+     * {@link DirectPosition} object:
      *
      * <blockquote><code>
      * {@linkplain #getUpperCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension)
      * </code></blockquote>
      *
+     * Despite the method name, the value returned by this method may in some occasions be
+     * less than the {@linkplain #getMinimum(int) minimum} value. See {@link #getUpperCorner()}
+     * for more information.
+     *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The maximal ordinate at the given dimension.
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension envelope dimension}.
+     *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
@@ -169,17 +206,25 @@ public interface Envelope {
     double getMaximum(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the median ordinate along the specified dimension. The result shall be equals
-     * (minus rounding error) to:
+     * Returns the median ordinate along the specified dimension. In most cases, the result is
+     * equals (minus rounding error) to:
      *
      * <blockquote><code>
-     * ({@linkplain #getMinimum getMinimum}(dimension) + {@linkplain #getMaximum getMaximum}(dimension)) / 2
+     * median = ({@linkplain #getMinimum getMinimum}(dimension) + {@linkplain #getMaximum getMaximum}(dimension)) / 2;
      * </code></blockquote>
+     *
+     * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * If this envelope implementation supports the {@linkplain #getLowerCorner() lower} and
+     * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
+     * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
+     * when <var>maximum</var> &lt; <var>minimum</var>. In such case, the above median value may
+     * be shifted by half the axis range (180° for longitudes). The exact behavior is
+     * implementation-dependent.</font></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The median ordinate at the given dimension.
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension envelope dimension}.
+     *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
@@ -196,16 +241,24 @@ public interface Envelope {
 
     /**
      * Returns the envelope span (typically width or height) along the specified dimension.
-     * The result shall be equals (minus rounding error) to:
+     * In most cases, the result is equals (minus rounding error) to:
      *
      * <blockquote><code>
-     * {@linkplain #getMaximum getMaximum}(dimension) - {@linkplain #getMinimum getMinimum}(dimension)
+     * span = {@linkplain #getMaximum getMaximum}(dimension) - {@linkplain #getMinimum getMinimum}(dimension);
      * </code></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the ordinate value.
+     * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * If this envelope implementation supports the {@linkplain #getLowerCorner() lower} and
+     * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
+     * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
+     * when <var>maximum</var> &lt; <var>minimum</var>. In such case, the axis range (360° for
+     * longitudes) may be added to the above span value. The exact behavior is
+     * implementation-dependent.</font></blockquote>
+     *
+     * @param  dimension The dimension for which to obtain the span.
      * @return The span (typically width or height) at the given dimension.
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension envelope dimension}.
+     *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and
