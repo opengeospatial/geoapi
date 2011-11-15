@@ -40,7 +40,6 @@ import java.util.ServiceLoader;
 import java.util.ServiceConfigurationError;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.LogRecord;
 
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -295,46 +294,77 @@ public strictfp abstract class TestCase {
      */
     protected static List<Factory[]> factories(final FactoryFilter filter, final Class<? extends Factory>... types) {
         final List<Factory[]> factories = new ArrayList<Factory[]>(4);
-        factories.add(new Factory[types.length]);
         try {
             synchronized (FACTORIES) {
-                for (int i=0; i<types.length; i++) {
-                    final Class<? extends Factory> type = types[i];
-                    Iterable<? extends Factory> choices = FACTORIES.get(type);
-                    if (choices == null) {
-                        choices = load(type);
-                        FACTORIES.put(type, choices);
-                    }
-                    List<Factory[]> toUpdate = factories;
-                    for (final Factory factory : choices) {
-                        if (filter(type, factory, filter)) {
-                            if (toUpdate == factories) {
-                                toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
-                            } else {
-                                for (int j=toUpdate.size(); --j>=0;) {
-                                    toUpdate.set(j, toUpdate.get(j).clone());
-                                }
-                                factories.addAll(toUpdate);
-                            }
-                            for (final Factory[] previous : toUpdate) {
-                                previous[i] = factory;
-                            }
-                        }
+                if (!factories(filter, types, factories)) {
+                    // The user has invoked TestSuite.setFactories(...), for example inside
+                    // his ImplementationDetails.filter(...) method. Let be lenient and try
+                    // again. If the second try fails for the same raison, we will give up.
+                    factories.clear();
+                    if (!factories(filter, types, factories)) {
+                        throw new ServiceConfigurationError("TestSuite.setFactories(...) has been invoked "
+                                + "in the middle of a search for factories.");
                     }
                 }
             }
         } catch (ServiceConfigurationError e) {
             // JUnit 4.10 eats the exception silently, so we need to log
-            // it in order to allow user to figure out what is going.
-            final LogRecord record = new LogRecord(Level.WARNING, e.toString());
-            record.setSourceClassName(TestCase.class.getName());
-            record.setSourceMethodName("factories");
-            record.setThrown(e);
-            record.setLoggerName("org.opengis.test");
-            Logger.getLogger("org.opengis.test").log(record);
-            throw e;
+            // it in order to allow users to figure out what is going.
+            Logger.getLogger("org.opengis.test").log(Level.WARNING, e.toString(), e);
+            throw e; // To be caught by JUnit.
         }
         return factories;
+    }
+
+    /**
+     * Implementation of the above {@code factories} method. The factories are added to
+     * the given list. This method returns {@code true} on success, or {@code false} if
+     * we detected that {@link TestSuite#setFactories(Class, T[])} has been invoked by
+     * some user method while we were iterating. This check is done in an opportunist;
+     * it is not fully reliable.
+     */
+    private static boolean factories(final FactoryFilter filter,
+            final Class<? extends Factory>[] types, final List<Factory[]> factories)
+    {
+        factories.add(new Factory[types.length]);
+        for (int i=0; i<types.length; i++) {
+            final Class<? extends Factory> type = types[i];
+            Iterable<? extends Factory> choices = FACTORIES.get(type);
+            if (choices == null) {
+                choices = load(type);
+                final Iterable<? extends Factory> old = FACTORIES.put(type, choices);
+                if (old != null) {
+                    // TestSuite.setFactories(...) has been invoked, maybe as a result of user
+                    // ImplementationDetails class initialization.  Restores the user-provided
+                    // value and declares that this operation failed.
+                    FACTORIES.put(type, old);
+                    return false;
+                }
+            }
+            List<Factory[]> toUpdate = factories;
+            for (final Factory factory : choices) {
+                if (filter(type, factory, filter)) {
+                    if (toUpdate == factories) {
+                        toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
+                    } else {
+                        for (int j=toUpdate.size(); --j>=0;) {
+                            toUpdate.set(j, toUpdate.get(j).clone());
+                        }
+                        factories.addAll(toUpdate);
+                    }
+                    for (final Factory[] previous : toUpdate) {
+                        previous[i] = factory;
+                    }
+                }
+            }
+            // Check if TestSuite.setFactories(...) has been invoked while we were iterating.
+            // The invocation may have been done by an ImplementationDetails.filter(...) method
+            // for instance.
+            if (FACTORIES.get(type) != choices) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
