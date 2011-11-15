@@ -33,8 +33,7 @@ package org.opengis.geometry;
 
 import java.awt.geom.Rectangle2D; // Used in @see javadoc tags
 
-import org.opengis.referencing.cs.RangeMeaning;         // For javadoc
-import org.opengis.referencing.cs.CoordinateSystemAxis; // For javadoc
+import org.opengis.referencing.cs.RangeMeaning; // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 
@@ -217,9 +216,12 @@ public interface Envelope {
      * If this envelope implementation supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
-     * when <var>maximum</var> &lt; <var>minimum</var>. In such case, the above median value may
-     * be shifted by half the axis range (180° for longitudes). The exact behavior is
-     * implementation-dependent.</font></blockquote>
+     * when <var>maximum</var> &lt; <var>minimum</var>. In such case, the periodicity (360° for
+     * longitudes) may be added to the maximal value before to perform the median calculation.
+     * <p>
+     * Implementations are free to use variants of the above algorithm. For example some
+     * libraries may add different multiples of the periodicity in order to ensure that the
+     * median value is inside the axis range.</font></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The median ordinate at the given dimension.
@@ -251,9 +253,11 @@ public interface Envelope {
      * If this envelope implementation supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
-     * when <var>maximum</var> &lt; <var>minimum</var>. In such case, the axis range (360° for
-     * longitudes) may be added to the above span value. The exact behavior is
-     * implementation-dependent.</font></blockquote>
+     * when <var>maximum</var> &lt; <var>minimum</var>. In such case, the periodicity (360° for
+     * longitudes) may be added to the maximal value before to perform the span calculation.
+     * <p>
+     * Implementations are free to use variants of the above algorithm. For example some
+     * libraries may add different multiples of the periodicity.</font></blockquote>
      *
      * @param  dimension The dimension for which to obtain the span.
      * @return The span (typically width or height) at the given dimension.
