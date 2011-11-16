@@ -15,6 +15,22 @@ Conformance tests
     * {{{./apidocs/org/opengis/test/TestSuite.html}TestSuite}} as the aggregation of all JUnit tests
       defined in this module.
 
+   The test cases and validators are grouped in
+   {{{./apidocs/org/opengis/test/util/package-summary.html}util}},
+   {{{./apidocs/org/opengis/test/metadata/package-summary.html}metadata}},
+   {{{./apidocs/org/opengis/test/referencing/package-summary.html}referencing}} and
+   {{{./apidocs/org/opengis/test/geometry/package-summary.html}geometry}}
+   packages. A graphical JUnit runner is also provided in the
+   {{{./apidocs/org/opengis/test/runner/package-summary.html}runner}} package.
+   That JUnit runner is designed specifically for the <<<geoapi-conformance>>> test suite,
+   and provides more information than common runners (for example which factories were used
+   for each test).
+
+   The GeoAPI conformance module provides also a partial implementation of
+   {{{http://www.epsg.org/gigs.html}Geospatial Integrity of Geoscience Software}} tests in its
+   {{{./apidocs/org/opengis/test/referencing/gigs/package-summary.html}GIGS package}}.
+
+
 
 * Running all pre-defined tests
 
@@ -62,22 +78,17 @@ import java.util.Properties;
  * for MyProjection latitude values is relaxed by a factor of 10 during inverse projections.
  */
 public class GeoapiTest extends TestSuite implements ImplementationDetails {
-    /**
-     * Returns false if a particular factory need to be excluded.
-     */
-    @Override
-    public <T extends Factory> boolean filter(Class<T> category, T factory) {
-        return true;
+    private static final Configuration CONFIGURATION = new Configuration();
+    static {
+        CONFIGURATION.unsupported(Configuration.Key.isDerivativeSupported);
     }
 
     /**
      * Returns the enabled/disabled state of tests, or null to keep all tests enabled.
      */
     @Override
-    public Properties configuration(Factory... factories) {
-        Properties config = new Properties();
-        config.setProperty("isDerivativeSupported", "false");
-        return config;
+    public Configuration configuration(Factory... factories) {
+        return CONFIGURATION;
     }
 
     /**
@@ -85,7 +96,7 @@ public class GeoapiTest extends TestSuite implements ImplementationDetails {
      * math transform, or null if no change is needed.
      */
     @Override
-    public ToleranceModifier needsRelaxedTolerance(MathTransform transform) {
+    public ToleranceModifier tolerance(MathTransform transform) {
         if (transform instanceof MyProjection) {
             return ToleranceModifiers.scale(EnumSet.of(CalculationType.INVERSE_TRANSFORM), 1, 10);
         }
