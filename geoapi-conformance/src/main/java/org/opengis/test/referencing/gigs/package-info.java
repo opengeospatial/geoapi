@@ -31,8 +31,8 @@
  */
 
 /**
- * Implements the <a href="http://www.epsg.org/gigs.html">Geospatial integrity of geoscience
- * software</a> tests.
+ * Implements the <a href="http://www.epsg.org/gigs.html">Geospatial Integrity of Geoscience
+ * Software</a> tests.
  * <p>
  * <b>Changes compared to GIGS files</b><br>
  * The GIGS <cite>Excel</cite> files have been converted to CSV files, and some values have been

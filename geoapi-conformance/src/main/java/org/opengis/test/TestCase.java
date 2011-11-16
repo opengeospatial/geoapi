@@ -298,8 +298,8 @@ public strictfp abstract class TestCase {
             synchronized (FACTORIES) {
                 if (!factories(filter, types, factories)) {
                     // The user has invoked TestSuite.setFactories(...), for example inside
-                    // his ImplementationDetails.filter(...) method. Let be lenient and try
-                    // again. If the second try fails for the same raison, we will give up.
+                    // his FactoryFilter.filter(...) method. Let be lenient and try again.
+                    // If the second try fails for the same raison, we will give up.
                     factories.clear();
                     if (!factories(filter, types, factories)) {
                         throw new ServiceConfigurationError("TestSuite.setFactories(...) has been invoked "
@@ -334,9 +334,9 @@ public strictfp abstract class TestCase {
                 choices = load(type);
                 final Iterable<? extends Factory> old = FACTORIES.put(type, choices);
                 if (old != null) {
-                    // TestSuite.setFactories(...) has been invoked, maybe as a result of user
-                    // ImplementationDetails class initialization.  Restores the user-provided
-                    // value and declares that this operation failed.
+                    // TestSuite.setFactories(...) has been invoked,  maybe as a result of user
+                    // class initialization. Restores the user-provided value and declares that
+                    // this operation failed.
                     FACTORIES.put(type, old);
                     return false;
                 }
@@ -358,8 +358,9 @@ public strictfp abstract class TestCase {
                 }
             }
             // Check if TestSuite.setFactories(...) has been invoked while we were iterating.
-            // The invocation may have been done by an ImplementationDetails.filter(...) method
-            // for instance.
+            // The method may have been invoked by a FactoryFilter.filter(...) method for
+            // example. While not an encouraged practice, we try to be a little bit more
+            // robust than not checking at all.
             if (FACTORIES.get(type) != choices) {
                 return false;
             }
@@ -369,8 +370,7 @@ public strictfp abstract class TestCase {
 
     /**
      * Returns {@code true} if the given factory can be tested. This method iterates over all
-     * registered {@link ImplementationDetails} and ensures that all of them accept the given
-     * factory.
+     * registered {@link FactoryFilter} and ensures that all of them accept the given factory.
      */
     private static <T extends Factory> boolean filter(final Class<T> category, final Factory factory, final FactoryFilter filter) {
         final T checked = category.cast(factory);
