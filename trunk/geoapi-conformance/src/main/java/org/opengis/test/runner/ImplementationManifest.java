@@ -34,9 +34,11 @@ package org.opengis.test.runner;
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.StringTokenizer;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.jar.Attributes;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -111,6 +113,25 @@ final class ImplementationManifest {
             if (candidate != null) {
                 if (manifest == null || candidate.priority < manifest.priority) {
                     manifest = candidate;
+                }
+            }
+        }
+        /*
+         * Removes any classpath elements that duplicate a JAR file already on the classpath,
+         * and stores the remaining classpath entries in the ImplementationManifest object.
+         */
+        final String defcp = System.getProperty("java.class.path");
+        if (defcp != null) {
+            final Set<String> currentClasspath = new HashSet<String>();
+            final StringTokenizer tokens = new StringTokenizer(defcp, File.pathSeparator);
+            while (tokens.hasMoreTokens()) {
+                String file = tokens.nextToken();
+                file = file.substring(file.lastIndexOf(File.separator) + 1);
+                currentClasspath.add(file);
+            }
+            for (final Iterator<File> it=classpath.iterator(); it.hasNext();) {
+                if (currentClasspath.contains(it.next().getName())) {
+                    it.remove();
                 }
             }
         }

@@ -42,7 +42,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 
 /**
- * The cell renderer for the {@link SwingResultTableModel}. This cell renderer can display
+ * The cell renderer for the {@link ResultTableModel}. This cell renderer can display
  * cells in different color depending the test status.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -50,7 +50,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @since   3.1
  */
 @SuppressWarnings("serial")
-final class SwingResultCellRenderer extends DefaultTableCellRenderer {
+final class ResultCellRenderer extends DefaultTableCellRenderer {
     /**
      * The default text and background color.
      */
@@ -67,9 +67,9 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
     private final Coverage coverage;
 
     /**
-     * Creates a default cell renderer for {@link SwingResultTableModel}.
+     * Creates a default cell renderer for {@link ResultTableModel}.
      */
-    SwingResultCellRenderer() {
+    ResultCellRenderer() {
         super();
         foreground   = super.getForeground();
         background   = super.getBackground();
@@ -103,7 +103,7 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
     public Component getTableCellRendererComponent(final JTable table, final Object value,
             final boolean isSelected, final boolean hasFocus, final int row, final int column)
     {
-        final SwingResultTableModel model = (SwingResultTableModel) table.getModel();
+        final ResultTableModel model = (ResultTableModel) table.getModel();
         final ReportEntry entry = model.getValueAt(row);
         Color foreground = this.foreground;
         Color background = this.background;
@@ -122,7 +122,7 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
                 }
             }
         }
-        if (!isIgnore && column == SwingResultTableModel.RESULT_COLUMN) {
+        if (!isIgnore && column == ResultTableModel.RESULT_COLUMN) {
             coverage.report = entry;
             return coverage;
         }
@@ -142,7 +142,7 @@ final class SwingResultCellRenderer extends DefaultTableCellRenderer {
 
         /**
          * The test report to paint. This value shall be set by
-         * {@link SwingResultCellRenderer#getTableCellRendererComponent}
+         * {@link ResultCellRenderer#getTableCellRendererComponent}
          * before this component is rendered.
          */
         ReportEntry report;

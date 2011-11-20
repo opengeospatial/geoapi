@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.AbstractMap;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -109,8 +110,15 @@ final class ReportEntry {
      *   <li>The vendor name (may be null)</li>
      *   <li>The authority name (may be null)</li>
      * </ol>
+     *
+     * @see SwingFactoryTableModel
      */
     final List<String[]> factories;
+
+    /**
+     * The configuration specified by the implementor.
+     */
+    final List<Map.Entry<Configuration.Key<?>, Boolean>> configuration;
 
     /**
      * The test status.
@@ -150,6 +158,7 @@ final class ReportEntry {
          */
         int numTests=1, numSupported=1;
         final List<String[]> factories = new ArrayList<String[]>();
+        final List<Map.Entry<Configuration.Key<?>, Boolean>> configuration = new ArrayList<Map.Entry<Configuration.Key<?>, Boolean>>();
         for (Map.Entry<Configuration.Key<?>,Object> entry : event.getSource().configuration().map().entrySet()) {
             final Configuration.Key<?> key = entry.getKey();
             final String   name  = key.name();
@@ -160,14 +169,16 @@ final class ReportEntry {
              * ({@code isFooSupported = false}) still do some test, so we unconditionally start
              * the count with 1 supported test.
              */
-            if ((value instanceof Boolean) && name.startsWith("is")) {
+            if ((type == Boolean.class) && name.startsWith("is")) {
+                final Boolean bv = (Boolean) value;
                 if (name.endsWith("Supported")) {
-                    if (((Boolean) value).booleanValue()) {
+                    configuration.add(new AbstractMap.SimpleImmutableEntry<Configuration.Key<?>, Boolean>(key, bv));
+                    if (bv) {
                         numSupported++;
                     }
                     numTests++;
                 } else if (name.equals("isToleranceRelaxed")) {
-                    isToleranceRelaxed = ((Boolean) value).booleanValue();
+                    isToleranceRelaxed = bv;
                 }
             }
             /*
@@ -194,6 +205,7 @@ final class ReportEntry {
         }
         coverage = ((float) numSupported) / ((float) numTests);
         this.factories = Collections.unmodifiableList(factories);
+        this.configuration = Collections.unmodifiableList(configuration);
     }
 
     /**
@@ -208,6 +220,7 @@ final class ReportEntry {
         this.status           = status;
         this.exception        = exception;
         this.factories        = Collections.emptyList();
+        this.configuration    = Collections.emptyList();
         trimStackTrace(exception);
     }
 

@@ -45,7 +45,7 @@ import javax.swing.table.AbstractTableModel;
  * @since   3.1
  */
 @SuppressWarnings("serial")
-final class SwingResultTableModel extends AbstractTableModel implements ChangeListener, Runnable {
+final class ResultTableModel extends AbstractTableModel implements ChangeListener, Runnable {
     /**
      * Index of columns handled by this model.
      */
@@ -78,7 +78,7 @@ final class SwingResultTableModel extends AbstractTableModel implements ChangeLi
     /**
      * Creates a table model for the given data.
      */
-    SwingResultTableModel(final Runner data) {
+    ResultTableModel(final Runner data) {
         this.data = data;
         entries = data.getEntries();
         data.addChangeListener(this);
@@ -127,7 +127,7 @@ final class SwingResultTableModel extends AbstractTableModel implements ChangeLi
      * Returns the value in the given cell.
      */
     @Override
-    public Object getValueAt(final int row, final int column) {
+    public String getValueAt(final int row, final int column) {
         final ReportEntry entry = entries[row];
         switch (column) {
             case CLASS_COLUMN:  return entry.simpleClassName;

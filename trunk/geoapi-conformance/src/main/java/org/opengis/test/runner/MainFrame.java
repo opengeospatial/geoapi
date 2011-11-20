@@ -35,9 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.List;
-import java.util.Vector;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.prefs.Preferences;
 import java.util.concurrent.ExecutionException;
 
@@ -61,7 +59,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableColumnModel;
-import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -72,7 +69,7 @@ import javax.swing.table.DefaultTableModel;
  * @since   3.1
  */
 @SuppressWarnings("serial")
-final class SwingFrame extends JFrame implements Runnable, ActionListener, ListSelectionListener {
+final class MainFrame extends JFrame implements Runnable, ActionListener, ListSelectionListener {
     /**
      * The preference key for the directory in which to select JAR files.
      */
@@ -93,7 +90,7 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
     /**
      * The table showing the results.
      */
-    private final SwingResultTableModel results;
+    private final ResultTableModel results;
 
     /**
      * Labels used for rendering information about the selected test.
@@ -103,9 +100,15 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
     private final JLabel testName;
 
     /**
-     * The factories used for the test case reported in the "details" tab.
+     * The factories used for the test case, to be reported in the "details" tab.
      */
-    private final DefaultTableModel factories;
+    private final FactoryTableModel factories;
+
+    /**
+     * The configuration specified by the implementor for the test case,
+     * to be reported in the "details" tab.
+     */
+    private final ConfigurationTableModel configuration;
 
     /**
      * Where to report stack trace.
@@ -125,7 +128,7 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
     /**
      * Creates a new frame.
      */
-    SwingFrame() {
+    MainFrame() {
         super("GeoAPI conformance tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(800, 600); // If width is modified, please adjust column preferred widths below.
@@ -143,35 +146,30 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
                 specVendor    = new JLabel()), BorderLayout.NORTH);
 
         runner = new Runner();
-        results = new SwingResultTableModel(runner);
+        results = new ResultTableModel(runner);
         final JTable table = new JTable(results);
-        table.setDefaultRenderer(String.class, new SwingResultCellRenderer());
+        table.setDefaultRenderer(String.class, new ResultCellRenderer());
         table.setAutoCreateRowSorter(true);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
         table.getSelectionModel().addListSelectionListener(this);
         final TableColumnModel columns = table.getColumnModel();
-        columns.getColumn(SwingResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
-        columns.getColumn(SwingResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
-        columns.getColumn(SwingResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
-        columns.getColumn(SwingResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
+        columns.getColumn(ResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
+        columns.getColumn(ResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
+        columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
+        columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
 
-        final JButton viewJavadoc = new JButton(new ImageIcon(SwingFrame.class.getResource("documentinfo.png")));
+        final JButton viewJavadoc = new JButton(new ImageIcon(MainFrame.class.getResource("documentinfo.png")));
         viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
         viewJavadoc.setToolTipText("View javadoc for this test");
         viewJavadoc.addActionListener(this);
 
-        factories = new DefaultTableModel();
-        factories.setColumnIdentifiers(new String[] {
-            // See the javadoc of ReportEntry.factories
-            "Category", "Implementation", "Vendor", "Authority"
-        });
-
         final JTabbedPane tabs = new JTabbedPane();
         tabs.addTab("Tests", new JScrollPane(table));
         tabs.addTab("Details", new SwingPanelBuilder().createDetailsPane(
-                exception = new JTextArea(),
-                testName  = new JLabel(), viewJavadoc,
-                new JTable(factories)));
+                testName = new JLabel(), viewJavadoc,
+                new JTable(factories = new FactoryTableModel()),
+                new JTable(configuration = new ConfigurationTableModel()),
+                exception = new JTextArea()));
         add(tabs, BorderLayout.CENTER);
     }
 
@@ -216,10 +214,9 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
         String className  = null;
         String methodName = null;
         String stacktrace = null;
-        @SuppressWarnings("unchecked")
-        final Vector<Vector<String>> factoryTableContent = factories.getDataVector();
         if (entry == null) {
-            factoryTableContent.clear();
+            factories.entries     = Collections.emptyList();
+            configuration.entries = Collections.emptyList();
         } else {
             className  = entry.className;
             methodName = entry.methodName;
@@ -235,25 +232,15 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
                     break;
                 }
             }
-            final List<String[]> newFactoryContent = entry.factories;
-            final int numFactories = newFactoryContent.size();
-            factoryTableContent.setSize(numFactories);
-            for (int i=0; i<numFactories; i++) {
-                final String[] values = newFactoryContent.get(i);
-                Vector<String> row = factoryTableContent.get(i);
-                if (row == null) {
-                    row = new Vector<String>(values.length);
-                    factoryTableContent.set(i, row);
-                }
-                row.clear();
-                row.addAll(Arrays.asList(values));
-            }
+            factories.entries     = entry.factories;
+            configuration.entries = entry.configuration;
         }
-        factories .fireTableDataChanged();
-        testName  .setText(className + '.' + methodName);
-        exception .setText(stacktrace);
-        exception .setEnabled(stacktrace != null);
-        exception .setCaretPosition(0);
+        factories    .fireTableDataChanged();
+        configuration.fireTableDataChanged();
+        testName     .setText(className + '.' + methodName);
+        exception    .setText(stacktrace);
+        exception    .setEnabled(stacktrace != null);
+        exception    .setCaretPosition(0);
         currentReport = entry;
     }
 
@@ -280,7 +267,7 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
         if (currentReport != null) try {
             desktop.browse(currentReport.getJavadocURL());
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(SwingFrame.this, e.toString(),
+            JOptionPane.showMessageDialog(MainFrame.this, e.toString(),
                     "Can not open the browser", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -323,7 +310,7 @@ final class SwingFrame extends JFrame implements Runnable, ActionListener, ListS
             } catch (InterruptedException e) {
                 // Should not happen at this point.
             } catch (ExecutionException e) {
-                JOptionPane.showMessageDialog(SwingFrame.this,
+                JOptionPane.showMessageDialog(MainFrame.this,
                         "An error occurred while processing the JAR files: " + e.getCause(),
                         "Can not use the JAR files", JOptionPane.ERROR_MESSAGE);
             }
