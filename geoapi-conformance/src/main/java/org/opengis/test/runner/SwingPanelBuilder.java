@@ -32,9 +32,10 @@
 package org.opengis.test.runner;
 
 import java.awt.Font;
-import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,12 +43,13 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 
 
 /**
- * An utility class for building various panels used by {@link SwingFrame} or other components.
+ * An utility class for building various panels used by {@link MainFrame} or other components.
  * This class extends {@link GridBagConstraints} only for opportunist reason - do not rely on that.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -104,8 +106,8 @@ final class SwingPanelBuilder extends GridBagConstraints {
     /**
      * Creates the panel where to display details about a particular test.
      */
-    JPanel createDetailsPane(final JTextArea exception, final JLabel testName, final JButton viewJavadoc,
-            final JTable factories)
+    JPanel createDetailsPane(final JLabel testName, final JButton viewJavadoc,
+            final JTable factories, final JTable configuration, final JTextArea exception)
     {
         final Font monospaced = Font.decode("Monospaced");
         testName.setFont(monospaced);
@@ -115,15 +117,24 @@ final class SwingPanelBuilder extends GridBagConstraints {
         gridx=0; weightx=0; panel.add(createLabel("Test method:", testName), this);
         gridx++; weightx=1; panel.add(testName, this);
         gridx++; weightx=0; panel.add(viewJavadoc, this);
+        gridx=0; gridy++; gridwidth=3; weightx=1; weighty=1; insets.top = 12;
+        final JTabbedPane tabs = new JTabbedPane();
+        panel.add(tabs, this);
 
-        gridy++; gridx=0; gridwidth=3; weightx=1; insets.top = 12;
-        panel.add(createScrollPane(factories, "Factories", new Dimension(600, 100)), this);
-
-        gridy++; weighty=1;
-        exception.setEnabled (false);
+        // If new tabs are added below, make sure that the index of the "Exception"
+        // tab match the index given to 'tabs.setEnabledAt(...)' in the listener.
+        tabs.addTab("Factories",     createScrollPane(factories));
+        tabs.addTab("Configuration", createScrollPane(configuration));
+        tabs.addTab("Exception",     createScrollPane(exception));
+        exception.addPropertyChangeListener("enabled", new PropertyChangeListener() {
+            @Override public void propertyChange(final PropertyChangeEvent event) {
+                tabs.setEnabledAt(2, (Boolean) event.getNewValue());
+                // Number 2 above is the index of "Exception" tab.
+            }
+        });
+        exception.setEnabled (false); // Shall be invoked only after we have set the above listener.
         exception.setEditable(false);
         exception.setFont(monospaced);
-        panel.add(createScrollPane(exception, "Error", null), this);
         panel.setOpaque(false);
         return panel;
     }
@@ -141,17 +152,11 @@ final class SwingPanelBuilder extends GridBagConstraints {
     /**
      * Creates a transparent scroll pane for the given component with the given title.
      */
-    private static JScrollPane createScrollPane(final JComponent component, final String title, final Dimension size) {
+    private static JScrollPane createScrollPane(final JComponent component) {
         final JScrollPane scroll = new JScrollPane(component);
-        scroll.setBorder(BorderFactory.createTitledBorder(title));
         component.setOpaque(false);
         scroll.getViewport().setOpaque(false);
         scroll.setOpaque(false);
-        if (size != null) {
-            scroll.setMinimumSize(size);
-            scroll.setMaximumSize(size);
-            scroll.setPreferredSize(size);
-        }
         return scroll;
     }
 }

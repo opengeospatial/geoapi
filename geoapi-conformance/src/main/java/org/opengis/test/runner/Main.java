@@ -79,7 +79,7 @@ public final class Main {
      * Starts the swing application.
      */
     public static void startSwingApplication() {
-        final SwingFrame frame = new SwingFrame();
+        final MainFrame frame = new MainFrame();
         frame.setVisible(true);
         EventQueue.invokeLater(frame);
     }
