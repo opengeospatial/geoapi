@@ -1,0 +1,104 @@
+#
+# Derived from file GIGS_206_libProjectedCRS_v1_2009-12-01.xls
+# Test 206, Application pre-defined geodetic parameter library - Projected CRSs, v1_2009-12-01.
+#
+# Instructions:
+# Compare the definitions of projected CRSs in the application pre-defined library with those in the EPSG Dataset. Those listed below are the minimum that should be reviewed.
+# (This list identifies items of especial interest to the E&P industry for geodetic integrity testing purposes; it is not a fully inclusive list of items of interest).
+#
+# Columns:
+#  [ 0]: EPSG projected CRS Code(s)
+#  [ 1]: EPSG Datum Code
+#  [ 2]: Particularly important to E&P industry?
+#  [ 3]: Geographic CRS Name
+#  [ 4]: Associated projection(s)
+#  [ 5]: Remarks
+#
+2165; 2043; 2041,6143,Yes,Abidjan 1987,TM 5 NW; UTM
+2136; 2137,6168,Yes,Accra,TM 1 NW; Ghana National Grid
+20249-20256,6202,Yes,AGD66,Australian Map Grid zones
+20349-20356,6203,Yes,AGD84,Australian Map Grid zones
+2318; 20436; 20437,6204,Yes,Ain el Abd,Aramco Lambert; UTM
+28992,6289,Yes,Amersfoort,RD New
+20822-20824,6208,Yes,Aratu,UTM
+3001; 2308; 21148-50,6211,Yes,Batavia,NEIEZ; TM 109 SE; UTM
+21413-21423,6214,Yes,Beijing 1954,6-degree Gauss-Kruger,Check axes order and abbreviations
+21896-21899,6218,Yes,Bogota 1975,Colombia zones
+22091; 22092; 22032; 22033,6220,Yes,Camacupa,TM 11.30 SE; TM 12 SE; UTM
+22191-22197; 2315; 2316,6221,Yes,Campo Inchauspe,Argentina zones; UTM
+22391; 22392,6223,Yes,Carthage,Tunisia zones
+31600,6316,Yes,Dealul Piscului 1930,Stereo 30,Check axes order and abbreviations
+22700; 22770,6227,Yes,Deir ez Zor,"Levant zone, Syria Lambert"
+23866-23872; 23877-23884,6755,Yes,DGN95,UTM
+31466-69,6314,Yes,DHDN,3-degree Gauss-Kruger,Check axes order and abbreviations
+23028-23035; 23090; 23095,6230,Yes,ED50,UTM; TM 5 NE; TM 0 N
+2058-2060,6154,Yes,ED50(ED77),UTM
+22991-22994,6229,Yes,Egypt 1907,Egypt belts
+3355,6706,Yes,Egypt Gulf of Suez S-650 TL,Egypt Red belt
+2068-2080,6159,Yes,ELD79,Libya zones; UTM
+25828-25835,6258,Yes,ETRS89,UTM
+23239; 23240,6232,Yes,Fahud,UTM
+3200,6132,Yes,FD58,Iraq zone
+28349-28356,6283,Yes,GDA94,Australian Map Grid zones
+3375; 3376,6742,Yes,GDM2000,RSO grids
+23700,6237,Yes,HD72,EOV
+3367-3369,6700,Yes,IGN Astro 1960,UTM
+23946-23948,6239,Yes,Indian 1954,UTM
+3148; 3149,6131,Yes,Indian 1960,UTM
+24047; 24048,6240,Yes,Indian 1975,UTM
+24305; 24306; 24375,6144,Yes,Kalianpur 1937,India zones; UTM
+24312-13; 24376-24377,6145,Yes,Kalianpur 1962,India zones; UTM
+24342-43; 24379-24380,6146,Yes,Kalianpur 1975,India zones; UTM
+24547-48,6245,Yes,Kertau 1968,UTM
+3167; 3168,6751,Yes,Kertau (RSO),RSO
+24600,6246,Yes,KOC,KOC Lambert
+3177; 3190-3199; 3201-3203,6754,Yes,LGD2006,Libya zones; UTM
+25391-95,6253,Yes,Luzon 1911,Philippine zones
+3114-3118,6686,Yes,MAGNA-SIRGAS,Colombia zones
+25932,6259,Yes,Malongo 1987,UTM
+2215,6193,Yes,Manoca 1962,UTM
+3343-3354,6702,Yes,Mauritania 1999,UTM
+3354,6705,Yes,Mhast (offshore),UTM
+3353,6704,Yes,Mhast (onshore),UTM
+26331-26332; 26391-26393,6263,Yes,Minna,Nigeria belts; UTM
+3003; 3004,6265,Yes,Monte Mario,Italy zones
+26632; 26692,6266,Yes,M'poraloko,UTM
+26711-26712; 32012; 32040; 32064-32066,6267,Yes,NAD27,State Plane zones; BLM zones; UTM
+26811-26813,6268,Yes,NAD27 Michigan,State Plane zones
+26911-26912; 32156; 3736; 26990; 2253; 32140; 2278,6269,Yes,NAD83,State Plane zones; UTM,Check units
+2955-2956,6140,Yes,NAD83(CSRS),UTM
+2845; 2917; 2809; 2898,6152,Yes,NAD83(HARN),State Plane zones; UTM
+27038; 27039; 27040,6270,Yes,Nahrwan 1967,Nahrwan 1967
+2067,6158,Yes,Naparima 1955,UTM
+30791; 30792; 30730-30732,6307,Yes,Nord Sahara 1959,Voirol Unifie; UTM,Check old Voirol
+27571-27573,6807,Yes,NTF (Paris),Lambert zones
+2193; 2133-2135,6167,Yes,NZGD2000,TM
+27200; 27291; 27292,6272,Yes,NZGD49,NZMG; TM zones
+27700,6277,Yes,OSGB 1936,TM
+3440,6134,Yes,PSD93,UTM
+28232,6282,Yes,Pointe Noire,UTM
+22181-22187,6694,Yes,POSGAR 94,Argentina zones
+22171-22177,6190,Yes,POSGAR 98,Argentina zones
+3121-3125,6683,Yes,PRS92,Philippine zones
+24817-20; 24877-79; 24891-93,6248,Yes,PSAD56,UTM; Peru zones
+28409; 28416; 28424,6284,Yes,Pulkovo 1942,6-degree Gauss-Kruger,Check axes order and abbreviations
+3334; 3335; 3844,6179,Yes,Pulkovo 1942(58),6-degree Gauss-Kruger; Stereo70,Check axes order and abbreviations
+3836,6178,Yes,Pulkovo 1942(83),6-degree Gauss-Kruger,Check axes order and abbreviations
+2099,6286,Yes,Qatar 1948,Qatar Grid
+28600,6285,Yes,Qatar 1974,Qatar National Grid
+2932,6614,Yes,QND95,Qatar National Grid
+2201-2203,6189,Yes,REGVEN,UTM
+2154,6171,Yes,RGF93,Lambert 93
+29101; 29194,6618,Yes,SAD69,UTM; Brazil Polyconic
+29371; 29333,6293,Yes,Schwarzeck,Lo/22 zones; UTM
+31997,6170,Yes,SIRGAS 1995,UTM
+31982,6674,Yes,SIRGAS 2000,UTM
+29738,6297,Yes,Tananarive,UTM
+29701; 29702,6810,Yes,Tananarive (Paris),Laborde
+30339,6303,Yes,TC(1948),UTM
+29850; 29871-29873,6298,Yes,Timbalai 1948,RSO; UTM
+30200; 2314,6302,Yes,Trinidad 1903,Cassini
+32488,6324,Yes,WGS 72BE,UTM
+32601-32660; 32701-32760,6326,Yes,WGS 84,UTM,Check axes abbreviations
+2338-2348,6610,Yes,Xian 1980,6-degree Gauss-Kruger,Check axes order and abbreviations
+2089; 2090,6163,Yes,Yemen NGN96,UTM
