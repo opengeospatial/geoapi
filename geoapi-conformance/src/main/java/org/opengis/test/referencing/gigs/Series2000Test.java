@@ -771,4 +771,67 @@ next:   for (final String search : expected) {
             }
         }
     }
+
+    /**
+     * Reference projected CRSs.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference projected CRSs bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare projected CRS definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2006_libProjectedCRS.csv">{@code GIGS_2006_libProjectedCRS.csv}</a>.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Projected CRS definitions bundled with the software should have the same name,
+     *   coordinate system (including units and axes abbreviations and axes order) and map
+     *   projection as in the EPSG Dataset. CRSs missing from the software or included in the
+     *   software additional to those in the EPSG Dataset or at variance with those in the EPSG
+     *   Dataset should be reported.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
+     *         unsupported identifier}) occurred while creating an operation from an EPSG code.
+     */
+    @Test
+    @Ignore
+    public void test2006() throws FactoryException {
+        assumeNotNull(crsAuthorityFactory);
+        final ExpectedData data = new ExpectedData("GIGS_2006_libProjectedCRS.csv",
+            String .class,  // [0]: EPSG projected CRS Code(s)
+            Integer.class,  // [1]: EPSG Datum Code
+            Boolean.class,  // [2]: Particularly important to E&P industry?
+            String .class,  // [3]: Geographic CRS Name
+            String .class,  // [4]: Associated projection(s)
+            String .class); // [5]: Remarks
+
+         final StringBuilder prefix = new StringBuilder("ProjectedCRS[");
+         final int prefixLength = prefix.length();
+         while (data.next()) {
+            for (final int code : data.getInts(0)) {
+                final ProjectedCRS crs;
+                try {
+                    crs = crsAuthorityFactory.createProjectedCRS(String.valueOf(code));
+                } catch (NoSuchIdentifierException e) {
+                    // Relaxed the exception type from NoSuchAuthorityCodeException because
+                    // CoordinateOperation creation will typically use MathTransformFactory
+                    // under the hood, which throws NoSuchIdentifierException for non-implemented
+                    // operation methods (may be identified by their name rather than EPSG code).
+                    unsupportedCode(CoordinateOperation.class, code, e);
+                    continue;
+                }
+                validate(crs);
+                prefix.setLength(prefixLength);
+                prefix.append(code).append("].");
+                testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
+                testIdentifier(message(prefix, "getDatum().getIdentifiers()"),
+                        data.getInt(1), crs.getDatum().getIdentifiers());
+                if (isNameSupported) {
+                }
+            }
+        }
+    }
 }
