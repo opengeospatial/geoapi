@@ -42,11 +42,17 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Specifies the relationship of a coordinate system to the earth, thus creating a {@linkplain
- * org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}. A datum uses a
- * parameter or set of parameters that determine the location of the origin of the coordinate
- * reference system. Each datum subtype can be associated with only specific types of
- * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}.
+ * Specifies the relationship of a {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system}
+ * to the earth, thus creating a {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
+ * reference system}. For {@linkplain org.opengis.referencing.crs.GeocentricCRS geodetic} and
+ * {@linkplain org.opengis.referencing.crs.VerticalCRS vertical} coordinate reference systems,
+ * the datum relates the coordinate system to the Earth. With other types of coordinate reference systems,
+ * the datum may relate the coordinate system to another physical or virtual object.
+ * <p>
+ * A datum uses a parameter or set of parameters that determine the location of the origin of the
+ * coordinate reference system. Each datum subtype can be associated with only specific types of
+ * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}, documented in their
+ * javadoc.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -98,21 +104,24 @@ public interface Datum extends IdentifiedObject {
     String SCOPE_KEY = "scope";
 
     /**
-     * Description, possibly including coordinates, of the point or points used to anchor the datum
-     * to the Earth. Also known as the "origin", especially for Engineering and Image Datums.
+     * A description, possibly including coordinates of an identified point or points, of the
+     * relationship used to anchor the coordinate system to the Earth or alternate object.
+     * Also known as the "origin", especially for Engineering and Image Datums.
      * <p>
      * <ul>
-     *   <li>For a geodetic datum, this point is also known as the fundamental point, which is
-     *       traditionally the point where the relationship between geoid and ellipsoid is defined.
-     *       In some cases, the "fundamental point" may consist of a number of points. In those
-     *       cases, the parameters defining the geoid/ellipsoid relationship have then been averaged
-     *       for these points, and the averages adopted as the datum definition.</li>
+     *   <li>For a geodetic datum, this anchor may be a point known as the fundamental point, which
+     *       is traditionally the point where the relationship between geoid and ellipsoid is defined,
+     *       together with a direction from that point. In other cases, the anchor may consist of a
+     *       number of points. In those cases, the parameters defining the geoid/ellipsoid relationship
+     *       have then been averaged for these points, and the coordinates of the points adopted as the
+     *       datum definition.</li>
      *
-     *   <li>For an engineering datum, the anchor point may be a physical point, or it may be a
-     *       point with defined coordinates in another CRS.</li>
+     *   <li>For an engineering datum, the anchor may be an identified physical point with the
+     *       orientation defined relative to the object.</li>
      *
      *   <li>For an image datum, the anchor point is usually either the centre of the image or the
-     *       corner of the image.</li>
+     *       corner of the image. The coordinate system orientation is defined through the
+     *       {@link org.opengis.referencing.cs.AxisDirection} class.</li>
      *
      *   <li>For a temporal datum, this attribute is not defined. Instead of the anchor point,
      *       a temporal datum carries a separate time origin of type {@link Date}.</li>
