@@ -41,8 +41,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A textual description and/or a set of parameters identifying a particular reference level
  * surface used as a zero-height surface. The description includes its position with respect
- * to the Earth for any of the height types recognized by this standard. There are several
- * types of Vertical Datums, and each may place constraints on the
+ * to the Earth for any of the height types recognized by this standard.
+ * <p>
+ * There are several types of Vertical Datums, and each may place constraints on the
  * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis Coordinate Axis} with which
  * it is combined to create a {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS}.
  *
@@ -59,6 +60,13 @@ import static org.opengis.annotation.Specification.*;
 public interface VerticalDatum extends Datum {
     /**
      * The type of this vertical datum. Default is "geoidal".
+     *
+     * @departure historic
+     *   This attribute is kept conformant with the specification published in 2003.
+     *   The 2007 revision of ISO 19111 removed this attribute, since this information
+     *   can be encoded in the <cite>anchor point</cite>. However GeoAPI keep this attribute
+     *   for historical reasons, and because it provides some of the anchor point information
+     *   in a programmatic way more suitable to coordinate transformation engines.
      *
      * @return The type of this vertical datum.
      */

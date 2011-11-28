@@ -74,7 +74,7 @@ public final class Note implements Taglet {
     /**
      * Returns {@code true} since <code>@note</code> can be used in overview.
      *
-     * @return Always {@code false}.
+     * @return Always {@code true}.
      */
     @Override
     public boolean inOverview() {

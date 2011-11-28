@@ -797,7 +797,6 @@ next:   for (final String search : expected) {
      *         unsupported identifier}) occurred while creating an operation from an EPSG code.
      */
     @Test
-    @Ignore
     public void test2006() throws FactoryException {
         assumeNotNull(crsAuthorityFactory);
         final ExpectedData data = new ExpectedData("GIGS_2006_libProjectedCRS.csv",
