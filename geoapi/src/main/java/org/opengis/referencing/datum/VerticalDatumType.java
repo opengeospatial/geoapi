@@ -57,6 +57,8 @@ import static org.opengis.annotation.Specification.*;
  *   it provides some of the <cite>anchor point</cite> information in a programmatic way more
  *   suitable to coordinate transformation engines.
  *
+ * @see VerticalDatum#getVerticalDatumType()
+ *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

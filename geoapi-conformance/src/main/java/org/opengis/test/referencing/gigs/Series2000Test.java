@@ -585,7 +585,7 @@ next:   for (final String search : expected) {
 
         final StringBuilder prefix = new StringBuilder();
         while (data.next()) {
-            final int    datumCode = data.getInt(0);
+            final int    datumCode = data.getInt   (0);
             final String datumName = data.getString(1);
             final String crsName   = data.getString(5);
             final String ellName   = data.getString(7);
@@ -743,9 +743,10 @@ next:   for (final String search : expected) {
             String .class,  // [3]: Coordinate Operation Method
             String .class); // [4]: Remarks
 
-         final StringBuilder prefix = new StringBuilder("Projection[");
-         final int prefixLength = prefix.length();
-         while (data.next()) {
+        final StringBuilder prefix = new StringBuilder("Projection[");
+        final int prefixLength = prefix.length();
+        while (data.next()) {
+            final String method = data.getString(3);
             for (final int code : data.getInts(0)) {
                 final CoordinateOperation cop;
                 try {
@@ -765,7 +766,6 @@ next:   for (final String search : expected) {
                 assertInstanceOf(message(prefix, "class"), Conversion.class, cop);
                 final Conversion conversion = (Conversion) cop;
                 if (isNameSupported) {
-                    final String method = data.getString(3);
                     assertEquals(message(prefix, "getMethod().getName()"), method, getName(conversion.getMethod()));
                 }
             }
@@ -807,9 +807,11 @@ next:   for (final String search : expected) {
             String .class,  // [4]: Associated projection(s)
             String .class); // [5]: Remarks
 
-         final StringBuilder prefix = new StringBuilder("ProjectedCRS[");
-         final int prefixLength = prefix.length();
-         while (data.next()) {
+        final StringBuilder prefix = new StringBuilder("ProjectedCRS[");
+        final int prefixLength = prefix.length();
+        while (data.next()) {
+            final int  datumCode = data.getInt(1);
+            final String geoName = data.getString(3);
             for (final int code : data.getInts(0)) {
                 final ProjectedCRS crs;
                 try {
@@ -827,8 +829,10 @@ next:   for (final String search : expected) {
                 prefix.append(code).append("].");
                 testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
                 testIdentifier(message(prefix, "getDatum().getIdentifiers()"),
-                        data.getInt(1), crs.getDatum().getIdentifiers());
+                        datumCode, crs.getDatum().getIdentifiers());
                 if (isNameSupported) {
+                    assertEquals(message(prefix, "getBaseCRS().getName()"),
+                            geoName, getName(crs.getBaseCRS()));
                 }
             }
         }
