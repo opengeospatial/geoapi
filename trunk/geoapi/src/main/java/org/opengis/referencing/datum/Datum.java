@@ -128,6 +128,8 @@ public interface Datum extends IdentifiedObject {
      * </ul>
      *
      * @return A description of the anchor point, or {@code null} if none.
+     *
+     * @see VerticalDatum#getVerticalDatumType()
      */
     @UML(identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getAnchorPoint();

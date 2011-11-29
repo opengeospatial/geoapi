@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CD_VerticalDatum", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
     /**
-     * The type of this vertical datum. Default is "geoidal".
+     * The type of this vertical datum.
      *
      * @departure historic
      *   This attribute is kept conformant with the specification published in 2003.
@@ -67,8 +67,14 @@ public interface VerticalDatum extends Datum {
      *   can be encoded in the <cite>anchor point</cite>. However GeoAPI keep this attribute
      *   for historical reasons, and because it provides some of the anchor point information
      *   in a programmatic way more suitable to coordinate transformation engines.
+     *   <p>
+     *   Note that GML defines the anchor point as a code list, which address the programmatic
+     *   needs. In GeoAPI the anchor point is rather defined as an international string, thus
+     *   the need for equivalent information as a code list.
      *
      * @return The type of this vertical datum.
+     *
+     * @see #getAnchorPoint()
      */
     @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111)
     VerticalDatumType getVerticalDatumType();
