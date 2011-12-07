@@ -75,15 +75,15 @@ public interface NameFactory {
      *     <th nowrap>Purpose</th>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@code "separator"}&nbsp;</td>
-     *     <td nowrap>&nbsp;The separator to insert between {@linkplain GenericName#getParsedNames
+     *     <td valign="top" nowrap>&nbsp;{@code "separator"}&nbsp;</td>
+     *     <td>&nbsp;The separator to insert between {@linkplain GenericName#getParsedNames()
      *     parsed names} in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
      *     it is typically {@code ":"}.</td>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@code "separator.head"}&nbsp;</td>
-     *     <td nowrap>&nbsp;The separator to insert between the namespace and the
-     *     {@linkplain GenericName#head head}. For HTTP namespace, it is {@code "://"}.
+     *     <td valign="top" nowrap>&nbsp;{@code "separator.head"}&nbsp;</td>
+     *     <td>&nbsp;The separator to insert between the namespace and the
+     *     {@linkplain GenericName#head() head}. For HTTP namespace, it is {@code "://"}.
      *     For URN namespace, it is typically {@code ":"}. If this entry is omitted, then
      *     the default shall be the same value than the {@code "separator"} entry.</td>
      *   </tr>
@@ -93,7 +93,7 @@ public interface NameFactory {
      *          The name of the namespace to be returned. This argument can be created using
      *          <code>{@linkplain #createGenericName createGenericName}(null, parsedNames)</code>.
      * @param properties
-     *          An optional map of properties to be assigned to the namespace.
+     *          An optional map of properties to be assigned to the namespace, or {@code null} if none.
      * @return A namespace having the given name and separators.
      *
      * @since 2.3

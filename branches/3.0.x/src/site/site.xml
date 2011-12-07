@@ -36,6 +36,7 @@
       <item name="Specification"       href="http://www.opengeospatial.org/standards/geoapi/"/>
       <item name="Javadoc (normative)" href="3.0/javadoc/index.html"/>
       <item name="Download"            href="http://sourceforge.net/projects/geoapi/files/GeoAPI-3_0_0.zip/download"/>
+      <item name="FAQ"                 href="faq.html"/>
     </menu>
 
     <menu name="Current development" inherit="none">
