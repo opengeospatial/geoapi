@@ -114,9 +114,9 @@
         to XML or database schemas. Indeed, the <a href="http://www.epsg.org">EPSG</a> database schema follows
         closely the ISO 19111 structures. However those ISO specifications define very few operations. For example
         ISO 19111 provides data structures for describing accurately <cite>Coordinate Reference System</cite>
-        objects, but said nothing about the method to invoke for <em>performing</em> the actual operations on
+        objects, but said nothing about the methods to invoke for <em>performing</em> the actual operations on
         coordinate values. In terms of programming languages, the above-cited ISO specifications define only
-        no-argument getter methods. Any method performing calculation based on parameter values are unspecified.</p>
+        no-argument getter methods. Any methods performing calculation based on parameter values are unspecified.</p>
 
         <p>Since GeoAPI targets programming languages rather than data formats, we provide some methods
         performing calculations. Rather than inventing our own, we fetch those methods from other OGC
@@ -220,80 +220,21 @@
       <answer>
         <p>For performance, more orthogonal API and more freedom on the implementer side.</p>
 
-        <p><b>Performance (including memory usage)</b><br/>
-        Some robust implementations will want to protect their internal state against uncontrolled changes.
+        <p><b>Performance (including memory usage)</b></p><blockquote>
+        <p>Some robust implementations will want to protect their internal state against uncontrolled changes.
         In such implementations, getter methods need to make defensive copies of their mutable attributes
         (see <a href="http://java.sun.com/docs/books/effective/chapters.html">Effective Java</a>).
-        Arrays are mutable objects; nothing prevent a user from writing <code>PointArray.positions()[1000] = null</code>,
-        and thus altering the <code>PointArray</code> state if <code>positions()</code> was returning a direct reference
-        to its internal array.</p>
+        Since arrays are mutable objects, robust implementations would need to clone their arrays
+        before to return them; otherwise nothing prevent a user from writing the following:</p>
 
-        <p>The box below compares two ways to protect an implementation from changes. Note that in both
-        case, the internal data are stored as an array but the getter return type differ.</p>
+        <source>pointArray.positions()[1000] = null</source>
 
-        <table class="section">
-          <tr>
-            <th>Array return type</th>
-            <th>Collection return type</th>
-          </tr>
-<tr valign="top"><td><source>public class PointArray {
-    private Position[] p = ...;
+        <p>and thus altering the <code>PointArray</code> state if <code>positions()</code> was returning a direct reference
+        to its internal array. On the other side, collections can be read-only views over internal arrays, thus avoiding
+        the need to clone their data in getter methods.</p></blockquote>
 
-    public Position[] positions() {
-        return (Position[]) p.clone();
-    }
-}</source></td>
-<td><source>public class PointArray {
-    private Position[] p = ...;
-
-    private List&lt;Position&gt; pl = Collections.unmodifiableList(Arrays.asList(p));
-
-    public List&lt;Position&gt; positions() {
-        return pl;
-    }
-}</source></td></tr>
-</table>
-
-        <p>Since the collection is read-only in the above example, it doesn't need to be cloned (note: the <em>elements</em>
-        in an array or collection may still mutable, but this is a separated topic). The collection in this example is a
-        <strong>view</strong> over the array elements. This view doesn't copy the array, and any change in the array is
-        reflected in the view. This is different from <code>Collection.toArray()</code>, which always copy all elements
-        in an array. The conversion from collection to array using <code>Collection.toArray()</code> is usually more expensive
-        and consume more memory than the conversion from array to collection using <code>Arrays.asList(Object[])</code>. One
-        may argue that iteration over a collection is slower than iteration over an array. This slight advantage is compromised
-        (in regard of <code>array.clone()</code> cost) if the user doesn't want to iterate over the whole array. Furthermore,
-        if an array is really wanted, some <code>Collection.toArray()</code> implementations map directly to
-        <code>array.clone()</code>.</p>
-
-        <p>In addition of the above, collections allow on-the-fly object creation. For example positions may be stored
-        as a suite of (<var>x</var>,<var>y</var>) coordinates in a single <code>double[]</code> array for efficiency,
-        and temporary position objects created on the fly:</p>
-
-<source>public class PointArray {
-    private double[] coordinates = ...;
-
-    private List&lt;Position&gt; pl = new AbstractList&lt;Position&gt;() {
-        public int size() {
-            return coordinates.length / 2;
-        }
-
-        public Position get(int i) {
-            return new Position2D(coordinates[i*2], coordinates[i*2+1]);
-        }
-    };
-
-    public List&lt;Position&gt; positions() {
-        return pl;
-    }
-}</source>
-
-        <p>More sophisticated implementations may load or write their data directly to a database on a <em>per-element</em>
-        basis. In comparison, arrays require initialization of all array's element before the array is returned. It still
-        possible to initialize an array with elements that use deferred execution, but implementers have one less degree
-        of freedom with arrays compared to collections.</p>
-
-        <p><b>More orthogonal API</b><br/>
-        If a geometry is mutable (at implementer choice), an user may whish to add, edit or remove elements. With arrays
+        <p><b>More orthogonal API</b></p><blockquote>
+        <p>If a geometry is mutable (at implementer choice), an user may whish to add, edit or remove elements. With arrays
         as return types, we would need to add some <code>add(...)</code> and <code>remove(...)</code> methods in most
         interfaces. Using collections, such API weight is not needed since the user can write the following idiom:</p>
 
@@ -307,26 +248,27 @@
         methods like <code>contains(...)</code>, <code>addAll(...)</code>, <code>removeAll(...)</code>, <cite>etc.</cite>
         Adding those kind of methods directly into the geometry interfaces would basically transforms geometries into
         new kind of collections and duplicates the collection framework work without its "well accepted standard"
-        characteristic.</p>
+        characteristic.</p></blockquote>
 
         <p><b>More freedom on implementer side</b></p>
-        <ul>
-          <li>In the Java language, collections are more abstract than arrays. A collection can be a view over an
-          array (<code>using Arrays.asList(...)</code> for example). The converse is impossible in the general case
-          (<code>Collection.toArray()</code> doesn't create a view; it usually copies the array).</li>
+        <blockquote><ul>
+          <li>Collections are more abstract than arrays:
+          <ul>
+            <li>In the Java language, a collection can be a view over an array (<code>using Arrays.asList(...)</code>
+            for example). The converse is impossible in the general case (<code>Collection.toArray()</code> doesn't
+            create a view; it usually copies the array).</li>
 
-          <li>Collections are more abstract than arrays in .NET too: an array is a collection, but a collection
-          is not always an array (conversions from an arbitrary collection to an array may require a copy, like
-          in Java). The array type is more restrictive than the collection type.</li>
+            <li>In the .NET language, an array is a collection but a collection is not always an array. onversions
+            from an arbitrary collection to an array may require a copy, like in Java.</li>
+          </ul></li>
 
           <li>A collection can be read-only or not, at implementer choice. Java arrays are always mutable and
-          need defensive copies (not to be confused with defensive copies of array or collection elements, which
-          is yet an other topic).</li>
+          need defensive copies (not to be confused with defensive copies of array or collection <em>elements</em>).</li>
 
           <li>Collections allow one more degree of freedom for deferred execution or lazy data loading. Object
           creations can occur on a per-element basis in collection getter methods. In an array, the reference to
           all elements must be initialized before the array is returned.</li>
-        </ul>
+        </ul></blockquote>
       </answer>
     </faq>
   </part>
