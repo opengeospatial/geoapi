@@ -76,13 +76,13 @@ public interface NameFactory {
      *   </tr>
      *   <tr>
      *     <td valign="top" nowrap>&nbsp;{@code "separator"}&nbsp;</td>
-     *     <td>&nbsp;The separator to insert between {@linkplain GenericName#getParsedNames()
-     *     parsed names} in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
+     *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
+     *     in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
      *     it is typically {@code ":"}.</td>
      *   </tr>
      *   <tr>
      *     <td valign="top" nowrap>&nbsp;{@code "separator.head"}&nbsp;</td>
-     *     <td>&nbsp;The separator to insert between the namespace and the
+     *     <td>The separator to insert between the namespace and the
      *     {@linkplain GenericName#head() head}. For HTTP namespace, it is {@code "://"}.
      *     For URN namespace, it is typically {@code ":"}. If this entry is omitted, then
      *     the default shall be the same value than the {@code "separator"} entry.</td>
