@@ -134,10 +134,12 @@ public class ValidatorContainer {
      * field to {@code false}.
      */
     public final List<Validator> all = new AbstractList<Validator>() {
+        @Override
         public int size() {
             return 9;
         }
 
+        @Override
         public Validator get(int index) {
             switch (index) {
                 case  0: return naming;

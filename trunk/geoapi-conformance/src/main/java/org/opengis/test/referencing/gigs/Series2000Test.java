@@ -200,8 +200,15 @@ public strictfp class Series2000Test extends TestCase {
     /**
      * Invoked when the implementation does not support one of the code defined in
      * the GIGS test suite.
+     *
+     * @param type      The GeoAPI interface of the object to construct.
+     * @param code      The EPSG code of the object to create.
+     * @param e         The exception we got while trying to instantiate the object.
+     * @param important Was the object particularly important to E&P industry?
      */
-    private void unsupportedCode(final Class<?> type, final int code, final NoSuchIdentifierException e) {
+    private void unsupportedCode(final Class<?> type, final int code,
+            final NoSuchIdentifierException e, final boolean important)
+    {
         // TODO
     }
 
@@ -328,7 +335,7 @@ next:   for (final String search : expected) {
             try {
                 unit = csAuthorityFactory.createUnit(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Unit.class, code, e);
+                unsupportedCode(Unit.class, code, e, data.getBoolean(4));
                 continue;
             }
             if      (type.equalsIgnoreCase("Linear")) base = METRE;
@@ -424,7 +431,7 @@ next:   for (final String search : expected) {
             try {
                 ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Ellipsoid.class, code, e);
+                unsupportedCode(Ellipsoid.class, code, e, data.getBoolean(1));
                 continue;
             }
             validate(ellipsoid);
@@ -511,7 +518,7 @@ next:   for (final String search : expected) {
             try {
                 pm = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(PrimeMeridian.class, code, e);
+                unsupportedCode(PrimeMeridian.class, code, e, data.getBoolean(1));
                 continue;
             }
             validate(pm);
@@ -585,11 +592,12 @@ next:   for (final String search : expected) {
 
         final StringBuilder prefix = new StringBuilder();
         while (data.next()) {
-            final int    datumCode = data.getInt   (0);
-            final String datumName = data.getString(1);
-            final String crsName   = data.getString(5);
-            final String ellName   = data.getString(7);
-            final String pmName    = data.getString(8);
+            final int     datumCode = data.getInt   (0);
+            final String  datumName = data.getString(1);
+            final String  crsName   = data.getString(5);
+            final boolean important = data.getBoolean(6);
+            final String  ellName   = data.getString(7);
+            final String  pmName    = data.getString(8);
             for (int column=1; column<=4; column++) {
                 prefix.setLength(0);
                 final GeodeticDatum datum;
@@ -604,7 +612,7 @@ next:   for (final String search : expected) {
                     try {
                         datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(datumCode));
                     } catch (NoSuchAuthorityCodeException e) {
-                        unsupportedCode(GeodeticDatum.class, datumCode, e);
+                        unsupportedCode(GeodeticDatum.class, datumCode, e, important);
                         continue;
                     }
                     validate(datum);
@@ -637,7 +645,7 @@ next:   for (final String search : expected) {
                             case 2:  type = GeocentricCRS.class; break;
                             default: throw new AssertionError(column);
                         }
-                        unsupportedCode(type, crsCode, e);
+                        unsupportedCode(type, crsCode, e, important);
                         continue;
                     }
                     validate(crs);
@@ -756,7 +764,7 @@ next:   for (final String search : expected) {
                     // CoordinateOperation creation will typically use MathTransformFactory
                     // under the hood, which throws NoSuchIdentifierException for non-implemented
                     // operation methods (may be identified by their name rather than EPSG code).
-                    unsupportedCode(CoordinateOperation.class, code, e);
+                    unsupportedCode(CoordinateOperation.class, code, e, data.getBoolean(1));
                     continue;
                 }
                 validate(cop);
@@ -794,7 +802,7 @@ next:   for (final String search : expected) {
      * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
-     *         unsupported identifier}) occurred while creating an operation from an EPSG code.
+     *         unsupported identifier}) occurred while creating a projected CRS from an EPSG code.
      */
     @Test
     public void test2006() throws FactoryException {
@@ -816,12 +824,8 @@ next:   for (final String search : expected) {
                 final ProjectedCRS crs;
                 try {
                     crs = crsAuthorityFactory.createProjectedCRS(String.valueOf(code));
-                } catch (NoSuchIdentifierException e) {
-                    // Relaxed the exception type from NoSuchAuthorityCodeException because
-                    // CoordinateOperation creation will typically use MathTransformFactory
-                    // under the hood, which throws NoSuchIdentifierException for non-implemented
-                    // operation methods (may be identified by their name rather than EPSG code).
-                    unsupportedCode(CoordinateOperation.class, code, e);
+                } catch (NoSuchIdentifierException e) { // See comment in test2005()
+                    unsupportedCode(ProjectedCRS.class, code, e, data.getBoolean(2));
                     continue;
                 }
                 validate(crs);
@@ -834,6 +838,62 @@ next:   for (final String search : expected) {
                     assertEquals(message(prefix, "getBaseCRS().getName()"),
                             geoName, getName(crs.getBaseCRS()));
                 }
+            }
+        }
+    }
+
+    /**
+     * Reference coordinate transformations.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference coordinate transformations bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2007_libGeodTfm.csv">{@code GIGS_2007_libGeodTfm.csv}</a>.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Transformation definitions bundled with the software should have the same name, method
+     *   name, defining parameters and parameter values as in EPSG Dataset. The values of the parameters
+     *   should be correct to at least 10 significant figures. Transformations missing from the software
+     *   or included in the software additional to those in the EPSG Dataset or at variance with those
+     *   in the EPSG Dataset should be reported.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
+     *         unsupported identifier}) occurred while creating an operation from an EPSG code.
+     */
+    @Test
+    @Ignore
+    public void test2007() throws FactoryException {
+        assumeNotNull(copAuthorityFactory);
+        final ExpectedData data = new ExpectedData("GIGS_2007_libGeodTfm.csv",
+            Integer.class,  // [0]: EPSG Coordinate Operation Code
+            Boolean.class,  // [1]: Particularly important to E&P industry?
+            String .class,  // [2]: Transformation Name(s)
+            String .class,  // [4]: Coordinate Operation Method
+            String .class); // [5]: Remarks
+
+        final StringBuilder prefix = new StringBuilder("ProjectedCRS[");
+        final int prefixLength = prefix.length();
+        while (data.next()) {
+            final int code = data.getInt(0);
+            final CoordinateOperation operation;
+            try {
+                operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
+            } catch (NoSuchIdentifierException e) { // See comment in test2005()
+                unsupportedCode(CoordinateOperation.class, code, e, data.getBoolean(1));
+                continue;
+            }
+            validate(operation);
+            prefix.setLength(prefixLength);
+            prefix.append(code).append("].");
+            testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
+            if (isNameSupported) {
+                assertEquals(message(prefix, "getName()"), data.getString(2), getName(operation));
             }
         }
     }
