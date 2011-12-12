@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Describes the geometry and georeferencing information of the grid coverage.
- * The grid range attribute determines the valid grid coordinates and allows
+ * The {@linkplain #getExtent() extent} attribute determines the valid grid coordinates and allows
  * for calculation of grid size. A grid coverage may or may not have georeferencing.
  *
  * <P>&nbsp;</P>
@@ -63,21 +63,34 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_GridGeometry", specification=OGC_01004)
 public interface GridGeometry {
     /**
-     * The valid coordinate range of a grid coverage.
-     * The lowest valid grid coordinate is often (but not always) zero.
-     * A grid with 512 cells typically have a minimum coordinate of 0 and maximum of 512,
-     * with 511 as the highest valid index.
+     * The valid domain of a grid coverage. The {@linkplain GridEnvelope#getLow() lowest} valid grid
+     * coordinate is often (but not always) zero. A grid with 512 cells typically have a minimum
+     * coordinate of 0 and maximum of 512, with 511 as the {@linkplain GridEnvelope#getHigh() highest}
+     * valid index.
      *
-     * @return The valid coordinate range of a grid coverage.
+     * {@note The attribute name in the OGC 01-004 specification was "<code>gridRange</code>", while
+     *        the ISO 19123 specification uses "<code>extent</code>" for similar information. This
+     *        interface uses the ISO name both for consistency with ISO interfaces, and because the
+     *        <cite>range</cite> term is already used by ISO 19123 for a different meaning.}
+     *
+     * @return The valid domain of a grid coverage.
+     *
+     * @see org.opengis.coverage.grid.Grid#getExtent()
      */
     @UML(identifier="gridRange", obligation=MANDATORY, specification=OGC_01004)
+    GridEnvelope getExtent();
+
+    /**
+     * @deprecated Renamed {@link #getExtent()}.
+     */
+    @Deprecated
     GridEnvelope getGridRange();
 
     /**
      * Returns the conversion from grid coordinates to real world earth coordinates.
      * The transform is often an affine transform. The coordinate reference system
      * of the real world coordinates is given by the
-     * {@link org.opengis.coverage.Coverage#getCoordinateReferenceSystem} method
+     * {@link org.opengis.coverage.Coverage#getCoordinateReferenceSystem()} method
      * and maps to {@linkplain PixelInCell#CELL_CENTER pixel center}.
      *
      * @return The conversion from grid coordinates to
