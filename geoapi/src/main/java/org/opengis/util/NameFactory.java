@@ -105,7 +105,7 @@ public interface NameFactory extends Factory {
      * complies to the same restriction than {@link #createLocalName createLocalName}.
      *
      * @param scope
-     *          The {@linkplain GenericName#scope scope} of the type name to be created,
+     *          The {@linkplain GenericName#scope() scope} of the type name to be created,
      *          or {@code null} for a global namespace.
      * @param name
      *          The type name as a string or an international string.
@@ -114,6 +114,19 @@ public interface NameFactory extends Factory {
      * @since 2.3
      */
     TypeName createTypeName(NameSpace scope, CharSequence name);
+
+    /**
+     * Creates a member name from the given character sequence and attribute type.
+     *
+     * @param  scope The {@linkplain GenericName#scope() scope} of the member
+     *         name to be created, or {@code null} for a global namespace.
+     * @param  name The member name as a string or an international string.
+     * @param  attributeType The type of the data associated with the record member.
+     * @return The member name for the given character sequence.
+     *
+     * @since 3.1
+     */
+    MemberName createMemberName(NameSpace scope, CharSequence name, TypeName attributeType);
 
     /**
      * Creates a local name from the given character sequence. The character sequence can be either
