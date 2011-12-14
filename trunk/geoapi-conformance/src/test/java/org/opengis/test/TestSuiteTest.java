@@ -146,14 +146,15 @@ public strictfp class TestSuiteTest {
 
     /** A dummy factory for testing purpose. */
     private static class N1 implements NameFactory {
-        @Override public Citation            getVendor()                                                     {return null;}
-        @Override public InternationalString createInternationalString(Map<Locale, String> strings)          {return null;}
-        @Override public NameSpace           createNameSpace  (GenericName name, Map<String, ?> properties)  {return null;}
-        @Override public TypeName            createTypeName   (NameSpace scope, CharSequence name)           {return null;}
-        @Override public LocalName           createLocalName  (NameSpace scope, CharSequence name)           {return null;}
-        @Override public GenericName         createGenericName(NameSpace scope, CharSequence... parsedNames) {return null;}
-        @Override public GenericName         parseGenericName (NameSpace scope, CharSequence name)           {return null;}
-        @Override public String              toString()                                                      {return "N1";}
+        @Override public Citation            getVendor()                                                       {return null;}
+        @Override public InternationalString createInternationalString(Map<Locale, String> strings)            {return null;}
+        @Override public NameSpace           createNameSpace  (GenericName name, Map<String, ?> properties)    {return null;}
+        @Override public TypeName            createTypeName   (NameSpace scope, CharSequence name)             {return null;}
+        @Override public MemberName          createMemberName (NameSpace scope, CharSequence name, TypeName t) {return null;}
+        @Override public LocalName           createLocalName  (NameSpace scope, CharSequence name)             {return null;}
+        @Override public GenericName         createGenericName(NameSpace scope, CharSequence... parsedNames)   {return null;}
+        @Override public GenericName         parseGenericName (NameSpace scope, CharSequence name)             {return null;}
+        @Override public String              toString()                                                        {return "N1";}
     }
 
     /** More dummy factories as extension of the existing ones. */
