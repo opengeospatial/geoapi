@@ -90,7 +90,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @departure generalization
      *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
-     *   <code>ParameterDescriptorGroup</code> into this  super-interface, for parallelism
+     *   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
      *   with the <code>minimumOccurs</code> method.
      *
      * @return The maximum occurrence.
