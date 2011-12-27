@@ -66,8 +66,8 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value.
      *
-     * @param message The detail message. The detail message is saved for
-     *                later retrieval by the {@link #getMessage()} method.
+     * @param message The detail message, or {@code null} if none. The detail message
+     *                is saved for later retrieval by the {@link #getMessage()} method.
      * @param parameterName The parameter name.
      * @param value The invalid parameter value.
      */
@@ -80,10 +80,10 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as a floating point.
      *
-     * @param  message The detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
-     * @param  parameterName The parameter name.
-     * @param  value The invalid parameter value.
+     * @param message The detail message, or {@code null} if none. The detail message
+     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName The parameter name.
+     * @param value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, double value) {
         this(message, parameterName, Double.valueOf(value));
@@ -92,13 +92,31 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as an integer.
      *
-     * @param  message The detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
-     * @param  parameterName The parameter name.
-     * @param  value The invalid parameter value.
+     * @param message The detail message, or {@code null} if none. The detail message
+     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName The parameter name.
+     * @param value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, int value) {
         this(message, parameterName, Integer.valueOf(value));
+    }
+
+    /**
+     * Creates an exception with the specified message, cause and invalid value.
+     *
+     * @param message The detail message, or {@code null} if none. The detail message
+     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause   The cause, or {@code null} if none. The cause is saved
+     *                for later retrieval by the {@link #getCause()} method.
+     * @param parameterName The parameter name.
+     * @param value The invalid parameter value.
+     *
+     * @since 3.1
+     */
+    public InvalidParameterValueException(String message, Throwable cause, String parameterName, Object value) {
+        super(message, cause);
+        this.parameterName = parameterName;
+        this.value = value;
     }
 
     /**
