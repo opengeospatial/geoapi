@@ -9,13 +9,16 @@ package org.opengis.example.geometry;
 
 import java.util.Arrays;
 import java.io.Serializable;
+
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * A trivial implementation of {@link DirectPosition} backed by an array of {@code double} values.
+ * A trivial implementation of {@link DirectPosition} which stores ordinate values in a
+ * {@code double[]} array. This implementation can store an optional reference to an existing
+ * {@linkplain CoordinateReferenceSystem Coordinate Reference System}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -28,16 +31,24 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     private static final long serialVersionUID = 5075669833975740957L;
 
     /**
-     * The ordinate values. The length of this array is the
-     * {@linkplain #getDimension() dimension} of this direct position.
+     * The ordinate values. The length of this array is the {@linkplain #getDimension() dimension}
+     * of this direct position.
+     * <p>
+     * This array is public for allowing more efficient ordinates operations, for example using
+     * the {@link java.util.Arrays} methods. However we encourage to use only the methods from
+     * the {@link DirectPosition} interface in most cases.
+     *
+     * @see #getCoordinate()
      */
-    protected final double[] ordinates;
+    public final double[] ordinates;
 
     /**
      * The coordinate reference system associated to this direct position,
      * or {@code null} if unspecified.
+     *
+     * @see #getCoordinateReferenceSystem()
      */
-    protected final CoordinateReferenceSystem crs;
+    private final CoordinateReferenceSystem crs;
 
     /**
      * Creates a new direct position of the given dimension.
@@ -109,7 +120,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * Returns a copy of the {@linkplain #ordinates}.
+     * Returns a <em>copy</em> of the {@linkplain #ordinates} array.
      *
      * @return A clone of the {@link #ordinates} array.
      */

@@ -14,7 +14,7 @@
  * This package follows this simplified model by providing a single class implementing both
  * the CS and CRS interfaces.
  * <p>
- * The following table list the classes that implement more than one GeoAPI interface:
+ * The following table lists the classes that implement more than one GeoAPI interface:
  * <p>
  * <blockquote><table><tr>
  * <th>Simple class</th>

@@ -7,17 +7,25 @@
  */
 package org.opengis.example.referencing;
 
+import java.util.Date;
 import java.util.Arrays;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
+import org.opengis.referencing.cs.TimeCS;
+import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.SingleCRS;
+import org.opengis.referencing.crs.TemporalCRS;
+import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.crs.GeographicCRS;
-import org.opengis.referencing.datum.Datum;
+import org.opengis.referencing.datum.TemporalDatum;
+import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.datum.VerticalDatumType;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -29,18 +37,11 @@ import org.opengis.referencing.datum.GeodeticDatum;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, CoordinateSystem {
+public abstract class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, CoordinateSystem {
     /**
      * For cross-version compatibility.
      */
     private static final long serialVersionUID = 4203423453709225243L;
-
-    /**
-     * The datum.
-     *
-     * @see #getDatum()
-     */
-    protected final Datum datum;
 
     /**
      * The coordinate system axes. The length of this array is the coordinate system dimension.
@@ -55,27 +56,12 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
      *
      * @param authority Organization responsible for definition of the CRS, or {@code null}.
      * @param name      The name of the new CRS.
-     * @param datum     The value to be returned by {@link #getDatum()}.
      * @param axes      The axes to be returned by {@link #getAxis(int)}. The length of this array
      *                  is the coordinate system dimension.
      */
-    public SimpleCRS(final Citation authority, final String name,
-            final Datum datum, final CoordinateSystemAxis... axes)
-    {
+    public SimpleCRS(final Citation authority, final String name, final CoordinateSystemAxis... axes) {
         super(authority, name);
-        Objects.requireNonNull(datum);
-        this.datum = datum;
         this.axes = axes.clone();
-    }
-
-    /**
-     * Returns the datum.
-     *
-     * @return The datum.
-     */
-    @Override
-    public Datum getDatum() {
-        return datum;
     }
 
     /**
@@ -120,8 +106,7 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
     @Override
     public boolean equals(final Object object) {
         if (super.equals(object)) {
-            final SimpleCRS other = (SimpleCRS) object;
-            return datum.equals(other.datum) && Arrays.equals(axes, other.axes);
+            return Arrays.equals(axes, ((SimpleCRS) object).axes);
         }
         return false;
     }
@@ -146,6 +131,13 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
                 SimpleDatum.WGS84, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);
 
         /**
+         * The datum.
+         *
+         * @see #getDatum()
+         */
+        private final GeodeticDatum datum;
+
+        /**
          * Creates a new CRS for the given name, datum and axes.
          *
          * @param authority Organization responsible for definition of the name, or {@code null}.
@@ -157,15 +149,19 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
         public Geographic(final Citation authority, final String name,
                 final GeodeticDatum datum, final CoordinateSystemAxis... axes)
         {
-            super(authority, name, datum, axes);
+            super(authority, name, axes);
+            Objects.requireNonNull(datum);
+            this.datum = datum;
         }
 
         /**
-         * {@inheritDoc}
+         * Returns the datum.
+         *
+         * @return The datum.
          */
         @Override
         public GeodeticDatum getDatum() {
-            return (GeodeticDatum) datum;
+            return datum;
         }
 
         /**
@@ -174,6 +170,186 @@ public class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, Coor
         @Override
         public EllipsoidalCS getCoordinateSystem() {
             return this;
+        }
+
+        /**
+         * Compares this CRS with the given object for equality.
+         *
+         * @param  object The object to compare with this {@code SimpleCRS.Geographic}.
+         * @return {@code true} if the given object is equals to this object.
+         */
+        @Override
+        public boolean equals(final Object object) {
+            if (super.equals(object)) {
+                return datum.equals(((Geographic) object).datum);
+            }
+            return false;
+        }
+    }
+
+    /**
+     * The {@link VerticalCRS} specialization of {@link SimpleCRS} with its own datum.
+     * <p>
+     * In order to keep the model simpler, this vertical CRS is also its own datum. Merging the CRS
+     * and datum interfaces is usually not a recommended practice since many vertical CRS can have
+     * the same datum. However this particular class takes this approach because the {@code geoapi-examples}
+     * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
+     * More complex applications are encouraged to store the datum in a separated object.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    public static class Vertical extends SimpleCRS implements VerticalCRS, VerticalCS, VerticalDatum {
+        /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = -2188245601933449264L;
+
+        /**
+         * The type of this vertical datum.
+         */
+        private final VerticalDatumType type;
+
+        /**
+         * Creates a new CRS for the given name, datum and axes.
+         *
+         * @param authority Organization responsible for definition of the name, or {@code null}.
+         * @param name      The name of the new CRS.
+         * @param type      The value to be returned by {@link #getVerticalDatumType()}.
+         * @param axis      The axis to be returned by {@link #getAxis(int)}.
+         */
+        public Vertical(final Citation authority, final String name,
+                final VerticalDatumType type, final CoordinateSystemAxis axis)
+        {
+            super(authority, name, axis);
+            Objects.requireNonNull(type);
+            this.type = type;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public VerticalCS getCoordinateSystem() {
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public VerticalDatum getDatum() {
+            return this;
+        }
+
+        /**
+         * Returns the type of this vertical datum.
+         *
+         * @return The type of this vertical datum.
+         */
+        @Override
+        public VerticalDatumType getVerticalDatumType() {
+            return type;
+        }
+
+        /**
+         * Returns {@code null} since this simple implementation does not define anchor point.
+         */
+        @Override
+        public InternationalString getAnchorPoint() {
+            return null;
+        }
+
+        /**
+         * Returns {@code null} since this simple implementation does not define realization epoch.
+         */
+        @Override
+        public Date getRealizationEpoch() {
+            return null;
+        }
+    }
+
+    /**
+     * The {@link TemporalCRS} specialization of {@link SimpleCRS} with its own datum.
+     * <p>
+     * In order to keep the model simpler, this temporal CRS is also its own datum. Merging the CRS
+     * and datum interfaces is usually not a recommended practice since many temporal CRS can have
+     * the same datum. However this particular class takes this approach because the {@code geoapi-examples}
+     * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
+     * More complex applications are encouraged to store the datum in a separated object.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    public static class Temporal extends SimpleCRS implements TemporalCRS, TimeCS, TemporalDatum {
+        /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = -6447295405309137301L;
+
+        /**
+         * The date and time origin of this temporal datum.
+         */
+        private final long origin;
+
+        /**
+         * Creates a new CRS for the given name, datum and axes.
+         *
+         * @param authority Organization responsible for definition of the name, or {@code null}.
+         * @param name      The name of the new CRS.
+         * @param origin    The value to be returned by {@link #getOrigin()}.
+         * @param axis      The axis to be returned by {@link #getAxis(int)}.
+         */
+        public Temporal(final Citation authority, final String name, final Date origin,
+                final CoordinateSystemAxis axis)
+        {
+            super(authority, name, axis);
+            this.origin = origin.getTime();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TimeCS getCoordinateSystem() {
+            return this;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public TemporalDatum getDatum() {
+            return this;
+        }
+
+        /**
+         * Returns the date and time origin of this temporal datum.
+         * The units can be obtained by {@code getAxis(0).getUnit()}.
+         *
+         * @return The date and time origin of this temporal datum.
+         */
+        @Override
+        public Date getOrigin() {
+            return new Date(origin);
+        }
+
+        /**
+         * Returns {@code null} since this simple implementation does not define anchor point.
+         */
+        @Override
+        public InternationalString getAnchorPoint() {
+            return null;
+        }
+
+        /**
+         * Returns {@code null} since this simple implementation does not define realization epoch.
+         */
+        @Override
+        public Date getRealizationEpoch() {
+            return null;
         }
     }
 }
