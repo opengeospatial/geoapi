@@ -8,12 +8,15 @@
 package org.opengis.example.referencing;
 
 import javax.vecmath.GMatrix;
+
 import org.opengis.metadata.citation.Citation;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.NoninvertibleTransformException;
+
+import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
@@ -126,7 +129,7 @@ public class ProjectiveTransform extends SimpleTransform {
                 throw new MismatchedDimensionException("Wrong number of target dimensions.");
             }
         } else {
-            ptDst = new SimplePosition(dstDim);
+            ptDst = new SimpleDirectPosition(dstDim);
         }
         //
         // Create two matrixes of 1 column, which will

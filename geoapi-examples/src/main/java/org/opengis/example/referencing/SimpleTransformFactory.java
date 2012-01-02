@@ -130,13 +130,22 @@ public class SimpleTransformFactory implements MathTransformFactory {
      * @param matrix The matrix used to define the affine transform.
      * @return The affine transform.
      * @throws FactoryException if the object creation failed.
+     *
+     * @see AffineTransform2D
+     * @see ProjectiveTransform
      */
     @Override
-    public MathTransform createAffineTransform(Matrix matrix) throws FactoryException {
-        if (!(matrix instanceof SimpleMatrix)) {
-            matrix = new SimpleMatrix(matrix);
+    public MathTransform createAffineTransform(final Matrix matrix) throws FactoryException {
+        if (matrix.getNumCol()     == 3 &&
+            matrix.getNumRow()     == 3 &&
+            matrix.getElement(2,0) == 0 &&
+            matrix.getElement(2,1) == 0 &&
+            matrix.getElement(2,2) == 1)
+        {
+            return new AffineTransform2D(matrix);
         }
-        return new ProjectiveTransform(VENDOR, "Projective transform", null, null, (SimpleMatrix) matrix);
+        return new ProjectiveTransform(VENDOR, "Projective transform", null, null,
+                (matrix instanceof SimpleMatrix) ? (SimpleMatrix) matrix : new SimpleMatrix(matrix));
     }
 
     /**

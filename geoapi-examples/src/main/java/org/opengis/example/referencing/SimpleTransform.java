@@ -10,6 +10,7 @@ package org.opengis.example.referencing;
 import java.util.Set;
 import java.util.Arrays;
 import java.util.Collections;
+
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.geometry.DirectPosition;
@@ -20,6 +21,8 @@ import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.NoninvertibleTransformException;
+
+import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
@@ -205,8 +208,8 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     {
         final int srcDim = getSourceDimensions();
         final int dstDim = getTargetDimensions();
-        final SimplePosition ptSrc = new SimplePosition(srcDim);
-        final SimplePosition ptDst = new SimplePosition(dstDim);
+        final SimpleDirectPosition ptSrc = new SimpleDirectPosition(srcDim);
+        final SimpleDirectPosition ptDst = new SimpleDirectPosition(dstDim);
         if (srcPts == dstPts && needsCopy(srcOff, srcDim, dstOff, dstDim, numPts)) {
             srcPts = Arrays.copyOfRange(srcPts, srcOff, srcOff + srcDim*numPts);
             srcOff = 0;
@@ -238,8 +241,8 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     {
         final int srcDim = getSourceDimensions();
         final int dstDim = getTargetDimensions();
-        final SimplePosition ptSrc = new SimplePosition(srcDim);
-        final SimplePosition ptDst = new SimplePosition(dstDim);
+        final SimpleDirectPosition ptSrc = new SimpleDirectPosition(srcDim);
+        final SimpleDirectPosition ptDst = new SimpleDirectPosition(dstDim);
         if (srcPts == dstPts && needsCopy(srcOff, srcDim, dstOff, dstDim, numPts)) {
             srcPts = Arrays.copyOfRange(srcPts, srcOff, srcOff + srcDim*numPts);
             srcOff = 0;
@@ -271,8 +274,8 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     {
         final int srcDim = getSourceDimensions();
         final int dstDim = getTargetDimensions();
-        final SimplePosition ptSrc = new SimplePosition(srcDim);
-        final SimplePosition ptDst = new SimplePosition(dstDim);
+        final SimpleDirectPosition ptSrc = new SimpleDirectPosition(srcDim);
+        final SimpleDirectPosition ptDst = new SimpleDirectPosition(dstDim);
         while (--numPts >= 0) {
             arraycopy(srcPts, srcOff, ptSrc.ordinates, 0, srcDim);
             transform(ptSrc, ptDst);
@@ -300,8 +303,8 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     {
         final int srcDim = getSourceDimensions();
         final int dstDim = getTargetDimensions();
-        final SimplePosition ptSrc = new SimplePosition(srcDim);
-        final SimplePosition ptDst = new SimplePosition(dstDim);
+        final SimpleDirectPosition ptSrc = new SimpleDirectPosition(srcDim);
+        final SimpleDirectPosition ptDst = new SimpleDirectPosition(dstDim);
         while (--numPts >= 0) {
             System.arraycopy(srcPts, srcOff, ptSrc.ordinates, 0, srcDim);
             transform(ptSrc, ptDst);
