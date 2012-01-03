@@ -1,0 +1,45 @@
+                                       ---------------
+                                       NetCDF bindings
+                                       ---------------
+
+NetCDF bindings
+
+  This module provides adapters to the {{{http://www.unidata.ucar.edu/software/netcdf-java/}NetCDF library}}.
+  The NetCDF library provides some metadata, referencing and coverage services.
+
+
+* Licensing
+
+  <All files provided in this module are hereby placed into the Public Domain.> This means
+  anyone is free to do whatever they wish with those files. The NetCDF wrappers are provided
+  as code examples, in the hope to facilitate GeoAPI implementations backed by other libraries.
+  Implementors can take this source code and use it for any purpose, commercial or non-commercial,
+  copyrighted or open-source, with no legal obligation to acknowledge the borrowing/copying in
+  any way.
+
+  Note that the {{{../geoapi/index.html}GeoAPI interfaces}} are <<not>> in the public domain;
+  they are copyrighted by {{{http://www.opengeospatial.org}OGC}}. Only the example codes -
+  including this NetCDF wrappers module - are in the public domain.
+
+
+* Download
+
+  The NetCDF bindings can be used in a Maven project using the following <<<pom.xml>>> configuration:
+
++------------------------------------------+
+<repositories>
+  <repository>
+    <id>geotoolkit</id>
+    <name>Geotoolkit.org project</name>
+    <url>http://maven.geotoolkit.org</url>
+  </repository>
+</repositories>
+
+<dependencies>
+  <dependency>
+    <groupId>org.opengis.wrapper</groupId>
+    <artifactId>geoapi-netcdf</artifactId>
+    <version>3.1-SNAPSHOT</version>
+  </dependency>
+</dependencies>
++------------------------------------------+
