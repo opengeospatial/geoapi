@@ -21,6 +21,7 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 
 /**
  * A math transform backed by the Java2D {@linkplain AffineTransform affine transform}.
+ * <p>
  * Affine transforms are very commons in GIS - they can be used for scaling, flipping
  * the <var>y</var> axis, applying unit conversions, <em>etc.</em>. The standard Java2D
  * library provides an efficient general-purpose implementation of affine transform.
@@ -31,8 +32,8 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * the following cases:
  * <p>
  * <ul>
- *   <li>The number of {@link #getSourceDimensions() source} and
- *       {@link #getTargetDimensions() target dimensions} are 2.</li>
+ *   <li>The number of {@linkplain #getSourceDimensions() source} and
+ *       {@linkplain #getTargetDimensions() target dimensions} are 2.</li>
  *   <li>The last matrix row contains the [0 0 1] values.</li>
  * </ul>
  *

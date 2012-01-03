@@ -173,7 +173,7 @@ public strictfp class Series2000Test extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isNameSupported}</li>
      *       <li>{@link #isAliasSupported}</li>

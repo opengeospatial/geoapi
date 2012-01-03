@@ -328,7 +328,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * This method returns a map containing:
      * <p>
      * <ul>
-     *   <li>All the following keys defined in the {@link Configuration.Key} enumeration,
+     *   <li>All the following keys defined in the {@link org.opengis.test.Configuration.Key} enumeration,
      *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
      *     <ul>
      *       <li>{@link #isDoubleToDoubleSupported}</li>

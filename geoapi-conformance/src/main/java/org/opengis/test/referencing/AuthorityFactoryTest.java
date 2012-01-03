@@ -270,7 +270,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <ul>
      *   <li>All the entries defined in the {@link ParameterizedTransformTest#configuration()
      *       ParameterizedTransformTest} class except {@code mtFactory}.</li>
-     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isAxisSwappingSupported}</li>
      *       <li>{@linkplain #crsAuthorityFactory}</li>
