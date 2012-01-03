@@ -534,7 +534,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Sets the parameter value as an object. If {@linkplain #LENIENT lenient}, then the object
-     * type can be any {@link Number} or {@link CharacterString} parseable as a floating point
+     * type can be any {@link Number} or {@link CharSequence} parseable as a floating point
      * number. If not lenient, then the type must be restricted to {@link Double}.
      *
      * @param  value The parameter value.

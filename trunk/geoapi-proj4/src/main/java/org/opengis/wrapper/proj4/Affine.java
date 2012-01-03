@@ -49,7 +49,6 @@ final class Affine extends AffineTransform implements MathTransform2D {
 
     /**
      * Creates a new transform initialized to the values of the given transform.
-     * @param tr
      */
     Affine(final AffineTransform tr) {
         super(tr);

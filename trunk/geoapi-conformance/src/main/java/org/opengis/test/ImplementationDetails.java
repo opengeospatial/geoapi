@@ -60,13 +60,13 @@ import org.opengis.referencing.operation.MathTransform;
 public interface ImplementationDetails {
     /**
      * Returns the set of tests that should be disabled, or {@code null} if none.
-     * If non-null, then the returned map can contain some {@link Configuration.Key}
+     * If non-null, then the returned map can contain some {@link org.opengis.test.Configuration.Key}
      * associated to the {@link Boolean#FALSE} value. Example:
      *
      * <blockquote><pre>&#64;Override
      *public Configuration configuration(Factory... factories) {
      *    Configuration config = new Configuration();
-     *    config.{@linkplain Configuration#unsupported unsupported}({@linkplain Configuration.Key#isDerivativeSupported}, {@linkplain Configuration.Key#isNonSquareMatrixSupported});
+     *    config.{@linkplain Configuration#unsupported unsupported}({@linkplain org.opengis.test.Configuration.Key#isDerivativeSupported}, {@linkplain org.opengis.test.Configuration.Key#isNonSquareMatrixSupported});
      *    return config;
      *}</pre></blockquote>
      *

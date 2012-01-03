@@ -163,7 +163,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * <p>
      * <ul>
      *   <li>All the entries defined in the {@linkplain TransformTestCase#configuration() parent class}.</li>
-     *   <li>All the following values associated to the {@link Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isNonSquareMatrixSupported}</li>
      *       <li>{@link #mtFactory}</li>

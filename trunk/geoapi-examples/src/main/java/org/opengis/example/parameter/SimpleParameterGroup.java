@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.GeneralParameterValue;
@@ -150,7 +151,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
 
     /**
      * Returns the parameter descriptor in this group for the specified
-     * {@linkplain Identifier#getCode identifier code}.
+     * {@linkplain Identifier#getCode() identifier code}.
      *
      * <blockquote><font size="-1"><b>Implementation note:</b>
      * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
@@ -158,7 +159,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * essentially synonymous to {@link #parameter(String)}. However more sophisticated libraries
      * are likely to return a distinct object.</font></blockquote>
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code}
+     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter to search for.
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
@@ -174,7 +175,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the value in this group for the specified {@linkplain Identifier#getCode identifier
+     * Returns the value in this group for the specified {@linkplain Identifier#getCode() identifier
      * code}. This convenience method provides a way to get and set parameter values by name. For
      * example the following idiom fetches a floating point value for the {@code "false_easting"}
      * parameter:
@@ -195,7 +196,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * essentially synonymous to {@link #descriptor(String)}. However more sophisticated libraries
      * are likely to return a distinct object.</font></blockquote>
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code}
+     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter to search for.
      * @return The parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
@@ -214,7 +215,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Returns all subgroups with the specified name. The default implementation always
      * throws an exception, since this simple parameter group does not support subgroups.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code}
+     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter group to search for.
      * @return The set of all parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
@@ -229,7 +230,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Creates a new group of the specified name. The default implementation always
      * throws an exception, since this simple parameter group does not support subgroups.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code}
+     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter group to create.
      * @return A newly created parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
