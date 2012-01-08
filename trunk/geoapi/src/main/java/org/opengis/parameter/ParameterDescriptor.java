@@ -62,8 +62,9 @@ import static org.opengis.annotation.Specification.*;
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the
-     * {@linkplain #getDefaultValue default value}. The {@linkplain ParameterValue#getDescriptor
-     * parameter value descriptor} for the created parameter value will be {@code this} object.
+     * {@linkplain #getDefaultValue() default value}. While not a requirement, the
+     * {@linkplain ParameterValue#getDescriptor() parameter value descriptor}
+     * for the created parameter value will typically be {@code this} descriptor instance.
      *
      * @departure extension
      *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
@@ -107,7 +108,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * Returns the minimum parameter value.
      *
      * If there is no minimum value, or if minimum
-     * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
+     * value is inappropriate for the {@linkplain #getValueClass() parameter type}, then
      * this method returns {@code null}.
      * <p>
      * When the getValueClass() is an array or Collection getMinimumValue
@@ -122,7 +123,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * Returns the maximum parameter value.
      *
      * If there is no maximum value, or if maximum
-     * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
+     * value is inappropriate for the {@linkplain #getValueClass() parameter type}, then
      * this method returns {@code null}.
      * <p>
      * When the getValueClass() is an array or Collection getMaximumValue

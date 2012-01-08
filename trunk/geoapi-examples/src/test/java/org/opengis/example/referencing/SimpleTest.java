@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 
 /**
- * Tests the creation of simple objects.
+ * Tests the creation of miscellaneous simple objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

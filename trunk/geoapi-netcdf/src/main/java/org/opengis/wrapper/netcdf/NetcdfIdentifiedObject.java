@@ -38,16 +38,15 @@ import org.opengis.example.metadata.SimpleCitation;
  * allows us to implement directly the {@link ReferenceIdentifier} interface. The NetCDF object
  * name is returned by the {@link #getCode()} method.
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- *
- * @since 3.1
+ * @since   3.1
  */
 public abstract class NetcdfIdentifiedObject implements IdentifiedObject, ReferenceIdentifier {
     /**
      * The citation to be returned by {@link #getAuthority()}.
      */
-    private static final Citation NETCDF = new SimpleCitation("NetCDF");
+    static final Citation NETCDF = new SimpleCitation("NetCDF");
 
     /**
      * Creates a new {@code NetcdfIdentifiedObject} instance.

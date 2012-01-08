@@ -35,10 +35,9 @@ import org.opengis.example.metadata.SimpleCitation;
  * {@code NetcdfAxis} instance. However users are encouraged to not change the wrapped axis after
  * construction, since GeoAPI referencing objects are expected to be immutable.
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- *
- * @since 3.1
+ * @since   3.1
  */
 public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSystemAxis {
     /**

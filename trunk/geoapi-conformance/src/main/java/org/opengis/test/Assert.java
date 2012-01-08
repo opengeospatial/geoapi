@@ -32,6 +32,11 @@
 package org.opengis.test;
 
 import java.util.Collection;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.PathIterator;
+import java.awt.geom.AffineTransform;
+
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
 
@@ -65,6 +70,25 @@ public strictfp class Assert extends org.junit.Assert {
      */
     private static String nonNull(final String message) {
         return (message != null) ? message.trim().concat(" ") : "";
+    }
+
+    /**
+     * Returns the concatenation of the given message with the given extension.
+     * This method returns the given extension if the message is null or empty.
+     * <p>
+     * Invoking this method is equivalent to invoking {@code nonNull(message) + ext},
+     * but avoid the creation of temporary objects in the common case where the message
+     * is null.
+     *
+     * @param  message The message, or {@code null}.
+     * @param  ext The extension to append after the message.
+     * @return The concatenated string.
+     */
+    private static String concat(String message, final String ext) {
+        if (message == null || (message = message.trim()).isEmpty()) {
+            return ext;
+        }
+        return message + ' ' + ext;
     }
 
     /**
@@ -309,11 +333,108 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertAxisDirectionsEqual(String message,
             final CoordinateSystem cs, final AxisDirection... expected)
     {
-        message = nonNull(message);
-        assertEquals(message + "Wrong coordinate system dimension.", expected.length, cs.getDimension());
-        final String md = message + "Wrong axis direction.";
+        assertEquals(concat(message, "Wrong coordinate system dimension."), expected.length, cs.getDimension());
+        message = concat(message, "Wrong axis direction.");
         for (int i=0; i<expected.length; i++) {
-            assertEquals(md, expected[i], cs.getAxis(i).getDirection());
+            assertEquals(message, expected[i], cs.getAxis(i).getDirection());
         }
+    }
+
+    /**
+     * Asserts that all control points of two shapes are equal.
+     * This method performs the following checks:
+     * <p>
+     * <ol>
+     *   <li>Ensures that the {@linkplain Shape#getBounds2D() shape bounds} are equal,
+     *       up to the given tolerance thresholds.</li>
+     *   <li>{@linkplain Shape#getPathIterator(AffineTransform) Gets the path iterator} of each shape.</li>
+     *   <li>Ensures that the {@linkplain PathIterator#getWindingRule() winding rules} are equal.</li>
+     *   <li>Iterates over all path segments until the iteration {@linkplain PathIterator#isDone() is done}.
+     *       For each iteration step:<ol>
+     *       <li>Invokes {@link PathIterator#currentSegment(double[])}.</li>
+     *       <li>Ensures that the segment type (one of the {@code SEG_*} constants) is the same.</li>
+     *       <li>Ensures that the ordinate values are equal, up to the given tolerance thresholds.</li>
+     *   </ol></li>
+     * </ol>
+     *
+     * @param message    Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected   The expected shape.
+     * @param actual     The actual shape.
+     * @param toleranceX The tolerance threshold for <var>x</var> ordinate values.
+     * @param toleranceY The tolerance threshold for <var>y</var> ordinate values.
+     *
+     * @since 3.1
+     */
+    public static void assertShapeEquals(String message, final Shape expected,
+            final Shape actual, final double toleranceX, final double toleranceY)
+    {
+        final Rectangle2D b0 = expected.getBounds2D();
+        final Rectangle2D b1 = actual  .getBounds2D();
+        final String mismatch = concat(message, "Mismatched bounds.");
+        assertEquals(mismatch, b0.getMinX(), b1.getMinX(), toleranceX);
+        assertEquals(mismatch, b0.getMaxX(), b1.getMaxX(), toleranceX);
+        assertEquals(mismatch, b0.getMinY(), b1.getMinY(), toleranceY);
+        assertEquals(mismatch, b0.getMaxY(), b1.getMaxY(), toleranceY);
+        assertPathEquals(message, expected.getPathIterator(null), actual.getPathIterator(null), toleranceX, toleranceY);
+    }
+
+    /**
+     * Asserts that all control points in two geometric paths are equal.
+     * This method performs the following checks:
+     * <p>
+     * <ol>
+     *   <li>Ensures that the {@linkplain PathIterator#getWindingRule() winding rules} are equal.</li>
+     *   <li>Iterates over all path segments until the iteration {@linkplain PathIterator#isDone() is done}.
+     *       For each iteration step:<ol>
+     *       <li>Invokes {@link PathIterator#currentSegment(double[])}.</li>
+     *       <li>Ensures that the segment type (one of the {@code SEG_*} constants) is the same.</li>
+     *       <li>Ensures that the ordinate values are equal, up to the given tolerance thresholds.</li>
+     *   </ol></li>
+     * </ol>
+     * <p>
+     * This method can be used instead of {@link #assertShapeEquals(String, Shape, Shape, double, double)}
+     * when the tester needs to compare the shapes with a non-null affine transform or a flatness factor.
+     * in such case, the tester needs to invoke the {@link Shape#getPathIterator(AffineTransform, double)}
+     * method himself.
+     *
+     * @param message    Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected   The expected path.
+     * @param actual     The actual path.
+     * @param toleranceX The tolerance threshold for <var>x</var> ordinate values.
+     * @param toleranceY The tolerance threshold for <var>y</var> ordinate values.
+     *
+     * @since 3.1
+     */
+    public static void assertPathEquals(final String message, final PathIterator expected,
+            final PathIterator actual, final double toleranceX, final double toleranceY)
+    {
+        assertEquals(concat(message, "Mismatched winding rule."), expected.getWindingRule(), actual.getWindingRule());
+        final String   mismatchedType = concat(message, "Mismatched path segment type.");
+        final String   mismatchedX    = concat(message, "Mismatched X ordinate value.");
+        final String   mismatchedY    = concat(message, "Mismatched Y ordinate value.");
+        final String   endOfPath      = concat(message, "Premature end of path.");
+        final double[] expectedCoords = new double[6];
+        final double[] actualCoords   = new double[6];
+        while (!expected.isDone()) {
+            assertFalse(endOfPath, actual.isDone());
+            final int type = expected.currentSegment(expectedCoords);
+            assertEquals(mismatchedType, type, actual.currentSegment(actualCoords));
+            final int length;
+            switch (type) {
+                case PathIterator.SEG_CLOSE:   length = 0; break;
+                case PathIterator.SEG_MOVETO:  // Fallthrough
+                case PathIterator.SEG_LINETO:  length = 2; break;
+                case PathIterator.SEG_QUADTO:  length = 4; break;
+                case PathIterator.SEG_CUBICTO: length = 6; break;
+                default: throw new AssertionError(nonNull(message) + "Unknown segment type: " + type);
+            }
+            for (int i=0; i<length;) {
+                assertEquals(mismatchedX, expectedCoords[i], actualCoords[i++], toleranceX);
+                assertEquals(mismatchedY, expectedCoords[i], actualCoords[i++], toleranceY);
+            }
+            actual.next();
+            expected.next();
+        }
+        assertTrue(concat(message, "Expected end of path."), actual.isDone());
     }
 }

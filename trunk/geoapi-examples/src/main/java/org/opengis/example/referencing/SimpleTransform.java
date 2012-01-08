@@ -31,7 +31,8 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * implement the two interfaces by the same class.
  * <p>
  * Subclasses must implement the {@link #transform(DirectPosition, DirectPosition)} method.
- * All other transform methods are defined in terms of the above-cited method.
+ * All other transform methods are defined in terms of the above-cited method. However the
+ * other {@code transform} methods may be overridden for performances reasons.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -60,14 +61,26 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     protected final CoordinateReferenceSystem targetCRS;
 
     /**
+     * Creates a new operation for the given name with no CRS.
+     *
+     * @param authority Organization responsible for definition of the name, or {@code null}.
+     * @param name      The name of the new operation.
+     */
+    protected SimpleTransform(final Citation authority, final String name) {
+        super(authority, name);
+        this.sourceCRS = null;
+        this.targetCRS = null;
+    }
+
+    /**
      * Creates a new operation for the given name and CRS.
      *
      * @param authority Organization responsible for definition of the name, or {@code null}.
-     * @param name      The name of the new CRS.
+     * @param name      The name of the new operation.
      * @param sourceCRS The source CRS to be returned by {@link #getSourceCRS()}.
      * @param targetCRS The target CRS to be returned by {@link #getTargetCRS()}.
      */
-    public SimpleTransform(final Citation authority, final String name,
+    protected SimpleTransform(final Citation authority, final String name,
             final CoordinateReferenceSystem sourceCRS,
             final CoordinateReferenceSystem targetCRS)
     {
