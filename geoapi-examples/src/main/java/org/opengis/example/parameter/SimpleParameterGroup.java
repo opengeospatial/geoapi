@@ -7,11 +7,11 @@
  */
 package org.opengis.example.parameter;
 
-import java.lang.reflect.Field;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.lang.reflect.Field;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -53,21 +53,21 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
 
     /**
      * The list of parameters included in this group. This simple group implementation
-     * supports only {@link SimpleParameter} instances, which are used both as
+     * supports only {@link Parameter} instances, which are used both as
      * {@linkplain ParameterDescriptor parameter descriptor} and
      * {@linkplain ParameterValue parameter values} for the {@code double} value type.
      * <p>
      * This list is <cite>live</cite>: changes to this list will be reflected immediately in the
      * {@link #descriptors()} and {@link #values()} views.
      */
-    protected final List<SimpleParameter> parameters;
+    protected final List<Parameter<?>> parameters;
 
     /**
      * An unmodifiable view over the {@linkplain #parameters} list. This view is
      * returned by the {@link #descriptors()} and {@link #values()} methods. We
      * have to make it unmodifiable for type safety reason.
      */
-    private final List<SimpleParameter> unmodifiable;
+    private final List<Parameter<?>> unmodifiable;
 
     /**
      * Creates a new parameter group of the given authority and name.
@@ -76,9 +76,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * @param name      The parameter group name.
      * @param param     The parameters to be included in this group.
      */
-    public SimpleParameterGroup(final Citation authority, final String name, final SimpleParameter... param) {
+    public SimpleParameterGroup(final Citation authority, final String name, final Parameter<?>... param) {
         super(authority, name);
-        parameters = new ArrayList<SimpleParameter>(Arrays.asList(param));
+        parameters = new ArrayList<Parameter<?>>(Arrays.asList(param));
         unmodifiable = Collections.unmodifiableList(parameters);
     }
 
@@ -166,8 +166,8 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      */
     @Override
     public GeneralParameterDescriptor descriptor(final String name) throws ParameterNotFoundException {
-        for (final SimpleParameter candidate : parameters) {
-            if (name.equalsIgnoreCase(candidate.getCode())) {
+        for (final Parameter<?> candidate : parameters) {
+            if (name.equalsIgnoreCase(candidate.getName().getCode())) {
                 return candidate;
             }
         }
@@ -203,8 +203,8 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      */
     @Override
     public ParameterValue<?> parameter(final String name) throws ParameterNotFoundException {
-        for (final SimpleParameter candidate : parameters) {
-            if (name.equalsIgnoreCase(candidate.getCode())) {
+        for (final Parameter<?> candidate : parameters) {
+            if (name.equalsIgnoreCase(candidate.getName().getCode())) {
                 return candidate;
             }
         }
@@ -243,20 +243,21 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
 
     /**
      * Returns a new group with the same {@linkplain #authority authority}, {@linkplain #code code}
-     * and {@linkplain #parameters} than this group. The {@linkplain SimpleParameter#value value} of
+     * and {@linkplain #parameters} than this group. The {@linkplain Parameter#getValue() value} of
      * each parameter is left to their default value.
      *
      * <blockquote><font size="-1"><b>Implementation note:</b>
      * Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
      * {@linkplain ParameterDescriptorGroup descriptor} interfaces, this method is very similar to
-     * the {@link #clone()} method. However in more sophisticated libraries, those two methods are
-     * likely to be defined in different objects.</font></blockquote>
+     * the {@link #clone()} method. However in more sophisticated libraries, the
+     * {@linkplain ParameterDescriptorGroup#createValue()} and {@link ParameterValueGroup#clone()}
+     * methods are likely to be defined in different objects.</font></blockquote>
      *
      * @see #clone()
      */
     @Override
     public SimpleParameterGroup createValue() {
-        final SimpleParameter[] param = new SimpleParameter[parameters.size()];
+        final Parameter<?>[] param = new Parameter<?>[parameters.size()];
         for (int i=0; i<param.length; i++) {
             param[i] = parameters.get(i).createValue();
         }
@@ -279,7 +280,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
         final SimpleParameterGroup clone;
         try {
             clone = (SimpleParameterGroup) super.clone();
-            final List<SimpleParameter> copy = new ArrayList<SimpleParameter>(parameters);
+            final List<Parameter<?>> copy = new ArrayList<Parameter<?>>(parameters);
             for (int i=copy.size(); --i>=0;) {
                 copy.set(i, copy.get(i).clone());
             }

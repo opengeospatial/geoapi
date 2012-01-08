@@ -78,10 +78,9 @@ import org.opengis.example.coverage.SimpleGridEnvelope;
  *       lifetime of this {@code NetcdfCRS} instance.</p></li>
  * </ul>
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- *
- * @since 3.1
+ * @since   3.1
  */
 public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateReferenceSystem,
         org.opengis.referencing.cs.CoordinateSystem, GridGeometry
@@ -119,10 +118,10 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @param crs The CRS to copy.
      */
     protected NetcdfCRS(final NetcdfCRS crs) {
-        this.cs           = crs.cs;
-        this.axes         = crs.axes;
-        this.extent = crs.extent;
-        this.gridToCRS    = crs.gridToCRS;
+        this.cs        = crs.cs;
+        this.axes      = crs.axes;
+        this.extent    = crs.extent;
+        this.gridToCRS = crs.gridToCRS;
     }
 
     /**

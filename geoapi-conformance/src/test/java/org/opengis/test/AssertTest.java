@@ -31,6 +31,10 @@
  */
 package org.opengis.test;
 
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -67,6 +71,23 @@ public strictfp class AssertTest {
             Assert.assertLenientEquals(null, "WGS84" , "WBS84" );
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84\" but got \"WBS84\".", e.getMessage());
+        }
+    }
+
+    /**
+     * Tests {@link Assert#assertShapeEquals(String, Shape, Shape, double, double)}.
+     */
+    @Test
+    public void testShapeEquals() {
+        final Shape shape = new RoundRectangle2D.Double(-20, -10, 100, 80, 4, 5);
+        Assert.assertShapeEquals(null, shape, shape, 0, 0);
+        final Shape mismatched = new Rectangle2D.Double(-20, -10, 100, 80);
+        try {
+            Assert.assertShapeEquals(null, shape, mismatched, 0, 0);
+            fail("Expected an AssertionError.");
+        } catch (AssertionError e) {
+            // This is the expected exception.
+            assertTrue(e.getMessage().contains("Mismatched"));
         }
     }
 }

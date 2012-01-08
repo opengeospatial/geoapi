@@ -35,7 +35,7 @@ import static org.opengis.test.CalculationType.*;
  */
 public class ConformanceTest extends TestSuite implements ImplementationDetails {
     /**
-     * The configuration of our Proj4 tests.
+     * The configuration of our NetCDF tests.
      */
     private static final Configuration CONFIGURATION = new Configuration();
     static {
