@@ -567,7 +567,7 @@ public class SimpleParameter extends SimpleIdentifiedObject implements Parameter
      * Since this simple class implements both the {@linkplain ParameterValue value} and the
      * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However in more sophisticated libraries, the
-     * {@linkplain ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
+     * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
      * methods are likely to be defined in different objects.</font></blockquote>
      *
      * @see #clone()

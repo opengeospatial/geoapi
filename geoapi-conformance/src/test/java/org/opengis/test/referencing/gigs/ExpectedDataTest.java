@@ -44,7 +44,7 @@ import static org.junit.Assert.*;
  */
 public strictfp class ExpectedDataTest {
     /**
-     * Tests {@link ExpectedData#parseRow(String, Class<?>)}.
+     * Tests {@link ExpectedData#parseRow(String, Class)}.
      */
     @Test
     public void testParseRow() {

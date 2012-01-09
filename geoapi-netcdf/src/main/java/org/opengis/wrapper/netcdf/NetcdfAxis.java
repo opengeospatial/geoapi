@@ -199,7 +199,7 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
      * Returns the units, or {@code null} if unknown.
      *
      * @see CoordinateAxis1D#getUnitsString()
-     * @see Unit#valueOf(String)
+     * @see Unit#valueOf(CharSequence)
      */
     @Override
     public Unit<?> getUnit() {

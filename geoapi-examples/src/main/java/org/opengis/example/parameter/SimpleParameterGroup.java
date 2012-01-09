@@ -250,7 +250,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
      * {@linkplain ParameterDescriptorGroup descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However in more sophisticated libraries, the
-     * {@linkplain ParameterDescriptorGroup#createValue()} and {@link ParameterValueGroup#clone()}
+     * {@link ParameterDescriptorGroup#createValue()} and {@link ParameterValueGroup#clone()}
      * methods are likely to be defined in different objects.</font></blockquote>
      *
      * @see #clone()

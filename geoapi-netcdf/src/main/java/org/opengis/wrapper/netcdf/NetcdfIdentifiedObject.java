@@ -62,7 +62,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     public abstract Object delegate();
 
     /**
-     * Returns the {@linkplain Citations#NETCDF NETCDF citation}.
+     * Returns the NetCDF citation.
      */
     @Override
     public Citation getAuthority() {

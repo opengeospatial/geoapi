@@ -54,15 +54,15 @@ import org.opengis.example.coverage.SimpleGridEnvelope;
  * {@link CoordinateReferenceSystem} interfaces because the NetCDF {@code CoordinateSystem}
  * object combines the concepts of both of them. It also implements the {@link GridGeometry}
  * interface since NetCDF Coordinate Systems contain all information related to the image grid.
- *
- * {@section Axis order}
+ * <p>
+ * <b>Axis order</b><br>
  * The order of axes returned by {@link #getAxis(int)} is reversed compared to the order of axes
  * in the wrapped NetCDF coordinate system. This is because the NetCDF convention stores axes in
  * the (<var>time</var>, <var>height</var>, <var>latitude</var>, <var>longitude</var>) order, while
  * referencing framework often uses the (<var>longitude</var>, <var>latitude</var>, <var>height</var>,
  * <var>time</var>) order.
- *
- * {@section Restrictions}
+ * <p>
+ * <b>Restrictions</b><br>
  * Current implementation has the following restrictions:
  * <ul>
  *   <li><p>This class supports only axes of kind {@link CoordinateAxis1D}. Callers can verify this
@@ -71,7 +71,8 @@ import org.opengis.example.coverage.SimpleGridEnvelope;
  *
  *   <li><p>At the time of writing, the NetCDF API doesn't specify the CRS datum. Consequently the
  *       current implementation assumes that all {@code NetcdfCRS} instances use the
- *       {@linkplain DefaultGeodeticDatum#WGS84 WGS84} geodetic datum.</p></li>
+ *       {@linkplain org.opengis.example.referencing.SimpleDatum#WGS84 WGS84}
+ *       geodetic datum.</p></li>
  *
  *   <li><p>This class assumes that the list of NetCDF axes returned by
  *       {@link CoordinateSystem#getCoordinateAxes()} is stable during the
@@ -407,8 +408,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * Returns the transform from grid coordinates to this CRS coordinates, or {@code null} if
      * none. If this CRS is regular and two-dimensional, then the returned transform is also an
      * instance of Java2D {@link java.awt.geom.AffineTransform}.</li>
-     *
-     * {@section Limitation}
+    * <p>
+    * <b>Limitation</b><br>
      * Current implementation can build a transform only for regular coordinate systems.
      * A future implementation may be more general.
      *
@@ -425,8 +426,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * Returns the transform from grid coordinates to this CRS coordinates in the given
      * range of dimensions.
-     *
-     * {@section Limitation}
+    * <p>
+    * <b>Limitation</b><br>
      * Current implementation can build a transform only for regular axes.
      * A future implementation may be more general.
      *
@@ -551,11 +552,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * The CRS, CS and datum for temporal coordinates.
      *
-     * @author Martin Desruisseaux (Geomatys)
+     * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
-     *
-     * @since 3.1
-     * @module
+     * @since   3.1
      */
     private static final class Temporal extends NetcdfCRS implements TemporalCRS, TimeCS, TemporalDatum {
         /**
@@ -654,11 +653,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * The CRS, CS and datum for vertical coordinates.
      *
-     * @author Martin Desruisseaux (Geomatys)
-     * @version 3.14
-     *
-     * @since 3.14
-     * @module
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
      */
     private static final class Vertical extends NetcdfCRS implements VerticalCRS, VerticalCS, VerticalDatum {
         /**
@@ -730,11 +727,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * <p>
      * This class assumes that the geodetic datum is {@linkplain DefaultGeodeticDatum#WGS84 WGS84}.
      *
-     * @author Martin Desruisseaux (Geomatys)
-     * @version 3.15
-     *
-     * @since 3.08
-     * @module
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
      */
     private static final class Geographic extends NetcdfCRS implements GeographicCRS, EllipsoidalCS {
         /**
@@ -774,11 +769,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * <p>
      * This class assumes that the geodetic datum is {@linkplain DefaultGeodeticDatum#WGS84 WGS84}.
      *
-     * @author Martin Desruisseaux (Geomatys)
-     * @version 3.08
-     *
-     * @since 3.08
-     * @module
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
      */
     private static final class Projected extends NetcdfCRS implements ProjectedCRS, CartesianCS {
         /**
