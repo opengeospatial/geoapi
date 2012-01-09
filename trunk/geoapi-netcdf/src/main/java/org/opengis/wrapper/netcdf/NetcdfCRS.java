@@ -226,7 +226,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         }
         /*
          * Separate the horizontal, vertical and temporal components. We need to iterate
-         * over the Netcdf axes in reverse order (see class javadoc). We don't use the
+         * over the NetCDF axes in reverse order (see class javadoc). We don't use the
          * CoordinateAxis.getTaxis() and similar methods because we want to ensure that
          * the components are build in the same order than axes are found.
          */
@@ -805,6 +805,12 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         private static final long serialVersionUID = 8353773858669958163L;
 
         /**
+         * The NetCDF projection, or {@code null} if none.
+         * Will be created when first needed.
+         */
+        private transient Projection projection;
+
+        /**
          * Wraps the given coordinate system. The given list of axes should in theory contains
          * exactly 2 elements. However a different number of axes may be provided if the
          * {@link NetcdfCRS#wrap(CoordinateSystem)} method has been unable to split the NetCDF
@@ -839,11 +845,17 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         }
 
         /**
-         * @todo Not yet implemented.
+         * Returns a wrapper around the NetCDF projection, or {@code null} if none.
          */
         @Override
-        public Projection getConversionFromBase() {
-            throw new UnsupportedOperationException("Not supported yet.");
+        public synchronized Projection getConversionFromBase() {
+            if (projection == null) {
+                final ucar.unidata.geoloc.Projection p = delegate().getProjection();
+                if (p != null) {
+                    projection = new NetcdfProjection(p, getBaseCRS(), this);
+                }
+            }
+            return projection;
         }
     }
 }
