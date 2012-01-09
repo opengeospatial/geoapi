@@ -686,7 +686,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
 
         /**
          * Returns the descriptor of the math transform parameters.
-         * This method returns a wrapper around the Netcdf {@link Parameter} objects.
+         * This method returns a wrapper around the NetCDF {@link Parameter} objects.
          *
          * @see Projection#getProjectionParameters()
          */
@@ -711,7 +711,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
 
     /**
      * Returns the descriptor of the math transform parameters.
-     * This method returns a wrapper around the Netcdf {@link Parameter} objects.
+     * This method returns a wrapper around the NetCDF {@link Parameter} objects.
      *
      * @see Projection#getProjectionParameters()
      */
