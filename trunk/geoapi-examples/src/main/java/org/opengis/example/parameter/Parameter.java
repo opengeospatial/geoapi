@@ -30,7 +30,7 @@ public interface Parameter<T> extends ParameterValue<T>, ParameterDescriptor<T> 
      * Since the {@code Parameter} interface unifies the {@linkplain ParameterValue value} and the
      * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to the
      * {@link #clone()} method. However in more sophisticated libraries, the
-     * {@linkplain ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
+     * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
      * methods are likely to be defined in different objects.
      *
      * @see #clone()
