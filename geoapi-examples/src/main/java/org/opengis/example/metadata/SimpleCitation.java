@@ -45,7 +45,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * The <cite>European Petroleum Survey Group</cite> authority. This authority provides
      * many CRS definitions.
      */
-    public static final Citation EPSG = new SimpleCitation("EPSG");
+    public static final SimpleCitation EPSG = new SimpleCitation("EPSG");
 
     /**
      * The citation title to be returned by {@link #getTitle()} as an {@link InternationalString}.

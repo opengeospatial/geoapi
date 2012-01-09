@@ -73,7 +73,7 @@ public interface Extent {
     InternationalString getDescription();
 
     /**
-     * Provides geographic component of the extent of the referring object
+     * Provides geographic component of the extent of the referring object.
      *
      * @return The geographic extent, or an empty set if none.
      *
@@ -86,7 +86,7 @@ public interface Extent {
     Collection<? extends GeographicExtent> getGeographicElements();
 
     /**
-     * Provides temporal component of the extent of the referring object
+     * Provides temporal component of the extent of the referring object.
      *
      * @return The temporal extent, or an empty set if none.
      *
@@ -99,7 +99,7 @@ public interface Extent {
     Collection<? extends TemporalExtent> getTemporalElements();
 
     /**
-     * Provides vertical component of the extent of the referring object
+     * Provides vertical component of the extent of the referring object.
      *
      * @return The vertical extent, or an empty set if none.
      *

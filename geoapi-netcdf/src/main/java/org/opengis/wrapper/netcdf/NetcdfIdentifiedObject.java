@@ -16,6 +16,7 @@ package org.opengis.wrapper.netcdf;
 import java.util.Set;
 import java.util.Collection;
 import java.util.Collections;
+import java.io.Serializable;
 
 import ucar.nc2.VariableSimpleIF;
 
@@ -42,7 +43,12 @@ import org.opengis.example.metadata.SimpleCitation;
  * @version 3.1
  * @since   3.1
  */
-public abstract class NetcdfIdentifiedObject implements IdentifiedObject, ReferenceIdentifier {
+public abstract class NetcdfIdentifiedObject implements IdentifiedObject, ReferenceIdentifier, Serializable {
+    /**
+     * For cross-version compatibility.
+     */
+    private static final long serialVersionUID = 8740287489596438703L;
+
     /**
      * The citation to be returned by {@link #getAuthority()}.
      */

@@ -14,7 +14,6 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Set;
-import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.measure.unit.Unit;
@@ -28,7 +27,7 @@ import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
- * Wraps a NetCDF {@link Parameter} object in a GeoAPI {@link ParameterValue}. The NetCDF
+ * Wraps a NetCDF {@link Parameter} object as an implementation of GeoAPI interfaces. The NetCDF
  * {@code Parameter} class is both a parameter value and its own descriptor. Consequently
  * this adapter implements both the {@link ParameterValue} and {@link ParameterDescriptor}
  * interfaces.
@@ -44,7 +43,7 @@ import org.opengis.parameter.InvalidParameterValueException;
  * @since   3.1
  */
 public class NetcdfParameter<T> extends NetcdfIdentifiedObject
-        implements org.opengis.example.parameter.Parameter<T>, Serializable, Cloneable
+        implements org.opengis.example.parameter.Parameter<T>, Cloneable
 {
     /**
      * Serial number for cross-version compatibility.

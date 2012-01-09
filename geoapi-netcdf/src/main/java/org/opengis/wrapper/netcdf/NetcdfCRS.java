@@ -87,6 +87,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         org.opengis.referencing.cs.CoordinateSystem, GridGeometry
 {
     /**
+     * For cross-version compatibility.
+     */
+    private static final long serialVersionUID = 104309666271704901L;
+
+    /**
      * Small tolerance factor for rounding error.
      */
     private static final double EPS = 1E-10;
@@ -509,6 +514,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
             org.opengis.referencing.cs.CoordinateSystem
     {
         /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = -539244102356523189L;
+
+        /**
          * The components of this compound CRS.
          */
         private final List<CoordinateReferenceSystem> components;
@@ -557,6 +567,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @since   3.1
      */
     private static final class Temporal extends NetcdfCRS implements TemporalCRS, TimeCS, TemporalDatum {
+        /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = -6187564212157767070L;
+
         /**
          * The date and time origin of this temporal datum.
          */
@@ -659,6 +674,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      */
     private static final class Vertical extends NetcdfCRS implements VerticalCRS, VerticalCS, VerticalDatum {
         /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = 6758042090424299563L;
+
+        /**
          * The type of this vertical datum.
          */
         private final VerticalDatumType type;
@@ -733,6 +753,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      */
     private static final class Geographic extends NetcdfCRS implements GeographicCRS, EllipsoidalCS {
         /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = -907156823074314297L;
+
+        /**
          * Wraps the given coordinate system. The given list of axes should in theory contains
          * exactly 2 elements (current {@link NetcdfCRS} implementation has no support for 3D
          * geographic CRS). However a different number of axes may be provided if the
@@ -774,6 +799,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @since   3.1
      */
     private static final class Projected extends NetcdfCRS implements ProjectedCRS, CartesianCS {
+        /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = 8353773858669958163L;
+
         /**
          * Wraps the given coordinate system. The given list of axes should in theory contains
          * exactly 2 elements. However a different number of axes may be provided if the

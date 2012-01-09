@@ -15,6 +15,10 @@
 /**
  * GeoAPI implementation as wrappers around the
  * <a href="http://www.unidata.ucar.edu/software/netcdf-java/">NetCDF</a> library.
+ * The NetCDF library provides its own Coordinate Reference System implementation
+ * ({@link ucar.nc2.dataset.CoordinateSystem}) and coordinate operations
+ * ({@link ucar.unidata.geoloc.Projection}). This package provides adapters allowing
+ * usage of the NetCDF library as an implementation of GeoAPI interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
