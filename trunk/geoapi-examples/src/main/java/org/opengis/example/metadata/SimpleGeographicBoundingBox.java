@@ -234,4 +234,56 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     public Collection<? extends VerticalExtent> getVerticalElements() {
         return Collections.emptySet();
     }
+
+    /**
+     * Returns {@code true} if the given floating point values are equal.
+     */
+    private static boolean equals(final double a, final double b) {
+        return Double.doubleToLongBits(a) == Double.doubleToLongBits(b);
+    }
+
+    /**
+     * Compares this geographic bounding box with the specified object for equality.
+     *
+     * @param object The object to compare for equality.
+     * @return {@code true} if the given object is equal to this box.
+     */
+    @Override
+    public boolean equals(final Object object) {
+        if (object instanceof SimpleGeographicBoundingBox) {
+            final SimpleGeographicBoundingBox that = (SimpleGeographicBoundingBox) object;
+            return equals(this.southBoundLatitude, that.southBoundLatitude) &&
+                   equals(this.northBoundLatitude, that.northBoundLatitude) &&
+                   equals(this.eastBoundLongitude, that.eastBoundLongitude) &&
+                   equals(this.westBoundLongitude, that.westBoundLongitude);
+        }
+        return false;
+    }
+
+    /**
+     * Returns a hash code value for this bounding box.
+     */
+    @Override
+    public int hashCode() {
+        long code = serialVersionUID ^
+               (Double.doubleToLongBits(westBoundLongitude) + 31*
+               (Double.doubleToLongBits(eastBoundLongitude) + 31*
+               (Double.doubleToLongBits(southBoundLatitude) + 31*
+                Double.doubleToLongBits(northBoundLatitude))));
+        return ((int) code) ^ ((int) (code >>> 32));
+    }
+
+    /**
+     * Returns a string representation of this extent.
+     *
+     * @return A string representation of the given box in the given locale.
+     */
+    @Override
+    public String toString() {
+        return "GeographicBoundingBox[" +
+                "west="  + westBoundLongitude + ", " +
+                "east="  + eastBoundLongitude + ", " +
+                "south=" + southBoundLatitude + ", " +
+                "north=" + northBoundLatitude + ']';
+    }
 }

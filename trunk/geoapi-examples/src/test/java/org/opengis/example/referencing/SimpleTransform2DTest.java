@@ -37,6 +37,7 @@ public strictfp class SimpleTransform2DTest extends TransformTestCase {
      */
     private static final double SCALE_X = 2, TRANSLATE_X = 1,
                                 SCALE_Y = 3, TRANSLATE_Y = 2;
+
     /**
      * Creates a new test case initialized with a trivial implementation of
      * {@link SimpleTransform2D}. The {@linkplain #transform transform} is a

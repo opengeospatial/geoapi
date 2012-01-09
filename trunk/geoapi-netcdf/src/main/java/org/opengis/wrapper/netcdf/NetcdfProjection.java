@@ -14,6 +14,7 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Set;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
 import java.awt.Shape;
@@ -21,6 +22,7 @@ import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;
 
+import ucar.unidata.util.Parameter;
 import ucar.unidata.geoloc.LatLonRect;
 import ucar.unidata.geoloc.LatLonPoint;
 import ucar.unidata.geoloc.LatLonPointImpl;
@@ -38,10 +40,14 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.referencing.operation.Formula;
+import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.parameter.ParameterValueGroup;
 
 import org.opengis.example.geometry.SimpleDirectPosition;
 import org.opengis.example.metadata.SimpleGeographicBoundingBox;
+import org.opengis.example.parameter.SimpleParameterGroup;
 
 
 /**
@@ -54,7 +60,14 @@ import org.opengis.example.metadata.SimpleGeographicBoundingBox;
  * @version 3.1
  * @since   3.1
  */
-public class NetcdfProjection extends NetcdfIdentifiedObject implements CoordinateOperation, MathTransform2D {
+public class NetcdfProjection extends NetcdfIdentifiedObject
+        implements org.opengis.referencing.operation.Projection, MathTransform2D
+{
+    /**
+     * For cross-version compatibility.
+     */
+    private static final long serialVersionUID = 6497844299422453709L;
+
     /**
      * The source CRS, which determine the number of source dimensions.
      *
@@ -91,8 +104,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
      * Creates a new wrapper for the given NetCDF projection object.
      *
      * @param projection The NetCDF projection.
-     * @param sourceCRS  The source CRS to be returned by {@link #getSourceCRS()}.
-     * @param targetCRS  The target CRS to be returned by {@link #getTargetCRS()}.
+     * @param sourceCRS  The source CRS to be returned by {@link #getSourceCRS()}, or {@code null}.
+     * @param targetCRS  The target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
      */
     public NetcdfProjection(final Projection projection,
             final CoordinateReferenceSystem sourceCRS,
@@ -175,7 +188,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
      */
     @Override
     public int getSourceDimensions() {
-        return sourceCRS.getCoordinateSystem().getDimension();
+        return (sourceCRS != null) ? sourceCRS.getCoordinateSystem().getDimension() : 2;
     }
 
     /**
@@ -186,7 +199,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
      */
     @Override
     public int getTargetDimensions() {
-        return targetCRS.getCoordinateSystem().getDimension();
+        return (targetCRS != null) ? targetCRS.getCoordinateSystem().getDimension() : 2;
     }
 
     /**
@@ -247,11 +260,11 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
         double x = ptSrc.getOrdinate(0);
         double y = ptSrc.getOrdinate(1);
         if (isInverse) {
-            final LatLonPoint pt = projection.projToLatLon(new ProjectionPointImpl(x, y), null);
+            final LatLonPoint pt = projection.projToLatLon(new ProjectionPointImpl(x, y), new LatLonPointImpl());
             x = pt.getLongitude();
             y = pt.getLatitude();
         } else {
-            final ProjectionPoint pt = projection.latLonToProj(new LatLonPointImpl(x, y), null);
+            final ProjectionPoint pt = projection.latLonToProj(new LatLonPointImpl(y, x), new ProjectionPointImpl());
             x = pt.getX();
             y = pt.getY();
         }
@@ -292,11 +305,11 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
         double x = ptSrc.getX();
         double y = ptSrc.getY();
         if (isInverse) {
-            final LatLonPoint pt = projection.projToLatLon(new ProjectionPointImpl(x, y), null);
+            final LatLonPoint pt = projection.projToLatLon(new ProjectionPointImpl(x, y), new LatLonPointImpl());
             x = pt.getLongitude();
             y = pt.getLatitude();
         } else {
-            final ProjectionPoint pt = projection.latLonToProj(new LatLonPointImpl(x, y), null);
+            final ProjectionPoint pt = projection.latLonToProj(new LatLonPointImpl(y, x), new ProjectionPointImpl());
             x = pt.getX();
             y = pt.getY();
         }
@@ -377,7 +390,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
                 dstPts[dstOff]   = pt.getLongitude();
                 dstPts[dstOff+1] = pt.getLatitude();
             } else {
-                src.set(srcPts[srcOff], srcPts[srcOff+1]);
+                src.set(srcPts[srcOff+1], srcPts[srcOff]); // (lat,lon)
                 final ProjectionPoint pt = projection.latLonToProj(src, dst);
                 dstPts[dstOff  ] = pt.getX();
                 dstPts[dstOff+1] = pt.getY();
@@ -612,9 +625,117 @@ public class NetcdfProjection extends NetcdfIdentifiedObject implements Coordina
     }
 
     /**
-     * Compares this transform with the given object for equality.
+     * The operation method returned by {@link NetcdfProjection#getMethod()}. The main purpose of
+     * this implementation is to provide access to the {@link Projection#getClassName()} method.
      *
-     * @param  object The object to compare with this {@code SimpleTransform}.
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    private final class Method extends NetcdfIdentifiedObject implements OperationMethod {
+        /**
+         * For cross-version compatibility.
+         */
+        private static final long serialVersionUID = -5114329943808680717L;
+
+        /**
+         * Returns the NetCDF projection wrapped by this adapter.
+         *
+         * @return The NetCDF projection object.
+         */
+        @Override
+        public Projection delegate() {
+            return NetcdfProjection.this.delegate();
+        }
+
+        /**
+         * Returns the map projection class name, for example "<cite>Transverse Mercator</cite>".
+         *
+         * @see Projection#getClassName()
+         */
+        @Override
+        public String getCode() {
+            return delegate().getClassName();
+        }
+
+        /**
+         * Not yet implemented.
+         */
+        @Override
+        public Formula getFormula() {
+            throw new UnsupportedOperationException();
+        }
+
+        /**
+         * Returns the number of {@linkplain MathTransform#getSourceDimensions() source dimensions}
+         * of the math transform.
+         */
+        @Override
+        public Integer getSourceDimensions() {
+            return NetcdfProjection.this.getSourceDimensions();
+        }
+
+        /**
+         * Returns the number of {@linkplain MathTransform#getTargetDimensions() target dimensions}
+         * of the math transform.
+         */
+        @Override
+        public Integer getTargetDimensions() {
+            return NetcdfProjection.this.getTargetDimensions();
+        }
+
+        /**
+         * Returns the descriptor of the math transform parameters.
+         * This method returns a wrapper around the Netcdf {@link Parameter} objects.
+         *
+         * @see Projection#getProjectionParameters()
+         */
+        @Override
+        public ParameterDescriptorGroup getParameters() {
+            return NetcdfProjection.this.getParameters();
+        }
+    }
+
+    /**
+     * Returns the operation method. The name of the returned method is the NetCDF
+     * {@linkplain Projection#getClassName() projection class name}.
+     *
+     * @return The operation method.
+     *
+     * @see Projection#getClassName()
+     */
+    @Override
+    public OperationMethod getMethod() {
+        return new Method();
+    }
+
+    /**
+     * Returns the descriptor of the math transform parameters.
+     * This method returns a wrapper around the Netcdf {@link Parameter} objects.
+     *
+     * @see Projection#getProjectionParameters()
+     */
+    @Override
+    public ParameterValueGroup getParameterValues() {
+        return getParameters();
+    }
+
+    /**
+     * Implementations of {@link #getParameterValues()} and {@link Method#getParameters()}.
+     */
+    final SimpleParameterGroup getParameters() {
+        final List<Parameter> param = projection.getProjectionParameters();
+        final NetcdfParameter<?>[] values = new NetcdfParameter<?>[param.size()];
+        for (int i=0; i<values.length; i++) {
+            values[i] = NetcdfParameter.create(param.get(i));
+        }
+        return new SimpleParameterGroup(NETCDF, projection.getClassName(), values);
+    }
+
+    /**
+     * Compares this projection with the given object for equality.
+     *
+     * @param  object The object to compare with this {@code NetcdfProjection}.
      * @return {@code true} if the given object is equals to this object.
      */
     @Override
