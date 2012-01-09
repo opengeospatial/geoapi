@@ -37,16 +37,6 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  */
 public abstract class SimpleTransform2D extends SimpleTransform implements MathTransform2D {
     /**
-     * Creates a new operation for the given name with no CRS.
-     *
-     * @param authority Organization responsible for definition of the name, or {@code null}.
-     * @param name      The name of the new operation.
-     */
-    protected SimpleTransform2D(final Citation authority, final String name) {
-        super(authority, name);
-    }
-
-    /**
      * Creates a new operation for the given name and CRS.
      *
      * @param authority Organization responsible for definition of the name, or {@code null}.
@@ -93,7 +83,7 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      * Transforms the specified point by delegating to {@link #transform(Point2D, Point2D)}.
      */
     @Override
-    public DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
+    public DirectPosition transform(final DirectPosition ptSrc, DirectPosition ptDst)
             throws MismatchedDimensionException, TransformException
     {
         ensureTwoDimensional(ptSrc);

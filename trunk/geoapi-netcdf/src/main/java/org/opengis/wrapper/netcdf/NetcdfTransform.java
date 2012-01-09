@@ -15,7 +15,6 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.List;
 import java.util.Arrays;
-import java.io.Serializable;
 import java.awt.geom.Point2D;
 
 import ucar.unidata.util.Parameter;
@@ -30,6 +29,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.OperationMethod;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.parameter.ParameterDescriptorGroup;
 
 import org.opengis.example.referencing.SimpleTransform2D;
@@ -69,9 +69,14 @@ final class NetcdfTransform extends SimpleTransform2D {
      * Creates a new wrapper for the given NetCDF projection object.
      *
      * @param projection The NetCDF projection.
+     * @param sourceCRS  The source CRS to be returned by {@link #getSourceCRS()}.
+     * @param targetCRS  The target CRS to be returned by {@link #getTargetCRS()}.
      */
-    NetcdfTransform(final Projection projection) {
-        super(NetcdfIdentifiedObject.NETCDF, projection.getClassName());
+    NetcdfTransform(final Projection projection,
+            final CoordinateReferenceSystem sourceCRS,
+            final CoordinateReferenceSystem targetCRS)
+    {
+        super(NetcdfIdentifiedObject.NETCDF, projection.getName(), sourceCRS, targetCRS);
         this.projection = projection;
         this.isInverse  = false;
     }
@@ -80,7 +85,7 @@ final class NetcdfTransform extends SimpleTransform2D {
      * Creates a new wrapper as the inverse of the given projection.
      */
     private NetcdfTransform(final NetcdfTransform other) {
-        super(NetcdfIdentifiedObject.NETCDF, other.projection.getClassName() + " inverse");
+        super(other.getAuthority(), other.getCode() + " inverse", other.targetCRS, other.sourceCRS);
         projection =  other.projection;
         isInverse  = !other.isInverse;
         inverse    =  other;
@@ -172,7 +177,7 @@ final class NetcdfTransform extends SimpleTransform2D {
      *
      * @since 3.1
      */
-    final class Method extends NetcdfIdentifiedObject implements OperationMethod, Serializable {
+    final class Method extends NetcdfIdentifiedObject implements OperationMethod {
         /**
          * For cross-version compatibility.
          */

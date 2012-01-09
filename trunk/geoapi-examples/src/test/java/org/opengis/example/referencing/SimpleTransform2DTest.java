@@ -44,7 +44,7 @@ public strictfp class SimpleTransform2DTest extends TransformTestCase {
      */
     @SuppressWarnings("serial")
     public SimpleTransform2DTest() {
-        transform = new SimpleTransform2D(null, "Test") {
+        transform = new SimpleTransform2D(null, "Test", null, null) {
             @Override
             public Point2D transform(final Point2D ptSrc, Point2D ptDst) {
                 if (ptDst == null) {
