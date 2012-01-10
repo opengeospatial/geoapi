@@ -43,7 +43,7 @@ import org.opengis.parameter.InvalidParameterValueException;
  * @since   3.1
  */
 public class NetcdfParameter<T> extends NetcdfIdentifiedObject
-        implements org.opengis.example.parameter.Parameter<T>, Cloneable
+        implements ParameterValue<T>, ParameterDescriptor<T>, Cloneable
 {
     /**
      * Serial number for cross-version compatibility.

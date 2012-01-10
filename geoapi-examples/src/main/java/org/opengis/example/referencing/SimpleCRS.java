@@ -131,6 +131,13 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
                 SimpleDatum.WGS84, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);
 
         /**
+         * A spherical CRS used when the datum is unknown, as defined by EPSG:4047.
+         * The axis order is (&phi;,&lambda;).
+         */
+        public static final GeographicCRS SPHERE = new Geographic(SimpleCitation.EPSG, "GRS 1980 Authalic Sphere",
+                SimpleDatum.SPHERE, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);
+
+        /**
          * The datum.
          *
          * @see #getDatum()

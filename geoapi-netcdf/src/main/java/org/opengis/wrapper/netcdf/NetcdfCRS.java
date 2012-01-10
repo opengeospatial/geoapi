@@ -41,11 +41,7 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.coverage.grid.GridGeometry;
 import org.opengis.coverage.grid.GridEnvelope;
-
-import org.opengis.example.referencing.SimpleCRS;
-import org.opengis.example.referencing.SimpleDatum;
-import org.opengis.example.referencing.SimpleMatrix;
-import org.opengis.example.coverage.SimpleGridEnvelope;
+import org.opengis.coverage.grid.GridCoordinates;
 
 
 /**
@@ -70,9 +66,9 @@ import org.opengis.example.coverage.SimpleGridEnvelope;
  *       NetCDF coordinate system, which shall returns {@code true}.</p></li>
  *
  *   <li><p>At the time of writing, the NetCDF API doesn't specify the CRS datum. Consequently the
- *       current implementation assumes that all {@code NetcdfCRS} instances use the
- *       {@linkplain org.opengis.example.referencing.SimpleDatum#WGS84 WGS84}
- *       geodetic datum.</p></li>
+ *       current implementation assumes that all {@code NetcdfCRS} instances use a spherical datum.
+ *       We presume a sphere rather than WGS84 because the NetCDF projection framework uses spherical
+ *       formulas.</p></li>
  *
  *   <li><p>This class assumes that the list of NetCDF axes returned by
  *       {@link CoordinateSystem#getCoordinateAxes()} is stable during the
@@ -84,7 +80,7 @@ import org.opengis.example.coverage.SimpleGridEnvelope;
  * @since   3.1
  */
 public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateReferenceSystem,
-        org.opengis.referencing.cs.CoordinateSystem, GridGeometry
+        org.opengis.referencing.cs.CoordinateSystem, GridGeometry, GridEnvelope
 {
     /**
      * For cross-version compatibility.
@@ -107,11 +103,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     private final NetcdfAxis[] axes;
 
     /**
-     * The grid envelope extent, computed when first needed.
-     */
-    private transient GridEnvelope extent;
-
-    /**
      * The grid to CRS transform, computed when first needed.
      */
     private transient MathTransform gridToCRS;
@@ -126,7 +117,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     protected NetcdfCRS(final NetcdfCRS crs) {
         this.cs        = crs.cs;
         this.axes      = crs.axes;
-        this.extent    = crs.extent;
         this.gridToCRS = crs.gridToCRS;
     }
 
@@ -380,24 +370,88 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
+     * Returns the number of numeric values in the axis at the given dimension.
+     *
+     * @param  dimension The zero based index of axis.
+     * @return The number of values for the given axis.
+     * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
+     *
+     * @see NetcdfAxis#length()
+     */
+    @Override
+    public int getSpan(final int dimension) throws IndexOutOfBoundsException {
+        return axes[dimension].length();
+    }
+
+    /**
+     * Returns the valid minimum inclusive grid coordinate along the specified dimension,
+     * which is assumed zero.
+     *
+     * @param  dimension The zero based index of axis.
+     * @return The minimum inclusive grid coordinates for the given axis.
+     * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
+     */
+    @Override
+    public int getLow(int dimension) throws IndexOutOfBoundsException {
+        return 0;
+    }
+
+    /**
+     * Returns the valid maximum inclusive grid coordinate along the specified dimension.
+     *
+     * @param  dimension The zero based index of axis.
+     * @return The maximum inclusive grid coordinates for the given axis.
+     * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
+     */
+    @Override
+    public int getHigh(int dimension) throws IndexOutOfBoundsException {
+        return getLow(dimension) + getSpan(dimension) - 1;
+    }
+
+    /**
+     * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid}.
+     * The default implementation builds the grid coordinates from the values returned by
+     * {@link #getLow(int)}.
+     *
+     * @return The minimal coordinate values for all grid points, inclusive.
+     */
+    @Override
+    public GridCoordinates getLow() {
+        final int[] c = new int[getDimension()];
+        for (int i=0; i<c.length; i++) {
+            c[i] = getLow(i);
+        }
+        return new SimpleGridCoordinates(c);
+    }
+
+    /**
+     * Returns the maximal coordinate values for all grid points within the {@linkplain Grid grid}.
+     * The default implementation builds the grid coordinates from the values returned by
+     * {@link #getHigh(int)}.
+     *
+     * @return The maximal coordinate values for all grid points, <strong>inclusive</strong>.
+     */
+    @Override
+    public GridCoordinates getHigh() {
+        final int[] c = new int[getDimension()];
+        for (int i=0; i<c.length; i++) {
+            c[i] = getHigh(i);
+        }
+        return new SimpleGridCoordinates(c);
+    }
+
+    /**
      * Returns the valid coordinate range of the NetCDF grid coordinates.
-     * The lowest valid grid coordinate is zero.
+     * The lowest valid grid coordinate is usually zero. The highest valid
+     * grid coordinates are usually the length of each axis minus 1.
      *
      * @return The valid coordinate range of a grid coverage.
      *
      * @since 3.20 (derived from 3.09)
      */
     @Override
-    public synchronized GridEnvelope getExtent() {
-        if (extent == null) {
-            final int[] lower = new int[axes.length];
-            final int[] upper = new int[axes.length];
-            for (int i=0; i<upper.length; i++) {
-                upper[i] = axes[i].length() - 1;
-            }
-            extent = new SimpleGridEnvelope(lower, upper);
-        }
-        return extent;
+    public GridEnvelope getExtent() {
+        return this;
     }
 
     /**
@@ -448,7 +502,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
             throw new IllegalArgumentException("Illegal range");
         }
         final int numDimensions = upperDimension - lowerDimension;
-        final SimpleMatrix matrix = new SimpleMatrix(numDimensions + 1, numDimensions + 1);
+        final SimpleMatrix matrix = new SimpleMatrix(numDimensions + 1);
         for (int i=0; i<numDimensions; i++) {
             final CoordinateAxis1D axis = axes[lowerDimension + i].delegate();
             if (!axis.isRegular()) {
@@ -777,11 +831,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         }
 
         /**
-         * Returns the datum, which is assumed WGS84.
+         * Returns the datum, which is assumed a sphere.
          */
         @Override
         public GeodeticDatum getDatum() {
-            return SimpleDatum.WGS84;
+            return SimpleCRS.DEFAULT;
         }
     }
 
@@ -829,31 +883,36 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         }
 
         /**
-         * Returns the datum, which is assumed WGS84.
+         * Returns the datum, which is assumed spherical. This datum must be
+         * the same than the datum of the CRS returned by {@link #getBaseCRS()}.
          */
         @Override
         public GeodeticDatum getDatum() {
-            return SimpleDatum.WGS84;
+            return SimpleCRS.DEFAULT;
         }
 
         /**
-         * Returns the base CRS, which is assumed WGS84.
+         * Returns the base CRS, which is assumed spherical. We presume a sphere rather
+         * than WGS84 because the NetCDF projection framework uses spherical formulas.
          */
         @Override
         public GeographicCRS getBaseCRS() {
-            return SimpleCRS.Geographic.WGS84;
+            return SimpleCRS.DEFAULT;
         }
 
         /**
-         * Returns a wrapper around the NetCDF projection, or {@code null} if none.
+         * Returns a wrapper around the NetCDF projection.
+         *
+         * @throws IllegalStateException If the NetCDF coordinate system does not define a projection.
          */
         @Override
         public synchronized Projection getConversionFromBase() {
             if (projection == null) {
                 final ucar.unidata.geoloc.Projection p = delegate().getProjection();
-                if (p != null) {
-                    projection = new NetcdfProjection(p, getBaseCRS(), this);
+                if (p == null) {
+                    throw new IllegalStateException("Projection is unspecified.");
                 }
+                projection = new NetcdfProjection(p, getBaseCRS(), this);
             }
             return projection;
         }

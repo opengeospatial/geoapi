@@ -57,7 +57,9 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleParameter extends SimpleIdentifiedObject implements Parameter<Double>, Cloneable {
+public class SimpleParameter extends SimpleIdentifiedObject
+        implements ParameterValue<Double>, ParameterDescriptor<Double>, Cloneable
+{
     /**
      * Determines the range of values and the unit of measurement of a parameter.
      * This enum is stored in the {@link SimpleParameter#type} field, and used in

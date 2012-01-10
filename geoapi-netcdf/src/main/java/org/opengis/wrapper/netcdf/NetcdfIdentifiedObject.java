@@ -25,7 +25,6 @@ import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
-import org.opengis.example.metadata.SimpleCitation;
 
 
 /**
@@ -50,11 +49,6 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     private static final long serialVersionUID = 8740287489596438703L;
 
     /**
-     * The citation to be returned by {@link #getAuthority()}.
-     */
-    static final Citation NETCDF = new SimpleCitation("NetCDF");
-
-    /**
      * Creates a new {@code NetcdfIdentifiedObject} instance.
      */
     protected NetcdfIdentifiedObject() {
@@ -72,7 +66,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
      */
     @Override
     public Citation getAuthority() {
-        return NETCDF;
+        return SimpleCitation.NETCDF;
     }
 
     /**

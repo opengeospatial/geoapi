@@ -14,11 +14,11 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Random;
-import org.opengis.metadata.extent.GeographicBoundingBox;
 import ucar.unidata.geoloc.projection.Mercator;
 
-import org.opengis.test.referencing.TransformTestCase;
+import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.test.referencing.TransformTestCase;
 
 import org.junit.Test;
 
