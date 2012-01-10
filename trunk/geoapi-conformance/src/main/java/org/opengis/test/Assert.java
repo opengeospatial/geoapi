@@ -261,17 +261,18 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Performs a lenient comparison of the given character sequences. First, this method locates
+     * Asserts that the identifiers in the given character sequences are equal,
+     * ignoring non-identifier characters. First, this method locates
      * the {@linkplain Character#isUnicodeIdentifierStart(int) Unicode identifier start} in each
      * sequences, ignoring every characters before them. Then, starting from the identifier starts,
      * this method compares only the {@linkplain Character#isUnicodeIdentifierPart(int) Unicode
-     * identifier parts} in a case-insensitive way.
+     * identifier parts} in a case-insensitive way until the end of character sequences.
      *
      * @param message  Header of the exception message in case of failure, or {@code null} if none.
      * @param expected The expected character sequence.
      * @param value The character sequence to compare.
      */
-    public static void assertLenientEquals(final String message, final CharSequence expected, final CharSequence value) {
+    public static void assertIdentifierEquals(final String message, final CharSequence expected, final CharSequence value) {
         final int expLength = expected.length();
         final int valLength = value.length();
         int       expOffset = 0;

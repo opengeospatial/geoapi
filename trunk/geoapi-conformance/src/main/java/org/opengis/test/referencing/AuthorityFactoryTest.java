@@ -331,7 +331,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         assertNotNull("CRSAuthorityFactory.createGeographicCRS()", crs);
         object = crs;
         validate(crs);
-        assertLenientEquals("GeographicCRS.getName()", "WGS 84", getName(crs));
+        assertIdentifierEquals("GeographicCRS.getName()", "WGS 84", getName(crs));
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
          * This is verified by the above call to validate(crs). However the user could

@@ -48,27 +48,27 @@ import static org.junit.Assert.*;
  */
 public strictfp class AssertTest {
     /**
-     * Tests {@link Assert#assertLenientEquals(String, CharSequence, CharSequence)}.
+     * Tests {@link Assert#assertIdentifierEquals(String, CharSequence, CharSequence)}.
      */
     @Test
-    public void testLenientEquals() {
-        Assert.assertLenientEquals(null, "WGS84" ,   "WGS84" );
-        Assert.assertLenientEquals(null, "WGS84" ,   "WGS 84");
-        Assert.assertLenientEquals(null, "WGS 84",   "WGS84" );
-        Assert.assertLenientEquals(null, "WGS 84",   "WGS 84");
-        Assert.assertLenientEquals(null, "_WgS 84!", "wgs84" );
+    public void testIdentifierEquals() {
+        Assert.assertIdentifierEquals(null, "WGS84" ,   "WGS84" );
+        Assert.assertIdentifierEquals(null, "WGS84" ,   "WGS 84");
+        Assert.assertIdentifierEquals(null, "WGS 84",   "WGS84" );
+        Assert.assertIdentifierEquals(null, "WGS 84",   "WGS 84");
+        Assert.assertIdentifierEquals(null, "_WgS 84!", "wgs84" );
         try {
-            Assert.assertLenientEquals(null, "WGS84 and more" , "WGS84" );
+            Assert.assertIdentifierEquals(null, "WGS84 and more" , "WGS84" );
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84 and more\" but got \"WGS84\". Missing part: \"and more\".", e.getMessage());
         }
         try {
-            Assert.assertLenientEquals(null, "WGS84" , "WGS84 and more" );
+            Assert.assertIdentifierEquals(null, "WGS84" , "WGS84 and more" );
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84\", but found it with a unexpected trailing string: \"and more\".", e.getMessage());
         }
         try {
-            Assert.assertLenientEquals(null, "WGS84" , "WBS84" );
+            Assert.assertIdentifierEquals(null, "WGS84" , "WBS84" );
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84\" but got \"WBS84\".", e.getMessage());
         }
