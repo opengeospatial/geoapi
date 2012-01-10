@@ -53,21 +53,21 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
 
     /**
      * The list of parameters included in this group. This simple group implementation
-     * supports only {@link Parameter} instances, which are used both as
+     * supports only {@link SimpleParameter} instances, which are used both as
      * {@linkplain ParameterDescriptor parameter descriptor} and
      * {@linkplain ParameterValue parameter values} for the {@code double} value type.
      * <p>
      * This list is <cite>live</cite>: changes to this list will be reflected immediately in the
      * {@link #descriptors()} and {@link #values()} views.
      */
-    protected final List<Parameter<?>> parameters;
+    protected final List<SimpleParameter> parameters;
 
     /**
      * An unmodifiable view over the {@linkplain #parameters} list. This view is
      * returned by the {@link #descriptors()} and {@link #values()} methods. We
      * have to make it unmodifiable for type safety reason.
      */
-    private final List<Parameter<?>> unmodifiable;
+    private final List<SimpleParameter> unmodifiable;
 
     /**
      * Creates a new parameter group of the given authority and name.
@@ -76,9 +76,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * @param name      The parameter group name.
      * @param param     The parameters to be included in this group.
      */
-    public SimpleParameterGroup(final Citation authority, final String name, final Parameter<?>... param) {
+    public SimpleParameterGroup(final Citation authority, final String name, final SimpleParameter... param) {
         super(authority, name);
-        parameters = new ArrayList<Parameter<?>>(Arrays.asList(param));
+        parameters = new ArrayList<SimpleParameter>(Arrays.asList(param));
         unmodifiable = Collections.unmodifiableList(parameters);
     }
 
@@ -95,7 +95,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
 
     /**
      * Returns the minimum number of times that values for this group are required.
-     * The default implementation returns 1, meaning that this group shall alway be
+     * The default implementation returns 1, meaning that this group shall always be
      * supplied at least once.
      */
     @Override
@@ -106,7 +106,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     /**
      * Returns the maximum number of times that values for this group can be included.
      * The default implementation returns 1, meaning that values for this group shall
-     * alway be supplied exactly once.
+     * always be supplied at most once.
      */
     @Override
     public int getMaximumOccurs() {
@@ -166,7 +166,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      */
     @Override
     public GeneralParameterDescriptor descriptor(final String name) throws ParameterNotFoundException {
-        for (final Parameter<?> candidate : parameters) {
+        for (final SimpleParameter candidate : parameters) {
             if (name.equalsIgnoreCase(candidate.getName().getCode())) {
                 return candidate;
             }
@@ -203,7 +203,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      */
     @Override
     public ParameterValue<?> parameter(final String name) throws ParameterNotFoundException {
-        for (final Parameter<?> candidate : parameters) {
+        for (final SimpleParameter candidate : parameters) {
             if (name.equalsIgnoreCase(candidate.getName().getCode())) {
                 return candidate;
             }
@@ -243,8 +243,8 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
 
     /**
      * Returns a new group with the same {@linkplain #authority authority}, {@linkplain #code code}
-     * and {@linkplain #parameters} than this group. The {@linkplain Parameter#getValue() value} of
-     * each parameter is left to their default value.
+     * and {@linkplain #parameters} than this group. The {@linkplain SimpleParameter#getValue() value}
+     * of each parameter is left to their default value.
      *
      * <blockquote><font size="-1"><b>Implementation note:</b>
      * Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
@@ -257,7 +257,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      */
     @Override
     public SimpleParameterGroup createValue() {
-        final Parameter<?>[] param = new Parameter<?>[parameters.size()];
+        final SimpleParameter[] param = new SimpleParameter[parameters.size()];
         for (int i=0; i<param.length; i++) {
             param[i] = parameters.get(i).createValue();
         }
@@ -280,7 +280,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
         final SimpleParameterGroup clone;
         try {
             clone = (SimpleParameterGroup) super.clone();
-            final List<Parameter<?>> copy = new ArrayList<Parameter<?>>(parameters);
+            final List<SimpleParameter> copy = new ArrayList<SimpleParameter>(parameters);
             for (int i=copy.size(); --i>=0;) {
                 copy.set(i, copy.get(i).clone());
             }

@@ -45,10 +45,6 @@ import org.opengis.referencing.operation.Formula;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.parameter.ParameterValueGroup;
 
-import org.opengis.example.geometry.SimpleDirectPosition;
-import org.opengis.example.metadata.SimpleGeographicBoundingBox;
-import org.opengis.example.parameter.SimpleParameterGroup;
-
 
 /**
  * Wraps a NetCDF {@link Projection} object in a GeoAPI
@@ -729,7 +725,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         for (int i=0; i<values.length; i++) {
             values[i] = NetcdfParameter.create(param.get(i));
         }
-        return new SimpleParameterGroup(NETCDF, projection.getClassName(), values);
+        return new SimpleParameterGroup(projection.getClassName(), values);
     }
 
     /**

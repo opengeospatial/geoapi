@@ -58,7 +58,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
          * Creates the unique instance of the Greenwich class.
          */
         private Greenwich() {
-            super(null, "Greenwich");
+            super(SimpleCitation.EPSG, "Greenwich");
         }
 
         /**
@@ -85,6 +85,13 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      */
     public static final GeodeticDatum WGS84 = new SimpleDatum(SimpleCitation.EPSG,
             "World Geodetic System 1984", 6378137.0, 298.257223563);
+
+    /**
+     * A spherical datum used for coordinate reference systems where datum is unknown.
+     * The axis length are 6371007 metres.
+     */
+    public static final GeodeticDatum SPHERE = new SimpleDatum(SimpleCitation.EPSG,
+            "GRS 1980 Authalic Sphere", 6371007, Double.POSITIVE_INFINITY);
 
     /**
      * The semi-major axis length, in metres.
@@ -164,7 +171,8 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Returns the value of the inverse of the flattening constant.
      *
-     * @return The inverse flattening value.
+     * @return The inverse flattening value, or {@linkplain Double#POSITIVE_INFINITY positive
+     *         infinity} if this ellipsoid is a sphere.
      */
     @Override
     public double getInverseFlattening() {
@@ -173,16 +181,17 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
 
     /**
      * Indicates if the {@linkplain #getInverseFlattening inverse flattening} is definitive for
-     * this ellipsoid. The default implementation returns {@code true}, since the constructor
-     * of this {@code SimpleDatum} class expects a {@code inverseFlattening} value.
+     * this ellipsoid. The default implementation returns {@code true} for if this ellipsoid is
+     * not a sphere, since the constructor of this {@code SimpleDatum} class expects a
+     * {@code inverseFlattening} value.
      *
-     * @return {@code true} if the {@linkplain #getInverseFlattening inverse flattening} is
-     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis polar radius}
+     * @return {@code true} if the {@linkplain #getInverseFlattening() inverse flattening} is
+     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis() polar radius}
      *         is definitive.
      */
     @Override
     public boolean isIvfDefinitive() {
-        return true;
+        return !isSphere();
     }
 
     /**

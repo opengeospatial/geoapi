@@ -5,13 +5,13 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The Proj.4 wrappers are provided as code examples, in the hope to facilitate
+ *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
  *    in any way.
  */
-package org.opengis.wrapper.proj4;
+package org.opengis.wrapper.netcdf;
 
 import java.util.Arrays;
 import java.io.Serializable;
@@ -30,12 +30,12 @@ final class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * For cross-version compatibility.
      */
-    private static final long serialVersionUID = 1768239094900135558L;
+    private static final long serialVersionUID = -6629745469199237817L;
 
     /**
      * The ordinates.
      */
-    private final double[] ordinates;
+    protected final double[] ordinates;
 
     /**
      * Creates a new direct position of the given dimension.
@@ -44,17 +44,6 @@ final class SimpleDirectPosition implements DirectPosition, Serializable {
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];
-    }
-
-    /**
-     * Creates a new direct position initialized to the given ordinate values.
-     *
-     * @param ordinates The ordinate values. This array is <strong>not</strong> cloned.
-     *
-     * @since 3.1
-     */
-    public SimpleDirectPosition(final double[] ordinates) {
-        this.ordinates = ordinates;
     }
 
     /**

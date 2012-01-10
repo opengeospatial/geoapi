@@ -74,7 +74,6 @@
     <dependency>
       <groupId>java3d</groupId>
       <artifactId>vecmath</artifactId>
-      <version>1.3.1</version> <!-- More recent versions are available on other repositories. -->
     </dependency>
   </dependencies>
 

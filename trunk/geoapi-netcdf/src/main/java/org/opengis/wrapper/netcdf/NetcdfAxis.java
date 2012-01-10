@@ -24,7 +24,6 @@ import org.opengis.util.InternationalString;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.cs.RangeMeaning;
-import org.opengis.example.metadata.SimpleCitation;
 
 
 /**

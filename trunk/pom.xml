@@ -164,11 +164,13 @@
 
 
   <!-- ====================================================
-           Repositories (used for javax.units dependency)
+           Repository for the legacy JSR-275 dependency,
+           for UmlGraph (site generation only), and for
+           NetCDF and vecmath (demo modules only).
        ==================================================== -->
   <repositories>
     <repository>
-      <id>geotoolkit</id> <!-- For JSR-275 (legacy) and UmlGraph -->
+      <id>geotoolkit</id>
       <name>Geotoolkit repository</name>
       <url>http://maven.geotoolkit.org/</url>
     </repository>
@@ -191,6 +193,13 @@
         <artifactId>junit</artifactId>
         <version>4.10</version>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <!-- The vecmath dependency is used only by demo modules. The latest version available on
+             Maven Central is 1.3.1, but more recent versions are available on other repositories. -->
+        <groupId>java3d</groupId>
+        <artifactId>vecmath</artifactId>
+        <version>1.5.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

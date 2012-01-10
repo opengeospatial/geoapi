@@ -67,20 +67,19 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.opengis.example</groupId>
-      <artifactId>geoapi-examples</artifactId>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-conformance</artifactId>
       <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>java3d</groupId>
+      <artifactId>vecmath</artifactId>
     </dependency>
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>netcdf</artifactId>
       <version>4.2.28</version>
-    </dependency>
-    <dependency>
-      <groupId>org.opengis</groupId>
-      <artifactId>geoapi-conformance</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
