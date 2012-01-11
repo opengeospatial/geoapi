@@ -39,6 +39,7 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
+import org.opengis.coverage.grid.Grid;
 import org.opengis.coverage.grid.GridGeometry;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.coverage.grid.GridCoordinates;
@@ -446,8 +447,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * grid coordinates are usually the length of each axis minus 1.
      *
      * @return The valid coordinate range of a grid coverage.
-     *
-     * @since 3.20 (derived from 3.09)
      */
     @Override
     public GridEnvelope getExtent() {

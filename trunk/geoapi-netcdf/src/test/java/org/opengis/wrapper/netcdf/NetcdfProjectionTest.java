@@ -49,7 +49,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
      * Tests the consistency of various {@code transform} methods. This method runs the
      * {@link #verifyInDomain(double[], double[], int[], Random)} test method using a
-     * trivial {@link SimpleTransform2D} implementation.
+     * simple {@link Mercator} implementation.
      *
      * @throws TransformException Should never happen.
      */
