@@ -27,7 +27,7 @@ import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
- * Wraps a NetCDF {@link CoordinateAxis1D} as an implementation of GeoAPI interfaces.
+ * A {@link CoordinateSystemAxis} implementation backed by a NetCDF {@link CoordinateAxis1D} object.
  * <p>
  * {@code NetcdfAxis} is a <cite>view</cite>: every methods in this class delegate their work to the
  * wrapped NetCDF axis. Consequently any change in the wrapped axis is immediately reflected in this

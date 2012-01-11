@@ -31,7 +31,6 @@ import ucar.unidata.geoloc.ProjectionPoint;
 import ucar.unidata.geoloc.ProjectionPointImpl;
 import ucar.unidata.geoloc.projection.ProjectionAdapter;
 
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.geometry.DirectPosition;
@@ -47,8 +46,7 @@ import org.opengis.parameter.ParameterValueGroup;
 
 
 /**
- * Wraps a NetCDF {@link Projection} object in a GeoAPI
- * {@link org.opengis.referencing.operation.Projection}.
+ * A {@link org.opengis.referencing.operation.Projection} implementation backed by a NetCDF {@link Projection} object.
  * The NetCDF class does not distinguish <cite>Coordinate Operation</cite> from
  * <cite>Math Transform</cite>, so we implement the two interfaces by the same class.
  *
@@ -586,15 +584,6 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
                     domain.getLonMin(), domain.getLonMax(),
                     domain.getLatMin(), domain.getLatMax());
         }
-        return null;
-    }
-
-    /**
-     * Returns {@code null}, since this adapter does not have information about the projection
-     * scope.
-     */
-    @Override
-    public InternationalString getScope() {
         return null;
     }
 

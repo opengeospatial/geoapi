@@ -27,10 +27,9 @@ import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
- * Wraps a NetCDF {@link Parameter} object as an implementation of GeoAPI interfaces. The NetCDF
- * {@code Parameter} class is both a parameter value and its own descriptor. Consequently
- * this adapter implements both the {@link ParameterValue} and {@link ParameterDescriptor}
- * interfaces.
+ * A {@link ParameterValue} implementation backed by a NetCDF {@link Parameter} object.
+ * The NetCDF {@code Parameter} class is both a parameter value and its own descriptor. Consequently
+ * this adapter implements both the {@link ParameterValue} and {@link ParameterDescriptor} interfaces.
  * <p>
  * NetCDF {@code Parameter} instances can store {@link String}, {@code double} and {@code double[]}
  * values. Those values can be obtained by the {@link #stringValue()}, {@link #doubleValue()} and
