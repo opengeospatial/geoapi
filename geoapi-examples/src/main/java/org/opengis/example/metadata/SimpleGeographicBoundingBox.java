@@ -76,7 +76,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
 
     /**
      * Constructs a geographic bounding box from the specified rectangle. The rectangle is assumed
-     * in {@linkplain org.geotoolkit.referencing.crs.DefaultGeographicCRS#WGS84 WGS84} CRS.
+     * in {@linkplain org.opengis.example.referencing.SimpleCRS.Geographic#WGS84 WGS84} CRS.
      *
      * @param bounds The rectangle to use for initializing this geographic bounding box.
      */
