@@ -14,13 +14,14 @@ import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Matrix;
+import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.NoninvertibleTransformException;
 
 import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
- * A linear transform which use a {@link Matrix} for transforming the coordinates.
+ * A {@link MathTransform} which use a {@link Matrix} for transforming the coordinates.
  * This transform is usually, but not necessarily, affine.
  * <p>
  * <b>Constraints:</b>

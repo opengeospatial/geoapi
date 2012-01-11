@@ -20,7 +20,8 @@ import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
- * A {@link CoordinateSystemAxis}. This implementation infers some axis properties from the
+ * A {@link CoordinateSystemAxis} defined by conventional symbols.
+ * This implementation infers some axis properties from the
  * {@linkplain #abbreviation}, as documented in the following table:
  *
  * <blockquote><table border="1" cellspacing="0" cellpadding="0">

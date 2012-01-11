@@ -7,10 +7,11 @@
  */
 
 /**
- * A simple GeoAPI implementation of parameter interfaces. In order to provide a simpler model,
- * the classes in this package implement both {@link org.opengis.parameter.GeneralParameterValue}
- * and {@link org.opengis.parameter.GeneralParameterDescriptor}. This means that each parameter
- * value is also its own descriptor.
+ * Implementation of some interfaces from the {@link org.opengis.parameter} package.
+ * In order to provide a simpler model, the classes in this package implement both
+ * {@link org.opengis.parameter.GeneralParameterValue} and
+ * {@link org.opengis.parameter.GeneralParameterDescriptor}.
+ * This means that each parameter value is also its own descriptor.
  * <p>
  * <b><u>Example: Creating parameters for the Mercator projection</u></b>
  *

@@ -26,7 +26,7 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
- * Base class of all coordinate operation defined in this simple package. This class does not make
+ * A {@link CoordinateOperation} abstract base class. This class does not make
  * distinction between <cite>Coordinate Operation</cite> and <cite>Math Transform</cite>, so we
  * implement the two interfaces by the same class.
  * <p>

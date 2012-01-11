@@ -20,7 +20,7 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
- * A math transform backed by the Java2D {@linkplain AffineTransform affine transform}.
+ * A {@link MathTransform2D} backed by the Java2D {@link AffineTransform}.
  * <p>
  * Affine transforms are very commons in GIS - they can be used for scaling, flipping
  * the <var>y</var> axis, applying unit conversions, <em>etc.</em>. The standard Java2D

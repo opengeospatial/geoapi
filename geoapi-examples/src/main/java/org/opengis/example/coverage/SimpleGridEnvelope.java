@@ -16,7 +16,8 @@ import org.opengis.coverage.grid.GridCoordinates;
 
 
 /**
- * Defines a range of grid coverage coordinates.
+ * A {@link GridEnvelope} implementation which store values in a {@code int[]} array.
+ * This class defines a range of grid coverage coordinates.
  * <p>
  * <b>CAUTION:</b>
  * ISO 19123 defines {@linkplain #getHigh() high} coordinates as <strong>inclusive</strong>.

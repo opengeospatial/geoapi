@@ -20,8 +20,8 @@ import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * Base class of referencing objects, which contain only the {@linkplain #getName() name}
- * attribute. All other {@link IdentifiedObject} attributes are {@code null} or empty collections.
+ * An {@link IdentifiedObject} abstract base class, which contain only the {@linkplain #getName() name}
+ * attribute. All other {@code IdentifiedObject} attributes are {@code null} or empty collections.
  * <p>
  * Since the {@linkplain #getName() name} is the only identifier contained by this class,
  * {@code SimpleIdentifiedObject} implements directly the {@link ReferenceIdentifier} interface.

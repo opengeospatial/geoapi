@@ -16,8 +16,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * A trivial implementation of {@link DirectPosition} which stores ordinate values in a
- * {@code double[]} array. This implementation can store an optional reference to an existing
+ * A {@link DirectPosition} implementation which store ordinate values in a {@code double[]} array.
+ * This implementation can store an optional reference to an existing
  * {@linkplain CoordinateReferenceSystem Coordinate Reference System}.
  *
  * @author  Martin Desruisseaux (Geomatys)

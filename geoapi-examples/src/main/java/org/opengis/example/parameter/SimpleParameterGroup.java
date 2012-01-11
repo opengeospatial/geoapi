@@ -26,7 +26,7 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
 
 
 /**
- * A relatively "simple" implementation of a parameter group.
+ * A {@link ParameterValueGroup} implementation for {@link SimpleParameter} instances.
  * In order to keep the conceptual model simpler, this parameter group is also its own
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
  * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
@@ -67,7 +67,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * returned by the {@link #descriptors()} and {@link #values()} methods. We
      * have to make it unmodifiable for type safety reason.
      */
-    private final List<SimpleParameter> unmodifiable;
+    private List<SimpleParameter> unmodifiable;
 
     /**
      * Creates a new parameter group of the given authority and name.
@@ -287,9 +287,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
             Field field = SimpleParameterGroup.class.getDeclaredField("parameters");
             field.setAccessible(true);
             field.set(clone, copy);
-            field = SimpleParameterGroup.class.getDeclaredField("unmodifiable");
-            field.setAccessible(true);
-            field.set(clone, Collections.unmodifiableList(copy));
+            unmodifiable = Collections.unmodifiableList(copy);
         } catch (Exception e) { // JDK7 would use (CloneNotSupportedException | ReflectiveOperationException)
             throw new AssertionError(e); // Should never happen.
         }

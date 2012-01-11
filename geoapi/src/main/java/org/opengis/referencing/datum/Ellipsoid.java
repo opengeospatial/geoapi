@@ -47,10 +47,10 @@ import static org.opengis.annotation.Specification.*;
  * its minor axis. An ellipsoid requires two defining parameters:
  * <p>
  * <ul>
- *   <li>{@linkplain #getSemiMajorAxis semi-major axis} and
- *       {@linkplain #getInverseFlattening inverse flattening}, or</li>
- *   <li>{@linkplain #getSemiMajorAxis semi-major axis} and
- *       {@linkplain #getSemiMinorAxis semi-minor axis}.</li>
+ *   <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
+ *       {@linkplain #getInverseFlattening() inverse flattening}, or</li>
+ *   <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
+ *       {@linkplain #getSemiMinorAxis() semi-minor axis}.</li>
  * </ul>
  * <p>
  * There is not just one ellipsoid. An ellipsoid is a matter of choice, and therefore many
@@ -88,8 +88,8 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CD_Ellipsoid", specification=ISO_19111)
 public interface Ellipsoid extends IdentifiedObject {
     /**
-     * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
-     * and {@linkplain #getSemiMinorAxis semi-minor} axis values.
+     * Returns the linear unit of the {@linkplain #getSemiMajorAxis() semi-major}
+     * and {@linkplain #getSemiMinorAxis() semi-minor} axis values.
      *
      * @return The axis linear unit.
      */
@@ -98,7 +98,7 @@ public interface Ellipsoid extends IdentifiedObject {
 
     /**
      * Length of the semi-major axis of the ellipsoid. This is the
-     * equatorial radius in {@linkplain #getAxisUnit axis linear unit}.
+     * equatorial radius in {@linkplain #getAxisUnit() axis linear unit}.
      *
      * @return Length of semi-major axis.
      * @unitof Length
@@ -108,7 +108,7 @@ public interface Ellipsoid extends IdentifiedObject {
 
     /**
      * Length of the semi-minor axis of the ellipsoid. This is the
-     * polar radius in {@linkplain #getAxisUnit axis linear unit}.
+     * polar radius in {@linkplain #getAxisUnit() axis linear unit}.
      *
      * @return Length of semi-minor axis.
      * @unitof Length
@@ -132,13 +132,13 @@ public interface Ellipsoid extends IdentifiedObject {
     double getInverseFlattening();
 
     /**
-     * Indicates if the {@linkplain #getInverseFlattening inverse flattening} is definitive for
+     * Indicates if the {@linkplain #getInverseFlattening() inverse flattening} is definitive for
      * this ellipsoid. Some ellipsoids use the IVF as the defining value, and calculate the polar
      * radius whenever asked. Other ellipsoids use the polar radius to calculate the IVF whenever
      * asked. This distinction can be important to avoid floating-point rounding errors.
      *
-     * @return {@code true} if the {@linkplain #getInverseFlattening inverse flattening} is
-     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis polar radius}
+     * @return {@code true} if the {@linkplain #getInverseFlattening() inverse flattening} is
+     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis() polar radius}
      *         is definitive.
      */
     @UML(identifier="CS_Ellipsoid.isIvfDefinitive", obligation=CONDITIONAL, specification=OGC_01009)
@@ -146,8 +146,8 @@ public interface Ellipsoid extends IdentifiedObject {
 
     /**
      * {@code true} if the ellipsoid is degenerate and is actually a sphere. The sphere is
-     * completely defined by the {@linkplain #getSemiMajorAxis semi-major axis}, which is the
-     * radius of the sphere.
+     * completely defined by the {@linkplain #getSemiMajorAxis() semi-major axis}, which is
+     * the radius of the sphere.
      *
      * @return {@code true} if the ellipsoid is degenerate and is actually a sphere.
      */

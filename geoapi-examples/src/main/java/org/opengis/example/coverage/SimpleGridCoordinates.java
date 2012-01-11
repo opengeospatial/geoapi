@@ -16,7 +16,8 @@ import org.opengis.coverage.grid.GridCoordinates;
 
 
 /**
- * Holds the set of grid coordinates that specifies the location of the
+ * A {@link GridCoordinates} implementation which stores value in a {@code int[]} array.
+ * This class holds the set of grid coordinates that specifies the location of the
  * {@linkplain GridPoint grid point} within the {@linkplain Grid grid}.
  *
  * @author Martin Desruisseaux (IRD, Geomatys)

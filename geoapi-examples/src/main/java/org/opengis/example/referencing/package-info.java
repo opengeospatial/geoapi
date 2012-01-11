@@ -7,9 +7,9 @@
  */
 
 /**
- * A simple, but incomplete, GeoAPI implementation of referencing interfaces. In order to
- * provide a simpler model, some classes in this package merge many distinct GeoAPI concepts.
- * For example, many existing projection libraries make no distinction between
+ * Implementation of some interfaces from the {@link org.opengis.referencing} package.
+ * In order to provide a simpler model, some classes in this package merge many distinct
+ * GeoAPI concepts. For example, many existing projection libraries make no distinction between
  * <cite>Coordinate System</cite> (CS) and <cite>Coordinate Reference System</cite> (CRS).
  * This package follows this simplified model by providing a single class implementing both
  * the CS and CRS interfaces.
