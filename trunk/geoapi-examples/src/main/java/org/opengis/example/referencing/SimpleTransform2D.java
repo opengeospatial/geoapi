@@ -16,6 +16,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
@@ -25,7 +26,7 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
- * A coordinate operation working only on two-dimensional points.
+ * A {@link CoordinateOperation} working only on two-dimensional points.
  * <p>
  * Subclasses must implement the {@link #transform(Point2D, Point2D)} method. All other transform
  * methods are defined in terms of the above-cited method. However the other {@code transform}

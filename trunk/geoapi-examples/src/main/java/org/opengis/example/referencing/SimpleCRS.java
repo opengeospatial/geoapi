@@ -21,6 +21,7 @@ import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.referencing.crs.TemporalCRS;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
@@ -29,7 +30,7 @@ import org.opengis.util.InternationalString;
 
 
 /**
- * Base class of all CRS defined in this simple package. This class does not make distinction
+ * A {@link CoordinateReferenceSystem} abstract base class. This class does not make distinction
  * between <cite>Coordinate System</cite> and <cite>Coordinate Reference System</cite>, so we
  * implement the two interfaces by the same class.
  *
@@ -112,7 +113,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     }
 
     /**
-     * The {@link GeographicCRS} specialization of {@link SimpleCRS}.
+     * A {@link GeographicCRS} specialization of {@link SimpleCRS}.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -195,7 +196,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     }
 
     /**
-     * The {@link VerticalCRS} specialization of {@link SimpleCRS} with its own datum.
+     * A {@link VerticalCRS} specialization of {@link SimpleCRS} with its own datum.
      * <p>
      * In order to keep the model simpler, this vertical CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many vertical CRS can have
@@ -278,7 +279,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     }
 
     /**
-     * The {@link TemporalCRS} specialization of {@link SimpleCRS} with its own datum.
+     * A {@link TemporalCRS} specialization of {@link SimpleCRS} with its own datum.
      * <p>
      * In order to keep the model simpler, this temporal CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many temporal CRS can have

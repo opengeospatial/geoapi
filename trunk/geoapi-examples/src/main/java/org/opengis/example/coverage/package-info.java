@@ -7,7 +7,7 @@
  */
 
 /**
- * A simple GeoAPI implementation of coverage interfaces.
+ * Implementation of some interfaces from the {@link org.opengis.coverage} package.
  * <p>
  * Every classes in this package are hereby placed into the Public Domain.
  * This means anyone is free to do whatever they wish with those files.

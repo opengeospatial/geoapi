@@ -25,7 +25,7 @@ import org.opengis.referencing.operation.SingleOperation;
 
 
 /**
- * A {@link MathTransformFactory} for {@link SimpleTransform} instances.
+ * A {@link MathTransformFactory} for creating {@link SimpleTransform} instances.
  * The only methods supported by this simple implementation are:
  * <p>
  * <ul>
@@ -47,7 +47,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
     private static final Citation VENDOR = new SimpleCitation("GeoAPI-example");
 
     /**
-     * Creates a new instance.
+     * Creates a new factory.
      */
     public SimpleTransformFactory() {
     }
