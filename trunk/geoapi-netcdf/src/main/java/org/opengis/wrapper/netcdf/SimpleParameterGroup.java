@@ -71,11 +71,11 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     }
 
     /**
-     * No delegates.
+     * Returns the list of NetCDF objects wrapped by this adapter.
      */
     @Override
-    public Object delegate() {
-        return null;
+    public List<NetcdfParameter<?>> delegate() {
+        return parameters;
     }
 
     /**
@@ -222,25 +222,6 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
      */
     @Override
     public boolean equals(final Object object) {
-        if (super.equals(object)) {
-            return parameters.equals(((SimpleParameterGroup) object).parameters);
-        }
-        return false;
-    }
-
-    /**
-     * Returns a hash code value for this parameter.
-     */
-    @Override
-    public int hashCode() {
-        return parameters.hashCode();
-    }
-
-    /**
-     * Returns a string representation of all parameters in this group.
-     */
-    @Override
-    public String toString() {
-        return "ParameterGroup[\"" + super.toString() + "\" = " + parameters + ']';
+        return super.equals(object) && name.equals(((SimpleParameterGroup) object).name);
     }
 }

@@ -33,7 +33,6 @@ import ucar.nc2.dataset.CoordinateSystem;
 import ucar.nc2.dataset.CoordinateAxis1DTime;
 
 import org.opengis.metadata.extent.Extent;
-import org.opengis.util.InternationalString;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -46,7 +45,7 @@ import org.opengis.coverage.grid.GridCoordinates;
 
 
 /**
- * Wraps a NetCDF {@link CoordinateSystem} as an implementation of GeoAPI interfaces.
+ * A {@link CoordinateReferenceSystem} implementation backed by a NetCDF {@link CoordinateSystem} object.
  * This class implements both the GeoAPI {@link org.opengis.referencing.cs.CoordinateSystem} and
  * {@link CoordinateReferenceSystem} interfaces because the NetCDF {@code CoordinateSystem}
  * object combines the concepts of both of them. It also implements the {@link GridGeometry}
@@ -536,22 +535,14 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Returns {@code null} since NetCDF coordinate systems don't specify their domain
-     * of validity.
+     * Returns the area or region or timeframe in which this CRS is valid, or {@code null} if none.
+     * The default implementation returns {@code null} except for {@link ProjectedCRS}, in which
+     * case the {@link NetcdfProjection} domain of validity is returned.
      */
     @Override
     public Extent getDomainOfValidity() {
         return null;
     }
-
-    /**
-     * Returns {@code null} since NetCDF coordinate systems don't specify their scope.
-     */
-    @Override
-    public InternationalString getScope() {
-        return null;
-    }
-
 
 
 
@@ -697,22 +688,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         public Date getOrigin() {
             return new Date(origin);
         }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define anchor point.
-         */
-        @Override
-        public InternationalString getAnchorPoint() {
-            return null;
-        }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define realization epoch.
-         */
-        @Override
-        public Date getRealizationEpoch() {
-            return null;
-        }
     }
 
 
@@ -772,22 +747,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         public VerticalDatumType getVerticalDatumType() {
             return type;
         }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define anchor point.
-         */
-        @Override
-        public InternationalString getAnchorPoint() {
-            return null;
-        }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define realization epoch.
-         */
-        @Override
-        public Date getRealizationEpoch() {
-            return null;
-        }
     }
 
 
@@ -834,7 +793,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
          */
         @Override
         public GeodeticDatum getDatum() {
-            return SimpleCRS.DEFAULT;
+            return NetcdfEllipsoid.SPHERE;
         }
     }
 
@@ -887,7 +846,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
          */
         @Override
         public GeodeticDatum getDatum() {
-            return SimpleCRS.DEFAULT;
+            return NetcdfEllipsoid.SPHERE;
         }
 
         /**
@@ -896,7 +855,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
          */
         @Override
         public GeographicCRS getBaseCRS() {
-            return SimpleCRS.DEFAULT;
+            return NetcdfEllipsoid.SPHERE;
         }
 
         /**
@@ -914,6 +873,14 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
                 projection = new NetcdfProjection(p, getBaseCRS(), this);
             }
             return projection;
+        }
+
+        /**
+        * Returns the projection domain of validity.
+        */
+        @Override
+        public Extent getDomainOfValidity() {
+            return getConversionFromBase().getDomainOfValidity();
         }
     }
 }

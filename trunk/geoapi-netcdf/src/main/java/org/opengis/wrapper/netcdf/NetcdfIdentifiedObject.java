@@ -16,23 +16,26 @@ package org.opengis.wrapper.netcdf;
 import java.util.Set;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.io.Serializable;
 
 import ucar.nc2.VariableSimpleIF;
 
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * Base class of wrappers around NetCDF objects. All methods in this class delegate their work
- * to the wrapped NetCDF object. Consequently any change in the wrapped object is immediately
- * reflected in this {@code NetcdfIdentifiedObject} instance. However users are encouraged to not
- * change the wrapped object after construction, since GeoAPI referencing objects are expected
- * to be immutable.
+ * An {@link IdentifiedObject} abstract base class backed by some NetCDF object.
+ * All methods in this class delegate their work to the wrapped NetCDF object.
+ * Consequently any change in the wrapped object is immediately reflected in this
+ * {@code NetcdfIdentifiedObject} instance. However users are encouraged to not
+ * change the wrapped object after construction, since GeoAPI referencing objects
+ * are expected to be immutable.
  * <p>
  * This base class assumes that NetCDF objects have a single name and no alias. This assumption
  * allows us to implement directly the {@link ReferenceIdentifier} interface. The NetCDF object
@@ -122,8 +125,71 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     }
 
     /**
+     * Returns the area or region or timeframe in which this object is valid, or {@code null} if
+     * none. The default implementation returns a geographic extent for the world, since most NetCDF
+     * objects except {@link ucar.unidata.geoloc.Projection} are not restricted to a particular area.
+     *
+     * @return The valid domain, or {@code null} if not available.
+     *
+     * @see NetcdfCRS#getDomainOfValidity()
+     * @see NetcdfProjection#getDomainOfValidity()
+     */
+    public Extent getDomainOfValidity() {
+        return SimpleGeographicBoundingBox.WORLD;
+    }
+
+    /**
+     * Returns the description of domain of usage, or limitations of usage, for which this object
+     * is valid. The default implementation returns {@code null} in all cases, since NetCDF objects
+     * don't specify their scope.
+     * <p>
+     * Scope is a
+     * {@link org.opengis.referencing.datum.Datum#getScope() Datum},
+     * {@link org.opengis.referencing.ReferenceSystem#getScope() ReferenceSystem} and
+     * {@link org.opengis.referencing.operation.CoordinateOperation#getScope() CoordinateOperation}
+     * property.
+     *
+     * @return The domain of usage, or {@code null} if none.
+     */
+    public InternationalString getScope() {
+        return null;
+    }
+
+    /**
+     * Returns a description, possibly including coordinates of an identified point or points,
+     * of the relationship used to anchor the coordinate system to the Earth or alternate object.
+     * The default implementation returns {@code null} since this simple implementation does not
+     * define anchor point.
+     * <p>
+     * Anchor point is a
+     * {@link org.opengis.referencing.datum.Datum#getAnchorPoint() Datum} property.
+     *
+     * @return A description of the anchor point, or {@code null} if none.
+     */
+    public InternationalString getAnchorPoint() {
+        return null;
+    }
+
+    /**
+     * Returns The time after which this datum definition is valid. The default implementation
+     * returns {@code null} since this simple implementation does not define realization epoch.
+     * <p>
+     * Anchor point is a
+     * {@link org.opengis.referencing.datum.Datum#getRealizationEpoch() Datum} property.
+     *
+     * @return The datum realization epoch, or {@code null} if not available.
+     */
+    public Date getRealizationEpoch() {
+        return null;
+    }
+
+    /**
      * Returns the NetCDF object description, or {@code null} if none.
      * The default implementation returns {@code null}.
+     *
+     * @return The remarks, or {@code null} if none.
+     *
+     * @see NetcdfAxis#getRemarks()
      */
     @Override
     public InternationalString getRemarks() {
