@@ -53,6 +53,13 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     public static final NetcdfEllipsoid WGS84 = new NetcdfEllipsoid(EarthEllipsoid.WGS84);
 
     /**
+     * The Airy 1830 datum and ellipsoid.
+     *
+     * @see EarthEllipsoid#Airy1830
+     */
+    public static final NetcdfEllipsoid AIRY_1830 = new NetcdfEllipsoid(EarthEllipsoid.Airy1830);
+
+    /**
      * A sphere used when the datum is unknown. This is also the sphere used by the projection
      * code in the {@link ucar.unidata.geoloc.projection} package.
      *
@@ -100,7 +107,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * <p>
      * <strong>Do not confuse:</strong>
      * <ul>
-     *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi) in degrees</li>
+     *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi;) in degrees</li>
      *   <li>Ellipsoid axes (<var>semi-major</var>, <var>semi-minor</var>) in metres</li>
      * </ul>
      * <p>
@@ -229,7 +236,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * <p>
      * <strong>Do not confuse:</strong>
      * <ul>
-     *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi) in degrees</li>
+     *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi;) in degrees</li>
      *   <li>Ellipsoid axes (<var>semi-major</var>, <var>semi-minor</var>) in metres</li>
      * </ul>
      * <p>
@@ -241,7 +248,11 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      */
     @Override
     public CoordinateSystemAxis getAxis(final int dimension) throws IndexOutOfBoundsException {
-        throw new UnsupportedOperationException("Not supported yet."); // TODO
+        switch (dimension) {
+            case 0:  return SimpleAxis.LONGITUDE;
+            case 1:  return SimpleAxis.LATITUDE;
+            default: throw new IndexOutOfBoundsException();
+        }
     }
 
     /**
