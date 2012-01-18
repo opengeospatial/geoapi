@@ -177,7 +177,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
-     * @param name The name of the code to obtain.
+     * @param name The name of the code to obtain, or {@code null}.
      * @return A code matching the given name, or {@code null} if the name is null.
      *
      * @departure integration

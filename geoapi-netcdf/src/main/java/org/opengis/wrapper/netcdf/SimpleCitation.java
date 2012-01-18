@@ -16,6 +16,7 @@ package org.opengis.wrapper.netcdf;
 import java.util.Set;
 import java.util.Date;
 import java.util.Locale;
+import java.io.Serializable;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.CitationDate;
@@ -34,7 +35,12 @@ import static java.util.Collections.emptySet;
  * @version 3.1
  * @since   3.1
  */
-final class SimpleCitation implements Citation, InternationalString {
+final class SimpleCitation implements Citation, InternationalString, Serializable {
+    /**
+     * For cross-version compatibility.
+     */
+    private static final long serialVersionUID = -8466770625990964435L;
+
     /**
      * The NetCDF citation.
      */
