@@ -35,8 +35,9 @@ Proj.4 bindings
   any way.
 
   Note that the {{{../geoapi/index.html}GeoAPI interfaces}} are <<not>> in the public domain;
-  they are copyrighted by {{{http://www.opengeospatial.org}OGC}}. Only the example codes -
-  including this Proj.4 wrappers module - are in the public domain.
+  they are copyrighted by {{{http://www.opengeospatial.org}OGC}} and distributed under a permissive,
+  BSD-like license. Only the example codes - including this Proj.4 wrappers module - are in the
+  public domain.
 
 
 * Download
