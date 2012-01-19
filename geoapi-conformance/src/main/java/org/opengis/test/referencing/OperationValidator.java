@@ -61,24 +61,28 @@ public class OperationValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final CoordinateOperation object) {
-        if (object instanceof Conversion) {
-            validate((Conversion) object);
-        } else if (object instanceof Transformation) {
-            validate((Transformation) object);
-        } else if (object instanceof ConcatenatedOperation) {
-            validate((ConcatenatedOperation) object);
-        } else if (object instanceof PassThroughOperation) {
-            validate((PassThroughOperation) object);
-        } else if (object instanceof SingleOperation) {
-            validateOperation((SingleOperation) object);
-        } else {
-            validateCoordinateOperation(object);
+    public int dispatch(final CoordinateOperation object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof Conversion)            {validate((Conversion)            object); n++;}
+            if (object instanceof Transformation)        {validate((Transformation)        object); n++;}
+            if (object instanceof ConcatenatedOperation) {validate((ConcatenatedOperation) object); n++;}
+            if (object instanceof PassThroughOperation)  {validate((PassThroughOperation)  object); n++;}
+            if (n == 0) {
+                if (object instanceof SingleOperation) {
+                    validateOperation((SingleOperation) object);
+                } else {
+                    validateCoordinateOperation(object);
+                }
+            }
         }
+        return n;
     }
 
     /**
@@ -214,13 +218,13 @@ public class OperationValidator extends ReferencingValidator {
         assertFalse("CoordinateOperation: can't be both a ConcatenatedOperation and a SingleOperation.",
                 (object instanceof ConcatenatedOperation) && (object instanceof SingleOperation));
         validateIdentifiedObject(object);
-        container.naming.validate(object.getScope());
-        container.extent.validate(object.getDomainOfValidity());
+        container.validate(object.getScope());
+        container.validate(object.getDomainOfValidity());
 
         final CoordinateReferenceSystem sourceCRS = object.getSourceCRS();
         final CoordinateReferenceSystem targetCRS = object.getTargetCRS();
-        container.crs.dispatch(sourceCRS);
-        container.crs.dispatch(targetCRS);
+        container.validate(sourceCRS);
+        container.validate(targetCRS);
 
         // Note: MathTransform can be null in defining conversion. We will
         // check for non-null value in more specific validation methods only.
@@ -240,7 +244,7 @@ public class OperationValidator extends ReferencingValidator {
 
     /**
      * Validates the given operation. This method is private because we choose
-     * to expose only non-ambiguious {@code validate} methods in public API.
+     * to expose only non-ambiguous {@code validate} methods in public API.
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -273,7 +277,7 @@ public class OperationValidator extends ReferencingValidator {
         }
         final ParameterValueGroup parameters = object.getParameterValues();
         mandatory("Operation: ParameterValues are mandatory.", method);
-        container.parameter.validate(parameters);
+        container.validate(parameters);
     }
 
     /**
@@ -338,7 +342,7 @@ public class OperationValidator extends ReferencingValidator {
             assertStrictlyPositive("OperationMethod: target dimension must be greater than zero.", targetDimension);
         }
         validate(object.getFormula());
-        container.parameter.validate(object.getParameters());
+        container.validate(object.getParameters());
         validateIdentifiedObject(object);
     }
 
@@ -351,8 +355,8 @@ public class OperationValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        container.naming  .validate(object.getFormula());
-        container.citation.validate(object.getCitation());
+        container.validate(object.getFormula());
+        container.validate(object.getCitation());
     }
 
     /**

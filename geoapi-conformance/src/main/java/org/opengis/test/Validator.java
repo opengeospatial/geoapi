@@ -34,6 +34,7 @@ package org.opengis.test;
 import java.util.BitSet;
 import java.util.Collection;
 import java.util.logging.Logger;
+import org.opengis.annotation.Obligation;
 import static org.opengis.test.Assert.*;
 
 
@@ -107,8 +108,19 @@ public abstract class Validator {
     }
 
     /**
+     * Returns {@code true} if the given object is an empty collection.
+     *
+     * @param  value The object to test, or {@code null}.
+     * @return {@code true} if the given object is a non-null empty collection.
+     */
+    private static boolean isEmptyCollection(final Object value) {
+        return (value instanceof Collection<?>) && ((Collection<?>) value).isEmpty();
+    }
+
+    /**
      * Invoked when the existence of a mandatory attribute needs to be verified.
-     * If the given value is {@code null}, then there is a choice:
+     * If the given value is {@code null} or is an {@linkplain Collection#isEmpty()
+     * empty collection}, then there is a choice:
      *
      * <ul>
      *   <li>If {@link #requireMandatoryAttributes} is {@code true} (which is the default),
@@ -122,18 +134,21 @@ public abstract class Validator {
      * @param value   The value to test for non-nullity.
      *
      * @see #requireMandatoryAttributes
+     * @see Obligation#MANDATORY
      */
     protected void mandatory(final String message, final Object value) {
         if (requireMandatoryAttributes) {
             assertNotNull(message, value);
-        } else if (value == null) {
+            assertFalse(message, isEmptyCollection(value));
+        } else if (value == null || isEmptyCollection(value)) {
             logger.warning(message);
         }
     }
 
     /**
      * Invoked when the existence of a forbidden attribute needs to be checked.
-     * If the given value is non-null, then there is a choice:
+     * If the given value is non-null and is not an {@linkplain Collection#isEmpty()
+     * empty collection}, then there is a choice:
      *
      * <ul>
      *   <li>If {@link #enforceForbiddenAttributes} is {@code true} (which is the default),
@@ -147,12 +162,36 @@ public abstract class Validator {
      * @param value   The value to test for nullity.
      *
      * @see #enforceForbiddenAttributes
+     * @see Obligation#FORBIDDEN
      */
     protected void forbidden(final String message, final Object value) {
         if (enforceForbiddenAttributes) {
-            assertNull(message, value);
-        } else if (value != null) {
+            if (value instanceof Collection<?>) {
+                assertTrue(message, ((Collection<?>) value).isEmpty());
+            } else {
+                assertNull(message, value);
+            }
+        } else if (value != null && !isEmptyCollection(value)) {
             logger.warning(message);
+        }
+    }
+
+    /**
+     * Delegates to {@link #mandatory(String, Object)} or {@link #forbidden(String, Object)}
+     * depending on a condition.
+     *
+     * @param message   The message to send in case of failure.
+     * @param value     The value to test for (non)-nullity.
+     * @param condition {@code true} if the given value is mandatory, or {@code false} if it
+     *                  is forbidden.
+     *
+     * @see Obligation#CONDITIONAL
+     */
+    protected void conditional(final String message, final Object value, final boolean condition) {
+        if (condition) {
+            mandatory(message, value);
+        } else {
+            forbidden(message, value);
         }
     }
 

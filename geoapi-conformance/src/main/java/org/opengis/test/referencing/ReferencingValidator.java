@@ -39,6 +39,7 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.parameter.GeneralParameterDescriptor;
+import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 
 import org.opengis.test.Validator;
@@ -67,47 +68,40 @@ public abstract class ReferencingValidator extends Validator {
     }
 
     /**
-     * Delegates to a {@code validate} method expecting a more specific argument.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this package (if any).
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
      */
     public final void dispatchObject(final IdentifiedObject object) {
-        if (object instanceof CoordinateReferenceSystem) {
-            container.crs.dispatch((CoordinateReferenceSystem) object);
-        } else if (object instanceof CoordinateSystem) {
-            container.cs.dispatch((CoordinateSystem) object);
-        } else if (object instanceof CoordinateSystemAxis) {
-            container.cs.validate((CoordinateSystemAxis) object);
-        } else if (object instanceof Datum) {
-            container.datum.dispatch((Datum) object);
-        } else if (object instanceof Ellipsoid) {
-            container.datum.validate((Ellipsoid) object);
-        } else if (object instanceof PrimeMeridian) {
-            container.datum.validate((PrimeMeridian) object);
-        } else if (object instanceof GeneralParameterDescriptor) {
-            container.parameter.dispatch((GeneralParameterDescriptor) object);
-        } else if (object instanceof CoordinateOperation) {
-            container.coordinateOperation.dispatch((CoordinateOperation) object);
-        } else if (object instanceof OperationMethod) {
-            container.coordinateOperation.validate((OperationMethod) object);
-        } else if (object instanceof ReferenceSystem) {
-            validateReferenceSystem((ReferenceSystem) object);
-        } else if (object != null) {
-            validateIdentifiedObject(object);
+        int n = 0;
+        if (object != null) {
+            if (object instanceof CoordinateReferenceSystem)  {container.validate((CoordinateReferenceSystem)  object); n++;}
+            if (object instanceof CoordinateSystem)           {container.validate((CoordinateSystem)           object); n++;}
+            if (object instanceof CoordinateSystemAxis)       {container.validate((CoordinateSystemAxis)       object); n++;}
+            if (object instanceof Datum)                      {container.validate((Datum)                      object); n++;}
+            if (object instanceof Ellipsoid)                  {container.validate((Ellipsoid)                  object); n++;}
+            if (object instanceof PrimeMeridian)              {container.validate((PrimeMeridian)              object); n++;}
+            if (object instanceof GeneralParameterDescriptor) {container.validate((GeneralParameterDescriptor) object); n++;}
+            if (object instanceof CoordinateOperation)        {container.validate((CoordinateOperation)        object); n++;}
+            if (object instanceof OperationMethod)            {container.validate((OperationMethod)            object); n++;}
+            if (n == 0) {
+                if (object instanceof ReferenceSystem) {
+                    validateReferenceSystem((ReferenceSystem) object);
+                } else {
+                    validateIdentifiedObject(object);
+                }
+            }
         }
     }
 
     /**
-     * Ensures that the given identifier has a {@linkplain ReferenceIdentifier#getCode code}.
+     * Ensures that the given identifier has a {@linkplain ReferenceIdentifier#getCode() code}.
      *
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final ReferenceIdentifier object) {
-        if (object == null) {
-            return;
-        }
-        mandatory("ReferenceIdentifier: must have a code.", object.getCode());
-        container.citation.validate(object.getAuthority());
+        container.validate((Identifier) object);
     }
 
     /**
@@ -119,8 +113,8 @@ public abstract class ReferencingValidator extends Validator {
      */
     final void validateReferenceSystem(final ReferenceSystem object) {
         validateIdentifiedObject(object);
-        container.naming.validate(object.getScope());
-        container.extent.validate(object.getDomainOfValidity());
+        container.validate(object.getScope());
+        container.validate(object.getDomainOfValidity());
     }
 
     /**
@@ -145,9 +139,9 @@ public abstract class ReferencingValidator extends Validator {
             validate(alias);
             for (final GenericName name : alias) {
                 assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
-                container.naming.dispatch(name);
+                container.validate(name);
             }
         }
-        container.naming.validate(object.getRemarks());
+        container.validate(object.getRemarks());
     }
 }

@@ -49,7 +49,7 @@ import static org.opengis.test.Assert.*;
  * static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class DatumValidator extends ReferencingValidator {
@@ -63,24 +63,25 @@ public class DatumValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final Datum object) {
-        if (object instanceof GeodeticDatum) {
-            validate((GeodeticDatum) object);
-        } else if (object instanceof VerticalDatum) {
-            validate((VerticalDatum) object);
-        } else if (object instanceof TemporalDatum) {
-            validate((TemporalDatum) object);
-        } else if (object instanceof ImageDatum) {
-            validate((ImageDatum) object);
-        } else if (object instanceof EngineeringDatum) {
-            validate((EngineeringDatum) object);
-        } else {
-            validateIdentifiedObject(object);
+    public int dispatch(final Datum object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof GeodeticDatum)    {validate((GeodeticDatum)    object); n++;}
+            if (object instanceof VerticalDatum)    {validate((VerticalDatum)    object); n++;}
+            if (object instanceof TemporalDatum)    {validate((TemporalDatum)    object); n++;}
+            if (object instanceof ImageDatum)       {validate((ImageDatum)       object); n++;}
+            if (object instanceof EngineeringDatum) {validate((EngineeringDatum) object); n++;}
+            if (n == 0) {
+                validateIdentifiedObject(object);
+            }
         }
+        return n;
     }
 
     /**

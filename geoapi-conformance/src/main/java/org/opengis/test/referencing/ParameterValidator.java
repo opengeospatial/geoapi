@@ -59,31 +59,41 @@ public class ParameterValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GeneralParameterDescriptor object) {
-        if (object instanceof ParameterDescriptor<?>) {
-            validate((ParameterDescriptor<?>) object);
-        } else if (object instanceof ParameterDescriptorGroup) {
-            validate((ParameterDescriptorGroup) object);
-        } else {
-            validateIdentifiedObject(object);
+    public int dispatch(final GeneralParameterDescriptor object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof ParameterDescriptor<?>)   {validate((ParameterDescriptor<?>)   object); n++;}
+            if (object instanceof ParameterDescriptorGroup) {validate((ParameterDescriptorGroup) object); n++;}
+            if (n == 0) {
+                validateIdentifiedObject(object);
+            }
         }
+        return n;
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GeneralParameterValue object) {
-        if (object instanceof ParameterValue<?>) {
-            validate((ParameterValue<?>) object);
-        } else if (object instanceof ParameterValueGroup) {
-            validate((ParameterValueGroup) object);
+    public int dispatch(final GeneralParameterValue object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof ParameterValue<?>)   {validate((ParameterValue<?>)   object); n++;}
+            if (object instanceof ParameterValueGroup) {validate((ParameterValueGroup) object); n++;}
+            if (n == 0) {
+                dispatch(object.getDescriptor());
+            }
         }
+        return n;
     }
 
     /**

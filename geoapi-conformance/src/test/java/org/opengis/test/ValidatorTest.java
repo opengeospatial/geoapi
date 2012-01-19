@@ -32,7 +32,10 @@
 package org.opengis.test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import org.junit.*;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -44,13 +47,59 @@ import org.junit.*;
  */
 public strictfp class ValidatorTest {
     /**
+     * The validator to use for testing purpose.
+     */
+    private final Validator validator = new Validator(null, "org.opengis.test") {
+        // No abstract method to override.
+    };
+
+    /**
+     * Tests test {@link Validator#mandatory(String, Object)} method.
+     */
+    @Test
+    public void testMandatory() {
+        validator.mandatory("Should not fail.", "dummy");
+        validator.mandatory("Should not fail.", Collections.singleton("dummy"));
+        try {
+            validator.mandatory("Should fail.", null);
+        } catch (AssertionError e) {
+            // This is the expected exception.
+            assertEquals("Should fail.", e.getMessage());
+        }
+        try {
+            validator.mandatory("Should fail.", Collections.emptySet());
+        } catch (AssertionError e) {
+            // This is the expected exception.
+            assertEquals("Should fail.", e.getMessage());
+        }
+    }
+
+    /**
+     * Tests test {@link Validator#forbidden(String, Object)} method.
+     */
+    @Test
+    public void testForbidden() {
+        validator.forbidden("Should not fail.", null);
+        validator.forbidden("Should not fail.", Collections.emptySet());
+        try {
+            validator.forbidden("Should fail.", "dummy");
+        } catch (AssertionError e) {
+            // This is the expected exception.
+            assertEquals("Should fail.", e.getMessage());
+        }
+        try {
+            validator.forbidden("Should fail.", Collections.singleton("dummy"));
+        } catch (AssertionError e) {
+            // This is the expected exception.
+            assertEquals("Should fail.", e.getMessage());
+        }
+    }
+
+    /**
      * Tests the {@link Validator#validate(Collection)} method.
      */
     @Test
     public void testValidate() {
-        final Validator validator = new Validator(null, "org.opengis.test") {
-            // No abstract method to override.
-        };
         validator.validate(Arrays.asList("Red", "Blue", "Green", "Blue", "Green", "Yellow"));
     }
 }
