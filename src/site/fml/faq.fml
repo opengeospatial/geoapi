@@ -180,12 +180,20 @@
 &lt;/gmd:MD_Metadata&gt;</source></td>
 
 
-        <td><source>metadata.getIdentificationInfo().getMD_DataIdentification()
+        <td><p>Note: the examples below ignore the iterations over collections and the checks for null values.</p>
+        <p><b>From automatic tools:</b></p>
+        <source>metadata.getIdentificationInfo().getMD_DataIdentification()
         .getCitation().getCI_Citation()
         .getCitedResponsibleParty().getCI_ResponsibleParty()
         .getContactInfo().getCI_Contact()
         .getOnlineResource().getCI_OnlineResource()
-        .getLinkage().getURL();</source></td></tr></table>
+        .getLinkage().getURL();</source>
+
+        <p><b>From GeoAPI (defined by humans):</b></p>
+        <source>metadata.getIdentificationInfo().getCitation()
+        .getCitedResponsibleParty().getContactInfo()
+        .getOnlineResource().getLinkage().getURL();</source>
+        </td></tr></table>
 
         <p>We could derive the API from the UML in <cite>Rational Rose</cite> format instead than
         the XML schemas, but a lot of human intervention is still essential. The relationship between
