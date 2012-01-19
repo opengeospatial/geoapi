@@ -81,7 +81,7 @@ public class GeometryValidator extends Validator {
         final int dimension = object.getDimension();
         assertPositive("Envelope: dimension can't be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
-        container.crs.dispatch(crs); // May be null.
+        container.validate(crs); // May be null.
         /*
          * Validates corners.
          */
@@ -164,7 +164,7 @@ public class GeometryValidator extends Validator {
          * Checks coordinate validity in the CRS.
          */
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
-        container.crs.dispatch(crs); // May be null.
+        container.validate(crs); // May be null.
         int hashCode = 0;
         if (crs != null) {
             final CoordinateSystem cs = crs.getCoordinateSystem(); // Assume already validated.

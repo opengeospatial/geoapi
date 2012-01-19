@@ -42,7 +42,7 @@ import static org.opengis.test.Assert.*;
  * convenience static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class CSValidator extends ReferencingValidator {
@@ -56,33 +56,30 @@ public class CSValidator extends ReferencingValidator {
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final CoordinateSystem object) {
-        if (object instanceof CartesianCS) {
-            validate((CartesianCS) object);
-        } else if (object instanceof EllipsoidalCS) {
-            validate((EllipsoidalCS) object);
-        } else if (object instanceof SphericalCS) {
-            validate((SphericalCS) object);
-        } else if (object instanceof CylindricalCS) {
-            validate((CylindricalCS) object);
-        } else if (object instanceof PolarCS) {
-            validate((PolarCS) object);
-        } else if (object instanceof LinearCS) {
-            validate((LinearCS) object);
-        } else if (object instanceof VerticalCS) {
-            validate((VerticalCS) object);
-        } else if (object instanceof TimeCS) {
-            validate((TimeCS) object);
-        } else if (object instanceof UserDefinedCS) {
-            validate((UserDefinedCS) object);
-        } else if (object != null) {
-            validateIdentifiedObject(object);
-            validateAxes(object);
+    public int dispatch(final CoordinateSystem object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof CartesianCS)   {validate((CartesianCS)   object); n++;}
+            if (object instanceof EllipsoidalCS) {validate((EllipsoidalCS) object); n++;}
+            if (object instanceof SphericalCS)   {validate((SphericalCS)   object); n++;}
+            if (object instanceof CylindricalCS) {validate((CylindricalCS) object); n++;}
+            if (object instanceof PolarCS)       {validate((PolarCS)       object); n++;}
+            if (object instanceof LinearCS)      {validate((LinearCS)      object); n++;}
+            if (object instanceof VerticalCS)    {validate((VerticalCS)    object); n++;}
+            if (object instanceof TimeCS)        {validate((TimeCS)        object); n++;}
+            if (object instanceof UserDefinedCS) {validate((UserDefinedCS) object); n++;}
+            if (n == 0) {
+                validateIdentifiedObject(object);
+                validateAxes(object);
+            }
         }
+        return n;
     }
 
     /**

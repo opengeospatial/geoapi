@@ -43,7 +43,7 @@ import org.opengis.test.ValidatorContainer;
  * use the {@link org.opengis.test.Validators} convenience static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class CitationValidator extends MetadataValidator {
@@ -69,8 +69,100 @@ public class CitationValidator extends MetadataValidator {
         validateOptional (object.getEdition());
         validateOptional (object.getOtherCitationDetails());
         validateOptional (object.getCollectiveTitle());
+        for (final InternationalString e : toArray(InternationalString.class, object.getAlternateTitles())) {
+            container.validate(e);
+        }
+        for (final Identifier e : toArray(Identifier.class, object.getIdentifiers())) {
+            container.validate(e);
+        }
+    }
 
-        validateCollection(InternationalString.class, object.getAlternateTitles());
-        validateCollection(Identifier.class, object.getIdentifiers());
+    /**
+     * Validates the given responsible party.
+     *
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final ResponsibleParty object) {
+        if (object == null) {
+            return;
+        }
+        final String              individual   = object.getIndividualName();
+        final InternationalString organisation = object.getOrganisationName();
+        final InternationalString position     = object.getPositionName();
+        conditional("ResponsibleParty: individualName condition violation.",   individual,   organisation == null && position   == null);
+        conditional("ResponsibleParty: organisationName condition violation.", organisation, individual   == null && position   == null);
+        conditional("ResponsibleParty: positionName condition violation.",     position,     organisation == null && individual == null);
+        validateOptional(organisation);
+        validateOptional(position);
+        validate(object.getContactInfo());
+        mandatory("ResponsibleParty: must have a role.", object.getRole());
+    }
+
+    /**
+     * Validates the given contact information.
+     *
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final Contact object) {
+        if (object == null) {
+            return;
+        }
+        validate(object.getPhone());
+        validate(object.getAddress());
+        validate(object.getOnlineResource());
+        validateOptional(object.getHoursOfService());
+        validateOptional(object.getContactInstructions());
+    }
+
+    /**
+     * Validates the given telephone information.
+     *
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final Telephone object) {
+        if (object == null) {
+            return;
+        }
+        validate(object.getVoices());
+        validate(object.getFacsimiles());
+    }
+
+    /**
+     * Validates the given address.
+     *
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final Address object) {
+        if (object == null) {
+            return;
+        }
+        validate(object.getDeliveryPoints());
+        validateOptional(object.getCity());
+        validateOptional(object.getAdministrativeArea());
+        validateOptional(object.getCountry());
+        validate(object.getElectronicMailAddresses());
+    }
+
+    /**
+     * Validates the given online resource.
+     *
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final OnlineResource object) {
+        if (object == null) {
+            return;
+        }
+        mandatory("OnlineResource: must have a linkage.", object.getLinkage());
+        validateOptional(object.getDescription());
     }
 }

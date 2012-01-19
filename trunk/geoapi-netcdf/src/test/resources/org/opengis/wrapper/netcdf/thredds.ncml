@@ -16,7 +16,7 @@
   <attribute name="history" value="xyz2grd -R-80/-64/40/48 -I3c -Gcrm_v1.grd"/>
   <attribute name="GMT_version" value="4.5.1 [64-bit]"/>
   <attribute name="creator_name" value="David Neufeld"/>
-  <attribute name="creator_email" value="David.Neufeld@noaa.gov"/>
+  <attribute name="creator_email" value="xxxxx.xxxxxxx@noaa.gov"/>
   <attribute name="geospatial_lon_units" value="degrees_east"/>
   <attribute name="geospatial_lat_units" value="degrees_north"/>
   <attribute name="geospatial_lon_min" type="float" value="-80.0"/>

@@ -108,18 +108,19 @@ public class NameValidator extends Validator {
     }
 
     /**
-     * Dispatches to {@link #validate(LocalName)} or {@link #validate(ScopedName)}.
-     * Other implementations are silently ignored.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GenericName object) {
-        if (object instanceof LocalName) {
-            validate((LocalName) object);
+    public int dispatch(final GenericName object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof LocalName)  {validate((LocalName)  object); n++;}
+            if (object instanceof ScopedName) {validate((ScopedName) object); n++;}
         }
-        if (object instanceof ScopedName) {
-            validate((ScopedName) object);
-        }
+        return n;
     }
 
     /**

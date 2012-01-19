@@ -32,6 +32,7 @@
 package org.opengis.test.metadata;
 
 import java.util.Collection;
+import java.lang.reflect.Array;
 import org.opengis.util.InternationalString;
 
 import org.opengis.test.Validator;
@@ -58,22 +59,29 @@ public abstract class MetadataValidator extends Validator {
     }
 
     /**
-     * Validates all elements in the given collection.
+     * Returns all collection elements in an array of the given type. This method ensures that
+     * all elements are non-null and of the expected type. Callers should iterate over the
+     * returned array and validate each elements, if needed.
      *
-     * @param <T>         The type of elements in the collection.
+     * @param <T>         The type of elements in the collection, or {@code null} if none.
      * @param elementType The type of elements in the collection.
-     * @param objects     The collection to validate.
+     * @param objects     The collection to validate (never {@code null}).
      */
-    final <T> void validateCollection(final Class<T> elementType, final Collection<? extends T> objects) {
-        mandatory("Null collection. Should be an empty one if there is no elements.", objects);
+    final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
+        assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);
+        @SuppressWarnings("unchecked")
+        final T[] array = (T[]) Array.newInstance(elementType, (objects != null) ? objects.size() : 0);
         if (objects != null) {
             validate(objects);
+            int count = 0;
             for (final T element : objects) {
                 assertNotNull("Collection should not contain null element.", element);
                 assertInstanceOf("Wrong element type in the collection.", elementType, element);
-                container.dispatch(element);
+                array[count++] = element;
             }
+            assertEquals("Unexpected end of iteration", array.length, count);
         }
+        return array;
     }
 
     /**
@@ -83,7 +91,7 @@ public abstract class MetadataValidator extends Validator {
      */
     final void validateMandatory(final InternationalString object) {
         mandatory("Missing mandatory metadata attribute.", object);
-        container.naming.validate(object);
+        container.validate(object);
     }
 
     /**
@@ -92,6 +100,32 @@ public abstract class MetadataValidator extends Validator {
      * @param object The object to validate, or {@code null}.
      */
     final void validateOptional(final InternationalString object) {
-        container.naming.validate(object);
+        container.validate(object);
+    }
+
+    /**
+     * Returns {@code true} if the given text is {@code null}, white or
+     * {@linkplain String#isEmpty() empty}.
+     *
+     * @param  text The text to test, or {@code null}.
+     * @return {@code true} if the given text is null, white or empty.
+     *
+     * @since 3.1
+     */
+    static boolean isNullOrEmpty(final CharSequence text) {
+        return (text == null) || text.toString().trim().isEmpty();
+    }
+
+    /**
+     * Returns {@code true} if the given collection is {@code null} or
+     * {@linkplain Collection#isEmpty() empty}.
+     *
+     * @param  collection The text to test, or {@code null}.
+     * @return {@code true} if the given collection is null or empty.
+     *
+     * @since 3.1
+     */
+    static boolean isNullOrEmpty(final Collection<?> collection) {
+        return (collection == null) || collection.isEmpty();
     }
 }

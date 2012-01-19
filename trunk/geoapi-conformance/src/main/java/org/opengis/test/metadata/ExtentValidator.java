@@ -31,9 +31,9 @@
  */
 package org.opengis.test.metadata;
 
-import java.util.Collection;
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
+import org.opengis.geometry.Geometry;
 import org.opengis.test.ValidatorContainer;
 import static org.opengis.test.Assert.*;
 
@@ -58,18 +58,20 @@ public class ExtentValidator extends MetadataValidator {
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GeographicExtent object) {
-        if (object instanceof GeographicBoundingBox) {
-            validate((GeographicBoundingBox) object);
-        } else if (object instanceof BoundingPolygon) {
-            validate((BoundingPolygon) object);
-        } else if (object instanceof GeographicDescription) {
-            validate((GeographicDescription) object);
+    public int dispatch(final GeographicExtent object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof GeographicDescription) {validate((GeographicDescription) object); n++;}
+            if (object instanceof GeographicBoundingBox) {validate((GeographicBoundingBox) object); n++;}
+            if (object instanceof BoundingPolygon)       {validate((BoundingPolygon)       object); n++;}
         }
+        return n;
     }
 
     /**
@@ -95,6 +97,9 @@ public class ExtentValidator extends MetadataValidator {
     public void validate(final BoundingPolygon object) {
         if (object == null) {
             return;
+        }
+        for (final Geometry e : toArray(Geometry.class, object.getPolygons())) {
+            // TODO
         }
     }
 
@@ -135,6 +140,7 @@ public class ExtentValidator extends MetadataValidator {
         if (minimum != null && maximum != null) {
             assertTrue("VerticalExtent: invalid range.", minimum <= maximum);
         }
+        container.validate(object.getVerticalCRS());
     }
 
     /**
@@ -149,15 +155,8 @@ public class ExtentValidator extends MetadataValidator {
             return;
         }
         if (object instanceof SpatialTemporalExtent) {
-            final SpatialTemporalExtent extent = (SpatialTemporalExtent) object;
-            final Collection<? extends GeographicExtent> elements = extent.getSpatialExtent();
-            mandatory("SpatialTemporalExtent: must contains spatial extent.", elements);
-            if (elements != null) {
-                validate(elements);
-                for (final GeographicExtent element : elements) {
-                    assertNotNull("SpatialTemporalExtent: getSpatialExtent() can't contain null element.", element);
-                    dispatch(element);
-                }
+            for (final GeographicExtent e : toArray(GeographicExtent.class, ((SpatialTemporalExtent) object).getSpatialExtent())) {
+                dispatch(e);
             }
         }
     }
@@ -172,8 +171,8 @@ public class ExtentValidator extends MetadataValidator {
             return;
         }
         validateOptional(object.getDescription());
-        validateCollection(GeographicExtent.class, object.getGeographicElements());
-        validateCollection(VerticalExtent.class,   object.getVerticalElements());
-        validateCollection(TemporalExtent.class,   object.getTemporalElements());
+        for (GeographicExtent e : toArray(GeographicExtent.class, object.getGeographicElements())) dispatch(e);
+        for (VerticalExtent   e : toArray(VerticalExtent  .class, object.getVerticalElements  ())) validate(e);
+        for (TemporalExtent   e : toArray(TemporalExtent  .class, object.getTemporalElements  ())) validate(e);
     }
 }

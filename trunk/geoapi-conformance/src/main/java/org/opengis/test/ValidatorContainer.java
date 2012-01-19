@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.AbstractList;
 
 import org.opengis.util.*;
+import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
@@ -58,7 +59,7 @@ import org.opengis.test.referencing.*;
  * override some validation process.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class ValidatorContainer {
@@ -68,6 +69,15 @@ public class ValidatorContainer {
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
     public NameValidator naming = new NameValidator(this);
+
+    /**
+     * The validator for {@link Metadata} and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     *
+     * @since 3.1
+     */
+    public MainValidator metadata = new MainValidator(this);
 
     /**
      * The validator for {@link Citation} and related objects.
@@ -136,66 +146,143 @@ public class ValidatorContainer {
     public final List<Validator> all = new AbstractList<Validator>() {
         @Override
         public int size() {
-            return 9;
+            return 10;
         }
 
         @Override
         public Validator get(int index) {
             switch (index) {
                 case  0: return naming;
-                case  1: return citation;
-                case  2: return extent;
-                case  3: return datum;
-                case  4: return cs;
-                case  5: return crs;
-                case  6: return parameter;
-                case  7: return coordinateOperation;
-                case  8: return geometry;
+                case  1: return metadata;
+                case  2: return citation;
+                case  3: return extent;
+                case  4: return datum;
+                case  5: return cs;
+                case  6: return crs;
+                case  7: return parameter;
+                case  8: return coordinateOperation;
+                case  9: return geometry;
                 default: throw new IndexOutOfBoundsException(String.valueOf(index));
             }
         }
     };
 
     /**
-     * Creates a new {@code ValidatorContainer} initialised with default validators.
+     * Creates a new {@code ValidatorContainer} initialized with default validators.
      */
     public ValidatorContainer() {
     }
 
     /**
-     * Dispatches the given object to one of the {@code validate(object)} methods.
-     * Use this method only if the type is unknow at compile-time.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
+     * Use this method only if the type is unknown at compile-time.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
      */
     public final void dispatch(final Object object) {
-        if (object instanceof InternationalString) {
-            validate((InternationalString) object);
-        } else if (object instanceof ReferenceIdentifier) {
-            validate((ReferenceIdentifier) object);
-        } else if (object instanceof Citation) {
-            validate((Citation) object);
-        } else if (object instanceof GenericName) {
-            validate((GenericName) object);
-        } else if (object instanceof NameSpace) {
-            validate((NameSpace) object);
-        } else if (object instanceof IdentifiedObject) {
-            validate((IdentifiedObject) object);
-        } else if (object instanceof GeneralParameterValue) {
-            validate((GeneralParameterValue) object);
-        } else if (object instanceof DirectPosition) {
-            validate((DirectPosition) object);
-        } else if (object instanceof Envelope) {
-            validate((Envelope) object);
-        } else if (object instanceof GeographicExtent) {
-            validate((GeographicExtent) object);
-        } else if (object instanceof VerticalExtent) {
-            validate((VerticalExtent) object);
-        } else if (object instanceof TemporalExtent) {
-            validate((TemporalExtent) object);
-        } else if (object instanceof Extent) {
-            validate((Extent) object);
-        }
+        if (object instanceof Metadata)              validate((Metadata)              object);
+        if (object instanceof Citation)              validate((Citation)              object);
+        if (object instanceof ResponsibleParty)      validate((ResponsibleParty)      object);
+        if (object instanceof Contact)               validate((Contact)               object);
+        if (object instanceof Telephone)             validate((Telephone)             object);
+        if (object instanceof Address)               validate((Address)               object);
+        if (object instanceof OnlineResource)        validate((OnlineResource)        object);
+        if (object instanceof Extent)                validate((Extent)                object);
+        if (object instanceof GeographicExtent)      validate((GeographicExtent)      object);
+        if (object instanceof VerticalExtent)        validate((VerticalExtent)        object);
+        if (object instanceof TemporalExtent)        validate((TemporalExtent)        object);
+        if (object instanceof IdentifiedObject)      validate((IdentifiedObject)      object);
+        if (object instanceof ReferenceIdentifier)   validate((ReferenceIdentifier)   object);
+        if (object instanceof Identifier)            validate((Identifier)            object);
+        if (object instanceof GenericName)           validate((GenericName)           object);
+        if (object instanceof NameSpace)             validate((NameSpace)             object);
+        if (object instanceof GeneralParameterValue) validate((GeneralParameterValue) object);
+        if (object instanceof Envelope)              validate((Envelope)              object);
+        if (object instanceof DirectPosition)        validate((DirectPosition)        object);
+        if (object instanceof InternationalString)   validate((InternationalString)   object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see MainValidator#validate(Metadata)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Metadata object) {
+        metadata.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Citation)
+     */
+    public final void validate(final Citation object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(ResponsibleParty)
+     *
+     * @since 3.1
+     */
+    public final void validate(final ResponsibleParty object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Contact)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Contact object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Telephone)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Telephone object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Address)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Address object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(OnlineResource)
+     *
+     * @since 3.1
+     */
+    public final void validate(final OnlineResource object) {
+        citation.validate(object);
     }
 
     /**
@@ -732,10 +819,12 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CitationValidator#validate(Citation)
+     * @see MainValidator#validate(Identifier)
+     *
+     * @since 3.1
      */
-    public final void validate(final Citation object) {
-        citation.validate(object);
+    public final void validate(final Identifier object) {
+        metadata.validate(object);
     }
 
     /**

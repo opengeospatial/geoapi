@@ -32,6 +32,7 @@
 package org.opengis.test;
 
 import org.opengis.util.*;
+import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
@@ -64,7 +65,7 @@ import org.opengis.test.referencing.*;
  * instead of this class.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class Validators {
@@ -82,13 +83,96 @@ public class Validators {
     }
 
     /**
-     * Dispatches the given object to one of the {@code validate(object)} methods.
-     * Use this method only if the type is unknow at compile-time.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method (if any). Use this method only if the type is
+     * unknown at compile-time.
+     *
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     */
+    public static void dispatch(final Object object) {
+        DEFAULT.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see MainValidator#validate(Metadata)
+     *
+     * @since 3.1
      */
-    public final void dispatch(final Object object) {
-        DEFAULT.dispatch(object);
+    public static void validate(final Metadata object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Citation)
+     */
+    public static void validate(final Citation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(ResponsibleParty)
+     *
+     * @since 3.1
+     */
+    public static void validate(final ResponsibleParty object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Contact)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Contact object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Telephone)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Telephone object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Address)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Address object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(OnlineResource)
+     *
+     * @since 3.1
+     */
+    public static void validate(final OnlineResource object) {
+        DEFAULT.validate(object);
     }
 
     /**
@@ -625,9 +709,11 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CitationValidator#validate(Citation)
+     * @see MainValidator#validate(Identifier)
+     *
+     * @since 3.1
      */
-    public static void validate(final Citation object) {
+    public static void validate(final Identifier object) {
         DEFAULT.validate(object);
     }
 
