@@ -27,7 +27,9 @@ import static org.opengis.test.CalculationType.*;
 
 
 /**
- * Runs all supported tests from the {@code geoapi-conformance} module.
+ * Runs all supported tests from the
+ * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * module.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

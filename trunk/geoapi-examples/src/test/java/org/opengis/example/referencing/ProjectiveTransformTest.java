@@ -22,7 +22,9 @@ import static org.junit.Assert.*;
 
 
 /**
- * Tests {@link ProjectiveTransform} using the {@code geoapi-conformance} module.
+ * Tests {@link ProjectiveTransform} using the
+ * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * module.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

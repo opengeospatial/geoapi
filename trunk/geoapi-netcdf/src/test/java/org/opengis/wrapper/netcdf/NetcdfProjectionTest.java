@@ -14,9 +14,11 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Random;
+import ucar.unidata.geoloc.Projection;
 import ucar.unidata.geoloc.projection.Mercator;
 
 import org.opengis.metadata.extent.GeographicBoundingBox;
+import org.opengis.referencing.operation.SingleOperation;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.referencing.TransformTestCase;
 
@@ -27,8 +29,13 @@ import static org.opengis.test.Validators.*;
 
 
 /**
- * Tests the {@link NetcdfProjection} class. The projected values correctness
- * (external consistency) is not verified - only internal consistency is verified.
+ * Tests the {@link NetcdfProjection} class using the
+ * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * module. The projected values correctness (external consistency) is not verified - only internal
+ * consistency is verified.
+ * <p>
+ * External projects can override the {@link #wrap(Projection)}
+ * method in order to test their own NetCDF wrapper.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -36,14 +43,45 @@ import static org.opengis.test.Validators.*;
  */
 public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
-     * Creates a new test case initialized with a default NetCDF projection.
+     * The coordinate operation wrapping the NetCDF projection. This field is initialized
+     * to the value returned by {@link #wrap(Projection)} before a test is executed.
+     * <p>
+     * The {@link #transform} field will be set to the {@link SingleOperation#getMathTransform()}
+     * value.
+     */
+    protected SingleOperation operation;
+
+    /**
+     * Creates a new test case initialized with a default {@linkplain #tolerance tolerance}
+     * threshold. The '{@linkplain #isDerivativeSupported is derivative supported}' flag is
+     * set to {@code false} since the NetCDF library does not implement projection derivatives.
      */
     public NetcdfProjectionTest() {
-        final Mercator projection = new Mercator();
-        projection.setName("Default Mercator projection");
-        transform = new NetcdfProjection(projection, null, null);
         tolerance = 1E-10;
         isDerivativeSupported = false;
+    }
+
+    /**
+     * Initializes the {@link #operation} and {@link #transform} fields to the Mercator projection.
+     */
+    private void createMercatorProjection() {
+        final Mercator projection = new Mercator();
+        projection.setName("Default Mercator projection");
+        operation = wrap(projection);
+        transform = operation.getMathTransform();
+        validate(operation);
+    }
+
+    /**
+     * Wraps the given NetCDF projection into a GeoAPI operation object. The default implementation
+     * creates a {@link NetcdfProjection} instance. Subclasses can override this method for creating
+     * their own instance.
+     *
+     * @param  projection The NetCDF projection to wrap.
+     * @return An operation implementation created from the given projection.
+     */
+    protected SingleOperation wrap(final Projection projection) {
+        return new NetcdfProjection(projection, null, null);
     }
 
     /**
@@ -55,7 +93,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
      */
     @Test
     public void testConsistency() throws TransformException {
-        validate(transform);
+        createMercatorProjection();
         verifyInDomain(new double[] {-180, -80}, // Minimal ordinate values to test.
                        new double[] {+180, +80}, // Maximal ordinate values to test.
                        new int[]    { 360, 160}, // Number of points to test.
@@ -67,22 +105,28 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
      */
     @Test
     public void testNames() {
-        final NetcdfProjection projection = (NetcdfProjection) transform;
-        assertEquals("Default Mercator projection", projection.getName().getCode());
-        assertEquals("Mercator", projection.getMethod().getName().getCode());
+        createMercatorProjection();
+        final SingleOperation operation = this.operation; // Protect from changes.
+        assertEquals("Default Mercator projection", operation.getName().getCode());
+        assertEquals("Mercator", operation.getMethod().getName().getCode());
     }
 
     /**
      * Tests the {@link NetcdfProjection#getDomainOfValidity()} method.
-     * In NetCDF 4.2, the declared bounding box was approximatively
-     * west=-152.85, east=-57.15, south=-43.1, north=43.1. However
-     * we presume that this bounding box may change in the future.
+     * <p>
+     * <b>Note:</b> In NetCDF 4.2, the declared bounding box was approximatively
+     * <var>west</var>  = -152.85°,
+     * <var>east</var>  = -57.15°,
+     * <var>south</var> = -43.1° and
+     * <var>north</var> = 43.1°.
+     * However we presume that this bounding box may change in the future.
      */
     @Test
     public void testDomainOfValidity() {
-        final NetcdfProjection projection = (NetcdfProjection) transform;
+        createMercatorProjection();
+        final SingleOperation operation = this.operation; // Protect from changes.
         final GeographicBoundingBox box = (GeographicBoundingBox)
-                projection.getDomainOfValidity().getGeographicElements().iterator().next();
+                operation.getDomainOfValidity().getGeographicElements().iterator().next();
         assertBetween("westBoundLongitude", -180, -152, box.getWestBoundLongitude());
         assertBetween("eastBoundLongitude",  -58, +180, box.getEastBoundLongitude());
         assertBetween("southBoundLatitude",  -90,  -43, box.getSouthBoundLatitude());

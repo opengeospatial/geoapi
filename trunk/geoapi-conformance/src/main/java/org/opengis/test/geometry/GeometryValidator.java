@@ -45,8 +45,11 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Validates {@link Geometry} and related objects from the {@code org.opengis.geometry}
- * package. This class should not be used directly; use the {@link org.opengis.test.Validators}
- * convenience static methods instead.
+ * package.
+ * <p>
+ * This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
@@ -61,9 +64,10 @@ public class GeometryValidator extends Validator {
     public double tolerance = DEFAULT_TOLERANCE;
 
     /**
-     * Creates a new validator.
+     * Creates a new validator instance.
      *
-     * @param container The container of this validator.
+     * @param container The set of validators to use for validating other kinds of objects
+     *                  (see {@linkplain #container field javadoc}).
      */
     public GeometryValidator(final ValidatorContainer container) {
         super(container, "org.opengis.geometry");

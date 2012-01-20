@@ -5,7 +5,15 @@
 NetCDF bindings
 
   This module provides adapters to the {{{http://www.unidata.ucar.edu/software/netcdf-java/}NetCDF library}}.
-  The NetCDF library provides some metadata, referencing and coverage services.
+  This module provides adapters allowing usage of the following NetCDF services as an implementation of GeoAPI interfaces:
+
+    * Metadata services, as wrappers around <<<NetcdfFile>>>.
+
+    * Referencing services, including:
+
+       * Coordinate Reference Systems as wrappers around the NetCDF <<<CoordinateSystem>>> object.
+
+       * Coordinate Operations as wrappers around the NetCDF <<<Projection>>> object.
 
 
 * Licensing

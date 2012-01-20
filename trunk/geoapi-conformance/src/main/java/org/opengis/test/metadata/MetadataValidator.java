@@ -41,7 +41,11 @@ import static org.opengis.test.Assert.*;
 
 
 /**
- * Base class for validators of {@code org.opengis.metadata} package.
+ * Base class for validators of {@code org.opengis.metadata} package and sub-packages.
+ * <p>
+ * This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -51,7 +55,8 @@ public abstract class MetadataValidator extends Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container   The container of this validator.
+     * @param container   The set of validators to use for validating other kinds of objects
+     *                    (see {@linkplain #container field javadoc}).
      * @param packageName The name of the package containing the classes to be validated.
      */
     protected MetadataValidator(final ValidatorContainer container, final String packageName) {

@@ -648,7 +648,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
          */
         @Override
         public Formula getFormula() {
-            throw new UnsupportedOperationException();
+            return null;
         }
 
         /**

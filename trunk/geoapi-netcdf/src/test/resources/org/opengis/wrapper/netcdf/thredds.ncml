@@ -2,7 +2,7 @@
 
 <!--
   NcML test file derived from an example published in the following page on October 5, 2011:
-  https://geo-ide.noaa.gov/wiki/index.php?title=NetCDF_Attribute_Convention_for_Dataset_Discovery
+  http://geo-ide.noaa.gov/wiki/index.php?title=NetCDF_Attribute_Convention_for_Dataset_Discovery
 -->
 
 <netcdf    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -25,6 +25,33 @@
   <attribute name="geospatial_lat_min" type="float" value="40.0"/>
   <attribute name="geospatial_lon_resolution" type="double" value="8.33E-4"/>
   <attribute name="geospatial_lat_resolution" type="double" value="8.33E-4"/>
+
+  <!-- Metadata calculated from the NetCDF file axes based on CF conventions -->
+  <group name="CFMetadata">
+    <attribute name="geospatial_lon_min" value="-80.0" type="float"/>
+    <attribute name="geospatial_lat_min" value="40.0" type="float"/>
+    <attribute name="geospatial_lon_max" value="-64.0" type="float"/>
+    <attribute name="geospatial_lat_max" value="48.0" type="float"/>
+    <attribute name="geospatial_lon_units" value="degrees_east"/>
+    <attribute name="geospatial_lat_units" value="degrees_north"/>
+    <attribute name="geospatial_lon_resolution" value="8.332899328159992E-4"/>
+    <attribute name="geospatial_lat_resolution" value="8.332465368190813E-4"/>
+  </group>
+
+  <!-- Metadata from the THREDDS catalog dataset -->
+  <group name="THREDDSMetadata">
+    <attribute name="id" value="crm_v1"/>
+    <attribute name="creator_name" value="David Neufeld"/>
+    <attribute name="creator_email" value="xxxxx.xxxxxxx@noaa.gov"/>
+    <attribute name="data_distribution" value="http://localhost:8080/thredds/dodsC/test/crm_v1.nc"/>
+    <attribute name="wms_service" value="http://localhost:8080//thredds/wms/crm/crm_vol9.nc"/>
+    <attribute name="wcs_service" value="http://localhost:8080//thredds/wcs/crm/crm_vol9.nc"/>
+  </group>
+
+  <!-- Metadata from the ncISO service -->
+  <group name="NCISOMetadata">
+    <attribute name="metadata_creation" value="2011-04-19"/>
+  </group>
 
   <dimension name="x" length="19201"/>
   <dimension name="y" length="9601"/>

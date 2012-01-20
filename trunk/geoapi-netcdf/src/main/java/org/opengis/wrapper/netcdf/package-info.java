@@ -19,11 +19,16 @@
  * as an implementation of GeoAPI interfaces:
  * <p>
  * <ul>
- *   <li>Referencing services, as wrappers around the NetCDF Coordinate Reference System
- *       object ({@link ucar.nc2.dataset.CoordinateSystem}) and coordinate operation object
- *       ({@link ucar.unidata.geoloc.Projection}).</li>
  *   <li>Metadata services, as wrappers around {@link ucar.nc2.NetcdfFile}.</li>
+ *   <li>Referencing services, including:
+ *     <ul>
+ *       <li>Coordinate Reference Systems as wrappers around the NetCDF {@link ucar.nc2.dataset.CoordinateSystem} object.</li>
+ *       <li>Coordinate Operations as wrappers around the NetCDF {@link ucar.unidata.geoloc.Projection} object.</li>
+ *     </ul>
+ *   </li>
  * </ul>
+ * <p>
+ * Home page: <a href="http://www.geoapi.org/geoapi-netcdf/index.html">GeoAPI-NetCDF bindings</a>.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

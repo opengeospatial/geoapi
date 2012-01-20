@@ -44,7 +44,8 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * <p>
  * <table>
  *   <tr><th>Keyword</th> <th>path</th></tr>
- *   <tr><td>gigs</td> <td>geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs</td></tr>
+ *   <tr><td>gigs</td>   <td>geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs</td></tr>
+ *   <tr><td>netcdf</td> <td>geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf</td></tr>
  * </table>
  * <p>
  * The URL never contain trailing <code>'/'</code> character.
@@ -157,6 +158,8 @@ public final class SvnUrl implements Taglet {
      *
      * @param tag The tag to format.
      * @return A string representation of the given tag.
+     *
+     * @todo Use "switch in strings" with JDK7.
      */
     @Override
     public String toString(final Tag tag) {
@@ -164,6 +167,8 @@ public final class SvnUrl implements Taglet {
         final String keyword = tag.text();
         if (keyword.equals("gigs")) {
             url += "/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs";
+        } else if (keyword.equals("netcdf")) {
+            url += "/geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf";
         } else {
             ConfigurationImpl.getInstance().root.printWarning(tag.position(), "Unknown keyword: " + keyword);
         }
