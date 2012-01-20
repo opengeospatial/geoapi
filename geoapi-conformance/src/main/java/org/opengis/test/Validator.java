@@ -59,12 +59,25 @@ public abstract class Validator {
     public static final double DEFAULT_TOLERANCE = 1E-6;
 
     /**
-     * The container of this validator.
+     * The validators to use for every validations not defined in the concrete subclass.
+     * For example if {@link org.opengis.test.referencing.CRSValidator} needs to validate
+     * a datum, it will use the {@link org.opengis.test.referencing.DatumValidator} instance
+     * defined in this container.
+     * <p>
+     * The container may contain this validator instance. For example if this validator
+     * is an instance of {@link org.opengis.test.referencing.CRSValidator}, then the
+     * {@link ValidatorContainer#crs} field may be set to {@code this}. Doing so ensure
+     * that the proper {@code validate(...)} methods will be invoked in case of callback.
+     * <p>
+     * <b>Tip:</b> if the other validators are not expected to callback the {@code validate}
+     * methods defined in this {@code Validator} instance (for example a datum has no reason
+     * to validate a CRS), then it is safe to set this field to {@link Validators#DEFAULT}.
      */
     protected final ValidatorContainer container;
 
     /**
      * The logger for reporting non-fatal warnings.
+     * This logger is determined by the package name given at construction time.
      */
     protected final Logger logger;
 
@@ -99,10 +112,14 @@ public abstract class Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container   The container of this validator.
+     * @param container   The set of validators to use for validating other kinds of objects
+     *                    (see {@linkplain #container field javadoc}).
      * @param packageName The name of the package containing the classes to be validated.
      */
     protected Validator(final ValidatorContainer container, final String packageName) {
+        if (container == null) {
+            throw new NullPointerException("ValidatorContainer shall not be null.");
+        }
         this.container = container;
         this.logger = Logger.getLogger(packageName);
     }

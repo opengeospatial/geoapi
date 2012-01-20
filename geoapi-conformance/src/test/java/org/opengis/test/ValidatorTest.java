@@ -49,7 +49,7 @@ public strictfp class ValidatorTest {
     /**
      * The validator to use for testing purpose.
      */
-    private final Validator validator = new Validator(null, "org.opengis.test") {
+    private final Validator validator = new Validator(Validators.DEFAULT, "org.opengis.test") {
         // No abstract method to override.
     };
 

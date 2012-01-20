@@ -27,7 +27,9 @@ import static org.opengis.test.CalculationType.*;
 
 
 /**
- * Runs all supported tests from the {@code geoapi-conformance} module.
+ * Runs all supported tests from the
+ * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * module.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -36,26 +38,29 @@ import static org.opengis.test.CalculationType.*;
 public class ConformanceTest extends TestSuite implements ImplementationDetails {
     /**
      * The configuration of our NetCDF tests.
+     * Will be created when first needed.
      */
-    private static final Configuration CONFIGURATION = new Configuration();
-    static {
-        CONFIGURATION.unsupported(
-                Configuration.Key.isNameSupported,
-                Configuration.Key.isAliasSupported,
-                Configuration.Key.isDerivativeSupported);
-        /*
-         * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
-         */
-        Validators.DEFAULT.naming.requireMandatoryAttributes = false;
-        Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
-    }
+    private Configuration configuration;
 
     /**
      * Returns the map of tests to disable for this implementation.
      */
     @Override
-    public Configuration configuration(final Factory... factories) {
-        return CONFIGURATION;
+    public synchronized Configuration configuration(final Factory... factories) {
+        if (configuration == null) {
+            configuration = new Configuration();
+            configuration.unsupported(
+                    Configuration.Key.isNameSupported,
+                    Configuration.Key.isAliasSupported,
+                    Configuration.Key.isDerivativeSupported);
+            /*
+             * Our objects are not yet strictly ISO compliant, so be lenient...
+             */
+            Validators.DEFAULT.naming.requireMandatoryAttributes = false;
+            Validators.DEFAULT.metadata.requireMandatoryAttributes = false;
+            Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
+        }
+        return configuration;
     }
 
     /**

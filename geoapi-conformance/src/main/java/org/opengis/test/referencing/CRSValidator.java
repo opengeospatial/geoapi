@@ -45,9 +45,11 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Validates {@link CoordinateReferenceSystem} and related objects from the
- * {@code org.opengis.referencing.crs} package. This class should not be used
- * directly; use the {@link org.opengis.test.Validators} convenience static methods
- * instead.
+ * {@code org.opengis.referencing.crs} package.
+ * <p>
+ * This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -63,9 +65,10 @@ public class CRSValidator extends ReferencingValidator {
     private final ThreadLocal<Boolean> VALIDATING = new ThreadLocal<Boolean>();
 
     /**
-     * Creates a new validator.
+     * Creates a new validator instance.
      *
-     * @param container The container of this validator.
+     * @param container The set of validators to use for validating other kinds of objects
+     *                  (see {@linkplain #container field javadoc}).
      */
     public CRSValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.crs");

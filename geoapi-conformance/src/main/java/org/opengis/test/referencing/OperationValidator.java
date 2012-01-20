@@ -43,8 +43,11 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Validates {@link CoordinateOperation} and related objects from the
- * {@code org.opengis.referencing.operation} package. This class should not be used directly;
- * use the {@link org.opengis.test.Validators} convenience static methods instead.
+ * {@code org.opengis.referencing.operation} package.
+ * <p>
+ * This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -52,9 +55,10 @@ import static org.opengis.test.Assert.*;
  */
 public class OperationValidator extends ReferencingValidator {
     /**
-     * Creates a new validator.
+     * Creates a new validator instance.
      *
-     * @param container The container of this validator.
+     * @param container The set of validators to use for validating other kinds of objects
+     *                  (see {@linkplain #container field javadoc}).
      */
     public OperationValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.operation");
