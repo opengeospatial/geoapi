@@ -32,7 +32,14 @@ import static org.opengis.test.Assert.*;
  * Tests the {@link NetcdfMetadata} class.
  * <p>
  * External projects can override the {@link #wrap(NetcdfFile)}
- * method in order to test their own NetCDF wrapper.
+ * method in order to test their own NetCDF wrapper, as in the example below:
+ *
+ * <blockquote><pre>public class MyTest extends NetcdfMetadataTest {
+ *    &#64;Override
+ *    protected Metadata wrap(NetcdfFile file) throws IOException {
+ *        return new MyWrapper(file);
+ *    }
+ *}</pre></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -50,6 +57,12 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * This validator is specified at construction time.
      */
     protected final MainValidator validator;
+
+    /**
+     * The metadata object being tested. This field is set to the value returned
+     * by {@link #wrap(NetcdfFile)} when a {@code testXXX()} method is executed.
+     */
+    protected Metadata metadata;
 
     /**
      * Creates a new test case using the default validator.
@@ -88,52 +101,12 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
 
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#THREDDS} file (XML format).
-     * The most relevant parts of this file are as below:
-     *
-     *<blockquote><pre>&lt;netcdf&gt;
-     *  &lt;!-- Metadata from the NetCDF or NcML file global attributes --&gt;
-     *  &lt;attribute name="Conventions" value="CF-1.4"/&gt;
-     *  &lt;attribute name="title" value="crm_v1.grd"/&gt;
-     *  &lt;attribute name="history" value="xyz2grd -R-80/-64/40/48 -I3c -Gcrm_v1.grd"/&gt;
-     *  &lt;attribute name="GMT_version" value="4.5.1 [64-bit]"/&gt;
-     *  &lt;attribute name="creator_name" value="David Neufeld"/&gt;
-     *  &lt;attribute name="creator_email" value="xxxxx.xxxxxxx@noaa.gov"/&gt;
-     *  &lt;attribute name="geospatial_lon_units" value="degrees_east"/&gt;
-     *  &lt;attribute name="geospatial_lat_units" value="degrees_north"/&gt;
-     *  &lt;attribute name="geospatial_lon_min" type="float" value="-80.0"/&gt;
-     *  &lt;attribute name="geospatial_lon_max" type="float" value="-64.0"/&gt;
-     *  &lt;attribute name="geospatial_lat_max" type="float" value="48.0"/&gt;
-     *  &lt;attribute name="geospatial_lat_min" type="float" value="40.0"/&gt;
-     *  &lt;attribute name="geospatial_lon_resolution" type="double" value="8.33E-4"/&gt;
-     *  &lt;attribute name="geospatial_lat_resolution" type="double" value="8.33E-4"/&gt;
-     *
-     *  &lt;dimension name="x" length="19201"/&gt;
-     *  &lt;dimension name="y" length="9601"/&gt;
-     *
-     *  &lt;variable name="z" shape="y x" type="float"&gt;
-     *    &lt;attribute name="long_name" value="z"/&gt;
-     *    &lt;attribute name="_FillValue" type="float" value="NaN"/&gt;
-     *    &lt;attribute name="actual_range" type="double" value="-2754.39990234375 1903.0"/&gt;
-     *    &lt;attribute name="units" value="meters"/&gt;
-     *    &lt;attribute name="positive" value="up"/&gt;
-     *  &lt;/variable&gt;
-     *  &lt;variable name="x" shape="x" type="double"&gt;
-     *    &lt;attribute name="long_name" value="x"/&gt;
-     *    &lt;attribute name="actual_range" type="double" value="-80.0 -64.0"/&gt;
-     *    &lt;attribute name="units" value="degrees_east"/&gt;
-     *    &lt;attribute name="_CoordinateAxisType" value="Lon"/&gt;
-     *  &lt;/variable&gt;
-     *  &lt;variable name="y" shape="y" type="double"&gt;
-     *    &lt;attribute name="long_name" value="y"/&gt;
-     *    &lt;attribute name="actual_range" type="double" value="40.0 48.0"/&gt;
-     *    &lt;attribute name="units" value="degrees_north"/&gt;
-     *    &lt;attribute name="_CoordinateAxisType" value="Lat"/&gt;
-     *  &lt;/variable&gt;
-     *&lt;/netcdf&gt;</pre></blockquote>
-     *
-     * Some additional THREDDS attributes are defined, but are not the subject of this test.
-     * The full file can be seen from the <a href="{@svnurl netcdf}/thredds.ncml">source code
-     * repository</a>.
+     * The current implementation tests:
+     * <p>
+     * <ul>
+     *   <li>The {@linkplain Metadata#getContacts() contact} name, role and email address.</li>
+     *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
+     * </ul>
      *
      * @throws IOException If the test file can not be read.
      */
@@ -142,6 +115,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         final NetcdfFile file = open(THREDDS);
         try {
             final Metadata metadata = wrap(file);
+            this.metadata = metadata; // For subclasses usage.
             validator.validate(metadata);
             /*
             * Responsibly party.
@@ -149,6 +123,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             final ResponsibleParty party = getSingleton(metadata.getContacts());
             assertEquals("David Neufeld", party.getIndividualName());
             assertEquals("xxxxx.xxxxxxx@noaa.gov", getSingleton(party.getContactInfo().getAddress().getElectronicMailAddresses()));
+            assertEquals(Role.ORIGINATOR, party.getRole());
             /*
             * Metadata / Data Identification / Geographic Bounding Box.
             */
@@ -164,44 +139,23 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     }
 
     /**
-     * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#GEOTIME_NC} file (binary format).
-     * The global attributes are:
-     *
-     * <blockquote><pre>:record = "reftime, valtime" ;
-     *:history = "2003-04-07 12:12:50 - created by gribtocdl 2005-09-26T21:50:00 - edavis - add attributes for dataset discovery" ;
-     *:title = "Sea Surface Temperature Analysis Model" ;
-     *:Conventions = "NUWG, _Coordinates" ;
-     *:GRIB_reference = "Office Note 388 GRIB" ;
-     *:GRIB_URL = "http://www.nco.ncep.noaa.gov/pmb/docs/on388/" ;
-     *:version = 1. ;
-     *:Metadata_Conventions = "Unidata Dataset Discovery v1.0" ;
-     *:summary = "NCEP SST Global 5.0 x 2.5 degree model data" ;
-     *:keywords = "EARTH SCIENCE > Oceans > Ocean Temperature > Sea Surface Temperature" ;
-     *:keywords_vocabulary = "GCMD Science Keywords" ;
-     *:id = "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc" ;
-     *:naming_authority = "edu.ucar.unidata" ;
-     *:cdm_data_type = "Grid" ;
-     *:date_created = "2005-09-22T00:00" ;
-     *:creator_name = "NOAA/NWS/NCEP" ;
-     *:creator_url = "" ;
-     *:creator_email = "" ;
-     *:geospatial_lat_min = "-90.0" ;
-     *:geospatial_lat_max = "90.0" ;
-     *:geospatial_lon_min = "-180.0" ;
-     *:geospatial_lon_max = "180.0" ;
-     *:geospatial_vertical_min = "0.0" ;
-     *:geospatial_vertical_max = "0.0" ;
-     *:time_coverage_start = "2005-09-22T00:00" ;
-     *:time_coverage_duration = "0.0" ;
-     *:license = "Freely available" ;</pre></blockquote>
+     * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file (binary format).
+     * The current implementation tests:
+     * <p>
+     * <ul>
+     *   <li>The {@linkplain Metadata#getIdentificationInfo() identification} identifier, title, abstract and date.</li>
+     *   <li>The {@linkplain Metadata#getContacts() contact} name, role and email address.</li>
+     *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
+     * </ul>
      *
      * @throws IOException If the test file can not be read.
      */
     @Test
-    public void testGeographicWithTime() throws IOException {
-        final NetcdfFile file = open(GEOTIME_NC);
+    public void testNCEP() throws IOException {
+        final NetcdfFile file = open(NCEP);
         try {
             final Metadata metadata = wrap(file);
+            this.metadata = metadata; // For subclasses usage.
             validator.validate(metadata);
             /*
             * Metadata / Data Identification.
@@ -236,6 +190,25 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             assertEquals("East Bound Longitude", +180, bbox.getEastBoundLongitude(), 0);
             assertEquals("South Bound Latitude",  -90, bbox.getSouthBoundLatitude(), 0);
             assertEquals("North Bound Latitude",  +90, bbox.getNorthBoundLatitude(), 0);
+        } finally {
+            file.close();
+        }
+    }
+
+    /**
+     * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#LANDSAT} file (binary format).
+     * Actually there is close to nothing we can test in this file, so this test case is merely
+     * verifying that no exception is thrown at reading time.
+     *
+     * @throws IOException If the test file can not be read.
+     */
+    @Test
+    public void testLandsat() throws IOException {
+        final NetcdfFile file = open(LANDSAT);
+        try {
+            final Metadata metadata = wrap(file);
+            this.metadata = metadata; // For subclasses usage.
+            assertNotNull(metadata);
         } finally {
             file.close();
         }

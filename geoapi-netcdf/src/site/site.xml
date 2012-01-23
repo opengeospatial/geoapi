@@ -2,8 +2,8 @@
 <project name="GeoAPI">
   <body>
     <menu name="NetCDF bindings" inherit="none">
-      <item name="Javadoc" href="apidocs/index.html"/>
-      <item name="Tests"   href="testapidocs/index.html"/>
+      <item name="Wrappers javadoc" href="apidocs/index.html"/>
+      <item name="Tests javadoc"    href="testapidocs/index.html"/>
     </menu>
 
     <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
