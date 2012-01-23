@@ -35,38 +35,149 @@ import static org.opengis.test.Assert.*;
 /**
  * Base class of NetCDF test cases performing I/O operations. This base class provides
  * an {@link #open(String)} method for creating {@link NetcdfFile} objects from the
- * build-in test files (see link below).
+ * <a href="{@svnurl netcdf}/">build-in test files</a>.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
- *
- * @see <a href="{@svnurl netcdf}/">Build-in test files</a>
  */
 public abstract strictfp class IOTestCase {
     /**
      * The {@value} test file (XML format). This test uses a file derived from the
      * <a href="http://geo-ide.noaa.gov/wiki/index.php?title=NetCDF_Attribute_Convention_for_Dataset_Discovery">NetCDF
      * Attribute Convention for Dataset Discovery</a> page on October 5, 2011.
-     * <p>
-     * The Coordinate Reference System of this dataset is geographic.
+     * The main parts of this file are as below:
      *
-     * @see <a href="{@svnurl netcdf}/thredds.ncml">File content</a>
+     *<blockquote><pre>&lt;netcdf&gt;
+     *  &lt;!-- Metadata from the NetCDF or NcML file global attributes --&gt;
+     *  &lt;attribute name="Conventions" value="CF-1.4"/&gt;
+     *  &lt;attribute name="title" value="crm_v1.grd"/&gt;
+     *  &lt;attribute name="history" value="xyz2grd -R-80/-64/40/48 -I3c -Gcrm_v1.grd"/&gt;
+     *  &lt;attribute name="GMT_version" value="4.5.1 [64-bit]"/&gt;
+     *  &lt;attribute name="creator_name" value="David Neufeld"/&gt;
+     *  &lt;attribute name="creator_email" value="xxxxx.xxxxxxx@noaa.gov"/&gt;
+     *  &lt;attribute name="geospatial_lon_units" value="degrees_east"/&gt;
+     *  &lt;attribute name="geospatial_lat_units" value="degrees_north"/&gt;
+     *  &lt;attribute name="geospatial_lon_min" type="float" value="-80.0"/&gt;
+     *  &lt;attribute name="geospatial_lon_max" type="float" value="-64.0"/&gt;
+     *  &lt;attribute name="geospatial_lat_max" type="float" value="48.0"/&gt;
+     *  &lt;attribute name="geospatial_lat_min" type="float" value="40.0"/&gt;
+     *  &lt;attribute name="geospatial_lon_resolution" type="double" value="8.33E-4"/&gt;
+     *  &lt;attribute name="geospatial_lat_resolution" type="double" value="8.33E-4"/&gt;
+     *
+     *  &lt;dimension name="x" length="19201"/&gt;
+     *  &lt;dimension name="y" length="9601"/&gt;
+     *
+     *  &lt;variable name="z" shape="y x" type="float"&gt;
+     *    &lt;attribute name="long_name" value="z"/&gt;
+     *    &lt;attribute name="_FillValue" type="float" value="NaN"/&gt;
+     *    &lt;attribute name="actual_range" type="double" value="-2754.39990234375 1903.0"/&gt;
+     *    &lt;attribute name="units" value="meters"/&gt;
+     *    &lt;attribute name="positive" value="up"/&gt;
+     *  &lt;/variable&gt;
+     *  &lt;variable name="x" shape="x" type="double"&gt;
+     *    &lt;attribute name="long_name" value="x"/&gt;
+     *    &lt;attribute name="actual_range" type="double" value="-80.0 -64.0"/&gt;
+     *    &lt;attribute name="units" value="degrees_east"/&gt;
+     *    &lt;attribute name="_CoordinateAxisType" value="Lon"/&gt;
+     *  &lt;/variable&gt;
+     *  &lt;variable name="y" shape="y" type="double"&gt;
+     *    &lt;attribute name="long_name" value="y"/&gt;
+     *    &lt;attribute name="actual_range" type="double" value="40.0 48.0"/&gt;
+     *    &lt;attribute name="units" value="degrees_north"/&gt;
+     *    &lt;attribute name="_CoordinateAxisType" value="Lat"/&gt;
+     *  &lt;/variable&gt;
+     *&lt;/netcdf&gt;</pre></blockquote>
+     *
+     * Some additional THREDDS attributes are defined but not tested by this module. The full file
+     * can be seen from the <a href="{@svnurl netcdf}/thredds.ncml">source code repository</a>.
+     * <p>
+     * The Coordinate Reference System of this dataset is
+     * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic}.
+     *
      * @see NetcdfMetadataTest#testThredds()
+     * @see NetcdfCRSTest#testGeographic()
      */
     public static final String THREDDS = "thredds.ncml";
 
     /**
      * The {@value} test file (binary format). This file was downloaded from the examples provided in the
      * <a href="http://www.unidata.ucar.edu/software/netcdf-java/formats/DataDiscoveryAttConvention.html">NetCDF
-     * Attribute Convention for Dataset Discovery</a> page on October 5, 2011.
-     * <p>
-     * The Coordinate Reference System of this dataset is compound (geographic + time).
+     * Attribute Convention for Dataset Discovery</a> page on October 5, 2011. The global attributes
+     * are listed below. Note that this particular NetCDF file specifies the geographic bounding box
+     * ordinates as string values rather than numerical values. Consequently the implementations to
+     * be tested need to perform conversions.
+     *
+     * <blockquote><pre>:record = "reftime, valtime" ;
+     *:history = "2003-04-07 12:12:50 - created by gribtocdl 2005-09-26T21:50:00 - edavis - add attributes for dataset discovery" ;
+     *:title = "Sea Surface Temperature Analysis Model" ;
+     *:Conventions = "NUWG, _Coordinates" ;
+     *:GRIB_reference = "Office Note 388 GRIB" ;
+     *:GRIB_URL = "http://www.nco.ncep.noaa.gov/pmb/docs/on388/" ;
+     *:version = 1. ;
+     *:Metadata_Conventions = "Unidata Dataset Discovery v1.0" ;
+     *:summary = "NCEP SST Global 5.0 x 2.5 degree model data" ;
+     *:keywords = "EARTH SCIENCE > Oceans > Ocean Temperature > Sea Surface Temperature" ;
+     *:keywords_vocabulary = "GCMD Science Keywords" ;
+     *:id = "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc" ;
+     *:naming_authority = "edu.ucar.unidata" ;
+     *:cdm_data_type = "Grid" ;
+     *:date_created = "2005-09-22T00:00" ;
+     *:creator_name = "NOAA/NWS/NCEP" ;
+     *:creator_url = "" ;
+     *:creator_email = "" ;
+     *:geospatial_lat_min = "-90.0" ;
+     *:geospatial_lat_max = "90.0" ;
+     *:geospatial_lon_min = "-180.0" ;
+     *:geospatial_lon_max = "180.0" ;
+     *:geospatial_vertical_min = "0.0" ;
+     *:geospatial_vertical_max = "0.0" ;
+     *:time_coverage_start = "2005-09-22T00:00" ;
+     *:time_coverage_duration = "0.0" ;
+     *:license = "Freely available" ;</pre></blockquote>
+     *
+     * The Coordinate Reference System of this dataset is
+     * {@linkplain org.opengis.referencing.crs.CompoundCRS compound}
+     * ({@linkplain org.opengis.referencing.crs.GeographicCRS geographic} +
+     * ({@linkplain org.opengis.referencing.crs.TemporalCRS temporal}).
      * The values are <cite>Sea Surface Temperature</cite> (SST).
      *
-     * @see NetcdfMetadataTest#testGeographicWithTime()
+     * @see NetcdfMetadataTest#testNCEP()
+     * @see NetcdfCRSTest#testGeographicWithTime()
      */
-    public static final String GEOTIME_NC = "2005092200_sst_21-24.en.nc";
+    public static final String NCEP = "2005092200_sst_21-24.en.nc";
+
+    /**
+     * The {@value} test file (binary format). This is a freely available Landsat test file
+     * converted to NetCDF by GDAL. The main attributes are listed below:
+     *
+     * <blockquote><pre>char lambert_conformal_conic ;
+     *    lambert_conformal_conic:Northernmost_Northing = -4218968.14605944 ;
+     *    lambert_conformal_conic:Southernmost_Northing = -4221948.66130479 ;
+     *    lambert_conformal_conic:Easternmost_Easting = 1060889.92068945 ;
+     *    lambert_conformal_conic:Westernmost_Easting = 1054928.89019874 ;
+     *    lambert_conformal_conic:GeoTransform = "1054928.890198743 30.10621459950866 0 -4218968.146059438 0 -30.10621459950866 " ;
+     *    lambert_conformal_conic:grid_mapping_name = "lambert_conformal_conic" ;
+     *    lambert_conformal_conic:standard_parallel_1 = -18.f ;
+     *    lambert_conformal_conic:standard_parallel_2 = -36.f ;
+     *    lambert_conformal_conic:latitude_of_projection_origin = 0.f ;
+     *    lambert_conformal_conic:longitude_of_central_meridian = 134.f ;
+     *    lambert_conformal_conic:false_easting = 0.f ;
+     *    lambert_conformal_conic:false_northing = 0.f ;
+     *byte Band1(y, x) ;
+     *    Band1:grid_mapping = "lambert_conformal_conic" ;
+     *    Band1:long_name = "GDAL Band Number 1" ;
+     *
+     *:Conventions = "CF-1.0" ;
+     *:AREA_OR_POINT = "Area" ;</pre></blockquote>
+     *
+     * The Coordinate Reference System of this dataset is
+     * {@linkplain org.opengis.referencing.crs.ProjectedCRS projected}.
+     *
+     * @see NetcdfMetadataTest#testLandsat()
+     * @see NetcdfCRSTest#testProjected()
+     */
+    public static final String LANDSAT = "melb3112.nc";
 
     /**
      * For subclass constructors only.
@@ -83,14 +194,14 @@ public abstract strictfp class IOTestCase {
      *       defined by the implementor.</li>
      *   <li>If the above resource was not found, try to get the resource in the
      *       "{@code org.opengis.wrapper.netcdf}" package. This package contains the files
-     *       defined by the {@link #THREDDS} and {@link #GEOTIME_NC} constants.</li>
+     *       defined by the {@link #THREDDS} and {@link #NCEP} constants.</li>
      * </ul>
      * <p>
      * For example if an implementor extends this class in his "{@code com.mycompany}" package
      * and provides a {@value #THREDDS} file in that package, then his test file will have
      * precedence over the {@code geoapi-netcdf} build-in file.
      *
-     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #GEOTIME_NC} constants.
+     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
      * @return The NetCDF file.
      * @throws IOException If an error occurred while opening the file.
      */

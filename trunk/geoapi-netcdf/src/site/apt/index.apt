@@ -15,6 +15,10 @@ NetCDF bindings
 
        * Coordinate Operations as wrappers around the NetCDF <<<Projection>>> object.
 
+  Links to the source code are provided in the {{{./apidocs/index.html}javadoc}}. Implementations
+  derived from this module can also inherit the {{{./testapidocs/index.html}JUnit tests}}, since
+  they were designed in a reusable way.
+
 
 * Licensing
 
