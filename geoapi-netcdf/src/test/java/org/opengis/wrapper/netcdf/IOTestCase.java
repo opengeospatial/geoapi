@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.io.File;
 import java.io.InputStream;
 import java.io.IOException;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -98,7 +99,7 @@ public abstract strictfp class IOTestCase {
      * @see NetcdfMetadataTest#testThredds()
      * @see NetcdfCRSTest#testGeographic()
      */
-    public static final String THREDDS = "thredds.ncml";
+    public static final String THREDDS = "THREDDS.ncml";
 
     /**
      * The {@value} test file (binary format). This file was downloaded from the examples provided in the
@@ -145,7 +146,7 @@ public abstract strictfp class IOTestCase {
      * @see NetcdfMetadataTest#testNCEP()
      * @see NetcdfCRSTest#testGeographicWithTime()
      */
-    public static final String NCEP = "2005092200_sst_21-24.en.nc";
+    public static final String NCEP = "NCEP-SST.nc";
 
     /**
      * The {@value} test file (binary format). This is a freely available Landsat test file
@@ -177,7 +178,7 @@ public abstract strictfp class IOTestCase {
      * @see NetcdfMetadataTest#testLandsat()
      * @see NetcdfCRSTest#testProjected()
      */
-    public static final String LANDSAT = "melb3112.nc";
+    public static final String LANDSAT = "Landsat-GDAL.nc";
 
     /**
      * For subclass constructors only.
@@ -194,12 +195,15 @@ public abstract strictfp class IOTestCase {
      *       defined by the implementor.</li>
      *   <li>If the above resource was not found, try to get the resource in the
      *       "{@code org.opengis.wrapper.netcdf}" package. This package contains the files
-     *       defined by the {@link #THREDDS} and {@link #NCEP} constants.</li>
+     *       defined by the {@link #THREDDS}, {@link #NCEP} and other constants.</li>
+     *   <li>If the above resource was not found and the given file is {@linkplain File#isAbsolute()
+     *       absolute}, try to open that file directly. This case should be used only for temporary
+     *       testing purpose.</li>
      * </ul>
      * <p>
      * For example if an implementor extends this class in his "{@code com.mycompany}" package
      * and provides a {@value #THREDDS} file in that package, then his test file will have
-     * precedence over the {@code geoapi-netcdf} build-in file.
+     * precedence over the {@code geoapi-netcdf} build-in test file.
      *
      * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
      * @return The NetCDF file.
@@ -211,7 +215,12 @@ public abstract strictfp class IOTestCase {
             if (in == null) {
                 in = IOTestCase.class.getResourceAsStream(file);
                 if (in == null) {
-                    throw new FileNotFoundException(file);
+                    final File f = new File(file);
+                    if (f.isAbsolute() && f.isFile()) {
+                        in = new FileInputStream(f);
+                    } else {
+                        throw new FileNotFoundException(file);
+                    }
                 }
             }
             try {
@@ -227,7 +236,12 @@ public abstract strictfp class IOTestCase {
                 loader = IOTestCase.class;
                 url = loader.getResource(file);
                 if (url == null) {
-                    throw new FileNotFoundException(file);
+                    final File f = new File(file);
+                    if (f.isAbsolute() && f.isFile()) {
+                        return NetcdfFile.open(f.getPath());
+                    } else {
+                        throw new FileNotFoundException(file);
+                    }
                 }
             }
             if (url.getProtocol().equals("file")) try {
