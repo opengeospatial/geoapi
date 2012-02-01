@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="LocalName", specification=ISO_19103)
 public interface LocalName extends GenericName {
     /**
-     * Returns the depth, which is always 1 for a local name.
+     * Returns the number of levels specified by this name, which is always 1 for a local name.
      */
     @Override
     int depth();

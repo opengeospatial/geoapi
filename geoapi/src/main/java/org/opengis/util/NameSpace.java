@@ -44,14 +44,15 @@ import static org.opengis.annotation.Specification.*;
  * that the name must exist in the current namespace. For a {@link ScopedName}, this means:
  * <p>
  * <ol>
- *   <li>The {@linkplain ScopedName#head head} of a {@code ScopedName} must be a {@code LocalName}
+ *   <li>The {@linkplain ScopedName#head() head} of a {@code ScopedName} must be a {@code LocalName}
  *       which is valid in this namespace.</li>
- *   <li>The {@linkplain ScopedName#tail tail} must either be:
+ *   <li>The {@linkplain ScopedName#tail() tail} must either be:
  *       <ul>
  *         <li>a {@code LocalName} which is valid in the {@code NameSpace} associated with the head, or</li>
  *         <li>another {@code ScopedName} with these same constraints on head and tail, applied to
  *             the {@code NameSpace} associated with the head.</li>
- *       </ul></li>
+ *       </ul>
+ *   </li>
  * </ol>
  *
  * @author  Bryce Nordgren (USDA)
@@ -77,10 +78,14 @@ public interface NameSpace {
     boolean isGlobal();
 
     /**
-     * Represents the identifier of this namespace. If the {@linkplain #isGlobal global} attribute is
-     * {@code true}, indicating that this is a top level {@code NameSpace}, then the name shall be a
-     * {@linkplain LocalName local name}. If {@code false}, name shall be a fully-qualified name where
-     * <code>name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal} == true</code>.
+     * Represents the identifier of this namespace. If the {@linkplain #isGlobal() global} attribute
+     * is {@code true}, indicating that this is a top level {@code NameSpace}, then the name shall
+     * be a {@linkplain LocalName local name}. If {@code false}, name shall be a fully-qualified
+     * name where:
+     *
+     * <blockquote><code>
+     * name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal()} == true
+     * </code></blockquote>
      *
      * @return The identifier of this namespace.
      */

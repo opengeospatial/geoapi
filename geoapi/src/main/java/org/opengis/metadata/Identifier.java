@@ -77,7 +77,7 @@ public interface Identifier {
 
     /**
      * Organization or party responsible for definition and maintenance of the
-     * {@linkplain #getCode code}.
+     * {@linkplain #getCode() code}.
      *
      * @return Party responsible for definition and maintenance of the code.
      */
