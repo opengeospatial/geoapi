@@ -39,10 +39,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A composite of a {@linkplain LocalName local name} (as {@linkplain #head head}) for locating
+ * A composite of a {@linkplain LocalName local name} (as {@linkplain #head() head}) for locating
  * another {@linkplain NameSpace name space}, and a {@linkplain GenericName generic name} (as
- * {@linkplain #tail tail}) valid in that name space. This definition allows for iteration. The
- * {@linkplain #tail tail} may be either a {@linkplain LocalName local name} or a scoped name.
+ * {@linkplain #tail() tail}) valid in that name space. This definition allows for iteration. The
+ * {@linkplain #tail() tail} may be either a {@linkplain LocalName local name} or a scoped name.
  * If it is a scoped name, then another another step towards a remote {@linkplain LocalName local
  * name} is taken. In this way, a scoped name may represent an arbitrarily distant
  * {@linkplain LocalName local name} simply by the number of times the {@link #tail()} method
@@ -81,16 +81,16 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {
     /**
-     * Returns the first element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * Returns the first element in the sequence of {@linkplain #getParsedNames() parsed names}.
      * The head element must exists in the same {@linkplain NameSpace name space} than this
      * scoped name. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>head().scope() {@linkplain Object#equals equals}
-     *       this.{@linkplain #scope scope()}</code></li>
+     *   <li><code>head().scope()</code> {@linkplain Object#equals(Object) equals}
+     *       <code>this.{@linkplain #scope() scope()}</code></li>
      * </ul>
      * <p>
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get Name.get}(0)</code>
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
      * from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
@@ -106,12 +106,12 @@ public interface ScopedName extends GenericName {
     LocalName head();
 
     /**
-     * Returns every elements of the {@linkplain #getParsedNames parsed names list} except for
-     * the {@linkplain #head head}. In other words, the following relationship must holds:
+     * Returns every elements of the {@linkplain #getParsedNames() parsed names list} except for
+     * the {@linkplain #head() head}. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>tail().getParsedNames() {@linkplain List#equals equals}
-     *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,
+     *   <li><code>tail().getParsedNames()</code> {@linkplain List#equals(Object) equals}
+     *   <code>this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,
      *   {@linkplain #depth depth})</code></li>
      * </ul>
      * <p>
@@ -127,13 +127,13 @@ public interface ScopedName extends GenericName {
     GenericName tail();
 
     /**
-     * Returns every elements of the {@linkplain #getParsedNames parsed names list} except for
-     * the {@linkplain #tip tip}. In other words, the following relationship must holds:
+     * Returns every elements of the {@linkplain #getParsedNames() parsed names list} except for
+     * the {@linkplain #tip() tip}. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>tip().getParsedNames() {@linkplain List#equals equals}
-     *   this.{@linkplain #getParsedNames getParsedNames()}.sublist(0,
-     *   {@linkplain #depth depth}-1)</code></li>
+     *   <li><code>tip().getParsedNames()</code> {@linkplain List#equals(Object) equals(Object)}
+     *   <code>this.{@linkplain #getParsedNames() getParsedNames()}.sublist(0,
+     *   {@linkplain #depth() depth}-1)</code></li>
      * </ul>
      * <p>
      * This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
@@ -151,12 +151,12 @@ public interface ScopedName extends GenericName {
     GenericName path();
 
     /**
-     * Returns the last element in the sequence of {@linkplain #getParsedNames parsed names}.
+     * Returns the last element in the sequence of {@linkplain #getParsedNames() parsed names}.
      * <p>
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
      * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
-     * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
+     * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @since 2.1
      */
@@ -165,7 +165,7 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns a locale-independent string representation of this scoped name.
-     * This method encapsulates the domain logic which formats the {@linkplain #getParsedNames
+     * This method encapsulates the domain logic which formats the {@linkplain #getParsedNames()
      * parsed names} into a legal string representation of the name. There will be variants on
      * this theme. XML aficionados may require URIs. For Java classes, a dotted notation is more
      * appropriate, for C/C++, a double-colon, for directories, a forward or reverse slash,
