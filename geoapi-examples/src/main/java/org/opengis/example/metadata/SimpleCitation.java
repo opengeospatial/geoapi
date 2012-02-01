@@ -42,8 +42,18 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
     private static final long serialVersionUID = 5270363538303937381L;
 
     /**
-     * The <cite>European Petroleum Survey Group</cite> authority. This authority provides
-     * many CRS definitions.
+     * The <cite>Open Geospatial Consortium</cite> authority.
+     *
+     * @see org.opengis.util.Factory#getVendor()
+     */
+    public static final SimpleCitation OGC = new SimpleCitation("OGC");
+
+    /**
+     * The <cite>European Petroleum Survey Group</cite> authority.
+     * This authority provides many CRS definitions.
+     *
+     * @see Identifier#getAuthority()
+     * @see org.opengis.referencing.AuthorityFactory#getAuthority()
      */
     public static final SimpleCitation EPSG = new SimpleCitation("EPSG");
 
