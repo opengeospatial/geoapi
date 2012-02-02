@@ -135,7 +135,7 @@ public interface NameFactory extends Factory {
      * but not necessarily) for the unlocalized string to be returned by {@link LocalName#toString()}.
      *
      * @param scope
-     *          The {@linkplain GenericName#scope scope} of the local name to be created,
+     *          The {@linkplain GenericName#scope() scope} of the local name to be created,
      *          or {@code null} for a global namespace.
      * @param name
      *          The local name as a string or an international string.
@@ -156,7 +156,7 @@ public interface NameFactory extends Factory {
      * {@link ScopedName}.
      *
      * @param scope
-     *          The {@linkplain GenericName#scope scope} of the generic name to be created,
+     *          The {@linkplain GenericName#scope() scope} of the generic name to be created,
      *          or {@code null} for a global namespace.
      * @param parsedNames
      *          The local names as an array of strings or international strings.
@@ -180,7 +180,7 @@ public interface NameFactory extends Factory {
      * {@code "4326"}).
      *
      * @param scope
-     *          The {@linkplain GenericName#scope scope} of the generic name to
+     *          The {@linkplain GenericName#scope() scope} of the generic name to
      *          be created, or {@code null} for a global namespace.
      * @param name
      *          The qualified name, as a sequence of names separated by a scope-dependent separator.
