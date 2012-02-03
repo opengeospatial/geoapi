@@ -86,7 +86,8 @@ public interface ScopedName extends GenericName {
      * scoped name. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>head().scope()</code> {@linkplain Object#equals(Object) equals}
+     *   <li><code>head().scope()</code>
+     *       &nbsp;&nbsp; {@linkplain Object#equals(Object) equals} &nbsp;&nbsp;
      *       <code>this.{@linkplain #scope() scope()}</code></li>
      * </ul>
      * <p>
@@ -110,9 +111,9 @@ public interface ScopedName extends GenericName {
      * the {@linkplain #head() head}. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>tail().getParsedNames()</code> {@linkplain List#equals(Object) equals}
-     *   <code>this.{@linkplain #getParsedNames getParsedNames()}.sublist(1,
-     *   {@linkplain #depth depth})</code></li>
+     *   <li><code>tail().getParsedNames()</code>
+     *   &nbsp;&nbsp; {@linkplain List#equals(Object) equals} &nbsp;&nbsp;
+     *   <code>this.{@linkplain #getParsedNames getParsedNames()}.sublist(1, {@linkplain #depth depth})</code></li>
      * </ul>
      * <p>
      * This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
@@ -131,9 +132,9 @@ public interface ScopedName extends GenericName {
      * the {@linkplain #tip() tip}. In other words, the following relationship must holds:
      * <p>
      * <ul>
-     *   <li><code>tip().getParsedNames()</code> {@linkplain List#equals(Object) equals(Object)}
-     *   <code>this.{@linkplain #getParsedNames() getParsedNames()}.sublist(0,
-     *   {@linkplain #depth() depth}-1)</code></li>
+     *   <li><code>tip().getParsedNames()</code>
+     *   &nbsp;&nbsp; {@linkplain List#equals(Object) equals} &nbsp;&nbsp;
+     *   <code>this.{@linkplain #getParsedNames() getParsedNames()}.sublist(0, {@linkplain #depth() depth}-1)</code></li>
      * </ul>
      * <p>
      * This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)

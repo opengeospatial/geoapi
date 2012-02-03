@@ -182,8 +182,8 @@ public interface GenericName extends Comparable<GenericName> {
      * any {@link LocalName}, it is always one. For a {@link ScopedName} it is some number greater than or
      * equal to 2.
      * <p>
-     * This method is similar in purpose to {@link javax.naming.Name#size()}
-     * from the <cite>Java Naming and Directory Interface</cite>.
+     * This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
+     * method from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall return
@@ -202,8 +202,8 @@ public interface GenericName extends Comparable<GenericName> {
      * The length of this sequence is the {@linkplain #depth() depth}. It does not include
      * the {@linkplain #scope() scope}.
      * <p>
-     * This method is similar in purpose to {@link javax.naming.Name#getAll()}
-     * from the <cite>Java Naming and Directory Interface</cite>.
+     * This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
+     * method from the <cite>Java Naming and Directory Interface</cite>.
      * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns a
@@ -269,7 +269,7 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>
      * <b>Example</b>:
      * If {@code this} name is {@code "util.Record"} ({@linkplain #depth() depth} of two) and its
-     * {@linkplain #scope() scope} has the {@linkplain NameSpace#name() name} {@code "org.opengis"},
+     * {@linkplain #scope() scope} has the {@code "org.opengis"} {@linkplain NameSpace#name() name},
      * then the fully qualified name shall be {@code "org.opengis.util.Record"}.
      *
      * @return The fully-qualified name (never {@code null}).
@@ -290,16 +290,16 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>
      * <ul>
      *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain #head()}</code>
-     *       {@linkplain Object#equals equals} <var>foo</var></li>
+     *       &nbsp;&nbsp; {@linkplain Object#equals equals} &nbsp;&nbsp; <var>foo</var></li>
      *
      *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain ScopedName#tail() tail()}</code>
-     *       {@linkplain Object#equals equals} <var>this</var></li>
+     *       &nbsp;&nbsp; {@linkplain Object#equals equals} &nbsp;&nbsp; <var>this</var></li>
      *
      *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #scope()}</code>
-     *       {@linkplain Object#equals equals} <var>foo</var>.{@link #scope()}</li>
+     *       &nbsp;&nbsp; {@linkplain Object#equals equals} &nbsp;&nbsp; <var>foo</var>.{@link #scope()}</li>
      *
      *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #getParsedNames()}</code>
-     *       {@linkplain List#equals equals} <var>foo</var>.<code>getParsedNames().{@linkplain
+     *       &nbsp;&nbsp; {@linkplain List#equals equals} &nbsp;&nbsp; <var>foo</var>.<code>getParsedNames().{@linkplain
      *       List#addAll addAll}(</code><var>this</var>.<code>getParsedNames())</code></li>
      * </ul>
      * <p>

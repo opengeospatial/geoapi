@@ -13,12 +13,11 @@ import javax.naming.CompoundName;
 import javax.naming.InvalidNameException;
 
 import org.opengis.util.NameSpace;
-import org.opengis.util.LocalName;
 import org.opengis.util.GenericName;
 
 
 /**
- * A simple {@link NameSpace}.
+ * A {@link NameSpace} defining the scope of {@link SimpleName} instances.
  *
  * @author Martin Desruisseaux
  */
@@ -27,6 +26,11 @@ public class SimpleNameSpace implements NameSpace, Serializable {
      * For cross-version compatibility.
      */
     private static final long serialVersionUID = -8425839143904105087L;
+
+    /**
+     * The root namespace.
+     */
+    static final SimpleNameSpace ROOT = new SimpleNameSpace();
 
     /**
      * The factory to use for creating name instances in this namespace.
@@ -39,23 +43,25 @@ public class SimpleNameSpace implements NameSpace, Serializable {
     final SimpleName name;
 
     /**
+     * Creates the {@link #ROOT} namespace with an empty name.
+     */
+    @SuppressWarnings("serial")
+    private SimpleNameSpace() {
+        factory = SimpleNameFactory.DEFAULT;
+        try {
+            name = new SimpleName.Local(new CompoundName("", factory.syntax));
+        } catch (InvalidNameException e) {
+            throw new AssertionError(e); // Should never happen.
+        }
+    }
+
+    /**
      * Creates a new instance for name and using the given factory.
      * This constructor is package-private in order to prevent improper values.
      */
     SimpleNameSpace(final SimpleNameFactory factory, final SimpleName name) {
         this.factory = factory;
         this.name    = name;
-    }
-
-    /**
-     * Creates a new instance for the given name and
-     * {@linkplain SimpleNameFactory#syntax default JNDI syntax}.
-     *
-     * @param  name The identifier of this namespace.
-     * @throws InvalidNameException If the given name violates the JNDI syntax.
-     */
-    public SimpleNameSpace(final String name) throws InvalidNameException {
-        this(null, name);
     }
 
     /**
@@ -68,26 +74,38 @@ public class SimpleNameSpace implements NameSpace, Serializable {
      * @throws InvalidNameException If the given name violates the JNDI
      *         {@linkplain SimpleNameFactory#syntax syntax}.
      */
-    public SimpleNameSpace(SimpleNameSpace parent, final String name) throws InvalidNameException {
+    public SimpleNameSpace(final SimpleNameSpace parent, final String name) throws InvalidNameException {
         Objects.requireNonNull(name, "A name shall be specified.");
-        Name jndi;
-        int p;
+        final Name jndi;
         if (parent == null) {
-            p = 0;
             factory = SimpleNameFactory.DEFAULT;
             jndi = new CompoundName(name, factory.syntax);
         } else {
             factory = parent.factory;
-            jndi = parent.name.jndiName();
-            p = jndi.size();
-            jndi = jndi.addAll(new CompoundName(name, factory.syntax));
+            jndi = new CompoundName(name, factory.syntax).addAll(0, parent.name.name);
         }
-        final int n = jndi.size() - 1;
-        while (p < n) {
-            parent = new SimpleNameSpace(factory, SimpleName.create(parent, jndi.getPrefix(p)));
-            p++;
+        this.name = SimpleName.create(null, jndi);
+    }
+
+    /**
+     * Creates a new instance for the given parent namespace and name. The new instance will share
+     * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
+     * which case the {@linkplain SimpleNameFactory#DEFAULT default factory} will be used.
+     *
+     * @param  parent The parent of the new namespace, or {@code null} if none.
+     * @param  name The identifier of this namespace.
+     * @throws InvalidNameException If the given name violates the JNDI
+     *         {@linkplain SimpleNameFactory#syntax syntax}.
+     */
+    public SimpleNameSpace(final SimpleNameSpace parent, Name name) throws InvalidNameException {
+        Objects.requireNonNull(name, "A name shall be specified.");
+        if (parent == null) {
+            factory = SimpleNameFactory.DEFAULT;
+        } else {
+            factory = parent.factory;
+            name = parent.name.jndiName().addAll(name);
         }
-        this.name = SimpleName.create(parent, jndi);
+        this.name = SimpleName.create(null, name);
     }
 
     /**
@@ -99,20 +117,24 @@ public class SimpleNameSpace implements NameSpace, Serializable {
     }
 
     /**
-     * Indicates whether this namespace is a "top level" namespace. Global, or top-level
-     * namespaces are not contained within another namespace.
+     * Indicates whether this namespace is a "top level" namespace.  Global, or top-level
+     * namespaces are not contained within another namespace. The global namespace has no
+     * parent.
      *
      * @return {@code true} if this namespace has no parent.
      */
     @Override
     public boolean isGlobal() {
-        return (name instanceof LocalName);
+        return name.depth() == 0;
     }
 
     /**
-     * Returns the identifier of this namespace. If the {@linkplain #isGlobal() global} attribute is
-     * {@code true}, indicating that this is a top level {@code NameSpace}, then the name shall be a
-     * {@linkplain LocalName local name}.
+     * Represents the identifier of this namespace. Namespace identifiers shall be
+     * {@linkplain GenericName#toFullyQualifiedName() fully-qualified names} where:
+     *
+     * <blockquote><code>
+     * name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal()} == true
+     * </code></blockquote>
      *
      * @return The identifier of this namespace.
      */

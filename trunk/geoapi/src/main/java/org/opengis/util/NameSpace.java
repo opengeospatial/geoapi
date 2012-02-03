@@ -68,20 +68,17 @@ import static org.opengis.annotation.Specification.*;
 public interface NameSpace {
     /**
      * Indicates whether this namespace is a "top level" namespace.  Global, or top-level
-     * namespaces are not contained within another namespace.  There is no namespace called
-     * "global" or "root" which contains all of the top-level namespaces.  Hence, this flag
-     * indicates whether the namespace has a parent.
+     * namespaces are not contained within another namespace. The global namespace has no
+     * parent.
      *
-     * @return {@code true} if this namespace has no parent.
+     * @return {@code true} if this namespace is the global namespace.
      */
     @UML(identifier="isGlobal", obligation=MANDATORY, specification=ISO_19103)
     boolean isGlobal();
 
     /**
-     * Represents the identifier of this namespace. If the {@linkplain #isGlobal() global} attribute
-     * is {@code true}, indicating that this is a top level {@code NameSpace}, then the name shall
-     * be a {@linkplain LocalName local name}. If {@code false}, name shall be a fully-qualified
-     * name where:
+     * Represents the identifier of this namespace. Namespace identifiers shall be
+     * {@linkplain GenericName#toFullyQualifiedName() fully-qualified names} where:
      *
      * <blockquote><code>
      * name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal()} == true
