@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.opengis.test.util.NameTest;
 
-import static org.junit.Assert.*;
-
 
 /**
  * Tests the {@link SimpleName} implementations.
@@ -34,24 +32,6 @@ public strictfp class SimpleNameTest extends NameTest {
     @Test
     @Override
     public void testInternationalString() {
-        // TODO
-    }
-
-    @Test
-    @Override
-    public void testLocalName() {
-        // TODO
-    }
-
-    @Test
-    @Override
-    public void testScopedName() {
-        // TODO
-    }
-
-    @Test
-    @Override
-    public void testParsedURN() {
         // TODO
     }
 

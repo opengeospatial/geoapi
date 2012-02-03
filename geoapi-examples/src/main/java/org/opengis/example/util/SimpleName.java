@@ -64,7 +64,7 @@ public class SimpleName implements GenericName, Serializable {
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local.
+         * @param  scope The scope (name space) in which the given name is local, or {@code null}.
          * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
          * @throws IllegalArgumentException If the given name does not have exactly 1 component.
          */
@@ -97,7 +97,7 @@ public class SimpleName implements GenericName, Serializable {
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local.
+         * @param  scope The scope (name space) in which the given name is local, or {@code null}.
          * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
          * @param  attributeType The type of the data associated with the record member.
          * @throws IllegalArgumentException If the given name does not have exactly 1 component.
@@ -143,6 +143,20 @@ public class SimpleName implements GenericName, Serializable {
         private static final long serialVersionUID = 7289656986139657450L;
 
         /**
+         * Creates a new instance without namespace. This constructor shall be used only for the
+         * creation of the root {@link NameSpace}.
+         *
+         * @param  name An {@linkplain Name#isEmpty() empty} JNDI name (<strong>not</strong> cloned).
+         * @throws IllegalArgumentException If the given name is not empty.
+         */
+        Local(final Name name) throws IllegalArgumentException {
+            super(null, name);
+            if (!name.isEmpty()) {
+                throw new IllegalArgumentException(name.toString());
+            }
+        }
+
+        /**
          * Creates a new instance backed by the given JNDI name. This constructor does not clone the
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
@@ -153,18 +167,9 @@ public class SimpleName implements GenericName, Serializable {
          */
         public Local(final SimpleNameSpace scope, final Name name) throws IllegalArgumentException {
             super(scope, name);
-            if (!isValid()) {
+            if (super.depth() != 1) {
                 throw new IllegalArgumentException("Local name shall have exactly 1 component.");
             }
-        }
-
-        /**
-         * Returns {@code true} if this local name is valid. This method should never returns
-         * {@code false} after construction unless the user has modified the {@link #name}.
-         * In such case, we will fail back on the super-class implementation as a safety.
-         */
-        private boolean isValid() {
-            return depth() == 1;
         }
 
         /**
@@ -174,7 +179,11 @@ public class SimpleName implements GenericName, Serializable {
          */
         @Override
         public List<LocalName> getParsedNames() {
-            return isValid() ? Collections.<LocalName>singletonList(this) : super.getParsedNames();
+            switch (super.depth()) {
+                case 0:  return Collections.emptyList(); // Only for the root namespace.
+                case 1:  return Collections.<LocalName>singletonList(this);
+                default: return super.getParsedNames();
+            }
         }
 
         /**
@@ -182,7 +191,11 @@ public class SimpleName implements GenericName, Serializable {
          */
         @Override
         public LocalName head() {
-            return isValid() ? this : super.head();
+            switch (super.depth()) {
+                case 0:  return null;         // Only for the root namespace; prevent never-ending loop.
+                case 1:  return this;         // The normal case, which should always be selected.
+                default: return super.head(); // Only if user modified the JNDI Name.
+            }
         }
 
         /**
@@ -190,7 +203,11 @@ public class SimpleName implements GenericName, Serializable {
          */
         @Override
         public LocalName tip() {
-            return isValid() ? this : super.tip();
+            switch (super.depth()) {
+                case 0:  return null;         // Only for the root namespace; prevent never-ending loop.
+                case 1:  return this;         // The normal case, which should always be selected.
+                default: return super.tip();  // Only if user modified the JNDI Name.
+            }
         }
     }
 
@@ -211,7 +228,7 @@ public class SimpleName implements GenericName, Serializable {
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local.
+         * @param  scope The scope (name space) in which the given name is local, or {@code null}.
          * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
          * @throws IllegalArgumentException If the given name has less than 2 components.
          */
@@ -231,7 +248,11 @@ public class SimpleName implements GenericName, Serializable {
          */
         @Override
         public GenericName tail() {
-            return create(scope, name.getSuffix(1));
+            try {
+                return create(new SimpleNameSpace(scope, name.get(0)), name.getSuffix(1));
+            } catch (InvalidNameException e) {
+                throw new IllegalStateException(e);
+            }
         }
 
         /**
@@ -251,7 +272,7 @@ public class SimpleName implements GenericName, Serializable {
      * The scope (name space) in which this name is local. The scope is set on creation
      * and is not modifiable. The scope of a name determines where a name starts.
      * <p>
-     * This field shall not be null, except if this instance is the name of a global namespace.
+     * This field shall not be null, except for the global namespace.
      *
      * @see #scope()
      */
@@ -271,13 +292,12 @@ public class SimpleName implements GenericName, Serializable {
      * given JNDI name. While this implementation is robust to change in the wrapped object, it is
      * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
      *
-     * @param scope The scope (name space) in which the given name is local.
+     * @param scope The scope (name space) in which the given name is local, or {@code null}.
      * @param name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
      */
     protected SimpleName(final SimpleNameSpace scope, final Name name) {
-        Objects.requireNonNull(scope, "The scope is mandatory.");
-        Objects.requireNonNull(name,  "A JNDI name must be provided.");
-        this.scope = scope;
+        Objects.requireNonNull(name, "A JNDI name must be provided.");
+        this.scope = (scope != SimpleNameSpace.ROOT) ? scope : null;
         this.name  = name;
     }
 
@@ -306,10 +326,11 @@ public class SimpleName implements GenericName, Serializable {
     }
 
     /**
-     * Returns the factory to use for creating new name instances.
+     * Returns the given scope, or the {@link SimpleNameSpace#ROOT root} namespace
+     * if the given argument is null.
      */
-    private SimpleNameFactory factory() {
-        return (scope != null) ? scope.factory : SimpleNameFactory.DEFAULT;
+    private static SimpleNameSpace nonNull(final SimpleNameSpace scope) {
+        return (scope != null) ? scope : SimpleNameSpace.ROOT;
     }
 
     /**
@@ -327,10 +348,7 @@ public class SimpleName implements GenericName, Serializable {
      */
     @Override
     public NameSpace scope() {
-        if (scope == null) {
-            throw new UnsupportedOperationException("Global namespace can not have scope.");
-        }
-        return scope;
+        return nonNull(scope);
     }
 
     /**
@@ -357,7 +375,7 @@ public class SimpleName implements GenericName, Serializable {
         final List<LocalName> names = new ArrayList<LocalName>(name.size());
         final Enumeration<String> it = name.getAll();
         if (it.hasMoreElements()) try {
-            final SimpleNameFactory factory = factory();
+            final SimpleNameFactory factory = nonNull(parent).factory;
             while (true) {
                 final String n = it.nextElement();
                 names.add(factory.createLocalName(parent, n));
@@ -379,7 +397,7 @@ public class SimpleName implements GenericName, Serializable {
      */
     @Override
     public LocalName head() {
-        return factory().createLocalName(scope, name.get(0));
+        return nonNull(scope).factory.createLocalName(scope, name.get(0));
     }
 
     /**
@@ -389,13 +407,14 @@ public class SimpleName implements GenericName, Serializable {
      */
     @Override
     public LocalName tip() {
-        final SimpleNameFactory factory = factory();
-        SimpleNameSpace parent = scope;
         final int n = name.size() - 1;
-        for (int p=parent.name.name.size(); p<n; p++) {
-            parent = new SimpleNameSpace(factory, create(parent, name.getPrefix(p)));
+        final SimpleNameSpace parent;
+        try {
+            parent = new SimpleNameSpace(scope, name.getPrefix(n));
+        } catch (InvalidNameException e) {
+            throw new IllegalStateException(e);
         }
-        return factory.createLocalName(scope, name.get(n));
+        return nonNull(scope).factory.createLocalName(parent, name.get(n));
     }
 
     /**

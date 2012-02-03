@@ -26,7 +26,7 @@ import org.opengis.example.metadata.SimpleCitation;
 
 
 /**
- * A simple {@link NameFactory} for creating {@link SimpleName} instances.
+ * A {@link NameFactory} for creating {@link SimpleName} instances.
  *
  * @author Martin Desruisseaux
  */
