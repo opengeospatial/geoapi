@@ -41,6 +41,8 @@ import java.io.Serializable;
 
 import org.opengis.util.Factory;
 import org.opengis.util.CodeList;
+import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.cs.CSFactory;
@@ -233,6 +235,29 @@ public class Configuration implements Serializable {
         private static final List<Key<?>> VALUES = new ArrayList<Key<?>>(32);
 
         /**
+         * Whatever the {@link InternationalString} instances can support more than one
+         * {@linkplain java.util.Locale locale}. If {@code false}, then the factory method
+         * may retain only one locale among the set of user-provided localized strings.
+         *
+         * @see org.opengis.test.util.NameTest#isMultiLocaleSupported
+         */
+        public static final Key<Boolean> isMultiLocaleSupported =
+                new Key<Boolean>(Boolean.class, "isMultiLocaleSupported");
+
+        /**
+         * Whatever the {@link GenericName} instances can apply different syntax rules in different
+         * parts of their name. If {@code true}, then URI using different separators in different
+         * parts of their name (e.g. {@code ":"}, {@code "."}, {@code "/"} and {@code "#"}
+         * in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are supported.
+         * If {@code false}, then only a single rule can be applied to the name as a whole
+         * (e.g. only the {@code ":"} separator is used in {@code "urn:ogc:def:crs:epsg:4326"}).
+         *
+         * @see org.opengis.test.util.NameTest#isMixedNameSyntaxSupported
+         */
+        public static final Key<Boolean> isMixedNameSyntaxSupported =
+                new Key<Boolean>(Boolean.class, "isMixedNameSyntaxSupported");
+
+        /**
          * Whatever the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
          *
@@ -350,7 +375,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isAxisSwappingSupported");
 
         /**
-         * Whatever the tolerance threshold of a {@link org.opengis.test.referencing.TransformTestCase
+         * Whatever the tolerance threshold of a {@linkplain org.opengis.test.referencing.TransformTestCase
          * transform test case} has been relaxed. This information is determined after test execution.
          */
         public static final Key<Boolean> isToleranceRelaxed =

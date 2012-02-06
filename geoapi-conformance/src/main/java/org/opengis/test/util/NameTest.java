@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
 
 import org.opengis.util.*;
 import org.opengis.test.TestCase;
+import org.opengis.test.Configuration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -85,6 +86,24 @@ public strictfp class NameTest extends TestCase {
     protected final NameFactory factory;
 
     /**
+     * {@code true} if the {@link InternationalString} implementations created by the
+     * {@linkplain #factory} can support more than one {@linkplain Locale locale}. If
+     * {@code false}, then the factory method may retain only one locale among the set
+     * of user-provided localized strings.
+     */
+    protected boolean isMultiLocaleSupported;
+
+    /**
+     * {@code true} if the {@link GenericName} implementations created by the {@linkplain #factory}
+     * can use different syntax rules in different part of their name. If {@code true}, then URI
+     * using different separators in different parts of their name (e.g. {@code ":"}, {@code "."},
+     * {@code "/"} and {@code "#"} in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are
+     * supported. If {@code false}, then only a single rule can be applied to the name as a whole
+     * (e.g. only the {@code ":"} separator is used in {@code "urn:ogc:def:crs:epsg:4326"}).
+     */
+    protected boolean isMixedNameSyntaxSupported;
+
+    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -109,6 +128,31 @@ public strictfp class NameTest extends TestCase {
      */
     public NameTest(final NameFactory factory) {
         this.factory = factory;
+        @SuppressWarnings("unchecked")
+        final boolean[] isEnabled = getEnabledFlags(new Factory[] {factory},
+                Configuration.Key.isMultiLocaleSupported,
+                Configuration.Key.isMixedNameSyntaxSupported);
+        isMultiLocaleSupported     = isEnabled[0];
+        isMixedNameSyntaxSupported = isEnabled[1];
+    }
+
+    /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     * <p>
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@link #isMultiLocaleSupported}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     */
+    @Override
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.isMultiLocaleSupported, isMultiLocaleSupported));
+        return op;
     }
 
     /**
@@ -152,9 +196,11 @@ public strictfp class NameTest extends TestCase {
         names.put(Locale.FRENCH,  "Mes documents");
         InternationalString localized = factory.createInternationalString(names);
         validate(localized);
-        for (final Map.Entry<Locale,String> entry : names.entrySet()) {
-            assertEquals("toString(Locale) should returns the value given to the factory method.",
-                    entry.getValue(), localized.toString(entry.getKey()));
+        if (isMultiLocaleSupported) {
+            for (final Map.Entry<Locale,String> entry : names.entrySet()) {
+                assertEquals("toString(Locale) should returns the value given to the factory method.",
+                        entry.getValue(), localized.toString(entry.getKey()));
+            }
         }
         assertContains("toString() should returns one of the values given to the factory method.",
                 names.values(), localized.toString());
@@ -260,14 +306,18 @@ public strictfp class NameTest extends TestCase {
      *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
      *   <li>{@link NameFactory#parseGenericName(NameSpace, CharSequence)}</li>
      * </ul>
+     * <p>
+     * This tests is executed only if {@link #isMixedNameSyntaxSupported} is {@code true}.
      */
     @Test
     public void testParsedHTTP() {
         assumeNotNull(factory);
+        assumeTrue(isMixedNameSyntaxSupported);
         GenericName name = factory.createLocalName(null, "http");
         assertEquals(1, name.depth());
         assertEquals("http", name.head().toString());
         assertEquals("http", name.tip().toString());
+        assertEquals("http", name.toString());
         NameSpace ns = createNameSpace(name, "://", ".");
         validate(ns);
 
@@ -275,6 +325,7 @@ public strictfp class NameTest extends TestCase {
         assertEquals(3, name.depth());
         assertEquals("www", name.head().toString());
         assertEquals("net", name.tip().toString());
+        assertEquals("www.opengis.net", name.toString());
         ns = createNameSpace(name, "/", "/");
         validate(ns);
 
@@ -282,6 +333,7 @@ public strictfp class NameTest extends TestCase {
         assertEquals(3, name.depth());
         assertEquals("gml", name.head().toString());
         assertEquals("epsg.xml", name.tip().toString());
+        assertEquals("gml/srs/epsg.xml", name.toString());
         ns = createNameSpace(name, "#", ":");
         validate(ns);
 
@@ -289,6 +341,7 @@ public strictfp class NameTest extends TestCase {
         assertEquals(1, name.depth());
         assertEquals("4326", name.head().toString());
         assertEquals("4326", name.tip().toString());
+        assertEquals("4326", name.toString());
         validate(name);
 
         assertEquals("4326", name.toString());
