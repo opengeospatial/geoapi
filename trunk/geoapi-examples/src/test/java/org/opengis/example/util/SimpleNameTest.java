@@ -7,7 +7,6 @@
  */
 package org.opengis.example.util;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.opengis.test.util.NameTest;
@@ -15,6 +14,9 @@ import org.opengis.test.util.NameTest;
 
 /**
  * Tests the {@link SimpleName} implementations.
+ * This class inherits its the tests from the {@code geoapi-conformance} module.
+ * It somewhat duplicates the work performed by {@link org.opengis.example.ConformanceTest},
+ * but provides an easier entry point for debugging.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -27,17 +29,7 @@ public strictfp class SimpleNameTest extends NameTest {
      */
     public SimpleNameTest() {
         super(SimpleNameFactory.DEFAULT);
-    }
-
-    @Test
-    @Override
-    public void testInternationalString() {
-        // TODO
-    }
-
-    @Test
-    @Override
-    public void testParsedHTTP() {
-        // TODO
+        isMultiLocaleSupported = false;
+        isMixedNameSyntaxSupported = false;
     }
 }

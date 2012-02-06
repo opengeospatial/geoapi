@@ -129,8 +129,7 @@ public class SimpleNameFactory implements NameFactory {
      *   <tr>
      *     <td valign="top" nowrap>&nbsp;{@code "separator"}&nbsp;</td>
      *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
-     *     in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
-     *     it is typically {@code ":"}.</td>
+     *     in that namespace. For URN, this is typically {@code ":"}.</td>
      *   </tr>
      * </table>
      */
@@ -145,6 +144,10 @@ public class SimpleNameFactory implements NameFactory {
             if (separator != null) {
                 factory = new SimpleNameFactory(this);
                 factory.syntax.setProperty("jndi.syntax.separator", separator);
+            }
+            separator = (String) properties.get("separator.head");
+            if (separator != null && !separator.equals(factory.syntax.getProperty("jndi.syntax.separator"))) {
+                throw new UnsupportedOperationException("This implementation does not support the \"separator.head\" property.");
             }
         }
         return new SimpleNameSpace(factory, SimpleName.castOrCopy(name.toFullyQualifiedName()));
@@ -248,5 +251,13 @@ public class SimpleNameFactory implements NameFactory {
         } catch (InvalidNameException e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    /**
+     * Returns a string representation of this factory.
+     */
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[separator=\"" + syntax.getProperty("jndi.syntax.separator") + "\"]";
     }
 }
