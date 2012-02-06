@@ -105,6 +105,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
             final CoordinateReferenceSystem sourceCRS,
             final CoordinateReferenceSystem targetCRS)
     {
+        Objects.requireNonNull(projection);
         this.sourceCRS  = sourceCRS;
         this.targetCRS  = targetCRS;
         this.projection = projection;
@@ -712,7 +713,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         final List<Parameter> param = projection.getProjectionParameters();
         final NetcdfParameter<?>[] values = new NetcdfParameter<?>[param.size()];
         for (int i=0; i<values.length; i++) {
-            values[i] = NetcdfParameter.create(param.get(i));
+            values[i] = NetcdfParameter.create(param.get(i), null); // TODO
         }
         return new SimpleParameterGroup(projection.getClassName(), values);
     }

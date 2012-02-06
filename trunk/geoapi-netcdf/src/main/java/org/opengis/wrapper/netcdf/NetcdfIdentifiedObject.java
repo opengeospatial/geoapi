@@ -109,7 +109,8 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     }
 
     /**
-     * Returns an empty set, since NetCDF objects don't provide alternative name.
+     * Returns the aliases, or an empty set if none. The default implementation returns an empty
+     * set. Some subclasses will infer the aliases from the projection {@linkplain #getName()}.
      */
     @Override
     public Collection<GenericName> getAlias() {

@@ -13,6 +13,8 @@
  */
 package org.opengis.wrapper.netcdf;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,6 +22,7 @@ import javax.measure.unit.Unit;
 
 import ucar.unidata.util.Parameter;
 
+import org.opengis.util.GenericName;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.InvalidParameterTypeException;
@@ -47,13 +50,18 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Serial number for cross-version compatibility.
      */
-    private static final long serialVersionUID = -8942583683212743205L;
+    private static final long serialVersionUID = -9215966394791752911L;
 
     /**
      * The NetCDF parameter, never {@code null}. A new NetCDF parameter instance will be
      * assigned to this field when a setter method is invoked.
      */
     private Parameter parameter;
+
+    /**
+     * The aliases, or an empty collection if none.
+     */
+    private final Collection<GenericName> aliases;
 
     /**
      * Creates a new wrapper for the given NetCDF parameter. The {@linkplain #getValueClass()
@@ -65,9 +73,13 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * shall be created only from methods having a {@code ParameterValue<?>} return type.
      *
      * @param parameter The parameter to wrap.
+     * @param aliases The aliases (typically the OGC and EPSG names), or null/empty collection if none.
+     *        This collection is not cloned, so callers are invited to pass an unmodifiable collection.
      */
-    protected NetcdfParameter(final Parameter parameter) {
+    protected NetcdfParameter(final Parameter parameter, final Collection<GenericName> aliases) {
+        Objects.requireNonNull(parameter);
         this.parameter = parameter;
+        this.aliases   = (aliases != null) ? aliases : Collections.<GenericName>emptyList();
     }
 
     /**
@@ -75,11 +87,13 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * value class} will be inferred from the given parameter.
      *
      * @param  parameter The parameter to wrap.
+     * @param  aliases The aliases (typically the OGC and EPSG names), or null/empty collection if none.
+     *         This collection is not cloned, so callers are invited to pass an unmodifiable collection.
      * @return The GeoAPI parameter for the given NetCDF parameter.
      */
-    @SuppressWarnings("rawtypes")
-    public static NetcdfParameter<?> create(final Parameter parameter) {
-        return new NetcdfParameter(parameter);
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    public static NetcdfParameter<?> create(final Parameter parameter, final Collection<GenericName> aliases) {
+        return new NetcdfParameter(parameter, aliases);
     }
 
     /**
@@ -93,12 +107,24 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
 
     /**
      * Returns the parameter name. This method delegates to {@link Parameter#getName()}.
+     * The name returned by this method is the NetCDF name. For the OGC or EPSG names,
+     * see {@link #getAlias()}.
      *
      * @see Parameter#getName()
      */
     @Override
     public String getCode() {
         return parameter.getName();
+    }
+
+    /**
+     * Returns the aliases given at construction time. If the collection is non-empty,
+     * then it will typically contains two aliases: one for the OGC name and one for
+     * the EPSG name. For the NetCDF name, see {@link #getCode()}.
+     */
+    @Override
+    public Collection<GenericName> getAlias() {
+        return aliases;
     }
 
     /**
@@ -114,7 +140,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      */
     @Override
     public NetcdfParameter<T> createValue() {
-        return new NetcdfParameter<T>(parameter);
+        return new NetcdfParameter<T>(parameter, aliases);
     }
 
     /**
@@ -496,6 +522,18 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
         } else {
             throw invalidValue(parameter, value);
         }
+    }
+
+    /**
+     * Compares this parameter with the given object for equality. This method compares
+     * the {@linkplain #getAlias() aliases} in addition to the NetCDF parameter object.
+     */
+    @Override
+    public boolean equals(final Object other) {
+        if (super.equals(other)) {
+            return aliases.equals(((NetcdfParameter) other).aliases);
+        }
+        return false;
     }
 
     /**
