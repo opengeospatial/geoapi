@@ -24,27 +24,44 @@ import org.opengis.metadata.citation.PresentationForm;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.citation.Series;
 import org.opengis.util.InternationalString;
+import org.opengis.util.GenericName;
+import org.opengis.util.NameSpace;
 
 import static java.util.Collections.emptySet;
 
 
 /**
  * A simple {@link Citation} implementation, which is also its own international string.
+ * In this NetCDF package, citations are used either as a cheap {@link InternationalString}
+ * implementation, or for specifying the {@linkplain Identifier#getAuthority() authority}
+ * of identifier codes. For this later purpose, it is convenient to also implement the
+ * {@link NameSpace} interface in order to allow usage of the {@link #NETCDF} constant
+ * for {@linkplain org.opengis.referencing.IdentifiedObject#getAlias() aliases} scope.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class SimpleCitation implements Citation, InternationalString, Serializable {
+final class SimpleCitation implements Citation, NameSpace, InternationalString, Serializable {
     /**
      * For cross-version compatibility.
      */
     private static final long serialVersionUID = -8466770625990964435L;
 
     /**
-     * The NetCDF citation.
+     * The NetCDF authority citation.
      */
-    static final Citation NETCDF = new SimpleCitation("NetCDF");
+    static final SimpleCitation NETCDF = new SimpleCitation("NetCDF");
+
+    /**
+     * The OGC authority citation, also used as a namespace for aliases.
+     */
+    static final SimpleCitation OGC = new SimpleCitation("OGC");
+
+    /**
+     * The EPSG authority citation, also used as a namespace for aliases.
+     */
+    static final SimpleCitation EPSG = new SimpleCitation("EPSG");
 
     /**
      * The citation title to be returned by {@link #getTitle()}.
@@ -76,6 +93,13 @@ final class SimpleCitation implements Citation, InternationalString, Serializabl
     @Override public InternationalString      getCollectiveTitle()         {return null;}
     @Override public String                   getISBN()                    {return null;}
     @Override public String                   getISSN()                    {return null;}
+
+    /*
+     * Global nameSpace implementations. The Alias is
+     * given a null namespace because it is global.
+     */
+    @Override public boolean isGlobal() {return true;}
+    @Override public GenericName name() {return new Alias(null, title);}
 
     /*
      * InternationalString implementations.

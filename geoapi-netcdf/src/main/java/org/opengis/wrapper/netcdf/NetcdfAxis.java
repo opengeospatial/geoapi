@@ -40,6 +40,11 @@ import org.opengis.referencing.cs.RangeMeaning;
  */
 public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSystemAxis {
     /**
+     * For cross-version compatibility.
+     */
+    private static final long serialVersionUID = -7151982715212018557L;
+
+    /**
      * The NetCDF coordinate axis wrapped by this {@code NetcdfAxis} instance.
      */
     private final CoordinateAxis1D axis;
@@ -47,7 +52,7 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     /**
      * The unit, computed when first needed.
      */
-    volatile Unit<?> unit;
+    transient volatile Unit<?> unit;
 
     /**
      * Creates a new {@code NetcdfAxis} object wrapping the given NetCDF coordinate axis.
