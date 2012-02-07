@@ -23,6 +23,9 @@ import ucar.unidata.geoloc.projection.*;
 import org.opengis.util.FactoryException;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.GeneralParameterValue;
+import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.parameter.GeneralParameterDescriptor;
+import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.MathTransformFactory;
 
 import org.junit.Test;
@@ -142,5 +145,36 @@ public strictfp class NetcdfFactoryTest {
                 assertTrue(name, names.remove(name));
             }
         }
+    }
+
+    /**
+     * Generates a list of all supported projections and their parameters in Javadoc format.
+     * The output of this method can be copy-and-pasted in the {@link NetcdfTransformFactory}
+     * class javadoc.
+     */
+    public void printParametersJavadoc() {
+        System.out.println(" * <table cellspacing=\"0\" cellpadding=\"0\">");
+        System.out.println(" *   <tr><th>NetCDF</th><th>OGC</th><th>EPSG</th></tr>");
+        for (final OperationMethod method : factory.getAvailableMethods(null)) {
+            final ParameterDescriptorGroup parameters = method.getParameters();
+            System.out.println(" *   <tr><td colspan=\"3\"><hr></td></tr>");
+            printParametersJavadocRow(parameters, "&nbsp;&nbsp;<i>", "</i>");
+            for (final GeneralParameterDescriptor param : parameters.descriptors()) {
+                printParametersJavadocRow(param, "&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;", "");
+            }
+        }
+        System.out.println(" * </table>");
+    }
+
+    /**
+     * Prints a single row in the table of NetCDF parameters.
+     * This method expects a {@code geoapi-netcdf} implementation.
+     */
+    private static void printParametersJavadocRow(final GeneralParameterDescriptor param, final String prefix, final String suffix) {
+        final AliasList names = (AliasList) param.getAlias();
+        System.out.print(" *   <tr><td>");                         {System.out.print(prefix); System.out.print(names.     name); System.out.print(suffix);}
+        System.out.print(    "</td><td>"); if (names.ogc  != null) {System.out.print(prefix); System.out.print(names.ogc .name); System.out.print(suffix);}
+        System.out.print(    "</td><td>"); if (names.epsg != null) {System.out.print(prefix); System.out.print(names.epsg.name); System.out.print(suffix);}
+        System.out.println("</td></tr>");
     }
 }
