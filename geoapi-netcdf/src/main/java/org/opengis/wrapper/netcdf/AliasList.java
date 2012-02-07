@@ -52,7 +52,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     /**
      * The OGC and EPSG aliases, or {@code null} if none.
      */
-    private final Alias ogc, epsg;
+    final Alias ogc, epsg;
 
     /**
      * Creates a new list for the given NetCDF name no alias.
