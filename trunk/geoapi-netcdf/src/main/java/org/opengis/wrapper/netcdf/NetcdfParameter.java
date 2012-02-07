@@ -34,10 +34,17 @@ import org.opengis.parameter.InvalidParameterValueException;
  * The NetCDF {@code Parameter} class is both a parameter value and its own descriptor. Consequently
  * this adapter implements both the {@link ParameterValue} and {@link ParameterDescriptor} interfaces.
  * <p>
- * NetCDF {@code Parameter} instances can store {@link String}, {@code double} and {@code double[]}
- * values. Those values can be obtained by the {@link #stringValue()}, {@link #doubleValue()} and
- * {@link #doubleValueList()} methods in the {@code ParameterValue} interface. All other
- * {@code fooValue()} methods delegate to one of the above-cited methods and convert the result.
+ * NetCDF {@code Parameter} instances can store the following types:
+ * <p>
+ * <table>
+ *   <tr><th>Value type</th>       <th>Getter method</th>              <th>Setter method</th></tr>
+ *   <tr><td>{@link String}</td>   <td>{@link #stringValue()}</td>     <td>{@link #setValue(Object)}</td></tr>
+ *   <tr><td>{@code double}</td>   <td>{@link #doubleValue()}</td>     <td>{@link #setValue(double)}</td></tr>
+ *   <tr><td>{@code double[]}</td> <td>{@link #doubleValueList()}</td> <td>{@link #setValue(Object)}</td></tr>
+ * </table>
+ * <p>
+ * All other {@code fooValue()} methods delegate to one of the above-cited getter methods and
+ * convert the result.
  *
  * @param   <T> The type of parameter value.
  * @author  Martin Desruisseaux (Geomatys)
@@ -67,14 +74,15 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Creates a new wrapper for the given NetCDF parameter. The {@linkplain #getValueClass()
      * value class} will be inferred from the given parameter.
      * <p>
+     * <b>Type safety:</b><br>
      * This constructor can not have public access because we can not guarantee that the
      * {@code <T>} parameterized type is consistent with the given NetCDF parameter object,
-     * since the NetCDF class is not parameterized. New instances of {@code NetcdfParameter}
-     * shall be created only from methods having a {@code ParameterValue<?>} return type.
+     * since the NetCDF class is not parameterized. Use the one of the {@link #create(Parameter,
+     * Collection) create} methods instead.
      *
      * @param parameter The parameter to wrap.
-     * @param aliases The aliases (typically the OGC and EPSG names), or null/empty collection if none.
-     *        This collection is not cloned, so callers are invited to pass an unmodifiable collection.
+     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
+     *         or null or an empty collection if none. This collection is not cloned.
      */
     protected NetcdfParameter(final Parameter parameter, final Collection<GenericName> aliases) {
         Objects.requireNonNull(parameter);
@@ -87,13 +95,55 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * value class} will be inferred from the given parameter.
      *
      * @param  parameter The parameter to wrap.
-     * @param  aliases The aliases (typically the OGC and EPSG names), or null/empty collection if none.
-     *         This collection is not cloned, so callers are invited to pass an unmodifiable collection.
+     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
+     *         or null or an empty collection if none. This collection is not cloned.
      * @return The GeoAPI parameter for the given NetCDF parameter.
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static NetcdfParameter<?> create(final Parameter parameter, final Collection<GenericName> aliases) {
         return new NetcdfParameter(parameter, aliases);
+    }
+
+    /**
+     * Creates a new parameter for the given {@link String} value.
+     * <p>
+     * This method does not clone the arguments. If a non-null {@code aliases} collection
+     * is given to this method, it shall be immutable.
+     *
+     * @param  name The parameter name.
+     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
+     *         or null or an empty collection if none. This collection is not cloned.
+     * @param  value The parameter value.
+     * @return The GeoAPI parameter for the given NetCDF parameter.
+     */
+    public static NetcdfParameter<String> create(String name, Collection<GenericName> aliases, String value) {
+        return new NetcdfParameter<String>(new Parameter(name, value), aliases);
+    }
+
+    /**
+     * Creates a new parameter for the given {@code double} value.
+     *
+     * @param  name The parameter name.
+     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
+     *         or null or an empty collection if none. This collection is not cloned.
+     * @param  value The parameter value.
+     * @return The GeoAPI parameter for the given NetCDF parameter.
+     */
+    public static NetcdfParameter<Double> create(String name, Collection<GenericName> aliases, double value) {
+        return new NetcdfParameter<Double>(new Parameter(name, value), aliases);
+    }
+
+    /**
+     * Creates a new parameter for the given {@code double[]} array.
+     *
+     * @param  name The parameter name.
+     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
+     *         or null or an empty collection if none. This collection is not cloned.
+     * @param  values The parameter values.
+     * @return The GeoAPI parameter for the given NetCDF parameter.
+     */
+    public static NetcdfParameter<double[]> create(String name, Collection<GenericName> aliases, double... values) {
+        return new NetcdfParameter<double[]>(new Parameter(name, values), aliases);
     }
 
     /**
@@ -506,8 +556,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     }
 
     /**
-     * Sets this parameter to the given {@link String} or {@link Number}. If the given
-     * value is a number, then this method delegates to {@link #setValue(double)}.
+     * Sets this parameter to the given {@link String}, {@code double[]} or {@link Number}.
+     * If the given value is a number, then this method delegates to {@link #setValue(double)}.
      *
      * @throws InvalidParameterValueException If this parameter can not accept the given value.
      *
@@ -517,6 +567,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     public void setValue(final Object value) throws InvalidParameterValueException {
         if (value instanceof Number) {
             setValue(((Number) value).doubleValue());
+        } else if ((value instanceof double[]) && !parameter.isString()) {
+            parameter = new Parameter(parameter.getName(), (double[]) value);
         } else if ((value instanceof CharSequence) && parameter.isString()) {
             parameter = new Parameter(parameter.getName(), value.toString());
         } else {
