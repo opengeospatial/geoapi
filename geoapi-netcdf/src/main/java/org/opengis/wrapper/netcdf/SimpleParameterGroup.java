@@ -16,8 +16,10 @@ package org.opengis.wrapper.netcdf;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
+import org.opengis.util.GenericName;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
@@ -44,12 +46,12 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     /**
      * For cross-version compatibility.
      */
-    private static final long serialVersionUID = -6511737255359086641L;
+    private static final long serialVersionUID = -3380056767226960773L;
 
     /**
      * The name of this group of parameters.
      */
-    private final String name;
+    private final AliasList name;
 
     /**
      * The unmodifiable list of parameters included in this group. This simple group
@@ -65,8 +67,8 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
      * @param name  The parameter group name.
      * @param param The parameters to be included in this group.
      */
-    public SimpleParameterGroup(final String name, final NetcdfParameter<?>... param) {
-        parameters = Collections.unmodifiableList(new ArrayList<NetcdfParameter<?>>(Arrays.asList(param)));
+    SimpleParameterGroup(final AliasList name, final NetcdfParameter<?>... param) {
+        parameters = Collections.unmodifiableList(Arrays.asList(param));
         this.name = name;
     }
 
@@ -83,6 +85,16 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
      */
     @Override
     public String getCode() {
+        return name.name;
+    }
+
+    /**
+     * Returns the aliases given at construction time. If the collection is non-empty,
+     * then it will typically contains two aliases: one for the OGC name and one for
+     * the EPSG name. For the NetCDF name, see {@link #getCode()}.
+     */
+    @Override
+    public Collection<GenericName> getAlias() {
         return name;
     }
 
@@ -157,6 +169,11 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
         for (final NetcdfParameter<?> candidate : parameters) {
             if (name.equalsIgnoreCase(candidate.getName().getCode())) {
                 return candidate;
+            }
+            for (final GenericName alias : candidate.getAlias()) {
+                if (name.equalsIgnoreCase(alias.toString())) {
+                    return candidate;
+                }
             }
         }
         throw new ParameterNotFoundException("No such parameter: " + name, name);

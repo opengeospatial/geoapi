@@ -151,7 +151,10 @@ public class ParameterValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final List<GeneralParameterDescriptor> descriptors = object.descriptors();
-        mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
+        if (requireMandatoryAttributes) {
+            // Do not invoke mandatory(...) because we allow empty collections.
+            assertNotNull("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
+        }
         if (descriptors != null) {
             validate(descriptors);
             for (final GeneralParameterDescriptor descriptor : descriptors) {
@@ -160,7 +163,7 @@ public class ParameterValidator extends ReferencingValidator {
                 final GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
                 mandatory("ParameterDescriptorGroup: descriptor(String) should returns a value.", byName);
                 if (byName != null) {
-                    assertSame("ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().",
+                    assertEquals("ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().",
                             descriptor, byName);
                 }
             }
@@ -214,7 +217,10 @@ public class ParameterValidator extends ReferencingValidator {
         mandatory("ParameterValueGroup: must have a descriptor.", descriptors);
         validate(descriptors);
         final List<GeneralParameterValue> values = object.values();
-        mandatory("ParameterValueGroup: values() should not return null.", values);
+        if (requireMandatoryAttributes) {
+            // Do not invoke mandatory(...) because we allow empty collections.
+            assertNotNull("ParameterValueGroup: values() should not return null.", values);
+        }
         if (values == null) {
             return;
         }
@@ -236,7 +242,7 @@ public class ParameterValidator extends ReferencingValidator {
                 final GeneralParameterDescriptor byName = descriptors.descriptor(name);
                 mandatory("ParameterDescriptorGroup: should never return null.", byName);
                 if (byName != null) {
-                    assertSame("ParameterValueGroup: descriptor(String) inconsistent" +
+                    assertEquals("ParameterValueGroup: descriptor(String) inconsistent" +
                             " with value.getDescriptor().", descriptor, byName);
                 }
             }
@@ -244,7 +250,7 @@ public class ParameterValidator extends ReferencingValidator {
                 final ParameterValue<?> byName = object.parameter(name);
                 mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
                 if (byName != null) {
-                    assertSame("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
+                    assertEquals("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
                 }
             }
         }

@@ -13,6 +13,7 @@
  */
 package org.opengis.wrapper.netcdf;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
@@ -79,6 +80,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     private final CoordinateReferenceSystem targetCRS;
 
     /**
+     * The operation method that provider this projection instance, or {@code null} if
+     * unknown. This information is set by the {@link NetcdfTransformFactory} only.
+     */
+    final ProjectionProvider<?> provider;
+
+    /**
      * The NetCDF projection specified at construction time.
      */
     private final Projection projection;
@@ -105,9 +112,21 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
             final CoordinateReferenceSystem sourceCRS,
             final CoordinateReferenceSystem targetCRS)
     {
+        this(projection, null, sourceCRS, targetCRS);
+    }
+
+    /**
+     * Constructor for {@link ProjectionProvider#createProjection()} usage only.
+     */
+    NetcdfProjection(final Projection projection,
+                     final ProjectionProvider<?> provider,
+                     final CoordinateReferenceSystem sourceCRS,
+                     final CoordinateReferenceSystem targetCRS)
+    {
         Objects.requireNonNull(projection);
         this.sourceCRS  = sourceCRS;
         this.targetCRS  = targetCRS;
+        this.provider   = provider;
         this.projection = projection;
         this.isInverse  = false;
     }
@@ -118,6 +137,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     private NetcdfProjection(final NetcdfProjection other) {
         sourceCRS  =  other.targetCRS;
         targetCRS  =  other.sourceCRS;
+        provider   =  other.provider;
         projection =  other.projection;
         isInverse  = !other.isInverse;
         inverse    =  other;
@@ -645,11 +665,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         }
 
         /**
-         * Not yet implemented.
+         * Returns the formula or procedure declared by the provider, if any.
          */
         @Override
         public Formula getFormula() {
-            return null;
+            final ProjectionProvider<?> provider = NetcdfProjection.this.provider;
+            return (provider != null) ? provider.getFormula() : null;
         }
 
         /**
@@ -710,12 +731,15 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Implementations of {@link #getParameterValues()} and {@link Method#getParameters()}.
      */
     final SimpleParameterGroup getParameters() {
-        final List<Parameter> param = projection.getProjectionParameters();
-        final NetcdfParameter<?>[] values = new NetcdfParameter<?>[param.size()];
+        final List<Parameter> parameters = projection.getProjectionParameters();
+        final NetcdfParameter<?>[] values = new NetcdfParameter<?>[parameters.size()];
+        final Map<String,AliasList> aliases = (provider != null) ?
+                provider.parameterNames : Collections.<String,AliasList>emptyMap();
         for (int i=0; i<values.length; i++) {
-            values[i] = NetcdfParameter.create(param.get(i), null); // TODO
+            final Parameter param = parameters.get(i);
+            values[i] = NetcdfParameter.create(param, aliases.get(param.getName()));
         }
-        return new SimpleParameterGroup(projection.getClassName(), values);
+        return new SimpleParameterGroup(new AliasList(projection.getClassName()), values);
     }
 
     /**

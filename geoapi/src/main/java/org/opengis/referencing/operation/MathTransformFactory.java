@@ -139,11 +139,11 @@ public interface MathTransformFactory extends Factory {
     /**
      * Returns the default parameter values for a math transform using the given method.
      * The {@code method} argument is the name of any operation method returned by
-     * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
+     * <code>{@link #getAvailableMethods(Class) getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
      * A typical example is
      * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
      * <P>
-     * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
+     * The {@linkplain ParameterDescriptorGroup#getName() parameter group name} shall be the
      * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
      * at every call. Parameters are intended to be modified by the user before to be given to the
@@ -194,7 +194,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a transform from a group of parameters. The method name is inferred from
-     * the {@linkplain ParameterDescriptorGroup#getName parameter group name}. Example:
+     * the {@linkplain ParameterDescriptorGroup#getName() parameter group name}. Example:
      *
      * <blockquote><pre>
      * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
@@ -215,7 +215,7 @@ public interface MathTransformFactory extends Factory {
      * </UL>
      * <P>Although all cartographic projection transforms must have the properties listed above, many projected coordinate
      * reference systems have different properties. For example, in Europe some projected CRSs use grads instead of degrees,
-     * and often the {@linkplain ProjectedCRS#getBaseCRS base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
+     * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
      * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
      * used as a single step in a series of transforms, where the other steps change units and swap ordinates.</P>
      *

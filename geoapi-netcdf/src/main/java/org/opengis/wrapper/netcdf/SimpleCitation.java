@@ -49,6 +49,11 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
     private static final long serialVersionUID = -8466770625990964435L;
 
     /**
+     * The root (or global) namespace.
+     */
+    static final SimpleCitation GLOBAL = new SimpleCitation("");
+
+    /**
      * The NetCDF authority citation.
      */
     static final SimpleCitation NETCDF = new SimpleCitation("NetCDF");
@@ -95,11 +100,10 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
     @Override public String                   getISSN()                    {return null;}
 
     /*
-     * Global nameSpace implementations. The Alias is
-     * given a null namespace because it is global.
+     * Global nameSpace implementations.
      */
     @Override public boolean isGlobal() {return true;}
-    @Override public GenericName name() {return new Alias(null, title);}
+    @Override public GenericName name() {return new Alias(GLOBAL, title);}
 
     /*
      * InternationalString implementations.

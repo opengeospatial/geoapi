@@ -55,6 +55,17 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     private final Alias ogc, epsg;
 
     /**
+     * Creates a new list for the given NetCDF name no alias.
+     *
+     * @param name The NetCDF name (mandatory).
+     */
+    AliasList(final String name) {
+        this.name = name;
+        this.ogc  = null;
+        this.epsg = null;
+    }
+
+    /**
      * Creates a new list for the given NetCDF name and OGC/EPSG aliases.
      *
      * @param existings The aliases created up to date. This map is updated by this constructor.
@@ -99,15 +110,23 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
         for (int i=0; i<NAME_CAPACITY; i++) {
             final String n;
             switch (i) {
-                case 0: n =      name; break;
-                case 1: n = ogc .name; break;
-                case 2: n = epsg.name; break;
+                case 0: n = name;       break;
+                case 1: n = name(ogc);  break;
+                case 2: n = name(epsg); break;
                 default: throw new AssertionError(i);
             }
-            if (n != null && map.put(n, value) != null) {
-                throw new AssertionError(n);
+            if (n != null) {
+                final T old = map.put(n, value);
+                assert (old == null) || (old == value) : n;
             }
         }
+    }
+
+    /**
+     * Null-safe method for fetching the name of the given alias.
+     */
+    private static String name(final Alias alias) {
+        return (alias != null) ? alias.name : null;
     }
 
     /**
