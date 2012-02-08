@@ -31,7 +31,7 @@ import org.opengis.util.InternationalString;
  * @version 3.1
  * @since   3.1
  */
-final class Alias implements LocalName, Serializable {
+final class SimpleName implements LocalName, Serializable {
     /**
      * For cross-version compatibility.
      */
@@ -56,7 +56,7 @@ final class Alias implements LocalName, Serializable {
      * @param  scope The scope (name space) in which the name is local, or {@code null}.
      * @param  name  The value to be returned by {@link #toString()}.
      */
-    public Alias(final NameSpace scope, final String name) {
+    public SimpleName(final NameSpace scope, final String name) {
         this.scope = scope;
         this.name  = name.trim();
     }
@@ -177,8 +177,8 @@ final class Alias implements LocalName, Serializable {
      */
     @Override
     public boolean equals(final Object other) {
-        if (other instanceof Alias) {
-            final Alias that = (Alias) other;
+        if (other instanceof SimpleName) {
+            final SimpleName that = (SimpleName) other;
             return name.equals(that.name) && Objects.equals(scope, that.scope);
         }
         return false;

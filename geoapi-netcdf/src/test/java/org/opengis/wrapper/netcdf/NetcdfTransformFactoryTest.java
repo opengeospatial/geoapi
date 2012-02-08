@@ -35,13 +35,13 @@ import static org.opengis.test.Validators.*;
 
 
 /**
- * Tests the {@link NetcdfFactory} class.
+ * Tests the {@link NetcdfTransformFactory} class.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp class NetcdfFactoryTest {
+public strictfp class NetcdfTransformFactoryTest {
     /**
      * The set of projection implementations to test.
      * The default constructor initializes this array to
@@ -78,7 +78,7 @@ public strictfp class NetcdfFactoryTest {
      * Creates a new test case initialized to the default {@linkplain #projections} set.
      */
     @SuppressWarnings({"unchecked","rawtypes"})
-    public NetcdfFactoryTest() {
+    public NetcdfTransformFactoryTest() {
         projections = new Class[] {
             AlbersEqualArea.class,
             FlatEarth.class,

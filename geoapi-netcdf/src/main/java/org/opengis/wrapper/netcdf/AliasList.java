@@ -23,7 +23,7 @@ import org.opengis.util.GenericName;
 
 
 /**
- * A list of {@link Alias} instances. This list also contains the NetCDF {@linkplain #name}
+ * A list of {@link SimpleName} instances. This list also contains the NetCDF {@linkplain #name}
  * for implementation convenience, but this name is not returned by the list getter methods.
  * <p>
  * Current implementation can holds at most 2 aliases: one of OGC and one for EPSG.
@@ -52,7 +52,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     /**
      * The OGC and EPSG aliases, or {@code null} if none.
      */
-    final Alias ogc, epsg;
+    final SimpleName ogc, epsg;
 
     /**
      * Creates a new list for the given NetCDF name no alias.
@@ -73,7 +73,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
      * @param ogc       The OGC name (optional).
      * @param epsg      The EPSG name (optional).
      */
-    AliasList(final Map<Alias,Alias> existings, final String name, final String ogc, final String epsg) {
+    AliasList(final Map<SimpleName,SimpleName> existings, final String name, final String ogc, final String epsg) {
         this.name = name;
         this.ogc  = alias(existings, SimpleCitation.OGC,  ogc);
         this.epsg = alias(existings, SimpleCitation.EPSG, epsg);
@@ -88,12 +88,12 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
      * @param  name      The alias name in the given namespace.
      * @return An alias for the given name in the given namespace.
      */
-    private static Alias alias(final Map<Alias,Alias> existings, final NameSpace namespace, final String name) {
+    private static SimpleName alias(final Map<SimpleName,SimpleName> existings, final NameSpace namespace, final String name) {
         if (name == null) {
             return null;
         }
-        Alias alias = new Alias(namespace, name);
-        final Alias old = existings.put(alias, alias);
+        SimpleName alias = new SimpleName(namespace, name);
+        final SimpleName old = existings.put(alias, alias);
         if (old != null) {
             alias = old; // Keep the existing instance.
             existings.put(alias, alias);
@@ -125,7 +125,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     /**
      * Null-safe method for fetching the name of the given alias.
      */
-    private static String name(final Alias alias) {
+    private static String name(final SimpleName alias) {
         return (alias != null) ? alias.name : null;
     }
 
@@ -149,7 +149,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
      */
     @Override
     public GenericName get(final int index) {
-        Alias alias = null;
+        SimpleName alias = null;
         switch (index) {
             case 0: alias = (ogc != null) ? ogc  : epsg; break;
             case 1: alias = (ogc != null) ? epsg : null; break;
