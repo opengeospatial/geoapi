@@ -89,7 +89,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      *                    as tuples of {@value org.opengis.wrapper.netcdf.AliasList#NAME_CAPACITY}
      *                    elements.
      */
-    ProjectionProvider(final Map<Alias,Alias> existings, final String... names) {
+    ProjectionProvider(final Map<SimpleName,SimpleName> existings, final String... names) {
         parameterNames = new LinkedHashMap<String,AliasList>();
         assert (names.length % AliasList.NAME_CAPACITY) == 0 : Arrays.toString(names);
         AliasList name = null;
@@ -289,7 +289,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class Albers extends ProjectionProvider<AlbersEqualArea> {
         private static final long serialVersionUID = 750456843856517553L;
-        Albers(final Map<Alias,Alias> existings) {
+        Albers(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "AlbersEqualArea",                "Albers_Conic_Equal_Area",  "Albers Equal Area",
                 "longitude_of_central_meridian",  "central_meridian",         "Longitude of false origin",
@@ -315,7 +315,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class Flat extends ProjectionProvider<FlatEarth> {
         private static final long serialVersionUID = -7970152210677936013L;
-        Flat(final Map<Alias,Alias> existings) {
+        Flat(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "FlatEarth",                       null,  null,
                 "longitude_of_projection_origin",  null,  null,
@@ -336,7 +336,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class LambertAzimuthal extends ProjectionProvider<LambertAzimuthalEqualArea> {
         private static final long serialVersionUID = 5746186219589652050L;
-        LambertAzimuthal(final Map<Alias,Alias> existings) {
+        LambertAzimuthal(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "LambertAzimuthalEqualArea",       "Lambert_Azimuthal_Equal_Area",  "Lambert Azimuthal Equal Area",
                 "longitude_of_projection_origin",  "longitude_of_center",           "Longitude of natural origin",
@@ -359,7 +359,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class LambertConic1SP extends ProjectionProvider<LambertConformal> {
         private static final long serialVersionUID = 1295663810378039878L;
-        LambertConic1SP(final Map<Alias,Alias> existings) {
+        LambertConic1SP(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "LambertConformal",               "Lambert_Conformal_Conic_1SP",  "Lambert Conic Conformal (1SP)",
                 "longitude_of_central_meridian",  "central_meridian",             "Longitude of natural origin",
@@ -385,7 +385,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class PlateCarree extends ProjectionProvider<LatLonProjection> {
         private static final long serialVersionUID = 8896571199753338018L;
-        PlateCarree(final Map<Alias,Alias> existings) {
+        PlateCarree(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "latitude_longitude",  null,  null);
         }
@@ -402,7 +402,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class Mercator2SP extends ProjectionProvider<Mercator> {
         private static final long serialVersionUID = 8777486546660325533L;
-        Mercator2SP(final Map<Alias,Alias> existings) {
+        Mercator2SP(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "Mercator",                        "Mercator_2SP",         "Mercator (variant B)",
                 "longitude_of_projection_origin",  "central_meridian",     "Longitude of natural origin",
@@ -423,7 +423,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class Ortho extends ProjectionProvider<Orthographic> {
         private static final long serialVersionUID = -7241876400934462599L;
-        Ortho(final Map<Alias,Alias> existings) {
+        Ortho(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "Orthographic",                    "Orthographic",        "Orthographic",
                 "longitude_of_projection_origin",  "central_meridian",    "Longitude of natural origin",
@@ -443,7 +443,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class RotatedSouth extends ProjectionProvider<RotatedLatLon> {
         private static final long serialVersionUID = 733254902626989710L;
-        RotatedSouth(final Map<Alias,Alias> existings) {
+        RotatedSouth(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "RotatedLatLon",              null,  null,
                 "grid_south_pole_latitude",   null,  null,
@@ -464,7 +464,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class RotatedNorth extends ProjectionProvider<RotatedPole> {
         private static final long serialVersionUID = -6456120388549694347L;
-        RotatedNorth(final Map<Alias,Alias> existings) {
+        RotatedNorth(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "RotatedPole",                null,  null,
                 "grid_north_pole_latitude",   null,  null,
@@ -485,7 +485,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class ObliqueStereographic extends ProjectionProvider<Stereographic> {
         private static final long serialVersionUID = 5466265000839086417L;
-        ObliqueStereographic(final Map<Alias,Alias> existings) {
+        ObliqueStereographic(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "Stereographic",                      "Stereographic",        "Stereographic",
                 "longitude_of_projection_origin",     "central_meridian",     "Longitude of natural origin",
@@ -508,7 +508,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class Transverse extends ProjectionProvider<TransverseMercator> {
         private static final long serialVersionUID = -1374895336564170370L;
-        Transverse(final Map<Alias,Alias> existings) {
+        Transverse(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "TransverseMercator",                "Transverse_Mercator",  "Transverse Mercator",
                 "longitude_of_central_meridian",     "central_meridian",     "Longitude of natural origin",
@@ -531,7 +531,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class UTM extends ProjectionProvider<UtmProjection> {
         private static final long serialVersionUID = 2493554268255203722L;
-        UTM(final Map<Alias,Alias> existings) {
+        UTM(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "UtmProjection",        null,  null,
                 "semi-major_axis",      null,  null,
@@ -554,7 +554,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     static final class Perspective extends ProjectionProvider<VerticalPerspectiveView> {
         private static final long serialVersionUID = 1670830240520560127L;
-        Perspective(final Map<Alias,Alias> existings) {
+        Perspective(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "VerticalPerspectiveView",         null,  null,
                 "longitude_of_projection_origin",  null,  null,

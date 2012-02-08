@@ -111,7 +111,7 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      */
     public NetcdfTransformFactory() {
         providers = new LinkedHashMap<String, ProjectionProvider<?>>();
-        final Map<Alias,Alias> existings = new HashMap<Alias,Alias>();
+        final Map<SimpleName,SimpleName> existings = new HashMap<SimpleName,SimpleName>();
         add(new ProjectionProvider.Albers              (existings));
         add(new ProjectionProvider.Flat                (existings));
         add(new ProjectionProvider.LambertAzimuthal    (existings));
