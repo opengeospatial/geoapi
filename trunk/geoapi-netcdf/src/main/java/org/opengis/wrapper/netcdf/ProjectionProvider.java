@@ -14,12 +14,10 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 
 import ucar.unidata.geoloc.Projection;
 import ucar.unidata.geoloc.ProjectionImpl;
@@ -64,16 +62,16 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     final AliasList name;
 
     /**
-     * The parameters of the NetCDF projection, including their aliases.
+     * The NetCDF projection parameter names and aliases.
      * This map shall not be modified after {@code ProjectionProvider} construction.
      */
-    final Map<String,AliasList> parameterNames;
+    final Map<String,AliasList> byNames;
 
     /**
-     * The values of {@link #parameterNames} without duplication, used for instantiating
+     * The {@link #byNames} values without duplication, used for instantiating
      * the value returned by {@link #parameters()}
      */
-    private final Set<AliasList> parameters;
+    private final AliasList[] parameters;
 
     /**
      * Declares the name of a map projection and its parameters, together with the OGC and EPSG names.
@@ -90,20 +88,21 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      *                    elements.
      */
     ProjectionProvider(final Map<SimpleName,SimpleName> existings, final String... names) {
-        parameterNames = new LinkedHashMap<String,AliasList>();
         assert (names.length % AliasList.NAME_CAPACITY) == 0 : Arrays.toString(names);
+        parameters = new AliasList[(names.length - 1) / AliasList.NAME_CAPACITY];
+        byNames = new LinkedHashMap<String,AliasList>(names.length);
         AliasList name = null;
-        for (int i=0; i!=names.length;) {
+        for (int i=0,j=0; i!=names.length;) {
             final boolean isFirst = (i == 0);
             final AliasList id = new AliasList(existings, names[i++], names[i++], names[i++]);
             if (isFirst) {
                 name = id;
             } else {
-                id.addTo(parameterNames, id);
+                id.addTo(byNames, id);
+                parameters[j++] = id;
             }
         }
         this.name = name;
-        parameters = new LinkedHashSet<AliasList>(parameterNames.values());
     }
 
     /**
@@ -189,10 +188,12 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      * Creates a parameter for the given NetCDF name.
      * A default value is inferred from the NetCDF name.
      */
-    private static NetcdfParameter<Double> parameter(final AliasList alias) {
+    private static NetcdfParameter<?> parameter(final AliasList alias) {
         final String name = alias.name;
         final double defaultValue;
-        if (name.equals("earth_radius")) {
+        if (name.equals("north_hemisphere")) {
+            return NetcdfParameter.create(name, alias, "true");
+        } else if (name.equals("earth_radius")) {
             defaultValue = ProjectionImpl.EARTH_RADIUS;
         } else {
             defaultValue = 0;
@@ -208,8 +209,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      * @throws ParameterNotFoundException If no parameter is found for the given name.
      */
     @Override
-    public ParameterDescriptor<Double> descriptor(final String parameterName) throws ParameterNotFoundException {
-        final AliasList alias = parameterNames.get(parameterName);
+    public ParameterDescriptor<?> descriptor(final String parameterName) throws ParameterNotFoundException {
+        final AliasList alias = byNames.get(parameterName);
         if (alias != null) {
             return parameter(alias);
         }
@@ -224,12 +225,10 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      * interfaces.
      */
     private NetcdfParameter<?>[] parameters() {
-        int i = 0;
-        final NetcdfParameter<?>[] param = new NetcdfParameter<?>[parameters.size()];
-        for (final AliasList alias : parameters) {
-            param[i++] = parameter(alias);
+        final NetcdfParameter<?>[] param = new NetcdfParameter<?>[parameters.length];
+        for (int i=0; i<param.length; i++) {
+            param[i] = parameter(parameters[i]);
         }
-        assert i == param.length;
         return param;
     }
 
@@ -295,7 +294,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "longitude_of_central_meridian",  "central_meridian",         "Longitude of false origin",
                 "latitude_of_projection_origin",  "latitude_of_origin",       "Latitude of false origin",
                 "standard_parallel",              "standard_parallel_1",      "Latitude of 1st standard parallel",
-                "earth_radius",                    null,                       null);
+                "earth_radius",                    null,                       null,
+                "false_easting",                  "false_easting",            "Easting at false origin",
+                "false_northing",                 "false_northing",           "Northing at false origin");
         }
         @Override public Class<AlbersEqualArea> delegate() {return AlbersEqualArea.class;}
         @Override protected AlbersEqualArea createProjection(final ParameterValueGroup p) {
@@ -338,10 +339,12 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 5746186219589652050L;
         LambertAzimuthal(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "LambertAzimuthalEqualArea",       "Lambert_Azimuthal_Equal_Area",  "Lambert Azimuthal Equal Area",
+                "LambertAzimuthalEqualArea",       "Lambert_Azimuthal_Equal_Area",  "Lambert Azimuthal Equal Area (Spherical)",
                 "longitude_of_projection_origin",  "longitude_of_center",           "Longitude of natural origin",
                 "latitude_of_projection_origin",   "latitude_of_center",            "Latitude of natural origin",
-                "earth_radius",                     null,                            null);
+                "earth_radius",                     null,                            null,
+                "false_easting",                   "false_easting",                 "False easting",
+                "false_northing",                  "false_northing",                "False northing");
         }
         @Override public Class<LambertAzimuthalEqualArea> delegate() {return LambertAzimuthalEqualArea.class;}
         @Override protected LambertAzimuthalEqualArea createProjection(final ParameterValueGroup p) {
@@ -365,7 +368,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "longitude_of_central_meridian",  "central_meridian",             "Longitude of natural origin",
                 "latitude_of_projection_origin",  "latitude_of_origin",           "Latitude of natural origin",
                 "standard_parallel",              "standard_parallel_1",          "Latitude of 1st standard parallel",
-                "earth_radius",                    null,                           null);
+                "earth_radius",                    null,                           null,
+                "false_easting",                  "false_easting",                "False easting",
+                "false_northing",                 "false_northing",               "False northing");
         }
         @Override public Class<LambertConformal> delegate() {return LambertConformal.class;}
         @Override protected LambertConformal createProjection(final ParameterValueGroup p) {
@@ -406,12 +411,14 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             super(existings,
                 "Mercator",                        "Mercator_2SP",         "Mercator (variant B)",
                 "longitude_of_projection_origin",  "central_meridian",     "Longitude of natural origin",
-                "standard_parallel",               "standard_parallel_1",  "Latitude of 1st standard parallel");
+                "standard_parallel",               "standard_parallel_1",  "Latitude of 1st standard parallel",
+                "false_easting",                   "false_easting",        "False easting",
+                "false_northing",                  "false_northing",       "False northing");
         }
         @Override public Class<Mercator> delegate() {return Mercator.class;}
         @Override protected Mercator createProjection(final ParameterValueGroup p) {
             if (p == null) return new Mercator();
-            return new Mercator(value(p, "longitude_of_central_meridian"),
+            return new Mercator(value(p, "longitude_of_projection_origin"),
                                 value(p, "standard_parallel"),
                                 value(p, "false_easting")   / KILOMETRE,
                                 value(p, "false_northing")  / KILOMETRE);
@@ -427,7 +434,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             super(existings,
                 "Orthographic",                    "Orthographic",        "Orthographic",
                 "longitude_of_projection_origin",  "central_meridian",    "Longitude of natural origin",
-                "latitude_of_projection_origin",   "latitude_of_origin",  "Latitude of natural origin");
+                "latitude_of_projection_origin",   "latitude_of_origin",  "Latitude of natural origin",
+                "earth_radius",                     null,                  null);
         }
         @Override public Class<Orthographic> delegate() {return Orthographic.class;}
         @Override protected Orthographic createProjection(final ParameterValueGroup p) {
@@ -490,7 +498,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "Stereographic",                      "Stereographic",        "Stereographic",
                 "longitude_of_projection_origin",     "central_meridian",     "Longitude of natural origin",
                 "latitude_of_projection_origin",      "latitude_of_origin",   "Latitude of natural origin",
-                "scale_factor_at_projection_origin",  "scale_factor",         "Scale factor at natural origin");
+                "scale_factor_at_projection_origin",  "scale_factor",         "Scale factor at natural origin",
+                "false_easting",                      "false_easting",        "False easting",
+                "false_northing",                     "false_northing",       "False northing");
         }
         @Override public Class<Stereographic> delegate() {return Stereographic.class;}
         @Override protected Stereographic createProjection(final ParameterValueGroup p) {
@@ -513,7 +523,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "TransverseMercator",                "Transverse_Mercator",  "Transverse Mercator",
                 "longitude_of_central_meridian",     "central_meridian",     "Longitude of natural origin",
                 "latitude_of_projection_origin",     "latitude_of_origin",   "Latitude of natural origin",
-                "scale_factor_at_central_meridian",  "scale_factor",         "Scale factor at natural origin");
+                "scale_factor_at_central_meridian",  "scale_factor",         "Scale factor at natural origin",
+                "false_easting",                     "false_easting",        "False easting",
+                "false_northing",                    "false_northing",       "False northing");
         }
         @Override public Class<TransverseMercator> delegate() {return TransverseMercator.class;}
         @Override protected TransverseMercator createProjection(final ParameterValueGroup p) {

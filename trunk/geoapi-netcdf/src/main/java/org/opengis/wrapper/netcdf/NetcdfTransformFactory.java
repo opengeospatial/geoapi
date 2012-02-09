@@ -32,63 +32,88 @@ import org.opengis.referencing.operation.*;
 
 /**
  * Creates {@link NetcdfProjection} instances from NetCDF, OGC or EPSG parameters.
- * This factory supports the following projection parameters:
+ * This factory supports the following projection parameter names:
  *
- * <table cellspacing="0" cellpadding="0">
  * <table cellspacing="0" cellpadding="0">
  *   <tr><th>NetCDF</th><th>OGC</th><th>EPSG</th></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>AlbersEqualArea</i></td><td>&nbsp;&nbsp;<i>Albers_Conic_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Albers Equal Area</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain AlbersEqualArea}</i></td><td>&nbsp;&nbsp;<i>Albers_Conic_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Albers Equal Area</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easting at false origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Northing at false origin</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>FlatEarth</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain FlatEarth}</i></td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;rotationAngle</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>LambertAzimuthalEqualArea</i></td><td>&nbsp;&nbsp;<i>Lambert_Azimuthal_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Lambert Azimuthal Equal Area</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LambertAzimuthalEqualArea}</i></td><td>&nbsp;&nbsp;<i>Lambert_Azimuthal_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Lambert Azimuthal Equal Area (Spherical)</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_center</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_center</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>LambertConformal</i></td><td>&nbsp;&nbsp;<i>Lambert_Conformal_Conic_1SP</i></td><td>&nbsp;&nbsp;<i>Lambert Conic Conformal (1SP)</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LambertConformal}</i></td><td>&nbsp;&nbsp;<i>Lambert_Conformal_Conic_1SP</i></td><td>&nbsp;&nbsp;<i>Lambert Conic Conformal (1SP)</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>latitude_longitude</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LatLonProjection latitude_longitude}</i></td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>Mercator</i></td><td>&nbsp;&nbsp;<i>Mercator_2SP</i></td><td>&nbsp;&nbsp;<i>Mercator (variant B)</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain Mercator}</i></td><td>&nbsp;&nbsp;<i>Mercator_2SP</i></td><td>&nbsp;&nbsp;<i>Mercator (variant B)</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>Orthographic</i></td><td>&nbsp;&nbsp;<i>Orthographic</i></td><td>&nbsp;&nbsp;<i>Orthographic</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain Orthographic}</i></td><td>&nbsp;&nbsp;<i>Orthographic</i></td><td>&nbsp;&nbsp;<i>Orthographic</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>RotatedLatLon</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain RotatedLatLon}</i></td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_south_pole_latitude</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_south_pole_longitude</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_south_pole_angle</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>RotatedPole</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain RotatedPole}</i></td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_north_pole_latitude</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_north_pole_longitude</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>Stereographic</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain Stereographic}</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor_at_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scale factor at natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>TransverseMercator</i></td><td>&nbsp;&nbsp;<i>Transverse_Mercator</i></td><td>&nbsp;&nbsp;<i>Transverse Mercator</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain TransverseMercator}</i></td><td>&nbsp;&nbsp;<i>Transverse_Mercator</i></td><td>&nbsp;&nbsp;<i>Transverse Mercator</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor_at_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scale factor at natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>UtmProjection</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain UtmProjection}</i></td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;semi-major_axis</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;inverse_flattening</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;UTM_zone</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;north_hemisphere</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>VerticalPerspectiveView</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain VerticalPerspectiveView}</i></td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;height_above_earth</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  * </table>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -137,7 +162,8 @@ public class NetcdfTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * Returns the provider of this factory.
+     * Returns the provider of this factory. This method returns {@code "NetCDF"} since
+     * the code doing the actual coordinate transform work is the NetCDF Java library.
      */
     @Override
     public Citation getVendor() {
@@ -146,6 +172,7 @@ public class NetcdfTransformFactory implements MathTransformFactory {
 
     /**
      * Returns a set of available methods for {@linkplain MathTransform math transforms}.
+     * This method returns a description of all projections enumerated in the class javadoc.
      *
      * @param  type The type of operations, or {@code null} if unspecified.
      * @return All {@linkplain MathTransform math transform} methods available in this factory.

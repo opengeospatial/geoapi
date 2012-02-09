@@ -16,6 +16,7 @@ package org.opengis.wrapper.netcdf;
 import java.util.Set;
 import java.util.LinkedHashSet;
 
+import ucar.nc2.constants.CF;
 import ucar.unidata.util.Parameter;
 import ucar.unidata.geoloc.Projection;
 import ucar.unidata.geoloc.projection.*;
@@ -25,6 +26,7 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.parameter.GeneralParameterDescriptor;
+import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.MathTransformFactory;
 
@@ -75,10 +77,21 @@ public strictfp class NetcdfTransformFactoryTest {
     private static MathTransformFactory defaultFactory;
 
     /**
-     * Creates a new test case initialized to the default {@linkplain #projections} set.
+     * Creates a new test case for {@link NetcdfTransformFactory}.
+     */
+    public NetcdfTransformFactoryTest() {
+        this(getDefaultFactory());
+    }
+
+    /**
+     * Creates a new test case for the given factory.
+     *
+     * @param factory The factory to test.
      */
     @SuppressWarnings({"unchecked","rawtypes"})
-    public NetcdfTransformFactoryTest() {
+    protected NetcdfTransformFactoryTest(final MathTransformFactory factory) {
+        Objects.requireNonNull(factory);
+        this.factory = factory;
         projections = new Class[] {
             AlbersEqualArea.class,
             FlatEarth.class,
@@ -94,7 +107,6 @@ public strictfp class NetcdfTransformFactoryTest {
             UtmProjection.class,
             VerticalPerspectiveView.class
         };
-        factory = getDefaultFactory();
     }
 
     /**
@@ -105,6 +117,21 @@ public strictfp class NetcdfTransformFactoryTest {
             defaultFactory = new NetcdfTransformFactory();
         }
         return defaultFactory;
+    }
+
+    /**
+     * Returns {@code true} if the parameter of the given name can be ignored.
+     * This method is invoked when a parameter is not always declared by the
+     * NetCDF projection constructor.
+     *
+     * @param parameterName The parameter name.
+     * @return {@code true} if the parameter of the given name is not always declared
+     *         by the NetCDF projection constructor.
+     */
+    private static boolean isIgnorable(final String parameterName) {
+        return "false_easting" .equals(parameterName) ||
+               "false_northing".equals(parameterName) ||
+               "earth_radius"  .equals(parameterName);
     }
 
     /**
@@ -124,6 +151,7 @@ public strictfp class NetcdfTransformFactoryTest {
             } catch (IllegalAccessException e) {
                 throw new AssertionError(e);
             }
+            final String projectionName = projection.getClassName();
             /*
              * Collect the NetCDF parameter names. This code ensures that the same NetCDF
              * parameter name is not declared twice. A failure in this test would be more
@@ -131,19 +159,47 @@ public strictfp class NetcdfTransformFactoryTest {
              */
             names.clear();
             for (final Parameter param : projection.getProjectionParameters()) {
-                final String name = param.getName();
-                assertTrue(name, names.add(name));
+                final String parameterName = param.getName();
+                assertTrue("Duplicated \"" + parameterName + "\" parameter in \"" +
+                        projectionName + "\" projection.", names.add(parameterName));
             }
+            assertTrue("Missing \"" + CF.GRID_MAPPING_NAME + "\" parameter in \"" +
+                    projectionName + "\" projection.", names.remove(CF.GRID_MAPPING_NAME));
             /*
              * Ensures that all parameter names known to GeoAPI-wrapper
              * are known to the current NetCDF projection implementation.
              */
-            final ParameterValueGroup group = factory.getDefaultParameters(projection.getClassName());
+            final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
             validate(group);
             for (final GeneralParameterValue param : group.values()) {
-                final String name = param.getDescriptor().getName().getCode();
-                assertTrue(name, names.remove(name));
+                final String parameterName = param.getDescriptor().getName().getCode();
+                assertTrue("Unknown \"" + parameterName + "\" parameter in \"" + projectionName + "\" projection.",
+                        names.remove(parameterName) || isIgnorable(parameterName));
             }
+            /*
+             * Any remaining parameters in the set are parameter that should have been
+             * declared in the GeoAPI wrappers but are not.
+             */
+            assertTrue("Missing parameter in \"" + projectionName + "\" projection: " + names, names.isEmpty());
+        }
+    }
+
+    /**
+     * Tests the creation of {@link NetcdfProjection} instances.
+     *
+     * @throws FactoryException If an error occurred while using the {@linkplain #factory}.
+     */
+    @Test
+    public void testProjectionCreation() throws FactoryException {
+        for (final Class<? extends Projection> type : projections) {
+            String projectionName = type.getSimpleName();
+            if ("LatLonProjection".equals(projectionName)) {
+                projectionName = "latitude_longitude";
+            }
+            final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
+            final MathTransform projection = factory.createParameterizedTransform(group);
+            assertInstanceOf("Expected a NetCDF wrapper.", NetcdfProjection.class, projection);
+            assertInstanceOf("Expected a NetCDF projection.", type, ((NetcdfProjection) projection).delegate());
         }
     }
 
@@ -151,6 +207,9 @@ public strictfp class NetcdfTransformFactoryTest {
      * Generates a list of all supported projections and their parameters in Javadoc format.
      * The output of this method can be copy-and-pasted in the {@link NetcdfTransformFactory}
      * class javadoc.
+     * <p>
+     * This method is not a real test case. Users need to invoke this method explicitely,
+     * or to declare this method as a test method, in order to get the output.
      */
     public void printParametersJavadoc() {
         System.out.println(" * <table cellspacing=\"0\" cellpadding=\"0\">");
@@ -158,9 +217,10 @@ public strictfp class NetcdfTransformFactoryTest {
         for (final OperationMethod method : factory.getAvailableMethods(null)) {
             final ParameterDescriptorGroup parameters = method.getParameters();
             System.out.println(" *   <tr><td colspan=\"3\"><hr></td></tr>");
-            printParametersJavadocRow(parameters, "&nbsp;&nbsp;<i>", "</i>");
+            printParametersJavadocRow(parameters, (method instanceof ProjectionProvider<?>) ?
+                    ((ProjectionProvider<?>) method).delegate() : null, "&nbsp;&nbsp;<i>", "</i>");
             for (final GeneralParameterDescriptor param : parameters.descriptors()) {
-                printParametersJavadocRow(param, "&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;", "");
+                printParametersJavadocRow(param, null, "&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;", "");
             }
         }
         System.out.println(" * </table>");
@@ -170,9 +230,20 @@ public strictfp class NetcdfTransformFactoryTest {
      * Prints a single row in the table of NetCDF parameters.
      * This method expects a {@code geoapi-netcdf} implementation.
      */
-    private static void printParametersJavadocRow(final GeneralParameterDescriptor param, final String prefix, final String suffix) {
+    private static void printParametersJavadocRow(final GeneralParameterDescriptor param,
+            final Class<? extends Projection> type, final String prefix, final String suffix)
+    {
         final AliasList names = (AliasList) param.getAlias();
-        System.out.print(" *   <tr><td>");                         {System.out.print(prefix); System.out.print(names.     name); System.out.print(suffix);}
+        String name = names.name;
+        if (type != null) {
+            final String cn = type.getSimpleName();
+            if (cn.equals(name)) {
+                name = "{@linkplain " + cn + '}';
+            } else {
+                name = "{@linkplain " + cn + ' ' + name + '}';
+            }
+        }
+        System.out.print(" *   <tr><td>");                         {System.out.print(prefix); System.out.print(name);            System.out.print(suffix);}
         System.out.print(    "</td><td>"); if (names.ogc  != null) {System.out.print(prefix); System.out.print(names.ogc .name); System.out.print(suffix);}
         System.out.print(    "</td><td>"); if (names.epsg != null) {System.out.print(prefix); System.out.print(names.epsg.name); System.out.print(suffix);}
         System.out.println("</td></tr>");
