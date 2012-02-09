@@ -734,7 +734,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         final List<Parameter> parameters = projection.getProjectionParameters();
         final NetcdfParameter<?>[] values = new NetcdfParameter<?>[parameters.size()];
         final Map<String,AliasList> aliases = (provider != null) ?
-                provider.parameterNames : Collections.<String,AliasList>emptyMap();
+                provider.byNames : Collections.<String,AliasList>emptyMap();
         for (int i=0; i<values.length; i++) {
             final Parameter param = parameters.get(i);
             values[i] = NetcdfParameter.create(param, aliases.get(param.getName()));
