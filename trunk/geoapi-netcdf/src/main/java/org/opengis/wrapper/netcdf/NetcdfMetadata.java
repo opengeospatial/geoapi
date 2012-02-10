@@ -17,8 +17,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Collection;
 import java.util.Collections;
-import java.text.ParseException;
-import ucar.unidata.util.DateUtil;
+import ucar.nc2.units.DateFormatter;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
 
@@ -108,6 +107,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     private final Collection<NetcdfMetadata> self;
 
     /**
+     * The object to use for parsing dates, created when first needed.
+     */
+    private transient DateFormatter dateFormat;
+
+    /**
      * Creates a new metadata object as a wrapper around the given NetCDF file.
      *
      * @param file The NetCDF file.
@@ -168,18 +172,15 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * {@link #getString(String)}, then parses the value.
      *
      * @param  name The case-insensitive attribute name.
-     * @return The attribute value, or {@code null} if none.
-     * @throws NumberFormatException If the date can not be parsed. Actually this is not
-     *         really the most appropriate exception, but we use it for consistency with
-     *         {@link #getDouble(String)} and because we don't have much alternatives.
+     * @return The attribute value, or {@code null} if none or can not be parsed.
      */
-    private Date getDate(final String name) throws NumberFormatException {
+    private Date getDate(final String name) {
         final String value = getString(name);
-        if (value != null) try {
-            return DateUtil.parse(value);
-        } catch (ParseException e) {
-            throw (NumberFormatException)
-                    new NumberFormatException(e.getLocalizedMessage()).initCause(e);
+        if (value != null) {
+            if (dateFormat == null) {
+                dateFormat = new DateFormatter();
+            }
+            return dateFormat.getISODate(value);
         }
         return null;
     }
