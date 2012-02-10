@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
+import ucar.nc2.constants.CF;
 import ucar.unidata.geoloc.Projection;
 import ucar.unidata.geoloc.ProjectionImpl;
 import ucar.unidata.geoloc.projection.*;
@@ -193,7 +194,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         final double defaultValue;
         if (name.equals("north_hemisphere")) {
             return NetcdfParameter.create(name, alias, "true");
-        } else if (name.equals("earth_radius")) {
+        } else if (name.equals(CF.EARTH_RADIUS)) {
             defaultValue = ProjectionImpl.EARTH_RADIUS;
         } else {
             defaultValue = 0;
@@ -280,7 +281,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      * @throws ParameterNotFoundException If the requested parameter is not present.
      */
     static double earthRadius(final ParameterValueGroup parameters) throws ParameterNotFoundException {
-        return parameters.parameter("earth_radius").doubleValue();
+        return parameters.parameter(CF.EARTH_RADIUS).doubleValue();
     }
 
     /**
@@ -290,24 +291,24 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 750456843856517553L;
         Albers(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "AlbersEqualArea",                "Albers_Conic_Equal_Area",  "Albers Equal Area",
-                "longitude_of_central_meridian",  "central_meridian",         "Longitude of false origin",
-                "latitude_of_projection_origin",  "latitude_of_origin",       "Latitude of false origin",
-                "standard_parallel",              "standard_parallel_1",      "Latitude of 1st standard parallel",
-                "earth_radius",                    null,                       null,
-                "false_easting",                  "false_easting",            "Easting at false origin",
-                "false_northing",                 "false_northing",           "Northing at false origin");
+                "AlbersEqualArea",                 "Albers_Conic_Equal_Area",  "Albers Equal Area",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,  "latitude_of_origin",       "Latitude of false origin",
+                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,  "central_meridian",         "Longitude of false origin",
+                CF.STANDARD_PARALLEL,              "standard_parallel_1",      "Latitude of 1st standard parallel",
+                CF.FALSE_EASTING,                  "false_easting",            "Easting at false origin",
+                CF.FALSE_NORTHING,                 "false_northing",           "Northing at false origin",
+                CF.EARTH_RADIUS,                    null,                       null);
         }
         @Override public Class<AlbersEqualArea> delegate() {return AlbersEqualArea.class;}
         @Override protected AlbersEqualArea createProjection(final ParameterValueGroup p) {
             if (p == null) return new AlbersEqualArea();
-            return new AlbersEqualArea(value(p, "latitude_of_projection_origin"),
-                                       value(p, "longitude_of_central_meridian"),
-                                       value(p, "standard_parallel"),
-                                       value(p, "standard_parallel"),
-                                       value(p, "false_easting")  / KILOMETRE,
-                                       value(p, "false_northing") / KILOMETRE,
-                                       earthRadius(p)             / KILOMETRE);
+            return new AlbersEqualArea(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                       value(p, CF.LONGITUDE_OF_CENTRAL_MERIDIAN),
+                                       value(p, CF.STANDARD_PARALLEL),
+                                       value(p, CF.STANDARD_PARALLEL),
+                                       value(p, CF.FALSE_EASTING)  / KILOMETRE,
+                                       value(p, CF.FALSE_NORTHING) / KILOMETRE,
+                                       earthRadius(p)              / KILOMETRE);
         }
     }
 
@@ -318,18 +319,18 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = -7970152210677936013L;
         Flat(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "FlatEarth",                       null,  null,
-                "longitude_of_projection_origin",  null,  null,
-                "latitude_of_projection_origin",   null,  null,
-                "rotationAngle",                   null,  null,
-                "earth_radius",                    null,  null);
+                "FlatEarth",                        null,  null,
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,   null,  null,
+                CF.LONGITUDE_OF_PROJECTION_ORIGIN,  null,  null,
+                FlatEarth.ROTATIONANGLE,            null,  null,
+                CF.EARTH_RADIUS,                    null,  null);
         }
         @Override public Class<FlatEarth> delegate() {return FlatEarth.class;}
         @Override protected FlatEarth createProjection(final ParameterValueGroup p) {
             if (p == null) return new FlatEarth();
-            return new FlatEarth(value(p, "latitude_of_projection_origin"),
-                                 value(p, "longitude_of_projection_origin"),
-                                 value(p, "rotationAngle"),
+            return new FlatEarth(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                 value(p, CF.LONGITUDE_OF_PROJECTION_ORIGIN),
+                                 value(p, FlatEarth.ROTATIONANGLE),
                                  earthRadius(p) / KILOMETRE);
         }
     }
@@ -341,21 +342,21 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 5746186219589652050L;
         LambertAzimuthal(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "LambertAzimuthalEqualArea",       "Lambert_Azimuthal_Equal_Area",  "Lambert Azimuthal Equal Area (Spherical)",
-                "longitude_of_projection_origin",  "longitude_of_center",           "Longitude of natural origin",
-                "latitude_of_projection_origin",   "latitude_of_center",            "Latitude of natural origin",
-                "earth_radius",                     null,                            null,
-                "false_easting",                   "false_easting",                 "False easting",
-                "false_northing",                  "false_northing",                "False northing");
+                "LambertAzimuthalEqualArea",        "Lambert_Azimuthal_Equal_Area",  "Lambert Azimuthal Equal Area (Spherical)",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,   "latitude_of_center",            "Latitude of natural origin",
+                CF.LONGITUDE_OF_PROJECTION_ORIGIN,  "longitude_of_center",           "Longitude of natural origin",
+                CF.FALSE_EASTING,                   "false_easting",                 "False easting",
+                CF.FALSE_NORTHING,                  "false_northing",                "False northing",
+                CF.EARTH_RADIUS,                     null,                            null);
         }
         @Override public Class<LambertAzimuthalEqualArea> delegate() {return LambertAzimuthalEqualArea.class;}
         @Override protected LambertAzimuthalEqualArea createProjection(final ParameterValueGroup p) {
             if (p == null) return new LambertAzimuthalEqualArea();
-            return new LambertAzimuthalEqualArea(value(p, "latitude_of_projection_origin"),
-                                                 value(p, "longitude_of_projection_origin"),
-                                                 value(p, "false_easting")  / KILOMETRE,
-                                                 value(p, "false_northing") / KILOMETRE,
-                                                 earthRadius(p)             / KILOMETRE);
+            return new LambertAzimuthalEqualArea(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                                 value(p, CF.LONGITUDE_OF_PROJECTION_ORIGIN),
+                                                 value(p, CF.FALSE_EASTING)  / KILOMETRE,
+                                                 value(p, CF.FALSE_NORTHING) / KILOMETRE,
+                                                 earthRadius(p)              / KILOMETRE);
         }
     }
 
@@ -366,24 +367,24 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 1295663810378039878L;
         LambertConic1SP(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "LambertConformal",               "Lambert_Conformal_Conic_1SP",  "Lambert Conic Conformal (1SP)",
-                "longitude_of_central_meridian",  "central_meridian",             "Longitude of natural origin",
-                "latitude_of_projection_origin",  "latitude_of_origin",           "Latitude of natural origin",
-                "standard_parallel",              "standard_parallel_1",          "Latitude of 1st standard parallel",
-                "earth_radius",                    null,                           null,
-                "false_easting",                  "false_easting",                "False easting",
-                "false_northing",                 "false_northing",               "False northing");
+                "LambertConformal",                "Lambert_Conformal_Conic_1SP",  "Lambert Conic Conformal (1SP)",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,  "latitude_of_origin",           "Latitude of natural origin",
+                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,  "central_meridian",             "Longitude of natural origin",
+                CF.STANDARD_PARALLEL,              "standard_parallel_1",          "Latitude of 1st standard parallel",
+                CF.FALSE_EASTING,                  "false_easting",                "False easting",
+                CF.FALSE_NORTHING,                 "false_northing",               "False northing",
+                CF.EARTH_RADIUS,                    null,                           null);
         }
         @Override public Class<LambertConformal> delegate() {return LambertConformal.class;}
         @Override protected LambertConformal createProjection(final ParameterValueGroup p) {
             if (p == null) return new LambertConformal();
-            return new LambertConformal(value(p, "latitude_of_projection_origin"),
-                                        value(p, "longitude_of_central_meridian"),
-                                        value(p, "standard_parallel"),
-                                        value(p, "standard_parallel"),
-                                        value(p, "false_easting")  / KILOMETRE,
-                                        value(p, "false_northing") / KILOMETRE,
-                                        earthRadius(p)             / KILOMETRE);
+            return new LambertConformal(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                        value(p, CF.LONGITUDE_OF_CENTRAL_MERIDIAN),
+                                        value(p, CF.STANDARD_PARALLEL),
+                                        value(p, CF.STANDARD_PARALLEL),
+                                        value(p, CF.FALSE_EASTING)  / KILOMETRE,
+                                        value(p, CF.FALSE_NORTHING) / KILOMETRE,
+                                        earthRadius(p)              / KILOMETRE);
         }
     }
 
@@ -411,20 +412,20 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 8777486546660325533L;
         Mercator2SP(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "Mercator",                        "Mercator_2SP",         "Mercator (variant B)",
-                "longitude_of_projection_origin",  "central_meridian",     "Longitude of natural origin",
-                "standard_parallel",               "standard_parallel_1",  "Latitude of 1st standard parallel",
-                "earth_radius",                     null,                   null,
-                "false_easting",                   "false_easting",        "False easting",
-                "false_northing",                  "false_northing",       "False northing");
+                "Mercator",                         "Mercator_2SP",         "Mercator (variant B)",
+                CF.LONGITUDE_OF_PROJECTION_ORIGIN,  "central_meridian",     "Longitude of natural origin",
+                CF.STANDARD_PARALLEL,               "standard_parallel_1",  "Latitude of 1st standard parallel",
+                CF.FALSE_EASTING,                   "false_easting",        "False easting",
+                CF.FALSE_NORTHING,                  "false_northing",       "False northing",
+                CF.EARTH_RADIUS,                     null,                   null);
         }
         @Override public Class<Mercator> delegate() {return Mercator.class;}
         @Override protected Mercator createProjection(final ParameterValueGroup p) {
             if (p == null) return new Mercator();
-            return new Mercator(value(p, "longitude_of_projection_origin"),
-                                value(p, "standard_parallel"),
-                                value(p, "false_easting")   / KILOMETRE,
-                                value(p, "false_northing")  / KILOMETRE,
+            return new Mercator(value(p, CF.LONGITUDE_OF_PROJECTION_ORIGIN),
+                                value(p, CF.STANDARD_PARALLEL),
+                                value(p, CF.FALSE_EASTING)  / KILOMETRE,
+                                value(p, CF.FALSE_NORTHING) / KILOMETRE,
                                 earthRadius(p)              / KILOMETRE);
         }
     }
@@ -436,16 +437,16 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = -7241876400934462599L;
         Ortho(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "Orthographic",                    "Orthographic",        "Orthographic",
-                "longitude_of_projection_origin",  "central_meridian",    "Longitude of natural origin",
-                "latitude_of_projection_origin",   "latitude_of_origin",  "Latitude of natural origin",
-                "earth_radius",                     null,                  null);
+                "Orthographic",                     "Orthographic",        "Orthographic",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,   "latitude_of_origin",  "Latitude of natural origin",
+                CF.LONGITUDE_OF_PROJECTION_ORIGIN,  "central_meridian",    "Longitude of natural origin",
+                CF.EARTH_RADIUS,                     null,                  null);
         }
         @Override public Class<Orthographic> delegate() {return Orthographic.class;}
         @Override protected Orthographic createProjection(final ParameterValueGroup p) {
             if (p == null) return new Orthographic();
-            return new Orthographic(value(p, "latitude_of_projection_origin"),
-                                    value(p, "longitude_of_projection_origin"),
+            return new Orthographic(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                    value(p, CF.LONGITUDE_OF_PROJECTION_ORIGIN),
                                     earthRadius(p) / KILOMETRE);
         }
     }
@@ -457,17 +458,17 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 733254902626989710L;
         RotatedSouth(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "RotatedLatLon",              null,  null,
-                "grid_south_pole_latitude",   null,  null,
-                "grid_south_pole_longitude",  null,  null,
-                "grid_south_pole_angle",      null,  null);
+                "RotatedLatLon",                          null,  null,
+                RotatedLatLon.GRID_SOUTH_POLE_LATITUDE,   null,  null,
+                RotatedLatLon.GRID_SOUTH_POLE_LONGITUDE,  null,  null,
+                RotatedLatLon.GRID_SOUTH_POLE_ANGLE,      null,  null);
         }
         @Override public Class<RotatedLatLon> delegate() {return RotatedLatLon.class;}
         @Override protected RotatedLatLon createProjection(final ParameterValueGroup p) {
             if (p == null) return new RotatedLatLon();
-            return new RotatedLatLon(value(p, "grid_south_pole_latitude"),
-                                     value(p, "grid_south_pole_longitude"),
-                                     value(p, "grid_south_pole_angle"));
+            return new RotatedLatLon(value(p, RotatedLatLon.GRID_SOUTH_POLE_LATITUDE),
+                                     value(p, RotatedLatLon.GRID_SOUTH_POLE_LONGITUDE),
+                                     value(p, RotatedLatLon.GRID_SOUTH_POLE_ANGLE));
         }
     }
 
@@ -478,15 +479,15 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = -6456120388549694347L;
         RotatedNorth(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "RotatedPole",                null,  null,
-                "grid_north_pole_latitude",   null,  null,
-                "grid_north_pole_longitude",  null,  null);
+                "RotatedPole",                 null,  null,
+                CF.GRID_NORTH_POLE_LATITUDE,   null,  null,
+                CF.GRID_NORTH_POLE_LONGITUDE,  null,  null);
         }
         @Override public Class<RotatedPole> delegate() {return RotatedPole.class;}
         @Override protected RotatedPole createProjection(final ParameterValueGroup p) {
             if (p == null) return new RotatedPole();
-            return new RotatedPole(value(p, "grid_north_pole_latitude"),
-                                   value(p, "grid_north_pole_longitude"));
+            return new RotatedPole(value(p, CF.GRID_NORTH_POLE_LATITUDE),
+                                   value(p, CF.GRID_NORTH_POLE_LONGITUDE));
         }
     }
 
@@ -499,22 +500,22 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 5466265000839086417L;
         ObliqueStereographic(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "Stereographic",                      "Stereographic",        "Stereographic",
-                "longitude_of_projection_origin",     "central_meridian",     "Longitude of natural origin",
-                "latitude_of_projection_origin",      "latitude_of_origin",   "Latitude of natural origin",
-                "scale_factor_at_projection_origin",  "scale_factor",         "Scale factor at natural origin",
-                "earth_radius",                        null,                   null,
-                "false_easting",                      "false_easting",        "False easting",
-                "false_northing",                     "false_northing",       "False northing");
+                "Stereographic",                       "Stereographic",        "Stereographic",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,      "latitude_of_origin",   "Latitude of natural origin",
+                CF.LONGITUDE_OF_PROJECTION_ORIGIN,     "central_meridian",     "Longitude of natural origin",
+                CF.SCALE_FACTOR_AT_PROJECTION_ORIGIN,  "scale_factor",         "Scale factor at natural origin",
+                CF.FALSE_EASTING,                      "false_easting",        "False easting",
+                CF.FALSE_NORTHING,                     "false_northing",       "False northing",
+                CF.EARTH_RADIUS,                        null,                   null);
         }
         @Override public Class<Stereographic> delegate() {return Stereographic.class;}
         @Override protected Stereographic createProjection(final ParameterValueGroup p) {
             if (p == null) return new Stereographic();
-            return new Stereographic(value(p, "latitude_of_projection_origin"),
-                                     value(p, "longitude_of_projection_origin"),
-                                     value(p, "scale_factor_at_projection_origin"),
-                                     value(p, "false_easting")   / KILOMETRE,
-                                     value(p, "false_northing")  / KILOMETRE,
+            return new Stereographic(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                     value(p, CF.LONGITUDE_OF_PROJECTION_ORIGIN),
+                                     value(p, CF.SCALE_FACTOR_AT_PROJECTION_ORIGIN),
+                                     value(p, CF.FALSE_EASTING)  / KILOMETRE,
+                                     value(p, CF.FALSE_NORTHING) / KILOMETRE,
                                      earthRadius(p)              / KILOMETRE);
         }
     }
@@ -526,22 +527,22 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = -1374895336564170370L;
         Transverse(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "TransverseMercator",                "Transverse_Mercator",  "Transverse Mercator",
-                "longitude_of_central_meridian",     "central_meridian",     "Longitude of natural origin",
-                "latitude_of_projection_origin",     "latitude_of_origin",   "Latitude of natural origin",
-                "scale_factor_at_central_meridian",  "scale_factor",         "Scale factor at natural origin",
-                "earth_radius",                       null,                   null,
-                "false_easting",                     "false_easting",        "False easting",
-                "false_northing",                    "false_northing",       "False northing");
+                "TransverseMercator",                 "Transverse_Mercator",  "Transverse Mercator",
+                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,     "central_meridian",     "Longitude of natural origin",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,     "latitude_of_origin",   "Latitude of natural origin",
+                CF.SCALE_FACTOR_AT_CENTRAL_MERIDIAN,  "scale_factor",         "Scale factor at natural origin",
+                CF.FALSE_EASTING,                     "false_easting",        "False easting",
+                CF.FALSE_NORTHING,                    "false_northing",       "False northing",
+                CF.EARTH_RADIUS,                       null,                   null);
         }
         @Override public Class<TransverseMercator> delegate() {return TransverseMercator.class;}
         @Override protected TransverseMercator createProjection(final ParameterValueGroup p) {
             if (p == null) return new TransverseMercator();
-            return new TransverseMercator(value(p, "latitude_of_projection_origin"),
-                                          value(p, "longitude_of_central_meridian"),
-                                          value(p, "scale_factor_at_central_meridian"),
-                                          value(p, "false_easting")   / KILOMETRE,
-                                          value(p, "false_northing")  / KILOMETRE,
+            return new TransverseMercator(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                          value(p, CF.LONGITUDE_OF_CENTRAL_MERIDIAN),
+                                          value(p, CF.SCALE_FACTOR_AT_CENTRAL_MERIDIAN),
+                                          value(p, CF.FALSE_EASTING)  / KILOMETRE,
+                                          value(p, CF.FALSE_NORTHING) / KILOMETRE,
                                           earthRadius(p)              / KILOMETRE);
         }
     }
@@ -553,18 +554,18 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 2493554268255203722L;
         UTM(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "UtmProjection",        null,  null,
-                "semi_major_axis",      null,  null,
-                "inverse_flattening",   null,  null,
-                "UTM_zone",             null,  null,
-                "north_hemisphere",     null,  null);
+                "UtmProjection",         null,  null,
+                CF.SEMI_MAJOR_AXIS,      null,  null,
+                CF.INVERSE_FLATTENING,   null,  null,
+                UtmProjection.UTM_ZONE,  null,  null,
+                "north_hemisphere",      null,  null);
         }
         @Override public Class<UtmProjection> delegate() {return UtmProjection.class;}
         @Override protected UtmProjection createProjection(final ParameterValueGroup p) {
             if (p == null) return new UtmProjection();
-            return new UtmProjection(value(p, "semi_major_axis"),
-                                     value(p, "inverse_flattening"),
-                                     p.parameter("UTM_zone").intValue(),
+            return new UtmProjection(value(p, CF.SEMI_MAJOR_AXIS),
+                                     value(p, CF.INVERSE_FLATTENING),
+                                     p.parameter(UtmProjection.UTM_ZONE).intValue(),
                                      p.parameter("north_hemisphere").booleanValue());
         }
     }
@@ -576,23 +577,23 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 1670830240520560127L;
         Perspective(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "VerticalPerspectiveView",         null,  null,
-                "longitude_of_projection_origin",  null,  null,
-                "latitude_of_projection_origin",   null,  null,
-                "perspective_point_height",        null,  null,
-                "false_easting",                   null,  null,
-                "false_northing",                  null,  null,
-                "earth_radius",                    null,  null);
+                "VerticalPerspectiveView",          null,  null,
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,   null,  null,
+                CF.LONGITUDE_OF_PROJECTION_ORIGIN,  null,  null,
+                CF.PERSPECTIVE_POINT_HEIGHT,        null,  null,
+                CF.FALSE_EASTING,                   null,  null,
+                CF.FALSE_NORTHING,                  null,  null,
+                CF.EARTH_RADIUS,                    null,  null);
         }
         @Override public Class<VerticalPerspectiveView> delegate() {return VerticalPerspectiveView.class;}
         @Override protected VerticalPerspectiveView createProjection(final ParameterValueGroup p) {
             if (p == null) return new VerticalPerspectiveView();
-            return new VerticalPerspectiveView(value(p, "latitude_of_projection_origin"),
-                                               value(p, "longitude_of_projection_origin"),
-                                               earthRadius(p)                       / KILOMETRE,
-                                               value(p, "perspective_point_height") / KILOMETRE,
-                                               value(p, "false_easting")            / KILOMETRE,
-                                               value(p, "false_northing")           / KILOMETRE);
+            return new VerticalPerspectiveView(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
+                                               value(p, CF.LONGITUDE_OF_PROJECTION_ORIGIN),
+                                               earthRadius(p)                        / KILOMETRE,
+                                               value(p, CF.PERSPECTIVE_POINT_HEIGHT) / KILOMETRE,
+                                               value(p, CF.FALSE_EASTING)            / KILOMETRE,
+                                               value(p, CF.FALSE_NORTHING)           / KILOMETRE);
         }
     }
 }
