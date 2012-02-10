@@ -129,9 +129,8 @@ public strictfp class NetcdfTransformFactoryTest {
      *         by the NetCDF projection constructor.
      */
     private static boolean isIgnorable(final String parameterName) {
-        return "false_easting"   .equals(parameterName) ||
-               "false_northing"  .equals(parameterName) ||
-               "earth_radius"    .equals(parameterName) ||
+        return CF.FALSE_EASTING  .equals(parameterName) ||
+               CF.FALSE_NORTHING .equals(parameterName) ||
                "north_hemisphere".equals(parameterName);
     }
 
