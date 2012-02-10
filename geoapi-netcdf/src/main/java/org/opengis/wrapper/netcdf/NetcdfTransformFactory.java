@@ -20,6 +20,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
 
+import ucar.unidata.geoloc.projection.*; // For javadoc.
+
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.metadata.citation.Citation;
@@ -49,6 +51,7 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;rotationAngle</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LambertAzimuthalEqualArea}</i></td><td>&nbsp;&nbsp;<i>Lambert_Azimuthal_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Lambert Azimuthal Equal Area (Spherical)</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_center</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
@@ -65,11 +68,12 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LatLonProjection latitude_longitude}</i></td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LatLonProjection}</i></td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain Mercator}</i></td><td>&nbsp;&nbsp;<i>Mercator_2SP</i></td><td>&nbsp;&nbsp;<i>Mercator (variant B)</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
@@ -91,6 +95,7 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor_at_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scale factor at natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
@@ -98,11 +103,12 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor_at_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scale factor at natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain UtmProjection}</i></td><td></td><td></td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;semi-major_axis</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;semi_major_axis</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;inverse_flattening</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;UTM_zone</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;north_hemisphere</td><td></td><td></td></tr>
@@ -110,7 +116,7 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain VerticalPerspectiveView}</i></td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td></td><td></td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;height_above_earth</td><td></td><td></td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;perspective_point_height</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>

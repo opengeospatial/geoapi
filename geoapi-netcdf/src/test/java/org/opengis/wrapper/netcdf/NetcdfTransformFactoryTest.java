@@ -129,9 +129,10 @@ public strictfp class NetcdfTransformFactoryTest {
      *         by the NetCDF projection constructor.
      */
     private static boolean isIgnorable(final String parameterName) {
-        return "false_easting" .equals(parameterName) ||
-               "false_northing".equals(parameterName) ||
-               "earth_radius"  .equals(parameterName);
+        return "false_easting"   .equals(parameterName) ||
+               "false_northing"  .equals(parameterName) ||
+               "earth_radius"    .equals(parameterName) ||
+               "north_hemisphere".equals(parameterName);
     }
 
     /**
@@ -192,10 +193,7 @@ public strictfp class NetcdfTransformFactoryTest {
     @Test
     public void testProjectionCreation() throws FactoryException {
         for (final Class<? extends Projection> type : projections) {
-            String projectionName = type.getSimpleName();
-            if ("LatLonProjection".equals(projectionName)) {
-                projectionName = "latitude_longitude";
-            }
+            final String projectionName = type.getSimpleName();
             final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
             final MathTransform projection = factory.createParameterizedTransform(group);
             assertInstanceOf("Expected a NetCDF wrapper.", NetcdfProjection.class, projection);

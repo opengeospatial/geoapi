@@ -66,7 +66,6 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
      */
     private void createMercatorProjection() {
         final Mercator projection = new Mercator();
-        projection.setName("Default Mercator projection");
         operation = wrap(projection);
         transform = operation.getMathTransform();
         validate(operation);
@@ -107,7 +106,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     public void testNames() {
         createMercatorProjection();
         final SingleOperation operation = this.operation; // Protect from changes.
-        assertEquals("Default Mercator projection", operation.getName().getCode());
+        assertEquals("Mercator", operation.getName().getCode());
         assertEquals("Mercator", operation.getMethod().getName().getCode());
     }
 

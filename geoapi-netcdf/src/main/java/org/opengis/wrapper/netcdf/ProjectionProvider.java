@@ -321,14 +321,16 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "FlatEarth",                       null,  null,
                 "longitude_of_projection_origin",  null,  null,
                 "latitude_of_projection_origin",   null,  null,
-                "rotationAngle",                   null,  null);
+                "rotationAngle",                   null,  null,
+                "earth_radius",                    null,  null);
         }
         @Override public Class<FlatEarth> delegate() {return FlatEarth.class;}
         @Override protected FlatEarth createProjection(final ParameterValueGroup p) {
             if (p == null) return new FlatEarth();
             return new FlatEarth(value(p, "latitude_of_projection_origin"),
                                  value(p, "longitude_of_projection_origin"),
-                                 value(p, "rotationAngle"));
+                                 value(p, "rotationAngle"),
+                                 earthRadius(p) / KILOMETRE);
         }
     }
 
@@ -392,7 +394,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 8896571199753338018L;
         PlateCarree(final Map<SimpleName,SimpleName> existings) {
             super(existings,
-                "latitude_longitude",  null,  null);
+                "LatLonProjection",  null,  null);
         }
         @Override public Class<LatLonProjection> delegate() {return LatLonProjection.class;}
         @Override protected LatLonProjection createProjection(final ParameterValueGroup p) {
@@ -412,6 +414,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "Mercator",                        "Mercator_2SP",         "Mercator (variant B)",
                 "longitude_of_projection_origin",  "central_meridian",     "Longitude of natural origin",
                 "standard_parallel",               "standard_parallel_1",  "Latitude of 1st standard parallel",
+                "earth_radius",                     null,                   null,
                 "false_easting",                   "false_easting",        "False easting",
                 "false_northing",                  "false_northing",       "False northing");
         }
@@ -421,7 +424,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             return new Mercator(value(p, "longitude_of_projection_origin"),
                                 value(p, "standard_parallel"),
                                 value(p, "false_easting")   / KILOMETRE,
-                                value(p, "false_northing")  / KILOMETRE);
+                                value(p, "false_northing")  / KILOMETRE,
+                                earthRadius(p)              / KILOMETRE);
         }
     }
 
@@ -499,6 +503,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "longitude_of_projection_origin",     "central_meridian",     "Longitude of natural origin",
                 "latitude_of_projection_origin",      "latitude_of_origin",   "Latitude of natural origin",
                 "scale_factor_at_projection_origin",  "scale_factor",         "Scale factor at natural origin",
+                "earth_radius",                        null,                   null,
                 "false_easting",                      "false_easting",        "False easting",
                 "false_northing",                     "false_northing",       "False northing");
         }
@@ -509,7 +514,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                                      value(p, "longitude_of_projection_origin"),
                                      value(p, "scale_factor_at_projection_origin"),
                                      value(p, "false_easting")   / KILOMETRE,
-                                     value(p, "false_northing")  / KILOMETRE);
+                                     value(p, "false_northing")  / KILOMETRE,
+                                     earthRadius(p)              / KILOMETRE);
         }
     }
 
@@ -524,6 +530,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "longitude_of_central_meridian",     "central_meridian",     "Longitude of natural origin",
                 "latitude_of_projection_origin",     "latitude_of_origin",   "Latitude of natural origin",
                 "scale_factor_at_central_meridian",  "scale_factor",         "Scale factor at natural origin",
+                "earth_radius",                       null,                   null,
                 "false_easting",                     "false_easting",        "False easting",
                 "false_northing",                    "false_northing",       "False northing");
         }
@@ -534,7 +541,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                                           value(p, "longitude_of_central_meridian"),
                                           value(p, "scale_factor_at_central_meridian"),
                                           value(p, "false_easting")   / KILOMETRE,
-                                          value(p, "false_northing")  / KILOMETRE);
+                                          value(p, "false_northing")  / KILOMETRE,
+                                          earthRadius(p)              / KILOMETRE);
         }
     }
 
@@ -546,7 +554,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         UTM(final Map<SimpleName,SimpleName> existings) {
             super(existings,
                 "UtmProjection",        null,  null,
-                "semi-major_axis",      null,  null,
+                "semi_major_axis",      null,  null,
                 "inverse_flattening",   null,  null,
                 "UTM_zone",             null,  null,
                 "north_hemisphere",     null,  null);
@@ -554,7 +562,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         @Override public Class<UtmProjection> delegate() {return UtmProjection.class;}
         @Override protected UtmProjection createProjection(final ParameterValueGroup p) {
             if (p == null) return new UtmProjection();
-            return new UtmProjection(value(p, "semi-major_axis"),
+            return new UtmProjection(value(p, "semi_major_axis"),
                                      value(p, "inverse_flattening"),
                                      p.parameter("UTM_zone").intValue(),
                                      p.parameter("north_hemisphere").booleanValue());
@@ -571,7 +579,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "VerticalPerspectiveView",         null,  null,
                 "longitude_of_projection_origin",  null,  null,
                 "latitude_of_projection_origin",   null,  null,
-                "height_above_earth",              null,  null,
+                "perspective_point_height",        null,  null,
                 "false_easting",                   null,  null,
                 "false_northing",                  null,  null,
                 "earth_radius",                    null,  null);
@@ -581,10 +589,10 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             if (p == null) return new VerticalPerspectiveView();
             return new VerticalPerspectiveView(value(p, "latitude_of_projection_origin"),
                                                value(p, "longitude_of_projection_origin"),
-                                               earthRadius(p)                 / KILOMETRE,
-                                               value(p, "height_above_earth") / KILOMETRE,
-                                               value(p, "false_easting")      / KILOMETRE,
-                                               value(p, "false_northing")     / KILOMETRE);
+                                               earthRadius(p)                       / KILOMETRE,
+                                               value(p, "perspective_point_height") / KILOMETRE,
+                                               value(p, "false_easting")            / KILOMETRE,
+                                               value(p, "false_northing")           / KILOMETRE);
         }
     }
 }
