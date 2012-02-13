@@ -111,7 +111,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * @throws IOException If the test file can not be read.
      */
     @Test
-    public void testThredds() throws IOException {
+    public void testTHREDDS() throws IOException {
         final NetcdfFile file = open(THREDDS);
         try {
             final Metadata metadata = wrap(file);
