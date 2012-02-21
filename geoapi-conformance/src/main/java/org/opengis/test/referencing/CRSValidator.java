@@ -32,15 +32,18 @@
 package org.opengis.test.referencing;
 
 import java.util.Set;
-import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.Conversion;
-
 import org.opengis.test.ValidatorContainer;
+
 import static org.opengis.test.Assert.*;
+import static org.opengis.test.referencing.Utilities.*;
 
 
 /**
@@ -57,12 +60,39 @@ import static org.opengis.test.Assert.*;
  */
 public class CRSValidator extends ReferencingValidator {
     /**
+     * The axis names mandated by ISO 19111 for some particular kind of CRS.
+     * See ISO 19111:2007 table 16 at page 25.
+     */
+    private static final String[]
+            GEOCENTRIC_AXIS_NAME = {"geocentric X", "geocentric Y", "geocentric Z"},
+            GEOGRAPHIC_AXIS_NAME = {"geodetic latitude", "geodetic longitude", "ellipsoidal height"},
+            PROJECTED_AXIS_NAME  = {"northing", "southing", "easting", "westing"},
+            SPHERICAL_AXIS_NAME  = {"spherical latitude", "spherical longitude", "geocentric radius"},
+            VERTICAL_AXIS_NAME   = {"depth", "gravity-related height"};
+
+    /**
      * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS}
      * is under way. Used in order to avoid never-ending recursivity.
      *
      * @todo Replace by a more general mechanism straight in {@link ValidatorContainer}.
      */
     private final ThreadLocal<Boolean> VALIDATING = new ThreadLocal<Boolean>();
+
+    /**
+     * {@code true} if standard names shall be enforced when such names are defined by an OGC/ISO
+     * standard. For example the ISO 19111 standard constraints the {@link GeographicCRS} axis names
+     * to "<cite>geodetic latitude</cite>", "<cite>geodetic longitude</cite>" and "<cite>ellipsoidal
+     * height</cite>" (if 3D) names. Those axis names will be verified by this validator, unless
+     * this fields is explicitely set to {@code false}.
+     *
+     * @see #validate(GeocentricCRS)
+     * @see #validate(GeographicCRS)
+     * @see #validate(ProjectedCRS)
+     * @see #validate(VerticalCRS)
+     *
+     * @since 3.1
+     */
+    public boolean enforceStandardNames = true;
 
     /**
      * Creates a new validator instance.
@@ -92,6 +122,7 @@ public class CRSValidator extends ReferencingValidator {
             if (object instanceof EngineeringCRS) {validate((EngineeringCRS) object); n++;}
             if (object instanceof VerticalCRS)    {validate((VerticalCRS)    object); n++;}
             if (object instanceof TemporalCRS)    {validate((TemporalCRS)    object); n++;}
+            if (object instanceof CompoundCRS)    {validate((CompoundCRS)    object); n++;}
             if (n == 0) {
                 validateReferenceSystem(object);
                 container.validate(object.getCoordinateSystem());
@@ -101,7 +132,16 @@ public class CRSValidator extends ReferencingValidator {
     }
 
     /**
-     * Validates the given coordinate reference system.
+     * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
+     * field is set to {@code true} (which is the default), then this method expects the axes
+     * to have the following names:
+     * <p>
+     * <ul>
+     *   <li>For Cartesian coordinate system, "<cite>geocentric X</cite>",
+     *       "<cite>geocentric Y</cite>" and "<cite>geocentric Z</cite>".</li>
+     *   <li>For spherical coordinate system, "<cite>spherical latitude</cite>",
+     *       "<cite>spherical longitude</cite>" and "<cite>geocentric radius</cite>".</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -115,12 +155,19 @@ public class CRSValidator extends ReferencingValidator {
         if (cs instanceof CartesianCS) {
             container.validate((CartesianCS) cs);
             final Set<AxisDirection> axes = getAxisDirections(cs);
+            validate(axes);
             assertTrue("GeocentricCRS: expected Geocentric X axis direction.", axes.remove(AxisDirection.GEOCENTRIC_X));
             assertTrue("GeocentricCRS: expected Geocentric Y axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Y));
             assertTrue("GeocentricCRS: expected Geocentric Z axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Z));
             assertTrue("GeocentricCRS: unknown axis direction.",               axes.isEmpty());
+            if (enforceStandardNames) {
+                assertStandardNames("GeocentricCRS", cs, GEOCENTRIC_AXIS_NAME);
+            }
         } else if (cs instanceof SphericalCS) {
             container.validate((SphericalCS) cs);
+            if (enforceStandardNames) {
+                assertStandardNames("GeocentricCRS", cs, SPHERICAL_AXIS_NAME);
+            }
         } else if (cs != null) {
             fail("GeocentricCRS: unknown CoordinateSystem of type " + cs.getClass().getCanonicalName() + '.');
         }
@@ -130,7 +177,14 @@ public class CRSValidator extends ReferencingValidator {
     }
 
     /**
-     * Validates the given coordinate reference system.
+     * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
+     * field is set to {@code true} (which is the default), then this method expects the axes
+     * to have the following names:
+     * <p>
+     * <ul>
+     *   <li>"<cite>geodetic latitude</cite>", "<cite>geodetic longitude</cite>" and
+     *       "<cite>ellipsoidal height</cite>" (if 3D).</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -142,14 +196,23 @@ public class CRSValidator extends ReferencingValidator {
         final EllipsoidalCS cs = object.getCoordinateSystem();
         mandatory("GeographicCRS: must have a CoordinateSystem.", cs);
         container.validate(cs);
-
+        if (enforceStandardNames) {
+            assertStandardNames("GeographicCRS", cs, GEOGRAPHIC_AXIS_NAME);
+        }
         final GeodeticDatum datum = object.getDatum();
         mandatory("GeographicCRS: must have a Datum.", datum);
         container.validate(datum);
     }
 
     /**
-     * Validates the given coordinate reference system.
+     * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
+     * field is set to {@code true} (which is the default), then this method expects the axes
+     * to have the following names:
+     * <p>
+     * <ul>
+     *   <li>"<cite>northing</cite>" or "<cite>southing</cite>", "<cite>easting</cite>" or
+     *       "<cite>westing</cite>".</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -166,7 +229,9 @@ public class CRSValidator extends ReferencingValidator {
         final CartesianCS cs = object.getCoordinateSystem();
         mandatory("ProjectedCRS: must have a CoordinateSystem.", cs);
         container.validate(cs);
-
+        if (enforceStandardNames) {
+            assertStandardNames("ProjectedCRS", cs, PROJECTED_AXIS_NAME);
+        }
         final GeodeticDatum datum = object.getDatum();
         mandatory("ProjectedCRS: must have a Datum.", datum);
         container.validate(datum);
@@ -269,7 +334,13 @@ public class CRSValidator extends ReferencingValidator {
     }
 
     /**
-     * Validates the given coordinate reference system.
+     * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
+     * field is set to {@code true} (which is the default), then this method expects the axes
+     * to have the following names:
+     * <p>
+     * <ul>
+     *   <li>"<cite>depth</cite>" or "<cite>gravity-related height</cite>".</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -281,7 +352,9 @@ public class CRSValidator extends ReferencingValidator {
         final VerticalCS cs = object.getCoordinateSystem();
         mandatory("VerticalCRS: must have a CoordinateSystem.", cs);
         container.validate(cs);
-
+        if (enforceStandardNames) {
+            assertStandardNames("VerticalCRS", cs, VERTICAL_AXIS_NAME);
+        }
         final VerticalDatum datum = object.getDatum();
         mandatory("VerticalCRS: must have a Datum.", datum);
         container.validate(datum);
@@ -307,27 +380,67 @@ public class CRSValidator extends ReferencingValidator {
     }
 
     /**
-     * Returns the axis directions from the given coordinate system.
+     * Validates the given coordinate reference system.
+     * This method will validate every individual components in the given compound CRS.
      *
-     * @param cs The coordinate system from which to get axis directions.
-     * @return The axis directions.
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
      */
-    private Set<AxisDirection> getAxisDirections(final CoordinateSystem cs) {
-        final int dimension = cs.getDimension();
-        final Set<AxisDirection> directions = new HashSet<AxisDirection>(dimension * 4/3 + 1);
-        for (int i=0; i<dimension; i++) {
-            final CoordinateSystemAxis axis = cs.getAxis(i);
-            if (axis != null) {
-                final AxisDirection direction = axis.getDirection();
-                mandatory("Axis must have a direction.", direction);
-                if (direction != null) {
-                    if (!directions.add(direction)) {
-                        fail("CoordinateSystem: duplicated axis direction for " + direction);
-                    }
-                }
+    public void validate(final CompoundCRS object) {
+        if (object == null) {
+            return;
+        }
+        validateReferenceSystem(object);
+        final CoordinateSystem cs = object.getCoordinateSystem();
+        mandatory("CompoundCRS: must have a CoordinateSystem.", cs);
+        container.validate(cs);
+
+        final List<CoordinateReferenceSystem> components = object.getComponents();
+        mandatory("CompoundCRS: must have components.", components);
+        if (components != null) {
+            // If the above 'mandatory(...)' call accepted an empty list, we accept it too.
+            assertTrue("CompoundCRS: must have at least 2 components.", components.size() != 1);
+            for (final CoordinateReferenceSystem component : components) {
+                dispatch(component);
             }
         }
-        validate(directions);
-        return directions;
+    }
+
+    /**
+     * Verifies that the given coordinate system uses the given standard names.
+     */
+    private static void assertStandardNames(final String type, final CoordinateSystem cs, final String[] standardNames) {
+        final int dimension = cs.getDimension();
+        final Set<String> names = new LinkedHashSet<String>(dimension * 4/3 + 1);
+        for (int i=0; i<dimension; i++) {
+            final String name = getName(cs.getAxis(i));
+            if (name != null && !names.add(toLowerCase(name.trim()))) {
+                fail(type + ": duplicated axis name: " + name);
+            }
+        }
+        final List<String> notFound = new ArrayList<String>(names.size());
+        for (final String name : standardNames) {
+            if (!names.remove(name)) {
+                notFound.add(name);
+            }
+        }
+        if (!names.isEmpty()) {
+            fail(type + ": Non-standard axis names: " + names +
+                    ". Expected some of " + notFound + '.');
+        }
+    }
+
+    /**
+     * Returns the given string in lower cases, except for the last letter if it is single.
+     * The intend is to leaver the trailing X, Y or Z case unchanged in "geocentric X",
+     * "geocentric Y" and "geocentric Z" axis names.
+     */
+    static String toLowerCase(final String name) {
+        final int s = name.length() - 2;
+        if (s >= 1 && Character.isSpaceChar(name.charAt(s))) {
+            return name.substring(0, s).toLowerCase().concat(name.substring(s));
+        }
+        return name.toLowerCase();
     }
 }

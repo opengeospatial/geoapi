@@ -138,6 +138,18 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         }
     }
 
+    @Test
+    public void testNcML() throws IOException {
+        final NetcdfFile file = open("AMMA-CATCH.ncml");
+        try {
+            final Metadata metadata = wrap(file);
+            this.metadata = metadata; // For subclasses usage.
+            assertNotNull(metadata);
+        } finally {
+            file.close();
+        }
+    }
+
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file (binary format).
      * The current implementation tests:

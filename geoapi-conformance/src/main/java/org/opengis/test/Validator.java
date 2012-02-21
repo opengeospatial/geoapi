@@ -44,6 +44,14 @@ import static org.opengis.test.Assert.*;
  * on all validators, then {@link ValidatorContainer#all} provides a convenient way to make such
  * change in a loop.
  *
+ * <p>Configurations available in this class and some subclasses are:</p>
+ * <ul>
+ *   <li>{@link #requireMandatoryAttributes} - controls whatever unexpected null values can be tolerated.</li>
+ *   <li>{@link #enforceForbiddenAttributes} - controls whatever unexpected non-null values can be tolerated.</li>
+ *   <li>{@link org.opengis.test.referencing.CRSValidator#enforceStandardNames} - controls whatever axis
+ *       names shall be restricted to ISO standards.</li>
+ * </ul>
+ *
  * <p>Once the configuration is finished, all validators provided in GeoAPI are thread-safe
  * provided that their configuration is not modified.</p>
  *

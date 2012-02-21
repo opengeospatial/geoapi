@@ -54,6 +54,7 @@ import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
 import static org.opengis.test.Validators.*;
 import static org.opengis.referencing.cs.AxisDirection.*;
+import static org.opengis.test.referencing.Utilities.getName;
 import static javax.measure.unit.SI.METRE;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 
@@ -214,18 +215,18 @@ public strictfp class ObjectFactoryTest extends TestCase {
         λ  = cs.getAxis(1);
         φ  = cs.getAxis(0);
         h  = cs.getAxis(2);
-        assertEquals("Geodetic latitude",  φ.getName().toString());
+        assertEquals("Geodetic latitude",  getName(φ));
         assertEquals(AxisDirection.NORTH,  φ.getDirection());
         assertEquals(DEGREE_ANGLE,         φ.getUnit());
-        assertEquals("Geodetic longitude", λ.getName().toString());
+        assertEquals("Geodetic longitude", getName(λ));
         assertEquals(AxisDirection.EAST,   λ.getDirection());
         assertEquals(DEGREE_ANGLE,         λ.getUnit());
-        assertEquals("height",             h.getName().toString());
+        assertEquals("height",             getName(h));
         assertEquals(AxisDirection.UP,     h.getDirection());
         assertEquals(METRE,                h.getUnit());
 
         datum = crs.getDatum();
-        assertEquals("World Geodetic System 1984", datum.getName().toString());
+        assertEquals("World Geodetic System 1984", getName(datum));
         final PrimeMeridian primeMeridian = datum.getPrimeMeridian();
         assertEquals(0.0, primeMeridian.getGreenwichLongitude(), 0.0);
         assertEquals(DEGREE_ANGLE, primeMeridian.getAngularUnit());
