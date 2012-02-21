@@ -47,7 +47,6 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.Conversion;
-import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
@@ -64,6 +63,7 @@ import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
 import static org.opengis.test.Validators.*;
 import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
+import static org.opengis.test.referencing.Utilities.getName;
 
 
 /**
@@ -291,19 +291,6 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         assertNull(op.put(Configuration.Key.csAuthorityFactory,      csAuthorityFactory));
         assertNull(op.put(Configuration.Key.datumAuthorityFactory,   datumAuthorityFactory));
         return op;
-    }
-
-    /**
-     * Returns the name of the given object, or {@code null} if none.
-     */
-    private static String getName(final IdentifiedObject object) {
-        if (object != null) {
-            final Identifier name = object.getName();
-            if (name != null) {
-                return name.getCode();
-            }
-        }
-        return null;
     }
 
     /**

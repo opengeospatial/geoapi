@@ -210,8 +210,10 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
         Unit<?> unit = this.unit;
         if (unit == null) {
             final String symbol = getUnitsString();
-            if (symbol != null) {
+            if (symbol != null) try {
                 this.unit = unit = Unit.valueOf(symbol);
+            } catch (IllegalArgumentException e) {
+                // Unsupported unit symbol.
             }
         }
         return unit;

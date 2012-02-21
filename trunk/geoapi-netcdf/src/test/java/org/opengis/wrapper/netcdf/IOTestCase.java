@@ -143,9 +143,35 @@ public abstract strictfp class IOTestCase {
      * The values are <cite>Sea Surface Temperature</cite> (SST).
      *
      * @see NetcdfMetadataTest#testNCEP()
-     * @see NetcdfCRSTest#testGeographicWithTime()
+     * @see NetcdfCRSTest#testGeographic_XYT()
      */
     public static final String NCEP = "NCEP-SST.nc";
+
+    /**
+     * The {@value} test file (binary format). Some attributes are listed below:
+     *
+     * <blockquote><pre>variables:
+     *    int grid_mapping_0 ;
+     *        grid_mapping_0:grid_mapping_name = "lambert_conformal_conic" ;
+     *        grid_mapping_0:longitude_of_central_meridian = -95.f ;
+     *        grid_mapping_0:latitude_of_projection_origin = 25.f ;
+     *        grid_mapping_0:standard_parallel = 25.f, 25.05f ;
+     *    float CIP(time, z0, y0, x0) ;
+     *        CIP:long_name = "Current Icing Product " ;
+     *        CIP:valid_min = 0.f ;
+     *        CIP:valid_max = 0.44f ;
+     *        CIP:units = "%" ;
+     *        CIP:grid_mapping = "grid_mapping_0" ;</pre></blockquote>
+     *
+     * The Coordinate Reference System of this dataset is
+     * {@linkplain org.opengis.referencing.crs.CompoundCRS compound}
+     * ({@linkplain org.opengis.referencing.crs.ProjectedCRS geographic} +
+     * ({@linkplain org.opengis.referencing.crs.TemporalCRS temporal}).
+     *
+     * @see NetcdfMetadataTest#testCIP()
+     * @see NetcdfCRSTest#testProjected_XYZT()
+     */
+    public static final String CIP = "CIP.nc";
 
     /**
      * The {@value} test file (binary format). This is a freely available Landsat test file
@@ -191,6 +217,24 @@ public abstract strictfp class IOTestCase {
     }
 
     /**
+     * Returns the length of the given file, or an arbitrary default value if unknown.
+     * This method is used for creating an initial buffer of the right size when reading
+     * a NetCDF file in memory.
+     *
+     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @param  defaultLength The default value to return if the given file is not recognized.
+     *
+     * @todo Use "<cite>String in switch</cite>" when we will be allowed to compile for JDK7.
+     */
+    static int getFileLength(final String file, final int defaultLength) {
+        if (file.equals(THREDDS)) return  3906;
+        if (file.equals(NCEP))    return 27204;
+        if (file.equals(CIP))     return 76184;
+        if (file.equals(LANDSAT)) return 21096;
+        return defaultLength;
+    }
+
+    /**
      * Opens the given NetCDF file. This method process as below:
      * <p>
      * <ul>
@@ -212,8 +256,13 @@ public abstract strictfp class IOTestCase {
      * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
      * @return The NetCDF file.
      * @throws IOException If an error occurred while opening the file.
+     *
+     * @todo Use "<cite>try with resources</cite>" when we will be allowed to compile for JDK7.
      */
     protected NetcdfFile open(final String file) throws IOException {
+        /*
+         * XML NcML files can be read straight from an InputStream.
+         */
         if (file.endsWith(".ncml")) {
             InputStream in = getClass().getResourceAsStream(file);
             if (in == null) {
@@ -233,6 +282,11 @@ public abstract strictfp class IOTestCase {
                 in.close();
             }
         }
+        /*
+         * Binary NetCDF files need to be read either from a file, or from a byte array in memory.
+         * We give precedence to the file, but this is possible only if the test file is not read
+         * from a JAR file.
+         */
         if (file.endsWith(".nc")) {
             Class<? extends IOTestCase> loader = getClass();
             URL url = loader.getResource(file);
@@ -248,12 +302,23 @@ public abstract strictfp class IOTestCase {
                     }
                 }
             }
-            if (url.getProtocol().equals("file")) try {
-                return NetcdfFile.open(new File(url.toURI()).getPath());
-            } catch (URISyntaxException e) {
-                throw (IOException) new MalformedURLException(e.getLocalizedMessage()).initCause(e);
+            if (url.getProtocol().equals("file")) {
+                final File f;
+                try {
+                    f = new File(url.toURI());
+                } catch (URISyntaxException e) {
+                    throw (IOException) new MalformedURLException(e.getLocalizedMessage()).initCause(e);
+                }
+                // If the test file is one of the predefined files, ensures that our length
+                // declaration is up to date. This is only an optimisation for the case when
+                // this file will be read from a byte buffer.
+                final int length = getFileLength(file, -1);
+                if (length >= 0) {
+                    assertEquals(file, length, f.length());
+                }
+                return NetcdfFile.open(f.getPath());
             } else {
-                return NetcdfFile.openInMemory(file, load(loader.getResourceAsStream(file)));
+                return NetcdfFile.openInMemory(file, load(file, loader.getResourceAsStream(file)));
             }
         }
         throw new IOException("Unknown file format: " + file);
@@ -263,14 +328,14 @@ public abstract strictfp class IOTestCase {
      * Returns the content of the given input stream in an array of bytes. This method is used
      * for opening a NetCDF file in memory when the resource can not be opened as a file.
      *
+     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
      * @param  in The input stream. This stream will be closed by this method.
      * @return The stream content as an array of bytes.
      * @throws IOException If an error occurred while reading the stream content.
      */
-    private static byte[] load(final InputStream in) throws IOException {
-        int length = 0;
-        byte[] buffer = new byte[32 * 1024];
-        int n;
+    private static byte[] load(final String file, final InputStream in) throws IOException {
+        int n, length = 0;
+        byte[] buffer = new byte[getFileLength(file, 32 * 1024)]; // Default to 32 kb.
         while ((n = in.read(buffer, length, buffer.length - length)) >= 0) {
             if ((length += n) == buffer.length) {
                 buffer = Arrays.copyOf(buffer, length*2);

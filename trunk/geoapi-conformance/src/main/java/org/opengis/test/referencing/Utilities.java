@@ -39,6 +39,11 @@ import java.util.LinkedHashSet;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -53,6 +58,41 @@ final class Utilities {
      * Do not allow instantiation of this class.
      */
     private Utilities() {
+    }
+
+    /**
+     * Returns the name of the given object, or {@code null} if none.
+     *
+     * @param  object The object for which to get the name, or {@code null}.
+     * @return The name of the given object, or {@code null}.
+     */
+    public static String getName(final IdentifiedObject object) {
+        if (object != null) {
+            final Identifier name = object.getName();
+            if (name != null) {
+                return name.getCode();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the {@linkplain IdentifiedObject#getName() names} of all objects in the given
+     * collection. If the given collection is {@code null}, then this method returns an empty set.
+     *
+     * @param  object The objects for which to get the names, or {@code null}.
+     * @return The names of all non-null objects (never {@code null}).
+     */
+    public static Set<String> getNames(final Collection<? extends IdentifiedObject> objects) {
+        if (objects == null) {
+            return Collections.emptySet();
+        }
+        final Set<String> names = new LinkedHashSet<String>(objects.size() * 4/3 + 1);
+        for (final IdentifiedObject object : objects) {
+            names.add(getName(object));
+        }
+        names.remove(null);
+        return names;
     }
 
     /**
@@ -91,7 +131,7 @@ final class Utilities {
         if (objects == null) {
             return Collections.emptySet();
         }
-        final Set<String> names = new LinkedHashSet<String>();
+        final Set<String> names = new LinkedHashSet<String>(objects.size() * 2);
         for (final IdentifiedObject object : objects) {
             if (object != null) {
                 getNameAndAliases(object, names);
@@ -105,9 +145,9 @@ final class Utilities {
      * Adds the name and aliases in the given set.
      */
     private static void getNameAndAliases(final IdentifiedObject object, final Set<String> names) {
-        final Identifier name = object.getName();
+        final String name = getName(object);
         if (name != null) {
-            names.add(name.getCode());
+            names.add(name);
         }
         final Collection<GenericName> aliases = object.getAlias();
         if (aliases != null) {
@@ -117,5 +157,30 @@ final class Utilities {
                 }
             }
         }
+    }
+
+    /**
+     * Returns the axis directions from the given coordinate system.
+     * The directions are in the same order than axis in the coordinate system.
+     * The returned set can be safely modified by the caller.
+     *
+     * @param  cs The coordinate system from which to get axis directions.
+     * @return The axis directions in a modifiable set.
+     */
+    static Set<AxisDirection> getAxisDirections(final CoordinateSystem cs) {
+        final int dimension = cs.getDimension();
+        final Set<AxisDirection> directions = new LinkedHashSet<AxisDirection>(dimension * 4/3 + 1);
+        for (int i=0; i<dimension; i++) {
+            final CoordinateSystemAxis axis = cs.getAxis(i);
+            if (axis != null) {
+                final AxisDirection direction = axis.getDirection();
+                if (direction != null) {
+                    if (!directions.add(direction)) {
+                        fail("CoordinateSystem: duplicated axis direction: " + direction);
+                    }
+                }
+            }
+        }
+        return directions;
     }
 }
