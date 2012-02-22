@@ -29,11 +29,11 @@ import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.MathTransformFactory;
+import org.opengis.test.TestCase;
 
 import org.junit.Test;
 
 import static org.opengis.test.Assert.*;
-import static org.opengis.test.Validators.*;
 
 
 /**
@@ -43,7 +43,7 @@ import static org.opengis.test.Validators.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class NetcdfTransformFactoryTest {
+public strictfp class NetcdfTransformFactoryTest extends TestCase {
     /**
      * The set of projection implementations to test.
      * The default constructor initializes this array to
@@ -90,7 +90,7 @@ public strictfp class NetcdfTransformFactoryTest {
      */
     @SuppressWarnings({"unchecked","rawtypes"})
     protected NetcdfTransformFactoryTest(final MathTransformFactory factory) {
-        Objects.requireNonNull(factory);
+        super(factory);
         this.factory = factory;
         projections = new Class[] {
             AlbersEqualArea.class,
@@ -112,7 +112,7 @@ public strictfp class NetcdfTransformFactoryTest {
     /**
      * Returns the default factory to test.
      */
-    private static synchronized MathTransformFactory getDefaultFactory() {
+    static synchronized MathTransformFactory getDefaultFactory() {
         if (defaultFactory == null) {
             defaultFactory = new NetcdfTransformFactory();
         }
@@ -170,7 +170,7 @@ public strictfp class NetcdfTransformFactoryTest {
              * are known to the current NetCDF projection implementation.
              */
             final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
-            validate(group);
+            validators.validate(group);
             for (final GeneralParameterValue param : group.values()) {
                 final String parameterName = param.getDescriptor().getName().getCode();
                 assertTrue("Unknown \"" + parameterName + "\" parameter in \"" + projectionName + "\" projection.",

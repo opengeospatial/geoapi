@@ -37,29 +37,49 @@ import static org.opengis.test.CalculationType.*;
  */
 public class ConformanceTest extends TestSuite implements ImplementationDetails {
     /**
-     * The configuration of our Proj4 tests.
+     * The configuration of our Proj.4 tests.
+     * Will be created when first needed.
      */
-    private static final Configuration CONFIGURATION = new Configuration();
-    static {
-        CONFIGURATION.unsupported(
-                Configuration.Key.isNameSupported,
-                Configuration.Key.isAliasSupported,
-                Configuration.Key.isDerivativeSupported);
-        /*
-         * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
-         */
-        final ValidatorContainer validators = new ValidatorContainer();
-        validators.naming.requireMandatoryAttributes = false;
-        validators.coordinateOperation.requireMandatoryAttributes = false;
-        CONFIGURATION.put(Configuration.Key.validators, validators);
+    private Configuration configuration;
+
+    /**
+     * Returns {@code true} if at least one factory in the given array is our implementation.
+     * We will returns a configuration map only for our own implementation, and don't propose
+     * anything for implementations we don't known about.
+     */
+    private static boolean isOurImplementation(final Factory[] factories) {
+        for (final Factory factory : factories) {
+            if (factory instanceof PJFactory) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * Returns the map of tests to disable for this implementation.
+     * Returns the map of tests to disable for this implementation, or {@code null}
+     * if the given factories are not Proj.4 implementations.
      */
     @Override
-    public Configuration configuration(final Factory... factories) {
-        return CONFIGURATION;
+    public synchronized Configuration configuration(final Factory... factories) {
+        if (!isOurImplementation(factories)) {
+            return null;
+        }
+        if (configuration == null) {
+            configuration = new Configuration();
+            configuration.unsupported(
+                    Configuration.Key.isNameSupported,
+                    Configuration.Key.isAliasSupported,
+                    Configuration.Key.isDerivativeSupported);
+            /*
+            * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
+            */
+            final ValidatorContainer validators = new ValidatorContainer();
+            validators.naming.requireMandatoryAttributes = false;
+            validators.coordinateOperation.requireMandatoryAttributes = false;
+            configuration.put(Configuration.Key.validators, validators);
+        }
+        return configuration;
     }
 
     /**
