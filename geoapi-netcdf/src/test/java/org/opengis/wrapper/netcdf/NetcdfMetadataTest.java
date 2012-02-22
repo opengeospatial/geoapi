@@ -118,33 +118,21 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             this.metadata = metadata; // For subclasses usage.
             validator.validate(metadata);
             /*
-            * Responsibly party.
-            */
+             * Responsibly party.
+             */
             final ResponsibleParty party = getSingleton(metadata.getContacts());
             assertEquals("David Neufeld", party.getIndividualName());
             assertEquals("xxxxx.xxxxxxx@noaa.gov", getSingleton(party.getContactInfo().getAddress().getElectronicMailAddresses()));
             assertEquals(Role.ORIGINATOR, party.getRole());
             /*
-            * Metadata / Data Identification / Geographic Bounding Box.
-            */
+             * Metadata / Data Identification / Geographic Bounding Box.
+             */
             final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
             final GeographicBoundingBox bbox = (GeographicBoundingBox) getSingleton(getSingleton(identification.getExtents()).getGeographicElements());
             assertEquals("West Bound Longitude", -80, bbox.getWestBoundLongitude(), EPS);
             assertEquals("East Bound Longitude", -64, bbox.getEastBoundLongitude(), EPS);
             assertEquals("South Bound Latitude",  40, bbox.getSouthBoundLatitude(), EPS);
             assertEquals("North Bound Latitude",  48, bbox.getNorthBoundLatitude(), EPS);
-        } finally {
-            file.close();
-        }
-    }
-
-    @Test
-    public void testNcML() throws IOException {
-        final NetcdfFile file = open("AMMA-CATCH.ncml");
-        try {
-            final Metadata metadata = wrap(file);
-            this.metadata = metadata; // For subclasses usage.
-            assertNotNull(metadata);
         } finally {
             file.close();
         }
@@ -170,21 +158,21 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             this.metadata = metadata; // For subclasses usage.
             validator.validate(metadata);
             /*
-            * Metadata / Data Identification.
-            */
+             * Metadata / Data Identification.
+             */
             assertEquals("edu.ucar.unidata:NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc", metadata.getFileIdentifier());
             final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
             assertSame(SpatialRepresentationType.GRID, getSingleton(identification.getSpatialRepresentationTypes()));
             assertEquals("NCEP SST Global 5.0 x 2.5 degree model data", identification.getAbstract().toString());
             /*
-            * Metadata / Responsibly party.
-            */
+             * Metadata / Responsibly party.
+             */
             final ResponsibleParty party = getSingleton(metadata.getContacts());
             assertEquals("NOAA/NWS/NCEP", party.getIndividualName());
             assertEquals(Role.ORIGINATOR, party.getRole());
             /*
-            * Metadata / Data Identification / Citation.
-            */
+             * Metadata / Data Identification / Citation.
+             */
             final Citation citation = identification.getCitation();
             final Identifier identifier = getSingleton(citation.getIdentifiers());
             final CitationDate date = getSingleton(citation.getDates());
@@ -194,8 +182,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             assertEquals("Expected 2005-09-22T00:00", parseDate("2005-09-22T00:00"), date.getDate());
             assertSame(DateType.CREATION, date.getDateType());
             /*
-            * Metadata / Data Identification / Geographic Bounding Box.
-            */
+             * Metadata / Data Identification / Geographic Bounding Box.
+             */
             final Extent extent = getSingleton(identification.getExtents());
             final GeographicBoundingBox bbox = (GeographicBoundingBox) getSingleton(extent.getGeographicElements());
             assertEquals("West Bound Longitude", -180, bbox.getWestBoundLongitude(), 0);
@@ -221,6 +209,30 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             final Metadata metadata = wrap(file);
             this.metadata = metadata; // For subclasses usage.
             assertNotNull(metadata);
+        } finally {
+            file.close();
+        }
+    }
+
+    /**
+     * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#CIP} file (binary format).
+     *
+     * @throws IOException If the test file can not be read.
+     */
+    @Test
+    public void testCIP() throws IOException {
+        final NetcdfFile file = open(CIP);
+        try {
+            final Metadata metadata = wrap(file);
+            this.metadata = metadata; // For subclasses usage.
+            assertNotNull(metadata);
+            /*
+             * Metadata / Data Identification.
+             */
+            final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
+            assertEquals("Created by Mdv2NetCDF", identification.getSupplementalInformation().toString());
+            final ResponsibleParty contact = getSingleton(metadata.getContacts());
+            assertEquals("UCAR", contact.getOrganisationName().toString());
         } finally {
             file.close();
         }
