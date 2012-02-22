@@ -61,7 +61,6 @@ import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
-import static org.opengis.test.Validators.*;
 import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
 import static org.opengis.test.referencing.Utilities.getName;
 
@@ -253,12 +252,12 @@ public strictfp class AuthorityFactoryTest extends TestCase {
     public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
     {
+        super(crsFactory, csFactory, datumFactory);
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
         @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory},
-                Configuration.Key.isAxisSwappingSupported);
+        final boolean[] isEnabled = getEnabledFlags(Configuration.Key.isAxisSwappingSupported);
         isAxisSwappingSupported = isEnabled[0];
         test = new ParameterizedTransformTest(null);
     }
@@ -317,7 +316,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         final GeographicCRS crs = crsAuthorityFactory.createGeographicCRS("EPSG:4326");
         assertNotNull("CRSAuthorityFactory.createGeographicCRS()", crs);
         object = crs;
-        validate(crs);
+        validators.validate(crs);
         assertIdentifierEquals("GeographicCRS.getName()", "WGS 84", getName(crs));
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
@@ -411,7 +410,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         }
         assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
         object = crs;
-        validate(crs);
+        validators.validate(crs);
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
          * This is verified by the above call to validate(crs). However the user could
@@ -469,7 +468,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                 double φmin = areaOfValidity.getMinY();
                 double φmax = areaOfValidity.getMaxY();
                 final Extent extent = crs.getDomainOfValidity();
-                validate(extent);
+                validators.validate(extent);
                 if (extent != null) {
                     for (final GeographicExtent element : extent.getGeographicElements()) {
                         if (element instanceof GeographicBoundingBox && Boolean.TRUE.equals(element.getInclusion())) {

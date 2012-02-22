@@ -507,6 +507,16 @@ public class ValidatorContainer implements Cloneable {
     }
 
     /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(CompoundCRS)
+     */
+    public final void validate(final CompoundCRS object) {
+        crs.validate(object);
+    }
+
+    /**
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.

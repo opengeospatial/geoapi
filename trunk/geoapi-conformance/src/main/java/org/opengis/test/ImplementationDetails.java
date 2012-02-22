@@ -74,7 +74,8 @@ public interface ImplementationDetails {
      * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(...)}
      * calls.
      * <p>
-     * This method may be invoked often, so implementors may want to cache their configuration map.
+     * This method is invoked often (typically one or two time before every single test method),
+     * so implementors may want to cache their configuration map.
      *
      * @param  factories The factories to be tested.
      * @return The collection of tests to disable for the given factories, or {@code null} if none.

@@ -16,10 +16,10 @@ package org.opengis.wrapper.proj4;
 import java.util.EnumSet;
 import org.opengis.util.Factory;
 import org.opengis.test.TestSuite;
-import org.opengis.test.Validators;
 import org.opengis.test.Configuration;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.ToleranceModifiers;
+import org.opengis.test.ValidatorContainer;
 import org.opengis.test.ImplementationDetails;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -48,8 +48,10 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
         /*
          * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
          */
-        Validators.DEFAULT.naming.requireMandatoryAttributes = false;
-        Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
+        final ValidatorContainer validators = new ValidatorContainer();
+        validators.naming.requireMandatoryAttributes = false;
+        validators.coordinateOperation.requireMandatoryAttributes = false;
+        CONFIGURATION.put(Configuration.Key.validators, validators);
     }
 
     /**

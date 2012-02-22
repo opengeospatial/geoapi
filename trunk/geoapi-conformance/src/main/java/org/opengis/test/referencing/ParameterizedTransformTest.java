@@ -64,7 +64,6 @@ import org.junit.runners.Parameterized;
 import static java.lang.StrictMath.*;
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
-import static org.opengis.test.Validators.*;
 import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 
 
@@ -336,6 +335,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         final SamplePoints sample = SamplePoints.getSamplePoints(code);
         if (parameters == null) {
             parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
+            validators.validate(parameters);
         }
         if (transform == null) {
             try {
@@ -384,7 +384,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     final void verifyKnownSamplePoints(final SamplePoints sample, final ToleranceModifier modifier)
             throws TransformException
     {
-        validate(transform);
+        validators.validate(transform);
         if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }

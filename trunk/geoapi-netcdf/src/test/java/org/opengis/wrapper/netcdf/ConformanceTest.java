@@ -16,10 +16,10 @@ package org.opengis.wrapper.netcdf;
 import java.util.EnumSet;
 import org.opengis.util.Factory;
 import org.opengis.test.TestSuite;
-import org.opengis.test.Validators;
 import org.opengis.test.Configuration;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.ToleranceModifiers;
+import org.opengis.test.ValidatorContainer;
 import org.opengis.test.ImplementationDetails;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -56,9 +56,12 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
             /*
              * Our objects are not yet strictly ISO compliant, so be lenient...
              */
-            Validators.DEFAULT.naming.requireMandatoryAttributes = false;
-            Validators.DEFAULT.metadata.requireMandatoryAttributes = false;
-            Validators.DEFAULT.coordinateOperation.requireMandatoryAttributes = false;
+            final ValidatorContainer validators = new ValidatorContainer();
+            validators.crs.enforceStandardNames = false;
+            validators.naming.requireMandatoryAttributes = false;
+            validators.metadata.requireMandatoryAttributes = false;
+            validators.coordinateOperation.requireMandatoryAttributes = false;
+            configuration.put(Configuration.Key.validators, validators);
         }
         return configuration;
     }

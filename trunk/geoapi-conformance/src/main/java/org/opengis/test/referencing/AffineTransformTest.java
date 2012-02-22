@@ -52,7 +52,6 @@ import org.junit.runners.Parameterized;
 import static java.lang.StrictMath.*;
 import static org.junit.Assume.*;
 import static org.junit.Assert.*;
-import static org.opengis.test.Validators.*;
 import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
 
 
@@ -152,7 +151,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         super(factory);
         mtFactory = factory;
         @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(new MathTransformFactory[] {factory},
+        final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isNonSquareMatrixSupported);
         isNonSquareMatrixSupported = isEnabled[0];
     }
@@ -240,7 +239,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * @throws TransformException If a point can not be transformed.
      */
     private float[] verifyInternalConsistency(final long seed) throws TransformException {
-        validate(transform);
+        validators.validate(transform);
         if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }

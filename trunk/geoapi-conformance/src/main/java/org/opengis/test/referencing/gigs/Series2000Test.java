@@ -62,7 +62,6 @@ import static javax.measure.unit.Unit.ONE;
 import static javax.measure.unit.SI.METRE;
 import static javax.measure.unit.SI.RADIAN;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
-import static org.opengis.test.Validators.*;
 import static org.opengis.test.Assert.*;
 
 
@@ -156,12 +155,13 @@ public strictfp class Series2000Test extends TestCase {
     public Series2000Test(final CRSAuthorityFactory crsFactory, final CSAuthorityFactory csFactory,
             final DatumAuthorityFactory datumFactory, final CoordinateOperationAuthorityFactory copFactory)
     {
+        super(crsFactory, csFactory, datumFactory, copFactory);
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
         copAuthorityFactory   = copFactory;
         @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(new AuthorityFactory[] {crsFactory, csFactory, datumFactory, copFactory},
+        final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isNameSupported,
                 Configuration.Key.isAliasSupported);
         isNameSupported  = isEnabled[0];
@@ -434,7 +434,7 @@ next:   for (final String search : expected) {
                 unsupportedCode(Ellipsoid.class, code, e, data.getBoolean(1));
                 continue;
             }
-            validate(ellipsoid);
+            validators.validate(ellipsoid);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
@@ -521,7 +521,7 @@ next:   for (final String search : expected) {
                 unsupportedCode(PrimeMeridian.class, code, e, data.getBoolean(1));
                 continue;
             }
-            validate(pm);
+            validators.validate(pm);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
@@ -615,7 +615,7 @@ next:   for (final String search : expected) {
                         unsupportedCode(GeodeticDatum.class, datumCode, e, important);
                         continue;
                     }
-                    validate(datum);
+                    validators.validate(datum);
                 } else {
                     /*
                      * All other iterations (columns 2-4): get the geodetic CRS, test its
@@ -648,7 +648,7 @@ next:   for (final String search : expected) {
                         unsupportedCode(type, crsCode, e, important);
                         continue;
                     }
-                    validate(crs);
+                    validators.validate(crs);
                     prefix.append("GeodeticCRS[").append(crsCode).append("].");
                     final int lengthAfterCRS = prefix.length();
                     testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
@@ -767,7 +767,7 @@ next:   for (final String search : expected) {
                     unsupportedCode(CoordinateOperation.class, code, e, data.getBoolean(1));
                     continue;
                 }
-                validate(cop);
+                validators.validate(cop);
                 prefix.setLength(prefixLength);
                 prefix.append(code).append("].");
                 testIdentifier(message(prefix, "getIdentifiers()"), code, cop.getIdentifiers());
@@ -828,7 +828,7 @@ next:   for (final String search : expected) {
                     unsupportedCode(ProjectedCRS.class, code, e, data.getBoolean(2));
                     continue;
                 }
-                validate(crs);
+                validators.validate(crs);
                 prefix.setLength(prefixLength);
                 prefix.append(code).append("].");
                 testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
@@ -888,7 +888,7 @@ next:   for (final String search : expected) {
                 unsupportedCode(CoordinateOperation.class, code, e, data.getBoolean(1));
                 continue;
             }
-            validate(operation);
+            validators.validate(operation);
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
