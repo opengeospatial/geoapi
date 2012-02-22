@@ -25,7 +25,6 @@ import org.opengis.test.referencing.TransformTestCase;
 import org.junit.Test;
 
 import static org.opengis.test.Assert.*;
-import static org.opengis.test.Validators.*;
 
 
 /**
@@ -68,7 +67,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
         final Mercator projection = new Mercator();
         operation = wrap(projection);
         transform = operation.getMathTransform();
-        validate(operation);
+        validators.validate(operation);
     }
 
     /**

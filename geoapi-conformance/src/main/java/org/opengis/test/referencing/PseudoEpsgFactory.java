@@ -47,12 +47,13 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.test.ValidatorContainer;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
+import org.opengis.test.Validators;
 
 import static org.junit.Assume.*;
-import static org.opengis.test.Validators.*;
 
 
 /**
@@ -114,6 +115,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     protected final MathTransformFactory mtFactory;
 
     /**
+     * The set of validators to use for verifying objects conformance (never {@code null}).
+     */
+    protected final ValidatorContainer validators;
+
+    /**
      * Creates a new pseudo-factory which will use the given factories.
      *
      * @param datumFactory Factory for creating {@link Datum} instances.
@@ -121,19 +127,23 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
      * @param copFactory   Factory for creating {@link Conversion} instances.
      * @param mtFactory    Factory for creating {@link MathTransform} instances.
+     * @param validators   The set of validators to use for verifying objects conformance,
+     *                     or {@code null} for the {@linkplain Validators#DEFAULT default}.
      */
     public PseudoEpsgFactory(
             final DatumFactory             datumFactory,
             final CSFactory                   csFactory,
             final CRSFactory                 crsFactory,
             final CoordinateOperationFactory copFactory,
-            final MathTransformFactory        mtFactory)
+            final MathTransformFactory        mtFactory,
+            final ValidatorContainer         validators)
     {
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;
         this.copFactory   = copFactory;
         this.mtFactory    = mtFactory;
+        this.validators   = (validators != null) ? validators : Validators.DEFAULT;
     }
 
     /**
@@ -341,7 +351,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final GeodeticDatum object = datumFactory.createGeodeticDatum(createPropertiesMap(id, name),
                 createEllipsoid    (String.valueOf(ellipsoid)),
                 createPrimeMeridian(String.valueOf(primeMeridian)));
-        validate(object);
+        validators.validate(object);
         return object;
     }
 
@@ -372,7 +382,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         assumeNotNull(datumFactory);
         final Ellipsoid object = datumFactory.createFlattenedSphere(createPropertiesMap(id, name),
                 semiMajorAxis, inverseFlattening, createUnit(String.valueOf(unit)).asType(Length.class));
-        validate(object);
+        validators.validate(object);
         return object;
     }
 
@@ -402,7 +412,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         assumeNotNull(datumFactory);
         final PrimeMeridian object = datumFactory.createPrimeMeridian(createPropertiesMap(id, name),
                 longitude, createUnit(String.valueOf(unit)).asType(Angle.class));
-        validate(object);
+        validators.validate(object);
         return object;
     }
 
@@ -508,7 +518,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final EllipsoidalCS object = csFactory.createEllipsoidalCS(createPropertiesMap(id, name),
                 createCoordinateSystemAxis(String.valueOf(axis0)),
                 createCoordinateSystemAxis(String.valueOf(axis1)));
-        validate(object);
+        validators.validate(object);
         return object;
     }
 
@@ -563,7 +573,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         assumeNotNull(csFactory);
         final CoordinateSystemAxis object = csFactory.createCoordinateSystemAxis(createPropertiesMap(id, name),
                 abbreviation, direction, createUnit(String.valueOf(unit)));
-        validate(object);
+        validators.validate(object);
         return object;
     }
 
@@ -686,7 +696,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final GeographicCRS object = crsFactory.createGeographicCRS(createPropertiesMap(id, name),
                 createGeodeticDatum(String.valueOf(datum)),
                 createEllipsoidalCS(String.valueOf(coordinateSystem)));
-        validate(object);
+        validators.validate(object);
         return object;
     }
 
@@ -794,7 +804,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @see AuthorityFactoryTest
      */
     protected ParameterValueGroup createParameters(final int code) throws FactoryException {
-        return createParameters(mtFactory, code);
+        final ParameterValueGroup parameters = createParameters(mtFactory, code);
+        validators.validate(parameters);
+        return parameters;
     }
 
     /**
@@ -985,7 +997,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 throw noSuchAuthorityCode(code, String.valueOf(code));
             }
         }
-        validate(parameters);
         return parameters;
     }
 }

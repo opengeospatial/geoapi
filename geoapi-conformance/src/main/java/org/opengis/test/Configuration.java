@@ -63,14 +63,47 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@code Configuration} is used in two places:
  * <p>
  * <ul>
- *   <li>Before each test is executed, {@link ImplementationDetails} can edit the configuration
- *       entries in order to prevent the testing of unsupported features. For example an
- *       implementation can declare that it does not support the calculation of transform
- *       derivative.</li>
+ *   <li>Before each test is executed, {@link ImplementationDetails} can provide configuration
+ *       information. For example an implementation can declare that it does not support the
+ *       calculation of transform derivative.</li>
  *   <li>After each test is executed, {@link TestListener} can obtain the actual configuration
  *       used by the test. For example listeners can know which {@linkplain Factory factories}
  *       were used.</li>
  * </ul>
+ *
+ * <p>This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
+ * similar to those of the {@code java.util.Map} interface, with the addition of type-safety.
+ * The pre-defined keys are listed below:</p>
+ *
+ * <table cellspacing="0" cellpadding="4"><tr bgcolor="#EEEEFF">
+ * <th nowrap>Supported features</th>
+ * <th nowrap>Factories</th>
+ * <th nowrap>Other</th></tr><tr><td valign="top">
+ * {@link Key#isMultiLocaleSupported        isMultiLocaleSupported}<br>
+ * {@link Key#isMixedNameSyntaxSupported    isMixedNameSyntaxSupported}<br>
+ * {@link Key#isNameSupported               isNameSupported}<br>
+ * {@link Key#isAliasSupported              isAliasSupported}<br>
+ * {@link Key#isDoubleToDoubleSupported     isDoubleToDoubleSupported}<br>
+ * {@link Key#isFloatToFloatSupported       isFloatToFloatSupported}<br>
+ * {@link Key#isDoubleToFloatSupported      isDoubleToFloatSupported}<br>
+ * {@link Key#isFloatToDoubleSupported      isFloatToDoubleSupported}<br>
+ * {@link Key#isOverlappingArraySupported   isOverlappingArraySupported}<br>
+ * {@link Key#isInverseTransformSupported   isInverseTransformSupported}<br>
+ * {@link Key#isDerivativeSupported         isDerivativeSupported}<br>
+ * {@link Key#isNonSquareMatrixSupported    isNonSquareMatrixSupported}<br>
+ * {@link Key#isAxisSwappingSupported       isAxisSwappingSupported}<br>
+ * {@link Key#isToleranceRelaxed            isToleranceRelaxed}</td><td valign="top">
+ * {@link Key#mtFactory                     mtFactory}<br>
+ * {@link Key#copFactory                    copFactory}<br>
+ * {@link Key#copAuthorityFactory           copAuthorityFactory}<br>
+ * {@link Key#crsFactory                    crsFactory}<br>
+ * {@link Key#crsAuthorityFactory           crsAuthorityFactory}<br>
+ * {@link Key#csFactory                     csFactory}<br>
+ * {@link Key#csAuthorityFactory            csAuthorityFactory}<br>
+ * {@link Key#datumFactory                  datumFactory}<br>
+ * {@link Key#datumAuthorityFactory         datumAuthorityFactory}</td><td valign="top">
+ * {@link Key#validators                    validators}
+ * </td></tr></table>
  *
  * @see TestCase#configuration()
  * @see ImplementationDetails#configuration(Factory[])
@@ -210,11 +243,14 @@ public class Configuration implements Serializable {
 
     /**
      * Type-safe keys that can be used in a {@link Configuration} map.
-     * <p>
-     * <b>Note:</b> Every constants declared in this class have a name matching exactly the
-     * field names in {@link TestCase} subclasses. This is a departure from the usual "all
-     * upper-case letters" convention, but make the relationship with fields more obvious
-     * and the parsing of {@link java.util.Properties} files easier.
+     * This code list is extensible: users can create new instances by
+     * invoking the {@link #valueOf(String, Class)} static method.
+     *
+     * <p><b><u>Note on field names:</u></b><br>
+     * Every constants declared in this class have a name matching exactly the field names in
+     * {@link TestCase} subclasses. This is a departure from the usual "<cite>all upper-case
+     * letters</cite>" convention, but make the relationship with fields more obvious
+     * and the parsing of {@link java.util.Properties} files easier.</p>
      *
      * @param <T> The type of values associated with the key.
      *
@@ -233,6 +269,10 @@ public class Configuration implements Serializable {
          * any key that the user may have created. Must be declared before any key declaration.
          */
         private static final List<Key<?>> VALUES = new ArrayList<Key<?>>(32);
+
+        /*
+         * If new constants are added, please remember to update the Configuration class javadoc.
+         */
 
         /**
          * Whatever the {@link InternationalString} instances can support more than one
@@ -465,6 +505,16 @@ public class Configuration implements Serializable {
                 new Key<DatumAuthorityFactory>(DatumAuthorityFactory.class, "datumAuthorityFactory");
 
         /**
+         * The set of {@link Validator} instances to use for validating objects.
+         * If no value is provided for this key, then the system-wide
+         * {@linkplain Validators#DEFAULT default validators} are used.
+         *
+         * @see Validators#DEFAULT
+         */
+        public static final Key<ValidatorContainer> validators =
+                new Key<ValidatorContainer>(ValidatorContainer.class, "validators");
+
+        /**
          * The type of values associated to this key.
          */
         final Class<T> type;
@@ -496,9 +546,7 @@ public class Configuration implements Serializable {
          */
         @SuppressWarnings("unchecked")
         public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
-            if (type == null) {
-                throw new NullPointerException("type");
-            }
+            Objects.requireNonNull(type, "type");
             final Key<?> key = valueOf(Key.class, new Filter() {
                 @Override
                 public boolean accept(final CodeList<?> code) {

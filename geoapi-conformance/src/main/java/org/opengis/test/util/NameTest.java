@@ -47,7 +47,6 @@ import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
-import static org.opengis.test.Validators.*;
 
 
 /**
@@ -127,9 +126,10 @@ public strictfp class NameTest extends TestCase {
      * @param factory The factory to be used for creation of instances to be tested.
      */
     public NameTest(final NameFactory factory) {
+        super(factory);
         this.factory = factory;
         @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(new Factory[] {factory},
+        final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isMultiLocaleSupported,
                 Configuration.Key.isMixedNameSyntaxSupported);
         isMultiLocaleSupported     = isEnabled[0];
@@ -195,7 +195,7 @@ public strictfp class NameTest extends TestCase {
         names.put(Locale.ENGLISH, "My documents");
         names.put(Locale.FRENCH,  "Mes documents");
         InternationalString localized = factory.createInternationalString(names);
-        validate(localized);
+        validators.validate(localized);
         if (isMultiLocaleSupported) {
             for (final Map.Entry<Locale,String> entry : names.entrySet()) {
                 assertEquals("toString(Locale) should returns the value given to the factory method.",
@@ -221,18 +221,18 @@ public strictfp class NameTest extends TestCase {
         assumeNotNull(factory);
         final String EPSG = "EPSG";
         final LocalName authority = factory.createLocalName(null, EPSG);
-        validate(authority);
+        validators.validate(authority);
         assertTrue(authority.scope().isGlobal());
         assertEquals(EPSG, authority.toString());
         assertEquals(EPSG, authority.toInternationalString().toString());
 
         final NameSpace ns = createNameSpace(authority, ":", ":");
-        validate(ns);
+        validators.validate(ns);
         assertEquals(authority, ns.name());
 
         final String WGS84 = "4326";
         final LocalName code = factory.createLocalName(ns, WGS84);
-        validate(code);
+        validators.validate(code);
         assertEquals(ns, code.scope());
         assertEquals(WGS84, code.toString());
         assertEquals(EPSG + ':' + WGS84, code.toFullyQualifiedName().toString());
@@ -253,7 +253,7 @@ public strictfp class NameTest extends TestCase {
             "urn","ogc","def","crs","epsg","4326"
         };
         GenericName name = factory.createGenericName(null, parsed);
-        validate(name);
+        validators.validate(name);
 
         assertEquals("Name should be already fully qualified.",
                 name, name.toFullyQualifiedName());
@@ -266,7 +266,7 @@ public strictfp class NameTest extends TestCase {
 
         for (int i=parsed.length; --i>=0;) {
             name = name.tip();
-            validate(name);
+            validators.validate(name);
             assertEquals(parsed[i], name.toString());
             name = name.scope().name();
         }
@@ -286,11 +286,11 @@ public strictfp class NameTest extends TestCase {
     public void testParsedURN() {
         assumeNotNull(factory);
         final LocalName urn = factory.createLocalName(null, "urn");
-        validate(urn);
+        validators.validate(urn);
         final NameSpace ns = createNameSpace(urn, ":", ":");
-        validate(ns);
+        validators.validate(ns);
         final GenericName name = factory.parseGenericName(ns, "ogc:def:crs:epsg:4326");
-        validate(name);
+        validators.validate(name);
 
         assertEquals("Depth shall be counted from the \"urn\" namespace.", 5, name.depth());
         assertEquals("ogc:def:crs:epsg:4326", name.toString());
@@ -319,7 +319,7 @@ public strictfp class NameTest extends TestCase {
         assertEquals("http", name.tip().toString());
         assertEquals("http", name.toString());
         NameSpace ns = createNameSpace(name, "://", ".");
-        validate(ns);
+        validators.validate(ns);
 
         name = factory.parseGenericName(ns, "www.opengis.net");
         assertEquals(3, name.depth());
@@ -327,7 +327,7 @@ public strictfp class NameTest extends TestCase {
         assertEquals("net", name.tip().toString());
         assertEquals("www.opengis.net", name.toString());
         ns = createNameSpace(name, "/", "/");
-        validate(ns);
+        validators.validate(ns);
 
         name = factory.parseGenericName(ns, "gml/srs/epsg.xml");
         assertEquals(3, name.depth());
@@ -335,14 +335,14 @@ public strictfp class NameTest extends TestCase {
         assertEquals("epsg.xml", name.tip().toString());
         assertEquals("gml/srs/epsg.xml", name.toString());
         ns = createNameSpace(name, "#", ":");
-        validate(ns);
+        validators.validate(ns);
 
         name = factory.createLocalName(ns, "4326");
         assertEquals(1, name.depth());
         assertEquals("4326", name.head().toString());
         assertEquals("4326", name.tip().toString());
         assertEquals("4326", name.toString());
-        validate(name);
+        validators.validate(name);
 
         assertEquals("4326", name.toString());
         name = name.toFullyQualifiedName();

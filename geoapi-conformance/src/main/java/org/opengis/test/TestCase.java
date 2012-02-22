@@ -62,6 +62,14 @@ import org.opengis.util.Factory;
  */
 public strictfp abstract class TestCase {
     /**
+     * An empty array of factories, as a convenience for
+     * {@linkplain #TestCase() no-argument constructors}.
+     *
+     * @since 3.1
+     */
+    protected static final Factory[] NO_FACTORY = new Factory[0];
+
+    /**
      * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
      * to use for loading those factories.
      * <p>
@@ -219,9 +227,54 @@ public strictfp abstract class TestCase {
     };
 
     /**
-     * Creates a new test.
+     * The factories used by the test case to execute, or an empty array if none.
+     * This array is given at construction time and is not cloned.
+     */
+    private final Factory[] factories;
+
+    /**
+     * The set of {@link Validator} instances to use for verifying objects conformance
+     * (never {@code null}). If no validators were explicitely specified, then the
+     * {@linkplain Validators#DEFAULT default validators} are used.
+     *
+     * @since 3.1
+     */
+    protected final ValidatorContainer validators;
+
+    /**
+     * Creates a new test without factory. This constructor is provided for subclasses
+     * that instantiate their test object directly, without using any factory.
      */
     protected TestCase() {
+       this(NO_FACTORY);
+    }
+
+    /**
+     * Creates a new test which will use the given factories to execute.
+     *
+     * @param factories The factories to be used by the test. Those factories will be given to
+     *        {@link ImplementationDetails#configuration(Factory[])} in order to decide which
+     *        {@linkplain #validators} to use.
+     *
+     * @since 3.1
+     */
+    protected TestCase(final Factory... factories) {
+        Objects.requireNonNull(factories, "Given 'factories' array can not be null.");
+        this.factories = factories;
+        ValidatorContainer validators = null;
+        final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
+        synchronized (services) {
+            for (final ImplementationDetails impl : services) {
+                final Configuration config = impl.configuration(factories);
+                if (config != null) {
+                    validators = config.get(Configuration.Key.validators);
+                    if (validators != null) {
+                        break;
+                    }
+                }
+            }
+        }
+        this.validators = (validators != null) ? validators : Validators.DEFAULT;
     }
 
     /**
@@ -395,13 +448,14 @@ public strictfp abstract class TestCase {
      * having the value {@link Boolean#FALSE} for a given key, then the boolean value corresponding
      * to that key is set to {@code false}.
      *
-     * @param  factories  The factories used by the test case to execute.
      * @param  properties The key for which the flags are wanted.
      * @return An array of the same length than {@code properties} in which each element at
      *         index <var>i</var> indicates whatever the {@code properties[i]} test should
      *         be enabled.
+     *
+     * @since 3.1
      */
-    protected static boolean[] getEnabledFlags(final Factory[] factories, final Configuration.Key<Boolean>... properties) {
+    protected final boolean[] getEnabledFlags(final Configuration.Key<Boolean>... properties) {
         final boolean[] isEnabled = new boolean[properties.length];
         Arrays.fill(isEnabled, true);
         final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
@@ -450,7 +504,9 @@ public strictfp abstract class TestCase {
      * @since 3.1
      */
     public Configuration configuration() {
-        return new Configuration();
+        final Configuration configuration = new Configuration();
+        configuration.put(Configuration.Key.validators, validators);
+        return configuration;
     }
 
     /**

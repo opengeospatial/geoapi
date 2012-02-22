@@ -286,11 +286,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
     private boolean isToleranceRelaxed;
 
     /**
-     * @deprecated Use {@link #TransformTestCase(Factory[])} instead.
+     * Creates a new test without factory. This constructor is provided for subclasses
+     * that instantiate their {@link MathTransform} directly, without using any factory.
      */
-    @Deprecated
     protected TransformTestCase() {
-        this(new Factory[0]);
+        this(NO_FACTORY);
     }
 
     /**
@@ -305,8 +305,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *        to decide which tests should be enabled.
      */
     protected TransformTestCase(final Factory... factories) {
+        super(factories);
         @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(factories,
+        final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isDoubleToDoubleSupported,
                 Configuration.Key.isFloatToFloatSupported,
                 Configuration.Key.isDoubleToFloatSupported,

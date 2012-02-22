@@ -19,7 +19,6 @@ import org.opengis.test.referencing.TransformTestCase;
 import org.junit.Test;
 
 import static org.opengis.test.Assert.*;
-import static org.opengis.test.Validators.*;
 
 
 /**
@@ -70,7 +69,7 @@ public strictfp class SimpleTransform2DTest extends TransformTestCase {
      */
     @Test
     public void testConsistency() throws TransformException {
-        validate(transform);
+        validators.validate(transform);
         verifyInDomain(new double[] {-100, -100}, // Minimal ordinate values to test.
                        new double[] {+100, +100}, // Maximal ordinate values to test.
                        new int[]    { 100,  100}, // Number of points to test.

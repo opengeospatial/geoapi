@@ -33,8 +33,6 @@ package org.opengis.test.referencing;
 
 import java.util.Random;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.test.Validators;
-import org.opengis.util.Factory;
 import org.junit.*;
 
 import static java.lang.StrictMath.*;
@@ -71,7 +69,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      * Default constructor without factories.
      */
     public TransformCaseTest() {
-        super(new Factory[0]);
+        super();
     }
 
     /**
@@ -107,7 +105,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testTransform() throws TransformException {
         tolerance = 0;
         ((AffineTransform2D) transform).setToScale(10, 100);
-        Validators.validate(transform);
+        validators.validate(transform);
         verifyTransform(new double[] { 1,  4,   2,  3},
                         new double[] { 10, 400, 20, 300});
         try {
@@ -134,7 +132,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testConsistencyUsingValidTransform() throws TransformException {
         tolerance = 0;
-        Validators.validate(transform);
+        validators.validate(transform);
         verifyConsistency(coordinates);
     }
 
@@ -147,7 +145,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test(expected=TransformFailure.class)
     public void testConsistencyUsingBogusTransform() throws TransformException {
         tolerance = 0;
-        Validators.validate(transform);
+        validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongFloatToFloat = true;
         verifyConsistency(coordinates);
     }
@@ -160,7 +158,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testInversionUsingValidTransform() throws TransformException {
         tolerance = 1E-10;
-        Validators.validate(transform);
+        validators.validate(transform);
         verifyInverse(coordinates);
     }
 
@@ -173,7 +171,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test(expected=TransformFailure.class)
     public void testInversionUsingBogusTransform() throws TransformException {
         tolerance = 1E-10;
-        Validators.validate(transform);
+        validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
         verifyInverse(coordinates);
     }
@@ -188,7 +186,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testDerivative() throws TransformException {
         tolerance = 1E-10;
         derivativeDeltas = new double[] {0.1};
-        Validators.validate(transform);
+        validators.validate(transform);
         verifyDerivative(10, 20);
     }
 
@@ -204,7 +202,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testDerivativeUsingBogusTransform() throws TransformException {
         tolerance = 1E-10;
         derivativeDeltas = new double[] {0.1};
-        Validators.validate(transform);
+        validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongDerivative = true;
         verifyDerivative(0, 0);
     }
@@ -220,7 +218,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     public void testVerifyInDomain() throws TransformException {
         tolerance = 1E-10;
         derivativeDeltas = new double[] {0.1};
-        Validators.validate(transform);
+        validators.validate(transform);
         testVerifyInDomain(new double[] {10, 100}, new double[] {20, 400}, 10,  30);
     }
 

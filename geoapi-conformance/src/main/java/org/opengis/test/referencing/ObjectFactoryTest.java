@@ -52,7 +52,6 @@ import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
-import static org.opengis.test.Validators.*;
 import static org.opengis.referencing.cs.AxisDirection.*;
 import static org.opengis.test.referencing.Utilities.getName;
 import static javax.measure.unit.SI.METRE;
@@ -142,6 +141,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
             final CRSFactory                 crsFactory,
             final CoordinateOperationFactory copFactory)
     {
+        super(datumFactory, csFactory, crsFactory, copFactory);
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;
@@ -152,7 +152,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
      * Returns the authority factory tests backed by the object factories.
      */
     private AuthorityFactoryTest createAuthorityFactoryTest() {
-        final PseudoEpsgFactory factory = new PseudoEpsgFactory(datumFactory, csFactory, crsFactory, copFactory, null);
+        final PseudoEpsgFactory factory = new PseudoEpsgFactory(datumFactory, csFactory, crsFactory, copFactory, null, validators);
         return new AuthorityFactoryTest(factory, factory, factory);
     }
 
@@ -194,20 +194,20 @@ public strictfp class ObjectFactoryTest extends TestCase {
 
         // Build a geodetic datum.
         assumeNotNull(datumFactory);
-        validate(datum = datumFactory.createGeodeticDatum(name("World Geodetic System 1984"),
-                         datumFactory.createEllipsoid    (name("WGS 84"), 6378137.0, 298.257223563, METRE),
-                         datumFactory.createPrimeMeridian(name("Greenwich"), 0.0, DEGREE_ANGLE)));
+        validators.validate(datum = datumFactory.createGeodeticDatum(name("World Geodetic System 1984"),
+                                    datumFactory.createEllipsoid    (name("WGS 84"), 6378137.0, 298.257223563, METRE),
+                                    datumFactory.createPrimeMeridian(name("Greenwich"), 0.0, DEGREE_ANGLE)));
 
         // Build an ellipsoidal coordinate system.
         assumeNotNull(csFactory);
-        validate(λ  = csFactory.createCoordinateSystemAxis(name("Geodetic longitude"), "λ", EAST,  DEGREE_ANGLE));
-        validate(φ  = csFactory.createCoordinateSystemAxis(name("Geodetic latitude"),  "φ", NORTH, DEGREE_ANGLE));
-        validate(h  = csFactory.createCoordinateSystemAxis(name("height"),             "h", UP,    METRE));
-        validate(cs = csFactory.createEllipsoidalCS(name("WGS 84"), φ, λ, h));
+        validators.validate(λ  = csFactory.createCoordinateSystemAxis(name("Geodetic longitude"), "λ", EAST,  DEGREE_ANGLE));
+        validators.validate(φ  = csFactory.createCoordinateSystemAxis(name("Geodetic latitude"),  "φ", NORTH, DEGREE_ANGLE));
+        validators.validate(h  = csFactory.createCoordinateSystemAxis(name("height"),             "h", UP,    METRE));
+        validators.validate(cs = csFactory.createEllipsoidalCS(name("WGS 84"), φ, λ, h));
 
         // Finally build the geographic coordinate reference system.
         assumeNotNull(crsFactory);
-        validate(crs = crsFactory.createGeographicCRS(name("WGS84(DD)"), datum, cs));
+        validators.validate(crs = crsFactory.createGeographicCRS(name("WGS84(DD)"), datum, cs));
 
         // Validations. Fetch the new references for 'cs', 'longitudeAxis', etc.,
         // which may or may not be the instance that we created.
@@ -248,18 +248,18 @@ public strictfp class ObjectFactoryTest extends TestCase {
         final Ellipsoid     ellipsoid;
 
         assumeNotNull(datumFactory);
-        validate(greenwich = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, DEGREE_ANGLE));
-        validate(ellipsoid = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, METRE));
-        validate(datum     = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
+        validators.validate(greenwich = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, DEGREE_ANGLE));
+        validators.validate(ellipsoid = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, METRE));
+        validators.validate(datum     = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
 
         assumeNotNull(csFactory);
-        validate(X  = csFactory.createCoordinateSystemAxis(name("X"), "X", GEOCENTRIC_X, METRE));
-        validate(Y  = csFactory.createCoordinateSystemAxis(name("Y"), "Y", GEOCENTRIC_Y, METRE));
-        validate(Z  = csFactory.createCoordinateSystemAxis(name("Z"), "Z", GEOCENTRIC_Z, METRE));
-        validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
+        validators.validate(X  = csFactory.createCoordinateSystemAxis(name("X"), "X", GEOCENTRIC_X, METRE));
+        validators.validate(Y  = csFactory.createCoordinateSystemAxis(name("Y"), "Y", GEOCENTRIC_Y, METRE));
+        validators.validate(Z  = csFactory.createCoordinateSystemAxis(name("Z"), "Z", GEOCENTRIC_Z, METRE));
+        validators.validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
 
         assumeNotNull(crsFactory);
-        validate(crs = crsFactory.createGeocentricCRS(name("Geocentric CRS"), datum, cs));
+        validators.validate(crs = crsFactory.createGeocentricCRS(name("Geocentric CRS"), datum, cs));
         assertAxisDirectionsEqual("GeocentricCRS", crs.getCoordinateSystem(), GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y);
     }
 
@@ -290,38 +290,38 @@ public strictfp class ObjectFactoryTest extends TestCase {
         final CompoundCRS     crs3D; // The final product of this method.
 
         assumeNotNull(datumFactory);
-        validate(greenwich   = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, DEGREE_ANGLE));
-        validate(ellipsoid   = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, METRE));
-        validate(baseDatum   = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
-        validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), VerticalDatumType.GEOIDAL));
+        validators.validate(greenwich   = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, DEGREE_ANGLE));
+        validators.validate(ellipsoid   = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, METRE));
+        validators.validate(baseDatum   = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
+        validators.validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), VerticalDatumType.GEOIDAL));
 
         assumeNotNull(csFactory);
-        validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),           "N", NORTH, METRE));
-        validate(axisE       = csFactory.createCoordinateSystemAxis(name("Easting"),            "E", EAST,  METRE));
-        validate(axisH       = csFactory.createCoordinateSystemAxis(name("Height"),             "H", UP,    METRE));
-        validate(axisφ       = csFactory.createCoordinateSystemAxis(name("Geodetic Latitude"),  "φ", NORTH, DEGREE_ANGLE));
-        validate(axisλ       = csFactory.createCoordinateSystemAxis(name("Geodetic Longitude"), "λ", EAST,  DEGREE_ANGLE));
-        validate(baseCS      = csFactory.createEllipsoidalCS       (name("2D ellipsoidal"),  axisλ, axisφ));
-        validate(projectedCS = csFactory.createCartesianCS         (name("2D Cartesian CS"), axisN, axisE));
-        validate(heightCS    = csFactory.createVerticalCS          (name("Height CS"),       axisH));
+        validators.validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),           "N", NORTH, METRE));
+        validators.validate(axisE       = csFactory.createCoordinateSystemAxis(name("Easting"),            "E", EAST,  METRE));
+        validators.validate(axisH       = csFactory.createCoordinateSystemAxis(name("Height"),             "H", UP,    METRE));
+        validators.validate(axisφ       = csFactory.createCoordinateSystemAxis(name("Geodetic Latitude"),  "φ", NORTH, DEGREE_ANGLE));
+        validators.validate(axisλ       = csFactory.createCoordinateSystemAxis(name("Geodetic Longitude"), "λ", EAST,  DEGREE_ANGLE));
+        validators.validate(baseCS      = csFactory.createEllipsoidalCS       (name("2D ellipsoidal"),  axisλ, axisφ));
+        validators.validate(projectedCS = csFactory.createCartesianCS         (name("2D Cartesian CS"), axisN, axisE));
+        validators.validate(heightCS    = csFactory.createVerticalCS          (name("Height CS"),       axisH));
 
         assumeNotNull(crsFactory);
         baseCRS   = crsFactory.createGeographicCRS(name("2D geographic CRS"), baseDatum, baseCS);
         heightCRS = crsFactory.createVerticalCRS  (name("Height CRS"),      heightDatum, heightCS);
 
         assumeNotNull(copFactory);
-        validate(projectionMethod = copFactory.getOperationMethod("Transverse_Mercator"));
+        validators.validate(projectionMethod = copFactory.getOperationMethod("Transverse_Mercator"));
         final ParameterValueGroup paramUTM = projectionMethod.getParameters().createValue();
         paramUTM.parameter("central_meridian")  .setValue(-180 + utmZone*6 - 3);
         paramUTM.parameter("latitude_of_origin").setValue(0.0);
         paramUTM.parameter("scale_factor")      .setValue(0.9996);
         paramUTM.parameter("false_easting")     .setValue(500000.0);
         paramUTM.parameter("false_northing")    .setValue(0.0);
-        validate(paramUTM);
+        validators.validate(paramUTM);
 
-        validate(baseToUTM    = copFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
-        validate(projectedCRS = crsFactory.createProjectedCRS(name("WGS 84 / UTM Zone 12 (2D)"), baseCRS, baseToUTM, projectedCS));
-        validate(crs3D        = crsFactory.createCompoundCRS(name("3D Compound WGS 84 / UTM Zone 12"), projectedCRS, heightCRS));
+        validators.validate(baseToUTM    = copFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
+        validators.validate(projectedCRS = crsFactory.createProjectedCRS(name("WGS 84 / UTM Zone 12 (2D)"), baseCRS, baseToUTM, projectedCS));
+        validators.validate(crs3D        = crsFactory.createCompoundCRS(name("3D Compound WGS 84 / UTM Zone 12"), projectedCRS, heightCRS));
         assertAxisDirectionsEqual("CompoundCRS", crs3D.getCoordinateSystem(), NORTH, EAST, UP);
     }
 }
