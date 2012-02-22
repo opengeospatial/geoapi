@@ -334,7 +334,7 @@ public class SimpleName implements GenericName, Serializable {
     }
 
     /**
-     * Returns a clone of the {@linkplain JNDI name} wrapped by this object.
+     * Returns a clone of the {@linkplain Name JNDI name} wrapped by this object.
      *
      * @return A clone of {@link #name}.
      */

@@ -56,13 +56,12 @@ import org.opengis.test.referencing.*;
  * {@link Validator} objects in various packages. This class is especially convenient
  * when used with the {@code static import} feature of Java 5.
  *
- * <p>To override some validation process on a system-wide basis, vendors can change the
- * {@link #DEFAULT} static field or change the configuration of the object referenced
- * by that field.</p>
- *
- * <p>To override some validation process without changing the system-wide setting,
- * users can create a new instance of {@link ValidatorContainer} and use that instance
- * instead of this class.</p>
+ * <p><b><u>Customization</u></b><br>
+ * To override some validation process on a system-wide basis, vendors can change the
+ * configuration of the objects referenced in the {@link #DEFAULT} static field.
+ * To override some validation process without changing the system-wide setting,
+ * vendors can create a new instance of {@link ValidatorContainer} and use that
+ * instance instead of this class.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -71,10 +70,10 @@ import org.opengis.test.referencing.*;
 public class Validators {
     /**
      * The default container to be used by all static {@code validate} methods.
-     * Vendors can change this field to a different container, or change the setting
-     * of the referenced container. This field shall not be set to {@code null} however.
+     * Vendors can change the validators referenced by this container, or change
+     * their setting.
      */
-    public static ValidatorContainer DEFAULT = new ValidatorContainer();
+    public static final ValidatorContainer DEFAULT = new ValidatorContainer();
 
     /**
      * For subclass constructors only.
