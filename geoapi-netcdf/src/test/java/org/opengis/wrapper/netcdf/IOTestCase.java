@@ -95,7 +95,7 @@ public abstract strictfp class IOTestCase {
      * The Coordinate Reference System of this dataset is
      * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic}.
      *
-     * @see NetcdfMetadataTest#testThredds()
+     * @see NetcdfMetadataTest#testTHREDDS()
      * @see NetcdfCRSTest#testGeographic()
      */
     public static final String THREDDS = "THREDDS.ncml";
@@ -201,7 +201,6 @@ public abstract strictfp class IOTestCase {
      * {@linkplain org.opengis.referencing.crs.ProjectedCRS projected}.
      *
      * @see NetcdfMetadataTest#testLandsat()
-     * @see NetcdfCRSTest#testProjected()
      */
     public static final String LANDSAT = "Landsat-GDAL.nc";
 

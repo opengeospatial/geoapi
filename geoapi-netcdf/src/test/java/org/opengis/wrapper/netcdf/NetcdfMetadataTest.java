@@ -22,6 +22,7 @@ import org.opengis.metadata.spatial.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.metadata.identification.*;
 import org.opengis.test.metadata.RootValidator;
+import org.opengis.test.Validators;
 
 import org.junit.Test;
 
@@ -70,7 +71,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * to {@code false}, since NetCDF metadata are sometime incomplete.
      */
     public NetcdfMetadataTest() {
-        this(new RootValidator(org.opengis.test.Validators.DEFAULT));
+        this(new RootValidator(Validators.DEFAULT));
         validator.requireMandatoryAttributes = false;
     }
 

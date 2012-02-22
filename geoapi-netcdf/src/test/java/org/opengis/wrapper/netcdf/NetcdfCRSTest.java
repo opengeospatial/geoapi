@@ -45,6 +45,7 @@ import org.opengis.test.referencing.OperationValidator;
 import org.opengis.test.referencing.CRSValidator;
 import org.opengis.test.referencing.CSValidator;
 import org.opengis.test.ValidatorContainer;
+import org.opengis.test.Validators;
 
 import org.junit.Test;
 
@@ -60,13 +61,13 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *   <li>{@linkplain #open(String) Opens} a NetCDF test file specific to the test method.</li>
  *   <li>{@linkplain #wrap(CoordinateSystem, NetcdfDataset) Wraps} the NetCDF coordinate system
  *       in the GeoAPI implementation to be tested.</li>
- *   <li>{@linkplain org.opengis.test.Validators#validate(CoordinateReferenceSystem) Validates}
+ *   <li>{@linkplain Validators#validate(CoordinateReferenceSystem) Validates}
  *       the wrapped {@linkplain #crs}.</li>
  *   <li>Performs verifications specific to the test methods.</li>
  *   <li>{@linkplain NetcdfDataset#close() Closes} the NetCDF file.</li>
  * </ul>
  * <p>
- * External projects can override the {@link #wrap(CoordinateSystem)}
+ * External projects can override the {@link #wrap(CoordinateSystem, NetcdfDataset)}
  * method in order to test their own NetCDF wrapper, as in the example below:
  *
  * <blockquote><pre>public class MyTest extends NetcdfCRSTest {
@@ -121,7 +122,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * to {@code false}, since NetCDF axis names are non-standard.
      */
     public NetcdfCRSTest() {
-        this(org.opengis.test.Validators.DEFAULT.clone());
+        this(Validators.DEFAULT.clone());
     }
 
     /**
