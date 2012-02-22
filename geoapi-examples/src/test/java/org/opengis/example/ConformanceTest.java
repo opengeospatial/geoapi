@@ -13,6 +13,8 @@ import org.opengis.test.Configuration;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.ImplementationDetails;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.example.referencing.SimpleTransformFactory;
+import org.opengis.example.util.SimpleNameFactory;
 
 
 /**
@@ -32,10 +34,30 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
     private Configuration configuration;
 
     /**
-     * Returns the map of tests to disable for this implementation.
+     * Returns {@code true} if at least one factory in the given array is our implementation.
+     * We will returns a configuration map only for our own implementation, and don't propose
+     * anything for implementations we don't known about.
+     */
+    private static boolean isOurImplementation(final Factory[] factories) {
+        for (final Factory factory : factories) {
+            if (factory instanceof SimpleNameFactory ||
+                factory instanceof SimpleTransformFactory)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the map of tests to disable for this implementation, or {@code null}
+     * if the given factories are not the expected implementations.
      */
     @Override
     public synchronized Configuration configuration(final Factory... factories) {
+        if (!isOurImplementation(factories)) {
+            return null;
+        }
         if (configuration == null) {
             configuration = new Configuration();
             configuration.unsupported(

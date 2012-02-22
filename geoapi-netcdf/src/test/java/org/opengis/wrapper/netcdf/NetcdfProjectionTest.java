@@ -56,6 +56,9 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
      * set to {@code false} since the NetCDF library does not implement projection derivatives.
      */
     public NetcdfProjectionTest() {
+        // We need to specify at least one NetCDF factory to the super-class constructor in
+        // order to allow ImplementationDetails to detect that it shall disable some checks.
+        super(NetcdfTransformFactoryTest.getDefaultFactory());
         tolerance = 1E-10;
         isDerivativeSupported = false;
     }
