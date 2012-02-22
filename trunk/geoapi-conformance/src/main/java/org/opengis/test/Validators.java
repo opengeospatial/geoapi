@@ -97,7 +97,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see MainValidator#validate(Metadata)
+     * @see RootValidator#validate(Metadata)
      *
      * @since 3.1
      */
@@ -709,7 +709,7 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see MainValidator#validate(Identifier)
+     * @see RootValidator#validate(Identifier)
      *
      * @since 3.1
      */

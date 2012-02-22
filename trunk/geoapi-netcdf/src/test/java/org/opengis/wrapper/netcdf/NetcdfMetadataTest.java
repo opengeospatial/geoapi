@@ -21,7 +21,7 @@ import org.opengis.metadata.extent.*;
 import org.opengis.metadata.spatial.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.metadata.identification.*;
-import org.opengis.test.metadata.MainValidator;
+import org.opengis.test.metadata.RootValidator;
 
 import org.junit.Test;
 
@@ -56,7 +56,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * The validator to use for validating the {@link Metadata} instance.
      * This validator is specified at construction time.
      */
-    protected final MainValidator validator;
+    protected final RootValidator validator;
 
     /**
      * The metadata object being tested. This field is set to the value returned
@@ -66,11 +66,11 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
 
     /**
      * Creates a new test case using the default validator.
-     * This constructor sets the {@link MainValidator#requireMandatoryAttributes} field
+     * This constructor sets the {@link RootValidator#requireMandatoryAttributes} field
      * to {@code false}, since NetCDF metadata are sometime incomplete.
      */
     public NetcdfMetadataTest() {
-        this(new MainValidator(org.opengis.test.Validators.DEFAULT));
+        this(new RootValidator(org.opengis.test.Validators.DEFAULT));
         validator.requireMandatoryAttributes = false;
     }
 
@@ -78,11 +78,11 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * Creates a new test case using the given validator. This constructor is provided for
      * subclasses wanting to use different validation methods. It is caller responsibility
      * to configure the given validator (for example whatever to
-     * {@linkplain MainValidator#requireMandatoryAttributes require mandatory attributes}).
+     * {@linkplain RootValidator#requireMandatoryAttributes require mandatory attributes}).
      *
      * @param validator The validator to use for validating the {@link Metadata} instance.
      */
-    protected NetcdfMetadataTest(final MainValidator validator) {
+    protected NetcdfMetadataTest(final RootValidator validator) {
         this.validator = validator;
     }
 

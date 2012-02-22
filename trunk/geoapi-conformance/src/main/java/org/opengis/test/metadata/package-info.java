@@ -32,8 +32,8 @@
 
 /**
  * Validators and test suites for the {@code org.opengis.metadata} package. The main validator
- * is {@link org.opengis.test.metadata.MainValidator#validate(org.opengis.metadata.Metadata)
- * MainValidator.validate(Metadata)}.
+ * is {@link org.opengis.test.metadata.RootValidator#validate(org.opengis.metadata.Metadata)
+ * RootValidator.validate(Metadata)}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

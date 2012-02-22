@@ -41,7 +41,7 @@ import org.opengis.test.ValidatorContainer;
 
 /**
  * Validates {@link Metadata} and related objects from the {@code org.opengis.metadata} package.
- * This validator is named {@code MainValidator} because {@link Metadata} is usually the root
+ * This validator is named {@code RootValidator} because {@link Metadata} is usually the root
  * of the metadata tree.
  * <p>
  * This class is provided for users wanting to override the validation methods. When the default
@@ -52,14 +52,14 @@ import org.opengis.test.ValidatorContainer;
  * @version 3.1
  * @since   3.1
  */
-public class MainValidator extends MetadataValidator {
+public class RootValidator extends MetadataValidator {
     /**
      * Creates a new validator instance.
      *
      * @param container The set of validators to use for validating other kinds of objects
      *                  (see {@linkplain #container field javadoc}).
      */
-    public MainValidator(final ValidatorContainer container) {
+    public RootValidator(final ValidatorContainer container) {
         super(container, "org.opengis.metadata");
     }
 
