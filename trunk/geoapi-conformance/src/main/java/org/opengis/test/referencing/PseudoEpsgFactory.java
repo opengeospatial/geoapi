@@ -51,7 +51,6 @@ import org.opengis.test.ValidatorContainer;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
-import org.opengis.test.Validators;
 
 import static org.junit.Assume.*;
 
@@ -127,8 +126,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
      * @param copFactory   Factory for creating {@link Conversion} instances.
      * @param mtFactory    Factory for creating {@link MathTransform} instances.
-     * @param validators   The set of validators to use for verifying objects conformance,
-     *                     or {@code null} for the {@linkplain Validators#DEFAULT default}.
+     * @param validators   The set of validators to use for verifying objects conformance.
+     *                     Can not be {@code null}; if there is no particular validators,
+     *                     use {@link org.opengis.test.Validators#DEFAULT}.
      */
     public PseudoEpsgFactory(
             final DatumFactory             datumFactory,
@@ -143,7 +143,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         this.crsFactory   = crsFactory;
         this.copFactory   = copFactory;
         this.mtFactory    = mtFactory;
-        this.validators   = (validators != null) ? validators : Validators.DEFAULT;
+        this.validators   = validators;
+        if (validators == null) {
+            throw new NullPointerException("The validators can not be null. Do you mean Validators.DEFAULT?");
+        }
     }
 
     /**

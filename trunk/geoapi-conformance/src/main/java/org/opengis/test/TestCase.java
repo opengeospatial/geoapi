@@ -261,20 +261,20 @@ public strictfp abstract class TestCase {
     protected TestCase(final Factory... factories) {
         Objects.requireNonNull(factories, "Given 'factories' array can not be null.");
         this.factories = factories;
-        ValidatorContainer validators = null;
         final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
         synchronized (services) {
             for (final ImplementationDetails impl : services) {
                 final Configuration config = impl.configuration(factories);
                 if (config != null) {
-                    validators = config.get(Configuration.Key.validators);
-                    if (validators != null) {
-                        break;
+                    final ValidatorContainer candidate = config.get(Configuration.Key.validators);
+                    if (candidate != null) {
+                        validators = candidate;
+                        return;
                     }
                 }
             }
         }
-        this.validators = (validators != null) ? validators : Validators.DEFAULT;
+        Objects.requireNonNull(validators = Validators.DEFAULT, "Validators.DEFAULT shall not be null.");
     }
 
     /**

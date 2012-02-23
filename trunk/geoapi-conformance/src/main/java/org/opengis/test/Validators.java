@@ -57,11 +57,17 @@ import org.opengis.test.referencing.*;
  * when used with the {@code static import} feature of Java 5.
  *
  * <p><b><u>Customization</u></b><br>
- * To override some validation process on a system-wide basis, vendors can change the
- * configuration of the objects referenced in the {@link #DEFAULT} static field.
- * To override some validation process without changing the system-wide setting,
- * vendors can create a new instance of {@link ValidatorContainer} and use that
- * instance instead of this class.</p>
+ * To override some validation process on a <em>system-wide</em> basis, vendors can either
+ * assign a new {@link ValidatorContainer} instance to the {@link #DEFAULT} static field, or
+ * modify the fields ({@link ValidatorContainer#cs cs}, {@link ValidatorContainer#crs crs},
+ * <i>etc.</i>) in the existing instance. The following example alters the existing instance
+ * in order to accept non-standard axis names:</p>
+ *
+ * <blockquote><pre>Validators.DEFAULT.crs.enforceStandardNames = false;</pre></blockquote>
+ *
+ * <p>To override some validation process without changing the system-wide setting,
+ * vendors can create a new instance of {@link ValidatorContainer} and invoke its
+ * non-static methods from the vendor's test cases.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -72,8 +78,16 @@ public class Validators {
      * The default container to be used by all static {@code validate} methods.
      * Vendors can change the validators referenced by this container, or change
      * their setting.
+     * <p>
+     * This field is not final in order to allow vendors to switch easily between
+     * different configurations, for example:
+     *
+     * <blockquote><pre>ValidatorContainer original = Validators.DEFAULT;
+     *Validators.DEFAULT = myConfig;
+     *... do some tests ...
+     *Validators.DEFAULT = original;</pre></blockquote>
      */
-    public static final ValidatorContainer DEFAULT = new ValidatorContainer();
+    public static ValidatorContainer DEFAULT = new ValidatorContainer();
 
     /**
      * For subclass constructors only.
