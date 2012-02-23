@@ -202,7 +202,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
         assumeNotNull(csFactory);
         validators.validate(λ  = csFactory.createCoordinateSystemAxis(name("Geodetic longitude"), "λ", EAST,  DEGREE_ANGLE));
         validators.validate(φ  = csFactory.createCoordinateSystemAxis(name("Geodetic latitude"),  "φ", NORTH, DEGREE_ANGLE));
-        validators.validate(h  = csFactory.createCoordinateSystemAxis(name("height"),             "h", UP,    METRE));
+        validators.validate(h  = csFactory.createCoordinateSystemAxis(name("Ellipsoidal height"), "h", UP,    METRE));
         validators.validate(cs = csFactory.createEllipsoidalCS(name("WGS 84"), φ, λ, h));
 
         // Finally build the geographic coordinate reference system.
@@ -221,7 +221,7 @@ public strictfp class ObjectFactoryTest extends TestCase {
         assertEquals("Geodetic longitude", getName(λ));
         assertEquals(AxisDirection.EAST,   λ.getDirection());
         assertEquals(DEGREE_ANGLE,         λ.getUnit());
-        assertEquals("height",             getName(h));
+        assertEquals("Ellipsoidal height", getName(h));
         assertEquals(AxisDirection.UP,     h.getDirection());
         assertEquals(METRE,                h.getUnit());
 
@@ -253,9 +253,9 @@ public strictfp class ObjectFactoryTest extends TestCase {
         validators.validate(datum     = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
 
         assumeNotNull(csFactory);
-        validators.validate(X  = csFactory.createCoordinateSystemAxis(name("X"), "X", GEOCENTRIC_X, METRE));
-        validators.validate(Y  = csFactory.createCoordinateSystemAxis(name("Y"), "Y", GEOCENTRIC_Y, METRE));
-        validators.validate(Z  = csFactory.createCoordinateSystemAxis(name("Z"), "Z", GEOCENTRIC_Z, METRE));
+        validators.validate(X  = csFactory.createCoordinateSystemAxis(name("Geocentric X"), "X", GEOCENTRIC_X, METRE));
+        validators.validate(Y  = csFactory.createCoordinateSystemAxis(name("Geocentric Y"), "Y", GEOCENTRIC_Y, METRE));
+        validators.validate(Z  = csFactory.createCoordinateSystemAxis(name("Geocentric Z"), "Z", GEOCENTRIC_Z, METRE));
         validators.validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
 
         assumeNotNull(crsFactory);
@@ -296,11 +296,11 @@ public strictfp class ObjectFactoryTest extends TestCase {
         validators.validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), VerticalDatumType.GEOIDAL));
 
         assumeNotNull(csFactory);
-        validators.validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),           "N", NORTH, METRE));
-        validators.validate(axisE       = csFactory.createCoordinateSystemAxis(name("Easting"),            "E", EAST,  METRE));
-        validators.validate(axisH       = csFactory.createCoordinateSystemAxis(name("Height"),             "H", UP,    METRE));
-        validators.validate(axisφ       = csFactory.createCoordinateSystemAxis(name("Geodetic Latitude"),  "φ", NORTH, DEGREE_ANGLE));
-        validators.validate(axisλ       = csFactory.createCoordinateSystemAxis(name("Geodetic Longitude"), "λ", EAST,  DEGREE_ANGLE));
+        validators.validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),               "N", NORTH, METRE));
+        validators.validate(axisE       = csFactory.createCoordinateSystemAxis(name("Easting"),                "E", EAST,  METRE));
+        validators.validate(axisH       = csFactory.createCoordinateSystemAxis(name("Gravity-related Height"), "H", UP,    METRE));
+        validators.validate(axisφ       = csFactory.createCoordinateSystemAxis(name("Geodetic Latitude"),      "φ", NORTH, DEGREE_ANGLE));
+        validators.validate(axisλ       = csFactory.createCoordinateSystemAxis(name("Geodetic Longitude"),     "λ", EAST,  DEGREE_ANGLE));
         validators.validate(baseCS      = csFactory.createEllipsoidalCS       (name("2D ellipsoidal"),  axisλ, axisφ));
         validators.validate(projectedCS = csFactory.createCartesianCS         (name("2D Cartesian CS"), axisN, axisE));
         validators.validate(heightCS    = csFactory.createVerticalCS          (name("Height CS"),       axisH));
