@@ -175,8 +175,10 @@ public class PJFactory implements Factory {
         if (beginParam >= 0) {
             beginParam += AXIS_ORDER_PARAM.length();
             final int length = definition.length();
-            while (beginParam<length && Character.isWhitespace(definition.charAt(beginParam))) {
-                beginParam++; // Skip whitespaces.
+            while (beginParam < length) { // Skip whitespaces.
+                final int c = definition.codePointAt(beginParam);
+                if (!Character.isWhitespace(c)) break;
+                beginParam += Character.charCount(c);
             }
             final StringBuilder modified = new StringBuilder(definition.length());
             modified.append(definition, 0, beginParam);
