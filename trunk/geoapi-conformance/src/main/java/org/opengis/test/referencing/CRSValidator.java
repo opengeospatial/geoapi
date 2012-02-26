@@ -433,13 +433,18 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * Returns the given string in lower cases, except for the last letter if it is single.
-     * The intend is to leaver the trailing X, Y or Z case unchanged in "geocentric X",
+     * The intend is to leave the trailing X, Y or Z case unchanged in "geocentric X",
      * "geocentric Y" and "geocentric Z" axis names.
      */
     static String toLowerCase(final String name) {
-        final int s = name.length() - 2;
-        if (s >= 1 && Character.isSpaceChar(name.charAt(s))) {
-            return name.substring(0, s).toLowerCase().concat(name.substring(s));
+        int s = name.length();
+        if (s >= 3) {
+            s -= Character.charCount(name.codePointBefore(s));
+            final int c = name.codePointBefore(s);
+            if (Character.isSpaceChar(c)) {
+                s -= Character.charCount(c);
+                return name.substring(0, s).toLowerCase().concat(name.substring(s));
+            }
         }
         return name.toLowerCase();
     }

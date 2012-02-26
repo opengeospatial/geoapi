@@ -251,17 +251,32 @@ final class ReportEntry {
      */
     private static String separateWords(final String name) {
         StringBuilder buffer = null;
-        for (int i=name.length(); --i>=1;) {
-            final char c = name.charAt(i);
-            if (!Character.isLowerCase(c)) {
-                if (Character.isLowerCase(name.charAt(i-1)) ||
-                        (i != name.length()-1 && Character.isLowerCase(name.charAt(i+1))))
-                {
-                    if (buffer == null) {
-                        buffer = new StringBuilder(name);
-                    }
-                    buffer.insert(i, ' ');
+        for (int i=name.length(); i>=2;) {
+            final int c = name.codePointBefore(i);
+            final int nc = Character.charCount(c);
+            i -= nc;
+            if (Character.isUpperCase(c) || Character.isDigit(c)) {
+                /*
+                 * If we have a lower case letter followed by an upper case letter, unconditionally
+                 * insert a space between them. If we have 2 consecutive upper case letters (actually
+                 * anything except a space and a lower case letter, followed by an upper case letter),
+                 * insert a space only if the next character is lower case. The later rule is an
+                 * attempt to handle abbreviations, like "URLEncoding" to "URL Encoding".
+                 */
+                final int cb = name.codePointBefore(i);
+                if (Character.isSpaceChar(cb)) {
+                    continue;
                 }
+                if (!Character.isLowerCase(cb)) {
+                    final int next = i + nc;
+                    if (next >= name.length() || !Character.isLowerCase(name.codePointAt(next))) {
+                        continue;
+                    }
+                }
+                if (buffer == null) {
+                    buffer = new StringBuilder(name);
+                }
+                buffer.insert(i, ' ');
             }
         }
         return (buffer != null) ? buffer.toString() : name;
