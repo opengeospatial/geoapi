@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import ucar.nc2.constants.CF;
+import ucar.unidata.util.Parameter;
 import ucar.unidata.geoloc.Projection;
 import ucar.unidata.geoloc.ProjectionImpl;
 import ucar.unidata.geoloc.projection.*;
@@ -75,6 +76,13 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     private final AliasList[] parameters;
 
     /**
+     * {@code true} if this projection has 2 standard parallels. The NetCDF library
+     * stores those standard parallels in a single array of length 2 instead than 2
+     * separated parameters, which require special processing for the wrappers.
+     */
+    private final boolean hasStandardParallels;
+
+    /**
      * Declares the name of a map projection and its parameters, together with the OGC and EPSG names.
      * The length of the given array shall be a multiple of 3. For each triplet, the names are
      * (NetCDF, OGC, EPSG) in that order. The first triplet is the projection name and remaining
@@ -84,12 +92,14 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      *
      * @param  projection The type of NetCDF projections to instantiate.
      * @param  existings  The aliases created up to date. This map is updated by this method.
+     * @param  hasStd2    {@code true} if the projection has 2 standard parallels.
      * @param  names      The projection name and aliases, followed by parameters name and aliases,
      *                    as tuples of {@value org.opengis.wrapper.netcdf.AliasList#NAME_CAPACITY}
      *                    elements.
      */
-    ProjectionProvider(final Map<SimpleName,SimpleName> existings, final String... names) {
+    ProjectionProvider(final Map<SimpleName,SimpleName> existings, final boolean hasStd2, final String... names) {
         assert (names.length % AliasList.NAME_CAPACITY) == 0 : Arrays.toString(names);
+        hasStandardParallels = hasStd2;
         parameters = new AliasList[(names.length - 1) / AliasList.NAME_CAPACITY];
         byNames = new LinkedHashMap<String,AliasList>(names.length);
         AliasList name = null;
@@ -227,8 +237,18 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      */
     private NetcdfParameter<?>[] parameters() {
         final NetcdfParameter<?>[] param = new NetcdfParameter<?>[parameters.length];
-        for (int i=0; i<param.length; i++) {
-            param[i] = parameter(parameters[i]);
+        if (!hasStandardParallels) {
+            // Simple common cases: no parameter value arrays.
+            for (int i=0; i<param.length; i++) {
+                param[i] = parameter(parameters[i]);
+            }
+        } else {
+            final Parameter std = new Parameter(CF.STANDARD_PARALLEL, new double[2]);
+            for (int i=0; i<param.length; i++) {
+                final AliasList aliases = parameters[i];
+                param[i] = aliases.isIndexedParameter() ?
+                        new IndexedParameter(std, aliases) : parameter(aliases);
+            }
         }
         return param;
     }
@@ -290,11 +310,12 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class Albers extends ProjectionProvider<AlbersEqualArea> {
         private static final long serialVersionUID = 750456843856517553L;
         Albers(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, true,
                 "AlbersEqualArea",                 "Albers_Conic_Equal_Area",  "Albers Equal Area",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,  "latitude_of_origin",       "Latitude of false origin",
                 CF.LONGITUDE_OF_CENTRAL_MERIDIAN,  "central_meridian",         "Longitude of false origin",
-                CF.STANDARD_PARALLEL,              "standard_parallel_1",      "Latitude of 1st standard parallel",
+                CF.STANDARD_PARALLEL + "[1]",      "standard_parallel_1",      "Latitude of 1st standard parallel",
+                CF.STANDARD_PARALLEL + "[2]",      "standard_parallel_2",      "Latitude of 2nd standard parallel",
                 CF.FALSE_EASTING,                  "false_easting",            "Easting at false origin",
                 CF.FALSE_NORTHING,                 "false_northing",           "Northing at false origin",
                 CF.EARTH_RADIUS,                    null,                       null);
@@ -304,8 +325,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             if (p == null) return new AlbersEqualArea();
             return new AlbersEqualArea(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
                                        value(p, CF.LONGITUDE_OF_CENTRAL_MERIDIAN),
-                                       value(p, CF.STANDARD_PARALLEL),
-                                       value(p, CF.STANDARD_PARALLEL),
+                                       value(p, CF.STANDARD_PARALLEL + "[1]"),
+                                       value(p, CF.STANDARD_PARALLEL + "[2]"),
                                        value(p, CF.FALSE_EASTING)  / KILOMETRE,
                                        value(p, CF.FALSE_NORTHING) / KILOMETRE,
                                        earthRadius(p)              / KILOMETRE);
@@ -318,7 +339,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class Flat extends ProjectionProvider<FlatEarth> {
         private static final long serialVersionUID = -7970152210677936013L;
         Flat(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "FlatEarth",                        null,  null,
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,   null,  null,
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,  null,  null,
@@ -341,7 +362,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class LambertAzimuthal extends ProjectionProvider<LambertAzimuthalEqualArea> {
         private static final long serialVersionUID = 5746186219589652050L;
         LambertAzimuthal(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "LambertAzimuthalEqualArea",        "Lambert_Azimuthal_Equal_Area",  "Lambert Azimuthal Equal Area (Spherical)",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,   "latitude_of_center",            "Latitude of natural origin",
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,  "longitude_of_center",           "Longitude of natural origin",
@@ -363,14 +384,15 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     /**
      * Provider for the {@link LambertConformal} projection.
      */
-    static final class LambertConic1SP extends ProjectionProvider<LambertConformal> {
+    static final class LambertConic2SP extends ProjectionProvider<LambertConformal> {
         private static final long serialVersionUID = 1295663810378039878L;
-        LambertConic1SP(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
-                "LambertConformal",                "Lambert_Conformal_Conic_1SP",  "Lambert Conic Conformal (1SP)",
+        LambertConic2SP(final Map<SimpleName,SimpleName> existings) {
+            super(existings, true,
+                "LambertConformal",                "Lambert_Conformal_Conic_2SP",  "Lambert Conic Conformal (2SP)",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,  "latitude_of_origin",           "Latitude of natural origin",
                 CF.LONGITUDE_OF_CENTRAL_MERIDIAN,  "central_meridian",             "Longitude of natural origin",
-                CF.STANDARD_PARALLEL,              "standard_parallel_1",          "Latitude of 1st standard parallel",
+                CF.STANDARD_PARALLEL + "[1]",      "standard_parallel_1",          "Latitude of 1st standard parallel",
+                CF.STANDARD_PARALLEL + "[2]",      "standard_parallel_2",          "Latitude of 2nd standard parallel",
                 CF.FALSE_EASTING,                  "false_easting",                "False easting",
                 CF.FALSE_NORTHING,                 "false_northing",               "False northing",
                 CF.EARTH_RADIUS,                    null,                           null);
@@ -380,8 +402,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             if (p == null) return new LambertConformal();
             return new LambertConformal(value(p, CF.LATITUDE_OF_PROJECTION_ORIGIN),
                                         value(p, CF.LONGITUDE_OF_CENTRAL_MERIDIAN),
-                                        value(p, CF.STANDARD_PARALLEL),
-                                        value(p, CF.STANDARD_PARALLEL),
+                                        value(p, CF.STANDARD_PARALLEL + "[1]"),
+                                        value(p, CF.STANDARD_PARALLEL + "[2]"),
                                         value(p, CF.FALSE_EASTING)  / KILOMETRE,
                                         value(p, CF.FALSE_NORTHING) / KILOMETRE,
                                         earthRadius(p)              / KILOMETRE);
@@ -394,7 +416,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class PlateCarree extends ProjectionProvider<LatLonProjection> {
         private static final long serialVersionUID = 8896571199753338018L;
         PlateCarree(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "LatLonProjection",  null,  null);
         }
         @Override public Class<LatLonProjection> delegate() {return LatLonProjection.class;}
@@ -411,7 +433,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class Mercator2SP extends ProjectionProvider<Mercator> {
         private static final long serialVersionUID = 8777486546660325533L;
         Mercator2SP(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "Mercator",                         "Mercator_2SP",         "Mercator (variant B)",
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,  "central_meridian",     "Longitude of natural origin",
                 CF.STANDARD_PARALLEL,               "standard_parallel_1",  "Latitude of 1st standard parallel",
@@ -436,7 +458,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class Ortho extends ProjectionProvider<Orthographic> {
         private static final long serialVersionUID = -7241876400934462599L;
         Ortho(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "Orthographic",                     "Orthographic",        "Orthographic",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,   "latitude_of_origin",  "Latitude of natural origin",
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,  "central_meridian",    "Longitude of natural origin",
@@ -457,7 +479,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class RotatedSouth extends ProjectionProvider<RotatedLatLon> {
         private static final long serialVersionUID = 733254902626989710L;
         RotatedSouth(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "RotatedLatLon",                          null,  null,
                 RotatedLatLon.GRID_SOUTH_POLE_LATITUDE,   null,  null,
                 RotatedLatLon.GRID_SOUTH_POLE_LONGITUDE,  null,  null,
@@ -478,7 +500,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class RotatedNorth extends ProjectionProvider<RotatedPole> {
         private static final long serialVersionUID = -6456120388549694347L;
         RotatedNorth(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "RotatedPole",                 null,  null,
                 CF.GRID_NORTH_POLE_LATITUDE,   null,  null,
                 CF.GRID_NORTH_POLE_LONGITUDE,  null,  null);
@@ -499,7 +521,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class ObliqueStereographic extends ProjectionProvider<Stereographic> {
         private static final long serialVersionUID = 5466265000839086417L;
         ObliqueStereographic(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "Stereographic",                       "Stereographic",        "Stereographic",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,      "latitude_of_origin",   "Latitude of natural origin",
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,     "central_meridian",     "Longitude of natural origin",
@@ -526,7 +548,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class Transverse extends ProjectionProvider<TransverseMercator> {
         private static final long serialVersionUID = -1374895336564170370L;
         Transverse(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "TransverseMercator",                 "Transverse_Mercator",  "Transverse Mercator",
                 CF.LONGITUDE_OF_CENTRAL_MERIDIAN,     "central_meridian",     "Longitude of natural origin",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,     "latitude_of_origin",   "Latitude of natural origin",
@@ -553,7 +575,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class UTM extends ProjectionProvider<UtmProjection> {
         private static final long serialVersionUID = 2493554268255203722L;
         UTM(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "UtmProjection",         null,  null,
                 CF.SEMI_MAJOR_AXIS,      null,  null,
                 CF.INVERSE_FLATTENING,   null,  null,
@@ -576,7 +598,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     static final class Perspective extends ProjectionProvider<VerticalPerspectiveView> {
         private static final long serialVersionUID = 1670830240520560127L;
         Perspective(final Map<SimpleName,SimpleName> existings) {
-            super(existings,
+            super(existings, false,
                 "VerticalPerspectiveView",          null,  null,
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,   null,  null,
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,  null,  null,

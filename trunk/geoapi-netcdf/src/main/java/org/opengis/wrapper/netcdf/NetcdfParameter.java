@@ -36,12 +36,12 @@ import org.opengis.parameter.InvalidParameterValueException;
  * <p>
  * NetCDF {@code Parameter} instances can store the following types:
  * <p>
- * <table>
+ * <blockquote><table border="1">
  *   <tr><th>Value type</th>       <th>Getter method</th>              <th>Setter method</th></tr>
  *   <tr><td>{@link String}</td>   <td>{@link #stringValue()}</td>     <td>{@link #setValue(Object)}</td></tr>
  *   <tr><td>{@code double}</td>   <td>{@link #doubleValue()}</td>     <td>{@link #setValue(double)}</td></tr>
  *   <tr><td>{@code double[]}</td> <td>{@link #doubleValueList()}</td> <td>{@link #setValue(Object)}</td></tr>
- * </table>
+ * </table></blockquote>
  * <p>
  * All other {@code fooValue()} methods delegate to one of the above-cited getter methods and
  * convert the result.
@@ -80,7 +80,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * since the NetCDF class is not parameterized. Use the one of the {@link #create(Parameter,
      * Collection) create} methods instead.
      *
-     * @param parameter The parameter to wrap.
+     * @param  parameter The parameter to wrap.
      * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
      *         or null or an empty collection if none. This collection is not cloned.
      */
