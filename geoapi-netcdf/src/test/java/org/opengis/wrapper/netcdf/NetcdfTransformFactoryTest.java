@@ -13,8 +13,8 @@
  */
 package org.opengis.wrapper.netcdf;
 
-import java.util.Set;
-import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.LinkedHashMap;
 
 import ucar.nc2.constants.CF;
 import ucar.unidata.util.Parameter;
@@ -141,7 +141,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
      */
     @Test
     public void testParameterNames() throws FactoryException {
-        final Set<String> names = new LinkedHashSet<String>();
+        final Map<String,Integer> names = new LinkedHashMap<String,Integer>();
         for (final Class<? extends Projection> type : projections) {
             final Projection projection;
             try {
@@ -156,15 +156,20 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
              * Collect the NetCDF parameter names. This code ensures that the same NetCDF
              * parameter name is not declared twice. A failure in this test would be more
              * a NetCDF issue than a GeoAPI-wrapper one.
+             *
+             * The values in the map are the length of parameter value arrays, or 1 if
+             * the parameter values are scalar.
              */
             names.clear();
             for (final Parameter param : projection.getProjectionParameters()) {
                 final String parameterName = param.getName();
-                assertTrue("Duplicated \"" + parameterName + "\" parameter in \"" +
-                        projectionName + "\" projection.", names.add(parameterName));
+                if (names.put(parameterName, param.isString() ? 1 : param.getLength()) != null) {
+                    fail("Duplicated \"" + parameterName + "\" parameter in \"" + projectionName + "\" projection.");
+                }
             }
-            assertTrue("Missing \"" + CF.GRID_MAPPING_NAME + "\" parameter in \"" +
-                    projectionName + "\" projection.", names.remove(CF.GRID_MAPPING_NAME));
+            if (names.remove(CF.GRID_MAPPING_NAME) == null) {
+                fail("Missing \"" + CF.GRID_MAPPING_NAME + "\" parameter in \"" + projectionName + "\" projection.");
+            }
             /*
              * Ensures that all parameter names known to GeoAPI-wrapper
              * are known to the current NetCDF projection implementation.
@@ -172,9 +177,20 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
             final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
             validators.validate(group);
             for (final GeneralParameterValue param : group.values()) {
-                final String parameterName = param.getDescriptor().getName().getCode();
-                assertTrue("Unknown \"" + parameterName + "\" parameter in \"" + projectionName + "\" projection.",
-                        names.remove(parameterName) || isIgnorable(parameterName));
+                String parameterName = param.getDescriptor().getName().getCode();
+                final int s = parameterName.lastIndexOf('[');
+                if (s >= 0) {
+                    parameterName = parameterName.substring(0, s);
+                }
+                final Integer count = names.remove(parameterName);
+                if (count != null) {
+                    final int n = count - 1;
+                    if (n != 0) {
+                        assertNull(names.put(parameterName, n));
+                    }
+                } else if (!isIgnorable(parameterName)) {
+                    fail("Unknown \"" + parameterName + "\" parameter in \"" + projectionName + "\" projection.");
+                }
             }
             /*
              * Any remaining parameters in the set are parameter that should have been

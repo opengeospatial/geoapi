@@ -34,7 +34,9 @@ import org.opengis.referencing.operation.*;
 
 /**
  * Creates {@link NetcdfProjection} instances from NetCDF, OGC or EPSG parameters.
- * This factory supports the following projection parameter names:
+ * This factory supports the following projection parameter names. In this table,
+ * {@code [1]} and {@code [2]} are indices in an array (the values of the NetCDF
+ * "{@code standard_parallel}" parameter are arrays of length up to 2).
  *
  * <table cellspacing="0" cellpadding="0">
  *   <tr><th>NetCDF</th><th>OGC</th><th>EPSG</th></tr>
@@ -42,7 +44,8 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain AlbersEqualArea}</i></td><td>&nbsp;&nbsp;<i>Albers_Conic_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Albers Equal Area</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of false origin</td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel[1]</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel[2]</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_2</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 2nd standard parallel</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easting at false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Northing at false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
@@ -60,10 +63,11 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LambertConformal}</i></td><td>&nbsp;&nbsp;<i>Lambert_Conformal_Conic_1SP</i></td><td>&nbsp;&nbsp;<i>Lambert Conic Conformal (1SP)</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LambertConformal}</i></td><td>&nbsp;&nbsp;<i>Lambert_Conformal_Conic_2SP</i></td><td>&nbsp;&nbsp;<i>Lambert Conic Conformal (2SP)</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel[1]</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel[2]</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_2</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 2nd standard parallel</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
@@ -146,7 +150,7 @@ public class NetcdfTransformFactory implements MathTransformFactory {
         add(new ProjectionProvider.Albers              (existings));
         add(new ProjectionProvider.Flat                (existings));
         add(new ProjectionProvider.LambertAzimuthal    (existings));
-        add(new ProjectionProvider.LambertConic1SP     (existings));
+        add(new ProjectionProvider.LambertConic2SP     (existings));
         add(new ProjectionProvider.PlateCarree         (existings));
         add(new ProjectionProvider.Mercator2SP         (existings));
         add(new ProjectionProvider.Ortho               (existings));

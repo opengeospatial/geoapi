@@ -26,7 +26,7 @@ import org.opengis.util.GenericName;
  * A list of {@link SimpleName} instances. This list also contains the NetCDF {@linkplain #name}
  * for implementation convenience, but this name is not returned by the list getter methods.
  * <p>
- * Current implementation can holds at most 2 aliases: one of OGC and one for EPSG.
+ * Current implementation can holds at most 2 aliases: one for OGC and one for EPSG.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -127,6 +127,15 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
      */
     private static String name(final SimpleName alias) {
         return (alias != null) ? alias.name : null;
+    }
+
+    /**
+     * Returns {@code true} if the parameter name is of the form "{@code standard_parallel[1]}".
+     * Those parameters need to be handled by {@link IndexedParameter} instances rather than the
+     * plain {@link NetcdfParameter} instances.
+     */
+    final boolean isIndexedParameter() {
+        return name.charAt(name.length() - 1) == ']';
     }
 
     /**
