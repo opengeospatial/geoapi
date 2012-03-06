@@ -550,8 +550,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         Transverse(final Map<SimpleName,SimpleName> existings) {
             super(existings, false,
                 "TransverseMercator",                 "Transverse_Mercator",  "Transverse Mercator",
-                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,     "central_meridian",     "Longitude of natural origin",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,     "latitude_of_origin",   "Latitude of natural origin",
+                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,     "central_meridian",     "Longitude of natural origin",
                 CF.SCALE_FACTOR_AT_CENTRAL_MERIDIAN,  "scale_factor",         "Scale factor at natural origin",
                 CF.FALSE_EASTING,                     "false_easting",        "False easting",
                 CF.FALSE_NORTHING,                    "false_northing",       "False northing",

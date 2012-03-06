@@ -104,8 +104,8 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain TransverseMercator}</i></td><td>&nbsp;&nbsp;<i>Transverse_Mercator</i></td><td>&nbsp;&nbsp;<i>Transverse Mercator</i></td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor_at_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scale factor at natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>

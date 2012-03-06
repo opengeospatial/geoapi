@@ -1,0 +1,42 @@
+/*
+ * Text format.
+ */
+p {
+  text-align: justify;
+}
+/*
+ * Table format: no cell border and no vertical space between the cells, because our
+ * tables are actually more like very long lists. We use different background colors
+ * for making easier to identify different sections in those lists.
+ */
+table {
+  border-spacing: 0px;
+  white-space: nowrap;
+}
+tr.sectionHead > th {
+  font-size: 14pt;
+  border-top-style: solid;
+  border-top-width: 1pt;
+}
+tr.sectionTail > th {
+  border-bottom-style: solid;
+  border-bottom-width: 1pt;
+}
+tr.groupName > td {
+  font-style: italic;
+}
+tr.groupHead > td {
+  padding-top: 12pt;
+}
+tr.groupTail > td {
+  padding-bottom: 18pt;
+}
+th {
+  background-color: lightskyblue;
+  height: 18pt;
+}
+td {
+  padding-left:  6pt;
+  padding-right: 6pt;
+  vertical-align: top;
+}
