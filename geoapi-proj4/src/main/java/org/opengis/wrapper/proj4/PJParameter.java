@@ -44,7 +44,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @version 3.1
  * @since   3.1
  */
-final class PJParameter extends PJObject  implements ParameterValue<Double>, ParameterDescriptor<Double>, Cloneable {
+final class PJParameter extends PJObject implements ParameterValue<Double>, ParameterDescriptor<Double>, Cloneable {
     /**
      * The parameter value.
      *

@@ -32,6 +32,7 @@
 package org.opengis.test.runner;
 
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.beans.PropertyChangeEvent;
@@ -158,5 +159,14 @@ final class SwingPanelBuilder extends GridBagConstraints {
         scroll.getViewport().setOpaque(false);
         scroll.setOpaque(false);
         return scroll;
+    }
+
+    /**
+     * Invoked by the layout manager when a component is added.
+     */
+    @Override
+    public Object clone() {
+        return new GridBagConstraints(gridx, gridy, gridwidth, gridheight,
+                weightx, weighty, anchor, fill, (Insets) insets.clone(), ipadx, ipady);
     }
 }

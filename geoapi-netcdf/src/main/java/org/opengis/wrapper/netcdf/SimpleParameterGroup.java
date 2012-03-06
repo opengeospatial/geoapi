@@ -155,6 +155,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
      */
     @Override
     public NetcdfParameter<?> descriptor(final String name) throws ParameterNotFoundException {
+        Objects.requireNonNull(name);
         return parameter(name);
     }
 
@@ -166,6 +167,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
      */
     @Override
     public NetcdfParameter<?> parameter(final String name) throws ParameterNotFoundException {
+        Objects.requireNonNull(name);
         for (final NetcdfParameter<?> candidate : parameters) {
             if (name.equalsIgnoreCase(candidate.getName().getCode())) {
                 return candidate;

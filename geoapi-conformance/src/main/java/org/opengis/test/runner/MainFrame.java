@@ -76,6 +76,11 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     private static final String JAR_DIRECTORY_KEY = "jar.directory";
 
     /**
+     * The preference key for the directory in which to write HTML report files.
+     */
+    static final String REPORTS_DIRECTORY_KEY = "reports.directory";
+
+    /**
      * The desktop for browse operations, or {@code null} if unsupported.
      */
     private final Desktop desktop;
@@ -126,15 +131,33 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     private ReportEntry currentReport;
 
     /**
-     * Creates a new frame.
+     * The panel which allow users to generate HTML reports.
+     */
+    private final ReportsPanel reportsPanel;
+
+    /**
+     * Where to save the last user choices, for the next run.
+     */
+    private final Preferences preferences;
+
+    /**
+     * Creates a new frame, which contains all our JUnit runner tabs.
+     * There is no menu for this application.
      */
     MainFrame() {
         super("GeoAPI conformance tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(800, 600); // If width is modified, please adjust column preferred widths below.
         setLocationByPlatform(true);
-        desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-
+        runner       = new Runner();
+        results      = new ResultTableModel(runner);
+        desktop      = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        preferences  = Preferences.userNodeForPackage(org.opengis.test.TestCase.class);
+        reportsPanel = new ReportsPanel(desktop, preferences);
+        /*
+         * The top panel, which show a description of the product being tested
+         * (vendor name, URL, etc). This panel will be visible from every tabs.
+         */
         add(new SwingPanelBuilder().createManifestPane(
                 title         = new JLabel(),
                 version       = new JLabel(),
@@ -144,33 +167,48 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
                 specification = new JLabel(),
                 specVersion   = new JLabel(),
                 specVendor    = new JLabel()), BorderLayout.NORTH);
-
-        runner = new Runner();
-        results = new ResultTableModel(runner);
-        final JTable table = new JTable(results);
-        table.setDefaultRenderer(String.class, new ResultCellRenderer());
-        table.setAutoCreateRowSorter(true);
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        table.getSelectionModel().addListSelectionListener(this);
-        final TableColumnModel columns = table.getColumnModel();
-        columns.getColumn(ResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
-        columns.getColumn(ResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
-        columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
-        columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
-
-        final JButton viewJavadoc = new JButton(new ImageIcon(MainFrame.class.getResource("documentinfo.png")));
-        viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
-        viewJavadoc.setToolTipText("View javadoc for this test");
-        viewJavadoc.addActionListener(this);
-
+        /*
+         * The main panel, which will contain many tabs. The first (and most important)
+         * tab show the test result. Next tabs show more information on test failures or
+         * on features supported by the application being tested.
+         */
         final JTabbedPane tabs = new JTabbedPane();
-        tabs.addTab("Tests", new JScrollPane(table));
-        tabs.addTab("Details", new SwingPanelBuilder().createDetailsPane(
-                testName = new JLabel(), viewJavadoc,
-                new JTable(factories = new FactoryTableModel()),
-                new JTable(configuration = new ConfigurationTableModel()),
-                exception = new JTextArea()));
         add(tabs, BorderLayout.CENTER);
+        /*
+         * The main tab, showing the JUnit test results in a table.
+         */
+        if (true) {
+            final JTable table = new JTable(results);
+            table.setDefaultRenderer(String.class, new ResultCellRenderer());
+            table.setAutoCreateRowSorter(true);
+            table.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+            table.getSelectionModel().addListSelectionListener(this);
+            final TableColumnModel columns = table.getColumnModel();
+            columns.getColumn(ResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
+            columns.getColumn(ResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
+            columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
+            columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
+            tabs.addTab("Tests", new JScrollPane(table));
+        }
+        /*
+         * A tab showing more information about a failed tests (for example the stack trace),
+         * together with some information about the configuration.
+         */
+        if (true) {
+            final JButton viewJavadoc = new JButton(new ImageIcon(MainFrame.class.getResource("documentinfo.png")));
+            viewJavadoc.setEnabled(desktop != null && desktop.isSupported(Desktop.Action.BROWSE));
+            viewJavadoc.setToolTipText("View javadoc for this test");
+            viewJavadoc.addActionListener(this);
+            tabs.addTab("Details", new SwingPanelBuilder().createDetailsPane(
+                    testName = new JLabel(), viewJavadoc,
+                    new JTable(factories = new FactoryTableModel()),
+                    new JTable(configuration = new ConfigurationTableModel()),
+                    exception = new JTextArea()));
+        }
+        /*
+         * A tab proposing to generate HTML reports that summarize the product capabilities.
+         */
+        tabs.addTab("Reports", reportsPanel);
     }
 
     /**
@@ -180,20 +218,20 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      */
     @Override
     public void run() {
-        final Preferences prefs = Preferences.userNodeForPackage(org.opengis.test.TestCase.class);
-        final String directory = prefs.get(JAR_DIRECTORY_KEY, null);
+        final String directory = preferences.get(JAR_DIRECTORY_KEY, null);
         final JFileChooser chooser = new JFileChooser(directory != null ? new File(directory) : null);
         chooser.setDialogTitle("Select a GeoAPI implementation");
         chooser.setFileFilter(new FileNameExtensionFilter("Java Archive Files", "jar"));
         chooser.setMultiSelectionEnabled(true);
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            prefs.put(JAR_DIRECTORY_KEY, chooser.getCurrentDirectory().getPath());
+            preferences.put(JAR_DIRECTORY_KEY, chooser.getCurrentDirectory().getPath());
             new Loader(chooser.getSelectedFiles()).execute();
         }
     }
 
     /**
      * Sets the implementation identification.
+     * This method is invoked in the Swing thread.
      */
     private void setManifest(final ImplementationManifest manifest) {
         title        .setText(manifest != null ? manifest.title         : null);
@@ -204,6 +242,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
         specification.setText(manifest != null ? manifest.specification : null);
         specVersion  .setText(manifest != null ? manifest.specVersion   : null);
         specVendor   .setText(manifest != null ? manifest.specVendor    : null);
+        reportsPanel.setManifest(manifest);
     }
 
     /**
