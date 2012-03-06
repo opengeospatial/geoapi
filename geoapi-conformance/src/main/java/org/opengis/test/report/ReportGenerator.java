@@ -59,7 +59,7 @@ import org.opengis.metadata.citation.ResponsibleParty;
  * {@linkplain #properties} map which can be freely edited by subclasses. The map shall contain
  * the following property values:
  * <p>
- * <table border="1">
+ * <table border="1" cellspacing="0">
  *   <tr><th>Key</th>                    <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>          <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>    <td>An optional description to add in the HTML report.</td></tr>

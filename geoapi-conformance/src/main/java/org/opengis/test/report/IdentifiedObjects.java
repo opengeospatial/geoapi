@@ -159,8 +159,9 @@ final class IdentifiedObjects {
                 names.add(wantCodeSpaces ? identifier.getCodeSpace() : identifier.getCode());
             }
         }
-        for (final GenericName alias : nullSafe(info.getAlias())) {
-            /* Paranoiac check. */               if (alias == null) continue;
+        for (GenericName alias : nullSafe(info.getAlias())) {
+            if (alias == null) continue;
+            alias = alias.tip();
             final NameSpace ns = alias.scope();  if (ns    == null) continue;
             final GenericName scope = ns.name(); if (scope == null) continue;
             if (codeSpace == null || compare(codeSpace, scope.toString()) == 0) {

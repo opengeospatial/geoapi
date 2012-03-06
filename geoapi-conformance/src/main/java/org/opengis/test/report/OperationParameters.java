@@ -60,7 +60,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * of {@linkplain OperationMethod coordinate operation methods}, the pairs are simply
  * ({@code method}, <code>method.{@linkplain OperationMethod#getParameters() getParameters()}</code>).
  *
- * <p>To use use this class:</p>
+ * <p>To use this class:</p>
  * <ul>
  *   <li>Create a new instance with a properties map containing the value documented in
  *       the {@link #properties} field.</li>
@@ -76,8 +76,8 @@ import org.opengis.referencing.operation.MathTransformFactory;
  */
 public class OperationParameters extends ReportGenerator implements Comparator<IdentifiedObject> {
     /**
-     * The operations to publish in the HTML report (the {@linkplain Map.Entry#getKey() keys})
-     * together with their parameter descriptors (the {@linkplain Map.Entry#getValue() values}).
+     * The operations to publish in the HTML report (the {@linkplain java.util.Map.Entry#getKey() keys})
+     * together with their parameter descriptors (the {@linkplain java.util.Map.Entry#getValue() values}).
      * This map is sorted according the criterion implemented by the
      * {@link #compare(IdentifiedObject, IdentifiedObject)} method.
      *
@@ -229,7 +229,7 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
     }
 
     /**
-     * Formats the current content of the {@link #operations} map as a HTML page in the given file.
+     * Formats the current content of the {@linkplain #operations} map as a HTML page in the given file.
      */
     @Override
     public void write(final File destination) throws IOException {
@@ -302,31 +302,17 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
         out.write("<table cellspacing=\"0\" cellpadding=\"0\">");
         out.newLine();
         indentation += INDENT;
-        /*
-         * We have to compute when the category caption will change. This is needed because
-         * the main loop below will need to know this information one iteration in advance.
-         */
-        final boolean[] categoryChanges = new boolean[operations.size()];
-        if (true) { // Set to 'false' for disabling the splitting in categories.
-            int index = 0;
-            String previous = null;
-            for (final IdentifiedObject op : operations.keySet()) {
-                final String category = getCategory(op);
-                categoryChanges[index++] = (category != null && !category.equals(previous));
-                previous = category;
-            }
-        }
-        int index = 0;
+        String previous = null;
         boolean writeHeader = true;
         final String columnSpan = String.valueOf(codeSpaces.length);
         for (final Map.Entry<IdentifiedObject,ParameterDescriptorGroup> entry : operations.entrySet()) {
             final IdentifiedObject op = entry.getKey();
+            final String category = getCategory(op);
             /*
              * If begining a new section in the table, print the category
              * in bold characters. The column headers will be printed below.
              */
-            if (categoryChanges[index]) {
-                final String category = getCategory(op);
+            if (category != null && !category.equals(previous)) {
                 writeIndentation();
                 out.write("<tr class=\"sectionHead\"><th colspan=\"");
                 out.write(columnSpan);         out.write("\"><a name=\"");
@@ -349,21 +335,15 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
                 }
                 out.write("</tr>");
                 out.newLine();
-            } else {
-                out.write("<tr><td colspan=\"");
-                out.write(columnSpan);
-                out.write("\"><hr/></td></tr>");
-                out.newLine();
             }
             /*
              * Print the operation name, then the name of all parameters.
              */
-            final boolean nextIsNewCategory = (++index < categoryChanges.length) && categoryChanges[index];
             final List<GeneralParameterDescriptor> parameters = entry.getValue().descriptors();
             final int size = parameters.size();
-            writeRow(entry.getKey(), codeSpaces, true, writeHeader, nextIsNewCategory && (size == 0));
+            writeRow(entry.getKey(), codeSpaces, true, false, false);
             for (int i=0; i<size; i++) {
-                writeRow(parameters.get(i), codeSpaces, false, false, nextIsNewCategory && (i == size-1));
+                writeRow(parameters.get(i), codeSpaces, false, (i == 0), (i == size-1));
             }
             writeHeader = false;
         }

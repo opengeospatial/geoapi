@@ -567,6 +567,10 @@
                     <packages>org.opengis.test*</packages>
                   </group>
                   <group>
+                    <title>Tests runner and reports</title>
+                    <packages>org.opengis.test.runner*:org.opengis.test.report*</packages>
+                  </group>
+                  <group>
                     <title>Wrappers to existing libraries</title>
                     <packages>org.opengis.wrapper*:org.opengis.openoffice*</packages>
                   </group>
