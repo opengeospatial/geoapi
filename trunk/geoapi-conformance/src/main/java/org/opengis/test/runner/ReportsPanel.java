@@ -32,10 +32,6 @@
 package org.opengis.test.runner;
 
 import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.prefs.Preferences;
@@ -56,9 +52,9 @@ import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
-import org.opengis.util.Factory;
-import org.opengis.test.report.ReportGenerator;
-import org.opengis.test.report.OperationParameters;
+import org.opengis.test.report.Report;
+import org.opengis.test.report.Reports;
+import org.opengis.test.report.ParameterNamesReport;
 import org.opengis.referencing.operation.MathTransformFactory;
 import static org.opengis.test.runner.MainFrame.REPORTS_DIRECTORY_KEY;
 
@@ -83,50 +79,31 @@ final class ReportsPanel extends JPanel implements ActionListener {
          * The list of supported Coordinate Operations and their parameters.
          * This list usually includes the map projections.
          */
-        COORDINATE_OPERATIONS("Supported Coordinate Operations") {
-            @Override File run(final Properties properties, final File directory) throws IOException {
-                final File file = new File(directory, "CoordinateOperations.html");
-                final OperationParameters generator = new OperationParameters(properties);
-                for (final Factory factory : FactoryProvider.forType(MathTransformFactory.class)) {
-                    generator.add((MathTransformFactory) factory);
-                }
-                generator.write(file);
-                return file;
-            }
-        },
+        COORDINATE_OPERATIONS("Supported Coordinate Operations", ParameterNamesReport.class),
 
         /**
          * The list of supported CRS authority codes.
          * This list usually includes the EPSG codes.
          */
-        CRS_AUTHORITY_CODES("Supported CRS authority codes") {
-            @Override File run(final Properties properties, final File directory) throws IOException {
-                return null;
-                // TODO
-            }
-        };
+        CRS_AUTHORITY_CODES("Supported CRS authority codes", Report.class); // TODO
 
         /**
          * The label for this generator.
          */
-        private final String label;
+        final String label;
+
+        /**
+         * The kind of report to generate.
+         */
+        final Class<? extends Report> reportType;
 
         /**
          * Creates a new instance.
          */
-        private Controller(final String label) {
+        private Controller(final String label, final Class<? extends Report> reportType) {
             this.label = label;
+            this.reportType = reportType;
         }
-
-        /**
-         * Invoked by {@link ReportsPanel#generateReports} for creating the reports.
-         * This method will delegates to the {@link ReportGenerator} of the appropriate class.
-         *
-         * @param  properties Product and vendor information (name, version, URL).
-         * @param  directory  The destination directory.
-         * @return The generated file, or {@code null} if none.
-         */
-        abstract File run(final Properties properties, final File directory) throws IOException;
     }
 
     /**
@@ -309,39 +286,26 @@ final class ReportsPanel extends JPanel implements ActionListener {
      * @todo Needs to be run in a background thread.
      */
     private void generateReports(final Controller[] controllers, final Properties properties, final File directory) {
-        try {
-            copy("geoapi-reports.css", directory);
-            File last = null;
-            for (final Controller controller : controllers) {
-                final File result = controller.run(properties, directory);
-                if (result != null) {
-                    last = result;
+        final Reports reports = new Reports(properties) {
+            /** Creates reports only of the kind selected by the user. */
+            @Override protected <T extends Report> T createReport(final Class<T> type) {
+                for (final Controller controller : controllers) {
+                    if (controller.reportType == type) {
+                        return super.createReport(type);
+                    }
                 }
+                return null;
             }
-            if (last != null && desktop != null) {
-                desktop.browse(last.toURI());
+        };
+        try {
+            reports.addAll(MathTransformFactory.class);
+            final File file = reports.write(directory);
+            if (file != null && desktop != null) {
+                desktop.browse(file.toURI());
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.toString(),
                     "Can not write or show the reports", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    /**
-     * Copies the the given resource file to the given file.
-     */
-    private static void copy(final String resource, final File directory) throws IOException {
-        final InputStream in = ReportGenerator.class.getResourceAsStream(resource);
-        final OutputStream out = new FileOutputStream(new File(directory, resource));
-        try {
-            int n;
-            final byte[] buffer = new byte[1024];
-            while ((n = in.read(buffer)) >= 0) {
-                out.write(buffer, 0, n);
-            }
-        } finally {
-            out.close();
-            in.close();
         }
     }
 }

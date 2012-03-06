@@ -104,7 +104,7 @@ final class ResultCellRenderer extends DefaultTableCellRenderer {
             final boolean isSelected, final boolean hasFocus, final int row, final int column)
     {
         final ResultTableModel model = (ResultTableModel) table.getModel();
-        final ReportEntry entry = model.getValueAt(row);
+        final ResultEntry entry = model.getValueAt(row);
         Color foreground = this.foreground;
         Color background = this.background;
         boolean isIgnore = false;
@@ -145,7 +145,7 @@ final class ResultCellRenderer extends DefaultTableCellRenderer {
          * {@link ResultCellRenderer#getTableCellRendererComponent}
          * before this component is rendered.
          */
-        ReportEntry report;
+        ResultEntry report;
 
         /**
          * Creates a new instance.

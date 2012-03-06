@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.test.runner;
+package org.opengis.test.report;
 
 import java.util.List;
 import org.opengis.test.TestCase;
@@ -37,16 +37,13 @@ import org.opengis.util.Factory;
 
 
 /**
- * Provides factory implementations for the given type.
+ * Provides factory implementations for the given type. This utility class is implemented as a
+ * subclass of {@link TestCase} only in order to get access to the {@link #factories(Class[])}
+ * protected method.
  *
  * @author Martin Desruisseaux
  */
 final class FactoryProvider extends TestCase {
-    /**
-     * The value to return when there is no factory.
-     */
-    private static final Factory[] EMPTY = new Factory[0];
-
     /**
      * Do not allow instantiation of this class.
      */
@@ -58,6 +55,6 @@ final class FactoryProvider extends TestCase {
      */
     static Factory[] forType(final Class<? extends Factory> type) {
         final List<Factory[]> factories = factories(type);
-        return factories.isEmpty() ? EMPTY : factories.get(0);
+        return factories.isEmpty() ? NO_FACTORY : factories.get(0);
     }
 }
