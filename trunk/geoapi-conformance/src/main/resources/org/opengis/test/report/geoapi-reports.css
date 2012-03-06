@@ -23,10 +23,18 @@ tr.sectionTail > th {
   border-bottom-width: 1pt;
 }
 tr.groupName > td {
-  font-style: italic;
+  font-weight: bold;
+  color: MidnightBlue;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: MidnightBlue;
+  border-width: 1pt;
+  padding-top: 3pt;
+  padding-bottom: 3pt;
+  background-color: lavender;
 }
 tr.groupHead > td {
-  padding-top: 12pt;
+  padding-top: 3pt;
 }
 tr.groupTail > td {
   padding-bottom: 18pt;
