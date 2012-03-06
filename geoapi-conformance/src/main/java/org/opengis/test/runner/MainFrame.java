@@ -100,7 +100,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     /**
      * Labels used for rendering information about the selected test.
      *
-     * @see #setDetails(ReportEntry)
+     * @see #setDetails(ResultEntry)
      */
     private final JLabel testName;
 
@@ -128,7 +128,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     /**
      * The test report which is currently shown in the "details" tab, or {@code null} if none.
      */
-    private ReportEntry currentReport;
+    private ResultEntry currentReport;
 
     /**
      * The panel which allow users to generate HTML reports.
@@ -249,7 +249,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * Updates the content of the "Details" pane with information relative to the given entry.
      * A {@code null} entry clears the "Details" pane.
      */
-    private void setDetails(final ReportEntry entry) {
+    private void setDetails(final ResultEntry entry) {
         String className  = null;
         String methodName = null;
         String stacktrace = null;

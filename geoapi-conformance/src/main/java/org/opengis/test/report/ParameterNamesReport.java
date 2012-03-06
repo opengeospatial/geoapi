@@ -54,11 +54,12 @@ import org.opengis.referencing.operation.MathTransformFactory;
 
 
 /**
- * Generates a list of operations (typically, but not restricted to, map projections) and their
- * parameters. The operations and their parameters are declared in the {@link #operations} map
- * as ({@link IdentifiedObject}, {@link ParameterDescriptorGroup}) pairs. In the particular case
- * of {@linkplain OperationMethod coordinate operation methods}, the pairs are simply
- * ({@code method}, <code>method.{@linkplain OperationMethod#getParameters() getParameters()}</code>).
+ * Generates a list of operations (typically map projections) and their parameters.
+ * The operations and their parameters are declared in the {@link #operations} map
+ * as ({@link IdentifiedObject}, {@link ParameterDescriptorGroup}) pairs. In the particular
+ * case of {@linkplain OperationMethod coordinate operation methods}, the pairs are simply
+ * ({@link OperationMethod method}, <code>method.{@linkplain OperationMethod#getParameters()
+ * getParameters()}</code>).
  *
  * <p>To use this class:</p>
  * <ul>
@@ -74,7 +75,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  *
  * @since 3.1
  */
-public class OperationParameters extends ReportGenerator implements Comparator<IdentifiedObject> {
+public class ParameterNamesReport extends Report implements Comparator<IdentifiedObject> {
     /**
      * The operations to publish in the HTML report (the {@linkplain java.util.Map.Entry#getKey() keys})
      * together with their parameter descriptors (the {@linkplain java.util.Map.Entry#getValue() values}).
@@ -88,11 +89,11 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
 
     /**
      * Creates a new report generator using the given property values.
-     * See the {@link ReportGenerator} javadoc for a list of expected values.
+     * See the {@link Report} javadoc for a list of expected values.
      *
      * @param properties The property values, or {@code null} for the default values.
      */
-    public OperationParameters(final Properties properties) {
+    public ParameterNamesReport(final Properties properties) {
         super(properties);
         operations = new TreeMap<IdentifiedObject, ParameterDescriptorGroup>(this);
     }
@@ -107,7 +108,7 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
      * @throws IllegalArgumentException If the {@linkplain #operations operations map}
      *         already contains an entry which is equals to the given operation according
      *         to the {@link #compare(IdentifiedObject, IdentifiedObject) compare} method.
-     *         The state of this {@code OperationParameters} object is undetermined after
+     *         The state of this {@code ParameterNamesReport} object is undetermined after
      *         this exception.
      */
     public void add(final IdentifiedObject operation, final ParameterDescriptorGroup parameters)
@@ -128,14 +129,13 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
      * @param  factory The factory for which to add available methods.
      * @throws IllegalArgumentException If two coordinate operation methods are equal according
      *         to the {@link #compare(IdentifiedObject, IdentifiedObject) compare} method.
-     *         The state of this {@code OperationParameters} object is undetermined after
+     *         The state of this {@code ParameterNamesReport} object is undetermined after
      *         this exception.
      */
     public void add(final MathTransformFactory factory) throws IllegalArgumentException {
         defaultProperties.setProperty("TITLE", "Supported Coordinate Operations");
-        if (!isVendorSet(defaultProperties)) {
-            setVendor(factory.getVendor());
-        }
+        defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
+        setVendor(factory.getVendor());
         for (final OperationMethod operation : factory.getAvailableMethods(SingleOperation.class)) {
             add(operation, operation.getParameters());
         }
@@ -230,15 +230,19 @@ public class OperationParameters extends ReportGenerator implements Comparator<I
 
     /**
      * Formats the current content of the {@linkplain #operations} map as a HTML page in the given file.
+     *
+     * @param  destination The file to generate.
+     * @return The given {@code destination} file.
      */
     @Override
-    public void write(final File destination) throws IOException {
+    public File write(final File destination) throws IOException {
         filter("OperationParameters.html", destination);
+        return destination;
     }
 
     /**
-     * Invoked by {@link ReportGenerator} every time a {@code ${FOO}} occurrence is found.
-     * If the given key is one of those that are managed by this {@code OperationParameters}
+     * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
+     * If the given key is one of those that are managed by this {@code ParameterNamesReport}
      * class, then this method will dispatch to the appropriate {@code writeFoo} method.
      */
     @Override

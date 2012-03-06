@@ -35,14 +35,17 @@ import java.net.URI;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
-import java.io.LineNumberReader;
-import java.io.BufferedWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
+import java.text.SimpleDateFormat;
 
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.ReferenceIdentifier;
@@ -60,12 +63,13 @@ import org.opengis.metadata.citation.ResponsibleParty;
  * the following property values:
  * <p>
  * <table border="1" cellspacing="0">
- *   <tr><th>Key</th>                    <th>Meaning</th></tr>
- *   <tr><td>{@code TITLE}</td>          <td>Title of the web page to produce.</td></tr>
- *   <tr><td>{@code DESCRIPTION}</td>    <td>An optional description to add in the HTML report.</td></tr>
- *   <tr><td>{@code PRODUCT.NAME}</td>   <td>The name of the product for which a report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.VERSION}</td><td>The version of the product for which a report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.URL}</td>    <td>The URL where more information is available about the product.</td></tr>
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th>Meaning</th>                                                       <th>Default value</th></tr>
+ *   <tr><td>{@code TITLE}</td>          <td>Title of the web page to produce.</td>                             <td>The subclass simple name</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>    <td>An optional description to add in the HTML report.</td>            <td>Empty string</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>   <td>The name of the product for which a report is generated.</td>      <td>(none)</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td><td>The version of the product for which a report is generated.</td>   <td>Today date in <var>year</var>-<var>month</var>-<var>day</var> format</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>    <td>The URL where more information is available about the product.</td><td>(none)</td></tr>
+ *   <tr><td>{@code FILENAME}</td>       <td>The output filename (for {@link Reports} only)</td>                <td>(implementation specific)</td>
  * </table>
  * <p>
  * Subclasses can freely add, edit or delete entries in the {@linkplain #properties}
@@ -76,7 +80,7 @@ import org.opengis.metadata.citation.ResponsibleParty;
  *
  * @since 3.1
  */
-public abstract class ReportGenerator {
+public abstract class Report {
     /**
      * The encoding of every reports.
      */
@@ -88,13 +92,23 @@ public abstract class ReportGenerator {
     static final int INDENT = 2;
 
     /**
-     * The locale to use for producing messages in the reports. This is fixed
-     * to {@linkplain Locale#ENGLISH English} for now, but may become editable
-     * in a future version.
+     * The timestamp at the time this class has been initialized.
+     * Will be used as the default value for {@code PRODUCT.VERSION}.
+     */
+    private static final String NOW;
+    static {
+        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
+        NOW = format.format(new Date());
+    }
+
+    /**
+     * The locale to use for producing messages in the reports. This is fixed to
+     * {@linkplain Locale#ENGLISH English} for now, but may become an editable
+     * (non-final) field in a future version.
      *
      * @see InternationalString#toString(Locale)
      */
-    protected final Locale locale = Locale.ENGLISH;
+    final Locale locale = Locale.ENGLISH;
 
     /**
      * The values to substitute to keywords in the HTML templates. The class javadoc lists
@@ -124,13 +138,15 @@ public abstract class ReportGenerator {
 
     /**
      * Creates a new report generator using the given property values.
-     * See the {@linkplain ReportGenerator class javadoc} for a list of expected values.
+     * See the {@linkplain Report class javadoc} for a list of expected values.
      *
      * @param properties The property values, or {@code null} for the default values.
      */
-    protected ReportGenerator(final Properties properties) {
+    protected Report(final Properties properties) {
         defaultProperties = new Properties();
+        defaultProperties.setProperty("TITLE", getClass().getSimpleName());
         defaultProperties.setProperty("DESCRIPTION", "");
+        defaultProperties.setProperty("PRODUCT.VERSION", NOW);
         this.properties = new Properties(defaultProperties);
         if (properties != null) {
             this.properties.putAll(properties);
@@ -162,7 +178,7 @@ public abstract class ReportGenerator {
      *
      * @see org.opengis.util.Factory#getVendor()
      */
-    public void setVendor(final Citation vendor) {
+    final void setVendor(final Citation vendor) {
         if (vendor != null) {
             String title = toString(vendor.getTitle());
             /*
@@ -218,24 +234,16 @@ public abstract class ReportGenerator {
     }
 
     /**
-     * Returns {@code true} if at least one vendor property has been defined in the given map.
-     * We use this information in order to {@linkplain #setVendor(Citation) infer the vendor}
-     * only from the first factory when many factories are specified, on the assumption that
-     * factories are given in preference order.
-     */
-    static boolean isVendorSet(final Properties properties) {
-        return properties.containsKey("PRODUCT.NAME") ||
-               properties.containsKey("PRODUCT.VERSION") ||
-               properties.containsKey("PRODUCT.URL");
-    }
-
-    /**
-     * Generates the HTML report in the given file.
+     * Generates the HTML report in the given file or directory.
      *
-     * @param  destination The destination file. Will be overwritten if already presents.
+     * @param  destination The destination file or directory. If this file already
+     *         exists, then its content will be overwritten without warning.
+     * @return The file to the HTML page generated by this report. This is usually the given
+     *         {@code destination} argument, unless the destination was a directory in which
+     *         case this method returns the {@code index.html} file.
      * @throws IOException If an error occurred while writing the report.
      */
-    public abstract void write(final File destination) throws IOException;
+    public abstract File write(final File destination) throws IOException;
 
     /**
      * Copies the given resource to the given file, replacing the {@code ${FOO}} occurrences
@@ -247,7 +255,8 @@ public abstract class ReportGenerator {
      * @throws IOException If an error occurred while reading the resource or writing the file.
      */
     final void filter(final String source, final File destination) throws IOException {
-        final InputStream in = ReportGenerator.class.getResourceAsStream(source);
+        copy("geoapi-reports.css", destination.getParentFile());
+        final InputStream in = Report.class.getResourceAsStream(source);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + source);
         }
@@ -334,6 +343,33 @@ public abstract class ReportGenerator {
         }
         if (hasClasses) {
             out.write('"');
+        }
+    }
+
+    /**
+     * Copies the the given resource file to the given directory.
+     * This method does nothing if the destination file already exits.
+     *
+     * @param  resource The name of the resource to copy.
+     * @param  directory The destination directory.
+     * @throws IOException If an error occurred during the copy.
+     */
+    private static void copy(final String resource, final File directory) throws IOException {
+        final File file = new File(directory, resource);
+        if (file.isFile() && file.length() != 0) {
+            return;
+        }
+        final InputStream in = Report.class.getResourceAsStream(resource);
+        final OutputStream out = new FileOutputStream(file);
+        try { // JDK7: Use "try with resource".
+            int n;
+            final byte[] buffer = new byte[1024];
+            while ((n = in.read(buffer)) >= 0) {
+                out.write(buffer, 0, n);
+            }
+        } finally {
+            out.close();
+            in.close();
         }
     }
 }

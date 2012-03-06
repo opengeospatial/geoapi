@@ -61,7 +61,7 @@ import org.opengis.metadata.citation.Citation;
  * @version 3.1
  * @since   3.1
  */
-final class ReportEntry {
+final class ResultEntry {
     /**
      * The status (success, failure) of the test.
      */
@@ -143,7 +143,7 @@ final class ReportEntry {
     /**
      * Creates a new entry for the given event.
      */
-    ReportEntry(final TestEvent event, final Status status, final Throwable exception) {
+    ResultEntry(final TestEvent event, final Status status, final Throwable exception) {
         this.className        = event.getClassName();
         this.methodName       = event.getMethodName();
         this.simpleClassName  = createSimpleClassName(className);
@@ -212,7 +212,7 @@ final class ReportEntry {
      * Creates a new entry for the given description.
      * This constructor is used only for ignored tests.
      */
-    ReportEntry(final Description description, final Status status, final Throwable exception) {
+    ResultEntry(final Description description, final Status status, final Throwable exception) {
         this.className        = description.getClassName();
         this.methodName       = description.getMethodName();
         this.simpleClassName  = createSimpleClassName(className);

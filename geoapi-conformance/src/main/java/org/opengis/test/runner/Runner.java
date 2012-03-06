@@ -56,7 +56,7 @@ import org.opengis.test.TestSuite;
 import org.opengis.test.TestEvent;
 import org.opengis.test.TestListener;
 
-import static org.opengis.test.runner.ReportEntry.Status.*;
+import static org.opengis.test.runner.ResultEntry.Status.*;
 
 
 /**
@@ -81,7 +81,7 @@ final class Runner extends RunListener implements TestListener {
     /**
      * The result of each tests. All a access to this list must be synchronized.
      */
-    private final Set<ReportEntry> entries;
+    private final Set<ResultEntry> entries;
 
     /**
      * The listeners to inform of any new entry.
@@ -97,7 +97,7 @@ final class Runner extends RunListener implements TestListener {
      * Creates a new, initially empty, runner.
      */
     Runner() {
-        entries   = new LinkedHashSet<ReportEntry>();
+        entries   = new LinkedHashSet<ResultEntry>();
         listeners = new ChangeListener[0];
         event     = new ChangeEvent(this);
     }
@@ -141,9 +141,9 @@ final class Runner extends RunListener implements TestListener {
      * Returns all entries. This method returns a copy of the internal array.
      * Changes to this {@code ReportData} object will not be reflected in that array.
      */
-    ReportEntry[] getEntries() {
+    ResultEntry[] getEntries() {
         synchronized (entries) {
-            return entries.toArray(new ReportEntry[entries.size()]);
+            return entries.toArray(new ResultEntry[entries.size()]);
         }
     }
 
@@ -153,7 +153,7 @@ final class Runner extends RunListener implements TestListener {
      * entries to be emitted: first an entry for the test failure, then another
      * entry because the test finished.
      */
-    private void addEntry(final ReportEntry entry) {
+    private void addEntry(final ResultEntry entry) {
         final ChangeListener[] list;
         synchronized (entries) {
             entries.add(entry);
@@ -187,7 +187,7 @@ final class Runner extends RunListener implements TestListener {
      */
     @Override
     public void succeeded(final TestEvent event) {
-        addEntry(new ReportEntry(event, SUCCESS, null));
+        addEntry(new ResultEntry(event, SUCCESS, null));
     }
 
     /**
@@ -196,7 +196,7 @@ final class Runner extends RunListener implements TestListener {
      */
     @Override
     public void failed(final TestEvent event, final Throwable exception) {
-        addEntry(new ReportEntry(event, FAILURE, exception));
+        addEntry(new ResultEntry(event, FAILURE, exception));
     }
 
     /**
@@ -204,7 +204,7 @@ final class Runner extends RunListener implements TestListener {
      */
     @Override
     public void testAssumptionFailure(final Failure failure) {
-        addEntry(new ReportEntry(failure.getDescription(), ASSUMPTION_NOT_MET, failure.getException()));
+        addEntry(new ResultEntry(failure.getDescription(), ASSUMPTION_NOT_MET, failure.getException()));
         super.testAssumptionFailure(failure);
     }
 
@@ -214,7 +214,7 @@ final class Runner extends RunListener implements TestListener {
      */
     @Override
     public void testIgnored(final Description description) throws Exception {
-        addEntry(new ReportEntry(description, IGNORED, null));
+        addEntry(new ResultEntry(description, IGNORED, null));
         super.testIgnored(description);
     }
 

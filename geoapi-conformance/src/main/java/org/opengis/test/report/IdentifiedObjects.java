@@ -161,7 +161,10 @@ final class IdentifiedObjects {
         }
         for (GenericName alias : nullSafe(info.getAlias())) {
             if (alias == null) continue;
-            alias = alias.tip();
+            final GenericName tip = alias.tip();
+            if (tip != null) { // Should never be null, but protect ourself against broken implementations.
+                alias = tip;
+            }
             final NameSpace ns = alias.scope();  if (ns    == null) continue;
             final GenericName scope = ns.name(); if (scope == null) continue;
             if (codeSpace == null || compare(codeSpace, scope.toString()) == 0) {

@@ -38,7 +38,7 @@ import javax.swing.table.AbstractTableModel;
 
 
 /**
- * The table model for the {@link ReportEntry} instances to be displayed.
+ * The table model for the {@link ResultEntry} instances to be displayed.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -73,7 +73,7 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     /**
      * The result of each tests.
      */
-    private ReportEntry[] entries;
+    private ResultEntry[] entries;
 
     /**
      * Creates a table model for the given data.
@@ -119,7 +119,7 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     /**
      * Returns the values in the given row.
      */
-    final ReportEntry getValueAt(final int row) {
+    final ResultEntry getValueAt(final int row) {
         return entries[row];
     }
 
@@ -128,7 +128,7 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
      */
     @Override
     public String getValueAt(final int row, final int column) {
-        final ReportEntry entry = entries[row];
+        final ResultEntry entry = entries[row];
         switch (column) {
             case CLASS_COLUMN:  return entry.simpleClassName;
             case METHOD_COLUMN: return entry.simpleMethodName;
@@ -138,7 +138,7 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
                 default:      return null;
             }
             case MESSAGE_COLUMN: {
-                if (entry.status != ReportEntry.Status.ASSUMPTION_NOT_MET) {
+                if (entry.status != ResultEntry.Status.ASSUMPTION_NOT_MET) {
                     final Throwable exception = entry.exception;
                     if (exception != null) {
                         String message = exception.getLocalizedMessage();
