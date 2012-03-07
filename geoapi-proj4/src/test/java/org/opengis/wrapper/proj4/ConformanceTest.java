@@ -21,6 +21,7 @@ import org.opengis.test.ToleranceModifier;
 import org.opengis.test.ToleranceModifiers;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.ImplementationDetails;
+import org.opengis.test.referencing.ParameterValidator;
 import org.opengis.referencing.operation.MathTransform;
 
 import static org.opengis.test.CalculationType.*;
@@ -68,13 +69,17 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
         if (configuration == null) {
             configuration = new Configuration();
             configuration.unsupported(
-                    Configuration.Key.isNameSupported,
-                    Configuration.Key.isAliasSupported,
-                    Configuration.Key.isDerivativeSupported);
+                    Configuration.Key.isStandardNameSupported,
+                    Configuration.Key.isStandardAliasSupported,
+                    Configuration.Key.isDependencyIdentificationSupported,
+                    Configuration.Key.isDerivativeSupported,
+                    Configuration.Key.isNonSquareMatrixSupported,
+                    Configuration.Key.isNonBidimensionalSpaceSupported);
             /*
             * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
             */
             final ValidatorContainer validators = new ValidatorContainer();
+            validators.parameter = new ParameterValidator(validators);
             validators.naming.requireMandatoryAttributes = false;
             validators.coordinateOperation.requireMandatoryAttributes = false;
             configuration.put(Configuration.Key.validators, validators);

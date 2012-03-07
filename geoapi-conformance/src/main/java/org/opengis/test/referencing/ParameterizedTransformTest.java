@@ -212,6 +212,15 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Creates a new test without factory and with the given {@code isFooSupported} flags.
+     * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
+     */
+    ParameterizedTransformTest(final boolean[] isEnabled) {
+        super(isEnabled);
+        mtFactory = null;
+    }
+
+    /**
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *

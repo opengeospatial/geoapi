@@ -294,6 +294,15 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
+     * Creates a new test without factory and with the given {@code isFooSupported} flags.
+     * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
+     */
+    TransformTestCase(final boolean[] isEnabled) {
+        super(NO_FACTORY);
+        setEnabledFlags(isEnabled);
+    }
+
+    /**
      * Creates a test case initialized to default values. The {@linkplain #transform}
      * is initially null, the {@linkplain #tolerance} threshold is initially zero and
      * all <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> are set
@@ -304,17 +313,22 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *        {@link org.opengis.test.ImplementationDetails#configuration(Factory[])} in order
      *        to decide which tests should be enabled.
      */
+    @SuppressWarnings("unchecked")
     protected TransformTestCase(final Factory... factories) {
         super(factories);
-        @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isDoubleToDoubleSupported,
-                Configuration.Key.isFloatToFloatSupported,
-                Configuration.Key.isDoubleToFloatSupported,
-                Configuration.Key.isFloatToDoubleSupported,
-                Configuration.Key.isOverlappingArraySupported,
-                Configuration.Key.isInverseTransformSupported,
-                Configuration.Key.isDerivativeSupported);
+        setEnabledFlags(getEnabledFlags(getEnabledKeys(0)));
+    }
+
+    /**
+     * Sets all {@code isFooSupported} fields to the values in the given array.
+     * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
+     * <p>
+     * This work is usually performed right into the constructor. However in the particular case
+     * of {@code TransformTestCase}, we allow the configuration to be supplied externally because
+     * {@link AuthorityFactoryTest} will use this class internally with a set of flags determined
+     * from a different set of factories than the factories given to the constructor of this class.
+     */
+    private void setEnabledFlags(final boolean[] isEnabled) {
         isDoubleToDoubleSupported   = isEnabled[0];
         isFloatToFloatSupported     = isEnabled[1];
         isDoubleToFloatSupported    = isEnabled[2];
@@ -322,6 +336,24 @@ public strictfp abstract class TransformTestCase extends TestCase {
         isOverlappingArraySupported = isEnabled[4];
         isInverseTransformSupported = isEnabled[5];
         isDerivativeSupported       = isEnabled[6];
+    }
+
+    /**
+     * Returns the keys to gives to the {@link #setEnabledFlags(boolean[])} method. The
+     * elements in the returned array <strong>must</strong> be in the order expected by
+     * the {@link #setEnabledFlags(boolean[])} method for setting the fields.
+     */
+    static Configuration.Key<Boolean>[] getEnabledKeys(final int extraSpace) {
+        @SuppressWarnings({"unchecked","rawtypes"})
+        final Configuration.Key<Boolean>[] keys = new Configuration.Key[7 + extraSpace];
+        keys[0] = Configuration.Key.isDoubleToDoubleSupported;
+        keys[1] = Configuration.Key.isFloatToFloatSupported;
+        keys[2] = Configuration.Key.isDoubleToFloatSupported;
+        keys[3] = Configuration.Key.isFloatToDoubleSupported;
+        keys[4] = Configuration.Key.isOverlappingArraySupported;
+        keys[5] = Configuration.Key.isInverseTransformSupported;
+        keys[6] = Configuration.Key.isDerivativeSupported;
+        return keys;
     }
 
     /**

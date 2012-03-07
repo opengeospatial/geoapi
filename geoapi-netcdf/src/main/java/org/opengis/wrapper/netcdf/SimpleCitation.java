@@ -100,7 +100,7 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
     @Override public String                   getISSN()                    {return null;}
 
     /*
-     * Global nameSpace implementations.
+     * Global NameSpace implementations.
      */
     @Override public boolean isGlobal() {return true;}
     @Override public GenericName name() {return new SimpleName(GLOBAL, title);}

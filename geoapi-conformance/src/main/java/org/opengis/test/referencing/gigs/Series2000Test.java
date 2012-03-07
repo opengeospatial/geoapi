@@ -115,7 +115,7 @@ public strictfp class Series2000Test extends TestCase {
      * objects created by the factories declare the same name than the GIGS tests.
      * If {@code false}, then the names are ignored.
      */
-    protected boolean isNameSupported;
+    protected boolean isStandardNameSupported;
 
     /**
      * {@code true} if the factories support {@linkplain IdentifiedObject#getAlias() aliases}.
@@ -124,7 +124,17 @@ public strictfp class Series2000Test extends TestCase {
      * GIGS tests - additional aliases, if any, are ignored. If {@code false}, then the aliases
      * are ignored.
      */
-    protected boolean isAliasSupported;
+    protected boolean isStandardAliasSupported;
+
+    /**
+     * {@code true} if the {@link IdentifiedObject} instances created indirectly by the factories
+     * are expected to have correct identification information. For example when testing a
+     * {@linkplain CoordinateReferenceSystem Coordinate Reference System} (CRS) object, the CRS
+     * authority code will be verified unconditionally but the authority codes of associated
+     * objects ({@linkplain GeodeticDatum Geodetic Datum} or {@linkplain CoordinateSystem
+     * Coordinate System} will be verified only if this flag is {@code true}.
+     */
+    protected boolean isDependencyIdentificationSupported;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -162,10 +172,12 @@ public strictfp class Series2000Test extends TestCase {
         copAuthorityFactory   = copFactory;
         @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isNameSupported,
-                Configuration.Key.isAliasSupported);
-        isNameSupported  = isEnabled[0];
-        isAliasSupported = isEnabled[1];
+                Configuration.Key.isStandardNameSupported,
+                Configuration.Key.isStandardAliasSupported,
+                Configuration.Key.isDependencyIdentificationSupported);
+        isStandardNameSupported             = isEnabled[0];
+        isStandardAliasSupported            = isEnabled[1];
+        isDependencyIdentificationSupported = isEnabled[2];
     }
 
     /**
@@ -175,8 +187,9 @@ public strictfp class Series2000Test extends TestCase {
      * <ul>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
-     *       <li>{@link #isNameSupported}</li>
-     *       <li>{@link #isAliasSupported}</li>
+     *       <li>{@link #isStandardNameSupported}</li>
+     *       <li>{@link #isStandardAliasSupported}</li>
+     *       <li>{@link #isDependencyIdentificationSupported}</li>
      *       <li>{@linkplain #crsAuthorityFactory}</li>
      *       <li>{@linkplain #csAuthorityFactory}</li>
      *       <li>{@linkplain #datumAuthorityFactory}</li>
@@ -188,12 +201,13 @@ public strictfp class Series2000Test extends TestCase {
     @Override
     public Configuration configuration() {
         final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.isNameSupported,       isNameSupported));
-        assertNull(op.put(Configuration.Key.isAliasSupported,      isAliasSupported));
-        assertNull(op.put(Configuration.Key.crsAuthorityFactory,   crsAuthorityFactory));
-        assertNull(op.put(Configuration.Key.csAuthorityFactory,    csAuthorityFactory));
-        assertNull(op.put(Configuration.Key.datumAuthorityFactory, datumAuthorityFactory));
-        assertNull(op.put(Configuration.Key.copAuthorityFactory,   copAuthorityFactory));
+        assertNull(op.put(Configuration.Key.isStandardNameSupported,             isStandardNameSupported));
+        assertNull(op.put(Configuration.Key.isStandardAliasSupported,            isStandardAliasSupported));
+        assertNull(op.put(Configuration.Key.isDependencyIdentificationSupported, isDependencyIdentificationSupported));
+        assertNull(op.put(Configuration.Key.crsAuthorityFactory,                 crsAuthorityFactory));
+        assertNull(op.put(Configuration.Key.csAuthorityFactory,                  csAuthorityFactory));
+        assertNull(op.put(Configuration.Key.datumAuthorityFactory,               datumAuthorityFactory));
+        assertNull(op.put(Configuration.Key.copAuthorityFactory,                 copAuthorityFactory));
         return op;
     }
 
@@ -268,7 +282,8 @@ next:   for (final String search : expected) {
                 try {
                     assertEquals(message, expected, Integer.parseInt(id.getCode()));
                 } catch (NumberFormatException e) {
-                    fail(message + ".getCode(): " + e);
+                    fail(message + ".getCode(): expected " + expected +
+                            " but got a non-numerical value: " + e);
                 }
             }
         }
@@ -438,10 +453,10 @@ next:   for (final String search : expected) {
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
-            if (isNameSupported) {
+            if (isStandardNameSupported) {
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(ellipsoid));
             }
-            if (isAliasSupported) {
+            if (isStandardAliasSupported) {
                 testAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
             }
             /*
@@ -525,10 +540,10 @@ next:   for (final String search : expected) {
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
-            if (isNameSupported) {
+            if (isStandardNameSupported) {
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(pm));
             }
-            if (isAliasSupported) {
+            if (isStandardAliasSupported) {
                 testAliases(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
             }
             /*
@@ -652,7 +667,7 @@ next:   for (final String search : expected) {
                     prefix.append("GeodeticCRS[").append(crsCode).append("].");
                     final int lengthAfterCRS = prefix.length();
                     testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
-                    if (isNameSupported) {
+                    if (isStandardNameSupported) {
                         assertEquals(message(prefix, "getName()"), crsName, getName(crs));
                     }
                     /*
@@ -686,13 +701,19 @@ next:   for (final String search : expected) {
                     assertNotNull(message(prefix, "getDatum()"), datum);
                 }
                 /*
-                 * Tests the datum.
+                 * Tests the datum. If (column == 1), the datum has been obtained directly from
+                 * the datum factory. In such case, we will test its identifier unconditionally.
+                 * For all other columns, the datum has been obtained indirectly from the CRS.
+                 * So we will verify the identifier only if the implementation supports
+                 * identification of associated objects.
                  */
                 prefix.append("GeodeticDatum[").append(datumCode).append("].");
                 final int lengthAfterDatum = prefix.length();
-                testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
-                if (isNameSupported) {
-                    assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                if (isDependencyIdentificationSupported || (column == 1)) {
+                    testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
+                    if (isStandardNameSupported) {
+                        assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                    }
                 }
                 /*
                  * Tests the ellipsoid.
@@ -700,7 +721,7 @@ next:   for (final String search : expected) {
                 final Ellipsoid ellipsoid = datum.getEllipsoid();
                 assertNotNull(message(prefix, "getEllipsoid()"), ellipsoid);
                 prefix.append("Ellipsoid.");
-                if (isNameSupported) {
+                if (isDependencyIdentificationSupported && isStandardNameSupported) {
                     assertEquals(message(prefix, "getName()"), ellName, getName(ellipsoid));
                 }
                 /*
@@ -710,7 +731,7 @@ next:   for (final String search : expected) {
                 final PrimeMeridian pm = datum.getPrimeMeridian();
                 assertNotNull(message(prefix, "getPrimeMeridian()"), pm);
                 prefix.append("PrimeMeridian.");
-                if (isNameSupported) {
+                if (isDependencyIdentificationSupported && isStandardNameSupported) {
                     assertEquals(message(prefix, "getName()"), pmName, getName(pm));
                 }
             }
@@ -773,7 +794,7 @@ next:   for (final String search : expected) {
                 testIdentifier(message(prefix, "getIdentifiers()"), code, cop.getIdentifiers());
                 assertInstanceOf(message(prefix, "class"), Conversion.class, cop);
                 final Conversion conversion = (Conversion) cop;
-                if (isNameSupported) {
+                if (isStandardNameSupported) {
                     assertEquals(message(prefix, "getMethod().getName()"), method, getName(conversion.getMethod()));
                 }
             }
@@ -832,11 +853,13 @@ next:   for (final String search : expected) {
                 prefix.setLength(prefixLength);
                 prefix.append(code).append("].");
                 testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
-                testIdentifier(message(prefix, "getDatum().getIdentifiers()"),
-                        datumCode, crs.getDatum().getIdentifiers());
-                if (isNameSupported) {
-                    assertEquals(message(prefix, "getBaseCRS().getName()"),
-                            geoName, getName(crs.getBaseCRS()));
+                if (isDependencyIdentificationSupported) {
+                    testIdentifier(message(prefix, "getDatum().getIdentifiers()"),
+                            datumCode, crs.getDatum().getIdentifiers());
+                    if (isStandardNameSupported) {
+                        assertEquals(message(prefix, "getBaseCRS().getName()"),
+                                geoName, getName(crs.getBaseCRS()));
+                    }
                 }
             }
         }
@@ -892,7 +915,7 @@ next:   for (final String search : expected) {
             prefix.setLength(prefixLength);
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
-            if (isNameSupported) {
+            if (isStandardNameSupported) {
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(operation));
             }
         }

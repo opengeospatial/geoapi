@@ -176,10 +176,15 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
                 }
             }
         }
+        final PJIdentifier identifier;
+        if (this.name instanceof PJIdentifier) {
+            identifier = new PJIdentifier(((PJIdentifier) this.name).getAuthority(), name);
+        } else {
+            identifier = new PJIdentifier(this.name.getCodeSpace(), name);
+        }
         final PJParameter param;
         try {
-            param = new PJParameter(new PJIdentifier(this.name.getCodeSpace(), name),
-                    ResourcesLoader.getAliases(name, true));
+            param = new PJParameter(identifier, ResourcesLoader.getAliases(name, true));
         } catch (FactoryException e) { // Should never happen, unless an I/O error occurred.
             throw new MissingResourceException(e.getLocalizedMessage(), ResourcesLoader.PARAMETERS_FILE, name);
         }

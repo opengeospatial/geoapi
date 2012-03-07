@@ -256,10 +256,12 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
-        @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(Configuration.Key.isAxisSwappingSupported);
-        isAxisSwappingSupported = isEnabled[0];
-        test = new ParameterizedTransformTest(null);
+        final Configuration.Key<Boolean>[] keys = ParameterizedTransformTest.getEnabledKeys(1);
+        final int offset = keys.length - 1; // First free slot for our keys.
+        keys[offset] = Configuration.Key.isAxisSwappingSupported;
+        final boolean[] isEnabled = getEnabledFlags(keys);
+        test = new ParameterizedTransformTest(isEnabled);
+        isAxisSwappingSupported = isEnabled[offset];
     }
 
     /**

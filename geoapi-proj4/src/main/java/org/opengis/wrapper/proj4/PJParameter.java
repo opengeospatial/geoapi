@@ -201,10 +201,15 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
     }
 
     /**
-     * Unsupported operation, since this parameter is not for integer.
+     * Returns the value as an integer if it can be casted without information lost,
+     * or throw an exception otherwise.
      */
     @Override
     public int intValue() throws InvalidParameterTypeException {
+        final int r = (int) value;
+        if (r == value) {
+            return r;
+        }
         throw invalidType("an integer");
     }
 
@@ -294,15 +299,15 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
     }
 
     /**
-     * Unsupported operation, since this parameter is not for integers.
+     * Sets the parameter value as an integer, converted to floating point.
      */
     @Override
     public void setValue(final int value) throws InvalidParameterValueException {
-        throw invalidValue("integers", value);
+        this.value = value;
     }
 
     /**
-     * Unsupported operation, since this parameter is not for integers.
+     * Unsupported operation, since this parameter is not for booleans.
      */
     @Override
     public void setValue(final boolean value) throws InvalidParameterValueException {

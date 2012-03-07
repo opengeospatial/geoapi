@@ -23,18 +23,22 @@ import org.opengis.metadata.citation.PresentationForm;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.citation.Series;
 import org.opengis.util.InternationalString;
+import org.opengis.util.GenericName;
+import org.opengis.util.NameSpace;
 
 import static java.util.Collections.emptySet;
 
 
 /**
  * A simple {@link Citation} implementation, which is also its own international string.
+ * We opportunistically implement {@link NameSpace} because we use the citation mostly
+ * for identifying the scope of authority codes.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class SimpleCitation implements Citation, InternationalString {
+final class SimpleCitation implements Citation, NameSpace, InternationalString {
     /**
      * The citation to be returned by {@link PJFactory#getVendor()}.
      */
@@ -44,6 +48,12 @@ final class SimpleCitation implements Citation, InternationalString {
      * The citation to be returned by {@link PJFactory.EPSG#getAuthority()}.
      */
     static final Citation EPSG = new SimpleCitation("EPSG");
+
+    /**
+     * The citation of the methods to be returned by
+     * {@link PJFactory.Transform#getAvailableMethods(Class)}.
+     */
+    static final SimpleCitation PROJ4 = new SimpleCitation("Proj4");
 
     /**
      * The citation title to be returned by {@link #getTitle()}.
@@ -75,6 +85,12 @@ final class SimpleCitation implements Citation, InternationalString {
     @Override public InternationalString      getCollectiveTitle()         {return null;}
     @Override public String                   getISBN()                    {return null;}
     @Override public String                   getISSN()                    {return null;}
+
+    /*
+     * Global NameSpace implementations.
+     */
+    @Override public boolean     isGlobal() {return true;}
+    @Override public GenericName name()     {return new PJIdentifier("", title);}
 
     /*
      * InternationalString implementations.
