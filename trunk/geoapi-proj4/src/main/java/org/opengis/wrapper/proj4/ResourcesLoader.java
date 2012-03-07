@@ -260,7 +260,7 @@ final class ResourcesLoader {
             if (methods.isEmpty()) {
                 final Map<String, String> map = getAliases(false);
                 for (final String name : new HashSet<String>(map.values())) {
-                    methods.add(new PJMethod(new PJIdentifier("proj4", name), getAliases(name, map)));
+                    methods.add(new PJMethod(new PJIdentifier(SimpleCitation.PROJ4, name), getAliases(name, map)));
                 }
             }
         }

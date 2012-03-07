@@ -79,30 +79,32 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * <th nowrap>Supported features</th>
  * <th nowrap>Factories</th>
  * <th nowrap>Other</th></tr><tr><td valign="top">
- * {@link Key#isMultiLocaleSupported        isMultiLocaleSupported}<br>
- * {@link Key#isMixedNameSyntaxSupported    isMixedNameSyntaxSupported}<br>
- * {@link Key#isNameSupported               isNameSupported}<br>
- * {@link Key#isAliasSupported              isAliasSupported}<br>
- * {@link Key#isDoubleToDoubleSupported     isDoubleToDoubleSupported}<br>
- * {@link Key#isFloatToFloatSupported       isFloatToFloatSupported}<br>
- * {@link Key#isDoubleToFloatSupported      isDoubleToFloatSupported}<br>
- * {@link Key#isFloatToDoubleSupported      isFloatToDoubleSupported}<br>
- * {@link Key#isOverlappingArraySupported   isOverlappingArraySupported}<br>
- * {@link Key#isInverseTransformSupported   isInverseTransformSupported}<br>
- * {@link Key#isDerivativeSupported         isDerivativeSupported}<br>
- * {@link Key#isNonSquareMatrixSupported    isNonSquareMatrixSupported}<br>
- * {@link Key#isAxisSwappingSupported       isAxisSwappingSupported}<br>
- * {@link Key#isToleranceRelaxed            isToleranceRelaxed}</td><td valign="top">
- * {@link Key#mtFactory                     mtFactory}<br>
- * {@link Key#copFactory                    copFactory}<br>
- * {@link Key#copAuthorityFactory           copAuthorityFactory}<br>
- * {@link Key#crsFactory                    crsFactory}<br>
- * {@link Key#crsAuthorityFactory           crsAuthorityFactory}<br>
- * {@link Key#csFactory                     csFactory}<br>
- * {@link Key#csAuthorityFactory            csAuthorityFactory}<br>
- * {@link Key#datumFactory                  datumFactory}<br>
- * {@link Key#datumAuthorityFactory         datumAuthorityFactory}</td><td valign="top">
- * {@link Key#validators                    validators}
+ * {@link Key#isMultiLocaleSupported              isMultiLocaleSupported}<br>
+ * {@link Key#isMixedNameSyntaxSupported          isMixedNameSyntaxSupported}<br>
+ * {@link Key#isStandardNameSupported             isStandardNameSupported}<br>
+ * {@link Key#isStandardAliasSupported            isStandardAliasSupported}<br>
+ * {@link Key#isDependencyIdentificationSupported isDependencyIdentificationSupported}<br>
+ * {@link Key#isDoubleToDoubleSupported           isDoubleToDoubleSupported}<br>
+ * {@link Key#isFloatToFloatSupported             isFloatToFloatSupported}<br>
+ * {@link Key#isDoubleToFloatSupported            isDoubleToFloatSupported}<br>
+ * {@link Key#isFloatToDoubleSupported            isFloatToDoubleSupported}<br>
+ * {@link Key#isOverlappingArraySupported         isOverlappingArraySupported}<br>
+ * {@link Key#isInverseTransformSupported         isInverseTransformSupported}<br>
+ * {@link Key#isDerivativeSupported               isDerivativeSupported}<br>
+ * {@link Key#isNonSquareMatrixSupported          isNonSquareMatrixSupported}<br>
+ * {@link Key#isNonBidimensionalSpaceSupported    isNonBidimensionalSpaceSupported}<br>
+ * {@link Key#isAxisSwappingSupported             isAxisSwappingSupported}</td><td valign="top">
+ * {@link Key#mtFactory                           mtFactory}<br>
+ * {@link Key#copFactory                          copFactory}<br>
+ * {@link Key#copAuthorityFactory                 copAuthorityFactory}<br>
+ * {@link Key#crsFactory                          crsFactory}<br>
+ * {@link Key#crsAuthorityFactory                 crsAuthorityFactory}<br>
+ * {@link Key#csFactory                           csFactory}<br>
+ * {@link Key#csAuthorityFactory                  csAuthorityFactory}<br>
+ * {@link Key#datumFactory                        datumFactory}<br>
+ * {@link Key#datumAuthorityFactory               datumAuthorityFactory}</td><td valign="top">
+ * {@link Key#validators                          validators}
+ * {@link Key#isToleranceRelaxed                  isToleranceRelaxed}
  * </td></tr></table>
  *
  * @see TestCase#configuration()
@@ -301,19 +303,28 @@ public class Configuration implements Serializable {
          * Whatever the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
          *
-         * @see org.opengis.test.referencing.gigs.Series2000Test#isNameSupported
+         * @see org.opengis.test.referencing.gigs.Series2000Test#isStandardNameSupported
          */
-        public static final Key<Boolean> isNameSupported =
-                new Key<Boolean>(Boolean.class, "isNameSupported");
+        public static final Key<Boolean> isStandardNameSupported =
+                new Key<Boolean>(Boolean.class, "isStandardNameSupported");
 
         /**
          * Whatever the {@link IdentifiedObject} instances have at least the
          * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
          *
-         * @see org.opengis.test.referencing.gigs.Series2000Test#isAliasSupported
+         * @see org.opengis.test.referencing.gigs.Series2000Test#isStandardAliasSupported
          */
-        public static final Key<Boolean> isAliasSupported =
-                new Key<Boolean>(Boolean.class, "isAliasSupported");
+        public static final Key<Boolean> isStandardAliasSupported =
+                new Key<Boolean>(Boolean.class, "isStandardAliasSupported");
+
+        /**
+         * Whatever the {@link IdentifiedObject} instances created indirectly by the factories
+         * are expected to have correct identification information.
+         *
+         * @see org.opengis.test.referencing.gigs.Series2000Test#isDependencyIdentificationSupported
+         */
+        public static final Key<Boolean> isDependencyIdentificationSupported =
+                new Key<Boolean>(Boolean.class, "isDependencyIdentificationSupported");
 
         /**
          * Whatever {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
@@ -402,6 +413,16 @@ public class Configuration implements Serializable {
          */
         public static final Key<Boolean> isNonSquareMatrixSupported =
                 new Key<Boolean>(Boolean.class, "isNonSquareMatrixSupported");
+
+        /**
+         * Whatever {@link MathTransformFactory} can create transforms between spaces that are
+         * not two-dimensional. If {@code true}, then the tested spaces may be one-dimensional
+         * (typically elevation or time), three-dimensional or four-dimensional.
+         *
+         * @see org.opengis.test.referencing.AffineTransformTest#isNonBidimensionalSpaceSupported
+         */
+        public static final Key<Boolean> isNonBidimensionalSpaceSupported =
+                new Key<Boolean>(Boolean.class, "isNonBidimensionalSpaceSupported");
 
         /**
          * Whatever (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not

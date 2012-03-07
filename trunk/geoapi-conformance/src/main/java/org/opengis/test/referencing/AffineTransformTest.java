@@ -122,15 +122,23 @@ public strictfp class AffineTransformTest extends TransformTestCase {
 
     /**
      * {@code true} if {@link MathTransformFactory#createAffineTransform(Matrix)} accepts
-     * non-square matrixes.
+     * non-square matrixes. Transforms defined by non-square matrixes have a number of
+     * input dimensions different than the number of output dimensions.
      */
     protected boolean isNonSquareMatrixSupported;
+
+    /**
+     * {@code true} if {@link MathTransformFactory#createAffineTransform(Matrix)} accepts
+     * matrixes of size different than 3&times;3. If {@code false}, then only matrixes of
+     * size 3&times;3 (i.e. affine transforms between two-dimensional spaces) will be tested.
+     */
+    protected boolean isNonBidimensionalSpaceSupported;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * subclassed by the implementor. The factories are fetched as documented in the
+     * sub-classed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
      * @return The default set of arguments to be given to the {@code AffineTransformTest} constructor.
@@ -152,8 +160,10 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         mtFactory = factory;
         @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isNonSquareMatrixSupported);
-        isNonSquareMatrixSupported = isEnabled[0];
+                Configuration.Key.isNonSquareMatrixSupported,
+                Configuration.Key.isNonBidimensionalSpaceSupported);
+        isNonSquareMatrixSupported       = isEnabled[0];
+        isNonBidimensionalSpaceSupported = isEnabled[1];
     }
 
     /**
@@ -165,6 +175,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isNonSquareMatrixSupported}</li>
+     *       <li>{@link #isNonBidimensionalSpaceSupported}</li>
      *       <li>{@link #mtFactory}</li>
      *     </ul>
      *   </li>
@@ -173,7 +184,8 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Override
     public Configuration configuration() {
         final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.isNonSquareMatrixSupported, isNonSquareMatrixSupported));
+        assertNull(op.put(Configuration.Key.isNonSquareMatrixSupported,       isNonSquareMatrixSupported));
+        assertNull(op.put(Configuration.Key.isNonBidimensionalSpaceSupported, isNonBidimensionalSpaceSupported));
         assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
         return op;
     }
@@ -257,12 +269,15 @@ public strictfp class AffineTransformTest extends TransformTestCase {
 
     /**
      * Tests using an identity transform in an one-dimensional space.
+     * This test is executed only if the {@link #isNonBidimensionalSpaceSupported}
+     * flag is set to {@code true}.
      *
      * @throws FactoryException should never happen.
      * @throws TransformException should never happen.
      */
     @Test
     public void testIdentity1D() throws FactoryException, TransformException {
+        assumeTrue(isNonBidimensionalSpaceSupported);
         runTest(2, 2,
             1, 0,
             0, 1);
@@ -283,12 +298,15 @@ public strictfp class AffineTransformTest extends TransformTestCase {
 
     /**
      * Tests using an identity transform in a three-dimensional space.
+     * This test is executed only if the {@link #isNonBidimensionalSpaceSupported}
+     * flag is set to {@code true}.
      *
      * @throws FactoryException should never happen.
      * @throws TransformException should never happen.
      */
     @Test
     public void testIdentity3D() throws FactoryException, TransformException {
+        assumeTrue(isNonBidimensionalSpaceSupported);
         runTest(4, 4,
             1, 0, 0, 0,
             0, 1, 0, 0,

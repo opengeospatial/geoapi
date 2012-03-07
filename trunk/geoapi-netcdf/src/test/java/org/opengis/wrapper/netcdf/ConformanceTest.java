@@ -68,8 +68,8 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
         if (configuration == null) {
             configuration = new Configuration();
             configuration.unsupported(
-                    Configuration.Key.isNameSupported,
-                    Configuration.Key.isAliasSupported,
+                    Configuration.Key.isStandardNameSupported,
+                    Configuration.Key.isStandardAliasSupported,
                     Configuration.Key.isDerivativeSupported);
             /*
              * Our objects are not yet strictly ISO compliant, so be lenient...

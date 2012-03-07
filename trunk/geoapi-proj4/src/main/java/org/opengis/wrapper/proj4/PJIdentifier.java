@@ -20,7 +20,6 @@ import org.opengis.util.LocalName;
 import org.opengis.util.ScopedName;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.proj4.PJ;
 
@@ -45,6 +44,12 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     private final String codespace, code;
 
     /**
+     * The authority, created only when needed. In our implementation,
+     * we just use the {@linkplain #codespace} as the authority.
+     */
+    private transient SimpleCitation authority;
+
+    /**
      * Creates a new identifier for the given code.
      *
      * @param code The code (mandatory).
@@ -62,7 +67,19 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
      */
     PJIdentifier(final String codespace, final String code) {
         this.codespace = codespace;
-        this.code = code;
+        this.code      = code;
+    }
+
+    /**
+     * Creates a new identifier for the given authority and codespace.
+     *
+     * @param authority The authority, or {@code null} if none.
+     * @param code The code (mandatory).
+     */
+    PJIdentifier(final SimpleCitation authority, final String code) {
+        this.authority = authority;
+        this.codespace = (authority != null) ? authority.toString() : null;
+        this.code      = code;
     }
 
     /**
@@ -76,11 +93,15 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     }
 
     /**
-     * There is no authority associated with this identifier.
+     * Returns the authority associated with this identifier, or {@code null} if none.
+     * This authority is also used as the {@linkplain #scope() name space} of the local name.
      */
     @Override
-    public Citation getAuthority() {
-        return null;
+    public synchronized SimpleCitation getAuthority() {
+        if (authority == null && codespace != null) {
+            authority = new SimpleCitation(codespace);
+        }
+        return authority;
     }
 
     /**
@@ -108,11 +129,11 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     @Override public List<LocalName>     getParsedNames()         {return Collections.<LocalName>singletonList(this);}
     @Override public InternationalString toInternationalString()  {return new SimpleCitation(code);}
     @Override public int                 compareTo(GenericName o) {return code.compareTo(o.tip().toString());}
+    @Override public NameSpace           scope()                  {return getAuthority();}
 
     /*
      * Not yet implemented (todo).
      */
-    @Override public NameSpace   scope()                 {return null;}
     @Override public GenericName toFullyQualifiedName()  {return null;}
     @Override public ScopedName  push(GenericName scope) {return null;}
 
@@ -135,8 +156,7 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     public boolean equals(final Object object) {
         if (object instanceof PJIdentifier) {
             final PJIdentifier other = (PJIdentifier) object;
-            return code.equals(other.code) && (codespace == other.codespace || (codespace != null && codespace.equals(other.codespace)));
-            // TODO: Use Objects.equals(...) with JDK 7.
+            return code.equals(other.code) && Objects.equals(codespace, other.codespace);
         }
         return false;
     }
