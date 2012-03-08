@@ -103,7 +103,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@link Key#csAuthorityFactory                  csAuthorityFactory}<br>
  * {@link Key#datumFactory                        datumFactory}<br>
  * {@link Key#datumAuthorityFactory               datumAuthorityFactory}</td><td valign="top">
- * {@link Key#validators                          validators}
+ * {@link Key#validators                          validators}<br>
  * {@link Key#isToleranceRelaxed                  isToleranceRelaxed}
  * </td></tr></table>
  *

@@ -132,7 +132,7 @@ public strictfp class Series2000Test extends TestCase {
      * {@linkplain CoordinateReferenceSystem Coordinate Reference System} (CRS) object, the CRS
      * authority code will be verified unconditionally but the authority codes of associated
      * objects ({@linkplain GeodeticDatum Geodetic Datum} or {@linkplain CoordinateSystem
-     * Coordinate System} will be verified only if this flag is {@code true}.
+     * Coordinate System}) will be verified only if this flag is {@code true}.
      */
     protected boolean isDependencyIdentificationSupported;
 

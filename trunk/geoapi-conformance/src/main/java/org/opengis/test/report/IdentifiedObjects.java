@@ -31,10 +31,10 @@
  */
 package org.opengis.test.report;
 
-import java.util.Set;
+import java.util.Map;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
 import org.opengis.util.NameSpace;
 import org.opengis.util.GenericName;
 import org.opengis.referencing.IdentifiedObject;
@@ -117,14 +117,17 @@ final class IdentifiedObjects {
      * Returns the object {@linkplain IdentifiedObject#getName() name} and all its
      * {@linkplain IdentifiedObject#getAlias() aliases} for the given
      * {@linkplain ReferenceIdentifier#getCodeSpace() code space}.
+     * <p>
+     * The values in the returned map are {@link Boolean#TRUE} for the primary name
+     * (at most one entry) and {@link Boolean#FALSE} for aliases (all other entries).
      *
      * @param  info The object to get the name and aliases from, or {@code null}.
      * @param  codeSpace The code space for the name and aliases to return, or {@code null}
      *         for all code spaces.
      * @return All name and aliases for the given code space.
      */
-    public static Set<String> getNameAndAliases(final IdentifiedObject info, final String codeSpace) {
-        final Set<String> names = new LinkedHashSet<String>(4);
+    public static Map<String,Boolean> getNameAndAliases(final IdentifiedObject info, final String codeSpace) {
+        final Map<String,Boolean> names = new LinkedHashMap<String,Boolean>(4);
         getNameComponents(info, codeSpace, false, names);
         return names;
     }
@@ -132,15 +135,18 @@ final class IdentifiedObjects {
     /**
      * Returns the code space of the given object {@linkplain IdentifiedObject#getName() name}
      * and the scope of all its {@linkplain IdentifiedObject#getAlias() aliases}.
+     * <p>
+     * The values in the returned map are {@link Boolean#TRUE} for the code space of the primary name
+     * (at most one entry) and {@link Boolean#FALSE} for the scope of aliases (all other entries).
      *
      * @param  info The object to get the code space and scopes from, or {@code null}.
-     * @param  addTo An optional set where to add the code space and scopes, or {@code null}.
-     * @return The set given in argument, or a new set if the {@code addTo} argument was null.
-     *         This set will contain every code space and scopes found in the given object.
+     * @param  addTo An optional map where to add the code space and scopes, or {@code null}.
+     * @return The map given in argument, or a new map if the {@code addTo} argument was null.
+     *         This map will contain every code space and scopes found in the given object.
      */
-    public static Set<String> getCodeSpaces(final IdentifiedObject info, Set<String> addTo) {
+    public static Map<String,Boolean> getCodeSpaces(final IdentifiedObject info, Map<String,Boolean> addTo) {
         if (addTo == null) {
-            addTo = new LinkedHashSet<String>(8);
+            addTo = new LinkedHashMap<String,Boolean>(8);
         }
         getNameComponents(info, null, true, addTo);
         return addTo;
@@ -151,12 +157,12 @@ final class IdentifiedObjects {
      * and {@link #getCodeSpaces(IdentifiedObject, String)}.
      */
     private static void getNameComponents(final IdentifiedObject info, final String codeSpace,
-            final boolean wantCodeSpaces, final Set<String> names)
+            final boolean wantCodeSpaces, final Map<String,Boolean> names)
     {
         final ReferenceIdentifier identifier = info.getName();
         if (identifier != null) { // Mandatory attribute, but be lenient.
             if (codeSpace == null || compare(codeSpace, identifier.getCodeSpace()) == 0) {
-                names.add(wantCodeSpaces ? identifier.getCodeSpace() : identifier.getCode());
+                names.put(wantCodeSpaces ? identifier.getCodeSpace() : identifier.getCode(), Boolean.TRUE);
             }
         }
         for (GenericName alias : nullSafe(info.getAlias())) {
@@ -168,7 +174,10 @@ final class IdentifiedObjects {
             final NameSpace ns = alias.scope();  if (ns    == null) continue;
             final GenericName scope = ns.name(); if (scope == null) continue;
             if (codeSpace == null || compare(codeSpace, scope.toString()) == 0) {
-                names.add(wantCodeSpaces ? scope.toString() : alias.toString());
+                final String key = wantCodeSpaces ? scope.toString() : alias.toString();
+                if (Boolean.TRUE.equals(names.put(key, Boolean.FALSE))) {
+                    names.put(key, Boolean.TRUE); // Value TRUE has precedence.
+                }
             }
         }
         names.remove(null);
