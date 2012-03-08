@@ -197,10 +197,12 @@ public strictfp class NameTest extends TestCase {
         InternationalString localized = factory.createInternationalString(names);
         validators.validate(localized);
         if (isMultiLocaleSupported) {
+            configurationTip = Configuration.Key.isMultiLocaleSupported;
             for (final Map.Entry<Locale,String> entry : names.entrySet()) {
                 assertEquals("toString(Locale) should returns the value given to the factory method.",
                         entry.getValue(), localized.toString(entry.getKey()));
             }
+            configurationTip = null;
         }
         assertContains("toString() should returns one of the values given to the factory method.",
                 names.values(), localized.toString());
@@ -313,6 +315,7 @@ public strictfp class NameTest extends TestCase {
     public void testParsedHTTP() {
         assumeNotNull(factory);
         assumeTrue(isMixedNameSyntaxSupported);
+        configurationTip = Configuration.Key.isMixedNameSyntaxSupported;
         GenericName name = factory.createLocalName(null, "http");
         assertEquals(1, name.depth());
         assertEquals("http", name.head().toString());

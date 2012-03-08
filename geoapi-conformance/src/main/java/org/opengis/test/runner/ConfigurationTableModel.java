@@ -51,22 +51,24 @@ final class ConfigurationTableModel extends AbstractTableModel {
     /**
      * Index of columns handled by this model.
      */
-    static final int KEY_COLUMN   = 0,
-                     VALUE_COLUMN = 1;
+    private static final int KEY_COLUMN   = 0,
+                             VALUE_COLUMN = 1,
+                             PASS_COLUMN  = 2;
 
     /**
      * The titles of all columns.
      */
-    private static final String[] COLUMN_TITLES = new String[2];
+    private static final String[] COLUMN_TITLES = new String[3];
     {
-        COLUMN_TITLES[KEY_COLUMN]   = "key";
-        COLUMN_TITLES[VALUE_COLUMN] = "Value";
+        COLUMN_TITLES[KEY_COLUMN]   = "Feature";
+        COLUMN_TITLES[VALUE_COLUMN] = "Enabled";
+        COLUMN_TITLES[PASS_COLUMN]  = "Remarks";
     };
 
     /**
      * The configuration entries.
      */
-    List<Map.Entry<Configuration.Key<?>, Boolean>> entries;
+    List<Map.Entry<Configuration.Key<?>, ResultEntry.StatusOptional>> entries;
 
     /**
      * Creates an initially empty table model.
@@ -99,6 +101,7 @@ final class ConfigurationTableModel extends AbstractTableModel {
         switch (column) {
             case KEY_COLUMN:   return String.class;
             case VALUE_COLUMN: return Boolean.class;
+            case PASS_COLUMN:  return String.class;
             default: throw new IndexOutOfBoundsException(String.valueOf(column));
         }
     }
@@ -116,10 +119,11 @@ final class ConfigurationTableModel extends AbstractTableModel {
      */
     @Override
     public Object getValueAt(final int row, final int column) {
-        final Map.Entry<Configuration.Key<?>, Boolean> entry = entries.get(row);
+        final Map.Entry<Configuration.Key<?>, ResultEntry.StatusOptional> entry = entries.get(row);
         switch (column) {
-            case KEY_COLUMN:   return entry.getKey().name();
-            case VALUE_COLUMN: return entry.getValue();
+            case KEY_COLUMN:   return ResultEntry.separateWords(entry.getKey().name(), true);
+            case VALUE_COLUMN: return entry.getValue() != ResultEntry.StatusOptional.DISABLED;
+            case PASS_COLUMN:  return entry.getValue() == ResultEntry.StatusOptional.FAILED ? "Failed" : null;
             default: throw new IndexOutOfBoundsException(String.valueOf(column));
         }
     }

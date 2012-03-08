@@ -70,7 +70,6 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
             configuration = new Configuration();
             configuration.unsupported(
                     Configuration.Key.isStandardNameSupported,
-                    Configuration.Key.isStandardAliasSupported,
                     Configuration.Key.isDependencyIdentificationSupported,
                     Configuration.Key.isDerivativeSupported,
                     Configuration.Key.isNonSquareMatrixSupported,

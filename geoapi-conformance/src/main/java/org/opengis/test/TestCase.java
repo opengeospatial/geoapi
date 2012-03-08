@@ -40,6 +40,7 @@ import java.util.ServiceLoader;
 import java.util.ServiceConfigurationError;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.LogRecord;
 
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
@@ -204,11 +205,26 @@ public strictfp abstract class TestCase {
         }
 
         /**
-         * Invoked when a test fails.
+         * Invoked when a test fails. If the failure occurred in an optional part of
+         * the set, logs an information message for helping the developer to disable
+         * that test if he wish.
          */
         @Override
         protected void failed(final Throwable exception, final Description description) {
             final TestEvent event = new TestEvent(TestCase.this, description);
+            final Configuration.Key<Boolean> tip = configurationTip;
+            if (tip != null) {
+                event.configurationTip = tip;
+                final Logger logger = Logger.getLogger("org.opengis.test");
+                final LogRecord record = new LogRecord(Level.INFO, "A test failure occurred while "
+                        + "testing an optional feature. To skip that part of the test, set the '"
+                        + tip.name() + "' boolean field to false or specify that value in the "
+                        + "Configuration map.");
+                record.setLoggerName(logger.getName());
+                record.setSourceClassName(event.getClassName());
+                record.setSourceMethodName(event.getMethodName());
+                logger.log(record);
+            }
             for (final TestListener listener : listeners) {
                 listener.failed(event, exception);
             }
@@ -240,6 +256,26 @@ public strictfp abstract class TestCase {
      * @since 3.1
      */
     protected final ValidatorContainer validators;
+
+    /**
+     * A tip set by subclasses during the execution of optional tests. If case of optional
+     * test failure, if this field is non-null, then a message will be logged at the
+     * {@linkplain java.util.logging.Level#INFO INFO} level for giving some tips to
+     * the developer about how he can disable the test.
+     *
+     * <p><b>Example</b></p>
+     * <blockquote><pre>&#64;Test
+     *public void myTest() {
+     *    if (isDerivativeSupported) {
+     *        configurationTip = Configuration.Key.isDerivativeSupported;
+     *        // Do some tests the require support of math transform derivatives.
+     *    }
+     *    configurationTip = null;
+     *}</pre></blockquote>
+     *
+     * @since 3.1
+     */
+    protected transient Configuration.Key<Boolean> configurationTip;
 
     /**
      * Creates a new test without factory. This constructor is provided for subclasses

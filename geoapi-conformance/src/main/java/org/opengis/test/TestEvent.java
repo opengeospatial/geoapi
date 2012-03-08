@@ -59,6 +59,12 @@ public final class TestEvent extends EventObject {
     private final String methodName;
 
     /**
+     * If a test failure occurred in an optional test, the configuration key for disabling
+     * that test. Otherwise {@code null}.
+     */
+    Configuration.Key<Boolean> configurationTip;
+
+    /**
      * Creates a new event for the given source.
      */
     TestEvent(final TestCase source, final Description description) {
@@ -96,5 +102,15 @@ public final class TestEvent extends EventObject {
      */
     public String getMethodName() {
         return methodName;
+    }
+
+    /**
+     * If a test failure occurred in an optional test, the configuration key for disabling
+     * that test. Otherwise {@code null}.
+     *
+     * @return The configuration key for disabling the optional test that failed, or {@code null}.
+     */
+    public Configuration.Key<Boolean> getConfigurationTip() {
+        return configurationTip;
     }
 }

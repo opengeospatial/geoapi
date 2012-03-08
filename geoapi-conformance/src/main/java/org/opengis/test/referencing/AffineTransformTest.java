@@ -278,6 +278,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testIdentity1D() throws FactoryException, TransformException {
         assumeTrue(isNonBidimensionalSpaceSupported);
+        configurationTip = Configuration.Key.isNonBidimensionalSpaceSupported;
         runTest(2, 2,
             1, 0,
             0, 1);
@@ -307,6 +308,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testIdentity3D() throws FactoryException, TransformException {
         assumeTrue(isNonBidimensionalSpaceSupported);
+        configurationTip = Configuration.Key.isNonBidimensionalSpaceSupported;
         runTest(4, 4,
             1, 0, 0, 0,
             0, 1, 0, 0,
@@ -417,6 +419,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testDimensionReduction() throws FactoryException, TransformException {
         assumeTrue(isNonSquareMatrixSupported);
+        configurationTip = Configuration.Key.isNonSquareMatrixSupported;
         final int sourceDim = 4;
         final int targetDim = 2;
         final boolean inverseSupported = isInverseTransformSupported;
@@ -438,6 +441,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
              * are 0 in the above matrix) are expected to be NaN.
              */
             if (inverseSupported) {
+                configurationTip = Configuration.Key.isInverseTransformSupported;
                 for (int i=0; i<source.length; i += sourceDim) {
                     source[i + 1] = Double.NaN;
                     source[i + 3] = Double.NaN;

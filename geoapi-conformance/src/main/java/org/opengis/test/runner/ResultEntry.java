@@ -70,6 +70,13 @@ final class ResultEntry {
     };
 
     /**
+     * The status (success, failure, disabled) of an optional test.
+     */
+    static enum StatusOptional {
+        ENABLED, DISABLED, FAILED
+    }
+
+    /**
      * The base URL of {@code geoapi-conformance} javadoc. The trailing slash is mandatory.
      */
     private static final String JAVADOC_BASEURL = "http://www.geoapi.org/geoapi-conformance/apidocs/";
@@ -118,7 +125,7 @@ final class ResultEntry {
     /**
      * The configuration specified by the implementor.
      */
-    final List<Map.Entry<Configuration.Key<?>, Boolean>> configuration;
+    final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration;
 
     /**
      * The test status.
@@ -157,8 +164,9 @@ final class ResultEntry {
          *  - Get the list of factories.
          */
         int numTests=1, numSupported=1;
+        final Configuration.Key<Boolean> configurationTip = event.getConfigurationTip();
         final List<String[]> factories = new ArrayList<String[]>();
-        final List<Map.Entry<Configuration.Key<?>, Boolean>> configuration = new ArrayList<Map.Entry<Configuration.Key<?>, Boolean>>();
+        final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<Map.Entry<Configuration.Key<?>, StatusOptional>>();
         for (Map.Entry<Configuration.Key<?>,Object> entry : event.getSource().configuration().map().entrySet()) {
             final Configuration.Key<?> key = entry.getKey();
             final String   name  = key.name();
@@ -170,15 +178,18 @@ final class ResultEntry {
              * the count with 1 supported test.
              */
             if ((type == Boolean.class) && name.startsWith("is")) {
-                final Boolean bv = (Boolean) value;
                 if (name.endsWith("Supported")) {
-                    configuration.add(new AbstractMap.SimpleImmutableEntry<Configuration.Key<?>, Boolean>(key, bv));
-                    if (bv) {
+                    final StatusOptional so;
+                    if (Boolean.FALSE.equals(value)) {
+                        so = StatusOptional.DISABLED;
+                    } else {
                         numSupported++;
+                        so = (key == configurationTip) ? StatusOptional.FAILED : StatusOptional.ENABLED;
                     }
+                    configuration.add(new AbstractMap.SimpleImmutableEntry<Configuration.Key<?>, StatusOptional>(key, so));
                     numTests++;
                 } else if (name.equals("isToleranceRelaxed")) {
-                    isToleranceRelaxed = bv;
+                    isToleranceRelaxed = (Boolean) value;
                 }
             }
             /*
@@ -195,7 +206,7 @@ final class ResultEntry {
                     }
                 }
                 factories.add(new String[] {
-                    separateWords(type.getSimpleName()), impl,
+                    separateWords(type.getSimpleName(), false), impl,
                     (value instanceof Factory) ?
                         getIdentifier(((Factory) value).getVendor()) : null,
                     (value instanceof AuthorityFactory) ?
@@ -232,7 +243,7 @@ final class ResultEntry {
         if (name.endsWith(CLASSNAME_SUFFIX)) {
             length -= CLASSNAME_SUFFIX.length();
         }
-        return separateWords(name.substring(name.lastIndexOf('.', length)+1, length));
+        return separateWords(name.substring(name.lastIndexOf('.', length)+1, length), false);
     }
 
     /**
@@ -242,14 +253,14 @@ final class ResultEntry {
         if (name.startsWith(METHODNAME_PREFIX)) {
             name = name.substring(METHODNAME_PREFIX.length());
         }
-        return separateWords(name.replace('_', ':'));
+        return separateWords(name.replace('_', ':'), false);
     }
 
     /**
      * Puts space between words in the given string.
      * The first letter is never modified.
      */
-    private static String separateWords(final String name) {
+    static String separateWords(final String name, final boolean toLowerCase) {
         StringBuilder buffer = null;
         for (int i=name.length(); i>=2;) {
             final int c = name.codePointBefore(i);
@@ -275,6 +286,12 @@ final class ResultEntry {
                 }
                 if (buffer == null) {
                     buffer = new StringBuilder(name);
+                }
+                if (toLowerCase && nc == 1) {
+                    final int lowerCase = Character.toLowerCase(c);
+                    if (Character.charCount(lowerCase) == 1) { // Paranoiac check.
+                        buffer.setCharAt(i, (char) lowerCase);
+                    }
                 }
                 buffer.insert(i, ' ');
             }
