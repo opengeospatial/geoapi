@@ -466,12 +466,15 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertStrictlyPositive("Target dimension must be positive.", targetDimension);
         final MathTransform inverse;
         if (isInverseTransformSupported) {
+            final Configuration.Key<Boolean> oldTip = configurationTip;
+            configurationTip = Configuration.Key.isInverseTransformSupported;
             inverse = transform.inverse();
             assertNotNull("MathTransform.inverse() shall not return null.", inverse);
             assertEquals("Inconsistent source dimension of the inverse transform.",
                     targetDimension, inverse.getSourceDimensions());
             assertEquals("Inconsistent target dimension of the inverse transform.",
                     sourceDimension, inverse.getTargetDimensions());
+            configurationTip = oldTip;
         } else {
             inverse = null;
         }
@@ -680,7 +683,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
         /*
          * Tests transformation in distincts (non-overlapping) arrays.
          */
+        final Configuration.Key<Boolean> oldTip = configurationTip;
         if (isDoubleToDoubleSupported) {
+            configurationTip = Configuration.Key.isDoubleToDoubleSupported;
             Arrays.fill(targetDoubles, Double.NaN);
             transform.transform(sourceDoubles, 0, targetDoubles, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(double[],0,double[],0,n) modified a source coordinate.",
@@ -689,6 +694,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     targetDimension, expectedDoubles, 0, targetDoubles, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         if (isFloatToFloatSupported) {
+            configurationTip = Configuration.Key.isFloatToFloatSupported;
             Arrays.fill(targetFloats, Float.NaN);
             transform.transform(sourceFloats, 0, targetFloats, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(float[],0,float[],0,n) modified a source coordinate.",
@@ -697,6 +703,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     targetDimension, expectedFloats, 0, targetFloats, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         if (isDoubleToFloatSupported) {
+            configurationTip = Configuration.Key.isDoubleToFloatSupported;
             Arrays.fill(targetFloats, Float.NaN);
             transform.transform(sourceDoubles, 0, targetFloats, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(double[],0,float[],0,n) modified a source coordinate.",
@@ -705,6 +712,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     targetDimension, expectedFloats, 0, targetFloats, 0, numPts, CalculationType.DIRECT_TRANSFORM);
         }
         if (isFloatToDoubleSupported) {
+            configurationTip = Configuration.Key.isFloatToDoubleSupported;
             Arrays.fill(targetDoubles, Double.NaN);
             transform.transform(sourceFloats, 0, targetDoubles, 0, numPts);
             assertCoordinatesEqual("MathTransform.transform(float[],0,double[],0,n) modified a source coordinate.",
@@ -716,6 +724,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * Tests transformation in overlapping arrays.
          */
         if (isOverlappingArraySupported) {
+            configurationTip = Configuration.Key.isOverlappingArraySupported;
             for (int sourceOffset=0; sourceOffset < POINTS_OFFSET*sourceDimension; sourceOffset += sourceDimension) {
                 for (int targetOffset=0; targetOffset < POINTS_OFFSET*targetDimension; targetOffset += targetDimension) {
                     System.arraycopy(sourceFloats,  0, targetFloats,  sourceOffset, sourceFloats .length);
@@ -729,6 +738,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 }
             }
         }
+        configurationTip = oldTip;
         /*
          * Tests MathTransform2D methods.
          */
@@ -951,10 +961,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * Delegate to other methods defined in this class.
          */
         verifyConsistency(coordinates);
+        final Configuration.Key<Boolean> oldTip = configurationTip;
         if (isInverseTransformSupported) {
+            configurationTip = Configuration.Key.isInverseTransformSupported;
             verifyInverse(coordinates);
         }
         if (isDerivativeSupported) {
+            configurationTip = Configuration.Key.isDerivativeSupported;
             final double[] point = new double[dimension];
             for (int i=0; i<coordinates.length; i+=dimension) {
                 for (int j=0; j<dimension; j++) {
@@ -963,6 +976,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 verifyDerivative(point);
             }
         }
+        configurationTip = oldTip;
         return coordinates;
     }
 

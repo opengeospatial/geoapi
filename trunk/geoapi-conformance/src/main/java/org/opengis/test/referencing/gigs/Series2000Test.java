@@ -454,10 +454,14 @@ next:   for (final String search : expected) {
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
             if (isStandardNameSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(ellipsoid));
+                configurationTip = null;
             }
             if (isStandardAliasSupported) {
+                configurationTip = Configuration.Key.isStandardAliasSupported;
                 testAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
+                configurationTip = null;
             }
             /*
              * Get the axis lengths and their unit. Null units are assumed to mean metres
@@ -541,10 +545,14 @@ next:   for (final String search : expected) {
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
             if (isStandardNameSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(pm));
+                configurationTip = null;
             }
             if (isStandardAliasSupported) {
+                configurationTip = Configuration.Key.isStandardAliasSupported;
                 testAliases(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
+                configurationTip = null;
             }
             /*
              * Before to compare the Greenwich longitude, convert the expected angular value
@@ -668,7 +676,9 @@ next:   for (final String search : expected) {
                     final int lengthAfterCRS = prefix.length();
                     testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
                     if (isStandardNameSupported) {
+                        configurationTip = Configuration.Key.isStandardNameSupported;
                         assertEquals(message(prefix, "getName()"), crsName, getName(crs));
+                        configurationTip = null;
                     }
                     /*
                      * Tests the coordinate system.
@@ -710,10 +720,13 @@ next:   for (final String search : expected) {
                 prefix.append("GeodeticDatum[").append(datumCode).append("].");
                 final int lengthAfterDatum = prefix.length();
                 if (isDependencyIdentificationSupported || (column == 1)) {
+                    configurationTip = Configuration.Key.isDependencyIdentificationSupported;
                     testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
                     if (isStandardNameSupported) {
+                        configurationTip = Configuration.Key.isStandardNameSupported;
                         assertEquals(message(prefix, "getName()"), datumName, getName(datum));
                     }
+                    configurationTip = null;
                 }
                 /*
                  * Tests the ellipsoid.
@@ -722,7 +735,9 @@ next:   for (final String search : expected) {
                 assertNotNull(message(prefix, "getEllipsoid()"), ellipsoid);
                 prefix.append("Ellipsoid.");
                 if (isDependencyIdentificationSupported && isStandardNameSupported) {
+                    configurationTip = Configuration.Key.isDependencyIdentificationSupported;
                     assertEquals(message(prefix, "getName()"), ellName, getName(ellipsoid));
+                    configurationTip = null;
                 }
                 /*
                  * Tests the prime meridian.
@@ -732,7 +747,9 @@ next:   for (final String search : expected) {
                 assertNotNull(message(prefix, "getPrimeMeridian()"), pm);
                 prefix.append("PrimeMeridian.");
                 if (isDependencyIdentificationSupported && isStandardNameSupported) {
+                    configurationTip = Configuration.Key.isDependencyIdentificationSupported;
                     assertEquals(message(prefix, "getName()"), pmName, getName(pm));
+                    configurationTip = null;
                 }
             }
         }
@@ -795,7 +812,9 @@ next:   for (final String search : expected) {
                 assertInstanceOf(message(prefix, "class"), Conversion.class, cop);
                 final Conversion conversion = (Conversion) cop;
                 if (isStandardNameSupported) {
+                    configurationTip = Configuration.Key.isStandardNameSupported;
                     assertEquals(message(prefix, "getMethod().getName()"), method, getName(conversion.getMethod()));
+                    configurationTip = null;
                 }
             }
         }
@@ -854,12 +873,15 @@ next:   for (final String search : expected) {
                 prefix.append(code).append("].");
                 testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
                 if (isDependencyIdentificationSupported) {
+                    configurationTip = Configuration.Key.isDependencyIdentificationSupported;
                     testIdentifier(message(prefix, "getDatum().getIdentifiers()"),
                             datumCode, crs.getDatum().getIdentifiers());
                     if (isStandardNameSupported) {
+                        configurationTip = Configuration.Key.isStandardNameSupported;
                         assertEquals(message(prefix, "getBaseCRS().getName()"),
                                 geoName, getName(crs.getBaseCRS()));
                     }
+                    configurationTip = null;
                 }
             }
         }
@@ -916,7 +938,9 @@ next:   for (final String search : expected) {
             prefix.append(code).append("].");
             testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
             if (isStandardNameSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(operation));
+                configurationTip = null;
             }
         }
     }

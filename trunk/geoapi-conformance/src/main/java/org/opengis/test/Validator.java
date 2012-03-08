@@ -164,7 +164,7 @@ public abstract class Validator {
             assertNotNull(message, value);
             assertFalse(message, isEmptyCollection(value));
         } else if (value == null || isEmptyCollection(value)) {
-            logger.warning(message);
+            WarningMessage.log(logger, message, true);
         }
     }
 
@@ -195,7 +195,7 @@ public abstract class Validator {
                 assertNull(message, value);
             }
         } else if (value != null && !isEmptyCollection(value)) {
-            logger.warning(message);
+            WarningMessage.log(logger, message, false);
         }
     }
 
