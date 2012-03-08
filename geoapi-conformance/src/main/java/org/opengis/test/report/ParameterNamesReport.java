@@ -35,11 +35,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.util.List;
-import java.util.Set;
-import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.LinkedHashMap;
 import java.util.Comparator;
 import java.util.Properties;
 
@@ -156,11 +155,11 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * @see #getColumnHeader(String)
      */
     public String[] getCodeSpaces() {
-        final Set<String> codeSpaces = new LinkedHashSet<String>(8);
+        final Map<String,Boolean> codeSpaces = new LinkedHashMap<String,Boolean>(8);
         for (final IdentifiedObject op : operations.keySet()) {
             IdentifiedObjects.getCodeSpaces(op, codeSpaces);
         }
-        return codeSpaces.toArray(new String[codeSpaces.size()]);
+        return codeSpaces.keySet().toArray(new String[codeSpaces.size()]);
     }
 
     /**
@@ -372,7 +371,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
     {
         final BufferedWriter out = getOutput();
         @SuppressWarnings({"unchecked","rawtypes"})
-        final Set<String>[] nameSets = new Set[codeSpaces.length];
+        final Map<String,Boolean>[] nameSets = new Map[codeSpaces.length];
         for (int i=0; i<codeSpaces.length; i++) {
             nameSets[i] = IdentifiedObjects.getNameAndAliases(object, codeSpaces[i]);
         }
@@ -383,7 +382,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
                      isTail   ? "groupTail" : null);
         out.write('>');
         for (int i=0; i<nameSets.length;) {
-            final Set<String> names = nameSets[i];
+            final Map<String,Boolean> names = nameSets[i];
             /*
              * If the next columns are empty, allow the current column to use their space.
              * This allow a more compact table since EPSG names may be quite long, and in
@@ -411,14 +410,21 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
              * name on its own line in the same cell.
              */
             boolean hasMore = false;
-            for (final String name : names) {
+            for (final Map.Entry<String,Boolean> entry : names.entrySet()) {
                 if (hasMore) {
                     out.write("<br>");
                 }
                 if (!isGroup) {
                     out.write("\u00A0•\u00A0");
                 }
-                out.write(name);
+                final boolean isPrimaryName = entry.getValue();
+                if (isPrimaryName) {
+                    out.write("<em>");
+                }
+                out.write(entry.getKey());
+                if (isPrimaryName) {
+                    out.write("</em>");
+                }
                 hasMore = true;
             }
             out.write("</td>");

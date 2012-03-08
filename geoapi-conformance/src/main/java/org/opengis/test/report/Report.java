@@ -70,6 +70,7 @@ import org.opengis.metadata.citation.ResponsibleParty;
  *   <tr><td>{@code PRODUCT.VERSION}</td><td>The version of the product for which a report is generated.</td>   <td>Today date in <var>year</var>-<var>month</var>-<var>day</var> format</td></tr>
  *   <tr><td>{@code PRODUCT.URL}</td>    <td>The URL where more information is available about the product.</td><td>(none)</td></tr>
  *   <tr><td>{@code FILENAME}</td>       <td>The output filename (for {@link Reports} only)</td>                <td>(implementation specific)</td>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>Base URL of GeoAPI javadoc.</td>                                   <td>http://www.geoapi.org/snapshot/javadoc</td>
  * </table>
  * <p>
  * Subclasses can freely add, edit or delete entries in the {@linkplain #properties}
@@ -147,6 +148,7 @@ public abstract class Report {
         defaultProperties.setProperty("TITLE", getClass().getSimpleName());
         defaultProperties.setProperty("DESCRIPTION", "");
         defaultProperties.setProperty("PRODUCT.VERSION", NOW);
+        defaultProperties.setProperty("JAVADOC.GEOAPI", "http://www.geoapi.org/snapshot/javadoc");
         this.properties = new Properties(defaultProperties);
         if (properties != null) {
             this.properties.putAll(properties);

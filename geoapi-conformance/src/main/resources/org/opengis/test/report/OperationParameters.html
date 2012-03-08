@@ -11,7 +11,10 @@
     <div>
       <h1>${TITLE}</h1>
       <p>This list is generated from the <a href="${PRODUCT.URL}">${PRODUCT.NAME}</a> library version ${PRODUCT.VERSION}.
-      ${DESCRIPTION}</p>
+      ${DESCRIPTION}
+      The names in <em>italic</em> are <a href="${JAVADOC.GEOAPI}/org/opengis/referencing/IdentifiedObject.html#getName%28%29">primary names</a>
+      (usually one per object) while others are <a href="${JAVADOC.GEOAPI}/org/opengis/referencing/IdentifiedObject.html#getAlias%28%29">aliases</a>.</p>
+
 ${CONTENT}
     </div>
   </body>
