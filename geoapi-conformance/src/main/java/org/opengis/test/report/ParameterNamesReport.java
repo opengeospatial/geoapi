@@ -141,42 +141,30 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
     }
 
     /**
-     * Returns the name of all {@linkplain ReferenceIdentifier#getCodeSpace() code spaces}
-     * or {@linkplain GenericName#scope() scopes} for which to get the names and aliases.
-     * Each value in the returned array will correspond to a column in the table to be
-     * generated.
+     * Returns the HTML text to use as a column header for each
+     * {@linkplain ReferenceIdentifier#getCodeSpace() code spaces} or
+     * {@linkplain GenericName#scope() scopes}. For each entry in the returned map, the
+     * {@linkplain java.util.Map.Entry#getKey() key} is the code spaces or scope and the
+     * {@linkplain java.util.Map.Entry#getValue() value} is the column header. The columns
+     * will be shown in iteration order.
      *
      * <p>The default implementation gets the authorities from the {@linkplain #operations} keys.
      * Subclasses can override this method if they want to use a different set of authorities.</p>
      *
      * @return The name of all code spaces or scopes. Some typical values are {@code "EPSG"},
      *         {@code "OGC"}, {@code "ESRI"}, {@code "GeoTIFF"} or {@code "NetCDF"}.
-     *
-     * @see #getColumnHeader(String)
      */
-    public String[] getCodeSpaces() {
-        final Map<String,Boolean> codeSpaces = new LinkedHashMap<String,Boolean>(8);
+    @SuppressWarnings("unchecked")
+    public Map<String,String> getColumnHeaders() {
+        final Map<String,Object> codeSpaces = new LinkedHashMap<String,Object>(8);
         for (final IdentifiedObject op : operations.keySet()) {
             IdentifiedObjects.getCodeSpaces(op, codeSpaces);
         }
-        return codeSpaces.keySet().toArray(new String[codeSpaces.size()]);
-    }
-
-    /**
-     * Returns the HTML text to use as a column header for the given
-     * {@linkplain ReferenceIdentifier#getCodeSpace() code spaces} or
-     * {@linkplain GenericName#scope() scopes}.
-     * The default implementation returns the given value unchanged. Subclasses
-     * can override this method in order return a different text, possibly with HTML
-     * elements.
-     *
-     * @param  codespace The code space or scope for which to get the column header text.
-     * @return The column header for the given code space or scope.
-     *
-     * @see #getCodeSpaces()
-     */
-    protected String getColumnHeader(final String codespace) {
-        return codespace;
+        for (final Map.Entry<String,Object> entry : codeSpaces.entrySet()) {
+            entry.setValue(entry.getKey());
+        }
+        // We replaced all Boolean values by String values, so we can cheat here.
+        return (Map) codeSpaces;
     }
 
     /**
@@ -202,7 +190,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * Returns a HTML anchor for the given category.
      */
     private String toAnchor(final String category) {
-        return category.toLowerCase(locale).replace(' ', '-');
+        return category.toLowerCase(getLocale()).replace(' ', '-');
     }
 
     /**
@@ -249,7 +237,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
         if ("CONTENT".equals(key)) {
             indentation = 6;
             writeCategories();
-            writeTable(getCodeSpaces());
+            writeTable(getColumnHeaders());
         } else {
             super.writeValue(key);
         }
@@ -296,10 +284,10 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * Writes the table of operations and their parameters.
      *
      * @param  out Where to write the content.
-     * @param  codeSpaces The code spaces to use in columns, typically {@link #getCodeSpaces()}.
+     * @param  columnHeaders The code spaces to use in columns, typically {@link #getColumnHeaders()}.
      * @throws IOException If an error occurred while writing the content.
      */
-    private void writeTable(final String[] codeSpaces) throws IOException {
+    private void writeTable(final Map<String,String> columnHeaders) throws IOException {
         final BufferedWriter out = getOutput();
         writeIndentation();
         out.write("<table cellspacing=\"0\" cellpadding=\"0\">");
@@ -307,6 +295,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
         indentation += INDENT;
         String previous = null;
         boolean writeHeader = true;
+        final String[] codeSpaces = columnHeaders.keySet().toArray(new String[columnHeaders.size()]);
         final String columnSpan = String.valueOf(codeSpaces.length);
         for (final Map.Entry<IdentifiedObject,ParameterDescriptorGroup> entry : operations.entrySet()) {
             final IdentifiedObject op = entry.getKey();
@@ -331,9 +320,9 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
             writeIndentation();
             if (writeHeader) {
                 out.write("<tr class=\"sectionTail\">");
-                for (final String cs : codeSpaces) {
+                for (final String cs : columnHeaders.values()) {
                     out.write("<th>");
-                    out.write(getColumnHeader(cs));
+                    out.write(cs);
                     out.write("</th>");
                 }
                 out.write("</tr>");

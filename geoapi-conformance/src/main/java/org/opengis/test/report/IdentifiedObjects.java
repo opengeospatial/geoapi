@@ -133,23 +133,17 @@ final class IdentifiedObjects {
     }
 
     /**
-     * Returns the code space of the given object {@linkplain IdentifiedObject#getName() name}
+     * Collects the code space of the given object {@linkplain IdentifiedObject#getName() name}
      * and the scope of all its {@linkplain IdentifiedObject#getAlias() aliases}.
      * <p>
-     * The values in the returned map are {@link Boolean#TRUE} for the code space of the primary name
+     * The values in the given map will be {@link Boolean#TRUE} for the code space of the primary name
      * (at most one entry) and {@link Boolean#FALSE} for the scope of aliases (all other entries).
      *
      * @param  info The object to get the code space and scopes from, or {@code null}.
-     * @param  addTo An optional map where to add the code space and scopes, or {@code null}.
-     * @return The map given in argument, or a new map if the {@code addTo} argument was null.
-     *         This map will contain every code space and scopes found in the given object.
+     * @param  addTo A map where to add the code space and scopes.
      */
-    public static Map<String,Boolean> getCodeSpaces(final IdentifiedObject info, Map<String,Boolean> addTo) {
-        if (addTo == null) {
-            addTo = new LinkedHashMap<String,Boolean>(8);
-        }
+    public static void getCodeSpaces(final IdentifiedObject info, Map<String, ? super Boolean> addTo) {
         getNameComponents(info, null, true, addTo);
-        return addTo;
     }
 
     /**
@@ -157,7 +151,7 @@ final class IdentifiedObjects {
      * and {@link #getCodeSpaces(IdentifiedObject, String)}.
      */
     private static void getNameComponents(final IdentifiedObject info, final String codeSpace,
-            final boolean wantCodeSpaces, final Map<String,Boolean> names)
+            final boolean wantCodeSpaces, final Map<String, ? super Boolean> names)
     {
         final ReferenceIdentifier identifier = info.getName();
         if (identifier != null) { // Mandatory attribute, but be lenient.
