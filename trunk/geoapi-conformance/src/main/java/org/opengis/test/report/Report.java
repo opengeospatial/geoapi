@@ -103,15 +103,6 @@ public abstract class Report {
     }
 
     /**
-     * The locale to use for producing messages in the reports. This is fixed to
-     * {@linkplain Locale#ENGLISH English} for now, but may become an editable
-     * (non-final) field in a future version.
-     *
-     * @see InternationalString#toString(Locale)
-     */
-    final Locale locale = Locale.ENGLISH;
-
-    /**
      * The values to substitute to keywords in the HTML templates. The class javadoc lists
      * the values expected by all reports. Subclasses can freely add or edit entries in this
      * map before to invoke the {@link #write(File)} method.
@@ -156,6 +147,19 @@ public abstract class Report {
     }
 
     /**
+     * Returns the locale to use for producing messages in the reports. This is fixed to
+     * {@linkplain Locale#ENGLISH English} for now, but may become modifiable in a future
+     * version.
+     *
+     * @return The locale to use for formatting messages.
+     *
+     * @see InternationalString#toString(Locale)
+     */
+    public Locale getLocale() {
+        return Locale.ENGLISH;
+    }
+
+    /**
      * Returns a string value for the given text. If the given text is an instance
      * of {@link InternationalString}, then this method fetches the string for the
      * {@linkplain #locale current locale}.
@@ -165,7 +169,7 @@ public abstract class Report {
             return null;
         }
         if (text instanceof InternationalString) {
-            return ((InternationalString) text).toString(locale);
+            return ((InternationalString) text).toString(getLocale());
         }
         return text.toString();
     }
