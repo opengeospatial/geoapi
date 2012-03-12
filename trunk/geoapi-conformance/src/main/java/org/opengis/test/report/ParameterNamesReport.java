@@ -55,16 +55,16 @@ import org.opengis.referencing.operation.MathTransformFactory;
 /**
  * Generates a list of operations (typically map projections) and their parameters.
  * The operations and their parameters are declared in the {@link #operations} map
- * as ({@link IdentifiedObject}, {@link ParameterDescriptorGroup}) pairs. In the particular
- * case of {@linkplain OperationMethod coordinate operation methods}, the pairs are simply
- * ({@link OperationMethod method}, <code>method.{@linkplain OperationMethod#getParameters()
- * getParameters()}</code>).
+ * as ({@link IdentifiedObject}, {@link ParameterDescriptorGroup}) pairs. Those pairs
+ * can be {@linkplain #add(IdentifiedObject, ParameterDescriptorGroup) added directly}
+ * in the map, or a convenience method can be used for adding all operation methods
+ * available from a given {@link MathTransformFactory}.
  *
- * <p>To use this class:</p>
+ * <p>How to use this class:</p>
  * <ul>
  *   <li>Create a new instance with a properties map containing the value documented in
  *       the {@link #properties} field.</li>
- *   <li>Invoke the {@link #add(IdentifiedObject, ParameterDescriptorGroup) add} method
+ *   <li>Invoke one of the {@link #add(IdentifiedObject, ParameterDescriptorGroup) add} method
  *       for each operation or factory to include in the HTML page.</li>
  *   <li>Invoke {@link #write(File)}.</li>
  * </ul>
@@ -121,9 +121,14 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
 
     /**
      * Convenience method adding all {@linkplain MathTransformFactory#getAvailableMethods(Class)
-     * available methods} from the given factory. The operation methods will be added to the
-     * {@linkplain #operations} map in the order defined by the {@link #compare(IdentifiedObject,
-     * IdentifiedObject)} method.
+     * available methods} from the given factory. Each {@linkplain OperationMethod coordinate
+     * operation method} is added to the {@linkplain #operations} map as below:
+     *
+     * <blockquote><code>{@linkplain #add(IdentifiedObject, ParameterDescriptorGroup)
+     * add}(method, method.{@linkplain OperationMethod#getParameters() getParameters()});</code></blockquote>
+     *
+     * The operation methods are added in the order defined by the
+     * {@link #compare(IdentifiedObject, IdentifiedObject)} method.
      *
      * @param  factory The factory for which to add available methods.
      * @throws IllegalArgumentException If two coordinate operation methods are equal according
@@ -134,7 +139,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
     public void add(final MathTransformFactory factory) throws IllegalArgumentException {
         defaultProperties.setProperty("TITLE", "Supported Coordinate Operations");
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
-        setVendor(factory.getVendor());
+        setVendor("PRODUCT", factory.getVendor());
         for (final OperationMethod operation : factory.getAvailableMethods(SingleOperation.class)) {
             add(operation, operation.getParameters());
         }
@@ -312,6 +317,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
                 out.write(category);           out.write("</a></th></tr>");
                 out.newLine();
                 writeHeader = true;
+                previous = category;
             }
             /*
              * If printing the first row, or if the above block printed a new category, print

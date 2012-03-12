@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>${TITLE}</title>
+    <style type="text/css" media="all">
+      @import url("./geoapi-reports.css");
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>${TITLE}</h1>
+      <p>This list is generated from the ${FACTORY.NAME} database version ${FACTORY.VERSION} using
+         the <a href="${PRODUCT.URL}">${PRODUCT.NAME}</a> library version ${PRODUCT.VERSION}.</p>
+
+      <table class="withbg">
+        <tr><th></th><th>Code</th><th>Name</th><th>Remarks</th></tr>
+${CONTENT}
+      </table>
+    </div>
+  </body>
+</html>
