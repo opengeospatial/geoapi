@@ -13,6 +13,9 @@ table {
   border-spacing: 0px;
   white-space: nowrap;
 }
+table.withbg {
+    background-color: aliceblue
+}
 tr.sectionHead > th {
   font-size: 14pt;
   border-top-style: solid;
@@ -39,6 +42,9 @@ tr.groupHead > td {
 tr.groupTail > td {
   padding-bottom: 18pt;
 }
+tr.HL > td {
+  background-color: lavender;
+}
 th {
   background-color: lightskyblue;
   height: 18pt;
@@ -47,4 +53,7 @@ td {
   padding-left:  6pt;
   padding-right: 6pt;
   vertical-align: top;
+}
+td.error {
+  color: red;
 }

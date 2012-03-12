@@ -63,14 +63,13 @@ import org.opengis.metadata.citation.ResponsibleParty;
  * the following property values:
  * <p>
  * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th>Meaning</th>                                                       <th>Default value</th></tr>
- *   <tr><td>{@code TITLE}</td>          <td>Title of the web page to produce.</td>                             <td>The subclass simple name</td></tr>
- *   <tr><td>{@code DESCRIPTION}</td>    <td>An optional description to add in the HTML report.</td>            <td>Empty string</td></tr>
- *   <tr><td>{@code PRODUCT.NAME}</td>   <td>The name of the product for which a report is generated.</td>      <td>(none)</td></tr>
- *   <tr><td>{@code PRODUCT.VERSION}</td><td>The version of the product for which a report is generated.</td>   <td>Today date in <var>year</var>-<var>month</var>-<var>day</var> format</td></tr>
- *   <tr><td>{@code PRODUCT.URL}</td>    <td>The URL where more information is available about the product.</td><td>(none)</td></tr>
- *   <tr><td>{@code FILENAME}</td>       <td>The output filename (for {@link Reports} only)</td>                <td>(implementation specific)</td>
- *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>Base URL of GeoAPI javadoc.</td>                                   <td>http://www.geoapi.org/snapshot/javadoc</td>
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>          <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>    <td>An optional description to write after the first line.</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>   <td>The name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td><td>The version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>    <td>The URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>Base URL of GeoAPI javadoc.</td></tr>
  * </table>
  * <p>
  * Subclasses can freely add, edit or delete entries in the {@linkplain #properties}
@@ -106,15 +105,14 @@ public abstract class Report {
      * The values to substitute to keywords in the HTML templates. The class javadoc lists
      * the values expected by all reports. Subclasses can freely add or edit entries in this
      * map before to invoke the {@link #write(File)} method.
-     *
-     * <p>This properties map may have some {@linkplain Properties#defaults default values}.
-     * Those defaults, if any, are sub-class specific.</p>
      */
     protected final Properties properties;
 
     /**
      * The properties to use as a fallback if a key was not found in the {@link #properties} map.
-     * Subclasses shall put the default values here.
+     * Subclasses defined in the {@code org.opengis.test.report} package shall put their default
+     * values here. Note that the default values are highly implementation-specific and may change
+     * in any future version. We don't document them (for now) for this reason.
      */
     final Properties defaultProperties;
 
@@ -139,6 +137,7 @@ public abstract class Report {
         defaultProperties.setProperty("TITLE", getClass().getSimpleName());
         defaultProperties.setProperty("DESCRIPTION", "");
         defaultProperties.setProperty("PRODUCT.VERSION", NOW);
+        defaultProperties.setProperty("FACTORY.VERSION", NOW);
         defaultProperties.setProperty("JAVADOC.GEOAPI", "http://www.geoapi.org/snapshot/javadoc");
         this.properties = new Properties(defaultProperties);
         if (properties != null) {
@@ -180,11 +179,13 @@ public abstract class Report {
      * argument is typically the value obtained by a call to the
      * {@linkplain org.opengis.util.Factory#getVendor()} method.
      *
+     * @param prefix The property key prefix (usually {@code "PRODUCT"},
+     *               but may also be {@code "FACTORY"}).
      * @param vendor The vendor, or {@code null}.
      *
      * @see org.opengis.util.Factory#getVendor()
      */
-    final void setVendor(final Citation vendor) {
+    final void setVendor(final String prefix, final Citation vendor) {
         if (vendor != null) {
             String title = toString(vendor.getTitle());
             /*
@@ -233,9 +234,9 @@ public abstract class Report {
             * If we found at least one property, set all of them together
             * (including null values) for consistency.
             */
-            if (title   != null) defaultProperties.setProperty("PRODUCT.NAME",    title);
-            if (version != null) defaultProperties.setProperty("PRODUCT.VERSION", version);
-            if (linkage != null) defaultProperties.setProperty("PRODUCT.URL",     linkage);
+            if (title   != null) defaultProperties.setProperty(prefix + ".NAME",    title);
+            if (version != null) defaultProperties.setProperty(prefix + ".VERSION", version);
+            if (linkage != null) defaultProperties.setProperty(prefix + ".URL",     linkage);
         }
     }
 
