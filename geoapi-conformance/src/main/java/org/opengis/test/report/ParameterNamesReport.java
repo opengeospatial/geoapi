@@ -60,10 +60,27 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * in the map, or a convenience method can be used for adding all operation methods
  * available from a given {@link MathTransformFactory}.
  *
- * <p>How to use this class:</p>
+ * <p>This class recognizes the following property values:</p>
+ *
+ * <table border="1" cellspacing="0">
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th>Remarks</th>   <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>          <td>&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>    <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>   <td>&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Operation Methods</cite>").</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>   <td>&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td><td>&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>    <td>&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>&nbsp;</td>    <td>Base URL of GeoAPI javadoc.</td></tr>
+ *   <tr><td>{@code FILENAME}</td>       <td>&nbsp;</td>    <td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
+ * </table>
+ *
+ * <p><b>How to use this class:</b></p>
  * <ul>
- *   <li>Create a new instance with a properties map containing the value documented in
- *       the {@link #properties} field.</li>
+ *   <li>Create a {@link Properties} map with the values documented in the above table. Default
+ *       values exist for many keys, but may depend on the environment. It is safer to specify
+ *       values explicitly when they are known.</li>
+ *   <li>Create a new {@code ParameterNamesReport} with the above properties map
+ *       given to the constructor.</li>
  *   <li>Invoke one of the {@link #add(IdentifiedObject, ParameterDescriptorGroup) add} method
  *       for each operation or factory to include in the HTML page.</li>
  *   <li>Invoke {@link #write(File)}.</li>
@@ -87,14 +104,20 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
     protected final SortedMap<IdentifiedObject, ParameterDescriptorGroup> operations;
 
     /**
+     * The number of indentation spaces.
+     */
+    private int indentation;
+
+    /**
      * Creates a new report generator using the given property values.
-     * See the {@link Report} javadoc for a list of expected values.
+     * See the class javadoc for a list of expected values.
      *
      * @param properties The property values, or {@code null} for the default values.
      */
     public ParameterNamesReport(final Properties properties) {
         super(properties);
         operations = new TreeMap<IdentifiedObject, ParameterDescriptorGroup>(this);
+        defaultProperties.setProperty("TITLE", "Supported ${OBJECTS.KIND}");
     }
 
     /**
@@ -137,7 +160,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      *         this exception.
      */
     public void add(final MathTransformFactory factory) throws IllegalArgumentException {
-        defaultProperties.setProperty("TITLE", "Supported Coordinate Operations");
+        defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Operations");
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
         setVendor("PRODUCT", factory.getVendor());
         for (final OperationMethod operation : factory.getAvailableMethods(SingleOperation.class)) {
@@ -227,7 +250,8 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * @return The given {@code destination} file.
      */
     @Override
-    public File write(final File destination) throws IOException {
+    public File write(File destination) throws IOException {
+        destination = toFile(destination);
         filter("OperationParameters.html", destination);
         return destination;
     }
@@ -238,13 +262,13 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * class, then this method will dispatch to the appropriate {@code writeFoo} method.
      */
     @Override
-    final void writeValue(final String key) throws IOException {
+    final void writeContent(final BufferedWriter out, final String key) throws IOException {
         if ("CONTENT".equals(key)) {
             indentation = 6;
-            writeCategories();
-            writeTable(getColumnHeaders());
+            writeCategories(out);
+            writeTable(out, getColumnHeaders());
         } else {
-            super.writeValue(key);
+            super.writeContent(out, key);
         }
     }
 
@@ -256,19 +280,18 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * @param  out Where to write the content.
      * @throws IOException If an error occurred while writing the content.
      */
-    private void writeCategories() throws IOException {
-        final BufferedWriter out = getOutput();
+    private void writeCategories(final BufferedWriter out) throws IOException {
         String previous = null;
         for (final IdentifiedObject op : operations.keySet()) {
             final String category = getCategory(op);
             if (category != null && !category.equals(previous)) {
                 if (previous == null) {
-                    writeIndentation(); out.write("<p>Content:</p>");
-                    writeIndentation(); out.write("<ul>");
+                    writeIndentation(out, indentation); out.write("<p>Content:</p>");
+                    writeIndentation(out, indentation); out.write("<ul>");
                     out.newLine();
                     indentation += INDENT;
                 }
-                writeIndentation();
+                writeIndentation(out, indentation);
                 out.write("<li><a href=\"#");
                 out.write(toAnchor(category));
                 out.write("\">");
@@ -279,7 +302,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
         }
         if (previous != null) {
             indentation -= INDENT;
-            writeIndentation();
+            writeIndentation(out, indentation);
             out.write("</ul>");
             out.newLine();
         }
@@ -292,9 +315,8 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * @param  columnHeaders The code spaces to use in columns, typically {@link #getColumnHeaders()}.
      * @throws IOException If an error occurred while writing the content.
      */
-    private void writeTable(final Map<String,String> columnHeaders) throws IOException {
-        final BufferedWriter out = getOutput();
-        writeIndentation();
+    private void writeTable(final BufferedWriter out, final Map<String,String> columnHeaders) throws IOException {
+        writeIndentation(out, indentation);
         out.write("<table cellspacing=\"0\" cellpadding=\"0\">");
         out.newLine();
         indentation += INDENT;
@@ -310,7 +332,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
              * in bold characters. The column headers will be printed below.
              */
             if (category != null && !category.equals(previous)) {
-                writeIndentation();
+                writeIndentation(out, indentation);
                 out.write("<tr class=\"sectionHead\"><th colspan=\"");
                 out.write(columnSpan);         out.write("\"><a name=\"");
                 out.write(toAnchor(category)); out.write("\">");
@@ -323,8 +345,8 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
              * If printing the first row, or if the above block printed a new category, print
              * the column headers. Otherwise we will just insert a horizontal separator.
              */
-            writeIndentation();
             if (writeHeader) {
+                writeIndentation(out, indentation);
                 out.write("<tr class=\"sectionTail\">");
                 for (final String cs : columnHeaders.values()) {
                     out.write("<th>");
@@ -339,14 +361,14 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
              */
             final List<GeneralParameterDescriptor> parameters = entry.getValue().descriptors();
             final int size = parameters.size();
-            writeRow(entry.getKey(), codeSpaces, true, false, false);
+            writeRow(out, entry.getKey(), codeSpaces, true, false, false);
             for (int i=0; i<size; i++) {
-                writeRow(parameters.get(i), codeSpaces, false, (i == 0), (i == size-1));
+                writeRow(out, parameters.get(i), codeSpaces, false, (i == 0), (i == size-1));
             }
             writeHeader = false;
         }
         indentation -= INDENT;
-        writeIndentation();
+        writeIndentation(out, indentation);
         out.write("</table>");
     }
 
@@ -361,20 +383,20 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * @param  isTail {@code true} if formatting the last parameter value in a group.
      * @throws IOException If an error occurred while writing the content.
      */
-    private void writeRow(final IdentifiedObject object, final String[] codeSpaces,
+    private void writeRow(final BufferedWriter out, final IdentifiedObject object, final String[] codeSpaces,
             final boolean isGroup, final boolean isHead, final boolean isTail) throws IOException
     {
-        final BufferedWriter out = getOutput();
         @SuppressWarnings({"unchecked","rawtypes"})
         final Map<String,Boolean>[] nameSets = new Map[codeSpaces.length];
         for (int i=0; i<codeSpaces.length; i++) {
             nameSets[i] = IdentifiedObjects.getNameAndAliases(object, codeSpaces[i]);
         }
-        writeIndentation();
+        writeIndentation(out, indentation);
         out.write("<tr");
-        writeClasses(isGroup  ? "groupName" : null,
-                     isHead   ? "groupHead" : null,
-                     isTail   ? "groupTail" : null);
+        writeClassAttribute(out,
+                isGroup  ? "groupName" : null,
+                isHead   ? "groupHead" : null,
+                isTail   ? "groupTail" : null);
         out.write('>');
         for (int i=0; i<nameSets.length;) {
             final Map<String,Boolean> names = nameSets[i];

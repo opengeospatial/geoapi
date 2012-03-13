@@ -51,6 +51,11 @@ import org.opengis.referencing.ReferenceIdentifier;
  */
 final class IdentifiedObjects {
     /**
+     * The default separator between code spaces (or scopes) and codes.
+     */
+    static final String SEPARATOR = ":";
+
+    /**
      * Do not allow instantiation of this class.
      */
     private IdentifiedObjects() {
@@ -93,15 +98,57 @@ final class IdentifiedObjects {
      * @return -1 if {@code s1} should appears before {@code s2}, +1 for the converse,
      *         or 0 if the two strings are equal.
      */
-    private static int compare(final String s1, final String s2) {
+    private static int compare(String s1, String s2) {
         if (s1 == s2)   return  0;
         if (s1 == null) return +1;
         if (s2 == null) return -1;
+        s1 = s1.trim();
+        s2 = s2.trim();
+
+        // Empty strings before non-empty ones.
+        if (s1.isEmpty()) return s2.isEmpty() ? 0 : -1;
+        if (s2.isEmpty()) return +1;
+
+        // Any numbers before any alphabetic strings.
+        if (isNumeric(s1)) return isNumeric(s2) ? Integer.parseInt(s1) - Integer.parseInt(s2) : -1;
+        if (isNumeric(s2)) return +1;
+
         int c = String.CASE_INSENSITIVE_ORDER.compare(s1, s2);
         if (c == 0) {
             c = s1.compareTo(s2);
         }
         return c;
+    }
+
+    /**
+     * Compares the elements in the given arrays for order. Elements are compared as numerical
+     * values if possible, otherwise as strings using a case-insensitive comparator.
+     */
+    static int compare(final String[] s1, final String[] s2) {
+        final int length = Math.min(s1.length, s2.length);
+        for (int i=0; i<length; i++) {
+            final int c = compare(s1[i], s2[i]);
+            if (c != 0) {
+                return c;
+            }
+        }
+        return s1.length - s2.length;
+    }
+
+    /**
+     * Returns {@code true} if the given string seems to be a number.
+     * The string must be non-empty (it must be verified by the caller).
+     */
+    private static boolean isNumeric(final String s) {
+        for (int i=s.length(); --i>=0;) {
+            final char c = s.charAt(i);
+            if (c < '0' || c > '9') {
+                if (i != 0 || (c != '+' && c != '-')) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
