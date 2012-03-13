@@ -34,12 +34,11 @@ package org.opengis.test.report;
 import java.io.File;
 import java.io.IOException;
 import java.io.BufferedWriter;
-import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
-import java.util.Comparator;
 import java.util.Properties;
 
 import org.opengis.util.GenericName;
@@ -54,11 +53,12 @@ import org.opengis.referencing.operation.MathTransformFactory;
 
 /**
  * Generates a list of operations (typically map projections) and their parameters.
- * The operations and their parameters are declared in the {@link #operations} map
- * as ({@link IdentifiedObject}, {@link ParameterDescriptorGroup}) pairs. Those pairs
- * can be {@linkplain #add(IdentifiedObject, ParameterDescriptorGroup) added directly}
- * in the map, or a convenience method can be used for adding all operation methods
- * available from a given {@link MathTransformFactory}.
+ * The operations are described by instances of an {@link IdentifiedObject} subtype,
+ * for example coordinates {@link OperationMethod}. Each operation can be associated
+ * to a {@link ParameterDescriptorGroup} instance. Those elements can be
+ * {@linkplain #add(IdentifiedObject, ParameterDescriptorGroup) added directly}
+ * in the {@linkplain #groups} list. Alternatively, a convenience method can be used
+ * for adding all operation methods available from a given {@link MathTransformFactory}.
  *
  * <p>This class recognizes the following property values:</p>
  *
@@ -79,7 +79,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  *   <li>Create a {@link Properties} map with the values documented in the above table. Default
  *       values exist for many keys, but may depend on the environment. It is safer to specify
  *       values explicitly when they are known.</li>
- *   <li>Create a new {@code ParameterNamesReport} with the above properties map
+ *   <li>Create a new {@code OperationParametersReport} with the above properties map
  *       given to the constructor.</li>
  *   <li>Invoke one of the {@link #add(IdentifiedObject, ParameterDescriptorGroup) add} method
  *       for each operation or factory to include in the HTML page.</li>
@@ -91,17 +91,91 @@ import org.opengis.referencing.operation.MathTransformFactory;
  *
  * @since 3.1
  */
-public class ParameterNamesReport extends Report implements Comparator<IdentifiedObject> {
+public class OperationParametersReport extends Report {
     /**
-     * The operations to publish in the HTML report (the {@linkplain java.util.Map.Entry#getKey() keys})
-     * together with their parameter descriptors (the {@linkplain java.util.Map.Entry#getValue() values}).
-     * This map is sorted according the criterion implemented by the
-     * {@link #compare(IdentifiedObject, IdentifiedObject)} method.
+     * A single group in the table produced by {@link OperationParametersReport}.
+     * Instances of this class are created by the
+     * {@link OperationParametersReport#add(IdentifiedObject, ParameterDescriptorGroup)} method.
+     * Subclasses of {@code OperationParametersReport} can override that method in order to modify
+     * the content of a group.
+     *
+     * @author Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     *
+     * @since 3.1
+     */
+    protected static class Group implements Comparable<Group> {
+        /**
+         * An optional user category for the {@linkplain #operations}, or {@code null} if none.
+         * If non-null, this category will be formatted as a single row in the HTML table before
+         * all subsequent objects of the same category.
+         *
+         * <p>The default value is {@code null} in every cases. Subclasses can modify this value
+         * in order to classify operations by category. For example subclasses may use this value
+         * for classifying {@link OperationMethod} instances according the kind of map projection
+         * (<cite>planar</cite>, <cite>cylindrical</cite>, <cite>conic</cite>).</p>
+         */
+        public String category;
+
+        /**
+         * The object for which to describe the {@linkplain #parameters}.
+         */
+        public final IdentifiedObject operation;
+
+        /**
+         * The parameters of the identified object. This list is initialized to a copy of
+         * the {@linkplain ParameterDescriptorGroup#descriptors() parameter descriptors}
+         * given at construction time. Consequently, subclasses can freely modify the
+         * content of this list.
+         */
+        public final List<GeneralParameterDescriptor> parameters;
+
+        /**
+         * Creates a group to be shown on the HTML page.
+         *
+         * @param  operation  The operation to show on the HTML page.
+         * @param  parameters The operation parameters.
+         */
+        public Group(final IdentifiedObject operation, final ParameterDescriptorGroup parameters) {
+            this.operation  = operation;
+            this.parameters = new ArrayList<GeneralParameterDescriptor>(parameters.descriptors());
+        }
+
+        /**
+         * Compares this group with the given object for order. This method is used for sorting
+         * the operations in the order to be show on the HTML output page.
+         *
+         * <p>The default implementation compare that {@linkplain #category} first - this is
+         * needed in order to ensure that operations of the same category are grouped. Then,
+         * this method compares {@linkplain IdentifiedObject#getName() object names} components
+         * in the following order: {@linkplain ReferenceIdentifier#getCode() code},
+         * {@linkplain ReferenceIdentifier#getCodeSpace() code space} and
+         * {@linkplain ReferenceIdentifier#getVersion() version}.</p>
+         *
+         * <p>Subclasses can override this method if they want a different ordering
+         * on the HTML page.</p>
+         *
+         * @param o The other group to compare with this group.
+         * @return -1 if {@code this} should appears before {@code o}, -1 for the converse,
+         *         or 0 if this method can not determine an ordering for the given object.
+         */
+        @Override
+        public int compareTo(final Group o) {
+            int c = IdentifiedObjects.compare(category, o.category);
+            if (c == 0) {
+                c = IdentifiedObjects.compare(operation.getName(), o.operation.getName());
+            }
+            return c;
+        }
+    }
+
+    /**
+     * The operations to publish in the HTML report.
      *
      * @see #add(IdentifiedObject, ParameterDescriptorGroup)
      * @see #add(MathTransformFactory)
      */
-    protected final SortedMap<IdentifiedObject, ParameterDescriptorGroup> operations;
+    protected final List<Group> groups;
 
     /**
      * The number of indentation spaces.
@@ -114,52 +188,33 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      *
      * @param properties The property values, or {@code null} for the default values.
      */
-    public ParameterNamesReport(final Properties properties) {
+    public OperationParametersReport(final Properties properties) {
         super(properties);
-        operations = new TreeMap<IdentifiedObject, ParameterDescriptorGroup>(this);
+        groups = new ArrayList<Group>();
         defaultProperties.setProperty("TITLE", "Supported ${OBJECTS.KIND}");
     }
 
     /**
-     * Adds an operation to be shown on the HTML page. The given arguments will
-     * be added to the {@linkplain #operations} map in the order defined by the
-     * {@link #compare(IdentifiedObject, IdentifiedObject)} method.
+     * Adds an operation to be shown on the HTML page.
      *
      * @param  operation  The operation to show on the HTML page.
      * @param  parameters The operation parameters.
-     * @throws IllegalArgumentException If the {@linkplain #operations operations map}
-     *         already contains an entry which is equals to the given operation according
-     *         to the {@link #compare(IdentifiedObject, IdentifiedObject) compare} method.
-     *         The state of this {@code ParameterNamesReport} object is undetermined after
-     *         this exception.
      */
-    public void add(final IdentifiedObject operation, final ParameterDescriptorGroup parameters)
-            throws IllegalArgumentException
-    {
-        if (operations.put(operation, parameters) != null) {
-            throw new IllegalArgumentException("Operation \"" +
-                    IdentifiedObjects.toString(operation.getName()) + "\" is declared twice.");
-        }
+    public void add(final IdentifiedObject operation, final ParameterDescriptorGroup parameters) {
+        groups.add(new Group(operation, parameters));
     }
 
     /**
      * Convenience method adding all {@linkplain MathTransformFactory#getAvailableMethods(Class)
      * available methods} from the given factory. Each {@linkplain OperationMethod coordinate
-     * operation method} is added to the {@linkplain #operations} map as below:
+     * operation method} is added to the {@linkplain #groups} list as below:
      *
      * <blockquote><code>{@linkplain #add(IdentifiedObject, ParameterDescriptorGroup)
      * add}(method, method.{@linkplain OperationMethod#getParameters() getParameters()});</code></blockquote>
      *
-     * The operation methods are added in the order defined by the
-     * {@link #compare(IdentifiedObject, IdentifiedObject)} method.
-     *
      * @param  factory The factory for which to add available methods.
-     * @throws IllegalArgumentException If two coordinate operation methods are equal according
-     *         to the {@link #compare(IdentifiedObject, IdentifiedObject) compare} method.
-     *         The state of this {@code ParameterNamesReport} object is undetermined after
-     *         this exception.
      */
-    public void add(final MathTransformFactory factory) throws IllegalArgumentException {
+    public void add(final MathTransformFactory factory) {
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Operations");
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
         setVendor("PRODUCT", factory.getVendor());
@@ -176,7 +231,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      * {@linkplain java.util.Map.Entry#getValue() value} is the column header. The columns
      * will be shown in iteration order.
      *
-     * <p>The default implementation gets the authorities from the {@linkplain #operations} keys.
+     * <p>The default implementation gets the authorities from the {@link Group#operation}.
      * Subclasses can override this method if they want to use a different set of authorities.</p>
      *
      * @return The name of all code spaces or scopes. Some typical values are {@code "EPSG"},
@@ -185,33 +240,14 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
     @SuppressWarnings("unchecked")
     public Map<String,String> getColumnHeaders() {
         final Map<String,Object> codeSpaces = new LinkedHashMap<String,Object>(8);
-        for (final IdentifiedObject op : operations.keySet()) {
-            IdentifiedObjects.getCodeSpaces(op, codeSpaces);
+        for (final Group group : groups) {
+            IdentifiedObjects.getCodeSpaces(group.operation, codeSpaces);
         }
         for (final Map.Entry<String,Object> entry : codeSpaces.entrySet()) {
             entry.setValue(entry.getKey());
         }
         // We replaced all Boolean values by String values, so we can cheat here.
         return (Map) codeSpaces;
-    }
-
-    /**
-     * Returns a user category for the given object, or {@code null} if none. If non-null,
-     * this category will be formatted as a single row in the HTML table before all subsequent
-     * objects of the same category.
-     *
-     * <p>The default implementation returns {@code null} in every cases. Subclasses can override
-     * this method in order to classify objects by categories. For example a subclass may use this
-     * method for classifying {@link OperationMethod} instances according their kind of map projection
-     * (cylindrical, conical, planar). Note that subclasses that override this method shall also
-     * override the {@link #compare(IdentifiedObject, IdentifiedObject)} method in such a way that
-     * objects of the same category are grouped together.</p>
-     *
-     * @param  object The object for which to get the category.
-     * @return The category of the given object, or {@code null} if none.
-     */
-    public String getCategory(final IdentifiedObject object) {
-        return null;
     }
 
     /**
@@ -222,35 +258,14 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
     }
 
     /**
-     * Compares the given operation methods for display order. This method is used for
-     * sorting the operation methods in the order to be show on the HTML output page.
-     * <p>
-     * The default implementation performs a comparison of
-     * {@linkplain IdentifiedObject#getName() object names} components in
-     * the following order: {@linkplain ReferenceIdentifier#getCode() code},
-     * {@linkplain ReferenceIdentifier#getCodeSpace() code space} and
-     * {@linkplain ReferenceIdentifier#getVersion() version}.
-     * Subclasses can override this method if they want a different ordering
-     * on the HTML page.
-     *
-     * @param o1 The first operation method to compare.
-     * @param o2 The second operation method to compare.
-     * @return -1 if {@code o1} should appears before {@code o2}, -1 for the converse,
-     *         or 0 if this method can not determine an ordering for the given object.
-     */
-    @Override
-    public int compare(final IdentifiedObject o1, final IdentifiedObject o2) {
-        return IdentifiedObjects.compare(o1.getName(), o2.getName());
-    }
-
-    /**
-     * Formats the current content of the {@linkplain #operations} map as a HTML page in the given file.
+     * Formats the current content of the {@linkplain #groups} list as a HTML page in the given file.
      *
      * @param  destination The file to generate.
      * @return The given {@code destination} file.
      */
     @Override
     public File write(File destination) throws IOException {
+        Collections.sort(groups);
         destination = toFile(destination);
         filter("OperationParameters.html", destination);
         return destination;
@@ -258,7 +273,7 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
 
     /**
      * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
-     * If the given key is one of those that are managed by this {@code ParameterNamesReport}
+     * If the given key is one of those that are managed by this {@code OperationParametersReport}
      * class, then this method will dispatch to the appropriate {@code writeFoo} method.
      */
     @Override
@@ -282,8 +297,8 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
      */
     private void writeCategories(final BufferedWriter out) throws IOException {
         String previous = null;
-        for (final IdentifiedObject op : operations.keySet()) {
-            final String category = getCategory(op);
+        for (final Group group : groups) {
+            final String category = group.category;
             if (category != null && !category.equals(previous)) {
                 if (previous == null) {
                     writeIndentation(out, indentation); out.write("<p>Content:</p>");
@@ -324,9 +339,8 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
         boolean writeHeader = true;
         final String[] codeSpaces = columnHeaders.keySet().toArray(new String[columnHeaders.size()]);
         final String columnSpan = String.valueOf(codeSpaces.length);
-        for (final Map.Entry<IdentifiedObject,ParameterDescriptorGroup> entry : operations.entrySet()) {
-            final IdentifiedObject op = entry.getKey();
-            final String category = getCategory(op);
+        for (final Group group : groups) {
+            final String category = group.category;
             /*
              * If begining a new section in the table, print the category
              * in bold characters. The column headers will be printed below.
@@ -359,9 +373,9 @@ public class ParameterNamesReport extends Report implements Comparator<Identifie
             /*
              * Print the operation name, then the name of all parameters.
              */
-            final List<GeneralParameterDescriptor> parameters = entry.getValue().descriptors();
+            final List<GeneralParameterDescriptor> parameters = group.parameters;
             final int size = parameters.size();
-            writeRow(out, entry.getKey(), codeSpaces, true, false, false);
+            writeRow(out, group.operation, codeSpaces, true, false, false);
             for (int i=0; i<size; i++) {
                 writeRow(out, parameters.get(i), codeSpaces, false, (i == 0), (i == size-1));
             }
