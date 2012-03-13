@@ -35,11 +35,15 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Properties;
 import java.io.File;
 import java.io.IOException;
+import java.io.BufferedWriter;
 
 import org.opengis.util.Factory;
+import org.opengis.util.FactoryException;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.operation.MathTransformFactory;
 
 
@@ -72,6 +76,11 @@ public class Reports extends Report {
     private final Map<Class<? extends Report>,Report> instances;
 
     /**
+     * The table of contents, as (title, URL) pairs.
+     */
+    private final Map<String,File> contents;
+
+    /**
      * Creates a new report generator using the given property values.
      * See the {@link Report} Javadoc for a list of expected values.
      *
@@ -79,8 +88,9 @@ public class Reports extends Report {
      */
     public Reports(final Properties properties) {
         super(properties);
-        reports = new ArrayList<Report>();
+        reports   = new ArrayList<Report>();
         instances = new HashMap<Class<? extends Report>,Report>();
+        contents  = new LinkedHashMap<String,File>();
     }
 
     /**
@@ -141,16 +151,30 @@ public class Reports extends Report {
      * the following kind of factories:
      * <p>
      * <ul>
+     *   <li>{@link CRSAuthorityFactory},  given to {@link AuthorityCodesReport}</li>
      *   <li>{@link MathTransformFactory}, given to {@link ParameterNamesReport}</li>
      * </ul>
      *
      * @param  factory The factory for which to generate a report.
+     * @param  type The factory type, usually {@code factory.getClass()}.
      * @return {@code true} if this method will generate a report for the given factory,
      *         or {@code false} if the factory has been ignored.
+     * @throws FactoryException If an error occurred while querying the factory.
      */
-    public boolean add(final Factory factory) {
+    public boolean add(final Factory factory, final Class<? extends Factory> type) throws FactoryException {
+        if (!type.isInstance(factory)) {
+            throw new ClassCastException("Factory of class " + factory.getClass().getCanonicalName() +
+                    " is not a kind of " + type.getSimpleName());
+        }
         boolean modified = false;
-        if (factory instanceof MathTransformFactory) {
+        if (CRSAuthorityFactory.class.isAssignableFrom(type)) {
+            final AuthorityCodesReport report = getReport(AuthorityCodesReport.class);
+            if (report != null) {
+                report.add((CRSAuthorityFactory) factory);
+                modified = true;
+            }
+        }
+        if (MathTransformFactory.class.isAssignableFrom(type)) {
             final ParameterNamesReport report = getReport(ParameterNamesReport.class);
             if (report != null) {
                 report.add((MathTransformFactory) factory);
@@ -161,21 +185,37 @@ public class Reports extends Report {
     }
 
     /**
-     * Adds every kind of report applicable to every factory of the given class found on
+     * Adds every kinds of report applicable to every factories of the given class found on
      * the classpath. This method scans the classpath for factories in the way documented
      * in the {@link org.opengis.test.TestCase#factories(Class[])} method. For each instance
-     * found, {@link #add(Factory)} is invoked.
+     * found, {@link #add(Factory, Class)} is invoked.
      *
-     * @param  factoryType The kind of factory to add.
+     * @param  type The kind of factories to add.
      * @return {@code true} if this method will generate at least one report for the factories
      *         of the given type, or {@code false} otherwise.
+     * @throws FactoryException If an error occurred while querying the factories.
      */
-    public boolean addAll(final Class<? extends Factory> factoryType) {
+    public boolean addAll(final Class<? extends Factory> type) throws FactoryException {
         boolean modified = false;
-        for (final Factory factory : FactoryProvider.forType(factoryType)) {
-            modified |= add(factory);
+        for (final Factory factory : FactoryProvider.forType(type)) {
+            modified |= add(factory, type);
         }
         return modified;
+    }
+
+    /**
+     * Adds every kinds of report applicable to every factories of known class found on
+     * the classpath. This method scans the classpath for factories in the way documented
+     * in the {@link org.opengis.test.TestCase#factories(Class[])} method. For each instance
+     * found, {@link #add(Factory, Class)} is invoked.
+     *
+     * @return {@code true} if this method will generate at least one report,
+     *         or {@code false} otherwise.
+     * @throws FactoryException If an error occurred while querying the factories.
+     */
+    public boolean addAll() throws FactoryException {
+        return addAll(CRSAuthorityFactory.class) |
+               addAll(MathTransformFactory.class);
     }
 
     /**
@@ -190,18 +230,61 @@ public class Reports extends Report {
     @Override
     public File write(final File directory) throws IOException {
         File main = null;
+        boolean needsTOC = false;
         for (final Report report : reports) {
-            File file = new File(directory,
-                    report.properties.getProperty("FILENAME", report.getClass().getSimpleName()));
+            File file = report.toFile(directory);
             file = report.write(file);
+            final String title = report.getProperty("TITLE");
+            if (contents.put(title, relativize(directory, file)) != null) {
+                throw new IOException("Duplicated title: " + title);
+            }
             if (file != null) {
                 if (main == null) {
                     main = file;
-                } else {
-                    // TODO: generate an index.html page.
+                } else if (!needsTOC) {
+                    main = new File(directory, "index.html");
+                    needsTOC = true;
                 }
             }
         }
+        if (needsTOC) {
+            filter("index.html", main);
+        }
         return main;
+    }
+
+    /**
+     * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
+     * This method generates the table of content.
+     */
+    @Override
+    final void writeContent(final BufferedWriter out, final String key) throws IOException {
+        if (!"CONTENT".equals(key)) {
+            super.writeContent(out, key);
+            return;
+        }
+        for (final Map.Entry<String,File> entry : contents.entrySet()) {
+            writeIndentation(out, 8);
+            out.write("<li><a href=\"");
+            out.write(entry.getValue().getPath().replace(File.separatorChar, '/'));
+            out.write("\">");
+            out.write(entry.getKey());
+            out.write("</a></li>");
+            out.newLine();
+        }
+    }
+
+    /**
+     * Returns a file relative to the given directory.
+     */
+    private static File relativize(final File directory, File file) {
+        File relative = new File(file.getName());
+        while ((file = file.getParentFile()) != null) {
+            if (file.equals(directory)) {
+                break;
+            }
+            relative = new File(file.getName(), relative.getPath());
+        }
+        return relative;
     }
 }

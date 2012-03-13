@@ -35,6 +35,7 @@ import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Collections;
 
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.IdentifiedObject;
@@ -49,10 +50,34 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * Generates a list of object identified by authority codes for a given
  * {@linkplain AuthorityFactory authority factory}.
  *
- * <p>How to use this class:</p>
+ * <p>This class recognizes the following property values. Note that default values are
+ * automatically generated for the {@code "COUNT.*"} and {@code "PERCENT.*"} entries.</p>
+ *
+ * <table border="1" cellspacing="0">
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>          <th>Remarks</th>   <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>                  <td>&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>            <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>           <td>&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Coordinate Reference Systems</cite>").</td></tr>
+ *   <tr><td>{@code FACTORY.NAME}</td>           <td>&nbsp;</td>    <td>The name of the authority factory.</td></tr>
+ *   <tr><td>{@code FACTORY.VERSION}</td>        <td>&nbsp;</td>    <td>The version of the authority factory.</td></tr>
+ *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td>optional</td>  <td>An optional text to write after the factory version.</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>           <td>&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td>        <td>&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>            <td>&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td>         <td>&nbsp;</td>    <td>Base URL of GeoAPI javadoc.</td></tr>
+ *   <tr><td>{@code COUNT.OBJECTS}</td>          <td>generated</td> <td>Number of identified objects.</td></tr>
+ *   <tr><td>{@code PERCENT.VALIDS}</td>         <td>generated</td> <td>Percentage of objects successfully created.</td></tr>
+ *   <tr><td>{@code PERCENT.ANNOTATED}</td>      <td>generated</td> <td>Percentage of objects having an {@linkplain Row#annotation annotation}.</td></tr>
+ *   <tr><td>{@code FILENAME}</td>               <td>&nbsp;</td>    <td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
+ * </table>
+ *
+ * <p><b>How to use this class:</b></p>
  * <ul>
- *   <li>Create a new instance with a properties map containing the value documented in
- *       the {@link #properties} field.</li>
+ *   <li>Create a {@link Properties} map with the values documented in the above table. Default
+ *       values exist for many keys, but may depend on the environment. It is safer to specify
+ *       values explicitly when they are known, except the <cite>generated</cite> ones.</li>
+ *   <li>Create a new {@code AuthorityCodesReport} with the above properties map
+ *       given to the constructor.</li>
  *   <li>Invoke one of the {@link #add(CRSAuthorityFactory) add} method
  *       for the factory of identified objects to include in the HTML page.</li>
  *   <li>Invoke {@link #write(File)}.</li>
@@ -67,7 +92,7 @@ public class AuthorityCodesReport extends Report {
     /**
      * A single row in the table produced by {@link AuthorityCodesReport}. Instances of this
      * class are created by the {@link AuthorityCodesReport#createRow(AuthorityFactory, String,
-     * IdentifiedObject) AuthorityCodesReport.createRow(AuthorityFactory, String, ...)} methods.
+     * IdentifiedObject) AuthorityCodesReport.createRow(AuthorityFactory, String, …)} methods.
      * Subclasses of {@code AuthorityCodesReport} can override those methods in order to modify
      * the content of a row.
      *
@@ -76,7 +101,7 @@ public class AuthorityCodesReport extends Report {
      *
      * @since 3.1
      */
-    protected static class Row {
+    protected static class Row implements Comparable<Row> {
         /**
          * The authority code.
          */
@@ -155,23 +180,42 @@ public class AuthorityCodesReport extends Report {
             }
             return buffer.toString();
         }
+
+        /**
+         * Compares this row with the given one for order. The default implementation
+         * {@linkplain String#split(String) splits} the code spaces (or scopes) from the
+         * codes using the {@code ":"} separator, then compares each elements. This method tries
+         * to compare the elements as numeric values if possible (i.e. 4326 is less than 27561).
+         * If the codes can not be compared as numerical values, then they are compared as strings
+         * using a {@linkplain String#CASE_INSENSITIVE_ORDER case-insensitive comparator}.
+         *
+         * <p>Subclasses can override this method if they want a different rows ordering.</p>
+         */
+        @Override
+        public int compareTo(final Row o) {
+            return IdentifiedObjects.compare(code.split(IdentifiedObjects.SEPARATOR),
+                                           o.code.split(IdentifiedObjects.SEPARATOR));
+        }
     }
 
     /**
      * The list of objects identified by the codes declared by the authority factory. Elements
      * are added in this list by any of the {@link #add(CRSAuthorityFactory) add} methods.
      */
-    protected final List<Row> rows;
+    private final List<Row> rows;
 
     /**
      * Creates a new report generator using the given property values.
-     * See the {@link Report} javadoc for a list of expected values.
+     * See the class javadoc for a list of expected values.
      *
      * @param properties The property values, or {@code null} for the default values.
      */
     public AuthorityCodesReport(final Properties properties) {
         super(properties);
         rows = new ArrayList<Row>(1024);
+        defaultProperties.setProperty("TITLE", "Authority codes for ${OBJECTS.KIND}");
+        defaultProperties.setProperty("OBJECTS.KIND", "Identified Objects");
+        defaultProperties.setProperty("FACTORY.VERSION.SUFFIX", "");
     }
 
     /**
@@ -205,11 +249,11 @@ public class AuthorityCodesReport extends Report {
      *       <li>In case of failure, invoke {@link #createRow(AuthorityFactory, String, FactoryException)}.</li>
      *     </ul>
      *   </li>
-     *   <li>If the {@code createRow(AuthorityFactory, String, ...)} method returned a non-null
+     *   <li>If the {@code createRow(AuthorityFactory, String, …)} method returned a non-null
      *       instance, add the created row to the {@link #rows} list.</li>
      * </ul>
      * <p>
-     * Subclasses can override the above-cited {@code createRow(AuthorityFactory, String, ...)}
+     * Subclasses can override the above-cited {@code createRow(AuthorityFactory, String, …)}
      * methods in order to customize the table content.
      *
      * @param  factory The factory from which to get Coordinate Reference System instances.
@@ -218,6 +262,7 @@ public class AuthorityCodesReport extends Report {
     public void add(final CRSAuthorityFactory factory) throws FactoryException {
         setDefault(factory);
         defaultProperties.setProperty("TITLE", "Authority codes for Coordinate Reference Systems");
+        defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Reference Systems (CRS)");
         defaultProperties.setProperty("FILENAME", "CRSCodes.html");
         for (final String code : factory.getAuthorityCodes(CoordinateReferenceSystem.class)) {
             final CoordinateReferenceSystem crs;
@@ -243,11 +288,11 @@ public class AuthorityCodesReport extends Report {
      *       <li>In case of failure, invoke {@link #createRow(AuthorityFactory, String, FactoryException)}.</li>
      *     </ul>
      *   </li>
-     *   <li>If the {@code createRow(AuthorityFactory, String, ...)} method returned a non-null
+     *   <li>If the {@code createRow(AuthorityFactory, String, …)} method returned a non-null
      *       instance, add the created row to the {@link #rows} list.</li>
      * </ul>
      * <p>
-     * Subclasses can override the above-cited {@code createRow(AuthorityFactory, String, ...)}
+     * Subclasses can override the above-cited {@code createRow(AuthorityFactory, String, …)}
      * methods in order to customize the table content.
      *
      * @param  factory The factory from which to get the objects.
@@ -305,6 +350,9 @@ public class AuthorityCodesReport extends Report {
         row.hasError = true;
         if (exception != null) {
             row.remark = exception.getLocalizedMessage();
+            if (row.remark == null) {
+                row.remark = exception.toString();
+            }
         }
         return row;
     }
@@ -316,7 +364,22 @@ public class AuthorityCodesReport extends Report {
      * @return The given {@code destination} file.
      */
     @Override
-    public File write(final File destination) throws IOException {
+    public File write(File destination) throws IOException {
+        final int numRows = rows.size();
+        int numValids = 0, numAnnotations = 0;
+        for (final Row row : rows) {
+            if (!row.hasError) numValids++;
+            if (row.annotation != 0) numAnnotations++;
+        }
+        defaultProperties.setProperty("COUNT.OBJECTS",     Integer.toString(numRows));
+        defaultProperties.setProperty("PERCENT.VALIDS",    Integer.toString(100 * numValids / numRows) + '%'); // Really want rounding toward 0.
+        defaultProperties.setProperty("PERCENT.ANNOTATED", Integer.toString(Math.round(100f * numAnnotations / numRows)) + '%');
+        Collections.sort(rows);
+        /*
+         * The above initialization needs to be done before to start
+         * the actual content writing. Now we can write the HTML table.
+         */
+        destination = toFile(destination);
         filter("AuthorityCodes.html", destination);
         return destination;
     }
@@ -325,25 +388,14 @@ public class AuthorityCodesReport extends Report {
      * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
      */
     @Override
-    final void writeValue(final String key) throws IOException {
+    final void writeContent(final BufferedWriter out, final String key) throws IOException {
         if (!"CONTENT".equals(key)) {
-            super.writeValue(key);
+            super.writeContent(out, key);
             return;
         }
-        final int numRows = rows.size();
-        int numValids = 0, numAnnotations = 0;
-        for (final Row row : rows) {
-            if (!row.hasError) numValids++;
-            if (row.annotation != 0) numAnnotations++;
-        }
-        defaultProperties.setProperty("NUM.ROWS",          Integer.toString(numRows));
-        defaultProperties.setProperty("PERCENT.VALIDS",    Integer.toString(100 * numValids / numRows)); // Really want rounding toward 0.
-        defaultProperties.setProperty("PERCENT.ANNOTATED", Integer.toString(Math.round(100f * numAnnotations / numRows)));
-        final BufferedWriter out = getOutput();
         int c = 0;
-        indentation = 8;
         for (final Row row : rows) {
-            writeIndentation();
+            writeIndentation(out, 8);
             row.write(out, (c & 2) != 0);
             out.newLine();
             c++;
