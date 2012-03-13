@@ -91,10 +91,9 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
 public class AuthorityCodesReport extends Report {
     /**
      * A single row in the table produced by {@link AuthorityCodesReport}. Instances of this
-     * class are created by the {@link AuthorityCodesReport#createRow(AuthorityFactory, String,
-     * IdentifiedObject) AuthorityCodesReport.createRow(AuthorityFactory, String, …)} methods.
-     * Subclasses of {@code AuthorityCodesReport} can override those methods in order to modify
-     * the content of a row.
+     * class are created by the {@link AuthorityCodesReport#createRow(String, IdentifiedObject)
+     * AuthorityCodesReport.createRow(…)} methods. Subclasses of {@code AuthorityCodesReport}
+     * can override those methods in order to modify the content of a row.
      *
      * @author Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -202,7 +201,7 @@ public class AuthorityCodesReport extends Report {
      * The list of objects identified by the codes declared by the authority factory. Elements
      * are added in this list by any of the {@link #add(CRSAuthorityFactory) add} methods.
      */
-    private final List<Row> rows;
+    protected final List<Row> rows;
 
     /**
      * Creates a new report generator using the given property values.
@@ -245,15 +244,15 @@ public class AuthorityCodesReport extends Report {
      *   <li>For each code, try to instantiate an object with
      *     {@link CRSAuthorityFactory#createCoordinateReferenceSystem(String)}, then:
      *     <ul>
-     *       <li>In case of success, invoke {@link #createRow(AuthorityFactory, String, IdentifiedObject)};</li>
-     *       <li>In case of failure, invoke {@link #createRow(AuthorityFactory, String, FactoryException)}.</li>
+     *       <li>In case of success, invoke {@link #createRow(String, IdentifiedObject)};</li>
+     *       <li>In case of failure, invoke {@link #createRow(String, FactoryException)}.</li>
      *     </ul>
      *   </li>
-     *   <li>If the {@code createRow(AuthorityFactory, String, …)} method returned a non-null
+     *   <li>If the {@code createRow(…)} method returned a non-null
      *       instance, add the created row to the {@link #rows} list.</li>
      * </ul>
      * <p>
-     * Subclasses can override the above-cited {@code createRow(AuthorityFactory, String, …)}
+     * Subclasses can override the above-cited {@code createRow(…)}
      * methods in order to customize the table content.
      *
      * @param  factory The factory from which to get Coordinate Reference System instances.
@@ -263,16 +262,16 @@ public class AuthorityCodesReport extends Report {
         setDefault(factory);
         defaultProperties.setProperty("TITLE", "Authority codes for Coordinate Reference Systems");
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Reference Systems (CRS)");
-        defaultProperties.setProperty("FILENAME", "CRSCodes.html");
+        defaultProperties.setProperty("FILENAME", "CRS-Codes.html");
         for (final String code : factory.getAuthorityCodes(CoordinateReferenceSystem.class)) {
             final CoordinateReferenceSystem crs;
             try {
                 crs = factory.createCoordinateReferenceSystem(code);
             } catch (FactoryException exception) {
-                add(createRow(factory, code, exception));
+                add(createRow(code, exception));
                 continue;
             }
-            add(createRow(factory, code, crs));
+            add(createRow(code, crs));
         }
     }
 
@@ -284,15 +283,15 @@ public class AuthorityCodesReport extends Report {
      *   <li>For each code, try to instantiate an object with
      *     {@link AuthorityFactory#createObject(String)}, then:
      *     <ul>
-     *       <li>In case of success, invoke {@link #createRow(AuthorityFactory, String, IdentifiedObject)};</li>
-     *       <li>In case of failure, invoke {@link #createRow(AuthorityFactory, String, FactoryException)}.</li>
+     *       <li>In case of success, invoke {@link #createRow(String, IdentifiedObject)};</li>
+     *       <li>In case of failure, invoke {@link #createRow(String, FactoryException)}.</li>
      *     </ul>
      *   </li>
-     *   <li>If the {@code createRow(AuthorityFactory, String, …)} method returned a non-null
+     *   <li>If the {@code createRow(…)} method returned a non-null
      *       instance, add the created row to the {@link #rows} list.</li>
      * </ul>
      * <p>
-     * Subclasses can override the above-cited {@code createRow(AuthorityFactory, String, …)}
+     * Subclasses can override the above-cited {@code createRow(…)}
      * methods in order to customize the table content.
      *
      * @param  factory The factory from which to get the objects.
@@ -306,10 +305,10 @@ public class AuthorityCodesReport extends Report {
             try {
                 object = factory.createObject(code);
             } catch (FactoryException exception) {
-                add(createRow(factory, code, exception));
+                add(createRow(code, exception));
                 continue;
             }
-            add(createRow(factory, code, object));
+            add(createRow(code, object));
         }
     }
 
@@ -317,13 +316,11 @@ public class AuthorityCodesReport extends Report {
      * Creates a new row for the given authority code and identified object. Subclasses
      * can override this method in order to customize the table content.
      *
-     * @param  factory The factory used for creating the identified object.
      * @param  code    The authority code of the created object.
      * @param  object  The object created from the given authority code.
      * @return The created row, or {@code null} if the row should be ignored.
-     * @throws FactoryException If a non-recoverable error occurred while querying the factory.
      */
-    protected Row createRow(final AuthorityFactory factory, final String code, final IdentifiedObject object) throws FactoryException {
+    protected Row createRow(final String code, final IdentifiedObject object) {
         final Row row = new Row(code);
         if (object != null) {
             final Identifier name = object.getName();
@@ -339,13 +336,11 @@ public class AuthorityCodesReport extends Report {
      * Creates a new row for the given authority code and exception. Subclasses
      * can override this method in order to customize the table content.
      *
-     * @param  factory   The factory used for the attempt to create the identified object.
      * @param  code      The authority code of the object to create.
      * @param  exception The exception that occurred while creating the identified object.
      * @return The created row, or {@code null} if the row should be ignored.
-     * @throws FactoryException If a non-recoverable error occurred while querying the factory.
      */
-    protected Row createRow(final AuthorityFactory factory, final String code, final FactoryException exception) throws FactoryException {
+    protected Row createRow(final String code, final FactoryException exception) {
         final Row row = new Row(code);
         row.hasError = true;
         if (exception != null) {

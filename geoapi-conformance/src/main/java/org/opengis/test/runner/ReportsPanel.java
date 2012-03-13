@@ -54,7 +54,7 @@ import javax.swing.border.Border;
 
 import org.opengis.test.report.Report;
 import org.opengis.test.report.Reports;
-import org.opengis.test.report.ParameterNamesReport;
+import org.opengis.test.report.OperationParametersReport;
 import org.opengis.referencing.operation.MathTransformFactory;
 import static org.opengis.test.runner.MainFrame.REPORTS_DIRECTORY_KEY;
 
@@ -79,7 +79,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
          * The list of supported Coordinate Operations and their parameters.
          * This list usually includes the map projections.
          */
-        COORDINATE_OPERATIONS("Supported Coordinate Operations", ParameterNamesReport.class),
+        COORDINATE_OPERATIONS("Supported Coordinate Operations", OperationParametersReport.class),
 
         /**
          * The list of supported CRS authority codes.

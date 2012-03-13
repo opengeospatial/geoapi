@@ -152,7 +152,7 @@ public class Reports extends Report {
      * <p>
      * <ul>
      *   <li>{@link CRSAuthorityFactory},  given to {@link AuthorityCodesReport}</li>
-     *   <li>{@link MathTransformFactory}, given to {@link ParameterNamesReport}</li>
+     *   <li>{@link MathTransformFactory}, given to {@link OperationParametersReport}</li>
      * </ul>
      *
      * @param  factory The factory for which to generate a report.
@@ -175,7 +175,7 @@ public class Reports extends Report {
             }
         }
         if (MathTransformFactory.class.isAssignableFrom(type)) {
-            final ParameterNamesReport report = getReport(ParameterNamesReport.class);
+            final OperationParametersReport report = getReport(OperationParametersReport.class);
             if (report != null) {
                 report.add((MathTransformFactory) factory);
                 modified = true;

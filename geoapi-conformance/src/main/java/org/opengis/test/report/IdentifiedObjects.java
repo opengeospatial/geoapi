@@ -98,7 +98,7 @@ final class IdentifiedObjects {
      * @return -1 if {@code s1} should appears before {@code s2}, +1 for the converse,
      *         or 0 if the two strings are equal.
      */
-    private static int compare(String s1, String s2) {
+    static int compare(String s1, String s2) {
         if (s1 == s2)   return  0;
         if (s1 == null) return +1;
         if (s2 == null) return -1;
