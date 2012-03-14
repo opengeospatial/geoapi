@@ -487,6 +487,20 @@ public abstract class Report {
     }
 
     /**
+     * Escape {@code <} and {@code >} characters for HTML. This method is null-safe.
+     * Empty strings are replaced by {@code null} value.
+     */
+    static String escape(String text) {
+        if (text != null) {
+            text = text.replace("<", "&lt;").replace(">", "&gt;").trim();
+            if (text.isEmpty()) {
+                text = null;
+            }
+        }
+        return text;
+    }
+
+    /**
      * Invoked when the report is making some progress. This is typically invoked from a
      * {@code add(…)} method, since they are usually slower than {@link #write(File)}.
      * Subclasses can override this method if they want to be notified about progress.

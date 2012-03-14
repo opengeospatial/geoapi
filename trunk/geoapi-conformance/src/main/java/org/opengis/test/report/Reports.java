@@ -94,58 +94,6 @@ public class Reports extends Report {
     }
 
     /**
-     * Invoked when {@code Reports} need to create a new instance of the given class.
-     * Subclasses can override this method in order to customize their {@code Report}
-     * instances.
-     *
-     * <p>The default implementation creates a new instance of the given classes using
-     * the {@linkplain java.lang.reflect.Constructor#newInstance(Object[]) reflection API}.
-     * The given type shall declare a public constructor expecting a single {@link Properties}
-     * argument.</p>
-     *
-     * @param  <T>  The compile-time type of the {@code type} argument.
-     * @param  type The kind of report to create.
-     * @return The report of the given type, or {@code null} if no report of the given
-     *         type should be generated.
-     * @throws IllegalArgumentException If the given type is not a kind of report that
-     *         this method can instantiate.
-     */
-    protected <T extends Report> T createReport(final Class<T> type) throws IllegalArgumentException {
-        try {
-            return type.cast(type.getConstructor(Properties.class).newInstance(properties));
-        } catch (Exception e) { // JDK7: Catch ReflectiveOperationException.
-            if (e instanceof RuntimeException) {
-                throw (RuntimeException) e;
-            }
-            throw new IllegalArgumentException("Can not instantiate report of type " + type.getSimpleName(), e);
-        }
-    }
-
-    /**
-     * Returns a report of the given type. If a report has already been created by a previous
-     * invocation of this method. Then that report is returned. Otherwise a new report is
-     * created and cached for appending.
-     *
-     * @param  <T>  The compile-time type of the {@code type} argument.
-     * @param  type The kind of report to create.
-     * @return The report of the given type, or {@code null} if no report of the given
-     *         type should be generated.
-     * @throws IllegalArgumentException If the given type is not a report that can be instantiated.
-     */
-    private <T extends Report> T getReport(final Class<T> type) throws IllegalArgumentException {
-        final Report candidate = instances.get(type);
-        if (candidate != null) {
-            return type.cast(candidate);
-        }
-        final T report = createReport(type);
-        if (report != null) {
-            instances.put(type, report);
-            reports.add(report);
-        }
-        return report;
-    }
-
-    /**
      * Adds every kind of report applicable to the given factory. The kind of reports will be
      * determined from the type of the provided factory. The current implementation can handle
      * the following kind of factories:
@@ -219,8 +167,60 @@ public class Reports extends Report {
     }
 
     /**
-     * Writes in the given directory every reports {@linkplain #add(Factory) added} to this
-     * {@code Reports} instance.
+     * Returns a report of the given type. If a report has already been created by a previous
+     * invocation of this method. Then that report is returned. Otherwise a new report is
+     * created and cached for appending.
+     *
+     * @param  <T>  The compile-time type of the {@code type} argument.
+     * @param  type The kind of report to create.
+     * @return The report of the given type, or {@code null} if no report of the given
+     *         type should be generated.
+     * @throws IllegalArgumentException If the given type is not a report that can be instantiated.
+     */
+    private <T extends Report> T getReport(final Class<T> type) throws IllegalArgumentException {
+        final Report candidate = instances.get(type);
+        if (candidate != null) {
+            return type.cast(candidate);
+        }
+        final T report = createReport(type);
+        if (report != null) {
+            instances.put(type, report);
+            reports.add(report);
+        }
+        return report;
+    }
+
+    /**
+     * Invoked when {@code Reports} need to create a new instance of the given class.
+     * Subclasses can override this method in order to customize their {@code Report}
+     * instances.
+     *
+     * <p>The default implementation creates a new instance of the given classes using
+     * the {@linkplain java.lang.reflect.Constructor#newInstance(Object[]) reflection API}.
+     * The given type shall declare a public constructor expecting a single {@link Properties}
+     * argument.</p>
+     *
+     * @param  <T>  The compile-time type of the {@code type} argument.
+     * @param  type The kind of report to create.
+     * @return The report of the given type, or {@code null} if no report of the given
+     *         type should be generated.
+     * @throws IllegalArgumentException If the given type is not a kind of report that
+     *         this method can instantiate.
+     */
+    protected <T extends Report> T createReport(final Class<T> type) throws IllegalArgumentException {
+        try {
+            return type.cast(type.getConstructor(Properties.class).newInstance(properties));
+        } catch (Exception e) { // JDK7: Catch ReflectiveOperationException.
+            if (e instanceof RuntimeException) {
+                throw (RuntimeException) e;
+            }
+            throw new IllegalArgumentException("Can not instantiate report of type " + type.getSimpleName(), e);
+        }
+    }
+
+    /**
+     * Writes in the given directory every reports {@linkplain #add(Factory, Class) added}
+     * to this {@code Reports} instance.
      *
      * @param  directory The directory where to write the reports.
      * @return The index file, or the main file in only one report has been created,
@@ -234,9 +234,11 @@ public class Reports extends Report {
         for (final Report report : reports) {
             File file = report.toFile(directory);
             file = report.write(file);
-            final String title = report.getProperty("TITLE");
-            if (contents.put(title, relativize(directory, file)) != null) {
-                throw new IOException("Duplicated title: " + title);
+            final String title = report.getProperty("TITLE").trim();
+            if (!title.isEmpty()) {
+                if (contents.put(title, relativize(directory, file)) != null) {
+                    throw new IOException("Duplicated title: " + title);
+                }
             }
             if (file != null) {
                 if (main == null) {
@@ -266,9 +268,9 @@ public class Reports extends Report {
         for (final Map.Entry<String,File> entry : contents.entrySet()) {
             writeIndentation(out, 8);
             out.write("<li><a href=\"");
-            out.write(entry.getValue().getPath().replace(File.separatorChar, '/'));
+            out.write(escape(entry.getValue().getPath().replace(File.separatorChar, '/')));
             out.write("\">");
-            out.write(entry.getKey());
+            out.write(entry.getKey()); // Already escaped.
             out.write("</a></li>");
             out.newLine();
         }

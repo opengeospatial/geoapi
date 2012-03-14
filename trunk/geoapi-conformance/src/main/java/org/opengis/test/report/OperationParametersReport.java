@@ -100,6 +100,10 @@ public class OperationParametersReport extends Report {
      * OperationParametersReport.createRow(…)} method. Subclasses of {@code OperationParametersReport}
      * can override that methods in order to modify the content of a row.
      *
+     * <p>Every {@link String} fields in this class can contain HTML elements, especially the
+     * {@linkplain #names} values. If some text is expected to print {@code <} or {@code >}
+     * characters, then those characters need to be escaped to their HTML entities.</p>
+     *
      * @author Martin Desruisseaux (Geomatys)
      * @version 3.1
      *
@@ -139,18 +143,14 @@ public class OperationParametersReport extends Report {
          *   codes} or {@linkplain GenericName#toInternationalString() string representations} of the name
          *   or aliases.</li>
          * </ul>
+         *
+         * <p>The values may contain HTML elements. In particular:</p>
+         * <ul>
+         *   <li>{@code <em>…</em>} for {@linkplain IdentifiedObject#getName() primary names}.</li>
+         *   <li>{@code <del>…</del>} for deprecated objects (need to be added by the user).</li>
+         * </ul>
          */
         public final Map<String,String[]> names;
-
-        /**
-         * Identifies the names that are <cite>primary names</cite> (not aliases). Those names will
-         * be formatted with a different style in the HTML table. Note that the entries declared here
-         * must also be present in the {@link #names} map in order to be show.
-         *
-         * <p>While this map accepts an arbitrary amount of primary names, there is usually exactly
-         * one such name for each {@link IdentifiedObject}.</p>
-         */
-        private final Map<String,String> primaryNames;
 
         /**
          * The operation parameters or the parameter sub-groups, or {@code null} if not applicable.
@@ -169,38 +169,42 @@ public class OperationParametersReport extends Report {
          * @param  codeSpaces The code spaces for which to get the name and aliases.
          */
         public Row(final IdentifiedObject object, final Set<String> codeSpaces) {
-            name         = object.getName();
-            names        = new LinkedHashMap<String,String[]>();
-            primaryNames = new LinkedHashMap<String,String>(4);
+            name  = object.getName();
+            names = new LinkedHashMap<String,String[]>();
             for (final String cs : codeSpaces) {
                 final Map<String,Boolean> toCopy = IdentifiedObjects.getNameAndAliases(object, cs);
                 final int size = toCopy.size();
                 if (size != 0) {
-                    if (names.put(cs, toCopy.keySet().toArray(new String[toCopy.size()])) != null) {
-                        throw new AssertionError(cs); // Should never happen.
-                    }
-                    for (final Map.Entry<String,Boolean> entry : IdentifiedObjects.getNameAndAliases(object, cs).entrySet()) {
-                        if (entry.getValue()) { // Usually the first entry.
-                            primaryNames.put(cs, entry.getKey());
-                            break;
+                    int i=0;
+                    final String[] array = new String[size];
+                    for (final Map.Entry<String,Boolean> entry : toCopy.entrySet()) {
+                        String name = escape(entry.getKey());
+                        if (entry.getValue()) {
+                            name = "<em>" + name + "</em>";
                         }
+                        array[i++] = name;
+                    }
+                    if (names.put(cs, array) != null) {
+                        throw new AssertionError(cs); // Should never happen.
                     }
                 }
             }
         }
 
         /**
-         * Returns {@code true} if the given {@linkplain #names} entry is the
-         * {@linkplain IdentifiedObject#getName() primary name}. The primary name will be show in a
-         * different style in the HTML table. There is usually exactly one primary name associated
-         * to each row, but this restriction is not enforced by {@code OperationParametersReport}.
+         * Creates a new row initialized to a shallow copy of the given row.
+         * The {@link Map} and {@link List} collections are copied, but the
+         * content of those collections are not cloned.
          *
-         * @param  codeSpace The code space to test.
-         * @param  code      The code to test.
-         * @return {@code true} if the given code is the primary name.
+         * @param toCopy The row to copy.
          */
-        public boolean isPrimaryName(final String codeSpace, final String code) {
-            return code.equals(primaryNames.get(codeSpace));
+        public Row(final Row toCopy) {
+            category = toCopy.category;
+            name     = toCopy.name;
+            names    = new LinkedHashMap<String,String[]>(toCopy.names);
+            if (toCopy.parameters != null) {
+                parameters = new ArrayList<Row>(toCopy.parameters);
+            }
         }
 
         /**
@@ -300,14 +304,7 @@ public class OperationParametersReport extends Report {
                     if (!isGroup) {
                         out.append("\u00A0•\u00A0");
                     }
-                    final boolean isPrimaryName = isPrimaryName(cs, name);
-                    if (isPrimaryName) {
-                        out.append("<em>");
-                    }
                     out.append(name);
-                    if (isPrimaryName) {
-                        out.append("</em>");
-                    }
                     hasMore = true;
                 }
                 out.append("</td>");

@@ -69,6 +69,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  *   <tr><td>{@code COUNT.OBJECTS}</td>          <td align="center">automatic</td> <td>Number of identified objects.</td></tr>
  *   <tr><td>{@code PERCENT.VALIDS}</td>         <td align="center">automatic</td> <td>Percentage of objects successfully created.</td></tr>
  *   <tr><td>{@code PERCENT.ANNOTATED}</td>      <td align="center">automatic</td> <td>Percentage of objects having an {@linkplain Row#annotation annotation}.</td></tr>
+ *   <tr><td>{@code PERCENT.DEPRECATED}</td>     <td align="center">automatic</td> <td>Percentage of deprecated objects.</td></tr>
  *   <tr><td>{@code FILENAME}</td>               <td align="center">predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
  * </table>
  *
@@ -95,6 +96,10 @@ public class AuthorityCodesReport extends Report {
      * class are created by the {@link AuthorityCodesReport#createRow(String, IdentifiedObject)
      * AuthorityCodesReport.createRow(…)} methods. Subclasses of {@code AuthorityCodesReport}
      * can override those methods in order to modify the content of a row.
+     *
+     * <p>Every {@link String} fields in this class can contain HTML elements. If some text is
+     * expected to print {@code <} or {@code >} characters, then those characters need to be
+     * escaped to their HTML entities.</p>
      *
      * @author Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -158,15 +163,31 @@ public class AuthorityCodesReport extends Report {
         }
 
         /**
+         * Creates a new row initialized to a copy of the given row.
+         *
+         * @param toCopy The row to copy.
+         */
+        public Row(final Row toCopy) {
+            code         = toCopy.code;
+            name         = toCopy.name;
+            remark       = toCopy.remark;
+            hasError     = toCopy.hasError;
+            isDeprecated = toCopy.isDeprecated;
+            annotation   = toCopy.annotation;
+        }
+
+        /**
          * Writes this row to the given stream.
          */
         final void write(final Appendable out, final boolean highlight) throws IOException {
-            out.append("<tr");              if (highlight)          out.append(" class=\"HL\"");
-            out.append("><td>");            if (annotation != 0)    out.append(annotation);
-            out.append("</td><td><code>");  if (code       != null) out.append(code);
-            out.append("</code></td><td>"); if (name       != null) out.append(name);
-            out.append("</td><td");         if (hasError)           out.append(" class=\"error\"");
-            out.append('>');                if (remark     != null) out.append(remark);
+            out.append("<tr");                     if (highlight)          out.append(" class=\"HL\"");
+            out.append("><td class=\"nospace\">"); if (annotation != 0)    out.append(annotation);
+            out.append("</td><td><code>");         if (isDeprecated)       out.append("<del>");
+                                                   if (code       != null) out.append(code);
+                                                   if (isDeprecated)       out.append("</del>");
+            out.append("</code></td><td>");        if (name       != null) out.append(name);
+            out.append("</td><td");                if (hasError)           out.append(" class=\"error\"");
+            out.append('>');                       if (remark     != null) out.append(remark);
             out.append("</td></tr>");
         }
 
@@ -326,13 +347,13 @@ public class AuthorityCodesReport extends Report {
      * @return The created row, or {@code null} if the row should be ignored.
      */
     protected Row createRow(final String code, final IdentifiedObject object) {
-        final Row row = new Row(code);
+        final Row row = new Row(escape(code));
         if (object != null) {
             final Identifier name = object.getName();
             if (name != null) {
-                row.name = name.getCode();
+                row.name = escape(name.getCode());
             }
-            row.remark = toString(object.getRemarks());
+            row.remark = escape(toString(object.getRemarks()));
         }
         return row;
     }
@@ -346,12 +367,12 @@ public class AuthorityCodesReport extends Report {
      * @return The created row, or {@code null} if the row should be ignored.
      */
     protected Row createRow(final String code, final FactoryException exception) {
-        final Row row = new Row(code);
+        final Row row = new Row(escape(code));
         row.hasError = true;
         if (exception != null) {
-            row.remark = exception.getLocalizedMessage();
+            row.remark = escape(exception.getLocalizedMessage());
             if (row.remark == null) {
-                row.remark = exception.toString();
+                row.remark = escape(exception.toString());
             }
         }
         return row;
@@ -366,14 +387,16 @@ public class AuthorityCodesReport extends Report {
     @Override
     public File write(File destination) throws IOException {
         final int numRows = rows.size();
-        int numValids = 0, numAnnotations = 0;
+        int numValids = 0, numAnnotations = 0, numDeprecated = 0;
         for (final Row row : rows) {
-            if (!row.hasError) numValids++;
+            if (!row.hasError)       numValids++;
             if (row.annotation != 0) numAnnotations++;
+            if (row.isDeprecated)    numDeprecated++;
         }
-        defaultProperties.setProperty("COUNT.OBJECTS",     Integer.toString(numRows));
-        defaultProperties.setProperty("PERCENT.VALIDS",    Integer.toString(100 * numValids / numRows) + '%'); // Really want rounding toward 0.
-        defaultProperties.setProperty("PERCENT.ANNOTATED", Integer.toString(Math.round(100f * numAnnotations / numRows)) + '%');
+        defaultProperties.setProperty("COUNT.OBJECTS",      Integer.toString(numRows));
+        defaultProperties.setProperty("PERCENT.VALIDS",     Integer.toString(100 * numValids / numRows) + '%'); // Really want rounding toward 0.
+        defaultProperties.setProperty("PERCENT.ANNOTATED",  Integer.toString(Math.round(100f * numAnnotations / numRows)) + '%');
+        defaultProperties.setProperty("PERCENT.DEPRECATED", Integer.toString(Math.round(100f * numDeprecated  / numRows)) + '%');
         Collections.sort(rows);
         /*
          * The above initialization needs to be done before to start
