@@ -297,15 +297,17 @@ public class OperationParametersReport extends Report {
                  * name on its own line in the same cell.
                  */
                 boolean hasMore = false;
-                for (final String name : codes) {
-                    if (hasMore) {
-                        out.append("<br>");
+                if (codes != null) {
+                    for (final String name : codes) {
+                        if (hasMore) {
+                            out.append("<br>");
+                        }
+                        if (!isGroup) {
+                            out.append("\u00A0•\u00A0");
+                        }
+                        out.append(name);
+                        hasMore = true;
                     }
-                    if (!isGroup) {
-                        out.append("\u00A0•\u00A0");
-                    }
-                    out.append(name);
-                    hasMore = true;
                 }
                 out.append("</td>");
             }
