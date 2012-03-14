@@ -35,6 +35,7 @@ import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Collection;
 import java.util.Collections;
 
 import org.opengis.util.FactoryException;
@@ -54,28 +55,28 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * automatically generated for the {@code "COUNT.*"} and {@code "PERCENT.*"} entries.</p>
  *
  * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>          <th>Remarks</th>   <th>Meaning</th></tr>
- *   <tr><td>{@code TITLE}</td>                  <td>&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
- *   <tr><td>{@code DESCRIPTION}</td>            <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>           <td>&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Coordinate Reference Systems</cite>").</td></tr>
- *   <tr><td>{@code FACTORY.NAME}</td>           <td>&nbsp;</td>    <td>The name of the authority factory.</td></tr>
- *   <tr><td>{@code FACTORY.VERSION}</td>        <td>&nbsp;</td>    <td>The version of the authority factory.</td></tr>
- *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td>optional</td>  <td>An optional text to write after the factory version.</td></tr>
- *   <tr><td>{@code PRODUCT.NAME}</td>           <td>&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.VERSION}</td>        <td>&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.URL}</td>            <td>&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
- *   <tr><td>{@code JAVADOC.GEOAPI}</td>         <td>&nbsp;</td>    <td>Base URL of GeoAPI javadoc.</td></tr>
- *   <tr><td>{@code COUNT.OBJECTS}</td>          <td>generated</td> <td>Number of identified objects.</td></tr>
- *   <tr><td>{@code PERCENT.VALIDS}</td>         <td>generated</td> <td>Percentage of objects successfully created.</td></tr>
- *   <tr><td>{@code PERCENT.ANNOTATED}</td>      <td>generated</td> <td>Percentage of objects having an {@linkplain Row#annotation annotation}.</td></tr>
- *   <tr><td>{@code FILENAME}</td>               <td>&nbsp;</td>    <td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>          <th align="center">Remarks</th>   <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>                  <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>            <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>           <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Coordinate Reference Systems</cite>").</td></tr>
+ *   <tr><td>{@code FACTORY.NAME}</td>           <td align="center">&nbsp;</td>    <td>The name of the authority factory.</td></tr>
+ *   <tr><td>{@code FACTORY.VERSION}</td>        <td align="center">&nbsp;</td>    <td>The version of the authority factory.</td></tr>
+ *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td align="center">optional</td>  <td>An optional text to write after the factory version.</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>           <td align="center">&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td>        <td align="center">&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>            <td align="center">&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td>         <td align="center">predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
+ *   <tr><td>{@code COUNT.OBJECTS}</td>          <td align="center">automatic</td> <td>Number of identified objects.</td></tr>
+ *   <tr><td>{@code PERCENT.VALIDS}</td>         <td align="center">automatic</td> <td>Percentage of objects successfully created.</td></tr>
+ *   <tr><td>{@code PERCENT.ANNOTATED}</td>      <td align="center">automatic</td> <td>Percentage of objects having an {@linkplain Row#annotation annotation}.</td></tr>
+ *   <tr><td>{@code FILENAME}</td>               <td align="center">predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
  * </table>
  *
  * <p><b>How to use this class:</b></p>
  * <ul>
  *   <li>Create a {@link Properties} map with the values documented in the above table. Default
  *       values exist for many keys, but may depend on the environment. It is safer to specify
- *       values explicitly when they are known, except the <cite>generated</cite> ones.</li>
+ *       values explicitly when they are known, except the <cite>automatic</cite> ones.</li>
  *   <li>Create a new {@code AuthorityCodesReport} with the above properties map
  *       given to the constructor.</li>
  *   <li>Invoke one of the {@link #add(CRSAuthorityFactory) add} method
@@ -97,6 +98,9 @@ public class AuthorityCodesReport extends Report {
      *
      * @author Martin Desruisseaux (Geomatys)
      * @version 3.1
+     *
+     * @see AuthorityCodesReport#createRow(String, IdentifiedObject)
+     * @see AuthorityCodesReport#createRow(String, FactoryException)
      *
      * @since 3.1
      */
@@ -167,20 +171,6 @@ public class AuthorityCodesReport extends Report {
         }
 
         /**
-         * Returns a string representation of this row, for debugging purpose only.
-         */
-        @Override
-        public String toString() {
-            final StringBuilder buffer = new StringBuilder(64);
-            try {
-                write(buffer, false);
-            } catch (IOException e) {
-                throw new AssertionError(e); // Should never happen.
-            }
-            return buffer.toString();
-        }
-
-        /**
          * Compares this row with the given one for order. The default implementation
          * {@linkplain String#split(String) splits} the code spaces (or scopes) from the
          * codes using the {@code ":"} separator, then compares each elements. This method tries
@@ -194,6 +184,20 @@ public class AuthorityCodesReport extends Report {
         public int compareTo(final Row o) {
             return IdentifiedObjects.compare(code.split(IdentifiedObjects.SEPARATOR),
                                            o.code.split(IdentifiedObjects.SEPARATOR));
+        }
+
+        /**
+         * Returns a string representation of this row, for debugging purpose only.
+         */
+        @Override
+        public String toString() {
+            final StringBuilder buffer = new StringBuilder(64);
+            try {
+                write(buffer, false);
+            } catch (IOException e) {
+                throw new AssertionError(e); // Should never happen.
+            }
+            return buffer.toString();
         }
     }
 
@@ -263,15 +267,16 @@ public class AuthorityCodesReport extends Report {
         defaultProperties.setProperty("TITLE", "Authority codes for Coordinate Reference Systems");
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Reference Systems (CRS)");
         defaultProperties.setProperty("FILENAME", "CRS-Codes.html");
-        for (final String code : factory.getAuthorityCodes(CoordinateReferenceSystem.class)) {
-            final CoordinateReferenceSystem crs;
+        final Collection<String> codes = factory.getAuthorityCodes(CoordinateReferenceSystem.class);
+        final int previousCount = rows.size();
+        for (final String code : codes) {
             try {
-                crs = factory.createCoordinateReferenceSystem(code);
+                add(createRow(code, factory.createCoordinateReferenceSystem(code)));
             } catch (FactoryException exception) {
                 add(createRow(code, exception));
-                continue;
             }
-            add(createRow(code, crs));
+            progress(previousCount + rows.size(),
+                     previousCount + codes.size());
         }
     }
 
@@ -298,17 +303,17 @@ public class AuthorityCodesReport extends Report {
      * @param  codes The authority codes of the objects to create.
      * @throws FactoryException If a non-recoverable error occurred while querying the factory.
      */
-    public void add(final AuthorityFactory factory, final Iterable<String> codes) throws FactoryException {
+    public void add(final AuthorityFactory factory, final Collection<String> codes) throws FactoryException {
         setDefault(factory);
+        final int previousCount = rows.size();
         for (final String code : codes) {
-            final IdentifiedObject object;
             try {
-                object = factory.createObject(code);
+                add(createRow(code, factory.createObject(code)));
             } catch (FactoryException exception) {
                 add(createRow(code, exception));
-                continue;
             }
-            add(createRow(code, object));
+            progress(previousCount + rows.size(),
+                     previousCount + codes.size());
         }
     }
 
@@ -381,6 +386,8 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
+     * This operation is pretty fast; the slow operation which deserve progress
+     * listeners is rather the {@link #add(CRSAuthorityFactory)} method.
      */
     @Override
     final void writeContent(final BufferedWriter out, final String key) throws IOException {
