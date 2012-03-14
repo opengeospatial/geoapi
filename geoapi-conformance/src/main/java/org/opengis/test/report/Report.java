@@ -59,30 +59,29 @@ import org.opengis.metadata.citation.ResponsibleParty;
 
 /**
  * Base class for tools generating reports as HTML pages. The reports are based on HTML templates
- * with a few keywords to be replaced by user-provided values. The values can be specified in two
- * ways:
+ * with a few keywords to be replaced by user-provided values. The values associated to keywords
+ * can be specified in two ways:
  * <p>
  * <ul>
  *   <li>Specified at {@linkplain #Report(Properties) construction time}.</li>
  *   <li>Stored directly in the {@linkplain #properties} map by subclasses.</li>
  * </ul>
  *
- * <p>Some keywords common to most subclasses are:</p>
+ * <p>The set of keywords, and whatever a user-provided value for a given keyword is mandatory or
+ * optional, is subclass-specific. However most subclasses expect at least the following keywords:</p>
  *
  * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th>Remarks</th>   <th>Meaning</th></tr>
- *   <tr><td>{@code TITLE}</td>          <td>&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
- *   <tr><td>{@code DESCRIPTION}</td>    <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>   <td>&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Operation Methods</cite>").</td></tr>
- *   <tr><td>{@code PRODUCT.NAME}</td>   <td>&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.VERSION}</td><td>&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.URL}</td>    <td>&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
- *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>&nbsp;</td>    <td>Base URL of GeoAPI javadoc.</td></tr>
- *   <tr><td>{@code FILENAME}</td>       <td>&nbsp;</td>    <td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th align="center">Remarks</th>   <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>          <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DATE}</td>           <td align="center">automatic</td> <td>Date of report creation.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>    <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>   <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Operation Methods</cite>").</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>   <td align="center">&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td><td align="center">&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>    <td align="center">&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td align="center">predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
+ *   <tr><td>{@code FILENAME}</td>       <td align="center">predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
  * </table>
- *
- * <p>The set of expected entries, and whatever a user-provided value for a given keyword is
- * mandatory or optional, is subclass-specific.</p>
  *
  * <p><b>How to use this class:</b></p>
  * <ul>
@@ -162,6 +161,7 @@ public abstract class Report {
     protected Report(final Properties properties) {
         defaultProperties = new Properties();
         defaultProperties.setProperty("TITLE", getClass().getSimpleName());
+        defaultProperties.setProperty("DATE", NOW);
         defaultProperties.setProperty("DESCRIPTION", "");
         defaultProperties.setProperty("PRODUCT.VERSION", NOW);
         defaultProperties.setProperty("FACTORY.VERSION", NOW);
@@ -457,9 +457,9 @@ public abstract class Report {
     /**
      * Writes the indentation spaces on the left margin.
      */
-    static void writeIndentation(final BufferedWriter out, int indentation) throws IOException {
+    static void writeIndentation(final Appendable out, int indentation) throws IOException {
         while (--indentation >= 0) {
-            out.write(' ');
+            out.append(' ');
         }
     }
 
@@ -469,20 +469,34 @@ public abstract class Report {
      * @param classes An arbitrary number of classes in the SLD. Length can be 0, 1, 2 or more.
      *        Any null element will be silently ignored.
      */
-    static void writeClassAttribute(final BufferedWriter out, final String... classes) throws IOException {
+    static void writeClassAttribute(final Appendable out, final String... classes) throws IOException {
         boolean hasClasses = false;
         for (final String classe : classes) {
             if (classe != null) {
-                out.write(' ');
+                out.append(' ');
                 if (!hasClasses) {
-                    out.write("class=\"");
+                    out.append("class=\"");
                     hasClasses = true;
                 }
-                out.write(classe);
+                out.append(classe);
             }
         }
         if (hasClasses) {
-            out.write('"');
+            out.append('"');
         }
+    }
+
+    /**
+     * Invoked when the report is making some progress. This is typically invoked from a
+     * {@code add(…)} method, since they are usually slower than {@link #write(File)}.
+     * Subclasses can override this method if they want to be notified about progress.
+     *
+     * @param position A number ranging from 0 to {@code count}. This is typically the number
+     *        or rows created so far.
+     * @param count The maximal expected value of {@code position}. Note that this value may
+     *        change between different invocations if the report gets a better estimation of
+     *        the number of rows to be created.
+     */
+    void progress(int position, int count) {
     }
 }

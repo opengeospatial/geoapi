@@ -34,10 +34,12 @@ package org.opengis.test.report;
 import java.io.File;
 import java.io.IOException;
 import java.io.BufferedWriter;
+import java.util.Set;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.LinkedHashMap;
 import java.util.Properties;
 
@@ -56,22 +58,22 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * The operations are described by instances of an {@link IdentifiedObject} subtype,
  * for example coordinates {@link OperationMethod}. Each operation can be associated
  * to a {@link ParameterDescriptorGroup} instance. Those elements can be
- * {@linkplain #add(IdentifiedObject, ParameterDescriptorGroup) added directly}
- * in the {@linkplain #groups} list. Alternatively, a convenience method can be used
+ * {@linkplain #add(IdentifiedObject, ParameterDescriptorGroup) added individually}
+ * in the {@linkplain #rows} list. Alternatively, a convenience method can be used
  * for adding all operation methods available from a given {@link MathTransformFactory}.
  *
  * <p>This class recognizes the following property values:</p>
  *
  * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th>Remarks</th>   <th>Meaning</th></tr>
- *   <tr><td>{@code TITLE}</td>          <td>&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
- *   <tr><td>{@code DESCRIPTION}</td>    <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>   <td>&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Operation Methods</cite>").</td></tr>
- *   <tr><td>{@code PRODUCT.NAME}</td>   <td>&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.VERSION}</td><td>&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.URL}</td>    <td>&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
- *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>&nbsp;</td>    <td>Base URL of GeoAPI javadoc.</td></tr>
- *   <tr><td>{@code FILENAME}</td>       <td>&nbsp;</td>    <td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
+ *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th align="center">Remarks</th>   <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>          <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>    <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>   <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Operation Methods</cite>").</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>   <td align="center">&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td><td align="center">&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>    <td align="center">&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td align="center">predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
+ *   <tr><td>{@code FILENAME}</td>       <td align="center">predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
  * </table>
  *
  * <p><b>How to use this class:</b></p>
@@ -93,56 +95,116 @@ import org.opengis.referencing.operation.MathTransformFactory;
  */
 public class OperationParametersReport extends Report {
     /**
-     * A single group in the table produced by {@link OperationParametersReport}.
-     * Instances of this class are created by the
-     * {@link OperationParametersReport#add(IdentifiedObject, ParameterDescriptorGroup)} method.
-     * Subclasses of {@code OperationParametersReport} can override that method in order to modify
-     * the content of a group.
+     * A single row in the table produced by {@link OperationParametersReport}.
+     * Instances of this class are created by the {@link OperationParametersReport#createRow
+     * OperationParametersReport.createRow(…)} method. Subclasses of {@code OperationParametersReport}
+     * can override that methods in order to modify the content of a row.
      *
      * @author Martin Desruisseaux (Geomatys)
      * @version 3.1
      *
+     * @see OperationParametersReport#createRow(IdentifiedObject, ParameterDescriptorGroup, Set)
+     *
      * @since 3.1
      */
-    protected static class Group implements Comparable<Group> {
+    protected static class Row implements Comparable<Row> {
         /**
-         * An optional user category for the {@linkplain #operations}, or {@code null} if none.
-         * If non-null, this category will be formatted as a single row in the HTML table before
-         * all subsequent objects of the same category.
+         * An optional user category, or {@code null} if none. If non-null, this category will be
+         * formatted as a single row in the HTML table before all subsequent {@code Row} instances
+         * of the same category.
          *
-         * <p>The default value is {@code null} in every cases. Subclasses can modify this value
-         * in order to classify operations by category. For example subclasses may use this value
-         * for classifying {@link OperationMethod} instances according the kind of map projection
-         * (<cite>planar</cite>, <cite>cylindrical</cite>, <cite>conic</cite>).</p>
+         * <p>The default value is {@code null} in every cases. Subclasses of {@link OperationParametersReport}
+         * can modify this value in order to classify operations by category. For example subclasses
+         * may use this value for classifying {@link OperationMethod} instances according the kind
+         * of map projection (<cite>planar</cite>, <cite>cylindrical</cite>, <cite>conic</cite>).</p>
          */
         public String category;
 
         /**
-         * The object for which to describe the {@linkplain #parameters}.
+         * The {@link IdentifiedObject} name, used only for {@link #compareTo(Row)} implementation.
+         * This field is not used for defining the row content.
          */
-        public final IdentifiedObject operation;
+        private final ReferenceIdentifier name;
 
         /**
-         * The parameters of the identified object. This list is initialized to a copy of
-         * the {@linkplain ParameterDescriptorGroup#descriptors() parameter descriptors}
-         * given at construction time. Consequently, subclasses can freely modify the
-         * content of this list.
-         */
-        public final List<GeneralParameterDescriptor> parameters;
-
-        /**
-         * Creates a group to be shown on the HTML page.
+         * The names or aliases to write on the table row. Each entry will be formatted in a
+         * single table cell. The column of the cell is determined by the key, and the content
+         * is determined by the value. More specifically:
+         * <p>
+         * <ul>
+         *   <li>{@linkplain Map#keySet() Map keys} are the {@linkplain ReferenceIdentifier#getCodeSpace()
+         *   code spaces} or {@linkplain GenericName#scope() scopes} of the name or aliases.</li>
          *
-         * @param  operation  The operation to show on the HTML page.
-         * @param  parameters The operation parameters.
+         *   <li>{@linkplain Map#values() Map values} are the {@linkplain ReferenceIdentifier#getCode()
+         *   codes} or {@linkplain GenericName#toInternationalString() string representations} of the name
+         *   or aliases.</li>
+         * </ul>
          */
-        public Group(final IdentifiedObject operation, final ParameterDescriptorGroup parameters) {
-            this.operation  = operation;
-            this.parameters = new ArrayList<GeneralParameterDescriptor>(parameters.descriptors());
+        public final Map<String,String[]> names;
+
+        /**
+         * Identifies the names that are <cite>primary names</cite> (not aliases). Those names will
+         * be formatted with a different style in the HTML table. Note that the entries declared here
+         * must also be present in the {@link #names} map in order to be show.
+         *
+         * <p>While this map accepts an arbitrary amount of primary names, there is usually exactly
+         * one such name for each {@link IdentifiedObject}.</p>
+         */
+        private final Map<String,String> primaryNames;
+
+        /**
+         * The operation parameters or the parameter sub-groups, or {@code null} if not applicable.
+         * If this row describes an operation, then the content of this list is derived from the
+         * values returned by {@link ParameterDescriptorGroup#descriptors()}. If this row describes
+         * a parameter, then this list will contain the sub-groups (if any).
+         *
+         * <p><b>Note:</b> subgroups are not yet supported.</p>
+         */
+        public List<Row> parameters;
+
+        /**
+         * Creates a row to be show on the HTML page.
+         *
+         * @param  object     The operation or parameter to show on the HTML page.
+         * @param  codeSpaces The code spaces for which to get the name and aliases.
+         */
+        public Row(final IdentifiedObject object, final Set<String> codeSpaces) {
+            name         = object.getName();
+            names        = new LinkedHashMap<String,String[]>();
+            primaryNames = new LinkedHashMap<String,String>(4);
+            for (final String cs : codeSpaces) {
+                final Map<String,Boolean> toCopy = IdentifiedObjects.getNameAndAliases(object, cs);
+                final int size = toCopy.size();
+                if (size != 0) {
+                    if (names.put(cs, toCopy.keySet().toArray(new String[toCopy.size()])) != null) {
+                        throw new AssertionError(cs); // Should never happen.
+                    }
+                    for (final Map.Entry<String,Boolean> entry : IdentifiedObjects.getNameAndAliases(object, cs).entrySet()) {
+                        if (entry.getValue()) { // Usually the first entry.
+                            primaryNames.put(cs, entry.getKey());
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         /**
-         * Compares this group with the given object for order. This method is used for sorting
+         * Returns {@code true} if the given {@linkplain #names} entry is the
+         * {@linkplain IdentifiedObject#getName() primary name}. The primary name will be show in a
+         * different style in the HTML table. There is usually exactly one primary name associated
+         * to each row, but this restriction is not enforced by {@code OperationParametersReport}.
+         *
+         * @param  codeSpace The code space to test.
+         * @param  code      The code to test.
+         * @return {@code true} if the given code is the primary name.
+         */
+        public boolean isPrimaryName(final String codeSpace, final String code) {
+            return code.equals(primaryNames.get(codeSpace));
+        }
+
+        /**
+         * Compares this row with the given object for order. This method is used for sorting
          * the operations in the order to be show on the HTML output page.
          *
          * <p>The default implementation compare that {@linkplain #category} first - this is
@@ -155,17 +217,102 @@ public class OperationParametersReport extends Report {
          * <p>Subclasses can override this method if they want a different ordering
          * on the HTML page.</p>
          *
-         * @param o The other group to compare with this group.
+         * @param o The other row to compare with this row.
          * @return -1 if {@code this} should appears before {@code o}, -1 for the converse,
          *         or 0 if this method can not determine an ordering for the given object.
          */
         @Override
-        public int compareTo(final Group o) {
+        public int compareTo(final Row o) {
             int c = IdentifiedObjects.compare(category, o.category);
             if (c == 0) {
-                c = IdentifiedObjects.compare(operation.getName(), o.operation.getName());
+                c = IdentifiedObjects.compare(name, o.name);
             }
             return c;
+        }
+
+        /**
+         * Returns a string representation of this row, for debugging purpose only.
+         */
+        @Override
+        public String toString() {
+            final StringBuilder buffer = new StringBuilder(64);
+            try {
+                write(buffer, names.keySet().toArray(new String[names.size()]), false, false, false);
+            } catch (IOException e) {
+                throw new AssertionError(e); // Should never happen.
+            }
+            return buffer.toString();
+        }
+
+        /**
+        * Writes a single row with the names of the given objects.
+        *
+        * @param  out     Where to write the content.
+        * @param  codeSpaces The code spaces to use in columns, typically {@link #getCodeSpaces()}.
+        * @param  isGroup {@code true} if formatting a group, or {@code false} for a parameter.
+        * @param  isHead  {@code true} if formatting the first group of parameter values in a section.
+        * @param  isTail  {@code true} if formatting the last parameter value in a group.
+        * @throws IOException If an error occurred while writing the content.
+        */
+        final void write(final Appendable out, final String[] codeSpaces,
+                final boolean isGroup, final boolean isHead, final boolean isTail) throws IOException
+        {
+            out.append("<tr");
+            writeClassAttribute(out,
+                    isGroup  ? "groupName" : null,
+                    isHead   ? "groupHead" : null,
+                    isTail   ? "groupTail" : null);
+            out.append('>');
+            for (int i=0; i<codeSpaces.length;) {
+                final String cs = codeSpaces[i];
+                final String[] codes = names.get(cs);
+                /*
+                 * If the next columns are empty, allow the current column to use their space.
+                 * This allow a more compact table since EPSG names may be quite long, and in
+                 * many cases have no corresponding names in other code spaces.
+                 */
+                int colspan = 1;
+                while (++i < codeSpaces.length) {
+                    if (names.get(codeSpaces[i]) != null) {
+                        break;
+                    }
+                    colspan++;
+                }
+                out.append("<td");
+                if (colspan != 1) {
+                    out.append(" colspan=\"");
+                    out.append(Integer.toString(colspan));
+                    out.append('"');
+                }
+                out.append('>');
+                /*
+                 * Write the parameter name. Typically there is only one name, since we are
+                 * formatting the names for only one code space. However in some few cases,
+                 * we still have many names declared by the same authority. The other names
+                 * are typically legacy names. In such case, we will put each additional
+                 * name on its own line in the same cell.
+                 */
+                boolean hasMore = false;
+                for (final String name : codes) {
+                    if (hasMore) {
+                        out.append("<br>");
+                    }
+                    if (!isGroup) {
+                        out.append("\u00A0•\u00A0");
+                    }
+                    final boolean isPrimaryName = isPrimaryName(cs, name);
+                    if (isPrimaryName) {
+                        out.append("<em>");
+                    }
+                    out.append(name);
+                    if (isPrimaryName) {
+                        out.append("</em>");
+                    }
+                    hasMore = true;
+                }
+                out.append("</td>");
+            }
+            out.append("</tr>");
         }
     }
 
@@ -175,7 +322,7 @@ public class OperationParametersReport extends Report {
      * @see #add(IdentifiedObject, ParameterDescriptorGroup)
      * @see #add(MathTransformFactory)
      */
-    protected final List<Group> groups;
+    protected final List<Row> rows;
 
     /**
      * The number of indentation spaces.
@@ -190,24 +337,37 @@ public class OperationParametersReport extends Report {
      */
     public OperationParametersReport(final Properties properties) {
         super(properties);
-        groups = new ArrayList<Group>();
+        rows = new ArrayList<Row>();
         defaultProperties.setProperty("TITLE", "Supported ${OBJECTS.KIND}");
     }
 
     /**
-     * Adds an operation to be shown on the HTML page.
+     * Adds an operation to be show on the HTML page. The default implementation performs the
+     * following steps:
+     * <p>
+     * <ul>
+     *   <li>Get the set of all code spaces or scopes found in the given {@code operation}.</li>
+     *   <li>Delegates to {@link #createRow createRow(…)} with the above set. This means that
+     *       any parameter names defined in an other scope will be ignored.</li>
+     *   <li>Add the new row to the {@linkplain #rows} list if non-null.</li>
+     * </ul>
      *
      * @param  operation  The operation to show on the HTML page.
-     * @param  parameters The operation parameters.
+     * @param  parameters The operation parameters, or {@code null} if none.
      */
     public void add(final IdentifiedObject operation, final ParameterDescriptorGroup parameters) {
-        groups.add(new Group(operation, parameters));
+        final Map<String, Boolean> codeSpaces = new LinkedHashMap<String, Boolean>(8);
+        IdentifiedObjects.getCodeSpaces(operation, codeSpaces);
+        final Row group = createRow(operation, parameters, codeSpaces.keySet());
+        if (group != null) {
+            rows.add(group);
+        }
     }
 
     /**
      * Convenience method adding all {@linkplain MathTransformFactory#getAvailableMethods(Class)
      * available methods} from the given factory. Each {@linkplain OperationMethod coordinate
-     * operation method} is added to the {@linkplain #groups} list as below:
+     * operation method} is added to the {@linkplain #rows} list as below:
      *
      * <blockquote><code>{@linkplain #add(IdentifiedObject, ParameterDescriptorGroup)
      * add}(method, method.{@linkplain OperationMethod#getParameters() getParameters()});</code></blockquote>
@@ -218,36 +378,62 @@ public class OperationParametersReport extends Report {
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Operations");
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
         setVendor("PRODUCT", factory.getVendor());
-        for (final OperationMethod operation : factory.getAvailableMethods(SingleOperation.class)) {
+        final Set<OperationMethod> operations = factory.getAvailableMethods(SingleOperation.class);
+        final int previousCount = rows.size();
+        for (final OperationMethod operation : operations) {
             add(operation, operation.getParameters());
+            progress(previousCount + rows.size(),
+                     previousCount + operations.size());
         }
+    }
+
+    /**
+     * Creates a new row for the given operation and parameters. This method is invoked by the
+     * {@link #add(IdentifiedObject, ParameterDescriptorGroup) add(…)} method when a new row
+     * needs to be created, either for an operation or for one of its parameters.
+     *
+     * <p>The default implementation instantiate a new {@link Row} with the given operation and
+     * code spaces. Then, if the given {@code parameters} argument is non-null, this method
+     * iterates over all parameter descriptor and invokes this method recursively for creating
+     * their rows.</p>
+     *
+     * @param  operation  The operation.
+     * @param  parameters The operation parameters, or {@code null} if none.
+     * @param  codeSpaces The code spaces for which to get the name and aliases.
+     * @return The new row, or {@code null} if none.
+     */
+    protected Row createRow(final IdentifiedObject operation, final ParameterDescriptorGroup parameters, final Set<String> codeSpaces) {
+        final Row row = new Row(operation, codeSpaces);
+        if (parameters != null) {
+            final List<GeneralParameterDescriptor> descriptors = parameters.descriptors();
+            for (final GeneralParameterDescriptor desc : descriptors) {
+                final Row child = createRow(desc, (desc instanceof ParameterDescriptorGroup) ?
+                        (ParameterDescriptorGroup) desc : null, codeSpaces);
+                if (child != null) {
+                    if (row.parameters == null) {
+                        row.parameters = new ArrayList<Row>(descriptors.size());
+                    }
+                    row.parameters.add(child);
+                }
+            }
+        }
+        return row;
     }
 
     /**
      * Returns the HTML text to use as a column header for each
      * {@linkplain ReferenceIdentifier#getCodeSpace() code spaces} or
-     * {@linkplain GenericName#scope() scopes}. For each entry in the returned map, the
-     * {@linkplain java.util.Map.Entry#getKey() key} is the code spaces or scope and the
-     * {@linkplain java.util.Map.Entry#getValue() value} is the column header. The columns
-     * will be shown in iteration order.
-     *
-     * <p>The default implementation gets the authorities from the {@link Group#operation}.
-     * Subclasses can override this method if they want to use a different set of authorities.</p>
+     * {@linkplain GenericName#scope() scopes}. The columns will be show in iteration order.
      *
      * @return The name of all code spaces or scopes. Some typical values are {@code "EPSG"},
      *         {@code "OGC"}, {@code "ESRI"}, {@code "GeoTIFF"} or {@code "NetCDF"}.
      */
-    @SuppressWarnings("unchecked")
-    public Map<String,String> getColumnHeaders() {
-        final Map<String,Object> codeSpaces = new LinkedHashMap<String,Object>(8);
-        for (final Group group : groups) {
-            IdentifiedObjects.getCodeSpaces(group.operation, codeSpaces);
+    private String[] getColumnHeaders() {
+        final Set<String> codeSpaces = new LinkedHashSet<String>(8);
+        for (final Row row : rows) {
+            codeSpaces.addAll(row.names.keySet());
         }
-        for (final Map.Entry<String,Object> entry : codeSpaces.entrySet()) {
-            entry.setValue(entry.getKey());
-        }
-        // We replaced all Boolean values by String values, so we can cheat here.
-        return (Map) codeSpaces;
+        return codeSpaces.toArray(new String[codeSpaces.size()]);
     }
 
     /**
@@ -258,14 +444,14 @@ public class OperationParametersReport extends Report {
     }
 
     /**
-     * Formats the current content of the {@linkplain #groups} list as a HTML page in the given file.
+     * Formats the current content of the {@linkplain #rows} list as a HTML page in the given file.
      *
      * @param  destination The file to generate.
      * @return The given {@code destination} file.
      */
     @Override
     public File write(File destination) throws IOException {
-        Collections.sort(groups);
+        Collections.sort(rows);
         destination = toFile(destination);
         filter("OperationParameters.html", destination);
         return destination;
@@ -281,7 +467,7 @@ public class OperationParametersReport extends Report {
         if ("CONTENT".equals(key)) {
             indentation = 6;
             writeCategories(out);
-            writeTable(out, getColumnHeaders());
+            writeTable(out);
         } else {
             super.writeContent(out, key);
         }
@@ -297,8 +483,8 @@ public class OperationParametersReport extends Report {
      */
     private void writeCategories(final BufferedWriter out) throws IOException {
         String previous = null;
-        for (final Group group : groups) {
-            final String category = group.category;
+        for (final Row row : rows) {
+            final String category = row.category;
             if (category != null && !category.equals(previous)) {
                 if (previous == null) {
                     writeIndentation(out, indentation); out.write("<p>Content:</p>");
@@ -327,20 +513,19 @@ public class OperationParametersReport extends Report {
      * Writes the table of operations and their parameters.
      *
      * @param  out Where to write the content.
-     * @param  columnHeaders The code spaces to use in columns, typically {@link #getColumnHeaders()}.
      * @throws IOException If an error occurred while writing the content.
      */
-    private void writeTable(final BufferedWriter out, final Map<String,String> columnHeaders) throws IOException {
+    private void writeTable(final BufferedWriter out) throws IOException {
         writeIndentation(out, indentation);
         out.write("<table cellspacing=\"0\" cellpadding=\"0\">");
         out.newLine();
         indentation += INDENT;
         String previous = null;
         boolean writeHeader = true;
-        final String[] codeSpaces = columnHeaders.keySet().toArray(new String[columnHeaders.size()]);
+        final String[] codeSpaces = getColumnHeaders();
         final String columnSpan = String.valueOf(codeSpaces.length);
-        for (final Group group : groups) {
-            final String category = group.category;
+        for (final Row row : rows) {
+            final String category = row.category;
             /*
              * If begining a new section in the table, print the category
              * in bold characters. The column headers will be printed below.
@@ -362,7 +547,7 @@ public class OperationParametersReport extends Report {
             if (writeHeader) {
                 writeIndentation(out, indentation);
                 out.write("<tr class=\"sectionTail\">");
-                for (final String cs : columnHeaders.values()) {
+                for (final String cs : codeSpaces) {
                     out.write("<th>");
                     out.write(cs);
                     out.write("</th>");
@@ -373,94 +558,22 @@ public class OperationParametersReport extends Report {
             /*
              * Print the operation name, then the name of all parameters.
              */
-            final List<GeneralParameterDescriptor> parameters = group.parameters;
-            final int size = parameters.size();
-            writeRow(out, group.operation, codeSpaces, true, false, false);
-            for (int i=0; i<size; i++) {
-                writeRow(out, parameters.get(i), codeSpaces, false, (i == 0), (i == size-1));
+            writeIndentation(out, indentation);
+            row.write(out, codeSpaces, true, false, false);
+            out.newLine();
+            final List<Row> parameters = row.parameters;
+            if (parameters != null) {
+                final int size = parameters.size();
+                for (int i=0; i<size; i++) {
+                    writeIndentation(out, indentation);
+                    parameters.get(i).write(out, codeSpaces, false, (i == 0), (i == size-1));
+                    out.newLine();
+                }
             }
             writeHeader = false;
         }
         indentation -= INDENT;
         writeIndentation(out, indentation);
         out.write("</table>");
-    }
-
-    /**
-     * Writes a single row with the names of the given objects.
-     *
-     * @param  out Where to write the content.
-     * @param  object The object from which to get the names.
-     * @param  codeSpaces The code spaces to use in columns, typically {@link #getCodeSpaces()}.
-     * @param  isGroup {@code true} if formatting a group, or {@code false} for a parameter.
-     * @param  isHead {@code true} if formatting the first group of parameter values in a section.
-     * @param  isTail {@code true} if formatting the last parameter value in a group.
-     * @throws IOException If an error occurred while writing the content.
-     */
-    private void writeRow(final BufferedWriter out, final IdentifiedObject object, final String[] codeSpaces,
-            final boolean isGroup, final boolean isHead, final boolean isTail) throws IOException
-    {
-        @SuppressWarnings({"unchecked","rawtypes"})
-        final Map<String,Boolean>[] nameSets = new Map[codeSpaces.length];
-        for (int i=0; i<codeSpaces.length; i++) {
-            nameSets[i] = IdentifiedObjects.getNameAndAliases(object, codeSpaces[i]);
-        }
-        writeIndentation(out, indentation);
-        out.write("<tr");
-        writeClassAttribute(out,
-                isGroup  ? "groupName" : null,
-                isHead   ? "groupHead" : null,
-                isTail   ? "groupTail" : null);
-        out.write('>');
-        for (int i=0; i<nameSets.length;) {
-            final Map<String,Boolean> names = nameSets[i];
-            /*
-             * If the next columns are empty, allow the current column to use their space.
-             * This allow a more compact table since EPSG names may be quite long, and in
-             * many cases have no corresponding names in other code spaces.
-             */
-            int colspan = 1;
-            while (++i < nameSets.length) {
-                if (!nameSets[i].isEmpty()) {
-                    break;
-                }
-                colspan++;
-            }
-            out.write("<td");
-            if (colspan != 1) {
-                out.write(" colspan=\"");
-                out.write(Integer.toString(colspan));
-                out.write('"');
-            }
-            out.write('>');
-            /*
-             * Write the parameter name. Typically there is only one name, since we are
-             * formatting the names for only one code space. However in some few cases,
-             * we still have many names declared by the same authority. The other names
-             * are typically legacy names. In such case, we will put each additional
-             * name on its own line in the same cell.
-             */
-            boolean hasMore = false;
-            for (final Map.Entry<String,Boolean> entry : names.entrySet()) {
-                if (hasMore) {
-                    out.write("<br>");
-                }
-                if (!isGroup) {
-                    out.write("\u00A0•\u00A0");
-                }
-                final boolean isPrimaryName = entry.getValue();
-                if (isPrimaryName) {
-                    out.write("<em>");
-                }
-                out.write(entry.getKey());
-                if (isPrimaryName) {
-                    out.write("</em>");
-                }
-                hasMore = true;
-            }
-            out.write("</td>");
-        }
-        out.write("</tr>");
-        out.newLine();
     }
 }
