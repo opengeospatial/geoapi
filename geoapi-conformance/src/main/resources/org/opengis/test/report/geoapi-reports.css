@@ -49,10 +49,18 @@ th {
   background-color: lightskyblue;
   height: 18pt;
 }
+th.left-align {
+  padding-left:  6pt;
+  text-align: left;
+}
 td {
   padding-left:  6pt;
   padding-right: 6pt;
   vertical-align: top;
+}
+td.nospace {
+  padding-left:  0pt;
+  padding-right: 0pt;
 }
 td.error {
   color: red;
