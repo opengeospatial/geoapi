@@ -562,12 +562,14 @@ public class OperationParametersReport extends Report {
             out.newLine();
             final List<Row> parameters = row.parameters;
             if (parameters != null) {
+                indentation += INDENT;
                 final int size = parameters.size();
                 for (int i=0; i<size; i++) {
                     writeIndentation(out, indentation);
                     parameters.get(i).write(out, codeSpaces, false, (i == 0), (i == size-1));
                     out.newLine();
                 }
+                indentation -= INDENT;
             }
             writeHeader = false;
         }

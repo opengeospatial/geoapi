@@ -32,8 +32,11 @@
 package org.opengis.test.runner;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
 import java.util.prefs.Preferences;
 import java.awt.Desktop;
 import java.awt.GridLayout;
@@ -47,15 +50,18 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.JProgressBar;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
+import javax.swing.SwingWorker;
 
+import org.opengis.util.FactoryException;
 import org.opengis.test.report.Report;
 import org.opengis.test.report.Reports;
+import org.opengis.test.report.AuthorityCodesReport;
 import org.opengis.test.report.OperationParametersReport;
-import org.opengis.referencing.operation.MathTransformFactory;
 import static org.opengis.test.runner.MainFrame.REPORTS_DIRECTORY_KEY;
 
 
@@ -85,7 +91,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
          * The list of supported CRS authority codes.
          * This list usually includes the EPSG codes.
          */
-        CRS_AUTHORITY_CODES("Supported CRS authority codes", Report.class); // TODO
+        CRS_AUTHORITY_CODES("Supported CRS authority codes", AuthorityCodesReport.class);
 
         /**
          * The label for this generator.
@@ -120,7 +126,12 @@ final class ReportsPanel extends JPanel implements ActionListener {
     /**
      * The button for starting the HTML report generation.
      */
-    private final JButton start;
+    private final JButton startButton;
+
+    /**
+     * The progress bar.
+     */
+    final JProgressBar progressBar;
 
     /**
      * Where to save the last user choices, for the next run.
@@ -191,13 +202,21 @@ final class ReportsPanel extends JPanel implements ActionListener {
         /*
          * The button starting the HTML reports generation.
          */
-        start = new JButton("Generate reports", new ImageIcon(ReportsPanel.class.getResource("start.png")));
-        start.addActionListener(this);
-        start.setEnabled(false);
+        startButton = new JButton("Generate reports", new ImageIcon(ReportsPanel.class.getResource("start.png")));
+        startButton.addActionListener(this);
+        startButton.setEnabled(false);
         c.fill   = GridBagConstraints.NONE;
         c.anchor = GridBagConstraints.CENTER;
         c.gridx=0; c.gridwidth=0; c.insets.top = 35;
-        c.gridy++; add(start, c);
+        c.gridy++; add(startButton, c);
+        /*
+         * The progress bar.
+         */
+        progressBar = new JProgressBar();
+        progressBar.setBorder(BorderFactory.createLoweredBevelBorder());
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets.left = c.insets.right = 40;
+        c.gridy++; add(progressBar, c);
         /*
          * Final decoration.
          */
@@ -206,19 +225,19 @@ final class ReportsPanel extends JPanel implements ActionListener {
                   BorderFactory.createCompoundBorder(
                   BorderFactory.createEtchedBorder(), space)));
         setOpaque(false);
-
-        reportChoices[1].setEnabled(false); // TODO: not yet implemented.
     }
 
     /**
-     * Enables or disables all check boxes.
+     * Enables or disables the start bouton and all check boxes. The progress bar is set
+     * to the reverse of {@code enabled}, since this method is invoked when the reports
+     * generation begins or ends.
      */
-    private void setChoicesEnabled(final boolean enabled) {
-        start.setEnabled(enabled);
+    final void setChoicesEnabled(final boolean enabled) {
+        startButton.setEnabled(enabled);
         for (final JCheckBox choice : reportChoices) {
             choice.setEnabled(enabled);
         }
-        reportChoices[1].setEnabled(false); // TODO: not yet implemented.
+        progressBar.setEnabled(!enabled);
     }
 
     /**
@@ -245,7 +264,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
     final void setManifest(final ImplementationManifest manifest) {
         if (manifest != null) {
             this.manifest = manifest;
-            start.setEnabled(true);
+            startButton.setEnabled(true);
         }
     }
 
@@ -261,51 +280,125 @@ final class ReportsPanel extends JPanel implements ActionListener {
         properties.setProperty("PRODUCT.VERSION", manifest.version);
         properties.setProperty("PRODUCT.URL",     manifest.url);
         final File directory = new File(this.directory.getText());
-        Controller[] controllers = Controller.values();
+        final Controller[] controllers = Controller.values();
         int count = 0;
         for (int i=0; i<controllers.length; i++) {
             if (reportChoices[i].isSelected()) {
                 controllers[count++] = controllers[i];
             }
         }
-        if (count != controllers.length) {
-            controllers = Arrays.copyOf(controllers, count);
-        }
-        setChoicesEnabled(false);
-        try {
-            generateReports(controllers, properties, directory);
-        } finally {
-            setChoicesEnabled(true);
-        }
-    }
-
-    /**
-     * Generates all selected reports, then display the last report (which is assumed
-     * to be the index) in the web browser.
-     *
-     * @todo Needs to be run in a background thread.
-     */
-    private void generateReports(final Controller[] controllers, final Properties properties, final File directory) {
-        final Reports reports = new Reports(properties) {
+        Arrays.fill(controllers, count, controllers.length, null);
+        /*
+         * Generates all selected reports, then display the last report (which is assumed
+         * to be the index) in the web browser. This code is invoked in the Swing thread,
+         * and starts a worker in the background thread.
+         */
+        final Worker worker = new Worker(directory);
+        worker.reports = new Reports(properties) {
             /** Creates reports only of the kind selected by the user. */
-            @Override protected <T extends Report> T createReport(final Class<T> type) {
+            @Override
+            protected <T extends Report> T createReport(final Class<T> type) {
                 for (final Controller controller : controllers) {
-                    if (controller.reportType == type) {
+                    if (controller != null && controller.reportType == type) {
                         return super.createReport(type);
                     }
                 }
                 return null;
             }
+
+            /** Be informed about the progress. */
+            @Override
+            protected void progress(final int position, final int count) {
+                worker.progress(position, count);
+            }
         };
-        try {
-            reports.addAll(MathTransformFactory.class);
+        progressBar.setValue(0);
+        setChoicesEnabled(false);
+        worker.execute();
+    }
+
+    /**
+     * The class for generating the reports in a background thread. The final value after
+     * computation is the {@link File} to the index page of generated HTML reports. The
+     * intermediate values are progress, as {@link Integer} ranging from 0 to 100 inclusive.
+     */
+    private final class Worker extends SwingWorker<File,Integer> {
+        /**
+         * The reports generator. Must be set to a non-null value
+         * before to execute this worker.
+         */
+        Reports reports;
+
+        /**
+         * The destination directory specified at construction time.
+         */
+        private final File directory;
+
+        /**
+         * The progress set by the last call to {@link #progress(int, int)}, as a value ranging
+         * from 0 to 100. This is used in order to avoid too many progress notifications to the
+         * Swing widgets.
+         */
+        private int progress;
+
+        /**
+         * Creates a new worker which will write reports in the given directory.
+         */
+        Worker(final File directory) {
+            this.directory = directory;
+        }
+
+        /**
+         * Invoked by {@link SwingWorker} for generating the reports in a background thread.
+         */
+        @Override
+        protected File doInBackground() throws FactoryException, IOException {
+            reports.addAll();
             final File file = reports.write(directory);
             if (file != null && desktop != null) {
                 desktop.browse(file.toURI());
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.toString(),
-                    "Can not write or show the reports", JOptionPane.ERROR_MESSAGE);
+            return file;
+        }
+
+        /**
+         * Invoked in the background thread when the report generation made some progress.
+         */
+        final void progress(final int position, final int count) {
+            final int p = position * 100 / count;
+            if (p != progress) {
+                progress = p;
+                publish(p);
+            }
+        }
+
+        /**
+         * Receives the progress notifications in the Swing thread.
+         */
+        @Override
+        protected void process(final List<Integer> chunks) {
+            final int size = chunks.size();
+            if (size != 0) {
+                progressBar.setValue(chunks.get(size-1));
+            }
+        }
+
+        /**
+         * Invoked in the Swing thread when the report generation is completed.
+         * This method show an error panel if an exception occurred during the
+         * reports creation.
+         */
+        @Override
+        protected void done() {
+            setChoicesEnabled(true);
+            try {
+                get();
+                progressBar.setValue(100); // Only if no exception.
+            } catch (Exception exception) {
+                Runner.LOGGER.log(Level.WARNING, exception.toString(), exception);
+                JOptionPane.showMessageDialog(ReportsPanel.this, exception.toString(),
+                        "Can not write or show the reports", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }

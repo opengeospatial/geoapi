@@ -67,9 +67,9 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  *   <tr><td>{@code PRODUCT.URL}</td>            <td align="center">&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
  *   <tr><td>{@code JAVADOC.GEOAPI}</td>         <td align="center">predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
  *   <tr><td>{@code COUNT.OBJECTS}</td>          <td align="center">automatic</td> <td>Number of identified objects.</td></tr>
- *   <tr><td>{@code PERCENT.VALIDS}</td>         <td align="center">automatic</td> <td>Percentage of objects successfully created.</td></tr>
+ *   <tr><td>{@code PERCENT.VALIDS}</td>         <td align="center">automatic</td> <td>Percentage of objects successfully created (i.e. having no {@linkplain Row#hasError error}).</td></tr>
  *   <tr><td>{@code PERCENT.ANNOTATED}</td>      <td align="center">automatic</td> <td>Percentage of objects having an {@linkplain Row#annotation annotation}.</td></tr>
- *   <tr><td>{@code PERCENT.DEPRECATED}</td>     <td align="center">automatic</td> <td>Percentage of deprecated objects.</td></tr>
+ *   <tr><td>{@code PERCENT.DEPRECATED}</td>     <td align="center">automatic</td> <td>Percentage of {@linkplain Row#isDeprecated deprecated} objects.</td></tr>
  *   <tr><td>{@code FILENAME}</td>               <td align="center">predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
  * </table>
  *
@@ -420,7 +420,8 @@ public class AuthorityCodesReport extends Report {
         }
         int c = 0;
         for (final Row row : rows) {
-            writeIndentation(out, 8);
+            // Do not put indentation, because there is a lot of rows.
+            // 8 spaces in 4933 rows waste 39 kb (about 5% of the total file size).
             row.write(out, (c & 2) != 0);
             out.newLine();
             c++;
