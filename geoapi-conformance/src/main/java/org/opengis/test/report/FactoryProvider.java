@@ -32,6 +32,8 @@
 package org.opengis.test.report;
 
 import java.util.List;
+import java.util.Arrays;
+import java.lang.reflect.Array;
 import org.opengis.test.TestCase;
 import org.opengis.util.Factory;
 
@@ -53,8 +55,20 @@ final class FactoryProvider extends TestCase {
     /**
      * Returns all factory of the given types, or an empty array if none.
      */
-    static Factory[] forType(final Class<? extends Factory> type) {
+    @SuppressWarnings("unchecked")
+    static <T extends Factory> T[] forType(final Class<T> type) {
         final List<Factory[]> factories = factories(type);
-        return factories.isEmpty() ? NO_FACTORY : factories.get(0);
+        T[] selected = (T[]) Array.newInstance(type, factories.size());
+        int count = 0;
+        for (final Factory[] candidates : factories) {
+            final T candidate = (T) candidates[0];
+            if (candidate != null) {
+                selected[count++] = candidate;
+            }
+        }
+        if (count != selected.length) {
+            selected = Arrays.copyOf(selected, count);
+        }
+        return selected;
     }
 }

@@ -184,6 +184,25 @@ public class Reports extends Report {
         }
         final T report = createReport(type);
         if (report != null) {
+            if (reports.isEmpty()) {
+                /*
+                 * If we are creating the first report, creates the initial listener which will
+                 * delegate the calls to 'ProgressListener.progress(int,int)' to the 'progress'
+                 * method in this class. All other listeners will be chained before this one.
+                 *
+                 * We need to wrap the "delegator" listener into an other listener in order to
+                 * allow all future listeners to be inserted between the two: the "delegator"
+                 * listener must always be last, and the listener associated to the first report
+                 * must stay first.
+                 */
+                report.listener = new ProgressListener(new ProgressListener(null, false) {
+                    @Override void progress(final int position, final int count) {
+                        Reports.this.progress(position, count);
+                    }
+                }, false);
+            } else {
+                report.listener = new ProgressListener(reports.get(0).listener, true);
+            }
             instances.put(type, report);
             reports.add(report);
         }
