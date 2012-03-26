@@ -1,0 +1,20 @@
+The 'geoapi-conformance.zip' file contains the geoapi-conformance module
+together with all its dependencies and some demonstration JAR files. See
+http://www.geoapi.org/geoapi-conformance/index.html for more information.
+
+
+----------------------------------
+Installation (to be run only once)
+----------------------------------
+unpack200 --remove-pack-file geoapi-conformance.pack.gz geoapi-conformance.jar
+
+
+----------------------------------
+Execution
+----------------------------------
+java -jar geoapi-conformance.jar
+
+
+In the "Open" dialog box, select the 'geoapi-proj4.jar' file for trying the
+test runners with the Proj.4 bindings.  This requires version 4.8 of Proj.4
+to be installed on the local machine.
