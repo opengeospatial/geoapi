@@ -298,16 +298,14 @@ public class OperationParametersReport extends Report {
                  */
                 boolean hasMore = false;
                 if (codes != null) {
+                    // Intentionally no enclosing <ul>.
+                    if (!isGroup) out.append("<li>");
                     for (final String name : codes) {
-                        if (hasMore) {
-                            out.append("<br>");
-                        }
-                        if (!isGroup) {
-                            out.append("\u00A0•\u00A0");
-                        }
+                        if (hasMore) out.append("<br>");
                         out.append(name);
                         hasMore = true;
                     }
+                    if (!isGroup) out.append("</li>");
                 }
                 out.append("</td>");
             }

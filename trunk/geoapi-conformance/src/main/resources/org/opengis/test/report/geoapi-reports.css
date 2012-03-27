@@ -13,9 +13,16 @@ table {
   border-spacing: 0px;
   white-space: nowrap;
 }
+/*
+ * A table with a light (but non-white) background. This is mixed
+ * with the "tr.HL" style for producing a table with striping.
+ */
 table.withbg {
     background-color: aliceblue
 }
+/*
+ * Table header, which may span more than one lines.
+ */
 tr.sectionHead > th {
   font-size: 14pt;
   border-top-style: solid;
@@ -25,6 +32,10 @@ tr.sectionTail > th {
   border-bottom-style: solid;
   border-bottom-width: 1pt;
 }
+/*
+ * Headers for a sub-section in a table. This is not a real table header, but
+ * can be seen as a kind of header for grouping the content of a large table.
+ */
 tr.groupName > td {
   font-weight: bold;
   color: MidnightBlue;
@@ -42,6 +53,9 @@ tr.groupHead > td {
 tr.groupTail > td {
   padding-bottom: 18pt;
 }
+/*
+ * Highlighter for a row in a table, or for striping.
+ */
 tr.HL > td {
   background-color: lavender;
 }
@@ -64,4 +78,14 @@ td.nospace {
 }
 td.error {
   color: red;
+}
+/*
+ * The style for list elements that appear directly inside a cell table,
+ * without enclosing <ul> element. We don't use <ul> in order to avoid
+ * the extra margin on top and bottom. This style is used when each list
+ * item appears in its own table cell, as in OperationParametersReport.
+ */
+td > li {
+  margin-left: 18px;
+  list-style-type: square;
 }
