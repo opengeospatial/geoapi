@@ -848,8 +848,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 310642901: { // "IGNF:MILLER" (not an official EPSG code)
                 parameters = factory.getDefaultParameters("Miller_Cylindrical");
-                parameters.parameter("semi-major axis").setValue(6378137.0);
-                parameters.parameter("semi-minor axis").setValue(6378137.0);
+                parameters.parameter("semi_major").setValue(6378137.0); // Use OGC parameter names instead than EPSG.
+                parameters.parameter("semi_minor").setValue(6378137.0);
                 break;
             }
             case 19958: { // "Rectified Skew Orthomorphic Borneo Grid (metres)" using operation method 9815

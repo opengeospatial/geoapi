@@ -102,8 +102,14 @@ final class IdentifiedObjects {
         if (s1 == s2)   return  0;
         if (s1 == null) return +1;
         if (s2 == null) return -1;
-        s1 = s1.trim();
-        s2 = s2.trim();
+        /*
+         * The ASCII value of the underscore character is greater than 'Z' but lower than 'a',
+         * which sometime produce unexpected sort results. For example "Foo_bar" is sorted
+         * between "FooBar" and "Foobar". The space character produces more consistent sort
+         * results because its ASCII value is less than any printable character.
+         */
+        s1 = s1.replace('_', ' ').trim();
+        s2 = s2.replace('_', ' ').trim();
 
         // Empty strings before non-empty ones.
         if (s1.isEmpty()) return s2.isEmpty() ? 0 : -1;
