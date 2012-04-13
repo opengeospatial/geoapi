@@ -64,12 +64,12 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LambertConformal}</i></td><td>&nbsp;&nbsp;<i>Lambert_Conformal_Conic_2SP</i></td><td>&nbsp;&nbsp;<i>Lambert Conic Conformal (2SP)</i></td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of false origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel[1]</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_1</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 1st standard parallel</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel[2]</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;standard_parallel_2</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of 2nd standard parallel</td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False easting</td></tr>
- *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;False northing</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_easting</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Easting at false origin</td></tr>
+ *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;false_northing</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Northing at false origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;earth_radius</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain LatLonProjection}</i></td><td></td><td></td></tr>
@@ -95,7 +95,7 @@ import org.opengis.referencing.operation.*;
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_north_pole_latitude</td><td></td><td></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;grid_north_pole_longitude</td><td></td><td></td></tr>
  *   <tr><td colspan="3"><hr></td></tr>
- *   <tr><td>&nbsp;&nbsp;<i>{@linkplain Stereographic}</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td></tr>
+ *   <tr><td>&nbsp;&nbsp;<i>{@linkplain Stereographic}</i></td><td>&nbsp;&nbsp;<i>Stereographic</i></td><td>&nbsp;&nbsp;<i>Oblique Stereographic</i></td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;latitude_of_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Latitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;longitude_of_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;central_meridian</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Longitude of natural origin</td></tr>
  *   <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor_at_projection_origin</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;scale_factor</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&bull;&nbsp;Scale factor at natural origin</td></tr>

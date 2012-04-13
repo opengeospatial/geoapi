@@ -389,12 +389,12 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         LambertConic2SP(final Map<SimpleName,SimpleName> existings) {
             super(existings, true,
                 "LambertConformal",                "Lambert_Conformal_Conic_2SP",  "Lambert Conic Conformal (2SP)",
-                CF.LATITUDE_OF_PROJECTION_ORIGIN,  "latitude_of_origin",           "Latitude of natural origin",
-                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,  "central_meridian",             "Longitude of natural origin",
+                CF.LATITUDE_OF_PROJECTION_ORIGIN,  "latitude_of_origin",           "Latitude of false origin",
+                CF.LONGITUDE_OF_CENTRAL_MERIDIAN,  "central_meridian",             "Longitude of false origin",
                 CF.STANDARD_PARALLEL + "[1]",      "standard_parallel_1",          "Latitude of 1st standard parallel",
                 CF.STANDARD_PARALLEL + "[2]",      "standard_parallel_2",          "Latitude of 2nd standard parallel",
-                CF.FALSE_EASTING,                  "false_easting",                "False easting",
-                CF.FALSE_NORTHING,                 "false_northing",               "False northing",
+                CF.FALSE_EASTING,                  "false_easting",                "Easting at false origin",
+                CF.FALSE_NORTHING,                 "false_northing",               "Northing at false origin",
                 CF.EARTH_RADIUS,                    null,                           null);
         }
         @Override public Class<LambertConformal> delegate() {return LambertConformal.class;}
@@ -522,7 +522,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         private static final long serialVersionUID = 5466265000839086417L;
         ObliqueStereographic(final Map<SimpleName,SimpleName> existings) {
             super(existings, false,
-                "Stereographic",                       "Stereographic",        "Stereographic",
+                "Stereographic",                       "Stereographic",        "Oblique Stereographic",
                 CF.LATITUDE_OF_PROJECTION_ORIGIN,      "latitude_of_origin",   "Latitude of natural origin",
                 CF.LONGITUDE_OF_PROJECTION_ORIGIN,     "central_meridian",     "Longitude of natural origin",
                 CF.SCALE_FACTOR_AT_PROJECTION_ORIGIN,  "scale_factor",         "Scale factor at natural origin",
