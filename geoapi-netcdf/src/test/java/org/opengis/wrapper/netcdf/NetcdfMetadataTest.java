@@ -100,12 +100,17 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         return new NetcdfMetadata(file);
     }
 
+    /*
+     * Note: this test case shall not verify the hard-coded constants (metadataStandardName,
+     * metadataStandardVersion, hierarchyLevel) since they are obviously implementation-dependent.
+     */
+
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#THREDDS} file (XML format).
      * The current implementation tests:
      * <p>
      * <ul>
-     *   <li>The {@linkplain Metadata#getContacts() contact} name, role and email address.</li>
+     *   <li>The {@linkplain ResponsibleParty Responsible party} name, role and email address.</li>
      *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
      * </ul>
      *
@@ -119,16 +124,19 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             this.metadata = metadata; // For subclasses usage.
             validator.validate(metadata);
             /*
-             * Responsibly party.
+             * Metadata / Data Identification / Citation / Responsibly party.
              */
-            final ResponsibleParty party = getSingleton(metadata.getContacts());
-            assertEquals("David Neufeld", party.getIndividualName());
-            assertEquals("xxxxx.xxxxxxx@noaa.gov", getSingleton(party.getContactInfo().getAddress().getElectronicMailAddresses()));
-            assertEquals(Role.ORIGINATOR, party.getRole());
+            final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
+            final ResponsibleParty party = getSingleton(identification.getCitation().getCitedResponsibleParties());
+            assertEquals("identificationInfo.citation.citedResponsibleParty.individualName", "David Neufeld",
+                    party.getIndividualName());
+            assertEquals("identificationInfo.citation.citedResponsibleParty.contactInfo.address.electronicMailAddress", "xxxxx.xxxxxxx@noaa.gov",
+                    getSingleton(party.getContactInfo().getAddress().getElectronicMailAddresses()));
+            assertEquals("identificationInfo.citation.citedResponsibleParty.role", Role.ORIGINATOR,
+                    party.getRole());
             /*
              * Metadata / Data Identification / Geographic Bounding Box.
              */
-            final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
             final GeographicBoundingBox bbox = (GeographicBoundingBox) getSingleton(getSingleton(identification.getExtents()).getGeographicElements());
             assertEquals("West Bound Longitude", -80, bbox.getWestBoundLongitude(), EPS);
             assertEquals("East Bound Longitude", -64, bbox.getEastBoundLongitude(), EPS);
@@ -145,7 +153,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * <p>
      * <ul>
      *   <li>The {@linkplain Metadata#getIdentificationInfo() identification} identifier, title, abstract and date.</li>
-     *   <li>The {@linkplain Metadata#getContacts() contact} name, role and email address.</li>
+     *   <li>The {@linkplain ResponsibleParty Responsible party} name, role and email address.</li>
      *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
      * </ul>
      *
@@ -161,27 +169,37 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             /*
              * Metadata / Data Identification.
              */
-            assertEquals("edu.ucar.unidata:NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc", metadata.getFileIdentifier());
+            assertEquals("fileIdentifier", "edu.ucar.unidata:NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc",
+                    metadata.getFileIdentifier());
             final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
-            assertSame(SpatialRepresentationType.GRID, getSingleton(identification.getSpatialRepresentationTypes()));
-            assertEquals("NCEP SST Global 5.0 x 2.5 degree model data", identification.getAbstract().toString());
-            /*
-             * Metadata / Responsibly party.
-             */
-            final ResponsibleParty party = getSingleton(metadata.getContacts());
-            assertEquals("NOAA/NWS/NCEP", party.getIndividualName());
-            assertEquals(Role.ORIGINATOR, party.getRole());
+            assertEquals("identificationInfo.spatialRepresentationType", SpatialRepresentationType.GRID,
+                    getSingleton(identification.getSpatialRepresentationTypes()));
+            assertEquals("identificationInfo.abstract", "NCEP SST Global 5.0 x 2.5 degree model data",
+                    valueOf(identification.getAbstract()));
             /*
              * Metadata / Data Identification / Citation.
              */
             final Citation citation = identification.getCitation();
             final Identifier identifier = getSingleton(citation.getIdentifiers());
             final CitationDate date = getSingleton(citation.getDates());
-            assertEquals("Sea Surface Temperature Analysis Model", citation.getTitle().toString());
-            assertEquals("edu.ucar.unidata", identifier.getAuthority().getTitle().toString());
-            assertEquals("NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc", identifier.getCode());
-            assertEquals("Expected 2005-09-22T00:00", parseDate("2005-09-22T00:00"), date.getDate());
-            assertSame(DateType.CREATION, date.getDateType());
+            assertEquals("identificationInfo.citation.title", "Sea Surface Temperature Analysis Model",
+                    valueOf(citation.getTitle()));
+            assertEquals("identificationInfo.citation.identifier.authority", "edu.ucar.unidata",
+                    valueOf(identifier.getAuthority().getTitle()));
+            assertEquals("identificationInfo.citation.identifier.code", "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc",
+                    identifier.getCode());
+            assertEquals("identificationInfo.citation.date.date(2005-09-22T00:00)", parseDate("2005-09-22T00:00"),
+                    date.getDate());
+            assertEquals("identificationInfo.citation.date.dateType", DateType.CREATION,
+                    date.getDateType());
+            /*
+             * Metadata / Data Identification / Citation / Responsibly party.
+             */
+            final ResponsibleParty party = getSingleton(citation.getCitedResponsibleParties());
+            assertEquals("identificationInfo.citation.citedResponsibleParty.individualName", "NOAA/NWS/NCEP",
+                    party.getIndividualName());
+            assertEquals("identificationInfo.citation.citedResponsibleParty.role", Role.ORIGINATOR,
+                    party.getRole());
             /*
              * Metadata / Data Identification / Geographic Bounding Box.
              */
@@ -191,6 +209,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             assertEquals("East Bound Longitude", +180, bbox.getEastBoundLongitude(), 0);
             assertEquals("South Bound Latitude",  -90, bbox.getSouthBoundLatitude(), 0);
             assertEquals("North Bound Latitude",  +90, bbox.getNorthBoundLatitude(), 0);
+            assertEquals("identificationInfo.extent.geographicElement.extentTypeCode", Boolean.TRUE,
+                    bbox.getInclusion());
         } finally {
             file.close();
         }
@@ -231,9 +251,13 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
              * Metadata / Data Identification.
              */
             final DataIdentification identification = (DataIdentification) getSingleton(metadata.getIdentificationInfo());
-            assertEquals("Created by Mdv2NetCDF", identification.getSupplementalInformation().toString());
-            final ResponsibleParty contact = getSingleton(metadata.getContacts());
-            assertEquals("UCAR", contact.getOrganisationName().toString());
+            assertEquals("identificationInfo.supplementalInformation", "Created by Mdv2NetCDF",
+                    valueOf(identification.getSupplementalInformation()));
+            final ResponsibleParty party = getSingleton(identification.getCitation().getCitedResponsibleParties());
+            assertEquals("identificationInfo.citation.citedResponsibleParty.organisationName", "UCAR",
+                    valueOf(party.getOrganisationName()));
+            assertEquals("identificationInfo.citation.citedResponsibleParty.role", Role.ORIGINATOR,
+                    party.getRole());
         } finally {
             file.close();
         }
