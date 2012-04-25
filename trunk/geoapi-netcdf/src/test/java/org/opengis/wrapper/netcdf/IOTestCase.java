@@ -29,6 +29,8 @@ import ucar.nc2.NetcdfFile;
 import ucar.nc2.units.DateFormatter;
 import ucar.nc2.ncml.NcMLReader;
 
+import org.opengis.util.InternationalString;
+
 import static org.opengis.test.Assert.*;
 
 
@@ -345,6 +347,13 @@ public abstract strictfp class IOTestCase {
             buffer = Arrays.copyOf(buffer, length);
         }
         return buffer;
+    }
+
+    /**
+     * Returns the string representation of the given text, or {@code null} if none.
+     */
+    static String valueOf(final InternationalString text) {
+        return (text != null) ? text.toString() : null;
     }
 
     /**

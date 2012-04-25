@@ -150,6 +150,8 @@ public interface Metadata {
      *
      * @return Parties responsible for the metadata information.
      *
+     * @see Identification#getPointOfContacts()
+     *
      * @since 2.1
      */
     @Profile(level=CORE)

@@ -115,6 +115,8 @@ public interface Identification {
      *
      * @return Means of communication with person(s) and organizations(s) associated with the
      *         resource(s).
+     *
+     * @see org.opengis.metadata.Metadata#getContacts()
      */
     @Profile(level=CORE)
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)

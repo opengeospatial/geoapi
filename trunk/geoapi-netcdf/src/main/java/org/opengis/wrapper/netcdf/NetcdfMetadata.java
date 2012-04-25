@@ -97,6 +97,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
         ResponsibleParty, Contact, Address, Extent, GeographicBoundingBox
 {
     /**
+     * The hierarchy level returned by {@link #getHierarchyLevels()}.
+     */
+    private static final Collection<ScopeCode> HIERARCHY_LEVEL = Collections.singleton(ScopeCode.DATASET);
+
+    /**
      * The NetCDF file given to the constructor.
      */
     protected final NetcdfFile file;
@@ -428,7 +433,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Unconditionally returns {@link DateType#CREATION CREATION}, because the citation
+     * Unconditionally returns {@link DateType#CREATION}, because the citation
      * encapsulated by this implementation is only for the creator. The contributors and
      * publishers are not supported by this simple implementation.
      */
@@ -438,7 +443,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Unconditionally returns {@link Role#ORIGINATOR ORIGINATOR}, because the citation
+     * Unconditionally returns {@link Role#ORIGINATOR}, because the citation
      * encapsulated by this implementation is only for the creator. The contributors and
      * publishers are not supported by this simple implementation.
      */
@@ -469,7 +474,10 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
 
     /**
      * Returns the {@linkplain #getCitedResponsibleParties() responsible party} as
-     * the default point of contact.
+     * the default point of contact. The responsible party returned by this method
+     * is associated to {@link Role#ORIGINATOR} instead than {@link Role#POINT_OF_CONTACT}
+     * because this simple implementation can not be associated to more than one responsible
+     * party. However library vendors are encouraged to provide more accurate implementations.
      */
     @Override
     public Collection<? extends ResponsibleParty> getPointOfContacts() {
@@ -477,7 +485,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to a synonymous for the {@linkplain #getPointOfContacts() point of contacts}.
+     * Defaults to a synonymous for the {@linkplain #getPointOfContacts() point of contacts}
+     * in this simple implementation. Note that in theory, those two methods are not strictly
+     * synonymous since {@code getContacts()} shall return the contact for the <em>metadata</em>,
+     * while {@code getPointOfContacts()} shall return the contact for the <em>data</em>. However
+     * the attributes in NetCDF files usually don't make this distinction.
      */
     @Override
     public Collection<? extends ResponsibleParty> getContacts() {
@@ -917,11 +929,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to an empty set.
+     * Defaults to {@link ScopeCode.DATASET}.
      */
     @Override
     public Collection<ScopeCode> getHierarchyLevels() {
-        return Collections.emptySet();
+        return HIERARCHY_LEVEL;
     }
 
     /**
@@ -933,19 +945,19 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to {@code null}.
+     * Defaults to {@code "ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data"}.
      */
     @Override
     public String getMetadataStandardName() {
-        return null;
+        return "ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data";
     }
 
     /**
-     * Defaults to {@code null}.
+     * Defaults to {@code "ISO 19115-2:2009(E)"}.
      */
     @Override
     public String getMetadataStandardVersion() {
-        return null;
+        return "ISO 19115-2:2009(E)";
     }
 
     /**
