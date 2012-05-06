@@ -15,7 +15,6 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.Date;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.io.File;
 import java.io.InputStream;
 import java.io.IOException;
@@ -28,8 +27,6 @@ import java.net.URL;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.units.DateFormatter;
 import ucar.nc2.ncml.NcMLReader;
-
-import org.opengis.util.InternationalString;
 
 import static org.opengis.test.Assert.*;
 
@@ -347,30 +344,6 @@ public abstract strictfp class IOTestCase {
             buffer = Arrays.copyOf(buffer, length);
         }
         return buffer;
-    }
-
-    /**
-     * Returns the string representation of the given text, or {@code null} if none.
-     */
-    static String valueOf(final InternationalString text) {
-        return (text != null) ? text.toString() : null;
-    }
-
-    /**
-     * Returns the single element from the given collection. If the given collection is null
-     * or does not contains exactly one element, then an {@link AssertionError} is thrown.
-     *
-     * @param  <E> The type of collection elements.
-     * @param  collection The collection from which to get the singleton.
-     * @return The singleton element from the collection.
-     */
-    static <E> E getSingleton(final Iterable<? extends E> collection) {
-        assertNotNull("Null collection.", collection);
-        final Iterator<? extends E> it = collection.iterator();
-        assertTrue("The collection is empty.", it.hasNext());
-        final E element = it.next();
-        assertFalse("The collection has more than one element.", it.hasNext());
-        return element;
     }
 
     /**
