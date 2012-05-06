@@ -15,6 +15,7 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Iterator;
 import java.util.logging.Logger;
 import java.io.IOException;
 import ucar.nc2.dataset.NetcdfDataset;
@@ -168,6 +169,23 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     }
 
     /**
+     * Returns the single element from the given collection. If the given collection is null
+     * or does not contains exactly one element, then an {@link AssertionError} is thrown.
+     *
+     * @param  <E> The type of collection elements.
+     * @param  collection The collection from which to get the singleton.
+     * @return The singleton element from the collection.
+     */
+    private static <E> E assertSingleton(final Iterable<? extends E> collection) {
+        assertNotNull("Null collection.", collection);
+        final Iterator<? extends E> it = collection.iterator();
+        assertTrue("The collection is empty.", it.hasNext());
+        final E element = it.next();
+        assertFalse("The collection has more than one element.", it.hasNext());
+        return element;
+    }
+
+    /**
      * Asserts that the a name or identifier of the given identified object is equals to the given
      * value. The default implementation verifies that the {@linkplain IdentifiedObject#getName()
      * name} has the following properties:
@@ -232,7 +250,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     public void testGeographic() throws IOException {
         final NetcdfDataset file = new NetcdfDataset(open(THREDDS));
         try {
-            crs = wrap(getSingleton(file.getCoordinateSystems()), file);
+            crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             validator.dispatch(crs);
             assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
             final EllipsoidalCS cs = ((GeographicCRS) crs).getCoordinateSystem();
@@ -309,7 +327,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     public void testGeographic_XYT() throws IOException {
         final NetcdfDataset file = new NetcdfDataset(open(NCEP));
         try {
-            crs = wrap(getSingleton(file.getCoordinateSystems()), file);
+            crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             final GeographicCRS geographic = separateComponents("Expected a (geographic + time) CRS.", GeographicCRS.class, false);
             final EllipsoidalCS ellp = (geographic) .getCoordinateSystem();
             final TimeCS        time = (temporalCRS).getCoordinateSystem();
