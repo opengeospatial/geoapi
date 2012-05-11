@@ -597,7 +597,6 @@
                     <report>summary</report>
                     <report>modules</report>
                     <report>license</report>
-                    <report>distribution-management</report>
                     <report>scm</report>
                     <report>cim</report>
                     <report>project-team</report>
@@ -672,19 +671,6 @@
         </configuration>
       </plugin>
     </plugins>
-
-
-
-    <!-- ====================================================
-             Required for deployment to the repository
-         ==================================================== -->
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-webdav-jackrabbit</artifactId>
-        <version>2.0</version>
-      </extension>
-    </extensions>
   </build>
 
 
@@ -696,12 +682,12 @@
     <repository>
       <id>geotoolkit</id> <!-- For snapshots only -->
       <name>GeoToolkit repository</name>
-      <url>dav:http://maven.geotoolkit.org</url>
+      <url>file:///var/www/maven.geotoolkit.org</url>
     </repository>
     <site>
       <id>geoapi</id>
       <name>GeoAPI web site</name>
-      <url>dav:http://www.geoapi.org/</url>
+      <url>file:///var/www/www.geoapi.org</url>
     </site>
   </distributionManagement>
 
