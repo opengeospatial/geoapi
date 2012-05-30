@@ -74,6 +74,7 @@ import static org.opengis.test.Assert.*;
  * @see org.opengis.test.TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Alexis Manin (Geomatys)
  * @version 3.1
  * @since   3.1
  */
@@ -451,7 +452,9 @@ next:   for (final String search : expected) {
             }
             validators.validate(ellipsoid);
             prefix.setLength(prefixLength);
-            prefix.append(code).append("].");
+            prefix.append(code).append(']');
+            assertNotNull(prefix.toString(), ellipsoid);
+            prefix.append('.');
             testIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
@@ -542,7 +545,9 @@ next:   for (final String search : expected) {
             }
             validators.validate(pm);
             prefix.setLength(prefixLength);
-            prefix.append(code).append("].");
+            prefix.append(code).append(']');
+            assertNotNull(prefix.toString(), pm);
+            prefix.append('.');
             testIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
@@ -639,6 +644,9 @@ next:   for (final String search : expected) {
                         continue;
                     }
                     validators.validate(datum);
+                    prefix.append("GeodeticDatum[").append(datumCode).append(']');
+                    assertNotNull(prefix.toString(), datum);
+                    prefix.append('.');
                 } else {
                     /*
                      * All other iterations (columns 2-4): get the geodetic CRS, test its
@@ -672,7 +680,9 @@ next:   for (final String search : expected) {
                         continue;
                     }
                     validators.validate(crs);
-                    prefix.append("GeodeticCRS[").append(crsCode).append("].");
+                    prefix.append("GeodeticCRS[").append(crsCode).append(']');
+                    assertNotNull(prefix.toString(), crs);
+                    prefix.append('.');
                     final int lengthAfterCRS = prefix.length();
                     testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
                     if (isStandardNameSupported) {
@@ -717,7 +727,6 @@ next:   for (final String search : expected) {
                  * So we will verify the identifier only if the implementation supports
                  * identification of associated objects.
                  */
-                prefix.append("GeodeticDatum[").append(datumCode).append("].");
                 final int lengthAfterDatum = prefix.length();
                 if (isDependencyIdentificationSupported || (column == 1)) {
                     configurationTip = Configuration.Key.isDependencyIdentificationSupported;
@@ -807,7 +816,9 @@ next:   for (final String search : expected) {
                 }
                 validators.validate(cop);
                 prefix.setLength(prefixLength);
-                prefix.append(code).append("].");
+                prefix.append(code).append(']');
+                assertNotNull(prefix.toString(), cop);
+                prefix.append('.');
                 testIdentifier(message(prefix, "getIdentifiers()"), code, cop.getIdentifiers());
                 assertInstanceOf(message(prefix, "class"), Conversion.class, cop);
                 final Conversion conversion = (Conversion) cop;
@@ -870,7 +881,9 @@ next:   for (final String search : expected) {
                 }
                 validators.validate(crs);
                 prefix.setLength(prefixLength);
-                prefix.append(code).append("].");
+                prefix.append(code).append(']');
+                assertNotNull(prefix.toString(), crs);
+                prefix.append('.');
                 testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
                 if (isDependencyIdentificationSupported) {
                     configurationTip = Configuration.Key.isDependencyIdentificationSupported;
@@ -922,7 +935,7 @@ next:   for (final String search : expected) {
             String .class,  // [4]: Coordinate Operation Method
             String .class); // [5]: Remarks
 
-        final StringBuilder prefix = new StringBuilder("ProjectedCRS[");
+        final StringBuilder prefix = new StringBuilder("CoordinateOperation[");
         final int prefixLength = prefix.length();
         while (data.next()) {
             final int code = data.getInt(0);
@@ -935,11 +948,192 @@ next:   for (final String search : expected) {
             }
             validators.validate(operation);
             prefix.setLength(prefixLength);
-            prefix.append(code).append("].");
+            prefix.append(code).append(']');
+            assertNotNull(prefix.toString(), operation);
+            prefix.append('.');
             testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(operation));
+                configurationTip = null;
+            }
+        }
+    }
+
+    /**
+     * Vertical datum.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference vertical datums and CRSs bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>.
+     *   Compare vertical datums definition included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Definitions bundled with the software should have the same name and coordinate system (including
+     *   axes direction and units) as in EPSG Dataset. CRSs missing
+     *   from the software or included in the software additional to those in the EPSG Dataset or at variance
+     *   with those in the EPSG Dataset should be reported.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
+     *         unsupported identifier}) occurred while creating a vertical datum from an EPSG code.
+     */
+    @Test
+    public void test2008() throws FactoryException {
+        assumeNotNull(datumAuthorityFactory);
+        final ExpectedData data = new ExpectedData("GIGS_2008_libVerticalDatumCRS.csv",
+                Integer.class,      // [0]: EPSG Datum Code
+                String.class,       // [1]: Datum name
+                Integer.class,      // [2]: EPSG CRS code
+                String.class,       // [3]: CRS name
+                Boolean.class);     // [4]: Particularly important to E&P industry?
+
+        final StringBuilder prefix = new StringBuilder();
+        while (data.next()) {
+            final int     code      = data.getInt    (0);
+            final String  name      = data.getString (1);
+            final int     crsCode   = data.getInt    (2);
+            final String  crsName   = data.getString (3);
+            final boolean important = data.getBoolean(4);
+            // Try to get vertical datum.
+            final VerticalDatum datum;
+            try {
+                datum = datumAuthorityFactory.createVerticalDatum(String.valueOf(code));
+            } catch (NoSuchAuthorityCodeException e) {
+                unsupportedCode(VerticalDatum.class, code, e, important);
+                continue;
+            }
+            // Test it.
+            validators.validate(datum);
+            prefix.setLength(0);
+            prefix.append("VerticalDatum[").append(code).append(']');
+            assertNotNull(prefix.toString(), datum);
+            prefix.append('.');
+            /*
+             * Identifiers test. It's important because it's the only way to
+             * distinguish datums at first sight.
+             */
+            testIdentifier(message(prefix, "getIdentifiers()"), code, datum.getIdentifiers());
+            if (isStandardNameSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
+                assertEquals(message(prefix, "getName()"), name, getName(datum));
+                configurationTip = null;
+            }
+            /*
+             * For each vertical datum, data defines a crs which should use it.
+             * The aim is to get the crs thanks to the given code, check for its
+             * name and test it really use the current datum.
+             */
+            if (crsAuthorityFactory != null) {
+                final VerticalCRS crs;
+                try {
+                    crs = crsAuthorityFactory.createVerticalCRS(String.valueOf(crsCode));
+                } catch (NoSuchAuthorityCodeException e) {
+                    unsupportedCode(VerticalCRS.class, code, e, important);
+                    continue;
+                }
+                validators.validate(crs);
+                prefix.setLength(0);
+                prefix.append("VerticalCRS[").append(crsCode).append(']');
+                assertNotNull(prefix.toString(), crs);
+                prefix.append('.');
+                if (isStandardNameSupported) {
+                    configurationTip = Configuration.Key.isStandardNameSupported;
+                    assertEquals(message(prefix, "getName()"), crsName, getName(crs));
+                    configurationTip = null;
+                }
+                if (isDependencyIdentificationSupported) {
+                    final VerticalDatum datumFromCRS = crs.getDatum();
+                    assertNotNull(prefix.append("getDatum()").toString(), datumFromCRS);
+                    prefix.append('.');
+                    configurationTip = Configuration.Key.isDependencyIdentificationSupported;
+                    testIdentifier(message(prefix, "getIdentifiers()"), code, datumFromCRS.getIdentifiers());
+                    configurationTip = Configuration.Key.isStandardNameSupported;
+                    assertEquals(message(prefix, "getName()"), name, getName(datumFromCRS));
+                    configurationTip = null;
+                }
+            }
+        }
+    }
+
+    /**
+     * Vertical transformations
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>To verify reference vertical transformations bundled with the geoscience software.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>.
+     *   Compare vertical transformation definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>Transformation definitions bundled with the software should have same name, method name, defining
+     *   parameters and parameter values as in EPSG Dataset. See current version of the EPSG Dataset. The
+     *   values of the parameters should be correct to at least 10 significant figures. Transformations missing
+     *   from the software or included in the software additional to those in the EPSG Dataset or at variance
+     *   with those in the EPSG Dataset should be reported.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
+     *         unsupported identifier}) occurred while creating a vertical transformation from an EPSG code.
+     */
+    @Test
+    public void test2009() throws FactoryException {
+        assumeNotNull(copAuthorityFactory);
+        final ExpectedData data = new ExpectedData("GIGS_2009_libVertTfm.csv",
+                Integer.class, // [0]: EPSG Coordinate Operation Code
+                Boolean.class, // [1]: Particularly important to E&P industry?
+                String.class,  // [2]: Transformation Name(s)
+                String.class,  // [3]: Coordinate operation method
+                String.class); // [4]: Remarks
+
+        final StringBuilder prefix = new StringBuilder("Vertical Transformation[");
+        final int prefixLength = prefix.length();
+        while (data.next()) {
+            final int code = data.getInt(0);
+            final boolean important = data.getBoolean(1);
+            final String name = data.getString(2);
+            final String method = data.getString(3);
+            // Try to get vertical datum.
+            final CoordinateOperation operation;
+            try {
+                operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
+            } catch (NoSuchIdentifierException e) {
+                unsupportedCode(CoordinateOperation.class, code, e, important);
+                continue;
+            }
+            // Test it.
+            validators.validate(operation);
+            prefix.setLength(prefixLength);
+            prefix.append(code).append(']');
+            assertNotNull(prefix.toString(), operation);
+            prefix.append('.');
+            // Test of the Identifiers.
+            testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
+            if (isStandardNameSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
+                assertEquals(message(prefix, "getName()"), name, getName(operation));
+                configurationTip = null;
+            }
+            /*
+             * Test method. We have to cast our operation to subclass because
+             * the super type does not define access to Operation method.
+             */
+            assertInstanceOf(message(prefix, "getMethod()"), SingleOperation.class, operation);
+            final OperationMethod methodForTests = ((SingleOperation) operation).getMethod();
+            if (isStandardNameSupported) {
+                configurationTip = Configuration.Key.isStandardNameSupported;
+                assertEquals(message(prefix, "getMethod().getName()"), method, getName(methodForTests));
                 configurationTip = null;
             }
         }
