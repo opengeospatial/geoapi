@@ -58,7 +58,7 @@ import java.util.Set;
  * </pre>
  * </p>
  * <p>
- * The intention of a schema is to provide a resuable set of attribute types.
+ * The intention of a schema is to provide a reusable set of attribute types.
  * These types are used when building attribute instances.
  * </p>
  *
