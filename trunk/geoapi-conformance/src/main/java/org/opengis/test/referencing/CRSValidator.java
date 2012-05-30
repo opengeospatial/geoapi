@@ -68,7 +68,7 @@ public class CRSValidator extends ReferencingValidator {
             GEOGRAPHIC_AXIS_NAME = {"geodetic latitude", "geodetic longitude", "ellipsoidal height"},
             PROJECTED_AXIS_NAME  = {"northing", "southing", "easting", "westing"},
             SPHERICAL_AXIS_NAME  = {"spherical latitude", "spherical longitude", "geocentric radius"},
-            VERTICAL_AXIS_NAME   = {"depth", "gravity-related height"};
+            VERTICAL_AXIS_NAME   = {"depth", "gravity-related height", "gravity-related depth"};
 
     /**
      * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS}

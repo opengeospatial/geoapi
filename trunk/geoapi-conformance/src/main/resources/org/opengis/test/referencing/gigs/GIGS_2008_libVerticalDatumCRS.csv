@@ -1,0 +1,50 @@
+#
+# Derived from file GIGS_208_libVerticalDatumCRS_v1_2009-12-01.xls
+# Test 208, Application pre-defined geodetic parameter library - Vertical Datums and CRSs, v1_2009-12-01.
+#
+# Instructions:
+# Compare the definitions of vertical datums and CRSs in the application pre-defined library with those in the EPSG Dataset. Those listed below #are the minimum that should be reviewed.
+# (The information below has been taken from EPSG Dataset v6.18 of November 2008. The most recent version of the Dataset should be used).,,,,
+# (This list identifies items of especial interest to the E&P industry for geodetic integrity testing purposes; it is not a fully inclusive list #of items of interest).
+#
+# Columns:
+#  [ 0]: EPSG datum code
+#  [ 1]: Datum name
+#  [ 2]: EPSG CRS Code
+#  [ 3]: CRS Name
+#  [ 4]: Particularly important to E&P industry?
+#
+5112,Australian Height Datum (Tasmania),5712,AHD (Tasmania) height,Yes
+5111,Australian Height Datum,5711,AHD height,Yes
+5133,AIOC 1995,5734,AIOC95 depth,Yes
+5111,Australian Height Datum,5711,AHD height,Yes
+5133,AIOC 1995,5797,AIOC95 height,Yes
+5184,Baltic 1982,5786,Baltic 1982 height,Yes
+5105,Baltic Sea,5612,Baltic depth,Yes
+5105,Baltic Sea,5705,Baltic height,Yes
+5150,Bandar Abbas,5752,Bandar Abbas height,Yes
+5106,Caspian Sea,5706,Caspian depth,Yes
+5114,Canadian Geodetic Vertical Datum of 1928,5713,CGVD28 height,Yes
+5182,Deutsches Haupthoehennetz 1985,5784,DHHN85 height,Yes
+5181,Deutsches Haupthoehennetz 1992,5783,DHHN92 height,Yes
+5171,EGM96 geoid,5773,EGM96 geoid height,Yes
+5129,European Vertical Reference Frame 2000,5730,EVRF2000 height,Yes
+5215,European Vertical Reference Frame 2007,5621,EVRF2007 height,Yes
+5124,Fahud Height Datum,5725,Fahud HD height,Yes
+5149,Fao ,5751,Fao height,Yes
+5188,KOC Construction Datum,5790,KOC CD height,Yes
+5187,KOC Well Datum,5789,KOC WD depth,Yes
+5187,KOC Well Datum,5614,KOC WD depth (ft),Yes
+5186,Kuwait PWD,5788,Kuwait PWD height,Yes
+5194,Lagos 1955,5796,Lagos 1955 height,Yes
+5100,Mean Sea Level,5715,msl depth,Yes
+5100,Mean Sea Level,5714,msl height,Yes
+5109,Normaal Amsterdams Peil,5709,NAP height,Yes
+5103,North American Vertical Datum 1988,5703,NAVD88 height,Yes
+5119,Nivellement General de la France - IGN69,5720,NGF IGN69 height,Yes
+5118,Nivellement General de la France - Lallemand,5719,NGF Lallemand height,Yes
+5102,National Geodetic Vertical Datum 1929,5702,NGVD29 height,Yes
+5101,Ordnance Datum Newlyn,5701,ODN height,Yes
+5123,PDO Height Datum 1993,5724,PHD93 height,Yes
+5104,Yellow Sea 1956,5736,Yellow Sea 1956 height,Yes
+5137,Yellow Sea 1985,5737,Yellow Sea 1985 height,Yes
