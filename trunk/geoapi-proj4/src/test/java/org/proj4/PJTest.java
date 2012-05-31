@@ -48,16 +48,6 @@ public class PJTest {
     public void testWGS84() {
         final PJ pj = new PJ("+proj=latlong +datum=WGS84");
         assertIsWGS84(pj);
-        /*
-         * Finalize should never be invoked explicitely. However we do an exception in this
-         * test suite in order to ensure that no error is thrown, and that all properties
-         * are correctly mapped to 0 (as a safety).
-         */
-        pj.finalize();
-        assertNull(pj.getType());
-        assertTrue(Double.isNaN(pj.getSemiMajorAxis()));
-        assertTrue(Double.isNaN(pj.getSemiMinorAxis()));
-        assertTrue(Double.isNaN(pj.getGreenwichLongitude()));
     }
 
     /**
@@ -94,5 +84,31 @@ public class PJTest {
     public void testIndexOutOfBoundsException() throws TransformException {
         final PJ pj = new PJ("+proj=latlong +datum=WGS84");
         pj.transform(pj, 2, new double[5], 2, 2);
+    }
+
+    /**
+     * Tests a method that returns NaN. The native code is expected to returns the
+     * {@link java.lang.Double#NaN} constant, because not all C/C++ compiler define
+     * a {@code NAN} constant.
+     */
+    @Test
+    public void testNaN() {
+        final PJ pj = new PJ("+proj=latlong +datum=WGS84");
+        pj.finalize(); // This cause the disposal of the internal PJ structure.
+        assertNull(pj.getType());
+        assertNaN(pj.getSemiMajorAxis());
+        assertNaN(pj.getSemiMinorAxis());
+        assertNaN(pj.getEccentricitySquared());
+        assertNaN(pj.getGreenwichLongitude());
+        assertNaN(pj.getLinearUnitToMetre(false));
+        assertNaN(pj.getLinearUnitToMetre(true));
+    }
+
+    /**
+     * Asserts that the bits pattern of the given value is strictly identical to the bits
+     * pattern of the {@link java.lang.Double#NaN} constant.
+     */
+    private static void assertNaN(final double value) {
+        assertEquals(Double.doubleToRawLongBits(Double.NaN), Double.doubleToRawLongBits(value));
     }
 }
