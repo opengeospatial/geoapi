@@ -69,6 +69,11 @@ public class CRSValidator extends ReferencingValidator {
             PROJECTED_AXIS_NAME  = {"northing", "southing", "easting", "westing"},
             SPHERICAL_AXIS_NAME  = {"spherical latitude", "spherical longitude", "geocentric radius"},
             VERTICAL_AXIS_NAME   = {"depth", "gravity-related height", "gravity-related depth"};
+    /*
+     * Note: the ISO table does not mention "gravity-related depth" as a standard name.
+     * However this name is used in the EPSG database and seems a natural complement to
+     * the "gravity-related height" standard name.
+     */
 
     /**
      * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS}

@@ -236,6 +236,8 @@ public class OperationParametersReport extends Report {
 
         /**
          * Returns a string representation of this row, for debugging purpose only.
+         *
+         * @return An arbitrary string representation of this row.
          */
         @Override
         public String toString() {

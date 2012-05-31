@@ -200,6 +200,10 @@ public class AuthorityCodesReport extends Report {
          * using a {@linkplain String#CASE_INSENSITIVE_ORDER case-insensitive comparator}.
          *
          * <p>Subclasses can override this method if they want a different rows ordering.</p>
+         *
+         * @param  o The other row to compare with this row.
+         * @return -1 for sorting this row before the given row, +1 for sorting it after,
+         *         or 0 if the two rows have equal ordering.
          */
         @Override
         public int compareTo(final Row o) {
@@ -209,6 +213,8 @@ public class AuthorityCodesReport extends Report {
 
         /**
          * Returns a string representation of this row, for debugging purpose only.
+         *
+         * @return An arbitrary string representation of this row.
          */
         @Override
         public String toString() {
