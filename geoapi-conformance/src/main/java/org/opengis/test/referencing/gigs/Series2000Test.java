@@ -91,22 +91,22 @@ public strictfp class Series2000Test extends TestCase {
     private static final double ANGULAR_TOLERANCE = 1E-7;
 
     /**
-     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
     protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
-     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
      */
     protected final CSAuthorityFactory csAuthorityFactory;
 
     /**
-     * Factory to build {@link Datum} instances, or {@code null} if none.
+     * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumAuthorityFactory datumAuthorityFactory;
 
     /**
-     * Factory to build {@link CoordinateOperation} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateOperation} instances, or {@code null} if none.
      */
     protected final CoordinateOperationAuthorityFactory copAuthorityFactory;
 
@@ -925,7 +925,6 @@ next:   for (final String search : expected) {
      *         unsupported identifier}) occurred while creating an operation from an EPSG code.
      */
     @Test
-    @Ignore
     public void test2007() throws FactoryException {
         assumeNotNull(copAuthorityFactory);
         final ExpectedData data = new ExpectedData("GIGS_2007_libGeodTfm.csv",
