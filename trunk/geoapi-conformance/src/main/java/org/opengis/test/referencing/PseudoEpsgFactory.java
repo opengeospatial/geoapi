@@ -89,27 +89,27 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     static final double LINKS = 0.66 * FEET;
 
     /**
-     * Factory to build {@link Datum} instances, or {@code null} if none.
+     * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumFactory datumFactory;
 
     /**
-     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
      */
     protected final CSFactory csFactory;
 
     /**
-     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
     protected final CRSFactory crsFactory;
 
     /**
-     * Factory to build {@link Conversion} instances, or {@code null} if none.
+     * Factory to use for building {@link Conversion} instances, or {@code null} if none.
      */
     protected final CoordinateOperationFactory copFactory;
 
     /**
-     * Factory to build {@link MathTransform} instances, or {@code null} if none.
+     * Factory to use for building {@link MathTransform} instances, or {@code null} if none.
      */
     protected final MathTransformFactory mtFactory;
 

@@ -104,17 +104,17 @@ import static org.opengis.test.referencing.Utilities.getName;
 @RunWith(Parameterized.class)
 public strictfp class AuthorityFactoryTest extends TestCase {
     /**
-     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
     protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
-     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
      */
     protected final CSAuthorityFactory csAuthorityFactory;
 
     /**
-     * Factory to build {@link Datum} instances, or {@code null} if none.
+     * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumAuthorityFactory datumAuthorityFactory;
 

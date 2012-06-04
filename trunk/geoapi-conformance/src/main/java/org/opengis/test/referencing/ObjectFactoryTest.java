@@ -90,22 +90,22 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 @RunWith(Parameterized.class)
 public strictfp class ObjectFactoryTest extends TestCase {
     /**
-     * Factory to build {@link Datum} instances, or {@code null} if none.
+     * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumFactory datumFactory;
 
     /**
-     * Factory to build {@link CoordinateSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
      */
     protected final CSFactory csFactory;
 
     /**
-     * Factory to build {@link CoordinateReferenceSystem} instances, or {@code null} if none.
+     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
     protected final CRSFactory crsFactory;
 
     /**
-     * Factory to build {@link Conversion} instances, or {@code null} if none.
+     * Factory to use for building {@link Conversion} instances, or {@code null} if none.
      */
     protected final CoordinateOperationFactory copFactory;
 

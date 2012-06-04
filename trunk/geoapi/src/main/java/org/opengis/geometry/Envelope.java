@@ -81,8 +81,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Envelope {
     /**
      * Returns the envelope coordinate reference system, or {@code null} if unknown.
-     * If non-null, it shall be the same as {@linkplain #getLowerCorner lower corner}
-     * and {@linkplain #getUpperCorner upper corner} CRS.
+     * If non-null, it shall be the same as {@linkplain #getLowerCorner() lower corner}
+     * and {@linkplain #getUpperCorner() upper corner} CRS.
      *
      * @return The envelope CRS, or {@code null} if unknown.
      *
@@ -99,7 +99,7 @@ public interface Envelope {
 
     /**
      * The length of coordinate sequence (the number of entries) in this envelope. Mandatory
-     * even when the {@linkplain #getCoordinateReferenceSystem coordinate reference system}
+     * even when the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}
      * is unknown.
      *
      * @return The dimensionality of this envelope.
@@ -171,7 +171,7 @@ public interface Envelope {
      * following code without the cost of creating a temporary {@link DirectPosition} object:
      *
      * <blockquote><code>
-     * minimum = {@linkplain #getLowerCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension);
+     * minimum = {@linkplain #getLowerCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
      * </code></blockquote>
      *
      * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
@@ -208,7 +208,7 @@ public interface Envelope {
      * following code without the cost of creating a temporary {@link DirectPosition} object:
      *
      * <blockquote><code>
-     * maximum = {@linkplain #getUpperCorner}.{@linkplain DirectPosition#getOrdinate getOrdinate}(dimension);
+     * maximum = {@linkplain #getUpperCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
      * </code></blockquote>
      *
      * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
@@ -244,7 +244,7 @@ public interface Envelope {
      * equals (minus rounding error) to:
      *
      * <blockquote><code>
-     * median = ({@linkplain #getMinimum getMinimum}(dimension) + {@linkplain #getMaximum getMaximum}(dimension)) / 2;
+     * median = ({@linkplain #getMinimum(int) getMinimum}(dimension) + {@linkplain #getMaximum(int) getMaximum}(dimension)) / 2;
      * </code></blockquote>
      *
      * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
@@ -283,7 +283,7 @@ public interface Envelope {
      * In most cases, the result is equals (minus rounding error) to:
      *
      * <blockquote><code>
-     * span = {@linkplain #getMaximum getMaximum}(dimension) - {@linkplain #getMinimum getMinimum}(dimension);
+     * span = {@linkplain #getMaximum(int) getMaximum}(dimension) - {@linkplain #getMinimum(int) getMinimum}(dimension);
      * </code></blockquote>
      *
      * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
