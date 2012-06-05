@@ -170,8 +170,10 @@ public interface MathTransformFactory extends Factory {
      * cartographic projections}.
      * <p>
      * In addition, implementations are encouraged to infer the {@code "semi_major"} and
-     * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}, if
-     * they are not explicitly given.
+     * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}
+     * associated to the {@code baseCRS}, if those parameters are not explicitly given
+     * and if they are applicable (typically for cartographic projections).
+     * This inference is consistent with the EPSG database model.
      *
      * @param  baseCRS The source coordinate reference system.
      * @param  parameters The parameter values for the transform.
