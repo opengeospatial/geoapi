@@ -14,6 +14,6 @@
 #  [ 3]: Coordinate Operation Method
 #  [ 4]: Remarks
 #
-5445,Yes,Baltic depth to AIOC95 depth (1),Vertical Offset
-5443,Yes,Baltic height to AIOC95 height (1),Vertical Offset
-10084,Yes,WGS 84 to EGM96 Geoid height (1),Geographic3D to GravityRelatedHeight (EGM),Geoid model.
+5445,true,Baltic depth to AIOC95 depth (1),Vertical Offset
+5443,true,Baltic height to AIOC95 height (1),Vertical Offset
+10084,true,WGS 84 to EGM96 Geoid height (1),Geographic3D to GravityRelatedHeight (EGM),Geoid model.
