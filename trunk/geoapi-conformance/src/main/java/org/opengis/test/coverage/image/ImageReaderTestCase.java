@@ -42,6 +42,7 @@ import javax.imageio.ImageReadParam;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.junit.Assume.*;
 
 
 /**
@@ -51,21 +52,25 @@ import static org.junit.Assert.*;
  *
  * <p>To use this test, subclasses need to set the {@link #reader} field to a non-null value in
  * the {@link #prepareImageReader()} method. The {@linkplain ImageReader#getInput() reader input}
- * must be set by the subclass. Example:</p>
+ * shall be set by the subclass when requested by the caller. Example:</p>
  *
  * <blockquote><pre>public class MyImageReaderTest extends ImageReaderTestCase {
  *    &#64;Override
- *    protected void prepareImageReader() throws IOException {
+ *    protected void prepareImageReader(boolean needsInput) throws IOException {
  *        if (reader == null) {
  *            reader = new MyImageReader();
  *        }
- *        reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+ *        if (needsInput) {
+ *            reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+ *        }
  *    }
  *}</pre></blockquote>
  *
  * <p>Subclasses inherit the following tests:</p>
  * <ul>
- *   <li>{@link #testImageReads()} - to test the {@link ImageReader#read(int, ImageReadParam)} method.</li>
+ *   <li>{@link #testReadAsBufferedImage()} - to test the {@link ImageReader#read(int, ImageReadParam)} method.</li>
+ *   <li>{@link #testReadAsRenderedImage()} - to test the {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method.</li>
+ *   <li>{@link #testReadAsRaster()} - to test the {@link ImageReader#readRaster(int, ImageReadParam)} method.</li>
  * </ul>
  *
  * <p>In addition, subclasses may consider to override the following methods:</p>
@@ -78,6 +83,30 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase {
+    /**
+     * The {@link ImageReader} API to use for testing read operations.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     */
+    private static enum API {
+        /**
+         * Use the {@link ImageReader#read(int, ImageReadParam)} method.
+         */
+        READ,
+
+        /**
+         * Use the {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method.
+         */
+        READ_AS_RENDERED_IMAGE,
+
+        /**
+         * Use the {@link ImageReader#readRaster(int, ImageReadParam)} method.
+         */
+        READ_RASTER
+    }
+
     /**
      * Default number of iterations when testing the image read operations.
      */
@@ -121,7 +150,12 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
     /**
      * {@code true} if the {@linkplain #reader} takes in account the parameter value given to
      * {@link ImageReadParam#setSourceBands(int[])}. The default value is {@code true}. Subclasses
-     * can set this flag to {@code false} when testing an incomplete {@link ImageReader} implementation.
+     * can set this flag to {@code false} if this feature can not be tested for the current
+     * {@link ImageReader} implementation.
+     *
+     * <p>Note that this feature can not be tested with some standard readers like PNG, because
+     * those readers require an explicit destination image to be specified if the number of bands
+     * to read differs from the number of bands in the source image.</p>
      */
     protected boolean isSourceBandsSupported = true;
 
@@ -172,33 +206,45 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      *    if (reader == null) {
      *        reader = new MyImageReader();
      *    }
-     *    reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+     *    if (needsInput) {
+     *        reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+     *    }
      *}</pre></blockquote>
      *
+     * @param  needsInput {@code true} if this method shall {@linkplain ImageReader#setInput(Object)
+     *         set the reader input}, or {@code false} if this is not yet necessary.
      * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
      */
-    protected abstract void prepareImageReader() throws IOException;
+    protected abstract void prepareImageReader(boolean needsInput) throws IOException;
 
     /**
      * Reads random subsets of the image at the given index, and compares the result with the
      * given complete image. This method sets the {@link ImageReadParam} parameters to random
-     * sub-regions, sub-samplings and source bands values and invokes the following method:
-     *
-     * <blockquote><pre>{@linkplain #reader}.{@link ImageReader#read(int, ImageReadParam) read}(imageIndex, parameters);</pre></blockquote>
-     *
-     * The above method call is repeated at most {@code numIterations} time with different parameters.
-     * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean fields
-     * in this class.
+     * sub-regions, sub-samplings and source bands values and invokes one of the following
+     * methods as determined by the {@code api} argument:
+     * <p>
+     * <ul>
+     *   <li><code>{@link ImageReader#read(int, ImageReadParam)}</code></li>
+     *   <li><code>{@link ImageReader#readAsRenderedImage(int, ImageReadParam)}</code></li>
+     *   <li><code>{@link ImageReader#readRaster(int, ImageReadParam)}</code></li>
+     * </ul>
+     * <p>
+     * The above method call is repeated {@code numIterations} time with different parameters.
+     * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
+     * fields in this class.
      * <p>
      * The pixel values for each image resulting from the above read operations are
      * compared with the corresponding pixel values of the given complete image.
      *
      * @param  completeImage The complete image as returned by <code>{@linkplain #reader}.{@link ImageReader#read(int) read}(imageIndex)</code> without read parameters.
-     * @param  imageIndex    Index of the image to read.
+     * @param  api           The API to use for reading the images.
+     * @param  imageIndex    Index of the images to read.
      * @param  numIterations Maximum number of iterations to perform.
      * @throws IOException If an error occurred while reading the image.
      */
-    protected void readRandomSubsets(final RenderedImage completeImage, final int imageIndex, final int numIterations) throws IOException {
+    private void readRandomSubsets(final RenderedImage completeImage, final API api,
+            final int imageIndex, final int numIterations) throws IOException
+    {
         final ImageReader reader = this.reader; // Protect from changes.
         assertInputSet(reader);
         final Rectangle completeRegion = getBounds(completeImage);
@@ -208,7 +254,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
             if (reader.getMinIndex() <= imageIndex) {
                 close(reader.getInput());
                 reader.setInput(null);
-                prepareImageReader();
+                prepareImageReader(true);
             }
             final ImageReadParam param = reader.getDefaultReadParam();
             Rectangle region = new Rectangle(completeRegion);
@@ -252,8 +298,25 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
             }
             /*
              * At this point, we are ready to read the image and compare the global attributes.
+             * The read method to use depends on the API specified by the caller, which is
+             * different for each 'testFoo()' method declared in the class.
              */
-            final RenderedImage image = reader.read(imageIndex, param);
+            final RenderedImage image;
+            switch (api) {
+                case READ: {
+                    image = reader.read(imageIndex, param);
+                    break;
+                }
+                case READ_AS_RENDERED_IMAGE: {
+                    image = reader.readAsRenderedImage(imageIndex, param);
+                    break;
+                }
+                case READ_RASTER: {
+                    image = new RasterImage(reader.readRaster(imageIndex, param));
+                    break;
+                }
+                default: throw new IllegalArgumentException(api.toString());
+            }
             assertEquals("RenderedImage.getWidth()",  (iteratorRegion.width  + xSubsampling-1) / xSubsampling, image.getWidth());
             assertEquals("RenderedImage.getHeight()", (iteratorRegion.height + ySubsampling-1) / ySubsampling, image.getHeight());
             final PixelIterator actual   = new PixelIterator(image);
@@ -309,21 +372,21 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
     }
 
     /**
-     * Tests the {@link ImageReader#read(int, ImageReadParam)} method. First,
-     * this method reads the full image with the following method call:
-     *
-     * <blockquote><pre>{@linkplain #reader}.{@link ImageReader#read(int) read}(imageIndex);</pre></blockquote>
-     *
-     * <p>Then, this method invokes {@link #readRandomSubsets(RenderedImage, int, int)} for the
-     * following configurations (note: any {@code isXXXSupported} field which was set to
-     * {@code false} prior the execution of this test will stay {@code false}):</p>
-     *
+     * Tests the {@link ImageReader#read(int, ImageReadParam) ImageReader.read} method.
+     * First, this method reads the full image with a call to {@link ImageReader#read(int)}.
+     * Then, this method invokes {@link ImageReader#read(int, ImageReadParam)} an arbitrary
+     * amount of time for the following configurations (note: any {@code isXXXSupported} field
+     * which was set to {@code false} prior the execution of this test will stay {@code false}):
+     * <p>
      * <ul>
      *   <li>Reads the full image once (all {@code isXXXSupported} fields set to {@code false}).</li>
      *   <li>Reads various sub-regions (only {@link #isSubregionSupported} may be {@code true})</li>
      *   <li>Reads at various sub-sampling (only {@link #isSubsamplingSupported may be {@code true})</li>
      *   <li>A mix of sub-regions, sub-sampling and source bands</li>
      * </ul>
+     *
+     * <p>The pixel values for each image resulting from the above read operations are
+     * compared with the corresponding pixel values of the complete image.</p>
      *
      * <blockquote><font size="-1"><p><b>Implementation note:</b> in the spirit of JUnit, this test
      * should have been splitted in smaller test cases: one for sub-regions, one for sub-samplings,
@@ -339,8 +402,48 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * @throws IOException If an error occurred while reading the image.
      */
     @Test
-    public void testImageReads() throws IOException {
-        prepareImageReader();
+    public void testReadAsBufferedImage() throws IOException {
+        testImageReads(API.READ);
+    }
+
+    /**
+     * Tests the {@link ImageReader#readAsRenderedImage(int, ImageReadParam) ImageReader.readAsRenderedImage} method.
+     * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
+     * {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method is invoked instead than
+     * {@code ImageReader.read(int, ImageReadParam)}.
+     *
+     * @throws IOException If an error occurred while reading the image.
+     */
+    @Test
+    public void testReadAsRenderedImage() throws IOException {
+        testImageReads(API.READ_AS_RENDERED_IMAGE);
+    }
+
+    /**
+     * Tests the {@link ImageReader#readRaster(int, ImageReadParam) ImageReader.readRaster} method.
+     * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
+     * {@link ImageReader#readRaster(int, ImageReadParam)} method is invoked instead than
+     * {@code ImageReader.read(int, ImageReadParam)}.
+     * <p>
+     * This test is ignored if {@link ImageReader#canReadRaster()} returns {@code false}.
+     *
+     * @throws IOException If an error occurred while reading the raster.
+     */
+    @Test
+    public void testReadAsRaster() throws IOException {
+        prepareImageReader(false);
+        assumeTrue(reader.canReadRaster());
+        testImageReads(API.READ_RASTER);
+    }
+
+    /**
+     * Implementation of the {@link #testReadAsBufferedImage()} method.
+     *
+     * @param  api The API to use for reading images.
+     * @throws IOException If an error occurred while reading the image.
+     */
+    private void testImageReads(final API api) throws IOException {
+        prepareImageReader(true);
         assertInputSet(reader);
         final boolean subregion   = isSubregionSupported;
         final boolean subsampling = isSubsamplingSupported;
@@ -357,13 +460,13 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
             isSubsamplingSupported       = false;
             isSubsamplingOffsetSupported = false;
             isSourceBandsSupported       = false;
-            readRandomSubsets(completeImage, imageIndex, 1);
+            readRandomSubsets(completeImage, api, imageIndex, 1);
             /*
              * Tests reading sub-regions only (no subsampling).
              */
             if (subregion) {
                 isSubregionSupported = true;
-                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS);
+                readRandomSubsets(completeImage, api, imageIndex, DEFAULT_NUM_ITERATIONS);
                 isSubregionSupported = false;
             }
             /*
@@ -371,7 +474,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
              */
             if (subsampling) {
                 isSubsamplingSupported = true;
-                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS);
+                readRandomSubsets(completeImage, api, imageIndex, DEFAULT_NUM_ITERATIONS);
                 isSubsamplingSupported = false;
             }
             /*
@@ -379,7 +482,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
              */
             if (actualBands) {
                 isSourceBandsSupported = true;
-                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS/2);
+                readRandomSubsets(completeImage, api, imageIndex, DEFAULT_NUM_ITERATIONS/2);
                 isSourceBandsSupported = false;
             }
             /*
@@ -390,7 +493,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
             isSubsamplingOffsetSupported = offset;
             isSourceBandsSupported       = bands;
             if (subregion | subsampling | offset | actualBands) {
-                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS*2);
+                readRandomSubsets(completeImage, api, imageIndex, DEFAULT_NUM_ITERATIONS*2);
             }
         }
     }
