@@ -251,7 +251,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
         final int numBands = completeImage.getSampleModel().getNumBands();
         final int dataType = completeImage.getSampleModel().getDataType();
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
-            if (reader.getMinIndex() <= imageIndex) {
+            if (reader.getMinIndex() > imageIndex) {
                 close(reader.getInput());
                 reader.setInput(null);
                 prepareImageReader(true);

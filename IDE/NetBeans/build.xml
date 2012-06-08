@@ -23,4 +23,15 @@
       </fileset>
     </move>
   </target>
+
+
+  <!--
+       Caller after JAR building. Create also a JAR for the tests, but without the
+       META-INF/services for the same reason than above.
+  -->
+  <target name="-post-jar">
+    <jar destfile="${dist.dir}/GeoAPI-tests.jar"
+         basedir="${build.test.classes.dir}"
+         excludes="META-INF/services/org.opengis.referencing.*"/>
+  </target>
 </project>
