@@ -79,7 +79,7 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>netcdf</artifactId>
-      <version>4.3.7</version>
+      <version>4.3.10</version>
     </dependency>
     <dependency>
       <groupId>org.jdom</groupId>
@@ -94,6 +94,19 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+
+
+  <!-- ==================================================================
+           UCAR repository from which to download the NetCDF library.
+       ================================================================== -->
+  <repositories>
+    <repository>
+      <id>UCAR</id>
+      <name>UCAR repository</name>
+      <url>https://artifacts.unidata.ucar.edu/content/repositories/unidata-releases</url>
+    </repository>
+  </repositories>
 
 
 
