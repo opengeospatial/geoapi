@@ -44,6 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 1.0
  */
-@UML(identifier="RS_SpatialReferenceSystemUsingGeographicIdentifier", specification=ISO_19111)
+// Doesn't seem to be in ISO 19111 anymore.
+//@UML(identifier="RS_SpatialReferenceSystemUsingGeographicIdentifier", specification=ISO_19111)
 public interface SpatialReferenceSystemUsingGeographicIdentifier extends ReferenceSystem {
 }
