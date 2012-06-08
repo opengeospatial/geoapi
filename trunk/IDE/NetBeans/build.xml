@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Ant file for building GeoAPI.
+     This file is used for customization - the actual
+     work is defined in the "nbproject" sub-directory.
+-->
+<project name="GeoAPI" default="default" basedir=".">
+    <description>Builds, tests, and runs the project GeoAPI.</description>
+    <import file="nbproject/build-impl.xml"/>
+</project>
