@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
 
 import static org.junit.Assert.*;
 
@@ -51,46 +50,31 @@ import static org.junit.Assert.*;
 public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
     /**
      * Creates a new test case.
-     *
-     * @throws IOException If an error occurred while creating the image input stream.
      */
-    public ImageReaderCaseTest() throws IOException {
-        super(System.nanoTime());
-        final Iterator<ImageReader> it = ImageIO.getImageReadersByFormatName("PNG");
-        while (it.hasNext()) {
-            reader = it.next();
-            final String classname = reader.getClass().getName();
-            if (classname.startsWith("com.sun.imageio.")) {
-                break; // Give precedence to standard reader.
-            }
-        }
-        assertNotNull("No PNG image reader found.", reader);
-        reader.setInput(ImageIO.createImageInputStream(getInputStream()));
+    public ImageReaderCaseTest() {
+        isSourceBandsSupported = false;
     }
 
     /**
-     * Returns an input stream for the source image.
-     */
-    private static InputStream getInputStream() {
-        final InputStream input = ImageReaderCaseTest.class.getResourceAsStream("PointLoma.png");
-        assertNotNull("PointLoma.png file not found", input);
-        return input;
-    }
-
-    /**
-     * Ensures that the image reader can read again the image at the given index. This method
-     * closes the current input stream and create a new one if necessary.
+     * Prepares the PNG image reader for reading our test image.
      *
-     * @param  imageIndex Index of the image to read.
-     * @return Always {@code true} in this implementation.
-     * @throws IOException If an error occurred while reseting the reader.
+     * @throws IOException If an error occurred while preparing the reader.
      */
     @Override
-    protected boolean canReadAgain(final int imageIndex) throws IOException {
-        if (!super.canReadAgain(imageIndex)) {
-            ((ImageInputStream) reader.getInput()).close();
-            reader.setInput(ImageIO.createImageInputStream(getInputStream()));
+    protected void prepareImageReader() throws IOException {
+        if (reader == null) {
+            final Iterator<ImageReader> it = ImageIO.getImageReadersByFormatName("PNG");
+            while (it.hasNext()) {
+                reader = it.next();
+                final String classname = reader.getClass().getName();
+                if (classname.startsWith("com.sun.imageio.")) {
+                    break; // Give precedence to standard reader.
+                }
+            }
+            assertNotNull("No PNG image reader found.", reader);
         }
-        return true;
+        final InputStream input = ImageReaderCaseTest.class.getResourceAsStream("PointLoma.png");
+        assertNotNull("PointLoma.png file not found", input);
+        reader.setInput(ImageIO.createImageInputStream(input));
     }
 }

@@ -31,6 +31,7 @@
  */
 package org.opengis.test.coverage.image;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.io.IOException;
 import java.awt.Rectangle;
@@ -45,30 +46,20 @@ import static org.junit.Assert.*;
 
 /**
  * Base class for testing {@link ImageReader} implementations. This test reads an image
- * in different sub-region, at different sub-sampling levels and reading different bands,
- * and compares the results with the full image.
+ * in different sub-regions, at different sub-sampling levels and reading different bands,
+ * and compares the results with the complete image.
  *
- * <p>To use this test, subclasses need to set the {@link #reader} field to a non-null value
- * either at construction time or in a method having the {@link org.junit.Before} annotation.
- * The {@linkplain ImageReader#getInput() reader input} must be set by the sub-class.
- * Example:</p>
+ * <p>To use this test, subclasses need to set the {@link #reader} field to a non-null value in
+ * the {@link #prepareImageReader()} method. The {@linkplain ImageReader#getInput() reader input}
+ * must be set by the subclass. Example:</p>
  *
  * <blockquote><pre>public class MyImageReaderTest extends ImageReaderTestCase {
- *    private static final File MY_TEST_FILE = new File("MyTestImage");
- *
- *    public MyImageReaderTest() throws IOException {
- *        super(System.nanoTime()); // Replace by a constant number if reproducible tests is needed.
- *        reader = new MyImageReader();
- *        reader.setInput(ImageIO.createImageInputStream(MY_TEST_FILE));
- *    }
- *
  *    &#64;Override
- *    protected boolean canReadAgain(final int imageIndex) throws IOException {
- *        if (!super.canReadAgain(imageIndex)) {
- *            ((ImageInputStream) reader.getInput()).close();
- *            reader.setInput(ImageIO.createImageInputStream(MY_TEST_FILE));
+ *    protected void prepareImageReader() throws IOException {
+ *        if (reader == null) {
+ *            reader = new MyImageReader();
  *        }
- *        return true;
+ *        reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
  *    }
  *}</pre></blockquote>
  *
@@ -79,8 +70,7 @@ import static org.junit.Assert.*;
  *
  * <p>In addition, subclasses may consider to override the following methods:</p>
  * <ul>
- *   <li>{@link #canReadAgain(int)} - to reset the image input stream if needed.</li>
- *   <li>{@link #dispose()} - to modify the {@link #reader} disposal.</li>
+ *   <li>{@link #dispose()} - to modify the policy of {@link #reader} disposal.</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -94,8 +84,8 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
     private static final int DEFAULT_NUM_ITERATIONS = 10;
 
     /**
-     * The image reader to test. This field must be set by sub-classes either at
-     * construction time, or in a method having the {@link org.junit.Before} annotation.
+     * The image reader to test. This field must be set by subclasses
+     * in the {@link #prepareImageReader()} method.
      */
     protected ImageReader reader;
 
@@ -110,7 +100,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * Subclasses can set this flag to {@code false} when testing an incomplete
      * {@link ImageReader} implementation.
      */
-    protected boolean isSubregionSupported;
+    protected boolean isSubregionSupported = true;
 
     /**
      * {@code true} if the {@linkplain #reader} takes in account the two first parameter values
@@ -118,7 +108,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * is {@code true}. Subclasses can set this flag to {@code false} when testing an incomplete
      * {@link ImageReader} implementation.
      */
-    protected boolean isSubsamplingSupported;
+    protected boolean isSubsamplingSupported = true;
 
     /**
      * {@code true} if the {@linkplain #reader} takes in account the two last parameter values
@@ -126,7 +116,24 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * is {@code true}. Subclasses can set this flag to {@code false} when testing an incomplete
      * {@link ImageReader} implementation.
      */
-    protected boolean isSubsamplingOffsetSupported;
+    protected boolean isSubsamplingOffsetSupported = true;
+
+    /**
+     * {@code true} if the {@linkplain #reader} takes in account the parameter value given to
+     * {@link ImageReadParam#setSourceBands(int[])}. The default value is {@code true}. Subclasses
+     * can set this flag to {@code false} when testing an incomplete {@link ImageReader} implementation.
+     */
+    protected boolean isSourceBandsSupported = true;
+
+    /**
+     * Creates a new test case using a default random number generator.
+     * The sub-regions, sub-samplings and source bands will be different
+     * for every text execution. If reproducible subsetting sequences are
+     * needed, use the {@link #ImageReaderTestCase(long)} constructor instead.
+     */
+    protected ImageReaderTestCase() {
+        random = new Random();
+    }
 
     /**
      * Creates a new test case using a random number generator initialized to the given seed.
@@ -137,9 +144,6 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      */
     protected ImageReaderTestCase(final long seed) {
         random = new Random(seed);
-        isSubregionSupported         = true;
-        isSubsamplingSupported       = true;
-        isSubsamplingOffsetSupported = true;
     }
 
     /**
@@ -151,23 +155,29 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
     }
 
     /**
-     * Returns {@code true} if the image {@linkplain #reader} can read again the image at the given
-     * index. This method is invoked <em>after</em> a test method has read the image at least once
-     * and before the test method attempts to read the same image again with a different sub-region,
-     * sub-sampling or source bands.
-     * <p>
-     * The default implementation returns {@code true} if and only if {@link ImageReader#getMinIndex()}
-     * returns a value not greater than the given {@code imageIndex}. Subclasses may override this
-     * method in order to reset the {@linkplain ImageReader#getInput() reader input} to a fresh
-     * {@link javax.imageio.stream.ImageInputStream} if needed. See the class javadoc for an example.
+     * Invoked when the image {@linkplain #reader} is about to be used for the first time, or when
+     * its {@linkplain ImageReader#getInput() input} needs to be reinitialized. Subclasses need to
+     * create a new {@link ImageReader} instance if needed and set its input in this method.
      *
-     * @param  imageIndex Index of the image to read.
-     * @return {@code true} if the {@linkplain #reader} can read again an image at the given index.
-     * @throws IOException If an error occurred while reseting the {@linkplain #reader}.
+     * <p>This method may be invoked more than once during the same test if the input became invalid.
+     * This may occur because the tests will read the same image many time in different ways, and not
+     * all input streams can seek back to the beginning of the image stream. The input is considered
+     * invalid if {@link ImageReader#getMinIndex()} returns a value greater than the index of the
+     * image to read. In such case, the input is {@linkplain java.io.Closeable#close() closed} by
+     * the caller and this method needs to set a fresh {@link javax.imageio.stream.ImageInputStream}.</p>
+     *
+     * <p>Example:</p>
+     * <blockquote><pre>&#64;Override
+     *protected void prepareImageReader() throws IOException {
+     *    if (reader == null) {
+     *        reader = new MyImageReader();
+     *    }
+     *    reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+     *}</pre></blockquote>
+     *
+     * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
      */
-    protected boolean canReadAgain(final int imageIndex) throws IOException {
-        return reader.getMinIndex() <= imageIndex;
-    }
+    protected abstract void prepareImageReader() throws IOException;
 
     /**
      * Reads random subsets of the image at the given index, and compares the result with the
@@ -186,51 +196,68 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * @param  completeImage The complete image as returned by <code>{@linkplain #reader}.{@link ImageReader#read(int) read}(imageIndex)</code> without read parameters.
      * @param  imageIndex    Index of the image to read.
      * @param  numIterations Maximum number of iterations to perform.
-     * @return Number of iterations performed. This method may stop before the iteration is
-     *         completed if the {@link #canReadAgain(int)} method returned {@code false}.
      * @throws IOException If an error occurred while reading the image.
      */
-    protected int readRandomSubsets(final RenderedImage completeImage, final int imageIndex, final int numIterations) throws IOException {
+    protected void readRandomSubsets(final RenderedImage completeImage, final int imageIndex, final int numIterations) throws IOException {
+        final ImageReader reader = this.reader; // Protect from changes.
         assertInputSet(reader);
         final Rectangle completeRegion = getBounds(completeImage);
+        final int numBands = completeImage.getSampleModel().getNumBands();
         final int dataType = completeImage.getSampleModel().getDataType();
-        int iterationCount;
-        for (iterationCount=0; iterationCount<numIterations; iterationCount++) {
-            if (!canReadAgain(imageIndex)) {
-                break;
+        for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
+            if (reader.getMinIndex() <= imageIndex) {
+                close(reader.getInput());
+                reader.setInput(null);
+                prepareImageReader();
             }
             final ImageReadParam param = reader.getDefaultReadParam();
             Rectangle region = new Rectangle(completeRegion);
+            Rectangle iteratorRegion = region;
             if (isSubregionSupported) {
                 region.x     += random.nextInt(region.width);
                 region.y     += random.nextInt(region.height);
                 region.width  = random.nextInt(region.width)  + 1;
                 region.height = random.nextInt(region.height) + 1;
                 region = region.intersection(completeRegion);
+                iteratorRegion.setBounds(region);
                 param.setSourceRegion(region);
             }
             int xSubsampling=1, ySubsampling=1, xOffset=0, yOffset=0;
             if (isSubsamplingSupported) {
-                xSubsampling = random.nextInt(region.width)  + 1;
-                ySubsampling = random.nextInt(region.height) + 1;
+                xSubsampling = random.nextInt(iteratorRegion.width)  + 1;
+                ySubsampling = random.nextInt(iteratorRegion.height) + 1;
                 if (isSubsamplingOffsetSupported) {
                     xOffset = random.nextInt(xSubsampling);
                     yOffset = random.nextInt(ySubsampling);
-                    region.x      += xOffset;
-                    region.y      += yOffset;
-                    region.width  -= xOffset;
-                    region.height -= yOffset;
+                    if (iteratorRegion == region) {
+                        iteratorRegion = new Rectangle(region);
+                    }
+                    iteratorRegion.x      += xOffset;
+                    iteratorRegion.y      += yOffset;
+                    iteratorRegion.width  -= xOffset;
+                    iteratorRegion.height -= yOffset;
                 }
                 param.setSourceSubsampling(xSubsampling, ySubsampling, xOffset, yOffset);
+            }
+            int[] sourceBands = null;
+            if (isSourceBandsSupported) {
+                sourceBands = new int[random.nextInt(numBands) + 1];
+                for (int i=0; i<sourceBands.length; i++) {
+                    int band;
+                    do band = random.nextInt(numBands);
+                    while (contains(sourceBands, i, band));
+                    sourceBands[i] = band;
+                }
+                param.setSourceBands(sourceBands);
             }
             /*
              * At this point, we are ready to read the image and compare the global attributes.
              */
             final RenderedImage image = reader.read(imageIndex, param);
-            assertEquals("RenderedImage.getWidth()",  (region.width  + xSubsampling-1) / xSubsampling, image.getWidth());
-            assertEquals("RenderedImage.getHeight()", (region.height + ySubsampling-1) / ySubsampling, image.getHeight());
+            assertEquals("RenderedImage.getWidth()",  (iteratorRegion.width  + xSubsampling-1) / xSubsampling, image.getWidth());
+            assertEquals("RenderedImage.getHeight()", (iteratorRegion.height + ySubsampling-1) / ySubsampling, image.getHeight());
             final PixelIterator actual   = new PixelIterator(image);
-            final PixelIterator expected = new PixelIterator(completeImage, region, xSubsampling, ySubsampling, null);
+            final PixelIterator expected = new PixelIterator(completeImage, iteratorRegion, xSubsampling, ySubsampling, sourceBands);
             while (expected.next()) {
                 assertTrue("Unexpected end of pixel iteration.", actual.next());
                 final boolean equals;
@@ -257,28 +284,28 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
                         case DataBuffer.TYPE_FLOAT:  ev = expected.getSampleFloat();  av = actual.getSampleFloat();  break;
                         default:                     ev = expected.getSample();       av = actual.getSample();       break;
                     }
-                    region = param.getSourceRegion();
                     fail("Mismatched sample value: expected " + ev + " but got " + av + '\n'
                        + "Pixel coordinate in the complete image: (" + expected.getX() + ", " + expected.getY() + ") band " + expected.getBand() + '\n'
                        + "Pixel coordinate in the tested image: (" + actual.getX() + ", " + actual.getY() + ") band " + actual.getBand() + '\n'
-                       + "Source region: origin = (" + (region.x - xOffset) + ", " + (region.y - yOffset) + "), "
-                                        + "size = (" + (region.width + xOffset) + ", " + (region.height + yOffset) + ")\n"
-                       + "Source subsampling: (" + xSubsampling + ", " + ySubsampling + ") with offset (" + xOffset + ", " + yOffset + ")\n");
+                       + "Source region: origin = (" + region.x + ", " + region.y + "), size = (" + region.width + ", " + region.height + ")\n"
+                       + "Source subsampling: (" + xSubsampling + ", " + ySubsampling + ") with offset (" + xOffset + ", " + yOffset + ")\n"
+                       + "Source bands: " + Arrays.toString(sourceBands) + '\n');
                 }
             }
         }
-        return iterationCount;
     }
 
     /**
-     * Invokes {@link #readRandomSubsets(RenderedImage, int, int)} with the default number of iterations.
+     * Returns {@code true} if the given array contains the given value.
+     * Only the <var>n</var> first elements are checked.
      */
-    private void readRandomSubsets(final RenderedImage completeImage, final int imageIndex) throws IOException {
-        assertEquals("Tried to read " + DEFAULT_NUM_ITERATIONS + " times the image at index " + imageIndex + ", " +
-                "but the ImageReader stopped before. Consider overriding the canReadAgain(int) method " +
-                "in order to reset the input stream, or override the testImageReads() method for performing " +
-                "a more limited amount of read operations.",
-                DEFAULT_NUM_ITERATIONS, readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS));
+    private static boolean contains(final int[] array, int n, final int value) {
+        while (--n >= 0) {
+            if (array[n] == value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -313,27 +340,30 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      */
     @Test
     public void testImageReads() throws IOException {
+        prepareImageReader();
         assertInputSet(reader);
         final boolean subregion   = isSubregionSupported;
         final boolean subsampling = isSubsamplingSupported;
         final boolean offset      = isSubsamplingOffsetSupported;
+        final boolean bands       = isSourceBandsSupported;
         final int numImages = reader.getNumImages(true);
         for (int imageIndex=0; imageIndex<numImages; imageIndex++) {
             final RenderedImage completeImage = reader.read(imageIndex);
+            final boolean actualBands = bands && completeImage.getSampleModel().getNumBands() > 1;
             /*
              * Reads the complete image again.
              */
             isSubregionSupported         = false;
             isSubsamplingSupported       = false;
             isSubsamplingOffsetSupported = false;
-            assertEquals("The image shall be readeable at least once.",
-                    1, readRandomSubsets(completeImage, imageIndex, 1));
+            isSourceBandsSupported       = false;
+            readRandomSubsets(completeImage, imageIndex, 1);
             /*
              * Tests reading sub-regions only (no subsampling).
              */
             if (subregion) {
                 isSubregionSupported = true;
-                readRandomSubsets(completeImage, imageIndex);
+                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS);
                 isSubregionSupported = false;
             }
             /*
@@ -341,8 +371,16 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
              */
             if (subsampling) {
                 isSubsamplingSupported = true;
-                readRandomSubsets(completeImage, imageIndex);
+                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS);
                 isSubsamplingSupported = false;
+            }
+            /*
+             * Tests reading the complete image with different source bands.
+             */
+            if (actualBands) {
+                isSourceBandsSupported = true;
+                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS/2);
+                isSourceBandsSupported = false;
             }
             /*
              * Mixes all.
@@ -350,8 +388,9 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
             isSubregionSupported         = subregion;
             isSubsamplingSupported       = subsampling;
             isSubsamplingOffsetSupported = offset;
-            if (subregion | subsampling | offset) {
-                readRandomSubsets(completeImage, imageIndex);
+            isSourceBandsSupported       = bands;
+            if (subregion | subsampling | offset | actualBands) {
+                readRandomSubsets(completeImage, imageIndex, DEFAULT_NUM_ITERATIONS*2);
             }
         }
     }
