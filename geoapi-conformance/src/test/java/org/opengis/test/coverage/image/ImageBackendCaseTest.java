@@ -31,62 +31,53 @@
  */
 package org.opengis.test.coverage.image;
 
-import java.util.Iterator;
-import java.io.IOException;
-import java.io.InputStream;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
+import java.awt.image.DataBuffer;
+import java.awt.image.SampleModel;
+import java.awt.image.BufferedImage;
+import org.junit.Test;
 
-import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 
 
 /**
- * Tests {@link ImageReaderTestCase} using the standard PNG reader bundled in the JDK.
+ * Tests static methods defined in {@link ImageBackendTestCase}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
+public strictfp class ImageBackendCaseTest {
     /**
-     * Creates a new test case.
+     * Tests the {@link ImageBackendTestCase#createImage(int, int, int, int)} method
+     * with a single band.
      */
-    public ImageReaderCaseTest() {
-        isSourceBandsSupported = false;
-    }
-
-    /**
-     * Prepares the PNG image reader for reading our test image.
-     *
-     * @throws IOException If an error occurred while preparing the reader.
-     */
-    @Override
-    protected void prepareImageReader(final boolean needsInput) throws IOException {
-        if (reader == null) {
-            final Iterator<ImageReader> it = ImageIO.getImageReadersByFormatName("PNG");
-            while (it.hasNext()) {
-                reader = it.next();
-                final String classname = reader.getClass().getName();
-                if (classname.startsWith("com.sun.imageio.")) {
-                    break; // Give precedence to standard reader.
-                }
-            }
-            assertNotNull("No PNG image reader found.", reader);
-        }
-        if (needsInput) {
-            final InputStream input = ImageReaderCaseTest.class.getResourceAsStream("PointLoma.png");
-            assertNotNull("PointLoma.png file not found", input);
-            reader.setInput(ImageIO.createImageInputStream(input));
+    @Test
+    public void testCreateOneBandedImage() {
+        final int[] types = {
+            DataBuffer.TYPE_BYTE,
+            DataBuffer.TYPE_USHORT,
+            DataBuffer.TYPE_SHORT,
+            DataBuffer.TYPE_INT,
+            DataBuffer.TYPE_FLOAT,
+            DataBuffer.TYPE_DOUBLE
+        };
+        for (final int type : types) {
+            final BufferedImage image = ImageBackendTestCase.createImage(type, 1, 1, 1);
+            final SampleModel model = image.getSampleModel();
+            assertEquals("SampleModel.getDataType()", type, model.getDataType());
+            assertEquals("SampleModel.getNumBands()", 1,    model.getNumBands());
         }
     }
 
     /**
-     * Disables the creation of temporary caches on disk - use the memory instead.
-     * We don't need disk cache since we test only small images.
+     * Tests the {@link ImageBackendTestCase#createImage(int, int, int, int)} method
+     * with 3 bands.
      */
-    @BeforeClass
-    public static void configureImageIO() {
-        ImageIO.setUseCache(false);
+    @Test
+    public void testCreateThreeBandedImage() {
+        final int numBands = 3; // Just for making code more readeable.
+        final BufferedImage image = ImageBackendTestCase.createImage(DataBuffer.TYPE_BYTE, 1, 1, numBands);
+        final SampleModel model = image.getSampleModel();
+        assertEquals("SampleModel.getNumBands()", numBands, model.getNumBands());
     }
 }

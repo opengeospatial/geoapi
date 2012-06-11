@@ -33,6 +33,7 @@ package org.opengis.test.coverage.image;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.io.Closeable;
 import java.io.IOException;
 import java.awt.Rectangle;
 import java.awt.image.DataBuffer;
@@ -95,14 +96,14 @@ import static org.junit.Assume.*;
  * <p>In addition, subclasses may consider to override the following methods:</p>
  * <ul>
  *   <li>{@link #getMetadata(Class, IIOMetadata)} - to extract metadata objects from specific nodes.</li>
- *   <li>{@link #dispose()} - to modify the policy of {@linkplain #reader} disposal.</li>
+ *   <li>{@link #close()} - to modify the policy of {@linkplain #reader} disposal.</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase {
+public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase implements Closeable {
     /**
      * The {@link ImageReader} API to use for testing read operations.
      *
@@ -182,7 +183,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
     /**
      * Creates a new test case using a default random number generator.
      * The sub-regions, sub-samplings and source bands will be different
-     * for every text execution. If reproducible subsetting sequences are
+     * for every test execution. If reproducible subsetting sequences are
      * needed, use the {@link #ImageReaderTestCase(long)} constructor instead.
      */
     protected ImageReaderTestCase() {
@@ -191,7 +192,6 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
 
     /**
      * Creates a new test case using a random number generator initialized to the given seed.
-     * The {@link #reader} field must be initialized by sub-classes.
      *
      * @param seed The initial seed for the random numbers generator. Use a constant value if
      *        the tests need to be reproduced with the same sequence image read parameters.
@@ -204,7 +204,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * Asserts that the {@linkplain ImageReader#getInput() reader input} is set to a non-null value.
      */
     private static void assertInputSet(final ImageReader reader) {
-        assertNotNull("The 'reader' field shall be set in the constructor or in a @Before method.", reader);
+        assertNotNull("The 'reader' field shall be set in the 'prepareImageReader' method.", reader);
         assertNotNull("reader.setInput(Object) shall be invoked before any test is run.", reader.getInput());
     }
 
@@ -698,7 +698,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * The default implementation performs the following cleanup:
      * <p>
      * <ul>
-     *   <li>If the {@linkplain ImageReader#getInput() reader input} is {@linkplain java.io.Closeable closeable}, closes it.</li>
+     *   <li>If the {@linkplain ImageReader#getInput() reader input} is {@linkplain Closeable closeable}, closes it.</li>
      *   <li>Invokes {@link ImageReader#reset()} for clearing the input and listeners.</li>
      *   <li>Invokes {@link ImageReader#dispose()} for performing additional resource disposal, if any.</li>
      *   <li>Sets the {@link #reader} field to {@code null} for preventing accidental use.</li>
@@ -710,7 +710,8 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * @see ImageReader#dispose()
      */
     @After
-    public void dispose() throws IOException {
+    @Override
+    public void close() throws IOException {
         if (reader != null) {
             close(reader.getInput());
             reader.reset();

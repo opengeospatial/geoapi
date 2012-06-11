@@ -33,51 +33,45 @@ package org.opengis.test.coverage.image;
 
 import java.util.Iterator;
 import java.io.IOException;
-import java.io.InputStream;
 import javax.imageio.ImageIO;
-import javax.imageio.ImageReader;
+import javax.imageio.ImageWriter;
 
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 
 
 /**
- * Tests {@link ImageReaderTestCase} using the standard PNG reader bundled in the JDK.
+ * Tests {@link ImageWriterTestCase} using the standard PNG reader bundled in the JDK.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
+public strictfp class ImageWriterCaseTest extends ImageWriterTestCase {
     /**
      * Creates a new test case.
      */
-    public ImageReaderCaseTest() {
+    public ImageWriterCaseTest() {
         isSourceBandsSupported = false;
     }
 
     /**
-     * Prepares the PNG image reader for reading our test image.
+     * Prepares the PNG image writer for writing our test image.
      *
-     * @throws IOException If an error occurred while preparing the reader.
+     * @throws IOException If an error occurred while preparing the writer.
      */
     @Override
-    protected void prepareImageReader(final boolean needsInput) throws IOException {
-        if (reader == null) {
-            final Iterator<ImageReader> it = ImageIO.getImageReadersByFormatName("PNG");
+    protected void prepareImageWriter() throws IOException {
+        if (writer == null) {
+            final Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("PNG");
             while (it.hasNext()) {
-                reader = it.next();
-                final String classname = reader.getClass().getName();
+                writer = it.next();
+                final String classname = writer.getClass().getName();
                 if (classname.startsWith("com.sun.imageio.")) {
                     break; // Give precedence to standard reader.
                 }
             }
-            assertNotNull("No PNG image reader found.", reader);
-        }
-        if (needsInput) {
-            final InputStream input = ImageReaderCaseTest.class.getResourceAsStream("PointLoma.png");
-            assertNotNull("PointLoma.png file not found", input);
-            reader.setInput(ImageIO.createImageInputStream(input));
+            assertNotNull("No PNG image writer found.", writer);
         }
     }
 
