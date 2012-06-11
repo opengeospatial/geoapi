@@ -39,6 +39,18 @@ import java.awt.image.DataBuffer;
 import java.awt.image.RenderedImage;
 import javax.imageio.ImageReader;
 import javax.imageio.ImageReadParam;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.metadata.IIOMetadataNode;
+import javax.imageio.metadata.IIOMetadataFormatImpl;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+
+import org.opengis.coverage.grid.Grid;
+import org.opengis.coverage.grid.GridEnvelope;
+import org.opengis.metadata.Metadata;
+import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.identification.Identification;
+import org.opengis.metadata.identification.DataIdentification;
 
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -49,9 +61,13 @@ import static org.junit.Assume.*;
  * Base class for testing {@link ImageReader} implementations. This test reads an image
  * in different sub-regions, at different sub-sampling levels and reading different bands,
  * and compares the results with the complete image.
+ * If the image reader can also provide GeoAPI metadata objects, then this class will verify
+ * the consistency of some basic attributes. For example it will verify that the {@linkplain
+ * GridEnvelope grid envelope} (if any) is consistent with the image
+ * {@linkplain ImageReader#getWidth(int) width} and {@linkplain ImageReader#getHeight(int) height}.
  *
- * <p>To use this test, subclasses need to set the {@link #reader} field to a non-null value in
- * the {@link #prepareImageReader()} method. The {@linkplain ImageReader#getInput() reader input}
+ * <p>To use this test, subclasses need to set the {@link #reader} field to a non-null value in the
+ * {@link #prepareImageReader(boolean)} method. The {@linkplain ImageReader#getInput() reader input}
  * shall be set by the subclass when requested by the caller. Example:</p>
  *
  * <blockquote><pre>public class MyImageReaderTest extends ImageReaderTestCase {
@@ -67,15 +83,19 @@ import static org.junit.Assume.*;
  *}</pre></blockquote>
  *
  * <p>Subclasses inherit the following tests:</p>
- * <ul>
- *   <li>{@link #testReadAsBufferedImage()} - to test the {@link ImageReader#read(int, ImageReadParam)} method.</li>
- *   <li>{@link #testReadAsRenderedImage()} - to test the {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method.</li>
- *   <li>{@link #testReadAsRaster()} - to test the {@link ImageReader#readRaster(int, ImageReadParam)} method.</li>
- * </ul>
+ * <table>
+ *   <tr><th>Inherited method</th>                   <th>Tested method</th></tr>
+ *   <tr><td>{@link #testStreamMetadata()}</td>      <td>{@link ImageReader#getStreamMetadata()}</td></tr>
+ *   <tr><td>{@link #testImageMetadata()}</td>       <td>{@link ImageReader#getImageMetadata(int)}</td></tr>
+ *   <tr><td>{@link #testReadAsBufferedImage()}</td> <td>{@link ImageReader#read(int, ImageReadParam)}</td></tr>
+ *   <tr><td>{@link #testReadAsRenderedImage()}</td> <td>{@link ImageReader#readAsRenderedImage(int, ImageReadParam)}</td></tr>
+ *   <tr><td>{@link #testReadAsRaster()}</td>        <td>{@link ImageReader#readRaster(int, ImageReadParam)}</td></tr>
+ * </table>
  *
  * <p>In addition, subclasses may consider to override the following methods:</p>
  * <ul>
- *   <li>{@link #dispose()} - to modify the policy of {@link #reader} disposal.</li>
+ *   <li>{@link #getMetadata(Class, IIOMetadata)} - to extract metadata objects from specific nodes.</li>
+ *   <li>{@link #dispose()} - to modify the policy of {@linkplain #reader} disposal.</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -114,7 +134,7 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
 
     /**
      * The image reader to test. This field must be set by subclasses
-     * in the {@link #prepareImageReader()} method.
+     * in the {@link #prepareImageReader(boolean)} method.
      */
     protected ImageReader reader;
 
@@ -216,6 +236,181 @@ public strictfp abstract class ImageReaderTestCase extends ImageBackendTestCase 
      * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
      */
     protected abstract void prepareImageReader(boolean needsInput) throws IOException;
+
+    /**
+     * Returns the user object of the given type found in the given Image I/O metadata, or
+     * {@code null} if none. The default implementation {@linkplain IIOMetadata#getAsTree(String)
+     * gets the tree of nodes} for all {@linkplain IIOMetadata#getMetadataFormatNames() metadata
+     * formats} except the {@linkplain IIOMetadataFormatImpl#standardMetadataFormatName standard
+     * format}, then iterates down the tree in search for a {@linkplain IIOMetadataNode#getUserObject()
+     * user object} of the given type. If an ambiguity is found, this method conservatively returns
+     * {@code true}.
+     *
+     * <p>Implementors are encouraged to override this method if they can look for metadata in a
+     * more accurate way.</p>
+     *
+     * <p>See {@link #testStreamMetadata()} and {@link #testImageMetadata()} for a list of types
+     * requested by the default {@code ImageReaderTestCase} implementation.</p>
+     *
+     * @param  <T>      The compile-time type of the object to search.
+     * @param  type     The type of the object to search.
+     * @param  metadata The metadata where to search for the object.
+     * @return The user object of the given type, or {@code null} if not found.
+     * @throws IOException If this method requires an I/O operation and that operation failed.
+     */
+    protected <T> T getMetadata(final Class<T> type, final IIOMetadata metadata) throws IOException {
+        T found = null;
+        for (final String format : metadata.getMetadataFormatNames()) {
+            if (!format.equals(IIOMetadataFormatImpl.standardMetadataFormatName)) {
+                final T userObject = getMetadata(type, metadata.getAsTree(format));
+                if (userObject != null) {
+                    if (found == null) {
+                        found = userObject;
+                    } else if (!found.equals(userObject)) {
+                        return null;
+                    }
+                }
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Returns the user object of the given type in the given node, or in one of its children.
+     * If the user object is found in the given node, we will returns it directly. If we have
+     * to scan the children, we will return it only if we find only one object, in order to
+     * avoid ambiguity.
+     *
+     * @param  <T>  The compile-time type of the object to search.
+     * @param  type The type of the object to search.
+     * @param  node The node where to search for the object.
+     * @return The user object of the given type, or {@code null} if not found.
+     */
+    private static <T> T getMetadata(final Class<T> type, final Node node) {
+        if (node instanceof IIOMetadataNode) {
+            final Object userObject = ((IIOMetadataNode) node).getUserObject();
+            if (type.isInstance(userObject)) {
+                return type.cast(userObject);
+            }
+        }
+        T found = null;
+        final NodeList childs = node.getChildNodes();
+        final int length = childs.getLength();
+        for (int i=0; i<length; i++) {
+            final T userObject = getMetadata(type, childs.item(i));
+            if (userObject != null) {
+                if (found == null) {
+                    found = userObject;
+                } else if (!found.equals(userObject)) {
+                    return null;
+                }
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Verify the validity of metadata attributes as documented in the
+     * {@link #testStreamMetadata()} and {@link #testImageMetadata()} methods.
+     */
+    private void validate(final IIOMetadata metadata) throws IOException {
+        final Metadata md = getMetadata(Metadata.class, metadata);
+        if (md != null) {
+            for (final Identification identification : md.getIdentificationInfo()) {
+                validators.validate(identification.getCitation());
+                if (identification instanceof DataIdentification) {
+                    for (final Extent extent : ((DataIdentification) identification).getExtents()) {
+                        validators.validate(extent);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Tests {@link ImageReader#getStreamMetadata()}. The default implementation invokes
+     * <code>{@linkplain #getMetadata(Class, IIOMetadata) getMetadata}({@linkplain Metadata}.class,</code>
+     * <var>stream metadata</var><code>)</code>, then validates the following properties:
+     * <p>
+     * <ul>
+     *   <li>{@link Metadata#getIdentificationInfo()}<ul>
+     *     <li>{@link DataIdentification#getCitation()}</li>
+     *     <li>{@link DataIdentification#getExtents()}</li>
+     *   </ul></li>
+     * </ul>
+     *
+     * @throws IOException If an error occurred while reading the metadata.
+     */
+    @Test
+    public void testStreamMetadata() throws IOException {
+        prepareImageReader(true);
+        assertInputSet(reader);
+        final IIOMetadata metadata = reader.getStreamMetadata();
+        if (metadata != null) {
+            validate(metadata);
+        }
+    }
+
+    /**
+     * Tests {@link ImageReader#getImageMetadata(int)}. The default implementation invokes
+     * {@link #getMetadata(Class, IIOMetadata)} for the types listed in the left column,
+     * and performs the check documented in the right column:
+     *
+     * <table>
+     *   <tr><th>Type</th><th>Test description</th></tr>
+     *   <tr><td valign="top">{@link Metadata}</td>
+     *     <td>Same verification than {@link #testStreamMetadata()}.</td></tr>
+     *   <tr><td valign="top">{@link Grid}</td>
+     *     <td>Get the {@linkplain Grid#getExtent() extent} and perform the check documented below.
+     *     If a {@link Grid} is found, this method will not search for a standalone {@link GridEnvelope}.</td></tr>
+     *   <tr><td valign="top">{@link GridEnvelope}</td>
+     *     <td>Verify that the {@linkplain GridEnvelope#getSpan(int) span} in at least one dimension
+     *     is equals to the {@linkplain ImageReader#getWidth(int) image width}, and a span in another
+     *     dimension is equals to the {@linkplain ImageReader#getHeight(int) image height}.</td></tr>
+     *   <tr><td valign="top">{@link Extent}</td>
+     *     <td>{@linkplain org.opengis.test.metadata.ExtentValidator#validate(Extent) Validate}
+     *     the spatial extent, if any.</td></tr>
+     * </table>
+     *
+     * @throws IOException If an error occurred while reading the metadata.
+     */
+    @Test
+    public void testImageMetadata() throws IOException {
+        prepareImageReader(true);
+        assertInputSet(reader);
+        final int numImages = reader.getNumImages(true);
+        for (int imageIndex=0; imageIndex<numImages; imageIndex++) {
+            final IIOMetadata metadata = reader.getImageMetadata(imageIndex);
+            if (metadata != null) {
+                validate(metadata);
+                final GridEnvelope extent;
+                final Grid grid = getMetadata(Grid.class, metadata);
+                if (grid != null) {
+                    extent = grid.getExtent();
+                } else {
+                    extent = getMetadata(GridEnvelope.class, metadata);
+                }
+                if (extent != null) {
+                    final int width  = reader.getWidth (imageIndex);
+                    final int height = reader.getHeight(imageIndex);
+                    boolean foundWidth = false, foundHeight = false;
+                    final int dimension = extent.getDimension();
+                    for (int i=0; i<dimension; i++) {
+                        final int span = extent.getSpan(i);
+                        if (span == width) {
+                            foundWidth = true;
+                        } else if (span == height) {
+                            foundHeight = true;
+                        }
+                    }
+                    if (!foundWidth || !foundHeight) {
+                        fail("Expected an image of size " + width + '×' + height +
+                                " but found a grid extent of " + extent);
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * Reads random subsets of the image at the given index, and compares the result with the
