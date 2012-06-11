@@ -1062,7 +1062,7 @@ next:   for (final String search : expected) {
     }
 
     /**
-     * Vertical transformations
+     * Vertical transformations.
      * <p>
      * <table cellpadding="3"><tr>
      *   <th nowrap align="left" valign="top">Test purpose:</th>
