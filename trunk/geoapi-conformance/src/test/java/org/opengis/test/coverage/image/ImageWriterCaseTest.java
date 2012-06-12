@@ -52,15 +52,24 @@ public strictfp class ImageWriterCaseTest extends ImageWriterTestCase {
      */
     public ImageWriterCaseTest() {
         isSourceBandsSupported = false;
-        final Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("PNG");
-        while (it.hasNext()) {
-            writer = it.next();
-            final String classname = writer.getClass().getName();
-            if (classname.startsWith("com.sun.imageio.")) {
-                break; // Give precedence to standard reader.
+    }
+
+    /**
+     * Creates the image writer.
+     */
+    @Override
+    protected void prepareImageWriter() {
+        if (writer == null) {
+            final Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("PNG");
+            while (it.hasNext()) {
+                writer = it.next();
+                final String classname = writer.getClass().getName();
+                if (classname.startsWith("com.sun.imageio.")) {
+                    break; // Give precedence to standard reader.
+                }
             }
+            assertNotNull("No PNG image writer found.", writer);
         }
-        assertNotNull("No PNG image writer found.", writer);
     }
 
     /**
