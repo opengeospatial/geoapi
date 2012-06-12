@@ -171,7 +171,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *
      * <p>Example:</p>
      * <blockquote><pre>&#64;Override
-     *protected void prepareImageReader() throws IOException {
+     *protected void prepareImageReader(boolean needsInput) throws IOException {
      *    if (reader == null) {
      *        reader = new MyImageReader();
      *    }

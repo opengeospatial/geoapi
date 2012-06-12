@@ -53,6 +53,7 @@ import javax.imageio.stream.ImageOutputStream;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.junit.Assume.*;
 
 
 /**
@@ -61,11 +62,14 @@ import static org.junit.Assert.*;
  * the sample values.
  *
  * <p>To use this test, subclasses need to set the {@link #writer} field to a non-null value
- * either in their constructor, or in a method having the {@link Before} annotation. Example:</p>
+ * in the {@link #prepareImageWriter()} method. Example:</p>
  *
  * <blockquote><pre>public class MyImageWriterTest extends ImageWriterTestCase {
- *    public MyImageWriterTest() {
- *        writer = new MyImageWriter();
+ *    &#64;Override
+ *    protected void prepareImageWriter() throws IOException {
+ *        if (writer == null) {
+ *            writer = new MyImageWriter();
+ *        }
  *    }
  *}</pre></blockquote>
  *
@@ -85,8 +89,8 @@ import static org.junit.Assert.*;
  */
 public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase implements Closeable {
     /**
-     * The image writer to test. This field must be set by subclasses either at construction
-     * time, or in a method annotated by {@link Before}.
+     * The image writer to test. This field must be set by subclasses
+     * in the {@link #prepareImageWriter()} method.
      */
     protected ImageWriter writer;
 
@@ -113,7 +117,6 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
 
     /**
      * Creates a new test case using a random number generator initialized to the given seed.
-     * The {@link #writer} field must be initialized by sub-classes.
      *
      * @param seed The initial seed for the random numbers generator. Use a constant value if
      *        the tests need to be reproduced with the same sequence of image write parameters.
@@ -121,6 +124,22 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     protected ImageWriterTestCase(final long seed) {
         super(seed);
     }
+
+    /**
+     * Invoked when the image {@linkplain #writer} is about to be used for the first time.
+     * Subclasses need to create a new {@link ImageWriter} instance if needed.
+     *
+     * <p>Example:</p>
+     * <blockquote><pre>&#64;Override
+     *protected void prepareImageWriter() throws IOException {
+     *    if (writer == null) {
+     *        writer = new MyImageReader();
+     *    }
+     *}</pre></blockquote>
+     *
+     * @throws IOException If an error occurred while preparing the {@linkplain #writer}.
+     */
+    protected abstract void prepareImageWriter() throws IOException;
 
     /**
      * Returns {@code true} if the given reader provider supports the given input type. If the
@@ -159,6 +178,20 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
             }
         }
         return false;
+    }
+
+    /**
+     * Returns {@code true} if the writer can writes the given image.
+     * If no writer provider is found, then this method assumes {@code true}.
+     */
+    private boolean canEncodeImage(final RenderedImage image) {
+        if (writer != null) {
+            final ImageWriterSpi spi = writer.getOriginatingProvider();
+            if (spi != null) {
+                return spi.canEncodeImage(image);
+            }
+        }
+        return true;
     }
 
     /**
@@ -263,6 +296,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * @throws IOException If an error occurred while writing the image or reading it back.
      */
     private void testImageWrites(final RenderedImage image) throws IOException {
+        prepareImageWriter();
         final boolean subregion   = isSubregionSupported;
         final boolean subsampling = isSubsamplingSupported;
         final boolean offset      = isSubsamplingOffsetSupported;
@@ -336,6 +370,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneByteBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 1);
         fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
         testImageWrites(image);
     }
 
