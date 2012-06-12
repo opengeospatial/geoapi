@@ -32,8 +32,6 @@
 package org.opengis.test.coverage.image;
 
 import java.util.Random;
-import java.io.Closeable;
-import java.io.IOException;
 import java.awt.Rectangle;
 import java.awt.Transparency;
 import java.awt.color.ColorSpace;
@@ -45,19 +43,21 @@ import java.awt.image.ColorModel;
 import java.awt.image.ComponentColorModel;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
-import javax.imageio.stream.ImageInputStream;
 
 import org.opengis.test.TestCase;
 
 
 /**
  * Base class for all tests defined in the {@code org.opengis.test.coverage.image} package.
+ * This class is abstract for now because it does not yet define public API, and only
+ * {@link ImageIOTestCase} extends it. However we may make it public in a future version
+ * if we add tests for other kind of operations than Image I/O.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp abstract class ImageBackendTestCase extends TestCase {
+abstract strictfp class ImageBackendTestCase extends TestCase {
     /**
      * Small value for comparison of sample values. Since scientific data often store their
      * values as {@code float} numbers, this {@code SAMPLE_TOLERANCE} value must be of the
@@ -169,23 +169,15 @@ public strictfp abstract class ImageBackendTestCase extends TestCase {
     }
 
     /**
-     * Closes the given input or output stream if it implements the {@link Closeable} interface.
-     * Do nothing otherwise. Note that this method perform a special check for Image I/O streams,
-     * which implement the {@code Closeable} interface only since JDK7.
-     *
-     * @param  stream The input or output stream to close, or {@code null} if none.
-     * @throws IOException In an error occurred while closing the stream.
+     * Returns {@code true} if the given array contains the given value.
+     * Only the <var>length</var> first elements are checked.
      */
-    static void close(final Object stream) throws IOException {
-        if (stream instanceof Closeable) {
-            ((Closeable) stream).close();
-        } else if (stream instanceof ImageInputStream) {
-            /*
-             * ImageInputStream extends Closeable only since JDK7. For JDK6, we need an
-             * explicit check. Note that we don't need to check for ImageOutputStream
-             * since it extends ImageInputStream.
-             */
-            ((ImageInputStream) stream).close();
+    static boolean contains(final int[] array, int length, final int value) {
+        while (--length >= 0) {
+            if (array[length] == value) {
+                return true;
+            }
         }
+        return false;
     }
 }

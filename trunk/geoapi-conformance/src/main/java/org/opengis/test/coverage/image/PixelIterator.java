@@ -31,9 +31,15 @@
  */
 package org.opengis.test.coverage.image;
 
+import java.util.Arrays;
 import java.awt.Rectangle;
+import java.awt.image.DataBuffer;
 import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
+import javax.imageio.IIOParam;
+
+import static java.lang.Double.doubleToLongBits;
+import static java.lang.Float.floatToIntBits;
 import static java.lang.StrictMath.*;
 import static org.junit.Assert.*;
 
@@ -256,5 +262,86 @@ final strictfp class PixelIterator {
      */
     public double getSampleDouble() {
         return raster.getSampleDouble(x, y, getBand());
+    }
+
+    /**
+     * Compares all sample values iterated by this {@code PixelIterator} with the sample values
+     * iterated by the given iterator. If a mismatch is found, an {@link AssertionError} is thrown
+     * with a detailed error message.
+     *
+     * @param actual The iterator that contains the actual values to be compared with the
+     *               "expected" sample values.
+     * @param param  The parameter which was used for producing the actual image, or {@code null}
+     *               if not. This parameter is used only for producing an error message; it has no
+     *               incidence on the iteration.
+     */
+    final void assertSampleValuesEqual(final PixelIterator actual, final IIOParam param) {
+        final int dataType = image.getSampleModel().getDataType();
+        while (next()) {
+            assertTrue("Unexpected end of pixel iteration.", actual.next());
+            switch (dataType) {
+                case DataBuffer.TYPE_DOUBLE: {
+                    if (doubleToLongBits(actual.getSampleDouble()) == doubleToLongBits(getSampleDouble())) continue;
+                    break;
+                }
+                case DataBuffer.TYPE_FLOAT: {
+                    if (floatToIntBits(actual.getSampleFloat()) == floatToIntBits(getSampleFloat())) continue;
+                    break;
+                }
+                default: {
+                    if (actual.getSample() == getSample()) continue;
+                    break;
+                }
+            }
+            /*
+             * Remainder of this block is for formatting the error message.
+             */
+            final Number ev, av;
+            switch (dataType) {
+                case DataBuffer.TYPE_DOUBLE: ev = getSampleDouble(); av = actual.getSampleDouble(); break;
+                case DataBuffer.TYPE_FLOAT:  ev = getSampleFloat();  av = actual.getSampleFloat();  break;
+                default:                     ev = getSample();       av = actual.getSample();       break;
+            }
+            final StringBuilder buffer = new StringBuilder(1024);
+            buffer.append("Mismatched sample value: expected ").append(ev).append(" but got ").append(av);
+            buffer.append("\nPixel coordinate in the complete image: ("); position(buffer);
+            buffer.append("\nPixel coordinate in the compared image: ("); actual.position(buffer);
+            buffer.append('\n');
+            if (param != null) {
+                final Rectangle region = param.getSourceRegion();
+                if (region != null) {
+                    buffer.append("Source region: origin = (").append(region.x).append(", ").append(region.y)
+                            .append("), size = (").append(region.width).append(", ").append(region.height).append(")\n");
+                }
+                buffer.append("Source subsampling: (")
+                      .append(param.getSourceXSubsampling()).append(", ")
+                      .append(param.getSourceYSubsampling()).append(") with offset (")
+                      .append(param.getSubsamplingXOffset()).append(", ")
+                      .append(param.getSubsamplingYOffset()).append(")\n");
+                final int[] sourceBands = param.getSourceBands();
+                if (sourceBands != null) {
+                    buffer.append("Source bands: ").append(Arrays.toString(sourceBands));
+                }
+            }
+            fail(buffer.toString());
+        }
+        assertFalse("Expected end of pixel iteration, but found more values.", actual.next());
+    }
+
+    /**
+     * Formats the current position of this iterator in the given buffer.
+     */
+    private void position(final StringBuilder buffer) {
+        buffer.append('(').append(getX()).append(", ").append(getY()).append(") band ").append(getBand());
+    }
+
+    /**
+     * Returns a string representation of this iterator position for debugging purpose.
+     */
+    @Override
+    public String toString() {
+        final StringBuilder buffer = new StringBuilder(48);
+        position(buffer.append(getClass().getSimpleName()).append('['));
+        return buffer.append(']').toString();
     }
 }
