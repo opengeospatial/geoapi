@@ -31,7 +31,6 @@
  */
 package org.opengis.test.coverage.image;
 
-import java.util.Random;
 import java.io.File;
 import java.io.Closeable;
 import java.io.IOException;
@@ -46,7 +45,10 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.ImageWriter;
 import javax.imageio.ImageWriteParam;
+import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.spi.ImageWriterSpi;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 
 import org.junit.*;
@@ -54,59 +56,50 @@ import static org.junit.Assert.*;
 
 
 /**
- * Base class for testing {@link ImageWriter} implementations.
+ * Base class for testing {@link ImageWriter} implementations. This test writes different regions
+ * and bands of an image at different sub-sampling levels, then read back the images and compare
+ * the sample values.
+ *
+ * <p>To use this test, subclasses need to set the {@link #writer} field to a non-null value
+ * either in their constructor, or in a method having the {@link Before} annotation. Example:</p>
+ *
+ * <blockquote><pre>public class MyImageWriterTest extends ImageWriterTestCase {
+ *    public MyImageWriterTest() {
+ *        writer = new MyImageWriter();
+ *    }
+ *}</pre></blockquote>
+ *
+ * <p>The {@linkplain #writer} shall accept at least one of the following
+ * {@linkplain ImageWriterSpi#getOutputTypes() output types}, in preference order:</p>
+ *
+ * <ul>
+ *   <li>{@link ImageOutputStream} - mandatory according Image I/O specification.</li>
+ *   <li>{@link File} - fallback if the writer doesn't support {@code ImageOutputStream}.
+ *       This fallback exists because {@code ImageOutputStream} is hard to support when the
+ *       writer is implemented by a native library.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase implements Closeable {
+public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase implements Closeable {
     /**
-     * The image writer to test. This field must be set by subclasses
-     * in the {@link #prepareImageWriter()} method.
+     * The image writer to test. This field must be set by subclasses either at construction
+     * time, or in a method annotated by {@link Before}.
      */
     protected ImageWriter writer;
 
     /**
-     * The random number generator.
+     * The reader to use for verifying the writer output. By default, this field is {@code null}
+     * until a reader is first needed, in which case the field is assigned to a reader instance
+     * created by {@link ImageIO#getImageReader(ImageWriter)}. Subclasses can set explicitely a
+     * value to this field if they need the tests to use an other reader instead.
+     * <p>
+     * {@code ImageWriterTestCase} will use only the {@link ImageReader#read(int)} method.
+     * Consequently, this reader doesn't need to support {@code ImageReadParam} usage.
      */
-    private final Random random;
-
-    /**
-     * {@code true} if the {@linkplain #writer} takes in account the parameter value given to
-     * {@link ImageWriteParam#setSourceRegion(Rectangle)}. The default value is {@code true}.
-     * Subclasses can set this flag to {@code false} when testing an incomplete
-     * {@link ImageWriter} implementation.
-     */
-    protected boolean isSubregionSupported = true;
-
-    /**
-     * {@code true} if the {@linkplain #writer} takes in account the two first parameter values
-     * given to {@link ImageWriteParam#setSourceSubsampling(int, int, int, int)}. The default value
-     * is {@code true}. Subclasses can set this flag to {@code false} when testing an incomplete
-     * {@link ImageWriter} implementation.
-     */
-    protected boolean isSubsamplingSupported = true;
-
-    /**
-     * {@code true} if the {@linkplain #writer} takes in account the two last parameter values
-     * given to {@link ImageWriteParam#setSourceSubsampling(int, int, int, int)}. The default value
-     * is {@code true}. Subclasses can set this flag to {@code false} when testing an incomplete
-     * {@link ImageWriter} implementation.
-     */
-    protected boolean isSubsamplingOffsetSupported = true;
-
-    /**
-     * {@code true} if the {@linkplain #writer} takes in account the parameter value given to
-     * {@link ImageWriteParam#setSourceBands(int[])}. The default value is {@code true}. Subclasses
-     * can set this flag to {@code false} if this feature can not be tested for the current
-     * {@link ImageWriter} implementation.
-     *
-     * <p>Note that this feature can not be tested with some standard writers like PNG, because
-     * those readers require an explicit destination image to be specified if the number of bands
-     * to read differs from the number of bands in the source image.</p>
-     */
-    protected boolean isSourceBandsSupported = true;
+    protected ImageReader reader;
 
     /**
      * Creates a new test case using a default random number generator.
@@ -115,7 +108,7 @@ public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase 
      * needed, use the {@link #ImageWriterTestCase(long)} constructor instead.
      */
     protected ImageWriterTestCase() {
-        random = new Random();
+        super();
     }
 
     /**
@@ -123,55 +116,41 @@ public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase 
      * The {@link #writer} field must be initialized by sub-classes.
      *
      * @param seed The initial seed for the random numbers generator. Use a constant value if
-     *        the tests need to be reproduced with the same sequence image write parameters.
+     *        the tests need to be reproduced with the same sequence of image write parameters.
      */
     protected ImageWriterTestCase(final long seed) {
-        random = new Random(seed);
+        super(seed);
     }
 
     /**
-     * Invoked when the image {@linkplain #writer} is about to be used for the first time.
-     * Subclasses need to create a new {@link ImageWriter} instance if needed.
+     * Returns {@code true} if the given reader provider supports the given input type. If the
+     * given provider is {@code null}, then this method conservatively assumes that the type is
+     * supported on the assumption that the user provided an incomplete {@link ImageReader}
+     * implementation, but his reader input type is consistent with his writer output type.
      *
-     * @throws IOException If an error occurred while preparing the {@linkplain #writer}.
+     * @see #closeAndRead(ByteArrayOutputStream)
      */
-    protected abstract void prepareImageWriter() throws IOException;
-
-    /**
-     * Returns an image reader which can be used for verifying the data written by the tested
-     * image writer. This method will be invoked after a test method has written an image with
-     * the {@linkplain #writer}. The given {@code input} object is usually an
-     * {@link javax.imageio.stream.ImageInputStream}, but could also be a {@link File} instance
-     * if the writer has written the image in a temporary file.
-     * <p>
-     * The default implementation gets the reader by a call to {@link ImageIO#getImageReader(ImageWriter)},
-     * then {@linkplain ImageReader#setInput(Object) sets its input}. Subclasses can override this
-     * method if they need to instantiate the reader in a different way.
-     *
-     * @param  input The input to set.
-     * @return The image reader with its input initialized.
-     * @throws IOException If an error occurred while creating the image reader.
-     */
-    protected ImageReader prepareImageReader(final Object input) throws IOException {
-        final ImageReader reader = ImageIO.getImageReader(writer);
-        assertNotNull("The ImageWriter does not declare a compatible reader.", reader);
-        reader.setInput(input);
-        return reader;
+    private static boolean isSupportedInput(final ImageReaderSpi spi, final Class<?> type) {
+        if (spi == null) {
+            return true;
+        }
+        for (final Class<?> supportedType : spi.getInputTypes()) {
+            if (supportedType.isAssignableFrom(type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
      * Returns {@code true} if the given writer provider supports the given output type.
+     * If the given provider is {@code null}, then this method assumes that the standard
+     * {@link ImageOutputStream} type is expected as in the Image I/O specification.
      *
-     * @param  spi  The provider, or {@code null} if unknown.
-     * @param  type The type to check for support.
-     * @return {@code true} if the given type is supported.
+     * @see #open(int)
      */
     private static boolean isSupportedOutput(final ImageWriterSpi spi, final Class<?> type) {
         if (spi == null) {
-            /*
-             * If the reader or writer does not provide an SPI, assume the standard input/output
-             * type as documented in the Image I/O specification.
-             */
             return ImageOutputStream.class.isAssignableFrom(type);
         }
         for (final Class<?> supportedType : spi.getOutputTypes()) {
@@ -183,19 +162,18 @@ public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase 
     }
 
     /**
-     * Prepares the image writer, then sets its output. The method will set the output to
-     * an in-memory output stream if possible. If the writer does not accept output stream
-     * (which is illegal according Image I/O specification, but still happen with some formats
-     * like NetCDF), try to set the output as a temporary file.
+     * Sets the image writer output to a temporary buffer or a temporary file. If the writer does
+     * not accept {@link ImageOutputStream} (which is illegal according Image I/O specification,
+     * but still happen with some formats like NetCDF), then this method will try to set the output
+     * to a temporary file.
      *
      * @param  capacity The initial capacity. This is an approximative value, since the
      *         actual capacity will growth as needed.
      * @return The byte buffer, or {@code null} if this method created a temporary file instead.
      * @throws IOException In an error occurred while setting the output.
      */
-    private ByteArrayOutputStream prepareOutput(final int capacity) throws IOException {
-        prepareImageWriter();
-        assertNotNull("The 'writer' field shall be set in the 'prepareImageWriter' method.", writer);
+    private ByteArrayOutputStream open(final int capacity) throws IOException {
+        assertNotNull("The 'writer' field shall be set at construction time or in a method annotated by @Before.", writer);
         if (isSupportedOutput(writer.getOriginatingProvider(), ImageOutputStream.class)) {
             final ByteArrayOutputStream buffer = new ByteArrayOutputStream(capacity);
             writer.setOutput(ImageIO.createImageOutputStream(buffer));
@@ -211,48 +189,158 @@ public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase 
     }
 
     /**
-     * Writes the given image in a temporary buffer using the given parameters, then read it backs.
+     * Closes the image writer output, then reads its content. This method is invoked after a test
+     * method has wrote an image with the {@linkplain #writer}.
+     * <p>
+     * This method will use only the {@link ImageReader#read(int)} method, so the reader doesn't
+     * need to support fully the {@code ImageReadParam}.
      *
-     * @param  image The image to write.
-     * @param  param The parameter to use for writing the image, or {@code null}.
-     * @return The the image which has been read back.
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @param  buffer The buffer returned by {@link #open(int)}, which may be {@code null}.
+     * @return The image.
+     * @throws IOException If an error occurred while closing the output or reading the image.
      */
-    private RenderedImage writeAndRead(final RenderedImage image, final ImageWriteParam param) throws IOException {
-        final ByteArrayOutputStream buffer = prepareOutput(1024);
-        writer.write(null, new IIOImage(image, null, null), param);
-        Object data = writer.getOutput();
-        close(data);
+    private RenderedImage closeAndRead(final ByteArrayOutputStream buffer) throws IOException {
+        Object input = writer.getOutput();
+        close(input);
         writer.setOutput(null);
-        if (buffer != null) {
-            data = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+        if (reader == null) {
+            reader = ImageIO.getImageReader(writer);
+            assertNotNull("The ImageWriter does not declare a compatible reader.", reader);
         }
-        final ImageReader reader = prepareImageReader(data);
-        final RenderedImage verify = reader.read(0);
-        close(reader);
-        reader.dispose();
-        return verify;
+        if (buffer != null) {
+            input = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer.toByteArray()));
+        }
+        if (!isSupportedInput(reader.getOriginatingProvider(), input.getClass())) {
+            /*
+             * If the reader doesn't support the given input type, try to wrap it in an
+             * ImageInputStream - which is mandatory according Image I/O specification.
+             * If we can't wrap it, process anyway and let the reader throws the exception.
+             */
+            if (!(input instanceof ImageInputStream)) {
+                final ImageInputStream in = ImageIO.createImageInputStream(input);
+                if (in != null) {
+                    input = in;
+                }
+            }
+        }
+        reader.setInput(input);
+        try {
+            return reader.read(0);
+        } finally {
+            reader.setInput(null);
+            close(input);
+        }
     }
 
     /**
-     * Tests the writing of an image using a single band of byte values.
-     * This test fills an image with random values, write it to a temporary buffer,
-     * reads it back and compare the sample values.
+     * Writes random subsets of the given image, reads back the image and compares the sample
+     * values. This method sets the {@link ImageWriteParam} parameters to random sub-regions,
+     * sub-samplings and source bands values and invokes {@link ImageWriter#write(IIOMetadata,
+     * IIOImage, ImageWriteParam)}.
+     * <p>
+     * The above method call is repeated {@code numIterations} time with different parameters.
+     * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
+     * fields in this class.
+     *
+     * @param  image The image to write.
+     * @param  numIterations Maximum number of iterations to perform.
+     * @throws IOException If an error occurred while writing the image or reading it back.
+     */
+    private void writeRandomSubsets(final RenderedImage image, final int numIterations) throws IOException {
+        for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
+            final ImageWriteParam param = writer.getDefaultWriteParam();
+            final PixelIterator expected = getIteratorOnRandomSubset(image, param);
+            final ByteArrayOutputStream buffer = open(1024);
+            writer.write(null, new IIOImage(image, null, null), param);
+            final RenderedImage actual = closeAndRead(buffer);
+            expected.assertSampleValuesEqual(new PixelIterator(actual), param);
+        }
+    }
+
+    /**
+     * Implementation of the {@code testFooWrite()} methods.
+     *
+     * @throws IOException If an error occurred while writing the image or reading it back.
+     */
+    private void testImageWrites(final RenderedImage image) throws IOException {
+        final boolean subregion   = isSubregionSupported;
+        final boolean subsampling = isSubsamplingSupported;
+        final boolean offset      = isSubsamplingOffsetSupported;
+        final boolean bands       = isSourceBandsSupported;
+        final boolean actualBands = bands && image.getSampleModel().getNumBands() > 1;
+        /*
+         * Writes the complete image.
+         */
+        isSubregionSupported         = false;
+        isSubsamplingSupported       = false;
+        isSubsamplingOffsetSupported = false;
+        isSourceBandsSupported       = false;
+        writeRandomSubsets(image, 1);
+        /*
+         * Tests writing sub-regions only (no subsampling).
+         */
+        if (subregion) {
+            isSubregionSupported = true;
+            writeRandomSubsets(image, DEFAULT_NUM_ITERATIONS);
+            isSubregionSupported = false;
+        }
+        /*
+         * Tests writing the complete region with various subsamplings.
+         */
+        if (subsampling) {
+            isSubsamplingSupported = true;
+            writeRandomSubsets(image, DEFAULT_NUM_ITERATIONS);
+            isSubsamplingSupported = false;
+        }
+        /*
+         * Tests writing the complete image with different source bands.
+         */
+        if (actualBands) {
+            isSourceBandsSupported = true;
+            writeRandomSubsets(image, DEFAULT_NUM_ITERATIONS);
+            isSourceBandsSupported = false;
+        }
+        /*
+         * Mixes all.
+         */
+        isSubregionSupported         = subregion;
+        isSubsamplingSupported       = subsampling;
+        isSubsamplingOffsetSupported = offset;
+        isSourceBandsSupported       = bands;
+        if (subregion | subsampling | offset | actualBands) {
+            writeRandomSubsets(image, DEFAULT_NUM_ITERATIONS);
+        }
+    }
+
+    /**
+     * Tests the {@link ImageWriter#write(IIOMetadata, IIOImage, ImageWriteParam) ImageWriter.write}
+     * method for a single band of byte values. First, this method creates an single-banded image
+     * filled with random byte values. Then, this method invokes write the image an arbitrary amount
+     * of time for the following configurations (note: any {@code isXXXSupported} field
+     * which was set to {@code false} prior the execution of this test will stay {@code false}):
+     * <p>
+     * <ul>
+     *   <li>Writes the full image once (all {@code isXXXSupported} fields set to {@code false}).</li>
+     *   <li>Writes various sub-regions (only {@link #isSubregionSupported isSubregionSupported} may be {@code true})</li>
+     *   <li>Writes at various sub-sampling (only {@link #isSubsamplingSupported isSubsamplingSupported} may be {@code true})</li>
+     *   <li>Reads various bands (only {@link #isSourceBandsSupported isSourceBandsSupported} may be {@code true})</li>
+     *   <li>A mix of sub-regions, sub-sampling and source bands</li>
+     * </ul>
+     *
+     * <p>Then the image is read again and the pixel values are compared with the corresponding
+     * pixel values of the original image.</p>
      *
      * @throws IOException If an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneByteBand() throws IOException {
-        final BufferedImage source = createImage(DataBuffer.TYPE_BYTE, 180, 90, 1);
-        fill(source.getRaster(), random);
-        final RenderedImage target = writeAndRead(source, null);
-        assertEquals(source.getWidth(),  target.getWidth());
-        assertEquals(source.getHeight(), target.getHeight());
-        // TODO: compare pixel values
+        final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 1);
+        fill(image.getRaster(), random);
+        testImageWrites(image);
     }
 
     /**
-     * Disposes the {@link #writer} (if non-null) after each test.
+     * Disposes the {@linkplain #reader} and the {@linkplain #writer} (if non-null) after each test.
      * The default implementation performs the following cleanup:
      * <p>
      * <ul>
@@ -260,6 +348,7 @@ public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase 
      *   <li>Invokes {@link ImageWriter#reset()} for clearing the output and listeners.</li>
      *   <li>Invokes {@link ImageWriter#dispose()} for performing additional resource disposal, if any.</li>
      *   <li>Sets the {@link #writer} field to {@code null} for preventing accidental use.</li>
+     *   <li>Performs the same steps than above for the {@linkplain #reader}.</li>
      * </ul>
      *
      * @throws IOException In an error occurred while closing the output stream.
@@ -275,6 +364,12 @@ public strictfp abstract class ImageWriterTestCase extends ImageBackendTestCase 
             writer.reset();
             writer.dispose();
             writer = null;
+        }
+        if (reader != null) {
+            close(reader.getInput());
+            reader.reset();
+            reader.dispose();
+            reader = null;
         }
     }
 }

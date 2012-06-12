@@ -32,7 +32,6 @@
 package org.opengis.test.coverage.image;
 
 import java.util.Iterator;
-import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriter;
 
@@ -53,26 +52,15 @@ public strictfp class ImageWriterCaseTest extends ImageWriterTestCase {
      */
     public ImageWriterCaseTest() {
         isSourceBandsSupported = false;
-    }
-
-    /**
-     * Prepares the PNG image writer for writing our test image.
-     *
-     * @throws IOException If an error occurred while preparing the writer.
-     */
-    @Override
-    protected void prepareImageWriter() throws IOException {
-        if (writer == null) {
-            final Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("PNG");
-            while (it.hasNext()) {
-                writer = it.next();
-                final String classname = writer.getClass().getName();
-                if (classname.startsWith("com.sun.imageio.")) {
-                    break; // Give precedence to standard reader.
-                }
+        final Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("PNG");
+        while (it.hasNext()) {
+            writer = it.next();
+            final String classname = writer.getClass().getName();
+            if (classname.startsWith("com.sun.imageio.")) {
+                break; // Give precedence to standard reader.
             }
-            assertNotNull("No PNG image writer found.", writer);
         }
+        assertNotNull("No PNG image writer found.", writer);
     }
 
     /**
