@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Name of point and vector spatial objects used to locate zero-, one-, and twodimensional
+ * Name of point and vector spatial objects used to locate zero-, one-, and two-dimensional
  * spatial locations in the dataset.
  *
  * @author  Martin Desruisseaux (IRD)
