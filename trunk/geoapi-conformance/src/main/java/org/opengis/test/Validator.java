@@ -61,8 +61,15 @@ import static org.opengis.test.Assert.*;
  */
 public abstract class Validator {
     /**
-     * The default tolerance value for comparisons of floating point numbers.
-     * The current value is {@value}.
+     * The default tolerance value for comparisons of floating point numbers in validators.
+     * The current value is {@value}. This value is relatively large because some implementations
+     * may store their values as {@code float} numbers instead than {@code double}.
+     * <p>
+     * Note that {@link TestCase} subclasses use smaller tolerance thresholds, typically centimetric.
+     * Test cases are stricter then validators because the tests control the objects they create,
+     * while validators need to work reasonably well for arbitrary objects.
+     *
+     * @see org.opengis.test.geometry.GeometryValidator#tolerance
      */
     public static final double DEFAULT_TOLERANCE = 1E-6;
 
