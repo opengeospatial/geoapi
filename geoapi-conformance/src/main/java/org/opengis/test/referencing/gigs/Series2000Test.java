@@ -32,7 +32,6 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import java.util.Collection;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -42,7 +41,6 @@ import javax.measure.converter.ConversionException;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
-import org.opengis.util.GenericName;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -50,7 +48,6 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.test.Configuration;
 import org.opengis.test.FactoryFilter;
-import org.opengis.test.TestCase;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -79,17 +76,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class Series2000Test extends TestCase {
-    /**
-     * Relative tolerance factor from GIGS documentation.
-     */
-    private static final double TOLERANCE = 1E-10;
-
-    /**
-     * Angular tolerance from GIGS documentation.
-     */
-    private static final double ANGULAR_TOLERANCE = 1E-7;
-
+public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
@@ -144,7 +131,7 @@ public strictfp class Series2000Test extends TestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
+     * @return The default set of arguments to be given to the {@code Series2000Test} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -210,96 +197,6 @@ public strictfp class Series2000Test extends TestCase {
         assertNull(op.put(Configuration.Key.datumAuthorityFactory,               datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.copAuthorityFactory,                 copAuthorityFactory));
         return op;
-    }
-
-    /**
-     * Invoked when the implementation does not support one of the code defined in
-     * the GIGS test suite.
-     *
-     * @param type      The GeoAPI interface of the object to construct.
-     * @param code      The EPSG code of the object to create.
-     * @param e         The exception we got while trying to instantiate the object.
-     * @param important Was the object particularly important to E&P industry?
-     */
-    private void unsupportedCode(final Class<?> type, final int code,
-            final NoSuchIdentifierException e, final boolean important)
-    {
-        // TODO
-    }
-
-    /**
-     * Returns the name of the given object, or {@code null} if none.
-     */
-    private static String getName(final IdentifiedObject object) {
-        if (object != null) {
-            final ReferenceIdentifier name = object.getName();
-            if (name != null) {
-                return name.getCode();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Compares the given generic names with the given set of expected aliases. This method
-     * verifies that the given collection contains at least the expected aliases. However
-     * the collection may contain additional aliases, which will be ignored.
-     *
-     * @param message  The message to show in case of failure.
-     * @param expected The expected aliases.
-     * @param aliases  The actual aliases.
-     */
-    private static void testAliases(final String message, final String[] expected,
-            final Collection<GenericName> aliases)
-    {
-        assertNotNull(message, aliases);
-next:   for (final String search : expected) {
-            for (final GenericName alias : aliases) {
-                final String tip = alias.tip().toString();
-                if (search.equalsIgnoreCase(tip)) {
-                    continue next;
-                }
-            }
-            fail(message + ": alias not found: " + search);
-        }
-    }
-
-    /**
-     * Ensures that the given collection contains at least one identifier having the EPSG
-     * codespace (ignoring case) and the given code.
-     *
-     * @param message     The message to show in case of failure.
-     * @param expected    The expected identifier code.
-     * @param identifiers The actual identifiers.
-     */
-    private static void testIdentifier(final String message, final int expected,
-            final Collection<? extends ReferenceIdentifier> identifiers)
-    {
-        assertNotNull(message, identifiers);
-        int found = 0;
-        for (final ReferenceIdentifier id : identifiers) {
-            if (id.getCodeSpace().trim().equalsIgnoreCase("EPSG")) {
-                found++;
-                try {
-                    assertEquals(message, expected, Integer.parseInt(id.getCode()));
-                } catch (NumberFormatException e) {
-                    fail(message + ".getCode(): expected " + expected +
-                            " but got a non-numerical value: " + e);
-                }
-            }
-        }
-        assertEquals(message + ": occurrence of EPSG:" + expected, 1, found);
-    }
-
-    /**
-     * Returns the concatenation of the given prefix and suffix.
-     * This is used for building messages in JUnit assert statements.
-     */
-    private static String message(final StringBuilder prefix, final String suffix) {
-        final int length = prefix.length();
-        final String message = prefix.append(suffix).toString();
-        prefix.setLength(length);
-        return message;
     }
 
     /**

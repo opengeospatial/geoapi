@@ -112,6 +112,14 @@ public class DatumValidator extends ReferencingValidator {
 
     /**
      * Validates the given ellipsoid.
+     * This method checks the following conditions:
+     * <p>
+     * <ul>
+     *   <li>{@linkplain Ellipsoid#getAxisUnit() Axis unit} is defined and is linear.</li>
+     *   <li>{@linkplain Ellipsoid#getSemiMinorAxis() semi-minor} &lt;= {@linkplain Ellipsoid#getSemiMajorAxis() semi-major}.</li>
+     *   <li>{@linkplain Ellipsoid#getInverseFlattening() inverse flattening} &gt; 0.</li>
+     *   <li>Consistency of semi-minor axis length with inverse flattening factor.</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -125,9 +133,19 @@ public class DatumValidator extends ReferencingValidator {
         if (unit != null) {
             assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(SI.METRE));
         }
-        final double semiMajor = object.getSemiMajorAxis();
-        final double semiMinor = object.getSemiMinorAxis();
+        final double semiMajor         = object.getSemiMajorAxis();
+        final double semiMinor         = object.getSemiMinorAxis();
+        final double inverseFlattening = object.getInverseFlattening();
+        assertTrue("Ellipsoid: expected semi-major axis length > 0.", semiMajor > 0);
+        assertTrue("Ellipsoid: expected semi-minor axis length > 0.", semiMinor > 0);
         assertTrue("Ellipsoid: expected semi-minor <= semi-major axis length.", semiMinor <= semiMajor);
+        assertTrue("Ellipsoid: expected inverse flattening > 0.", inverseFlattening > 0);
+        if (!object.isSphere()) {
+            assertEquals("Ellipsoid: inconsistent semi-major axis length.",
+                    semiMajor - semiMajor/inverseFlattening, semiMinor, semiMinor*DEFAULT_TOLERANCE);
+            assertEquals("Ellipsoid: inconsistent inverse flattening.",
+                    semiMajor / (semiMajor-semiMinor), inverseFlattening, inverseFlattening*DEFAULT_TOLERANCE);
+        }
     }
 
     /**
