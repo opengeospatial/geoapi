@@ -105,7 +105,7 @@ final class Runner extends RunListener implements TestListener {
     }
 
     /**
-     * Sets the class loader to uses for running the tests.
+     * Sets the class loader to use for running the tests.
      *
      * @param files The JAR files that contain the implementation to test.
      */
