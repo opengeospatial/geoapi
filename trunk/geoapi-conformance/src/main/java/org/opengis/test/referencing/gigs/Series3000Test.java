@@ -31,29 +31,28 @@
  */
 package org.opengis.test.referencing.gigs;
 
-import java.util.*;
-import javax.measure.unit.NonSI;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.util.Factory;
-import org.opengis.util.FactoryException;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import javax.measure.unit.NonSI;
+import javax.measure.quantity.Length;
+
+import org.opengis.util.Factory;
+import org.opengis.util.FactoryException;
 import org.opengis.referencing.cs.*;
+import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.operation.*;
+
 import org.junit.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static java.lang.Double.*;
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
-import javax.measure.quantity.Length;
 
 
 /**
@@ -72,10 +71,28 @@ import javax.measure.quantity.Length;
 @RunWith(Parameterized.class)
 public strictfp class Series3000Test extends GIGSTestCase {
     /**
+     * Factory to use for build user's coordinate reference systems,
+     * or {@code null} if none.
+     */
+    protected final CRSFactory crsFactory;
+
+    /**
+     * Factory to use for build user's coordinate systems and axes,
+     * or {@code null} if none.
+     */
+    protected final CSFactory csFactory;
+
+    /**
      * Factory to use for build user's datum, ellipsoid and prime meridians,
      * or {@code null} if none.
      */
     protected final DatumFactory datumFactory;
+
+    /**
+     * Factory to use for build user's coordinate operations,
+     * or {@code null} if none.
+     */
+    protected final CoordinateOperationFactory copFactory;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -89,7 +106,8 @@ public strictfp class Series3000Test extends GIGSTestCase {
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
     public static List<Factory[]> factories() {
-        return factories(DatumFactory.class, CSFactory.class);
+        return factories(CRSFactory.class, CSFactory.class, DatumFactory.class,
+                CoordinateOperationFactory.class);
     }
 
     /**
@@ -105,7 +123,10 @@ public strictfp class Series3000Test extends GIGSTestCase {
             final DatumFactory datumFactory, final CoordinateOperationFactory copFactory)
     {
         super(crsFactory, csFactory, datumFactory, copFactory);
+        this.crsFactory   = crsFactory;
+        this.csFactory    = csFactory;
         this.datumFactory = datumFactory;
+        this.copFactory   = copFactory;
     }
 
     /**
