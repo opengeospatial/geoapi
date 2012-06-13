@@ -89,6 +89,12 @@ import static org.junit.Assume.*;
  */
 public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase implements Closeable {
     /**
+     * The prefix used for temporary files that may be created by this test case.
+     * Those files are created only if a writer can not write in an image output stream.
+     */
+    private static final String TEMPORARY_FILE_PREFIX = "geoapi";
+
+    /**
      * The image writer to test. This field must be set by subclasses
      * in the {@link #prepareImageWriter()} method.
      */
@@ -133,7 +139,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * <blockquote><pre>&#64;Override
      *protected void prepareImageWriter() throws IOException {
      *    if (writer == null) {
-     *        writer = new MyImageReader();
+     *        writer = new MyImageWriter();
      *    }
      *}</pre></blockquote>
      *
@@ -207,12 +213,21 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      */
     private ByteArrayOutputStream open(final int capacity) throws IOException {
         assertNotNull("The 'writer' field shall be set at construction time or in a method annotated by @Before.", writer);
-        if (isSupportedOutput(writer.getOriginatingProvider(), ImageOutputStream.class)) {
+        final ImageWriterSpi spi = writer.getOriginatingProvider();
+        if (isSupportedOutput(spi, ImageOutputStream.class)) {
             final ByteArrayOutputStream buffer = new ByteArrayOutputStream(capacity);
             writer.setOutput(ImageIO.createImageOutputStream(buffer));
             return buffer;
-        } else if (isSupportedOutput(writer.getOriginatingProvider(), File.class)) {
-            final File file = File.createTempFile("geoapi", null);
+        } else if (isSupportedOutput(spi, File.class)) {
+            String suffix = null;
+            final String[] suffixes = spi.getFileSuffixes();
+            if (suffixes != null && suffixes.length != 0) {
+                suffix = suffixes[0];
+                if (!suffix.isEmpty() && suffix.charAt(0) != '.') {
+                    suffix = '.' + suffix;
+                }
+            }
+            final File file = File.createTempFile(TEMPORARY_FILE_PREFIX, suffix);
             file.deleteOnExit();
             writer.setOutput(file);
             return null;
@@ -383,7 +398,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *   <li>Invokes {@link ImageWriter#reset()} for clearing the output and listeners.</li>
      *   <li>Invokes {@link ImageWriter#dispose()} for performing additional resource disposal, if any.</li>
      *   <li>Sets the {@link #writer} field to {@code null} for preventing accidental use.</li>
-     *   <li>Performs the same steps than above for the {@linkplain #reader}.</li>
+     *   <li>Performs the same steps than above for the {@linkplain #reader}, if non-null.</li>
      * </ul>
      *
      * @throws IOException In an error occurred while closing the output stream.
