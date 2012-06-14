@@ -62,7 +62,7 @@ public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
      * @throws IOException If an error occurred while preparing the reader.
      */
     @Override
-    protected void prepareImageReader(final boolean needsInput) throws IOException {
+    protected void prepareImageReader(final boolean setInput) throws IOException {
         if (reader == null) {
             final Iterator<ImageReader> it = ImageIO.getImageReadersByFormatName("PNG");
             while (it.hasNext()) {
@@ -74,7 +74,7 @@ public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
             }
             assertNotNull("No PNG image reader found.", reader);
         }
-        if (needsInput) {
+        if (setInput) {
             final InputStream input = ImageReaderCaseTest.class.getResourceAsStream("PointLoma.png");
             assertNotNull("PointLoma.png file not found", input);
             reader.setInput(ImageIO.createImageInputStream(input));

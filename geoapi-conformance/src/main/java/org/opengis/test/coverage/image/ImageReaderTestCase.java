@@ -68,11 +68,11 @@ import static org.junit.Assume.*;
  *
  * <blockquote><pre>public class MyImageReaderTest extends ImageReaderTestCase {
  *    &#64;Override
- *    protected void prepareImageReader(boolean needsInput) throws IOException {
+ *    protected void prepareImageReader(boolean setInput) throws IOException {
  *        if (reader == null) {
  *            reader = new MyImageReader();
  *        }
- *        if (needsInput) {
+ *        if (setInput) {
  *            reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
  *        }
  *    }
@@ -164,27 +164,29 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *
      * <p>This method may be invoked more than once during the same test if the input became invalid.
      * This may occur because the tests will read the same image many time in different ways, and not
-     * all input streams can seek back to the beginning of the image stream. The input is considered
-     * invalid if {@link ImageReader#getMinIndex()} returns a value greater than the index of the
-     * image to read. In such case, the input is {@linkplain java.io.Closeable#close() closed} by
-     * the caller and this method needs to set a fresh {@link javax.imageio.stream.ImageInputStream}.</p>
+     * all input streams can seek back to the beginning of the image stream. In such case,
+     * {@code ImageReaderTestCase} will {@linkplain java.io.Closeable#close() close} the input and
+     * invoke this method in order to get a fresh {@link javax.imageio.stream.ImageInputStream}.</p>
      *
-     * <p>Example:</p>
+     * <p><b>Example:</b></p>
      * <blockquote><pre>&#64;Override
-     *protected void prepareImageReader(boolean needsInput) throws IOException {
+     *protected void prepareImageReader(boolean setInput) throws IOException {
      *    if (reader == null) {
      *        reader = new MyImageReader();
      *    }
-     *    if (needsInput) {
+     *    if (setInput) {
      *        reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
      *    }
      *}</pre></blockquote>
      *
-     * @param  needsInput {@code true} if this method shall {@linkplain ImageReader#setInput(Object)
+     * This method may be invoked with a {@code false} argument value when the methods to be
+     * tested don't need an input, for example {@link ImageReader#canReadRaster()}.
+     *
+     * @param  setInput {@code true} if this method shall {@linkplain ImageReader#setInput(Object)
      *         set the reader input}, or {@code false} if this is not yet necessary.
      * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
      */
-    protected abstract void prepareImageReader(boolean needsInput) throws IOException;
+    protected abstract void prepareImageReader(boolean setInput) throws IOException;
 
     /**
      * Returns the user object of the given type found in the given Image I/O metadata, or
@@ -302,24 +304,21 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
 
     /**
      * Tests {@link ImageReader#getImageMetadata(int)}. The default implementation invokes
-     * {@link #getMetadata(Class, IIOMetadata)} for the types listed in the left column,
-     * and performs the check documented in the right column:
-     *
-     * <table>
-     *   <tr><th>Type</th><th>Test description</th></tr>
-     *   <tr><td valign="top">{@link Metadata}</td>
-     *     <td>Same verification than {@link #testStreamMetadata()}.</td></tr>
-     *   <tr><td valign="top">{@link Grid}</td>
-     *     <td>Get the {@linkplain Grid#getExtent() extent} and perform the check documented below.
-     *     If a {@link Grid} is found, this method will not search for a standalone {@link GridEnvelope}.</td></tr>
-     *   <tr><td valign="top">{@link GridEnvelope}</td>
-     *     <td>Verify that the {@linkplain GridEnvelope#getSpan(int) span} in at least one dimension
-     *     is equals to the {@linkplain ImageReader#getWidth(int) image width}, and a span in another
-     *     dimension is equals to the {@linkplain ImageReader#getHeight(int) image height}.</td></tr>
-     *   <tr><td valign="top">{@link Extent}</td>
-     *     <td>{@linkplain org.opengis.test.metadata.ExtentValidator#validate(Extent) Validate}
-     *     the spatial extent, if any.</td></tr>
-     * </table>
+     * {@link #getMetadata(Class, IIOMetadata)} for the types listed below, then validates
+     * their properties:
+     * <p>
+     * <ul>
+     *   <li>{@link Metadata#getIdentificationInfo()}: see {@link #testStreamMetadata()}</li>
+     *   <li>{@link Extent}:
+     *       {@linkplain org.opengis.test.metadata.ExtentValidator#validate(Extent) Validate}
+     *       the spatial extent, if any.</li>
+     *   <li>{@link Grid#getExtent()}<ul>
+     *     <li>{@link GridEnvelope}: Verify that the {@linkplain GridEnvelope#getSpan(int) span}
+     *         in at least one dimension is equals to the {@linkplain ImageReader#getWidth(int)
+     *         image width}, and a span in another dimension is equals to the
+     *         {@linkplain ImageReader#getHeight(int) image height}.</li>
+     *   </ul></li>
+     * </ul>
      *
      * @throws IOException If an error occurred while reading the metadata.
      */

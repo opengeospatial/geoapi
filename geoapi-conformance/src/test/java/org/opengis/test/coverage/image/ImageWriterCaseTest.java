@@ -58,7 +58,7 @@ public strictfp class ImageWriterCaseTest extends ImageWriterTestCase {
      * Creates the image writer.
      */
     @Override
-    protected void prepareImageWriter() {
+    protected void prepareImageWriter(boolean optionallySetOutput) {
         if (writer == null) {
             final Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("PNG");
             while (it.hasNext()) {
