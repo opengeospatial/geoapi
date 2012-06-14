@@ -62,11 +62,11 @@ import static org.junit.Assume.*;
  * the sample values.
  *
  * <p>To use this test, subclasses need to set the {@link #writer} field to a non-null value
- * in the {@link #prepareImageWriter()} method. Example:</p>
+ * in the {@link #prepareImageWriter(boolean)} method. Example:</p>
  *
  * <blockquote><pre>public class MyImageWriterTest extends ImageWriterTestCase {
  *    &#64;Override
- *    protected void prepareImageWriter() throws IOException {
+ *    protected void prepareImageWriter(boolean optionallySetOutput) throws IOException {
  *        if (writer == null) {
  *            writer = new MyImageWriter();
  *        }
@@ -96,7 +96,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
 
     /**
      * The image writer to test. This field must be set by subclasses
-     * in the {@link #prepareImageWriter()} method.
+     * in the {@link #prepareImageWriter(boolean)} method.
      */
     protected ImageWriter writer;
 
@@ -135,17 +135,31 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * Invoked when the image {@linkplain #writer} is about to be used for the first time.
      * Subclasses need to create a new {@link ImageWriter} instance if needed.
      *
-     * <p>Example:</p>
+     * <p>If the {@code optionallySetOutput} argument is {@code true}, then subclasses can optionally
+     * {@linkplain ImageWriter#setOutput(Object) set the output} to a temporary file or other object
+     * suitable to the writer. This operation is optional: if no output has been explicitely set,
+     * {@code ImageWriterTestCase} will automatically set the output to an in-memory stream or to
+     * a temporary file.</p>
+     *
+     * <p><b>Example:</b></p>
      * <blockquote><pre>&#64;Override
-     *protected void prepareImageWriter() throws IOException {
+     *protected void prepareImageWriter(boolean optionallySetOutput) throws IOException {
      *    if (writer == null) {
      *        writer = new MyImageWriter();
      *    }
+     *    if (optionallySetOutput) {
+     *        writer.setOutput(<var>output</var>); // Optional operation.
+     *    }
      *}</pre></blockquote>
      *
+     * This method may be invoked with a {@code false} argument value when the methods to be
+     * tested don't need an output, for example {@link ImageWriter#canWriteRasters()}.
+     *
+     * @param  optionallySetOutput {@code true} if this method can {@linkplain ImageWriter#setOutput(Object)
+     *         set the writer output} (optional operation), or {@code false} if this is not yet necessary.
      * @throws IOException If an error occurred while preparing the {@linkplain #writer}.
      */
-    protected abstract void prepareImageWriter() throws IOException;
+    protected abstract void prepareImageWriter(boolean optionallySetOutput) throws IOException;
 
     /**
      * Returns {@code true} if the given reader provider supports the given input type. If the
@@ -213,6 +227,9 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      */
     private ByteArrayOutputStream open(final int capacity) throws IOException {
         assertNotNull("The 'writer' field shall be set at construction time or in a method annotated by @Before.", writer);
+        if (writer.getOutput() != null) {
+            return null; // The output has been set by the user himself.
+        }
         final ImageWriterSpi spi = writer.getOriginatingProvider();
         if (isSupportedOutput(spi, ImageOutputStream.class)) {
             final ByteArrayOutputStream buffer = new ByteArrayOutputStream(capacity);
@@ -311,7 +328,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * @throws IOException If an error occurred while writing the image or reading it back.
      */
     private void testImageWrites(final RenderedImage image) throws IOException {
-        prepareImageWriter();
+        prepareImageWriter(true);
         final boolean subregion   = isSubregionSupported;
         final boolean subsampling = isSubsamplingSupported;
         final boolean offset      = isSubsamplingOffsetSupported;
