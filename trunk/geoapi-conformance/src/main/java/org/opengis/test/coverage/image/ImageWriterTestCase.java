@@ -34,6 +34,7 @@ package org.opengis.test.coverage.image;
 import java.io.File;
 import java.io.Closeable;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.awt.image.DataBuffer;
@@ -231,7 +232,11 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
             return null; // The output has been set by the user himself.
         }
         final ImageWriterSpi spi = writer.getOriginatingProvider();
-        if (isSupportedOutput(spi, ImageOutputStream.class)) {
+        if (isSupportedOutput(spi, OutputStream.class)) {
+            final ByteArrayOutputStream buffer = new ByteArrayOutputStream(capacity);
+            writer.setOutput(buffer);
+            return buffer;
+        } else if (isSupportedOutput(spi, ImageOutputStream.class)) {
             final ByteArrayOutputStream buffer = new ByteArrayOutputStream(capacity);
             writer.setOutput(ImageIO.createImageOutputStream(buffer));
             return buffer;
@@ -313,6 +318,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      */
     private void writeRandomSubsets(final RenderedImage image, final int numIterations) throws IOException {
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
+            prepareImageWriter(true); // Give a chance to subclasses to set their own output.
             final ImageWriteParam param = writer.getDefaultWriteParam();
             final PixelIterator expected = getIteratorOnRandomSubset(image, param);
             final ByteArrayOutputStream buffer = open(1024);
@@ -328,7 +334,6 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * @throws IOException If an error occurred while writing the image or reading it back.
      */
     private void testImageWrites(final RenderedImage image) throws IOException {
-        prepareImageWriter(true);
         final boolean subregion   = isSubregionSupported;
         final boolean subsampling = isSubsamplingSupported;
         final boolean offset      = isSubsamplingOffsetSupported;
