@@ -178,10 +178,10 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *       <li>{@link #isStandardNameSupported}</li>
      *       <li>{@link #isStandardAliasSupported}</li>
      *       <li>{@link #isDependencyIdentificationSupported}</li>
-     *       <li>{@linkplain #crsAuthorityFactory}</li>
-     *       <li>{@linkplain #csAuthorityFactory}</li>
-     *       <li>{@linkplain #datumAuthorityFactory}</li>
-     *       <li>{@linkplain #copAuthorityFactory}</li>
+     *       <li>{@link #crsAuthorityFactory}</li>
+     *       <li>{@link #csAuthorityFactory}</li>
+     *       <li>{@link #datumAuthorityFactory}</li>
+     *       <li>{@link #copAuthorityFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
