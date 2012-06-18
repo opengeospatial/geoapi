@@ -274,9 +274,9 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isAxisSwappingSupported}</li>
-     *       <li>{@linkplain #crsAuthorityFactory}</li>
-     *       <li>{@linkplain #csAuthorityFactory}</li>
-     *       <li>{@linkplain #datumAuthorityFactory}</li>
+     *       <li>{@link #crsAuthorityFactory}</li>
+     *       <li>{@link #csAuthorityFactory}</li>
+     *       <li>{@link #datumAuthorityFactory}</li>
      *     </ul>
      *   </li>
      * </ul>
