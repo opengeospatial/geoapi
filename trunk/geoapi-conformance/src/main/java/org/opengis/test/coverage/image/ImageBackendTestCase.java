@@ -157,7 +157,7 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
             }
             case 3: {
                 switch (dataType) {
-                    case DataBuffer.TYPE_BYTE: return new BufferedImage(BufferedImage.TYPE_3BYTE_BGR, width, height);
+                    case DataBuffer.TYPE_BYTE: return new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
                     default: throw new IllegalArgumentException("Unsupported data type: " + dataType);
                 }
             }

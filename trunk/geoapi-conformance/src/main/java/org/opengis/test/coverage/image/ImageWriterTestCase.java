@@ -205,7 +205,8 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * Returns {@code true} if the writer can writes the given image.
      * If no writer provider is found, then this method assumes {@code true}.
      */
-    private boolean canEncodeImage(final RenderedImage image) {
+    private boolean canEncodeImage(final RenderedImage image) throws IOException {
+        prepareImageWriter(false);
         if (writer != null) {
             final ImageWriterSpi spi = writer.getOriginatingProvider();
             if (spi != null) {
@@ -406,6 +407,84 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     @Test
     public void testOneByteBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 1);
+        fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
+        testImageWrites(image);
+    }
+
+    /**
+     * Same test than {@link #testOneByteBand()}, but using RGB values in three bands.
+     *
+     * @throws IOException If an error occurred while writing the image or or reading it back.
+     */
+    @Test
+    public void testThreeByteBand() throws IOException {
+        final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 3);
+        fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
+        testImageWrites(image);
+    }
+
+    /**
+     * Same test than {@link #testOneByteBand()}, but using the signed {@code short} type.
+     *
+     * @throws IOException If an error occurred while writing the image or or reading it back.
+     */
+    @Test
+    public void testOneShortBand() throws IOException {
+        final BufferedImage image = createImage(DataBuffer.TYPE_SHORT, 180, 90, 1);
+        fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
+        testImageWrites(image);
+    }
+
+    /**
+     * Same test than {@link #testOneByteBand()}, but using the unsigned {@code short} type.
+     *
+     * @throws IOException If an error occurred while writing the image or or reading it back.
+     */
+    @Test
+    public void testOneUnsignedShortBand() throws IOException {
+        final BufferedImage image = createImage(DataBuffer.TYPE_USHORT, 180, 90, 1);
+        fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
+        testImageWrites(image);
+    }
+
+    /**
+     * Same test than {@link #testOneByteBand()}, but using the signed {@code int} type.
+     *
+     * @throws IOException If an error occurred while writing the image or or reading it back.
+     */
+    @Test
+    public void testOneIntBand() throws IOException {
+        final BufferedImage image = createImage(DataBuffer.TYPE_INT, 180, 90, 1);
+        fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
+        testImageWrites(image);
+    }
+
+    /**
+     * Same test than {@link #testOneByteBand()}, but using the signed {@code float} type.
+     *
+     * @throws IOException If an error occurred while writing the image or or reading it back.
+     */
+    @Test
+    public void testOneFloatBand() throws IOException {
+        final BufferedImage image = createImage(DataBuffer.TYPE_FLOAT, 180, 90, 1);
+        fill(image.getRaster(), random);
+        assumeTrue(canEncodeImage(image));
+        testImageWrites(image);
+    }
+
+    /**
+     * Same test than {@link #testOneByteBand()}, but using the signed {@code double} type.
+     *
+     * @throws IOException If an error occurred while writing the image or or reading it back.
+     */
+    @Test
+    public void testOneDoubleBand() throws IOException {
+        final BufferedImage image = createImage(DataBuffer.TYPE_DOUBLE, 180, 90, 1);
         fill(image.getRaster(), random);
         assumeTrue(canEncodeImage(image));
         testImageWrites(image);
