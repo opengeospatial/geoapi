@@ -414,7 +414,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
                 }
                 default: throw new IllegalArgumentException(api.toString());
             }
-            expected.assertSampleValuesEqual(new PixelIterator(image), param);
+            expected.assertSampleValuesEqual(new PixelIterator(image), param, sampleToleranceThreshold);
         }
     }
 

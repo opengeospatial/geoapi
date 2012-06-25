@@ -87,6 +87,13 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
     protected boolean isSourceBandsSupported = true;
 
     /**
+     * The tolerance threshold to use when comparing floating point numbers. The default value
+     * is 0. Subclasses can relax this tolerance threshold if needed. This value apply only to
+     * the {@code float} and {@code double} types; it doesn't apply to integer types.
+     */
+    protected double sampleToleranceThreshold;
+
+    /**
      * The random number generator.
      */
     final Random random;

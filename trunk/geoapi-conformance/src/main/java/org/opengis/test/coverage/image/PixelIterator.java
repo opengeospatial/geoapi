@@ -274,18 +274,34 @@ final strictfp class PixelIterator {
      * @param param  The parameter which was used for producing the actual image, or {@code null}
      *               if not. This parameter is used only for producing an error message; it has no
      *               incidence on the iteration.
+     * @param tolerance The tolerance threshold for floating point comparison.
+     *               This threshold does not apply to integer types.
      */
-    final void assertSampleValuesEqual(final PixelIterator actual, final IIOParam param) {
+    final void assertSampleValuesEqual(final PixelIterator actual, final IIOParam param, final double tolerance) {
         final int dataType = image.getSampleModel().getDataType();
         while (next()) {
             assertTrue("Unexpected end of pixel iteration.", actual.next());
             switch (dataType) {
                 case DataBuffer.TYPE_DOUBLE: {
-                    if (doubleToLongBits(actual.getSampleDouble()) == doubleToLongBits(getSampleDouble())) continue;
+                    final double a = actual.getSampleDouble();
+                    final double e = this.  getSampleDouble();
+                    if (doubleToLongBits(a) == doubleToLongBits(e)) {
+                        continue; // All variants of NaN values are considered equal.
+                    }
+                    if (abs(a-e) <= tolerance) {
+                        continue; // Negative and positive zeros are considered equal.
+                    }
                     break;
                 }
                 case DataBuffer.TYPE_FLOAT: {
-                    if (floatToIntBits(actual.getSampleFloat()) == floatToIntBits(getSampleFloat())) continue;
+                    final float a = actual.getSampleFloat();
+                    final float e = this.  getSampleFloat();
+                    if (floatToIntBits(a) == floatToIntBits(e)) {
+                        continue; // All variants of NaN values are considered equal.
+                    }
+                    if (abs(a-e) <= tolerance) {
+                        continue; // Negative and positive zeros are considered equal.
+                    }
                     break;
                 }
                 default: {

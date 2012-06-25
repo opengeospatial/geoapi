@@ -325,7 +325,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
             final ByteArrayOutputStream buffer = open(1024);
             writer.write(null, new IIOImage(image, null, null), param);
             final RenderedImage actual = closeAndRead(buffer);
-            expected.assertSampleValuesEqual(new PixelIterator(actual), param);
+            expected.assertSampleValuesEqual(new PixelIterator(actual), param, sampleToleranceThreshold);
         }
     }
 
@@ -418,7 +418,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * @throws IOException If an error occurred while writing the image or or reading it back.
      */
     @Test
-    public void testThreeByteBand() throws IOException {
+    public void testThreeByteBands() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 3);
         fill(image.getRaster(), random);
         assumeTrue(canEncodeImage(image));
