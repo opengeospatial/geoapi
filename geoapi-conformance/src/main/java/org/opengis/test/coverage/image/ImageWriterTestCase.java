@@ -44,6 +44,7 @@ import javax.imageio.IIOException;
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
+import javax.imageio.ImageTypeSpecifier;
 import javax.imageio.ImageWriter;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.spi.ImageReaderSpi;
@@ -163,6 +164,36 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     protected abstract void prepareImageWriter(boolean optionallySetOutput) throws IOException;
 
     /**
+     * Completes stream or image metadata to be given to the tested {@linkplain #writer}.
+     * This method is invoked after the default metadata have been created, and before they
+     * are given to the tested image writer, as below:
+     *
+     * <p><b>For stream metadata:</b></p>
+     * <pre>IIOMetadata metadata = {@linkplain #writer}.{@linkplain ImageWriter#getDefaultStreamMetadata getDefaultStreamMetadata}(param);
+     * if (metadata != null) {
+     *     completeImageMetadata(metadata, null);
+     * }</pre>
+     *
+     * <p><b>For image metadata:</b></p>
+     * <pre>IIOMetadata metadata = {@linkplain #writer}.{@linkplain ImageWriter#getDefaultImageMetadata getDefaultImageMetadata}(ImageTypeSpecifier.{@linkplain ImageTypeSpecifier#createFromRenderedImage createFromRenderedImage}(image), param);
+     * if (metadata != null) {
+     *     completeImageMetadata(metadata, image);
+     * }</pre>
+     *
+     * The default implementation does nothing (note: this may change in a future version).
+     * Subclasses can override this method for providing custom metadata.
+     *
+     * @param  metadata The stream or image metadata to complete before to be given to the tested image writer.
+     * @param  image The image for which to create image metadata, or {@code null} for stream metadata.
+     * @throws IOException If the implementation needs to perform an I/O operation and that operation failed.
+     *
+     * @see ImageWriter#getDefaultStreamMetadata(ImageWriteParam)
+     * @see ImageWriter#getDefaultImageMetadata(ImageTypeSpecifier, ImageWriteParam)
+     */
+    protected void completeImageMetadata(final IIOMetadata metadata, final RenderedImage image) throws IOException {
+    }
+
+    /**
      * Returns {@code true} if the given reader provider supports the given input type. If the
      * given provider is {@code null}, then this method conservatively assumes that the type is
      * supported on the assumption that the user provided an incomplete {@link ImageReader}
@@ -204,11 +235,14 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Returns {@code true} if the writer can writes the given image.
      * If no writer provider is found, then this method assumes {@code true}.
+     * <p>
+     * This method also performs an opportunist validation of the image writer provider.
      */
     private boolean canEncodeImage(final RenderedImage image) throws IOException {
         prepareImageWriter(false);
         if (writer != null) {
             final ImageWriterSpi spi = writer.getOriginatingProvider();
+            validators.validate(spi);
             if (spi != null) {
                 return spi.canEncodeImage(image);
             }
@@ -323,7 +357,15 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
             final ImageWriteParam param = writer.getDefaultWriteParam();
             final PixelIterator expected = getIteratorOnRandomSubset(image, param);
             final ByteArrayOutputStream buffer = open(1024);
-            writer.write(null, new IIOImage(image, null, null), param);
+            final IIOMetadata streamMetadata = writer.getDefaultStreamMetadata(param);
+            if (streamMetadata != null) {
+                completeImageMetadata(streamMetadata, null);
+            }
+            final IIOMetadata imageMetadata = writer.getDefaultImageMetadata(ImageTypeSpecifier.createFromRenderedImage(image), param);
+            if (imageMetadata != null) {
+                completeImageMetadata(imageMetadata, image);
+            }
+            writer.write(streamMetadata, new IIOImage(image, null, imageMetadata), param);
             final RenderedImage actual = closeAndRead(buffer);
             expected.assertSampleValuesEqual(new PixelIterator(actual), param, sampleToleranceThreshold);
         }

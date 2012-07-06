@@ -158,6 +158,18 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     }
 
     /**
+     * Invokes {@link #prepareImageReader(boolean)} with a value of {@code true}, ensures that
+     * the input is set, then validate the provider.
+     *
+     * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
+     */
+    private void prepareImageReader() throws IOException {
+        prepareImageReader(true);
+        assertInputSet(reader);
+        validators.validate(reader.getOriginatingProvider());
+    }
+
+    /**
      * Invoked when the image {@linkplain #reader} is about to be used for the first time, or when
      * its {@linkplain ImageReader#getInput() input} needs to be reinitialized. Subclasses need to
      * create a new {@link ImageReader} instance if needed and set its input in this method.
@@ -294,8 +306,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      */
     @Test
     public void testStreamMetadata() throws IOException {
-        prepareImageReader(true);
-        assertInputSet(reader);
+        prepareImageReader();
         final IIOMetadata metadata = reader.getStreamMetadata();
         if (metadata != null) {
             validate(metadata);
@@ -324,8 +335,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      */
     @Test
     public void testImageMetadata() throws IOException {
-        prepareImageReader(true);
-        assertInputSet(reader);
+        prepareImageReader();
         final int numImages = reader.getNumImages(true);
         for (int imageIndex=0; imageIndex<numImages; imageIndex++) {
             final IIOMetadata metadata = reader.getImageMetadata(imageIndex);
@@ -492,8 +502,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @throws IOException If an error occurred while reading the image.
      */
     private void testImageReads(final API api) throws IOException {
-        prepareImageReader(true);
-        assertInputSet(reader);
+        prepareImageReader();
         final boolean subregion   = isSubregionSupported;
         final boolean subsampling = isSubsamplingSupported;
         final boolean offset      = isSubsamplingOffsetSupported;
