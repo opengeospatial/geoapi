@@ -33,6 +33,8 @@ package org.opengis.test;
 
 import java.util.List;
 import java.util.AbstractList;
+import javax.imageio.spi.ImageReaderSpi;
+import javax.imageio.spi.ImageWriterSpi;
 
 import org.opengis.util.*;
 import org.opengis.metadata.*;
@@ -50,6 +52,7 @@ import org.opengis.test.util.*;
 import org.opengis.test.metadata.*;
 import org.opengis.test.geometry.*;
 import org.opengis.test.referencing.*;
+import org.opengis.test.coverage.image.*;
 
 
 /**
@@ -152,6 +155,13 @@ public class ValidatorContainer implements Cloneable {
     public GeometryValidator geometry = new GeometryValidator(this);
 
     /**
+     * The validator for images and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     */
+    public ImageValidator image = new ImageValidator(this);
+
+    /**
      * An unmodifiable "live" list of all validators. Any change to the value of a field declared
      * in this class is reflected immediately in this list (so this list is <cite>unmodifiable</cite>
      * but not <cite>immutable</cite>). This list is convenient if the same setting must be applied
@@ -162,7 +172,7 @@ public class ValidatorContainer implements Cloneable {
     public final List<Validator> all = new AbstractList<Validator>() {
         @Override
         public int size() {
-            return 10;
+            return 11;
         }
 
         @Override
@@ -178,6 +188,7 @@ public class ValidatorContainer implements Cloneable {
                 case  7: return parameter;
                 case  8: return coordinateOperation;
                 case  9: return geometry;
+                case 10: return image;
                 default: throw new IndexOutOfBoundsException(String.valueOf(index));
             }
         }
@@ -926,5 +937,25 @@ public class ValidatorContainer implements Cloneable {
      */
     public final void validate(final InternationalString object) {
         naming.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(ImageReaderSpi)
+     */
+    public final void validate(final ImageReaderSpi object) {
+        image.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(ImageWriterSpi)
+     */
+    public final void validate(final ImageWriterSpi object) {
+        image.validate(object);
     }
 }
