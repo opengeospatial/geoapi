@@ -49,7 +49,7 @@ import static org.opengis.test.Assert.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since   3.1
  */
 public class ImageValidator extends Validator {
     /**

@@ -51,6 +51,7 @@ import org.opengis.test.util.*;
 import org.opengis.test.geometry.*;
 import org.opengis.test.metadata.*;
 import org.opengis.test.referencing.*;
+import org.opengis.test.coverage.image.*;
 
 
 /**
