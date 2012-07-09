@@ -929,7 +929,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to {@link ScopeCode.DATASET}.
+     * Defaults to {@link ScopeCode#DATASET}.
      */
     @Override
     public Collection<ScopeCode> getHierarchyLevels() {

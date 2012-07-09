@@ -170,15 +170,15 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *
      * <p><b>For stream metadata:</b></p>
      * <pre>IIOMetadata metadata = {@linkplain #writer}.{@linkplain ImageWriter#getDefaultStreamMetadata getDefaultStreamMetadata}(param);
-     * if (metadata != null) {
-     *     completeImageMetadata(metadata, null);
-     * }</pre>
+     *if (metadata != null) {
+     *    completeImageMetadata(metadata, null);
+     *}</pre>
      *
      * <p><b>For image metadata:</b></p>
      * <pre>IIOMetadata metadata = {@linkplain #writer}.{@linkplain ImageWriter#getDefaultImageMetadata getDefaultImageMetadata}(ImageTypeSpecifier.{@linkplain ImageTypeSpecifier#createFromRenderedImage createFromRenderedImage}(image), param);
-     * if (metadata != null) {
-     *     completeImageMetadata(metadata, image);
-     * }</pre>
+     *if (metadata != null) {
+     *    completeImageMetadata(metadata, image);
+     *}</pre>
      *
      * The default implementation does nothing (note: this may change in a future version).
      * Subclasses can override this method for providing custom metadata.
