@@ -246,10 +246,13 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *
      * @param  <T>  The compile-time type of the object to search.
      * @param  type The type of the object to search.
-     * @param  node The node where to search for the object.
+     * @param  node The node where to search for the object, or {@code null} if none.
      * @return The user object of the given type, or {@code null} if not found.
      */
     private static <T> T getMetadata(final Class<T> type, final Node node) {
+        if (node == null) { // Because IIOMetadata.getAsTree(String) may return null.
+            return null;
+        }
         if (node instanceof IIOMetadataNode) {
             final Object userObject = ((IIOMetadataNode) node).getUserObject();
             if (type.isInstance(userObject)) {
