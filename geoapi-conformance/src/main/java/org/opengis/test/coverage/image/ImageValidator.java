@@ -36,6 +36,7 @@ import javax.imageio.ImageWriter;
 import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.spi.ImageWriterSpi;
 import javax.imageio.spi.ImageReaderWriterSpi;
+import javax.imageio.metadata.IIOMetadataFormat;
 import javax.imageio.metadata.IIOMetadataFormatImpl;
 
 import org.opengis.test.Validator;
@@ -64,9 +65,10 @@ public class ImageValidator extends Validator {
 
     /**
      * Validates the given provider of image readers.
-     * This method verifies that mandatory elements are non-null, arrays are non-empty
-     * (Image I/O specification requires them to be {@code null} rather than empty),
-     * and class names are valid.
+     * First, this method verifies that mandatory elements are non-null, arrays are non-empty
+     * (Image I/O specification requires them to be {@code null} rather than empty), and class
+     * names are valid. Next, this method invokes {@link #validate(IIOMetadataFormat)} for each
+     * metadata format (which can be null).
      *
      * @param provider The provider to validate, or {@code null} if none.
      */
@@ -92,9 +94,10 @@ public class ImageValidator extends Validator {
 
     /**
      * Validates the given provider of image writers.
-     * This method verifies that mandatory elements are non-null, arrays are non-empty
-     * (Image I/O specification requires them to be {@code null} rather than empty),
-     * and class names are valid.
+     * First, this method verifies that mandatory elements are non-null, arrays are non-empty
+     * (Image I/O specification requires them to be {@code null} rather than empty), and class
+     * names are valid. Next, this method invokes {@link #validate(IIOMetadataFormat)} for each
+     * metadata format (which can be null).
      *
      * @param provider The provider to validate, or {@code null} if none.
      */
@@ -132,15 +135,50 @@ public class ImageValidator extends Validator {
         validateArray("fileSuffixes", spi.getFileSuffixes());
         validateArray("MIMETypes",    spi.getMIMETypes());
         validateClass("pluginClassName", pluginType, spi.getClass().getClassLoader(), spi.getPluginClassName());
-        validateMetadata("Stream", spi.getNativeStreamMetadataFormatName(), spi.getExtraStreamMetadataFormatNames());
-        validateMetadata("Image",  spi.getNativeImageMetadataFormatName(),  spi.getExtraImageMetadataFormatNames());
+        validateMetadataFormatName("Stream", spi.getNativeStreamMetadataFormatName(), spi.getExtraStreamMetadataFormatNames());
+        validateMetadataFormatName("Image",  spi.getNativeImageMetadataFormatName(),  spi.getExtraImageMetadataFormatNames());
+        /*
+         * Ensures that a IIOMetadataFormat can be instantiated for each declared format name.
+         * Then, invokes validate(IIOMetadataFormat) for each format. Note that the format are
+         * allowed to be null according Image I/O specification.
+         */
+        if (spi.isStandardStreamMetadataFormatSupported()) {
+            assertSame("Expected the standard metadata format instance.",
+                    IIOMetadataFormatImpl.getStandardFormatInstance(),
+                    spi.getStreamMetadataFormat(IIOMetadataFormatImpl.standardMetadataFormatName));
+        }
+        if (spi.isStandardImageMetadataFormatSupported()) {
+            assertSame("Expected the standard metadata format instance.",
+                    IIOMetadataFormatImpl.getStandardFormatInstance(),
+                    spi.getImageMetadataFormat(IIOMetadataFormatImpl.standardMetadataFormatName));
+        }
+        String formatName = spi.getNativeStreamMetadataFormatName();
+        if (formatName != null) {
+            validate(spi.getStreamMetadataFormat(formatName));
+        }
+        formatName = spi.getNativeImageMetadataFormatName();
+        if (formatName != null) {
+            validate(spi.getImageMetadataFormat(formatName));
+        }
+        String[] names = spi.getExtraStreamMetadataFormatNames();
+        if (names != null) {
+            for (final String name : names) {
+                validate(spi.getStreamMetadataFormat(name));
+            }
+        }
+        names = spi.getExtraImageMetadataFormatNames();
+        if (names != null) {
+            for (final String name : names) {
+                validate(spi.getImageMetadataFormat(name));
+            }
+        }
     }
 
     /**
      * Validates the image or stream metadata format names.
      * This method ensures that there is no duplicated values.
      */
-    private static void validateMetadata(final String type, String nativeMetadataFormatName,
+    private static void validateMetadataFormatName(final String type, String nativeMetadataFormatName,
             final String[] extraMetadataFormatNames)
     {
         if (nativeMetadataFormatName != null) {
@@ -153,14 +191,14 @@ public class ImageValidator extends Validator {
             final String field = "extra" + type + "MetadataFormatNames";
             validateArray(field, extraMetadataFormatNames);
             for (int i=0; i<extraMetadataFormatNames.length; i++) {
-                final String name = extraMetadataFormatNames[i].trim();
+                final String formatName = extraMetadataFormatNames[i].trim();
                 assertFalse("The " + field + '[' + i + "] value can not be equals to \"" +
                         IIOMetadataFormatImpl.standardMetadataFormatName + "\".",
-                        IIOMetadataFormatImpl.standardMetadataFormatName.equalsIgnoreCase(name));
+                        IIOMetadataFormatImpl.standardMetadataFormatName.equalsIgnoreCase(formatName));
                 if (nativeMetadataFormatName != null) {
                     assertFalse("The " + field + '[' + i + "] value can not be equals to \"" +
                             nativeMetadataFormatName + "\" since it is already declared as the native format name.",
-                            nativeMetadataFormatName.equalsIgnoreCase(name));
+                            nativeMetadataFormatName.equalsIgnoreCase(formatName));
                 }
             }
         }
@@ -210,5 +248,14 @@ public class ImageValidator extends Validator {
             error.initCause(e);
             throw error;
         }
+    }
+
+    /**
+     * Validates the given metadata format.
+     *
+     * @param format The metadata format to validate, or {@code null} if none.
+     */
+    public void validate(final IIOMetadataFormat format) {
+        // Not yet implemented.
     }
 }

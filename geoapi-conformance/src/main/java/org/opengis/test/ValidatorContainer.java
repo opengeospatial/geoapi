@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.AbstractList;
 import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.spi.ImageWriterSpi;
+import javax.imageio.metadata.IIOMetadataFormat;
 
 import org.opengis.util.*;
 import org.opengis.metadata.*;
@@ -956,6 +957,16 @@ public class ValidatorContainer implements Cloneable {
      * @see ImageValidator#validate(ImageWriterSpi)
      */
     public final void validate(final ImageWriterSpi object) {
+        image.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(IIOMetadataFormat)
+     */
+    public void validate(final IIOMetadataFormat object) {
         image.validate(object);
     }
 }
