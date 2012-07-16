@@ -33,6 +33,7 @@ package org.opengis.test;
 
 import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.spi.ImageWriterSpi;
+import javax.imageio.metadata.IIOMetadataFormat;
 
 import org.opengis.util.*;
 import org.opengis.metadata.*;
@@ -811,6 +812,16 @@ public class Validators {
      * @see ImageValidator#validate(ImageWriterSpi)
      */
     public static void validate(final ImageWriterSpi object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(IIOMetadataFormat)
+     */
+    public static void validate(final IIOMetadataFormat object) {
         DEFAULT.validate(object);
     }
 }
