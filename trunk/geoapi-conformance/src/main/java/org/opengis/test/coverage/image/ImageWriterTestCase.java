@@ -367,7 +367,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
             }
             writer.write(streamMetadata, new IIOImage(image, null, imageMetadata), param);
             final RenderedImage actual = closeAndRead(buffer);
-            expected.assertSampleValuesEqual(new PixelIterator(actual), param, sampleToleranceThreshold);
+            expected.assertSampleValuesEqual(new PixelIteratorForIO(actual, param), sampleToleranceThreshold);
         }
     }
 

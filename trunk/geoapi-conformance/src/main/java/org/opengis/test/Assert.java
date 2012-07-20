@@ -36,9 +36,11 @@ import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.PathIterator;
 import java.awt.geom.AffineTransform;
+import java.awt.image.RenderedImage;
 
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.test.coverage.image.PixelIterator;
 
 
 /**
@@ -437,5 +439,34 @@ public strictfp class Assert extends org.junit.Assert {
             expected.next();
         }
         assertTrue(concat(message, "Expected end of path."), actual.isDone());
+    }
+
+    /**
+     * Asserts that all sample values in the given images are equal. This method requires the images
+     * {@linkplain RenderedImage#getWidth() width}, {@linkplain RenderedImage#getHeight() height}
+     * and the {@linkplain java.awt.image.SampleModel#getNumBands() number of bands} to be equal,
+     * but does <em>not</em> require the {@linkplain RenderedImage#getTile(int, int) tiling},
+     * {@linkplain java.awt.image.ColorModel color model} or
+     * {@linkplain java.awt.image.SampleModel#getDataType() datatype} to be equal.
+     *
+     * @param message   Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected  An image containing the expected values.
+     * @param actual    The actual image containing the sample values to compare.
+     * @param tolerance Tolerance threshold for floating point comparisons.
+     *                  This threshold is ignored if both images use integer datatype.
+     *
+     * @see PixelIterator#assertSampleValuesEqual(PixelIterator, double)
+     *
+     * @since 3.1
+     */
+    public static void assertSampleValuesEqual(final String message, final RenderedImage expected,
+            final RenderedImage actual, final double tolerance)
+    {
+        assertEquals(concat(message, "Mismatched image width."),  expected.getWidth(),  actual.getWidth());
+        assertEquals(concat(message, "Mismatched image height."), expected.getHeight(), actual.getHeight());
+        assertEquals(concat(message, "Mismatched number of bands."),
+                expected.getSampleModel().getNumBands(), actual.getSampleModel().getNumBands());
+        final PixelIterator iterator = new PixelIterator(expected);
+        iterator.assertSampleValuesEqual(new PixelIterator(actual), tolerance);
     }
 }
