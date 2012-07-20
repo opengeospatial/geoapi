@@ -31,12 +31,11 @@
  */
 package org.opengis.test.coverage.image;
 
-import java.util.Arrays;
 import java.awt.Rectangle;
 import java.awt.image.DataBuffer;
 import java.awt.image.Raster;
 import java.awt.image.RenderedImage;
-import javax.imageio.IIOParam;
+import java.awt.image.SampleModel;
 
 import static java.lang.Double.doubleToLongBits;
 import static java.lang.Float.floatToIntBits;
@@ -45,15 +44,30 @@ import static org.junit.Assert.*;
 
 
 /**
- * An iterator over pixels in a {@link RenderedImage}. This iterator supports multi-tiled images.
- * The traversal order is row-major.
+ * A row-major iterator over sample values in a {@link Raster} or {@link RenderedImage}.
+ * For any image (tiled or not), this class iterates first over the <em>bands</em>, then
+ * over the <em>columns</var> and finally over the <em>rows</em>. If the image is tiled,
+ * then this iterator will perform the necessary calls to the {@link RenderedImage#getTile(int, int)}
+ * method for each row in order to perform the iteration as if the image was untiled.
+ * <p>
+ * On creation, this iterator is positioned <em>before</em> the first sample value.
+ * To use this iterator, invoke the {@link #next()} method in a {@code while} loop
+ * as below:
+ * <p>
+ * <pre>PixelIterator it = new PixelIterator(image);
+ *while (it.next()) {
+ *    float value = it.getSampleFloat();
+ *    // Do some processing with the value here...
+ *}</pre>
+ *
+ * @see org.opengis.test.Assert#assertSampleValuesEqual(String, RenderedImage, RenderedImage, double)
  *
  * @author Rémi Marechal (Geomatys).
  * @author Martin Desruisseaux (Geomatys).
  * @version 3.1
  * @since   3.1
  */
-final strictfp class PixelIterator {
+public strictfp class PixelIterator {
     /**
      * The image in which to iterate.
      */
@@ -107,22 +121,48 @@ final strictfp class PixelIterator {
     private int tileX, tileY;
 
     /**
-     * Creates a row-major rendered image iterator for the whole image.
+     * Creates an iterator for the whole area of the given raster.
+     *
+     * @param raster The raster for which to create an iterator.
      */
-    PixelIterator(final RenderedImage image) {
+    public PixelIterator(final Raster raster) {
+        this(new RasterImage(raster));
+    }
+
+    /**
+     * Creates an iterator for the whole area of the given image.
+     *
+     * @param image The image for which to create an iterator.
+     */
+    public PixelIterator(final RenderedImage image) {
         this(image, null, 1, 1, null);
     }
 
     /**
-     * Creates a row-major rendered image iterator.
+     * Creates an iterator for a sub-area of the given raster.
      *
-     * @param image        Image to iterate over.
+     * @param raster       The raster to iterate over.
+     * @param subArea      Rectangle which represent raster sub area iteration, or {@code null} if none.
+     * @param xSubsampling The iteration step when moving to the next pixel.
+     * @param ySubsampling The iteration step when moving to the next scan line.
+     * @param sourceBands  The source bands, or {@code null} if none.
+     */
+    public PixelIterator(final Raster raster, final Rectangle subArea,
+            final int xSubsampling, final int ySubsampling, final int[] sourceBands)
+    {
+        this(new RasterImage(raster), subArea, xSubsampling, ySubsampling, sourceBands);
+    }
+
+    /**
+     * Creates an iterator for a sub-area of the given image.
+     *
+     * @param image        The image to iterate over.
      * @param subArea      Rectangle which represent image sub area iteration, or {@code null} if none.
      * @param xSubsampling The iteration step when moving to the next pixel.
      * @param ySubsampling The iteration step when moving to the next scan line.
      * @param sourceBands  The source bands, or {@code null} if none.
      */
-    PixelIterator(final RenderedImage image, final Rectangle subArea,
+    public PixelIterator(final RenderedImage image, final Rectangle subArea,
             final int xSubsampling, final int ySubsampling, final int[] sourceBands)
     {
         this.image        = image;
@@ -223,42 +263,105 @@ final strictfp class PixelIterator {
     }
 
     /**
-     * Returns the current X coordinate.
+     * Returns the current <var>x</var> coordinate. The coordinate values range from
+     * {@linkplain RenderedImage#getMinX() image X minimum} (inclusive) to that minimum
+     * plus the {@linkplain RenderedImage#getWidth() image width} (exclusive).
+     *
+     * @return The current <var>x</var> coordinate.
+     *
+     * @see RenderedImage#getMinX()
+     * @see RenderedImage#getWidth()
      */
     public int getX() {
         return x;
     }
 
     /**
-     * Returns the current Y coordinate.
+     * Returns the current <var>y</var> coordinate. The coordinate values range from
+     * {@linkplain RenderedImage#getMinY() image Y minimum} (inclusive) to that minimum
+     * plus the {@linkplain RenderedImage#getHeight() image height} (exclusive).
+     *
+     * @return The current <var>y</var> coordinate.
+     *
+     * @see RenderedImage#getMinY()
+     * @see RenderedImage#getHeight()
      */
     public int getY() {
         return y;
     }
 
     /**
-     * Returns the current band index.
+     * Returns the current band index. The index values range from 0 (inclusive) to
+     * the {@linkplain SampleModel#getNumBands() number of bands} (exclusive), or to
+     * the {@code sourceBands} array length (exclusive) if the array given to the
+     * constructor was non-null.
+     *
+     * @return The current band index.
+     *
+     * @see SampleModel#getNumBands()
      */
     public int getBand() {
         return (sourceBands != null) ? sourceBands[band] : band;
     }
 
     /**
-     * Returns the current integer value from iteration.
+     * Returns the type of the sample values, as one of the {@code TYPE_*} constants
+     * defined in the {@link DataBuffer} class.
+     *
+     * @return The type of the sample values.
+     *
+     * @see SampleModel#getDataType()
+     * @see DataBuffer#TYPE_BYTE
+     * @see DataBuffer#TYPE_SHORT
+     * @see DataBuffer#TYPE_USHORT
+     * @see DataBuffer#TYPE_INT
+     * @see DataBuffer#TYPE_FLOAT
+     * @see DataBuffer#TYPE_DOUBLE
+     */
+    public int getDataType() {
+        return image.getSampleModel().getDataType();
+    }
+
+    /**
+     * Returns the sample value at the current position, as an integer.
+     * This method is appropriate for the
+     * {@linkplain DataBuffer#TYPE_BYTE byte},
+     * {@linkplain DataBuffer#TYPE_SHORT short},
+     * {@linkplain DataBuffer#TYPE_USHORT unsigned short} and
+     * {@linkplain DataBuffer#TYPE_INT integer}
+     * {@linkplain #getDataType() datatypes}.
+     *
+     * @return The sample value at the current position.
+     *
+     * @see Raster#getSample(int, int, int)
+     * @see DataBuffer#TYPE_BYTE
+     * @see DataBuffer#TYPE_SHORT
+     * @see DataBuffer#TYPE_USHORT
+     * @see DataBuffer#TYPE_INT
      */
     public int getSample() {
         return raster.getSample(x, y, getBand());
     }
 
     /**
-     * Returns the current float value from iteration.
+     * Returns the sample value at the current position, as a floating point number.
+     *
+     * @return The sample value at the current position.
+     *
+     * @see Raster#getSampleFloat(int, int, int)
+     * @see DataBuffer#TYPE_FLOAT
      */
     public float getSampleFloat() {
         return raster.getSampleFloat(x, y, getBand());
     }
 
     /**
-     * Returns the current double value from iteration.
+     * Returns the sample value at the current position, as a double-precision floating point number.
+     *
+     * @return The sample value at the current position.
+     *
+     * @see Raster#getSampleDouble(int, int, int)
+     * @see DataBuffer#TYPE_DOUBLE
      */
     public double getSampleDouble() {
         return raster.getSampleDouble(x, y, getBand());
@@ -266,19 +369,32 @@ final strictfp class PixelIterator {
 
     /**
      * Compares all sample values iterated by this {@code PixelIterator} with the sample values
-     * iterated by the given iterator. If a mismatch is found, an {@link AssertionError} is thrown
-     * with a detailed error message.
+     * iterated by the given iterator. If a mismatch is found, then an {@link AssertionError} is
+     * thrown with a detailed error message.
+     *
+     * <p>This method does not verify the image sizes, number of tiles, number of bands, color
+     * model or datatype. Consequently this method is robust to the following differences:</p>
+     *
+     * <ul>
+     *   <li>Differences in the ({@linkplain RenderedImage#getMinX() x},
+     *       {@linkplain RenderedImage#getMinY() y}) origin;</li>
+     *   <li>Differences in tile layout (images are compared as if they were untiled);</li>
+     *   <li>Differences in the datatype (values are compared using the widest of this iterator
+     *       {@linkplain #getDataType() datatype} and the datatype of the given iterator).</li>
+     * </ul>
+     *
+     * <p>If the images have different sizes, then an "<cite>Unexpected end of iteration</cite>"
+     * exception will be thrown when the first iterator reaches the iteration end.</p>
      *
      * @param actual The iterator that contains the actual values to be compared with the
      *               "expected" sample values.
-     * @param param  The parameter which was used for producing the actual image, or {@code null}
-     *               if not. This parameter is used only for producing an error message; it has no
-     *               incidence on the iteration.
      * @param tolerance The tolerance threshold for floating point comparison.
      *               This threshold does not apply to integer types.
+     * @throws AssertionError If a value in this iterator is not equals to a value in the given iterator
+     *          with the given tolerance threshold.
      */
-    final void assertSampleValuesEqual(final PixelIterator actual, final IIOParam param, final double tolerance) {
-        final int dataType = image.getSampleModel().getDataType();
+    public void assertSampleValuesEqual(final PixelIterator actual, final double tolerance) throws AssertionError {
+        final int dataType = Math.max(getDataType(), actual.getDataType());
         while (next()) {
             assertTrue("Unexpected end of pixel iteration.", actual.next());
             switch (dataType) {
@@ -318,30 +434,22 @@ final strictfp class PixelIterator {
                 case DataBuffer.TYPE_FLOAT:  ev = getSampleFloat();  av = actual.getSampleFloat();  break;
                 default:                     ev = getSample();       av = actual.getSample();       break;
             }
+            final String lineSeparator = System.getProperty("line.separator", "\n");
             final StringBuilder buffer = new StringBuilder(1024);
-            buffer.append("Mismatched sample value: expected ").append(ev).append(" but got ").append(av);
-            buffer.append("\nPixel coordinate in the complete image: ("); position(buffer);
-            buffer.append("\nPixel coordinate in the compared image: ("); actual.position(buffer);
-            buffer.append('\n');
-            if (param != null) {
-                final Rectangle region = param.getSourceRegion();
-                if (region != null) {
-                    buffer.append("Source region: origin = (").append(region.x).append(", ").append(region.y)
-                            .append("), size = (").append(region.width).append(", ").append(region.height).append(")\n");
-                }
-                buffer.append("Source subsampling: (")
-                      .append(param.getSourceXSubsampling()).append(", ")
-                      .append(param.getSourceYSubsampling()).append(") with offset (")
-                      .append(param.getSubsamplingXOffset()).append(", ")
-                      .append(param.getSubsamplingYOffset()).append(")\n");
-                final int[] sourceBands = param.getSourceBands();
-                if (sourceBands != null) {
-                    buffer.append("Source bands: ").append(Arrays.toString(sourceBands));
-                }
-            }
+            buffer.append("Mismatched sample value: expected ").append(ev).append(" but got ").append(av).append(lineSeparator);
+            buffer.append("Pixel coordinate in the complete image: "); position(buffer); buffer.append(lineSeparator);
+            buffer.append("Pixel coordinate in the compared image: "); actual.position(buffer); buffer.append(lineSeparator);
+            actual.completeComparisonFailureMessage(buffer, lineSeparator);
             fail(buffer.toString());
         }
         assertFalse("Expected end of pixel iteration, but found more values.", actual.next());
+    }
+
+    /**
+     * Invoked when a sample value mismatch has been found, for allowing {@link PixelIteratorForIO}
+     * to append to the error message the I/O parameters used for the reading or writing process.
+     */
+    void completeComparisonFailureMessage(final StringBuilder buffer, final String lineSeparator) {
     }
 
     /**

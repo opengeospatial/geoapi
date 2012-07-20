@@ -88,8 +88,10 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
 
     /**
      * The tolerance threshold to use when comparing floating point numbers. The default value
-     * is 0. Subclasses can relax this tolerance threshold if needed. This value apply only to
-     * the {@code float} and {@code double} types; it doesn't apply to integer types.
+     * is 0. Subclasses can relax this tolerance threshold if needed.
+     *
+     * <p>This threshold applies only to values of type {@code float} and {@code double};
+     * it doesn't apply to integer types.</p>
      */
     protected double sampleToleranceThreshold;
 
