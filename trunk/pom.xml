@@ -529,7 +529,8 @@
                 <!-- Creates links to existing javadoc-generated
                      documentation of external referenced classes. -->
                 <links>
-                  <link>http://download.oracle.com/javase/6/docs/api/</link>
+                  <link>http://docs.oracle.com/javase/6/docs/api/</link>
+                  <link>http://docs.oracle.com/javaee/6/api/</link> <!-- For InternationalString link. -->
                   <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
                   <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
                   <link>http://jscience.org/jsr-275/api/</link>
