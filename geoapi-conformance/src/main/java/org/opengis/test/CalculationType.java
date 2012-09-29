@@ -61,7 +61,7 @@ public enum CalculationType {
      * The ordinate values to compare are the result of an identity operation (a plain copy).
      * Ordinate values are checked for strict equality.
      */
-    STRICT,
+    IDENTITY,
 
     /**
      * The ordinate values to compare are the result of a direct operation performed by the
@@ -83,5 +83,11 @@ public enum CalculationType {
      * in the same order. Consequently in case of doubt, implementors can use the same policy
      * than for {@link #DIRECT_TRANSFORM}.
      */
-    TRANSFORM_DERIVATIVE
+    TRANSFORM_DERIVATIVE;
+
+    /**
+     * @deprecated Renamed {@link #IDENTITY}.
+     */
+    @Deprecated
+    public static final CalculationType STRICT = IDENTITY;
 }
