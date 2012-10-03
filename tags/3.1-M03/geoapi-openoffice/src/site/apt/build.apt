@@ -1,0 +1,107 @@
+                           ----------------------------------------
+                           OpenOffice.org add-in build instructions
+                           ----------------------------------------
+
+OpenOffice.org add-in build instructions
+
+  This page explain how to build the GeoAPI OpenOffice.org add-in. Implementors can follow those
+  instructions if they want a different set of Calc spreadsheet formulas.
+  Implementors wanting to use their own implementation with the existing formulas may consider
+  the easier {{{./replace.html}implementation replacement}} approach instead than this page.
+
+  All <<<XFoo>>> Java interfaces are generated from IDL files with the same name. As long as <<<XFoo>>>
+  Java/IDL interfaces are not modified, there is no need for the OpenOffice.org SDK. But if any <<<XFoo>>>
+  interface is modified, then the steps documented below must be done. The last step shall be executed on
+  the client machine (users can also use the "<Tools / Package manager>" menu from OpenOffice.org GUI).
+
+
+* Requirements
+
+  Compilation requires the <<<ridl.jar>>>, <<<unoil.jar>>>, <<<jurt.jar>>> and <<<juh.jar>>> files,
+  which are automatically downloaded from Maven Central. In addition, the following command-line
+  tools are required for some steps described in this page:
+
+*---------------------+-------------------+
+|| Command line tool || Provided with    ||
+*---------------------+-------------------+
+| <<<idlc>>>          | OpenOffice SDK    |
+*---------------------+-------------------+
+| <<<regmerge>>>      | OpenOffice SDK    |
+*---------------------+-------------------+
+| <<<javamaker>>>     | OpenOffice SDK    |
+*---------------------+-------------------+
+| <<<javap>>>         | Java SDK          |
+*---------------------+-------------------+
+| <<<javac>>>         | Java SDK          |
+*---------------------+-------------------+
+| <<<jar>>>           | Java SDK          |
+*---------------------+-------------------+
+| <<<zip>>>           | Unix distribution |
+*---------------------+-------------------+
+| <<<unopkg>>>        | OpenOffice suite  |
+*---------------------+-------------------+
+
+
+* Build
+
+** Configuration
+
+  Replace <ooo-path> by the path to the OpenOffice.org installation directory. This directory
+  should contain the <<<program>>> and <<<ure-link>>> sub-directories. The OpenOffice.org SDK
+  shall be installed as a sub-directory of the OpenOffice.org root directory. If the name of
+  that SDK directory is different than <<<OpenOffice.org3.3_SDK>>>, then modify the
+  <<<OO_SDK_HOME>>> value below accordingly.
+
++------------------------------------------------------------------------------
+export OFFICE_BASE_HOME=ooo-path
+export OO_SDK_HOME=$OFFICE_BASE_HOME/OpenOffice.org3.3_SDK
+export PATH=$OFFICE_BASE_HOME/ure-link/bin:$OO_SDK_HOME/bin:$PATH
++------------------------------------------------------------------------------
+
+
+** Compiles the UNO <<<.urd>>> binary file
+
++------------------------------------------------------------------------------
+cd geoapi-openoffice/src/main/java
+idlc -C -cid -w -I $OO_SDK_HOME/idl org/opengis/openoffice/*.idl
++------------------------------------------------------------------------------
+
+
+** Compiles the UNO <<<.rdb>>> registry file
+
++------------------------------------------------------------------------------
+regmerge ../unopkg/geoapi.rdb /UCR org/opengis/openoffice/*.urd
+rm org/opengis/openoffice/*.urd
+cd ../unopkg
++------------------------------------------------------------------------------
+
+
+** Creates the <<<.class>>> file for Java interfaces
+
++------------------------------------------------------------------------------
+javamaker -BUCR -nD geoapi.rdb $OFFICE_BASE_HOME/ure-link/share/misc/types.rdb \
+    -Torg.opengis.openoffice.XReferencing
++------------------------------------------------------------------------------
+
+
+** Derives a <<<.java>>> source from the <<<.class>>> file
+
++------------------------------------------------------------------------------
+javap org.opengis.openoffice.XReferencing
++------------------------------------------------------------------------------
+
+
+** Build
+
++------------------------------------------------------------------------------
+cd ../../..
+mvn install
++------------------------------------------------------------------------------
+
+
+** deploy
+
++------------------------------------------------------------------------------
+cd target
+unopkg add geoapi-3.1-SNAPSHOT.oxt --log-file log.txt
++------------------------------------------------------------------------------
