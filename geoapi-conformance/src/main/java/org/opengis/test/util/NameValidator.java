@@ -71,12 +71,19 @@ public class NameValidator extends Validator {
         }
         final int length = object.length();
         final String s = object.toString();
-        mandatory("InternationalString: toString() shall never returns null.", s);
+        mandatory("CharSequence: toString() shall never returns null.", s);
         if (s != null) {
-            assertEquals("InternationalString: CharSequence length is inconsistent with toString().", s.length(), length);
+            assertEquals("CharSequence: length is inconsistent with toString() length.", s.length(), length);
+            boolean expectLowSurrogate = false;
             for (int i=0; i<length; i++) {
-                assertEquals("InternationalString: CharSequence is inconsistent with toString().", s.charAt(i), object.charAt(i));
+                final char c = s.charAt(i);
+                assertEquals("CharSequence: character inconsistent with toString().", c, object.charAt(i));
+                if (expectLowSurrogate) {
+                    assertTrue("CharSequence: High surrogate shall be followed by low surrogate.", Character.isLowSurrogate(c));
+                }
+                expectLowSurrogate = Character.isHighSurrogate(c);
             }
+            assertFalse("CharSequence: High surrogate shall be followed by low surrogate.", expectLowSurrogate);
         }
         mandatory("InternationalString: toString(Locale) shall not return null.", object.toString(null));
         assertEquals("InternationalString: shall be equals to itself.", object, object);
