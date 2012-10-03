@@ -4,7 +4,7 @@
        xmlns:xlink="http://www.w3.org/1999/xlink">
 
   <identifier value="org.opengis.openoffice"/>
-  <version    value="3.0.0"/> <!-- Actually 3.1-SNAPSHOT -->
+  <version    value="3.0.0.3"/> <!-- Actually 3.1-M03 -->
   <platform   value="all"/>
 
   <publisher>
