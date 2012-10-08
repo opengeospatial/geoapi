@@ -29,53 +29,41 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.filter;
+package org.opengis.filter.capability;
 
-// OpenGIS direct dependencies
-import org.opengis.annotation.XmlElement;
-import org.opengis.filter.expression.Expression;
+import java.util.Collection;
 
 
 /**
- * Abstract base class for filters that compare exactly two values against each
- * other.  The nature of the comparison is dependent on the subclass.
- *
- * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * Capabilities used to convey supported temporal operators.
+ * 
+ * <pre>
+ * &lt;complexType name="Temporal_CapabilitiesType">
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="TemporalOperands" type="{http://www.opengis.net/fes/2.0}TemporalOperandsType"/>
+ *         &lt;element name="TemporalOperators" type="{http://www.opengis.net/fes/2.0}TemporalOperatorsType"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
- * @author Chris Dillard (SYS Technologies)
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.0
+ * @since GeoAPI 3.1
  */
-@XmlElement("BinaryComparisonOpType")
-public interface BinaryComparisonOperator extends Filter {
-    /**
-     * Returns the first of the two expressions to be compared by this operator.
-     */
-    @XmlElement("expression")
-    Expression getExpression1();
-
-   /**
-     * Returns the second of the two expressions to be compared by this operator.
-     */
-    @XmlElement("expression")
-    Expression getExpression2();
+public interface TemporalCapabilities {
 
     /**
-     * Flag controlling wither comparisons are case sensitive.
-     *
-     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
+     * The temporal operands provided by this capabilities.
      */
-    @XmlElement("matchCase")
-    boolean isMatchingCase();
+    Collection<TemporalOperand> getTemporalOperands();
     
     /**
-     * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
-     * collection of values.
-     * {@link MatchAction}
-     *
-     * @return MatchAction or null.
+     * The temporal operators provided by this capabilities.
      */
-    @XmlElement("matchAction")
-    MatchAction getMatchAction();
-
+    TemporalOperators getTemporalOperators();
 }

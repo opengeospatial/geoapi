@@ -29,53 +29,31 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.filter;
+package org.opengis.filter.query;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.XmlElement;
-import org.opengis.filter.expression.Expression;
 
 
 /**
- * Abstract base class for filters that compare exactly two values against each
- * other.  The nature of the comparison is dependent on the subclass.
- *
- * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * A query expression is an action that performs a search over some set of resources and returns
+ * a subset of those resources.
+ * 
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
- * @author Chris Dillard (SYS Technologies)
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.0
+ * @since GeoAPI 3.1
  */
-@XmlElement("BinaryComparisonOpType")
-public interface BinaryComparisonOperator extends Filter {
-    /**
-     * Returns the first of the two expressions to be compared by this operator.
-     */
-    @XmlElement("expression")
-    Expression getExpression1();
-
-   /**
-     * Returns the second of the two expressions to be compared by this operator.
-     */
-    @XmlElement("expression")
-    Expression getExpression2();
+@XmlElement("QueryExpression")
+public interface QueryExpression {
 
     /**
-     * Flag controlling wither comparisons are case sensitive.
-     *
-     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
+     * This attribute can be used to assign user-defined identifier 
+     * to the query expression for the purpose of error handling 
+     * or correlating the response to a query, from within a series of queries, 
+     * with the source query expression.
+     * 
+     * @return possible object is {@link String}
      */
-    @XmlElement("matchCase")
-    boolean isMatchingCase();
-    
-    /**
-     * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
-     * collection of values.
-     * {@link MatchAction}
-     *
-     * @return MatchAction or null.
-     */
-    @XmlElement("matchAction")
-    MatchAction getMatchAction();
+    @XmlElement("handle")
+    String getHandle();
 
 }
