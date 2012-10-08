@@ -31,51 +31,23 @@
  */
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
-import org.opengis.annotation.XmlElement;
-import org.opengis.filter.expression.Expression;
-
-
 /**
- * Abstract base class for filters that compare exactly two values against each
- * other.  The nature of the comparison is dependent on the subclass.
+ * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
+ * collection of values (e.g. in XML, properties having maxOccurs > 1) and not including some additional context
+ * to identify a specific value from the collection to be tested. Possible values for the attribute are: All, Any or
+ * One. A value of All means that all values in the collection shall satisfy the predicate. A value of Any means
+ * that any of the value in the collection can satisfy the predicate. Finally, a value of One means that only one of
+ * the values in the collection shall satisfy the predicate.
+ * <br/>
+ * Null value should be interpreted as ANY.
  *
- * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * 
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
- * @author Chris Dillard (SYS Technologies)
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.0
+ * @since GeoAPI 3.1
  */
-@XmlElement("BinaryComparisonOpType")
-public interface BinaryComparisonOperator extends Filter {
-    /**
-     * Returns the first of the two expressions to be compared by this operator.
-     */
-    @XmlElement("expression")
-    Expression getExpression1();
-
-   /**
-     * Returns the second of the two expressions to be compared by this operator.
-     */
-    @XmlElement("expression")
-    Expression getExpression2();
-
-    /**
-     * Flag controlling wither comparisons are case sensitive.
-     *
-     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
-     */
-    @XmlElement("matchCase")
-    boolean isMatchingCase();
-    
-    /**
-     * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
-     * collection of values.
-     * {@link MatchAction}
-     *
-     * @return MatchAction or null.
-     */
-    @XmlElement("matchAction")
-    MatchAction getMatchAction();
-
+public enum MatchAction {
+    ALL,
+    ANY,
+    ONE
 }

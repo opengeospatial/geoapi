@@ -43,6 +43,20 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
+import org.opengis.filter.temporal.After;
+import org.opengis.filter.temporal.AnyInteracts;
+import org.opengis.filter.temporal.Before;
+import org.opengis.filter.temporal.Begins;
+import org.opengis.filter.temporal.BegunBy;
+import org.opengis.filter.temporal.During;
+import org.opengis.filter.temporal.EndedBy;
+import org.opengis.filter.temporal.Ends;
+import org.opengis.filter.temporal.Meets;
+import org.opengis.filter.temporal.MetBy;
+import org.opengis.filter.temporal.OverlappedBy;
+import org.opengis.filter.temporal.TContains;
+import org.opengis.filter.temporal.TEquals;
+import org.opengis.filter.temporal.TOverlaps;
 
 
 /**
@@ -107,6 +121,7 @@ public interface FilterVisitor {
     Object visit(PropertyIsLessThanOrEqualTo filter,    Object extraData);
     Object visit(PropertyIsLike filter,                 Object extraData);
     Object visit(PropertyIsNull filter,                 Object extraData);
+    Object visit(PropertyIsNil filter,                  Object extraData);
 
     Object visit(BBOX filter,       Object extraData);
     Object visit(Beyond filter,     Object extraData);
@@ -119,4 +134,20 @@ public interface FilterVisitor {
     Object visit(Overlaps filter,   Object extraData);
     Object visit(Touches filter,    Object extraData);
     Object visit(Within filter,     Object extraData);
+    
+    Object visit(After filter,     Object extraData);
+    Object visit(AnyInteracts filter,     Object extraData);
+    Object visit(Before filter,     Object extraData);
+    Object visit(Begins filter,     Object extraData);
+    Object visit(BegunBy filter,     Object extraData);
+    Object visit(During filter,     Object extraData);
+    Object visit(EndedBy filter,     Object extraData);
+    Object visit(Ends filter,     Object extraData);
+    Object visit(Meets filter,     Object extraData);
+    Object visit(MetBy filter,     Object extraData);
+    Object visit(OverlappedBy filter,     Object extraData);
+    Object visit(TContains filter,     Object extraData);
+    Object visit(TEquals filter,     Object extraData);
+    Object visit(TOverlaps filter,     Object extraData);
+    
 }

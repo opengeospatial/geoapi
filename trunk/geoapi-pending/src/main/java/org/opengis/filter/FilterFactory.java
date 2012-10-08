@@ -46,6 +46,9 @@ import org.opengis.filter.capability.ScalarCapabilities;
 import org.opengis.filter.capability.SpatialCapabilities;
 import org.opengis.filter.capability.SpatialOperator;
 import org.opengis.filter.capability.SpatialOperators;
+import org.opengis.filter.capability.TemporalCapabilities;
+import org.opengis.filter.capability.TemporalOperand;
+import org.opengis.filter.capability.TemporalOperators;
 import org.opengis.filter.expression.Add;
 import org.opengis.filter.expression.Divide;
 import org.opengis.filter.expression.Expression;
@@ -70,6 +73,20 @@ import org.opengis.filter.spatial.Intersects;
 import org.opengis.filter.spatial.Overlaps;
 import org.opengis.filter.spatial.Touches;
 import org.opengis.filter.spatial.Within;
+import org.opengis.filter.temporal.After;
+import org.opengis.filter.temporal.AnyInteracts;
+import org.opengis.filter.temporal.Before;
+import org.opengis.filter.temporal.Begins;
+import org.opengis.filter.temporal.BegunBy;
+import org.opengis.filter.temporal.During;
+import org.opengis.filter.temporal.EndedBy;
+import org.opengis.filter.temporal.Ends;
+import org.opengis.filter.temporal.Meets;
+import org.opengis.filter.temporal.MetBy;
+import org.opengis.filter.temporal.OverlappedBy;
+import org.opengis.filter.temporal.TContains;
+import org.opengis.filter.temporal.TEquals;
+import org.opengis.filter.temporal.TOverlaps;
 import org.opengis.geometry.Geometry;
 
 
@@ -78,7 +95,9 @@ import org.opengis.geometry.Geometry;
  * {@link Filter} and {@link Expression} subclasses.
  * <p>
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
+ * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Chris Dillard (SYS Technologies)
+ * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.0
  */
 public interface FilterFactory {
@@ -138,7 +157,7 @@ public interface FilterFactory {
     PropertyIsEqualTo equals(Expression expr1, Expression expr2);
 
     /** Compares that two sub-expressions are equal to eacher other */
-    PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase);
+    PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is not equal to the second subexpression. */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2 );
@@ -151,7 +170,7 @@ public interface FilterFactory {
      * @param matchCase true if the comparison should be case insensitive
      * @return evaluates to true of expr1 not equal to expr2 
      */
-    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase);
+    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
@@ -164,23 +183,23 @@ public interface FilterFactory {
      * @param matchCase true if the comparison should be case insensitive
      * @return evaluates to true of expr1 is greater than expr2
      */
-    PropertyIsGreaterThan greater(Expression expr1, Expression expr2, boolean matchCase);
+    PropertyIsGreaterThan greater(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
     PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2);
     
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
-    PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase);
+    PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that its first sub-expression is less than its second subexpression. */
     PropertyIsLessThan less(Expression expr1, Expression expr2);
     
-    PropertyIsLessThan less(Expression expr1, Expression expr2, boolean matchCase);
+    PropertyIsLessThan less(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
     
     /** Checks that its first sub-expression is less than or equal to its second subexpression. */
     PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2);
     
-    PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2, boolean matchCase);
+    PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Character string comparison operator with pattern matching and default wildcards. */
     PropertyIsLike like(Expression expr, String pattern);
@@ -193,6 +212,9 @@ public interface FilterFactory {
     
     /** Checks if an expression's value is {@code null}. */
     PropertyIsNull isNull(Expression expr);
+    
+    /** Checks if an expression's value is nil. */
+    PropertyIsNil isNil(Expression expr);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -245,6 +267,56 @@ public interface FilterFactory {
     /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
     Within      within(String propertyName, Geometry geometry);
 
+    
+////////////////////////////////////////////////////////////////////////////////
+//
+//  TEMPORAL FILTERS
+//
+////////////////////////////////////////////////////////////////////////////////
+
+    /** Check if first expression is after the second. */
+    After       after(Expression expr1, Expression expr2);
+    
+    /** Sortcut filter for NOT (Before OR Meets OR MetBy OR After). */
+    AnyInteracts anyInteracts(Expression expr1, Expression expr2);
+    
+    /** Check if first expression is before the second. */
+    Before      before(Expression expr1, Expression expr2);
+    
+    /** Check if first expression begins at the second. */
+    Begins      begins(Expression expr1, Expression expr2);
+    
+    /** Check if first expression begun by the second. */
+    BegunBy     begunBy(Expression expr1, Expression expr2);
+    
+    /** Check if first expression is during the second. */
+    During      during(Expression expr1, Expression expr2);
+    
+    /** Check if first expression ends by the second. */
+    Ends        ends(Expression expr1, Expression expr2);
+    
+    /** Check if first expression is ended by the second. */
+    EndedBy     endedBy(Expression expr1, Expression expr2);
+    
+    /** Check if first expression meets the second. */
+    Meets       meets(Expression expr1, Expression expr2);
+    
+    /** Check if first expression is met by the second. */
+    MetBy       metBy(Expression expr1, Expression expr2);
+    
+    /** Check if first expression is overlapped by the second. */
+    OverlappedBy overlappedBy(Expression expr1, Expression expr2);
+    
+    /** Check if first expression iscontained in the second. */
+    TContains    tcontains(Expression expr1, Expression expr2);
+    
+    /** Check if first expression equal to the second. */
+    TEquals      tequals(Expression expr1, Expression expr2);
+    
+    /** Check if first expression overlaps the second. */
+    TOverlaps     toverlaps(Expression expr1, Expression expr2);
+
+    
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  EXPRESSIONS
@@ -334,11 +406,15 @@ public interface FilterFactory {
     /** spatial capabilities */
     SpatialCapabilities spatialCapabilities(GeometryOperand[] geometryOperands,
         SpatialOperators spatial);
+    
+    /** temporal capabilities */
+    TemporalCapabilities temporalCapabilities(TemporalOperand[] temporalOperands,
+        TemporalOperators temporal);
 
     /** id capabilities */
     IdCapabilities idCapabilities(boolean eid, boolean fid);
 
     /** filter capabilities */
     FilterCapabilities capabilities(String version, ScalarCapabilities scalar,
-        SpatialCapabilities spatial, IdCapabilities id);
+        SpatialCapabilities spatial, TemporalCapabilities temporal, IdCapabilities id);
 }

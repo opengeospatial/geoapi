@@ -64,6 +64,8 @@ public interface FilterCapabilities {
     public String VERSION_100 = "1.0.0";
 	/** Version String for Filter 1.1 specification */
     public String VERSION_110 = "1.1.0";
+	/** Version String for Filter 2.0 specification */
+    public String VERSION_200 = "2.0.0";
 
     /**
      *
@@ -76,6 +78,12 @@ public interface FilterCapabilities {
      */
     @UML(identifier="spatialCapabilities", specification=UNSPECIFIED)
     SpatialCapabilities getSpatialCapabilities();
+    
+    /**
+     *
+     */
+    @UML(identifier="temporalCapabilities", specification=UNSPECIFIED)
+    TemporalCapabilities getTemporalCapabilities();
 
     /**
      *
