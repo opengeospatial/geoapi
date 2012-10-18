@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+     Ant file for building GeoAPI.
+     This file is used for customization - the actual
+     work is defined in the "nbproject" sub-directory.
+-->
+<project name="GeoAPI" default="default" basedir=".">
+  <description>Builds, tests, and runs the project GeoAPI.</description>
+  <import file="nbproject/build-impl.xml"/>
+
+  <!--
+       Called before JAR building. Move the service providers to the test directory.
+       Those service providers are normally part of some wrapper modules like NetCDF
+       and Proj.4. But since this NetBeans project is building a single JAR file for
+       everything, we don't want those providers to appear in contexts where a plain
+       GeoAPI JAR file was expected.
+  -->
+  <target name="-pre-jar">
+    <mkdir  dir="${build.test.classes.dir}/META-INF/services"/>
+    <move todir="${build.test.classes.dir}/META-INF/services">
+      <fileset dir="${build.classes.dir}/META-INF/services">
+        <include name="org.opengis.referencing.*"/>
+      </fileset>
+    </move>
+  </target>
+
+
+  <!--
+       Caller after JAR building. Create also a JAR for the tests, but without the
+       META-INF/services for the same reason than above.
+  -->
+  <target name="-post-jar">
+    <jar destfile="${dist.dir}/GeoAPI-tests.jar"
+         basedir="${build.test.classes.dir}"
+         excludes="META-INF/services/org.opengis.referencing.*"/>
+  </target>
+</project>
