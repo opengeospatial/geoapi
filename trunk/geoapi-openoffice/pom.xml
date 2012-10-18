@@ -73,7 +73,7 @@
        ==================================================== -->
   <properties>
     <openoffice.version>3.2.1</openoffice.version>
-    <geotk.version>3.x-SNAPSHOT</geotk.version> <!-- For unopkg Maven plugin -->
+    <geotk.version>3.20</geotk.version> <!-- For unopkg Maven plugin -->
   </properties>
 
   <dependencies>
