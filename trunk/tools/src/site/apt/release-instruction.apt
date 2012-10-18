@@ -25,10 +25,10 @@ svn commit -m "Updated the list of GeoAPI classes and methods."
   <<<geoapi-openoffice>>> module.
 
   Defines the version number for the GeoAPI milesone. The example below
-  uses 3.1-M1. Please edit as needed.
+  uses 3.1-M05. Please edit as needed.
 
 ---------------------------------------------------------------------------------------------
-export GEOAPI_VERSION=3.1-M1
+export GEOAPI_VERSION=3.1-M05
 ---------------------------------------------------------------------------------------------
 
   Create a SVN tag.
