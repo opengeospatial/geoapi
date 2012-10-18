@@ -22,7 +22,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
-  <version>3.1-SNAPSHOT</version>
+  <version>3.1-M04</version>
   <name>GeoAPI</name>
   <url>http://www.geoapi.org/</url>
   <description>
@@ -695,6 +695,15 @@
         </configuration>
       </plugin>
     </plugins>
+
+    <!-- Following is for users who need to deploy using the ssh rather then the file protocol. -->
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+         <artifactId>wagon-ssh-external</artifactId>
+         <version>1.0-beta-6</version>
+      </extension>
+    </extensions>
   </build>
 
 
@@ -706,12 +715,12 @@
     <repository>
       <id>geotoolkit</id> <!-- For snapshots only -->
       <name>GeoToolkit repository</name>
-      <url>file:///var/www/maven.geotoolkit.org</url>
+      <url>scpexe://luciole.geomatys.com/var/www/maven.geotoolkit.org</url>
     </repository>
     <site>
       <id>geoapi</id>
       <name>GeoAPI web site</name>
-      <url>file:///var/www/www.geoapi.org</url>
+      <url>scpexe://luciole.geomatys.com/var/www/www.geoapi.org</url>
     </site>
   </distributionManagement>
 
