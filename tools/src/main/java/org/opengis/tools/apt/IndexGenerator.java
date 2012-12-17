@@ -82,14 +82,11 @@ import org.opengis.geometry.coordinate.PointArray;
  * rm content.txt
  * </pre></blockquote>
  *
- * @author Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   2.0
  */
 public class IndexGenerator extends UmlProcessor implements Comparator<TypeDeclaration> {
-    /**
-     * Set to {@code true} for printing some debug information to the standard output.
-     */
-    private static final boolean DEBUG = false;
-
     /**
      * Method names that are part of Java specification.
      */
@@ -145,24 +142,24 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
             printError(exception);
             return;
         }
-        out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
-        out.println("<HTML>");
-        out.println("  <HEAD>");
-        out.println("    <TITLE>GeoAPI content</TITLE>");
-        out.println("  </HEAD>");
-        out.println("  <BODY>");
-        out.println("  <H1>GeoAPI content</H1>");
-        out.println("  <TABLE cellpadding='0' cellspacing='0'>");
-        out.println("  <TR><TH bgcolor=\"#CCCCFF\">GeoAPI identifier</TH>" +
-                          "<TH bgcolor=\"#CCCCFF\">ISO identifier</TH>" +
-                          "<TH bgcolor=\"#CCCCFF\">Standard</TH></TR>");
+        out.println("<!DOCTYPE html>");
+        out.println("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+        out.println("  <head>");
+        out.println("    <title>GeoAPI content</title>");
+        out.println("  </head>");
+        out.println("  <body><div>");
+        out.println("  <h1>GeoAPI content</h1>");
+        out.println("  <table cellpadding='0' cellspacing='0'>");
+        out.println("  <tr><th bgcolor=\"#CCCCFF\">GeoAPI identifier</th>" +
+                          "<th bgcolor=\"#CCCCFF\">ISO identifier</th>" +
+                          "<th bgcolor=\"#CCCCFF\">Standard</th></tr>");
         lastPackage = "";
         for (final TypeDeclaration declaration : declarations) {
             writeTypeDeclaration(declaration);
         }
-        out.println("  </TABLE>");
-        out.println("  </BODY>");
-        out.println("</HTML>");
+        out.println("  </table>");
+        out.println("  </div></body>");
+        out.println("</html>");
         out.close();
     }
 
@@ -231,28 +228,28 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
         if (true) {
             final String packageName = declaration.getPackage().getQualifiedName();
             if (!packageName.equals(lastPackage)) {
-                out.println("  <TR><TD COLSPAN=3>&nbsp;</TD></TR>");
-                out.print  ("  <TR><TD COLSPAN=3 NOWRAP BGCOLOR=\"#DDDDFF\"><STRONG>Package&nbsp; <CODE>");
+                out.println("  <tr><td colspan=3>&nbsp;</td></tr>");
+                out.print  ("  <tr><td colspan=3 nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
                 out.print  (packageName);
-                out.println("</CODE></STRONG></TD></TR>");
-                out.println("  <TR><TD COLSPAN=3><HR></TD></TR>");
+                out.println("</code></b></td></tr>");
+                out.println("  <tr><td colspan=3><hr/></td></tr>");
                 lastPackage = packageName;
             }
-            out.print("  <TR><TD NOWRAP><STRONG><CODE>&nbsp;&nbsp;</CODE>");
+            out.print("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
             out.print(isCodeList ? "Code list" : (declaration instanceof ClassDeclaration) ? "Class" : "Interface");
-            out.print(" <CODE><A HREF=\"");
+            out.print(" <code><a href=\"");
             out.print(pathToClassJavadoc);
             out.print("\">");
             printName(classname, significantChange);
-            out.print("</A></CODE></STRONG></TD>");
+            out.print("</a></code></b></tr>");
             if (identifier != null) {
-                out.print("<TD><CODE>");
+                out.print("<td><code>");
                 printName(identifier, significantChange);
-                out.print("</CODE></TD><TD NOWRAP>");
+                out.print("</code></td><td nowrap>");
                 out.print(getSpecification(uml));
-                out.print("</TD>");
+                out.print("</td>");
             }
-            out.println("</TR>");
+            out.println("</tr>");
         }
         /*
          * Gets the attributes, ignoring deprecated and duplicated attributes.
@@ -326,15 +323,15 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
                     significantChange = !(similarCodeName(name, identifier));
                 }
             }
-            out.print("  <TR><TD><CODE>&nbsp;&nbsp;&nbsp;&nbsp;");
+            out.print("  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;");
             printName(name, significantChange);
-            out.print("</CODE></TD>");
+            out.print("</code></td>");
             if (identifier != null) {
-                out.print("<TD><CODE>&nbsp;&nbsp;");
+                out.print("<td><code>&nbsp;&nbsp;");
                 printName(identifier, significantChange);
-                out.print("</CODE></TD><TD><FONT SIZE=-1>");
+                out.print("</code></td><td><font size=-1>");
                 out.print(getSpecification(uml));
-                out.print("</FONT></TD>");
+                out.print("</font></td>");
             } else if (javaMethods.contains(name)) {
                 /*
                  * The 'doubleValue()' method is considered a Java method only in the case of
@@ -342,14 +339,14 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
                  * encourage implementors to extend java.lang.Number.
                  */
                 if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
-                    out.print("<TD></TD><TD><FONT SIZE=-1>Java</FONT></TD>");
+                    out.print("<td></td><td><font size=-1>Java</font></td>");
                 }
             } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
-                out.print("<TD></TD><TD><FONT SIZE=-1>Vecmath</FONT></TD>");
+                out.print("<td></td><td><font size=-1>Vecmath</font></td>");
             }
-            out.println("</TR>");
+            out.println("</tr>");
         }
-        out.println("  <TR><TD COLSPAN=3><HR></TD></TR>");
+        out.println("  <tr><td colspan=3><hr></td></tr>");
     }
 
     /**
@@ -380,16 +377,16 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
     }
 
     /**
-     * Prints the given name, using the {@code <CITE>} still if it is a significant
+     * Prints the given name, using the {@code <em>} style if it is a significant
      * name change compared to the ISO or OGC specification.
      */
     private void printName(final String name, final boolean significantChange) {
         if (significantChange) {
-            out.print("<CITE>");
+            out.print("<em>");
         }
         out.print(name);
         if (significantChange) {
-            out.print("</CITE>");
+            out.print("</em>");
         }
     }
 
@@ -533,15 +530,6 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
                 }
             }
         }
-        if (DEBUG) {
-            // Debug code
-            if (!geoapi.equals(ogc)) {
-                System.out.print("Member names : GeoAPI=");
-                System.out.print(geoapi);
-                System.out.print("  OGC=");
-                System.out.println(ogc);
-            }
-        }
         return geoapi.equals(ogc);
     }
 
@@ -555,7 +543,6 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
         }
         // Special cases that we don't want to consider as significant deviation.
         geoapi = geoapi.replace("CODE_LIST",  "CODELIST");
-
         ogc = firstCharAsLowerCase(dropPrefix(ogc));
         /*
          * GeoAPI constants are always in upper-case.
@@ -581,15 +568,6 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
             buffer.append(Character.toUpperCase(c));
         }
         ogc = buffer.toString();
-        if (DEBUG) {
-            // Debug code
-            if (!geoapi.equals(ogc)) {
-                System.out.print("Code names   : GeoAPI=");
-                System.out.print(geoapi);
-                System.out.print("  OGC=");
-                System.out.println(ogc);
-            }
-        }
         return ogc.equals(geoapi);
     }
 }

@@ -33,7 +33,6 @@ package org.opengis.tools.apt;
 
 // J2SE dependencies
 import java.util.Set;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.io.IOException;
@@ -65,14 +64,13 @@ import org.opengis.annotation.UML;
  * @version 3.0
  * @since   2.0
  */
-public abstract class UmlProcessor extends SimpleDeclarationVisitor
+abstract class UmlProcessor extends SimpleDeclarationVisitor
         implements AnnotationProcessor, AnnotationProcessorFactory
 {
     /**
      * Annotations supported by this annotation processor.
      */
-    private static final Collection<String> supportedAnnotations = Collections.unmodifiableCollection(
-            Arrays.asList("org.opengis.annotation.UML"));
+    private static final Collection<String> supportedAnnotations = Collections.singleton("org.opengis.annotation.UML");
 
     /**
      * Options supported by this annotation processor.
@@ -81,20 +79,20 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
 
     /**
      * Declarations of the annotation types to be processed, or {@code null} if not yet defined.
-     * This field is initialized by {@link #getProcessorFor getProcessorFor}.
+     * This field is initialized by {@link #getProcessorFor(Set, AnnotationProcessorEnvironment)}.
      */
     protected Set<AnnotationTypeDeclaration> types;
 
     /**
      * Environment to use during processing, or {@code null} if not yet defined.
-     * This field is initialized by {@link #getProcessorFor getProcessorFor}.
+     * This field is initialized by {@link #getProcessorFor(Set, AnnotationProcessorEnvironment)}.
      */
     protected AnnotationProcessorEnvironment environment;
 
     /**
      * Creates a new instance of {@code UmlProcessor}.
      */
-    public UmlProcessor() {
+    protected UmlProcessor() {
     }
 
     /**
@@ -118,8 +116,8 @@ public abstract class UmlProcessor extends SimpleDeclarationVisitor
     }
 
     /**
-     * Returns an annotation processor for a set of annotation types. This very simple factory
-     * allow the creation of at most one processor instance.
+     * Returns an annotation processor for a set of annotation types.
+     * This very simple factory allows the creation of at most one processor instance.
      *
      * @param  types       Declarations of the annotation types to be processed.
      * @param  environment Environment to use during processing.

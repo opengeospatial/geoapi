@@ -33,9 +33,13 @@
 /**
  * Annotation processing tools for processing GeoAPI after compilation. Those tools are
  * used mostly for javadoc generation. They are not part of normal GeoAPI distributions.
+ * <p>
+ * The {@link org.opengis.tools.apt.IndexGenerator} processor is used for regenerating
+ * the {@code geoapi/src/main/javadoc/content.html} file.
+ * See its class javadoc for usage instruction.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 package org.opengis.tools.apt;
