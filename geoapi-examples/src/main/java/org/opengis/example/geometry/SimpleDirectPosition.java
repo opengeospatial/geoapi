@@ -45,10 +45,14 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * The coordinate reference system associated to this direct position,
      * or {@code null} if unspecified.
+     * <p>
+     * The {@code SimpleDirectPosition} class does not provide any setter for this field,
+     * since uncontrolled modifications of geometry CRS is often undesirable.
+     * The decision to allow modifications or not is left to subclasses.
      *
      * @see #getCoordinateReferenceSystem()
      */
-    private final CoordinateReferenceSystem crs;
+    protected CoordinateReferenceSystem crs;
 
     /**
      * Creates a new direct position of the given dimension.
@@ -59,7 +63,6 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];
-        crs = null;
     }
 
     /**
@@ -78,22 +81,36 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * Creates a new direct position initialized to the given ordinate values.
      * If the given CRS is non-null, then its dimension must be equals to the
      * length of the given {@code ordinates} array.
+     * <p>
+     * This constructor assigns the given array directly (without clone) to the
+     * {@link #ordinates} field, because that field is public anyway. Defensive
+     * copy would not protect the state of this object.
      *
      * @param  crs The coordinate reference system, or {@code null}.
-     * @param  ordinates The ordinate values.
+     * @param  ordinates The ordinate values. This array is <strong>not</strong> cloned.
      * @throws MismatchedDimensionException If the given CRS is not null and its dimension
      *         is not equals to the length of the {@code ordinates} array.
-     *
-     * @since 3.1
      */
     public SimpleDirectPosition(final CoordinateReferenceSystem crs, final double... ordinates)
             throws MismatchedDimensionException
     {
+        Objects.requireNonNull(ordinates);
         if (crs != null && crs.getCoordinateSystem().getDimension() != ordinates.length) {
             throw new MismatchedDimensionException();
         }
-        this.ordinates = ordinates.clone();
+        this.ordinates = ordinates;
         this.crs = crs;
+    }
+
+    /**
+     * Creates a new direct position initialized to the CRS and ordinate values
+     * of the given direct position. This is a copy constructor.
+     *
+     * @param position The direct position from which to copy the CRS and ordinate values.
+     */
+    public SimpleDirectPosition(final DirectPosition position) {
+        ordinates = position.getCoordinate(); // Array shall be a copy according DirectPosition contract.
+        crs = position.getCoordinateReferenceSystem();
     }
 
     /**
@@ -164,38 +181,42 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * Returns {@code true} if this direct position is equals to the given object.
+     * Returns {@code true} if the specified object is also a {@code DirectPosition}
+     * with equal coordinate and equal CRS.
+     *
+     * This method performs the comparison as documented in the {@link DirectPosition#equals(Object)}
+     * Javadoc. In particular, the given object is not required to be of the same implementation class.
+     * Consequently, it should be possible to mix different {@code DirectPosition} implementations in
+     * the same hash map.
      */
     @Override
     public boolean equals(final Object object) {
         if (object instanceof DirectPosition) {
             final DirectPosition other = (DirectPosition) object;
-            if (Arrays.equals(ordinates, other.getCoordinate())) {
-                // Note: below this point, JDK7 developers can use Objects.equals(...) instead.
-                final CoordinateReferenceSystem otherCRS = other.getCoordinateReferenceSystem();
-                if (otherCRS == crs || (otherCRS != null && otherCRS.equals(crs))) {
-                    return true;
-                }
-            }
+            return Arrays.equals(ordinates, other.getCoordinate()) &&
+                   Objects.equals(crs, other.getCoordinateReferenceSystem());
         }
         return false;
     }
 
     /**
      * Returns a hash code value for this direct position.
+     * This method returns a value compliant with the contract documented in the
+     * {@link DirectPosition#hashCode()} javadoc. Consequently, it should be possible
+     * to mix different {@code DirectPosition} implementations in the same hash map.
+     *
+     * @return A hash code value for this position.
      */
     @Override
     public int hashCode() {
-        int code = Arrays.hashCode(ordinates);
-        if (crs != null) {
-            code += 31 * crs.hashCode();
-        }
-        return code;
+        return Arrays.hashCode(ordinates) + Objects.hashCode(crs);
     }
 
     /**
      * Returns a string representation of this direct position in <cite>Well Known Text</cite>
      * format.
+     *
+     * @return The <cite>Well Known Text</cite> representation of this direct position.
      *
      * @see <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text on Wikipedia</a>
      */

@@ -116,9 +116,9 @@ public interface Envelope {
     int getDimension();
 
     /**
-     * The limits in the direction of decreasing ordinate values for each dimension. This
-     * is typically a coordinate position consisting of all the minimal ordinates for each
-     * dimension for all points within the {@code Envelope}.
+     * The limits in the direction of decreasing ordinate values for each dimension.
+     * This is typically a coordinate position consisting of all the minimal ordinates
+     * for each dimension for all points within the {@code Envelope}.
      *
      * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
@@ -141,9 +141,9 @@ public interface Envelope {
     DirectPosition getLowerCorner();
 
     /**
-     * The limit in the direction of increasing ordinate values for each dimension. This
-     * is typically a coordinate position consisting of all the maximal ordinates for each
-     * dimension for all points within the {@code Envelope}.
+     * The limits in the direction of increasing ordinate values for each dimension.
+     * This is typically a coordinate position consisting of all the maximal ordinates
+     * for each dimension for all points within the {@code Envelope}.
      *
      * <blockquote><font size="-1"><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
