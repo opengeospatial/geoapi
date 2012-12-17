@@ -40,9 +40,9 @@ import java.util.Locale;
  * This interface is used as a replacement for the {@link String} type whenever an attribute needs to be
  * internationalization capable.
  *
- * <P>The {@linkplain Comparable natural ordering} is defined by the {@linkplain String#compareTo
+ * <p>The {@linkplain Comparable natural ordering} is defined by the {@linkplain String#compareTo
  * lexicographical ordering of strings} in the default locale, as returned by {@link #toString()}.
- * This string also defines the {@linkplain CharSequence character sequence} for this object.</P>
+ * This string also defines the {@linkplain CharSequence character sequence} for this object.</p>
  *
  * @departure extension
  *   Added this new type in order to distinguish between localizable and non-localizable character
@@ -60,8 +60,9 @@ import java.util.Locale;
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,
-     * then some default locale is used. The default locale is implementation-dependent. It
-     * may or may not be the {@linkplain Locale#getDefault() system default}.
+     * then some default locale is used. The default locale is implementation-dependent.
+     * It may or may not be the {@linkplain Locale#getDefault() system default}, and is not
+     * necessarily the same locale than the one used by the {@link #toString()} method.
      *
      * @param  locale The desired locale for the string to be returned, or {@code null}
      *         for a string in the implementation default locale.
