@@ -77,6 +77,13 @@ public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the datum.
      *
+     * @departure historic
+     *   This method is conform to ISO 19111:2003. The 2007 revision moved this attribute to subclasses,
+     *   where it is repeated with different return types. While ISO does not provide explanation for this move,
+     *   one possible reason may have been to enforce type safety in languages that do not support type covariance.
+     *   Since Java 5 and later supports return type covariance, this method has been keep in this parent class
+     *   both for historical and for genericity reasons.
+     *
      * @return The datum.
      */
     @UML(identifier="datum", obligation=OPTIONAL, specification=ISO_19111)
