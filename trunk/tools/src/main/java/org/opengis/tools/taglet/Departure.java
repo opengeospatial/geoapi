@@ -39,7 +39,7 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
 
 
 /**
- * The <code>@departure</code> tag for documenting the raisons for a departure from OGC/ISO
+ * The <code>@departure</code> tag for documenting the reasons for a departure from OGC/ISO
  * standard. The first word after the tag must be the departure category, one of:
  * <p>
  * <ul>
