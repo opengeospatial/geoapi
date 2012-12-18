@@ -32,7 +32,6 @@
 package org.opengis.coverage.grid;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -57,7 +56,6 @@ public interface GridCoordinates {
      *
      * @return The number of dimensions.
      */
-    @Extension
     int getDimension();
 
     /**
@@ -82,7 +80,6 @@ public interface GridCoordinates {
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      */
-    @Extension
     int getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
 
     /**
@@ -94,7 +91,6 @@ public interface GridCoordinates {
      *         than the {@linkplain #getDimension grid dimension}.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */
-    @Extension
     void setCoordinateValue(int dimension, int value)
             throws IndexOutOfBoundsException, UnsupportedOperationException;
 }

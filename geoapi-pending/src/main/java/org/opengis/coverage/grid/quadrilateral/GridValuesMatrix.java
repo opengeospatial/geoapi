@@ -34,7 +34,6 @@ package org.opengis.coverage.grid.quadrilateral;
 import java.util.List;
 import org.opengis.util.Record;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.coverage.grid.SequenceRule;
 
@@ -98,6 +97,5 @@ public interface GridValuesMatrix {
      * The extent attribute of the associated Grid object must be synchronized with the extent
      * attribute of this object.
      */
-    @Extension
     Grid getGrid();
 }

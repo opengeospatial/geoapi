@@ -31,8 +31,6 @@
  */
 package org.opengis.coverage.grid.quadrilateral;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Proposed extension of ISO {@link org.opengis.coverage.grid.GridCoordinates}.
@@ -41,13 +39,11 @@ import org.opengis.annotation.Extension;
  *
  * @author  Alexander Petkov
  */
-@Extension
 public interface GridCoordinates extends org.opengis.coverage.grid.GridCoordinates {
     /**
      * This is a compromise method which loads the values of this GridCoordinates implementation
      * into the array provided by the user.
      * Use of this method should be encouraged by those desiring to access the grid coordinates as an array.
      */
-    @Extension
     void loadCoordinateValues(int[] vals);
 }

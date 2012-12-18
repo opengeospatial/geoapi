@@ -36,7 +36,6 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -75,20 +74,17 @@ public interface RectifiedGrid extends RectifiableGrid {
      * coordinate reference system} attribute inherited from {@linkplain GridPositioning grid positioning}
      * shall be derived from the Coordinate Reference System association of the origin.
      */
-    @Extension
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
      * The conversion defined by this object is an affine transformation
      * defined by the origin and offset vectors attributes.
      */
-    @Extension
     Conversion getConversion();
 
      /**
       * The inverseConversion defined by this object is an affine transformation
       * defined by the origin and offset vectors attributes.
       */
-    @Extension
     Conversion getInverseConversion();
 }

@@ -31,7 +31,6 @@
  */
 package org.opengis.filter.expression;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
 
@@ -62,7 +61,6 @@ public interface Expression {
     /**
      * Evaluates the given expression based on the content of the given object.
      */
-    @Extension
     Object evaluate(Object object);
 
     /**
@@ -94,13 +92,11 @@ public interface Expression {
      * @return Evaluates the given expression based on the content of the given object an
      *         an instance of {@code context}.
      */
-    @Extension
     <T> T evaluate( Object object, Class<T> context );
 
     /**
      * Accepts a visitor. Subclasses must implement with a method whose content is the following:
      * <pre>return visitor.{@linkplain ExpressionVisitor#visit visit}(this, extraData);</pre>
      */
-    @Extension
     Object accept(ExpressionVisitor visitor, Object extraData);
 }

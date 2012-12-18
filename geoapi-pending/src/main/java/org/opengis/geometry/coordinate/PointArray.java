@@ -35,7 +35,6 @@ import java.util.List;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -80,7 +79,6 @@ public interface PointArray extends List<Position> {
      * @see List#size
      * @see PointGrid#width
      */
-    @Extension
     @Deprecated
     int length();
 
@@ -98,7 +96,6 @@ public interface PointArray extends List<Position> {
      * @return the dimensionality of this array.
      * @see DirectPosition#getDimension
      */
-    @Extension
     int getDimension();
 
     /**
@@ -111,7 +108,6 @@ public interface PointArray extends List<Position> {
      * @return The coordinate reference system, or {@code null}.
      * @see DirectPosition#getCoordinateReferenceSystem
      */
-    @Extension
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -136,7 +132,6 @@ public interface PointArray extends List<Position> {
      * @return The {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-    @Extension
     DirectPosition getDirectPosition(int index, DirectPosition dest) throws IndexOutOfBoundsException;
 
     /**
@@ -153,7 +148,6 @@ public interface PointArray extends List<Position> {
      *
      * @see List#set
      */
-    @Extension
     void setDirectPosition(int index, DirectPosition position)
             throws IndexOutOfBoundsException, UnsupportedOperationException;
 

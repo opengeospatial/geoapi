@@ -31,7 +31,6 @@
  */
 package org.opengis.filter;
 
-import org.opengis.annotation.Extension;
 import org.opengis.filter.spatial.BBOX;
 import org.opengis.filter.spatial.Beyond;
 import org.opengis.filter.spatial.Contains;
@@ -76,7 +75,6 @@ import org.opengis.filter.temporal.TOverlaps;
  * @author Chris Dillard (SYS Technologies)
  * @since GeoAPI 2.0
  */
-@Extension
 public interface FilterVisitor {
     /**
      * Used to account for a <code>null</code> filter value.
@@ -134,7 +132,7 @@ public interface FilterVisitor {
     Object visit(Overlaps filter,   Object extraData);
     Object visit(Touches filter,    Object extraData);
     Object visit(Within filter,     Object extraData);
-    
+
     Object visit(After filter,     Object extraData);
     Object visit(AnyInteracts filter,     Object extraData);
     Object visit(Before filter,     Object extraData);
@@ -149,5 +147,5 @@ public interface FilterVisitor {
     Object visit(TContains filter,     Object extraData);
     Object visit(TEquals filter,     Object extraData);
     Object visit(TOverlaps filter,     Object extraData);
-    
+
 }

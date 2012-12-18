@@ -31,7 +31,6 @@
  */
 package org.opengis.sld;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
 import org.opengis.metadata.citation.OnlineResource;
@@ -45,7 +44,7 @@ import org.opengis.metadata.citation.OnlineResource;
  * making SLD-library references iterative and (syntactically) recursive. Successive
  * definitions are applied “on top of” previous ones to determine the scoping of overlapping
  * style definitions.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -68,13 +67,12 @@ public interface SLDLibrary {
      * from the parsing of the OnlineResource.
      */
     StyledLayerDescriptor getSLD();
-    
+
     /**
      * calls the visit method of a SLDVisitor
      *
      * @param visitor the sld visitor
      */
-    @Extension
     Object accept(SLDVisitor visitor, Object extraData);
-    
+
 }

@@ -45,7 +45,6 @@ import org.opengis.temporal.Period;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -536,7 +535,6 @@ public interface Coverage {
      * @throws UnsupportedOperationException if this optional operation is not supported.
      * @throws IndexOutOfBoundsException if {@code xAxis} or {@code yAxis} is out of bounds.
      */
-    @Extension
     RenderableImage getRenderableImage(int xAxis, int yAxis)
             throws UnsupportedOperationException, IndexOutOfBoundsException;
 }

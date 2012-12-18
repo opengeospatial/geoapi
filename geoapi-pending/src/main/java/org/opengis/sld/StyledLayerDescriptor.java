@@ -33,7 +33,6 @@ package org.opengis.sld;
 
 import java.util.List;
 
-import org.opengis.annotation.Extension;
 import org.opengis.style.Description;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
@@ -44,7 +43,7 @@ import org.opengis.annotation.XmlParameter;
  * Encoding and WMS layers. This level of definitions has been decoupled from the feature-
  * style and symbol definitions to make it convenient to perform feature styling in
  * environments other than inside of a WMS.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -52,7 +51,7 @@ import org.opengis.annotation.XmlParameter;
  */
 @XmlElement("StyledLayerDescriptor")
 public interface StyledLayerDescriptor {
-   
+
     /**
      * The Name element allows a symbolic name to be associated with a given SLD document.
      * This element is used with most “objects” defined by SE and SLD to allow them to be
@@ -60,7 +59,7 @@ public interface StyledLayerDescriptor {
      */
     @XmlParameter("Name")
     String getName();
-    
+
     /**
      * The Description element is also reused throughout SE and SLD and gives an informative
      * description of the “object” being defined. This information can be extracted and used for
@@ -71,7 +70,7 @@ public interface StyledLayerDescriptor {
      */
     @XmlElement("Description")
     Description getDescription();
-    
+
     /**
      * The UseSLDLibrary element provides the ability of handling external SLD documents
      * to be used in library-mode even when using XML-encoded POST requests with a WMS.
@@ -84,7 +83,7 @@ public interface StyledLayerDescriptor {
      */
     @XmlElement("UseSLDLibrary")
     List<? extends SLDLibrary> libraries();
-    
+
     /**
      * The styled layers can correspond to either named layers (NamedLayer) or user-defined
      * layers (UserLayer), which are described in subsequent subclauses. There may be any
@@ -94,7 +93,7 @@ public interface StyledLayerDescriptor {
      */
     @XmlElement("NamedLayer,UserLayer")
     List<? extends Layer> layers();
-    
+
     /**
      * The version attribute gives the SLD version of an SLD document, to
      * facilitate backward compatibility with static documents stored in various different
@@ -104,14 +103,13 @@ public interface StyledLayerDescriptor {
      */
     @XmlParameter("Version")
     String getVersion();
-    
+
     /**
      * calls the visit method of a SLDVisitor
      *
      * @param visitor the sld visitor
      */
-    @Extension
     Object accept(SLDVisitor visitor, Object extraData);
-    
-    
+
+
 }

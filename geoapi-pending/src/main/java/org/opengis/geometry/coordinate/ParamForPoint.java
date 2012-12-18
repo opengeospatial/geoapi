@@ -33,7 +33,6 @@ package org.opengis.geometry.coordinate;
 
 import java.util.Set;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -70,7 +69,6 @@ public interface ParamForPoint {
      * @return The parameter distance.
      * @unitof Distance
      */
-    @Extension
     double getDistance();
 
     /**

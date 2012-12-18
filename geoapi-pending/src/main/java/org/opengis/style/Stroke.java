@@ -31,7 +31,6 @@
  */
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
@@ -152,7 +151,6 @@ public interface Stroke {
      *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
-    
+
 }

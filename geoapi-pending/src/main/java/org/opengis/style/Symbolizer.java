@@ -34,7 +34,6 @@ package org.opengis.style;
 import javax.measure.quantity.Length;
 import javax.measure.unit.Unit;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
@@ -67,7 +66,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="PF_PortrayalSpecification", specification=ISO_19117)
 public interface Symbolizer {
-    
+
     /**
      * Returns a  measure unit.
      * This parameter is inherited from GML.
@@ -81,7 +80,7 @@ public interface Symbolizer {
      *     <li>{@code pixel}</li>
      * </ul>
      * <p>
-     * 
+     *
      * @return can be null. If the unit is null than we shall use a the pixel unit
      */
     @XmlElement("uom")
@@ -90,9 +89,9 @@ public interface Symbolizer {
     /**
      * Returns the name of the geometry feature attribute to use for drawing.
      * May return null (or Expression.NIL) if this symbol is to use the default geometry attribute,
-     * whatever it may be. Using null in this fashion is similar to a PropertyName using 
+     * whatever it may be. Using null in this fashion is similar to a PropertyName using
      * the XPath expression ".".
-     * <p>                           
+     * <p>
      * The content of the element gives the property name in XPath syntax. In principle, a fixed geometry
      * could be defined using GML or operators could be defined for computing the geometry
      * from references or literals. However, using a feature property directly is by far the most
@@ -106,11 +105,11 @@ public interface Symbolizer {
     /**
      * Exrepssion used to define a geometry for drawing. May return null if the default
      * geometry attribute should be used. This expression is often a PropertyName.
-     * 
+     *
      * @return Expression used to define a geometry for drawing, or Expression.NIL if the default geometry should be used.
      */
     /* Expression getGeometry(); */
-    
+
     /**
      * Returns a name for this symbolizer.
      * This can be any string that uniquely identifies this style within a given
@@ -129,13 +128,12 @@ public interface Symbolizer {
      */
     @XmlElement("Description")
     Description getDescription();
-    
+
     /**
      * Calls the visit method of a StyleVisitor
-     *  
+     *
      * @param visitor the style visitor
-     * @return value produced 
+     * @return value produced
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
 }

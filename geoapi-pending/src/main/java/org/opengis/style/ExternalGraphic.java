@@ -33,7 +33,6 @@ package org.opengis.style;
 
 import java.util.Collection;
 import javax.swing.Icon;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnlineResource;
 
@@ -90,7 +89,6 @@ public interface ExternalGraphic extends GraphicalSymbol {
      *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
-    
+
 }

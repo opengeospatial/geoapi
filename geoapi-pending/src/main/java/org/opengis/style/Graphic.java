@@ -32,7 +32,6 @@
 package org.opengis.style;
 
 import java.util.List;
-import org.opengis.annotation.Extension;
 import org.opengis.filter.expression.Expression;
 import org.opengis.annotation.XmlElement;
 import org.opengis.annotation.XmlParameter;
@@ -145,10 +144,9 @@ public interface Graphic {
      * <p>
      * Please note StlyeVisitor has methods to directly visit a Graphic, GraphicLegend, or GraphicFill or GraphicStroke; please
      * call the most appropriate method.
-     *  
+     *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
-    
+
 }

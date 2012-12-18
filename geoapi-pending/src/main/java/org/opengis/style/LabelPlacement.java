@@ -31,7 +31,6 @@
  */
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 
@@ -51,9 +50,8 @@ public interface LabelPlacement {
      * <p>
      * Please note that LabelPalcement is not intended to be used as is; the StyleVisitor
      * visit method must traverse an instance of LinePlacement or PointPlacement.
-     * 
+     *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
 }

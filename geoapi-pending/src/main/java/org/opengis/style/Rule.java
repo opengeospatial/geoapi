@@ -32,7 +32,6 @@
 package org.opengis.style;
 
 import java.util.List;
-import org.opengis.annotation.Extension;
 import org.opengis.filter.Filter;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
@@ -145,29 +144,28 @@ public interface Rule {
      * and then avoid redundant cast in the code.
      * If you dont intend to use a special interface you can override this method
      * by : List<Symbolizer> symbolizers();
-     * 
+     *
      * @return the list of Symbolizer
      */
     @XmlElement("Symbolizer")
     @UML(identifier="portrayAction", obligation=MANDATORY, specification=ISO_19117)
     List<? extends Symbolizer> symbolizers();
-    
+
     /**
      * It is common to have a style coming from a external xml file, this method
      * provide a way to get the original source if there is one.
      * OGC SLD specification can use this method to know if a style must be
      * written completely or if writing the online resource path is enough.
-     * 
+     *
      * @return OnlineResource or null
      */
     OnlineResource getOnlineResource();
-    
+
     /**
      * calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
-    
+
 }

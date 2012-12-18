@@ -38,7 +38,6 @@ import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.geometry.MismatchedReferenceSystemException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -117,7 +116,6 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @Extension
     Point createPoint(double[] coordinates)
             throws MismatchedDimensionException;
 
@@ -193,7 +191,6 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @Extension
     SurfaceBoundary createSurfaceBoundary(Ring exterior, List<Ring> interiors)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 
@@ -224,7 +221,6 @@ public interface PrimitiveFactory {
      * @throws MismatchedDimensionException If geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @Extension
     Ring createRing(List<OrientableCurve> curves)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 }

@@ -31,8 +31,6 @@
  */
 package org.opengis.coverage.grid.quadrilateral;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Proposed extension of ISO {@link org.opengis.coverage.grid.Grid}.
@@ -41,7 +39,6 @@ import org.opengis.annotation.Extension;
  *
  * @author  Alexander Petkov
  */
-@Extension
 public interface Grid extends org.opengis.coverage.grid.Grid {
     /**
      * Specified in ISO 19123 as a "partition" of an inheritance relation,
@@ -50,7 +47,6 @@ public interface Grid extends org.opengis.coverage.grid.Grid {
      * The valuation association organizes the multi-dimensional grid
      * into a linear sequence of values according to a limited number of specifiable schemes.
      */
-    @Extension
     GridValuesMatrix getValuation();
 
     /**
@@ -62,6 +58,5 @@ public interface Grid extends org.opengis.coverage.grid.Grid {
      * The associated object may be either a RectifiedGrid or a ReferenceableGrid,
      * but shall not be only a GridPositioning object.
      */
-    @Extension
     GridPositioning getPositioning();
 }
