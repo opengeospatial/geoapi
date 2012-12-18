@@ -10,6 +10,7 @@ package org.opengis.example.geometry;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.opengis.test.Validators.*;
 
 
 /**
@@ -33,6 +34,7 @@ public strictfp class SimpleDirectPositionTest {
         assertEquals( 8.0, pos.getOrdinate(1), 0.0);
         assertEquals(-2.0, pos.getOrdinate(2), 0.0);
         assertArrayEquals(new double[] {4.0, 8.0, -2.0}, pos.getCoordinate(), 0.0);
+        validate(pos);
     }
 
     /**
@@ -51,6 +53,7 @@ public strictfp class SimpleDirectPositionTest {
         assertEquals(4.0, pos.getOrdinate(0), 0.0);
         assertEquals(3.0, pos.getOrdinate(1), 0.0);
         assertArrayEquals(new double[] {4.0, 3.0}, pos.getCoordinate(), 0.0);
+        validate(pos);
     }
 
     /**
@@ -60,5 +63,6 @@ public strictfp class SimpleDirectPositionTest {
     public void testWKT() {
         final SimpleDirectPosition pos = new SimpleDirectPosition(null, 4, 8, -2);
         assertEquals("POINT(4.0 8.0 -2.0)", pos.toString());
+        validate(pos);
     }
 }

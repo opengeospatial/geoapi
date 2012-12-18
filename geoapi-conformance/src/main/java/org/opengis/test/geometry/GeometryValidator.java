@@ -37,6 +37,7 @@ import org.opengis.geometry.*;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.cs.RangeMeaning;
 
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
@@ -86,57 +87,74 @@ public class GeometryValidator extends Validator {
         assertPositive("Envelope: dimension can't be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
         container.validate(crs); // May be null.
+        CoordinateSystem cs = null;
+        if (crs != null) {
+            cs = crs.getCoordinateSystem();
+            if (cs != null) {
+                assertEquals("Envelope: CRS dimension shall be equal to the envelope dimension",
+                        dimension, cs.getDimension());
+            }
+        }
         /*
          * Validates corners.
          */
-        final DirectPosition lower = object.getLowerCorner();
-        validate(lower);
-        mandatory("Envelope: shall have a lower corner.", lower);
-        if (lower != null) {
+        final DirectPosition lowerCorner = object.getLowerCorner();
+        final DirectPosition upperCorner = object.getUpperCorner();
+        mandatory("Envelope: shall have a lower corner.",  lowerCorner);
+        mandatory("Envelope: shall have an upper corner.", upperCorner);
+        validate(lowerCorner);
+        validate(upperCorner);
+        CoordinateReferenceSystem lowerCRS = null;
+        CoordinateReferenceSystem upperCRS = null;
+        if (lowerCorner != null) {
+            lowerCRS = lowerCorner.getCoordinateReferenceSystem();
             assertEquals("Envelope: lower corner dimension shall be equal to the envelope dimension.",
-                    dimension, lower.getDimension());
-            if (crs != null) {
-                CoordinateReferenceSystem check = lower.getCoordinateReferenceSystem();
-                if (check != null) {
-                    assertSame("Envelope: lower CRS shall be the same than the envelope CRS.", crs, check);
-                }
-            }
+                    dimension, lowerCorner.getDimension());
         }
-        final DirectPosition upper = object.getUpperCorner();
-        validate(upper);
-        mandatory("Envelope: must have a upper corner.", upper);
-        if (upper != null) {
+        if (upperCorner != null) {
+            upperCRS = upperCorner.getCoordinateReferenceSystem();
             assertEquals("Envelope: upper corner dimension shall be equal to the envelope dimension.",
-                    dimension, upper.getDimension());
-            if (crs != null) {
-                CoordinateReferenceSystem check = upper.getCoordinateReferenceSystem();
-                if (check != null) {
-                    assertSame("Envelope: upper CRS shall be the same than the envelope CRS.", crs, check);
-                }
-            }
+                    dimension, upperCorner.getDimension());
+        }
+        if (crs != null) {
+            if (lowerCRS != null) assertSame("Envelope: lower CRS shall be the same than the envelope CRS.", crs, lowerCRS);
+            if (upperCRS != null) assertSame("Envelope: upper CRS shall be the same than the envelope CRS.", crs, upperCRS);
+        } else if (lowerCRS != null && upperCRS != null) {
+            assertSame("Envelope: the two corners shall have the same CRS.", lowerCRS, upperCRS);
         }
         /*
          * Validates minimal and maximal values against the corners.
          */
         for (int i=0; i<dimension; i++) {
-            final double minimum = object.getMinimum(i);
-            final double maximum = object.getMaximum(i);
-            if (lower != null) {
-                assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.",
-                        lower.getOrdinate(i), minimum, 0.0); // No tolerance - we want exact match.
+            final double lower   = (lowerCorner != null) ? lowerCorner.getOrdinate(i) : Double.NaN;
+            final double upper   = (upperCorner != null) ? upperCorner.getOrdinate(i) : Double.NaN;
+            if (upper < lower) {
+                if (cs != null) {
+                    final CoordinateSystemAxis axis = cs.getAxis(i);
+                    if (axis != null) {
+                        final RangeMeaning meaning = axis.getRangeMeaning();
+                        if (meaning != null) {
+                            assertEquals("Envelope: lower ordinate value may be greater than upper ordinate value "
+                                    + "only on axis having wrappround range.", RangeMeaning.WRAPAROUND, meaning);
+                        }
+                    }
+                }
+            } else {
+                final double minimum = object.getMinimum(i);
+                final double maximum = object.getMaximum(i);
+                if (lowerCorner != null) {
+                    assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.",
+                            lower, minimum, 0.0); // No tolerance - we want exact match.
+                }
+                if (upperCorner != null) {
+                    assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.",
+                            upper, maximum, 0.0); // No tolerance - we want exact match.
+                }
+                final double span = maximum - minimum;
+                final double eps  = span * tolerance;
+                assertEquals("Envelope: unexpected span value.", span, object.getSpan(i), eps);
+                assertEquals("Envelope: unexpected median value.", (maximum + minimum) / 2, object.getMedian(i), eps);
             }
-            if (upper != null) {
-                assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.",
-                        upper.getOrdinate(i), maximum, 0.0); // No tolerance - we want exact match.
-            }
-            if (!Double.isNaN(minimum) && !Double.isNaN(maximum)) {
-                assertValidRange("Envelope: invalid minimum and maximum ordinate values.", minimum, maximum);
-            }
-            final double span = maximum - minimum;
-            final double eps = span * tolerance;
-            assertEquals("Envelope: unexpected span value.", span, object.getSpan(i), eps);
-            assertEquals("Envelope: unexpected median value.",
-                    (maximum + minimum) / 2, object.getMedian(i), eps);
         }
     }
 
