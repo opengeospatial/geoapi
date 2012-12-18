@@ -9,27 +9,46 @@
   <import file="nbproject/build-impl.xml"/>
 
   <!--
-       Called before JAR building. Move the service providers to the test directory.
-       Those service providers are normally part of some wrapper modules like NetCDF
-       and Proj.4. But since this NetBeans project is building a single JAR file for
-       everything, we don't want those providers to appear in contexts where a plain
-       GeoAPI JAR file was expected.
+    Called before JAR building.
   -->
   <target name="-pre-jar">
-    <mkdir  dir="${build.test.classes.dir}/META-INF/services"/>
-    <move todir="${build.test.classes.dir}/META-INF/services">
-      <fileset dir="${build.classes.dir}/META-INF/services">
-        <include name="org.opengis.referencing.*"/>
+    <copy todir="${build.classes.dir}">
+      <fileset dir="${project.root}/geoapi/src/main/resources"/>
+      <fileset dir="${project.root}/geoapi-proj4/src/main/resources">    <exclude name="META-INF/*"/> </fileset>
+      <fileset dir="${project.root}/geoapi-examples/src/main/resources"> <exclude name="META-INF/*"/> </fileset>
+    </copy>
+  </target>
+
+  <!--
+    Called after compiling tests.
+  -->
+  <target name="-post-compile-test">
+    <mkdir  dir="${build.test.classes.dir}"/>
+    <copy todir="${build.test.classes.dir}">
+      <fileset dir="${project.root}/geoapi-conformance/src/test/resources"> <exclude name="META-INF/*"/> </fileset>
+      <fileset dir="${project.root}/geoapi-proj4/src/test/resources">       <exclude name="META-INF/*"/> </fileset>
+      <fileset dir="${project.root}/geoapi-netcdf/src/test/resources">      <exclude name="META-INF/*"/> </fileset>
+
+      <!--
+        Copies the service providers in the test directory (not the source directory).
+        Those service providers are normally part of some wrapper modules like NetCDF
+        and Proj.4. But since this NetBeans project is building a single JAR file for
+        everything, we don't want those providers to appear in contexts where a plain
+        GeoAPI JAR file was expected.
+      -->
+      <fileset dir="${project.root}/geoapi-proj4/src/main/resources">
+        <include name="META-INF/services/org.opengis.referencing.*"/>
       </fileset>
-    </move>
+    </copy>
   </target>
 
 
   <!--
-       Caller after JAR building. Create also a JAR for the tests, but without the
-       META-INF/services for the same reason than above.
+    Caller after JAR building. Create also a JAR for the tests, but without the
+    META-INF/services for the same reason than above.
   -->
   <target name="-post-jar">
+    <mkdir dir="${build.test.classes.dir}"/>
     <jar destfile="${dist.dir}/GeoAPI-tests.jar"
          basedir="${build.test.classes.dir}"
          excludes="META-INF/services/org.opengis.referencing.*"/>
