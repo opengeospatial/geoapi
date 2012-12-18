@@ -91,14 +91,14 @@ public class GeometryValidator extends Validator {
          */
         final DirectPosition lower = object.getLowerCorner();
         validate(lower);
-        mandatory("Envelope: must have a lower corner.", lower);
+        mandatory("Envelope: shall have a lower corner.", lower);
         if (lower != null) {
-            assertEquals("Envelope: lower corner dimension must be equals to the envelope dimension.",
+            assertEquals("Envelope: lower corner dimension shall be equal to the envelope dimension.",
                     dimension, lower.getDimension());
             if (crs != null) {
                 CoordinateReferenceSystem check = lower.getCoordinateReferenceSystem();
                 if (check != null) {
-                    assertSame("Envelope: lower CRS must be the same than the envelope CRS.", crs, check);
+                    assertSame("Envelope: lower CRS shall be the same than the envelope CRS.", crs, check);
                 }
             }
         }
@@ -106,12 +106,12 @@ public class GeometryValidator extends Validator {
         validate(upper);
         mandatory("Envelope: must have a upper corner.", upper);
         if (upper != null) {
-            assertEquals("Envelope: upper corner dimension must be equals to the envelope dimension.",
+            assertEquals("Envelope: upper corner dimension shall be equal to the envelope dimension.",
                     dimension, upper.getDimension());
             if (crs != null) {
                 CoordinateReferenceSystem check = upper.getCoordinateReferenceSystem();
                 if (check != null) {
-                    assertSame("Envelope: upper CRS must be the same than the envelope CRS.", crs, check);
+                    assertSame("Envelope: upper CRS shall be the same than the envelope CRS.", crs, check);
                 }
             }
         }
@@ -122,11 +122,11 @@ public class GeometryValidator extends Validator {
             final double minimum = object.getMinimum(i);
             final double maximum = object.getMaximum(i);
             if (lower != null) {
-                assertEquals("Envelope: minimum value must be equals to the lower corner ordinate.",
+                assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.",
                         lower.getOrdinate(i), minimum, 0.0); // No tolerance - we want exact match.
             }
             if (upper != null) {
-                assertEquals("Envelope: maximum value must be equals to the upper corner ordinate.",
+                assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.",
                         upper.getOrdinate(i), maximum, 0.0); // No tolerance - we want exact match.
             }
             if (!Double.isNaN(minimum) && !Double.isNaN(maximum)) {
@@ -157,10 +157,10 @@ public class GeometryValidator extends Validator {
         final double[] coordinate = object.getCoordinate();
         mandatory("DirectPosition: coordinate array can't be null.", coordinate);
         if (coordinate != null) {
-            assertEquals("DirectPosition: coordinate array length must be equals to the dimension.",
+            assertEquals("DirectPosition: coordinate array length shall be equal to the dimension.",
                     dimension, coordinate.length);
             for (int i=0; i<dimension; i++) {
-                assertEquals("DirectPosition: getOrdinate(i) must be the same than coordinate[i].",
+                assertEquals("DirectPosition: getOrdinate(i) shall be the same than coordinate[i].",
                         coordinate[i], object.getOrdinate(i), 0.0); // No tolerance - we want exact match.
             }
         }
@@ -194,16 +194,16 @@ public class GeometryValidator extends Validator {
          * contract stated in the javadoc.
          */
         hashCode += Arrays.hashCode(coordinate);
-        assertEquals("DirectPosition: hashCode must be compliant to the contract given in javadoc.",
+        assertEquals("DirectPosition: hashCode shall be compliant to the contract given in javadoc.",
                 hashCode, object.hashCode());
-        assertTrue("DirectPosition: must be equals to itself.", object.equals(object));
+        assertTrue("DirectPosition: shall be equal to itself.", object.equals(object));
         /*
          * Ensures that the array returned by DirectPosition.getCoordinate() is a clone.
          */
         for (int i=0; i<dimension; i++) {
             final double oldValue = coordinate[i];
             coordinate[i] *= 2;
-            assertEquals("DirectPosition: coordinate array must be cloned.",
+            assertEquals("DirectPosition: coordinate array shall be cloned.",
                     oldValue, object.getOrdinate(i), 0.0); // No tolerance - we want exact match.
         }
     }

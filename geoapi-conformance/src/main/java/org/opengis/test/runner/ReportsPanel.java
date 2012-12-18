@@ -113,7 +113,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * The choices of reports. The length of this list shall be equals to the amount
+     * The choices of reports. The length of this list shall be equal to the amount
      * of {@link Controller} enumerations.
      */
     private final JCheckBox[] reportChoices;

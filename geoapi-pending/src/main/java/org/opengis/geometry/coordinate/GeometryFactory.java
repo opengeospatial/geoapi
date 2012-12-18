@@ -269,9 +269,9 @@ public interface GeometryFactory {
      *
      * @param  points The points to use as {@linkplain Arc#getStartPoint start} and
      *                {@linkplain Arc#getEndPoint end points} for each arc. This list size
-     *                must be equals to the {@code bulge} array length plus 1.
+     *                shall be equal to the {@code bulge} array length plus 1.
      * @param  bulges The distances of the midpoint of the arc from the midpoint of the chord.
-     * @param normals The directions normal to the chord. This list size must be the same than
+     * @param normals The directions normal to the chord. This list size shall be the same than
      *                the {@code bulge} array length.
      *
      * @throws MismatchedReferenceSystemException If geometric objects given in argument don't

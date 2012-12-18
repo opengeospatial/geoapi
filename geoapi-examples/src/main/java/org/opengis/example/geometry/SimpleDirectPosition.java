@@ -79,7 +79,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
 
     /**
      * Creates a new direct position initialized to the given ordinate values.
-     * If the given CRS is non-null, then its dimension must be equals to the
+     * If the given CRS is non-null, then its dimension shall be equal to the
      * length of the given {@code ordinates} array.
      * <p>
      * This constructor assigns the given array directly (without clone) to the

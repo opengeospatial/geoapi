@@ -85,7 +85,7 @@ public interface PointArray extends List<Position> {
     int length();
 
     /**
-     * Returns the dimensionality of the coordinates in this array. It should be equals to the
+     * Returns the dimensionality of the coordinates in this array. It shall be equal to the
      * dimensionality of the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}
      * for these coordinates.
      * <p>

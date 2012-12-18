@@ -462,8 +462,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
-        assertStrictlyPositive("Source dimension must be positive.", sourceDimension);
-        assertStrictlyPositive("Target dimension must be positive.", targetDimension);
+        assertStrictlyPositive("Source dimension shall be positive.", sourceDimension);
+        assertStrictlyPositive("Target dimension shall be positive.", targetDimension);
         final MathTransform inverse;
         if (isInverseTransformSupported) {
             final Configuration.Key<Boolean> oldTip = configurationTip;
@@ -552,8 +552,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
-        assertStrictlyPositive("Source dimension must be positive.", sourceDimension);
-        assertStrictlyPositive("Target dimension must be positive.", targetDimension);
+        assertStrictlyPositive("Source dimension shall be positive.", sourceDimension);
+        assertStrictlyPositive("Target dimension shall be positive.", targetDimension);
         final MathTransform inverse = transform.inverse();
         assertNotNull("MathTransform.inverse() shall not return null.", inverse);
         assertEquals("Inconsistent source dimension of the inverse transform.",
@@ -813,7 +813,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         assertNotNull("TransformTestCase.derivativeDeltas shall be assigned a value.", derivativeDeltas);
         assertTrue   ("TransformTestCase.derivativeDeltas shall not be empty.", derivativeDeltas.length != 0);
-        assertEquals ("Coordinate dimension shall be equals to the transform source dimension.",
+        assertEquals ("Coordinate dimension shall be equal to the transform source dimension.",
                 transform.getSourceDimensions(), coordinate.length);
         /*
          * Invoke the MathTransform.derivative(DirectPosition) method to test

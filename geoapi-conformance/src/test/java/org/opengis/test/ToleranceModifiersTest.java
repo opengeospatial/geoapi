@@ -98,7 +98,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
     @Test
     public void testRelative() {
         final ToleranceModifier modifier = RELATIVE;
-        assertEquals("Object should be equals to itself.", modifier, modifier);
+        assertEquals("Object shall be equal to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Relative[…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
@@ -114,7 +114,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
         assertSame(GEOGRAPHIC_φλ, ToleranceModifiers.geographic(1, 0));
 
         final ToleranceModifier modifier = GEOGRAPHIC;
-        assertEquals("Object should be equals to itself.", modifier, modifier);
+        assertEquals("Object shall be equal to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Geographic[λ,φ,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
@@ -131,7 +131,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
         assertSame(PROJECTION_FROM_φλ, ToleranceModifiers.projection(1, 0));
 
         final ToleranceModifier modifier = PROJECTION;
-        assertEquals("Object should be equals to itself.", modifier, modifier);
+        assertEquals("Object shall be equal to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Projection[λ,φ,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
@@ -151,7 +151,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
         assertNull("Testing with identity conversion.", ToleranceModifiers.scale(types, 1, 1));
 
         final ToleranceModifier modifier = ToleranceModifiers.scale(types, 1, 2, 1);
-        assertEquals("Object should be equals to itself.", modifier, modifier);
+        assertEquals("Object shall be equal to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Scale[INVERSE_TRANSFORM:·,×2,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
@@ -170,7 +170,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
         assertSame("Testing with singleton.", PROJECTION, ToleranceModifiers.maximum(PROJECTION));
 
         final ToleranceModifier modifier = ToleranceModifiers.maximum(PROJECTION, RELATIVE);
-        assertEquals("Object should be equals to itself.", modifier, modifier);
+        assertEquals("Object shall be equal to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Maximum[Projection[λ,φ,…], Relative[…]]", modifier.toString());
 
         final double[] copy = tolerance.clone();
@@ -190,7 +190,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
         assertSame(RELATIVE,   ToleranceModifiers.concatenate(null, RELATIVE));
 
         final ToleranceModifier modifier = ToleranceModifiers.concatenate(GEOGRAPHIC, RELATIVE);
-        assertEquals("Object should be equals to itself.", modifier, modifier);
+        assertEquals("Object shall be equal to itself.", modifier, modifier);
         assertEquals("toString()", "ToleranceModifier.Concatenate[Geographic[λ,φ,…] → Relative[…]]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);

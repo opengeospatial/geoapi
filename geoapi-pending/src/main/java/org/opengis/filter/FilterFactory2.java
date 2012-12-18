@@ -72,7 +72,7 @@ public interface FilterFactory2 extends FilterFactory {
 
     /**
      * Character string comparison operator with pattern matching and specified wildcards.
-     *      
+     *
      * @param expr
      * @param pattern
      * @param wildcard
@@ -82,7 +82,7 @@ public interface FilterFactory2 extends FilterFactory {
      * @return
      */
     PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
-    
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  SPATIAL FILTERS
@@ -120,7 +120,7 @@ public interface FilterFactory2 extends FilterFactory {
     DWithin     dwithin(Expression geometry1, Expression geometry2, double distance, String units);
 
     /** Checks if the geometry of the two operands are equal.
-     * @todo should be equals, resolve conflict with PropertyIsEqualTo equals( Expression, Expression )
+     * @todo should be equal, resolve conflict with PropertyIsEqualTo equals( Expression, Expression )
      */
     Equals      equal(Expression geometry1, Expression geometry2);
 

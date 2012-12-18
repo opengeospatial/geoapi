@@ -86,7 +86,7 @@ public class NameValidator extends Validator {
             assertFalse("CharSequence: High surrogate shall be followed by low surrogate.", expectLowSurrogate);
         }
         mandatory("InternationalString: toString(Locale) shall not return null.", object.toString(null));
-        assertEquals("InternationalString: shall be equals to itself.", object, object);
+        assertEquals("InternationalString: shall be equal to itself.", object, object);
         assertEquals("InternationalString: shall be comparable to itself.", 0, object.compareTo(object));
     }
 
@@ -147,7 +147,7 @@ public class NameValidator extends Validator {
             validate(parsedNames);
             assertFalse("GenericName: getParsedNames() shall not return an empty list.", parsedNames.isEmpty());
             final int size = parsedNames.size();
-            assertEquals("GenericName: getParsedNames() list size shall be equals to depth().",
+            assertEquals("GenericName: getParsedNames() list size shall be equal to depth().",
                     size, object.depth());
             assertEquals("GenericName: head() shall be the first element in getParsedNames() list.",
                     parsedNames.get(0), object.head());
@@ -218,7 +218,7 @@ public class NameValidator extends Validator {
         final NameSpace scope = object.scope();
         validate(scope);
         if (scope != null) {
-            assertEquals("ScopedName: head.scope shall be equals to the scope.", scope, object.head().scope());
+            assertEquals("ScopedName: head.scope shall be equal to the scope.", scope, object.head().scope());
         }
         if (parsedNames != null) {
             boolean global = scope.isGlobal();
