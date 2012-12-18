@@ -73,7 +73,7 @@ public interface Placement {
     /**
      * Maps the parameter coordinate points to the coordinate points in the output Cartesian space.
      *
-     * @param in Input coordinate points. The length of this vector must be equals to {@link #getInDimension inDimension}.
+     * @param  in Input coordinate points. The length of this vector shall be equal to {@link #getInDimension inDimension}.
      * @return The output coordinate points. The length of this vector is equals to {@link #getOutDimension outDimension}.
      */
     @UML(identifier="transform", obligation=MANDATORY, specification=ISO_19107)

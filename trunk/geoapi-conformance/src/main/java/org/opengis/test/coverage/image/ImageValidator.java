@@ -183,7 +183,7 @@ public class ImageValidator extends Validator {
     {
         if (nativeMetadataFormatName != null) {
             nativeMetadataFormatName = nativeMetadataFormatName.trim();
-            assertFalse("The native" + type + "MetadataFormatName value can not be equals to \"" +
+            assertFalse("The native" + type + "MetadataFormatName value can not be equal to \"" +
                     IIOMetadataFormatImpl.standardMetadataFormatName + "\".",
                     IIOMetadataFormatImpl.standardMetadataFormatName.equalsIgnoreCase(nativeMetadataFormatName));
         }
@@ -192,11 +192,11 @@ public class ImageValidator extends Validator {
             validateArray(field, extraMetadataFormatNames);
             for (int i=0; i<extraMetadataFormatNames.length; i++) {
                 final String formatName = extraMetadataFormatNames[i].trim();
-                assertFalse("The " + field + '[' + i + "] value can not be equals to \"" +
+                assertFalse("The " + field + '[' + i + "] value can not be equal to \"" +
                         IIOMetadataFormatImpl.standardMetadataFormatName + "\".",
                         IIOMetadataFormatImpl.standardMetadataFormatName.equalsIgnoreCase(formatName));
                 if (nativeMetadataFormatName != null) {
-                    assertFalse("The " + field + '[' + i + "] value can not be equals to \"" +
+                    assertFalse("The " + field + '[' + i + "] value can not be equal to \"" +
                             nativeMetadataFormatName + "\" since it is already declared as the native format name.",
                             nativeMetadataFormatName.equalsIgnoreCase(formatName));
                 }

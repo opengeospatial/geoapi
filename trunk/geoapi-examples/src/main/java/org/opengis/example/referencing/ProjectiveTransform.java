@@ -26,9 +26,9 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * <p>
  * <b>Constraints:</b>
  * <ul>
- *   <li>The {@linkplain Matrix#getNumCol() number of columns} in the matrix must be equals
+ *   <li>The {@linkplain Matrix#getNumCol() number of columns} in the matrix shall be equal
  *       to the number of source dimensions + 1.</li>
- *   <li>The {@linkplain Matrix#getNumRow() number of rows} in the matrix must be equals
+ *   <li>The {@linkplain Matrix#getNumRow() number of rows} in the matrix shall be equal
  *       to the number of target dimensions + 1.</li>
  * </ul>
  * <p>

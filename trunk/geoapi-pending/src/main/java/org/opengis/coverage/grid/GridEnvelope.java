@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_GridEnvelope", specification=ISO_19123)
 public interface GridEnvelope {
     /**
-     * Returns the number of dimensions. It must be equals to the number of dimensions
+     * Returns the number of dimensions. It shall be equal to the number of dimensions
      * of {@linkplain #getLow low} and {@linkplain #getHigh high} grid coordinates.
      *
      * @return The number of dimensions.

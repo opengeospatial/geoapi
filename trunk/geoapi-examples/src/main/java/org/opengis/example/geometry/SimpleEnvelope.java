@@ -22,7 +22,8 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * {@linkplain CoordinateReferenceSystem Coordinate Reference System}.
  * <p>
  * This simple implementation does not support envelopes crossing the anti-meridian.
- * Consequently, lower values shall not be greater than upper value.
+ * Consequently, lower ordinate values shall not be greater than corresponding upper
+ * ordinate values.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

@@ -33,7 +33,7 @@ public strictfp class SimpleTest {
         final GeodeticDatum datum = SimpleDatum.WGS84;
         assertEquals(0, datum.getPrimeMeridian().getGreenwichLongitude(), 0);
         assertEquals("EPSG:World Geodetic System 1984", datum.toString());
-        assertEquals("Object shall be equals to itself.", datum, datum);
+        assertEquals("Object shall be equal to itself.", datum, datum);
     }
 
     /**
@@ -50,6 +50,6 @@ public strictfp class SimpleTest {
         assertSame  (RangeMeaning.EXACT,      cs.getAxis(0).getRangeMeaning());
         assertSame  (RangeMeaning.WRAPAROUND, cs.getAxis(1).getRangeMeaning());
         assertEquals("EPSG:WGS 84", crs.toString());
-        assertEquals("Object shall be equals to itself.", crs, crs);
+        assertEquals("Object shall be equal to itself.", crs, crs);
     }
 }
