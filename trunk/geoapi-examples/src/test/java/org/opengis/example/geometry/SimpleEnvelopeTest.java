@@ -11,6 +11,7 @@ import org.opengis.geometry.MismatchedDimensionException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.opengis.test.Validators.*;
 
 
 /**
@@ -45,6 +46,7 @@ public class SimpleEnvelopeTest {
         assertEquals( 5.0, envelope.getSpan   (2), 0.0);
         assertArrayEquals(new double[] {4.0, 8.0, -2.0}, envelope.getLowerCorner().getCoordinate(), 0.0);
         assertArrayEquals(new double[] {8.0, 9.0,  3.0}, envelope.getUpperCorner().getCoordinate(), 0.0);
+        validate(envelope);
     }
 
     /**
@@ -75,5 +77,6 @@ public class SimpleEnvelopeTest {
                 new SimpleDirectPosition(null, 4, 8, -2),
                 new SimpleDirectPosition(null, 8, 9,  3));
         assertEquals("BOX3D(4.0 8.0 -2.0, 8.0 9.0 3.0)", envelope.toString());
+        validate(envelope);
     }
 }
