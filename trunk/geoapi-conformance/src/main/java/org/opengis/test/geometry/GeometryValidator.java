@@ -41,6 +41,9 @@ import org.opengis.referencing.cs.RangeMeaning;
 
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
+
+import static java.lang.Double.NaN;
+import static java.lang.Double.isNaN;
 import static org.opengis.test.Assert.*;
 
 
@@ -53,7 +56,7 @@ import static org.opengis.test.Assert.*;
  * convenient way to validate various kinds of objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class GeometryValidator extends Validator {
@@ -76,6 +79,16 @@ public class GeometryValidator extends Validator {
 
     /**
      * Validates the given envelope.
+     * This method performs the following verifications:
+     * <p>
+     * <ul>
+     *   <li>Envelope and corners dimension shall be the same.</li>
+     *   <li>Envelope and corners CRS shall be the same, ignoring {@code null} values.</li>
+     *   <li>Lower, upper and median ordinate values shall be inside the [minimum … maximum] range.</li>
+     *   <li>Lower &gt; upper ordinate values are allowed only on axis having wraparound range meaning.</li>
+     *   <li>For the usual lower &lt; upper case, compares the minimum, maximum, median and span values
+     *       against values computed from the lower and upper ordinates.</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -84,7 +97,7 @@ public class GeometryValidator extends Validator {
             return;
         }
         final int dimension = object.getDimension();
-        assertPositive("Envelope: dimension can't be negative.", dimension);
+        assertPositive("Envelope: dimension can not be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
         container.validate(crs); // May be null.
         CoordinateSystem cs = null;
@@ -96,7 +109,8 @@ public class GeometryValidator extends Validator {
             }
         }
         /*
-         * Validates corners.
+         * Validates the corners as DirectPosition objects,
+         * then checks Coordinate Reference Systems and dimensions.
          */
         final DirectPosition lowerCorner = object.getLowerCorner();
         final DirectPosition upperCorner = object.getUpperCorner();
@@ -123,12 +137,33 @@ public class GeometryValidator extends Validator {
             assertSame("Envelope: the two corners shall have the same CRS.", lowerCRS, upperCRS);
         }
         /*
-         * Validates minimal and maximal values against the corners.
+         * Verifies the consistency of lower, upper, minimum, maximum, median and span values.
+         * The tests are relaxed in the case of ranges spanning the wraparound limit (e.g. the
+         * anti-meridian).
          */
         for (int i=0; i<dimension; i++) {
-            final double lower   = (lowerCorner != null) ? lowerCorner.getOrdinate(i) : Double.NaN;
-            final double upper   = (upperCorner != null) ? upperCorner.getOrdinate(i) : Double.NaN;
-            if (upper < lower) {
+            final double lower   = (lowerCorner != null) ? lowerCorner.getOrdinate(i) : NaN;
+            final double upper   = (upperCorner != null) ? upperCorner.getOrdinate(i) : NaN;
+            final double minimum = object.getMinimum(i);
+            final double maximum = object.getMaximum(i);
+            final double median  = object.getMedian (i);
+            final double span    = object.getSpan   (i);
+            if (!isNaN(minimum) && !isNaN(maximum)) {
+                if (lower <= upper) { // Do not accept NaN in this block.
+                    final double eps = (upper - lower) * tolerance;
+                    assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.", lower, minimum, eps);
+                    assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.", upper, maximum, eps);
+                    assertEquals("Envelope: unexpected span value.",   (maximum - minimum),   span,   eps);
+                    assertEquals("Envelope: unexpected median value.", (maximum + minimum)/2, median, eps);
+                } else {
+                    // assertBetween(…) tolerates NaN values, which is what we want.
+                    assertValidRange("Envelope: invalid minimum or maximum.", minimum, maximum);
+                    assertBetween   ("Envelope: invalid lower ordinate.",     minimum, maximum, lower);
+                    assertBetween   ("Envelope: invalid upper ordinate.",     minimum, maximum, upper);
+                    assertBetween   ("Envelope: invalid median ordinate.",    minimum, maximum, median);
+                }
+            }
+            if (lower > upper) {
                 if (cs != null) {
                     final CoordinateSystemAxis axis = cs.getAxis(i);
                     if (axis != null) {
@@ -139,21 +174,6 @@ public class GeometryValidator extends Validator {
                         }
                     }
                 }
-            } else {
-                final double minimum = object.getMinimum(i);
-                final double maximum = object.getMaximum(i);
-                if (lowerCorner != null) {
-                    assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.",
-                            lower, minimum, 0.0); // No tolerance - we want exact match.
-                }
-                if (upperCorner != null) {
-                    assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.",
-                            upper, maximum, 0.0); // No tolerance - we want exact match.
-                }
-                final double span = maximum - minimum;
-                final double eps  = span * tolerance;
-                assertEquals("Envelope: unexpected span value.", span, object.getSpan(i), eps);
-                assertEquals("Envelope: unexpected median value.", (maximum + minimum) / 2, object.getMedian(i), eps);
             }
         }
     }
@@ -171,9 +191,9 @@ public class GeometryValidator extends Validator {
          * Checks coordinate consistency.
          */
         final int dimension = object.getDimension();
-        assertPositive("DirectPosition: dimension can't be negative.", dimension);
+        assertPositive("DirectPosition: dimension can not be negative.", dimension);
         final double[] coordinate = object.getCoordinate();
-        mandatory("DirectPosition: coordinate array can't be null.", coordinate);
+        mandatory("DirectPosition: coordinate array can not be null.", coordinate);
         if (coordinate != null) {
             assertEquals("DirectPosition: coordinate array length shall be equal to the dimension.",
                     dimension, coordinate.length);
