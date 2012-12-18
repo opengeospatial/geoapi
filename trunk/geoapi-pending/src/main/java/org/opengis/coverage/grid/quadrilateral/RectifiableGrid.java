@@ -36,7 +36,6 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -52,7 +51,6 @@ import org.opengis.annotation.Extension;
  *
  * @author  Alexander Petkov
  */
-@Extension
 public interface RectifiableGrid  extends GridPositioning {
     /**
      * This attribute shall contain only the {@link Conversion} subtype of the {@link CoordinateOperation}
@@ -60,7 +58,6 @@ public interface RectifiableGrid  extends GridPositioning {
      * conversions as defined by ISO 19111.  This attribute shall be identical to the conversion
      * attribute.
      */
-    @Extension
     Conversion getOperation();
 
     /**
@@ -69,7 +66,6 @@ public interface RectifiableGrid  extends GridPositioning {
      * represent only coordinate conversions as defined by ISO 19111.  This attribute shall
      * be identical to the conversion attribute.
      */
-    @Extension
     Conversion getInverseOperation();
 
     /**
@@ -78,7 +74,6 @@ public interface RectifiableGrid  extends GridPositioning {
      * The {@link MathTransform} object used in the conversion is associated with
      * the "conversion" and "operation" attributes.
      */
-    @Extension
     DirectPosition convertCoordinates(GridCoordinates g) throws TransformException;
 
     /**
@@ -87,7 +82,6 @@ public interface RectifiableGrid  extends GridPositioning {
      * The {@link MathTransform} object used in the conversion is associated with the "inverseConversion"
      * and "inverseOperation" attributes.
      */
-    @Extension
     GridCoordinates inverseConvertCoordinates(DirectPosition p) throws TransformException;
 
     /**
@@ -97,6 +91,5 @@ public interface RectifiableGrid  extends GridPositioning {
      * object associated with the operation and conversion attributes, and is merely a convenience
      * method.
      */
-    @Extension
     MathTransform getGridToCRS();
 }

@@ -31,13 +31,12 @@
  */
 package org.opengis.sld;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnlineResource;
 
 /**
  * OGC Web Service. Information about the remove serveur.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -58,13 +57,12 @@ public interface RemoteOWS extends Source {
      */
     @XmlElement("OnlineResource")
     public OnlineResource getOnlineResource();
-    
+
     /**
      * calls the visit method of a SLDVisitor
      *
      * @param visitor the sld visitor
      */
-    @Extension
     Object accept(SLDVisitor visitor, Object extraData);
-    
+
 }

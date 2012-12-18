@@ -35,7 +35,6 @@ import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -61,7 +60,6 @@ public interface Bearing {
      *
      * @since GeoAPI 2.3
      */
-    @Extension
     Unit<Angle> getAngleUnit();
 
     /**

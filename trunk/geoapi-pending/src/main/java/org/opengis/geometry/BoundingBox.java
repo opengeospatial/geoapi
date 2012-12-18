@@ -38,7 +38,6 @@ import org.opengis.referencing.crs.GeographicCRS;           // For javadoc
 import org.opengis.referencing.crs.CRSAuthorityFactory;     // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -56,7 +55,7 @@ import org.opengis.annotation.Extension;
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.1
  */
-@Extension
+@Deprecated
 public interface BoundingBox extends Envelope {
     /**
      * Sets this bounding box to be the same as the specified box.

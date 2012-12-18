@@ -32,7 +32,6 @@
 package org.opengis.coverage;
 
 import org.opengis.geometry.DirectPosition;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -87,7 +86,6 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     public DirectPosition getOffendingLocation() {
         return offendingLocation;
     }
@@ -100,7 +98,6 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     public void setOffendingLocation(final DirectPosition location) {
         this.offendingLocation = location;
     }

@@ -32,7 +32,6 @@
 package org.opengis.coverage.grid;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -93,7 +92,6 @@ public interface GridRange extends GridEnvelope {
      *
      * @deprecated Renamed as {@link #getLow(int)}.
      */
-    @Extension
     @Deprecated
     int getLower(int dimension);
 
@@ -103,7 +101,6 @@ public interface GridRange extends GridEnvelope {
      *
      * @deprecated Renamed as {@link #getHigh(int)} <strong>+ 1</strong>.
      */
-    @Extension
     @Deprecated
     int getUpper(int dimension);
 
@@ -113,7 +110,6 @@ public interface GridRange extends GridEnvelope {
      *
      * @deprecated Renamed as {@link #getSpan(int)}.
      */
-    @Extension
     @Deprecated
     int getLength(int dimension);
 }

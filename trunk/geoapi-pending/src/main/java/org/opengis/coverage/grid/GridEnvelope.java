@@ -33,7 +33,6 @@ package org.opengis.coverage.grid;
 
 import java.awt.Rectangle;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -66,7 +65,6 @@ public interface GridEnvelope {
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     int getDimension();
 
     /**
@@ -103,7 +101,6 @@ public interface GridEnvelope {
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     int getLow(int dimension) throws IndexOutOfBoundsException;
 
     /**
@@ -121,7 +118,6 @@ public interface GridEnvelope {
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     int getHigh(int dimension) throws IndexOutOfBoundsException;
 
     /**
@@ -142,6 +138,5 @@ public interface GridEnvelope {
      *
      * @since GeoAPI 2.2
      */
-    @Extension
     int getSpan(int dimension) throws IndexOutOfBoundsException;
 }

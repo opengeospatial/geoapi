@@ -34,7 +34,6 @@ package org.opengis.coverage;
 import javax.measure.unit.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.MathTransform1D;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -242,6 +241,5 @@ public interface SampleDimension {
      * @see #getOffset
      * @see #getNoDataValues
      */
-    @Extension
     MathTransform1D getSampleToGeophysics();
 }

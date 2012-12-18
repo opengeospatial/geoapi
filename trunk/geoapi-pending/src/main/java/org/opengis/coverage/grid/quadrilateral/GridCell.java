@@ -35,7 +35,6 @@ import java.util.Set;
 import org.opengis.coverage.DomainObject;
 import org.opengis.geometry.Geometry;
 import org.opengis.temporal.TemporalGeometricPrimitive;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -45,7 +44,6 @@ import org.opengis.annotation.Extension;
  *
  * @author  Alexander Petkov
  */
-@Extension
 public interface GridCell extends org.opengis.coverage.grid.GridCell {
     /**
      * This role name is inherited from {@link DomainObject} and associates the grid cell with a
@@ -61,7 +59,6 @@ public interface GridCell extends org.opengis.coverage.grid.GridCell {
      * The same spatial elements participate at the start time and at the end time.
      * Therefore, they need only be represented once.
      */
-    @Extension
     Set<Geometry> getSpatialElements();
 
     /**
@@ -72,6 +69,5 @@ public interface GridCell extends org.opengis.coverage.grid.GridCell {
      * to space, these temporal elements may be factored out and represented separately from the
      * spatial elements.
      */
-    @Extension
     Set<TemporalGeometricPrimitive> getTemporalElements();
 }

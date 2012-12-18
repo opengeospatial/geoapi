@@ -31,7 +31,6 @@
  */
 package org.opengis.sld;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 /**
@@ -39,7 +38,7 @@ import org.opengis.annotation.XmlElement;
  * name, using the CoverageName element. Any positive number of CoverageConstraints
  * may be used to define the coverage data of a layer, though all CoverageConstraints in a
  * UserLayer must come from the same WCS source.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -55,13 +54,12 @@ public interface CoverageConstraint extends Constraint{
 
     @XmlElement("CoverageExtent")
     CoverageExtent getCoverageExtent();
-    
+
     /**
      * calls the visit method of a SLDVisitor
      *
      * @param visitor the sld visitor
      */
-    @Extension
     Object accept(SLDVisitor visitor, Object extraData);
-    
+
 }

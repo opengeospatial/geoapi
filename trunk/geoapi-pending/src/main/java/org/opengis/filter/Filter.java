@@ -31,7 +31,6 @@
  */
 package org.opengis.filter;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
 import org.opengis.feature.type.FeatureType;  // For javadoc
@@ -99,6 +98,5 @@ public interface Filter {
      * <pre>return visitor.{@linkplain FilterVisitor#visit visit}(this, extraData);</pre>
      * </p>
      */
-    @Extension
     Object accept(FilterVisitor visitor, Object extraData);
 }

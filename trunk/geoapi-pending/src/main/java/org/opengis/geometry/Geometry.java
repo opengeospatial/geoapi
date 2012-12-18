@@ -37,7 +37,6 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.complex.Complex;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Extension;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -312,7 +311,6 @@ public interface Geometry extends TransfiniteSet {
      * @throws TransformException if the transformation failed.
      * @return The transformed {@code Geometry}.
      */
-    @Extension
     Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
 
     /**
@@ -410,7 +408,6 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return {@code true} if this geometry is mutable.
      */
-    @Extension
     boolean isMutable();
 
     /**
@@ -425,7 +422,6 @@ public interface Geometry extends TransfiniteSet {
      *
      * @return An immutable copy of this geometry.
      */
-    @Extension
     Geometry toImmutable();
 
     /**

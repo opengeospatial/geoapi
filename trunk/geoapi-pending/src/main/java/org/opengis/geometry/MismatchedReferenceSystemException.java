@@ -31,8 +31,6 @@
  */
 package org.opengis.geometry;
 
-import org.opengis.annotation.Extension;
-
 
 /**
  * Indicates that an object cannot be constructed because of a mismatch in the
@@ -42,10 +40,9 @@ import org.opengis.annotation.Extension;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
-@Extension
 public class MismatchedReferenceSystemException extends IllegalArgumentException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
     private static final long serialVersionUID = 6222334569692693273L;
 

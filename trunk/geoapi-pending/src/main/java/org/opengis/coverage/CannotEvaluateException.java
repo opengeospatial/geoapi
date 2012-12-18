@@ -32,7 +32,6 @@
 package org.opengis.coverage;
 
 import org.opengis.geometry.DirectPosition;  // For Javadoc
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -48,7 +47,6 @@ import org.opengis.annotation.Extension;
  * @see Coverage#evaluate(DirectPosition, byte[])
  * @see Coverage#evaluate(DirectPosition, double[])
  */
-@Extension
 public class CannotEvaluateException extends RuntimeException {
     /**
      * Serial number for interoperability with different versions.
@@ -100,7 +98,6 @@ public class CannotEvaluateException extends RuntimeException {
      *
      * @since GeoAPÏ 2.2
      */
-    @Extension
     public Coverage getCoverage() {
         return coverage;
     }
@@ -112,7 +109,6 @@ public class CannotEvaluateException extends RuntimeException {
      *
      * @since GeoAPÏ 2.2
      */
-    @Extension
     public void setCoverage(final Coverage coverage) {
         this.coverage = coverage;
     }

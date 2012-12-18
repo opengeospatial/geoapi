@@ -32,13 +32,12 @@
 package org.opengis.sld;
 
 import java.util.List;
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 /**
  * A CoverageConstraint element is used to identify a coverage offering by a well-known
  * name, using the CoverageName element.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
@@ -54,13 +53,12 @@ public interface LayerCoverageConstraints extends Constraints {
      */
     @XmlElement("CoverageConstraint")
     public List<? extends CoverageConstraint> constraints();
-    
+
     /**
      * calls the visit method of a SLDVisitor
      *
      * @param visitor the sld visitor
      */
-    @Extension
     Object accept(SLDVisitor visitor, Object extraData);
-    
+
 }

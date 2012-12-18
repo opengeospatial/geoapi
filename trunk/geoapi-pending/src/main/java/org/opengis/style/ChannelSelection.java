@@ -31,7 +31,6 @@
  */
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 
 
@@ -70,6 +69,5 @@ public interface ChannelSelection {
      *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
 }

@@ -33,7 +33,6 @@ package org.opengis.coverage.grid.quadrilateral;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.CoordinateOperation;
-import org.opengis.annotation.Extension;
 
 
 /**
@@ -47,7 +46,6 @@ import org.opengis.annotation.Extension;
  *
  * @author  Alexander Petkov
  */
-@Extension
 public interface GridPositioning {
     /**
      * Specifies the coordinate reference system into which this object transforms coordinates.
@@ -57,7 +55,6 @@ public interface GridPositioning {
      *
      * @return The coordinate reference system.
      */
-    @Extension
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
@@ -66,7 +63,6 @@ public interface GridPositioning {
      *
      * @return The gridded data.
      */
-    @Extension
     Grid getGrid();
 
     /**
@@ -80,7 +76,6 @@ public interface GridPositioning {
      *
      * @return Information about the implemented coordinate operation.
      */
-    @Extension
     CoordinateOperation getOperation();
 
     /**
@@ -95,6 +90,5 @@ public interface GridPositioning {
      *
      * @return The inverse of {@link #getOperation}.
      */
-    @Extension
     CoordinateOperation getInverseOperation();
 }

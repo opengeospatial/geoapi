@@ -31,7 +31,6 @@
  */
 package org.opengis.style;
 
-import org.opengis.annotation.Extension;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
@@ -69,7 +68,7 @@ public interface ContrastEnhancement {
      */
     @XmlElement("Normalize,Histogram")
     public ContrastMethod getMethod();
-    
+
     /**
      * A "GammaValue" tells how much to brighten (values
      * greater than 1.0) or dim (values less than 1.0) an image. The default GammaValue is 1.0
@@ -85,7 +84,6 @@ public interface ContrastEnhancement {
      *
      * @param visitor the style visitor
      */
-    @Extension
     Object accept(StyleVisitor visitor, Object extraData);
-    
+
 }
