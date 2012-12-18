@@ -5,6 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>GeoAPI</name>
             <source-roots>
+                <root id="src.local-src.dir" name="Local sources (unversioned)"/>
                 <root id="src.core.dir" name="GeoAPI normative"/>
                 <root id="src.pending.dir" name="GeoAPI pending"/>
                 <root id="src.validators.dir" name="Conformance tests"/>
