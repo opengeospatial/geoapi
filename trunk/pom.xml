@@ -108,7 +108,7 @@
            Issue managements and mailing lists
        ==================================================== -->
   <scm>
-    <connection>scm:svn:svn checkout svn://svn.code.sf.net/p/geoapi/code/trunk</connection>
+    <connection>scm:svn:svn://svn.code.sf.net/p/geoapi/code/trunk</connection>
     <url>https://sourceforge.net/p/geoapi/code/</url>
   </scm>
 
