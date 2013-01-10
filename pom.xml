@@ -108,8 +108,8 @@
            Issue managements and mailing lists
        ==================================================== -->
   <scm>
-    <connection>scm:svn:https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/</connection>
-    <url>http://geoapi.svn.sourceforge.net/viewvc/geoapi/trunk/</url>
+    <connection>scm:svn:svn checkout svn://svn.code.sf.net/p/geoapi/code/trunk</connection>
+    <url>https://sourceforge.net/p/geoapi/code/</url>
   </scm>
 
   <ciManagement>
