@@ -34,8 +34,8 @@ export GEOAPI_VERSION=3.1-M05
   Create a SVN tag.
 
 ---------------------------------------------------------------------------------------------
-svn copy https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk \
-         https://geoapi.svn.sourceforge.net/svnroot/geoapi/tags/$GEOAPI_VERSION \
+svn copy https://svn.code.sf.net/p/geoapi/code/trunk \
+         https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION \
          -m "Created the tag for GeoAPI $GEOAPI_VERSION milestone."
 ---------------------------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ svn copy https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk \
 
 ---------------------------------------------------------------------------------------------
 cd ../tags
-svn checkout https://geoapi.svn.sourceforge.net/svnroot/geoapi/tags/$GEOAPI_VERSION
+svn checkout https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION
 cd $GEOAPI_VERSION
 find . -name "pom.xml" -print | xargs sed -i '' "s/3.1-SNAPSHOT/$GEOAPI_VERSION/g"
 svn diff

@@ -41,7 +41,7 @@
   <licenses>
     <license>
       <name>OGC copyright</name>
-      <url>https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk/LICENSE.txt</url>
+      <url>http://svn.code.sf.net/p/geoapi/code/trunk/LICENSE.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
