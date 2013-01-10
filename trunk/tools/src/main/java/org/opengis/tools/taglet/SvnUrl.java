@@ -163,7 +163,7 @@ public final class SvnUrl implements Taglet {
      */
     @Override
     public String toString(final Tag tag) {
-        String url = "https://geoapi.svn.sourceforge.net/svnroot/geoapi/trunk";
+        String url = "http://svn.code.sf.net/p/geoapi/code/trunk";
         final String keyword = tag.text();
         if (keyword.equals("gigs")) {
             url += "/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs";
