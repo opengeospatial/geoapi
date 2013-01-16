@@ -32,11 +32,14 @@
 package org.opengis.tools.version;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 
 
@@ -60,9 +63,15 @@ final class JavaElement implements Comparable<JavaElement> {
     final JavaElement parent;
 
     /**
-     * The type of this element.
+     * The kind (interface, field, method) of this element.
      */
-    final JavaElementType type;
+    final JavaElementKind kind;
+
+    /**
+     * The attribute type, or {@code null} if it doesn't applied.
+     * For fields, this is the type field. For methods, this is the method return type.
+     */
+    final String type;
 
     /**
      * The name in the Java programming language.
@@ -91,12 +100,13 @@ final class JavaElement implements Comparable<JavaElement> {
     final boolean isDeprecated;
 
     /**
-     * {@code true} if we have determined that this API element has been removed.
-     * <p>
+     * The changes between this element and the old one.
      * This attribute is ignored by {@link #equals(Object)} and {@link #hashCode()} methods,
      * since it is mutable (and actually modified after insertion in a hash map).
+     *
+     * @see #computeChanges(Iterator)
      */
-    boolean isRemoved;
+    private JavaElementChanges changes;
 
     /**
      * Creates a new element for a package name.
@@ -104,7 +114,8 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     JavaElement(final String packageName) {
         parent       = null;
-        type         = JavaElementType.PACKAGE;
+        kind         = JavaElementKind.PACKAGE;
+        type         = null;
         javaName     = packageName;
         ogcName      = null;
         obligation   = null;
@@ -118,17 +129,19 @@ final class JavaElement implements Comparable<JavaElement> {
      *
      * @param collector Where to add the newly created element.
      * @param parent    The parent of the new element, or {@code null} if none.
-     * @param type      The type of the new element.
+     * @param kind      The kind (interface, field, method) of the new element.
+     * @param type      The field type or method return type, or {@code null}.
      * @param element   The annotated element to add.
      * @param javaName  The simple (non-qualified) name of the element in the Java programming language.
      * @param isPublic  {@code true} if the element is public, or {@code false} if it is protected.
      */
-    private JavaElement(final JavaElementCollector collector, final JavaElement parent, final JavaElementType type,
-            final AnnotatedElement element, final String javaName, final boolean isPublic)
+    private JavaElement(final JavaElementCollector collector, final JavaElement parent, final JavaElementKind kind,
+            final Class<?> type, final AnnotatedElement element, final String javaName, final boolean isPublic)
             throws IllegalAccessException, InvocationTargetException
     {
         this.parent       = parent;
-        this.type         = type;
+        this.kind         = kind;
+        this.type         = (type != null) ? type.getName() : null;
         this.javaName     = javaName;
         this.isPublic     = isPublic;
         this.isDeprecated = element.isAnnotationPresent(Deprecated.class);
@@ -156,7 +169,8 @@ final class JavaElement implements Comparable<JavaElement> {
     }
 
     /**
-     * Creates a new element for the given type, then adds itself to the collector set of elements.
+     * Creates a new element for the given type (interface, class or enum),
+     * then adds itself to the collector set of elements.
      *
      * @param collector Where to add the newly created element.
      * @param parent    The package of the new type, or {@code null} if none.
@@ -167,11 +181,12 @@ final class JavaElement implements Comparable<JavaElement> {
             throws IllegalAccessException, InvocationTargetException
     {
         this(collector, parent,
-                Enum.class         .isAssignableFrom(element) ? JavaElementType.ENUM :
-                collector.codeLists.isAssignableFrom(element) ? JavaElementType.CODE_LIST : JavaElementType.CLASS,
-                element, getName(element), isPublic);
-        addMembers(collector, element.getDeclaredFields(),  JavaElementType.FIELD);
-        addMembers(collector, element.getDeclaredMethods(), JavaElementType.METHOD);
+                Enum.class         .isAssignableFrom(element) ? JavaElementKind.ENUM :
+                collector.codeLists.isAssignableFrom(element) ? JavaElementKind.CODE_LIST : JavaElementKind.CLASS,
+                null, element, getName(element), isPublic);
+        addMembers(collector, element.getDeclaredFields(),       JavaElementKind.FIELD);
+        addMembers(collector, element.getDeclaredMethods(),      JavaElementKind.METHOD);
+        addMembers(collector, element.getDeclaredConstructors(), JavaElementKind.CONSTRUCTOR);
     }
 
     /**
@@ -190,7 +205,7 @@ final class JavaElement implements Comparable<JavaElement> {
     /**
      * Adds the given fields or members to the given collector set of elements.
      */
-    private void addMembers(final JavaElementCollector collector, final Member[] members, final JavaElementType type)
+    private void addMembers(final JavaElementCollector collector, final Member[] members, final JavaElementKind kind)
             throws IllegalAccessException, InvocationTargetException
     {
         for (final Member member : members) {
@@ -199,21 +214,69 @@ final class JavaElement implements Comparable<JavaElement> {
                 final boolean isPublic = Modifier.isPublic(modifiers);
                 if (isPublic || Modifier.isProtected(modifiers)) {
                     String name = member.getName();
-                    if (member instanceof Method) {
-                        boolean hasParameters = false;
-                        final StringBuilder buffer = new StringBuilder(name).append('(');
-                        for (final Class<?> param : ((Method) member).getParameterTypes()) {
-                            if (hasParameters) {
-                                buffer.append(", ");
-                            }
-                            buffer.append(param.getSimpleName());
-                            hasParameters = true;
-                        }
-                        name = buffer.append(')').toString();
+                    Class<?> type = null;
+                    if (member instanceof Field) {
+                        type = ((Field) member).getType();
+                    } else if (member instanceof Method) {
+                        name = addParameters(name, ((Method) member).getParameterTypes());
+                        type = ((Method) member).getReturnType();
+                    } else if (member instanceof Constructor) {
+                        name = name.substring(name.lastIndexOf('.') + 1);
+                        name = addParameters(name, ((Constructor) member).getParameterTypes());
                     }
-                    JavaElement child = new JavaElement(collector, this, type, (AnnotatedElement) member, name, isPublic);
+                    JavaElement child = new JavaElement(collector, this, kind, type, (AnnotatedElement) member, name, isPublic);
                     assert collector.elements.contains(child);
                 }
+            }
+        }
+    }
+
+    /**
+     * Adds parameter types to the given method or constructor name.
+     */
+    private static String addParameters(String name, final Class<?>[] parameters) {
+        boolean hasParameters = false;
+        final StringBuilder buffer = new StringBuilder(name).append('(');
+        for (final Class<?> param : parameters) {
+            if (hasParameters) {
+                buffer.append(", ");
+            }
+            buffer.append(param.getSimpleName());
+            hasParameters = true;
+        }
+        return buffer.append(')').toString();
+    }
+
+    /**
+     * Returns the changes between this Java element and a previous version of it,
+     * or {@code null} if this element is a new one.
+     */
+    final JavaElementChanges changes() {
+        return changes;
+    }
+
+    /**
+     * Marks this Java element as removed.
+     */
+    final void markAsRemoved() {
+        changes = new JavaElementChanges(this, null);
+    }
+
+    /**
+     * Computes the change between this element and a previous version of this element.
+     * This method searches for the previous version of this element in the collection backing the
+     * given iterator. If such previous version is found, then it is removed from the collection.
+     */
+    final void computeChanges(final Iterator<JavaElement> oldElements) {
+        while (oldElements.hasNext()) {
+            final JavaElement that = oldElements.next();
+            if (equals(parent,   that.parent) &&
+                equals(kind,     that.kind)   &&
+                equals(javaName, that.javaName))
+            {
+                changes = new JavaElementChanges(that, this);
+                oldElements.remove();
+                break;
             }
         }
     }
@@ -231,11 +294,11 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     @Override
     public int compareTo(final JavaElement other) {
-        int c = compare(parent, other.parent);
+        int c = compare(kind, other.kind);
         if (c == 0) {
-            c = compare(type, other.type);
+            c = compare(javaName, other.javaName);
             if (c == 0) {
-                c = compare(javaName, other.javaName);
+                c = compare(parent, other.parent);
             }
         }
         return c;
@@ -249,6 +312,7 @@ final class JavaElement implements Comparable<JavaElement> {
         if (other instanceof JavaElement) {
             final JavaElement that = (JavaElement) other;
             return equals(parent,     that.parent)     &&
+                   equals(kind,       that.kind)       &&
                    equals(type,       that.type)       &&
                    equals(javaName,   that.javaName)   &&
                    equals(ogcName,    that.ogcName)    &&
@@ -265,7 +329,7 @@ final class JavaElement implements Comparable<JavaElement> {
     @Override
     public int hashCode() {
         return Arrays.hashCode(new Object[] {
-            parent, type, javaName, ogcName, obligation, isPublic, isDeprecated
+            parent, kind, type, javaName, ogcName, obligation, isPublic, isDeprecated
         });
     }
 
@@ -274,7 +338,7 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder().append(type).append('[').append(javaName);
+        final StringBuilder buffer = new StringBuilder().append(kind).append('[').append(javaName);
         if (ogcName != null) {
             buffer.append(", UML(“").append(ogcName).append("”)");
         }
@@ -297,7 +361,7 @@ final class JavaElement implements Comparable<JavaElement> {
      *
      * @todo To be removed with JDK7.
      */
-    private static boolean equals(final Object a, final Object b) {
+    static boolean equals(final Object a, final Object b) {
         return (a == b) || (a != null && a.equals(b));
     }
 }

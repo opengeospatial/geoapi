@@ -197,11 +197,36 @@ final class JavaElementCollector {
                 it.remove();
             }
         }
+        /*
+         * For elements which exist both in old and new API, compute the changes
+         * and remove the element from the set of old API.
+         */
+        for (final Iterator<JavaElement> it = newAPI.iterator(); it.hasNext();) {
+            JavaElement element = it.next();
+            element.computeChanges(oldAPI.iterator());
+            if (element.isDeprecated && element.changes() == null) {
+                it.remove(); // Ignore new deprecated elements, since they shall be removed before the release.
+            }
+        }
+        /*
+         * For any new elements, remove all children of that elements.
+         * We have to copy the elements in a temporary array for protecting them from changes.
+         */
+        for (final JavaElement parent : newAPI.toArray(new JavaElement[newAPI.size()])) {
+            for (final Iterator<JavaElement> it = newAPI.iterator(); it.hasNext();) {
+                final JavaElement child = it.next();
+                if (child.parent == parent) {
+                    it.remove();
+                }
+            }
+        }
+        /*
+         * Create a consolidated list of old an new API.
+         */
         int index = newAPI.size();
-        JavaElement[] elements = new JavaElement[index + oldAPI.size()];
-        elements = newAPI.toArray(elements);
+        final JavaElement[] elements = newAPI.toArray(new JavaElement[index + oldAPI.size()]);
         for (final JavaElement element : oldAPI) {
-            element.isRemoved = true;
+            element.markAsRemoved();
             elements[index++] = element;
         }
         assert index == elements.length;

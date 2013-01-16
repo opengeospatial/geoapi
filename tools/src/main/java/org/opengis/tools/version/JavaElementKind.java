@@ -33,40 +33,58 @@ package org.opengis.tools.version;
 
 
 /**
- * The type of a Java element.
+ * The kind of a Java element (interface, field, method).
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-enum JavaElementType {
+enum JavaElementKind {
     /**
      * The element is a package.
      */
-    PACKAGE,
-
-    /**
-     * The element is type other than an enumeration or a code list.
-     */
-    CLASS,
+    PACKAGE("Packages"),
 
     /**
      * The type is an enumeration.
      */
-    ENUM,
+    ENUM("Enumerations"),
 
     /**
      * The type is a code list.
      */
-    CODE_LIST,
+    CODE_LIST("Code lists"),
+
+    /**
+     * The element is type other than an enumeration or a code list.
+     */
+    CLASS("Classes"),
 
     /**
      * The type is a field. This normally occur only in enumeration or code lists.
      */
-    FIELD,
+    FIELD("Fields"),
+
+    /**
+     * The type is a constructor.
+     */
+    CONSTRUCTOR("Constructors"),
 
     /**
      * The type is a method.
      */
-    METHOD
+    METHOD("Methods");
+
+    /**
+     * The title to display in the HTML page.
+     */
+    final String label;
+
+    /**
+     * Creates a new enum with the given title to display in the HTML page.
+     * @param label
+     */
+    private JavaElementKind(final String label) {
+        this.label = label;
+    }
 }
