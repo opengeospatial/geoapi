@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Changes between GeoAPI 3.0.0 and 3.1-M04</title>
+    <style type="text/css" media="all">
+      @import url("./changes.css");
+    </style>
+  </head>
+  <body><div>
+    <h1>Changes between GeoAPI 3.0.0 and 3.1-M04</h1>
+    <p>Legend:</p>
+    <ul>
+      <li><code><i>Element</i></code> — new Java type, field or method.</li>
+      <li><code><del>Element</del></code> — removed Java type, field or method.</li>
+      <li><span class="change">deprecated</span> — element to be removed in a future release.
+    </ul>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>OGC/ISO identifier</th>
+        <th>Encosing type or package</th>
+        <th>Change (type or member)</th>
+      </tr>
+      <tr>
+        <th class="section" colspan="3">Fields</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.metadata.maintenance.MaintenanceFrequency</span></td>
+        <td><code><del>UNKNOW</del>  — <span class="note">was deprecated</span></code></span></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="3">Constructors</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.parameter.InvalidParameterCardinalityException</span></td>
+        <td><code><i>InvalidParameterCardinalityException(String, Throwable, String)</i></code></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.parameter.InvalidParameterNameException</span></td>
+        <td><code><i>InvalidParameterNameException(String, Throwable, String)</i></code></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.parameter.InvalidParameterTypeException</span></td>
+        <td><code><i>InvalidParameterTypeException(String, Throwable, String)</i></code></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.parameter.InvalidParameterValueException</span></td>
+        <td><code><i>InvalidParameterValueException(String, Throwable, String, Object)</i></code></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="3">Methods</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.util.NameFactory</span></td>
+        <td><code><i>createMemberName(NameSpace, CharSequence, TypeName)</i></code></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.referencing.operation.CoordinateOperationFactory</span></td>
+        <td><code><i>createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)</i></code></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.referencing.operation.CoordinateOperationFactory</span></td>
+        <td><code><i>getOperationMethod(String)</i></code></td>
+      </tr>
+    </table>
+    <hr/>
+    <h1>Changes in GeoAPI-conformance</h1>
+    <p>Legend:</p>
+    <ul>
+      <li><code><i>Element</i></code> — new Java type, field or method.</li>
+      <li><code><del>Element</del></code> — removed Java type, field or method.</li>
+      <li><span class="change">deprecated</span> — element to be removed in a future release.
+    </ul>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>Encosing type or package</th>
+        <th>Change (type or member)</th>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Enumerations</th>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>CalculationType</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.gigs</span></td>
+        <td><code><i>Classification</i></code></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Code lists</th>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>Configuration.Key</i></code></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Classes</th>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code><i>AffineTransformTest</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.report</span></td>
+        <td><code><i>AuthorityCodesReport</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.report</span></td>
+        <td><code><i>AuthorityCodesReport.Row</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code><i>AuthorityFactoryTest</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code>CRSTest</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>ComputationFailure</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>Configuration</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code><i>DerivativeFailure</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>FactoryFilter</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>FactoryFilter.ByAuthority</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.coverage.image</span></td>
+        <td><code><i>ImageIOTestCase</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.coverage.image</span></td>
+        <td><code><i>ImageReaderTestCase</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.coverage.image</span></td>
+        <td><code><i>ImageValidator</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.coverage.image</span></td>
+        <td><code><i>ImageWriterTestCase</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>ImplementationDetails</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.runner</span></td>
+        <td><code><i>Main</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code><i>ObjectFactoryTest</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.report</span></td>
+        <td><code><i>OperationParametersReport</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.report</span></td>
+        <td><code><i>OperationParametersReport.Row</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code><i>ParameterizedTransformTest</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.coverage.image</span></td>
+        <td><code><i>PixelIterator</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code><i>PseudoEpsgFactory</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util</span></td>
+        <td><code><i>PseudoFactory</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing</span></td>
+        <td><code>ReferencingTest</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.report</span></td>
+        <td><code><i>Report</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.report</span></td>
+        <td><code><i>Reports</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata</span></td>
+        <td><code><i>RootValidator</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.gigs</span></td>
+        <td><code><i>Series2000Test</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.gigs</span></td>
+        <td><code><i>Series3000Test</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>TestEvent</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>TestListener</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>TestSuite</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>ToleranceModifier</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code><i>ToleranceModifiers</i></code></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Fields</th>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validator</span></td>
+        <td><code>DEFAULT_TOLERANCE</code><span class="change">  — made public</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>NO_FACTORY</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>configurationTip</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>
+        <td><code><del>crsFactory</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>
+        <td><code><del>csFactory</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>
+        <td><code><del>datumFactory</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>derivativeDeltas</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSValidator</span></td>
+        <td><code><i>enforceStandardNames</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
+        <td><code><del>factory</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>image</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>isDerivativeSupported</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util.NameTest</span></td>
+        <td><code><i>isMixedNameSyntaxSupported</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util.NameTest</span></td>
+        <td><code><i>isMultiLocaleSupported</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>listener</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>metadata</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>toleranceModifier</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>validators</i></code></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Constructors</th>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
+        <td><code><del>CRSTest(CRSAuthorityFactory)</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util.NameTest</span></td>
+        <td><code>NameTest(NameFactory)</code><span class="change">  — made public</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>
+        <td><code><del>ReferencingTest(CRSFactory, CSFactory, DatumFactory)</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ReferencingValidator</span></td>
+        <td><code>ReferencingValidator(ValidatorContainer, String)</code><span class="change">  — made protected</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>TestCase(Factory[])</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>TransformTestCase(Factory[])</i></code></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Methods</th>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>addTestListener(TestListener)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertAllTestsEnabled()</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Assert</span></td>
+        <td><code><i>assertAxisDirectionsEqual(String, CoordinateSystem, AxisDirection[])</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinateEquals(String, double[], double[], int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinateEquals(String, double[], double[], int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinateEquals(String, double[], float[], int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinateEquals(String, double[], float[], int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinateEquals(String, float[], double[], int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinateEquals(String, float[], double[], int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinateEquals(String, float[], float[], int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinateEquals(String, float[], float[], int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinatesEqual(String, int, double[], int, double[], int, int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinatesEqual(String, int, double[], int, double[], int, int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinatesEqual(String, int, double[], int, float[], int, int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinatesEqual(String, int, double[], int, float[], int, int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinatesEqual(String, int, float[], int, double[], int, int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinatesEqual(String, int, float[], int, double[], int, int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertCoordinatesEqual(String, int, float[], int, float[], int, int, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>assertCoordinatesEqual(String, int, float[], int, float[], int, int, boolean)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Assert</span></td>
+        <td><code><i>assertIdentifierEquals(String, CharSequence, CharSequence)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>assertMatrixEquals(String, Matrix, Matrix, Matrix)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Assert</span></td>
+        <td><code><i>assertPathEquals(String, PathIterator, PathIterator, double, double)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Assert</span></td>
+        <td><code><i>assertSampleValuesEqual(String, RenderedImage, RenderedImage, double)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Assert</span></td>
+        <td><code><i>assertShapeEquals(String, Shape, Shape, double, double)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>clone()</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validator</span></td>
+        <td><code><i>conditional(String, Object, boolean)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util.NameTest</span></td>
+        <td><code><i>configuration()</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>configuration()</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>configuration()</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.OperationValidator</span></td>
+        <td><code>dispatch(CoordinateOperation)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSValidator</span></td>
+        <td><code>dispatch(CoordinateReferenceSystem)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CSValidator</span></td>
+        <td><code>dispatch(CoordinateSystem)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.DatumValidator</span></td>
+        <td><code>dispatch(Datum)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ParameterValidator</span></td>
+        <td><code>dispatch(GeneralParameterDescriptor)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ParameterValidator</span></td>
+        <td><code>dispatch(GeneralParameterValue)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util.NameValidator</span></td>
+        <td><code>dispatch(GenericName)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata.ExtentValidator</span></td>
+        <td><code>dispatch(GeographicExtent)</code><span class="change">  — type changed from “void” to “int”</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.util.NameTest</span></td>
+        <td><code><i>factories()</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>factories(Class[])</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>factories(FactoryFilter, Class[])</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>getEnabledFlags(Key[])</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>normalize(DirectPosition, DirectPosition, CalculationType)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.TestCase</span></td>
+        <td><code><i>removeTestListener(TestListener)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
+        <td><code><del>testCRSAuthorityCreation()</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>
+        <td><code><del>testWGS84()</del></code></span></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code>tolerance(double)</code><span class="change">  — deprecated</td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata.CitationValidator</span></td>
+        <td><code><i>validate(Address)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(Address)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(Address)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validator</span></td>
+        <td><code><i>validate(Collection)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSValidator</span></td>
+        <td><code><i>validate(CompoundCRS)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(CompoundCRS)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(CompoundCRS)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata.CitationValidator</span></td>
+        <td><code><i>validate(Contact)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(Contact)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(Contact)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(IIOMetadataFormat)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(IIOMetadataFormat)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(Identifier)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(Identifier)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(ImageReaderSpi)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(ImageReaderSpi)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(ImageWriterSpi)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(ImageWriterSpi)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(Metadata)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(Metadata)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata.CitationValidator</span></td>
+        <td><code><i>validate(OnlineResource)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(OnlineResource)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(OnlineResource)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata.CitationValidator</span></td>
+        <td><code><i>validate(ResponsibleParty)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(ResponsibleParty)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(ResponsibleParty)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.metadata.CitationValidator</span></td>
+        <td><code><i>validate(Telephone)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
+        <td><code><i>validate(Telephone)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.Validators</span></td>
+        <td><code><i>validate(Telephone)</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>verifyDerivative(double[])</i></code></td>
+      </tr>
+      <tr>
+        <td><span class="note">org.opengis.test.referencing.TransformTestCase</span></td>
+        <td><code><i>verifyInDomain(double[], double[], int[], Random)</i></code></td>
+      </tr>
+    </table>
+  </div></body>
+</html>

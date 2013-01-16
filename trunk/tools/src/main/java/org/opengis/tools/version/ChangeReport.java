@@ -31,10 +31,6 @@
  */
 package org.opengis.tools.version;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.io.File;
 import java.io.Writer;
 import java.io.FileWriter;
@@ -48,7 +44,6 @@ import java.io.IOException;
  * <p>
  * <table>
  * <tr><th>Name</th>               <th>Meaning</th>                                                    <th>Example</th></tr>
- * <tr><td>{@code artefact</td>    <td>The GeoAPI artefact for which to generate a change report.</td> <td>{@code "geoapi"} or {@code "geoapi-conformance"}</td></tr>
  * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td>  <td>{@code "3.0.0"}</td></tr>
  * <tr><td>{@code newVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td>  <td>{@code "3.1-M04"}</td></tr>
  * <tr><td>{@code outputFile}</td> <td>Name of the file to create. This file shall not exist.</td>     <td>{@code "Changes.html"}</td></tr>
@@ -59,12 +54,6 @@ import java.io.IOException;
  * @since   3.1
  */
 public final class ChangeReport {
-    /**
-     * The GeoAPI artefact for which to generate a change report.
-     * This is either {@code "geoapi"} or {@code "geoapi-conformance"}.
-     */
-    private final String artefact;
-
     /**
      * The old GeoAPI version.
      */
@@ -86,32 +75,40 @@ public final class ChangeReport {
     public static void main(String[] args) throws Exception {
         if (false) {
             // For testing purpose only.
-            args = new String[] {"geoapi", "3.0.0", "3.1-M04", "Test.html"};
+            args = new String[] {"3.0.0", "3.1-M04", "changes.html"};
         }
-        if (args.length != 4) {
-            System.err.println("Expected: artefact oldVersion newVersion outputFile");
+        if (args.length != 3) {
+            System.err.println("Expected: oldVersion newVersion outputFile");
             return;
         }
-        final File outputFile = new File(args[3]);
+        final File outputFile = new File(args[2]);
         if (outputFile.exists()) {
             System.err.println("Output file " + outputFile + " already exists.");
             return;
         }
-        new ChangeReport(args[0], new Version(args[1]), new Version(args[2])).write(outputFile);
+        new ChangeReport(new Version(args[0]), new Version(args[1])).write(outputFile);
     }
 
     /**
      * Creates a new object for generating a report of the changes between two GeoAPI versions.
      *
-     * @param artefact   The GeoAPI artefact for which to generate a change report
-     *                   ({@code "geoapi"} or {@code "geoapi-conformance"}).
      * @param oldVersion The old GeoAPI version.
      * @param newVersion The new GeoAPI version.
      */
-    public ChangeReport(final String artefact, final Version oldVersion, final Version newVersion) {
-        this.artefact = artefact;
+    public ChangeReport(final Version oldVersion, final Version newVersion) {
         this.oldVersion = oldVersion;
         this.newVersion = newVersion;
+    }
+
+    /**
+     * Collects the API changes for the given artefact.
+     * The artefact can be either {@code "geoapi"} or {@code "geoapi-conformance"}.
+     *
+     * @param artefact The GeoAPI artefact for which to generate a change report
+     *                 ({@code "geoapi"} or {@code "geoapi-conformance"}).
+     */
+    private JavaElement[] collectAPIChanges(final String artefact) throws Exception {
+        return JavaElementCollector.collectAPIChanges(artefact, oldVersion, newVersion);
     }
 
     /**
@@ -122,7 +119,6 @@ public final class ChangeReport {
      *         (too many checked exceptions for enumerating them all).
      */
     public void write(final File outputFile) throws Exception {
-        final JavaElement[] elements = JavaElementCollector.collectAPIChanges(artefact, oldVersion, newVersion);
         final Writer out = new BufferedWriter(new FileWriter(outputFile));
         out.write("<!DOCTYPE html>\n"
                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
@@ -132,84 +128,111 @@ public final class ChangeReport {
         out.write(" and ");
         out.write(newVersion.toString());
         out.write(    "</title>\n"
+                + "    <style type=\"text/css\" media=\"all\">\n"
+                + "      @import url(\"./changes.css\");\n"
+                + "    </style>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"
                 + "    <h1>Changes between GeoAPI ");
         out.write(oldVersion.toString());
         out.write(" and ");
         out.write(newVersion.toString());
-        out.write("</h1>"
-                + "    <p>Legend:</p>\n"
-                + "    <ul>\n"
-                + "      <li><code>Element</code> — new Java type, field or method.</li>\n"
-                + "      <li><code><del>Element</del></code> — removed Java type, field or method.</li>\n"
-                + "      <li><font color=\"red\">deprecated</font> — element to be removed in a future release.\n"
-                + "          If a new element is marked as deprecated, then it will be removed before the final release.</li>\n"
-                + "    </ul>\n");
-        write(new LinkedList<JavaElement>(Arrays.asList(elements)), out);
+        out.write("</h1>\n");
+        writeLegend(out);
+        write(collectAPIChanges("geoapi"), out, true);
+        out.write("    <hr/>\n"
+                + "    <h1>Changes in GeoAPI-conformance</h1>\n");
+        writeLegend(out);
+        write(collectAPIChanges("geoapi-conformance"), out, false);
         out.write("  </div></body>\n"
                 + "</html>\n");
         out.close();
     }
 
     /**
+     * Writes the legend to the given stream.
+     */
+    private void writeLegend(final Writer out) throws IOException {
+        out.write("    <p>Legend:</p>\n"
+                + "    <ul>\n"
+                + "      <li><code><i>Element</i></code> — new Java type, field or method.</li>\n"
+                + "      <li><code><del>Element</del></code> — removed Java type, field or method.</li>\n"
+                + "      <li><span class=\"change\">deprecated</span> — element to be removed in a future release.\n"
+                + "    </ul>\n");
+    }
+
+    /**
      * Writes the given set of API elements to the given writer.
      * The given set shall contains only API differences (new or removed elements).
-     * This method remove elements from the given set as we processed them.
      *
      * @param  elements The elements to write.
      * @param  out Where to write the differences.
+     * @param  showIdentifiers {@code true} for writing the "OGC/ISO name" column.
      * @throws IOException If an I/O error occurred.
      */
-    private static void write(final Collection<JavaElement> elements, final Writer out) throws IOException {
+    private static void write(final JavaElement[] elements, final Writer out,
+            final boolean showIdentifiers) throws IOException
+    {
+        JavaElementKind kind = null;
         out.write("    <table border=\"1\" cellspacing=\"0\">\n"
-                + "      <tr>\n"
-                + "        <th bgcolor=\"#CCCCFF\">OGC/ISO identifier</th>\n"
-                + "        <th bgcolor=\"#CCCCFF\">Encosing type or package</th>\n"
-                + "        <th bgcolor=\"#CCCCFF\">Change (type or member)</th>\n"
+                + "      <tr>\n");
+        if (showIdentifiers) {
+            out.write("        <th>OGC/ISO identifier</th>\n");
+        }
+        out.write("        <th>Encosing type or package</th>\n"
+                + "        <th>Change (type or member)</th>\n"
                 + "      </tr>\n");
-        while (!elements.isEmpty()) {
-            JavaElement filter = null; // If non-null, write only the element having this parent.
-            for (final Iterator<JavaElement> it = elements.iterator(); it.hasNext();) {
-                final JavaElement element = it.next();
-                if (filter == null || element.parent == filter) {
-                    out.write("      <tr>\n"
-                            + "        <td>");
-                    if (element.ogcName != null) {
-                        out.write("<code>");
-                        out.write(element.ogcName);
-                        out.write("</code>");
-                    }
-                    out.write(        "</td>\n"
-                            + "        <td>");
-                    if (element.parent != null) {
-                        out.write("<font color=\"gray\">");
-                        writeFullyQualifiedName(element.parent, out);
-                        out.write("</font>");
-                    }
-                    out.write(        "</td>\n"
-                            + "        <td>");
+        for (final JavaElement element : elements) {
+            if (element.kind != kind) {
+                kind = element.kind;
+                out.write("      <tr>\n"
+                        + "        <th class=\"section\" colspan=\"");
+                out.write(Integer.toString(showIdentifiers ? 3 : 2));
+                out.write("\">");
+                out.write(kind.label);
+                out.write("</th>\n");
+                out.write("      </tr>\n");
+            }
+            out.write("      <tr>\n"
+                    + "        <td>");
+            if (showIdentifiers) {
+                if (element.ogcName != null) {
                     out.write("<code>");
-                    if (element.isRemoved) {
-                        out.write("<del>");
-                    }
-                    out.write(element.javaName);
-                    if (element.isRemoved) {
-                        out.write("</del>");
-                    }
+                    out.write(element.ogcName);
                     out.write("</code>");
-                    if (element.isDeprecated) {
-                        out.write("<font color=\"red\">  — ");
-                        if (element.isRemoved) {
-                            out.write("was ");
-                        }
-                        out.write("deprecated</font>");
-                    }
-                    out.write(        "</td>\n"
-                            + "      </tr>\n");
-                    it.remove();
+                }
+                out.write(        "</td>\n"
+                        + "        <td>");
+            }
+            if (element.parent != null) {
+                out.write("<span class=\"note\">");
+                writeFullyQualifiedName(element.parent, out);
+                out.write("</span>");
+            }
+            out.write(        "</td>\n"
+                    + "        <td>");
+            out.write("<code>");
+            final JavaElementChanges changes = element.changes();
+            if (changes == null) {
+                out.write("<i>");
+            } else if (changes.isRemoved) {
+                out.write("<del>");
+            }
+            out.write(element.javaName);
+            if (changes == null) {
+                out.write("</i>");
+            } else if (changes.isRemoved) {
+                out.write("</del>");
+                if (element.isDeprecated) {
+                    out.write("  — <span class=\"note\">was deprecated</span>");
                 }
             }
+            out.write("</code>");
+            if (changes != null) {
+                changes.write(out);
+            }
+            out.write(        "</td>\n"
+                    + "      </tr>\n");
         }
         out.write("    </table>\n");
     }
