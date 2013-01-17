@@ -75,7 +75,7 @@ public final class ChangeReport {
     public static void main(String[] args) throws Exception {
         if (false) {
             // For testing purpose only.
-            args = new String[] {"3.0.0", "3.1-M04", "changes.html"};
+            args = new String[] {"3.0.0", "3.1-M04", "change-summary.html"};
         }
         if (args.length != 3) {
             System.err.println("Expected: oldVersion newVersion outputFile");
@@ -129,7 +129,7 @@ public final class ChangeReport {
         out.write(newVersion.toString());
         out.write(    "</title>\n"
                 + "    <style type=\"text/css\" media=\"all\">\n"
-                + "      @import url(\"./changes.css\");\n"
+                + "      @import url(\"../../css/change-summary.css\");\n"
                 + "    </style>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"

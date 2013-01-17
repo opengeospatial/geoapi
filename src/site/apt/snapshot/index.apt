@@ -11,9 +11,11 @@ GeoAPI SNAPSHOT
 
     * Changes compared to the latest stable release
 
-       * {{{../changes//snapshot/changes.html}API changes only}}
+       * {{{../changes/snapshot/change-summary.html}Change summary}}
 
-       * {{{../changes//document/changes.html}API and documentation changes}}
+       * {{{../changes/snapshot/changes.html}API changes only}}
+
+       * {{{../changes/document/changes.html}API and documentation changes}}
 
     * {{{../maven.html}Maven repositories}} (recommended way to get the binaries)
 
