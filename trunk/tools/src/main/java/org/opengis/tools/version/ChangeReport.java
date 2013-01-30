@@ -73,7 +73,7 @@ public final class ChangeReport {
      *         (too many checked exceptions for enumerating them all).
      */
     public static void main(String[] args) throws Exception {
-        if (true) {
+        if (false) {
             // For testing purpose only.
             args = new String[] {"3.0.0", "3.1-M04", "change-summary.html"};
         }
@@ -144,27 +144,13 @@ public final class ChangeReport {
         out.write(" and ");
         out.write(newVersion.toString());
         out.write("</h2>\n");
-        writeLegend(out);
         write(collectAPIChanges("geoapi"), out, true);
         out.write("    <hr/>\n"
                 + "    <h2>Changes in GeoAPI-conformance</h2>\n");
-        writeLegend(out);
         write(collectAPIChanges("geoapi-conformance"), out, false);
         out.write("  </div></body>\n"
                 + "</html>\n");
         out.close();
-    }
-
-    /**
-     * Writes the legend to the given stream.
-     */
-    private void writeLegend(final Writer out) throws IOException {
-        out.write("    <p>Legend:</p>\n"
-                + "    <ul>\n"
-                + "      <li><code><i>Element</i></code> — new Java type, field or method.</li>\n"
-                + "      <li><code><del>Element</del></code> — removed Java type, field or method.</li>\n"
-                + "      <li><span class=\"change\">deprecated</span> — element to be removed in a future release.\n"
-                + "    </ul>\n");
     }
 
     /**
@@ -179,62 +165,60 @@ public final class ChangeReport {
     private static void write(final JavaElement[] elements, final Writer out,
             final boolean showIdentifiers) throws IOException
     {
-        JavaElementKind kind = null;
+        JavaElement container = null;
         out.write("    <table border=\"1\" cellspacing=\"0\">\n"
                 + "      <tr>\n");
         if (showIdentifiers) {
             out.write("        <th>OGC/ISO identifier</th>\n");
         }
-        out.write("        <th>Encosing type or package</th>\n"
-                + "        <th>Change (type or member)</th>\n"
+        out.write("        <th>Modified type or member</th>\n"
+                + "        <th>Change description</th>\n"
                 + "      </tr>\n");
         for (final JavaElement element : elements) {
-            if (element.kind != kind) {
-                kind = element.kind;
+            if (!JavaElement.nameEquals(element.container, container)) {
+                container = element.container;
                 out.write("      <tr>\n"
                         + "        <th class=\"section\" colspan=\"");
                 out.write(Integer.toString(showIdentifiers ? 3 : 2));
                 out.write("\">");
-                out.write(kind.label);
-                out.write("</th>\n");
+                out.write(container.kind.label);
+                out.write(" <code>");
+                writeFullyQualifiedName(container, out);
+                out.write("</code></th>\n");
                 out.write("      </tr>\n");
             }
-            out.write("      <tr>\n"
-                    + "        <td>");
+            out.write("      <tr>\n");
             if (showIdentifiers) {
+                out.write("        <td>");
                 if (element.ogcName != null) {
                     out.write("<code>");
                     out.write(element.ogcName);
                     out.write("</code>");
                 }
-                out.write(        "</td>\n"
-                        + "        <td>");
+                out.write(        "</td>\n");
             }
-            if (element.container != null) {
-                out.write("<span class=\"note\">");
-                writeFullyQualifiedName(element.container, out);
-                out.write("</span>");
-            }
-            out.write(        "</td>\n"
-                    + "        <td>");
-            out.write("<code>");
+            out.write("        <td>");
+            out.write(element.kind.label);
+            out.write(" <code>");
             final JavaElementChanges changes = element.changes();
-            if (changes == null) {
-                out.write("<i>");
-            } else if (changes.isRemoved) {
+            final boolean isDeleted = (changes != null) && (changes.isRemoved || element.isDeprecated);
+            if (isDeleted) {
                 out.write("<del>");
             }
             out.write(element.javaName);
-            if (changes == null) {
-                out.write("</i>");
-            } else if (changes.isRemoved) {
+            if (isDeleted) {
                 out.write("</del>");
-                if (element.isDeprecated) {
+                if (changes.isRemoved && element.isDeprecated) {
                     out.write("  — <span class=\"note\">was deprecated</span>");
                 }
             }
-            out.write("</code>");
-            if (changes != null) {
+            out.write("</code></td>\n"
+                    + "        <td>");
+            if (changes == null) {
+                out.write("<span class=\"add\">New</span>");
+            } else if (changes.isRemoved) {
+                out.write("<span class=\"remove\">Removed</span>");
+            } else {
                 changes.write(out);
             }
             out.write(        "</td>\n"
