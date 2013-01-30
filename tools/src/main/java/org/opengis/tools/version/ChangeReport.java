@@ -178,9 +178,11 @@ public final class ChangeReport {
             if (!JavaElement.nameEquals(element.container, container)) {
                 container = element.container;
                 out.write("      <tr>\n"
-                        + "        <th class=\"section\" colspan=\"");
-                out.write(Integer.toString(showIdentifiers ? 3 : 2));
-                out.write("\">");
+                        + "        <th class=\"section\"");
+                if (showIdentifiers) {
+                    out.write("></th><th class=\"section\"");
+                }
+                out.write(" colspan=\"2\">");
                 out.write(container.kind.label);
                 out.write(" <code>");
                 writeFullyQualifiedName(container, out);
