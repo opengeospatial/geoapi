@@ -109,6 +109,7 @@
        ==================================================== -->
   <scm>
     <connection>scm:svn:svn://svn.code.sf.net/p/geoapi/code/trunk</connection>
+    <developerConnection>scm:svn:https://desruisseaux@svn.code.sf.net/p/geoapi/code/trunk</developerConnection>
     <url>https://sourceforge.net/p/geoapi/code/</url>
   </scm>
 
