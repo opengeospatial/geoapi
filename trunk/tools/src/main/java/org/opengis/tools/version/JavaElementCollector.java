@@ -130,12 +130,12 @@ final class JavaElementCollector {
                     final boolean isPublic = Modifier.isPublic(modifiers);
                     if (isPublic || Modifier.isProtected(modifiers)) {
                         final String packageName = type.getPackage().getName();
-                        JavaElement parent = packages.get(packageName);
-                        if (parent == null) {
-                            parent = new JavaElement(packageName);
-                            packages.put(packageName, parent);
+                        JavaElement container = packages.get(packageName);
+                        if (container == null) {
+                            container = new JavaElement(packageName);
+                            packages.put(packageName, container);
                         }
-                        final JavaElement element = new JavaElement(this, parent, type, isPublic);
+                        final JavaElement element = new JavaElement(this, container, type, isPublic);
                         assert elements.contains(element);
                     }
                 }
@@ -202,7 +202,7 @@ final class JavaElementCollector {
          * and remove the element from the set of old API.
          */
         for (final Iterator<JavaElement> it = newAPI.iterator(); it.hasNext();) {
-            JavaElement element = it.next();
+            final JavaElement element = it.next();
             element.computeChanges(oldAPI.iterator());
             if (element.isDeprecated && element.changes() == null) {
                 it.remove(); // Ignore new deprecated elements, since they shall be removed before the release.
@@ -212,11 +212,13 @@ final class JavaElementCollector {
          * For any new elements, remove all children of that elements.
          * We have to copy the elements in a temporary array for protecting them from changes.
          */
-        for (final JavaElement parent : newAPI.toArray(new JavaElement[newAPI.size()])) {
-            for (final Iterator<JavaElement> it = newAPI.iterator(); it.hasNext();) {
-                final JavaElement child = it.next();
-                if (child.parent == parent) {
-                    it.remove();
+        for (final JavaElement container : newAPI.toArray(new JavaElement[newAPI.size()])) {
+            if (container.changes() == null) {
+                for (final Iterator<JavaElement> it = newAPI.iterator(); it.hasNext();) {
+                    final JavaElement child = it.next();
+                    if (child.container == container) {
+                        it.remove();
+                    }
                 }
             }
         }

@@ -43,37 +43,37 @@ enum JavaElementKind {
     /**
      * The element is a package.
      */
-    PACKAGE("Packages"),
+    PACKAGE("Packages", false),
 
     /**
      * The type is an enumeration.
      */
-    ENUM("Enumerations"),
+    ENUM("Enumerations", false),
 
     /**
      * The type is a code list.
      */
-    CODE_LIST("Code lists"),
+    CODE_LIST("Code lists", false),
 
     /**
      * The element is type other than an enumeration or a code list.
      */
-    CLASS("Classes"),
+    CLASS("Classes", false),
 
     /**
      * The type is a field. This normally occur only in enumeration or code lists.
      */
-    FIELD("Fields"),
+    FIELD("Fields", true),
 
     /**
      * The type is a constructor.
      */
-    CONSTRUCTOR("Constructors"),
+    CONSTRUCTOR("Constructors", true),
 
     /**
      * The type is a method.
      */
-    METHOD("Methods");
+    METHOD("Methods", true);
 
     /**
      * The title to display in the HTML page.
@@ -81,10 +81,16 @@ enum JavaElementKind {
     final String label;
 
     /**
-     * Creates a new enum with the given title to display in the HTML page.
-     * @param label
+     * {@code true} if the element is a field or a method, or {@code false} otherwise
+     * (interface, class, enumeration, package).
      */
-    private JavaElementKind(final String label) {
-        this.label = label;
+    final boolean isMember;
+
+    /**
+     * Creates a new enum with the given title to display in the HTML page.
+     */
+    private JavaElementKind(final String label, final boolean isMember) {
+        this.label    = label;
+        this.isMember = isMember;
     }
 }

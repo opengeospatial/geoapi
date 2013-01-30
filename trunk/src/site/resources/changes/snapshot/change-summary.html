@@ -7,7 +7,13 @@
     </style>
   </head>
   <body><div>
-    <h1>Changes between GeoAPI 3.0.0 and 3.1-M04</h1>
+    <h1>GeoAPI changes</h1>
+    <p>This page contains two tables:</p>
+    <ol>
+      <li>Changes in the normative part of GeoAPI</li>
+      <li>Changes in the conformance tests</li>
+    </ol>
+    <h2>Changes between GeoAPI 3.0.0 and 3.1-M04</h2>
     <p>Legend:</p>
     <ul>
       <li><code><i>Element</i></code> — new Java type, field or method.</li>
@@ -19,6 +25,14 @@
         <th>OGC/ISO identifier</th>
         <th>Encosing type or package</th>
         <th>Change (type or member)</th>
+      </tr>
+      <tr>
+        <th class="section" colspan="3">Classes</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><span class="note">org.opengis.util</span></td>
+        <td><code>NameFactory</code><span class="change">  — parent set to “Factory”</td>
       </tr>
       <tr>
         <th class="section" colspan="3">Fields</th>
@@ -71,7 +85,7 @@
       </tr>
     </table>
     <hr/>
-    <h1>Changes in GeoAPI-conformance</h1>
+    <h2>Changes in GeoAPI-conformance</h2>
     <p>Legend:</p>
     <ul>
       <li><code><i>Element</i></code> — new Java type, field or method.</li>
@@ -241,6 +255,10 @@
         <td><code><i>ToleranceModifiers</i></code></td>
       </tr>
       <tr>
+        <td><span class="note">org.opengis.test</span></td>
+        <td><code>ValidatorContainer</code><span class="change">  — parent set to “Cloneable”</td>
+      </tr>
+      <tr>
         <th class="section" colspan="2">Fields</th>
       </tr>
       <tr>
@@ -274,10 +292,6 @@
       <tr>
         <td><span class="note">org.opengis.test.referencing.CRSValidator</span></td>
         <td><code><i>enforceStandardNames</i></code></td>
-      </tr>
-      <tr>
-        <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
-        <td><code><del>factory</del></code></span></td>
       </tr>
       <tr>
         <td><span class="note">org.opengis.test.ValidatorContainer</span></td>
@@ -316,7 +330,7 @@
       </tr>
       <tr>
         <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
-        <td><code><del>CRSTest(CRSAuthorityFactory)</del></code></span></td>
+        <td><code>CRSTest(CRSAuthorityFactory)</code><span class="change">  — made public</td>
       </tr>
       <tr>
         <td><span class="note">org.opengis.test.util.NameTest</span></td>
@@ -324,7 +338,7 @@
       </tr>
       <tr>
         <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>
-        <td><code><del>ReferencingTest(CRSFactory, CSFactory, DatumFactory)</del></code></span></td>
+        <td><code>ReferencingTest(CRSFactory, CSFactory, DatumFactory)</code><span class="change">  — made public</td>
       </tr>
       <tr>
         <td><span class="note">org.opengis.test.referencing.ReferencingValidator</span></td>
@@ -490,6 +504,10 @@
         <td><code>dispatch(GeographicExtent)</code><span class="change">  — type changed from “void” to “int”</td>
       </tr>
       <tr>
+        <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
+        <td><code><i>factories()</i></code></td>
+      </tr>
+      <tr>
         <td><span class="note">org.opengis.test.util.NameTest</span></td>
         <td><code><i>factories()</i></code></td>
       </tr>
@@ -512,10 +530,6 @@
       <tr>
         <td><span class="note">org.opengis.test.TestCase</span></td>
         <td><code><i>removeTestListener(TestListener)</i></code></td>
-      </tr>
-      <tr>
-        <td><span class="note">org.opengis.test.referencing.CRSTest</span></td>
-        <td><code><del>testCRSAuthorityCreation()</del></code></span></td>
       </tr>
       <tr>
         <td><span class="note">org.opengis.test.referencing.ReferencingTest</span></td>

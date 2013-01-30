@@ -52,15 +52,15 @@ import java.lang.reflect.Modifier;
  */
 final class JavaElement implements Comparable<JavaElement> {
     /**
-     * The parent, or {@code null} if none.
+     * The outer element which contain this element, or {@code null} if none.
      * <p>
      * <ul>
-     *   <li>For fields and methods, the parent is the class or interface that define them.</li>
-     *   <li>For classes and interfaces, the parent is the package that contains them.</li>
-     *   <li>For packages, there is no parent.</li>
+     *   <li>For fields and methods, the container is the class or interface that define them.</li>
+     *   <li>For classes and interfaces, the container is the package that contains them.</li>
+     *   <li>For packages, there is no container.</li>
      * </ul>
      */
-    final JavaElement parent;
+    final JavaElement container;
 
     /**
      * The kind (interface, field, method) of this element.
@@ -69,7 +69,11 @@ final class JavaElement implements Comparable<JavaElement> {
 
     /**
      * The attribute type, or {@code null} if it doesn't applied.
-     * For fields, this is the type field. For methods, this is the method return type.
+     * <ul>
+     *   <li>For fields, this is the type of the field.</li>
+     *   <li>For methods, this is the method return type.</li>
+     *   <li>For interfaces, this is the first parent interface.</li>
+     * </ul>
      */
     final String type;
 
@@ -113,7 +117,7 @@ final class JavaElement implements Comparable<JavaElement> {
      * This is not mapped to any OGC/ISO standard.
      */
     JavaElement(final String packageName) {
-        parent       = null;
+        container       = null;
         kind         = JavaElementKind.PACKAGE;
         type         = null;
         javaName     = packageName;
@@ -128,18 +132,18 @@ final class JavaElement implements Comparable<JavaElement> {
      * set of elements.
      *
      * @param collector Where to add the newly created element.
-     * @param parent    The parent of the new element, or {@code null} if none.
+     * @param container The container of the new element, or {@code null} if none.
      * @param kind      The kind (interface, field, method) of the new element.
-     * @param type      The field type or method return type, or {@code null}.
+     * @param type      The field type or method return type or parent interface, or {@code null}.
      * @param element   The annotated element to add.
      * @param javaName  The simple (non-qualified) name of the element in the Java programming language.
      * @param isPublic  {@code true} if the element is public, or {@code false} if it is protected.
      */
-    private JavaElement(final JavaElementCollector collector, final JavaElement parent, final JavaElementKind kind,
+    private JavaElement(final JavaElementCollector collector, final JavaElement container, final JavaElementKind kind,
             final Class<?> type, final AnnotatedElement element, final String javaName, final boolean isPublic)
             throws IllegalAccessException, InvocationTargetException
     {
-        this.parent       = parent;
+        this.container    = container;
         this.kind         = kind;
         this.type         = (type != null) ? type.getName() : null;
         this.javaName     = javaName;
@@ -173,17 +177,17 @@ final class JavaElement implements Comparable<JavaElement> {
      * then adds itself to the collector set of elements.
      *
      * @param collector Where to add the newly created element.
-     * @param parent    The package of the new type, or {@code null} if none.
+     * @param container The package of the new type, or {@code null} if none.
      * @param element   The type to add.
      * @param isPublic  {@code true} if the element is public, or {@code false} if it is protected.
      */
-    JavaElement(final JavaElementCollector collector, final JavaElement parent, final Class<?> element, final boolean isPublic)
+    JavaElement(final JavaElementCollector collector, final JavaElement container, final Class<?> element, final boolean isPublic)
             throws IllegalAccessException, InvocationTargetException
     {
-        this(collector, parent,
+        this(collector, container,
                 Enum.class         .isAssignableFrom(element) ? JavaElementKind.ENUM :
                 collector.codeLists.isAssignableFrom(element) ? JavaElementKind.CODE_LIST : JavaElementKind.CLASS,
-                null, element, getName(element), isPublic);
+                getFirst(element.getInterfaces()), element, getName(element), isPublic);
         addMembers(collector, element.getDeclaredFields(),       JavaElementKind.FIELD);
         addMembers(collector, element.getDeclaredMethods(),      JavaElementKind.METHOD);
         addMembers(collector, element.getDeclaredConstructors(), JavaElementKind.CONSTRUCTOR);
@@ -200,6 +204,13 @@ final class JavaElement implements Comparable<JavaElement> {
             name = getName(enclosing) + '.' + name;
         }
         return name;
+    }
+
+    /**
+     * Returns the first element of the given array, or {@code null} if none.
+     */
+    private static Class<?> getFirst(final Class<?>[] interfaces) {
+        return (interfaces != null && interfaces.length != 0) ? interfaces[0] : null;
     }
 
     /**
@@ -270,9 +281,9 @@ final class JavaElement implements Comparable<JavaElement> {
     final void computeChanges(final Iterator<JavaElement> oldElements) {
         while (oldElements.hasNext()) {
             final JavaElement that = oldElements.next();
-            if (equals(parent,   that.parent) &&
-                equals(kind,     that.kind)   &&
-                equals(javaName, that.javaName))
+            if (nameEquals(container, that.container) &&
+                    equals(kind,      that.kind)      &&
+                    equals(javaName,  that.javaName))
             {
                 changes = new JavaElementChanges(that, this);
                 oldElements.remove();
@@ -283,8 +294,8 @@ final class JavaElement implements Comparable<JavaElement> {
 
     /**
      * Compares this element with the given element for order. This method is used for sorting
-     * elements in the order to print them. Elements having the same parent (classes in the same
-     * package, or methods in the same class) are grouped together.
+     * elements in the order to print them. Elements having the same container (classes in the
+     * same package, or methods in the same class) are grouped together.
      * <p>
      * This method is inconsistent with {@link #equals(Object)} since
      * it doesn't compare every possible values.
@@ -298,7 +309,7 @@ final class JavaElement implements Comparable<JavaElement> {
         if (c == 0) {
             c = compare(javaName, other.javaName);
             if (c == 0) {
-                c = compare(parent, other.parent);
+                c = compare(container, other.container);
             }
         }
         return c;
@@ -311,16 +322,29 @@ final class JavaElement implements Comparable<JavaElement> {
     public boolean equals(final Object other) {
         if (other instanceof JavaElement) {
             final JavaElement that = (JavaElement) other;
-            return equals(parent,     that.parent)     &&
-                   equals(kind,       that.kind)       &&
-                   equals(type,       that.type)       &&
-                   equals(javaName,   that.javaName)   &&
-                   equals(ogcName,    that.ogcName)    &&
-                   equals(obligation, that.obligation) &&
-                   isPublic     ==    that.isPublic    &&
+            return nameEquals(that) &&
+                   equals(kind,       that.kind)        &&
+                   equals(type,       that.type)        &&
+                   equals(ogcName,    that.ogcName)     &&
+                   equals(obligation, that.obligation)  &&
+                   isPublic     ==    that.isPublic     &&
                    isDeprecated ==    that.isDeprecated;
         }
         return false;
+    }
+
+    /**
+     * Compares the fully qualified name of this element with the name of the given element.
+     */
+    private boolean nameEquals(final JavaElement that) {
+        return equals(javaName, that.javaName) && nameEquals(container, that.container);
+    }
+
+    /**
+     * Compares the name of the given elements for equality.
+     */
+    private static boolean nameEquals(final JavaElement a, final JavaElement b) {
+        return (a == b) || (a != null && b != null && a.nameEquals(b));
     }
 
     /**
@@ -329,7 +353,8 @@ final class JavaElement implements Comparable<JavaElement> {
     @Override
     public int hashCode() {
         return Arrays.hashCode(new Object[] {
-            parent, kind, type, javaName, ogcName, obligation, isPublic, isDeprecated
+            (container != null) ? container.javaName : null,
+            kind, type, javaName, ogcName, obligation, isPublic, isDeprecated
         });
     }
 
