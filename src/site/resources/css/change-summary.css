@@ -29,9 +29,15 @@ table th.section {
   border-top-width:    1pt;
   border-bottom-color: lightgray;
   background-color:    #F2F2FF;
+  color:               #666688;
+  text-align:          left;
 }
 
-span.change {
+span.add {
+  color: green;
+}
+
+span.remove {
   color: red;
 }
 

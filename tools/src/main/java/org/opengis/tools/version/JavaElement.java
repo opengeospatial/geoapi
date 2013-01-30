@@ -117,7 +117,7 @@ final class JavaElement implements Comparable<JavaElement> {
      * This is not mapped to any OGC/ISO standard.
      */
     JavaElement(final String packageName) {
-        container       = null;
+        container    = null;
         kind         = JavaElementKind.PACKAGE;
         type         = null;
         javaName     = packageName;
@@ -186,7 +186,8 @@ final class JavaElement implements Comparable<JavaElement> {
     {
         this(collector, container,
                 Enum.class         .isAssignableFrom(element) ? JavaElementKind.ENUM :
-                collector.codeLists.isAssignableFrom(element) ? JavaElementKind.CODE_LIST : JavaElementKind.CLASS,
+                collector.codeLists.isAssignableFrom(element) ? JavaElementKind.CODE_LIST :
+                element.isInterface() ? JavaElementKind.INTERFACE : JavaElementKind.CLASS,
                 getFirst(element.getInterfaces()), element, getName(element), isPublic);
         addMembers(collector, element.getDeclaredFields(),       JavaElementKind.FIELD);
         addMembers(collector, element.getDeclaredMethods(),      JavaElementKind.METHOD);
@@ -305,11 +306,11 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     @Override
     public int compareTo(final JavaElement other) {
-        int c = compare(kind, other.kind);
+        int c = compare(container, other.container);
         if (c == 0) {
-            c = compare(javaName, other.javaName);
+            c = compare(kind, other.kind);
             if (c == 0) {
-                c = compare(container, other.container);
+                c = compare(javaName, other.javaName);
             }
         }
         return c;
@@ -343,7 +344,7 @@ final class JavaElement implements Comparable<JavaElement> {
     /**
      * Compares the name of the given elements for equality.
      */
-    private static boolean nameEquals(final JavaElement a, final JavaElement b) {
+    static boolean nameEquals(final JavaElement a, final JavaElement b) {
         return (a == b) || (a != null && b != null && a.nameEquals(b));
     }
 

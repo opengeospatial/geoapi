@@ -43,37 +43,42 @@ enum JavaElementKind {
     /**
      * The element is a package.
      */
-    PACKAGE("Packages", false),
+    PACKAGE("Package", false),
 
     /**
      * The type is an enumeration.
      */
-    ENUM("Enumerations", false),
+    ENUM("Enumeration", false),
 
     /**
      * The type is a code list.
      */
-    CODE_LIST("Code lists", false),
+    CODE_LIST("Code list", false),
 
     /**
-     * The element is type other than an enumeration or a code list.
+     * The element is type other than an enumeration, a code list or an interface.
      */
-    CLASS("Classes", false),
+    CLASS("Classe", false),
+
+    /**
+     * The element is an interface.
+     */
+    INTERFACE("Interface", false),
 
     /**
      * The type is a field. This normally occur only in enumeration or code lists.
      */
-    FIELD("Fields", true),
+    FIELD("Field", true),
 
     /**
      * The type is a constructor.
      */
-    CONSTRUCTOR("Constructors", true),
+    CONSTRUCTOR("Constructor", true),
 
     /**
      * The type is a method.
      */
-    METHOD("Methods", true);
+    METHOD("Method", true);
 
     /**
      * The title to display in the HTML page.

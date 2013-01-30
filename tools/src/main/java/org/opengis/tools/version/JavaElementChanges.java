@@ -55,10 +55,9 @@ final class JavaElementChanges {
     final boolean isRemoved;
 
     /**
-     * {@code true} if the element is a field or a method, or {@code false} otherwise
-     * (interface, class, enumeration, package).
+     * The kind of element for which we are reporting changes.
      */
-    private final boolean isMember;
+    private final JavaElementKind kind;
 
     /**
      * The old and new OGC/ISO names.
@@ -94,7 +93,7 @@ final class JavaElementChanges {
      * @param newElement The new element, or {@code null} if the element has been removed.
      */
     JavaElementChanges(final JavaElement oldElement, final JavaElement newElement) {
-        isMember  = oldElement.kind.isMember;
+        kind      = oldElement.kind;
         isRemoved = (newElement == null);
         if (!isRemoved) {
             if (!JavaElement.equals(oldElement.ogcName, newElement.ogcName)) {
@@ -122,15 +121,22 @@ final class JavaElementChanges {
      * Writes the changes to the given stream.
      */
     void write(final Writer out) throws IOException {
-        String separator = "<span class=\"change\">  — ";
+        String separator = "";
         separator = writeChange(out, separator, "OGC/ISO identifier ", oldName, newName);
-        separator = writeChange(out, separator, isMember ? "type " : "parent ", trimPackage(oldType), trimPackage(newType));
-        separator = writeChange(out, separator, "obligation ", oldObligation, newObligation);
-        separator = writeChange(out, separator, "made public", "made protected", isPublic);
-        separator = writeChange(out, separator, "deprecated", "not deprecated anymore", isDeprecated);
+        separator = writeChange(out, separator, getKindOfType(), trimPackage(oldType), trimPackage(newType));
+        separator = writeChange(out, separator, "Obligation ", oldObligation, newObligation);
+        separator = writeChange(out, separator, "Made public", "Made protected", isPublic);
+        separator = writeChange(out, separator, "<span class=\"remove\">Deprecated</span>", "Not deprecated anymore", isDeprecated);
         if (!SEPARATOR.equals(separator)) {
             out.write("</span>");
         }
+    }
+
+    /**
+     * Returns the kind elements represented by {@link #oldType} and {@link #newType}.
+     */
+    private String getKindOfType() {
+        return (kind == JavaElementKind.METHOD) ? "Return type " : kind.isMember ? "Type " : "Parent ";
     }
 
     /**
