@@ -73,7 +73,7 @@ public final class ChangeReport {
      *         (too many checked exceptions for enumerating them all).
      */
     public static void main(String[] args) throws Exception {
-        if (false) {
+        if (true) {
             // For testing purpose only.
             args = new String[] {"3.0.0", "3.1-M04", "change-summary.html"};
         }
@@ -133,15 +133,21 @@ public final class ChangeReport {
                 + "    </style>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"
-                + "    <h1>Changes between GeoAPI ");
+                + "    <h1>GeoAPI changes</h1>\n"
+                + "    <p>This page contains two tables:</p>\n"
+                + "    <ol>\n"
+                + "      <li>Changes in the normative part of GeoAPI</li>\n"
+                + "      <li>Changes in the conformance tests</li>\n"
+                + "    </ol>\n"
+                + "    <h2>Changes between GeoAPI ");
         out.write(oldVersion.toString());
         out.write(" and ");
         out.write(newVersion.toString());
-        out.write("</h1>\n");
+        out.write("</h2>\n");
         writeLegend(out);
         write(collectAPIChanges("geoapi"), out, true);
         out.write("    <hr/>\n"
-                + "    <h1>Changes in GeoAPI-conformance</h1>\n");
+                + "    <h2>Changes in GeoAPI-conformance</h2>\n");
         writeLegend(out);
         write(collectAPIChanges("geoapi-conformance"), out, false);
         out.write("  </div></body>\n"
@@ -204,9 +210,9 @@ public final class ChangeReport {
                 out.write(        "</td>\n"
                         + "        <td>");
             }
-            if (element.parent != null) {
+            if (element.container != null) {
                 out.write("<span class=\"note\">");
-                writeFullyQualifiedName(element.parent, out);
+                writeFullyQualifiedName(element.container, out);
                 out.write("</span>");
             }
             out.write(        "</td>\n"
@@ -241,8 +247,8 @@ public final class ChangeReport {
      * Writes the fully-qualified name of the given element to the given writer.
      */
     private static void writeFullyQualifiedName(final JavaElement element, final Writer out) throws IOException {
-        if (element.parent != null) {
-            writeFullyQualifiedName(element.parent, out);
+        if (element.container != null) {
+            writeFullyQualifiedName(element.container, out);
             out.write('.');
         }
         out.write(element.javaName);

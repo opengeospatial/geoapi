@@ -55,6 +55,12 @@ final class JavaElementChanges {
     final boolean isRemoved;
 
     /**
+     * {@code true} if the element is a field or a method, or {@code false} otherwise
+     * (interface, class, enumeration, package).
+     */
+    private final boolean isMember;
+
+    /**
      * The old and new OGC/ISO names.
      */
     private String oldName, newName;
@@ -84,10 +90,11 @@ final class JavaElementChanges {
     /**
      * Creates a new set of changes between the two given elements.
      *
-     * @param oldElement The old element.
+     * @param oldElement The old element (can not be null).
      * @param newElement The new element, or {@code null} if the element has been removed.
      */
     JavaElementChanges(final JavaElement oldElement, final JavaElement newElement) {
+        isMember  = oldElement.kind.isMember;
         isRemoved = (newElement == null);
         if (!isRemoved) {
             if (!JavaElement.equals(oldElement.ogcName, newElement.ogcName)) {
@@ -117,7 +124,7 @@ final class JavaElementChanges {
     void write(final Writer out) throws IOException {
         String separator = "<span class=\"change\">  — ";
         separator = writeChange(out, separator, "OGC/ISO identifier ", oldName, newName);
-        separator = writeChange(out, separator, "type ", trimPackage(oldType), trimPackage(newType));
+        separator = writeChange(out, separator, isMember ? "type " : "parent ", trimPackage(oldType), trimPackage(newType));
         separator = writeChange(out, separator, "obligation ", oldObligation, newObligation);
         separator = writeChange(out, separator, "made public", "made protected", isPublic);
         separator = writeChange(out, separator, "deprecated", "not deprecated anymore", isDeprecated);
