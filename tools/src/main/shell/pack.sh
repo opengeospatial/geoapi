@@ -15,7 +15,7 @@ set -o nounset
 
 # This script needs to be run from the "<root>/target/tmp" directory.
 cd `dirname $0`
-source setenv.sh
+source ./setenv.sh
 cd ../../../../target
 mkdir tmp
 cd tmp

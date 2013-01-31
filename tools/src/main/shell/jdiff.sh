@@ -16,7 +16,7 @@ set -o nounset
 # containing the "GeoAPI-*.xml" files.
 #
 cd `dirname $0`
-source setenv.sh
+source ./setenv.sh
 cd resources/jdiff
 
 #
