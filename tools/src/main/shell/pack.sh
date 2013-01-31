@@ -4,19 +4,27 @@
 # Creates the PACK200 file with sample JAR files.
 # This is used only at build time, and shall be
 # run from the root of the GeoAPI project.
+#
+# See http://www.geoapi.org/tools/index.html
 # -----------------------------------------------
 
+# Instruct bash to stop the script on error,
+# or if an environment variable is not defined.
 set -o errexit
 set -o nounset
 
+# This script needs to be run from the "<root>/target/tmp" directory.
+cd `dirname $0`
+cd ../../../../target
+mkdir tmp
+cd tmp
+
+# Declaration of version numbers for all dependencies.
 export GEOAPI_VERSION=3.1-SNAPSHOT
 export JSR275_VERSION=0.9.3
 export JUNIT_VERSION=4.11
 export HAMCREST_VERSION=1.3
 export MAVEN_REPOSITORY=~/.m2/repository
-
-mkdir target/tmp
-cd target/tmp
 
 # Unzip dependencies to be included in the single JAR files.
 unzip -q -n ../../geoapi-conformance/target/geoapi-conformance-$GEOAPI_VERSION.jar
@@ -36,5 +44,5 @@ ln ../../tools/src/main/shell/resources/README/conformance.txt README.txt
 zip -j -9 -q ../geoapi-conformance.zip geoapi-conformance.pack.gz ../../geoapi-proj4/target/geoapi-proj4-$GEOAPI_VERSION.jar ../../LICENSE.txt README.txt
 
 # Cleanup.
-cd -
-rm -r target/tmp
+cd ..
+rm -r tmp
