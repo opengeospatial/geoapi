@@ -9,6 +9,25 @@ GeoAPI build tools
     * {{{./release-instruction.html}Steps for creating a GeoAPI milestone in a Unix environment}}
 
 
+* Creating the GeoAPI bundles
+
+  This module contains a Unix shell script for generating a ZIP files with the following content:
+
+    * <<<geoapi-conformance.pack.gz>>> containing the {{{../geoapi-conformance/index.html}GeoAPI
+      conformance}} JAR file together with its dependencies (<<<geoapi-pending>>>, JUnit and Unit
+      of measurement).
+
+    * <<<geoapi-proj4.jar>>> for testing the conformance tests application.
+
+    * <<<LICENSE.txt>>> and <<<README.txt>>> files.
+
+  To create the bundle, execute the following command from the root of the GeoAPI project:
+
+-------------------------------------
+tools/src/main/shell/pack.sh
+-------------------------------------
+
+
 * Documenting the API changes
 
   This module contains a <<<jdiff>>> directory, which is not used by the normal build process.
@@ -24,11 +43,11 @@ GeoAPI build tools
 
 -------------------------------------
 mvn install site
-trunk/tools/jdiff/jdiff.sh
+tools/jdiff/jdiff.sh
 mvn site:deploy
 -------------------------------------
 
-  The HTML pages will be deployed on
+  The HTML pages are deployed on
   {{{http://www.geoapi.org/changes/snapshot/changes.html}http://www.geoapi.org/changes/snapshot/}}.
 
 
