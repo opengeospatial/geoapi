@@ -27,6 +27,8 @@ GeoAPI build tools
 tools/src/main/shell/pack.sh
 -------------------------------------
 
+  The result is located at <<<target/geoapi-conformance.zip>>>.
+
 
 * Documenting the API changes
 
@@ -43,7 +45,7 @@ tools/src/main/shell/pack.sh
 
 -------------------------------------
 mvn install site
-tools/jdiff/jdiff.sh
+tools/src/main/jdiff/jdiff.sh
 mvn site:deploy
 -------------------------------------
 

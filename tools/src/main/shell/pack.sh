@@ -15,16 +15,10 @@ set -o nounset
 
 # This script needs to be run from the "<root>/target/tmp" directory.
 cd `dirname $0`
+source setenv.sh
 cd ../../../../target
 mkdir tmp
 cd tmp
-
-# Declaration of version numbers for all dependencies.
-export GEOAPI_VERSION=3.1-SNAPSHOT
-export JSR275_VERSION=0.9.3
-export JUNIT_VERSION=4.11
-export HAMCREST_VERSION=1.3
-export MAVEN_REPOSITORY=~/.m2/repository
 
 # Unzip dependencies to be included in the single JAR files.
 unzip -q -n ../../geoapi-conformance/target/geoapi-conformance-$GEOAPI_VERSION.jar
