@@ -56,7 +56,7 @@ enum Dependency {
     JUNIT {
         @Override
         public String pathInMavenRepository(final Version geoapiVersion) {
-            return "junit/junit/4.10/junit-4.10.jar";
+            return "junit/junit/4.11/junit-4.11.jar";
         }
     };
 
