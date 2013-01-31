@@ -1,16 +1,23 @@
 #!/bin/sh
 
+# -----------------------------------------------
+# Generates HTML pages for API changes.
+#
+# See http://www.geoapi.org/tools/index.html
+# -----------------------------------------------
+
 # Instruct bash to stop the script on error,
 # or if an environment variable is not defined.
 set -o errexit
 set -o nounset
 
 #
-# This script needs to be run from the directory containing this "jdiff.sh" file.
-# Every paths declared below this point - except ".m2" - will be relative to that
-# directory.
+# This script needs to be run from the "resources/jdiff" directory
+# containing the "GeoAPI-*.xml" files.
 #
 cd `dirname $0`
+source setenv.sh
+cd resources/jdiff
 
 #
 # The GeoAPI versions to be compared. The OLD_NAME and NEW_NAME values
@@ -18,7 +25,7 @@ cd `dirname $0`
 # files describing the old and new API. Names can not contain spaces.
 #
 export OLD_NAME=GeoAPI-3.0.0
-export NEW_NAME=GeoAPI-3.1-SNAPSHOT
+export NEW_NAME=GeoAPI-$GEOAPI_VERSION
 export OLD_URL=http://www.geoapi.org/3.0/javadoc/
 export NEW_URL=http://www.geoapi.org/snapshot/javadoc/
 
@@ -27,18 +34,18 @@ export NEW_URL=http://www.geoapi.org/snapshot/javadoc/
 # the location of this "jdiff.sh" shell script,  and assuming a local Maven
 # repository located at the standard place.
 #
-export GEOAPI_HOME=../..
+export GEOAPI_HOME=../../../../../..
 export SOURCE_PATH=$GEOAPI_HOME/geoapi/src/main/java
 export TARGET_PATH=$GEOAPI_HOME/geoapi/target
 export CHANGES_API=$GEOAPI_HOME/target/site/changes/snapshot
 export CHANGES_DOC=$GEOAPI_HOME/target/site/changes/document
-export CLASSPATH=$TARGET_PATH/classes:$HOME/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
+export CLASSPATH=$TARGET_PATH/classes:$MAVEN_REPOSITORY/javax/measure/jsr-275/$JSR275_VERSION/jsr-275-$JSR275_VERSION.jar
 
 #
 # Generate a XML file containing API information.
 # The "-apiname" option is specific to the JDiff doclet.
 #
-javadoc -docletpath jdiff.jar -doclet jdiff.JDiff -apiname $NEW_NAME \
+javadoc -docletpath ../../libraries/jdiff.jar -doclet jdiff.JDiff -apiname $NEW_NAME \
     -encoding UTF-8 -sourcepath $SOURCE_PATH -subpackages org.opengis \
 
 #
@@ -59,15 +66,25 @@ java -classpath $GEOAPI_HOME/tools/target/classes org.opengis.tools.console.JDif
 # but is not used by the JDiff doclet.
 #
 mkdir -p $CHANGES_API
-javadoc -docletpath jdiff.jar -doclet jdiff.JDiff \
+javadoc -docletpath ../../libraries/jdiff.jar -doclet jdiff.JDiff \
     -J-Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
     -oldapi "$OLD_NAME" -javadocold $OLD_URL \
     -newapi "$NEW_NAME" -javadocnew $NEW_URL \
     -d $CHANGES_API -encoding UTF-8 $SOURCE_PATH/org/opengis/annotation/UML.java
 
 mkdir -p $CHANGES_DOC
-javadoc -docletpath jdiff.jar -doclet jdiff.JDiff -docchanges \
+javadoc -docletpath ../../libraries/jdiff.jar -doclet jdiff.JDiff -docchanges \
     -J-Dorg.xml.sax.driver=com.sun.org.apache.xerces.internal.parsers.SAXParser \
     -oldapi "$OLD_NAME" -javadocold $OLD_URL \
     -newapi "$NEW_NAME" -javadocnew $NEW_URL \
     -d $CHANGES_DOC -encoding UTF-8 $SOURCE_PATH/org/opengis/annotation/UML.java
+
+#
+# Fix broken HTML and remove useless files.
+#
+cd $GEOAPI_HOME/target/site/changes
+find . -name "*.html" -print | xargs sed -i '' "s/lEsS_tHaN/&lt;/g"
+find . -name "*.html" -print | xargs sed -i '' "s/aNd_cHaR/&amp;/g"
+find . -name "*.html" -print | xargs sed -i '' "s/quote_cHaR/&quot;/g"
+find . -name "missingSinces.txt" -delete
+find . -name "user_comments*.xml" -delete
