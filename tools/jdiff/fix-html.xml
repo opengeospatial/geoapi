@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Fix some JDiff escape sequences which are
+     apparently not processed as expected. -->
+
+<project name="FixHTML" default="fix">
+  <target name="fix">
+    <replace dir=".">
+      <include name="**/*.html"/>
+      <replacefilter token="lEsS_tHaN"  value="&lt;"/>
+      <replacefilter token="aNd_cHaR"   value="&amp;"/>
+      <replacefilter token="quote_cHaR" value="&quot;"/>
+    </replace>
+  </target>
+</project>
