@@ -54,6 +54,6 @@ public strictfp class SimpleParameterGroupTest {
 
         group.parameter("Latitude of natural origin").setValue(30.0);
         assertEquals(30.0, group.parameter("Latitude of natural origin") .doubleValue(), STRICT);
-        assertFalse("Group should not anymore be equal to the clone.", group.equals(clone));
+        assertNotEquals("Group should not anymore be equal to the clone.", group, clone);
     }
 }

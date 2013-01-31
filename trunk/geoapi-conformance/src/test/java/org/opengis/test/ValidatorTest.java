@@ -85,7 +85,8 @@ public strictfp class ValidatorTest {
             validator.forbidden("Should fail.", "dummy");
         } catch (AssertionError e) {
             // This is the expected exception.
-            assertEquals("Should fail.", e.getMessage());
+            final String message = e.getMessage();
+            assertTrue(message, message.startsWith("Should fail."));
         }
         try {
             validator.forbidden("Should fail.", Collections.singleton("dummy"));
