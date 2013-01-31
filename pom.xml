@@ -190,11 +190,13 @@
         <version>0.9.3</version>
       </dependency>
       <dependency>
-        <!-- The JUnit version number appears also in the maven-javadoc-plugin
-             <link/> configuration below. They should be keep synchronized. -->
+        <!-- The JUnit version number appears also in the Javadoc plugin configuration,
+             in shell scripts, in Java code generating reports, and in NetBeans project
+             configuration. If JUnit is updated, please search for the version number in
+             the whole project. Search also for version number of the Hamcrest dependency. -->
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.11</version> <!-- If updated, search for "4.11" in the whole project. -->
+        <version>4.11</version>
         <scope>test</scope>
       </dependency>
       <dependency>

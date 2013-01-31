@@ -12,7 +12,8 @@ set -o nounset
 export GEOAPI_VERSION=3.1-SNAPSHOT
 export JSR275_VERSION=0.9.3
 export JUNIT_VERSION=4.11
-export MAVEN_REPOSITORY=~/.m2/repository/
+export HAMCREST_VERSION=1.3
+export MAVEN_REPOSITORY=~/.m2/repository
 
 mkdir target/tmp
 cd target/tmp
@@ -20,8 +21,9 @@ cd target/tmp
 # Unzip dependencies to be included in the single JAR files.
 unzip -q -n ../../geoapi-conformance/target/geoapi-conformance-$GEOAPI_VERSION.jar
 unzip -q -n ../../geoapi-pending/target/geoapi-pending-$GEOAPI_VERSION.jar
-unzip -q -n $MAVEN_REPOSITORY/repository/junit/junit/$JUNIT_VERSION/junit-$JUNIT_VERSION.jar
-unzip -q -n $MAVEN_REPOSITORY/repository/javax/measure/jsr-275/$JSR275_VERSION/jsr-275-$JSR275_VERSION.jar
+unzip -q -n $MAVEN_REPOSITORY/junit/junit/$JUNIT_VERSION/junit-$JUNIT_VERSION.jar
+unzip -q -n $MAVEN_REPOSITORY/org/hamcrest/hamcrest-core/$HAMCREST_VERSION/hamcrest-core-$HAMCREST_VERSION.jar
+unzip -q -n $MAVEN_REPOSITORY/javax/measure/jsr-275/$JSR275_VERSION/jsr-275-$JSR275_VERSION.jar
 rm -r META-INF/maven
 
 # Create the JAR files, the PACK200 bundle and the zip file to download.
