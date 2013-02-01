@@ -42,7 +42,35 @@ tools/src/main/shell/pack.sh
 
 ---------------------------------------------------------------------------------------------
 export CLASSPATH=tools/target/tools-3.1-SNAPSHOT.jar
+java org.opengis.tools.version.ChangeReport 3.0.0 3.1-M04 src/site/resources/changes/snapshot/change-summary.html
 svn diff src/site/resources/changes/snapshot/change-summary.html
+---------------------------------------------------------------------------------------------
+
+  To re-generate the API change summaries for the previous releases (for example after the
+  <<<ChangeReport>>> class has been updated), run the following commands:
+
+---------------------------------------------------------------------------------------------
+java org.opengis.tools.version.ChangeReport 2.3-M5 2.3-M6 src/site/resources/changes/2.3-M6/since-M5.html
+java org.opengis.tools.version.ChangeReport 2.3-M4 2.3-M6 src/site/resources/changes/2.3-M6/since-M4.html
+java org.opengis.tools.version.ChangeReport 2.3-M3 2.3-M6 src/site/resources/changes/2.3-M6/since-M3.html
+java org.opengis.tools.version.ChangeReport 2.3-M2 2.3-M6 src/site/resources/changes/2.3-M6/since-M2.html
+java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M6 src/site/resources/changes/2.3-M6/since-M1.html
+java org.opengis.tools.version.ChangeReport 2.3-M0 2.3-M6 src/site/resources/changes/2.3-M6/since-M0.html
+java org.opengis.tools.version.ChangeReport 2.3-M4 2.3-M5 src/site/resources/changes/2.3-M5/since-M4.html
+java org.opengis.tools.version.ChangeReport 2.3-M3 2.3-M5 src/site/resources/changes/2.3-M5/since-M3.html
+java org.opengis.tools.version.ChangeReport 2.3-M2 2.3-M5 src/site/resources/changes/2.3-M5/since-M2.html
+java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M5 src/site/resources/changes/2.3-M5/since-M1.html
+java org.opengis.tools.version.ChangeReport 2.3-M0 2.3-M5 src/site/resources/changes/2.3-M5/since-M0.html
+java org.opengis.tools.version.ChangeReport 2.3-M3 2.3-M4 src/site/resources/changes/2.3-M4/since-M3.html
+java org.opengis.tools.version.ChangeReport 2.3-M2 2.3-M4 src/site/resources/changes/2.3-M4/since-M2.html
+java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M4 src/site/resources/changes/2.3-M4/since-M1.html
+java org.opengis.tools.version.ChangeReport 2.3-M0 2.3-M4 src/site/resources/changes/2.3-M4/since-M0.html
+java org.opengis.tools.version.ChangeReport 2.3-M2 2.3-M3 src/site/resources/changes/2.3-M3/since-M2.html
+java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M3 src/site/resources/changes/2.3-M3/since-M1.html
+java org.opengis.tools.version.ChangeReport 2.3-M0 2.3-M3 src/site/resources/changes/2.3-M3/since-M0.html
+java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M2 src/site/resources/changes/2.3-M2/since-M1.html
+java org.opengis.tools.version.ChangeReport 2.3-M0 2.3-M2 src/site/resources/changes/2.3-M2/since-M0.html
+java org.opengis.tools.version.ChangeReport 2.3-M0 2.3-M1 src/site/resources/changes/2.3-M1/since-M0.html
 ---------------------------------------------------------------------------------------------
 
 

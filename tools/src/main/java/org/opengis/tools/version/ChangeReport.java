@@ -74,10 +74,6 @@ public final class ChangeReport {
      *         (too many checked exceptions for enumerating them all).
      */
     public static void main(String[] args) throws Exception {
-        if (false) {
-            // For testing purpose only.
-            args = new String[] {"3.0.0", "3.1-M04", "change-summary.html"};
-        }
         if (args.length != 3) {
             System.err.println("Expected: oldVersion newVersion outputFile");
             return;
@@ -142,9 +138,11 @@ public final class ChangeReport {
         out.write(newVersion.toString());
         out.write("</h2>\n");
         write(collectAPIChanges("geoapi"), out, true);
-        out.write("    <hr/>\n"
-                + "    <h2>Changes in GeoAPI-conformance</h2>\n");
-        write(collectAPIChanges("geoapi-conformance"), out, false);
+        if (Math.min(oldVersion.major, newVersion.major) >= 2) {
+            out.write("    <hr/>\n"
+                    + "    <h2>Changes in GeoAPI-conformance</h2>\n");
+            write(collectAPIChanges("geoapi-conformance"), out, false);
+        }
         out.write("  </div></body>\n"
                 + "</html>\n");
         out.close();
