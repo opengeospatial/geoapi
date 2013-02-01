@@ -45,7 +45,7 @@ svn copy https://svn.code.sf.net/p/geoapi/code/trunk \
 cd ../tags
 svn checkout https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION
 cd $GEOAPI_VERSION
-find . -name "pom.xml" -print | xargs sed -i '' "s/3.1-SNAPSHOT/$GEOAPI_VERSION/g"
+find . -name "pom.xml" -print | xargs sed --in-place='' "s/3.1-SNAPSHOT/$GEOAPI_VERSION/g"
 svn diff
 ---------------------------------------------------------------------------------------------
 
