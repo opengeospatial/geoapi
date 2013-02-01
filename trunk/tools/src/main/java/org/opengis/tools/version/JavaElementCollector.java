@@ -31,7 +31,9 @@
  */
 package org.opengis.tools.version;
 
+import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -41,6 +43,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -100,12 +103,16 @@ final class JavaElementCollector {
      *
      * @param jarFiles The JAR files which define the API.
      */
-    private JavaElementCollector(final File... jarFiles) throws IOException, ClassNotFoundException,
+    private JavaElementCollector(final List<File> jarFiles) throws IOException, ClassNotFoundException,
             NoSuchMethodException, IllegalAccessException, InvocationTargetException
     {
-        final URL[] jarURLs = new URL[jarFiles.length];
-        for (int i=0; i<jarFiles.length; i++) {
-            jarURLs[i] = jarFiles[i].toURI().toURL();
+        final URL[] jarURLs = new URL[jarFiles.size()];
+        for (int i=0; i<jarURLs.length; i++) {
+            final File file = jarFiles.get(i);
+            if (!file.isFile() || !file.canRead()) {
+                throw new FileNotFoundException("File \"" + file + "\" not found or can not be read.");
+            }
+            jarURLs[i] = file.toURI().toURL();
         }
         final URLClassLoader loader = new URLClassLoader(jarURLs, ClassLoader.getSystemClassLoader().getParent());
         umlAnnotation = Class.forName("org.opengis.annotation.UML", false, loader).asSubclass(Annotation.class);
@@ -118,7 +125,7 @@ final class JavaElementCollector {
          * 'elements' set with all public and protected API that we can find.
          */
         final Map<String,JavaElement> packages = new HashMap<String,JavaElement>();
-        final ZipInputStream file = new ZipInputStream(new FileInputStream(jarFiles[0]));
+        final ZipInputStream file = new ZipInputStream(new FileInputStream(jarFiles.get(0)));
         ZipEntry entry;
         while ((entry = file.getNextEntry()) != null) {
             String classname = entry.getName();
@@ -146,30 +153,51 @@ final class JavaElementCollector {
 
     /**
      * Returns the set of all elements in the given API.
-     * This method infers the "Units of measurement" dependency from the GeoAPI version.
+     * This method infers the various dependency from the GeoAPI version.
      *
      * @param  artefact   The artefact name, either {@code "geoapi"} or {@code "geoapi-conformance"}.
      * @param  version    The GeoAPI version, as used in Maven artefacts.
      * @param  repository The root of Maven local repository.
      * @return The set of elements in the given GeoAPI version.
      */
-    private static Set<JavaElement> collectAPI(final String artefact, final Version version, final File repository)
+    private static Set<JavaElement> collectAPI(String artefact, final Version version, final File repository)
             throws IOException, ClassNotFoundException, NoSuchMethodException,
                     IllegalAccessException, InvocationTargetException
     {
-        final File[] files;
+        /*
+         * The "geoapi-conformance" module was named "conformance" in older GeoAPI versions.
+         */
+        if (version.major < 3 && artefact.equals("geoapi-conformance")) {
+            artefact = "conformance";
+        }
+        /*
+         * Older GeoAPI versions were using a dummy module for pending GeoAPI interfaces
+         * required by the normative part of GeoAPI. Newer GeoAPI versions use the Maven
+         * build helper plugins instead.
+         */
+        final boolean pendingIncludesCore = version.compareTo(Version.PENDING_INCLUDES_CORE) >= 0;
+        /*
+         * At this point, we collected the version-dependent information.
+         * Now buil the list.
+         */
+        final List<File> files = new ArrayList<File>();
+        files.add(new File(repository, version.getMavenArtefactPath(artefact)));
         if (artefact.equals("geoapi")) {
-            files = new File[] {
-                new File(repository, version.getMavenArtefactPath(artefact)),
-                new File(repository, Dependency.UNIT_OF_MEASURES.pathInMavenRepository(version))
-            };
+            if (!pendingIncludesCore) {
+                files.add(new File(repository, version.getMavenArtefactPath("geoapi-dummy-pending")));
+            }
         } else {
-            files = new File[] {
-                new File(repository, version.getMavenArtefactPath(artefact)),
-                new File(repository, version.getMavenArtefactPath()),
-                new File(repository, Dependency.UNIT_OF_MEASURES.pathInMavenRepository(version)),
-                new File(repository, Dependency.JUNIT.pathInMavenRepository(version))
-            };
+            final boolean dependsOnPending = version.isMilestone();
+            if (!dependsOnPending || !pendingIncludesCore) {
+                files.add(new File(repository, version.getMavenArtefactPath("geoapi")));
+            }
+            if (dependsOnPending || !pendingIncludesCore) {
+                files.add(new File(repository, version.getMavenArtefactPath("geoapi-pending")));
+            }
+        }
+        files.add(new File(repository, Dependency.UNIT_OF_MEASURES.pathInMavenRepository(version)));
+        if (artefact.endsWith("conformance")) {
+            files.add(new File(repository, Dependency.JUNIT.pathInMavenRepository(version)));
         }
         return new JavaElementCollector(files).elements;
     }
@@ -208,20 +236,11 @@ final class JavaElementCollector {
                 it.remove(); // Ignore new deprecated elements, since they shall be removed before the release.
             }
         }
-        /*
-         * For any new elements, remove all children of that elements.
-         * We have to copy the elements in a temporary array for protecting them from changes.
-         */
-        for (final JavaElement container : newAPI.toArray(new JavaElement[newAPI.size()])) {
-            if (container.changes() == null) {
-                for (final Iterator<JavaElement> it = newAPI.iterator(); it.hasNext();) {
-                    final JavaElement child = it.next();
-                    if (child.container == container) {
-                        it.remove();
-                    }
-                }
-            }
+        for (final JavaElement element : oldAPI) {
+            element.markAsRemoved();
         }
+        removeChildrenOfNewOrDeleted(oldAPI);
+        removeChildrenOfNewOrDeleted(newAPI);
         /*
          * Create a consolidated list of old an new API.
          */
@@ -234,5 +253,23 @@ final class JavaElementCollector {
         assert index == elements.length;
         Arrays.sort(elements);
         return elements;
+    }
+
+    /**
+     * For any new or deleted elements, remove all children of that elements.
+     * We have to copy the elements in a temporary array for protecting them from changes.
+     */
+    private static void removeChildrenOfNewOrDeleted(final Set<JavaElement> elements) {
+        for (final JavaElement container : elements.toArray(new JavaElement[elements.size()])) {
+            final JavaElementChanges changes = container.changes();
+            if (changes == null || changes.isRemoved) {
+                for (final Iterator<JavaElement> it = elements.iterator(); it.hasNext();) {
+                    final JavaElement child = it.next();
+                    if (child.container == container) {
+                        it.remove();
+                    }
+                }
+            }
+        }
     }
 }

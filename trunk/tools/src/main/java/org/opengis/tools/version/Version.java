@@ -45,6 +45,14 @@ package org.opengis.tools.version;
  */
 public final class Version implements Comparable<Version> {
     /**
+     * The first GeoAPI version where {@code geoapi-pending} contains the {@code geoapi} module.
+     * Starting from this version, the {@code geoapi-pending-dummy} module is not needed anymore.
+     * <p>
+     * This version number is {@code 2.3-M5}.
+     */
+    public static final Version PENDING_INCLUDES_CORE = new Version((short) 2, (short) 3, (short) 5);
+
+    /**
      * The major version number.
      */
     public final short major;
@@ -64,6 +72,22 @@ public final class Version implements Comparable<Version> {
      * or {@link Short#MAX_VALUE} for a final release.
      */
     public final short milestone;
+
+    /**
+     * {@code true} if the milestone version number has a leading zero.
+     */
+    private final boolean hasLeadingZero;
+
+    /**
+     * Creates a new version number.
+     */
+    private Version(final short major, final short minor, final short milestone) {
+        this.major     = major;
+        this.minor     = minor;
+        this.third     = (short) 0;
+        this.milestone = milestone;
+        hasLeadingZero = false;
+    }
 
     /**
      * Parses the given version string.
@@ -94,9 +118,12 @@ public final class Version implements Comparable<Version> {
                     if (version.charAt(indexOfMilestone) != 'M') {
                         throw new NumberFormatException("Milestone numbers shall begin by 'M'.");
                     }
-                    milestone = Short.parseShort(version.substring(++indexOfMilestone));
+                    final String substring = version.substring(++indexOfMilestone);
+                    milestone = Short.parseShort(substring);
+                    hasLeadingZero = (substring.length() >= 2 && substring.charAt(0) == '0');
                 } else {
                     milestone = Short.MAX_VALUE;
+                    hasLeadingZero = false;
                 }
                 return;
             }
@@ -111,17 +138,6 @@ public final class Version implements Comparable<Version> {
      */
     public boolean isMilestone() {
         return milestone != Short.MAX_VALUE;
-    }
-
-    /**
-     * Returns the path to the main GeoAPI artefact, relative to the local Maven repository.
-     * The artefact will be either {@code "geoapi"} or {@code "geoapi-pending"}, depending
-     * if this version is a stable release or a milestone respectively.
-     *
-     * @return Path to the GeoAPI artefact relative to the local Maven repository.
-     */
-    public String getMavenArtefactPath() {
-        return getMavenArtefactPath(isMilestone() ? "geoapi-pending" : "geoapi");
     }
 
     /**
@@ -206,7 +222,7 @@ public final class Version implements Comparable<Version> {
         }
         if (isMilestone()) {
             buffer.append("-M");
-            if (milestone < 10) {
+            if (hasLeadingZero) {
                 buffer.append('0');
             }
             buffer.append(milestone);
