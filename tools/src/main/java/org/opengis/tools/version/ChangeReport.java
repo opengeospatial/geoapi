@@ -33,8 +33,9 @@ package org.opengis.tools.version;
 
 import java.io.File;
 import java.io.Writer;
-import java.io.FileWriter;
 import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.IOException;
 
 
@@ -42,7 +43,7 @@ import java.io.IOException;
  * Reports public and protected API changes between two JAR files.
  * The arguments expected by the main methods are:
  * <p>
- * <table>
+ * <table border="1">
  * <tr><th>Name</th>               <th>Meaning</th>                                                    <th>Example</th></tr>
  * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td>  <td>{@code "3.0.0"}</td></tr>
  * <tr><td>{@code newVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td>  <td>{@code "3.1-M04"}</td></tr>
@@ -82,10 +83,6 @@ public final class ChangeReport {
             return;
         }
         final File outputFile = new File(args[2]);
-        if (outputFile.exists()) {
-            System.err.println("Output file " + outputFile + " already exists.");
-            return;
-        }
         new ChangeReport(new Version(args[0]), new Version(args[1])).write(outputFile);
     }
 
@@ -119,7 +116,7 @@ public final class ChangeReport {
      *         (too many checked exceptions for enumerating them all).
      */
     public void write(final File outputFile) throws Exception {
-        final Writer out = new BufferedWriter(new FileWriter(outputFile));
+        final Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
         out.write("<!DOCTYPE html>\n"
                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
                 + "  <head>\n"
