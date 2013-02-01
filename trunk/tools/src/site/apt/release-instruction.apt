@@ -15,7 +15,7 @@ $PWD/tools/target/tools-3.1-SNAPSHOT.jar
 cd geoapi/src/main/java
 find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.apt.IndexGenerator
 cd -
-svn commit -m "Updated the list of GeoAPI classes and methods."
+svn commit --message "Updated the list of GeoAPI classes and methods."
 ---------------------------------------------------------------------------------------------
 
 
@@ -36,10 +36,11 @@ export GEOAPI_VERSION=3.1-M05
 ---------------------------------------------------------------------------------------------
 svn copy https://svn.code.sf.net/p/geoapi/code/trunk \
          https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION \
-         -m "Created the tag for GeoAPI $GEOAPI_VERSION milestone."
+         --message "Created the tag for GeoAPI $GEOAPI_VERSION milestone."
 ---------------------------------------------------------------------------------------------
 
   Get a local copy of the tag and edit the version number:
+  (<<Note:>> BSD variant of <<<sed>>> expects <<<-i ''>>> parameter instead of <<<--in-place=''>>>)
 
 ---------------------------------------------------------------------------------------------
 cd ../tags
@@ -54,7 +55,7 @@ svn diff
 ---------------------------------------------------------------------------------------------
 mvn clean install
 svn status
-svn commit -m "Set the version number to $GEOAPI_VERSION."
+svn commit --message "Set the version number to $GEOAPI_VERSION."
 mvn clean deploy
 ---------------------------------------------------------------------------------------------
 
