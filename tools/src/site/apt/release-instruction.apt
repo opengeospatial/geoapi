@@ -90,7 +90,7 @@ zip -9 geoapi-$GEOAPI_VERSION.zip geoapi-$GEOAPI_VERSION.jar
 * Create the list of API changes since previous releases
 
   Edit the version numbers declared in the <<<jdiff.sh>>> file,
-  then apply the instructions documented in the {{{./index.html}home page}}.
+  then apply the instructions documented in the {{{./index.html}tools page}}.
 
 
 * Final clean
