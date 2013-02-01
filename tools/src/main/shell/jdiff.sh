@@ -83,8 +83,8 @@ javadoc -docletpath ../../libraries/jdiff.jar -doclet jdiff.JDiff -docchanges \
 # Fix broken HTML and remove useless files.
 #
 cd $GEOAPI_HOME/target/site/changes
-find . -name "*.html" -print | xargs sed -i '' "s/lEsS_tHaN/&lt;/g"
-find . -name "*.html" -print | xargs sed -i '' "s/aNd_cHaR/&amp;/g"
-find . -name "*.html" -print | xargs sed -i '' "s/quote_cHaR/&quot;/g"
-find . -name "missingSinces.txt" -delete
+find . -name "*.html" -print | xargs sed --in-place='' "s/lEsS_tHaN/&lt;/g"
+find . -name "*.html" -print | xargs sed --in-place='' "s/aNd_cHaR/&amp;/g"
+find . -name "*.html" -print | xargs sed --in-place='' "s/quote_cHaR/&quot;/g"
+find . -name "missingSinces.txt"  -delete
 find . -name "user_comments*.xml" -delete
