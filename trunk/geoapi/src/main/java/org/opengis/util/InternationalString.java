@@ -60,25 +60,25 @@ import java.util.Locale;
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,
-     * then some default locale is used. The default locale is implementation-dependent.
-     * It may or may not be the {@linkplain Locale#getDefault() system default}, and is not
-     * necessarily the same locale than the one used by the {@link #toString()} method.
+     * then some fallback locale is used. The fallback locale is implementation-dependent, and
+     * is not necessarily the same than the default locale used by the {@link #toString()} method.
      *
-     * @param  locale The desired locale for the string to be returned, or {@code null}
-     *         for a string in the implementation default locale.
-     * @return The string in the given locale if available, or in the default locale otherwise.
+     * @param  locale The desired locale for the string to be returned.
+     * @return The string in the given locale if available, or in an
+     *         implementation-dependent fallback locale otherwise.
+     *
+     * @see Locale#getDefault()
+     * @see Locale#ROOT
      */
     String toString(Locale locale);
 
     /**
      * Returns this string in the default locale. The default locale is implementation-dependent.
-     * It may or may not be the {@linkplain Locale#getDefault() system default}. If the default
-     * locale is the {@linkplain Locale#getDefault() system default} (a recommended practice),
-     * then invoking this method is equivalent to invoking
-     * <code>{@linkplain #toString(Locale) toString}({@linkplain Locale#getDefault()})</code>.
+     * It may be the {@linkplain Locale#getDefault() system default}, the {@linkplain Locale#ROOT
+     * root locale} or any other locale at implementation choice.
      *
-     * <P>All methods from {@link CharSequence} operate on this string. This string is also
-     * used as the criterion for {@linkplain Comparable natural ordering}.</P>
+     * <p>All methods from {@link CharSequence} operate on this string.
+     * This string is also used as the criterion for {@linkplain Comparable natural ordering}.</p>
      *
      * @return The string in the default locale.
      */
