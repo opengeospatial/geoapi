@@ -131,8 +131,8 @@ public interface NameFactory extends Factory {
     /**
      * Creates a local name from the given character sequence. The character sequence can be either
      * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
-     * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
-     * but not necessarily) for the unlocalized string to be returned by {@link LocalName#toString()}.
+     * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
+     * returned by {@link LocalName#toString()}.
      *
      * @param scope
      *          The {@linkplain GenericName#scope() scope} of the local name to be created,
@@ -148,8 +148,8 @@ public interface NameFactory extends Factory {
     /**
      * Creates a local or scoped name from an array of parsed names. The array elements can be either
      * {@link String} or {@link InternationalString} instances. In the later case, implementations
-     * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
-     * but not necessarily) for the unlocalized string to be returned by {@link GenericName#toString()}.
+     * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
+     * returned by {@link LocalName#toString()}.
      * <p>
      * If the length of the {@code parsedNames} array is 1, then this method returns an instance
      * of {@link LocalName}. If the length is 2 or more, then this method returns an instance of
