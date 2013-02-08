@@ -143,7 +143,7 @@ public final class Version implements Comparable<Version> {
     /**
      * Returns the path to the given GeoAPI artefact, relative to the local Maven repository.
      *
-     * @param  artefact The GeoAPI artefact.
+     * @param  artefact The GeoAPI artefact ({@code "geoapi"} or {@code "geoapi-conformance"}).
      * @return Path to the given artefact relative to the local Maven repository.
      */
     final String getMavenArtefactPath(final String artefact) {
@@ -151,6 +151,41 @@ public final class Version implements Comparable<Version> {
         toString(buffer.append("org/opengis/").append(artefact).append('/'));
         toString(buffer.append('/').append(artefact).append('-'));
         return buffer.append(".jar").toString();
+    }
+
+    /**
+     * Returns the base URL of the javadoc for this GeoAPI version.
+     * The returned URL shall ends with a trailing slash character.
+     *
+     * @param  artefact The GeoAPI artefact ({@code "geoapi"} or {@code "geoapi-conformance"}).
+     * @return The base URL of the javadoc for this GeoAPI version.
+     */
+    final String getJavadocURL(final String artefact) {
+        if (artefact.endsWith("conformance")) {
+            switch (major) {
+                case 3: switch (minor) {
+                    case 1:  return "http://www.geoapi.org/geoapi-conformance/apidocs/";
+                    default: return null;
+                }
+                default: return null;
+            }
+        }
+        switch (major) {
+            case 0: return "http://www.geoapi.org/0.1/javadoc/";
+            case 1: return "http://www.geoapi.org/1.0/javadoc/";
+            case 2: switch (minor) {
+                case 0:  return "http://www.geoapi.org/2.0/javadoc/";
+                case 1:  return "http://www.geoapi.org/2.1/javadoc/";
+                case 2:  return "http://www.geoapi.org/2.2/javadoc/";
+                default: return null;
+            }
+            case 3: switch (minor) {
+                case 0:  return "http://www.geoapi.org/3.0/javadoc/";
+                case 1:  return "http://www.geoapi.org/snapshot/javadoc/";
+                default: return null;
+            }
+            default: return null;
+        }
     }
 
     /**

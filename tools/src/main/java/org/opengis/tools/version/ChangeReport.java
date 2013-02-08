@@ -43,11 +43,11 @@ import java.io.IOException;
  * Reports public and protected API changes between two JAR files.
  * The arguments expected by the main methods are:
  * <p>
- * <table border="1">
- * <tr><th>Name</th>               <th>Meaning</th>                                                    <th>Example</th></tr>
- * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td>  <td>{@code "3.0.0"}</td></tr>
- * <tr><td>{@code newVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td>  <td>{@code "3.1-M04"}</td></tr>
- * <tr><td>{@code outputFile}</td> <td>Name of the file to create. This file shall not exist.</td>     <td>{@code "Changes.html"}</td></tr>
+ * <table border="1" cellspacing="0" cellpadding="2">
+ * <tr bgcolor="#CCCCFF" class="TableHeadingColor"><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
+ * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.0"}</td></tr>
+ * <tr><td>{@code newVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M04"}</td></tr>
+ * <tr><td>{@code outputFile}</td> <td>Name of the file to create. This file shall not exist.</td>    <td>{@code "Changes.html"}</td></tr>
  * </table>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -136,12 +136,20 @@ public final class ChangeReport {
         out.write(oldVersion.toString());
         out.write(" and ");
         out.write(newVersion.toString());
-        out.write("</h2>\n");
-        write(collectAPIChanges("geoapi"), out, true);
+        out.write("</h2>\n"
+                + "    <p>The following table summarizes all API changes in the "
+                + "<a href=\"http://www.geoapi.org/geoapi/index.html\">normative part</a> of GeoAPI.\n"
+                + "    It does not include the pending part, conformance tests and code examples.</p>\n");
+        write(out, collectAPIChanges("geoapi"), "geoapi");
         if (Math.min(oldVersion.major, newVersion.major) >= 2) {
-            out.write("    <hr/>\n"
-                    + "    <h2>Changes in GeoAPI-conformance</h2>\n");
-            write(collectAPIChanges("geoapi-conformance"), out, false);
+            out.write("    <p/>\n"
+                    + "    <hr/>\n"
+                    + "    <h2>Changes in GeoAPI-conformance</h2>\n"
+                    + "    <p>The following table summarizes changes in the "
+                    + "<a href=\"http://www.geoapi.org/geoapi-conformance/index.html\">conformance tests</a> provided by GeoAPI.\n"
+                    + "    The <code>geoapi-conformance</code> test suite is not part of standard API that vendors are expected to "
+                    + "implement, and will change over time to offer clarification for GeoAPI implementations.<p>\n");
+            write(out, collectAPIChanges("geoapi-conformance"), "geoapi-conformance");
         }
         out.write("  </div></body>\n"
                 + "</html>\n");
@@ -153,13 +161,14 @@ public final class ChangeReport {
      * The given set shall contains only API differences (new or removed elements).
      *
      * @param  elements The elements to write.
-     * @param  out Where to write the differences.
-     * @param  showIdentifiers {@code true} for writing the "OGC/ISO name" column.
+     * @param  out      Where to write the differences.
+     * @param  artefact The GeoAPI artefact ({@code "geoapi"} or {@code "geoapi-conformance"}).
      * @throws IOException If an I/O error occurred.
      */
-    private static void write(final JavaElement[] elements, final Writer out,
-            final boolean showIdentifiers) throws IOException
+    private void write(final Writer out, final JavaElement[] elements, final String artefact)
+            throws IOException
     {
+        final boolean showIdentifiers = !artefact.endsWith("conformance");
         JavaElement container = null;
         out.write("    <table border=\"1\" cellspacing=\"0\">\n"
                 + "      <tr>\n");
@@ -168,6 +177,7 @@ public final class ChangeReport {
         }
         out.write("        <th>Modified type or member</th>\n"
                 + "        <th>Change description</th>\n"
+                + "        <th>Javadoc</th>\n"
                 + "      </tr>\n");
         for (final JavaElement element : elements) {
             if (!JavaElement.nameEquals(element.container, container)) {
@@ -177,10 +187,10 @@ public final class ChangeReport {
                 if (showIdentifiers) {
                     out.write("></th><th class=\"section\"");
                 }
-                out.write(" colspan=\"2\">");
+                out.write(" colspan=\"3\">");
                 out.write(container.kind.label);
                 out.write(" <code>");
-                writeFullyQualifiedName(container, out);
+                writeFullyQualifiedName(out, container, '.');
                 out.write("</code></th>\n");
                 out.write("      </tr>\n");
             }
@@ -202,7 +212,7 @@ public final class ChangeReport {
             if (isDeleted) {
                 out.write("<del>");
             }
-            out.write(element.javaName);
+            out.write(element.getSimpleName());
             if (isDeleted) {
                 out.write("</del>");
                 if (changes.isRemoved && element.isDeprecated) {
@@ -219,6 +229,11 @@ public final class ChangeReport {
                 changes.write(out);
             }
             out.write(        "</td>\n"
+                    + "        <td>\n");
+            writeLinkToJavadoc(out, artefact, element, false);
+            out.write(' ');
+            writeLinkToJavadoc(out, artefact, element, true);
+            out.write(        "</td>\n"
                     + "      </tr>\n");
         }
         out.write("    </table>\n");
@@ -226,12 +241,73 @@ public final class ChangeReport {
 
     /**
      * Writes the fully-qualified name of the given element to the given writer.
+     *
+     * @param out       Where to write the name.
+     * @param element   The element for which to write the name.
+     * @param separator The separator character to insert between the names:
+     *                  {@code '.'} for package name or {@code '/'} for URL.
      */
-    private static void writeFullyQualifiedName(final JavaElement element, final Writer out) throws IOException {
+    private static void writeFullyQualifiedName(final Writer out, final JavaElement element,
+            final char separator) throws IOException
+    {
         if (element.container != null) {
-            writeFullyQualifiedName(element.container, out);
-            out.write('.');
+            writeFullyQualifiedName(out, element.container, separator);
+            out.write(separator);
         }
-        out.write(element.javaName);
+        String javaName = element.javaName;
+        if (JavaElementKind.PACKAGE.equals(element.kind)) {
+            javaName = javaName.replace('.', separator);
+        }
+        out.write(javaName);
+    }
+
+    /**
+     * Formats the path to the Javadoc URL for the given element.
+     *
+     * @param out     Where to write the javadoc.
+     * @param element The element for which to write the link to the javadoc.
+     */
+    private static void writePathToJavadoc(final Writer out, final JavaElement element)
+            throws IOException
+    {
+        if (element.kind.isMember) {
+            writePathToJavadoc(out, element.container);
+            out.write('#');
+            out.write(element.javaName);
+        } else {
+            writeFullyQualifiedName(out, element, '/');
+            out.write(".html");
+        }
+    }
+
+    /**
+     * Writes the {@code "<a href>"} HTML element to the Javadoc of the given Java element.
+     *
+     * @param out      Where to write the Javadoc.
+     * @param artefact The GeoAPI artefact ({@code "geoapi"} or {@code "geoapi-conformance"}).
+     * @param element  The element for which to write the link to the Javadoc.
+     * @param toNew    {@code true} for link to new Javadoc, or {@code false} for link to old Javadoc.
+     */
+    private void writeLinkToJavadoc(final Writer out, final String artefact,
+            final JavaElement element, final boolean toNew) throws IOException
+    {
+        final Version version = toNew ? newVersion : oldVersion;
+        if (version != null) {
+            final JavaElementChanges changes = element.changes();
+            String javadocURL = null;
+            if (toNew ? (changes == null || !changes.isRemoved) : (changes != null)) {
+                javadocURL = version.getJavadocURL(artefact);
+            }
+            if (javadocURL != null) {
+                out.write("<a href=\"");
+                out.write(javadocURL);
+                writePathToJavadoc(out, element);
+                out.write("\">");
+            } else {
+                out.write("<span class=\"disabled\">");
+            }
+            out.write(toNew ? "new" : "prev");
+            out.write((javadocURL != null) ? "</a>" : "</span>");
+        }
     }
 }

@@ -44,3 +44,7 @@ span.remove {
 span.note {
   color: gray;
 }
+
+span.disabled {
+  color: lightgray;
+}

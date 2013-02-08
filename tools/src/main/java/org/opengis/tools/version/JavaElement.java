@@ -68,7 +68,7 @@ final class JavaElement implements Comparable<JavaElement> {
     final JavaElementKind kind;
 
     /**
-     * The attribute type, or {@code null} if it doesn't applied.
+     * The attribute type, or {@code null} if it doesn't apply.
      * <ul>
      *   <li>For fields, this is the type of the field.</li>
      *   <li>For methods, this is the method return type.</li>
@@ -79,6 +79,11 @@ final class JavaElement implements Comparable<JavaElement> {
 
     /**
      * The name in the Java programming language.
+     * <ul>
+     *   <li>For package names, this is the fully qualified name.</li>
+     *   <li>For type names (classes, interfaces or enumerations), this is the simple (non-qualified) name.</li>
+     *   <li>For constructors and methods, this include the parameter names.</li>
+     * </ul>
      */
     final String javaName;
 
@@ -245,6 +250,8 @@ final class JavaElement implements Comparable<JavaElement> {
 
     /**
      * Adds parameter types to the given method or constructor name.
+     * This method adds fully-qualified parameter names. For simpler
+     * (non-qualified) parameter names, invoke {@link #getMethodName()}.
      */
     private static String addParameters(String name, final Class<?>[] parameters) {
         boolean hasParameters = false;
@@ -253,10 +260,31 @@ final class JavaElement implements Comparable<JavaElement> {
             if (hasParameters) {
                 buffer.append(", ");
             }
-            buffer.append(param.getSimpleName());
+            buffer.append(param.getCanonicalName());
             hasParameters = true;
         }
         return buffer.append(')').toString();
+    }
+
+    /**
+     * Returns the {@link #javaName} with non-qualified parameter names.
+     */
+    final String getSimpleName() {
+        StringBuilder buffer = null;
+        for (int i=javaName.lastIndexOf('.'); i>=0; i=javaName.lastIndexOf('.', i)) {
+            final int end = i+1;
+            while (--i >= 0) {
+                final int c = javaName.charAt(i);
+                if (!Character.isJavaIdentifierPart(c) && c != '.') {
+                    break;
+                }
+            }
+            if (buffer == null) {
+                buffer = new StringBuilder(javaName);
+            }
+            buffer.delete(i+1, end);
+        }
+        return (buffer != null) ? buffer.toString() : javaName;
     }
 
     /**
@@ -364,7 +392,7 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder().append(kind).append('[').append(javaName);
+        final StringBuilder buffer = new StringBuilder().append(kind).append('[').append(getSimpleName());
         if (ogcName != null) {
             buffer.append(", UML(“").append(ogcName).append("”)");
         }
