@@ -34,6 +34,8 @@ package org.opengis.parameter;
 import java.net.URI;
 import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -53,12 +55,13 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see ParameterDescriptor
  * @see ParameterValueGroup
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="CC_ParameterValue", specification=ISO_19111)
 public interface ParameterValue<T> extends GeneralParameterValue {
     /**

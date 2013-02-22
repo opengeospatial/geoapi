@@ -150,7 +150,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see javax.naming.Name

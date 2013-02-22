@@ -32,6 +32,9 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
+
 import static org.opengis.annotation.Specification.*;
 
 
@@ -40,9 +43,10 @@ import static org.opengis.annotation.Specification.*;
  * and of the classifications of features and their relationships.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_ThematicAccuracy", specification=ISO_19115)
 public interface ThematicAccuracy extends Element {
 }

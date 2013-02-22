@@ -32,6 +32,8 @@
 package org.opengis.metadata.identification;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -60,9 +62,10 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * </pre></blockquote>
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_RepresentativeFraction", specification=ISO_19115)
 public interface RepresentativeFraction {
     /**

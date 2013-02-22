@@ -34,6 +34,8 @@ package org.opengis.geometry;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -56,11 +58,12 @@ import static org.opengis.annotation.Specification.*;
  *   convenience, because it is extensively used.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @navassoc 1 - - CoordinateReferenceSystem
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position {
     /**

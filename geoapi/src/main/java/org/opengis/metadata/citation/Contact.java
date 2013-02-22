@@ -33,6 +33,8 @@ package org.opengis.metadata.citation;
 
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -42,13 +44,14 @@ import static org.opengis.annotation.Specification.*;
  * Information required to enable contact with the responsible person and/or organization.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @navassoc 1 - - Telephone
  * @navassoc 1 - - Address
  * @navassoc 1 - - OnlineResource
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Contact", specification=ISO_19115)
 public interface Contact {
     /**

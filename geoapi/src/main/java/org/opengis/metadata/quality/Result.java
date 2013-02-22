@@ -32,6 +32,9 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
+
 import static org.opengis.annotation.Specification.*;
 
 
@@ -39,9 +42,10 @@ import static org.opengis.annotation.Specification.*;
  * Base interface of more specific result classes.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Result", specification=ISO_19115)
 public interface Result {
 }

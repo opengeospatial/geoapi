@@ -33,6 +33,8 @@ package org.opengis.parameter;
 
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -47,13 +49,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @see GeneralParameterValue
  *
  * @navassoc 1 - - GeneralParameterValue
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**

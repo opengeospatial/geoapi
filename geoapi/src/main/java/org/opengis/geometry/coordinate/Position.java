@@ -34,6 +34,8 @@ package org.opengis.geometry.coordinate;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.primitive.Point;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -57,11 +59,12 @@ import static org.opengis.annotation.Specification.*;
  *   been changed to mandatory since all three types conceptually have a well defined location.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @issue http://jira.codehaus.org/browse/GEO-87
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="GM_Position", specification=ISO_19107)
 public interface Position {
     /**
