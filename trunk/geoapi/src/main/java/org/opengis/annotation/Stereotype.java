@@ -29,27 +29,47 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
+package org.opengis.annotation;
+
 
 /**
- * Set of annotations mapping <a href="http://www.geoapi.org">GeoAPI</a>
- * interfaces to <a href="http://www.opengeospatial.org">Open Geospatial</a> UML or XML schemas.
+ * Type of modeling element as declared in the OGC/ISO UML diagram.
+ * Values of this enumeration are associated to GeoAPI interfaces by the {@link Classifier}
+ * annotation.
  * <p>
- * The most frequently used annotation is {@link org.opengis.annotation.UML}, which documents
- * the standard in which are defined the type or method, the original name of the element and
- * the obligation level of the type if other than the default mandatory level of obligation.
- * As an example, the annotation for the {@link org.opengis.referencing.crs.ProjectedCRS}
- * interface appears in the source code as:
+ * This enumeration does not include the <cite>code list</cite> and <cite>enumeration</cite>
+ * stereotypes, because instances of those types are identified by the
+ * {@link org.opengis.util.CodeList} and {@link Enum} base classes.
  *
- * <blockquote><pre>@UML(identifier = "SC_ProjectedCRS",
- *     specification = ISO_19111)</pre></blockquote>
- *
- * These annotations are available at runtime by Java introspection. This is useful, for example,
- * when code needs to marshall data using the name defined by the ISO standard rather than the
- * GeoAPI name.
- *
- * @author  Martin Desruisseaux (IRD)
- * @author  Cédric Briançon (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
+ *
+ * @see <a href="http://en.wikipedia.org/wiki/Stereotype_%28UML%29">Stereotype on Wikipedia</a>
  */
-package org.opengis.annotation;
+public enum Stereotype {
+    /**
+     * Class that specifies a domain of objects together with the operations applicable to the
+     * objects, without defining the physical implementation of those objects.
+     * <p>
+     * This is the default value for interfaces without {@link Classifier} annotation.
+     */
+    TYPE,
+
+    /**
+     * Encapsulation of data, as opposed to taxonomic or behavioural descriptions.
+     * Data types may not have an identity of their own and are usually aggregated
+     * into some sort of container such as being an attribute in another class.
+     */
+    DATATYPE,
+
+    /**
+     * Root class for a structural polymorphism. Abstract types are not directly instantiable.
+     */
+    ABSTRACT,
+
+    /**
+     * Type consisting of one and only one of several alternatives (listed as member attributes).
+     */
+    UNION
+}

@@ -33,7 +33,7 @@ package org.opengis.annotation;
 
 
 /**
- * The specifications from which an interface, method or code list was derived.
+ * ISO/OGC specifications from which an interface, method or code list was derived.
  * Some specifications are available both at OGC and ISO.
  *
  * @author  Martin Desruisseaux (IRD)

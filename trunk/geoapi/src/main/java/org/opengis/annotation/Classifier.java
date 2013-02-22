@@ -29,27 +29,42 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
+package org.opengis.annotation;
+
+import java.lang.annotation.Target;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Documented;
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.*;
+
 
 /**
- * Set of annotations mapping <a href="http://www.geoapi.org">GeoAPI</a>
- * interfaces to <a href="http://www.opengeospatial.org">Open Geospatial</a> UML or XML schemas.
+ * An annotation specifying the stereotype (abstract, datatype, union, <i>etc.</i>) of an interface.
+ * The UML class diagrams in ISO/OGC specifications declare some members as abstract, meaning that
+ * instances of those interfaces are expected to implement one of their sub-interfaces.
+ * While there is nothing like "abstract interface" and "concrete interface" in the Java language,
+ * we nevertheless communicate ISO/OGC intend using this annotation.
  * <p>
- * The most frequently used annotation is {@link org.opengis.annotation.UML}, which documents
- * the standard in which are defined the type or method, the original name of the element and
- * the obligation level of the type if other than the default mandatory level of obligation.
- * As an example, the annotation for the {@link org.opengis.referencing.crs.ProjectedCRS}
- * interface appears in the source code as:
+ * Implementations are not required to represent "abstract interfaces" by Java abstract classes.
+ * This annotation is provided merely for informative purpose for testing tools, implementations
+ * based on Java reflection, or widgets among other usages.
+ * <p>
+ * If this annotation is not present, then the default value is {@link Stereotype#TYPE}.
  *
- * <blockquote><pre>@UML(identifier = "SC_ProjectedCRS",
- *     specification = ISO_19111)</pre></blockquote>
- *
- * These annotations are available at runtime by Java introspection. This is useful, for example,
- * when code needs to marshall data using the name defined by the ISO standard rather than the
- * GeoAPI name.
- *
- * @author  Martin Desruisseaux (IRD)
- * @author  Cédric Briançon (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
+ *
+ * @see <a href="http://en.wikipedia.org/wiki/Classifier_%28UML%29">Classifier on Wikipedia</a>
  */
-package org.opengis.annotation;
+@Documented
+@Retention(RUNTIME)
+@Target(TYPE)
+public @interface Classifier {
+    /**
+     * Returns the type of modeling element (type, datatype, abstract or union).
+     *
+     * @return The type of modeling element as declared in the OGC/ISO UML diagram.
+     */
+    Stereotype value();
+}
