@@ -35,9 +35,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Obligation of the element or entity. The enum values declared here duplicate the code list
- * elements declared in the {@link org.opengis.metadata.Obligation} code list from the metadata
- * package.
+ * Whether an element is mandatory, optional or have other obligation.
+ * The enumeration values declared here duplicate the code list elements declared in
+ * the {@link org.opengis.metadata.Obligation} code list from the metadata package.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

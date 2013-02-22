@@ -33,6 +33,8 @@ package org.opengis.util;
 
 import java.util.List;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -157,6 +159,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - NameSpace
  */
+@Classifier(Stereotype.ABSTRACT) // This is said in the text (not the UML) of ISO 19103.
 @UML(identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable<GenericName> {
     /**
