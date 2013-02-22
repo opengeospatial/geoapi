@@ -36,6 +36,8 @@ import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -55,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * javadoc.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
@@ -63,6 +65,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - Extent
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CD_Datum", specification=ISO_19111)
 public interface Datum extends IdentifiedObject {
     /**

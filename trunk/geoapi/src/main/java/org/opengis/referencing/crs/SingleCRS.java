@@ -34,6 +34,8 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -57,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
  * the subtype "Temporal" which has been added by analogy.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
@@ -65,6 +67,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc 1 - - Datum
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**

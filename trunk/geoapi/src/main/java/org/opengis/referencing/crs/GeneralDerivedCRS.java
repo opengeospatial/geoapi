@@ -33,6 +33,8 @@ package org.opengis.referencing.crs;
 
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,12 +46,13 @@ import static org.opengis.annotation.Specification.*;
  * (not by a {@linkplain org.opengis.referencing.datum.Datum datum}).
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @navassoc 1 - - CoordinateReferenceSystem
  * @navassoc 1 - - Conversion
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111)
 public interface GeneralDerivedCRS extends SingleCRS {
     /**
@@ -66,8 +69,8 @@ public interface GeneralDerivedCRS extends SingleCRS {
      * @return The conversion from the base CRS.
      *
      * @departure rename
-     *   "<code>conversion</code>" may be confusing as a method name since it does not indicate 
-     *   which CRS is the source or which is the target. OGC document 01-009 used the 
+     *   "<code>conversion</code>" may be confusing as a method name since it does not indicate
+     *   which CRS is the source or which is the target. OGC document 01-009 used the
      *   <code>toBase()</code> method name. By analogy with 01-009, GeoAPI defines a method name
      *   which contains the "<code>FromBase</code>" expression.
      */

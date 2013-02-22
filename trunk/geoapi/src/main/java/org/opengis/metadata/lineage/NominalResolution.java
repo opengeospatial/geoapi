@@ -32,6 +32,8 @@
 package org.opengis.metadata.lineage;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -41,9 +43,10 @@ import static org.opengis.annotation.Specification.*;
  * Distance between consistent parts of (centre, left side, right side) adjacent pixels.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="LE_NominalResolution", specification=ISO_19115_2)
 public interface NominalResolution {
     /**

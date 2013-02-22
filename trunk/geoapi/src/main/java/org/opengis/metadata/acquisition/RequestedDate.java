@@ -32,8 +32,9 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Date;
-
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -43,9 +44,10 @@ import static org.opengis.annotation.Specification.*;
  * Range of date validity.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="MI_RequestedDate", specification=ISO_19115_2)
 public interface RequestedDate {
     /**

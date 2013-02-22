@@ -35,6 +35,8 @@ import java.net.URI;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.ComplianceLevel.*;
@@ -47,11 +49,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @navassoc 1 - - OnLineFunction
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)
 public interface OnlineResource {
     /**

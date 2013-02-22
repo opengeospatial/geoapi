@@ -35,6 +35,8 @@ import java.util.Collection;
 import javax.measure.unit.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,12 +46,13 @@ import static org.opengis.annotation.Specification.*;
  * Information about the media on which the resource can be distributed.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @navassoc 1 - - MediumName
  * @navassoc - - - MediumFormat
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Medium", specification=ISO_19115)
 public interface Medium {
     /**

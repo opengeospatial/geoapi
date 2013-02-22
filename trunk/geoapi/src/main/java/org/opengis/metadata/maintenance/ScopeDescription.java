@@ -33,6 +33,8 @@ package org.opengis.metadata.maintenance;
 
 import java.util.Set;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 
@@ -45,13 +47,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @navassoc - - - AttributeType
  * @navassoc - - - FeatureType
  * @navassoc - - - AttributeType
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
     /**

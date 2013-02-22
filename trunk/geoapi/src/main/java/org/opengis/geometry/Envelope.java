@@ -36,6 +36,8 @@ import java.awt.geom.Rectangle2D; // Used in @see javadoc tags
 import org.opengis.referencing.cs.RangeMeaning; // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -69,7 +71,7 @@ import static org.opengis.annotation.Specification.*;
  *   convenience, because it is extensively used.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.coverage.grid.GridEnvelope
@@ -77,6 +79,7 @@ import static org.opengis.annotation.Specification.*;
  * @navassoc 1 - - CoordinateReferenceSystem
  * @navassoc 2 - - DirectPosition
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="GM_Envelope", specification=ISO_19107)
 public interface Envelope {
     /**

@@ -34,6 +34,8 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -61,11 +63,12 @@ import static org.opengis.annotation.Specification.*;
  * expressed in whole years.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @navassoc 1 - - CoordinateSystem
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
