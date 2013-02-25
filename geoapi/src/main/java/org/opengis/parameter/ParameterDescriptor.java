@@ -95,9 +95,8 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     Set<T> getValidValues();
 
     /**
-     * Returns the default value for the parameter. The return type can be any type
-     * including a {@link Number} or a {@link String}. If there is no default value,
-     * then this method returns {@code null}.
+     * Returns the default value for the parameter.
+     * If there is no default value, then this method returns {@code null}.
      *
      * @return The default value, or {@code null} in none.
      */
@@ -106,14 +105,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
 
     /**
      * Returns the minimum parameter value.
+     * If there is no minimum value, or if the minimum value is inappropriate for the
+     * {@linkplain #getValueClass() parameter class}, then this method returns {@code null}.
      *
-     * If there is no minimum value, or if minimum
-     * value is inappropriate for the {@linkplain #getValueClass() parameter type}, then
-     * this method returns {@code null}.
-     * <p>
-     * When the getValueClass() is an array or Collection getMinimumValue
-     * may be used to constrain the contained elements.
-     * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
@@ -121,26 +115,21 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
 
     /**
      * Returns the maximum parameter value.
+     * If there is no maximum value, or if the maximum value is inappropriate for the
+     * {@linkplain #getValueClass() parameter class}, then this method returns {@code null}.
      *
-     * If there is no maximum value, or if maximum
-     * value is inappropriate for the {@linkplain #getValueClass() parameter type}, then
-     * this method returns {@code null}.
-     * <p>
-     * When the getValueClass() is an array or Collection getMaximumValue
-     * may be used to constraint the contained elements.
-     *
-     * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
+     * @return The maximum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable<T> getMaximumValue();
 
     /**
-     * Returns the unit for
-     * {@linkplain #getDefaultValue default},
-     * {@linkplain #getMinimumValue minimum} and
-     * {@linkplain #getMaximumValue maximum} values.
-     * This attribute apply only if the values is of numeric type (usually an instance
-     * of {@link Double}).
+     * Returns the unit of measurement for the
+     * {@linkplain #getDefaultValue() default},
+     * {@linkplain #getMinimumValue() minimum} and
+     * {@linkplain #getMaximumValue() maximum} values.
+     * This attribute apply only if the values is of numeric type
+     * (usually an instance of {@link Double}).
      *
      * @return The unit for numeric value, or {@code null} if it doesn't apply to the value type.
      *
