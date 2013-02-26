@@ -85,10 +85,11 @@ public final class SortOrder extends CodeList<SortOrder> {
     private final String sqlKeyword;
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      * @param sqlKeyword The SQL keyword for this sorting order.
      */
     private SortOrder(final String name, final String sqlKeyword) {
@@ -128,8 +129,11 @@ public final class SortOrder extends CodeList<SortOrder> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
      */
+    @Override
     public SortOrder[] family() {
         return values();
     }

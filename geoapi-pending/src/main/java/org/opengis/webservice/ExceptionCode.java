@@ -116,10 +116,11 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     public static final ExceptionCode NO_APPLICABLE_CODE = new ExceptionCode("NO_APPLICABLE_CODE");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private ExceptionCode(final String name) {
         super(name, VALUES);
@@ -137,8 +138,11 @@ public final class ExceptionCode extends CodeList<ExceptionCode> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
      */
+    @Override
     public ExceptionCode[] family() {
         return values();
     }

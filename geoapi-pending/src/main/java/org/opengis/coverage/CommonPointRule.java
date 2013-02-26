@@ -114,10 +114,11 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     public static final CommonPointRule END = new CommonPointRule("END");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private CommonPointRule(final String name) {
         super(name, VALUES);
@@ -135,10 +136,11 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
-     *
-     * @return All common point rules defined.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
      */
+    @Override
     public CommonPointRule[] family() {
         return values();
     }
