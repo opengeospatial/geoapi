@@ -103,8 +103,10 @@ public strictfp class Assert extends org.junit.Assert {
      * @param value        The value to test, or {@code null} (which is a failure).
      */
     public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
-        if (expectedType != null) {
-            if (!expectedType.isInstance(value)) {
+        if (expectedType != null && !expectedType.isInstance(value)) {
+            if (value == null) {
+                fail(nonNull(message) + "Value is null.");
+            } else {
                 fail(nonNull(message) + "Value \"" + value + "\" is of type " + value.getClass().getSimpleName() +
                         " while the expected type was " + expectedType.getSimpleName() + '.');
             }
