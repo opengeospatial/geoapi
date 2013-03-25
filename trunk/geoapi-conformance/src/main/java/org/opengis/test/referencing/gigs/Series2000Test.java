@@ -215,6 +215,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   units. It gives the EPSG code and name for the unit of measure, together with the ratio of
      *   the unit to the ISO base unit for that unit type.</td>
      * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link CSAuthorityFactory#createUnit(String)}</td>
+     * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Unit of measure definitions bundled with software should have the ratio to the
      *   appropriate base unit as in the EPSG Dataset. The values of the base unit per unit
@@ -306,6 +309,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   of the inverse flattening (unitless) or the value of the semi-minor axis (in the same units
      *   as the semi-major axis). It additionally contain a flag to indicate that the figure is a
      *   sphere: if {@code false} the figure is an oblate ellipsoid.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link DatumAuthorityFactory#createEllipsoid(String)}</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Ellipsoid definitions bundled with software, if any, should have same name and defining
@@ -405,6 +411,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Test data:</th>
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>.</td>
      * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link DatumAuthorityFactory#createPrimeMeridian(String)}</td>
+     * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Prime meridian definitions bundled with the software should have the same name and Greenwich
      *   Longitude as in the EPSG Dataset. Equivalent alternative units are acceptable but should be reported.
@@ -489,6 +498,11 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   library-defined component such as ED50 datum is selected it should then not be possible
      *   to change any of its lower-level components such as the ellipsoid from the pre-defined
      *   value (in this example International 1924).</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link DatumAuthorityFactory#createGeodeticDatum(String)},
+     *       {@link CRSAuthorityFactory#createGeographicCRS(String)},
+     *       {@link CRSAuthorityFactory#createGeocentricCRS(String)}</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Definitions bundled with the software should have the same name and associated ellipsoid
@@ -674,6 +688,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Test data:</th>
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>.</td>
      * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}</td>
+     * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Map projection definitions bundled with the software should have the same name, method
      *   name, defining parameters and parameter values as in the EPSG Dataset. The values of the
@@ -740,6 +757,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2006_libProjectedCRS.csv">{@code GIGS_2006_libProjectedCRS.csv}</a>.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link CRSAuthorityFactory#createProjectedCRS(String)}</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Projected CRS definitions bundled with the software should have the same name,
@@ -810,6 +830,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Test data:</th>
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2007_libGeodTfm.csv">{@code GIGS_2007_libGeodTfm.csv}</a>.</td>
      * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}</td>
+     * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Transformation definitions bundled with the software should have the same name, method
      *   name, defining parameters and parameter values as in EPSG Dataset. The values of the parameters
@@ -869,6 +892,11 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Test data:</th>
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>.
      *   Compare vertical datums definition included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link DatumAuthorityFactory#createVerticalDatum(String)},
+     *       {@link CRSAuthorityFactory#createVerticalCRS(String)}</td>
+     * </tr><tr>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Definitions bundled with the software should have the same name and coordinate system (including
@@ -971,6 +999,9 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Test data:</th>
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>.
      *   Compare vertical transformation definitions included in the software against the EPSG Dataset.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>Transformation definitions bundled with the software should have same name, method name, defining
