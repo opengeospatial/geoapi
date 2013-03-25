@@ -299,7 +299,7 @@ public abstract class Report {
 
     /**
      * Ensures that the given {@link File} object denotes a file (not a directory).
-     * If the given argument is a director, then the {@code "FILENAME"} property
+     * If the given argument is a directory, then the {@code "FILENAME"} property
      * value will be added.
      */
     final File toFile(File destination) {
@@ -327,7 +327,7 @@ public abstract class Report {
     public abstract File write(final File destination) throws IOException;
 
     /**
-     * Copies the the given resource file to the given directory.
+     * Copies the given resource file to the given directory.
      * This method does nothing if the destination file already exits.
      *
      * @param  source The name of the resource to copy.

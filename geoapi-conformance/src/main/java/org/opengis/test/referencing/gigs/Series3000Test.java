@@ -37,7 +37,9 @@ import java.util.HashMap;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
+import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
+import javax.measure.quantity.Dimensionless;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -45,6 +47,7 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
+import org.opengis.test.Configuration;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -130,16 +133,71 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Returns the unit of the given name.
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     * <p>
+     * <ul>
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *     <ul>
+     *       <li>{@linkplain #crsFactory}</li>
+     *       <li>{@linkplain #csFactory}</li>
+     *       <li>{@linkplain #datumFactory}</li>
+     *       <li>{@linkplain #copFactory}</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     */
+    @Override
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.crsFactory,   crsFactory));
+        assertNull(op.put(Configuration.Key.csFactory,    csFactory));
+        assertNull(op.put(Configuration.Key.datumFactory, datumFactory));
+        assertNull(op.put(Configuration.Key.copFactory,   copFactory));
+        return op;
+    }
+
+    /**
+     * Returns the linear unit (compatible with metres) of the given name.
      *
      * @param  name The unit name.
-     * @return The unit for the given name.
+     * @return The linear unit for the given name.
      * @throws IllegalArgumentException If the given name is unsupported by this method.
      */
     private static Unit<Length> parseLinearUnit(final String name) throws IllegalArgumentException {
         if (name.equalsIgnoreCase("metre"))          return SI.METRE;
         if (name.equalsIgnoreCase("kilometre"))      return SI.KILOMETRE;
         if (name.equalsIgnoreCase("US survey foot")) return NonSI.FOOT_SURVEY_US;
+        if (name.equalsIgnoreCase("ft(US)"))         return NonSI.FOOT_SURVEY_US;
+        if (name.equalsIgnoreCase("foot"))           return NonSI.FOOT;
+        throw new IllegalArgumentException("Unsupported unit name: " + name);
+    }
+
+    /**
+     * Retrieve the angular unit (compatible with degrees) corresponding to the given name.
+     *
+     * @param  name The unit name.
+     * @return The angular unit for the given name.
+     * @throws IllegalArgumentException If the given name is unsupported by this method.
+     */
+    private static Unit<Angle> parseAngularUnit(final String name) throws IllegalArgumentException {
+        if (name.equalsIgnoreCase("degree"))      return NonSI.DEGREE_ANGLE;
+        if (name.equalsIgnoreCase("grad"))        return NonSI.GRADE;
+        if (name.equalsIgnoreCase("arc-second"))  return NonSI.SECOND_ANGLE;
+        if (name.equalsIgnoreCase("microradian")) return NonSI.CENTIRADIAN;
+        throw new IllegalArgumentException("Unsupported unit name: " + name);
+    }
+
+    /**
+     * Retrieve the scale unit (dimensionless) corresponding to the given name.
+     *
+     * @param  name The unit name.
+     * @return The scale unit for the given name.
+     * @throws IllegalArgumentException If the given name is unsupported by this method.
+     */
+    private static Unit<Dimensionless> parseScaleUnit(final String name) throws IllegalArgumentException {
+        if (name.equalsIgnoreCase("unity"))             return Unit.ONE;
+        if (name.equalsIgnoreCase("parts per million")) return Unit.ONE.divide(1000000);
         throw new IllegalArgumentException("Unsupported unit name: " + name);
     }
 
@@ -171,8 +229,8 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Creates the ellipsoids and optionally tests them. The behavior of this method depends on
-     * whatever {@code objects} is null or not:
+     * Creates the ellipsoids and optionally tests them.
+     * The behavior of this method depends on whether {@code objects} is null or not:
      * <p>
      * <ul>
      *   <li>If {@code null}, then all ellipsoids will be created and tested.</li>
@@ -262,6 +320,104 @@ public strictfp class Series3000Test extends GIGSTestCase {
             assertEquals  (message(prefix, "getInverseFlattening()"), inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
             assertEquals  (message(prefix, "isIvfDefinitive()"),      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
             assertEquals  (message(prefix, "isSphere()"),             isSphere,          ellipsoid.isSphere());
+        }
+    }
+
+    /**
+     * Prime meridian definition test.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>Verify that the software allows correct definition of a user-defined prime meridian.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3003_userPrimeMeridian.csv">{@code GIGS_3003_userPrimeMeridian.csv}</a>.
+     *  </td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>The software should accept the test data.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error occurred while creating a prime meridian.
+     */
+    @Test
+    public void test3003() throws FactoryException {
+        test3003(null);
+    }
+
+    /**
+     * Creates the prime meridians and optionally tests them.
+     * The behavior of this method depends on whether {@code objects} is null or not:
+     * <p>
+     * <ul>
+     *   <li>If {@code null}, then all meridians will be created and tested.</li>
+     *   <li>If non-null, then only the ones enumerated in the keys will be created,
+     *       but none of them will be tested. The created objects will be stored in the
+     *       values of that map.</li>
+     * </ul>
+     *
+     * @param  objects On input, the names of objects to create. On output, the created objects.
+     *         If {@code null}, then all objects will be created and tested.
+     * @throws FactoryException If an error occurred while creating an object.
+     */
+    public void test3003(final Map<String, PrimeMeridian> objects) throws FactoryException {
+        assumeNotNull(datumFactory);
+        final ExpectedData data = new ExpectedData("GIGS_3003_userPrimeMeridian.csv",
+                Integer.class,  // [0]: GIGS prime meridian code
+                String.class,   // [1]: GIGS prime meridian name
+                String.class,   // [2]: Longitude from greenwich
+                String.class,   // [3]: EPSG unit name
+                Double.class);  // [4]: Longitude from Greenwich in decimal degrees
+
+        final StringBuilder prefix = new StringBuilder("PrimeMeridian[\"");
+        final int prefixLength = prefix.length();
+        while (data.next()) {
+            final String name = data.getString(1);
+            if (objects != null && !objects.containsKey(name)) {
+                // If the current row is not for an object on the list of
+                // items requested by the caller, skip the object creation.
+                continue;
+            }
+            final int    code     = data.getInt(0);
+            final String unitName = data.getString(3);
+            final double longitude;
+            final Unit<Angle> unit;
+            if (unitName.equalsIgnoreCase("sexagesimal degree")) {
+                /*
+                 * Sexagesimal degrees are written in a String not directly convertible to 'double'
+                 * values. Even if we performed the conversion, we do not expect implementations to
+                 * support sexagesimal units since the conversion to degrees is non-linear.
+                 * Consequently, fallback on the decimal degrees instead.
+                 */
+                unit = NonSI.DEGREE_ANGLE;
+                longitude = data.getDouble(4);
+            } else {
+                unit = parseAngularUnit(unitName);
+                longitude = Double.parseDouble(data.getString(2));
+            }
+            /*
+             * Create the prime meridian and save it in the map given by the caller, if non-null.
+             */
+            final Map<String,Object> properties = new HashMap<String,Object>(4);
+            properties.put(Ellipsoid.IDENTIFIERS_KEY, new SimpleReferenceIdentifier(code));
+            properties.put(Ellipsoid.NAME_KEY, name);
+            final PrimeMeridian meridian = datumFactory.createPrimeMeridian(properties, longitude, unit);
+            prefix.setLength(prefixLength);
+            prefix.append(name).append("\"]");
+            assertNotNull(prefix.toString(), meridian);
+            if (objects != null) {
+                assertNull("An object already exists for the same name.", objects.put(name, meridian));
+                continue;
+            }
+            validators.validate(meridian);
+            prefix.append('.');
+            assertEquals  (message(prefix, "getName()"),               name,      getName(meridian));
+            testIdentifier(message(prefix, "getIdentifiers()"),        code,      meridian.getIdentifiers());
+            assertEquals  (message(prefix, "getAngularUnit()"),        unit,      meridian.getAngularUnit());
+            assertEquals  (message(prefix, "getGreenwichLongitude()"), longitude, meridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
         }
     }
 }
