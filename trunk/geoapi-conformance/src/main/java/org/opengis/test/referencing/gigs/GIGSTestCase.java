@@ -55,11 +55,15 @@ import static org.opengis.test.Assert.*;
 strictfp abstract class GIGSTestCase extends TestCase {
     /**
      * Relative tolerance factor from GIGS documentation.
+     * This tolerance threshold is typically multiplied
+     * by the magnitude of the value being compared.
      */
     static final double TOLERANCE = 1E-10;
 
     /**
-     * Angular tolerance from GIGS documentation.
+     * Absolute angular tolerance from GIGS documentation.
+     * This tolerance threshold is <strong>not</strong>
+     * multiplied by the value being compared.
      */
     static final double ANGULAR_TOLERANCE = 1E-7;
 

@@ -95,6 +95,8 @@ final class ExpectedData {
 
     /**
      * The current cursor position.
+     *
+     * @see #rewind()
      */
     private int cursor = -1;
 
@@ -328,6 +330,14 @@ final class ExpectedData {
      */
     public boolean getBoolean(final int column) {
         return (Boolean) getValue(column);
+    }
+
+    /**
+     * Sets the cursor to the position before the first record.
+     * This method can be invoked for iterating through the data one more time.
+     */
+    public void rewind(){
+        cursor = -1;
     }
 
     /**

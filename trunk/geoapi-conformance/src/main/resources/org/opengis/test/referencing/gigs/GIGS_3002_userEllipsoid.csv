@@ -3,8 +3,8 @@
 # Test 3002, Application user-definable geodetic parameter library - Ellipsoids.
 #
 # Instructions:
-# Using the data given in each row, create ellipsoids using the test data in columns A through D and then one of columns E, F or G.
-# (Note: the information in columns H through L is given for information only)
+# Using the data given in each row, create ellipsoids using the test data in columns 0 through 3 and then one of columns 4, 5 or 6.
+# (Note: the information in columns 7 through 11 is given for information only)
 #
 # Columns:
 #  [ 0]: GIGS Ellipsoid Code
