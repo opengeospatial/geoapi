@@ -37,14 +37,18 @@ package org.opengis.annotation;
  * Values of this enumeration are associated to GeoAPI interfaces by the {@link Classifier}
  * annotation.
  * <p>
+ * This enumeration is a subset of the ISO 19115 {@link org.opengis.metadata.Datatype}
+ * code list, defined as an {@code Enum} for allowing usages in Java annotations.
+ * The {@code _CLASS} suffix is omitted since this enumeration is only about classes.
  * This enumeration does not include the <cite>code list</cite> and <cite>enumeration</cite>
  * stereotypes, because instances of those types are identified by the
- * {@link org.opengis.util.CodeList} and {@link Enum} base classes.
+ * {@link org.opengis.util.CodeList} and {@link Enum} base classes respectively.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  *
+ * @see org.opengis.metadata.Datatype
  * @see <a href="http://en.wikipedia.org/wiki/Stereotype_%28UML%29">Stereotype on Wikipedia</a>
  */
 public enum Stereotype {
@@ -53,6 +57,8 @@ public enum Stereotype {
      * objects, without defining the physical implementation of those objects.
      * <p>
      * This is the default value for interfaces without {@link Classifier} annotation.
+     *
+     * @see org.opengis.metadata.Datatype#TYPE_CLASS
      */
     TYPE,
 
@@ -60,16 +66,22 @@ public enum Stereotype {
      * Encapsulation of data, as opposed to taxonomic or behavioural descriptions.
      * Data types may not have an identity of their own and are usually aggregated
      * into some sort of container such as being an attribute in another class.
+     *
+     * @see org.opengis.metadata.Datatype#DATATYPE_CLASS
      */
     DATATYPE,
 
     /**
      * Root class for a structural polymorphism. Abstract types are not directly instantiable.
+     *
+     * @see org.opengis.metadata.Datatype#ABSTRACT_CLASS
      */
     ABSTRACT,
 
     /**
      * Type consisting of one and only one of several alternatives (listed as member attributes).
+     *
+     * @see org.opengis.metadata.Datatype#UNION_CLASS
      */
     UNION
 }
