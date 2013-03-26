@@ -34,6 +34,8 @@ package org.opengis.test.referencing.gigs;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -95,8 +97,6 @@ final class ExpectedData {
 
     /**
      * The current cursor position.
-     *
-     * @see #rewind()
      */
     private int cursor = -1;
 
@@ -333,11 +333,27 @@ final class ExpectedData {
     }
 
     /**
-     * Sets the cursor to the position before the first record.
-     * This method can be invoked for iterating through the data one more time.
+     * Returns all non-null string values found in the given columns as keys in a map,
+     * from the current position to the end of the file. The value for each key will be
+     * {@code null}. The cursor position is not modified by this method call.
+     * <p>
+     * This method is used for fetching the dependencies of a test case, expressed as
+     * the GIGS names of objects built by an other test.
+     *
+     * @param column The column from which to get the string values.
+     * @return A map whose keys are are all string values found in the given columns.
      */
-    public void rewind(){
-        cursor = -1;
+    final <T> Map<String,T> getDependencies(final int column) {
+        final Map<String,T> dependencies = new HashMap<String,T>();
+        final Object[] savedRow = currentRow;
+        final int savedPosition = cursor;
+        while (next()) {
+            dependencies.put(getString(column), null);
+        }
+        dependencies.remove(null);
+        cursor = savedPosition;
+        currentRow = savedRow;
+        return dependencies;
     }
 
     /**

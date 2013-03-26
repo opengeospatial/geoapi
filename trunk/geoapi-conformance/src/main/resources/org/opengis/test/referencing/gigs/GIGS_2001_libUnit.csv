@@ -35,7 +35,7 @@
 9105,Angle,grad,0.01570796326794895,true,France
 9109,Angle,microradian,0.000001,true,Some 7- and 10-parameter transformations for Netherlands and Norway.
 9110,Angle,sexagesimal DMS,,true,"Special EPSG construct for storing sexagesimal degree values as a single real number. Applications do not necessarily have to adopt this approach but should somehow exactly honour sexagesimal value. Sexagesimal degree (123º45'67.8\"[H]) should be used for display at human interface."
-9113,Angle,centesimal second,0.000001570796326794895,,Used in one geocentric 7-parameter transformation for Switzerland.
+9113,Angle,centesimal second,0.000001570796326794895,false,Used in one geocentric 7-parameter transformation for Switzerland.
 
 9201,Scale,unity,1,true,Numerous
 9202,Scale,parts per million,0.000001,true,Numerous
