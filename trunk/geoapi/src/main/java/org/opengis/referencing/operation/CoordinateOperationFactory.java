@@ -281,7 +281,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws FactoryException if the method failed for some other reason.
      *
      * @departure easeOfUse
-     *   This method has been added in order to free the user from choosing whatever he should
+     *   This method has been added in order to free the user from choosing whether he should
      *   get the operation method from <code>CoordinateOperationAuthorityFactory</code>, or from
      *   <code>MathTransformFactory</code>, or creating it himself.
      *

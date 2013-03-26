@@ -478,7 +478,7 @@ public strictfp abstract class TestCase {
     }
 
     /**
-     * Returns booleans indicating whatever the given operations are enabled. By default, every
+     * Returns booleans indicating whether the given operations are enabled. By default, every
      * operations are enabled. However if any {@link ImplementationDetails} instance found on the
      * classpath returns a {@linkplain ImplementationDetails#configuration configuration} map
      * having the value {@link Boolean#FALSE} for a given key, then the boolean value corresponding
@@ -486,7 +486,7 @@ public strictfp abstract class TestCase {
      *
      * @param  properties The key for which the flags are wanted.
      * @return An array of the same length than {@code properties} in which each element at
-     *         index <var>i</var> indicates whatever the {@code properties[i]} test should
+     *         index <var>i</var> indicates whether the {@code properties[i]} test should
      *         be enabled.
      *
      * @since 3.1

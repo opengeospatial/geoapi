@@ -53,7 +53,7 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.LINKS;
 final class SamplePoints {
     /**
      * The EPSG code for the Coordinate Reference System using the sample points.
-     * Whatever it is the source or the target CRS is test-dependent. This field
+     * Whether it is the source or the target CRS is test-dependent. This field
      * is used only for information purpose in the {@link #toString()} method.
      */
     private final int usedByCRS;

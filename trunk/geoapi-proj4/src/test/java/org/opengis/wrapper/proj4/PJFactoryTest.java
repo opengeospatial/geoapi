@@ -30,8 +30,8 @@ import static org.junit.Assert.*;
 public class PJFactoryTest {
     /**
      * Tests the creation of the EPSG:4326 geographic CRS. The interesting part of this test
-     * is the check for axis order. The result will depend on whatever the axis orientations
-     * map has been properly created.
+     * is the check for axis order. The result will depend on whether the axis orientations
+     * map has been properly created or not.
      *
      * @throws FactoryException If an error occurred while creating the CRS objects.
      */

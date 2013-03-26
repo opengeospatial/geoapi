@@ -46,7 +46,7 @@
  * <p>The {@link org.opengis.test.TestSuite} class can be extended in order to run all the test cases
  * defined in this module, using the implementor factories declared in the {@code META-INF/services/}
  * directory. Alternatively, implementor can extend directly the {@link org.opengis.test.TestCase}
- * subclass of their choice for gaining more control, for example in order to specify whatever
+ * subclass of their choice for gaining more control, for example in order to specify whether
  * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
  * derivatives are supported}.</p>
  *

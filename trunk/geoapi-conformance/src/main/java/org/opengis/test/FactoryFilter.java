@@ -40,12 +40,12 @@ import org.opengis.referencing.AuthorityFactory;
 
 
 /**
- * Specifies whatever a factory can be used for creating the objects to be tested.
+ * Specifies whether a factory can be used for creating the objects to be tested.
  * Implementors can provide an instance of this interface in their test packages and
  * declare their instance in the {@code META-INF/services/org.opengis.test.FactoryFilter}
  * file. GeoAPI will iterate over every {@code FactoryFilter}s found on the classpath before
  * the first execution of any particular {@link TestCase} subclass, in order to check
- * whatever a particular factory can be used.
+ * whether a particular factory can be used.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

@@ -51,7 +51,7 @@ public interface Graphic {
     boolean isVisible();
 
     /**
-     * Sets whatever this graphic should be visible.
+     * Sets whether this graphic should be visible.
      *
      * @param visible {@code true} if this graphic should be visible.
      */
