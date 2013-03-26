@@ -136,8 +136,8 @@ public interface ToleranceModifier {
      * @param  tolerance  The default tolerance threshold determined by the {@link TestCase}
      *                    being run. This array can be modified in-place.
      * @param  coordinate The coordinate being compared, in the <em>target</em> CRS.
-     * @param  mode       Whatever the coordinate being compared is the result of a direct
-     *                    or inverse transform, or whatever strict equality is requested.
+     * @param  mode       Indicates if the coordinate being compared is the result of a direct
+     *                    or inverse transform, or if strict equality is requested.
      */
     void adjust(double[] tolerance, DirectPosition coordinate, CalculationType mode);
 }

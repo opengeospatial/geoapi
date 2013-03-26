@@ -371,7 +371,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             }
             /*
              * Get the axis lengths and their unit. Null units are assumed to mean metres
-             * (whatever we accept null unit or not is determined by the validators).
+             * (whether we accept null unit or not is determined by the validators).
              * If the implementation uses metre units but the EPSG definition expected
              * another unit, convert the axis lengths from the later units to metre units.
              */

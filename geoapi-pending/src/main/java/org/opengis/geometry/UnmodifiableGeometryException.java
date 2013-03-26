@@ -36,7 +36,7 @@ package org.opengis.geometry;
  * Indicates that an operation is not allowed on a {@linkplain Geometry geometry} object
  * because it is unmodifiable. Note that unmodifiable geometries are not necessarily immutable;
  * they are just not allowed to be modified through the {@code setFoo(...)} method that
- * raised this exception. Whatever an unmodifiable geometry is immutable or not is
+ * raised this exception. Whether an unmodifiable geometry is immutable or not is
  * implementation dependent.
  *
  * @author Martin Desruisseaux (IRD)

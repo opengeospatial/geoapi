@@ -393,7 +393,7 @@ public interface Geometry extends TransfiniteSet {
      *       {@linkplain #clone cloning it}.</P></LI>
      *   <LI><P>If {@code true}, then this geometry is <cite>mutable</cite>. Note that
      *       <cite>mutable</cite> geometry is not synonymous of <cite>modifiable</cite>
-     *       geometry. The nuance lays in whatever the geometry may changes its state
+     *       geometry. The nuance lays in whether the geometry may changes its state
      *       directly (as of user request) or indirectly:<P></LI>
      *       <UL>
      *         <LI><P>This geometry may be <cite>modifiable</cite>, in which case invoking

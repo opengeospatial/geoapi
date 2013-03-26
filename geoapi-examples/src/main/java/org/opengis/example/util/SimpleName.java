@@ -27,7 +27,7 @@ import org.opengis.example.metadata.SimpleCitation;
 
 /**
  * A {@link GenericName} backed by a JNDI {@link Name} instance. This name can be the basis
- * of {@link LocalName} or {@link ScopedName} implementations, depending on whatever the
+ * of {@link LocalName} or {@link ScopedName} implementations, depending on whether the
  * {@linkplain Name#size() size} of the wrapped JNDI name is 1 or more, respectively.
  * <p>
  * This implementation is a <cite>view</cite>: any change applied on the wrapped JNDI object

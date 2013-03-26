@@ -144,8 +144,8 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     /**
      * Creates a new test case using the given validator. This constructor is provided for
      * subclasses wanting to use different validation methods. It is caller responsibility
-     * to configure the given validator (for example whatever to
-     * {@linkplain CRSValidator#enforceStandardNames enforce standard names}).
+     * to configure the given validator (for example whether to
+     * {@linkplain CRSValidator#enforceStandardNames enforce standard names} or not).
      *
      * @param validator The validator to use for validating the {@link CoordinateReferenceSystem}
      *        instance.

@@ -79,7 +79,7 @@ final class WarningMessage {
      *
      * @param logger    The logger where to send the message.
      * @param message   The warning message to send.
-     * @param mandatory Whatever the caller method is {@code mandatory} or {@code forbidden}.
+     * @param mandatory Indicates if the caller method is mandatory or forbidden.
      */
     private WarningMessage(final Logger logger, final String message, final boolean mandatory) {
         this.logger    = logger;
@@ -89,11 +89,11 @@ final class WarningMessage {
 
     /**
      * Logs the given message to the given logger. The logging level will be determined
-     * according whatever the given message has been previously logged for the given logger.
+     * according whether the given message has been previously logged for the given logger.
      *
      * @param logger    The logger where to send the message.
      * @param message   The warning message to send.
-     * @param mandatory Whatever the caller method is {@code mandatory} or {@code forbidden}.
+     * @param mandatory Indicates if the caller method is mandatory or forbidden.
      */
     static void log(final Logger logger, final String message, final boolean mandatory) {
         final WarningMessage entry = new WarningMessage(logger, message, mandatory);

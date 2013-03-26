@@ -989,8 +989,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param expected The array of expected ordinate values.
      * @param actual   The array of ordinate values to check against the expected ones.
      * @param index    The index of the coordinate point being compared, for message formatting.
-     * @param mode     Whatever the coordinates being compared are the result of a direct or
-     *                 inverse transform, or whatever strict equality is requested.
+     * @param mode     Indicates if the coordinates being compared are the result of a direct or
+     *                 inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
@@ -1010,8 +1010,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param expected The array of expected ordinate values.
      * @param actual   The array of ordinate values to check against the expected ones.
      * @param index    The index of the coordinate point being compared, for message formatting.
-     * @param mode     Whatever the coordinates being compared are the result of a direct or
-     *                 inverse transform, or whatever strict equality is requested.
+     * @param mode     Indicates if the coordinates being compared are the result of a direct or
+     *                 inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
@@ -1031,8 +1031,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param expected The array of expected ordinate values.
      * @param actual   The array of ordinate values to check against the expected ones.
      * @param index    The index of the coordinate point being compared, for message formatting.
-     * @param mode     Whatever the coordinates being compared are the result of a direct or
-     *                 inverse transform, or whatever strict equality is requested.
+     * @param mode     Indicates if the coordinates being compared are the result of a direct or
+     *                 inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final double[] expected,
@@ -1052,8 +1052,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param expected The array of expected ordinate values.
      * @param actual   The array of ordinate values to check against the expected ones.
      * @param index    The index of the coordinate point being compared, for message formatting.
-     * @param mode     Whatever the coordinates being compared are the result of a direct or
-     *                 inverse transform, or whatever strict equality is requested.
+     * @param mode     Indicates if the coordinates being compared are the result of a direct or
+     *                 inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final double[] expected,
@@ -1076,8 +1076,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param actualPts      The array of coordinate values to check against the expected ones.
      * @param actualOffset   Index of the first valid ordinate in the {@code actualPts} array.
      * @param numPoints      Number of coordinate points to compare.
-     * @param mode           Whatever the coordinates being compared are the result of a direct
-     *                       or inverse transform, or whatever strict equality is requested.
+     * @param mode           Indicates if the coordinates being compared are the result of a direct
+     *                       or inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
@@ -1102,8 +1102,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param actualPts      The array of coordinate values to check against the expected ones.
      * @param actualOffset   Index of the first valid ordinate in the {@code actualPts} array.
      * @param numPoints      Number of coordinate points to compare.
-     * @param mode           Whatever the coordinates being compared are the result of a direct
-     *                       or inverse transform, or whatever strict equality is requested.
+     * @param mode           Indicates if the coordinates being compared are the result of a direct
+     *                       or inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
@@ -1128,8 +1128,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param actualPts      The array of coordinate values to check against the expected ones.
      * @param actualOffset   Index of the first valid ordinate in the {@code actualPts} array.
      * @param numPoints      Number of coordinate points to compare.
-     * @param mode           Whatever the coordinates being compared are the result of a direct
-     *                       or inverse transform, or whatever strict equality is requested.
+     * @param mode           Indicates if the coordinates being compared are the result of a direct
+     *                       or inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
@@ -1154,8 +1154,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param actualPts      The array of coordinate values to check against the expected ones.
      * @param actualOffset   Index of the first valid ordinate in the {@code actualPts} array.
      * @param numPoints      Number of coordinate points to compare.
-     * @param mode           Whatever the coordinates being compared are the result of a direct
-     *                       or inverse transform, or whatever strict equality is requested.
+     * @param mode           Indicates if the coordinates being compared are the result of a direct
+     *                       or inverse transform, or if strict equality is requested.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinatesEqual(
@@ -1180,8 +1180,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *                       check against the expected ones.
      * @param actualOffset   Index of the first valid ordinate in the {@code actualPts} array.
      * @param numPoints      Number of coordinate points to compare.
-     * @param mode           Whatever the coordinates being compared are the result of a direct
-     *                       or inverse transform, or whatever strict equality is requested.
+     * @param mode           Indicates if the coordinates being compared are the result of a direct
+     *                       or inverse transform, or if strict equality is requested.
      * @param reportedIndex  In case of failure, index of the point (not ordinate) to report in
      *                       the error message.
      * @throws TransformFailure If at least one ordinate value is not equal to the expected value.
@@ -1535,8 +1535,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @param expected The expected ordinate value provided by the test case.
      * @param actual   The ordinate value computed by the {@linkplain #transform} being tested.
-     * @param mode     Whatever the coordinates being compared are the result of a direct
-     *                 or inverse transform, or whatever strict equality is requested.
+     * @param mode     Indicates if the coordinates being compared are the result of a direct
+     *                 or inverse transform, or if strict equality is requested.
      *
      * @since 3.1
      */

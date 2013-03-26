@@ -481,7 +481,7 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Creates a new coordinate operation factory. Whatever the factory will follow
+         * Creates a new coordinate operation factory. Whether the factory will follow
          * EPSG axis order or not is specified by the given {@code useEpsgAxisOrder} argument.
          *
          * @param useEpsgAxisOrder {@code true} if the CRS created by this factory should

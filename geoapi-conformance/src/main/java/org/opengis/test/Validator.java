@@ -46,9 +46,9 @@ import static org.opengis.test.Assert.*;
  *
  * <p>Configurations available in this class and some subclasses are:</p>
  * <ul>
- *   <li>{@link #requireMandatoryAttributes} - controls whatever unexpected null values can be tolerated.</li>
- *   <li>{@link #enforceForbiddenAttributes} - controls whatever unexpected non-null values can be tolerated.</li>
- *   <li>{@link org.opengis.test.referencing.CRSValidator#enforceStandardNames} - controls whatever axis
+ *   <li>{@link #requireMandatoryAttributes} - controls whether unexpected null values can be tolerated.</li>
+ *   <li>{@link #enforceForbiddenAttributes} - controls whether unexpected non-null values can be tolerated.</li>
+ *   <li>{@link org.opengis.test.referencing.CRSValidator#enforceStandardNames} - controls whether axis
  *       names shall be restricted to ISO standards.</li>
  * </ul>
  *

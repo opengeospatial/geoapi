@@ -117,8 +117,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Creates a new test case using the given validator. This constructor is provided for
      * subclasses wanting to use different validation methods. It is caller responsibility
-     * to configure the given validator (for example whatever to
-     * {@linkplain RootValidator#requireMandatoryAttributes require mandatory attributes}).
+     * to configure the given validator (for example whether to
+     * {@linkplain RootValidator#requireMandatoryAttributes require mandatory attributes} or not).
      *
      * @param validator The validator to use for validating the {@link Metadata} instance.
      */

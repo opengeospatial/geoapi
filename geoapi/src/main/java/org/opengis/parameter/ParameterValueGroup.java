@@ -156,7 +156,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * <p>
      * There is no {@code removeGroup(String)} method. To remove a group, users shall inspect the
      * {@link #values()} list, decide which occurrences to remove if there is many of them for the
-     * same name, and whatever to iterate recursively into sub-groups or not.
+     * same name, and whether to iterate recursively into sub-groups or not.
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
      *              parameter group to create.

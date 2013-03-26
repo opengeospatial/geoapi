@@ -67,7 +67,7 @@ import org.opengis.metadata.citation.ResponsibleParty;
  *   <li>Stored directly in the {@linkplain #properties} map by subclasses.</li>
  * </ul>
  *
- * <p>The set of keywords, and whatever a user-provided value for a given keyword is mandatory or
+ * <p>The set of keywords, and whether a user-provided value for a given keyword is mandatory or
  * optional, is subclass-specific. However most subclasses expect at least the following keywords:</p>
  *
  * <table border="1" cellspacing="0">

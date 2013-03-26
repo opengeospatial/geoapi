@@ -277,7 +277,7 @@ public class Configuration implements Serializable {
          */
 
         /**
-         * Whatever the {@link InternationalString} instances can support more than one
+         * Whether the {@link InternationalString} instances can support more than one
          * {@linkplain java.util.Locale locale}. If {@code false}, then the factory method
          * may retain only one locale among the set of user-provided localized strings.
          *
@@ -287,7 +287,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isMultiLocaleSupported");
 
         /**
-         * Whatever the {@link GenericName} instances can apply different syntax rules in different
+         * Whether the {@link GenericName} instances can apply different syntax rules in different
          * parts of their name. If {@code true}, then URI using different separators in different
          * parts of their name (e.g. {@code ":"}, {@code "."}, {@code "/"} and {@code "#"}
          * in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are supported.
@@ -300,7 +300,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isMixedNameSyntaxSupported");
 
         /**
-         * Whatever the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
+         * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
          *
          * @see org.opengis.test.referencing.gigs.Series2000Test#isStandardNameSupported
@@ -309,7 +309,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isStandardNameSupported");
 
         /**
-         * Whatever the {@link IdentifiedObject} instances have at least the
+         * Whether the {@link IdentifiedObject} instances have at least the
          * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
          *
          * @see org.opengis.test.referencing.gigs.Series2000Test#isStandardAliasSupported
@@ -318,7 +318,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isStandardAliasSupported");
 
         /**
-         * Whatever the {@link IdentifiedObject} instances created indirectly by the factories
+         * Whether the {@link IdentifiedObject} instances created indirectly by the factories
          * are expected to have correct identification information.
          *
          * @see org.opengis.test.referencing.gigs.Series2000Test#isDependencyIdentificationSupported
@@ -327,7 +327,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isDependencyIdentificationSupported");
 
         /**
-         * Whatever {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
+         * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@linkplain MathTransform math transforms} which are not yet fully implemented.
          *
@@ -337,7 +337,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isDoubleToDoubleSupported");
 
         /**
-         * Whatever {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
+         * Whether {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@linkplain MathTransform math transforms} which are not yet fully implemented.
          *
@@ -347,7 +347,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isFloatToFloatSupported");
 
         /**
-         * Whatever {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
+         * Whether {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@linkplain MathTransform math transforms} which are not yet fully implemented.
          *
@@ -357,7 +357,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isDoubleToFloatSupported");
 
         /**
-         * Whatever {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
+         * Whether {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@linkplain MathTransform math transforms} which are not yet fully implemented.
          *
@@ -367,7 +367,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isFloatToDoubleSupported");
 
         /**
-         * Whatever source and destination arrays can overlap in {@link MathTransform} operations.
+         * Whether source and destination arrays can overlap in {@link MathTransform} operations.
          * Overlapping occur when:
          * <p>
          * <ul>
@@ -387,7 +387,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isOverlappingArraySupported");
 
         /**
-         * Whatever {@link MathTransform#inverse()} is supported.
+         * Whether {@link MathTransform#inverse()} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@linkplain MathTransform math transforms} which are not yet fully implemented.
          *
@@ -397,7 +397,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isInverseTransformSupported");
 
         /**
-         * Whatever {@link MathTransform#derivative(DirectPosition)} is supported.
+         * Whether {@link MathTransform#derivative(DirectPosition)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@linkplain MathTransform math transforms} which are not yet fully implemented.
          *
@@ -407,7 +407,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isDerivativeSupported");
 
         /**
-         * Whatever {@link MathTransformFactory#createAffineTransform(Matrix)} accepts non-square matrixes.
+         * Whether {@link MathTransformFactory#createAffineTransform(Matrix)} accepts non-square matrixes.
          *
          * @see org.opengis.test.referencing.AffineTransformTest#isNonSquareMatrixSupported
          */
@@ -415,7 +415,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isNonSquareMatrixSupported");
 
         /**
-         * Whatever {@link MathTransformFactory} can create transforms between spaces that are
+         * Whether {@link MathTransformFactory} can create transforms between spaces that are
          * not two-dimensional. If {@code true}, then the tested spaces may be one-dimensional
          * (typically elevation or time), three-dimensional or four-dimensional.
          *
@@ -425,7 +425,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isNonBidimensionalSpaceSupported");
 
         /**
-         * Whatever (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
+         * Whether (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
          * supported, then the tests that would normally expect (<var>y</var>,<var>x</var>) axis
          * order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
          * axis order and <cite>North Oriented</cite> CRS in their test.
@@ -436,7 +436,7 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isAxisSwappingSupported");
 
         /**
-         * Whatever the tolerance threshold of a {@linkplain org.opengis.test.referencing.TransformTestCase
+         * Whether the tolerance threshold of a {@linkplain org.opengis.test.referencing.TransformTestCase
          * transform test case} has been relaxed. This information is determined after test execution.
          */
         public static final Key<Boolean> isToleranceRelaxed =

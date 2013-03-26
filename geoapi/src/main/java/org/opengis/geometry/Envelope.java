@@ -60,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
  * crossing the anti-meridian could have an upper corner longitude less than the lower corner
  * longitude.
  * <p>
- * Whatever an envelope supports the extended bounding box interpretation or not is
+ * Whether an envelope supports the extended bounding box interpretation or not is
  * implementation-dependent. If supported, the extended interpretation is applicable only to
  * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
  * longitude axis.</font></blockquote>
@@ -131,7 +131,7 @@ public interface Envelope {
      * always. For example, an envelope crossing the anti-meridian could have a lower corner
      * longitude greater than the {@linkplain #getUpperCorner() upper corner} longitude.
      * <p>
-     * Whatever this envelope supports the extended bounding box interpretation or not is
+     * Whether this envelope supports the extended bounding box interpretation or not is
      * implementation-dependent. If supported, the extended interpretation is applicable only to
      * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
      * longitude axis. On typical map representations, the <code>getLowerCorner()</code> method
@@ -156,7 +156,7 @@ public interface Envelope {
      * always. For example, an envelope crossing the anti-meridian could have an upper corner
      * longitude less than the {@linkplain #getLowerCorner() lower corner} longitude.
      * <p>
-     * Whatever this envelope supports the extended bounding box interpretation or not is
+     * Whether this envelope supports the extended bounding box interpretation or not is
      * implementation-dependent. If supported, the extended interpretation is applicable only to
      * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
      * longitude axis. On typical map representations, the <code>getUpperCorner()</code> method
