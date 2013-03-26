@@ -358,7 +358,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             prefix.append(code).append(']');
             assertNotNull(prefix.toString(), ellipsoid);
             prefix.append('.');
-            testIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
+            verifyIdentifier(message(prefix, "getIdentifiers()"), code, ellipsoid.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(ellipsoid));
@@ -366,7 +366,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             }
             if (isStandardAliasSupported) {
                 configurationTip = Configuration.Key.isStandardAliasSupported;
-                testAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
+                verifyAliases(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
                 configurationTip = null;
             }
             /*
@@ -454,7 +454,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             prefix.append(code).append(']');
             assertNotNull(prefix.toString(), pm);
             prefix.append('.');
-            testIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
+            verifyIdentifier(message(prefix, "getIdentifiers()"), code, pm.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(pm));
@@ -462,7 +462,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             }
             if (isStandardAliasSupported) {
                 configurationTip = Configuration.Key.isStandardAliasSupported;
-                testAliases(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
+                verifyAliases(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
                 configurationTip = null;
             }
             /*
@@ -595,7 +595,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                     assertNotNull(prefix.toString(), crs);
                     prefix.append('.');
                     final int lengthAfterCRS = prefix.length();
-                    testIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
+                    verifyIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
                     if (isStandardNameSupported) {
                         configurationTip = Configuration.Key.isStandardNameSupported;
                         assertEquals(message(prefix, "getName()"), crsName, getName(crs));
@@ -641,7 +641,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 final int lengthAfterDatum = prefix.length();
                 if (isDependencyIdentificationSupported || (column == 1)) {
                     configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                    testIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
+                    verifyIdentifier(message(prefix, "getIdentifiers()"), datumCode, datum.getIdentifiers());
                     if (isStandardNameSupported) {
                         configurationTip = Configuration.Key.isStandardNameSupported;
                         assertEquals(message(prefix, "getName()"), datumName, getName(datum));
@@ -733,7 +733,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 prefix.append(code).append(']');
                 assertNotNull(prefix.toString(), cop);
                 prefix.append('.');
-                testIdentifier(message(prefix, "getIdentifiers()"), code, cop.getIdentifiers());
+                verifyIdentifier(message(prefix, "getIdentifiers()"), code, cop.getIdentifiers());
                 assertInstanceOf(message(prefix, "class"), Conversion.class, cop);
                 final Conversion conversion = (Conversion) cop;
                 if (isStandardNameSupported) {
@@ -801,10 +801,10 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 prefix.append(code).append(']');
                 assertNotNull(prefix.toString(), crs);
                 prefix.append('.');
-                testIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
+                verifyIdentifier(message(prefix, "getIdentifiers()"), code, crs.getIdentifiers());
                 if (isDependencyIdentificationSupported) {
                     configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                    testIdentifier(message(prefix, "getDatum().getIdentifiers()"),
+                    verifyIdentifier(message(prefix, "getDatum().getIdentifiers()"),
                             datumCode, crs.getDatum().getIdentifiers());
                     if (isStandardNameSupported) {
                         configurationTip = Configuration.Key.isStandardNameSupported;
@@ -870,7 +870,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             prefix.append(code).append(']');
             assertNotNull(prefix.toString(), operation);
             prefix.append('.');
-            testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
+            verifyIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), data.getString(2), getName(operation));
@@ -943,7 +943,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
              * Identifiers test. It's important because it's the only way to
              * distinguish datums at first sight.
              */
-            testIdentifier(message(prefix, "getIdentifiers()"), code, datum.getIdentifiers());
+            verifyIdentifier(message(prefix, "getIdentifiers()"), code, datum.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), name, getName(datum));
@@ -977,7 +977,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                     assertNotNull(prefix.append("getDatum()").toString(), datumFromCRS);
                     prefix.append('.');
                     configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                    testIdentifier(message(prefix, "getIdentifiers()"), code, datumFromCRS.getIdentifiers());
+                    verifyIdentifier(message(prefix, "getIdentifiers()"), code, datumFromCRS.getIdentifiers());
                     configurationTip = Configuration.Key.isStandardNameSupported;
                     assertEquals(message(prefix, "getName()"), name, getName(datumFromCRS));
                     configurationTip = null;
@@ -1046,7 +1046,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             assertNotNull(prefix.toString(), operation);
             prefix.append('.');
             // Test of the Identifiers.
-            testIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
+            verifyIdentifier(message(prefix, "getIdentifiers()"), code, operation.getIdentifiers());
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getName()"), name, getName(operation));

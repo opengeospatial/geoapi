@@ -31,8 +31,9 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Map;
 import java.util.Set;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Collections;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
@@ -52,6 +53,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
 
+import static org.junit.Assert.*;
 import static org.junit.Assume.*;
 
 
@@ -218,12 +220,15 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * at least the {@link IdentifiedObject#NAME_KEY} identifier associated to the given value.
      * Subclasses can override this method in order to provide more information if they wish.
      *
-     * @param  code  The EPSG code of the object being build.
-     * @param  value The value for the name key.
-     * @return A map containing only the value specified for the name key.
+     * @param  code  The EPSG code of the object being built.
+     * @param  name  The name of the object being built.
+     * @return A map containing the properties for the object to create.
      */
-    protected Map<String,?> createPropertiesMap(final int code, final String value) {
-        return Collections.singletonMap(IdentifiedObject.NAME_KEY, value);
+    protected Map<String,Object> createPropertiesMap(final int code, final String name) {
+        final Map<String,Object> properties = new HashMap<String,Object>(4);
+        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
+        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleReferenceIdentifier(code)));
+        return properties;
     }
 
     /**
@@ -364,6 +369,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * <p>
      * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>7001</td> <td>Airy 1830</td></tr>
+     *   <tr><td>7004</td> <td>Bessel 1841</td></tr>
+     *   <tr><td>7011</td> <td>Clarke 1880 (IGN)</td></tr>
+     *   <tr><td>7019</td> <td>GRS 1980</td></tr>
+     *   <tr><td>7022</td> <td>International 1924</td></tr>
      *   <tr><td>7030</td> <td>WGS 84</td></tr>
      * </table>
      *
@@ -375,16 +385,28 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     public Ellipsoid createEllipsoid(final String code) throws FactoryException {
         final String name;
         final double semiMajorAxis;
-        final double inverseFlattening;
-        final int    unit;
+        double semiMinorAxis = Double.NaN;
+        double inverseFlattening = Double.NaN;
+        int    unitCode = 9001; // Default unit is metre.
         final int id = parseCode(code);
         switch (id) {
-            case 7030: name="WGS 84"; semiMajorAxis=6378137; inverseFlattening=298.257223563; unit=9001; break;
+            case 7030: name="WGS 84";             semiMajorAxis=6378137;     inverseFlattening=298.257223563; break;
+            case 7019: name="GRS 1980";           semiMajorAxis=6378137;     inverseFlattening=298.2572221;   break;
+            case 7001: name="Airy 1830";          semiMajorAxis=6377563.396; inverseFlattening=299.3249646;   break;
+            case 7004: name="Bessel 1841";        semiMajorAxis=6377397.155; inverseFlattening=299.1528128;   break;
+            case 7022: name="International 1924"; semiMajorAxis=6378388;     inverseFlattening=297;           break;
+            case 7011: name="Clarke 1880 (IGN)";  semiMajorAxis=6378249.2;   semiMinorAxis=6356515;           break;
             default:   throw noSuchAuthorityCode(id, code);
         }
         assumeNotNull(datumFactory);
-        final Ellipsoid object = datumFactory.createFlattenedSphere(createPropertiesMap(id, name),
-                semiMajorAxis, inverseFlattening, createUnit(String.valueOf(unit)).asType(Length.class));
+        final Map<String,?> properties = createPropertiesMap(id, name);
+        final Unit<Length> unit = createUnit(String.valueOf(unitCode)).asType(Length.class);
+        final Ellipsoid object;
+        if (Double.isNaN(inverseFlattening)) {
+            object = datumFactory.createEllipsoid(properties, semiMajorAxis, semiMinorAxis, unit);
+        } else {
+            object = datumFactory.createFlattenedSphere(properties, semiMajorAxis, inverseFlattening, unit);
+        }
         validators.validate(object);
         return object;
     }
@@ -396,6 +418,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>8901</td> <td>Greenwich</td></tr>
+     *   <tr><td>8903</td> <td>Paris</td></tr>
+     *   <tr><td>8908</td> <td>Jakarta</td></tr>
      * </table>
      *
      * @param  code Value allocated by authority.
@@ -409,7 +433,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int    unit;
         final int id = parseCode(code);
         switch (id) {
-            case 8901: name="Greenwich"; longitude=0.0; unit=9102; break;
+            case 8901: name="Greenwich"; longitude=  0.0;              unit=9102; break;
+            case 8903: name="Paris";     longitude=  2.5969213;        unit=9105; break;
+            case 8908: name="Jakarta";   longitude=106.80771944444444; unit=9102; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
         assumeNotNull(datumFactory);
@@ -451,14 +477,51 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     * Creates a Cartesian coordinate system from a code.
+     * The supported codes are:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system, consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. UoM: m</td></tr>
+     * </table>
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
+     * @throws FactoryException if the object creation failed.
      */
     @Override
     public CartesianCS createCartesianCS(final String code) throws FactoryException {
+        final String name;
+        final int axisCode0;
+        final int axisCode1;
+        final int axisCode2;
         final int id = parseCode(code);
         switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
+            case 6500: {
+                name = "Earth centred, earth fixed, righthanded 3D coordinate system, "
+                     + "consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, "
+                     + "positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. "
+                     + "UoM: m";
+                axisCode0 = 115; // Geocentric X
+                axisCode1 = 116; // Geocentric Y
+                axisCode2 = 117; // Geocentric Z
+                break;
+            }
+            default: throw noSuchAuthorityCode(id, code);
         }
+        assumeNotNull(csFactory);
+        final Map<String,?>   properties = createPropertiesMap(id, name);
+        final CoordinateSystemAxis axis0 = createCoordinateSystemAxis(String.valueOf(axisCode0));
+        final CoordinateSystemAxis axis1 = createCoordinateSystemAxis(String.valueOf(axisCode1));
+        final CartesianCS object;
+        if (axisCode2 == 0) {
+            object = csFactory.createCartesianCS(properties, axis0, axis1);
+        } else {
+            object = csFactory.createCartesianCS(properties, axis0, axis1,
+                    createCoordinateSystemAxis(String.valueOf(axisCode2)));
+        }
+        validators.validate(object);
+        return object;
     }
 
     /**
@@ -500,7 +563,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * <p>
      * <table border="1" cellspacing="0" cellpadding="2">
      *   <tr><th>Code</th> <th>Name</th></tr>
+     *   <tr><td>6403</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: grads.</td></tr>
      *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
+     *   <tr><td>6423</td> <td>Ellipsoidal 3D CS. Axes: latitude, longitude, ellipsoidal height. Orientations: north, east, up. UoM: degree, degree, metre.</td></tr>
+     *   <tr><td>6424</td> <td>Ellipsoidal 2D CS. Axes: longitude, latitude. Orientations: east, north. UoM: degree</td></tr>
      * </table>
      *
      * @param  code Value allocated by authority.
@@ -510,17 +576,57 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     @Override
     public EllipsoidalCS createEllipsoidalCS(final String code) throws FactoryException {
         final String name;
-        final int axis0;
-        final int axis1;
+        final int axisCode0;
+        final int axisCode1;
+              int axisCode2 = 0;
         final int id = parseCode(code);
         switch (id) {
-            case 6422: name="Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree"; axis0=106; axis1=107; break;
-            default:   throw noSuchAuthorityCode(id, code);
+            case 6403: {
+                name = "Ellipsoidal 2D CS. Axes: latitude, longitude. "
+                     + "Orientations: north, east. "
+                     + "UoM: grads. ";
+                axisCode0 = 58; // Geodetic latitude
+                axisCode1 = 59; // Geodetic longitude
+                break;
+            }
+            case 6422: {
+                name = "Ellipsoidal 2D CS. Axes: latitude, longitude. "
+                     + "Orientations: north, east. "
+                     + "UoM: degree";
+                axisCode0 = 106; // Geodetic latitude
+                axisCode1 = 107; // Geodetic longitude
+                break;
+            }
+            case 6423: {
+                name = "Ellipsoidal 3D CS. Axes: latitude, longitude, ellipsoidal height. "
+                     + "Orientations: north, east, up. "
+                     + "UoM: degree, degree, metre.";
+                axisCode0 = 108; // Geodetic latitude
+                axisCode1 = 109; // Geodetic longitude
+                axisCode2 = 110; // Ellipsoidal height
+                break;
+            }
+            case 6424: {
+                name = "Ellipsoidal 2D CS. Axes: longitude, latitude. "
+                     + "Orientations: east, north. "
+                     + "UoM: degree";
+                axisCode0 = 220; // Geodetic longitude
+                axisCode1 = 221; // Geodetic latitude
+                break;
+            }
+            default: throw noSuchAuthorityCode(id, code);
         }
         assumeNotNull(csFactory);
-        final EllipsoidalCS object = csFactory.createEllipsoidalCS(createPropertiesMap(id, name),
-                createCoordinateSystemAxis(String.valueOf(axis0)),
-                createCoordinateSystemAxis(String.valueOf(axis1)));
+        final Map<String,?>   properties = createPropertiesMap(id, name);
+        final CoordinateSystemAxis axis0 = createCoordinateSystemAxis(String.valueOf(axisCode0));
+        final CoordinateSystemAxis axis1 = createCoordinateSystemAxis(String.valueOf(axisCode1));
+        final EllipsoidalCS object;
+        if (axisCode2 == 0) {
+            object = csFactory.createEllipsoidalCS(properties, axis0, axis1);
+        } else {
+            object = csFactory.createEllipsoidalCS(properties, axis0, axis1,
+                    createCoordinateSystemAxis(String.valueOf(axisCode2)));
+        }
         validators.validate(object);
         return object;
     }
@@ -552,9 +658,15 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * The supported codes are:
      * <p>
      * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr><th>Code</th> <th>Name</th></tr>
-     *   <tr><td>106</td>  <td>Geodetic latitude</td></tr>
-     *   <tr><td>107</td>  <td>Geodetic longitude</td></tr>
+     *   <tr><th>Code</th>          <th>Name</th>               <th>Unit</th></tr>
+     *   <tr><td>58</td>            <td>Geodetic latitude</td>  <td>grad</td></tr>
+     *   <tr><td>59</td>            <td>Geodetic longitude</td> <td>grad</td></tr>
+     *   <tr><td>106, 108, 221</td> <td>Geodetic latitude</td>  <td>degree</td></tr>
+     *   <tr><td>107, 109, 220</td> <td>Geodetic longitude</td> <td>degree</td></tr>
+     *   <tr><td>110</td>           <td>Ellipsoidal height</td> <td>metre</td></tr>
+     *   <tr><td>115</td>           <td>Geocentric X</td>       <td>metre</td></tr>
+     *   <tr><td>116</td>           <td>Geocentric Y</td>       <td>metre</td></tr>
+     *   <tr><td>117</td>           <td>Geocentric Z</td>       <td>metre</td></tr>
      * </table>
      *
      * @param  code Value allocated by authority.
@@ -569,9 +681,17 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int unit;
         final int id = parseCode(code);
         switch (id) {
-            case 106: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH; unit=9122; break;
-            case 107: name="Geodetic longitude"; abbreviation="Long"; direction=AxisDirection.EAST;  unit=9122; break;
-            default:   throw noSuchAuthorityCode(id, code);
+            case 108: case 221:
+            case 106: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9122; break;
+            case  58: name="Geodetic latitude";  abbreviation="Lat";  direction=AxisDirection.NORTH;        unit=9105; break;
+            case 109: case 220:
+            case 107: name="Geodetic longitude"; abbreviation="Long"; direction=AxisDirection.EAST;         unit=9122; break;
+            case  59: name="Geodetic longitude"; abbreviation="Long"; direction=AxisDirection.EAST;         unit=9105; break;
+            case 110: name="Ellipsoidal height"; abbreviation="h";    direction=AxisDirection.UP;           unit=9001; break;
+            case 115: name="Geocentric X";       abbreviation="X";    direction=AxisDirection.GEOCENTRIC_X; unit=9001; break;
+            case 116: name="Geocentric Y";       abbreviation="Y";    direction=AxisDirection.GEOCENTRIC_Y; unit=9001; break;
+            case 117: name="Geocentric Z";       abbreviation="Z";    direction=AxisDirection.GEOCENTRIC_Z; unit=9001; break;
+            default:  throw noSuchAuthorityCode(id, code);
         }
         assumeNotNull(csFactory);
         final CoordinateSystemAxis object = csFactory.createCoordinateSystemAxis(createPropertiesMap(id, name),
@@ -588,6 +708,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>9001</td> <td>metre</td></tr>
      *   <tr><td>9102</td> <td>degree</td></tr>
+     *   <tr><td>9105</td> <td>grad</td></tr>
      *   <tr><td>9122</td> <td>degree (supplier to define representation)</td></tr>
      * </table>
      *
@@ -603,6 +724,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 9001: unit=SI.METRE; break;
             case 9122: // Fall through
             case 9102: unit=NonSI.DEGREE_ANGLE; break;
+            case 9105: unit=NonSI.GRADE; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
         return unit;
