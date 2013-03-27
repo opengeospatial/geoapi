@@ -274,7 +274,7 @@ public strictfp class Assert extends org.junit.Assert {
      *
      * @param message  Header of the exception message in case of failure, or {@code null} if none.
      * @param expected The expected character sequence.
-     * @param value The character sequence to compare.
+     * @param value    The character sequence to compare.
      */
     public static void assertIdentifierEquals(final String message, final CharSequence expected, final CharSequence value) {
         final int expLength = expected.length();

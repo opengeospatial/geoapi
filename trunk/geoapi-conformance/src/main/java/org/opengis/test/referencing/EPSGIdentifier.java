@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2013 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2012-2013 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -36,14 +36,16 @@ import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * A trivial implementation of {@link ReferenceIdentifier} for internal usage.
- * Not public because strictly reserved to tests.
+ * A simple implementation of {@link ReferenceIdentifier},
+ * used for {@link PseudoEpsgFactory} purpose only.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see org.opengis.test.referencing.gigs.GIGSIdentifier
  */
-final class SimpleReferenceIdentifier implements ReferenceIdentifier {
+final strictfp class EPSGIdentifier implements ReferenceIdentifier {
     /**
      * The value to be returned by {@link #getCode()}.
      */
@@ -52,7 +54,7 @@ final class SimpleReferenceIdentifier implements ReferenceIdentifier {
     /**
      * Creates a new identifier for the "EPSG" namespace and the given code.
      */
-    SimpleReferenceIdentifier(final int code) {
+    EPSGIdentifier(final int code) {
         this.code = code;
     }
 
@@ -65,8 +67,7 @@ final class SimpleReferenceIdentifier implements ReferenceIdentifier {
     }
 
     /**
-     * Returns the code space, currently fixed to {@code "EPSG"}
-     * for the needs of {@link PseudoEpsgFactory}.
+     * Returns the code space, which is fixed to {@code "EPSG"}.
      */
     @Override
     public String getCodeSpace() {
@@ -74,7 +75,7 @@ final class SimpleReferenceIdentifier implements ReferenceIdentifier {
     }
 
     /**
-     * Returns {@code null} since not yet provided.
+     * Unsupported - returns {@code null} for now.
      */
     @Override
     public Citation getAuthority() {
@@ -82,7 +83,7 @@ final class SimpleReferenceIdentifier implements ReferenceIdentifier {
     }
 
     /**
-     * Returns {@code null} since not yet provided.
+     * Returns {@code null} since we do not hold version information.
      */
     @Override
     public String getVersion() {
@@ -94,6 +95,24 @@ final class SimpleReferenceIdentifier implements ReferenceIdentifier {
      */
     @Override
     public String toString() {
-        return getCodeSpace() + ':' + code;
+        return "EPSG:" + code;
+    }
+
+    /**
+     * Returns an arbitrary hash code value for this identifier.
+     * Current implementation does not use the codespace, since
+     * tested EPSG and EPSG codes do not overlap.
+     */
+    @Override
+    public int hashCode() {
+        return code ^ 45729784;
+    }
+
+    /**
+     * Compares this identifier with the given object for equality.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        return (obj instanceof EPSGIdentifier) && code == ((EPSGIdentifier) obj).code;
     }
 }

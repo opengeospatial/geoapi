@@ -44,10 +44,13 @@ import javax.measure.quantity.Dimensionless;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
+import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.parameter.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
+import org.opengis.referencing.IdentifiedObject;
 import org.opengis.test.Configuration;
 import org.opengis.test.referencing.PseudoEpsgFactory;
 
@@ -163,44 +166,72 @@ public strictfp class Series3000Test extends GIGSTestCase {
      * Returns the linear unit (compatible with metres) of the given name.
      *
      * @param  name The unit name.
-     * @return The linear unit for the given name.
-     * @throws IllegalArgumentException If the given name is unsupported by this method.
+     * @return The linear unit for the given name, or {@code null} if unknown.
      */
-    private static Unit<Length> parseLinearUnit(final String name) throws IllegalArgumentException {
+    private static Unit<Length> parseLinearUnit(final String name) {
         if (name.equalsIgnoreCase("metre"))          return SI.METRE;
         if (name.equalsIgnoreCase("kilometre"))      return SI.KILOMETRE;
         if (name.equalsIgnoreCase("US survey foot")) return NonSI.FOOT_SURVEY_US;
         if (name.equalsIgnoreCase("ft(US)"))         return NonSI.FOOT_SURVEY_US;
         if (name.equalsIgnoreCase("foot"))           return NonSI.FOOT;
-        throw new IllegalArgumentException("Unsupported unit name: " + name);
+        return null;
     }
 
     /**
-     * Retrieve the angular unit (compatible with degrees) corresponding to the given name.
+     * Retrieve the angular unit (compatible with degrees) of the given name.
      *
      * @param  name The unit name.
-     * @return The angular unit for the given name.
-     * @throws IllegalArgumentException If the given name is unsupported by this method.
+     * @return The angular unit for the given name, or {@code null} if unknown.
      */
-    private static Unit<Angle> parseAngularUnit(final String name) throws IllegalArgumentException {
+    private static Unit<Angle> parseAngularUnit(final String name) {
         if (name.equalsIgnoreCase("degree"))      return NonSI.DEGREE_ANGLE;
         if (name.equalsIgnoreCase("grad"))        return NonSI.GRADE;
         if (name.equalsIgnoreCase("arc-second"))  return NonSI.SECOND_ANGLE;
         if (name.equalsIgnoreCase("microradian")) return NonSI.CENTIRADIAN;
-        throw new IllegalArgumentException("Unsupported unit name: " + name);
+        return null;
     }
 
     /**
-     * Retrieve the scale unit (dimensionless) corresponding to the given name.
+     * Retrieve the scale unit (dimensionless) of the given name.
      *
      * @param  name The unit name.
-     * @return The scale unit for the given name.
-     * @throws IllegalArgumentException If the given name is unsupported by this method.
+     * @return The scale unit for the given name, or {@code null} if unknown.
      */
-    private static Unit<Dimensionless> parseScaleUnit(final String name) throws IllegalArgumentException {
+    private static Unit<Dimensionless> parseScaleUnit(final String name) {
         if (name.equalsIgnoreCase("unity"))             return Unit.ONE;
         if (name.equalsIgnoreCase("parts per million")) return Unit.ONE.divide(1000000);
-        throw new IllegalArgumentException("Unsupported unit name: " + name);
+        return null;
+    }
+
+    /**
+     * Retrieve the unit of the given name.
+     *
+     * @param  name The unit name.
+     * @return The unit for the given name, or {@code null} if unknown.
+     */
+    private static Unit<?> parseUnit(final String name) {
+        Unit<?> unit = parseLinearUnit(name);
+        if (unit == null) {
+            unit = parseAngularUnit(name);
+            if (unit == null) {
+                unit = parseScaleUnit(name);
+            }
+        }
+        return unit;
+    }
+
+    /**
+     * Creates a map containing the given name and code, to be given to object factories.
+     *
+     * @param  name The name of the object to create.
+     * @param  code The GIGS (not EPSG) code of the object to create.
+     * @return Properties to be given to the {@code create(…)} method.
+     */
+    private static Map<String,Object> properties(final String name, final int code) {
+        final Map<String,Object> properties = new HashMap<String,Object>(4);
+        properties.put(IdentifiedObject.IDENTIFIERS_KEY, new GIGSIdentifier(code));
+        properties.put(IdentifiedObject.NAME_KEY, name);
+        return properties;
     }
 
     /**
@@ -295,10 +326,9 @@ public strictfp class Series3000Test extends GIGSTestCase {
             /*
              * Create the ellipsoid and save it in the map given by the caller, if non-null.
              */
-            final Map<String,Object> properties = new HashMap<String,Object>(4);
-            properties.put(Ellipsoid.IDENTIFIERS_KEY, new SimpleReferenceIdentifier(code));
-            properties.put(Ellipsoid.NAME_KEY, name);
+            final Map<String,Object> properties = properties(name, code);
             final Unit<Length> unit = parseLinearUnit(unitName);
+            assertNotNull(unitName, unit); // Failure here would be a geoapi-conformance bug.
             final Ellipsoid ellipsoid;
             if (isIvfDefinitive) {
                 ellipsoid = datumFactory.createFlattenedSphere(properties, semiMajor, inverseFlattening, unit);
@@ -317,14 +347,14 @@ public strictfp class Series3000Test extends GIGSTestCase {
              */
             validators.validate(ellipsoid);
             prefix.append('.');
-            assertEquals    (message(prefix, "getName()"),              name,              getName(ellipsoid));
-            verifyIdentifier(message(prefix, "getIdentifiers()"),       code,              ellipsoid.getIdentifiers());
-            assertEquals    (message(prefix, "getAxisUnit()"),          unit,              ellipsoid.getAxisUnit());
-            assertEquals    (message(prefix, "getSemiMajorAxis()"),     semiMajor,         ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajor);
-            assertEquals    (message(prefix, "getSemiMinorAxis()"),     semiMinor,         ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinor);
-            assertEquals    (message(prefix, "getInverseFlattening()"), inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
-            assertEquals    (message(prefix, "isIvfDefinitive()"),      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
-            assertEquals    (message(prefix, "isSphere()"),             isSphere,          ellipsoid.isSphere());
+            assertEquals(message(prefix, "getName()"),              name,              getName(ellipsoid));
+            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", code,      ellipsoid.getIdentifiers());
+            assertEquals(message(prefix, "getAxisUnit()"),          unit,              ellipsoid.getAxisUnit());
+            assertEquals(message(prefix, "getSemiMajorAxis()"),     semiMajor,         ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajor);
+            assertEquals(message(prefix, "getSemiMinorAxis()"),     semiMinor,         ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinor);
+            assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
+            assertEquals(message(prefix, "isIvfDefinitive()"),      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
+            assertEquals(message(prefix, "isSphere()"),             isSphere,          ellipsoid.isSphere());
         }
     }
 
@@ -405,15 +435,13 @@ public strictfp class Series3000Test extends GIGSTestCase {
                 longitude = data.getDouble(4);
             } else {
                 unit = parseAngularUnit(unitName);
+                assertNotNull(unitName, unit); // Failure here would be a geoapi-conformance bug.
                 longitude = Double.parseDouble(data.getString(2));
             }
             /*
              * Create the prime meridian and save it in the map given by the caller, if non-null.
              */
-            final Map<String,Object> properties = new HashMap<String,Object>(4);
-            properties.put(Ellipsoid.IDENTIFIERS_KEY, new SimpleReferenceIdentifier(code));
-            properties.put(Ellipsoid.NAME_KEY, name);
-            final PrimeMeridian meridian = datumFactory.createPrimeMeridian(properties, longitude, unit);
+            final PrimeMeridian meridian = datumFactory.createPrimeMeridian(properties(name, code), longitude, unit);
             prefix.setLength(prefixLength);
             prefix.append(name).append("\"]");
             assertNotNull(prefix.toString(), meridian);
@@ -423,10 +451,10 @@ public strictfp class Series3000Test extends GIGSTestCase {
             }
             validators.validate(meridian);
             prefix.append('.');
-            assertEquals    (message(prefix, "getName()"),               name,      getName(meridian));
-            verifyIdentifier(message(prefix, "getIdentifiers()"),        code,      meridian.getIdentifiers());
-            assertEquals    (message(prefix, "getAngularUnit()"),        unit,      meridian.getAngularUnit());
-            assertEquals    (message(prefix, "getGreenwichLongitude()"), longitude, meridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
+            assertEquals(message(prefix, "getName()"),               name,        getName(meridian));
+            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", code, meridian.getIdentifiers());
+            assertEquals(message(prefix, "getAngularUnit()"),        unit,        meridian.getAngularUnit());
+            assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,   meridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
         }
     }
 
@@ -548,14 +576,15 @@ public strictfp class Series3000Test extends GIGSTestCase {
                 if (meridian == null) {
                     meridian = epsgFactory.createPrimeMeridian(String.valueOf(CodeForName.get(PrimeMeridian.class, meridianName)));
                 }
-                final Map<String,Object> properties = new HashMap<String,Object>(4);
-                properties.put(Datum.IDENTIFIERS_KEY,  new SimpleReferenceIdentifier(newDatumCode));
-                properties.put(Datum.NAME_KEY,         datumName);
+                final Map<String,Object> properties = properties(datumName, newDatumCode);
                 properties.put(Datum.ANCHOR_POINT_KEY, anchorPoint);
                 datum = datumFactory.createGeodeticDatum(properties, ellipsoid, meridian);
                 prefix.setLength(0);
                 prefix.append("Datum[\"").append(datumName).append("\"]");
-                assertNotNull(prefix.toString(), meridian);
+                assertNotNull(prefix.toString(), datum);
+                if (objects == null) { // Javadoc said that we test only if that map is null.
+                    validators.validate(datum);
+                }
             }
             assertNotNull(datum); // Failure here would be a bug in the test, not in the library.
             /*
@@ -565,9 +594,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
             final String type = data.getString(7);
             final int  csCode = data.getInt   (9);
             final GeodeticCRS crs;
-            final Map<String,Object> properties = new HashMap<String,Object>(4);
-            properties.put(SingleCRS.IDENTIFIERS_KEY, new SimpleReferenceIdentifier(crsCode));
-            properties.put(SingleCRS.NAME_KEY,        crsName);
+            final Map<String,Object> properties = properties(crsName, crsCode);
             if (type.startsWith("Geocentric")) {
                 crs = crsFactory.createGeocentricCRS(properties, datum,
                         epsgFactory.createCartesianCS(String.valueOf(csCode)));
@@ -593,25 +620,245 @@ public strictfp class Series3000Test extends GIGSTestCase {
              */
             validators.validate(crs);
             prefix.append('.');
-            assertEquals    (message(prefix, "getName()"),        crsName, getName(crs));
-            verifyIdentifier(message(prefix, "getIdentifiers()"), crsCode, crs.getIdentifiers());
-            assertNotNull   (message(prefix, "getCoordinateSystem()"), crs.getCoordinateSystem());
+            assertEquals(message(prefix, "getName()"), crsName, getName(crs));
+            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", crsCode, crs.getIdentifiers());
+            assertNotNull(message(prefix, "getCoordinateSystem()"), crs.getCoordinateSystem());
             /*
              * Compare the datum properties. Note that the datum instance do
              * not need to be the instance that we gave to the factory method.
              */
             final GeodeticDatum userDatum = crs.getDatum();
-            verifyDependencyIdentification(prefix, "getDatum()", datumName, datumCode, userDatum);
+            prefix.append("getDatum()");
+            assertNotNull(prefix.toString(), userDatum);
+            prefix.append('.');
+            assertContainsNameOrAlias(message(prefix, "getName()"), datumName, userDatum);
+            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", datumCode, userDatum.getIdentifiers());
             if (anchorPoint != null) {
-                final InternationalString userAnchor = userDatum.getAnchorPoint();
+                final int prefixLength = prefix.length();
                 final String message = message(prefix, "getAnchorPoint()");
+                final InternationalString userAnchor = userDatum.getAnchorPoint();
                 assertNotNull(message, userDatum.getAnchorPoint());
                 assertEquals (message, anchorPoint, userAnchor.toString());
+                prefix.setLength(prefixLength);
             }
-            final int prefixLength = prefix.length();
-            verifyDependencyIdentification(prefix, "getEllipsoid()", ellipsoidName, 0, userDatum.getEllipsoid());
-            prefix.setLength(prefixLength);
-            verifyDependencyIdentification(prefix, "getPrimeMeridian()", meridianName,  0, userDatum.getPrimeMeridian());
+            assertContainsNameOrAlias(message(prefix, "getEllipsoid()"), ellipsoidName, userDatum.getEllipsoid());
+            assertContainsNameOrAlias(message(prefix, "getPrimeMeridian()"), meridianName, userDatum.getPrimeMeridian());
+        }
+    }
+
+    /**
+     * Projection definition test.
+     * <p>
+     * <table cellpadding="3"><tr>
+     *   <th nowrap align="left" valign="top">Test purpose:</th>
+     *   <td>Verify that the software allows correct definition of a user-defined map projection.</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test method:</th>
+     *   <td>Create user-defined projection for each of several different map projections.
+     *   </td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Test data:</th>
+     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3005_userProjection.csv">{@code GIGS_3005_userProjection.csv}</a>.
+     *  </td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Tested API:</th>
+     *   <td>{@link CoordinateOperationFactory#getOperationMethod(String)},
+     *       {@link CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</td>
+     * </tr><tr>
+     *   <th nowrap align="left" valign="top">Expected result:</th>
+     *   <td>The geoscience software should accept the test data. The order in which the projection
+     *       parameters are entered is not critical, although that given in the test dataset is
+     *       recommended.</td>
+     * </tr></table>
+     *
+     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
+     *         unsupported code}) occurred while creating a unit from an EPSG code.
+     */
+    @Test
+    public void test3005() throws FactoryException{
+        test3005(null);
+    }
+
+    /**
+     * Creates the projections and optionally tests them.
+     * The behavior of this method depends on whether {@code objects} is null or not:
+     * <p>
+     * <ul>
+     *   <li>If {@code null}, then all projections will be created and tested.</li>
+     *   <li>If non-null, then only the ones enumerated in the keys will be created,
+     *       but none of them will be tested. The created objects will be stored in the
+     *       values of that map.</li>
+     * </ul>
+     *
+     * @param  objects On input, the GIGS codes of objects to create. On output if non-null,
+     *         the created but untested objects. If {@code null}, then all objects will be
+     *         created and tested.
+     * @throws FactoryException If an error occurred while creating an object.
+     */
+    private void test3005(final Map<String,Conversion> objects) throws FactoryException{
+        assumeNotNull(copFactory);
+        final ExpectedData data = new ExpectedData("GIGS_3005_userProjection.csv",
+                Integer.class,     // [ 0]: GIGS projection code
+                String.class,      // [ 1]: GIGS projection name
+                String.class,      // [ 2]: EPSG Conversion method name
+                String.class,      // [ 3]: Parameter 1 name
+                String.class,      // [ 4]: Parameter 1 value
+                String.class,      // [ 5]: Parameter 1 unit
+                Double.class,      // [ 6]: Parameter 1 value in decimal degrees
+                String.class,      // [ 7]: Parameter 2 name
+                String.class,      // [ 8]: Parameter 2 value
+                String.class,      // [ 9]: Parameter 2 unit
+                Double.class,      // [10]: Parameter 2 value in decimal degrees
+                String.class,      // [11]: Parameter 3 name
+                String.class,      // [12]: Parameter 3 value
+                String.class,      // [13]: Parameter 3 unit
+                Double.class,      // [14]: Parameter 3 value in decimal degrees
+                String.class,      // [15]: Parameter 4 name
+                String.class,      // [16]: Parameter 4 value
+                String.class,      // [17]: Parameter 4 unit
+                Double.class,      // [18]: Parameter 4 value in decimal degrees
+                String.class,      // [19]: Parameter 5 name
+                String.class,      // [20]: Parameter 5 value
+                String.class,      // [21]: Parameter 5 unit
+                String.class,      // [22]: Parameter 6 name
+                String.class,      // [23]: Parameter 6 value
+                String.class,      // [24]: Parameter 6 unit
+                String.class,      // [25]: Parameter 7 name
+                String.class,      // [26]: Parameter 7 value
+                String.class);     // [27]: Parameter 7 unit
+
+        final StringBuilder prefix = new StringBuilder();
+        while (data.next()) {
+            final String name = data.getString(1);
+            if (objects != null && !objects.containsKey(name)) {
+                // If the current row is not for an object on the list of
+                // items requested by the caller, skip the object creation.
+                continue;
+            }
+            /*
+             * Get the OperationMethod defined by the library. Libraries are not required
+             * to implement every possible operation methods, in which case unimplemented
+             * methods will be reported.  If tests are enabled, then this block will test
+             * the following properties:
+             *
+             *  - The number of source dimensions
+             *  - The number of target dimensions
+             */
+            final int    code       = data.getInt(0);
+            final String methodName = data.getString(2);
+            final OperationMethod method;
+            try {
+                method = copFactory.getOperationMethod(methodName);
+            } catch (NoSuchIdentifierException e) {
+                // Set the type to Projection rather than OperationMethod
+                // because the numerical code value is for the projection.
+                unsupportedCode(Projection.class, code, e, true);
+                continue;
+            }
+            prefix.setLength(0);
+            prefix.append("OperationMethod[\"").append(methodName).append("\"]");
+            assertNotNull(prefix.toString(), method);
+            prefix.append('.');
+            if (objects == null) { // Javadoc said that we test only if that map is null.
+                validators.validate(method);
+                final int prefixLength = prefix.length();
+                // Do not test the name, because libraries often have their own hard-coded collection of OperationMethod.
+                assertEquals(message(prefix, "getSourceDimensions()"), Integer.valueOf(2), method.getSourceDimensions());
+                assertEquals(message(prefix, "getTargetDimensions()"), Integer.valueOf(2), method.getTargetDimensions());
+                prefix.setLength(prefixLength);
+            }
+            /*
+             * Create the parameter values. This block opportunistically stores information in
+             * the 'parameters' array for comparison purpose after we created the projection.
+             * If tests are enabled, then this block will test the following properties.
+             *
+             *  - Class of values
+             *  - Minimum number of occurrences (shall be 0 or 1)
+             *  - Maximum number of occurrences (shall be 1)
+             */
+            prefix.append("parameter[\"");
+            int prefixLength = prefix.length();
+            final ParameterValueGroup  group = method.getParameters().createValue();
+            final ParameterInfo[] parameters = new ParameterInfo[7];
+            for (int paramNum = 0; paramNum < parameters.length; paramNum++) {
+                final int columnOffset = 3              // The first parameter starts at column 3.
+                        + Math.min(paramNum,   4) * 4   // Parameter 1 to 4 use 4 columns.
+                        + Math.max(paramNum-4, 0) * 3;  // Parameter 5 to 7 use 4 columns.
+
+                final String paramName = data.getString(columnOffset);
+                if (paramName == null) {
+                    continue;
+                }
+                final double value;
+                final Unit<?> unit;
+                final String unitName = data.getString(columnOffset + 2);
+                if (unitName.equalsIgnoreCase("sexagesimal degree")) {
+                    value = data.getDouble(columnOffset + 3);
+                    unit = NonSI.DEGREE_ANGLE;
+                } else {
+                    unit = parseUnit(unitName);
+                    assertNotNull(unitName, unit); // Failure here would be a geoapi-conformance bug.
+                    value = Double.valueOf(data.getString(columnOffset + 1));
+                }
+                final ParameterValue<?> param = group.parameter(paramName);
+                prefix.setLength(prefixLength);
+                prefix.append(paramName).append("\"]");
+                assertNotNull(prefix.toString(), param);
+                param.setValue(value, unit);
+                if (objects == null) { // Javadoc said that we test only if that map is null.
+                    validators.validate(param);
+                    prefix.append(".getDescriptor().");
+                    final ParameterDescriptor<?> descriptor = param.getDescriptor();
+                    if (descriptor != null) { // It is validator's jobs to decide if null is allowed.
+                        final Class<?> valueClass = descriptor.getValueClass();
+                        if (!Number.class.isAssignableFrom(valueClass)) {
+                            fail(prefix.append("getValueClass(): ").append(valueClass)
+                                    .append(" is not assignable to Number.").toString());
+                        }
+                        assertBetween(message(prefix, "getMinimumOccurs"), 0, 1, descriptor.getMinimumOccurs());
+                        assertEquals (message(prefix, "getMaximumOccurs"),    1, descriptor.getMaximumOccurs());
+                    }
+                }
+                parameters[paramNum] = new ParameterInfo(paramName, value, unit);
+            }
+            /*
+             * Create the projection.
+             */
+            final Map<String,Object> properties = properties(name, code);
+            final Conversion projection = copFactory.createDefiningConversion(properties, method, group);
+            prefix.setLength(0);
+            prefix.append("Projection[\"").append(name).append("\"]");
+            assertNotNull(prefix.toString(), projection);
+            if (objects != null) {
+                assertNull("An object already exists for the same name.", objects.put(name, projection));
+                continue;
+            }
+            /*
+             * Now verify the properties of the projection we just created. We require the parameter
+             * group to contain at least the values that we gave to it. If the library defines some
+             * additional parameters, then those extra parameters will be ignored.
+             */
+            validators.validate(projection);
+            prefix.append('.');
+            assertEquals(message(prefix, "getName()"), name, getName(projection));
+            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", code, projection.getIdentifiers());
+            assertContainsNameOrAlias(message(prefix, "getMethod()"), methodName, projection.getMethod());
+            final ParameterValueGroup projectionParameters = projection.getParameterValues();
+            prefix.append("getParameterValues()");
+            assertNotNull(prefix.toString(), projectionParameters);
+            prefix.append(".parameter(\"");
+            prefixLength = prefix.length();
+            for (final ParameterInfo info : parameters) {
+                if (info != null) {
+                    prefix.setLength(prefixLength);
+                    prefix.append(info.name).append("\")");
+                    final ParameterValue<?> param = projectionParameters.parameter(info.name);
+                    assertNotNull(prefix.toString(), param);
+                    prefix.append(".getValue(").append(info.unit).append(')');
+                    assertEquals(prefix.toString(), info.value, param.doubleValue(info.unit),
+                            TOLERANCE * Math.abs(info.value));
+                }
+            }
         }
     }
 }
