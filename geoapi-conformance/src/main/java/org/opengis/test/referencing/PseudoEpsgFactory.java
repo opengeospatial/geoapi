@@ -227,7 +227,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     protected Map<String,Object> createPropertiesMap(final int code, final String name) {
         final Map<String,Object> properties = new HashMap<String,Object>(4);
         assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
-        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new SimpleReferenceIdentifier(code)));
+        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new EPSGIdentifier(code)));
         return properties;
     }
 

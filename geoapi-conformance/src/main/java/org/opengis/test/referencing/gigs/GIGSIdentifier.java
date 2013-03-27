@@ -36,26 +36,42 @@ import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * A simple implementation if {@link ReferenceIdentifier}, used for GIGS testing purpose only.
+ * A simple implementation of {@link ReferenceIdentifier}, used for GIGS testing purpose only.
  *
  * @author  Alexis Manin (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see org.opengis.test.referencing.EPSGIdentifier
  */
-final strictfp class SimpleReferenceIdentifier implements ReferenceIdentifier {
+final strictfp class GIGSIdentifier implements ReferenceIdentifier {
     /**
      * The value to be returned by {@link #getCode()}.
      */
-    private final String code;
+    private final int code;
 
     /**
-     * Creates a new identifier for the given EPSG code.
-     *
-     * @param code The EPSG code.
+     * Creates a new identifier for the "GIGS" namespace and the given code.
      */
-    SimpleReferenceIdentifier(int code){
-        this.code  = String.valueOf(code);
+    GIGSIdentifier(final int code) {
+        this.code = code;
+    }
+
+    /**
+     * Returns the code given at construction time.
+     */
+    @Override
+    public String getCode() {
+        return String.valueOf(code);
+    }
+
+    /**
+     * Returns the code space, which is fixed to {@code "GIGS"}.
+     */
+    @Override
+    public String getCodeSpace() {
+        return "GIGS";
     }
 
     /**
@@ -64,22 +80,6 @@ final strictfp class SimpleReferenceIdentifier implements ReferenceIdentifier {
     @Override
     public Citation getAuthority() {
         return null;
-    }
-
-    /**
-     * Returns the code space, which is fixed to {@code "EPSG"}.
-     */
-    @Override
-    public String getCodeSpace() {
-        return "EPSG";
-    }
-
-    /**
-     * Returns the code given at construction time.
-     */
-    @Override
-    public String getCode() {
-        return code;
     }
 
     /**
@@ -95,15 +95,17 @@ final strictfp class SimpleReferenceIdentifier implements ReferenceIdentifier {
      */
     @Override
     public String toString() {
-        return "EPSG:" + code;
+        return "GIGS:" + code;
     }
 
     /**
      * Returns an arbitrary hash code value for this identifier.
+     * Current implementation does not use the codespace, since
+     * tested EPSG and GIGS codes do not overlap.
      */
     @Override
     public int hashCode() {
-        return code.hashCode() ^ 237674218;
+        return code ^ 237674218;
     }
 
     /**
@@ -111,7 +113,6 @@ final strictfp class SimpleReferenceIdentifier implements ReferenceIdentifier {
      */
     @Override
     public boolean equals(final Object obj) {
-        return (obj instanceof SimpleReferenceIdentifier) &&
-                code.equals(((SimpleReferenceIdentifier) obj).code);
+        return (obj instanceof GIGSIdentifier) && code == ((GIGSIdentifier) obj).code;
     }
 }

@@ -106,15 +106,47 @@ strictfp abstract class GIGSTestCase extends TestCase {
     }
 
     /**
-     * Compares the given generic names with the given set of expected aliases. This method
-     * verifies that the given collection contains at least the expected aliases. However
-     * the collection may contain additional aliases, which will be ignored.
+     * Asserts that the {@linkplain IdentifiedObject#getName() name} or at least one
+     * {@linkplain IdentifiedObject#getAlias() alias} of the given object is equals
+     * to the given string. This method ignore the case.
+     * <p>
+     * This method does not raise error if the object name or the alias collection
+     * is null, because it is validators job to determine whether such malformed
+     * objects should be accepted or not.
      *
      * @param message  The message to show in case of failure.
+     * @param expected The name which is expected to exist as a name or an alias.
+     * @param object   The object for which to check the name or the aliases.
+     */
+    static void assertContainsNameOrAlias(final String message,
+            final String expected, final IdentifiedObject object)
+    {
+        assertNotNull(message, object);
+        final String name = getName(object);
+        if (name != null && expected.equalsIgnoreCase(name)) {
+            return;
+        }
+        final Collection<GenericName> aliases = object.getAlias();
+        if (aliases != null) {
+            for (GenericName alias : aliases) {
+                if (alias.tip().toString().equalsIgnoreCase(expected)) {
+                    return;
+                }
+            }
+        }
+        fail(message + ": name or alias not found: " + expected);
+    }
+
+    /**
+     * Compares the given generic names with the given set of expected aliases.
+     * This method verifies that the given collection contains at least the expected aliases.
+     * However the collection may contain additional aliases, which will be ignored.
+     *
+     * @param message  The prefix of the message to show in case of failure.
      * @param expected The expected aliases.
      * @param aliases  The actual aliases.
      */
-    static void verifyAliases(final String message, final String[] expected,
+    static void assertContainsAll(final String message, final String[] expected,
             final Collection<GenericName> aliases)
     {
         assertNotNull(message, aliases);
@@ -130,20 +162,21 @@ next:   for (final String search : expected) {
     }
 
     /**
-     * Ensures that the given collection contains at least one identifier having the EPSG
-     * codespace (ignoring case) and the given code.
+     * Ensures that the given collection contains at least one identifier having the given
+     * codespace (ignoring case) and the given code value.
      *
      * @param message     The message to show in case of failure.
+     * @param codespace   The code space of identifiers to search.
      * @param expected    The expected identifier code.
      * @param identifiers The actual identifiers.
      */
-    static void verifyIdentifier(final String message, final int expected,
+    static void assertContainsCode(final String message, final String codespace, final int expected,
             final Collection<? extends ReferenceIdentifier> identifiers)
     {
         assertNotNull(message, identifiers);
         int found = 0;
         for (final ReferenceIdentifier id : identifiers) {
-            if (id.getCodeSpace().trim().equalsIgnoreCase("EPSG")) {
+            if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
                 found++;
                 try {
                     assertEquals(message, expected, Integer.parseInt(id.getCode()));
@@ -153,32 +186,7 @@ next:   for (final String search : expected) {
                 }
             }
         }
-        assertEquals(message + ": occurrence of EPSG:" + expected, 1, found);
-    }
-
-    /**
-     * Ensures the name and identifier of the given dependency are equal to the expected values.
-     * This method is invoked for example in order to check the name and identifier of the datum
-     * part of a CRS object.
-     *
-     * @param prefix        The buffer used for creating test messages.
-     * @param method        The method name to append to the {@code prefix} buffer.
-     * @param expectedName  The expected name of the {@code actual} object, or {@code null} if none.
-     * @param expectedCode  The expected identifier of the {@code actual} object, or 0 if none.
-     * @param actual        The object for which to verify the name and identifier.
-     */
-    static void verifyDependencyIdentification(final StringBuilder prefix, final String method,
-            final String expectedName, final int expectedCode, final IdentifiedObject actual)
-    {
-        prefix.append(method);
-        assertNotNull(prefix.toString(), actual);
-        prefix.append('.');
-        if (expectedName != null) {
-            assertEquals(message(prefix, "getName()"), expectedName, getName(actual));
-        }
-        if (expectedCode != 0) {
-            verifyIdentifier(message(prefix, "getIdentifiers()"), expectedCode, actual.getIdentifiers());
-        }
+        assertEquals(message + ": occurrence of " + codespace + ':' + expected, 1, found);
     }
 
     /**
