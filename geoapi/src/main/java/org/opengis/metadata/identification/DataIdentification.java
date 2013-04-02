@@ -127,8 +127,9 @@ public interface DataIdentification extends Identification {
      *
      * @return Additional extent information.
      *
-     * @condition If hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
-     *            or extent.geographicElement.EX_GeographicDescription is required.
+     * @condition Is hierarchyLevel equals dataset? If yes, {@link Extent#getGeographicElements()}
+     *            shall contains either a {@link org.opengis.metadata.extent.GeographicBoundingBox}
+     *            or a {@link org.opengis.metadata.extent.GeographicDescription}.
      */
     @Profile(level=CORE)
     @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)

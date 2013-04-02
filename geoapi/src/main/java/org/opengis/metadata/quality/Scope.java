@@ -68,8 +68,8 @@ public interface Scope {
 
     /**
      * Detailed description about the level of the data specified by the scope.
-     * Shall be defined only if the {@linkplain #getLevel level} is not equal
-     * to {@link ScopeCode#DATASET DATASET} or {@link ScopeCode#SERIES SERIES}.
+     * Shall be defined only if the {@linkplain #getLevel() level} is not equal
+     * to {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      *
      * @return Detailed description about the level of the data.
      *
@@ -79,8 +79,7 @@ public interface Scope {
     Collection<? extends ScopeDescription> getLevelDescription();
 
     /**
-     * Information about the spatial, vertical and temporal extent of the data specified by the
-     * scope.
+     * Information about the spatial, vertical and temporal extent of the data specified by the scope.
      *
      * @return Information about the extent of the data, or {@code null}.
      */

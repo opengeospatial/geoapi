@@ -77,7 +77,7 @@ public interface Medium {
      *
      * @return Units of measure for the recording density, or {@code null}.
      *
-     * @condition {@link #getDensities()} must be documented.
+     * @condition The {@linkplain #getDensities() densities} must be provided.
      */
     @UML(identifier="densityUnits", obligation=CONDITIONAL, specification=ISO_19115)
     Unit<?> getDensityUnits();

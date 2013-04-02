@@ -46,6 +46,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Information about the source data used in creating the data specified by the scope.
+ * At least one of the {@linkplain #getDescription() description} and
+ * {@linkplain #getSourceExtents() source extents} shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -68,7 +70,7 @@ public interface Source {
      *
      * @return Description of the level of the source data, or {@code null}.
      *
-     * @condition {@linkplain #getSourceExtents() Source extent} not provided.
+     * @condition Mandatory if the {@linkplain #getSourceExtents() source extent} is not provided.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
@@ -102,7 +104,7 @@ public interface Source {
      *
      * @return Information about the extent of the source data.
      *
-     * @condition {@linkplain #getDescription() Description} not provided.
+     * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
      */
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getSourceExtents();

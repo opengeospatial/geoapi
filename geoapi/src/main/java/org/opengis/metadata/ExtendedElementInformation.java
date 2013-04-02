@@ -63,14 +63,14 @@ public interface ExtendedElementInformation {
 
     /**
      * Short form suitable for use in an implementation method such as XML or SGML.
-     * Returns {@code null} if the {@linkplain #getDataType data type}
+     * Returns {@code null} if the {@linkplain #getDataType() data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
      * {@link #getDomainCode()} may be used instead.
      *
      * @return Short form suitable for use in an implementation method such as XML or SGML,
      *         or {@code null}.
      *
-     * @condition {@linkplain #getDataType Data type} not equal
+     * @condition The {@linkplain #getDataType() data type} is not
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115)
@@ -78,13 +78,13 @@ public interface ExtendedElementInformation {
 
     /**
      * Three digit code assigned to the extended element.
-     * Returns a non-null value only if the {@linkplain #getDataType data type}
+     * Returns a non-null value only if the {@linkplain #getDataType() data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
      * {@link #getShortName()} may be used instead.
      *
      * @return Three digit code assigned to the extended element, or {@code null}.
      *
-     * @condition {@linkplain #getDataType Data type} not equal
+     * @condition The {@linkplain #getDataType() data type} is not
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115)
@@ -103,23 +103,20 @@ public interface ExtendedElementInformation {
      *
      * @return Obligation of the extended element, or {@code null}.
      *
-     * @condition {@linkplain #getDataType Data type} not equal
-     *            {@link Datatype#CODE_LIST CODE_LIST} or
-     *            {@link Datatype#ENUMERATION ENUMERATION} or
-     *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
+     * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
+     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="obligation", obligation=CONDITIONAL, specification=ISO_19115)
     Obligation getObligation();
 
     /**
      * Condition under which the extended element is mandatory.
-     * Returns a non-null value only if the {@linkplain #getObligation obligation}
+     * Returns a non-null value only if the {@linkplain #getObligation() obligation}
      * is {@linkplain Obligation#CONDITIONAL conditional}.
      *
      * @return The condition under which the extended element is mandatory, or {@code null}.
      *
-     * @condition {@linkplain #getObligation Obligation} equals
-     *            {@link Obligation#CONDITIONAL CONDITIONAL}.
+     * @condition The {@linkplain #getObligation() Obligation} is {@link Obligation#CONDITIONAL CONDITIONAL}.
      */
     @UML(identifier="condition", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getCondition();
@@ -135,11 +132,14 @@ public interface ExtendedElementInformation {
     /**
      * Maximum occurrence of the extended element.
      * Returns {@code null} if it doesn't apply, for example if the
-     * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
+     * {@linkplain #getDataType() data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
      *
      * @return Maximum occurrence of the extended element, or {@code null}.
+     *
+     * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
+     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="maximumOccurrence", obligation=CONDITIONAL, specification=ISO_19115)
     Integer getMaximumOccurrence();
@@ -147,15 +147,14 @@ public interface ExtendedElementInformation {
     /**
      * Valid values that can be assigned to the extended element.
      * Returns {@code null} if it doesn't apply, for example if the
-     * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
+     * {@linkplain #getDataType() data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
      *
      * @return Valid values that can be assigned to the extended element, or {@code null}.
      *
-     * @condition {@linkplain #getDataType Data type} not {@link Datatype#ENUMERATION ENUMERATION},
-     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT
-     *            CODE_LIST_ELEMENT}.
+     * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
+     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="domainValue", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDomainValue();

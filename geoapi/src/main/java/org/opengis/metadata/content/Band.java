@@ -90,8 +90,8 @@ public interface Band extends RangeDimension {
      *
      * @return Units in which sensor wavelengths are expressed, or {@code null}.
      *
-     * @condition {@linkplain #getMinValue min value}, {@linkplain #getMaxValue max value}
-     *            or {@linkplain #getPeakResponse() peak response} is provided.
+     * @condition Mandatory if the {@linkplain #getMinValue() minimum value}, {@linkplain #getMaxValue()
+     *            maximum value} or {@linkplain #getPeakResponse() peak response} is provided.
      */
     @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
     Unit<Length> getUnits();

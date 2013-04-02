@@ -58,7 +58,8 @@ public interface Distribution {
      *
      * @return Description of the format of the data to be distributed.
      *
-     * @condition {@link Distributor#getDistributorFormats()} not documented.
+     * @condition Mandatory if the {@linkplain Distributor#getDistributorFormats() distributor
+     *            format} is not provided.
      */
     @Profile(level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)

@@ -50,10 +50,24 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates {@linkplain CoordinateOperation coordinate operations}.
- * This factory is capable to find coordinate {@linkplain Transformation transformations}
- * or {@linkplain Conversion conversions} between two
- * {@linkplain CoordinateReferenceSystem coordinate reference systems}.
+ * Creates {@linkplain CoordinateOperation coordinate operations} from
+ * {@linkplain org.opengis.parameter.ParameterValueGroup parameter values},
+ * or infers operations from source and target CRS.
+ * This factory provides two groups of methods:
+ * <p>
+ * <ul>
+ *   <li>Finding instances provided by the implementation:<ul>
+ *     <li>{@link #getOperationMethod(String)}</li>
+ *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
+ *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
+ *   </ul></li>
+ *   <li>Creating new instances from user-supplied parameters:<ul>
+ *     <li>{@link #createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)}</li>
+ *     <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
+ *     <li>{@link #createSingleOperation(Map, CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, ParameterValueGroup)}</li>
+ *     <li>{@link #createConcatenatedOperation(Map, CoordinateOperation[])}</li>
+ *   </ul></li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
@@ -100,13 +114,13 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * </ul>
      * <p>
      * <b>Example:</b> A transformation between two {@linkplain GeographicCRS geographic CRS} using
-     * different {@linkplain GeodeticDatum datum}
-     * requires a <cite>datum shift</cite>. Many methods exist for this purpose, including interpolations
-     * in a grid, a scale/rotation/translation in geocentric coordinates or the Molodenski approximation.
-     * When invoking {@code createOperation} without operation method, this factory may select by
-     * default the most accurate transformation (typically interpolation in a grid). When invoking
-     * {@code createOperation} with an operation method, user can force usage of Molodenski
-     * approximation for instance.
+     * different {@linkplain GeodeticDatum datum} requires a <cite>datum shift</cite>.
+     * Many methods exist for this purpose, including interpolations in a grid,
+     * a scale/rotation/translation in geocentric coordinates or the Molodenski approximation.
+     * When invoking {@code createOperation(…)} without operation method,
+     * this factory may select by default the transformation specified by the authority.
+     * When invoking {@code createOperation(…)} with an operation method,
+     * user can force usage of Molodenski approximation for instance.
      *
      * @param  sourceCRS Input coordinate reference system.
      * @param  targetCRS Output coordinate reference system.
@@ -124,6 +138,63 @@ public interface CoordinateOperationFactory extends ObjectFactory {
                                         CoordinateReferenceSystem targetCRS,
                                         OperationMethod           method)
             throws OperationNotFoundException, FactoryException;
+
+    /**
+     * Creates a parameterized mathematical operation from the given parameter values.
+     * Implementations are encouraged to infer the type ({@link TransformException},
+     * {@link Conversion} or {@link PassThroughOperation}) from the operation method.
+     * <p>
+     * Some available properties are {@linkplain ObjectFactory listed there}.
+     * Additionally, the following properties are understood by this constructor:
+     * <p>
+     * <table border="1" cellspacing="0" cellpadding="2">
+     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+     *     <th nowrap>Property name</th>
+     *     <th nowrap>Value type</th>
+     *     <th nowrap>Value given to</th>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#OPERATION_VERSION_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getOperationVersion()}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#COORDINATE_OPERATION_ACCURACY_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;<code>{@linkplain org.opengis.metadata.quality.PositionalAccuracy}[]</code>&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getCoordinateOperationAccuracy()}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link org.opengis.metadata.extent.Extent}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getDomainOfValidity()}</td>
+     *   </tr>
+     *   <tr>
+     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.util.InternationalString}&nbsp;</td>
+     *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope()}</td>
+     *   </tr>
+     * </table>
+     *
+     * @param properties Set of properties. Shall contains at least {@code "name"}.
+     * @param sourceCRS  The source coordinate reference system.
+     * @param targetCRS  The destination coordinate reference system.
+     * @param method     The operation method. A value can be obtained by {@link #getOperationMethod(String)}.
+     * @param parameters The parameter values. A default set of parameters can be obtained by
+     *         {@code method.getParameters().createValue()} and modified before to be given to
+     *         this constructor.
+     * @return The conversion, transformation or pass-through operation.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @departure extension
+     *   This method has been added because OGC 01-009 does not define a factory
+     *   method for creating such object.
+     */
+    SingleOperation createSingleOperation(Map<String, ?>            properties,
+                                          CoordinateReferenceSystem sourceCRS,
+                                          CoordinateReferenceSystem targetCRS,
+                                          OperationMethod           method,
+                                          ParameterValueGroup       parameters)
+            throws FactoryException;
 
     /**
      * Creates a concatenated operation from a sequence of operations.
@@ -144,8 +215,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
 
     /**
      * Creates a defining conversion from a set of properties. Defining conversions have no
-     * {@linkplain Conversion#getSourceCRS source} and {@linkplain Conversion#getTargetCRS target
-     * CRS}, and do not need to have a {@linkplain Conversion#getMathTransform math transform}.
+     * {@linkplain Conversion#getSourceCRS() source} and {@linkplain Conversion#getTargetCRS() target CRS},
+     * and do not need to have a {@linkplain Conversion#getMathTransform() math transform}.
      * Their sole purpose is to be given as an argument to {@linkplain CRSFactory#createDerivedCRS
      * derived CRS} and {@linkplain CRSFactory#createProjectedCRS projected CRS} constructors.
      * <p>
@@ -157,16 +228,6 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *     <th nowrap>Property name</th>
      *     <th nowrap>Value type</th>
      *     <th nowrap>Value given to</th>
-     *   </tr>
-     *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#OPERATION_VERSION_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getOperationVersion()}</td>
-     *   </tr>
-     *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#COORDINATE_OPERATION_ACCURACY_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;<code>{@linkplain org.opengis.metadata.quality.PositionalAccuracy}[]</code>&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getCoordinateOperationAccuracy()}</td>
      *   </tr>
      *   <tr>
      *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}&nbsp;</td>

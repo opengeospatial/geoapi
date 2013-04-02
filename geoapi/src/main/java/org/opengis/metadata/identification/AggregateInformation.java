@@ -59,7 +59,7 @@ public interface AggregateInformation {
      * @return Citation information about the aggregate dataset, or {@code null}.
      *
      * @condition {@linkplain #getAggregateDataSetIdentifier()} Aggregate data set identifier}
-     *            not documented.
+     *            not provided.
      */
     @UML(identifier="aggregateDataSetName", obligation=CONDITIONAL, specification=ISO_19115)
     Citation getAggregateDataSetName();
@@ -69,7 +69,7 @@ public interface AggregateInformation {
      *
      * @return Identification information about aggregate dataset, or {@code null}.
      *
-     * @condition {@linkplain #getAggregateDataSetName() Aggregate data set name} not documented.
+     * @condition {@linkplain #getAggregateDataSetName() Aggregate data set name} not provided.
      */
     @UML(identifier="aggregateDataSetIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     Identifier getAggregateDataSetIdentifier();

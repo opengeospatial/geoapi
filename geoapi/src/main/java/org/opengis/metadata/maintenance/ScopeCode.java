@@ -156,7 +156,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode MODEL = new ScopeCode("MODEL");
 
     /**
-     * Information applies to a copy or imitation of an existing or hypothetical object.
+     * Information applies to a tile, a spatial subset of geographic data.
      *
      * @since 2.1
      */
