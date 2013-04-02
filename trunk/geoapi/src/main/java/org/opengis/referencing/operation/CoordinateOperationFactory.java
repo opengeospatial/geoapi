@@ -64,7 +64,6 @@ import static org.opengis.annotation.Specification.*;
  *   <li>Creating new instances from user-supplied parameters:<ul>
  *     <li>{@link #createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)}</li>
  *     <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
- *     <li>{@link #createSingleOperation(Map, CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod, ParameterValueGroup)}</li>
  *     <li>{@link #createConcatenatedOperation(Map, CoordinateOperation[])}</li>
  *   </ul></li>
  * </ul>
@@ -138,63 +137,6 @@ public interface CoordinateOperationFactory extends ObjectFactory {
                                         CoordinateReferenceSystem targetCRS,
                                         OperationMethod           method)
             throws OperationNotFoundException, FactoryException;
-
-    /**
-     * Creates a parameterized mathematical operation from the given parameter values.
-     * Implementations are encouraged to infer the type ({@link TransformException},
-     * {@link Conversion} or {@link PassThroughOperation}) from the operation method.
-     * <p>
-     * Some available properties are {@linkplain ObjectFactory listed there}.
-     * Additionally, the following properties are understood by this constructor:
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
-     *     <th nowrap>Property name</th>
-     *     <th nowrap>Value type</th>
-     *     <th nowrap>Value given to</th>
-     *   </tr>
-     *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#OPERATION_VERSION_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getOperationVersion()}</td>
-     *   </tr>
-     *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#COORDINATE_OPERATION_ACCURACY_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;<code>{@linkplain org.opengis.metadata.quality.PositionalAccuracy}[]</code>&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getCoordinateOperationAccuracy()}</td>
-     *   </tr>
-     *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link org.opengis.metadata.extent.Extent}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getDomainOfValidity()}</td>
-     *   </tr>
-     *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.util.InternationalString}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope()}</td>
-     *   </tr>
-     * </table>
-     *
-     * @param properties Set of properties. Shall contains at least {@code "name"}.
-     * @param sourceCRS  The source coordinate reference system.
-     * @param targetCRS  The destination coordinate reference system.
-     * @param method     The operation method. A value can be obtained by {@link #getOperationMethod(String)}.
-     * @param parameters The parameter values. A default set of parameters can be obtained by
-     *         {@code method.getParameters().createValue()} and modified before to be given to
-     *         this constructor.
-     * @return The conversion, transformation or pass-through operation.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @departure extension
-     *   This method has been added because OGC 01-009 does not define a factory
-     *   method for creating such object.
-     */
-    SingleOperation createSingleOperation(Map<String, ?>            properties,
-                                          CoordinateReferenceSystem sourceCRS,
-                                          CoordinateReferenceSystem targetCRS,
-                                          OperationMethod           method,
-                                          ParameterValueGroup       parameters)
-            throws FactoryException;
 
     /**
      * Creates a concatenated operation from a sequence of operations.
