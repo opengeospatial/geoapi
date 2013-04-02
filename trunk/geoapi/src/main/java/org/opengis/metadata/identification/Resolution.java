@@ -43,6 +43,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
 
 /**
  * Level of detail expressed as a scale factor or a ground distance.
+ * Exactly one of the {@linkplain #getEquivalentScale() scale} and {@linkplain #getDistance()
+ * distance} properties shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -61,7 +63,7 @@ public interface Resolution {
      *
      * @return Level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
      *
-     * @condition {@linkplain #getDistance() Distance} not documented.
+     * @condition {@linkplain #getDistance() Distance} not provided.
      */
     @Profile(level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
@@ -83,7 +85,7 @@ public interface Resolution {
      * @return The ground sample distance, or {@code null}.
      * @unitof Distance
      *
-     * @condition {@linkplain #getEquivalentScale() Equivalent scale} not documented.
+     * @condition {@linkplain #getEquivalentScale() Equivalent scale} not provided.
      */
     @Profile(level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)

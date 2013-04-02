@@ -44,6 +44,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of the class of information covered by the information.
+ * Exactly one of the {@code attributes}, {@code features}, {@code featureInstances},
+ * {@code attributeInstances}, {@code dataset} and {@code other} properties shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -62,8 +64,8 @@ public interface ScopeDescription {
      *
      * @return Attributes to which the information applies.
      *
-     * @condition Features, featureInstances, attributeInstances, dataset and other not
-     *            documented.
+     * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends AttributeType> getAttributes();
@@ -73,8 +75,8 @@ public interface ScopeDescription {
      *
      * @return Features to which the information applies.
      *
-     * @condition attributes, featureInstances, attributeInstances, dataset and other not
-     *            documented.
+     * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends FeatureType> getFeatures();
@@ -84,8 +86,8 @@ public interface ScopeDescription {
      *
      * @return Feature instances to which the information applies.
      *
-     * @condition Attributes, features, attributeInstances, dataset and other not
-     *            documented.
+     * @condition {@code attributes}, {@code features}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends FeatureType> getFeatureInstances();
@@ -97,8 +99,8 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition Attributes, features, featureInstances, dataset and other not
-     *            documented.
+     * @condition {@code attributes}, {@code features}, {@code featureInstances},
+     *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends AttributeType> getAttributeInstances();
@@ -110,8 +112,8 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition Attributes, features, featureInstances, attributeInstances and other not
-     *            documented.
+     * @condition {@code attributes}, {@code features}, {@code featureInstances},
+     *            {@code attributeInstances} and {@code other} not provided.
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
     String getDataset();
@@ -124,8 +126,8 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition Attributes, features, featureInstances, attributeInstances and dataset not
-     *            documented.
+     * @condition {@code attributes}, {@code features}, {@code featureInstances},
+     *            {@code attributeInstances} and {@code dataset} not provided.
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
     String getOther();

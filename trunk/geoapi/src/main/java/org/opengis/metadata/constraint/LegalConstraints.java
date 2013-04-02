@@ -71,15 +71,11 @@ public interface LegalConstraints extends Constraints {
 
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource.
-     * This method should returns a non-empty value only if {@linkplain #getAccessConstraints
-     * access constraints} or {@linkplain #getUseConstraints use constraints} declares
-     * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      *
      * @return Other restrictions and legal prerequisites for accessing and using the resource.
      *
-     * @condition {@linkplain #getAccessConstraints() Access constraints} or
-     *            {@linkplain #getUseConstraints() use constraints} equal
-     *            {@link Restriction#OTHER_RESTRICTIONS}.
+     * @condition Mandatory if the {@linkplain #getAccessConstraints() access constraints} or
+     *            {@linkplain #getUseConstraints() use constraints} equal {@link Restriction#OTHER_RESTRICTIONS}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getOtherConstraints();

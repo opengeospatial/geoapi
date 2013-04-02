@@ -46,8 +46,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Information about the events or source data used in constructing the data specified by
  * the scope or lack of knowledge about lineage.
- *
- * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
+ * At least one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
  * and {@linkplain #getSources sources} shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
@@ -64,7 +63,7 @@ public interface Lineage {
      *
      * @return Explanation of the data producer's knowledge about the lineage, or {@code null}.
      *
-     * @condition Shall be provided only if {@linkplain Scope#getLevel scope level} is
+     * @condition Shall be provided only if {@linkplain Scope#getLevel() scope level} is
      *            {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      */
     @Profile(level=CORE)
@@ -76,8 +75,8 @@ public interface Lineage {
      *
      * @return Information about an event in the creation process.
      *
-     * @condition Mandatory if {@linkplain #getStatement statement} and
-     *            {@linkplain #getSources source} are not provided.
+     * @condition Mandatory if {@linkplain #getStatement() statement} and
+     *            {@linkplain #getSources() source} are not provided.
      */
     @UML(identifier="processStep", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends ProcessStep> getProcessSteps();
@@ -87,8 +86,8 @@ public interface Lineage {
      *
      * @return Information about the source data.
      *
-     * @condition Mandatory if {@linkplain #getStatement statement} and
-     *           {@linkplain #getProcessSteps process step} are not provided.
+     * @condition Mandatory if {@linkplain #getStatement() statement} and
+     *            {@linkplain #getProcessSteps() process step} are not provided.
      */
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Source> getSources();
