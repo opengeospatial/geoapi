@@ -107,7 +107,7 @@ public interface DirectPosition extends Position {
      * </pre></blockquote>
      *
      * There are a couple reasons for requesting a copy:
-     * <p>
+     *
      * <ul>
      *   <li>We want an array of coordinates with the intend to modify it for computation purpose
      *       (without modifying the original {@code DirectPosition}), or we want to protect the
@@ -119,7 +119,7 @@ public interface DirectPosition extends Position {
      *       forced to returns a new array anyway (for example because the coordinates were
      *       computed on the fly)</li>
      * </ul>
-     * <p>
+     *
      * Precedence is given to data integrity over {@code getOrdinates()} performance.
      * Performance concern can be avoided with usage of {@link #getOrdinate(int)}.
      *
@@ -155,7 +155,7 @@ public interface DirectPosition extends Position {
      * Compares this direct position with the specified object for equality.
      * Two direct positions are considered equal if the following conditions
      * are meet:
-     * <p>
+     *
      * <ul>
      *   <li>{@code object} is non-null and is an instance of {@code DirectPosition}.</li>
      *   <li>Both direct positions have the same {@linkplain #getDimension() number of dimensions}.</li>

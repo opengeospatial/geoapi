@@ -58,39 +58,23 @@ table.ogc tr td.sep {
  * Bullet and ordered lists. Put some space before and after the list.
  * Listes of the "verbose" class also have some space betweem items.
  */
-div.block ul,
-div.block ol {
+ul,
+ol {
   margin-top:    9pt;
   margin-bottom: 9pt;
 }
 
-div.block li > ul,
-div.block li > ol {
+li > ul,
+li > ol {
   margin-top:    0pt;
   margin-bottom: 6pt;
-}
-
-div.block ul {
-  list-style-type: square;
-}
-
-ul.verbose li {
-  margin-top:    3pt;
-  margin-bottom: 3pt;
-}
-
-/*
- * Miscellaneous
- */
-p {
-  text-align: justify;
 }
 
 
 
 
 /* ----------------------------------------------------------------------
- * End of SIS-specific part. The remaining of this file is derived from
+ * End of GeoAPI-specific part. The remaining of this file is derived from
  * the Javadoc default stylesheet for the target platform (JDK6 or JDK7).
  *
  * The styles in this file are declared in their approximative usage order,

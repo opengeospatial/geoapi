@@ -39,8 +39,7 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 
 /**
- * An annotation mapping each interface, methods or fields to
- * the UML identifier where they come from.
+ * An annotation mapping each interface, methods or fields to the UML identifier where they come from.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

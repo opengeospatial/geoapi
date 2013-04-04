@@ -46,14 +46,14 @@ public enum ComplianceLevel {
     /**
      * Core metadata elements required to identify a dataset, typically for catalogue purposes.
      * This level specifies metadata elements answering the following questions:
-     * <p>
+     *
      * <ul>
      *   <li>Does a dataset on a specific topic exist (what)?</li>
      *   <li>For a specific place (where)?</li>
      *   <li>For a specific date or period (when)?</li>
      *   <li>A point of contact to learn more about or order the dataset (who)?</li>
      * </ul>
-     * <p>
+     *
      * Using the recommended {@linkplain Obligation#OPTIONAL optional} elements in addition to the
      * {@linkplain Obligation#MANDATORY mandatory} elements will increase inter-operability,
      * allowing users to understand without ambiguity the geographic data and the related metadata

@@ -36,15 +36,15 @@ package org.opengis.annotation;
  * Type of modeling element as declared in the OGC/ISO UML diagram.
  * Values of this enumeration are associated to GeoAPI interfaces by the {@link Classifier}
  * annotation.
- * <p>
- * This enumeration is closely related to the ISO 19115 {@link org.opengis.metadata.Datatype} code list,
+ *
+ * <p>This enumeration is closely related to the ISO 19115 {@link org.opengis.metadata.Datatype} code list,
  * but not identical since ISO 19115 specifies <cite>datatype</cite> and <cite>stereotype</cite> as two
  * distinct information. Furthermore {@code Stereotype} needs to be defined as an {@code Enum} for
- * allowing usages in Java annotations
- * <p>
- * This enumeration does not include the <cite>code list</cite> and <cite>enumeration</cite>
+ * allowing usages in Java annotations</p>
+ *
+ * <p>This enumeration does not include the <cite>code list</cite> and <cite>enumeration</cite>
  * stereotypes, because instances of those types are identified by the
- * {@link org.opengis.util.CodeList} and {@link Enum} base classes respectively.
+ * {@link org.opengis.util.CodeList} and {@link Enum} base classes respectively.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -57,8 +57,8 @@ public enum Stereotype {
     /**
      * Class that specifies a domain of objects together with the operations applicable to the
      * objects, without defining the physical implementation of those objects.
-     * <p>
-     * This is the default value for interfaces without {@link Classifier} annotation.
+     *
+     * <p>This is the default value for interfaces without {@link Classifier} annotation.</p>
      *
      * @see org.opengis.metadata.Datatype#TYPE_CLASS
      */
