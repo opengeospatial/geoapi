@@ -51,6 +51,7 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.test.Configuration;
 import org.opengis.test.referencing.PseudoEpsgFactory;
 
