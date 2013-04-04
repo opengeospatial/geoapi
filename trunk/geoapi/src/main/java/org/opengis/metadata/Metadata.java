@@ -125,11 +125,12 @@ public interface Metadata {
 
     /**
      * Scope to which the metadata applies.
+     * Metadata for which no hierarchy is listed are interpreted to be
+     * "{@linkplain ScopeCode#DATASET dataset}" metadata by default.
      *
      * @return Scope to which the metadata applies.
      *
-     * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
-     *            {@link ScopeCode#DATASET}.
+     * @condition Mandatory if the metadata is about a resource other than a dataset.
      */
     @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<ScopeCode> getHierarchyLevels();
