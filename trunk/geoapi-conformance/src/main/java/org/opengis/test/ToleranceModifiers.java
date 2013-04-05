@@ -165,7 +165,7 @@ public strictfp final class ToleranceModifiers {
             tolerance[φDimension] /= (NAUTICAL_MILE * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
             double tol = tolerance[λDimension];
             if (tol != 0) {
-                tol /= (NAUTICAL_MILE*60 * cos(toRadians(coordinate.getOrdinate(φDimension))));
+                tol /= (NAUTICAL_MILE*60 * cos(toRadians(abs(coordinate.getOrdinate(φDimension)))));
                 if (!(tol <= 360)) { // !(a<=b) rather than (a>b) in order to catch NaN.
                     tol = 360;
                 }
