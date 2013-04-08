@@ -387,7 +387,7 @@
                   </excludes>
                 </resource>
               </resources>
-              <outputDirectory>${basedir}/target/apidocs/</outputDirectory>
+              <outputDirectory>${basedir}/target/site/apidocs/</outputDirectory>
             </configuration>
           </execution>
         </executions>

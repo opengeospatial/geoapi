@@ -75,8 +75,7 @@ public interface Distributor {
      *
      * @return Information about the format used by the distributor.
      *
-     * @condition Mandatory if the {@linkplain Distribution#getDistributionFormats()
-     *            distribution formats} is not provided.
+     * @condition Mandatory if {@link Distribution#getDistributionFormats()} is empty.
      */
     @UML(identifier="distributorFormat", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Format> getDistributorFormats();

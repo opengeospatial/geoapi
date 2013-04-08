@@ -31,16 +31,17 @@
  */
 
 /**
- * Root package for {@linkplain org.opengis.metadata.Metadata metadata}.
- * Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * The {@linkplain org.opengis.metadata.Metadata metadata} root entity.
+ *
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
  * OpenGIS&reg; Metadata (Topic 11)} specification. The following table shows the class hierarchy,
- * together with a partial view of aggregation hierarchy.
+ * together with a partial view of aggregation hierarchy:</p>
  *
  * <table class="ogc"><tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td width="50%" nowrap>
- * <pre>ISO-19115 object
+ * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.Metadata}
  *  ├─ {@linkplain org.opengis.metadata.PortrayalCatalogueReference}
  *  ├─ {@linkplain org.opengis.metadata.ApplicationSchemaInformation}
@@ -52,7 +53,7 @@
  *  ├─ {@linkplain org.opengis.metadata.Datatype}
  *  └─ {@linkplain org.opengis.metadata.Obligation}</pre>
  * </td><td class="sep" width="50%" nowrap>
- * <pre>{@linkplain org.opengis.metadata.Metadata}
+ * <pre> {@linkplain org.opengis.metadata.Metadata}
  *  ├─ {@linkplain org.opengis.metadata.PortrayalCatalogueReference}
  *  ├─ {@linkplain org.opengis.metadata.ApplicationSchemaInformation}
  *  ├─ {@linkplain org.opengis.metadata.MetadataExtensionInformation}
