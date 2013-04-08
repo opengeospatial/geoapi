@@ -31,27 +31,22 @@
  */
 
 /**
- * {@linkplain org.opengis.metadata.citation.Citation} and
- * {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party} information.
- * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
- * specification:
+ * Type for {@linkplain org.opengis.metadata.citation.Citation citing} a resource and information
+ * about the {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party}.
+ * The resource can be a dataset, feature, source, publication, <i>etc</i>.
+ * The responsible party} contains the identity of person(s), and/or position, and/or organization(s)
+ * associated with the resource. The {@linkplain org.opengis.metadata.citation.Address address}
+ * contains the location of the responsible person or organization.
  *
- * <p>This package provides the type ({@link org.opengis.metadata.citation.Citation}) for citing a
- * resource (dataset, feature, source, publication, <i>etc.</i>), as well as information about the
- * party responsible for a resource.
- * The {@link org.opengis.metadata.citation.ResponsibleParty} contains the identity of person(s),
- * and/or position, and/or organization(s) associated with the resource.
- * The location ({@link org.opengis.metadata.citation.Address}) of the responsible person
- * or organization is also defined here.</p>
- *
- * <p>The following table shows the class hierarchy, together with a partial view of aggregation hierarchy.</p>
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * OpenGIS&reg; Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * together with a partial view of aggregation hierarchy:</p>
  *
  * <table class="ogc"><tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td width="50%" nowrap>
- * <pre>ISO-19115 object
+ * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
  *  ├─ {@linkplain org.opengis.metadata.citation.ResponsibleParty}
@@ -66,7 +61,7 @@
  *  ├─ {@linkplain org.opengis.metadata.citation.PresentationForm}
  *  └─ {@linkplain org.opengis.metadata.citation.Role}</pre>
  * </td><td class="sep" width="50%" nowrap>
- * <pre>{@linkplain org.opengis.metadata.citation.Citation}
+ * <pre> {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
  *  │   └─ {@linkplain org.opengis.metadata.citation.DateType} «code list»
  *  ├─ {@linkplain org.opengis.metadata.citation.ResponsibleParty}

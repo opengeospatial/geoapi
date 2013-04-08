@@ -31,20 +31,30 @@
  */
 
 /**
- * {@linkplain org.opengis.metadata.constraint.Constraints} information
- * (includes legal and security). The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
- * specification.
+ * Restrictions placed on data (legal and security {@linkplain org.opengis.metadata.constraint.Constraints constraints}).
  *
- * <P ALIGN="justify">This package contains information concerning the restrictions placed on data.
- * The {@linkplain org.opengis.metadata.constraint.Constraints constraints} entity is optional and
- * may be specified as {@linkplain org.opengis.metadata.constraint.LegalConstraints legal constraints}
- * and/or {@linkplain org.opengis.metadata.constraint.SecurityConstraints security constraints}. The
- * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getOtherConstraints other constraint}
- * element shall be non-null (used) only if
- * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getAccessConstraints access constraints} and/or
- * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getUseConstraints use constraints} elements have
- * a value of "{@linkplain org.opengis.metadata.constraint.Restriction#OTHER_RESTRICTIONS other restrictions}".</P>
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * OpenGIS&reg; Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * together with a partial view of aggregation hierarchy:</p>
+ *
+ * <table class="ogc"><tr>
+ *   <th>Class hierarchy</th>
+ *   <th class="sep">Aggregation hierarchy</th>
+ * </tr><tr><td width="50%" nowrap>
+ * <pre> ISO-19115 object
+ *  └─ {@linkplain org.opengis.metadata.constraint.Constraints}
+ *      ├─ {@linkplain org.opengis.metadata.constraint.LegalConstraints}
+ *      └─ {@linkplain org.opengis.metadata.constraint.SecurityConstraints}
+ * {@linkplain org.opengis.util.CodeList}
+ *  ├─ {@linkplain org.opengis.metadata.constraint.Restriction}
+ *  └─ {@linkplain org.opengis.metadata.constraint.Classification}</pre>
+ * </td><td class="sep" width="50%" nowrap>
+ * <pre> {@linkplain org.opengis.metadata.acquisition.Constraints}
+ * {@linkplain org.opengis.metadata.constraint.LegalConstraints}
+ *  └─ {@linkplain org.opengis.metadata.constraint.Restriction} «code list»
+ * {@linkplain org.opengis.metadata.constraint.SecurityConstraints}
+ *  └─ {@linkplain org.opengis.metadata.constraint.Classification} «code list»</pre>
+ * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

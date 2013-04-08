@@ -41,6 +41,9 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Restrictions and legal prerequisites for accessing and using the resource.
+ * The {@linkplain #getOtherConstraints() other constraint} element shall be non-empty (used) only if
+ * {@linkplain #getAccessConstraints() access constraints} and/or {@linkplain #getUseConstraints()
+ * use constraints} elements have a value of {@link Restriction#OTHER_RESTRICTIONS}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -74,8 +77,8 @@ public interface LegalConstraints extends Constraints {
      *
      * @return Other restrictions and legal prerequisites for accessing and using the resource.
      *
-     * @condition Mandatory if the {@linkplain #getAccessConstraints() access constraints} or
-     *            {@linkplain #getUseConstraints() use constraints} equal {@link Restriction#OTHER_RESTRICTIONS}.
+     * @condition Mandatory if and only if the {@linkplain #getAccessConstraints() access constraints} or
+     *            {@linkplain #getUseConstraints() use constraints} contain {@link Restriction#OTHER_RESTRICTIONS}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getOtherConstraints();

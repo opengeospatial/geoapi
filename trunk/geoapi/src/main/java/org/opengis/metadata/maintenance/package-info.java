@@ -31,13 +31,28 @@
  */
 
 /**
- * {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation Maintenance information}.
- * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
- * specification.
+ * Scope and frequency of updating data.
  *
- * <P ALIGN="justify">This package contains information about the scope and frequency of updating
- * data.</P>
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * OpenGIS&reg; Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * together with a partial view of aggregation hierarchy:</p>
+ *
+ * <table class="ogc"><tr>
+ *   <th>Class hierarchy</th>
+ *   <th class="sep">Aggregation hierarchy</th>
+ * </tr><tr><td width="50%" nowrap>
+ * <pre> ISO-19115 object
+ *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
+ *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}
+ * {@linkplain org.opengis.util.CodeList}
+ *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency}
+ *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeCode}</pre>
+ * </td><td class="sep" width="50%" nowrap>
+ * <pre> {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
+ *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency} «code list»
+ *  ├─ {@linkplain org.opengis.metadata.maintenance.ScopeCode} «code list»
+ *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}</pre>
+ * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

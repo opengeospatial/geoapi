@@ -46,8 +46,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Information about the events or source data used in constructing the data specified by
  * the scope or lack of knowledge about lineage.
- * At least one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
- * and {@linkplain #getSources sources} shall be provided.
+ * At least one of {@linkplain #getStatement() statement}, {@linkplain #getProcessSteps() process steps}
+ * and {@linkplain #getSources() sources} shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
