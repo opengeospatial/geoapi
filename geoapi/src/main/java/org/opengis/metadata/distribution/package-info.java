@@ -34,7 +34,7 @@
  * Information concerning the distributor of, and options for obtaining, a resource.
  *
  * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS&reg; Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
  * together with a partial view of aggregation hierarchy:</p>
  *
  * <table class="ogc"><tr>

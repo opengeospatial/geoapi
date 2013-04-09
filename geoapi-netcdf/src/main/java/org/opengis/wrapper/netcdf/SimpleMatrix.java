@@ -31,7 +31,7 @@ final class SimpleMatrix extends GMatrix implements Matrix {
     private static final long serialVersionUID = -9053188309751616226L;
 
     /**
-     * Creates a matrix of size {@code size}&nbsp;&times;&nbsp;{@code size}.
+     * Creates a matrix of size {@code size}&nbsp;×&nbsp;{@code size}.
      * Elements on the diagonal (<var>j</var> == <var>i</var>) are set to 1.
      */
     public SimpleMatrix(final int size) {

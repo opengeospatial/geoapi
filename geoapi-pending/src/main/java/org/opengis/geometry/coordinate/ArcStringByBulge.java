@@ -74,7 +74,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * <blockquote><code>
      * midPoint = (({@link #getStartPoint startPoint} +
      *              {@link #getEndPoint     endPoint})/2.0)
-     *            + bulge&times;{@link #getNormals normal}
+     *            + bulge×{@link #getNormals normal}
      * </code></blockquote>
      *
      * @return The offset of each arc's midpoint.

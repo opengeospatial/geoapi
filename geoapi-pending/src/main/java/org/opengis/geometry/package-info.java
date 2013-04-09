@@ -32,7 +32,7 @@
 
 /**
  * Root package for {@linkplain org.opengis.geometry.Geometry geometries}. The following is adapted
- * from {@linkplain org.opengis.annotation.Specification#ISO_19107 OpenGIS&reg; Feature Geometry
+ * from {@linkplain org.opengis.annotation.Specification#ISO_19107 OpenGIS® Feature Geometry
  * (Topic 1)} specification.
  *
  * <P ALIGN="justify">The geometry packages contain the various classes for coordinate geometry. All

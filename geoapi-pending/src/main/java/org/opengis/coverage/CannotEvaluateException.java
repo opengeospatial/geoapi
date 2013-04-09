@@ -37,7 +37,7 @@ import org.opengis.geometry.DirectPosition;  // For Javadoc
 /**
  * The base class for exceptions thrown when a quantity can't be evaluated.
  * This exception is usually invoked by a
- * <code>Coverage.{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(&hellip;)</code>
+ * <code>Coverage.{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(…)</code>
  * method, for example when a point is outside the coverage.
  *
  * @author  Martin Desruisseaux (IRD)

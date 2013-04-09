@@ -126,14 +126,14 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         private static final long serialVersionUID = -3574562964980541886L;
 
         /**
-         * The WGS84 CRS, as defined by EPSG:4326. The axis order is (&phi;,&lambda;).
+         * The WGS84 CRS, as defined by EPSG:4326. The axis order is (φ,λ).
          */
         public static final GeographicCRS WGS84 = new Geographic(SimpleCitation.EPSG, "WGS 84",
                 SimpleDatum.WGS84, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);
 
         /**
          * A spherical CRS used when the datum is unknown, as defined by EPSG:4047.
-         * The axis order is (&phi;,&lambda;).
+         * The axis order is (φ,λ).
          */
         public static final GeographicCRS SPHERE = new Geographic(SimpleCitation.EPSG, "GRS 1980 Authalic Sphere",
                 SimpleDatum.SPHERE, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);

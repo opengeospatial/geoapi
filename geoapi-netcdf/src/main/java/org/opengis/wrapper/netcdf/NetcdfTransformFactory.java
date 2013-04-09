@@ -237,7 +237,7 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      * <ul>
      *   <li>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</li>
      *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
-     *   <li>The domain shall be a subset of {[-180,180)&times;(-90,90)}.</li>
+     *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
      * </ul>
      *
      * @param  parameters The parameter values.

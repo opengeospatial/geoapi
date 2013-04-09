@@ -55,7 +55,7 @@ public interface XReferencing extends XInterface {
 
     /**
      * Returns the valid area as a geographic bounding box for an identified object. This method
-     * returns a 2&times;2 matrix. The first row contains the latitude and longitude of upper left
+     * returns a 2×2 matrix. The first row contains the latitude and longitude of upper left
      * corder, and the second row contains the latitude and longitude or bottom right corner. Units
      * are degrees.
      *

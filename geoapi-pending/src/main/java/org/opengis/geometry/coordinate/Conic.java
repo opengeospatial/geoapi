@@ -42,13 +42,13 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Any general conic curve. Any of the conic section curves can be canonically represented
- * in polar co-ordinates (&rho;, &phi;) as:
+ * in polar co-ordinates (&rho;, φ) as:
  *
  * <P><center><img src="doc-files/ConicCurve.png"></center></P>
  *
  * <P>where "<var>P</var>" is semi-latus rectum and "<var>e</var>" is the eccentricity. This gives
  * a conic with focus at the pole (origin), and the vertex on the conic nearest this focus in the
- * direction of the polar axis, <var>&phi;</var>=0.
+ * direction of the polar axis, <var>φ</var>=0.
  *
  * For <var>e</var>=0, this is a circle.
  * For 0&nbsp;&lt;&nbsp;<var>e</var>&nbsp;&lt;&nbsp;1, this is an ellipse.
@@ -58,23 +58,23 @@ import static org.opengis.annotation.Specification.*;
  *
  * <P>These generic conics can be viewed in a two-dimensional Cartesian parameter space
  * (<var>u</var>,&nbsp;<var>v</var>) given by the usual coordinate conversions
- * <var>u</var>=<var>&rho;</var>cos(<var>&phi;</var>) and
- * <var>v</var>=<var>&rho;</var>sin(<var>&phi;</var>).
+ * <var>u</var>=<var>&rho;</var>cos(<var>φ</var>) and
+ * <var>v</var>=<var>&rho;</var>sin(<var>φ</var>).
  * We can then convert this to a 3D coordinate reference system by using an affine transformation,
  * (<var>u</var>,&nbsp;<var>v</var>) &rarr; (<var>x</var>,&nbsp;<var>y</var>,&nbsp;<var>z</var>)
  * which is defined by:</P>
  *
  * <P><center>(TODO: paste the matrix here, same as AffinePlacement)</center></P>
  *
- * <P>This gives us <var>&phi;</var> as the constructive parameter.
+ * <P>This gives us <var>φ</var> as the constructive parameter.
  * The {@linkplain DirectPosition direct position} given by
  * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>)
  * is the image of the origin in the local coordinate space (<var>u</var>, <var>v</var>)
  * Alternatively, the origin may be shifted to the vertex of the conic as</P>
  *
- * <P><var>u'</var> = <var>&rho;</var>cos(<var>&phi;</var>) - P/(1 + <var>e</var>)
+ * <P><var>u'</var> = <var>&rho;</var>cos(<var>φ</var>) - P/(1 + <var>e</var>)
  * &nbsp;&nbsp;and&nbsp;&nbsp;
- * <var>v'</var> = <var>&rho;</var>sin(<var>&phi;</var>)</P>
+ * <var>v'</var> = <var>&rho;</var>sin(<var>φ</var>)</P>
  *
  * <P>and <var>v</var> can be used as the constructive parameter.
  * In general, conics with small eccentricity and small <var>P</var>, use the first or

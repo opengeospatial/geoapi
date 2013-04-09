@@ -56,7 +56,7 @@ final class Affine extends AffineTransform implements MathTransform2D {
 
     /**
      * Creates a new affine transform initialized from the given matrix.
-     * The matrix size must be 3&times;3 and the last row shall contains
+     * The matrix size must be 3×3 and the last row shall contains
      * [0 0 1] (this is not verified by this constructor).
      */
     private Affine(final Matrix matrix) {
@@ -71,7 +71,7 @@ final class Affine extends AffineTransform implements MathTransform2D {
     /**
      * Creates a new affine transform initialized from the given matrix.
      *
-     * @throws FactoryException If the matrix size is not 3&times;3, or the transform is not affine.
+     * @throws FactoryException If the matrix size is not 3×3, or the transform is not affine.
      */
     static Affine create(final Matrix matrix) throws FactoryException {
         if (matrix.getNumCol() != 3 || matrix.getNumRow() != 3) {

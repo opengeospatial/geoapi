@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * this interface matches closely the API in various {@linkplain javax.vecmath.GMatrix matrix}
  * implementations available in <a href="https://java3d.dev.java.net/">Java3D</a>,
  * which should enable straightforward implementations. Java3D provides matrix for the general
- * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
+ * case and optimized versions for 3×3 and 4×4 cases, which are quite common in a
  * transformation package.
  *
  * @author  Martin Desruisseaux (IRD)

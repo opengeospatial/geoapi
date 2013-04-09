@@ -117,7 +117,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -146,7 +146,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -174,7 +174,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -203,7 +203,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -230,7 +230,7 @@ public interface MathTransform {
      * the point. The matrix will have dimensions corresponding to the source
      * and target coordinate systems. If the input dimension is <var>M</var>,
      * and the output dimension is <var>N</var>, then the matrix will have size
-     * <code>N&times;M</code>. The elements of the matrix
+     * <code>N×M</code>. The elements of the matrix
      *
      *              <code>{e<sub>n,m</sub> : n=0..(N-1)}</code>
      *

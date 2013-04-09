@@ -61,7 +61,7 @@ public interface MathTransform1D extends MathTransform {
 
     /**
      * Gets the derivative of this function at a value. The derivative is the
-     * 1&times;1 matrix of the non-translating portion of the approximate affine
+     * 1×1 matrix of the non-translating portion of the approximate affine
      * map at the value.
      *
      * @param  value The value where to evaluate the derivative.

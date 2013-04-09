@@ -33,7 +33,7 @@
 /**
  * Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
  * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification:
  *
  * <p>Most {@linkplain org.opengis.parameter.ParameterValue parameter values} are

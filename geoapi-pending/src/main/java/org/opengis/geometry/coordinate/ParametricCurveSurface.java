@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <blockquote>
  * {@code surface}(<var>s</var>,<var>t</var>):
- * [<var>a</var>,<var>b</var>]&times;[<var>c</var>,<var>d</var>] &rarr; {@link DirectPosition}
+ * [<var>a</var>,<var>b</var>]×[<var>c</var>,<var>d</var>] &rarr; {@link DirectPosition}
  * </blockquote>
  *
  * By fixing the value of either parameter, we have a one-parameter family of curves.
@@ -107,7 +107,7 @@ import static org.opengis.annotation.Specification.*;
  * of these two curve derivatives when they are both non-zero:
  *
  * <blockquote>
- * <b>k</b> = <b>i</b> &times; <b>j</b>
+ * <b>k</b> = <b>i</b> × <b>j</b>
  * </blockquote>
  *
  * If the coordinate reference system is 2D, then the vector <b>k</b> extends the local coordinate

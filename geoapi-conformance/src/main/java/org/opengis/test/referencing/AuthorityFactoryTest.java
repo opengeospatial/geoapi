@@ -88,7 +88,7 @@ import static org.opengis.test.referencing.Utilities.getName;
  *
  * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
  * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the later
- * test class expects (&lambda;,&phi;) input ordinates in degrees and (<var>x</var>,<var>y</var>)
+ * test class expects (λ,φ) input ordinates in degrees and (<var>x</var>,<var>y</var>)
  * output ordinates in metres, while this {@code AuthorityFactoryTest} class expects input and
  * output ordinates in CRS-dependent units and axis order.</p>
  *
@@ -132,7 +132,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * only to geographic coordinates.
      *
      * <p><b>Default value:</b> {@code true}, since the majority of {@link GeographicCRS}
-     * defined in the EPSG database uses the (&phi;&lambda;) axis order.</p>
+     * defined in the EPSG database uses the (φλ) axis order.</p>
      *
      * @since 3.1
      */
@@ -519,7 +519,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Mercator (variant A)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -539,7 +539,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Mercator (variant B)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
@@ -560,7 +560,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Mercator Popular Visualisation Pseudo Mercator</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -580,7 +580,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Miller</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -600,7 +600,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Hotine Oblique Mercator (variant B)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -620,7 +620,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Transverse Mercator</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -640,7 +640,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Cassini-Soldner</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
      * </table>
      *
@@ -661,7 +661,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (1SP)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -681,7 +681,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (2SP)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
      * </table>
      *
@@ -702,7 +702,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -722,7 +722,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Lambert Azimuthal Equal Area</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
@@ -743,7 +743,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Polar Stereographic (variant A)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -765,7 +765,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Polar Stereographic (variant A)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
@@ -787,7 +787,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Polar Stereographic (variant B)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -808,7 +808,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Oblique Stereographic</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
@@ -828,7 +828,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * <table class="ogc">
      * <tr><td>Projection method:</td> <td>Krovak</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Ferro <strong>(17°40'W from Greenwich)</strong></td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(&phi;,&lambda;) in degrees</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
      * </table>
      *

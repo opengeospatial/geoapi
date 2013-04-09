@@ -757,7 +757,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 US feet<br>0 US feet</td></tr>
      * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 US feet<br>254759.80 US feet</td></tr>
      * </table>
-     * <p align="right">1 metre = 3.2808333&hellip; US feet</p>
+     * <p align="right">1 metre = 3.2808333… US feet</p>
      * </td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.

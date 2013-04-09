@@ -25,7 +25,7 @@ public class SimpleMatrix extends GMatrix implements Matrix {
     private static final long serialVersionUID = -1756594679120634738L;
 
     /**
-     * Creates a matrix of size {@code numRow}&nbsp;&times;&nbsp;{@code numCol}.
+     * Creates a matrix of size {@code numRow}&nbsp;×&nbsp;{@code numCol}.
      * Elements on the diagonal (<var>j</var> == <var>i</var>) are set to 1.
      *
      * @param numRow Number of rows.

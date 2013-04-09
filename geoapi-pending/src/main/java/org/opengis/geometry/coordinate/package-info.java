@@ -32,7 +32,7 @@
 
 /**
  * Core package needed to investigate coordinate-defined geometry. The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19107 OpenGIS&reg; Feature Geometry
+ * {@linkplain org.opengis.annotation.Specification#ISO_19107 OpenGIS® Feature Geometry
  * (Topic 1)} specification.
  *
  * <P ALIGN="justify">A large number of the geometric types in the ISO 19107 standard are defined

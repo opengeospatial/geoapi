@@ -172,7 +172,7 @@ public interface GeometryFactory {
      * the chord, given by a distance and direction, and constructs the corresponding arc.
      * The midpoint of the resulting arc is given by:
      *
-     * <blockquote><pre>midPoint = ((startPoint + endPoint)/2.0) + bulge&times;normal</pre></blockquote>
+     * <blockquote><pre>midPoint = ((startPoint + endPoint)/2.0) + bulge×normal</pre></blockquote>
      *
      * In 2D coordinate reference systems, the bulge can be given a sign and the normal can be
      * assumed to be the perpendicular to the line segment between the start and end point of
@@ -203,7 +203,7 @@ public interface GeometryFactory {
      *
      * <blockquote>
      * <var>m</var> = (<var>P</var><sub>0</sub> + <var>P</var><sub>1</sub>)/2
-     *              + <var>b</var>&times;<b><var>v</var></b>
+     *              + <var>b</var>×<b><var>v</var></b>
      * </blockquote>
      *
      * This is leftward if <var>b</var>&nbsp;&gt;&nbsp;0
@@ -242,7 +242,7 @@ public interface GeometryFactory {
      * constructor of arc}, except the bulge representation is maintained. The midpoint of
      * the resulting arc is given by:
      *
-     * <blockquote><pre>midPoint = ((startPoint + endPoint)/2.0) + bulge&times;normal</pre></blockquote>
+     * <blockquote><pre>midPoint = ((startPoint + endPoint)/2.0) + bulge×normal</pre></blockquote>
      *
      * @param startPoint The {@linkplain ArcByBulge#getStartPoint start point}.
      * @param   endPoint The {@linkplain ArcByBulge#getEndPoint end point}.

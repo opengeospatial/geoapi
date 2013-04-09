@@ -34,7 +34,7 @@
  * {@linkplain org.opengis.referencing.operation.CoordinateOperation Coordinate operations} (relationship between
  * any two {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}).
  * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
  * <p>If the relationship between any two coordinate reference

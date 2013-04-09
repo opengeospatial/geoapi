@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * This geometry is mainly used as a transition curve between curves of type straight
  * line/circular arc or circular arc/circular arc. With this curve type it is possible
  * to achieve a C2-continous transition between the above mentioned curve types. One
- * formula for the clothoid is <var>A</var><sup>2</sup> = <var>R</var>&times;<var>t</var>
+ * formula for the clothoid is <var>A</var><sup>2</sup> = <var>R</var>×<var>t</var>
  * where <var>A</var> is a constant, <var>R</var> is the varying radius of curvature along
  * the curve and <var>t</var> is the length along the curve and given in the Fresnel integrals.
  *

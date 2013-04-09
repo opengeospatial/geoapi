@@ -33,7 +33,7 @@
 /**
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem Coordinate systems} and their
  * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis axis}. The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
  * <h3>Coordinate system</h3>
@@ -94,7 +94,7 @@
  * tuple must be the same as the defined order of the coordinate axes, the "<var>i</var>-th"
  * coordinate axis of a coordinate system is defined as the locus of points for which all
  * coordinates with sequence number not equal to "<var>i</var>", have a constant value
- * locally (whereby <var>i</var> = 1&hellip;<var>n</var>, and <var>n</var> is the dimension
+ * locally (whereby <var>i</var> = 1…<var>n</var>, and <var>n</var> is the dimension
  * of the coordinate space).</p>
  *
  * <p>It will be evident that the addition of the word "locally" in this

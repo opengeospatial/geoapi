@@ -129,8 +129,8 @@ public strictfp class AffineTransformTest extends TransformTestCase {
 
     /**
      * {@code true} if {@link MathTransformFactory#createAffineTransform(Matrix)} accepts
-     * matrixes of size different than 3&times;3. If {@code false}, then only matrixes of
-     * size 3&times;3 (i.e. affine transforms between two-dimensional spaces) will be tested.
+     * matrixes of size different than 3×3. If {@code false}, then only matrixes of
+     * size 3×3 (i.e. affine transforms between two-dimensional spaces) will be tested.
      */
     protected boolean isNonBidimensionalSpaceSupported;
 
