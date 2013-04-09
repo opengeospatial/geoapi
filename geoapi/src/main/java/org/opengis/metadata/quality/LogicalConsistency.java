@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Degree of adherence to logical rules of data structure, attribution and relationships (data
- * structure can be conceptual, logical or physical).
+ * Degree of adherence to logical rules of data structure, attribution and relationships.
+ * Data structure can be conceptual, logical or physical.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1

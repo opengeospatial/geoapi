@@ -42,7 +42,6 @@ import org.opengis.util.FactoryException;
  * objects or values. {@code CSFactory} allows applications to make {@linkplain
  * CoordinateSystem coordinate systems} that cannot be created by a {@link CSAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
- *
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems,
  * and {@code CSFactory} can be used to make "special" coordinate systems.
  *

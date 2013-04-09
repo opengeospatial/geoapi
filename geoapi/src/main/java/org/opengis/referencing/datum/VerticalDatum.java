@@ -42,10 +42,10 @@ import static org.opengis.annotation.Specification.*;
  * A textual description and/or a set of parameters identifying a particular reference level
  * surface used as a zero-height surface. The description includes its position with respect
  * to the Earth for any of the height types recognized by this standard.
- * <p>
- * There are several types of Vertical Datums, and each may place constraints on the
+ *
+ * <p>There are several types of Vertical Datums, and each may place constraints on the
  * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis Coordinate Axis} with which
- * it is combined to create a {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS}.
+ * it is combined to create a {@linkplain org.opengis.referencing.crs.VerticalCRS Vertical CRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

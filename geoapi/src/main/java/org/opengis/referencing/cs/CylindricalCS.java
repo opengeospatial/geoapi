@@ -39,14 +39,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A three-dimensional coordinate system consisting of a {@linkplain PolarCS polar coordinate
  * system} extended by a straight coordinate axis perpendicular to the plane spanned by the
- * polar coordinate system. A {@code CylindricalCS} shall have three
- * {@linkplain #getAxis axis associations}.
+ * polar coordinate system.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>A {@code CylindricalCS} shall have three {@linkplain #getAxis(int) axis associations}.
+ * This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

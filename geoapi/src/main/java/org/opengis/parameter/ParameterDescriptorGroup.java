@@ -60,21 +60,20 @@ import static org.opengis.annotation.Specification.*;
 public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
-     * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default values}.
+     * initialized with the {@linkplain ParameterDescriptor#getDefaultValue() default values}.
      * While not a requirement, the {@linkplain ParameterValueGroup#getDescriptor() parameter
      * value descriptor} for the created group will typically be {@code this} descriptor instance.
-     * <p>
-     * The number of {@link ParameterValue} objects included must be between the
+     *
+     * <p>The number of {@link ParameterValue} objects included must be between the
      * {@linkplain ParameterDescriptor#getMinimumOccurs() minimum} and
      * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurences} required.
-     * For example:
-     * <p>
+     * For example:</p>
+     *
      * <ul>
-     * <li>For {@link ParameterDescriptor} with cardinality 1:* a {@link ParameterValue} will
-     *     be included with the {@linkplain ParameterDescriptor#getDefaultValue() default value}
-     *     (even if this default value is null).</li>
-     * <li>For {@link ParameterDescriptor} with cardinality 0:* no entry is required.
-     *     {@link ParameterValue} entries may be created only as needed.</li>
+     *   <li>For {@link ParameterDescriptor} with cardinality 1:* a {@code ParameterValue} will
+     *       be included with the default value (even if this default value is null).</li>
+     *   <li>For {@code ParameterDescriptor} with cardinality 0:* no entry is required.
+     *       {@code ParameterValue} entries may be created only as needed.</li>
      * </ul>
      *
      * @return A new parameter instance initialized to the default value.
@@ -98,8 +97,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * Returns the parameter descriptor in this group for the specified
      * {@linkplain Identifier#getCode identifier code}.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code} of the
-     *              parameter to search for.
+     * @param  name The case insensitive identifier code of the parameter to search for.
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      *

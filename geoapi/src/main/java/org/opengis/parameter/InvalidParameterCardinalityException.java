@@ -31,19 +31,16 @@
  */
 package org.opengis.parameter;
 
-import java.util.List;
-
 
 /**
  * Thrown by {@link ParameterValueGroup} if adding or removing a {@linkplain ParameterValue
- * parameter value} would result in more or less parameters than the expected range. The
- * [{@linkplain ParameterDescriptor#getMinimumOccurs minimum} &hellip;
- *  {@linkplain ParameterDescriptor#getMaximumOccurs maximum}] range is defined by
- * the {@link ParameterDescriptorGroup} instance associated with the {@code ParameterValueGroup}.
- * <p>
- * This exception may be thrown directly by the {@link ParameterValueGroup#addGroup(String)}
- * method, or indirectly during the {@linkplain List#add add} or {@linkplain List#remove remove}
- * operations on the list returned by {@link ParameterValueGroup#values()}.
+ * parameter value} would result in more or less parameters than the expected range.
+ * The minimum and maximum occurrences are defined by the {@link ParameterDescriptorGroup}
+ * instance associated with the {@code ParameterValueGroup}.
+ *
+ * <p>This exception may be thrown directly by the {@link ParameterValueGroup#addGroup(String)}
+ * method, or indirectly during the add or remove operations applied on the list returned by
+ * {@link ParameterValueGroup#values()}.</p>
  *
  * {@note This exception is of kind <code>IllegalStateException</code> instead than
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.

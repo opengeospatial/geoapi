@@ -49,14 +49,13 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems} that cannot be
  * created by a {@link CRSAuthorityFactory}. This factory is very flexible, whereas the
  * authority factory is easier to use.
- * <p>
  * So {@link CRSAuthorityFactory} can be used to make "standard" coordinate reference systems,
  * and {@code CRSFactory} can be used to make "special" coordinate reference systems.
- * <p>
- * For example, the EPSG authority has codes for USA state plane coordinate systems
+ *
+ * <p>For example, the EPSG authority has codes for USA state plane coordinate systems
  * using the NAD83 datum, but these coordinate systems always use meters.  EPSG does
  * not have codes for NAD83 state plane coordinate systems that use feet units.  This
- * factory lets an application create such a hybrid coordinate system.
+ * factory lets an application create such a hybrid coordinate system.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -193,17 +192,17 @@ public interface CRSFactory extends ObjectFactory {
      * system can be rotated in the (<var>lat</var>, <var>lon</var>) plane, since both
      * affected axes are in degrees. But the transform should not rotate this coordinate
      * system in any other plane.
-     * <p>
-     * The {@code conversionFromBase} shall contains the {@linkplain Conversion#getParameterValues
+     *
+     * <p>The {@code conversionFromBase} shall contains the {@linkplain Conversion#getParameterValues
      * parameter values} required for the conversion. It may or may not contain the corresponding
      * "{@linkplain Conversion#getMathTransform base to derived}" transform, at user's choice. If
      * a transform is provided, this method may or may not use it at implementation choice.
-     * Otherwise it shall creates the transform from the parameters.
-     * <p>
-     * It is the user's responsibility to ensure that the conversion performs all required steps,
+     * Otherwise it shall creates the transform from the parameters.</p>
+     *
+     * <p>It is the user's responsibility to ensure that the conversion performs all required steps,
      * including unit conversions and change of axis order, if needed. Note that this behavior is
      * different than {@link #createProjectedCRS createProjectedCRS} because transforms other than
-     * <cite>cartographic projections</cite> are not standardized.
+     * <cite>cartographic projections</cite> are not standardized.</p>
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -236,11 +235,11 @@ public interface CRSFactory extends ObjectFactory {
      * "{@linkplain Conversion#getMathTransform base to derived}" transform, at user's choice. If
      * a transform is provided, this method may or may not use it at implementation choice.
      * Otherwise it shall creates the transform from the parameters.
-     * <p>
-     * The supplied conversion should <strong>not</strong> includes the operation steps for
+     *
+     * <p>The supplied conversion should <strong>not</strong> includes the operation steps for
      * performing {@linkplain CoordinateSystemAxis#getUnit unit} conversions and change of
      * {@linkplain CoordinateSystem#getAxis axis} order; those operations shall be inferred
-     * by this constructor by some code equivalent to:
+     * by this constructor by some code equivalent to:</p>
      *
      * <blockquote><code>
      * MathTransform baseToDerived = {@linkplain MathTransformFactory#createBaseToDerived
@@ -287,7 +286,7 @@ public interface CRSFactory extends ObjectFactory {
 
     /**
      * Creates a coordinate reference system object from a string.
-     * The <A HREF="../doc-files/WKT.html">definition for WKT</A>
+     * The <a href="../doc-files/WKT.html">definition for WKT</a>
      * is shown using Extended Backus Naur Form (EBNF).
      *
      * @param  wkt Coordinate system encoded in Well-Known Text format.

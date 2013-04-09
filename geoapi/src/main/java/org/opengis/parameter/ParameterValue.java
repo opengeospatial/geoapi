@@ -47,9 +47,9 @@ import static org.opengis.annotation.Specification.*;
  * parameter values are possible and can be handled by the more generic {@link #getValue()} and
  * {@link #setValue(Object)} methods. The type and constraints on parameter values are given
  * by the {@linkplain #getDescriptor() descriptor}.
- * <p>
- * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()}
- * method.
+ *
+ * <p>Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()}
+ * method.</p>
  *
  * @param <T> The type of parameter values.
  *
@@ -318,11 +318,11 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Sets the parameter value as an object. The object type is typically a {@link Double},
      * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]}
      * or {@code int[]}.
-     * <p>
-     * The argument is not restricted to the parameterized type {@code T} because the type
-     * is typically unknown (as in <code>group.{@linkplain ParameterValueGroup#parameter
+     *
+     * <p>The argument is not restricted to the parameterized type {@code T} because the type
+     * is typically unknown (as in <code>group.{@linkplain ParameterValueGroup#parameter(String)
      * parameter}("<var>name</var>").setValue(<var>value</var>)</code>) and
-     * because some implementations may choose to convert a wider range of types.
+     * because some implementations may choose to convert a wider range of types.</p>
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the type of {@code value} is inappropriate

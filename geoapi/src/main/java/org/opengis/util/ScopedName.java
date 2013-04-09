@@ -47,15 +47,15 @@ import static org.opengis.annotation.Specification.*;
  * name} is taken. In this way, a scoped name may represent an arbitrarily distant
  * {@linkplain LocalName local name} simply by the number of times the {@link #tail()} method
  * evaluates to a {@code ScopedName} before finally terminating on a {@link LocalName}.
- * <p>
- * It may be seen that {@code ScopedName} is the means by which fully-qualified names are expressed.
+ *
+ * <p>It may be seen that {@code ScopedName} is the means by which fully-qualified names are expressed.
  * However, a {@code ScopedName} is not, in itself, what is commonly thought of as a <cite>fully
  * qualified</cite> name. The {@code ScopedName} type is one link in the chain, not the entire chain.
  * A scoped name is a fully qualified name only if its {@linkplain #scope scope} is
- * {@linkplain NameSpace#isGlobal global}.
- * <p>
- * <b>Example</b>:
- * The illustration below shows the head, tail, path and name of {@code "org.opengis.util.Record"}.
+ * {@linkplain NameSpace#isGlobal global}.</p>
+ *
+ * <p><b>Example</b>:
+ * The illustration below shows the head, tail, path and name of {@code "org.opengis.util.Record"}.</p>
  * <blockquote><table border="1" cellpadding="15"><tr><td><table border="0">
  *   <tr>
  *     <th align="right">org</th>
@@ -64,12 +64,12 @@ import static org.opengis.annotation.Specification.*;
  *     <th>.</th><th>Record</th>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="1">{@linkplain #head head}</td><td></td>
- *     <td bgcolor="palegoldenrod" colspan="5">{@linkplain #tail tail}</td>
+ *     <td bgcolor="palegoldenrod" colspan="1">{@linkplain #head() head}</td><td></td>
+ *     <td bgcolor="palegoldenrod" colspan="5">{@linkplain #tail() tail}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="wheat" colspan="5">{@linkplain #path path}</td><td></td>
- *     <td bgcolor="wheat" colspan="1">{@linkplain #tip tip}</td>
+ *     <td bgcolor="wheat" colspan="5">{@linkplain #path() path}</td><td></td>
+ *     <td bgcolor="wheat" colspan="1">{@linkplain #tip() tip}</td>
  *   </tr>
  * </table></td></tr></table></blockquote>
  *
@@ -84,19 +84,19 @@ public interface ScopedName extends GenericName {
      * Returns the first element in the sequence of {@linkplain #getParsedNames() parsed names}.
      * The head element must exists in the same {@linkplain NameSpace name space} than this
      * scoped name. In other words, the following relationship must holds:
-     * <p>
+     *
      * <ul>
      *   <li><code>head().scope()</code>
      *       &nbsp;&nbsp; {@linkplain Object#equals(Object) equals} &nbsp;&nbsp;
      *       <code>this.{@linkplain #scope() scope()}</code></li>
      * </ul>
-     * <p>
+     *
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
      * from the <cite>Java Naming and Directory Interface</cite>.
-     * <p>
-     * <b>Example</b>:
+     *
+     * <p><b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
-     * shall returns {@code "org"}.
+     * shall returns {@code "org"}.</p>
      *
      * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
      *
@@ -109,13 +109,13 @@ public interface ScopedName extends GenericName {
     /**
      * Returns every elements of the {@linkplain #getParsedNames() parsed names list} except for
      * the {@linkplain #head() head}. In other words, the following relationship must holds:
-     * <p>
+     *
      * <ul>
      *   <li><code>tail().getParsedNames()</code>
      *   &nbsp;&nbsp; {@linkplain List#equals(Object) equals} &nbsp;&nbsp;
      *   <code>this.{@linkplain #getParsedNames getParsedNames()}.sublist(1, {@linkplain #depth depth})</code></li>
      * </ul>
-     * <p>
+     *
      * This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
      * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
@@ -130,13 +130,13 @@ public interface ScopedName extends GenericName {
     /**
      * Returns every elements of the {@linkplain #getParsedNames() parsed names list} except for
      * the {@linkplain #tip() tip}. In other words, the following relationship must holds:
-     * <p>
+     *
      * <ul>
      *   <li><code>tip().getParsedNames()</code>
      *   &nbsp;&nbsp; {@linkplain List#equals(Object) equals} &nbsp;&nbsp;
      *   <code>this.{@linkplain #getParsedNames() getParsedNames()}.sublist(0, {@linkplain #depth() depth}-1)</code></li>
      * </ul>
-     * <p>
+     *
      * This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
      * Name.getPrefix}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
@@ -153,9 +153,9 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames() parsed names}.
-     * <p>
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
-     * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
+     *
+     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
+     * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *

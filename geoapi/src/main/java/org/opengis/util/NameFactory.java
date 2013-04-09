@@ -64,24 +64,24 @@ public interface NameFactory extends Factory {
      * is optional: if non-null, the given properties may be given to the namespace to be created.
      * The properties can include for example the separator character to be used between the
      * {@linkplain GenericName#getParsedNames() parsed names}.
-     * <p>
-     * Implementations are encouraged to recognize at least the properties listed in the following
+     *
+     * <p>Implementations are encouraged to recognize at least the properties listed in the following
      * table. Additional implementation-specific properties can be added. Unknown properties shall
-     * be ignored.
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
-     *     <th nowrap>Property name</th>
-     *     <th nowrap>Purpose</th>
+     * be ignored.</p>
+     *
+     * <table class="ogc">
+     *   <tr>
+     *     <th>Property name</th>
+     *     <th>Purpose</th>
      *   </tr>
      *   <tr>
-     *     <td valign="top" nowrap>&nbsp;{@code "separator"}&nbsp;</td>
+     *     <td valign="top" nowrap>{@code "separator"}</td>
      *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
      *     in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
      *     it is typically {@code ":"}.</td>
      *   </tr>
      *   <tr>
-     *     <td valign="top" nowrap>&nbsp;{@code "separator.head"}&nbsp;</td>
+     *     <td valign="top" nowrap>{@code "separator.head"}</td>
      *     <td>The separator to insert between the namespace and the
      *     {@linkplain GenericName#head() head}. For HTTP namespace, it is {@code "://"}.
      *     For URN namespace, it is typically {@code ":"}. If this entry is omitted, then
@@ -150,10 +150,10 @@ public interface NameFactory extends Factory {
      * {@link String} or {@link InternationalString} instances. In the later case, implementations
      * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
      * returned by {@link LocalName#toString()}.
-     * <p>
-     * If the length of the {@code parsedNames} array is 1, then this method returns an instance
+     *
+     * <p>If the length of the {@code parsedNames} array is 1, then this method returns an instance
      * of {@link LocalName}. If the length is 2 or more, then this method returns an instance of
-     * {@link ScopedName}.
+     * {@link ScopedName}.</p>
      *
      * @param scope
      *          The {@linkplain GenericName#scope() scope} of the generic name to be created,
@@ -171,13 +171,13 @@ public interface NameFactory extends Factory {
      * Constructs a generic name from a qualified name. This method splits the given name around a
      * separator inferred from the given scope, or an implementation-dependent default separator if
      * the given scope is null.
-     * <p>
-     * For example if the {@code scope} argument is the namespace {@code "urn:ogc:def"}
+     *
+     * <p>For example if the {@code scope} argument is the namespace {@code "urn:ogc:def"}
      * with {@code ":"} as the separator, and if the {@code name} argument is the string
      * {@code "crs:epsg:4326"}, then the result is a {@linkplain ScopedName scoped name}
      * having a {@linkplain GenericName#depth depth} of 3, which is the length of the list
      * of {@linkplain GenericName#getParsedNames parsed names} ({@code "crs"}, {@code "epsg"},
-     * {@code "4326"}).
+     * {@code "4326"}).</p>
      *
      * @param scope
      *          The {@linkplain GenericName#scope() scope} of the generic name to

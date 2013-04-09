@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * organization that maintains definitions of authority codes. An <cite>authority
  * code</cite> is a compact string defined by an authority to reference a particular
  * spatial reference object. For example the
- * <A HREF="http://www.epsg.org">European Petroleum Survey Group (EPSG)</A> maintains
+ * <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains
  * a database of coordinate systems, and other spatial referencing objects, where each
  * object has a code number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate
  * system is '4326'.
@@ -69,15 +69,16 @@ public interface AuthorityFactory extends Factory {
      * Returns the set of authority codes of the given type. The {@code type}
      * argument specifies the base class. For example if this factory is an instance
      * of {@link org.opengis.referencing.crs.CRSAuthorityFactory}, then:
+     *
      * <ul>
-     *   <li><b><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class&nbsp;</code></b>
+     *   <li><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class</code>
      *       asks for all authority codes accepted by one of
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
      *       and any other method returning a sub-type of {@code CoordinateReferenceSystem}.</li>
-     *   <li><b><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class&nbsp;</code></b>
+     *   <li><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class</code>
      *       asks only for authority codes accepted by
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
      * </ul>
@@ -110,12 +111,12 @@ public interface AuthorityFactory extends Factory {
      * Returns an arbitrary object from a code. The returned object will typically be an
      * instance of {@link org.opengis.referencing.datum.Datum}, {@link org.opengis.referencing.cs.CoordinateSystem},
      * {@link org.opengis.referencing.ReferenceSystem} or {@link org.opengis.referencing.operation.CoordinateOperation}.
-     * If the type of the object is know at compile time, it is recommended to invoke the
-     * most precise method instead of this one (for example
-     * <code>&nbsp;{@linkplain org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
-     * createCoordinateReferenceSystem}(code)&nbsp;</code> instead of <code>&nbsp;createObject(code)&nbsp;</code>
-     * if the caller know he is asking for a {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
-     * reference system}).
+     *
+     * <p>If the object type is known at compile time, then it is recommended to invoke the
+     * most precise method instead of this one. For example it is usually better to invoke
+     * <code>{@linkplain org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
+     * createCoordinateReferenceSystem}(code)</code> instead of <code>createObject(code)</code>
+     * if the requested object is known to be a {@code CoordinateReferenceSystem} instance.</p>
      *
      * @param  code Value allocated by authority.
      * @return The object for the given code.

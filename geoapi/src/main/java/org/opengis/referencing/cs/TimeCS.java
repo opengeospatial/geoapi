@@ -39,13 +39,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A one-dimensional coordinate system containing a single time axis, used to describe the
  * temporal position of a point in the specified time units from a specified time origin.
- * A {@code TimeCS} shall have one {@linkplain #getAxis axis association}.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.TemporalCRS Temporal}
- * </TD></TR></TABLE>
+ * <p>A {@code TimeCS} shall have one {@linkplain #getAxis(int) axis association}.
+ * This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.TemporalCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

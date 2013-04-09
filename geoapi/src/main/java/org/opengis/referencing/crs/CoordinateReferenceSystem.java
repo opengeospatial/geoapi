@@ -53,14 +53,14 @@ import static org.opengis.annotation.Specification.*;
  * meaningless at worst. However for some interchange purposes it is sufficient to confirm the
  * {@linkplain #getName identity of the system} without necessarily having the full system
  * definition.
- * <p>
- * The concept of coordinates may be expanded from a strictly spatial context to include time.
+ *
+ * <p>The concept of coordinates may be expanded from a strictly spatial context to include time.
  * Time is then added as another coordinate to the coordinate tuple. It is even possible to add
  * two time-coordinates, provided the two coordinates describe different independent quantities.
  * An example of the latter is the time/space position of a subsurface point of which the vertical
  * coordinate is expressed as the two-way travel time of a sound signal in milliseconds, as is
  * common in seismic imaging. A second time-coordinate indicates the time of observation, usually
- * expressed in whole years.
+ * expressed in whole years.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
@@ -75,15 +75,15 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * Returns a relevant coordinate system instance. Special cases:
      *
      * <ul>
-     *   <li><p>If the CRS instance on which this method is invoked is an instance of the
+     *   <li>If the CRS instance on which this method is invoked is an instance of the
      *       {@linkplain SingleCRS single CRS} interface, then the CS instance which is
      *       returned shall be one of the defined sub-interfaces of {@linkplain CoordinateSystem
-     *       coordinate system}.</p></li>
+     *       coordinate system}.</li>
      *
-     *   <li><p>If the CRS instance on which this method is invoked is an instance of the
+     *   <li>If the CRS instance on which this method is invoked is an instance of the
      *       {@linkplain CompoundCRS compound CRS} interface, then the CS instance which is
      *       returned shall have dimension and axis components obtained from different
-     *       {@linkplain CompoundCRS#getComponents components} of the instance CRS.</p></li>
+     *       {@linkplain CompoundCRS#getComponents components} of the instance CRS.</li>
      * </ul>
      *
      * @return The coordinate system.

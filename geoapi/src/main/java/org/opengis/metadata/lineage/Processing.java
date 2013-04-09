@@ -100,8 +100,7 @@ public interface Processing {
      * Details of the methodology by which geographic information was derived from the
      * instrument readings.
      *
-     * @return Methodology by which geographic information was derived from the
-     * instrument readings.
+     * @return Methodology by which geographic information was derived from the instrument readings.
      */
     @UML(identifier="algorithm", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Algorithm> getAlgorithms();

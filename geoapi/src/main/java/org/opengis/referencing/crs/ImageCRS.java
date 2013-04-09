@@ -46,12 +46,9 @@ import static org.opengis.annotation.Specification.*;
  * reference systems are treated as a separate sub-type because a separate user community exists
  * for images with its own terms of reference.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.cs.CartesianCS Cartesian},
- *   {@link org.opengis.referencing.cs.AffineCS    Affine}
- * </TD></TR></TABLE>
+ * <p>This type of CRS can be used with coordinate systems of type
+ * {@link org.opengis.referencing.cs.CartesianCS} or
+ * {@link org.opengis.referencing.cs.AffineCS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

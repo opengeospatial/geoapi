@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Creates coordinate transformation objects from codes. The codes are maintained by an
- * external authority. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
+ * external authority. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>,
  * which is also used in the GeoTIFF standard.
  *
  * @author  Martin Desruisseaux (IRD)

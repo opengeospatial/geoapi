@@ -39,13 +39,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A two-dimensional coordinate system in which position is specified by the distance from the
  * origin and the angle between the line from the origin to a point and a reference direction.
- * A {@code PolarCS} shall have two {@linkplain #getAxis axis associations}.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>A {@code PolarCS} shall have two {@linkplain #getAxis(int) axis associations}.
+ * This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

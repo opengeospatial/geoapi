@@ -43,8 +43,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
 
 /**
  * Level of detail expressed as a scale factor or a ground distance.
- * Exactly one of the {@linkplain #getEquivalentScale() scale} and {@linkplain #getDistance()
- * distance} properties shall be provided.
+ * Exactly one of the {@linkplain #getEquivalentScale() scale} and
+ * {@linkplain #getDistance() distance} properties shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

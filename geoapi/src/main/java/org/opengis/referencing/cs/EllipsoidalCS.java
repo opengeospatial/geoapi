@@ -38,15 +38,12 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A two- or three-dimensional coordinate system in which position is specified by geodetic
- * latitude, geodetic longitude, and (in the three-dimensional case) ellipsoidal height. An
- * {@code EllipsoidalCS} shall have two or three {@linkplain #getAxis axis associations}.
+ * latitude, geodetic longitude, and (in the three-dimensional case) ellipsoidal height.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.GeographicCRS  Geographic},
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>An {@code EllipsoidalCS} shall have two or three {@linkplain #getAxis axis associations}.
+ * This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.GeographicCRS} or
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

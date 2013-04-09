@@ -42,10 +42,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Transforms multi-dimensional coordinate points. This interface transforms coordinate
- * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS source
+ * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS() source
  * coordinate reference system} to coordinate value for the same point in the
- * {@linkplain CoordinateOperation#getTargetCRS target coordinate reference system}.
- * <p>
+ * {@linkplain CoordinateOperation#getTargetCRS() target coordinate reference system}.
+ *
  * <ul>
  *   <li>In a {@linkplain Conversion conversion}, the transformation is accurate to within the
  *   limitations of the computer making the calculations.</li>
@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  *   are derived from observations, the transformation is accurate to within the limitations of
  *   those observations.</li>
  * </ul>
- * <p>
+ *
  * If a client application wishes to query the source and target
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
@@ -117,7 +117,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -146,7 +146,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -174,7 +174,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -203,7 +203,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> &hellip;).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -236,9 +236,9 @@ public interface MathTransform {
      *
      * form a vector in the output space which is parallel to the displacement
      * caused by a small change in the <var>m</var>'th ordinate in the input space.
-     * <p>
-     * For example, if the input dimension is 4 and the
-     * output dimension is 3, then a small displacement
+     *
+     * <p>For example, if the input dimension is 4 and the
+     * output dimension is 3, then a small displacement</p>
      *
      * <code>(x₀,&nbsp;x₁,&nbsp;x₂,&nbsp;x₃)</code>
      *
@@ -305,10 +305,10 @@ public interface MathTransform {
 
     /**
      * Returns a <cite>Well Known Text</cite> (WKT) for this object. Well know text are
-     * <A HREF="../doc-files/WKT.html">defined in extended Backus Naur form</A>.
+     * <a href="../doc-files/WKT.html">defined in extended Backus Naur form</a>.
      * This operation may fails if an object is too complex for the WKT format capability.
      *
-     * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
+     * @return The <cite>Well Known Text</cite> (WKT) for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      *
      * @see MathTransformFactory#createFromWKT(String)

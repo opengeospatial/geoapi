@@ -48,11 +48,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to
  * another coordinate reference system. Many but not all coordinate operations (from
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>A</VAR> to
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>B</VAR>)
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var> to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var>)
  * also uniquely define the inverse operation (from
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>B</VAR> to
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>A</VAR>).
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var> to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var>).
  * In some cases, the operation method algorithm for the inverse operation is the same
  * as for the forward algorithm, but the signs of some operation parameter values must
  * be reversed. In other cases, different algorithms are required for the forward and

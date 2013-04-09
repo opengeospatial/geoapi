@@ -42,7 +42,44 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Definition of a coordinate system axis.
- * See <A HREF="package-summary.html#AxisNames">axis name constraints</A>.
+ *
+ * <h3>Axis name</h3>
+ * Usage of coordinate system axis names is constrained by geodetic custom in a number of cases,
+ * depending mainly on the coordinate reference system type. These constraints are shown in the
+ * table below. This constraint works in two directions; for example the names "<cite>geodetic
+ * latitude</cite>" and "<cite>geodetic longitude</cite>" shall be used to designate the coordinate
+ * axis names associated with a geographic coordinate reference system. Conversely, these names
+ * shall not be used in any other context.
+ *
+ * <table class="ogc">
+ * <tr><th>CS</th><th>CRS</th><th>Permitted coordinate system axis names</th></tr>
+ * <tr><td>Cartesian</td><td>Geocentric</td>
+ *     <td><cite>Geocentric X</cite>,
+ *         <cite>Geocentric Y</cite>,
+ *         <cite>Geocentric Z</cite></td></tr>
+ * <tr><td>Spherical</td><td>Geocentric</td>
+ *     <td><cite>Spherical Latitude</cite>,
+ *         <cite>Spherical Longitude</cite>,
+ *         <cite>Geocentric Radius</cite></td></tr>
+ * <tr><td>Ellipsoidal</td><td>Geographic</td>
+ *     <td><cite>Geodetic Latitude</cite>,
+ *         <cite>Geodetic Longitude</cite>,
+ *         <cite>Ellipsoidal height</cite> (if 3D)</td></tr>
+ * <tr><td>Vertical</td><td>Vertical</td>
+ *     <td><cite>Gravity-related height</cite> or <cite>Depth</cite></td></tr>
+ * <tr><td>Cartesian</td><td>Projected</td>
+ *     <td><cite>Easting</cite> or <cite>Westing</cite>,
+ *         <cite>Northing</cite> or <cite>Southing</cite></td></tr>
+ * </table>
+ *
+ * Image and engineering coordinate reference systems may make use of names specific to the
+ * local context or custom and are therefore not included as constraints in the above list.
+ *
+ * <h3>Axis direction</h3>
+ * The {@linkplain #getDirection() direction} of the coordinate axes is often only approximate;
+ * two geographic coordinate reference systems will make use of the same ellipsoidal coordinate
+ * system. These coordinate systems are associated with the earth through two different geodetic
+ * datums, which may lead to the two systems being slightly rotated w.r.t. each other.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -75,15 +112,15 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * {@linkplain AxisDirection#NORTH north} or {@linkplain AxisDirection#SOUTH south},
      * {@linkplain AxisDirection#EAST  east}  or {@linkplain AxisDirection#WEST  west},
      * {@linkplain AxisDirection#UP    up}    or {@linkplain AxisDirection#DOWN  down}.
-     * <p>
-     * Within any set of coordinate system axes, only one of each pair of terms
+     *
+     * <p>Within any set of coordinate system axes, only one of each pair of terms
      * can be used. For earth-fixed coordinate reference systems, this direction is often
      * approximate and intended to provide a human interpretable meaning to the axis. When a
      * geodetic datum is used, the precise directions of the axes may therefore vary slightly
-     * from this approximate direction.
-     * <p>
-     * Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires
-     * specific descriptions of the directions of its coordinate system axes.
+     * from this approximate direction.</p>
+     *
+     * <p>Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires
+     * specific descriptions of the directions of its coordinate system axes.</p>
      *
      * @return The coordinate system axis direction.
      */

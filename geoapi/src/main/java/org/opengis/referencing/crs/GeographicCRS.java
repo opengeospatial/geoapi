@@ -44,17 +44,14 @@ import static org.opengis.annotation.Specification.*;
  * A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides
  * an accurate representation of the geometry of geographic features for a large portion of the
  * earth's surface.
- * <P>
- * A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
+ *
+ * <p>A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
  * on a curved surface. It is impossible to represent such geometry in a Euclidean plane without
  * introducing distortions. The need to control these distortions has given rise to the development
- * of the science of {@linkplain org.opengis.referencing.operation.Projection map projections}.
+ * of the science of {@linkplain org.opengis.referencing.operation.Projection map projections}.</p>
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal}
- * </TD></TR></TABLE>
+ * <p>This type of CRS can be used with coordinate systems of type
+ * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>
  *
  * @departure historic
  *   This interface is kept conformant with the specification published in 2003.

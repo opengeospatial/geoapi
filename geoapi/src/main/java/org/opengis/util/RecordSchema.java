@@ -42,14 +42,15 @@ import static org.opengis.annotation.Specification.*;
  * A collection of {@linkplain RecordType record types}. All schemas possess an associated
  * {@linkplain NameSpace name space} within which the {@linkplain RecordType record type}
  * names are defined. A schema is a flat data structure, similar to a Java package.
- * <p>
- * Record schemas do not provide a hierarchical framework within which data types may be organized.
+ *
+ * <p>Record schemas do not provide a hierarchical framework within which data types may be organized.
  * {@linkplain NameSpace Name spaces}, however, do define a hierarchical framework for arbitrary
  * named items. Record schemas can participate in this framework by virtue of the fact that they
  * are all identified by {@linkplain LocalName local name} or some subclass.  A schema's location
  * in the hierarchy can be communicated by
  *
  * <code>{@linkplain #getSchemaName()}.{@linkplain LocalName#scope scope()}.{@linkplain NameSpace#name name()}</code>.
+ * </p>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
