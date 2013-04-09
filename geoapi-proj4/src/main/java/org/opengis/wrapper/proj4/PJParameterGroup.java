@@ -38,9 +38,9 @@ import org.opengis.parameter.ParameterNotFoundException;
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
  * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
  * and closely related interfaces together.
- * <p>
- * This class is a simplified version of the {@link org.opengis.example.parameter.PJParameterGroup}
- * class. See the later for more information.
+ *
+ * <p>This class is a simplified version of the {@link org.opengis.example.parameter.PJParameterGroup}
+ * class. See the later for more information.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -52,9 +52,9 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
      * {@link PJParameter} instances, which are used both as {@linkplain ParameterDescriptor
      * parameter descriptor} and {@linkplain ParameterValue parameter values} for the {@code double}
      * value type.
-     * <p>
-     * This list is <cite>live</cite>: changes to this list will be reflected immediately in the
-     * {@link #descriptors()} and {@link #values()} views.
+     *
+     * <p>This list is <cite>live</cite>: changes to this list will be reflected immediately in the
+     * {@link #descriptors()} and {@link #values()} views.</p>
      */
     private final List<PJParameter> parameters;
 

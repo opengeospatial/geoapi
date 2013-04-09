@@ -36,10 +36,10 @@ import org.opengis.referencing.ReferenceIdentifier;
  * {@code NetcdfIdentifiedObject} instance. However users are encouraged to not
  * change the wrapped object after construction, since GeoAPI referencing objects
  * are expected to be immutable.
- * <p>
- * This base class assumes that NetCDF objects have a single name and no alias. This assumption
+ *
+ * <p>This base class assumes that NetCDF objects have a single name and no alias. This assumption
  * allows us to implement directly the {@link ReferenceIdentifier} interface. The NetCDF object
- * name is returned by the {@link #getCode()} method.
+ * name is returned by the {@link #getCode()} method.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -143,12 +143,12 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
      * Returns the description of domain of usage, or limitations of usage, for which this object
      * is valid. The default implementation returns {@code null} in all cases, since NetCDF objects
      * don't specify their scope.
-     * <p>
-     * Scope is a
+     *
+     * <p>Scope is a
      * {@link org.opengis.referencing.datum.Datum#getScope() Datum},
      * {@link org.opengis.referencing.ReferenceSystem#getScope() ReferenceSystem} and
      * {@link org.opengis.referencing.operation.CoordinateOperation#getScope() CoordinateOperation}
-     * property.
+     * property.</p>
      *
      * @return The domain of usage, or {@code null} if none.
      */
@@ -161,9 +161,9 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
      * of the relationship used to anchor the coordinate system to the Earth or alternate object.
      * The default implementation returns {@code null} since this simple implementation does not
      * define anchor point.
-     * <p>
-     * Anchor point is a
-     * {@link org.opengis.referencing.datum.Datum#getAnchorPoint() Datum} property.
+     *
+     * <p>Anchor point is a
+     * {@link org.opengis.referencing.datum.Datum#getAnchorPoint() Datum} property.</p>
      *
      * @return A description of the anchor point, or {@code null} if none.
      */
@@ -174,9 +174,9 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     /**
      * Returns The time after which this datum definition is valid. The default implementation
      * returns {@code null} since this simple implementation does not define realization epoch.
-     * <p>
-     * Anchor point is a
-     * {@link org.opengis.referencing.datum.Datum#getRealizationEpoch() Datum} property.
+     *
+     * <p>Anchor point is a
+     * {@link org.opengis.referencing.datum.Datum#getRealizationEpoch() Datum} property.</p>
      *
      * @return The datum realization epoch, or {@code null} if not available.
      */

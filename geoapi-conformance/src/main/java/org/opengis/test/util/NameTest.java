@@ -52,9 +52,9 @@ import static org.opengis.test.Assert.*;
 /**
  * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
- * <p>
- * In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as below:
+ *
+ * <p>In order to specify their factory and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:</p>
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
@@ -139,7 +139,7 @@ public strictfp class NameTest extends TestCase {
     /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
-     * <p>
+     *
      * <ul>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
@@ -183,7 +183,7 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the creation of "My documents" folder name.
      * This test uses the following factory methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link NameFactory#createInternationalString(Map)}</li>
      * </ul>
@@ -212,7 +212,7 @@ public strictfp class NameTest extends TestCase {
      * Tests the creation of {@code "EPSG:4326"} as local names. First the {@code "EPSG"}
      * namespace is created. Then a {@code "4326"} local name is created in that namespace.
      * This test uses the following factory methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
      *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
@@ -243,7 +243,7 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the creation of {@code "urn:ogc:def:crs:epsg:4326"} as a scoped name.
      * This test uses the following factory methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link NameFactory#createGenericName(NameSpace, CharSequence[])}</li>
      * </ul>
@@ -277,7 +277,7 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the parsing of {@code "urn:ogc:def:crs:epsg:4326"} as a scoped name.
      * This test uses the following factory methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
      *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
@@ -302,7 +302,7 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the parsing of {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"} as a local name.
      * This test uses the following factory methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
      *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>

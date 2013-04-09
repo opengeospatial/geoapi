@@ -22,10 +22,10 @@ import org.opengis.referencing.ReferenceIdentifier;
 /**
  * An {@link IdentifiedObject} abstract base class, which contain only the {@linkplain #getName() name}
  * attribute. All other {@code IdentifiedObject} attributes are {@code null} or empty collections.
- * <p>
- * Since the {@linkplain #getName() name} is the only identifier contained by this class,
+ *
+ * <p>Since the {@linkplain #getName() name} is the only identifier contained by this class,
  * {@code SimpleIdentifiedObject} implements directly the {@link ReferenceIdentifier} interface.
- * Consequently this class can also be used as a {@code ReferenceIdentifier} implementation.
+ * Consequently this class can also be used as a {@code ReferenceIdentifier} implementation.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -145,8 +145,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Description of domain of usage, or limitations of usage, for which this object is valid.
      * Note that this method is not inherited from {@link IdentifiedObject}, but is
      * defined in sub-interfaces like {@link org.opengis.referencing.crs.SingleCRS}.
-     * <p>
-     * The default implementation returns {@code null}.
+     *
+     * <p>The default implementation returns {@code null}.</p>
      *
      * @return The domain of usage, or {@code null} if none.
      */
@@ -158,8 +158,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Area or region or timeframe in which this object is valid.
      * Note that this method is not inherited from {@link IdentifiedObject}, but is
      * defined in sub-interfaces like {@link org.opengis.referencing.crs.SingleCRS}.
-     * <p>
-     * The default implementation returns {@code null}.
+     *
+     * <p>The default implementation returns {@code null}.</p>
      *
      * @return The valid domain, or {@code null} if not available.
      */
@@ -221,7 +221,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     /**
      * Returns a string representation of the {@linkplain #getName() name} identifier.
      * The default implementation build the string representation as below:
-     * <p>
+     *
      * <ul>
      *   <li>If this identifier has a {@linkplain #getCodeSpace() code space}, then returns
      *       the concatenation of the code space, the {@code ':'} character, then the

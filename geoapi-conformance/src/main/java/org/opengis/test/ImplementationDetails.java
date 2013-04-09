@@ -40,7 +40,7 @@ import org.opengis.referencing.operation.MathTransform;
  * provide an instance of this interface in their test packages and declare their instance
  * in the {@code META-INF/services/org.opengis.test.ImplementationDetails} file. GeoAPI
  * will iterate over every {@code ImplementationDetails} found on the classpath when needed:
- * <p>
+ *
  * <ul>
  *   <li>Before each execution of a configurable {@link TestCase}, in order to check which tests
  *   (if any) should be disabled.</li>
@@ -48,7 +48,7 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>Before each execution of a {@link TestCase} performing numerical calculation, in
  *   order to determine if a specific implementation needs to relax the tolerance threshold.</li>
  * </ul>
- * <p>
+ *
  * If no instance of {@code ImplementationDetails} is registered, then GeoAPI assumes that
  * all tests are enabled with their default tolerance threshold. This is equivalent to using
  * an {@code ImplementationDetails} instance where every methods return {@code null}.
@@ -73,9 +73,9 @@ public interface ImplementationDetails {
      * If more than one {@code ImplementationDetails} is found on the classpath, then a logical {@code AND}
      * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(...)}
      * calls.
-     * <p>
-     * This method is invoked often (typically one or two time before every single test method),
-     * so implementors may want to cache their configuration map.
+     *
+     * <p>This method is invoked often (typically one or two time before every single test method),
+     * so implementors may want to cache their configuration map.</p>
      *
      * @param  factories The factories to be tested.
      * @return The collection of tests to disable for the given factories, or {@code null} if none.
@@ -89,9 +89,9 @@ public interface ImplementationDetails {
      * or {@code null} if no change is needed. This method should return a non-null value only if the
      * implementation being tested does not have the accuracy expected by the {@link TestCase}. In
      * such case, the object returned by this method can be used for relaxing the tolerance threshold.
-     * <p>
-     * If more than one {@code ImplementationDetails} return a non-null value, then the threshold
-     * used by GeoAPI will be the maximal value returned by all {@code ToleranceModifier} objects.
+     *
+     * <p>If more than one {@code ImplementationDetails} return a non-null value, then the threshold
+     * used by GeoAPI will be the maximal value returned by all {@code ToleranceModifier} objects.</p>
      *
      * @param  transform The transform being tested.
      * @return An object for modifying the tolerance thresholds, or {@code null} if no change is needed.

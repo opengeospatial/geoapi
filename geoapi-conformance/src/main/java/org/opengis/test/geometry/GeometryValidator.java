@@ -50,10 +50,10 @@ import static org.opengis.test.Assert.*;
 /**
  * Validates {@link Geometry} and related objects from the {@code org.opengis.geometry}
  * package.
- * <p>
- * This class is provided for users wanting to override the validation methods. When the default
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
  * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
- * convenient way to validate various kinds of objects.
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -80,7 +80,7 @@ public class GeometryValidator extends Validator {
     /**
      * Validates the given envelope.
      * This method performs the following verifications:
-     * <p>
+     *
      * <ul>
      *   <li>Envelope and corners dimension shall be the same.</li>
      *   <li>Envelope and corners CRS shall be the same, ignoring {@code null} values.</li>

@@ -40,14 +40,14 @@ import org.opengis.util.InternationalString;
  * A {@link Metadata} implementation backed by a NetCDF {@link NetcdfFile} object.
  * All getter methods fetch their values from the NetCDF file, so change to the NetCDF
  * file content will be immediately reflected in this class.
- * <p>
- * Unless otherwise noted in the javadoc, this implementation defines a one-to-one relationship
+ *
+ * <p>Unless otherwise noted in the javadoc, this implementation defines a one-to-one relationship
  * between the metadata attributes and NetCDF attributes. This simple model allows us to implement
  * all relevant interfaces in a single class. Note that this simplification may not be appropriate
  * for real world usages - the purpose of this class is mainly to provide a starting point for your
- * own implementations.
- * <p>
- * Some interfaces implemented by this class:
+ * own implementations.</p>
+ *
+ * <p>Some interfaces implemented by this class:</p>
  *
  * <ul>
  *   <li>{@link Metadata} is the root interface.

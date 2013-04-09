@@ -40,8 +40,8 @@ final class SimpleName implements LocalName, Serializable {
     /**
      * The scope (name space) in which this name is local. The scope is set on creation
      * and is not modifiable. The scope of a name determines where a name starts.
-     * <p>
-     * This field shall not be null, except if this instance is the name of a global namespace.
+     *
+     * <p>This field shall not be null, except if this instance is the name of a global namespace.</p>
      */
     private final NameSpace scope;
 

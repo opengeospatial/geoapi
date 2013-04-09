@@ -97,7 +97,7 @@ final class SamplePoints {
      * Creates an object containing sample values for an operation method using the given CRS.
      * The CRS codes accepted by this method are documented in the second column of the table
      * in {@link PseudoEpsgFactory#createParameters(int)} javadoc.
-     * <p>
+     *
      * <ul>
      *   <li>For map projection tests, this method returns the sample points for a conversion
      *       from the base CRS to the given projected CRS.</li>

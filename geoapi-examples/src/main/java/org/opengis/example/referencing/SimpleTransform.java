@@ -29,10 +29,10 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * A {@link CoordinateOperation} abstract base class. This class does not make
  * distinction between <cite>Coordinate Operation</cite> and <cite>Math Transform</cite>, so we
  * implement the two interfaces by the same class.
- * <p>
- * Subclasses must implement the {@link #transform(DirectPosition, DirectPosition)} method.
+ *
+ * <p>Subclasses must implement the {@link #transform(DirectPosition, DirectPosition)} method.
  * All other transform methods are defined in terms of the above-cited method. However the
- * other {@code transform} methods may be overridden for performances reasons.
+ * other {@code transform} methods may be overridden for performances reasons.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -154,7 +154,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Returns {@code true} if the source array need to be copied before to write in the target array.
      * This method can be invoked if:
-     * <p>
+     *
      * <ul>
      *   <li>The source array and the target array are the same array (note that it can never be
      *       the case if the arrays are not of the same type)</li>

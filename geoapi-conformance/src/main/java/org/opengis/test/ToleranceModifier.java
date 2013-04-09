@@ -40,7 +40,7 @@ import org.opengis.referencing.operation.MathTransform;
 /**
  * Modifies the tolerance threshold before to compare a calculated value against its expected value.
  * When a {@link TestCase} is run, GeoAPI performs the following steps:
- * <p>
+ *
  * <ul>
  *   <li>Scan every {@link ImplementationDetails} on the classpath and invoke their
  *       {@link ImplementationDetails#tolerance(MathTransform) tolerance}
@@ -51,9 +51,9 @@ import org.opengis.referencing.operation.MathTransform;
  *       the default tolerance thresholds computed by the {@link TestCase} being run. Implementation
  *       can modify those tolerances in an arbitrary number of dimensions.</li>
  * </ul>
- * <p>
+ *
  * Different implementations are available for different cases. For example:
- * <p>
+ *
  * <ul>
  *   <li>Allowing a greater tolerance threshold along the vertical axis compared to the
  *       horizontal axis.</li>
@@ -74,11 +74,11 @@ public interface ToleranceModifier {
      * minute of angle). Next, the &lambda; tolerance is adjusted according the distance of
      * the &phi; ordinate value to the pole. In the extreme case where the coordinate to compare
      * is located at a pole, then the tolerance is 360° in longitude values.
-     * <p>
-     * This modifier assumes that geographic coordinates are expressed in decimal degrees in
+     *
+     * <p>This modifier assumes that geographic coordinates are expressed in decimal degrees in
      * (<var>longitude</var>, <var>latitude</var>) order, as documented in the {@linkplain
      * org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
-     * parameterized transform contructor}.
+     * parameterized transform contructor}.</p>
      *
      * @see ToleranceModifiers#geographic(int, int)
      */
@@ -99,10 +99,10 @@ public interface ToleranceModifier {
      * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
      * the result of an <cite>inverse projection</cite>. For <cite>forward projections</cite>
      * and all other calculations, the tolerance values are left unchanged.
-     * <p>
-     * The modifier performs the work documented in {@link #GEOGRAPHIC} if and only if the
+     *
+     * <p>The modifier performs the work documented in {@link #GEOGRAPHIC} if and only if the
      * {@link CalculationType} is {@link CalculationType#INVERSE_TRANSFORM INVERSE_TRANSFORM}.
-     * For all other cases, the modifier does nothing.
+     * For all other cases, the modifier does nothing.</p>
      *
      * @see ToleranceModifiers#projection(int, int)
      */

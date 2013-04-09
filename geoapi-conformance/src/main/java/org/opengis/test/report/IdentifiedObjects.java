@@ -170,9 +170,9 @@ final class IdentifiedObjects {
      * Returns the object {@linkplain IdentifiedObject#getName() name} and all its
      * {@linkplain IdentifiedObject#getAlias() aliases} for the given
      * {@linkplain ReferenceIdentifier#getCodeSpace() code space}.
-     * <p>
-     * The values in the returned map are {@link Boolean#TRUE} for the primary name
-     * (at most one entry) and {@link Boolean#FALSE} for aliases (all other entries).
+     *
+     * <p>The values in the returned map are {@link Boolean#TRUE} for the primary name
+     * (at most one entry) and {@link Boolean#FALSE} for aliases (all other entries).</p>
      *
      * @param  info The object to get the name and aliases from, or {@code null}.
      * @param  codeSpace The code space for the name and aliases to return, or {@code null}
@@ -188,9 +188,9 @@ final class IdentifiedObjects {
     /**
      * Collects the code space of the given object {@linkplain IdentifiedObject#getName() name}
      * and the scope of all its {@linkplain IdentifiedObject#getAlias() aliases}.
-     * <p>
-     * The values in the given map will be {@link Boolean#TRUE} for the code space of the primary name
-     * (at most one entry) and {@link Boolean#FALSE} for the scope of aliases (all other entries).
+     *
+     * <p>The values in the given map will be {@link Boolean#TRUE} for the code space of the primary name
+     * (at most one entry) and {@link Boolean#FALSE} for the scope of aliases (all other entries).</p>
      *
      * @param  info The object to get the code space and scopes from, or {@code null}.
      * @param  addTo A map where to add the code space and scopes.

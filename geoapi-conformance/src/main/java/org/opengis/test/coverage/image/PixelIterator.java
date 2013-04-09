@@ -46,14 +46,14 @@ import static org.junit.Assert.*;
 /**
  * A row-major iterator over sample values in a {@link Raster} or {@link RenderedImage}.
  * For any image (tiled or not), this class iterates first over the <em>bands</em>, then
- * over the <em>columns</var> and finally over the <em>rows</em>. If the image is tiled,
+ * over the <em>columns</em> and finally over the <em>rows</em>. If the image is tiled,
  * then this iterator will perform the necessary calls to the {@link RenderedImage#getTile(int, int)}
  * method for each row in order to perform the iteration as if the image was untiled.
- * <p>
- * On creation, this iterator is positioned <em>before</em> the first sample value.
+ *
+ * <p>On creation, this iterator is positioned <em>before</em> the first sample value.
  * To use this iterator, invoke the {@link #next()} method in a {@code while} loop
- * as below:
- * <p>
+ * as below:</p>
+ *
  * <pre>PixelIterator it = new PixelIterator(image);
  *while (it.next()) {
  *    float value = it.getSampleFloat();
@@ -383,8 +383,8 @@ public strictfp class PixelIterator {
      *       {@linkplain #getDataType() datatype} and the datatype of the given iterator).</li>
      * </ul>
      *
-     * <p>If the images have different sizes, then an "<cite>Unexpected end of iteration</cite>"
-     * exception will be thrown when the first iterator reaches the iteration end.</p>
+     * If the images have different sizes, then an "<cite>Unexpected end of iteration</cite>"
+     * exception will be thrown when the first iterator reaches the iteration end.
      *
      * @param actual The iterator that contains the actual values to be compared with the
      *               "expected" sample values.

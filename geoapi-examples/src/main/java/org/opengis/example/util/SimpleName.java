@@ -29,11 +29,11 @@ import org.opengis.example.metadata.SimpleCitation;
  * A {@link GenericName} backed by a JNDI {@link Name} instance. This name can be the basis
  * of {@link LocalName} or {@link ScopedName} implementations, depending on whether the
  * {@linkplain Name#size() size} of the wrapped JNDI name is 1 or more, respectively.
- * <p>
- * This implementation is a <cite>view</cite>: any change applied on the wrapped JNDI object
+ *
+ * <p>This implementation is a <cite>view</cite>: any change applied on the wrapped JNDI object
  * will be immediately reflected in the {@code SimpleName} wrapper. Note however that
  * {@code GenericName} are usually expected to be immutable, so users are advised to not
- * modify the wrapped JNDI name.
+ * modify the wrapped JNDI name.</p>
  *
  * @author Martin Desruisseaux
  *
@@ -271,8 +271,8 @@ public class SimpleName implements GenericName, Serializable {
     /**
      * The scope (name space) in which this name is local. The scope is set on creation
      * and is not modifiable. The scope of a name determines where a name starts.
-     * <p>
-     * This field shall not be null, except for the global namespace.
+     *
+     * <p>This field shall not be null, except for the global namespace.</p>
      *
      * @see #scope()
      */

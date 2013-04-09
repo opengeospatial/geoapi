@@ -45,7 +45,7 @@ import org.opengis.referencing.operation.MathTransform;
 /**
  * The suite of every tests defined in the GeoAPI conformance module.
  * The test cases included in this test suite are:
- * <p>
+ *
  * <ul>
  *   <li>{@link org.opengis.test.util.NameTest}</li>
  *   <li>{@link org.opengis.test.referencing.ObjectFactoryTest}</li>
@@ -55,20 +55,20 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.Series3000Test}</li>
  * </ul>
- * <p>
+ *
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
  * on the classpath. However implementors can override this default mechanism with explicit calls
  * to the {@link #setFactories(Class, Factory[])} method.
- * <p>
- * Implementors can have some control on the tests (factories to use, features to test, tolerance
+ *
+ * <p>Implementors can have some control on the tests (factories to use, features to test, tolerance
  * thresholds) by registering their {@link FactoryFilter} or {@link ImplementationDetails} in the
  * {@code META-INF/services/} directory. As an alternative, implementors can also extend directly
- * the various {@link TestCase} subclasses.
- * <p>
- * <b>Example:</b> The test suite below declares that the tolerance threshold for {@code MyProjection}
- * needs to be relaxed by a factor 10 during inverse projections.
+ * the various {@link TestCase} subclasses.</p>
+ *
+ * <p><b>Example:</b> The test suite below declares that the tolerance threshold for {@code MyProjection}
+ * needs to be relaxed by a factor 10 during inverse projections.</p>
  *
  * <blockquote><pre>package org.myproject;
  *

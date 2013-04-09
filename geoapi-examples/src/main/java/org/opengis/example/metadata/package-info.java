@@ -13,13 +13,13 @@
  * This implementation stores the metadata values in {@link java.util.Map} objects, but the same
  * strategy can also be applied on a wide variety of storage mechanisms like JDBC connection or a
  * LDAP protocol.
- * <p>
- * In addition to the proxy classes, this package provides an explicit implementation of the
+ *
+ * <p>In addition to the proxy classes, this package provides an explicit implementation of the
  * {@link org.opengis.metadata.citation.Citation} interface because it is widely used by the
- * referencing packages.
- * <p>
- * Every classes in this package are hereby placed into the Public Domain.
- * This means anyone is free to do whatever they wish with those files.
+ * referencing packages.</p>
+ *
+ * <p>Every classes in this package are hereby placed into the Public Domain.
+ * This means anyone is free to do whatever they wish with those files.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

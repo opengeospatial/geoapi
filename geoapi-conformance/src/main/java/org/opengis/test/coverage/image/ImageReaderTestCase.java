@@ -79,7 +79,7 @@ import static org.junit.Assume.*;
  *}</pre></blockquote>
  *
  * <p>Subclasses inherit the following tests:</p>
- * <table>
+ * <table class="ogc">
  *   <tr><th>Inherited method</th>                   <th>Tested method</th></tr>
  *   <tr><td>{@link #testStreamMetadata()}</td>      <td>{@link ImageReader#getStreamMetadata()}</td></tr>
  *   <tr><td>{@link #testImageMetadata()}</td>       <td>{@link ImageReader#getImageMetadata(int)}</td></tr>
@@ -297,7 +297,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Tests {@link ImageReader#getStreamMetadata()}. The default implementation invokes
      * <code>{@linkplain #getMetadata(Class, IIOMetadata) getMetadata}({@linkplain Metadata}.class,</code>
      * <var>stream metadata</var><code>)</code>, then validates the following properties:
-     * <p>
+     *
      * <ul>
      *   <li>{@link Metadata#getIdentificationInfo()}<ul>
      *     <li>{@link DataIdentification#getCitation()}</li>
@@ -320,7 +320,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Tests {@link ImageReader#getImageMetadata(int)}. The default implementation invokes
      * {@link #getMetadata(Class, IIOMetadata)} for the types listed below, then validates
      * their properties:
-     * <p>
+     *
      * <ul>
      *   <li>{@link Metadata#getIdentificationInfo()}: see {@link #testStreamMetadata()}</li>
      *   <li>{@link Extent}:
@@ -378,19 +378,19 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * given complete image. This method sets the {@link ImageReadParam} parameters to random
      * sub-regions, sub-samplings and source bands values and invokes one of the following
      * methods as determined by the {@code api} argument:
-     * <p>
+     *
      * <ul>
      *   <li><code>{@link ImageReader#read(int, ImageReadParam)}</code></li>
      *   <li><code>{@link ImageReader#readAsRenderedImage(int, ImageReadParam)}</code></li>
      *   <li><code>{@link ImageReader#readRaster(int, ImageReadParam)}</code></li>
      * </ul>
-     * <p>
+     *
      * The above method call is repeated {@code numIterations} time with different parameters.
      * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
      * fields in this class.
-     * <p>
-     * The pixel values for each image resulting from the above read operations are
-     * compared with the corresponding pixel values of the given complete image.
+     *
+     * <p>The pixel values for each image resulting from the above read operations are
+     * compared with the corresponding pixel values of the given complete image.</p>
      *
      * @param  completeImage The complete image as returned by <code>{@linkplain #reader}.{@link ImageReader#read(int) read}(imageIndex)</code> without read parameters.
      * @param  api           The API to use for reading the images.
@@ -437,7 +437,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Then, this method invokes {@link ImageReader#read(int, ImageReadParam)} an arbitrary
      * amount of time for the following configurations (note: any {@code isXXXSupported} field
      * which was set to {@code false} prior the execution of this test will stay {@code false}):
-     * <p>
+     *
      * <ul>
      *   <li>Reads the full image once (all {@code isXXXSupported} fields set to {@code false}).</li>
      *   <li>Reads various sub-regions (only {@link #isSubregionSupported isSubregionSupported} may be {@code true})</li>
@@ -446,19 +446,17 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *   <li>A mix of sub-regions, sub-sampling and source bands</li>
      * </ul>
      *
-     * <p>The pixel values for each image resulting from the above read operations are
-     * compared with the corresponding pixel values of the complete image.</p>
+     * The pixel values for each image resulting from the above read operations are
+     * compared with the corresponding pixel values of the complete image.
      *
-     * <blockquote><font size="-1"><p><b>Implementation note:</b> in the spirit of JUnit, this test
-     * should have been splitted in smaller test cases: one for sub-regions, one for sub-samplings,
-     * <i>etc</i>. However in this particular case, consolidation of those tests in a single method
-     * provides the following benefits:</p>
+     * {@note In the spirit of JUnit, this test should have been splitted in smaller test cases:
+     * one for sub-regions, one for sub-samplings, <i>etc</i>. However in this particular case,
+     * consolidation of those tests in a single method provides the following benefits:
      * <ul>
      *   <li>The potentially large complete image is read only once.</li>
      *   <li>If the tests for subregions or subsamplings fails, avoid the test mixing both.</li>
      *   <li>Less methods to override if the implementor want to provide his own test.</li>
-     * </ul>
-     * </font></blockquote>
+     * </ul>}
      *
      * @throws IOException If an error occurred while reading the image.
      */
@@ -485,8 +483,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
      * {@link ImageReader#readRaster(int, ImageReadParam)} method is invoked instead than
      * {@code ImageReader.read(int, ImageReadParam)}.
-     * <p>
-     * This test is ignored if {@link ImageReader#canReadRaster()} returns {@code false}.
+     *
+     * <p>This test is ignored if {@link ImageReader#canReadRaster()} returns {@code false}.</p>
      *
      * @throws IOException If an error occurred while reading the raster.
      */
@@ -562,7 +560,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     /**
      * Disposes the {@linkplain #reader} (if non-null) after each test.
      * The default implementation performs the following cleanup:
-     * <p>
+     *
      * <ul>
      *   <li>If the {@linkplain ImageReader#getInput() reader input} is {@linkplain Closeable closeable}, closes it.</li>
      *   <li>Invokes {@link ImageReader#reset()} for clearing the input and listeners.</li>

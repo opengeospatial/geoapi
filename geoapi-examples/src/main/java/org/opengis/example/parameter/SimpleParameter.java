@@ -30,16 +30,15 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
  * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
  * and closely related interfaces together.
- * <p>
- * For keeping things yet simpler, the {@linkplain #getValueClass() value class} is hard-coded as
+ *
+ * <p>For keeping things yet simpler, the {@linkplain #getValueClass() value class} is hard-coded as
  * {@link Double}, the {@linkplain #getUnit() units of measurement} are constrained to standard
  * units (metres, decimal degrees or dimensionless) and we care only about descriptor properties
  * ({@linkplain #getMinimumValue() minimum}, {@linkplain #getMaximumValue() maximum}, <i>etc.</i>)
  * determined by our own {@link Type} enumeration. The only mutable property in this class is the
- * numerical {@linkplain #value}.
- * <p>
- * The most interesting methods in this class are:
- * <p>
+ * numerical {@linkplain #value}.</p>
+ *
+ * <p>The most interesting methods in this class are:</p>
  * <ul>
  *   <li>{@link #getName()}, for the name of this parameter</li>
  *   <li>{@link #getUnit()}, for the unit of measurement.</li>
@@ -47,7 +46,7 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  *   <li>{@link #getValue()}, {@link #doubleValue()} and {@link #doubleValue(Unit)}, for the actual parameter value</li>
  *   <li>{@link #setValue(double)}, {@link #setValue(double, Unit)} and {@link #setValue(Object)}, for setting the parameter value</li>
  * </ul>
- * <p>
+ *
  * Other methods can be ignored, since they are metadata or methods designed for parameter values
  * of other kind than {@code double}. To be strict, all methods working with any value type other
  * than {@code double} should throw an {@link InvalidParameterTypeException}. However this
@@ -121,8 +120,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * {@link #doubleValueList()}, {@link #booleanValue()} and {@link #stringValue()} - together
      * with their setter companions - will always throw an {@link InvalidParameterTypeException}.
      * If {@code true}, some conversions will be attempted.
-     * <p>
-     * This field is defined for two purposes:
+     *
+     * <p>This field is defined for two purposes:</p>
      * <ul>
      *   <li>Developers may find convenient to set this field to {@code false} during debugging,
      *       since strict behavior often help to identify unexpected usage of parameters.</li>
@@ -130,7 +129,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *       implementors may want to remove such codes for making parameters definitively
      *       strict.</li>
      * </ul>
-     * <p>
+     *
      * The current value is <code>{@value}</code>.
      */
     protected static final boolean LENIENT = true;
@@ -320,7 +319,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the boolean value of an operation parameter.
      * If {@linkplain #LENIENT lenient}, this method makes the following choice:
-     * <p>
+     *
      * <ul>
      *   <li>Returns {@code false} if the {@linkplain #value} is 0</li>
      *   <li>Returns {@code true} if the {@linkplain #value} is 1</li>

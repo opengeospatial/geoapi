@@ -57,10 +57,10 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@code true} to freeze this position. If {@code true}, then any attempts to invoke
      * a {@link #setOrdinate(int, double)} method will cause a JUnit test failure.
-     * <p>
-     * Note that setting this field to {@code true} does not prevent {@link TransformTestCase} to
-     * write directly in the {@link #ordinates} array. But since this class is package-private,
-     * the code writing directly in the ordinates array should know what they are doing...
+     *
+     * <p>Note that setting this field to {@code true} does not prevent {@link TransformTestCase}
+     * to write directly in the {@link #ordinates} array. But since this class is package-private,
+     * the code writing directly in the ordinates array should know what they are doing.</p>
      */
     boolean unmodifiable;
 

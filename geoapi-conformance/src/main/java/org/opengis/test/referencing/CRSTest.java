@@ -46,11 +46,11 @@ import org.opengis.test.TestCase;
 
 /**
  * Tests {@link CoordinateReferenceSystem} and related objects
- * from the {@code org.opengis.referencing.crs} package. CRS instances are created using the
- * authority factory given at construction time.
+ * from the {@code org.opengis.referencing.crs} package.
+ * CRS instances are created using the authority factory given at construction time.
  *
- * In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as below:
+ * <p>In order to specify their factory and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:</p>
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;

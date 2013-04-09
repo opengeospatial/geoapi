@@ -56,10 +56,10 @@ public interface FactoryFilter {
      * Returns {@code true} if the given factory can be tested. Implementors shall return
      * {@code false} only when they really want to exclude a particular factory. For every
      * unknown factory, this method shall return {@code true}.
-     * <p>
-     * If more than one {@code FactoryFilter} is found on the classpath, then the
+     *
+     * <p>If more than one {@code FactoryFilter} is found on the classpath, then the
      * given factory will be tested only if all {@code FactoryFilter.filter(...)}
-     * calls returned {@code true}.
+     * calls returned {@code true}.</p>
      *
      * @param  <T>      The compile-time type of the {@code category} argument.
      * @param  category The factory interface ({@link org.opengis.util.NameFactory},
@@ -77,14 +77,14 @@ public interface FactoryFilter {
      * Filters {@link AuthorityFactory} by their {@linkplain AuthorityFactory#getAuthority()
      * authority name}. This filter accepts any factory meeting at least one of the following
      * conditions:
-     * <p>
+     *
      * <ul>
      *   <li>The factory is not an instance of {@link AuthorityFactory}.</li>
      *   <li>The {@linkplain AuthorityFactory#getAuthority() authority} citation has a
      *       {@linkplain Citation#getTitle title} or {@linkplain Citation#getAlternateTitles
      *       alternate title} matching the name given to this filter at construction time.</li>
      * </ul>
-     * <p>
+     *
      * The string comparisons are case-insensitive and ignore leading and trailing spaces.
      *
      * @author  Martin Desruisseaux (Geomatys)

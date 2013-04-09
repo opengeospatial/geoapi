@@ -83,9 +83,9 @@ public class Validators {
      * The default container to be used by all static {@code validate} methods.
      * Vendors can change the validators referenced by this container, or change
      * their setting.
-     * <p>
-     * This field is not final in order to allow vendors to switch easily between
-     * different configurations, for example:
+     *
+     * <p>This field is not final in order to allow vendors to switch easily between
+     * different configurations, for example:</p>
      *
      * <blockquote><pre>ValidatorContainer original = Validators.DEFAULT;
      *Validators.DEFAULT = myConfig;
@@ -105,7 +105,7 @@ public class Validators {
      * {@code validate(...)} method (if any). Use this method only if the type is
      * unknown at compile-time.
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @param  object The object to dispatch to {@code validate(…)} methods, or {@code null}.
      */
     public static void dispatch(final Object object) {
         DEFAULT.dispatch(object);

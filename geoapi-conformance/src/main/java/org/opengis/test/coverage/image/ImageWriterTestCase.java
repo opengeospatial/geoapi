@@ -75,8 +75,8 @@ import static org.junit.Assume.*;
  *    }
  *}</pre></blockquote>
  *
- * <p>The {@linkplain #writer} shall accept at least one of the following
- * {@linkplain ImageWriterSpi#getOutputTypes() output types}, in preference order:</p>
+ * The {@linkplain #writer} shall accept at least one of the following
+ * {@linkplain ImageWriterSpi#getOutputTypes() output types}, in preference order:
  *
  * <ul>
  *   <li>{@link ImageOutputStream} - mandatory according Image I/O specification.</li>
@@ -107,9 +107,9 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * until a reader is first needed, in which case the field is assigned to a reader instance
      * created by {@link ImageIO#getImageReader(ImageWriter)}. Subclasses can set explicitely a
      * value to this field if they need the tests to use an other reader instead.
-     * <p>
-     * {@code ImageWriterTestCase} will use only the {@link ImageReader#read(int)} method.
-     * Consequently, this reader doesn't need to support {@code ImageReadParam} usage.
+     *
+     * <p>{@code ImageWriterTestCase} will use only the {@link ImageReader#read(int)} method.
+     * Consequently, this reader doesn't need to support {@code ImageReadParam} usage.</p>
      */
     protected ImageReader reader;
 
@@ -296,9 +296,9 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Closes the image writer output, then reads its content. This method is invoked after a test
      * method has wrote an image with the {@linkplain #writer}.
-     * <p>
-     * This method will use only the {@link ImageReader#read(int)} method, so the reader doesn't
-     * need to support fully the {@code ImageReadParam}.
+     *
+     * <p>This method will use only the {@link ImageReader#read(int)} method, so the reader doesn't
+     * need to support fully the {@code ImageReadParam}.</p>
      *
      * @param  buffer The buffer returned by {@link #open(int)}, which may be {@code null}.
      * @return The image.
@@ -342,10 +342,10 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * values. This method sets the {@link ImageWriteParam} parameters to random sub-regions,
      * sub-samplings and source bands values and invokes {@link ImageWriter#write(IIOMetadata,
      * IIOImage, ImageWriteParam)}.
-     * <p>
-     * The above method call is repeated {@code numIterations} time with different parameters.
+     *
+     * <p>The above method call is repeated {@code numIterations} time with different parameters.
      * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
-     * fields in this class.
+     * fields in this class.</p>
      *
      * @param  image The image to write.
      * @param  numIterations Maximum number of iterations to perform.
@@ -432,7 +432,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * filled with random byte values. Then, this method invokes write the image an arbitrary amount
      * of time for the following configurations (note: any {@code isXXXSupported} field
      * which was set to {@code false} prior the execution of this test will stay {@code false}):
-     * <p>
+     *
      * <ul>
      *   <li>Writes the full image once (all {@code isXXXSupported} fields set to {@code false}).</li>
      *   <li>Writes various sub-regions (only {@link #isSubregionSupported isSubregionSupported} may be {@code true})</li>
@@ -441,8 +441,8 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *   <li>A mix of sub-regions, sub-sampling and source bands</li>
      * </ul>
      *
-     * <p>Then the image is read again and the pixel values are compared with the corresponding
-     * pixel values of the original image.</p>
+     * Then the image is read again and the pixel values are compared with the corresponding
+     * pixel values of the original image.
      *
      * @throws IOException If an error occurred while writing the image or or reading it back.
      */
@@ -535,7 +535,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Disposes the {@linkplain #reader} and the {@linkplain #writer} (if non-null) after each test.
      * The default implementation performs the following cleanup:
-     * <p>
+     *
      * <ul>
      *   <li>If the {@linkplain ImageWriter#getOutput() writer output} is {@linkplain Closeable closeable}, closes it.</li>
      *   <li>Invokes {@link ImageWriter#reset()} for clearing the output and listeners.</li>

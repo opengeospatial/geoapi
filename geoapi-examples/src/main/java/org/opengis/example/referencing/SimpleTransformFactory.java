@@ -27,7 +27,7 @@ import org.opengis.referencing.operation.SingleOperation;
 /**
  * A {@link MathTransformFactory} for creating {@link SimpleTransform} instances.
  * The only methods supported by this simple implementation are:
- * <p>
+ *
  * <ul>
  *   <li>{@link #getVendor()}</li>
  *   <li>{@link #getAvailableMethods(Class)}, which returns an empty set.</li>

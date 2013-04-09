@@ -44,7 +44,7 @@ final class IndexedParameter extends NetcdfParameter<Double> {
     /**
      * Creates a new wrapper for the given NetCDF parameter.
      * The given arguments shall comply to the following conditions:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain Parameter#getNumericValues() parameter values} must be an array
      *       of length 2 or more.</li>

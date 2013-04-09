@@ -57,7 +57,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
 /**
  * Tests the {@link NetcdfCRS} class using Coordinate Systems built from test files.
  * Each test defined in this class performs the following steps:
- * <p>
+ *
  * <ul>
  *   <li>{@linkplain #open(String) Opens} a NetCDF test file specific to the test method.</li>
  *   <li>{@linkplain #wrap(CoordinateSystem, NetcdfDataset) Wraps} the NetCDF coordinate system
@@ -67,7 +67,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *   <li>Performs verifications specific to the test methods.</li>
  *   <li>{@linkplain NetcdfDataset#close() Closes} the NetCDF file.</li>
  * </ul>
- * <p>
+ *
  * External projects can override the {@link #wrap(CoordinateSystem, NetcdfDataset)}
  * method in order to test their own NetCDF wrapper, as in the example below:
  *
@@ -189,12 +189,12 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * Asserts that the a name or identifier of the given identified object is equals to the given
      * value. The default implementation verifies that the {@linkplain IdentifiedObject#getName()
      * name} has the following properties:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain ReferenceIdentifier#getCodeSpace() code space} is {@code "NetCDF"}.</li>
      *   <li>The {@linkplain ReferenceIdentifier#getCode() code} is the given expected value.</li>
      * </ul>
-     * <p>
+     *
      * Subclasses shall override this method if the NetCDF name is stored elsewhere
      * (as an {@linkplain IdentifiedObject#getIdentifiers() identifier} or an
      * {@linkplain IdentifiedObject#getAlias() alias}), or if they use a different
@@ -232,7 +232,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * Tests the geographic CRS declared in the
      * {@value org.opengis.wrapper.netcdf.IOTestCase#THREDDS} file.
      * The default implementation tests the following conditions:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain #crs CRS} shall be an instance of {@link GeographicCRS}.</li>
      *   <li>The axis directions shall be ({@link AxisDirection#EAST EAST}, {@link AxisDirection#NORTH NORTH}).</li>
@@ -240,7 +240,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      *   <li>The axis names shall be ({@code "x"}, {@code "y"}) as declared in the NetCDF file.</li>
      *   <li>The {@linkplain #crs CRS} name shall be {@code "y x"} as declared in the NetCDF file.</li>
      * </ul>
-     * <p>
+     *
      * The checks for CRS and axis names can be modified by overriding the
      * {@link #assertNameEquals(String, IdentifiedObject)} method.
      *
@@ -303,7 +303,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * Tests the compound CRS (<cite>geographic</cite> + <cite>time</cite>) declared in the
      * {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file.
      * The default implementation tests the following conditions:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain #crs CRS} shall be an instance of {@link CompoundCRS}
      *       with 2 components: a {@link GeographicCRS} and a {@link TemporalCRS}.</li>
@@ -317,7 +317,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      *   <li>The {@linkplain TemporalDatum#getOrigin() temporal datum origin} shall be
      *       January 1st, 1992 at midnight UTC.</li>
      * </ul>
-     * <p>
+     *
      * The checks for CRS and axis names can be modified by overriding the
      * {@link #assertNameEquals(String, IdentifiedObject)} method.
      *
@@ -347,7 +347,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * Tests the compound CRS (<cite>projected</cite> + <cite>height</cite> + <cite>time</cite>)
      * declared in the {@value org.opengis.wrapper.netcdf.IOTestCase#CIP} file.
      * The default implementation tests the following conditions:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain #crs CRS} shall be an instance of {@link CompoundCRS}
      *       with 3 components: a {@link ProjectedCRS}, a {@link VerticalCRS} and
@@ -365,7 +365,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      *   <li>The projection parameters shall have the values documented in the
      *       {@link IOTestCase#CIP} javadoc.</li>
      * </ul>
-     * <p>
+     *
      * The checks for CRS and axis names can be modified by overriding the
      * {@link #assertNameEquals(String, IdentifiedObject)} method.
      *

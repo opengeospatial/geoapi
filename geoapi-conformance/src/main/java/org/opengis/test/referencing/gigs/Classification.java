@@ -56,7 +56,7 @@ public enum Classification {
      * Intended for software without the capability of performing coordinate operations.
      * The software does handle spatial data but has no "geodetic engine" that performs
      * coordinate conversions and transformations.
-     * <p>
+     *
      * <ul>
      *   <li><b>Completeness:</b><ul>
      *     <li>Coordinates are complete, unambiguously defined and are appended with a CRS
@@ -81,7 +81,7 @@ public enum Classification {
      * Geospatial integrity is only maintained within the bounds of the software.
      * Integration or interaction with other geosciances software is likely to lead to
      * loss of geospatial integrity.
-     * <p>
+     *
      * <ul>
      *   <li><b>Completeness:</b><ul>
      *     <li>Coordinates have a complete and correct CRS identification, updated when
@@ -108,7 +108,7 @@ public enum Classification {
      * This level indicates that the software establishes and maintains geospatial
      * integrity to a fully satisfactory degree, based on industry best practices.
      * The software is suitable for global deployment in the E&P industry.
-     * <p>
+     *
      * <ul>
      *   <li><b>Completeness:</b><ul>
      *     <li>Geodetic library consists of (a complete and consistent subset of) the EPSG dataset.
@@ -135,7 +135,7 @@ public enum Classification {
      * This level indicates software performance that exceeds the geospatial integrity capabilities
      * of the silver level by incorporating additional software features that expand the range
      * of applicability and/or reduce the probability of geospatial integrity violations.
-     * <p>
+     *
      * <ul>
      *   <li><b>Completeness:</b><ul>
      *     <li>Geodetic library consists of (a complete and consistent subset of) the EPSG dataset.</li>

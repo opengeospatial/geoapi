@@ -203,10 +203,10 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
      * Returns a new group with the same {@linkplain #authority authority}, {@linkplain #code code}
      * and {@linkplain #parameters} than this group. The {@linkplain NetcdfParameter#getValue() value}
      * of each parameter is left to their default value.
-     * <p>
-     * Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
+     *
+     * <p>Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
      * {@linkplain ParameterDescriptorGroup descriptor} interfaces, this method is similar to
-     * the {@link #clone()} method.
+     * the {@link #clone()} method.</p>
      */
     @Override
     public SimpleParameterGroup createValue() {

@@ -20,10 +20,10 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * An unmodifiable {@link Envelope} implementation defined by two corners.
  * This implementation can store an optional reference to an existing
  * {@linkplain CoordinateReferenceSystem Coordinate Reference System}.
- * <p>
- * This simple implementation does not support envelopes crossing the anti-meridian.
+ *
+ * <p>This simple implementation does not support envelopes crossing the anti-meridian.
  * Consequently, lower ordinate values shall not be greater than corresponding upper
- * ordinate values.
+ * ordinate values.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -137,9 +137,9 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * The limits in the direction of decreasing ordinate values for each dimension.
      * This is typically a coordinate position consisting of all the minimal ordinates
      * for each dimension for all points within the {@code Envelope}.
-     * <p>
-     * This method returns a copy of the lower corner.
-     * Changes in the returned position will not be reflected in this envelope.
+     *
+     * <p>This method returns a copy of the lower corner.
+     * Changes in the returned position will not be reflected in this envelope.</p>
      *
      * @return The lower corner, typically (but not necessarily) containing minimal ordinate values.
      */
@@ -156,9 +156,9 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * The limits in the direction of increasing ordinate values for each dimension.
      * This is typically a coordinate position consisting of all the maximal ordinates
      * for each dimension for all points within the {@code Envelope}.
-     * <p>
-     * This method returns a copy of the upper corner.
-     * Changes in the returned position will not be reflected in this envelope.
+     *
+     * <p>This method returns a copy of the upper corner.
+     * Changes in the returned position will not be reflected in this envelope.</p>
      *
      * @return The upper corner, typically (but not necessarily) containing maximal ordinate values.
      */

@@ -18,11 +18,11 @@ import org.opengis.coverage.grid.GridCoordinates;
 /**
  * A {@link GridEnvelope} implementation which store values in a {@code int[]} array.
  * This class defines a range of grid coverage coordinates.
- * <p>
- * <b>CAUTION:</b>
+ *
+ * <p><b>CAUTION:</b>
  * ISO 19123 defines {@linkplain #getHigh() high} coordinates as <strong>inclusive</strong>.
  * We follow this specification for all getters methods, but keep in mind that this is the
- * opposite of Java2D usage where {@link Rectangle} maximal values are exclusive.
+ * opposite of Java2D usage where {@link Rectangle} maximal values are exclusive.</p>
  *
  * @author Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1

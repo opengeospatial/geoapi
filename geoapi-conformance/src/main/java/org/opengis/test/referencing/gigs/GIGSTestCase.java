@@ -109,10 +109,10 @@ strictfp abstract class GIGSTestCase extends TestCase {
      * Asserts that the {@linkplain IdentifiedObject#getName() name} or at least one
      * {@linkplain IdentifiedObject#getAlias() alias} of the given object is equals
      * to the given string. This method ignore the case.
-     * <p>
-     * This method does not raise error if the object name or the alias collection
+     *
+     * <p>This method does not raise error if the object name or the alias collection
      * is null, because it is validators job to determine whether such malformed
-     * objects should be accepted or not.
+     * objects should be accepted or not.</p>
      *
      * @param message  The message to show in case of failure.
      * @param expected The name which is expected to exist as a name or an alias.

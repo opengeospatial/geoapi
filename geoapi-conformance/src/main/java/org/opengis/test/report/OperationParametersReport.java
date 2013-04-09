@@ -64,8 +64,8 @@ import org.opengis.referencing.operation.MathTransformFactory;
  *
  * <p>This class recognizes the following property values:</p>
  *
- * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th align="center">Remarks</th>   <th>Meaning</th></tr>
+ * <table class="ogc">
+ *   <tr><th>Key</th>                    <th align="center">Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>          <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>    <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
  *   <tr><td>{@code OBJECTS.KIND}</td>   <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Operation Methods</cite>").</td></tr>
@@ -134,7 +134,7 @@ public class OperationParametersReport extends Report {
          * The names or aliases to write on the table row. Each entry will be formatted in a
          * single table cell. The column of the cell is determined by the key, and the content
          * is determined by the value. More specifically:
-         * <p>
+         *
          * <ul>
          *   <li>{@linkplain Map#keySet() Map keys} are the {@linkplain ReferenceIdentifier#getCodeSpace()
          *   code spaces} or {@linkplain GenericName#scope() scopes} of the name or aliases.</li>
@@ -343,7 +343,7 @@ public class OperationParametersReport extends Report {
     /**
      * Adds an operation to be show on the HTML page. The default implementation performs the
      * following steps:
-     * <p>
+     *
      * <ul>
      *   <li>Get the set of all code spaces or scopes found in the given {@code operation}.</li>
      *   <li>Delegates to {@link #createRow createRow(…)} with the above set. This means that

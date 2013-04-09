@@ -40,10 +40,10 @@ import org.opengis.test.ValidatorContainer;
 /**
  * Validates {@link Citation} and related objects from the
  * {@code org.opengis.metadata.citation} package.
- * <p>
- * This class is provided for users wanting to override the validation methods. When the default
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
  * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
- * convenient way to validate various kinds of objects.
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

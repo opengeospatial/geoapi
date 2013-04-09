@@ -49,9 +49,9 @@ final class MetadataHandler implements InvocationHandler {
      * Invoked when a method from a GeoAPI interface has been invoked. This {@code invoke}
      * method searches for a value in the {@link #attributes} map for the UML identifier of
      * the invoked method.
-     * <p>
-     * The {@code equals(Object)}, {@code hashCode()} and {@code toString()} methods are handled
-     * in a special way: they are delegated to the corresponding method of this handler.
+     *
+     * <p>The {@code equals(Object)}, {@code hashCode()} and {@code toString()} methods are handled
+     * in a special way: they are delegated to the corresponding method of this handler.</p>
      *
      * @param  proxy  The proxy object on which a method has been invoked.
      * @param  method The method which has been invoked.

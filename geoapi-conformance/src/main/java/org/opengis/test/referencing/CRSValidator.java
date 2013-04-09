@@ -49,10 +49,10 @@ import static org.opengis.test.referencing.Utilities.*;
 /**
  * Validates {@link CoordinateReferenceSystem} and related objects from the
  * {@code org.opengis.referencing.crs} package.
- * <p>
- * This class is provided for users wanting to override the validation methods. When the default
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
  * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
- * convenient way to validate various kinds of objects.
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -140,7 +140,7 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
      * field is set to {@code true} (which is the default), then this method expects the axes
      * to have the following names:
-     * <p>
+     *
      * <ul>
      *   <li>For Cartesian coordinate system, "<cite>geocentric X</cite>",
      *       "<cite>geocentric Y</cite>" and "<cite>geocentric Z</cite>".</li>
@@ -185,7 +185,7 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
      * field is set to {@code true} (which is the default), then this method expects the axes
      * to have the following names:
-     * <p>
+     *
      * <ul>
      *   <li>"<cite>geodetic latitude</cite>", "<cite>geodetic longitude</cite>" and
      *       "<cite>ellipsoidal height</cite>" (if 3D).</li>
@@ -213,7 +213,7 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
      * field is set to {@code true} (which is the default), then this method expects the axes
      * to have the following names:
-     * <p>
+     *
      * <ul>
      *   <li>"<cite>northing</cite>" or "<cite>southing</cite>", "<cite>easting</cite>" or
      *       "<cite>westing</cite>".</li>
@@ -342,7 +342,7 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
      * field is set to {@code true} (which is the default), then this method expects the axes
      * to have the following names:
-     * <p>
+     *
      * <ul>
      *   <li>"<cite>depth</cite>" or "<cite>gravity-related height</cite>".</li>
      * </ul>

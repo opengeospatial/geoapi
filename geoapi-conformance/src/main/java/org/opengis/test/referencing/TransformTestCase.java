@@ -56,23 +56,23 @@ import static org.opengis.test.Assert.*;
  * Base class for {@link MathTransform} implementation tests. Subclasses shall assign a value
  * to the {@link #transform} field before to invoke any method in this class. The specified
  * math transform shall support the following mandatory operations:
- * <p>
+ *
  * <ul>
  *   <li>{@link MathTransform#getSourceDimensions()}</li>
  *   <li>{@link MathTransform#getTargetDimensions()}</li>
  *   <li>{@link MathTransform#transform(DirectPosition, DirectPosition)}</li>
  * </ul>
- * <p>
+ *
  * All other operations are optional. However subclasses shall declare which methods, if any,
  * are unsupported. By default every operations are assumed supported. Tests can be disabled
  * on a case-by-case basis by setting the appropriate
  * <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}.
- * <p>
- * After {@code TransformTestCase} has been setup, subclasses can invoke any of the {@code verify}
+ *
+ * <p>After {@code TransformTestCase} has been setup, subclasses can invoke any of the {@code verify}
  * methods in their JUnit test methods. Callers must supply the input coordinate points to be used
- * for testing purpose, since the range of valid values is usually transform-dependent.
- * <p>
- * Some general rules:
+ * for testing purpose, since the range of valid values is usually transform-dependent.</p>
+ *
+ * <p>Some general rules:</p>
  * <ul>
  *   <li>Coordinate values, or information used for computing coordinate values, are always
  *       specified as arguments to the {@code verify} methods. Everything else are fields in
@@ -99,9 +99,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * The transform being tested. Subclasses should assign a value to this field,
      * together with the {@link #tolerance} field, before any test is run.
-     * <p>
-     * All {@link ParameterizedTransformTest} test methods will set this field to a non-null value.
-     * Implementors can use this value for their own assertions after any test method has been run.
+     *
+     * <p>All {@link ParameterizedTransformTest} test methods will set this field to a non-null value.
+     * Implementors can use this value for their own assertions after any test method has been run.</p>
      *
      * @see #tolerance
      */
@@ -195,15 +195,15 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * of source dimensions}, but different lengths are accepted for developers convenience. If the
      * array is smaller than the number of dimensions, then the last delta value will be reused for
      * all remaining dimensions.
-     * <p>
-     * Testers shall provide a non-null value if the {@link #isDerivativeSupported} flag is set to
+     *
+     * <p>Testers shall provide a non-null value if the {@link #isDerivativeSupported} flag is set to
      * {@code true}. Smaller delta would theoretically increase the finite difference precision.
      * However in practice too small deltas <em>decrease</em> the precision, because of floating
      * point errors when subtracting big numbers that are close in magnitude. In the particular
      * case of map projections, experience suggests that a distance of 100 metres converted to
      * decimal degrees is a good compromise. The conversion from metres to degrees can be done using
      * the standard nautical mile length ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE}
-     * metres by minute of angle) as below:
+     * metres by minute of angle) as below:</p>
      *
      * <blockquote><pre>derivativeDeltas = new double[] {100.0 / (60 * 1852)}; // Approximatively 100 metres.</pre></blockquote>
      *
@@ -220,16 +220,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * coordinates to be compared. If a subclass needs to adjust the tolerance threshold
      * according the dimension or the coordinates values, then it should assign a value to
      * the {@link #toleranceModifier} field in addition to this one.
-     * <p>
-     * <b>Example:</b> the comparisons of geographic coordinates require increasing tolerance
+     *
+     * <p><b>Example:</b> the comparisons of geographic coordinates require increasing tolerance
      * in longitude values as the latitude get closer to a pole. For such comparisons, this
      * {@code tolerance} field shall be set to a threshold value in <em>metres</em> and the
      * {@link #toleranceModifier} field shall be assigned the {@link ToleranceModifier#GEOGRAPHIC}
-     * value. See the {@code GEOGRAPHIC} modifier javadoc for more information.
-     * <p>
-     * The default value is 0, which means that strict equality will be required. Subclasses
+     * value. See the {@code GEOGRAPHIC} modifier javadoc for more information.</p>
+     *
+     * <p>The default value is 0, which means that strict equality will be required. Subclasses
      * should set a more suitable tolerance threshold when {@linkplain #transform} is assigned
-     * a value.
+     * a value.</p>
      *
      * @see #transform
      * @see #toleranceModifier
@@ -241,9 +241,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * coordinate points. {@link ToleranceModifier} instance assigned to this field (if any)
      * are {@linkplain #transform}-dependent. The modifications applied by a particular
      * {@code ToleranceModifier} instance to the tolerance thresholds is position-dependent.
-     * <p>
-     * Common values assigned to this field are {@link ToleranceModifier#PROJECTION} and
-     * {@link ToleranceModifier#GEOGRAPHIC}.
+     *
+     * <p>Common values assigned to this field are {@link ToleranceModifier#PROJECTION} and
+     * {@link ToleranceModifier#GEOGRAPHIC}.</p>
      *
      * @since 3.1
      */
@@ -257,11 +257,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the values of {@link #toleranceModifier} and {@link #transform} respectively at the time
      * the {@code cachedModifier} value has been computed. They are used in order to detect when
      * {@code cachedModifier} needs to be recalculated.
-     * <p>
-     * Note that the above checks will not detect the case where the user invoke
+     *
+     * <p>Note that the above checks will not detect the case where the user invoke
      * {@link org.opengis.test.TestSuite#clear()}. We presume that typical users
      * will not invoke that method in the middle of a test (it is okay if that
-     * method is invoked between two tests however).
+     * method is invoked between two tests however).</p>
      *
      * @see #getToleranceModifier()
      */
@@ -322,11 +322,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Sets all {@code isFooSupported} fields to the values in the given array.
      * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
-     * <p>
-     * This work is usually performed right into the constructor. However in the particular case
+     *
+     * <p>This work is usually performed right into the constructor. However in the particular case
      * of {@code TransformTestCase}, we allow the configuration to be supplied externally because
      * {@link AuthorityFactoryTest} will use this class internally with a set of flags determined
-     * from a different set of factories than the factories given to the constructor of this class.
+     * from a different set of factories than the factories given to the constructor of this class.</p>
      */
     private void setEnabledFlags(final boolean[] isEnabled) {
         isDoubleToDoubleSupported   = isEnabled[0];
@@ -359,7 +359,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
-     * <p>
+     *
      * <ul>
      *   <li>All the following keys defined in the {@link org.opengis.test.Configuration.Key} enumeration,
      *       associated to the value {@link Boolean#TRUE} or {@link Boolean#FALSE}:
@@ -438,10 +438,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * delta) to the expected ones. If the difference between an expected and actual ordinate value
      * is greater than the {@linkplain #tolerance tolerance} threshold (after optional
      * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
-     * <p>
-     * If {@link #isInverseTransformSupported} is {@code true}, then this method will also
+     *
+     * <p>If {@link #isInverseTransformSupported} is {@code true}, then this method will also
      * transform the expected coordinate points using the {@linkplain MathTransform#inverse
-     * inverse transform} and compare with the source coordinates.
+     * inverse transform} and compare with the source coordinates.</p>
      *
      * @param  coordinates The coordinate points to transform.
      * @param  expected The expect result of the transformation, or
@@ -533,10 +533,10 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * original values. If a difference between the expected and actual ordinate values is
      * greater than the {@linkplain #tolerance tolerance} threshold (after optional
      * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
-     * <p>
-     * At the difference of {@link #verifyTransform(double[],double[])}, this method does
+     *
+     * <p>At the difference of {@link #verifyTransform(double[],double[])}, this method does
      * not require an array of expected values. The expected values are calculated from
-     * the transform itself.
+     * the transform itself.</p>
      *
      * @param  coordinates The source coordinates to transform.
      * @throws TransformException if at least one coordinate can't be transformed.
@@ -594,8 +594,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * original values. If a difference between the expected and actual ordinate values is
      * greater than the {@linkplain #tolerance tolerance} threshold (after optional
      * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
-     * <p>
-     * The default implementation delegates to {@link #verifyInverse(double[])}.
+     *
+     * <p>The default implementation delegates to {@link #verifyInverse(double[])}.</p>
      *
      * @param  coordinates The source coordinates to transform.
      * @throws TransformException if at least one coordinate can't be transformed.
@@ -618,16 +618,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@link MathTransform#transform(DirectPosition,DirectPosition)} are used as the reference.
      * Other transform methods (operating on arrays) will be compared against that reference,
      * unless their checks were disabled (see class javadoc for details).
-     * <p>
-     * This method expects an array of {@code float} values instead than {@code double}
+     *
+     * <p>This method expects an array of {@code float} values instead than {@code double}
      * for making sure that the {@code MathTransform.transform(float[], …)} and
      * {@code MathTransform.transform(double[], …)} methods produces the same numerical values.
      * The {@code double} values may show extra digits when formatted in base 10, but this is not
-     * significant if their IEEE 754 representation (which use base 2) are equivalent.
-     * <p>
-     * This method does not verify the inverse transform or the derivatives. If desired,
+     * significant if their IEEE 754 representation (which use base 2) are equivalent.</p>
+     *
+     * <p>This method does not verify the inverse transform or the derivatives. If desired,
      * those later methods can be verified with the {@link #verifyInverse(float[])} and
-     * {@link #verifyDerivative(double[])} methods respectively.
+     * {@link #verifyDerivative(double[])} methods respectively.</p>
      *
      * @param  sourceFloats The source coordinates to transform as an array of {@code float} values.
      * @return The transformed coordinates, returned for convenience.
@@ -767,23 +767,22 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Computes the {@linkplain MathTransform#derivative(DirectPosition) derivative at the given point}
      * and compares the result with the <a href="http://en.wikipedia.org/wiki/Finite_difference">finite
      * differences</a> approximation.
-     * <p>
-     * All the three common forms of finite differences (<cite>forward difference</cite>,
+     *
+     * <p>All the three common forms of finite differences (<cite>forward difference</cite>,
      * <cite>backward difference</cite> and <cite>central difference</cite>) are computed.
      * If the finite difference method was a "perfect" approximation, all those three forms
      * would produce identical results. In practice the results will differ, especially in
      * areas where the derivative function varies fast. The difference between the results
-     * will be used as an estimation of the approximation accuracy.
-     * <p>
-     * The distance between the two points used by the <cite>central difference</cite>
+     * will be used as an estimation of the approximation accuracy.</p>
+     *
+     * <p>The distance between the two points used by the <cite>central difference</cite>
      * approximation shall be specified in the {@link #derivativeDeltas} array, in units
      * of the source CRS. If the length of the {@code derivativeDeltas} array is smaller
      * than the number of source dimensions, then the last delta value is used for all
      * additional dimensions. This allows specifying a single delta value (in an array
-     * of length 1) for all dimensions.
-     * <p>
-     * This method created the following objects:
-     * <p>
+     * of length 1) for all dimensions.</p>
+     *
+     * <p>This method created the following objects:</p>
      * <ul>
      *   <li>{@code expected} - the expected derivative result estimated by the central
      *       difference method.</li>
@@ -792,7 +791,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *       this matrix will not be lower than the {@linkplain #toleranceModifier modified}
      *       {@linkplain #tolerance} threshold.</li>
      * </ul>
-     * <p>
+     *
      * Those information are then passed to the {@link #assertMatrixEquals(String, Matrix, Matrix,
      * Matrix)} method. Implementors can override the later method, for example in order to overwrite
      * the tolerance values.
@@ -887,13 +886,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * random displacements to every points and shuffle the coordinates in random order.
      * Finally this method delegates the resulting array of coordinates to the following
      * methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link #verifyConsistency(float[])}</li>
      *   <li>{@link #verifyInverse(float[])}</li>
      *   <li>{@link #verifyDerivative(double[])}</li>
      * </ul>
-     * <p>
+     *
      * The generated coordinates array is returned in case callers want to perform more tests
      * in addition to the above-cited verifications.
      *
@@ -1451,13 +1450,13 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
      * If the comparison fails, the given message is completed with the expected and actual matrixes
      * values.
-     * <p>
-     * For each matrix element, the tolerance value is given by the corresponding element in the
+     *
+     * <p>For each matrix element, the tolerance value is given by the corresponding element in the
      * {@code tolmat} matrix. This tolerance matrix is initialized by the
      * {@link #verifyDerivative(double[])} method to the differences found between the 3 forms of
      * finite difference (<cite>forward</cite>, <cite>backward</cite>, <cite>central</cite>).
      * Developers can override this method and overwrite the {@code tolmat} elements if they
-     * wish different tolerance values.
+     * wish different tolerance values.</p>
      *
      * @param message  The message to print in case of failure.
      * @param expected The expected matrix of derivative values, estimated by finite differences.
@@ -1529,9 +1528,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * This method allows subclasses to replace some equivalent ordinate values by a unique value.
      * For example implementations may ensure that longitude values are contained in the ±180°
      * range, applying 360° shifts if needed.
-     * <p>
-     * The default implementation does nothing. Subclasses can modify the {@code actual} ordinate
-     * values directly using the {@link DirectPosition#setOrdinate(int, double)} method.
+     *
+     * <p>The default implementation does nothing. Subclasses can modify the {@code actual} ordinate
+     * values directly using the {@link DirectPosition#setOrdinate(int, double)} method.</p>
      *
      * @param expected The expected ordinate value provided by the test case.
      * @param actual   The ordinate value computed by the {@linkplain #transform} being tested.

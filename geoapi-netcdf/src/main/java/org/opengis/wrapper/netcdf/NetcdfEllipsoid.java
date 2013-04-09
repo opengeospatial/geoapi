@@ -104,8 +104,8 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
      * and {@linkplain #getSemiMinorAxis semi-minor} axis values. The default
      * implementation returns {@link SI#METRE}.
-     * <p>
-     * <strong>Do not confuse:</strong>
+     *
+     * <p><b>Do not confuse:</b></p>
      * <ul>
      *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi;) in degrees</li>
      *   <li>Ellipsoid axes (<var>semi-major</var>, <var>semi-minor</var>) in metres</li>
@@ -233,13 +233,13 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * Returns the axis for this ellipsoidal coordinate system at the specified dimension.
      * The axis at dimension 0 is the <cite>longitude</cite> and the axis at dimension 1 is
      * the <cite>latitude</cite>.
-     * <p>
-     * <strong>Do not confuse:</strong>
+     *
+     * <p><b>Do not confuse:</b></p>
      * <ul>
      *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi;) in degrees</li>
      *   <li>Ellipsoid axes (<var>semi-major</var>, <var>semi-minor</var>) in metres</li>
      * </ul>
-     * <p>
+     *
      * This method is about the former.
      *
      * @param  dimension The zero based index of axis.

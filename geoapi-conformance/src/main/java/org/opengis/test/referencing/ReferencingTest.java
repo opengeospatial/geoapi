@@ -43,8 +43,8 @@ import org.junit.runners.Parameterized;
  * Tests objects that combine all referencing sub-packages, especially {@code crs}, {@code cs} and
  * {@code datum}. The instances are created using the various factories given at construction time.
  *
- * In order to specify their factories and run the tests in a JUnit framework, implementors can
- * define a subclass as below:
+ * <p>In order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:</p>
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;

@@ -38,12 +38,12 @@ public class SimpleNameFactory implements NameFactory {
 
     /**
      * The JNDI syntax of names. By default, this map contains the following entries:
-     * <p>
-     * <code><table>
-     *   <tr><td>"jndi.syntax.direction"</td> <td>&nbsp;=&nbsp;</td> <td>"left_to_right"</td></tr>
-     *   <tr><td>"jndi.syntax.separator"</td> <td>&nbsp;=&nbsp;</td> <td>":"</td></tr>
-     * </table></code>
-     * <p>
+     *
+     * <p><code><table>
+     *   <tr><td>"jndi.syntax.direction"</td> <td>=</td> <td>"left_to_right"</td></tr>
+     *   <tr><td>"jndi.syntax.separator"</td> <td>=</td> <td>":"</td></tr>
+     * </table></code></p>
+     *
      * Subclasses can modify this map in their constructor. This map shall not be modified
      * after construction, because it will be passed by direct reference (no clone) to JNDI
      * names.
@@ -120,14 +120,14 @@ public class SimpleNameFactory implements NameFactory {
      * Creates a namespace having the given name and separators. The {@code properties} argument
      * is optional: if non-null, the given properties may be given to the namespace to be created.
      * This factory recognizes the properties listed in the following table:
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+     *
+     * <table class="ogc">
+     *   <tr>
      *     <th nowrap>Property name</th>
      *     <th nowrap>Purpose</th>
      *   </tr>
      *   <tr>
-     *     <td valign="top" nowrap>&nbsp;{@code "separator"}&nbsp;</td>
+     *     <td valign="top" nowrap>{@code "separator"}</td>
      *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
      *     in that namespace. For URN, this is typically {@code ":"}.</td>
      *   </tr>
