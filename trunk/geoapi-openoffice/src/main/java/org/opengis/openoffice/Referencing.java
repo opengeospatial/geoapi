@@ -32,7 +32,7 @@ import org.opengis.metadata.extent.Extent;
 
 /**
  * Exports methods from the {@link org.opengis.referencing} package as
- * <A HREF="http://www.openoffice.org">OpenOffice.org</A> add-ins.
+ * <a href="http://www.openoffice.org">OpenOffice.org</a> add-ins.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Richard Deplanque (IRD)
@@ -42,9 +42,9 @@ import org.opengis.metadata.extent.Extent;
 public final class Referencing extends Formulas implements XReferencing {
     /**
      * The name for the registration of this component.
-     * <p>
-     * <strong>NOTE:</strong> OpenOffice expects a field with exactly that name:
-     * do not rename the field name! (but you can rename the field value, of course).
+     *
+     * <p><strong>NOTE:</strong> OpenOffice expects a field with exactly that name:
+     * do not rename the field name! (but you can rename the field value, of course).</p>
      */
     private static final String __serviceName = "org.opengis.openoffice.Referencing";
 

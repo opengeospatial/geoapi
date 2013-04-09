@@ -71,12 +71,12 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
  * parameterized math tranforms} from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
- * <p>
- * <b>Tests and accuracy:</b><br>
+ *
+ * <p><b>Tests and accuracy:</b><br>
  * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
  * of most example points given in the EPSG guidance notice. Implementors can modify the kind of
- * tests being executed and the tolerance threshold in different ways:
- * <p>
+ * tests being executed and the tolerance threshold in different ways:</p>
+ *
  * <ul>
  *   <li>Set some <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}.</li>
  *   <li>Override some of the {@code testFoo()} method and set the {@link #tolerance tolerance} field
@@ -85,13 +85,13 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *       normalize(DirectPosition, DirectPosition, CalculationType)}.</li>
  *   <li>Override {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}.</li>
  * </ul>
- * <p>
- * <b>Example:</b><br>
+ *
+ * <p><b>Example:</b><br>
  * In order to specify their factory and run the tests in a JUnit framework, implementors can define
  * a subclass as in the example below. That example shows also how implementors can alter some tests
  * (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection) and add
  * more checks to be executed after every tests (here ensuring that the {@linkplain #transform
- * transform} implements the {@link MathTransform2D} interface):
+ * transform} implements the {@link MathTransform2D} interface):</p>
  *
  * <blockquote><pre>import org.junit.*;
  *import org.junit.runner.RunWith;
@@ -158,11 +158,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * The delta value to use for computing an approximation of the derivative by finite
      * difference, in metres. The conversion from metres to degrees is performed using
      * the standard length of a nautical mile.
-     * <p>
-     * The 100 metres value has been determined empirically as a good compromise for map
+     *
+     * <p>The 100 metres value has been determined empirically as a good compromise for map
      * projections.  Experience suggests that smaller values often <em>decrease</em> the
      * precision, because of floating point errors when subtracting big numbers that are
-     * close in magnitude.
+     * close in magnitude.</p>
      */
     private static final double DERIVATIVE_DELTA = 100;
 
@@ -175,10 +175,10 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * The parameters of the math transform being tested. This field is set, together with the
      * {@link #transform transform} field, after the execution of every {@code testFoo()} method
      * in this class.
-     * <p>
-     * If this field is non-null before a test is run, then those parameters will be used
+     *
+     * <p>If this field is non-null before a test is run, then those parameters will be used
      * directly. This allow implementors to alter the parameters before to run the test one
-     * more time.
+     * more time.</p>
      */
     protected ParameterValueGroup parameters;
 
@@ -186,7 +186,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * A description of the test being run. This field is provided only for information purpose
      * (typically for producing logging or error messages); it is not actually used by the tests.
      * The value can be:
-     * <p>
+     *
      * <ul>
      *   <li>The name of the target {@link ProjectedCRS} when the {@linkplain #transform transform}
      *       being tested is a map projection</li>
@@ -234,7 +234,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
-     * <p>
+     *
      * <ul>
      *   <li>All the entries defined in the {@linkplain TransformTestCase#configuration() parent class}.</li>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
@@ -270,11 +270,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * identified by the given EPSG code, and stores the result in the {@link #transform} field.
      * The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
-     * <p>
-     * This method shall also set the {@linkplain TransformTestCase#tolerance tolerance} threshold
+     *
+     * <p>This method shall also set the {@linkplain TransformTestCase#tolerance tolerance} threshold
      * in units of the target CRS (typically <var>metres</var> for map projections), and the
      * {@linkplain #derivativeDeltas derivative deltas} in units of the source CRS (typically
-     * <var>degrees</var> for map projections). The current implementation sets the following values:
+     * <var>degrees</var> for map projections). The current implementation sets the following values:</p>
      *
      * <ul>
      *   <li><p>{@link #tolerance} is sets to {@link #TRANSFORM_TOLERANCE}, unless a greater
@@ -432,10 +432,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td nowrap>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td nowrap>6356078.962818189 m</td></tr>
@@ -445,7 +446,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                  <td nowrap>3900000.0 m</td></tr>
      * <tr><td>False northing</td>                 <td nowrap>900000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>110°E<br>0°N</td> <td nowrap>3900000.00 m<br>900000.00 m</td></tr>
      * <tr align="right"><td>120°E<br>3°S</td> <td nowrap>5009726.58 m<br>569150.82 m</td></tr>
@@ -468,10 +469,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td nowrap>6378245.0 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td nowrap>6356863.018773047 m</td></tr>
@@ -480,7 +482,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                     <td nowrap>0.0 m</td></tr>
      * <tr><td>False northing</td>                    <td nowrap>0.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>51°E<br>0°N</td>  <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>53°E<br>53°N</td> <td nowrap>165704.29 m<br>5171848.07 m</td></tr>
@@ -503,10 +505,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td nowrap>6378137.0 m</td></tr>
      * <tr><td>semi-minor axis</td>             <td nowrap>6356752.314247833 m</td></tr>
@@ -515,7 +518,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>               <td nowrap>0.0 m</td></tr>
      * <tr><td>False northing</td>              <td nowrap>0.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
      * <tr align="right"><td>0°E<br>0°N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>100°20'00.000"W<br>24°22'54.433"N</td>
@@ -540,10 +543,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * transforms a random set of points in the projection area of validity and ensures that the
      * {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>           <th>Value</th></tr>
      * <tr><td>semi_major</td>          <td nowrap>6378137.0 m</td></tr>
      * <tr><td>semi_minor</td>          <td nowrap>6378137.0 m</td></tr>
@@ -552,7 +556,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>false_easting</td>       <td nowrap>0.0 m</td></tr>
      * <tr><td>false_northing</td>      <td nowrap>0.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                        <th>Expected results</th></tr>
      * <tr align="right"><td>0°E<br>0°N</td>                <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td nowrap>275951.78 m<br>5910061.78 m</td></tr>
@@ -575,10 +579,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td>6377298.556 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td>6356097.550300896 m</td></tr>
@@ -590,7 +595,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Easting at projection centre</td>      <td>590476.87 m</td></tr>
      * <tr><td>Northing at projection centre</td>     <td>442857.65 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
      * <tr align="right"><td>115°E<br>4°N</td> <td nowrap>590476.87 m<br>442857.65 m</td></tr>
      * <tr align="right"><td>115°48'19.8196"E<br>5°23'14.1129"N</td>
@@ -614,10 +619,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6377563.396 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td>6356256.908909849 m</td></tr>
@@ -627,7 +633,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                  <td>400000.0 m</td></tr>
      * <tr><td>False northing</td>                 <td>-100000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
      * <tr align="right"><td>2°W<br>49°N</td>        <td nowrap>400000.00 m<br>-100000.00 m</td></tr>
      * <tr align="right"><td>00°30'E<br>50°30'N</td> <td nowrap>577274.98 m<br>69740.49 m</td></tr>
@@ -655,10 +661,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td>6378350.8704 m</td></tr>
      * <tr><td>semi-minor axis</td>             <td>6356675.0184 m</td></tr>
@@ -667,7 +674,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
      * <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                       <th>Expected results</th></tr>
      * <tr align="right"><td>61°20'00"W<br>10°26'30"N</td> <td nowrap>430000.00 links<br>325000.00 links</td></tr>
      * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td nowrap>66644.94 links<br>82536.22 links</td></tr>
@@ -692,10 +699,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                       <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                 <td nowrap>6378206.4 m</td></tr>
      * <tr><td>semi-minor axis</td>                 <td nowrap>6356583.8 m</td></tr>
@@ -705,7 +713,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                   <td nowrap>250000.0 m</td></tr>
      * <tr><td>False northing</td>                  <td nowrap>150000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>77°W<br>18°N</td> <td nowrap>250000.00 m<br>150000.00 m</td></tr>
      * <tr align="right"><td>76°56'37.26"W<br>17°55'55.80"N</td>
@@ -729,10 +737,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td nowrap>6378206.4 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td nowrap>6356583.8 m</td></tr>
@@ -743,7 +752,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Easting at false origin</td>           <td nowrap>609601.2192024385 m</td></tr>
      * <tr><td>Northing at false origin</td>          <td nowrap>0.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
      * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 US feet<br>0 US feet</td></tr>
      * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 US feet<br>254759.80 US feet</td></tr>
@@ -768,10 +777,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td nowrap>6378388.0 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td nowrap>6356911.9461279465 m</td></tr>
@@ -782,7 +792,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Easting at false origin</td>           <td nowrap>150000.01256 m</td></tr>
      * <tr><td>Northing at false origin</td>          <td nowrap>5400088.4378 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
      * <tr align="right"><td>4°21'24.983"E<br>90°00'00.000"N</td> <td nowrap>150000.01 m<br>5400088.44 m</td></tr>
      * <tr align="right"><td>5°48'26.533"E<br>50°40'46.461"N</td> <td nowrap>251763.20 m<br>153034.13 m</td></tr>
@@ -805,10 +815,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
      * <tr><td>semi-minor axis</td>             <td>6356752.314140284 m</td></tr>
@@ -817,7 +828,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>               <td>4321000.0 m</td></tr>
      * <tr><td>False northing</td>              <td>3210000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>10°E<br>52°N</td> <td nowrap>4321000.00 m<br>3210000.00 m</td></tr>
      * <tr align="right"><td>5°E<br>50°N</td>  <td nowrap>3962799.45 m<br>2999718.85 m</td></tr>
@@ -840,10 +851,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
@@ -853,7 +865,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                  <td>2000000.0 m</td></tr>
      * <tr><td>False northing</td>                 <td>2000000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>0°E<br>90°N</td>  <td nowrap>2000000.00 m<br>2000000.00 m</td></tr>
      * <tr align="right"><td>44°E<br>73°N</td> <td nowrap>3320416.75 m<br>632668.43 m</td></tr>
@@ -877,10 +889,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
      * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
@@ -890,7 +903,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                  <td>6000000.0 m</td></tr>
      * <tr><td>False northing</td>                 <td>6000000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
      * <tr align="right"><td>70°E<br>90°S</td>  <td nowrap>6000000.00 m<br>6000000.00 m</td></tr>
      * <tr align="right"><td>120°E<br>75°S</td> <td nowrap>7255380.79 m<br>7053389.56 m</td></tr>
@@ -913,10 +926,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td>6356078.9626186555 m</td></tr>
@@ -926,7 +940,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                  <td>155000.0 m</td></tr>
      * <tr><td>False northing</td>                 <td>463000.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
      * <tr align="right"><td>5°23'15.500"E<br>52°09'22.178"N</td> <td nowrap>155000.000 m<br>463000.000 m</td></tr>
      * <tr align="right"><td>6°E<br>53°N</td>                     <td nowrap>196105.283 m<br>557057.739 m</td></tr>
@@ -949,10 +963,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * by John P.Snyder</A>. Next, this method transforms a random set of points in the projection
      * area of validity and ensures that the {@linkplain MathTransform#inverse() inverse transform}
      * and the {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                                <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                          <td>6378206.4 m</td></tr>
      * <tr><td>semi-minor axis</td>                          <td>6356583.8 m</td></tr>
@@ -961,7 +976,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
      * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
      * <tr align="right"><td>See source</td> <td nowrap>See source</td></tr>
      * </table></td></tr></table>
@@ -982,10 +997,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                                <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                          <td>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                          <td>6356078.9626186555 m</td></tr>
@@ -997,7 +1013,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
      * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th>                               <th>Expected results</th></tr>
      * <tr align="right"><td>16°50'59.179"E<br>50°12'32.442"N</td> <td nowrap>-568990.997 m<br>-1050538.643 m</td></tr>
      * </table></td></tr></table>
@@ -1019,10 +1035,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Next, this method transforms a random set of geographic coordinates
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
-     * <p>
-     * The math transform parameters and the sample coordinates are:
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
      * <table cellspacing="15"><tr valign="top"><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>dim</td>                               <td>3</td></tr>
      * <tr><td>src_semi_major</td>                    <td>6378137.0 m</td></tr>
@@ -1033,7 +1050,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Semi-major axis length difference</td> <td>251 m</td></tr>
      * <tr><td>Flattening difference</td>             <td>1.41927E-05</td></tr>
      * </table></td><td>
-     * <table border="1" cellspacing="0" cellpadding="2">
+     * <table class="ogc">
      * <tr><th>Source ordinates</th><th>Expected results</th></tr>
      * <tr align="right">
      *   <td nowrap>2°7'46.380"E<br>53°48'33.820"N<br>73.000 m</td>

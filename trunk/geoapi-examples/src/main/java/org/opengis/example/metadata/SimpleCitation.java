@@ -26,10 +26,10 @@ import static java.util.Collections.emptySet;
  * A {@link Citation} containing only a {@linkplain #getTitle() title} attribute as an
  * {@link InternationalString}. All other citation attributes are {@code null} or empty
  * collections.
- * <p>
- * This class can also be used as an {@link InternationalString} implementation. Because
+ *
+ * <p>This class can also be used as an {@link InternationalString} implementation. Because
  * there is only one attribute - the {@linkplain #getTitle() title} - there is no ambiguity
- * about the value represented by the citation or the international string.
+ * about the value represented by the citation or the international string.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

@@ -233,12 +233,12 @@ public class NetcdfTransformFactory implements MathTransformFactory {
     /**
      * Creates a transform from a group of parameters. All cartographic projections
      * created through this method will have the following properties:
-     * <p>
-     * <UL>
-     *   <LI>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</LI>
-     *   <LI>All angles are assumed to be degrees, and all distances are assumed to be meters.</LI>
-     *   <LI>The domain shall be a subset of {[-180,180)&times;(-90,90)}.</LI>
-     * </UL>
+     *
+     * <ul>
+     *   <li>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</li>
+     *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
+     *   <li>The domain shall be a subset of {[-180,180)&times;(-90,90)}.</li>
+     * </ul>
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.

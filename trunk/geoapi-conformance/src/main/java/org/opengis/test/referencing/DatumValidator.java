@@ -45,10 +45,10 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Validates {@link Datum} and related objects from the {@code org.opengis.datum} package.
- * <p>
- * This class is provided for users wanting to override the validation methods. When the default
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
  * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
- * convenient way to validate various kinds of objects.
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -113,7 +113,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given ellipsoid.
      * This method checks the following conditions:
-     * <p>
+     *
      * <ul>
      *   <li>{@linkplain Ellipsoid#getAxisUnit() Axis unit} is defined and is linear.</li>
      *   <li>{@linkplain Ellipsoid#getSemiMinorAxis() semi-minor} &lt;= {@linkplain Ellipsoid#getSemiMajorAxis() semi-major}.</li>

@@ -41,13 +41,13 @@ import static org.opengis.test.Assert.*;
 /**
  * Tests the {@link NetcdfMetadata} class.
  * The main properties tested by this class are:
- * <p>
+ *
  * <ul>
  *   <li>The {@linkplain Metadata#getIdentificationInfo() identification} identifier, title, abstract and date.</li>
  *   <li>The {@linkplain ResponsibleParty responsible party} name, role and email address.</li>
  *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
  * </ul>
- * <p>
+ *
  * <b><u>Inheriting tests in external projects</u></b><br>
  * In order to test their own implementation, external projects can override the
  * {@link #wrap(NetcdfFile)} method as in the example below:
@@ -62,7 +62,7 @@ import static org.opengis.test.Assert.*;
  * In addition, implementors can alter the expected and actual attribute values before they
  * are compared, and alter the way the comparison is performed. More specifically, every
  * {@code testXXX()} method in this class proceeds in two steps:
- * <p>
+ *
  * <ul>
  *   <li>First, {@linkplain #fetchMetadataProperties(String) fill a map of all property values}
  *       which are going to be tested.</li>
@@ -70,7 +70,7 @@ import static org.opengis.test.Assert.*;
  *       considering all properties as optional (i.e. no exception is thrown if the implementation
  *       didn't mapped a NetCDF attribute to a metadata property).</li>
  * </ul>
- * <p>
+ *
  * Subclasses can override the {@link #fetchMetadataProperties(String)} and
  * {@link #compareProperties(String,double)} methods in order to modify the
  * default behavior, or for performing additional checks.
@@ -144,13 +144,13 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Returns the single element from the given collection, or {@code null} if none.
      * The default implementation makes the following choice:
-     * <p>
+     *
      * <ul>
      *   <li>If the given collection is null or empty, returns {@code null}.</li>
      *   <li>If the given collection contains exactly one element, returns that element.</li>
      *   <li>Otherwise, throws {@link AssertionError}.</li>
      * </ul>
-     * <p>
+     *
      * Subclasses can override this method if they want to select the element in a different way.
      *
      * @param  <E> The type of collection elements.
@@ -367,13 +367,13 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * Compares the properties found in the {@linkplain #metadata} with the expected properties.
      * The default implementation removes all properties found from the properties maps.
      * Consequently, after this method call the maps contain the following entries:
-     * <p>
+     *
      * <ul>
      *   <li>The {@link #expectedProperties} map contains all properties not found in the NetCDF file.</li>
      *   <li>The {@link #actualProperties} map contains all properties from the NetCDF file which have not
      *       been verified.</li>
      * </ul>
-     * <p>
+     *
      * Subclasses can override this method if they want to modify the values before the comparison
      * is performed, or for ensuring that their mandatory values have been removed from the maps
      * (i.e. have been compared) after the comparison.
@@ -409,7 +409,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#THREDDS} file (XML format).
      * The current implementation tests:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain Metadata#getFileIdentifier() file identifier}.</li>
      *   <li>The {@linkplain ResponsibleParty responsible party} name, role and email address.</li>
@@ -417,7 +417,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      *   <li>The {@linkplain Dimension axis dimensions} names, sizes and resolution.</li>
      *   <li>The {@linkplain Lineage lineage} statement.</li>
      * </ul>
-     * <p>
+     *
      * Note that implementations don't need to support all those metadata.
      * See the class javadoc for more information.
      *
@@ -464,7 +464,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file (binary format).
      * The current implementation tests:
-     * <p>
+     *
      * <ul>
      *   <li>The {@linkplain Metadata#getIdentificationInfo() identification} identifier, title, abstract and date.</li>
      *   <li>The {@linkplain Citation citation} title, date and abstract.</li>
@@ -476,7 +476,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      *   <li>The {@linkplain Lineage lineage} statement.</li>
      *   <li>The {@linkplain RangeDimension range dimensions}.</li>
      * </ul>
-     * <p>
+     *
      * Note that implementations don't need to support all those metadata.
      * See the class javadoc for more information.
      *

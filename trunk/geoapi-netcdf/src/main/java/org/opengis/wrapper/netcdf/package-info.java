@@ -17,7 +17,7 @@
  * <a href="http://www.unidata.ucar.edu/software/netcdf-java/">NetCDF</a> library.
  * This package provides adapters allowing usage of the following NetCDF services
  * as an implementation of GeoAPI interfaces:
- * <p>
+ *
  * <ul>
  *   <li>Metadata services, as wrappers around {@link ucar.nc2.NetcdfFile}.</li>
  *   <li>Referencing services, including:
@@ -27,7 +27,7 @@
  *     </ul>
  *   </li>
  * </ul>
- * <p>
+ *
  * Home page: <a href="http://www.geoapi.org/geoapi-netcdf/index.html">GeoAPI-NetCDF bindings</a>.
  *
  * @author  Martin Desruisseaux (Geomatys)

@@ -348,7 +348,7 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Asserts that all control points of two shapes are equal.
      * This method performs the following checks:
-     * <p>
+     *
      * <ol>
      *   <li>Ensures that the {@linkplain Shape#getBounds2D() shape bounds} are equal,
      *       up to the given tolerance thresholds.</li>
@@ -386,7 +386,7 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Asserts that all control points in two geometric paths are equal.
      * This method performs the following checks:
-     * <p>
+     *
      * <ol>
      *   <li>Ensures that the {@linkplain PathIterator#getWindingRule() winding rules} are equal.</li>
      *   <li>Iterates over all path segments until the iteration {@linkplain PathIterator#isDone() is done}.
@@ -396,7 +396,7 @@ public strictfp class Assert extends org.junit.Assert {
      *       <li>Ensures that the ordinate values are equal, up to the given tolerance thresholds.</li>
      *   </ol></li>
      * </ol>
-     * <p>
+     *
      * This method can be used instead of {@link #assertShapeEquals(String, Shape, Shape, double, double)}
      * when the tester needs to compare the shapes with a non-null affine transform or a flatness factor.
      * in such case, the tester needs to invoke the {@link Shape#getPathIterator(AffineTransform, double)}

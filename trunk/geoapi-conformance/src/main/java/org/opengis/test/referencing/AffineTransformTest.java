@@ -59,10 +59,10 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * Tests {@linkplain MathTransformFactory#createAffineTransform(Matrix) affine transforms}
  * from the {@code org.opengis.referencing.operation} package. Math transform instances are
  * created using the factory given at construction time.
- * <p>
- * <b>Example:</b><br>
+ *
+ * <p><b>Example:</b><br>
  * In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as in the example below:
+ * define a subclass as in the example below:</p>
  *
  * <blockquote><pre>import org.junit.*;
  *import org.junit.runner.RunWith;
@@ -113,10 +113,10 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * The matrix of the math transform being tested. This field is set, together with the
      * {@link #transform transform} field, after the execution of every {@code testFoo()}
      * method in this class.
-     * <p>
-     * If this field is non-null before a test is run, then those parameters will be used
+     *
+     * <p>If this field is non-null before a test is run, then those parameters will be used
      * directly. This allow implementors to alter the parameters before to run the test one
-     * more time.
+     * more time.</p>
      */
     protected Matrix matrix;
 
@@ -169,7 +169,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
-     * <p>
+     *
      * <ul>
      *   <li>All the entries defined in the {@linkplain TransformTestCase#configuration() parent class}.</li>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:

@@ -97,7 +97,7 @@ public class Reports extends Report {
      * Adds every kind of report applicable to the given factory. The kind of reports will be
      * determined from the type of the provided factory. The current implementation can handle
      * the following kind of factories:
-     * <p>
+     *
      * <ul>
      *   <li>{@link CRSAuthorityFactory},  given to {@link AuthorityCodesReport}</li>
      *   <li>{@link MathTransformFactory}, given to {@link OperationParametersReport}</li>

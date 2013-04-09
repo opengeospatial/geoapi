@@ -51,13 +51,13 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Generates the list of every interfaces or {@linkplain org.opengis.util.CodeList code lists}
  * derived from an ISO specification. Then there is a choice:
- * <p>
+ *
  * <ul>
  *   <li>If the {@value #INDEX_FILENAME} file exists, then its content will be compared with
  *       the generated index. Any difference found will cause test failure.</li>
  *   <li>If the {@value #INDEX_FILENAME} file does not exist, then it will be generated.</li>
  * </ul>
- * <p>
+ *
  * This class is designated for working with the Maven directory layout. If it doesn't
  * recognize that layout, then the test is skipped.
  *
@@ -204,9 +204,9 @@ public final class ClassIndexTest implements FileFilter {
      * Only the Maven {@code target} directory containing the given sample class is scanned; this
      * is not necessarily the full classpath (which is not desired anyway since we don't want to
      * include pending interfaces, test classes, <i>etc.</i>).
-     * <p>
-     * This method sets the {@link #targetDirectory} to the Maven "{@code target}" directory
-     * inferred from the given sample class.
+     *
+     * <p>This method sets the {@link #targetDirectory} to the Maven "{@code target}" directory
+     * inferred from the given sample class.</p>
      *
      * @param  sample A sample class to use for finding the Maven {@code target} directory.
      * @return All classes found in the inferred target directory.

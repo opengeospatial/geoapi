@@ -32,9 +32,9 @@ import static org.opengis.test.Assert.*;
  * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
  * module. The projected values correctness (external consistency) is not verified - only internal
  * consistency is verified.
- * <p>
- * External projects can override the {@link #wrap(Projection)}
- * method in order to test their own NetCDF wrapper.
+ *
+ * <p>External projects can override the {@link #wrap(Projection)}
+ * method in order to test their own NetCDF wrapper.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -44,9 +44,9 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
      * The coordinate operation wrapping the NetCDF projection. This field is initialized
      * to the value returned by {@link #wrap(Projection)} before a test is executed.
-     * <p>
-     * The {@link #transform} field will be set to the {@link SingleOperation#getMathTransform()}
-     * value.
+     *
+     * <p>The {@link #transform} field will be set to the {@link SingleOperation#getMathTransform()}
+     * value.</p>
      */
     protected SingleOperation operation;
 
@@ -114,13 +114,13 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
 
     /**
      * Tests the {@link NetcdfProjection#getDomainOfValidity()} method.
-     * <p>
-     * <b>Note:</b> In NetCDF 4.2, the declared bounding box was approximatively
+     *
+     * <p><b>Note:</b> In NetCDF 4.2, the declared bounding box was approximatively
      * <var>west</var>  = -152.85°,
      * <var>east</var>  = -57.15°,
      * <var>south</var> = -43.1° and
      * <var>north</var> = 43.1°.
-     * However we presume that this bounding box may change in the future.
+     * However we presume that this bounding box may change in the future.</p>
      */
     @Test
     public void testDomainOfValidity() {

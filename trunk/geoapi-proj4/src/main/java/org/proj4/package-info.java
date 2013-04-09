@@ -21,12 +21,12 @@
  * exists also in the <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/jniwrap/">jniwrap</a>
  * directory of the Proj.4 project. This GeoAPI package differs from the Proj.4 package in the
  * following (note that this is a compatible difference):
- * <p>
+ *
  * <ul>
  *   <li>{@link org.proj4.PJException} extends {@link org.opengis.referencing.operation.TransformException}
  *       instead than {@link java.lang.Exception}.</li>
  * </ul>
- * <p>
+ *
  * This package is for internal use by the {@link org.opengis.wrapper.proj4} package. It should
  * generally not be used directly, unless an implementor wants more direct access to the Proj.4
  * functions.

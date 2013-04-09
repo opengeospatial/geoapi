@@ -24,7 +24,7 @@ import com.sun.star.lib.uno.helper.WeakBase;
 
 /**
  * Base class for methods to export as formulas in the
- * <A HREF="http://www.openoffice.org">OpenOffice.org</A> spread sheet.
+ * <a href="http://www.openoffice.org">OpenOffice.org</a> spread sheet.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1

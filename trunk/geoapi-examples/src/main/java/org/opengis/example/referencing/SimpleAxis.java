@@ -24,26 +24,26 @@ import org.opengis.referencing.cs.RangeMeaning;
  * This implementation infers some axis properties from the
  * {@linkplain #abbreviation}, as documented in the following table:
  *
- * <blockquote><table border="1" cellspacing="0" cellpadding="0">
- * <tr><th>Symbol</th>   <th>Common name</th>                  <th>Axis&nbsp;direction</th>                                         <th>Unit</th>                             <th>Range</th>                    <th>Meaning</th></tr>
- * <tr><th>&lambda;</th> <td>&nbsp;geodetic longitude</td>     <td>&nbsp;{@link AxisDirection#EAST            EAST}</td>            <td>&nbsp;{@link NonSI#DEGREE_ANGLE}</td> <td>&nbsp;&plusmn;90°</td>        <td>&nbsp;{@link RangeMeaning#EXACT      EXACT}</td></tr>
- * <tr><th>&phi;</th>    <td>&nbsp;geodetic latitude</td>      <td>&nbsp;{@link AxisDirection#NORTH           NORTH}</td>           <td>&nbsp;{@link NonSI#DEGREE_ANGLE}</td> <td>&nbsp;&plusmn;180°</td>       <td>&nbsp;{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
- * <tr><th>h</th>        <td>&nbsp;ellipsoidal height</td>     <td>&nbsp;{@link AxisDirection#UP              UP}</td>              <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>H</th>        <td>&nbsp;gravity-related height</td> <td>&nbsp;{@link AxisDirection#UP              UP}</td>              <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>d</th>        <td>&nbsp;depth</td>                  <td>&nbsp;{@link AxisDirection#DOWN            DOWN}</td>            <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>r</th>        <td>&nbsp;geocentric radius</td>      <td>&nbsp;{@link AxisDirection#UP              UP}</td>              <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;[0&hellip;&infin;]</td> <td>&nbsp;</td></tr>
- * <tr><th>&Omega;</th>  <td>&nbsp;spherical longitude</td>    <td>&nbsp;{@link AxisDirection#EAST            EAST}</td>            <td>&nbsp;{@link NonSI#DEGREE_ANGLE}</td> <td>&nbsp;&plusmn;90°</td>        <td>&nbsp;{@link RangeMeaning#EXACT      EXACT}</td></tr>
- * <tr><th>&Theta;</th>  <td>&nbsp;spherical latitude</td>     <td>&nbsp;{@link AxisDirection#NORTH           NORTH}</td>           <td>&nbsp;{@link NonSI#DEGREE_ANGLE}</td> <td>&nbsp;&plusmn;180°</td>       <td>&nbsp;{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
- * <tr><th>X</th>        <td>&nbsp;geocentric X</td>           <td>&nbsp;{@link AxisDirection#GEOCENTRIC_X    GEOCENTRIC_X}</td>    <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>Y</th>        <td>&nbsp;geocentric Y</td>           <td>&nbsp;{@link AxisDirection#GEOCENTRIC_Y    GEOCENTRIC_Y}</td>    <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>Z</th>        <td>&nbsp;geocentric Z</td>           <td>&nbsp;{@link AxisDirection#GEOCENTRIC_Z    GEOCENTRIC_Z}</td>    <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>E</th>        <td>&nbsp;easting</td>                <td>&nbsp;{@link AxisDirection#EAST            EAST}</td>            <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>W</th>        <td>&nbsp;westing</td>                <td>&nbsp;{@link AxisDirection#WEST            WEST}</td>            <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>N</th>        <td>&nbsp;northing</td>               <td>&nbsp;{@link AxisDirection#NORTH           NORTH}</td>           <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>S</th>        <td>&nbsp;southing</td>               <td>&nbsp;{@link AxisDirection#SOUTH           SOUTH}</td>           <td>&nbsp;{@link SI#METRE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>t</th>        <td>&nbsp;time</td>                   <td>&nbsp;{@link AxisDirection#FUTURE          FUTURE}</td>          <td>&nbsp;{@link SI#SECOND}</td>          <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>i</th>        <td>&nbsp;column</td>                 <td>&nbsp;{@link AxisDirection#COLUMN_POSITIVE COLUMN_POSITIVE}</td> <td>&nbsp;{@link Unit#ONE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
- * <tr><th>j</th>        <td>&nbsp;row</td>                    <td>&nbsp;{@link AxisDirection#ROW_POSITIVE    ROW_POSITIVE}</td>    <td>&nbsp;{@link Unit#ONE}</td>           <td>&nbsp;</td>                   <td>&nbsp;</td></tr>
+ * <blockquote><table class="ogc">
+ * <tr><th>Symbol</th>   <th>Common name</th>            <th>Axis direction</th>                                        <th>Unit</th>                       <th>Range</th>              <th>Meaning</th></tr>
+ * <tr><th>&lambda;</th> <td>geodetic longitude</td>     <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link NonSI#DEGREE_ANGLE}</td> <td>&plusmn;90°</td>        <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
+ * <tr><th>&phi;</th>    <td>geodetic latitude</td>      <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link NonSI#DEGREE_ANGLE}</td> <td>&plusmn;180°</td>       <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
+ * <tr><th>h</th>        <td>ellipsoidal height</td>     <td>{@link AxisDirection#UP              UP}</td>              <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>H</th>        <td>gravity-related height</td> <td>{@link AxisDirection#UP              UP}</td>              <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>d</th>        <td>depth</td>                  <td>{@link AxisDirection#DOWN            DOWN}</td>            <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>r</th>        <td>geocentric radius</td>      <td>{@link AxisDirection#UP              UP}</td>              <td>{@link SI#METRE}</td>           <td>[0&hellip;&infin;]</td> <td></td></tr>
+ * <tr><th>&Omega;</th>  <td>spherical longitude</td>    <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link NonSI#DEGREE_ANGLE}</td> <td>&plusmn;90°</td>        <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
+ * <tr><th>&Theta;</th>  <td>spherical latitude</td>     <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link NonSI#DEGREE_ANGLE}</td> <td>&plusmn;180°</td>       <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
+ * <tr><th>X</th>        <td>geocentric X</td>           <td>{@link AxisDirection#GEOCENTRIC_X    GEOCENTRIC_X}</td>    <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>Y</th>        <td>geocentric Y</td>           <td>{@link AxisDirection#GEOCENTRIC_Y    GEOCENTRIC_Y}</td>    <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>Z</th>        <td>geocentric Z</td>           <td>{@link AxisDirection#GEOCENTRIC_Z    GEOCENTRIC_Z}</td>    <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>E</th>        <td>easting</td>                <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>W</th>        <td>westing</td>                <td>{@link AxisDirection#WEST            WEST}</td>            <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>N</th>        <td>northing</td>               <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>S</th>        <td>southing</td>               <td>{@link AxisDirection#SOUTH           SOUTH}</td>           <td>{@link SI#METRE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>t</th>        <td>time</td>                   <td>{@link AxisDirection#FUTURE          FUTURE}</td>          <td>{@link SI#SECOND}</td>          <td></td>                   <td></td></tr>
+ * <tr><th>i</th>        <td>column</td>                 <td>{@link AxisDirection#COLUMN_POSITIVE COLUMN_POSITIVE}</td> <td>{@link Unit#ONE}</td>           <td></td>                   <td></td></tr>
+ * <tr><th>j</th>        <td>row</td>                    <td>{@link AxisDirection#ROW_POSITIVE    ROW_POSITIVE}</td>    <td>{@link Unit#ONE}</td>           <td></td>                   <td></td></tr>
  * </table></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -133,7 +133,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
     /**
      * Creates a new axis for the given authority, name, units and direction.
      * The following abbreviation are handled specially by this class:
-     * <p>
+     *
      * <ul>
      *   <li>&lambda; for geodetic  longitude</li>
      *   <li>&phi;    for geodetic  latitude</li>
@@ -181,7 +181,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      * Returns the minimum value normally allowed for this axis, in the {@linkplain #getUnit unit
      * of measure for the axis}. The default implementation infers the value from the abbreviation
      * symbol:
-     * <p>
+     *
      * <ul>
      *   <li>0 for <var>r</var></li>
      *   <li>-90 for &phi; and &Theta;</li>
@@ -203,7 +203,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      * Returns the maximum value normally allowed for this axis, in the {@linkplain #getUnit unit
      * of measure for the axis}. The default implementation infers the value from the abbreviation
      * symbol:
-     * <p>
+     *
      * <ul>
      *   <li>90 for &phi; and &Theta;</li>
      *   <li>180 for &lambda; and &Omega;</li>
@@ -223,7 +223,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue
      * minimum} and {@linkplain #getMaximumValue maximum} values. The default implementation
      * infers the value from the abbreviation symbol:
-     * <p>
+     *
      * <ul>
      *   <li>{@link RangeMeaning#EXACT EXACT} for &phi; and &Theta;</li>
      *   <li>{@link RangeMeaning#WRAPAROUND WRAPAROUND} for &lambda; and &Omega;</li>

@@ -138,8 +138,8 @@ public class NameValidator extends Validator {
      * Performs some tests that are common to all subclasses of {@link GenericName}. This method
      * shall not invokes {@link #validate(LocalName)} or {@link #validate(ScopedName)} in order
      * to avoid never-ending loop.
-     * <p>
-     * This method shall not validate the scope, since it could leads to a never-ending loop.
+     *
+     * <p>This method shall not validate the scope, since it could leads to a never-ending loop.</p>
      */
     private void validate(final GenericName object, final List<? extends LocalName> parsedNames) {
         mandatory("GenericName: getParsedNames() shall not return null.", parsedNames);

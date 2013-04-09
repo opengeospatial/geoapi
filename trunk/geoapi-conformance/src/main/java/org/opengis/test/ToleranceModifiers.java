@@ -204,10 +204,10 @@ public strictfp final class ToleranceModifiers {
      * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
      * the result of an <cite>inverse projection</cite>. For <cite>forward projections</cite>
      * and all other calculations, the tolerance values are left unchanged.
-     * <p>
-     * The modifier performs the work documented in {@link #geographic(int, int)} if and only if
+     *
+     * <p>The modifier performs the work documented in {@link #geographic(int, int)} if and only if
      * the {@link CalculationType} is {@link CalculationType#INVERSE_TRANSFORM INVERSE_TRANSFORM}.
-     * For all other cases, the modifier does nothing.
+     * For all other cases, the modifier does nothing.</p>
      *
      * @param  λDimension The dimension of longitude ordinate values (typically 0 or 1).
      * @param  φDimension The dimension of latitude ordinate values (typically 0 or 1).
@@ -247,10 +247,10 @@ public strictfp final class ToleranceModifiers {
     /**
      * Multiplies tolerance values by the given factors. For every dimension <var>i</var>, this
      * modifier multiplies <code>tolerance[<var>i</var>]</code> by <code>factors[<var>i</var>]</code>.
-     * <p>
-     * If the tolerance array is longer than the factors array, all extra tolerance values are left
+     *
+     * <p>If the tolerance array is longer than the factors array, all extra tolerance values are left
      * unchanged. If the tolerance array is shorter than the factors array, the extra factors values
-     * are ignored.
+     * are ignored.</p>
      *
      * @param  types The calculation types for which to apply the given scale factors.
      * @param  factors The factors by which to multiply the tolerance values.

@@ -73,8 +73,8 @@ public strictfp abstract class TestCase {
     /**
      * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
      * to use for loading those factories.
-     * <p>
-     * Accesses to this field must be synchronized on itself.
+     *
+     * <p>Accesses to this field must be synchronized on itself.</p>
      *
      * @see TestSuite#setFactories(Class, Factory[])
      */
@@ -83,19 +83,19 @@ public strictfp abstract class TestCase {
 
     /**
      * The service loader to use for loading {@link FactoryFilter}.
-     * <p>
-     * Accesses to this field must be synchronized on itself. If both {@code FACTORIES} and
+     *
+     * <p>Accesses to this field must be synchronized on itself. If both {@code FACTORIES} and
      * {@code FACTORY_FILTER} are synchronized, then {@code FACTORIES} must be synchronized
-     * first.
+     * first.</p>
      */
     private static ServiceLoader<FactoryFilter> factoryFilter;
 
     /**
      * The service loader to use for loading {@link ImplementationDetails}.
-     * <p>
-     * Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
+     *
+     * <p>Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
      * and {@code IMPLEMENTATION_DETAILS} are synchronized, then {@code FACTORIES} must
-     * be synchronized first.
+     * be synchronized first.</p>
      */
     private static ServiceLoader<ImplementationDetails> implementationDetails;
 
@@ -167,9 +167,9 @@ public strictfp abstract class TestCase {
     /**
      * A JUnit {@linkplain Rule rule} for listening to test execution events. This rule forwards
      * events to all {@linkplain TestCase#addTestListener(TestListener) registered listeners}.
-     * <p>
-     * This field is public because JUnit requires us to do so, but should be considered as
-     * an implementation details (it should have been a private field).
+     *
+     * <p>This field is public because JUnit requires us to do so, but should be considered as
+     * an implementation details (it should have been a private field).</p>
      *
      * @since 3.1
      */
@@ -318,12 +318,12 @@ public strictfp abstract class TestCase {
      * is the arguments to give to the subclass constructor. There is typically only one element
      * in the list, but more elements could be included if many factory implementations are found
      * for the same interface.
-     * <p>
-     * This method is used by static methods having the {@link org.junit.runners.Parameterized.Parameters}
+     *
+     * <p>This method is used by static methods having the {@link org.junit.runners.Parameterized.Parameters}
      * annotation in subclasses. For example if a subclass constructor expects 3 factories of kind
      * {@link org.opengis.referencing.crs.CRSFactory}, {@link org.opengis.referencing.cs.CSFactory}
      * and {@link org.opengis.referencing.datum.DatumFactory} in that order, then that subclass
-     * contain the following method:
+     * contain the following method:</p>
      *
      * <blockquote><pre>&#64;Parameterized.Parameters
      *public static List&lt;Factory[]&gt; factories() {
@@ -333,12 +333,12 @@ public strictfp abstract class TestCase {
      * Note that the arrays may contain null elements if no factory implementation were found
      * for a given interface. All GeoAPI test cases use {@link org.junit.Assume} checks in order
      * to disable any tests that require a missing factory.
-     * <p>
-     * If many factory implementations were found for a given interface, then this method
+     *
+     * <p>If many factory implementations were found for a given interface, then this method
      * returns all possible combinations of those factories. For example if two instances
      * of interface {@code A} are found (named {@code A1} and {@code A2}), and two instances
      * of interface {@code B} are also found (named {@code B1} and {@code B2}), then this
-     * method returns a list containing:
+     * method returns a list containing:</p>
      *
      * <blockquote><pre>{A1, B1}
      *{A2, B1}
@@ -369,9 +369,9 @@ public strictfp abstract class TestCase {
      * Returns factory instances for given factory interfaces, excluding the factories filtered
      * by the given filter. This method performs the same work than {@link #factories(Class[])}
      * except that the given filter is applied in addition to any filter found on the classpath.
-     * <p>
-     * The main purpose of this method is to get {@link org.opengis.referencing.AuthorityFactory}
-     * instances for a given authority name.
+     *
+     * <p>The main purpose of this method is to get {@link org.opengis.referencing.AuthorityFactory}
+     * instances for a given authority name.</p>
      *
      * @param  filter An optional factory filter to use in addition to any filter declared in
      *         the classpath, or {@code null} if none.
@@ -524,7 +524,7 @@ public strictfp abstract class TestCase {
      * values returned by the {@link ImplementationDetails#configuration(Factory[])}
      * method for the factories being tested. For a description of the map content,
      * see any of the following subclasses:
-     * <p>
+     *
      * <ul>
      *   <li>{@link org.opengis.test.referencing.AffineTransformTest#configuration()}</li>
      *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#configuration()}</li>

@@ -54,8 +54,8 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * <p>This class recognizes the following property values. Note that default values are
  * automatically generated for the {@code "COUNT.*"} and {@code "PERCENT.*"} entries.</p>
  *
- * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>          <th align="center">Remarks</th>   <th>Meaning</th></tr>
+ * <table class="ogc">
+ *   <tr><th>Key</th>                            <th align="center">Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>                  <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>            <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
  *   <tr><td>{@code OBJECTS.KIND}</td>           <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Coordinate Reference Systems</cite>").</td></tr>
@@ -124,7 +124,7 @@ public class AuthorityCodesReport extends Report {
         /**
          * A remark to display after the name, or {@code null} if none. By default, this field is
          * set to one of the following values:
-         * <p>
+         *
          * <ul>
          *   <li>If the object creation was successful, the {@link IdentifiedObject#getRemarks()}
          *       localized to the {@linkplain AuthorityCodesReport#getLocale() report locale}.</li>
@@ -268,7 +268,7 @@ public class AuthorityCodesReport extends Report {
     /**
      * Adds the Coordinate Reference Systems identified by all codes available from the given
      * CRS authority factory. More specifically this method performs the following steps:
-     * <p>
+     *
      * <ul>
      *   <li>Get the list of available codes for type {@link CoordinateReferenceSystem}
      *     with {@link CRSAuthorityFactory#getAuthorityCodes(Class)}.</li>
@@ -282,7 +282,7 @@ public class AuthorityCodesReport extends Report {
      *   <li>If the {@code createRow(…)} method returned a non-null
      *       instance, add the created row to the {@link #rows} list.</li>
      * </ul>
-     * <p>
+     *
      * Subclasses can override the above-cited {@code createRow(…)}
      * methods in order to customize the table content.
      *
@@ -310,7 +310,7 @@ public class AuthorityCodesReport extends Report {
     /**
      * Adds the objects identified by the given codes. More specifically this method performs
      * the following steps:
-     * <p>
+     *
      * <ul>
      *   <li>For each code, try to instantiate an object with
      *     {@link AuthorityFactory#createObject(String)}, then:
@@ -322,7 +322,7 @@ public class AuthorityCodesReport extends Report {
      *   <li>If the {@code createRow(…)} method returned a non-null
      *       instance, add the created row to the {@link #rows} list.</li>
      * </ul>
-     * <p>
+     *
      * Subclasses can override the above-cited {@code createRow(…)}
      * methods in order to customize the table content.
      *

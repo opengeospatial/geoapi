@@ -31,9 +31,8 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
  * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
  * and closely related interfaces together.
- * <p>
- * The most interesting methods in this class are:
- * <p>
+ *
+ * <p>The most interesting methods in this class are:</p>
  * <ul>
  *   <li>{@link #getName()}, for the name of this parameter group</li>
  *   <li>{@link #parameter(String)}, for getting a parameter of the given name.</li>
@@ -56,9 +55,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * supports only {@link SimpleParameter} instances, which are used both as
      * {@linkplain ParameterDescriptor parameter descriptor} and
      * {@linkplain ParameterValue parameter values} for the {@code double} value type.
-     * <p>
-     * This list is <cite>live</cite>: changes to this list will be reflected immediately in the
-     * {@link #descriptors()} and {@link #values()} views.
+     *
+     * <p>This list is <cite>live</cite>: changes to this list will be reflected immediately
+     * in the {@link #descriptors()} and {@link #values()} views.</p>
      */
     protected final List<SimpleParameter> parameters;
 
@@ -267,7 +266,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     /**
      * Returns a copy of this parameter group. This method is similar to {@link #createValue()}
      * except for the following:
-     * <p>
+     *
      * <ul>
      *   <li>This method returns an instance of the same class.</li>
      *   <li>The {@linkplain #values()} are initialized to the same values than the cloned group.</li>

@@ -61,7 +61,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 /**
  * Contains information about the test environment, like available factories and disabled tests.
  * {@code Configuration} is used in two places:
- * <p>
+ *
  * <ul>
  *   <li>Before each test is executed, {@link ImplementationDetails} can provide configuration
  *       information. For example an implementation can declare that it does not support the
@@ -71,14 +71,14 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  *       were used.</li>
  * </ul>
  *
- * <p>This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
+ * This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
  * similar to those of the {@code java.util.Map} interface, with the addition of type-safety.
- * The pre-defined keys are listed below:</p>
+ * The pre-defined keys are listed below:
  *
- * <table cellspacing="0" cellpadding="4"><tr bgcolor="#EEEEFF">
- * <th nowrap>Supported features</th>
- * <th nowrap>Factories</th>
- * <th nowrap>Other</th></tr><tr><td valign="top">
+ * <table class="ogc">
+ * <th>Supported features</th>
+ * <th>Factories</th>
+ * <th>Other</th></tr><tr><td valign="top">
  * {@link Key#isMultiLocaleSupported              isMultiLocaleSupported}<br>
  * {@link Key#isMixedNameSyntaxSupported          isMixedNameSyntaxSupported}<br>
  * {@link Key#isStandardNameSupported             isStandardNameSupported}<br>
@@ -369,7 +369,7 @@ public class Configuration implements Serializable {
         /**
          * Whether source and destination arrays can overlap in {@link MathTransform} operations.
          * Overlapping occur when:
-         * <p>
+         *
          * <ul>
          *   <li>The invoked method is one of the following:
          *     <ul>

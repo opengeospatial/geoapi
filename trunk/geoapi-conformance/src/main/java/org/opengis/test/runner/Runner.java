@@ -224,9 +224,9 @@ final class Runner extends RunListener implements TestListener {
      * Adds a change listener to be invoked when new entries are added.
      * This is of interest mostly to swing widgets - we don't use this
      * listener for collecting new information.
-     * <p>
-     * Note that the listeners given to this method will <strong>not</strong> be notified from the
-     * Swing thread. It is listener responsibility to be safe regarding the Swing events queue.
+     *
+     * <p>Note that the listeners given to this method will <strong>not</strong> be notified from the
+     * Swing thread. It is listener responsibility to be safe regarding the Swing events queue.</p>
      */
     void addChangeListener(final ChangeListener listener) {
         synchronized (entries) {

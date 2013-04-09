@@ -93,11 +93,11 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
 
     /**
      * Creates a geographic bounding box initialized to the specified values.
-     * <p>
-     * <strong>Caution:</strong> Arguments are expected in the same order than they appear in the
+     *
+     * <p><b>Caution:</b> Arguments are expected in the same order than they appear in the
      * ISO 19115 specification. This is different than the order commonly found in Java world,
      * which is rather (<var>x</var><sub>min</sub>, <var>y</var><sub>min</sub>,
-     * <var>x</var><sub>max</sub>, <var>y</var><sub>max</sub>).
+     * <var>x</var><sub>max</sub>, <var>y</var><sub>max</sub>).</p>
      *
      * @param westBoundLongitude The minimal <var>x</var> value.
      * @param eastBoundLongitude The maximal <var>x</var> value.
@@ -271,7 +271,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      */
     @Override
     public int hashCode() {
-        long code = //serialVersionUID ^
+        long code = serialVersionUID ^
                (Double.doubleToLongBits(westBoundLongitude) + 31*
                (Double.doubleToLongBits(eastBoundLongitude) + 31*
                (Double.doubleToLongBits(southBoundLatitude) + 31*

@@ -43,10 +43,10 @@ import static org.opengis.test.referencing.Utilities.*;
 /**
  * Validates {@link CoordinateSystem} and related objects from the {@code org.opengis.referencing.cs}
  * package.
- * <p>
- * This class is provided for users wanting to override the validation methods. When the default
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
  * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
- * convenient way to validate various kinds of objects.
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -322,8 +322,8 @@ public class CSValidator extends ReferencingValidator {
      * Asserts that the given set of axis directions are perpendicular.
      * Only known or compatibles directions are compared (e.g. {@code NORTH} with {@code EAST}).
      * Unknown or incompatible directions (e.g. {@code NORTH} with {@code FUTURE}) are ignored.
-     * <p>
-     * The given collection will be modified; do not pass a valuable collection!
+     *
+     * <p>The given collection will be modified; do not pass a valuable collection!</p>
      */
     static void assertPerpendicularAxes(final Iterable<AxisDirection> directions) {
         Iterator<AxisDirection> it;

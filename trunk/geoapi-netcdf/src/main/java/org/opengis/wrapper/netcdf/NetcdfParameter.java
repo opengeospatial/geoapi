@@ -33,16 +33,15 @@ import org.opengis.parameter.InvalidParameterValueException;
  * A {@link ParameterValue} implementation backed by a NetCDF {@link Parameter} object.
  * The NetCDF {@code Parameter} class is both a parameter value and its own descriptor. Consequently
  * this adapter implements both the {@link ParameterValue} and {@link ParameterDescriptor} interfaces.
- * <p>
- * NetCDF {@code Parameter} instances can store the following types:
- * <p>
+ *
+ * <p>NetCDF {@code Parameter} instances can store the following types:</p>
  * <blockquote><table border="1">
  *   <tr><th>Value type</th>       <th>Getter method</th>              <th>Setter method</th></tr>
  *   <tr><td>{@link String}</td>   <td>{@link #stringValue()}</td>     <td>{@link #setValue(Object)}</td></tr>
  *   <tr><td>{@code double}</td>   <td>{@link #doubleValue()}</td>     <td>{@link #setValue(double)}</td></tr>
  *   <tr><td>{@code double[]}</td> <td>{@link #doubleValueList()}</td> <td>{@link #setValue(Object)}</td></tr>
  * </table></blockquote>
- * <p>
+ *
  * All other {@code fooValue()} methods delegate to one of the above-cited getter methods and
  * convert the result.
  *
@@ -73,12 +72,12 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Creates a new wrapper for the given NetCDF parameter. The {@linkplain #getValueClass()
      * value class} will be inferred from the given parameter.
-     * <p>
-     * <b>Type safety:</b><br>
+     *
+     * <p><b>Type safety:</b><br>
      * This constructor can not have public access because we can not guarantee that the
      * {@code <T>} parameterized type is consistent with the given NetCDF parameter object,
      * since the NetCDF class is not parameterized. Use the one of the {@link #create(Parameter,
-     * Collection) create} methods instead.
+     * Collection) create} methods instead.</p>
      *
      * @param  parameter The parameter to wrap.
      * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
@@ -106,9 +105,9 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
 
     /**
      * Creates a new parameter for the given {@link String} value.
-     * <p>
-     * This method does not clone the arguments. If a non-null {@code aliases} collection
-     * is given to this method, it shall be immutable.
+     *
+     * <p>This method does not clone the arguments. If a non-null {@code aliases} collection
+     * is given to this method, it shall be immutable.</p>
      *
      * @param  name The parameter name.
      * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),

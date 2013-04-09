@@ -141,7 +141,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Returns information about the configuration of the test which has been run.
      * This method returns a map containing:
-     * <p>
+     *
      * <ul>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
@@ -179,7 +179,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Retrieve the angular unit (compatible with degrees) of the given name.
+     * Retrieves the angular unit (compatible with degrees) of the given name.
      *
      * @param  name The unit name.
      * @return The angular unit for the given name, or {@code null} if unknown.
@@ -193,7 +193,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Retrieve the scale unit (dimensionless) of the given name.
+     * Retrieves the scale unit (dimensionless) of the given name.
      *
      * @param  name The unit name.
      * @return The scale unit for the given name, or {@code null} if unknown.
@@ -205,7 +205,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Retrieve the unit of the given name.
+     * Retrieves the unit of the given name.
      *
      * @param  name The unit name.
      * @return The unit for the given name, or {@code null} if unknown.
@@ -236,12 +236,9 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Ellipsoid definition test.
-     * <p>
-     * <table cellpadding="3"><tr>
-     *   <th nowrap align="left" valign="top">Test purpose:</th>
-     *   <td>Verify that the software allows correct definition of a user-defined ellipsoid.</td>
-     * </tr><tr>
+     * Verifies that the software allows correct definition of a user-defined ellipsoid.
+     *
+     * <p><table cellpadding="3"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined ellipsoid for each of several different ellipsoids.</td>
      * </tr><tr>
@@ -249,13 +246,13 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3002_userEllipsoid.csv">{@code GIGS_3002_userEllipsoid.csv}</a>.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumFactory#createEllipsoid(Map, double, double, Unit)},
-     *       {@link DatumFactory#createFlattenedSphere(Map, double, double, Unit)}</td>
+     *   <td>{@link DatumFactory#createEllipsoid(Map, double, double, Unit)} and<br>
+     *       {@link DatumFactory#createFlattenedSphere(Map, double, double, Unit)}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The software should accept the test data. The properties of the created objects will
      *       be compared with the properties given to the factory method.</td>
-     * </tr></table>
+     * </tr></table></p>
      *
      * @throws FactoryException If an error occurred while creating an ellipsoid.
      */
@@ -267,7 +264,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Creates the ellipsoids and optionally tests them.
      * The behavior of this method depends on whether {@code objects} is null or not:
-     * <p>
+     *
      * <ul>
      *   <li>If {@code null}, then all ellipsoids will be created and tested.</li>
      *   <li>If non-null, then only the ellipsoids enumerated in the keys will be created,
@@ -360,12 +357,9 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Prime meridian definition test.
-     * <p>
-     * <table cellpadding="3"><tr>
-     *   <th nowrap align="left" valign="top">Test purpose:</th>
-     *   <td>Verify that the software allows correct definition of a user-defined prime meridian.</td>
-     * </tr><tr>
+     * Verifies that the software allows correct definition of a user-defined prime meridian.
+     *
+     * <p><table cellpadding="3"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
      * </tr><tr>
@@ -373,12 +367,12 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3003_userPrimeMeridian.csv">{@code GIGS_3003_userPrimeMeridian.csv}</a>.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumFactory#createPrimeMeridian(Map, double, Unit)}</td>
+     *   <td>{@link DatumFactory#createPrimeMeridian(Map, double, Unit)}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The software should accept the test data. The properties of the created objects will
      *       be compared with the properties given to the factory method.</td>
-     * </tr></table>
+     * </tr></table></p>
      *
      * @throws FactoryException If an error occurred while creating a prime meridian.
      */
@@ -390,7 +384,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Creates the prime meridians and optionally tests them.
      * The behavior of this method depends on whether {@code objects} is null or not:
-     * <p>
+     *
      * <ul>
      *   <li>If {@code null}, then all meridians will be created and tested.</li>
      *   <li>If non-null, then only the ones enumerated in the keys will be created,
@@ -460,12 +454,9 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Datum & CRS definition test.
-     * <p>
-     * <table cellpadding="3"><tr>
-     *   <th nowrap align="left" valign="top">Test purpose:</th>
-     *   <td>Verify that the software allows correct definition of a user-defined geodetic datum and geodetic CRS.</td>
-     * </tr><tr>
+     * Verifies that the software allows correct definition of a user-defined geodetic datum and geodetic CRS.
+     *
+     * <p><table cellpadding="3"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined geodetic datum for each of several different datums.
      *       Create user-defined geodetic CRS for each of several different CRSs.
@@ -475,13 +466,13 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3004_userGeodeticDatumCRS.csv">{@code GIGS_3004_userGeodeticDatumCRS.csv}</a>.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)},
-     *       {@link CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)}</td>
+     *   <td>{@link CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)} and<br>
+     *       {@link CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The software should accept the test data. The properties of the created objects will
      *       be compared with the properties given to the factory method.</td>
-     * </tr></table>
+     * </tr></table></p>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a unit from an EPSG code.
@@ -494,7 +485,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Creates the CRS and optionally tests them.
      * The behavior of this method depends on whether {@code objects} is null or not:
-     * <p>
+     *
      * <ul>
      *   <li>If {@code null}, then all CRS will be created and tested.</li>
      *   <li>If non-null, then only the ones enumerated in the keys will be created,
@@ -648,12 +639,9 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Projection definition test.
-     * <p>
-     * <table cellpadding="3"><tr>
-     *   <th nowrap align="left" valign="top">Test purpose:</th>
-     *   <td>Verify that the software allows correct definition of a user-defined map projection.</td>
-     * </tr><tr>
+     * Verifies that the software allows correct definition of a user-defined map projection.
+     *
+     * <p><table cellpadding="3"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined projection for each of several different map projections.
      *   </td>
@@ -663,14 +651,14 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *  </td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link CoordinateOperationFactory#getOperationMethod(String)},
-     *       {@link CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</td>
+     *   <td>{@link CoordinateOperationFactory#getOperationMethod(String)} and<br>
+     *       {@link CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The geoscience software should accept the test data. The order in which the projection
      *       parameters are entered is not critical, although that given in the test dataset is
      *       recommended.</td>
-     * </tr></table>
+     * </tr></table></p>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a unit from an EPSG code.
@@ -683,7 +671,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Creates the projections and optionally tests them.
      * The behavior of this method depends on whether {@code objects} is null or not:
-     * <p>
+     *
      * <ul>
      *   <li>If {@code null}, then all projections will be created and tested.</li>
      *   <li>If non-null, then only the ones enumerated in the keys will be created,

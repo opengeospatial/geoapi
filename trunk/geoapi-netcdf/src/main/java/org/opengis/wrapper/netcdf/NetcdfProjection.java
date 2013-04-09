@@ -247,9 +247,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * which contains the transformed point, is returned for convenience. If {@code ptSrc} and
      * {@code ptDst} are the same object, the input point is correctly overwritten with the
      * transformed point.
-     * <p>
-     * This method delegates to one of the following methods:
-     * <p>
+     *
+     * <p>This method delegates to one of the following methods:</p>
      * <ul>
      *   <li>{@link Projection#latLonToProj(LatLonPoint, ProjectionPointImpl)}
      *       for the forward projection.</li>
@@ -298,9 +297,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * {@code ptDst}, which contains the transformed point, is returned for convenience.
      * If {@code ptSrc} and {@code ptDst} are the same object, the input point is
      * correctly overwritten with the transformed point.
-     * <p>
-     * This method delegates to one of the following methods:
-     * <p>
+     *
+     * <p>This method delegates to one of the following methods:</p>
      * <ul>
      *   <li>{@link Projection#latLonToProj(LatLonPoint, ProjectionPointImpl)}
      *       for the forward projection.</li>
@@ -338,7 +336,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Returns {@code true} if the source array need to be copied before to write in the target array.
      * This method can be invoked if:
-     * <p>
+     *
      * <ul>
      *   <li>The source array and the target array are the same array (note that it can never be
      *       the case if the arrays are not of the same type)</li>
@@ -378,7 +376,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Transforms an arbitrary amount of points from the given source array to the given
      * destination array. This method delegates to one of the following methods for each
      * point:
-     * <p>
+     *
      * <ul>
      *   <li>{@link Projection#latLonToProj(LatLonPoint, ProjectionPointImpl)}
      *       for the forward projection.</li>

@@ -110,7 +110,7 @@ final class ResultEntry {
     /**
      * The factories declared in the configuration. Each row in this list is an array of length 4.
      * The array elements are:
-     * <p>
+     *
      * <ol>
      *   <li>The factory category (i.e. GeoAPI interface)</li>
      *   <li>The implementation simple class name</li>

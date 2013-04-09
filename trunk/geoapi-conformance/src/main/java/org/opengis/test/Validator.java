@@ -64,10 +64,10 @@ public abstract class Validator {
      * The default tolerance value for comparisons of floating point numbers in validators.
      * The current value is {@value}. This value is relatively large because some implementations
      * may store their values as {@code float} numbers instead than {@code double}.
-     * <p>
-     * Note that {@link TestCase} subclasses use smaller tolerance thresholds, typically centimetric.
+     *
+     * <p>Note that {@link TestCase} subclasses use smaller tolerance thresholds, typically centimetric.
      * Test cases are stricter then validators because the tests control the objects they create,
-     * while validators need to work reasonably well for arbitrary objects.
+     * while validators need to work reasonably well for arbitrary objects.</p>
      *
      * @see org.opengis.test.geometry.GeometryValidator#tolerance
      */
@@ -78,15 +78,15 @@ public abstract class Validator {
      * For example if {@link org.opengis.test.referencing.CRSValidator} needs to validate
      * a datum, it will use the {@link org.opengis.test.referencing.DatumValidator} instance
      * defined in this container.
-     * <p>
-     * The container may contain this validator instance. For example if this validator
+     *
+     * <p>The container may contain this validator instance. For example if this validator
      * is an instance of {@link org.opengis.test.referencing.CRSValidator}, then the
      * {@link ValidatorContainer#crs} field may be set to {@code this}. Doing so ensure
-     * that the proper {@code validate(...)} methods will be invoked in case of callback.
-     * <p>
-     * <b>Tip:</b> if the other validators are not expected to callback the {@code validate}
+     * that the proper {@code validate(...)} methods will be invoked in case of callback.</p>
+     *
+     * <p><b>Tip:</b> if the other validators are not expected to callback the {@code validate}
      * methods defined in this {@code Validator} instance (for example a datum has no reason
-     * to validate a CRS), then it is safe to set this field to {@link Validators#DEFAULT}.
+     * to validate a CRS), then it is safe to set this field to {@link Validators#DEFAULT}.</p>
      */
     protected final ValidatorContainer container;
 
@@ -158,7 +158,7 @@ public abstract class Validator {
      *   <li>Otherwise, the message is logged as a warning and the test continues.</li>
      * </ul>
      *
-     * <p>Subclasses can override this method if they want more control.</p>
+     * Subclasses can override this method if they want more control.
      *
      * @param message The message to send in case of failure.
      * @param value   The value to test for non-nullity.
@@ -186,7 +186,7 @@ public abstract class Validator {
      *   <li>Otherwise, the message is logged as a warning and the test continues.</li>
      * </ul>
      *
-     * <p>Subclasses can override this method if they want more control.</p>
+     * Subclasses can override this method if they want more control.
      *
      * @param message The message to send in case of failure.
      * @param value   The value to test for nullity.
@@ -231,12 +231,12 @@ public abstract class Validator {
      * {@code equals(Object)} methods implement <cite>reflexive</cite>, <cite>symmetric</cite>
      * and <cite>transitive</cite> relations. It also ensures that if {@code A.equals(B)}, then
      * {@code A.hashCode() == B.hashCode()}.
-     * <p>
-     * If the given collection is null, then this method does nothing.
-     * If the given collection contains null elements, then those elements are ignored.
-     * <p>
-     * This method does not invoke any other {@code validate} method on collection elements.
-     * It is caller responsibility to validates elements according their types.
+     *
+     * <p>If the given collection is null, then this method does nothing.
+     * If the given collection contains null elements, then those elements are ignored.</p>
+     *
+     * <p>This method does not invoke any other {@code validate} method on collection elements.
+     * It is caller responsibility to validates elements according their types.</p>
      *
      * @param collection The collection of elements to validate, or {@code null}.
      *

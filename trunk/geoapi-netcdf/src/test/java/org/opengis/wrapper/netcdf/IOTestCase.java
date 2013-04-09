@@ -234,7 +234,7 @@ public abstract strictfp class IOTestCase {
 
     /**
      * Opens the given NetCDF file. This method process as below:
-     * <p>
+     *
      * <ul>
      *   <li>First, try to {@linkplain Class#getResource(String) get the resource} for the given
      *       name in the package of the concrete sub-class. This package may contain any resources
@@ -246,7 +246,7 @@ public abstract strictfp class IOTestCase {
      *       absolute}, try to open that file directly. This case should be used only for temporary
      *       testing purpose.</li>
      * </ul>
-     * <p>
+     *
      * For example if an implementor extends this class in his "{@code com.mycompany}" package
      * and provides a {@value #THREDDS} file in that package, then his test file will have
      * precedence over the {@code geoapi-netcdf} build-in test file.

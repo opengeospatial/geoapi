@@ -100,8 +100,8 @@ final class Utilities {
      * {@linkplain IdentifiedObject#getAlias() aliases} of the given object.
      * Only the {@linkplain Identifier#getCode() codes} or {@linkplain GenericName#tip() name tips}
      * are included in the set. Name spaces, if any, are ignored.
-     * <p>
-     * If the given object is {@code null}, then this method returns an empty set.
+     *
+     * <p>If the given object is {@code null}, then this method returns an empty set.</p>
      *
      * @param  object The object for which to get the name and the aliases, or {@code null}.
      * @return The name and aliases of the given object (never {@code null}).
@@ -121,8 +121,8 @@ final class Utilities {
      * {@linkplain IdentifiedObject#getAlias() aliases} of all objects in the given collection.
      * Only the {@linkplain Identifier#getCode() codes} or {@linkplain GenericName#tip() name tips}
      * are included in the set. Name spaces, if any, are ignored.
-     * <p>
-     * If the given collection is {@code null}, then this method returns an empty set.
+     *
+     * <p>If the given collection is {@code null}, then this method returns an empty set.</p>
      *
      * @param  object The objects for which to get the names and the aliases, or {@code null}.
      * @return The names and aliases of all non-null objects (never {@code null}).

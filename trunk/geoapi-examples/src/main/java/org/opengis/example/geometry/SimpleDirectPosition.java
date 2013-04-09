@@ -33,10 +33,10 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * The ordinate values. The length of this array is the {@linkplain #getDimension() dimension}
      * of this direct position.
-     * <p>
-     * This array is public for allowing more efficient ordinates operations, for example using
+     *
+     * <p>This array is public for allowing more efficient ordinates operations, for example using
      * the {@link java.util.Arrays} methods. However we encourage to use only the methods from
-     * the {@link DirectPosition} interface in most cases.
+     * the {@link DirectPosition} interface in most cases.</p>
      *
      * @see #getCoordinate()
      */
@@ -45,10 +45,10 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * The coordinate reference system associated to this direct position,
      * or {@code null} if unspecified.
-     * <p>
-     * The {@code SimpleDirectPosition} class does not provide any setter for this field,
+     *
+     * <p>The {@code SimpleDirectPosition} class does not provide any setter for this field,
      * since uncontrolled modifications of geometry CRS is often undesirable.
-     * The decision to allow modifications or not is left to subclasses.
+     * The decision to allow modifications or not is left to subclasses.</p>
      *
      * @see #getCoordinateReferenceSystem()
      */
@@ -81,10 +81,10 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * Creates a new direct position initialized to the given ordinate values.
      * If the given CRS is non-null, then its dimension shall be equal to the
      * length of the given {@code ordinates} array.
-     * <p>
-     * This constructor assigns the given array directly (without clone) to the
+     *
+     * <p>This constructor assigns the given array directly (without clone) to the
      * {@link #ordinates} field, because that field is public anyway. Defensive
-     * copy would not protect the state of this object.
+     * copy would not protect the state of this object.</p>
      *
      * @param  crs The coordinate reference system, or {@code null}.
      * @param  ordinates The ordinate values. This array is <strong>not</strong> cloned.

@@ -25,8 +25,8 @@ import org.opengis.util.GenericName;
 /**
  * A list of {@link SimpleName} instances. This list also contains the NetCDF {@linkplain #name}
  * for implementation convenience, but this name is not returned by the list getter methods.
- * <p>
- * Current implementation can holds at most 2 aliases: one for OGC and one for EPSG.
+ *
+ * <p>Current implementation can holds at most 2 aliases: one for OGC and one for EPSG.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

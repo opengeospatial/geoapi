@@ -220,9 +220,9 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
      * Generates a list of all supported projections and their parameters in Javadoc format.
      * The output of this method can be copy-and-pasted in the {@link NetcdfTransformFactory}
      * class javadoc.
-     * <p>
-     * This method is not a real test case. Users need to invoke this method explicitely,
-     * or to declare this method as a test method, in order to get the output.
+     *
+     * <p>This method is not a real test case. Users need to invoke this method explicitely,
+     * or to declare this method as a test method, in order to get the output.</p>
      */
     public void printParametersJavadoc() {
         System.out.println(" * <table cellspacing=\"0\" cellpadding=\"0\">");

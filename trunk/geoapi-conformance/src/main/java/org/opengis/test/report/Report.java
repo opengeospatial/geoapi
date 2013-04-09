@@ -61,17 +61,17 @@ import org.opengis.metadata.citation.ResponsibleParty;
  * Base class for tools generating reports as HTML pages. The reports are based on HTML templates
  * with a few keywords to be replaced by user-provided values. The values associated to keywords
  * can be specified in two ways:
- * <p>
+ *
  * <ul>
  *   <li>Specified at {@linkplain #Report(Properties) construction time}.</li>
  *   <li>Stored directly in the {@linkplain #properties} map by subclasses.</li>
  * </ul>
  *
- * <p>The set of keywords, and whether a user-provided value for a given keyword is mandatory or
- * optional, is subclass-specific. However most subclasses expect at least the following keywords:</p>
+ * The set of keywords, and whether a user-provided value for a given keyword is mandatory or
+ * optional, is subclass-specific. However most subclasses expect at least the following keywords:<
  *
- * <table border="1" cellspacing="0">
- *   <tr bgcolor="#CCCCFF"><th>Key</th>  <th align="center">Remarks</th>   <th>Meaning</th></tr>
+ * <table class="ogc">
+ *   <tr><th>Key</th>                    <th align="center">Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>          <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DATE}</td>           <td align="center">automatic</td> <td>Date of report creation.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>    <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>

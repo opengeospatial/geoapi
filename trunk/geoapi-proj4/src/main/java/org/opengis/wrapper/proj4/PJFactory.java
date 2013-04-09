@@ -51,11 +51,11 @@ public class PJFactory implements Factory {
      * The Proj4 parameter used for declaration of axis order. This parameter is handled in a special
      * way by this factory: it be a comma-separated list of axis order definitions, in which case the
      * second value is used as the axis order of the {@link ProjectedCRS#getBaseCRS()}.
-     * <p>
-     * An other departure from Proj.4 is that Proj.4 expect the axis parameter to be exactly
+     *
+     * <p>An other departure from Proj.4 is that Proj.4 expect the axis parameter to be exactly
      * 3 characters long, which our code accepts 2 characters as well. We relax the Proj.4
      * rule because we use the number of characters for determining the number of dimensions.
-     * This is okay since 1 character = 1 axis.
+     * This is okay since 1 character = 1 axis.</p>
      */
     static final String AXIS_ORDER_PARAM = "+axis=";
 
@@ -82,22 +82,22 @@ public class PJFactory implements Factory {
      * Creates a simple identifier from the given properties. The full set of properties is
      * documented in the {@link org.opengis.referencing.ObjectFactory} class. However this
      * implementation uses only the following properties:
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+     *
+     * <table class="ogc">
+     *   <tr>
      *     <th nowrap>Property name</th>
      *     <th nowrap>Value type</th>
      *     <th nowrap>Value given to</th>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link org.opengis.referencing.ReferenceIdentifier} or {@link String}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link IdentifiedObject#getName()}</td>
+     *     <td nowrap>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
+     *     <td nowrap>{@link org.opengis.referencing.ReferenceIdentifier} or {@link String}</td>
+     *     <td nowrap>{@link IdentifiedObject#getName()}</td>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link String}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link ReferenceIdentifier#getCodeSpace()} on the {@linkplain IdentifiedObject#getName name}</td>
+     *     <td nowrap>{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}</td>
+     *     <td nowrap>{@link String}</td>
+     *     <td nowrap>{@link ReferenceIdentifier#getCodeSpace()} on the {@linkplain IdentifiedObject#getName name}</td>
      *   </tr>
      * </table>
      *
@@ -123,11 +123,11 @@ public class PJFactory implements Factory {
      * Creates a simple identifier from the given code and codespace. Identifiers are code
      * under the control of some authority (the code space). For example a widely used
      * identifier is {@code EPSG:4326}.
-     * <p>
-     * In principle, every ISO 19111 compliant {@linkplain org.opengis.referencing.IdentifiedObject
+     *
+     * <p>In principle, every ISO 19111 compliant {@linkplain org.opengis.referencing.IdentifiedObject
      * identified object} must have an identifier. However this {@code proj4} package is not strict
      * about that. Users are nevertheless encouraged to use this method for creating an identifier
-     * before to invoke the other static methods in this {@code PJFactory} class.
+     * before to invoke the other static methods in this {@code PJFactory} class.</p>
      *
      * @param  codespace  The code space (for example {@code "EPSG"}), or {@code null} if none.
      * @param  code The code, for example {@code "4326"}.
@@ -235,15 +235,15 @@ public class PJFactory implements Factory {
     /**
      * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
      * created from property maps.
-     * <p>
-     * The supported methods in this class are:
-     * <p>
+     *
+     * <p>The supported methods in this class are:</p>
+     *
      * <ul>
      *   <li>{@link #createGeocentricCRS(Map, GeodeticDatum, CartesianCS)}</li>
      *   <li>{@link #createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)}</li>
      *   <li>{@link #createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)}</li>
      * </ul>
-     * <p>
+     *
      * All other methods throw a {@link FactoryException}.
      *
      * @author  Martin Desruisseaux (Geomatys)
@@ -435,14 +435,13 @@ public class PJFactory implements Factory {
      * A factory for {@linkplain CoordinateReferenceSystem Coordinate Reference System} objects
      * created from EPSG codes. While this factory is primarily designed for EPSG codes, it
      * accepts also any other codespaces supported by the Proj.4 library.
-     * <p>
-     * The main methods in this class are:
-     * <p>
+     *
+     * <p>The main methods in this class are:</p>
      * <ul>
      *   <li>{@link #getAuthority()}</li>
      *   <li>{@link #createCoordinateReferenceSystem(String)}</li>
      * </ul>
-     * <p>
+     *
      * The following methods delegate to {@link #createCoordinateReferenceSystem(String)} and cast
      * the result if possible, or throw a {@link FactoryException} otherwise.
      * <ul>
@@ -451,7 +450,7 @@ public class PJFactory implements Factory {
      *   <li>{@link #createProjectedCRS(String)}</li>
      *   <li>{@link #createObject(String)}</li>
      * </ul>
-     * <p>
+     *
      * All other methods are not supported by the default implementation of this factory.
      * However those methods will work if the {@link #createCoordinateReferenceSystem(String)}
      * method is overridden in order to return CRS objects of the appropriate type.
@@ -623,14 +622,13 @@ public class PJFactory implements Factory {
      * A factory for {@linkplain CoordinateOperation Coordinate Operation} objects created from
      * source and target CRS. Current implementation accepts only CRS objects created by a
      * {@link PJFactory}.
-     * <p>
-     * The only supported methods are:
-     * <p>
+     *
+     * <p>The only supported methods are:</p>
      * <ul>
      *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
      *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
      * </ul>
-     * <p>
+     *
      * All other methods unconditionally throw a {@link FactoryException}.
      *
      * @author  Martin Desruisseaux (Geomatys)
@@ -747,9 +745,8 @@ public class PJFactory implements Factory {
     /**
      * A factory for {@linkplain MathTransform Math Transform} objects created from a list
      * of parameters.
-     * <p>
-     * The only supported methods are:
-     * <p>
+     *
+     * <p>The only supported methods are:</p>
      * <ul>
      *   <li>{@link #getAvailableMethods(Class)}</li>
      *   <li>{@link #getDefaultParameters(String)} - only partially implemented</li>
@@ -757,7 +754,7 @@ public class PJFactory implements Factory {
      *   <li>{@link #createAffineTransform(Matrix)}</li>
      *   <li>{@link #createConcatenatedTransform(MathTransform, MathTransform)}</li>
      * </ul>
-     * <p>
+     *
      * All other methods unconditionally throw a {@link FactoryException}, or return
      * {@code null} when doing so is allowed.
      *
@@ -862,9 +859,9 @@ public class PJFactory implements Factory {
          * Creates a transform by concatenating two existing transforms.
          * A concatenated transform acts in the same way as applying two
          * transforms, one after the other.
-         * <p>
-         * This implementation can only concatenate two affine transforms,
-         * or to Proj.4 transforms. All other cases are unsupported.
+         *
+         * <p>This implementation can only concatenate two affine transforms,
+         * or to Proj.4 transforms. All other cases are unsupported.</p>
          *
          * @param  transform1 The first transform to apply to points.
          * @param  transform2 The second transform to apply to points.

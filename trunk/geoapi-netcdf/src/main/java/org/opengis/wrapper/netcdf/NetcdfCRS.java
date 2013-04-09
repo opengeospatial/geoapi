@@ -50,16 +50,16 @@ import org.opengis.coverage.grid.GridCoordinates;
  * {@link CoordinateReferenceSystem} interfaces because the NetCDF {@code CoordinateSystem}
  * object combines the concepts of both of them. It also implements the {@link GridGeometry}
  * interface since NetCDF Coordinate Systems contain all information related to the image grid.
- * <p>
- * <b>Axis order</b><br>
+ *
+ * <p><b>Axis order</b><br>
  * The order of axes returned by {@link #getAxis(int)} is reversed compared to the order of axes
  * in the wrapped NetCDF coordinate system. This is because the NetCDF convention stores axes in
  * the (<var>time</var>, <var>height</var>, <var>latitude</var>, <var>longitude</var>) order, while
  * referencing framework often uses the (<var>longitude</var>, <var>latitude</var>, <var>height</var>,
- * <var>time</var>) order.
- * <p>
- * <b>Restrictions</b><br>
- * Current implementation has the following restrictions:
+ * <var>time</var>) order.</p>
+ *
+ * <p><b>Restrictions</b><br>
+ * Current implementation has the following restrictions:</p>
  * <ul>
  *   <li><p>This class supports only axes of kind {@link CoordinateAxis1D}. Callers can verify this
  *       condition with a call to the {@link CoordinateSystem#isProductSet()} method on the wrapped
@@ -170,13 +170,13 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * The returned object may implement any of the {@link ProjectedCRS}, {@link GeographicCRS}
      * {@link VerticalCRS} or {@link TemporalCRS}, depending on the {@linkplain AxisType axis
      * types}.
-     * <p>
-     * If the NetCDF object contains different kind of CRS, then the returned CRS will be an
+     *
+     * <p>If the NetCDF object contains different kind of CRS, then the returned CRS will be an
      * instance of {@link CompoundCRS} in which each component implements one of the above-cited
-     * interfaces.
-     * <p>
-     * If the NetCDF object contains axes of unknown type, then the returned CRS will not
-     * implement any of the above-cited interfaces.
+     * interfaces.</p>
+     *
+     * <p>If the NetCDF object contains axes of unknown type, then the returned CRS will not
+     * implement any of the above-cited interfaces.</p>
      *
      * @param  netcdfCS The NetCDF coordinate system to wrap, or {@code null} if none.
      * @return A wrapper for the given object, or {@code null} if the argument was null.
@@ -313,11 +313,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
 
     /**
      * Returns the wrapped NetCDF coordinate system.
-     * <p>
-     * <b>Note:</b> The dimension of the returned NetCDF Coordinate System may be greater than the
+     *
+     * <p><b>Note:</b> The dimension of the returned NetCDF Coordinate System may be greater than the
      * dimension of the GeoAPI CRS implemented by this object, because the NetCDF CS puts all axes
      * in a single object while the GeoAPI CRS may splits the axes in various kind of CRS
-     * ({@link GeographicCRS}, {@link VerticalCRS}, {@link TemporalCRS}).
+     * ({@link GeographicCRS}, {@link VerticalCRS}, {@link TemporalCRS}).</p>
      */
     @Override
     public CoordinateSystem delegate() {
@@ -465,10 +465,10 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * Returns the transform from grid coordinates to this CRS coordinates, or {@code null} if
      * none. If this CRS is regular and two-dimensional, then the returned transform is also an
      * instance of Java2D {@link java.awt.geom.AffineTransform}.</li>
-    * <p>
-    * <b>Limitation</b><br>
+    *
+    * <p><b>Limitation</b><br>
      * Current implementation can build a transform only for regular coordinate systems.
-     * A future implementation may be more general.
+     * A future implementation may be more general.</p>
      *
      * @return The transform from grid to this CRS, or {@code null} if none.
      */
@@ -483,10 +483,10 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * Returns the transform from grid coordinates to this CRS coordinates in the given
      * range of dimensions.
-    * <p>
-    * <b>Limitation</b><br>
+     *
+     * <p><b>Limitation</b><br>
      * Current implementation can build a transform only for regular axes.
-     * A future implementation may be more general.
+     * A future implementation may be more general.</p>
      *
      * @param  lowerDimension Index of the first dimension for which to get the transform.
      * @param  upperDimension Index after the last dimension for which to get the transform.
@@ -803,8 +803,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * The CRS for projected coordinates. This is normally a two-dimensional CRS. However
      * a different dimension (either 1 or more than 2) may happen for unusual NetCDF files.
-     * <p>
-     * This class assumes that the geodetic datum is {@linkplain DefaultGeodeticDatum#WGS84 WGS84}.
+     *
+     * <p>This class assumes that the geodetic datum is {@linkplain DefaultGeodeticDatum#WGS84 WGS84}.</p>
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1

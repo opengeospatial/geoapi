@@ -61,9 +61,9 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 /**
  * Tests the creation of referencing objects from the {@linkplain ObjectFactory object factories}
  * given at construction time.
- * <p>
- * In order to specify their factories and run the tests in a JUnit framework, implementors can
- * define a subclass as below:
+ *
+ * <p>In order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass as below:</p>
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;

@@ -17,8 +17,9 @@ import org.opengis.annotation.UML;
  * specified by a {@link Map} of attributes in which keys are {@linkplain UML#identifier()
  * UML identifiers}, and values must be assignable to the return value of the corresponding
  * GeoAPI methods.
- * <p>
- * <b>Example:</b> create a metadata with one contact, which is "<cite>Aristotle</cite>":
+ *
+ * <p><b>Example:</b> create a metadata with one contact, which is "<cite>Aristotle</cite>":</p>
+ *
  * <blockquote><pre>Map&lt;String,Object&gt; attributes = new HashMap&lt;String,Object&gt;();
  *attributes.put("individualName", "Aristotle");
  *ResponsibleParty party = factory.create(ResponsibleParty.class, attributes);

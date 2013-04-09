@@ -23,15 +23,15 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 /**
  * A {@link MathTransform} which use a {@link Matrix} for transforming the coordinates.
  * This transform is usually, but not necessarily, affine.
- * <p>
- * <b>Constraints:</b>
+ *
+ * <p><b>Constraints:</b></p>
  * <ul>
  *   <li>The {@linkplain Matrix#getNumCol() number of columns} in the matrix shall be equal
  *       to the number of source dimensions + 1.</li>
  *   <li>The {@linkplain Matrix#getNumRow() number of rows} in the matrix shall be equal
  *       to the number of target dimensions + 1.</li>
  * </ul>
- * <p>
+ *
  * <b>Performance note:</b>
  * This implementation is known to be slow. However the intend is to be pedagogic, not to be
  * efficient. Performance enhancements are left to implementors (<i>Tip:</i> override all

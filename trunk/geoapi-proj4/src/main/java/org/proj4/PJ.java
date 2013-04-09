@@ -22,13 +22,13 @@ package org.proj4;
  * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure.
  * Almost every methods defined in this class are native methods delegating the work to the
  * Proj.4 library. This class is the only place where such native methods are defined.
- * <p>
- * In the Proj.4 library, the {@code PJ} structure aggregates in a single place information usually
+ *
+ * <p>In the Proj.4 library, the {@code PJ} structure aggregates in a single place information usually
  * splitted in many different ISO 19111 interfaces: {@link org.opengis.referencing.datum.Ellipsoid},
  * {@link org.opengis.referencing.datum.Datum}, {@link org.opengis.referencing.datum.PrimeMeridian},
  * {@link org.opengis.referencing.cs.CoordinateSystem}, {@link org.opengis.referencing.crs.CoordinateReferenceSystem}
  * and their sub-interfaces. The relationship with the GeoAPI methods is indicated in the
- * "See" tags when appropriate.
+ * "See" tags when appropriate.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -235,9 +235,8 @@ public class PJ {
      * (<var>x</var>,<var>y</var>,<var>z</var>,&hellip;) tuples, where the <var>z</var> and
      * following dimensions are optional. Note that any dimension after the <var>z</var> value
      * are ignored.
-     * <p>
-     * Input and output units:
-     * <p>
+     *
+     * <p>Input and output units:</p>
      * <ul>
      *   <li>Angular units (as in longitude and latitudes) are decimal degrees.</li>
      *   <li>Linear units are usually metres, but this is actually projection-dependent.</li>

@@ -42,10 +42,10 @@ import static org.junit.Assert.*;
  * Maps some EPSG names to their code value.
  * This map is used when a test case needs some dependencies, and those dependencies
  * are expected to be defined in the EPSG database instead than in a previous test case.
- * <p>
- * Objects defined in a previous test case have a name beginning with {@code "GIGS"},
+ *
+ * <p>Objects defined in a previous test case have a name beginning with {@code "GIGS"},
  * for example {@code "GIGS geodetic datum A"}. All other names are defined in the EPSG
- * database.
+ * database.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

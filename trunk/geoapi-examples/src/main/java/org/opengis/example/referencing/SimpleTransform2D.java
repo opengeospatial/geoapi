@@ -27,10 +27,10 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 
 /**
  * A {@link CoordinateOperation} working only on two-dimensional points.
- * <p>
- * Subclasses must implement the {@link #transform(Point2D, Point2D)} method. All other transform
+ *
+ * <p>Subclasses must implement the {@link #transform(Point2D, Point2D)} method. All other transform
  * methods are defined in terms of the above-cited method. However the other {@code transform}
- * methods may be overridden for performances reasons.
+ * methods may be overridden for performances reasons.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

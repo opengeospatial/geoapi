@@ -36,9 +36,9 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
  * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
  * and closely related interfaces together.
- * <p>
- * This class is a simplified version of the {@link org.opengis.example.parameter.PJParameter}
- * class. See the later for more information.
+ *
+ * <p>This class is a simplified version of the {@link org.opengis.example.parameter.PJParameter}
+ * class. See the later for more information.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

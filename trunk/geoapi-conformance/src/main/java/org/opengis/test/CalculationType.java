@@ -41,12 +41,12 @@ import org.opengis.test.referencing.TransformTestCase;
  * This enumeration is expected by all {@code assertCoordinateEquals(...)} methods in the
  * {@link TransformTestCase} class. The enumeration values are consumed by the following
  * methods:
- * <p>
+ *
  * <ul>
  *   <li>{@link TransformTestCase#normalize(DirectPosition, DirectPosition, CalculationType)}</li>
  *   <li>{@link ToleranceModifier#adjust(double[], DirectPosition, CalculationType)}</li>
  * </ul>
- * <p>
+ *
  * For example if a precision of 10 centimetres is requested for a map projection, then that
  * tolerance threshold must be converted from metres to decimal degrees (approximatively 1E-6°)
  * when testing the inverse projection. This enumeration allows {@link ToleranceModifier}
