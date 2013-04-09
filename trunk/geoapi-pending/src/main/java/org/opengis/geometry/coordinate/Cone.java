@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * A {@linkplain GriddedSurface gridded surface} given as a family of conic sections whose
  * {@linkplain #getControlPoints control points} vary linearly. A 5-point ellipse with all
  * defining positions identical is a point. Thus, a truncated elliptical cone can be given
- * as a 2&times;5 set of control points
+ * as a 2×5 set of control points
  *
  * &lt;&lt;P1, P1, P1, P1, P1&gt;, &lt;P2, P3, P4, P5, P6&gt;&gt;.
  *

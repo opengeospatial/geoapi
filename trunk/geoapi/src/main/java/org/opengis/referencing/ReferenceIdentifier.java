@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ReferenceIdentifier extends Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
      * methods. This is used for setting the value to be returned by {@link #getCodeSpace()}.
      *
      * @see #getCodeSpace()
@@ -58,7 +58,7 @@ public interface ReferenceIdentifier extends Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
      * methods. This is used for setting the value to be returned by {@link #getVersion()}.
      *
      * @see #getVersion()

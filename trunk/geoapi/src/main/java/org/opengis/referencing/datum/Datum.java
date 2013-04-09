@@ -70,7 +70,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
      * This is used for setting the value to be returned by {@link #getAnchorPoint()}.
      *
      * @see #getAnchorPoint()
@@ -79,7 +79,7 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
      * This is used for setting the value to be returned by {@link #getRealizationEpoch()}.
      *
      * @see #getRealizationEpoch()
@@ -88,7 +88,7 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
@@ -99,7 +99,7 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
      * @see #getScope()

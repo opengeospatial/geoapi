@@ -224,7 +224,7 @@ public interface SampleDimension {
     /**
      * The transform which is applied to grid values for this sample dimension.
      * This transform is often defined as
-     * <var>y</var> = {@linkplain #getOffset offset} + {@link #getScale scale}&times;<var>x</var> where
+     * <var>y</var> = {@linkplain #getOffset offset} + {@link #getScale scale}×<var>x</var> where
      * <var>x</var> is the grid value and <var>y</var> is the geophysics value.
      * However, this transform may also defines more complex relationship, for
      * example a logarithmic one. In order words, this transform is a generalization of

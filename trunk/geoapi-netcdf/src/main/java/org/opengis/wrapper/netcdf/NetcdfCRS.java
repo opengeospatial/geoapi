@@ -493,7 +493,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @return The transform from grid to this CRS in the given range of dimensions, or
      *         {@code null} if none.
      * @throws IllegalArgumentException If the given dimensions are not in the
-     *         [0 &hellip; {@linkplain #getDimension() dimension}] range.
+     *         [0 … {@linkplain #getDimension() dimension}] range.
      */
     public MathTransform getGridToCRS(final int lowerDimension, final int upperDimension) {
         if (lowerDimension < 0 || upperDimension > axes.length || upperDimension < lowerDimension) {

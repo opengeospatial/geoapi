@@ -232,7 +232,7 @@ public class PJ {
 
     /**
      * Transforms in-place the coordinates in the given array. The coordinates array shall contain
-     * (<var>x</var>,<var>y</var>,<var>z</var>,&hellip;) tuples, where the <var>z</var> and
+     * (<var>x</var>,<var>y</var>,<var>z</var>,…) tuples, where the <var>z</var> and
      * following dimensions are optional. Note that any dimension after the <var>z</var> value
      * are ignored.
      *
@@ -245,7 +245,7 @@ public class PJ {
      * @param  target The target CRS.
      * @param  dimension The dimension of each coordinate value. Must be in the [2-{@value #DIMENSION_MAX}] range.
      * @param  coordinates The coordinates to transform, as a sequence of
-     *         (<var>x</var>,<var>y</var>,&lt;<var>z</var>&gt;,&hellip;) tuples.
+     *         (<var>x</var>,<var>y</var>,&lt;<var>z</var>&gt;,…) tuples.
      * @param  offset Offset of the first coordinate in the given array.
      * @param  numPts Number of points to transform.
      * @throws NullPointerException If the {@code target} or {@code coordinates} argument is null.

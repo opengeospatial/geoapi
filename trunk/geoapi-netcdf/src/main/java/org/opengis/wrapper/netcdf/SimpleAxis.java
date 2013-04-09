@@ -48,8 +48,8 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
 
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
-     * used to identify the ordinates in coordinate tuple. Examples are "&lambda;" and
-     * "&phi;".
+     * used to identify the ordinates in coordinate tuple. Examples are "λ" and
+     * "φ".
      *
      * @see #getAbbreviation()
      */
@@ -75,8 +75,8 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
 
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
-     * used to identify the ordinates in coordinate tuple. Examples are "&lambda;" and
-     * "&phi;".
+     * used to identify the ordinates in coordinate tuple. Examples are "λ" and
+     * "φ".
      */
     @Override
     public String getAbbreviation() {

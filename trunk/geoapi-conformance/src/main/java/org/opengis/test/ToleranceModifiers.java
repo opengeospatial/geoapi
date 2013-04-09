@@ -116,11 +116,11 @@ public strictfp final class ToleranceModifiers {
     };
 
     /**
-     * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
-     * geographic coordinates. The tolerance for the longitude (&lambda;) and latitude (&phi;)
+     * Converts λ and φ tolerance values from metres to degrees before comparing
+     * geographic coordinates. The tolerance for the longitude (λ) and latitude (φ)
      * ordinate values are converted from metres to degrees using the standard length of one
-     * nautical mile ({@value #NAUTICAL_MILE} metres per minute of angle). Next, the &lambda;
-     * tolerance is adjusted according the distance of the &phi; ordinate value to the pole.
+     * nautical mile ({@value #NAUTICAL_MILE} metres per minute of angle). Next, the λ
+     * tolerance is adjusted according the distance of the φ ordinate value to the pole.
      * In the extreme case where the coordinate to compare is located at a pole, then the
      * tolerance is 360° in longitude values.
      *
@@ -201,7 +201,7 @@ public strictfp final class ToleranceModifiers {
     };
 
     /**
-     * Converts &lambda; and &phi; tolerance values from metres to degrees before comparing
+     * Converts λ and φ tolerance values from metres to degrees before comparing
      * the result of an <cite>inverse projection</cite>. For <cite>forward projections</cite>
      * and all other calculations, the tolerance values are left unchanged.
      *

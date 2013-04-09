@@ -71,12 +71,12 @@ public class SimpleParameter extends SimpleIdentifiedObject
      */
     public static enum Type {
         /**
-         * Longitude as decimal degrees in the [-180° &hellip; +180°] range.
+         * Longitude as decimal degrees in the [-180° … +180°] range.
          */
         LONGITUDE(NonSI.DEGREE_ANGLE, -180.0, +180.0),
 
         /**
-         * Latitude as decimal degrees in the [-90° &hellip; +90°] range.
+         * Latitude as decimal degrees in the [-90° … +90°] range.
          */
         LATITUDE(NonSI.DEGREE_ANGLE, -90.0, +90.0),
 
@@ -86,12 +86,12 @@ public class SimpleParameter extends SimpleIdentifiedObject
         LINEAR(SI.METRE, null, null),
 
         /**
-         * Length as metres in the [0 &hellip; &infin;] range.
+         * Length as metres in the [0 … ∞] range.
          */
         LENGTH(SI.METRE, 0.0, null),
 
         /**
-         * Scale as dimensionless number in the [0 &hellip; &infin;] range.
+         * Scale as dimensionless number in the [0 … ∞] range.
          */
         SCALE(Unit.ONE, LENGTH.minimum, null);
 

@@ -32,7 +32,7 @@
 
 /**
  * {@linkplain org.opengis.referencing.ReferenceSystem Reference systems}. The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
  * <p>A reference system contains the metadata required to

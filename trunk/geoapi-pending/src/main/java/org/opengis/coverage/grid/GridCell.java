@@ -54,7 +54,7 @@ public interface GridCell {
     /**
      * Returns the collection of {@linkplain GridPoint grid points} at the corners of the grid cell.
      * The size of this collection has no upper bound, to allow for grids of any dimension.
-     * In a quadrilateral grid, the multiplicity of corner equals 2&times;<var>d</var>, where
+     * In a quadrilateral grid, the multiplicity of corner equals 2×<var>d</var>, where
      * <var>d</var> is the value of {@link Grid#getDimension}.
      *
      * @return The corners of the grid cell.

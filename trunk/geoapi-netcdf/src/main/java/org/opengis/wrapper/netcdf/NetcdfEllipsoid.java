@@ -107,7 +107,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      *
      * <p><b>Do not confuse:</b></p>
      * <ul>
-     *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi;) in degrees</li>
+     *   <li>Ellipsoidal coordinate system axes (λ,φ) in degrees</li>
      *   <li>Ellipsoid axes (<var>semi-major</var>, <var>semi-minor</var>) in metres</li>
      * </ul>
      * <p>
@@ -236,7 +236,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      *
      * <p><b>Do not confuse:</b></p>
      * <ul>
-     *   <li>Ellipsoidal coordinate system axes (&lambda;,&phi;) in degrees</li>
+     *   <li>Ellipsoidal coordinate system axes (λ,φ) in degrees</li>
      *   <li>Ellipsoid axes (<var>semi-major</var>, <var>semi-minor</var>) in metres</li>
      * </ul>
      *

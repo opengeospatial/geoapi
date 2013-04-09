@@ -34,7 +34,7 @@
  * {@linkplain org.opengis.referencing.datum.Datum Geodetic datum} (the relationship of a
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} to the earth).
  * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
  * <p>A datum specifies the relationship of a coordinate system
