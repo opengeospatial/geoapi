@@ -41,14 +41,12 @@ import static org.opengis.annotation.Specification.*;
  * coordinate system is usually dependent on the Earth's gravity field, perhaps loosely as when
  * atmospheric pressure is the basis for the vertical coordinate system axis. An exact definition
  * is deliberately not provided as the complexities of the subject fall outside the scope of this
- * specification. A {@code VerticalCS} shall have one {@linkplain #getAxis axis association}.
+ * specification.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.VerticalCRS    Vertical},
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>A {@code VerticalCS} shall have one {@linkplain #getAxis(int) axis association}.</p>
+ * This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.VerticalCRS} or
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

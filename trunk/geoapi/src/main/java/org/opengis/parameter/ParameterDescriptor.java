@@ -86,7 +86,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * {@code null} otherwise. The returned set usually contains {@linkplain CodeList code list}
      * or enumeration elements.
      *
-     * @return A finite set of valid values (usually from a {@linkplain CodeList code list}),
+     * @return A finite set of valid values (usually from a {@code CodeList}),
      *         or {@code null} if it doesn't apply.
      *
      * @departure extension

@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
  * An operation on coordinates that does not include any change of Datum. The best-known
  * example of a coordinate conversion is a map projection. The parameters describing
  * coordinate conversions are defined rather than empirically derived.
- * <p>
- * Note that some conversions have no parameters.
+ *
+ * <p>Note that some conversions have no parameters.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

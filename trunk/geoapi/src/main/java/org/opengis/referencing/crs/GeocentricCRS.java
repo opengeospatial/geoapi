@@ -47,12 +47,9 @@ import static org.opengis.annotation.Specification.*;
  * A geocentric CRS deals with the earth's curvature by taking a 3D spatial view, which obviates
  * the need to model the earth's curvature.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.cs.CartesianCS Cartesian},
- *   {@link org.opengis.referencing.cs.SphericalCS Spherical}
- * </TD></TR></TABLE>
+ * <p>This type of CRS can be used with coordinate systems of type
+ * {@link org.opengis.referencing.cs.CartesianCS Cartesian} or
+ * {@link org.opengis.referencing.cs.SphericalCS Spherical}.</p>
  *
  * @departure historic
  *   This interface is kept conformant with the specification published in 2003.

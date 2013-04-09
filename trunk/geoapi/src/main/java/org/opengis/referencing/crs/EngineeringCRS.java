@@ -42,20 +42,20 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A contextually local coordinate reference system. It can be divided into two broad categories:
- * <p>
+ *
  * <ul>
  *   <li>earth-fixed systems applied to engineering activities on or near the surface of the
  *       earth;</li>
  *   <li>CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft.</li>
  * </ul>
- * <p>
+ *
  * Earth-fixed Engineering CRSs are commonly based on a simple flat-earth approximation of the
  * earth's surface, and the effect of earth curvature on feature geometry is ignored: calculations
  * on coordinates use simple plane arithmetic without any corrections for earth curvature. The
  * application of such Engineering CRSs to relatively small areas and "contextually local" is in
  * this case equivalent to "spatially local".
- * <p>
- * Engineering CRSs used on moving platforms are usually intermediate coordinate reference
+ *
+ * <p>Engineering CRSs used on moving platforms are usually intermediate coordinate reference
  * systems that are computationally required to calculate coordinates referenced to
  * {@linkplain GeocentricCRS geocentric}, {@linkplain GeographicCRS geographic} or
  * {@linkplain ProjectedCRS projected} CRSs. These engineering coordinate reference
@@ -66,20 +66,17 @@ import static org.opengis.annotation.Specification.*;
  * the platform (e.g. a moving seismic ship) to the entire earth (e.g. in space applications).
  * The determining factor is the mathematical model deployed in the positioning calculations.
  * Transformation of coordinates from these moving Engineering CRSs to earth-referenced coordinate
- * reference systems involves time-dependent coordinate operation parameters.
+ * reference systems involves time-dependent coordinate operation parameters.</p>
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.cs.AffineCS           Affine},
- *   {@link org.opengis.referencing.cs.CartesianCS        Cartesian},
- *   {@link org.opengis.referencing.cs.EllipsoidalCS      Ellipsoidal},
- *   {@link org.opengis.referencing.cs.SphericalCS        Spherical},
- *   {@link org.opengis.referencing.cs.CylindricalCS      Cylindrical},
- *   {@link org.opengis.referencing.cs.PolarCS            Polar},
- *   {@link org.opengis.referencing.cs.VerticalCS         Vertical},
- *   {@link org.opengis.referencing.cs.LinearCS           Linear}
- * </TD></TR></TABLE>
+ * <p>This type of CRS can be used with coordinate systems of type
+ * {@link org.opengis.referencing.cs.AffineCS},
+ * {@link org.opengis.referencing.cs.CartesianCS},
+ * {@link org.opengis.referencing.cs.EllipsoidalCS},
+ * {@link org.opengis.referencing.cs.SphericalCS},
+ * {@link org.opengis.referencing.cs.CylindricalCS},
+ * {@link org.opengis.referencing.cs.PolarCS},
+ * {@link org.opengis.referencing.cs.VerticalCS} or
+ * {@link org.opengis.referencing.cs.LinearCS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

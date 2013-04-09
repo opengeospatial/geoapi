@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Meaning of the axis value range specified through
- * {@linkplain CoordinateSystemAxis#getMinimumValue minimum value} and
- * {@linkplain CoordinateSystemAxis#getMaximumValue maximum value}.
+ * {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value} and
+ * {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

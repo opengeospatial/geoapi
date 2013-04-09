@@ -38,14 +38,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal.
- * An {@code AffineCS} shall have two or three {@linkplain #getAxis axis associations}.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering},
- *   {@link org.opengis.referencing.crs.ImageCRS       Image}
- * </TD></TR></TABLE>
+ * <p>An {@code AffineCS} shall have two or three {@linkplain #getAxis(int) axis associations}.
+ * This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.EngineeringCRS} or
+ * {@link org.opengis.referencing.crs.ImageCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

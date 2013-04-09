@@ -284,7 +284,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * @return The Java Charset.
      * @throws UnsupportedCharsetException If no support for the charset is available.
      *
-     * @see <A HREF="http://download.oracle.com/javase/6/docs/technotes/guides/intl/encoding.doc.html">Supported encodings</A>
+     * @see <a href="http://download.oracle.com/javase/6/docs/technotes/guides/intl/encoding.doc.html">Supported encodings</a>
      */
     public Charset toCharset() throws UnsupportedCharsetException {
         return Charset.forName(charset);
@@ -293,13 +293,13 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Returns all the names of this code. The returned array contains the
      * following elements, with duplicated values and null values removed:
-     * <p>
+     *
      * <ul>
      *   <li>The programmatic {@linkplain #name() name}</li>
      *   <li>The UML {@linkplain #identifier() identifier}</li>
      *   <li>The {@linkplain #toCharset() charset} name</li>
      * </ul>
-     * <p>
+     *
      * Those names are typically equal except for the case (programmatic names are upper case
      * while UML names are lower case) and special characters like {@code '-'}.
      *

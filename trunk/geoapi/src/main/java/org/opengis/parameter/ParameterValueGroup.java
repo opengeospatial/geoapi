@@ -77,15 +77,15 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * then any modification shall be reflected back into this {@code ParameterValueGroup}.
      * More specifically:
      *
-     * <UL>
-     *   <LI><P>If the list supports the {@link List#add(Object) add} operation, then it should
+     * <ul>
+     *   <li>If the list supports the {@link List#add(Object) add} operation, then it should
      *       ensure that the added {@linkplain GeneralParameterValue general parameter value} is
      *       valid and can be added to this group.
      *       An {@link InvalidParameterCardinalityException} (or any other appropriate exception)
-     *       shall be thrown if it is not the case.</P></LI>
-     *   <LI><P>The list may also supports the {@link List#remove(Object) remove} operation as a
-     *       way to remove parameter created by the {@link #parameter(String)} method.</P></LI>
-     * </UL>
+     *       shall be thrown if it is not the case.</li>
+     *   <li>The list may also supports the {@link List#remove(Object) remove} operation as a
+     *       way to remove parameter created by the {@link #parameter(String)} method.</li>
+     * </ul>
      *
      * @return The values in this group.
      */
@@ -96,14 +96,14 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * Returns the value in this group for the specified {@linkplain Identifier#getCode
      * identifier code}. If no {@linkplain ParameterValue parameter value} is found but
      * a {@linkplain ParameterDescriptor parameter descriptor} is found (which may occurs
-     * if the parameter is optional, i.e. <code>{@linkplain ParameterDescriptor#getMinimumOccurs
+     * if the parameter is optional, i.e. <code>{@linkplain ParameterDescriptor#getMinimumOccurs()
      * minimumOccurs} == 0</code>), then a {@linkplain ParameterValue parameter value} is
-     * automatically created and initialized to its {@linkplain ParameterDescriptor#getDefaultValue
+     * automatically created and initialized to its {@linkplain ParameterDescriptor#getDefaultValue()
      * default value} (if any).
-     * <p>
-     * This convenience method provides a way to get and set parameter values by name. For
+     *
+     * <p>This convenience method provides a way to get and set parameter values by name. For
      * example the following idiom fetches a floating point value for the
-     * {@code "false_easting"} parameter:
+     * {@code "false_easting"} parameter:</p>
      *
      * <blockquote><code>
      * double value = <b>parameter</b>("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue}();
@@ -115,9 +115,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * <b>parameter</b>("false_easting").{@linkplain ParameterValue#setValue(double) setValue}(500000.0);
      * </code></blockquote>
      *
-     * This method do not search recursively in subgroups. This is because more than one
+     * This method does not search recursively in subgroups. This is because more than one
      * subgroup may exist for the same {@linkplain ParameterDescriptorGroup descriptor}.
-     * The user must {@linkplain #groups query all subgroups} and select explicitly the
+     * The user must {@linkplain #groups(String) query all subgroups} and select explicitly the
      * appropriate one to use.
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
@@ -134,7 +134,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * Returns all subgroups with the specified name. This method do not create new groups.
      * If the requested group is optional (i.e.
-     * <code>{@linkplain ParameterDescriptor#getMinimumOccurs minimumOccurs} == 0</code>)
+     * <code>{@linkplain ParameterDescriptor#getMinimumOccurs() minimumOccurs} == 0</code>)
      * and no value were defined previously, then this method returns an empty set.
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
@@ -151,14 +151,14 @@ public interface ParameterValueGroup extends GeneralParameterValue {
 
     /**
      * Creates a new group of the specified name. The specified name must be the
-     * {@linkplain Identifier#getCode identifier code} of a {@linkplain ParameterDescriptorGroup
+     * {@linkplain Identifier#getCode() identifier code} of a {@linkplain ParameterDescriptorGroup
      * descriptor group}.
-     * <p>
-     * There is no {@code removeGroup(String)} method. To remove a group, users shall inspect the
-     * {@link #values()} list, decide which occurrences to remove if there is many of them for the
-     * same name, and whether to iterate recursively into sub-groups or not.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode identifier code} of the
+     * <p>There is no {@code removeGroup(String)} method. To remove a group, users shall inspect the
+     * {@link #values()} list, decide which occurrences to remove if there is many of them for the
+     * same name, and whether to iterate recursively into sub-groups or not.</p>
+     *
+     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code} of the
      *              parameter group to create.
      * @return A newly created parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}

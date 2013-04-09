@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A list of logically related elements as (<var>name</var>, <var>value</var>) pairs in a
  * dictionary.  A record may be used as an implementation representation for features.
- * <p>
- * This class can be think as the equivalent of the Java {@link Object} class.
+ *
+ * <p>This class can be think as the equivalent of the Java {@link Object} class.</p>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
@@ -59,13 +59,13 @@ public interface Record {
     /**
      * Returns the type definition of record. All attributes named in this record must be defined
      * in the returned record type. In other words, the following relationship must holds:
-     * <p>
+     *
      * <ul>
      *    <li><code>getRecordType().{@linkplain RecordType#getMembers() getMemberTypes()}.{@linkplain
      *        Set#containsAll containsAll}({@linkplain #getAttributes()}.{@linkplain
      *        Map#keySet keySet()})</code></li>
      * </ul>
-     * <p>
+     *
      * This method can be think as the equivalent of the Java {@link Object#getClass()} method.
      *
      * @return The type definition of this record, or {@code null}.
@@ -83,8 +83,8 @@ public interface Record {
      * @see RecordType#getMemberTypes()
      *
      * @departure generalization
-     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to 
-     *   contradict the semantics of the <code>locate(name)</code> and 
+     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to
+     *   contradict the semantics of the <code>locate(name)</code> and
      *   <code>RecordType.getMemberTypes()</code> methods.
      */
     @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)

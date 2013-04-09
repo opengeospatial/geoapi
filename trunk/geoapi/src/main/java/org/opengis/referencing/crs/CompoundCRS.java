@@ -45,25 +45,25 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem Coordinate Systems} and
  * {@linkplain org.opengis.referencing.datum.Datum Datums} by defining the compound CRS
  * as an ordered set of two or more instances of {@link CoordinateReferenceSystem}.
- * <p>
- * In general, a Compound CRS may contain any number of axes. The Compound CRS contains an
+ *
+ * <p>In general, a Compound CRS may contain any number of axes. The Compound CRS contains an
  * ordered set of coordinate reference systems and the tuple order of a compound coordinate
  * set shall follow that order, while the subsets of the tuple, described by each of the
  * composing coordinate reference systems, follow the tuple order valid for their respective
- * coordinate reference systems.
- * <p>
- * For spatial coordinates, a number of constraints exist for the construction of Compound CRSs.
+ * coordinate reference systems.</p>
+ *
+ * <p>For spatial coordinates, a number of constraints exist for the construction of Compound CRSs.
  * For example, the coordinate reference systems that are combined should not contain any duplicate
- * or redundant axes. Valid combinations include:
- * <p>
- * <UL>
- *   <LI>Geographic 2D + Vertical</LI>
- *   <LI>Geographic 2D + Engineering 1D (near vertical)</LI>
- *   <LI>Projected + Vertical</LI>
- *   <LI>Projected + Engineering 1D (near vertical)</LI>
- *   <LI>Engineering (horizontal 2D or 1D linear) + Vertical</LI>
- * </UL>
- * <p>
+ * or redundant axes. Valid combinations include:</p>
+ *
+ * <ul>
+ *   <li>Geographic 2D + Vertical</li>
+ *   <li>Geographic 2D + Engineering 1D (near vertical)</li>
+ *   <li>Projected + Vertical</li>
+ *   <li>Projected + Engineering 1D (near vertical)</li>
+ *   <li>Engineering (horizontal 2D or 1D linear) + Vertical</li>
+ * </ul>
+ *
  * Any coordinate reference system, or any of the above listed combinations of coordinate
  * reference systems, can have a Temporal CRS added. More than one Temporal CRS may be added
  * if these axes represent different time quantities. For example, the oil industry sometimes

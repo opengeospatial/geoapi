@@ -40,14 +40,11 @@ import static org.opengis.annotation.Specification.*;
  * A three-dimensional coordinate system with one distance measured from the origin and two
  * angular coordinates. Not to be confused with an {@linkplain EllipsoidalCS ellipsoidal
  * coordinate system} based on an ellipsoid "degenerated" into a sphere.
- * A {@code SphericalCS} shall have three {@linkplain #getAxis axis associations}.
+ * A {@code SphericalCS} shall have three {@linkplain #getAxis(int) axis associations}.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.GeocentricCRS  Geocentric},
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.GeocentricCRS} or
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

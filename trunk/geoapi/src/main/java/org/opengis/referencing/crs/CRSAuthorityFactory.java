@@ -40,11 +40,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates {@linkplain CoordinateReferenceSystem coordinate reference systems} using authority codes. External authorities
- * are used to manage definitions of objects used in this interface. The definitions of these objects are
- * referenced using code strings. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
- * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
- * standard.
+ * Creates {@linkplain CoordinateReferenceSystem coordinate reference systems} using authority codes.
+ * External authorities are used to manage definitions of objects used in this interface.
+ * The definitions of these objects are referenced using code strings.
+ * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -56,12 +55,13 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
-     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code. If the
-     * coordinate reference system type is know at compile time, it is recommended to invoke the most precise method
-     * instead of this one (for example
-     * <code>&nbsp;{@linkplain #createGeographicCRS createGeographicCRS}(code)&nbsp;</code>
-     * instead of <code>&nbsp;createCoordinateReferenceSystem(code)&nbsp;</code> if the caller
-     * know he is asking for a {@linkplain GeographicCRS geographic coordinate reference system}).
+     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code.
+     *
+     * <p>If the coordinate reference system type is known at compile time, then it is recommended
+     * to invoke the most precise method instead of this one. For example it is usually better to
+     * invoke <code>{@linkplain #createGeographicCRS createGeographicCRS}(code)</code> instead of
+     * <code>createCoordinateReferenceSystem(code)</code> if the requested object is known to be a
+     * {@code GeographicCRS} instance.</p>
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.

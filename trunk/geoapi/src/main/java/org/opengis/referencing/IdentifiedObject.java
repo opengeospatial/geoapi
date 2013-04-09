@@ -139,7 +139,7 @@ public interface IdentifiedObject {
     InternationalString getRemarks();
 
     /**
-     * Returns a <A HREF="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
+     * Returns a <a href="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</a> for this object.
      * This operation may fails if an object is too complex for the WKT format capability (for
      * example an {@linkplain org.opengis.referencing.crs.EngineeringCRS engineering CRS} with
      * different unit for each axis).

@@ -45,14 +45,14 @@ import static org.opengis.annotation.Specification.*;
  * Geometric figure that can be used to describe the approximate shape of the earth.
  * In mathematical terms, it is a surface formed by the rotation of an ellipse about
  * its minor axis. An ellipsoid requires two defining parameters:
- * <p>
+ *
  * <ul>
  *   <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
  *       {@linkplain #getInverseFlattening() inverse flattening}, or</li>
  *   <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
  *       {@linkplain #getSemiMinorAxis() semi-minor axis}.</li>
  * </ul>
- * <p>
+ *
  * There is not just one ellipsoid. An ellipsoid is a matter of choice, and therefore many
  * choices are possible. The size and shape of an ellipsoid was traditionally chosen such
  * that the surface of the geoid is matched as closely as possible locally, e.g. in a country.

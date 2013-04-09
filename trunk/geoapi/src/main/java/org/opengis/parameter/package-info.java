@@ -32,24 +32,24 @@
 
 /**
  * Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
- * The first two paragraphs below are adapted from
+ * The following is adapted from
  * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
- * Coordinates (Topic 2)} specification.
+ * Coordinates (Topic 2)} specification:
  *
- * <P ALIGN="justify">Most {@linkplain org.opengis.parameter.ParameterValue parameter values} are
+ * <p>Most {@linkplain org.opengis.parameter.ParameterValue parameter values} are
  * numeric, but for some operation methods, notably those implementing a grid interpolation
  * algorithm, the parameter value could be a file name and location (this may be a URI). An
  * example is the coordinate transformation from NAD&nbsp;27 to NAD&nbsp;83 in the USA; depending
- * on the locations of the points to be transformed, one of a series of grid files should be used.</P>
+ * on the locations of the points to be transformed, one of a series of grid files should be used.</p>
  *
- * <P ALIGN="justify">Some operation methods may require a large number of coordinate operation
+ * <p>Some operation methods may require a large number of coordinate operation
  * parameters. Also, some operation methods require that groups of parameters be repeatable as
  * a group. In such cases, it is helpful to group related parameters in
  * {@linkplain org.opengis.parameter.ParameterDescriptorGroup parameter groups}. Two or more parameter
  * groups are then associated with a particular operation method, and each parameter group consists
  * of a set of {@linkplain org.opengis.parameter.ParameterDescriptor operation parameters}, or other,
  * nested parameter groups. This way of modeling is not mandatory; all coordinate operation
- * parameters may be assigned directly to the coordinate operation method.</P>
+ * parameters may be assigned directly to the coordinate operation method.</p>
  *
  * @departure harmonization
  *   Moved the <code>GeneralParameterDescriptor</code>, <code>ParameterDescriptor</code>,

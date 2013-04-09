@@ -36,15 +36,15 @@ import org.opengis.metadata.citation.Citation;
 
 /**
  * Base interface for all factories. Factories can be grouped in two categories:
- * <p>
- * <UL>
- *   <LI>{@linkplain org.opengis.referencing.AuthorityFactory Authority factories}
- *       creates objects from a compact string defined by an authority.</LI>
- *   <LI>{@linkplain org.opengis.referencing.ObjectFactory Object factories}
+ *
+ * <ul>
+ *   <li>{@linkplain org.opengis.referencing.AuthorityFactory Authority factories}
+ *       creates objects from a compact string defined by an authority.</li>
+ *   <li>{@linkplain org.opengis.referencing.ObjectFactory Object factories}
  *       allows applications to make objects that cannot be created by an authority
  *       factory. This factory is very flexible, whereas the authority factory is
- *       easier to use.</LI>
- * </UL>
+ *       easier to use.</li>
+ * </ul>
  *
  * @departure harmonization
  *   This interface is not part of the OGC specification. It is added for uniformity,

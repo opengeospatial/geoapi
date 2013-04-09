@@ -41,13 +41,10 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A coordinate reference system associated with a geodetic datum.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.cs.CartesianCS   Cartesian}
- *   {@link org.opengis.referencing.cs.SphericalCS   Spherical}
- *   {@link org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal}
- * </TD></TR></TABLE>
+ * <p>This type of CRS can be used with coordinate systems of type
+ * {@link org.opengis.referencing.cs.CartesianCS},
+ * {@link org.opengis.referencing.cs.SphericalCS} or
+ * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

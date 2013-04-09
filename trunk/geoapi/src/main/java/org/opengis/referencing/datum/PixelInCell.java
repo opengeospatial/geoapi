@@ -42,9 +42,9 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Specification of the way the image grid is associated with the image data attributes.
- * <p>
- * This code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
- * except that the later is more clearly restricted to the two-dimensional case.
+ *
+ * <p>This code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
+ * except that the later is more clearly restricted to the two-dimensional case.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

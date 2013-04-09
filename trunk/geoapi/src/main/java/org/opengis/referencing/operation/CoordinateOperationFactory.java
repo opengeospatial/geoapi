@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.parameter.ParameterValueGroup parameter values},
  * or infers operations from source and target CRS.
  * This factory provides two groups of methods:
- * <p>
+ *
  * <ul>
  *   <li>Finding instances provided by the implementation:<ul>
  *     <li>{@link #getOperationMethod(String)}</li>
@@ -76,13 +76,13 @@ import static org.opengis.annotation.Specification.*;
 public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns an operation for conversion or transformation between two coordinate reference systems.
-     * <p>
+     *
      * <ul>
      *   <li>If an operation exists, it is returned.</li>
      *   <li>If more than one operation exists, the default is returned.</li>
      *   <li>If no operation exists, then the exception is thrown.</li>
      * </ul>
-     * <p>
+     *
      * Implementations may try to
      * {@linkplain CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes
      * query an authority factory} first, and compute the operation next if no operation from
@@ -103,7 +103,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns an operation using a particular method for conversion or transformation
      * between two coordinate reference systems.
-     * <p>
+     *
      * <ul>
      *   <li>If the operation exists on the implementation, then it is returned.</li>
      *   <li>If the operation does not exist on the implementation, then the implementation
@@ -111,7 +111,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   <li>If for whatever reason the specified operation will not be returned, then
      *       the exception is thrown.</li>
      * </ul>
-     * <p>
+     *
      * <b>Example:</b> A transformation between two {@linkplain GeographicCRS geographic CRS} using
      * different {@linkplain GeodeticDatum datum} requires a <cite>datum shift</cite>.
      * Many methods exist for this purpose, including interpolations in a grid,
@@ -161,25 +161,25 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * and do not need to have a {@linkplain Conversion#getMathTransform() math transform}.
      * Their sole purpose is to be given as an argument to {@linkplain CRSFactory#createDerivedCRS
      * derived CRS} and {@linkplain CRSFactory#createProjectedCRS projected CRS} constructors.
-     * <p>
-     * Some available properties are {@linkplain ObjectFactory listed there}.
-     * Additionally, the following properties are understood by this constructor:
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
-     *     <th nowrap>Property name</th>
-     *     <th nowrap>Value type</th>
-     *     <th nowrap>Value given to</th>
+     *
+     * <p>Some available properties are {@linkplain ObjectFactory listed there}.
+     * Additionally, the following properties are understood by this constructor:</p>
+     *
+     * <table class="ogc">
+     *   <tr>
+     *     <th>Property name</th>
+     *     <th>Value type</th>
+     *     <th>Value given to</th>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link org.opengis.metadata.extent.Extent}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getDomainOfValidity()}</td>
+     *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}</td>
+     *     <td>{@link org.opengis.metadata.extent.Extent}</td>
+     *     <td>{@link CoordinateOperation#getDomainOfValidity()}</td>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link String} or {@link org.opengis.util.InternationalString}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link CoordinateOperation#getScope()}</td>
+     *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}</td>
+     *     <td>{@link String} or {@link org.opengis.util.InternationalString}</td>
+     *     <td>{@link CoordinateOperation#getScope()}</td>
      *   </tr>
      * </table>
      *
@@ -212,20 +212,20 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * instances. However some implementations may have a collection of build-in
      * operation methods. For obtaining such build-in instance, see
      * {@link #getOperationMethod(String)} instead.
-     * <p>
-     * Some available properties are {@linkplain ObjectFactory listed there}.
-     * Additionally, the following properties are understood by this constructor:
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
-     *     <th nowrap>Property name</th>
-     *     <th nowrap>Value type</th>
-     *     <th nowrap>Value given to</th>
+     *
+     * <p>Some available properties are {@linkplain ObjectFactory listed there}.
+     * Additionally, the following properties are understood by this constructor:</p>
+     *
+     * <table class="ogc">
+     *   <tr>
+     *     <th>Property name</th>
+     *     <th>Value type</th>
+     *     <th>Value given to</th>
      *   </tr>
      *   <tr>
-     *     <td nowrap>&nbsp;{@value org.opengis.referencing.operation.OperationMethod#FORMULA_KEY}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link Formula}&nbsp;</td>
-     *     <td nowrap>&nbsp;{@link OperationMethod#getFormula()}</td>
+     *     <td>{@value org.opengis.referencing.operation.OperationMethod#FORMULA_KEY}</td>
+     *     <td>{@link Formula}</td>
+     *     <td>{@link OperationMethod#getFormula()}</td>
      *   </tr>
      * </table>
      *
@@ -250,18 +250,18 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Returns the build-in operation method of the given name.
      * This is a helper method for usage of the following methods:
-     * <p>
+     *
      * <ul>
      *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
      *   <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
      * </ul>
-     * <p>
+     *
      * Examples of typical operation method names are:
-     * <p>
-     * <table border="1" cellspacing="0" cellpadding="2">
-     *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
-     *     <th nowrap>OGC name</th>
-     *     <th nowrap>EPSG name</th>
+     *
+     * <table class="ogc">
+     *   <tr>
+     *     <th>OGC name</th>
+     *     <th>EPSG name</th>
      *   </tr>
      *   <tr><td>Mercator_1SP</td>                  <td>Mercator (variant A)</td></tr>
      *   <tr><td>Mercator_2SP</td>                  <td>Mercator (variant B)</td></tr>
@@ -273,7 +273,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   <tr><td>Cassini_Soldner</td>               <td>Cassini-Soldner</td></tr>
      *   <tr><td>Orthographic</td>                  <td>Orthographic</td></tr>
      * </table>
-     * <p>
+     *
      * Implementations may delegate to their {@link MathTransformFactory}, or delegate to their
      * {@link CoordinateOperationAuthorityFactory}, or get the operation method in some other way
      * at implementor choice.

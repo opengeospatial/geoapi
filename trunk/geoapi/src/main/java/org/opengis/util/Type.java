@@ -40,8 +40,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The type definition. Every {@code Type} is {@linkplain #getTypeName identified} by a
  * {@link TypeName}.
- * <p>
- * This class can be think as the equivalent of the Java {@link Class} class.
+ *
+ * <p>This class can be think as the equivalent of the Java {@link Class} class.</p>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)

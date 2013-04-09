@@ -50,11 +50,11 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.referencing.crs.VerticalCRS vertical} coordinate reference systems,
  * the datum relates the coordinate system to the Earth. With other types of coordinate reference systems,
  * the datum may relate the coordinate system to another physical or virtual object.
- * <p>
- * A datum uses a parameter or set of parameters that determine the location of the origin of the
+ *
+ * <p>A datum uses a parameter or set of parameters that determine the location of the origin of the
  * coordinate reference system. Each datum subtype can be associated with only specific types of
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}, documented in their
- * javadoc.
+ * javadoc.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
