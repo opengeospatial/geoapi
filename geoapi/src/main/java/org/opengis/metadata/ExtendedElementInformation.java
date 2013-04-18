@@ -79,12 +79,12 @@ public interface ExtendedElementInformation {
     /**
      * Three digit code assigned to the extended element.
      * Returns a non-null value only if the {@linkplain #getDataType() data type}
-     * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
+     * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, otherwise
      * {@link #getShortName()} may be used instead.
      *
      * @return Three digit code assigned to the extended element, or {@code null}.
      *
-     * @condition The {@linkplain #getDataType() data type} is not
+     * @condition The {@linkplain #getDataType() data type} is
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115)
