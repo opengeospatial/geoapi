@@ -100,7 +100,7 @@ public abstract strictfp class IOTestCase {
     public static final String THREDDS = "THREDDS.ncml";
 
     /**
-     * The {@value} test file (binary format). This file was downloaded from the examples provided in the
+     * The {@value} test file (NetCDF classic binary format). This file was downloaded from the examples provided in the
      * <a href="http://www.unidata.ucar.edu/software/netcdf-java/formats/DataDiscoveryAttConvention.html">NetCDF
      * Attribute Convention for Dataset Discovery</a> page on October 5, 2011. The global attributes
      * are listed below. Note that this particular NetCDF file specifies the geographic bounding box
@@ -147,7 +147,7 @@ public abstract strictfp class IOTestCase {
     public static final String NCEP = "NCEP-SST.nc";
 
     /**
-     * The {@value} test file (binary format). Some attributes are listed below:
+     * The {@value} test file (HDF5 binary format). Some attributes are listed below:
      *
      * <blockquote><pre>variables:
      *    int grid_mapping_0 ;
@@ -173,7 +173,7 @@ public abstract strictfp class IOTestCase {
     public static final String CIP = "CIP.nc";
 
     /**
-     * The {@value} test file (binary format). This is a freely available Landsat test file
+     * The {@value} test file (NetCDF classic binary format). This is a freely available Landsat test file
      * converted to NetCDF by GDAL. The main attributes are listed below:
      *
      * <blockquote><pre>char lambert_conformal_conic ;
