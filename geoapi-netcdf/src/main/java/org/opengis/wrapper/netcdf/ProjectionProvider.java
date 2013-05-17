@@ -579,7 +579,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
                 "UtmProjection",         null,  null,
                 CF.SEMI_MAJOR_AXIS,      null,  null,
                 CF.INVERSE_FLATTENING,   null,  null,
-                UtmProjection.UTM_ZONE,  null,  null,
+                UtmProjection.UTM_ZONE1, null,  null,
                 "north_hemisphere",      null,  null);
         }
         @Override public Class<UtmProjection> delegate() {return UtmProjection.class;}
@@ -587,7 +587,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
             if (p == null) return new UtmProjection();
             return new UtmProjection(value(p, CF.SEMI_MAJOR_AXIS),
                                      value(p, CF.INVERSE_FLATTENING),
-                                     p.parameter(UtmProjection.UTM_ZONE).intValue(),
+                                     p.parameter(UtmProjection.UTM_ZONE1).intValue(),
                                      p.parameter("north_hemisphere").booleanValue());
         }
     }
