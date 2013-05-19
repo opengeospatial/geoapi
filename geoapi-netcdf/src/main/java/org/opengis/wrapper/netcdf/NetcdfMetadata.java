@@ -17,9 +17,10 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Collection;
 import java.util.Collections;
-import ucar.nc2.units.DateFormatter;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
+import ucar.nc2.time.Calendar;
+import ucar.nc2.time.CalendarDateFormatter;
 
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
@@ -112,11 +113,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     private final Collection<NetcdfMetadata> self;
 
     /**
-     * The object to use for parsing dates, created when first needed.
-     */
-    private transient DateFormatter dateFormat;
-
-    /**
      * Creates a new metadata object as a wrapper around the given NetCDF file.
      *
      * @param file The NetCDF file.
@@ -182,12 +178,20 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     private Date getDate(final String name) {
         final String value = getString(name);
         if (value != null) {
-            if (dateFormat == null) {
-                dateFormat = new DateFormatter();
-            }
-            return dateFormat.getISODate(value);
+            return parseDate(value);
         }
         return null;
+    }
+
+    /**
+     * Parses the given ISO date, assuming proleptic Gregorian calendar and UTC time zone.
+     *
+     * @param  value The date in ISO format.
+     * @return The parsed date.
+     * @throws IllegalArgumentException If the given date can not be parsed.
+     */
+    static Date parseDate(final String value) throws IllegalArgumentException {
+        return new Date(CalendarDateFormatter.isoStringToCalendarDate(Calendar.proleptic_gregorian, value).getMillis());
     }
 
     /**
