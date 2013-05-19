@@ -13,7 +13,6 @@
  */
 package org.opengis.wrapper.netcdf;
 
-import java.util.Date;
 import java.util.Arrays;
 import java.io.File;
 import java.io.InputStream;
@@ -25,7 +24,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import ucar.nc2.NetcdfFile;
-import ucar.nc2.units.DateFormatter;
 import ucar.nc2.ncml.NcMLReader;
 
 import static org.opengis.test.Assert.*;
@@ -204,11 +202,6 @@ public abstract strictfp class IOTestCase {
     public static final String LANDSAT = "Landsat-GDAL.nc";
 
     /**
-     * The object to use for parsing dates, created when first needed.
-     */
-    private transient DateFormatter dateFormat;
-
-    /**
      * For subclass constructors only.
      */
     protected IOTestCase() {
@@ -344,23 +337,5 @@ public abstract strictfp class IOTestCase {
             buffer = Arrays.copyOf(buffer, length);
         }
         return buffer;
-    }
-
-    /**
-     * Parses the given date using the NetCDF {@link DateUtil} utilities class.
-     *
-     * @param  text The date to parse.
-     * @return The parsed date.
-     * @throws IllegalArgumentException If the given string can not be parsed.
-     */
-    final Date parseDate(final String text) throws IllegalArgumentException {
-        if (dateFormat == null) {
-            dateFormat = new DateFormatter();
-        }
-        final Date date = dateFormat.getISODate(text);
-        if (date == null) {
-            throw new IllegalArgumentException(text);
-        }
-        return date;
     }
 }

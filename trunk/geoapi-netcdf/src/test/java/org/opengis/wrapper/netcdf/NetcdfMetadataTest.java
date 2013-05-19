@@ -492,7 +492,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individualName", "NOAA/NWS/NCEP"));
         assertNull(expected.put("identificationInfo.pointOfContact.individualName",                 "NOAA/NWS/NCEP"));
         assertNull(expected.put("contact.individualName",                                           "NOAA/NWS/NCEP"));
-        assertNull(expected.put("identificationInfo.citation.date.date",                            parseDate("2005-09-22T00:00")));
+        assertNull(expected.put("identificationInfo.citation.date.date",                            NetcdfMetadata.parseDate("2005-09-22T00:00")));
         assertNull(expected.put("identificationInfo.citation.date.dateType",                        DateType.CREATION));
         assertNull(expected.put("identificationInfo.citation.title",                                "Sea Surface Temperature Analysis Model"));
         assertNull(expected.put("identificationInfo.abstract",                                      "NCEP SST Global 5.0 x 2.5 degree model data"));
