@@ -68,7 +68,7 @@ import static org.opengis.annotation.Specification.*;
  * (other representations of these same surfaces are possible).
  * <p>
  * <table border="1" cellspacing="0" cellpadding="2">
- *   <tr bgcolor="#CCCCFF" class="TableHeadingColor">
+ *   <tr style="background:#CCCCFF" class="TableHeadingColor">
  *     <th nowrap>&nbsp;Surface type&nbsp;</th>
  *     <th nowrap>&nbsp;Horizontal Curve type&nbsp;</th>
  *     <th nowrap>&nbsp;Vertical curve type&nbsp;</th>
