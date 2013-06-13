@@ -64,12 +64,12 @@ import static org.opengis.annotation.Specification.*;
  *     <th>.</th><th>Record</th>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="1">{@linkplain #head() head}</td><td></td>
- *     <td bgcolor="palegoldenrod" colspan="5">{@linkplain #tail() tail}</td>
+ *     <td style="background:palegoldenrod" colspan="1">{@linkplain #head() head}</td><td></td>
+ *     <td style="background:palegoldenrod" colspan="5">{@linkplain #tail() tail}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="wheat" colspan="5">{@linkplain #path() path}</td><td></td>
- *     <td bgcolor="wheat" colspan="1">{@linkplain #tip() tip}</td>
+ *     <td style="background:wheat" colspan="5">{@linkplain #path() path}</td><td></td>
+ *     <td style="background:wheat" colspan="1">{@linkplain #tip() tip}</td>
  *   </tr>
  * </table></td></tr></table></blockquote>
  *

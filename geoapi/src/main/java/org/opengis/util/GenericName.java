@@ -69,15 +69,15 @@ import static org.opengis.annotation.Specification.*;
  *     <td align="right"><b>{@link #getParsedNames()}</b></td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">{@linkplain #head() head}</font></td><td></td>
- *     <td bgcolor="palegoldenrod" colspan="5"><font size="-1">{@linkplain ScopedName#tail() tail}</font></td>
+ *     <td style="background:palegoldenrod" colspan="1"><font size="-1">{@linkplain #head() head}</font></td><td></td>
+ *     <td style="background:palegoldenrod" colspan="5"><font size="-1">{@linkplain ScopedName#tail() tail}</font></td>
  *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="beige" align="left">{@linkplain NameSpace#isGlobal() global}</td>
- *     <td rowspan="2" bgcolor="beige" align="right">{{@code "org"}, {@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
+ *     <td rowspan="2" style="background:beige" align="left">{@linkplain NameSpace#isGlobal() global}</td>
+ *     <td rowspan="2" style="background:beige" align="right">{{@code "org"}, {@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="wheat" colspan="5"><font size="-1">{@linkplain ScopedName#path() path}</font></td><td></td>
- *     <td bgcolor="wheat" colspan="1"><font size="-1">{@linkplain #tip() tip}</font></td>
+ *     <td style="background:wheat" colspan="5"><font size="-1">{@linkplain ScopedName#path() path}</font></td><td></td>
+ *     <td style="background:wheat" colspan="1"><font size="-1">{@linkplain #tip() tip}</font></td>
  *   </tr>
  *
  *   <tr><td colspan="7" height="15"></td></tr>
@@ -89,16 +89,16 @@ import static org.opengis.annotation.Specification.*;
  *     <td colspan="3"></td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="1" rowspan="2"><font size="-1">{@linkplain #scope() scope}</font></td><td rowspan="3"></td>
- *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td bgcolor="palegoldenrod" colspan="3"><font size="-1">tail</font></td>
+ *     <td style="background:palegoldenrod" colspan="1" rowspan="2"><font size="-1">{@linkplain #scope() scope}</font></td><td rowspan="3"></td>
+ *     <td style="background:palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
+ *     <td style="background:palegoldenrod" colspan="3"><font size="-1">tail</font></td>
  *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="beige" align="left">{@code "org"}</td>
- *     <td rowspan="2" bgcolor="beige" align="right">{{@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
+ *     <td rowspan="2" style="background:beige" align="left">{@code "org"}</td>
+ *     <td rowspan="2" style="background:beige" align="right">{{@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="wheat" colspan="3"><font size="-1">path</font></td><td></td>
- *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
+ *     <td style="background:wheat" colspan="3"><font size="-1">path</font></td><td></td>
+ *     <td style="background:wheat" colspan="1"><font size="-1">tip</font></td>
  *   </tr>
  *
  *   <tr><td colspan="7" height="15"></td></tr>
@@ -110,16 +110,16 @@ import static org.opengis.annotation.Specification.*;
  *     <td colspan="3"></td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="3" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
- *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">tail</font></td>
+ *     <td style="background:palegoldenrod" colspan="3" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
+ *     <td style="background:palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
+ *     <td style="background:palegoldenrod" colspan="1"><font size="-1">tail</font></td>
  *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="beige" align="left">{@code "org.opengis"}</td>
- *     <td rowspan="2" bgcolor="beige" align="right">{{@code "util"}, {@code "Record"}}</td>
+ *     <td rowspan="2" style="background:beige" align="left">{@code "org.opengis"}</td>
+ *     <td rowspan="2" style="background:beige" align="right">{{@code "util"}, {@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="wheat" colspan="1"><font size="-1">path</font></td><td></td>
- *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
+ *     <td style="background:wheat" colspan="1"><font size="-1">path</font></td><td></td>
+ *     <td style="background:wheat" colspan="1"><font size="-1">tip</font></td>
  *   </tr>
  *
  *   <tr><td colspan="7" height="15"></td></tr>
@@ -131,14 +131,14 @@ import static org.opengis.annotation.Specification.*;
  *     <td colspan="3"></td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="palegoldenrod" colspan="5" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
- *     <td bgcolor="palegoldenrod" colspan="1"><font size="-1">head</font></td>
+ *     <td style="background:palegoldenrod" colspan="5" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
+ *     <td style="background:palegoldenrod" colspan="1"><font size="-1">head</font></td>
  *     <td rowspan="2"></td>
- *     <td rowspan="2" bgcolor="beige" align="left">{@code "org.opengis.util"}</td>
- *     <td rowspan="2" bgcolor="beige" align="right">{{@code "Record"}}</td>
+ *     <td rowspan="2" style="background:beige" align="left">{@code "org.opengis.util"}</td>
+ *     <td rowspan="2" style="background:beige" align="right">{{@code "Record"}}</td>
  *   </tr>
  *   <tr align="center">
- *     <td bgcolor="wheat" colspan="1"><font size="-1">tip</font></td>
+ *     <td style="background:wheat" colspan="1"><font size="-1">tip</font></td>
  *   </tr>
  * </table></td></tr></table></blockquote>
  *
