@@ -45,6 +45,19 @@ import static org.opengis.annotation.Specification.*;
  * or higher level {@code ParameterValueGroup}, if those instances contain different values
  * of one or more {@link ParameterValue}s which suitably distinguish among those groups.
  *
+ * <p>The methods adapted from the ISO 19111 standard are {@link #getDescriptor()} and {@link #values()}.
+ * Other methods (except {@link #clone()}) are convenience methods:</p>
+ *
+ * <ul>
+ *   <li>{@link #parameter(String)} searches for a single parameter value of the given name.</li>
+ *   <li>{@link #groups(String)} searches for all groups of the given name.</li>
+ *   <li>{@link #addGroup(String)} for creating a new subgroup and adding it to the list of subgroups.</li>
+ * </ul>
+ *
+ * <blockquote><font size="-1"><b>Design note:</b> there is no <code>parameter<b><u>s</u></b>(String)</code> method
+ * returning a list of parameter values because the ISO 19111 standard fixes the {@link ParameterValue}
+ * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurrence} to 1.</font></blockquote>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.0
@@ -72,7 +85,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     ParameterDescriptorGroup getDescriptor();
 
     /**
-     * Returns the values in this group. The returned list may or may not be unmodifiable;
+     * Returns all values in this group. The returned list may or may not be unmodifiable;
      * this is implementation-dependent. However, if some aspects of this list are modifiable,
      * then any modification shall be reflected back into this {@code ParameterValueGroup}.
      * More specifically:
@@ -150,9 +163,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
     List<ParameterValueGroup> groups(String name) throws ParameterNotFoundException;
 
     /**
-     * Creates a new group of the specified name. The specified name must be the
-     * {@linkplain Identifier#getCode() identifier code} of a {@linkplain ParameterDescriptorGroup
-     * descriptor group}.
+     * Creates a new subgroup of the specified name, and adds it to the list of subgroups.
+     * The specified name must be the {@linkplain Identifier#getCode() identifier code} of
+     * a {@linkplain ParameterDescriptorGroup descriptor group} which is a child of this group.
      *
      * <p>There is no {@code removeGroup(String)} method. To remove a group, users shall inspect the
      * {@link #values()} list, decide which occurrences to remove if there is many of them for the
