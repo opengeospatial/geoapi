@@ -40,22 +40,27 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The type definition of a {@linkplain Record record}.  A {@code RecordType} defines dynamically
- * constructed data type.  This interface has methods for data access, but no methods to dynamically
- * add members.  This approach ensures that once a {@code RecordType} is constructed, it is immutable.
+ * The type definition of a {@linkplain Record record}.
+ * A {@code RecordType} defines dynamically constructed data type.
+ * A {@code RecordType} is identified by a {@linkplain #getTypeName() type name}
+ * and contains an arbitrary amount of {@linkplain #getMembers() members}.
+ * Members are (<var>name</var>, <var>type</var>) pairs.
+ * A {@code RecordType} may therefore contain another {@code RecordType} as a member.
  *
- * <p>A {@code RecordType} is {@linkplain #getTypeName identified} by a {@link TypeName}. It contains
- * an arbitrary amount of {@linkplain #getMemberTypes member types}. A {@code RecordType} may
- * therefore contain another {@code RecordType} as a member.</p>
+ * <p>This interface has methods for data access, but no methods to dynamically add members.
+ * This approach ensures that once a {@code RecordType} is constructed, it is immutable.</p>
  *
- * <p>This class can be think as the equivalent of the Java {@link Class} class.</p>
+ * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+ * {@code RecordType} instances can be though as equivalent to instances of the Java {@link Class} class.
+ * The set of members in a {@code RecordType} can be though as equivalent to the set of fields in a class.
+ * </font></blockquote>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.1
  *
- * @see Record
+ * @see Record#getRecordType()
  * @see RecordSchema
  *
  * @navassoc 1 - - RecordSchema
@@ -66,15 +71,17 @@ public interface RecordType extends Type {
     /**
      * Returns the name that identifies this record type.
      * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema},
-     * then the record type name shall be a valid in the {@linkplain NameSpace name space}
-     * of the record schema:
+     * then the record type name shall be a valid in the name space of the record schema:
      *
      * <blockquote><code>
-     * {@linkplain #getContainer()}.{@linkplain RecordSchema#getSchemaName
-     * getSchemaName()}.{@linkplain LocalName#scope scope()}
+     * {@linkplain NameSpace} namespace = {@linkplain #getContainer()}.{@linkplain RecordSchema#getSchemaName()
+     * getSchemaName()}.{@linkplain LocalName#scope() scope()};
      * </code></blockquote>
      *
-     * This method can be think as the equivalent of the Java {@link Class#getName()} method.
+     * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * this method can be though as the equivalent of the Java {@link Class#getName()} method.
+     * </font></blockquote>
      *
      * @return The name that identifies this record type.
      */
@@ -96,13 +103,16 @@ public interface RecordType extends Type {
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
-     * If there are no attributes, this method returns the empty map.
      * The dictionary shall be {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
+     * If there are no attributes, this method returns the empty map.
      *
      * <p>The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
-     * members of this {@code RecordType}. There is no potential for conflict with sub-packages.</p>
+     * members of this {@code RecordType}. There is no potential for conflict with other record types.</p>
      *
-     * <p>This method can be think as the equivalent of the Java {@link Class#getFields()} method.</p>
+     * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * this method can be though as related to the Java {@link Class#getFields()} method.
+     * </font></blockquote>
      *
      * @return The dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      *
@@ -113,13 +123,10 @@ public interface RecordType extends Type {
 
     /**
      * Returns the set of member names defined in this {@code RecordType}'s dictionary.
-     * If there are no members, this method returns the empty set. This method is functionally
-     * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#keySet() keySet()}</code>.
+     * If there are no members, this method returns the empty set.
      *
-     * <p>The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
-     * members of this {@code RecordType}. There is no potential for conflict with sub-packages.</p>
-     *
-     * <p>This method can be think as the equivalent of the Java {@link Class#getFields()} method.</p>
+     * <p>This method is functionally equivalent to
+     * <code>{@linkplain #getMemberTypes()}.{@linkplain Map#keySet() keySet()}</code>.</p>
      *
      * @return The set of attribute names defined in this {@code RecordType}'s dictionary.
      *
@@ -135,7 +142,10 @@ public interface RecordType extends Type {
      * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#get get}(name).{@linkplain
      * Type#getTypeName() getTypeName()}</code>.
      *
-     * <p>This method can be think as the equivalent of the Java {@link Class#getField(String)} method.</p>
+     * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * this method can be though as related to the Java {@link Class#getField(String)} method.
+     * </font></blockquote>
      *
      * @param name The name of the attribute we are looking for.
      * @return The type of of attribute of the given name, or {@code null}.
@@ -147,16 +157,20 @@ public interface RecordType extends Type {
 
     /**
      * Determines if the specified record is compatible with this record type. This method returns
-     * {@code true} if the specified {@code record} argument is non-null and the following condition
-     * holds:
+     * {@code true} if the specified {@code record} argument is non-null and the following minimal
+     * condition holds:
      *
-     * <ul>
-     *    <li><code>{@linkplain #getMembers()}.{@linkplain Set#containsAll containsAll}(record.{@linkplain
-     *        Record#getAttributes() getAttributes()}.{@linkplain Map#keySet keySet()})</code></li>
-     *    <li>Any other implementation-specific conditions.
-     * </ul>
+     * <blockquote><pre> Set&lt;MemberName&gt; attributeNames = record.{@linkplain Record#getAttributes() getAttributes()}.{@linkplain Map#keySet keySet()};
+     * boolean isInstance = {@linkplain #getMembers()}.{@linkplain Set#containsAll containsAll}();</pre></blockquote>
      *
-     * This method can be think as the equivalent of the Java {@link Class#isInstance(Object)} method.
+     * Vendors can put additional implementation-specific conditions. In particular, implementations are free
+     * to require that <code>{@linkplain Record#getRecordType() == this</code>. The choice between more lenient
+     * or more restrictive conditions is similar to allowing or not sub-classing.
+     *
+     * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * this method can be though as the equivalent of the Java {@link Class#isInstance(Object)} method.
+     * </font></blockquote>
      *
      * @param record The record to test for compatibility.
      * @return {@code true} if the given record is compatible with this record type.
