@@ -164,7 +164,7 @@ public interface RecordType extends Type {
      * boolean isInstance = {@linkplain #getMembers()}.{@linkplain Set#containsAll containsAll}();</pre></blockquote>
      *
      * Vendors can put additional implementation-specific conditions. In particular, implementations are free
-     * to require that <code>{@linkplain Record#getRecordType() == this</code>. The choice between more lenient
+     * to require that <code>{@linkplain Record#getRecordType() == this}</code>. The choice between more lenient
      * or more restrictive conditions is similar to allowing or not sub-classing.
      *
      * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
