@@ -98,7 +98,7 @@ public interface ScopedName extends GenericName {
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
      * shall returns {@code "org"}.</p>
      *
-     * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
+     * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @since 2.2
      */
@@ -107,7 +107,7 @@ public interface ScopedName extends GenericName {
     LocalName head();
 
     /**
-     * Returns every elements of the {@linkplain #getParsedNames() parsed names list} except for
+     * Returns every elements in the sequence of {@linkplain #getParsedNames() parsed names} except for
      * the {@linkplain #head() head}. In other words, the following relationship must holds:
      *
      * <ul>
@@ -119,8 +119,7 @@ public interface ScopedName extends GenericName {
      * This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
      * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
-     * @return All elements except the first one in the in the list of
-     *         {@linkplain #getParsedNames parsed names}.
+     * @return All elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @since 2.1
      */
@@ -128,7 +127,7 @@ public interface ScopedName extends GenericName {
     GenericName tail();
 
     /**
-     * Returns every elements of the {@linkplain #getParsedNames() parsed names list} except for
+     * Returns every elements in the sequence {@linkplain #getParsedNames() parsed names} except for
      * the {@linkplain #tip() tip}. In other words, the following relationship must holds:
      *
      * <ul>
@@ -140,8 +139,7 @@ public interface ScopedName extends GenericName {
      * This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
      * Name.getPrefix}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
      *
-     * @return All elements except the last one in the in the list of
-     *         {@linkplain #getParsedNames parsed names}.
+     * @return All elements except the last one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. It has been added in GeoAPI as a

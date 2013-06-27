@@ -215,7 +215,7 @@ public interface GenericName extends Comparable<GenericName> {
      * returns a list containing only {@code {"util", "Record"}} elements.</p>
      *
      * @return The local names making this generic name, without the {@linkplain #scope() scope}.
-     *         Shall never be {@code null} neither {@linkplain List#isEmpty empty}.
+     *         Shall never be {@code null} neither empty.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<? extends LocalName> getParsedNames();
