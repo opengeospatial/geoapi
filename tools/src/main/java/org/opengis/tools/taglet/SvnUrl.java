@@ -85,7 +85,7 @@ public final class SvnUrl implements Taglet {
     /**
      * Returns {@code true} since <code>@svnurl</code> can be used in overview.
      *
-     * @return Always {@code false}.
+     * @return Always {@code true}.
      */
     @Override
     public boolean inOverview() {
