@@ -82,7 +82,7 @@ public interface Instrument {
     /**
      * Textual description of the instrument.
      *
-     * @return Textual description.
+     * @return Textual description, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -90,7 +90,7 @@ public interface Instrument {
     /**
      * Platform on which the instrument is mounted.
      *
-     * @return Platform on which the instrument is mounted.
+     * @return Platform on which the instrument is mounted, or {@code null}.
      */
     @UML(identifier="mountedOn", obligation=OPTIONAL, specification=ISO_19115_2)
     Platform getMountedOn();

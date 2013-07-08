@@ -70,7 +70,7 @@ public interface Objective {
     /**
      * Priority applied to the target.
      *
-     * @return Priority applied.
+     * @return Priority applied, or {@code null}.
      */
     @UML(identifier="priority", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getPriority();

@@ -77,7 +77,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as an ASCII file.
      *
-     * @return Application schema as an ASCII file.
+     * @return Application schema as an ASCII file, or {@code null}.
      *
      * @todo In UML, the type was {@code CharacterString}. It is not clear if
      *       it should be the file name or the file content.
@@ -88,7 +88,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as a graphics file.
      *
-     * @return Application schema as a graphics file.
+     * @return Application schema as a graphics file, or {@code null}.
      */
     @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115)
     URI getGraphicsFile();
@@ -96,7 +96,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as a software development file.
      *
-     * @return Application schema as a software development file.
+     * @return Application schema as a software development file, or {@code null}.
      *
      * @todo In UML, the type was {@code binary}. It is not clear if
      *       it was intended to be the file content.
@@ -107,7 +107,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Software dependent format used for the application schema software dependent file.
      *
-     * @return Format used for the application schema software file.
+     * @return Format used for the application schema software file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL, specification=ISO_19115)
     String getSoftwareDevelopmentFileFormat();

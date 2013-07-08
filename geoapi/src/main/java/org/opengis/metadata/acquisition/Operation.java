@@ -66,7 +66,7 @@ public interface Operation {
      * Description of the mission on which the platform observations are made and the
      * objectives of that mission.
      *
-     * @return Description of the mission.
+     * @return Description of the mission, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -74,7 +74,7 @@ public interface Operation {
     /**
      * Identification of the mission.
      *
-     * @return Identification of the mission.
+     * @return Identification of the mission, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();
@@ -98,7 +98,7 @@ public interface Operation {
     /**
      * Collection technique for the operation.
      *
-     * @return Collection technique for the operation.
+     * @return Collection technique for the operation, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     OperationType getType();
@@ -130,7 +130,7 @@ public interface Operation {
     /**
      * Plan satisfied by the operation.
      *
-     * @return Plan satisfied by the operation.
+     * @return Plan satisfied by the operation, or {@code null}.
      */
     @UML(identifier="plan", obligation=OPTIONAL, specification=ISO_19115_2)
     Plan getPlan();

@@ -120,7 +120,7 @@ public interface Source {
     /**
      * Processing level of the source data.
      *
-     * @return Processing level of the source data.
+     * @return Processing level of the source data, or {@code null}.
      *
      * @since 2.3
      */

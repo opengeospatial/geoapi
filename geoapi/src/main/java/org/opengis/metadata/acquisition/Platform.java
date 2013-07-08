@@ -60,7 +60,7 @@ public interface Platform {
     /**
      * Source where information about the platform is described.
      *
-     * @return Source where information about the platform is described.
+     * @return Source where information about the platform is described, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();

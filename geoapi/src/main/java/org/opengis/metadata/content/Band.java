@@ -60,7 +60,7 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      *
      * @return Longest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null} if unknown. The units of measurement is given by {@link #getUnits()}.
+     *         or {@code null} if unspecified. The units of measurement is given by {@link #getUnits()}.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMaxValue();
@@ -70,7 +70,7 @@ public interface Band extends RangeDimension {
      * Returns {@code null} if unspecified.
      *
      * @return Shortest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null} if unknown. The units of measurement is given by {@link #getUnits()}.
+     *         or {@code null} if unspecified. The units of measurement is given by {@link #getUnits()}.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMinValue();
@@ -79,7 +79,7 @@ public interface Band extends RangeDimension {
      * Wavelength at which the response is the highest.
      * Returns {@code null} if unspecified.
      *
-     * @return Wavelength at which the response is the highest, or {@code null} if unknown.
+     * @return Wavelength at which the response is the highest, or {@code null} if unspecified.
      *         The units of measurement is given by {@link #getUnits()}.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)

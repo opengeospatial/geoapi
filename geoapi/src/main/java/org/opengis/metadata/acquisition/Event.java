@@ -101,7 +101,7 @@ public interface Event {
      *   </TD></TR>
      * </TABLE>
      *
-     * @return Time the event occurred
+     * @return Time the event occurred.
      */
     @UML(identifier="time", obligation=MANDATORY, specification=ISO_19115_2)
     Date getTime();
@@ -117,7 +117,7 @@ public interface Event {
     /**
      * Pass during which an event occurs.
      *
-     * @return Pass during which an event occurs.
+     * @return Pass during which an event occurs, or {@code null}.
      */
     @UML(identifier="relatedPass", obligation=OPTIONAL, specification=ISO_19115_2)
     PlatformPass getRelatedPass();
