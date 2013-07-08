@@ -119,8 +119,8 @@ public interface ProcessStep {
      * to derive geographic data from the raw instrument measurements, such as datasets,
      * software used, and the processing environment.
      *
-     * @return Procedure by which the algorithm was applied to derive geographic data
-     *         from the raw instrument measurements
+     * @return Procedure by which the algorithm was applied to derive geographic data,
+     *         or {@code null}.
      *
      * @since 2.3
      */

@@ -77,7 +77,7 @@ public interface AcquisitionInformation {
     /**
      * A record of the environmental circumstances during the data acquisition.
      *
-     * @return Record of the environmental circumstances.
+     * @return Record of the environmental circumstances, or {@code null}.
      */
     @UML(identifier="environmentalConditions", obligation=OPTIONAL, specification=ISO_19115_2)
     EnvironmentalRecord getEnvironmentalConditions();

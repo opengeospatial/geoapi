@@ -82,7 +82,7 @@ public interface Element {
     InternationalString getMeasureDescription();
 
     /**
-     * Type of method used to evaluate quality of the dataset, or {@code null} if unspecified.
+     * Type of method used to evaluate quality of the dataset.
      *
      * @return Type of method used to evaluate quality, or {@code null}.
      */

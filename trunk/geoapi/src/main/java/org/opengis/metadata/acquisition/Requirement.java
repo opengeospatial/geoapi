@@ -62,7 +62,7 @@ public interface Requirement {
     /**
      * Identification of reference or guidance material for the requirement.
      *
-     * @return Identification of reference or guidance material.
+     * @return Identification of reference or guidance material, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();

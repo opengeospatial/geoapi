@@ -53,7 +53,7 @@ public interface VerticalExtent {
     /**
      * Returns the lowest vertical extent contained in the dataset.
      *
-     * @return Double mandatory for valid content, may be null for an invalid document.
+     * @return The lowest vertical extent.
      */
     @UML(identifier="minimumValue", obligation=MANDATORY, specification=ISO_19115)
     Double getMinimumValue();
@@ -61,7 +61,7 @@ public interface VerticalExtent {
     /**
      * Returns the highest vertical extent contained in the dataset.
      *
-     * @return Double mandatory for valid content, may be null for an invalid document.
+     * @return The highest vertical extent.
      */
     @UML(identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
     Double getMaximumValue();

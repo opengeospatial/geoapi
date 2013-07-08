@@ -75,7 +75,7 @@ public interface Processing {
     /**
      * Additional details about the processing procedures.
      *
-     * @return Processing procedures.
+     * @return Processing procedures, or {@code null}.
      */
     @UML(identifier="procedureDescription", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getProcedureDescription();
@@ -91,7 +91,7 @@ public interface Processing {
     /**
      * Parameters to control the processing operations, entered at run time.
      *
-     * @return Parameters to control the processing operations.
+     * @return Parameters to control the processing operations, or {@code null}.
      */
     @UML(identifier="runTimeParameters", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getRunTimeParameters();

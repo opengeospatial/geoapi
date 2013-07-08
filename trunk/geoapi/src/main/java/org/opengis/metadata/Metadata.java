@@ -261,7 +261,7 @@ public interface Metadata {
     /**
      * Provides information about the distributor of and options for obtaining the resource(s).
      *
-     * @return The distributor of and options for obtaining the resource(s).
+     * @return The distributor of and options for obtaining the resource(s), or {@code null}.
      */
     @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
@@ -303,7 +303,7 @@ public interface Metadata {
     /**
      * Provides information about the frequency of metadata updates, and the scope of those updates.
      *
-     * @return The frequency of metadata updates and their scope.
+     * @return The frequency of metadata updates and their scope, or {@code null}.
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();

@@ -65,7 +65,7 @@ public interface PlatformPass {
     /**
      * Area covered by the pass.
      *
-     * @return Area covered by the pass.
+     * @return Area covered by the pass, or {@code null}.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115_2)
     Geometry getExtent();

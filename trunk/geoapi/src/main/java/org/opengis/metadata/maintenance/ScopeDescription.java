@@ -108,7 +108,7 @@ public interface ScopeDescription {
     /**
      * Dataset to which the information applies.
      *
-     * @return Dataset to which the information applies.
+     * @return Dataset to which the information applies, or {@code null}.
      *
      * @since 2.1
      *
@@ -122,7 +122,7 @@ public interface ScopeDescription {
      * Class of information that does not fall into the other categories to
      * which the information applies.
      *
-     * @return Class of information that does not fall into the other categories.
+     * @return Class of information that does not fall into the other categories, or {@code null}.
      *
      * @since 2.1
      *

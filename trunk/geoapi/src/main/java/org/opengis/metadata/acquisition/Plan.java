@@ -59,7 +59,7 @@ public interface Plan {
     /**
      * Manner of sampling geometry that the planner expects for collection of objective data.
      *
-     * @return Manner of sampling geometry.
+     * @return Manner of sampling geometry, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     GeometryType getType();
