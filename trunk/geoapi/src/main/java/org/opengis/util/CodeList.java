@@ -224,14 +224,28 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
         @SuppressWarnings("rawtypes")
-        final Collection<? extends CodeList> values;
+        Collection<? extends CodeList> values;
         synchronized (VALUES) {
             values = VALUES.get(codeType);
             if (values == null) {
                 if (codeType == null) {
                     throw new IllegalArgumentException("Code type is null");
                 } else {
-                    throw new IllegalStateException("No collection of " + codeType.getSimpleName());
+                    /*
+                     * If no list has been found for the given type, maybe the class was not yet initialized.
+                     * Try to force class initialization of the given class in order to register its list of
+                     * static final constants, then check again.
+                     */
+                    final String typeName = codeType.getName();
+                    try {
+                        Class.forName(typeName, true, codeType.getClassLoader());
+                    } catch (ClassNotFoundException e) {
+                        throw new TypeNotPresentException(typeName, e); // Should never happen.
+                    }
+                    values = VALUES.get(codeType);
+                    if (values == null) {
+                        throw new IllegalStateException("No list of " + codeType.getSimpleName());
+                    }
                 }
             }
         }
@@ -405,23 +419,10 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         return ordinal - ((CodeList<?>) other).ordinal;
     }
 
-    /**
-     * Compares the specified object with this code list for equality. This method compares only
-     * {@linkplain #ordinal() ordinal} values for consistency with the {@link #compareTo(CodeList)} method.
-     * Ordinal values are unique for each code list element of the same class.
-     *
-     * @param object The object to compare with this code.
-     * @return {@code true} if the given object is equals to this code.
-     *
-     * @since 2.2
+    /*
+     * Do not define 'equals' and 'hashCode'. The identity comparison is consistent with the above
+     * 'compareTo' method because there is no two CodeLists of the same class having the same ordinal value.
      */
-    @Override
-    public final boolean equals(final Object object) {
-        if (object != null && object.getClass().equals(getClass())) {
-            return ordinal == ((CodeList<?>) object).ordinal;
-        }
-        return false;
-    }
 
     /**
      * Returns a string representation of this code list.
