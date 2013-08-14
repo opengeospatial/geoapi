@@ -79,7 +79,7 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>netcdf</artifactId>
-      <version>4.3.16</version>
+      <version>4.3.18</version>
     </dependency>
     <dependency>
       <groupId>org.jdom</groupId>
