@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <ul>
  *   <li>{@code MemberName} is the name of an attribute. It is similar the name of a field in a Java class.</li>
- *   <li>{@link TypeName} is the name of the attribute definition in {@link RecordType}.
+ *   <li>{@link TypeName} is the name of the attribute definition.
  *       It is similar to the name of a {@link Class}.</li>
  * </ul>
  *

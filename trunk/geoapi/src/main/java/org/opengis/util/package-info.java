@@ -51,8 +51,8 @@
  *  ├─ {@linkplain org.opengis.util.GenericName}
  *  ├─ {@linkplain org.opengis.util.ScopedName}
  *  └─ {@linkplain org.opengis.util.LocalName}
- *      ├─ {@linkplain org.opengis.util.MemberName}
- *      └─ {@linkplain org.opengis.util.TypeName}</pre>
+ *      ├─ {@linkplain org.opengis.util.TypeName}
+ *      └─ {@linkplain org.opengis.util.MemberName}</pre>
  * </td><td class="sep" width="25%" nowrap>
  * <pre> GeoAPI object
  *  └─ {@linkplain org.opengis.util.Factory}
