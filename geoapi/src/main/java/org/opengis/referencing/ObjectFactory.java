@@ -44,13 +44,14 @@ import org.opengis.util.GenericName;
 
 
 /**
- * Base interface for all factories of {@linkplain IdentifiedObject identified objects}. Factories
- * build up complex objects from simpler objects or values. This factory allows applications to make
+ * Base interface for all factories of {@linkplain IdentifiedObject identified objects}.
+ * Factories build up complex objects from simpler objects or values.
+ * This factory allows applications to make
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
  * {@linkplain org.opengis.referencing.datum.Datum datum} or
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
- * that cannot be created by an {@linkplain AuthorityFactory authority factory}. This factory is
- * very flexible, whereas the authority factory is easier to use.
+ * that cannot be created by an {@linkplain AuthorityFactory authority factory}.
+ * This factory is very flexible, whereas the authority factory is easier to use.
  *
  * <h3>Object properties</h3>
  * Most factory methods expect a {@link Map} argument. The map can be a {@link Properties} instance.
@@ -61,15 +62,14 @@ import org.opengis.util.GenericName;
  *
  * where <var>theName</var> is an arbitrary name as free text.
  *
- * <p>Implementations are encouraged to recognize at least the properties listed in the following
- * table. Additional implementation-specific properties can be added. Unknown properties shall
- * be ignored.</p>
+ * <p>Implementations are encouraged to recognize at least the properties listed in the following table.
+ * Additional implementation-specific properties can be added. Unknown properties shall be ignored.</p>
  *
  * <table class="ogc">
  *   <tr>
  *     <th>Property name</th>
  *     <th>Value type</th>
- *     <th>Value given to</th>
+ *     <th>Returned by</th>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
@@ -108,9 +108,9 @@ import org.opengis.util.GenericName;
  *   </tr>
  * </table>
  *
- * <p>The {@code "name"} property is mandatory. All others are optional. All localizable attributes
- * like {@code "remarks"} can have a language and country code suffix. For example the
- * {@code "remarks_fr"} property stands for remarks in {@linkplain Locale#FRENCH French} and the
+ * <p>The {@code "name"} property is mandatory. All others are optional.
+ * All localizable attributes like {@code "remarks"} can have a language and country code suffix.
+ * For example the {@code "remarks_fr"} property stands for remarks in {@linkplain Locale#FRENCH French} and the
  * {@code "remarks_fr_CA"} property stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.</p>
  *
  * @departure harmonization

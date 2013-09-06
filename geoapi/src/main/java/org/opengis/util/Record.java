@@ -41,7 +41,9 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A list of logically related elements as (<var>name</var>, <var>value</var>) pairs in a dictionary.
- * A record may be used as an implementation representation for features.
+ * {@code Records} are similar to an attribute-only {@code class} in Java if it were stripped of all
+ * notions of inheritance.
+ * A {@code Record} may be used as an implementation representation for features.
  *
  * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
  * If we think about {@code Record}s as equivalent to {@code Object} instances, then the descriptions

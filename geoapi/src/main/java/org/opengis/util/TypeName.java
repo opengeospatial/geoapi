@@ -34,10 +34,23 @@ package org.opengis.util;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Obligation.MANDATORY;
 
 
 /**
- * The name of an {@linkplain MemberName attribute} type.
+ * A {@linkplain LocalName local name} that references a {@linkplain RecordType record type}
+ * in a {@linkplain RecordSchema record schema}.
+ * Can also be used as the name of a <cite>feature type</cite>.
+ *
+ * <p>{@code TypeName}s are returned by the following methods:</p>
+ * <ul>
+ *   <li>{@link RecordType#getTypeName()} for the name of the type definition.</li>
+ *   <li>{@link MemberName#getAttributeType()} as a reference to the type definition of the attribute.</li>
+ * </ul>
+ *
+ * <p><b>Comparison with the Java language:</b><br>
+ * A {@code TypeName} is similar the name of a java {@link Class}.
+ * By contrast, a {@link MemberName} is similar to the name of a field in a Java class.</p>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
@@ -48,4 +61,12 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TypeName", specification=ISO_19103)
 public interface TypeName extends LocalName {
+    /**
+     * Returns the name of the type.
+     * The name typically uses a {@code '.'} navigation separator,
+     * so that it is of the form {@code "[schema].[type]"}.
+     */
+    @Override
+    @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
+    String toString();
 }
