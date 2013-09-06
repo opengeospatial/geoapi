@@ -57,8 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * like {@code "util.Record"} in the {@code "org.opengis"} scope. In the following illustration,
  * each line is one possible construction for {@code "org.opengis.util.Record"}.
  * For each construction, the columns shows the values of a pair of attributes in the form
- * <span style="background:#FFE87C"><var>left attribute</var></span> .
- * <span style="background:#FFE87C"><var>right attribute</var></span>:
+ * <span style="background:#ADDFFF"><var>left</var></span>.<span style="background:#FFE87C"><var>right</var></span>:
  *
  * <blockquote>
  * <table style="border-spacing:21pt 0">
