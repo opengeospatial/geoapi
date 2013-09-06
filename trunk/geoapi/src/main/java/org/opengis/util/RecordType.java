@@ -144,8 +144,10 @@ public interface RecordType extends Type {
     /**
      * Looks up the provided attribute name and returns the associated type name. If the attribute name is
      * not defined in this record type, then this method returns {@code null}. This method is functionally
-     * equivalent to <code>{@linkplain #getMemberTypes()}.{@linkplain Map#get get}(name).{@linkplain
-     * Type#getTypeName() getTypeName()}</code>.
+     * equivalent to the following code, omitting the check for {@code null} values:
+     *
+     * <blockquote><code>return {@linkplain #getMemberTypes()}.{@linkplain Map#get get}(name).{@linkplain
+     * Type#getTypeName() getTypeName()}</code></blockquote>
      *
      * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
      * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
