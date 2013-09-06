@@ -45,12 +45,17 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Supplementary identification and remarks information for a CRS or CRS-related object.
- * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- * the {@linkplain ReferenceIdentifier#getAuthority authority} and
- * {@linkplain ReferenceIdentifier#getCode authority code} values shall be set to the
+ * Some typical {@code IdentifiedObject} sub-types are
+ * {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic datum} (e.g. "<cite>World Geodetic System 1984</cite>"),
+ * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. "<cite>WGS 84 / World Mercator</cite>") and
+ * {@linkplain org.opengis.referencing.operation.Projection map projection} (e.g. "<cite>Mercator (variant A)</cite>").
+ *
+ * <p>When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
+ * the {@linkplain ReferenceIdentifier#getAuthority() authority} and
+ * {@linkplain ReferenceIdentifier#getCode() authority code} values shall be set to the
  * authority name of the factory object, and the authority code supplied by the client,
  * respectively. The other values may or may not be set. If the authority is EPSG, the
- * implementer may consider using the corresponding metadata values in the EPSG tables.
+ * implementer may consider using the corresponding metadata values in the EPSG tables.</p>
  *
  * @departure harmonization
  *   ISO 19111 defines an <code>IdentifiedObjectBase</code> interface. The later is omitted in

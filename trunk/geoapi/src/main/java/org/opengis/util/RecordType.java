@@ -92,6 +92,11 @@ public interface RecordType extends Type {
     /**
      * Returns the schema that contains this record type.
      *
+     * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * this method can be though as the equivalent of the Java {@link Class#getPackage()} method.
+     * </font></blockquote>
+     *
      * @return The schema that contains this record type.
      *
      * @departure extension

@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * are all identified by {@linkplain LocalName local name} or some subclass.  A schema's location
  * in the hierarchy can be communicated by
  *
- * <code>{@linkplain #getSchemaName()}.{@linkplain LocalName#scope scope()}.{@linkplain NameSpace#name name()}</code>.
+ * <code>{@linkplain #getSchemaName()}.{@linkplain LocalName#scope() scope()}.{@linkplain NameSpace#name() name()}</code>.
  * </p>
  *
  * @author  Bryce Nordgren (USDA)
@@ -87,7 +87,7 @@ public interface RecordSchema {
      * defined within this schema, then this method returns {@code null}. This is functionally equivalent
      * to <code>{@linkplain #getDescription()}.{@linkplain Map#get get}(name)</code>.
      *
-     * @param  name The name of type type to lookup.
+     * @param  name The name of the type to lookup.
      * @return The type for the given name, or {@code null} if none.
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)

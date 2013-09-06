@@ -110,24 +110,25 @@ public interface Datum extends IdentifiedObject {
      * A description, possibly including coordinates of an identified point or points, of the
      * relationship used to anchor the coordinate system to the Earth or alternate object.
      * Also known as the "origin", especially for Engineering and Image Datums.
-     * <p>
+     *
      * <ul>
-     *   <li>For a geodetic datum, this anchor may be a point known as the fundamental point, which
-     *       is traditionally the point where the relationship between geoid and ellipsoid is defined,
+     *   <li>For a {@link GeodeticDatum}, this anchor may be a point known as the fundamental point,
+     *       which is traditionally the point where the relationship between geoid and ellipsoid is defined,
      *       together with a direction from that point. In other cases, the anchor may consist of a
      *       number of points. In those cases, the parameters defining the geoid/ellipsoid relationship
      *       have then been averaged for these points, and the coordinates of the points adopted as the
      *       datum definition.</li>
      *
-     *   <li>For an engineering datum, the anchor may be an identified physical point with the
+     *   <li>For an {@link EngineeringDatum}, the anchor may be an identified physical point with the
      *       orientation defined relative to the object.</li>
      *
-     *   <li>For an image datum, the anchor point is usually either the centre of the image or the
+     *   <li>For an {@link ImageDatum}, the anchor point is usually either the centre of the image or the
      *       corner of the image. The coordinate system orientation is defined through the
      *       {@link org.opengis.referencing.cs.AxisDirection} class.</li>
      *
-     *   <li>For a temporal datum, this attribute is not defined. Instead of the anchor point,
-     *       a temporal datum carries a separate time origin of type {@link Date}.</li>
+     *   <li>For a {@link TemporalDatum}, this attribute is not defined. Instead of the anchor point,
+     *       a temporal datum carries a separate {@linkplain TemporalDatum#getOrigin() time origin}
+     *       of type {@link Date}.</li>
      * </ul>
      *
      * @return A description of the anchor point, or {@code null} if none.
@@ -141,11 +142,12 @@ public interface Datum extends IdentifiedObject {
      * The time after which this datum definition is valid. This time may be precise (e.g. 1997
      * for IRTF97) or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually
      * refers to the year in which a major recalculation of the geodetic control network, underlying
-     * the datum, was executed or initiated. An old datum can remain valid after a new datum is
-     * defined. Alternatively, a datum may be superseded by a later datum, in which case the
-     * realization epoch for the new datum defines the upper limit for the validity of the
-     * superseded datum.
-     * <p>
+     * the datum, was executed or initiated.
+     *
+     * <p>An old datum can remain valid after a new datum is defined.
+     * Alternatively, a datum may be superseded by a later datum, in which case the realization epoch
+     * for the new datum defines the upper limit for the validity of the superseded datum.</p>
+     *
      * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change

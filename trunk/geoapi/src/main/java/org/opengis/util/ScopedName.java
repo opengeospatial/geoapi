@@ -55,8 +55,9 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain NameSpace#isGlobal global}.</p>
  *
  * <p><b>Example</b>:
- * The illustration below shows the head, tail, path and name of {@code "org.opengis.util.Record"}.</p>
- * <blockquote><table border="1" cellpadding="15"><tr><td><table border="0">
+ * The illustration below shows the head, tail, path and tip of {@code "org.opengis.util.Record"}.
+ * A more complete illustration is provided in the {@link GenericName} javadoc.</p>
+ * <blockquote><table border="0">
  *   <tr>
  *     <th align="right">org</th>
  *     <th>.</th><th>opengis</th>
@@ -71,7 +72,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td style="background:wheat" colspan="5">{@linkplain #path() path}</td><td></td>
  *     <td style="background:wheat" colspan="1">{@linkplain #tip() tip}</td>
  *   </tr>
- * </table></td></tr></table></blockquote>
+ * </table></blockquote>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
@@ -91,8 +92,11 @@ public interface ScopedName extends GenericName {
      *       <code>this.{@linkplain #scope() scope()}</code></li>
      * </ul>
      *
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.
+     * <p>In the {@link GenericName GenericName} javadoc,
+     * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
+     *
+     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * <p><b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
@@ -116,8 +120,11 @@ public interface ScopedName extends GenericName {
      *   <code>this.{@linkplain #getParsedNames getParsedNames()}.sublist(1, {@linkplain #depth depth})</code></li>
      * </ul>
      *
-     * This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
-     * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.
+     * <p>In the {@link GenericName GenericName} javadoc,
+     * the tails are the orange elements in the <var>head</var>.<var>tail</var> column.</p>
+     *
+     * <p>This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
+     * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * @return All elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -136,8 +143,11 @@ public interface ScopedName extends GenericName {
      *   <code>this.{@linkplain #getParsedNames() getParsedNames()}.sublist(0, {@linkplain #depth() depth}-1)</code></li>
      * </ul>
      *
-     * This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
-     * Name.getPrefix}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.
+     * <p>In the {@link GenericName GenericName} javadoc,
+     * the paths are the blue elements in the <var>path</var>.<var>tip</var> column.</p>
+     *
+     * <p>This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
+     * Name.getPrefix}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * @return All elements except the last one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -151,6 +161,9 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns the last element in the sequence of {@linkplain #getParsedNames() parsed names}.
+     *
+     * <p>In the {@link GenericName GenericName} javadoc,
+     * the tips are the orange elements in the <var>path</var>.<var>tip</var> column.</p>
      *
      * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
      * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>

@@ -52,96 +52,44 @@ import static org.opengis.annotation.Specification.*;
  *       themselves.</li>
  * </ul>
  *
- * Names are <em>immutables</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
- * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope scope}
- * like {@code "util.Record"} in the {@code "org.opengis"} scope. The illustration below shows all
- * possible constructions for {@code "org.opengis.util.Record"}. They are all instances of
- * {@link ScopedName} except the last one which is a {@link LocalName}.
+ * Names are <em>immutable</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
+ * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope() scope}
+ * like {@code "util.Record"} in the {@code "org.opengis"} scope. In the following illustration,
+ * each line is one possible construction for {@code "org.opengis.util.Record"}.
+ * For each construction, the columns shows the values of a pair of attributes in the form
+ * <span style="background:#FFE87C"><var>left attribute</var></span> .
+ * <span style="background:#FFE87C"><var>right attribute</var></span>:
  *
- * <blockquote><table border="1" cellpadding="15"><tr><td><table border="0" cellspacing="0">
+ * <table style="border-spacing:21pt 0">
  *   <tr>
- *     <td align="right"><b>org</b></td>
- *     <td><b>.</b></td><td><b>opengis</b></td>
- *     <td><b>.</b></td><td><b>util</b></td>
- *     <td><b>.</b></td><td><b>Record</b></td>
- *     <td width="50"></td>
- *     <td><b>{@link #scope()}</b></td>
- *     <td align="right"><b>{@link #getParsedNames()}</b></td>
+ *     <th>{@linkplain #scope() scope}.this</th>
+ *     <th>{@linkplain #head() head}.{@linkplain ScopedName#tail() tail}</th>
+ *     <th>{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
+ *     <th>Type</th>
+ *   </tr><tr>
+ *     <td><code><span style="background:#FFE87C">org.opengis.util.Record</span></code></td>
+ *     <td><code><span style="background:#ADDFFF">org.</span><span style="background:#FFE87C">opengis.util.Record</span></code></td>
+ *     <td><code><span style="background:#ADDFFF">org.opengis.util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.ScopedName#isGlobal() global scope}</td>
+ *   </tr><tr>
+ *     <td><code><span style="background:#ADDFFF">org</span>.<span style="background:#FFE87C">opengis.util.Record</span></code></td>
+ *     <td><code>org.<span style="background:#ADDFFF">opengis.</span><span style="background:#FFE87C">util.Record</span></code></td>
+ *     <td><code>org.<span style="background:#ADDFFF">opengis.util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td>{@link org.opengis.util.ScopedName}</td>
+ *   </tr><tr>
+ *     <td><code><span style="background:#ADDFFF">org.opengis</span>.<span style="background:#FFE87C">util.Record</span></code></td>
+ *     <td><code>org.opengis.<span style="background:#ADDFFF">util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td><code>org.opengis.<span style="background:#ADDFFF">util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td>{@link org.opengis.util.ScopedName}</td>
+ *   </tr><tr>
+ *     <td><code><span style="background:#ADDFFF">org.opengis.util</span>.<span style="background:#FFE87C">Record</span></code></td>
+ *     <td><code>org.opengis.util.<span style="background:#ADDFFF">Record</span></code></td>
+ *     <td><code>org.opengis.util.<span style="background:#FFE87C">Record</span></code></td>
+ *     <td>{@link org.opengis.util.LocalName}</td>
  *   </tr>
- *   <tr align="center">
- *     <td style="background:palegoldenrod" colspan="1"><font size="-1">{@linkplain #head() head}</font></td><td></td>
- *     <td style="background:palegoldenrod" colspan="5"><font size="-1">{@linkplain ScopedName#tail() tail}</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" style="background:beige" align="left">{@linkplain NameSpace#isGlobal() global}</td>
- *     <td rowspan="2" style="background:beige" align="right">{{@code "org"}, {@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:wheat" colspan="5"><font size="-1">{@linkplain ScopedName#path() path}</font></td><td></td>
- *     <td style="background:wheat" colspan="1"><font size="-1">{@linkplain #tip() tip}</font></td>
- *   </tr>
+ * </table>
  *
- *   <tr><td colspan="7" height="15"></td></tr>
- *   <tr>
- *     <td align="right">org</td>
- *     <td>.</td><td><b>opengis</b></td>
- *     <td><b>.</b></td><td><b>util</b></td>
- *     <td><b>.</b></td><td><b>Record</b></td>
- *     <td colspan="3"></td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:palegoldenrod" colspan="1" rowspan="2"><font size="-1">{@linkplain #scope() scope}</font></td><td rowspan="3"></td>
- *     <td style="background:palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td style="background:palegoldenrod" colspan="3"><font size="-1">tail</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" style="background:beige" align="left">{@code "org"}</td>
- *     <td rowspan="2" style="background:beige" align="right">{{@code "opengis"}, {@code "util"}, {@code "Record"}}</td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:wheat" colspan="3"><font size="-1">path</font></td><td></td>
- *     <td style="background:wheat" colspan="1"><font size="-1">tip</font></td>
- *   </tr>
- *
- *   <tr><td colspan="7" height="15"></td></tr>
- *   <tr>
- *     <td align="right">org</td>
- *     <td>.</td><td>opengis</td>
- *     <td>.</td><td><b>util</b></td>
- *     <td><b>.</b></td><td><b>Record</b></td>
- *     <td colspan="3"></td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:palegoldenrod" colspan="3" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
- *     <td style="background:palegoldenrod" colspan="1"><font size="-1">head</font></td><td></td>
- *     <td style="background:palegoldenrod" colspan="1"><font size="-1">tail</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" style="background:beige" align="left">{@code "org.opengis"}</td>
- *     <td rowspan="2" style="background:beige" align="right">{{@code "util"}, {@code "Record"}}</td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:wheat" colspan="1"><font size="-1">path</font></td><td></td>
- *     <td style="background:wheat" colspan="1"><font size="-1">tip</font></td>
- *   </tr>
- *
- *   <tr><td colspan="7" height="15"></td></tr>
- *   <tr>
- *     <td align="right">org</td>
- *     <td>.</td><td>opengis</td>
- *     <td>.</td><td>util</td>
- *     <td>.</td><td><b>Record</b></td>
- *     <td colspan="3"></td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:palegoldenrod" colspan="5" rowspan="2"><font size="-1">scope</font></td><td rowspan="3"></td>
- *     <td style="background:palegoldenrod" colspan="1"><font size="-1">head</font></td>
- *     <td rowspan="2"></td>
- *     <td rowspan="2" style="background:beige" align="left">{@code "org.opengis.util"}</td>
- *     <td rowspan="2" style="background:beige" align="right">{{@code "Record"}}</td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:wheat" colspan="1"><font size="-1">tip</font></td>
- *   </tr>
- * </table></td></tr></table></blockquote>
- *
+ * <h3>Ordering</h3>
  * <p>The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
  * A recommended practice is to {@linkplain String#compareTo compare lexicographically} each
  * element in the {@linkplain #getParsedNames() list of parsed names}. Specific attributes of
@@ -166,11 +114,15 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns the scope (name space) in which this name is local. The scope of a name
      * determines where a name starts. The scope is set on creation and is not modifiable.
      *
-     * <p><b>Example</b>:
+     * <p>In the {@linkplain GenericName overview illustration},
+     * the scopes are the blue elements in the <var>scope</var>.<var>this</var> column.</p>
+     *
+     * <blockquote><font size=-1><b>Example</b>:
      * For a {@linkplain #toFullyQualifiedName() fully qualified name} (a name having a
      * {@linkplain NameSpace#isGlobal() global namespace}) {@code "org.opengis.util.Record"},
      * if this instance is the {@code "util.Record"} name, then the scope of this instance
-     * has the {@code "org.opengis"} {@linkplain NameSpace#name() name}.</p>
+     * has the {@code "org.opengis"} {@linkplain NameSpace#name() name}.
+     * </font></blockquote>
      *
      * @return The scope of this name.
      *
@@ -185,13 +137,14 @@ public interface GenericName extends Comparable<GenericName> {
      * any {@link LocalName}, it is always one. For a {@link ScopedName} it is some number greater than or
      * equal to 2.
      *
-     * <p>This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</p>
-     *
-     * <p><b>Example</b>:
+     * <blockquote><font size=-1><b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall return
      * {@code 4}. If this name is {@code "util.Record"} in the {@code "org.opengis"} scope, then
-     * this method shall return {@code 2}.</p>
+     * this method shall return {@code 2}.
+     * </font></blockquote>
+     *
+     * <p>This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
+     * method from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * @return The depth of this name.
      *
@@ -205,14 +158,18 @@ public interface GenericName extends Comparable<GenericName> {
      * The length of this sequence is the {@linkplain #depth() depth}. It does not include
      * the {@linkplain #scope() scope}.
      *
-     * <p>This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <p>In the {@linkplain GenericName overview illustration},
+     * the parsed names are the list of elements in orange part of the <var>scope</var>.<var>this</var> column.</p>
      *
-     * <p><b>Example</b>:
+     * <blockquote><font size=-1><b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns a
      * list containing {@code {"org", "opengis", "util", "Record"}} elements in that iteration order.
      * If this name is {@code "util.Record"} in scope {@code "org.opengis"}, then this method shall
-     * returns a list containing only {@code {"util", "Record"}} elements.</p>
+     * returns a list containing only {@code {"util", "Record"}} elements.
+     * </font></blockquote>
+     *
+     * <p>This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
+     * method from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * @return The local names making this generic name, without the {@linkplain #scope() scope}.
      *         Shall never be {@code null} neither empty.
@@ -224,12 +181,15 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns the first element in the sequence of {@linkplain #getParsedNames() parsed names}.
      * For any {@link LocalName}, this is always {@code this}.
      *
+     * <p>In the {@linkplain GenericName overview illustration},
+     * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
+     *
+     * <blockquote><font size=-1><b>Example</b>:
+     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.
+     * </font></blockquote>
+     *
      * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
      * Name.get}(0)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
-     *
-     * <p><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
-     * {@linkplain #scope() scope}), then this method shall returns {@code "org"}.</p>
      *
      * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -247,12 +207,16 @@ public interface GenericName extends Comparable<GenericName> {
      * Returns the last element in the sequence of {@linkplain #getParsedNames() parsed names}.
      * For any {@link LocalName}, this is always {@code this}.
      *
+     * <p>In the {@linkplain GenericName overview illustration},
+     * the tips are the orange elements in the <var>head</var>.<var>tail</var> column.</p>
+     *
+     * <blockquote><font size=-1><b>Example</b>:
+     * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
+     * {@linkplain #scope scope}), then this method shall returns {@code "Record"}.
+     * </font></blockquote>
+     *
      * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
      * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
-     *
-     * <p><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
-     * {@linkplain #scope scope}), then this method shall returns {@code "Record"}.</p>
      *
      * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -270,10 +234,11 @@ public interface GenericName extends Comparable<GenericName> {
      * of a fully qualified name must be {@linkplain NameSpace#isGlobal() global}. If the scope
      * of this name is already global, then this method shall returns {@code this}.
      *
-     * <p><b>Example</b>:
+     * <blockquote><font size=-1><b>Example</b>:
      * If {@code this} name is {@code "util.Record"} ({@linkplain #depth() depth} of two) and its
      * {@linkplain #scope() scope} has the {@code "org.opengis"} {@linkplain NameSpace#name() name},
-     * then the fully qualified name shall be {@code "org.opengis.util.Record"}.</p>
+     * then the fully qualified name shall be {@code "org.opengis.util.Record"}.
+     * </font></blockquote>
      *
      * @return The fully-qualified name (never {@code null}).
      *
@@ -306,13 +271,14 @@ public interface GenericName extends Comparable<GenericName> {
      *       List#addAll addAll}(</code><var>this</var>.<code>getParsedNames())</code></li>
      * </ul>
      *
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
-     * Name.addAll}(0,name)</code> from the <cite>Java Naming and Directory Interface</cite>.
-     *
-     * <p><b>Example</b>:
+     * <blockquote><font size=-1><b>Example</b>:
      * If {@code this} name is {@code "util.Record"} and the given {@code scope} argument is
      * {@code "org.opengis"}, then {@code this.push(scope)} shall returns
-     * {@code "org.opengis.util.Record"}.</p>
+     * {@code "org.opengis.util.Record"}.
+     * </font></blockquote>
+     *
+     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
+     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
      *
      * @param scope The name to use as prefix.
      * @return A concatenation of the given scope with this name.
@@ -323,24 +289,24 @@ public interface GenericName extends Comparable<GenericName> {
     ScopedName push(GenericName scope);
 
     /**
-     * Returns a string representation of this generic name. This string representation is
-     * local-independent. It contains all elements listed by {@link #getParsedNames()} separated
-     * by a namespace-dependent character (usually {@code :} or {@code /}). This rule implies
-     * that the result may or may not be fully qualified. Special cases:
+     * Returns a string representation of this generic name. This string representation is local-independent.
+     * It contains all elements listed by {@link #getParsedNames()} separated by a namespace-dependent character
+     * (usually {@code .}, {@code :} or {@code /}).
+     * This rule implies that the result may or may not be fully qualified.
+     *
+     * <p>Special cases:</p>
      *
      * <ul>
      *   <li><code>{@linkplain #toFullyQualifiedName()}.toString()</code> is guaranteed to
-     *       contains the {@linkplain #scope() scope} (if any).</li>
+     *       formats the {@linkplain #scope() scope} (if any) before this name.</li>
      *   <li><code>{@linkplain #tip()}.toString()</code> is guaranteed to <strong>not</strong>
-     *       contains any scope.</li>
+     *       formats any scope.</li>
      * </ul>
      *
-     * @return A local-independent string representation of this name.
+     * <p>In the {@link LocalName} sub-type, this method maps to the {@code aName} ISO 19103 attribute.
+     * In the {@link ScopedName} sub-type, this method maps to the {@code scopedName} ISO 19103 attribute.</p>
      *
-     * @departure easeOfUse
-     *   This method is not part of ISO specification. It does not provide any additional
-     *   information compared to that accessible though the standard methods defined by
-     *   ISO, but provides easier to access frequently requested information.
+     * @return A local-independent string representation of this name.
      */
     @Override
     String toString();
@@ -352,9 +318,10 @@ public interface GenericName extends Comparable<GenericName> {
      * specified locale}. If no international string is available, then this method shall
      * returns an implementation mapping to {@link #toString()} for all locales.
      *
-     * <p><b>Example</b>:
+     * <blockquote><font size=-1><b>Example</b>:
      * An implementation may want to localize the {@code "My Documents"} directory name
-     * into {@code "Mes Documents"} on French installation of Windows operating system.</p>
+     * into {@code "Mes Documents"} on French installation of Windows operating system.
+     * </font></blockquote>
      *
      * @return A localizable string representation of this name.
      *

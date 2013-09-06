@@ -169,7 +169,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   <tr>
      *     <th>Property name</th>
      *     <th>Value type</th>
-     *     <th>Value given to</th>
+     *     <th>Returned by</th>
      *   </tr>
      *   <tr>
      *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}</td>
@@ -220,7 +220,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   <tr>
      *     <th>Property name</th>
      *     <th>Value type</th>
-     *     <th>Value given to</th>
+     *     <th>Returned by</th>
      *   </tr>
      *   <tr>
      *     <td>{@value org.opengis.referencing.operation.OperationMethod#FORMULA_KEY}</td>

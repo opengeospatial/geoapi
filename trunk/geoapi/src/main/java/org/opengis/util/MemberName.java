@@ -38,10 +38,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The name to identify a member of a {@linkplain Record record}. This name bears an association
- * with a {@linkplain TypeName type name}. There may be alternate implementations of this: for
- * instance, one implementation may apply to the in-memory model.  Another may apply to a shapefile
- * data store, etc.
+ * The name to identify a member of a {@linkplain Record record}.
+ * In a {@code Record} containing an arbitrary amount of attributes:
+ *
+ * <ul>
+ *   <li>{@code MemberName} is the name of an attribute. It is similar the name of a field in a Java class.</li>
+ *   <li>{@link TypeName} is the name of the attribute definition in {@link RecordType}.
+ *       It is similar to the name of a {@link Class}.</li>
+ * </ul>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
@@ -57,4 +61,13 @@ public interface MemberName extends LocalName {
      */
     @UML(identifier="attributeType", obligation=MANDATORY, specification=ISO_19103)
     TypeName getAttributeType();
+
+    /**
+     * Returns the name of the member.
+     * The name typically uses a {@code '.'} navigation separator,
+     * so that it is of the form {@code "[schema].[type].[member]"}.
+     */
+    @Override
+    @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
+    String toString();
 }
