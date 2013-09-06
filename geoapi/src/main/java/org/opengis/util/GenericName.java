@@ -60,6 +60,7 @@ import static org.opengis.annotation.Specification.*;
  * <span style="background:#FFE87C"><var>left attribute</var></span> .
  * <span style="background:#FFE87C"><var>right attribute</var></span>:
  *
+ * <blockquote>
  * <table style="border-spacing:21pt 0">
  *   <tr>
  *     <th>{@linkplain #scope() scope}.this</th>
@@ -70,7 +71,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td><code><span style="background:#FFE87C">org.opengis.util.Record</span></code></td>
  *     <td><code><span style="background:#ADDFFF">org.</span><span style="background:#FFE87C">opengis.util.Record</span></code></td>
  *     <td><code><span style="background:#ADDFFF">org.opengis.util.</span><span style="background:#FFE87C">Record</span></code></td>
- *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.ScopedName#isGlobal() global scope}</td>
+ *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.NameSpace#isGlobal() global namespace}</td>
  *   </tr><tr>
  *     <td><code><span style="background:#ADDFFF">org</span>.<span style="background:#FFE87C">opengis.util.Record</span></code></td>
  *     <td><code>org.<span style="background:#ADDFFF">opengis.</span><span style="background:#FFE87C">util.Record</span></code></td>
@@ -88,13 +89,13 @@ import static org.opengis.annotation.Specification.*;
  *     <td>{@link org.opengis.util.LocalName}</td>
  *   </tr>
  * </table>
+ * </blockquote>
  *
  * <h3>Ordering</h3>
- * <p>The {@linkplain Comparable natural ordering} for generic names is implementation dependent.
- * A recommended practice is to {@linkplain String#compareTo compare lexicographically} each
- * element in the {@linkplain #getParsedNames() list of parsed names}. Specific attributes of
- * the name, such as how it treats case, may affect the ordering. In general, two names of
- * different classes may not be compared.</p>
+ * <p>The recommended {@linkplain Comparable natural ordering} for generic names is to
+ * {@linkplain String#compareTo compare lexicographically} each element in the
+ * {@linkplain #getParsedNames() list of parsed names}. Specific attributes of
+ * the name, such as how it treats case, may affect the ordering.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)

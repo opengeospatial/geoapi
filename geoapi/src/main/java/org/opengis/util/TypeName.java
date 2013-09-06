@@ -49,7 +49,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * </ul>
  *
  * <p><b>Comparison with the Java language:</b><br>
- * A {@code TypeName} is similar the name of a java {@link Class}.
+ * A {@code TypeName} is similar to the name of a java {@link Class}.
  * By contrast, a {@link MemberName} is similar to the name of a field in a Java class.</p>
  *
  * @author  Bryce Nordgren (USDA)
