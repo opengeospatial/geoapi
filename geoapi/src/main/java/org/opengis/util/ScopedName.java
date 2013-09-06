@@ -121,7 +121,7 @@ public interface ScopedName extends GenericName {
      * </ul>
      *
      * <p>In the {@link GenericName GenericName} javadoc,
-     * the tails are the orange elements in the <var>head</var>.<var>tail</var> column.</p>
+     * the tails are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <p>This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
      * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
@@ -163,7 +163,7 @@ public interface ScopedName extends GenericName {
      * Returns the last element in the sequence of {@linkplain #getParsedNames() parsed names}.
      *
      * <p>In the {@link GenericName GenericName} javadoc,
-     * the tips are the orange elements in the <var>path</var>.<var>tip</var> column.</p>
+     * the tips are the yellow elements in the <var>path</var>.<var>tip</var> column.</p>
      *
      * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
      * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>

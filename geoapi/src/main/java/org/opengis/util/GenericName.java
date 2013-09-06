@@ -56,8 +56,10 @@ import static org.opengis.annotation.Specification.*;
  * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope() scope}
  * like {@code "util.Record"} in the {@code "org.opengis"} scope. In the following illustration,
  * each line is one possible construction for {@code "org.opengis.util.Record"}.
- * For each construction, the columns shows the values of a pair of attributes in the form
- * <span style="background:#ADDFFF"><var>left</var></span>.<span style="background:#FFE87C"><var>right</var></span>:
+ * For each construction, the first columns shows the name in a yellow background. The second and third columns show the
+ * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
+ * (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
+ * pairs of attributes, respectively:
  *
  * <blockquote>
  * <table style="border-spacing:21pt 0">
@@ -67,24 +69,24 @@ import static org.opengis.annotation.Specification.*;
  *     <th>{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
  *     <th>Type</th>
  *   </tr><tr>
- *     <td><code><span style="background:#FFE87C">org.opengis.util.Record</span></code></td>
- *     <td><code><span style="background:#ADDFFF">org.</span><span style="background:#FFE87C">opengis.util.Record</span></code></td>
- *     <td><code><span style="background:#ADDFFF">org.opengis.util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td><code><span style="background:Yellow">org.opengis.util.Record</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">org.</span><span style="background:Yellow">opengis.util.Record</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">org.opengis.util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.NameSpace#isGlobal() global namespace}</td>
  *   </tr><tr>
- *     <td><code><span style="background:#ADDFFF">org</span>.<span style="background:#FFE87C">opengis.util.Record</span></code></td>
- *     <td><code>org.<span style="background:#ADDFFF">opengis.</span><span style="background:#FFE87C">util.Record</span></code></td>
- *     <td><code>org.<span style="background:#ADDFFF">opengis.util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">org</span>.<span style="background:Yellow">opengis.util.Record</span></code></td>
+ *     <td><code>org.<span style="background:LightSkyBlue">opengis.</span><span style="background:Yellow">util.Record</span></code></td>
+ *     <td><code>org.<span style="background:LightSkyBlue">opengis.util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName}</td>
  *   </tr><tr>
- *     <td><code><span style="background:#ADDFFF">org.opengis</span>.<span style="background:#FFE87C">util.Record</span></code></td>
- *     <td><code>org.opengis.<span style="background:#ADDFFF">util.</span><span style="background:#FFE87C">Record</span></code></td>
- *     <td><code>org.opengis.<span style="background:#ADDFFF">util.</span><span style="background:#FFE87C">Record</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">org.opengis</span>.<span style="background:Yellow">util.Record</span></code></td>
+ *     <td><code>org.opengis.<span style="background:LightSkyBlue">util.</span><span style="background:Yellow">Record</span></code></td>
+ *     <td><code>org.opengis.<span style="background:LightSkyBlue">util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName}</td>
  *   </tr><tr>
- *     <td><code><span style="background:#ADDFFF">org.opengis.util</span>.<span style="background:#FFE87C">Record</span></code></td>
- *     <td><code>org.opengis.util.<span style="background:#ADDFFF">Record</span></code></td>
- *     <td><code>org.opengis.util.<span style="background:#FFE87C">Record</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">org.opengis.util</span>.<span style="background:Yellow">Record</span></code></td>
+ *     <td><code>org.opengis.util.<span style="background:LightSkyBlue">Record</span></code></td>
+ *     <td><code>org.opengis.util.<span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.LocalName}</td>
  *   </tr>
  * </table>
@@ -159,7 +161,7 @@ public interface GenericName extends Comparable<GenericName> {
      * the {@linkplain #scope() scope}.
      *
      * <p>In the {@linkplain GenericName overview illustration},
-     * the parsed names are the list of elements in orange part of the <var>scope</var>.<var>this</var> column.</p>
+     * the parsed names are the list of elements in yellow part of the <var>scope</var>.<var>this</var> column.</p>
      *
      * <blockquote><font size=-1><b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns a
@@ -208,7 +210,7 @@ public interface GenericName extends Comparable<GenericName> {
      * For any {@link LocalName}, this is always {@code this}.
      *
      * <p>In the {@linkplain GenericName overview illustration},
-     * the tips are the orange elements in the <var>head</var>.<var>tail</var> column.</p>
+     * the tips are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <blockquote><font size=-1><b>Example</b>:
      * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
