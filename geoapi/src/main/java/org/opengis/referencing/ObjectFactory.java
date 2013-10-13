@@ -87,7 +87,7 @@ import org.opengis.util.GenericName;
  *     <td>{@link IdentifiedObject#getRemarks()}</td>
  *   </tr>
  *   <tr>
- *     <td colspan="4" style="line-height: 3em"><b>Alternative way to define the <code>"name"</code> property:</b></td>
+ *     <td colspan="4" style="padding: 9pt; background: white;">Alternative way to define the <code>"name"</code> property:</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
@@ -110,6 +110,9 @@ import org.opengis.util.GenericName;
  *     <td>{@link ReferenceIdentifier#getVersion()}</td>
  *   </tr>
  * </table>
+ *
+ * {@note Multi-values are arrays instead than collections in order to allow implementations to check the element
+ *        type by Java reflection. Such reflection can not be performed on collections because of type erasure.}
  *
  * <h3>Localization</h3>
  * Localizable attributes like {@code "remarks"} can be specified either as a single {@code InternationalString},
