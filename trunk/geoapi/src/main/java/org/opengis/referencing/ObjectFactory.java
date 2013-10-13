@@ -33,8 +33,6 @@ package org.opengis.referencing;
 
 import java.util.Map;
 import java.util.Locale;
-import java.util.Properties;
-import java.util.Collections;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -54,64 +52,70 @@ import org.opengis.util.GenericName;
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
  * <h3>Object properties</h3>
- * Most factory methods expect a {@link Map} argument. The map can be a {@link Properties} instance.
- * The map shall contains at least a {@code "name"} property. In the common case where the name is
- * the only property, the map may be constructed with
- *
- * <code>Collections.{@linkplain Collections#singletonMap singletonMap}("name", <var>theName</var>)</code>
- *
- * where <var>theName</var> is an arbitrary name as free text.
- *
- * <p>Implementations are encouraged to recognize at least the properties listed in the following table.
- * Additional implementation-specific properties can be added. Unknown properties shall be ignored.</p>
+ * Most factory methods expect a {@link Map Map&lt;String,?&gt;} argument.
+ * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
+ * together with the type of values associated to those keys (the <cite>alternative types</cite> column
+ * gives examples of types that factory implementations may accept as well for convenience).
+ * A value for the {@code "name"} key is mandatory, while all other properties are optional.
+ * Factory methods shall ignore unknown properties.
  *
  * <table class="ogc">
  *   <tr>
- *     <th>Property name</th>
+ *     <th>Key</th>
  *     <th>Value type</th>
- *     <th>Returned by</th>
+ *     <th>Alternative types</th>
+ *     <th>Value returned by</th>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
- *     <td>{@link org.opengis.referencing.ReferenceIdentifier} or {@link String}</td>
+ *     <td>{@link org.opengis.referencing.ReferenceIdentifier}</td><td>{@link String} (see <cite>alternative</cite> below)</td>
  *     <td>{@link IdentifiedObject#getName()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#ALIAS_KEY}</td>
- *     <td>{@link String}, <code>{@linkplain String}[]</code>, {@link GenericName} or <code>{@linkplain GenericName}[]</code></td>
+ *     <td><code>{@linkplain GenericName}[]</code></td><td>{@link GenericName}, {@link String} or <code>{@linkplain String}[]</code></td>
  *     <td>{@link IdentifiedObject#getAlias()}</td>
  *   </tr>
  *   <tr>
- *     <td>{@value org.opengis.metadata.Identifier#AUTHORITY_KEY}</td>
- *     <td>{@link String} or {@link Citation}</td>
- *     <td>{@link Identifier#getAuthority()} on the {@linkplain IdentifiedObject#getName name}</td>
- *   </tr>
- *   <tr>
- *     <td>{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}</td>
- *     <td>{@link String}</td>
- *     <td>{@link ReferenceIdentifier#getCodeSpace()} on the {@linkplain IdentifiedObject#getName name}</td>
- *   </tr>
- *   <tr>
- *     <td>{@value org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}</td>
- *     <td>{@link String}</td>
- *     <td>{@link ReferenceIdentifier#getVersion()} on the {@linkplain IdentifiedObject#getName name}</td>
- *   </tr>
- *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}</td>
- *     <td>{@link Identifier} or <code>{@linkplain Identifier}[]</code></td>
+ *     <td><code>{@linkplain Identifier}[]</code></td><td>{@link Identifier}</td>
  *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
- *     <td>{@link String} or {@link InternationalString}</td>
+ *     <td>{@link InternationalString}</td><td>{@link String} (see <cite>localization</cite> below)</td>
  *     <td>{@link IdentifiedObject#getRemarks()}</td>
+ *   </tr>
+ *   <tr>
+ *     <td colspan="4" style="line-height: 3em"><b>Alternative way to define the <code>"name"</code> property:</b></td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
+ *     <td>{@link String}</td><td></td>
+ *     <td>{@link Identifier#getCode()}</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@value org.opengis.metadata.Identifier#AUTHORITY_KEY}</td>
+ *     <td>{@link Citation}</td><td>{@link String}</td>
+ *     <td>{@link Identifier#getAuthority()}</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}</td>
+ *     <td>{@link String}</td><td></td>
+ *     <td>{@link ReferenceIdentifier#getCodeSpace()}</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@value org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}</td>
+ *     <td>{@link String}</td><td></td>
+ *     <td>{@link ReferenceIdentifier#getVersion()}</td>
  *   </tr>
  * </table>
  *
- * <p>The {@code "name"} property is mandatory. All others are optional.
- * All localizable attributes like {@code "remarks"} can have a language and country code suffix.
- * For example the {@code "remarks_fr"} property stands for remarks in {@linkplain Locale#FRENCH French} and the
- * {@code "remarks_fr_CA"} property stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.</p>
+ * <h3>Localization</h3>
+ * Localizable attributes like {@code "remarks"} can be specified either as a single {@code InternationalString},
+ * or as one or many {@code String}s associated to keys suffixed by a language and country code.
+ * For example the {@code "remarks_fr"} key stands for remarks in {@linkplain Locale#FRENCH French} and the
+ * {@code "remarks_fr_CA"} key stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.
  *
  * @departure harmonization
  *   This interface is not part of any OGC specification. It is added for uniformity,
