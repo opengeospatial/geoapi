@@ -124,8 +124,9 @@ public class ExtentValidator extends MetadataValidator {
         assertBetween("GeographicBoundingBox: illegal east bound.",  -180, +180, east);
         assertBetween("GeographicBoundingBox: illegal south bound.", -90,   +90, south);
         assertBetween("GeographicBoundingBox: illegal north bound.", -90,   +90, north);
-        assertTrue("GeographicBoundingBox: invalid range of longitudes.", west <= east);
-        assertTrue("GeographicBoundingBox: invalid range of latitudes.",  south <= north);
+        assertFalse("GeographicBoundingBox: invalid range of latitudes.",  south > north); // Accept NaN.
+        // Do not require west <= east, as this condition is not specified in ISO 19115.
+        // Some implementations may use west > east for box spanning the anti-meridian.
     }
 
     /**
