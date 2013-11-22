@@ -42,9 +42,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map
- * coordinate system defined in the Spatial Referencing System (SRS) so that any cell
- * in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing,
+ * Grid whose cells are regularly spaced in a geographic or projected coordinate reference system.
+ * Any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing,
  * and orientation indication of whether or not geographic.
  *
  * @author  Martin Desruisseaux (IRD)
