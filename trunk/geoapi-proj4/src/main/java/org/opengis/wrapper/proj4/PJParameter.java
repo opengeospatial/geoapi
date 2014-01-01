@@ -324,7 +324,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
 
     /**
      * Returns a new parameter with the same {@linkplain #name} than this parameter.
-     * The {@linkplain #value} is left to their default value.
+     * The {@linkplain #value} is left to their default value.
      *
      * @see #clone()
      */

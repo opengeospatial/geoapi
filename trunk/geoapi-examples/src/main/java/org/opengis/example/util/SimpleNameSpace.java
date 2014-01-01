@@ -66,7 +66,7 @@ public class SimpleNameSpace implements NameSpace, Serializable {
 
     /**
      * Creates a new instance for the given parent namespace and name. The new instance will share
-     * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
+     * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
      * which case the {@linkplain SimpleNameFactory#DEFAULT default factory} will be used.
      *
      * @param  parent The parent of the new namespace, or {@code null} if none.
@@ -89,7 +89,7 @@ public class SimpleNameSpace implements NameSpace, Serializable {
 
     /**
      * Creates a new instance for the given parent namespace and name. The new instance will share
-     * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
+     * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
      * which case the {@linkplain SimpleNameFactory#DEFAULT default factory} will be used.
      *
      * @param  parent The parent of the new namespace, or {@code null} if none.

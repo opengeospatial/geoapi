@@ -81,7 +81,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     static final String REPORTS_DIRECTORY_KEY = "reports.directory";
 
     /**
-     * The desktop for browse operations, or {@code null} if unsupported.
+     * The desktop for browse operations, or {@code null} if unsupported.
      */
     private final Desktop desktop;
 
@@ -126,7 +126,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     private final Runner runner;
 
     /**
-     * The test report which is currently shown in the "details" tab, or {@code null} if none.
+     * The test report which is currently shown in the "details" tab, or {@code null} if none.
      */
     private ResultEntry currentReport;
 
@@ -247,7 +247,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
 
     /**
      * Updates the content of the "Details" pane with information relative to the given entry.
-     * A {@code null} entry clears the "Details" pane.
+     * A {@code null} entry clears the "Details" pane.
      */
     private void setDetails(final ResultEntry entry) {
         String className  = null;

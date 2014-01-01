@@ -1461,7 +1461,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message  The message to print in case of failure.
      * @param expected The expected matrix of derivative values, estimated by finite differences.
      * @param actual   The actual matrix computed by the transform to be tested.
-     * @param tolmat   The tolerance value for each matrix elements, or {@code null} for a strict comparison.
+     * @param tolmat   The tolerance value for each matrix elements, or {@code null} for a strict comparison.
      * @throws DerivativeFailure If at least one matrix element is not equal to the expected value.
      *
      * @see #verifyDerivative(double[])

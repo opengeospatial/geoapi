@@ -504,7 +504,7 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally returns {@code null}, since this functionality is not supported yet.
-         * Note that {@code null} is not the same than an empty set, since the later would mean
+         * Note that {@code null} is not the same than an empty set, since the later would mean
          * that there is no supported code.
          */
         @Override

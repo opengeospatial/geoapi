@@ -113,7 +113,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     }
 
     /**
-     * A {@link GeographicCRS} specialization of {@link SimpleCRS}.
+     * A {@link GeographicCRS} specialization of {@link SimpleCRS}.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -196,7 +196,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     }
 
     /**
-     * A {@link VerticalCRS} specialization of {@link SimpleCRS} with its own datum.
+     * A {@link VerticalCRS} specialization of {@link SimpleCRS} with its own datum.
      *
      * <p>In order to keep the model simpler, this vertical CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many vertical CRS can have
@@ -279,7 +279,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     }
 
     /**
-     * A {@link TemporalCRS} specialization of {@link SimpleCRS} with its own datum.
+     * A {@link TemporalCRS} specialization of {@link SimpleCRS} with its own datum.
      *
      * <p>In order to keep the model simpler, this temporal CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many temporal CRS can have

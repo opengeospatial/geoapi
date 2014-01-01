@@ -135,7 +135,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
 
     /**
      * Invoked when the image {@linkplain #writer} is about to be used for the first time.
-     * Subclasses need to create a new {@link ImageWriter} instance if needed.
+     * Subclasses need to create a new {@link ImageWriter} instance if needed.
      *
      * <p>If the {@code optionallySetOutput} argument is {@code true}, then subclasses can optionally
      * {@linkplain ImageWriter#setOutput(Object) set the output} to a temporary file or other object
@@ -154,7 +154,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *    }
      *}</pre></blockquote>
      *
-     * This method may be invoked with a {@code false} argument value when the methods to be
+     * This method may be invoked with a {@code false} argument value when the methods to be
      * tested don't need an output, for example {@link ImageWriter#canWriteRasters()}.
      *
      * @param  optionallySetOutput {@code true} if this method can {@linkplain ImageWriter#setOutput(Object)
@@ -343,7 +343,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * sub-samplings and source bands values and invokes {@link ImageWriter#write(IIOMetadata,
      * IIOImage, ImageWriteParam)}.
      *
-     * <p>The above method call is repeated {@code numIterations} time with different parameters.
+     * <p>The above method call is repeated {@code numIterations} time with different parameters.
      * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
      * fields in this class.</p>
      *
@@ -430,7 +430,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * Tests the {@link ImageWriter#write(IIOMetadata, IIOImage, ImageWriteParam) ImageWriter.write}
      * method for a single band of byte values. First, this method creates an single-banded image
      * filled with random byte values. Then, this method invokes write the image an arbitrary amount
-     * of time for the following configurations (note: any {@code isXXXSupported} field
+     * of time for the following configurations (note: any {@code isXXXSupported} field
      * which was set to {@code false} prior the execution of this test will stay {@code false}):
      *
      * <ul>
@@ -533,7 +533,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Disposes the {@linkplain #reader} and the {@linkplain #writer} (if non-null) after each test.
+     * Disposes the {@linkplain #reader} and the {@linkplain #writer} (if non-null) after each test.
      * The default implementation performs the following cleanup:
      *
      * <ul>

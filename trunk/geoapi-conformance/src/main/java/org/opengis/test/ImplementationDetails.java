@@ -70,7 +70,7 @@ public interface ImplementationDetails {
      *    return config;
      *}</pre></blockquote>
      *
-     * If more than one {@code ImplementationDetails} is found on the classpath, then a logical {@code AND}
+     * If more than one {@code ImplementationDetails} is found on the classpath, then a logical {@code AND}
      * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(...)}
      * calls.
      *
@@ -90,7 +90,7 @@ public interface ImplementationDetails {
      * implementation being tested does not have the accuracy expected by the {@link TestCase}. In
      * such case, the object returned by this method can be used for relaxing the tolerance threshold.
      *
-     * <p>If more than one {@code ImplementationDetails} return a non-null value, then the threshold
+     * <p>If more than one {@code ImplementationDetails} return a non-null value, then the threshold
      * used by GeoAPI will be the maximal value returned by all {@code ToleranceModifier} objects.</p>
      *
      * @param  transform The transform being tested.

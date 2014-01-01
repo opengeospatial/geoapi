@@ -103,7 +103,7 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
+     * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
      */
     private static boolean isNull(final String message, final Object expected, final Object actual) {
         final boolean isNull = (actual == null);

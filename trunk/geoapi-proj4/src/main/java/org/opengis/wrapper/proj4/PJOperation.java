@@ -284,7 +284,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     }
 
     /**
-     * A specialization of {@link PJOperation} for map projections.
+     * A specialization of {@link PJOperation} for map projections.
      */
     static final class Projection extends PJOperation implements org.opengis.referencing.operation.Projection {
         Projection(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
@@ -292,7 +292,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
         }
 
         /**
-         * Always {@code null} by definition for map projection, according ISO 19111.
+         * Always {@code null} by definition for map projection, according ISO 19111.
          */
         @Override
         public String getOperationVersion() {

@@ -269,7 +269,7 @@ public abstract class Report {
      * used for fetching the character sequences from {@link InternationalString} objects,
      * for converting to lower-cases or for formatting numbers.
      *
-     * <p>The locale is fixed to {@linkplain Locale#ENGLISH English} for now, but may become
+     * <p>The locale is fixed to {@linkplain Locale#ENGLISH English} for now, but may become
      * modifiable in a future version.</p>
      *
      * @return The locale to use for formatting messages.
@@ -493,7 +493,7 @@ public abstract class Report {
 
     /**
      * Escape {@code <} and {@code >} characters for HTML. This method is null-safe.
-     * Empty strings are replaced by {@code null} value.
+     * Empty strings are replaced by {@code null} value.
      */
     static String escape(String text) {
         if (text != null) {

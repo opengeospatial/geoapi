@@ -224,7 +224,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns the value of the given parameter, or {@code null} if none. The given parameter key
+     * Returns the value of the given parameter, or {@code null} if none. The given parameter key
      * shall include the {@code '+'} prefix and {@code '='} suffix, for example {@code "+proj="}.
      *
      * @param  key The parameter name.

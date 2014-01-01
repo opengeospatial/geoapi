@@ -265,7 +265,7 @@ public final class ClassIndexTest implements FileFilter {
     }
 
     /**
-     * Returns {@code true} if the given file is a directory or a {@code .class} file.
+     * Returns {@code true} if the given file is a directory or a {@code .class} file.
      * This method is used in order to filter the directory of class files.
      *
      * @param  file The file to test.

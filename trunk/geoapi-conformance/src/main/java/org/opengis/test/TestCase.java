@@ -105,10 +105,10 @@ public strictfp abstract class TestCase {
     private static ClassLoader classLoader;
 
     /**
-     * Sets the class loader to use for loading implementations. A {@code null} value restores
+     * Sets the class loader to use for loading implementations. A {@code null} value restores
      * the default {@linkplain Thread#getContextClassLoader() context class loader}.
      *
-     * @param loader The class loader to use, or {@code null} for the default.
+     * @param loader The class loader to use, or {@code null} for the default.
      */
     static void setClassLoader(final ClassLoader loader) {
         synchronized (FACTORIES) {

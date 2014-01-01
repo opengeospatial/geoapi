@@ -210,7 +210,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
 
     /**
      * Returns a new group with the same {@linkplain #name name} and {@linkplain #parameters}
-     * than this group. The {@linkplain PJParameter#value value} of each parameter is left to
+     * than this group. The {@linkplain PJParameter#value value} of each parameter is left to
      * their default value.
      */
     @Override

@@ -56,7 +56,7 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.referencing.gigs.Series3000Test}</li>
  * </ul>
  *
- * All tests use {@link Factory} instances that are specific to the implementation being tested.
+ * All tests use {@link Factory} instances that are specific to the implementation being tested.
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
  * on the classpath. However implementors can override this default mechanism with explicit calls
@@ -129,7 +129,7 @@ public strictfp class TestSuite {
     /**
      * Returns a new array of the given type and length.
      *
-     * @param <T>    The compile-time type of the {@code type} class argument.
+     * @param <T>    The compile-time type of the {@code type} class argument.
      * @param type   The factory interface for which an array is desired.
      * @param length The length of the array to create.
      * @return A new array for components of the given type.
@@ -142,7 +142,7 @@ public strictfp class TestSuite {
     /**
      * Specifies the factory implementations to use for the given factory interface.
      *
-     * @param <T>     The compile-time type of the {@code type} class argument.
+     * @param <T>     The compile-time type of the {@code type} class argument.
      * @param type    The factory interface for which an implementation is specified.
      * @param factory The implementations to use for the given interface.
      */
@@ -159,7 +159,7 @@ public strictfp class TestSuite {
      * {@link #setFactories(Class, Factory[])} for the given interface. This method does
      * not scan the {@code META-INF/services/<T>} entries.
      *
-     * @param <T>  The compile-time type of the {@code type} class argument.
+     * @param <T>  The compile-time type of the {@code type} class argument.
      * @param type The factory interface for which an implementations is desired.
      * @return     The implementations for the given interface, or {@code null} if none.
      */
@@ -177,10 +177,10 @@ public strictfp class TestSuite {
     }
 
     /**
-     * Sets the class loader to use for loading implementations. A {@code null} value restores
+     * Sets the class loader to use for loading implementations. A {@code null} value restores
      * the default {@linkplain Thread#getContextClassLoader() context class loader}.
      *
-     * @param loader The class loader to use, or {@code null} for the default.
+     * @param loader The class loader to use, or {@code null} for the default.
      */
     public static void setClassLoader(final ClassLoader loader) {
         TestCase.setClassLoader(loader);
