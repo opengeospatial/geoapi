@@ -139,7 +139,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
     private final Preferences preferences;
 
     /**
-     * The desktop for browse operations, or {@code null} if unsupported.
+     * The desktop for browse operations, or {@code null} if unsupported.
      */
     private final Desktop desktop;
 

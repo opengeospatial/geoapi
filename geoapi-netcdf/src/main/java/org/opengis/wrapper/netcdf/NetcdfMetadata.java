@@ -129,7 +129,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * {@linkplain String#isEmpty() empty}.
      *
      * @param  name The case-insensitive attribute name.
-     * @return The non-empty attribute value, or {@code null} if none.
+     * @return The non-empty attribute value, or {@code null} if none.
      */
     private String getString(final String name) {
         final Attribute attribute = file.findGlobalAttributeIgnoreCase(name);
@@ -148,7 +148,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * result (if non null).
      *
      * @param  name The case-insensitive attribute name.
-     * @return The non-empty attribute value in upper-case, or {@code null} if none.
+     * @return The non-empty attribute value in upper-case, or {@code null} if none.
      */
     private String getUpperCase(final String name) {
         final String value = getString(name);
@@ -161,7 +161,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * null) in an {@link InternationalString} implementation.
      *
      * @param  name The case-insensitive attribute name.
-     * @return The non-empty attribute value, or {@code null} if none.
+     * @return The non-empty attribute value, or {@code null} if none.
      */
     private InternationalString getInternationalString(final String name) {
         final String value = getString(name);
@@ -173,7 +173,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * {@link #getString(String)}, then parses the value.
      *
      * @param  name The case-insensitive attribute name.
-     * @return The attribute value, or {@code null} if none or can not be parsed.
+     * @return The attribute value, or {@code null} if none or can not be parsed.
      */
     private Date getDate(final String name) {
         final String value = getString(name);
@@ -198,7 +198,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the value of the given attribute as a floating point value.
      *
      * @param  name The case-insensitive attribute name.
-     * @return The attribute value, or {@code NaN} if none.
+     * @return The attribute value, or {@code NaN} if none.
      * @throws NumberFormatException If the number can not be parsed.
      */
     private double getDouble(final String name) throws NumberFormatException {
@@ -403,7 +403,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
 
     /**
      * Returns the NetCDF {@linkplain NetcdfFile#getLocation() file location},
-     * or {@code null} if none.
+     * or {@code null} if none.
      */
     @Override
     public String getDataSetUri() {

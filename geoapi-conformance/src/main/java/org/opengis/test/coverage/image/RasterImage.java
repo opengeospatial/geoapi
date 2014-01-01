@@ -42,7 +42,7 @@ import java.awt.image.WritableRaster;
 
 
 /**
- * Wraps a {@link Raster} in a {@link RenderedImage} interface. This image has no color model.
+ * Wraps a {@link Raster} in a {@link RenderedImage} interface. This image has no color model.
  * While unusual, this is allowed by the {@link RenderedImage} interface.
  *
  * @author Martin Desruisseaux (Geomatys).

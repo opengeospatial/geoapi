@@ -57,7 +57,7 @@ public interface FactoryFilter {
      * {@code false} only when they really want to exclude a particular factory. For every
      * unknown factory, this method shall return {@code true}.
      *
-     * <p>If more than one {@code FactoryFilter} is found on the classpath, then the
+     * <p>If more than one {@code FactoryFilter} is found on the classpath, then the
      * given factory will be tested only if all {@code FactoryFilter.filter(...)}
      * calls returned {@code true}.</p>
      *

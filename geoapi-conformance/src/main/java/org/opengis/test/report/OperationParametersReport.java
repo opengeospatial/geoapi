@@ -193,7 +193,7 @@ public class OperationParametersReport extends Report {
 
         /**
          * Creates a new row initialized to a shallow copy of the given row.
-         * The {@link Map} and {@link List} collections are copied, but the
+         * The {@link Map} and {@link List} collections are copied, but the
          * content of those collections are not cloned.
          *
          * @param toCopy The row to copy.

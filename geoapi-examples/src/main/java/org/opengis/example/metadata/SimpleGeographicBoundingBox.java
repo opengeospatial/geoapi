@@ -100,7 +100,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
      *
      * @throws IllegalArgumentException If (<var>west bound</var> &gt; <var>east bound</var>)
      *         or (<var>south bound</var> &gt; <var>north bound</var>). Note that
-     *         {@linkplain Double#NaN NaN} values are allowed.
+     *         {@linkplain Double#NaN NaN} values are allowed.
      */
     public SimpleGeographicBoundingBox(final double westBoundLongitude,
                                        final double eastBoundLongitude,

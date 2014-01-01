@@ -44,7 +44,7 @@ import static org.junit.Assert.*;
 
 
 /**
- * A row-major iterator over sample values in a {@link Raster} or {@link RenderedImage}.
+ * A row-major iterator over sample values in a {@link Raster} or {@link RenderedImage}.
  * For any image (tiled or not), this class iterates first over the <em>bands</em>, then
  * over the <em>columns</em> and finally over the <em>rows</em>. If the image is tiled,
  * then this iterator will perform the necessary calls to the {@link RenderedImage#getTile(int, int)}
@@ -79,7 +79,7 @@ public strictfp class PixelIterator {
     private Raster raster;
 
     /**
-     * The bands to iterate over, or {@code null} if none.
+     * The bands to iterate over, or {@code null} if none.
      */
     private final int[] sourceBands;
 
@@ -369,7 +369,7 @@ public strictfp class PixelIterator {
 
     /**
      * Compares all sample values iterated by this {@code PixelIterator} with the sample values
-     * iterated by the given iterator. If a mismatch is found, then an {@link AssertionError} is
+     * iterated by the given iterator. If a mismatch is found, then an {@link AssertionError} is
      * thrown with a detailed error message.
      *
      * <p>This method does not verify the image sizes, number of tiles, number of bands, color

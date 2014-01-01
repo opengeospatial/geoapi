@@ -106,7 +106,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Creates a new parameter for the given {@link String} value.
      *
-     * <p>This method does not clone the arguments. If a non-null {@code aliases} collection
+     * <p>This method does not clone the arguments. If a non-null {@code aliases} collection
      * is given to this method, it shall be immutable.</p>
      *
      * @param  name The parameter name.
@@ -224,7 +224,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the {@linkplain #getValue() current value} as the default value.
      * This is consistent with the {@link #createValue()} method, which creates
-     * a copy of {@code NetcdfParameter} containing the same parameter value.
+     * a copy of {@code NetcdfParameter} containing the same parameter value.
      */
     @Override
     public T getDefaultValue() {

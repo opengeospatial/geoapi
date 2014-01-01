@@ -517,7 +517,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Sets the parameter value as a boolean. If {@linkplain #LENIENT lenient}, the boolean value
-     * {@code true} is stored as the numeric value 1 and the boolean value {@code false} is stored
+     * {@code true} is stored as the numeric value 1 and the boolean value {@code false} is stored
      * as the numeric value 0.
      *
      * @throws InvalidParameterValueException if this parameter can not be set to the given value.
@@ -561,7 +561,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns a new parameter with the same {@linkplain #authority authority}, {@linkplain #code code}
-     * and {@linkplain #type} than this parameter. The {@linkplain #value} is left to their default
+     * and {@linkplain #type} than this parameter. The {@linkplain #value} is left to their default
      * value.
      *
      * <blockquote><font size="-1"><b>Implementation note:</b>

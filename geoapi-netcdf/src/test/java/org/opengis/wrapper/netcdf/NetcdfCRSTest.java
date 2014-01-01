@@ -86,7 +86,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     /**
      * Tolerance factor for floating point comparison. We need enough tolerance for
      * comparing {@code float} values (used internally in some NetCDF files) with
-     * {@code double} values (used by the NetCDF wrappers).
+     * {@code double} values (used by the NetCDF wrappers).
      */
     private static final double EPS = 1E-6;
 

@@ -172,7 +172,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     /**
      * Invoked when the image {@linkplain #reader} is about to be used for the first time, or when
      * its {@linkplain ImageReader#getInput() input} needs to be reinitialized. Subclasses need to
-     * create a new {@link ImageReader} instance if needed and set its input in this method.
+     * create a new {@link ImageReader} instance if needed and set its input in this method.
      *
      * <p>This method may be invoked more than once during the same test if the input became invalid.
      * This may occur because the tests will read the same image many time in different ways, and not
@@ -191,7 +191,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *    }
      *}</pre></blockquote>
      *
-     * This method may be invoked with a {@code false} argument value when the methods to be
+     * This method may be invoked with a {@code false} argument value when the methods to be
      * tested don't need an input, for example {@link ImageReader#canReadRaster()}.
      *
      * @param  setInput {@code true} if this method shall {@linkplain ImageReader#setInput(Object)
@@ -218,7 +218,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @param  <T>      The compile-time type of the object to search.
      * @param  type     The type of the object to search.
      * @param  metadata The metadata where to search for the object.
-     * @return The user object of the given type, or {@code null} if not found.
+     * @return The user object of the given type, or {@code null} if not found.
      * @throws IOException If this method requires an I/O operation and that operation failed.
      */
     protected <T> T getMetadata(final Class<T> type, final IIOMetadata metadata) throws IOException {
@@ -247,7 +247,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @param  <T>  The compile-time type of the object to search.
      * @param  type The type of the object to search.
      * @param  node The node where to search for the object, or {@code null} if none.
-     * @return The user object of the given type, or {@code null} if not found.
+     * @return The user object of the given type, or {@code null} if not found.
      */
     private static <T> T getMetadata(final Class<T> type, final Node node) {
         if (node == null) { // Because IIOMetadata.getAsTree(String) may return null.
@@ -377,7 +377,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Reads random subsets of the image at the given index, and compares the result with the
      * given complete image. This method sets the {@link ImageReadParam} parameters to random
      * sub-regions, sub-samplings and source bands values and invokes one of the following
-     * methods as determined by the {@code api} argument:
+     * methods as determined by the {@code api} argument:
      *
      * <ul>
      *   <li><code>{@link ImageReader#read(int, ImageReadParam)}</code></li>
@@ -385,7 +385,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *   <li><code>{@link ImageReader#readRaster(int, ImageReadParam)}</code></li>
      * </ul>
      *
-     * The above method call is repeated {@code numIterations} time with different parameters.
+     * The above method call is repeated {@code numIterations} time with different parameters.
      * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
      * fields in this class.
      *
@@ -435,7 +435,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Tests the {@link ImageReader#read(int, ImageReadParam) ImageReader.read} method.
      * First, this method reads the full image with a call to {@link ImageReader#read(int)}.
      * Then, this method invokes {@link ImageReader#read(int, ImageReadParam)} an arbitrary
-     * amount of time for the following configurations (note: any {@code isXXXSupported} field
+     * amount of time for the following configurations (note: any {@code isXXXSupported} field
      * which was set to {@code false} prior the execution of this test will stay {@code false}):
      *
      * <ul>

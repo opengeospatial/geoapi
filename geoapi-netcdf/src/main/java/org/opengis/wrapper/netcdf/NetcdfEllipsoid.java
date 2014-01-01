@@ -31,7 +31,7 @@ import org.opengis.referencing.crs.GeographicCRS;
 /**
  * An {@link Ellipsoid} implementation backed by a NetCDF {@link Earth} object.
  * This class implements also the {@link GeographicCRS} interface for allowing
- * use of CRS defined only by the NetCDF {@code Earth} object.
+ * use of CRS defined only by the NetCDF {@code Earth} object.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

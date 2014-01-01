@@ -68,7 +68,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
     }
 
     /**
-     * Returns {@code null} since there is not transform to test.
+     * Returns {@code null} since there is not transform to test.
      */
     @Override
     public ToleranceModifier tolerance(final MathTransform transform) {

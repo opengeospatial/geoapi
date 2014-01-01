@@ -352,7 +352,7 @@ public strictfp final class ToleranceModifiers {
      *
      * @param  modifiers The modifiers to iterate over.
      * @return A filter for the maximal tolerance threshold of all the given modifiers,
-     *         or {@code null} if the given {@code modifiers} array is empty.
+     *         or {@code null} if the given {@code modifiers} array is empty.
      */
     public static ToleranceModifier maximum(final ToleranceModifier... modifiers) {
         final int length = modifiers.length;
@@ -437,7 +437,7 @@ public strictfp final class ToleranceModifiers {
      *
      * @param  first  The first modifier, or {@code null}.
      * @param  second The second modifier, or {@code null}.
-     * @return The concatenation of the two given identifiers, or {@code null} if both
+     * @return The concatenation of the two given identifiers, or {@code null} if both
      *         identifiers are {@code null}.
      */
     public static ToleranceModifier concatenate(final ToleranceModifier first, final ToleranceModifier second) {

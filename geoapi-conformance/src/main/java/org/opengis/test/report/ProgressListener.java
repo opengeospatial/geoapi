@@ -51,7 +51,7 @@ class ProgressListener {
 
     /**
      * The value where the progress is expected to end. This is set to the value of the
-     * {@code end} parameter given during the last call to {@link #progress(int, int)} method.
+     * {@code end} parameter given during the last call to {@link #progress(int, int)} method.
      */
     private int progressEnd;
 

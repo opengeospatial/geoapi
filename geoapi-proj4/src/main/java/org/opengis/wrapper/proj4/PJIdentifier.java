@@ -62,7 +62,7 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     /**
      * Creates a new identifier for the given code and codespace.
      *
-     * @param codespace The codespace, or {@code null} if none.
+     * @param codespace The codespace, or {@code null} if none.
      * @param code The code (mandatory).
      */
     PJIdentifier(final String codespace, final String code) {
@@ -73,7 +73,7 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     /**
      * Creates a new identifier for the given authority and codespace.
      *
-     * @param authority The authority, or {@code null} if none.
+     * @param authority The authority, or {@code null} if none.
      * @param code The code (mandatory).
      */
     PJIdentifier(final SimpleCitation authority, final String code) {

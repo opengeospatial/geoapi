@@ -204,7 +204,7 @@ public class PJ {
 
     /**
      * Returns an array of character indicating the direction of each axis. Directions are
-     * characters like {@code 'e'} for East, {@code 'n'} for North and {@code 'u'} for Up.
+     * characters like {@code 'e'} for East, {@code 'n'} for North and {@code 'u'} for Up.
      *
      * @return The axis directions.
      *

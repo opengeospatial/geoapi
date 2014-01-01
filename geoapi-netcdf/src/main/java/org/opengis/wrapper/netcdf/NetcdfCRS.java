@@ -48,7 +48,7 @@ import org.opengis.coverage.grid.GridCoordinates;
  * A {@link CoordinateReferenceSystem} implementation backed by a NetCDF {@link CoordinateSystem} object.
  * This class implements both the GeoAPI {@link org.opengis.referencing.cs.CoordinateSystem} and
  * {@link CoordinateReferenceSystem} interfaces because the NetCDF {@code CoordinateSystem}
- * object combines the concepts of both of them. It also implements the {@link GridGeometry}
+ * object combines the concepts of both of them. It also implements the {@link GridGeometry}
  * interface since NetCDF Coordinate Systems contain all information related to the image grid.
  *
  * <p><b>Axis order</b><br>
