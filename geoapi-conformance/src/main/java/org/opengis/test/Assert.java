@@ -38,6 +38,9 @@ import java.awt.geom.PathIterator;
 import java.awt.geom.AffineTransform;
 import java.awt.image.RenderedImage;
 
+import org.opengis.util.InternationalString;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
@@ -63,6 +66,11 @@ import org.opengis.test.coverage.image.PixelIterator;
  */
 public strictfp class Assert extends org.junit.Assert {
     /**
+     * The keyword for unrestricted value in {@link String} arguments.
+     */
+    private static final String UNRESTRICTED = "##unrestricted";
+
+    /**
      * For subclass constructors only.
      */
     protected Assert() {
@@ -78,10 +86,10 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Returns the concatenation of the given message with the given extension.
      * This method returns the given extension if the message is null or empty.
-     * <p>
-     * Invoking this method is equivalent to invoking {@code nonNull(message) + ext},
+     *
+     * <p>Invoking this method is equivalent to invoking {@code nonNull(message) + ext},
      * but avoid the creation of temporary objects in the common case where the message
-     * is null.
+     * is null.</p>
      *
      * @param  message The message, or {@code null}.
      * @param  ext The extension to append after the message.
@@ -95,12 +103,23 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
+     * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
+     */
+    private static boolean isNull(final String message, final Object expected, final Object actual) {
+        final boolean isNull = (actual == null);
+        if (isNull != (expected == null)) {
+            fail(concat(message, isNull ? "Value is null." : "Expected null."));
+        }
+        return isNull;
+    }
+
+    /**
      * Asserts that the given value is an instance of the given class. No tests are performed if
      * the type is {@code null}. If the type is not-null but the value is null, this is considered
      * as a failure.
      *
      * @param message      Header of the exception message in case of failure, or {@code null} if none.
-     * @param expectedType The expected parent class of the value, or {@code null}.
+     * @param expectedType The expected parent class of the value, or {@code null} if unrestricted.
      * @param value        The value to test, or {@code null} (which is a failure).
      */
     public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
@@ -158,8 +177,7 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given minimum and maximum values make a valid range. More specifically
-     * asserts that the minimum value is not greater than the maximum value.
+     * Asserts that the given minimum is smaller or equals to the given maximum.
      *
      * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range to test.
@@ -172,9 +190,8 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given minimum and maximum values make a valid range. More specifically
-     * asserts that the minimum value is not greater than the maximum value. If one bound is or
-     * both bounds are {@linkplain Double#NaN NaN}, then the test fails.
+     * Asserts that the given minimum is smaller or equals to the given maximum.
+     * If one bound is or both bounds are {@linkplain Double#NaN NaN}, then the test fails.
      *
      * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range to test.
@@ -187,8 +204,8 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given value is between the given range. This method do <strong>not</strong>
-     * tests the validity of the given range.
+     * Asserts that the given value is inside the given range. This method does <strong>not</strong>
+     * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
      * @param <T>     The type of values being compared.
      * @param message Header of the exception message in case of failure, or {@code null} if none.
@@ -210,8 +227,8 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given value is between the given range. This method do <strong>not</strong>
-     * tests the validity of the given range.
+     * Asserts that the given value is inside the given range. This method does <strong>not</strong>
+     * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
      * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range, inclusive.
@@ -228,9 +245,9 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given value is between the given range. If the value is
-     * {@linkplain Double#NaN NaN}, then this test passes silently. This method
-     * do <strong>not</strong> tests the validity of the given range.
+     * Asserts that the given value is inside the given range. If the given {@code value} is
+     * {@linkplain Double#NaN NaN}, then this test passes silently. This method does <strong>not</strong>
+     * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
      * @param message Header of the exception message in case of failure, or {@code null} if none.
      * @param minimum The lower bound of the range, inclusive.
@@ -253,7 +270,7 @@ public strictfp class Assert extends org.junit.Assert {
      * contains the null element.
      *
      * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param collection The collection where to look for inclusion, or {@code null}.
+     * @param collection The collection where to look for inclusion, or {@code null} if unrestricted.
      * @param value      The value to test for inclusion.
      */
     public static void assertContains(final String message, final Collection<?> collection, final Object value) {
@@ -266,44 +283,98 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given matrix is equals to the expected one, up to the given tolerance value.
+     * Asserts that the title or an alternate title of the given citation is equal to the given string.
+     * This method is typically used for testing if a citation stands for the OGC, OGP or EPSG authority
+     * for instance. Such abbreviations are often declared as {@linkplain Citation#getAlternateTitles()
+     * alternate titles} rather than the main {@linkplain Citation#getTitle() title}, but this method
+     * tests both for safety.
      *
-     * @param message   Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected  The expected matrix.
-     * @param actual    The matrix to compare.
-     * @param tolerance The tolerance threshold.
+     * @param message  Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected The expected title or alternate title.
+     * @param actual   The citation to test.
+     *
+     * @since 3.1
      */
-    public static void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final double tolerance) {
-        final int numRow = actual.getNumRow();
-        final int numCol = actual.getNumCol();
-        assertEquals("numRow", expected.getNumRow(), numRow);
-        assertEquals("numCol", expected.getNumCol(), numCol);
-        for (int j=0; j<numRow; j++) {
-            for (int i=0; i<numCol; i++) {
-                final double e = expected.getElement(j,i);
-                final double a = actual.getElement(j,i);
-                if (!(StrictMath.abs(e - a) <= tolerance) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
-                    fail(nonNull(message) + "Matrix.getElement(" + j + ", " + i + "): expected " + e + " but got " + a);
-                }
+    public static void assertTitleEquals(final String message, final String expected, final Citation actual) {
+        if (isNull(message, expected, actual)) {
+            return;
+        }
+        InternationalString title = actual.getTitle();
+        if (title != null && expected.equals(title.toString())) {
+            return;
+        }
+        for (final InternationalString t : actual.getAlternateTitles()) {
+            if (expected.equals(t.toString())) {
+                return;
             }
+        }
+        fail(concat(message, '"' + expected + "\" not found in title or alternate titles."));
+    }
+
+    /**
+     * Asserts that the given identifier is equals to the given authority, code space, version and code.
+     * If any of the above-cited properties is {@code ""##unrestricted"}, then it will not be verified.
+     * This flexibility is useful in the common case where a test accepts any {@code version} value.
+     *
+     * @param message    Header of the exception message in case of failure, or {@code null} if none.
+     * @param authority  The expected authority title or alternate title (may be {@code null}), or {@code "##unrestricted"}.
+     * @param codeSpace  The expected code space (may be {@code null}), or {@code "##unrestricted"}.
+     * @param version    The expected version    (may be {@code null}), or {@code "##unrestricted"}.
+     * @param code       The expected code value (may be {@code null}), or {@code "##unrestricted"}.
+     * @param actual     The identifier to test.
+     *
+     * @since 3.1
+     */
+    public static void assertIdentifierEquals(final String message, final String authority, final String codeSpace,
+            final String version, final String code, final ReferenceIdentifier actual)
+    {
+        if (actual == null) {
+            fail(concat(message, "Identifier is null"));
+        } else {
+            if (!UNRESTRICTED.equals(authority)) assertTitleEquals(message,                         authority, actual.getAuthority());
+            if (!UNRESTRICTED.equals(codeSpace)) assertEquals (concat(message, "Wrong code space"), codeSpace, actual.getCodeSpace());
+            if (!UNRESTRICTED.equals(version))   assertEquals (concat(message, "Wrong version"),    version,   actual.getVersion());
+            if (!UNRESTRICTED.equals(code))      assertEquals (concat(message, "Wrong code"),       code,      actual.getCode());
         }
     }
 
     /**
-     * Asserts that the identifiers in the given character sequences are equal,
-     * ignoring non-identifier characters. First, this method locates
-     * the {@linkplain Character#isUnicodeIdentifierStart(int) Unicode identifier start} in each
-     * sequences, ignoring every characters before them. Then, starting from the identifier starts,
-     * this method compares only the {@linkplain Character#isUnicodeIdentifierPart(int) Unicode
-     * identifier parts} in a case-insensitive way until the end of character sequences.
+     * @deprecated Renamed {@link #assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)}
+     * for avoiding confusion with the {@code Identifier} interface.
      *
      * @param message  Header of the exception message in case of failure, or {@code null} if none.
      * @param expected The expected character sequence.
      * @param value    The character sequence to compare.
      */
+    @Deprecated
     public static void assertIdentifierEquals(final String message, final CharSequence expected, final CharSequence value) {
+        assertUnicodeIdentifierEquals(message, expected, value, true);
+    }
+
+    /**
+     * Asserts that the character sequences are equal, ignoring any characters that are not valid for Unicode identifiers.
+     * First, this method locates the {@linkplain Character#isUnicodeIdentifierStart(int) Unicode identifier start}
+     * in each sequences, ignoring any other characters before them. Then, starting from the identifier starts, this
+     * method compares only the {@linkplain Character#isUnicodeIdentifierPart(int) Unicode identifier parts} until
+     * the end of character sequences.
+     *
+     * <p><b>Examples:</b> {@code "WGS 84"} and {@code "WGS84"} as equal according this method.</p>
+     *
+     * @param message    Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected   The expected character sequence, which may be {@code null}.
+     * @param actual     The character sequence to compare, or {@code null}.
+     * @param ignoreCase {@code true} for ignoring case.
+     *
+     * @since 3.1
+     */
+    public static void assertUnicodeIdentifierEquals(final String message,
+            final CharSequence expected, final CharSequence actual, final boolean ignoreCase)
+    {
+        if (isNull(message, expected, actual)) {
+            return;
+        }
         final int expLength = expected.length();
-        final int valLength = value.length();
+        final int valLength = actual.length();
         int       expOffset = 0;
         int       valOffset = 0;
         boolean   expPart   = false;
@@ -315,28 +386,30 @@ public strictfp class Assert extends org.junit.Assert {
                 int valCode;
                 do {
                     if (valOffset >= valLength) {
-                        fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + value + "\". "
+                        fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + actual + "\". "
                                 + "Missing part: \"" + expected.subSequence(expOffset, expLength) + "\".");
                         return;
                     }
-                    valCode    = Character.codePointAt(value, valOffset);
+                    valCode    = Character.codePointAt(actual, valOffset);
                     valOffset += Character.charCount(valCode);
                 } while (!isUnicodeIdentifier(valCode, valPart));
                 valPart = true;
-                expCode = Character.toLowerCase(expCode);
-                valCode = Character.toLowerCase(valCode);
+                if (ignoreCase) {
+                    expCode = Character.toLowerCase(expCode);
+                    valCode = Character.toLowerCase(valCode);
+                }
                 if (valCode != expCode) {
-                    fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + value + "\".");
+                    fail(nonNull(message) + "Expected \"" + expected + "\" but got \"" + actual + "\".");
                     return;
                 }
             }
             expOffset += Character.charCount(expCode);
         }
         while (valOffset < valLength) {
-            final int valCode = Character.codePointAt(value, valOffset);
+            final int valCode = Character.codePointAt(actual, valOffset);
             if (isUnicodeIdentifier(valCode, valPart)) {
                 fail(nonNull(message) + "Expected \"" + expected + "\", but found it with a unexpected "
-                        + "trailing string: \"" + value.subSequence(valOffset, valLength) + "\".");
+                        + "trailing string: \"" + actual.subSequence(valOffset, valLength) + "\".");
             }
             valOffset += Character.charCount(valCode);
         }
@@ -371,6 +444,35 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
+     * Asserts that the given matrix is equals to the expected one, up to the given tolerance value.
+     *
+     * @param message   Header of the exception message in case of failure, or {@code null} if none.
+     * @param expected  The expected matrix, which may be {@code null}.
+     * @param actual    The matrix to compare, or {@code null}.
+     * @param tolerance The tolerance threshold.
+     *
+     * @since 3.1
+     */
+    public static void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final double tolerance) {
+        if (isNull(message, expected, actual)) {
+            return;
+        }
+        final int numRow = actual.getNumRow();
+        final int numCol = actual.getNumCol();
+        assertEquals("numRow", expected.getNumRow(), numRow);
+        assertEquals("numCol", expected.getNumCol(), numCol);
+        for (int j=0; j<numRow; j++) {
+            for (int i=0; i<numCol; i++) {
+                final double e = expected.getElement(j,i);
+                final double a = actual.getElement(j,i);
+                if (!(StrictMath.abs(e - a) <= tolerance) && Double.doubleToLongBits(a) != Double.doubleToLongBits(e)) {
+                    fail(nonNull(message) + "Matrix.getElement(" + j + ", " + i + "): expected " + e + " but got " + a);
+                }
+            }
+        }
+    }
+
+    /**
      * Asserts that all control points of two shapes are equal.
      * This method performs the following checks:
      *
@@ -388,8 +490,8 @@ public strictfp class Assert extends org.junit.Assert {
      * </ol>
      *
      * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected   The expected shape.
-     * @param actual     The actual shape.
+     * @param expected   The expected shape, which may be {@code null}.
+     * @param actual     The actual shape, or {@code null}.
      * @param toleranceX The tolerance threshold for <var>x</var> ordinate values.
      * @param toleranceY The tolerance threshold for <var>y</var> ordinate values.
      *
@@ -398,6 +500,9 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertShapeEquals(String message, final Shape expected,
             final Shape actual, final double toleranceX, final double toleranceY)
     {
+        if (isNull(message, expected, actual)) {
+            return;
+        }
         final Rectangle2D b0 = expected.getBounds2D();
         final Rectangle2D b1 = actual  .getBounds2D();
         final String mismatch = concat(message, "Mismatched bounds.");
@@ -428,8 +533,8 @@ public strictfp class Assert extends org.junit.Assert {
      * method himself.
      *
      * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected   The expected path.
-     * @param actual     The actual path.
+     * @param expected   The expected path, which may be {@code null}.
+     * @param actual     The actual path, or {@code null}.
      * @param toleranceX The tolerance threshold for <var>x</var> ordinate values.
      * @param toleranceY The tolerance threshold for <var>y</var> ordinate values.
      *
@@ -438,6 +543,9 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertPathEquals(final String message, final PathIterator expected,
             final PathIterator actual, final double toleranceX, final double toleranceY)
     {
+        if (isNull(message, expected, actual)) {
+            return;
+        }
         assertEquals(concat(message, "Mismatched winding rule."), expected.getWindingRule(), actual.getWindingRule());
         final String   mismatchedType = concat(message, "Mismatched path segment type.");
         final String   mismatchedX    = concat(message, "Mismatched X ordinate value.");
@@ -477,8 +585,8 @@ public strictfp class Assert extends org.junit.Assert {
      * {@linkplain java.awt.image.SampleModel#getDataType() datatype} to be equal.
      *
      * @param message   Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected  An image containing the expected values.
-     * @param actual    The actual image containing the sample values to compare.
+     * @param expected  An image containing the expected values, which may be {@code null}.
+     * @param actual    The actual image containing the sample values to compare, or {@code null}.
      * @param tolerance Tolerance threshold for floating point comparisons.
      *                  This threshold is ignored if both images use integer datatype.
      *
@@ -489,6 +597,9 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertSampleValuesEqual(final String message, final RenderedImage expected,
             final RenderedImage actual, final double tolerance)
     {
+        if (isNull(message, expected, actual)) {
+            return;
+        }
         assertEquals(concat(message, "Mismatched image width."),  expected.getWidth(),  actual.getWidth());
         assertEquals(concat(message, "Mismatched image height."), expected.getHeight(), actual.getHeight());
         assertEquals(concat(message, "Mismatched number of bands."),
