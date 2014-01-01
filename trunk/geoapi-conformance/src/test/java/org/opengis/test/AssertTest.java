@@ -48,27 +48,27 @@ import static org.junit.Assert.*;
  */
 public strictfp class AssertTest {
     /**
-     * Tests {@link Assert#assertIdentifierEquals(String, CharSequence, CharSequence)}.
+     * Tests {@link Assert#assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)}.
      */
     @Test
     public void testIdentifierEquals() {
-        Assert.assertIdentifierEquals(null, "WGS84" ,   "WGS84" );
-        Assert.assertIdentifierEquals(null, "WGS84" ,   "WGS 84");
-        Assert.assertIdentifierEquals(null, "WGS 84",   "WGS84" );
-        Assert.assertIdentifierEquals(null, "WGS 84",   "WGS 84");
-        Assert.assertIdentifierEquals(null, "_WgS 84!", "wgs84" );
+        Assert.assertUnicodeIdentifierEquals(null, "WGS84" ,   "WGS84",  true);
+        Assert.assertUnicodeIdentifierEquals(null, "WGS84" ,   "WGS 84", true);
+        Assert.assertUnicodeIdentifierEquals(null, "WGS 84",   "WGS84",  true);
+        Assert.assertUnicodeIdentifierEquals(null, "WGS 84",   "WGS 84", true);
+        Assert.assertUnicodeIdentifierEquals(null, "_WgS 84!", "wgs84",  true);
         try {
-            Assert.assertIdentifierEquals(null, "WGS84 and more" , "WGS84" );
+            Assert.assertUnicodeIdentifierEquals(null, "WGS84 and more" , "WGS84", true);
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84 and more\" but got \"WGS84\". Missing part: \"and more\".", e.getMessage());
         }
         try {
-            Assert.assertIdentifierEquals(null, "WGS84" , "WGS84 and more" );
+            Assert.assertUnicodeIdentifierEquals(null, "WGS84" , "WGS84 and more", true);
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84\", but found it with a unexpected trailing string: \"and more\".", e.getMessage());
         }
         try {
-            Assert.assertIdentifierEquals(null, "WGS84" , "WBS84" );
+            Assert.assertUnicodeIdentifierEquals(null, "WGS84" , "WBS84", true);
         } catch (AssertionError e) {
             assertEquals("Expected \"WGS84\" but got \"WBS84\".", e.getMessage());
         }
