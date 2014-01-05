@@ -68,10 +68,6 @@ public interface VerticalDatum extends Datum {
      *   for historical reasons, and because it provides some of the anchor definition information
      *   in a programmatic way more suitable to coordinate transformation engines.
      *
-     *   <p>Note that GML defines the anchor point as a code list, which address the programmatic needs.
-     *   In GeoAPI the anchor point is rather defined as an international string,
-     *   thus the need for equivalent information as a code list.</p>
-     *
      * @return The type of this vertical datum.
      *
      * @see #getAnchorPoint()
