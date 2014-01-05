@@ -131,11 +131,15 @@ public interface Datum extends IdentifiedObject {
      *       of type {@link Date}.</li>
      * </ul>
      *
+     * @departure historic
+     *   This method has been kept conformant with the specification published in 2003 for compatibility reasons.
+     *   The revision published in 2007 renamed this property as <code>anchorDefinition</code>.
+     *
      * @return A description of the anchor point, or {@code null} if none.
      *
      * @see VerticalDatum#getVerticalDatumType()
      */
-    @UML(identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="anchorDefinition", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getAnchorPoint();
 
     /**
@@ -181,7 +185,7 @@ public interface Datum extends IdentifiedObject {
      *   This method has been kept conformant with the specification published in 2003. The revision
      *   published in 2007 replaced the singleton by a collection and changed the obligation
      *   from "optional" to "mandatory", requiring a return value of "<cite>not known</cite>"
-     *   if the scope is unknown. This change is still under review.
+     *   if the scope is unknown.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
