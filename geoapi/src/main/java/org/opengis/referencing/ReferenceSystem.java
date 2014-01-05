@@ -85,8 +85,8 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003.
-     *   Later revisions changed the multiplicity, so the return type should now be a 
-     *   collection. The singleton has been preserved in GeoAPI for historical reasons, 
+     *   Later revisions changed the multiplicity, so the return type should now be a
+     *   collection. The singleton has been preserved in GeoAPI for historical reasons,
      *   and also because the <code>Extent</code> attributes already allow collections.
      *
      * @since 2.1
@@ -101,13 +101,12 @@ public interface ReferenceSystem extends IdentifiedObject {
      * @return The domain of usage, or {@code null} if none.
      *
      * @departure historic
-     *   This method has been kept conformant with the specification published in 2003. 
-     *   A later revision moved this attribute to subclasses, but GeoAPI keeps this method 
+     *   This method has been kept conformant with the specification published in 2003.
+     *   A later revision moved this attribute to subclasses, but GeoAPI keeps this method
      *   here for historical reasons. The obligation is still optional, as opposed to ISO 19111:2007
      *   which makes this attribute mandatory while mandating the text "<cite>not known</cite>" if
      *   the scope is unknown. In addition, the return value of this method is still a singleton as in
-     *   the 2003 version, as opposed to the 2007 version which mandates a collection. The proposed
-     *   change is still under review.
+     *   the 2003 version, as opposed to the 2007 version which mandates a collection.
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();
