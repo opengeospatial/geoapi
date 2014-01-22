@@ -73,11 +73,11 @@
 <p align="justify"><b>Note:</b> In this page, the term "<cite>Coordinate System</cite>" is not exactly equivalent to
 the ISO 19111 definition.</p>
 
-<h3><a name="AUTHORITY">AUTHORITY</a></h3>
+<h3 id="AUTHORITY">AUTHORITY</h3>
 <p align="justify">This is an optional clause that allows an external authority to manage the
 definition of an entity.</p>
 
-<h3><a name="AXIS">AXIS</a></h3>
+<h3 id="AXIS">AXIS</h3>
 <p align="justify">The name of the axis is for human consumption. The enumerated value that
 follows is to allow software to correctly overlay different coordinate systems. If the optional
 <code>AXIS</code> terms are not present, then the default values are assumed. They are:</p>
@@ -100,21 +100,21 @@ mandated by ISO 19111. The ISO abbreviations are shown in the above table for in
 implementations must be prepared to swap and reverse the coordinates of geometry before
 attempting to overlay graphics.</p>
 
-<h3><a name="COMPD_CS">COMPD_CS</a></h3>
+<h3 id="COMPD_CS">COMPD_CS</h3>
 <p align="justify">This indicates a compound coordinate system, which combines the coordinate of
 two other coordinate systems. For example, a compound 3D coordinate system could be made up of a
 horizontal coordinate system and a vertical coordinate system.</p>
 
-<h3><a name="CONCAT_MT">CONCAT_MT</a></h3>
+<h3 id="CONCAT_MT">CONCAT_MT</h3>
 <p align="justify">A transform defined by the concatenation of sub-transforms. The dimension of
 the output space of the first transform must match the dimension of the input space in the second
 transform (if defined), and so on for the remaining sub-transforms.</p>
 
-<h3><a name="DATUM">DATUM</a></h3>
+<h3 id="DATUM">DATUM</h3>
 <p align="justify">This indicates the horizontal datum, which corresponds to the procedure used
 to measure positions on the surface of the Earth.</p>
 
-<h3><a name="FITTED_CS">FITTED_CS</a></h3>
+<h3 id="FITTED_CS">FITTED_CS</h3>
 <p align="justify">This indicates a fitted coordinate system. The math transform is used to
 construct a map from the fitted coordinate system to the base coordinate system. The transform
 is often an affine map. The math transform works from the fitted CS to the base CS so that the
@@ -122,33 +122,33 @@ fitted CS can have a smaller dimension that the base CS. This is often quite use
 a fitted coordinate system could be a 2D plane approximately tangential to the Earth, but based
 on a WGS84 geocentric 3D coordinate system.</p>
 
-<h3><a name="GEOCCS">GEOCCS</a></h3>
+<h3 id="GEOCCS">GEOCCS</h3>
 <p align="justify">A 3D coordinate system, with its origin at the center of the Earth. The
 <var>X</var> axis points towards the prime meridian. The <var>Y</var> axis points East or
 West. The <var>Z</var> axis points North or South. By default the <var>Z</var> axis will
 point North, and the <var>Y</var> axis will point East (e.g. a right handed system), but
 you should check the axes for non-default values.</p>
 
-<h3><a name="GEOGCS">GEOGCS</a></h3>
+<h3 id="GEOGCS">GEOGCS</h3>
 <p align="justify">A coordinate system based on latitude and longitude. Some geographic
 coordinate systems are Lat/Lon, and some are Lon/Lat. You can find out which this is by
 examining the axes. You should also check the angular units, since not all geographic
 coordinate systems use degrees.</p>
 
-<h3><a name="INVERSE_MT">INVERSE_MT</a></h3>
+<h3 id="INVERSE_MT">INVERSE_MT</h3>
 <p align="justify">A math transform defined as the inverse of another transform.</p>
 
-<h3><a name="LOCAL_DATUM">LOCAL_DATUM</a></h3>
+<h3 id="LOCAL_DATUM">LOCAL_DATUM</h3>
 <p align="justify">This indicates the local datum.</p>
 
-<h3><a name="LOCAL_CS">LOCAL_CS</a></h3>
+<h3 id="LOCAL_CS">LOCAL_CS</h3>
 <p align="justify">This indicates a local, ungeoreferenced coordinate system. Such
 coordinate systems are often used in CAD systems. They can also be used for local
 surveys, where the relationship between the surveyed site and the rest of the world
 is not important. The number of <a href="#AXIS"><code>AXIS</code></a> clauses indicates
 the dimension of the local coordinate system.</p>
 
-<h3><a name="PARAMETER">PARAMETER</a></h3>
+<h3 id="PARAMETER">PARAMETER</h3>
 <p align="justify">A named projection parameter value. The units of the
 parameter must be inferred from its context. If the parameter is inside
 a <a href="#PROJCS"><code>PROJCS</code></a>, then its units will match
@@ -156,7 +156,7 @@ the units of the <a href="#PROJCS"><code>PROJCS</code></a>. If the parameter
 is inside a <a href="#PARAM_MT"><code>PARAM_MT</code></a>, then its units
 will be meters and degrees for linear and angular values respectively.</p>
 
-<h3><a name="PARAM_MT">PARAM_MT</a></h3>
+<h3 id="PARAM_MT">PARAM_MT</h3>
 <p align="justify">A parameterized math transform. All the linear parameters are expressed
 in meters, and all the angular parameters are expressed in degrees. Other parameters should
 use S.I. units where possible. (E.g. use Kg for mass, and seconds for time.)</p>
@@ -164,7 +164,7 @@ use S.I. units where possible. (E.g. use Kg for mass, and seconds for time.)</p>
 formulae used by the math transform. See Parameterized Transforms for legal values, and
 the corresponding parameters.</p>
 
-<h3><a name="PASSTHROUGH_MT">PASSTHROUGH_MT</a></h3>
+<h3 id="PASSTHROUGH_MT">PASSTHROUGH_MT</h3>
 <p align="justify">This is a math transform that passes through a subset of ordinates to
 another transform. This allows transforms to operate on a subset of ordinates. For example,
 if you have (Lat,Lon,Height) coordinates, then you may wish to convert the height values
@@ -174,7 +174,7 @@ around to (Height,Lat,Lon). You can do this with an affine map.</p>
 <p align="justify">The &lt;integer&gt; argument is the index of the first affected ordinate.
 The &lt;math transform&gt; argument is the transform to pass coordinates onto.</p>
 
-<h3><a name="PRIMEM">PRIMEM</a></h3>
+<h3 id="PRIMEM">PRIMEM</h3>
 <p align="justify">This defines the meridian used to take longitude measurements
 from. The units of the &lt;longitude&gt; must be inferred from the context. If the
 <code>PRIMEM</code> clause occurs inside a <a href="#GEOGCS"><code>GEOGCS</code></a>,
@@ -185,7 +185,7 @@ then the units will be in degrees.</p>
 the Greenwich Meridian. A positive value indicates the prime meridian is East of Greenwich,
 and a negative value indicates the prime meridian is West of Greenwich.</p>
 
-<h3><a name="PROJCS">PROJCS</a></h3>
+<h3 id="PROJCS">PROJCS</h3>
 <p align="justify">This indicates a projected coordinate system. The
 <a href="#PROJECTION"><code>PROJECTION</code></a> sub-clause contains
 the classification name used by <code>MathTransformFactory</code>, and the
@@ -201,18 +201,18 @@ the EPSG 4 database works. In the EPSG 4 database, each transformation parameter
 defines its own units. However, 99% of the EPSG projection parameter units are the same
 as the units of the corresponding projected coordinate system.)</p>
 
-<h3><a name="PROJECTION">PROJECTION</a></h3>
+<h3 id="PROJECTION">PROJECTION</h3>
 <p align="justify">This describes a projection from geographic coordinates to projected
 coordinates. It is used inside a <a href="#PROJCS"><code>PROJCS</code></a> to define the
 parameters of the projection transform.</p>
 
-<h3><a name="SPHEROID">SPHEROID</a></h3>
+<h3 id="SPHEROID">SPHEROID</h3>
 <p align="justify">This describes a spheroid, which is an approximation of the Earth's
 surface as a squashed sphere. In this document, the terms "spheroid" and "ellipsoid" are
 synonymous. The term "<code>SPHEROID</code>" is used in WKT for compatibility with Simple
 Features. However, the term "ellipsoid" is preferred elsewhere in this specification.</p>
 
-<h3><a name="TOWGS84">TOWGS84</a></h3>
+<h3 id="TOWGS84">TOWGS84</h3>
 <p align="justify">This indicates a list of up to 7 Bursa Wolf transformation parameters.
 These parameters can be used to approximate a transformation from the horizontal datum to
 the WGS84 datum. However, it must be remembered that this transformation is only an
@@ -241,7 +241,7 @@ situations:</p>
 a <code>TOWGS84</code> clause, and the parameter values are zero, then the receiving application
 can assume that the writing application believed that the datum is approximately equal to WGS84.</p>
 
-<h3><a name="UNIT">UNIT</a></h3>
+<h3 id="UNIT">UNIT</h3>
 <p align="justify">This describes units used for values elsewhere within the parent WKT clause
 (sometimes including descendants of the parent clause). The physical dimension (i.e. type) of
 the units is determined by context. For example, in a <a href="#GEOGCS"><code>GEOGCS</code></a>
@@ -251,7 +251,7 @@ to a fundamental unit of that type with a conversion factor. For linear units, t
 factor is the scalar value that converts the described units into meters. For angular units, the
 conversion factor is the scalar value that converts the described units into radians.</p>
 
-<h3><a name="VERT_DATUM">VERT_DATUM</a></h3>
+<h3 id="VERT_DATUM">VERT_DATUM</h3>
 <p align="justify">This indicates the vertical datum, or method used for vertical measurements.
 The <code>&lt;datum type&gt;</code> should be one of the following predefined values:</p>
 <blockquote><table>
@@ -282,7 +282,7 @@ The <code>&lt;datum type&gt;</code> should be one of the following predefined va
   echo-sounding.</td></tr>
 </table></blockquote>
 
-<h3><a name="VERT_CS">VERT_CS</a></h3>
+<h3 id="VERT_CS">VERT_CS</h3>
 <p align="justify">This indicates a vertical coordinate system.</p>
 
 

@@ -140,7 +140,7 @@
  * <a href="#DerivedCRS">Derived coordinate reference system</a>.</p>
  *
  * <blockquote>
- * <p><b><a name="CompoundCRS">Compound coordinate reference system</a></b><br>
+ * <p id="CompoundCRS"><b>Compound coordinate reference system</b><br>
  * The traditional separation of horizontal and vertical position has resulted in
  * coordinate reference systems that are horizontal (2D) in nature and vertical (1D).
  * It is established practice to combine the horizontal coordinates of a point with
@@ -151,7 +151,7 @@
  * system (Compound CRS). It consists of an ordered sequence of the two or more single
  * coordinate reference systems.</p>
  *
- * <p><b><a name="DerivedCRS">Derived coordinate reference system</a></b><br>
+ * <p id="DerivedCRS"><b>Derived coordinate reference system</b><br>
  * Some coordinate reference systems are defined by applying a coordinate conversion to
  * another coordinate reference system. Such a coordinate reference system is called a
  * Derived CRS and the coordinate reference system it was derived from by applying the

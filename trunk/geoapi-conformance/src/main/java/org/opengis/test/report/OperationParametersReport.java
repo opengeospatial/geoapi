@@ -532,9 +532,9 @@ public class OperationParametersReport extends Report {
             if (category != null && !category.equals(previous)) {
                 writeIndentation(out, indentation);
                 out.write("<tr class=\"sectionHead\"><th colspan=\"");
-                out.write(columnSpan);         out.write("\"><a name=\"");
+                out.write(columnSpan);         out.write("\" id name=\"");
                 out.write(toAnchor(category)); out.write("\">");
-                out.write(category);           out.write("</a></th></tr>");
+                out.write(category);           out.write("</th></tr>");
                 out.newLine();
                 writeHeader = true;
                 previous = category;
