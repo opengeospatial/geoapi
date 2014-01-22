@@ -280,17 +280,18 @@ public final class Departure implements Taglet, Runnable {
      */
     private void summary() throws IOException {
         final BufferedWriter out = new BufferedWriter(new FileWriter("departures.html"));
-        out.write("<!DOCTYPE HTML PUBLIC -//W3C//DTD HTML 4.01 Transitional//EN>"); out.newLine();
+        out.write("<!DOCTYPE html>"); out.newLine();
         out.newLine();
-        out.write("<HTML>"); out.newLine();
-        out.write("  <HEAD>"); out.newLine();
-        out.write("    <TITLE>Departures from the ISO/OGC specifications</TITLE>"); out.newLine();
-        out.write("  </HEAD>"); out.newLine();
-        out.write("  <BODY>"); out.newLine();
-        out.write("  <H1>Departures from the ISO/OGC specifications</H1>"); out.newLine();
-        out.write("  <P>The following sections list all the departures from the ISO " +
+        out.write("<html>"); out.newLine();
+        out.write("  <head>"); out.newLine();
+        out.write("    <title>Departures from the ISO/OGC specifications</title>"); out.newLine();
+        out.write("    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"); out.newLine();
+        out.write("  </head>"); out.newLine();
+        out.write("  <body>"); out.newLine();
+        out.write("  <h1>Departures from the ISO/OGC specifications</h1>"); out.newLine();
+        out.write("  <p>The following sections list all the departures from the ISO " +
                   "standards taken by the GeoAPI interface library. The rationale for " +
-                  "these departures fall into the following categories:</P>"); out.newLine();
+                  "these departures fall into the following categories:</p>"); out.newLine();
         final Set<String> categories = new LinkedHashSet<String>(CATEGORIES.keySet());
         synchronized (departures) {
             categories.addAll(departures.keySet());
@@ -303,7 +304,7 @@ public final class Departure implements Taglet, Runnable {
              *    • Historical raisons
              *    • Class or method renaming
              */
-            out.write("  <UL>");
+            out.write("  <ul>");
             out.newLine();
             for (final String category : categories) {
                 if (!departures.containsKey(category)) {
@@ -313,14 +314,14 @@ public final class Departure implements Taglet, Runnable {
                 if (description == null) {
                     description = category;
                 }
-                out.write("    <LI><A HREF=\"#");
+                out.write("    <li><a href=\"#");
                 out.write(category);
                 out.write("\">");
                 out.write(description);
-                out.write("</A></LI>");
+                out.write("</a></li>");
                 out.newLine();
             }
-            out.write("  </UL>");
+            out.write("  </ul>");
             out.newLine();
             /*
              * Write all sections. The result should looks like:
@@ -340,10 +341,10 @@ public final class Departure implements Taglet, Runnable {
                     description = category;
                 }
                 out.newLine(); out.newLine();
-                out.write("  <P>&nbsp;</P><HR><P>&nbsp;</P>"); out.newLine();
-                out.write("  <H2><A NAME=\""); out.write(category); out.write("\">");
-                out.write(description); out.write("</A></H2>"); out.newLine();
-                out.write("  <BLOCKQUOTE>"); out.newLine();
+                out.write("  <p>&nbsp;</p><hr><p>&nbsp;</p>"); out.newLine();
+                out.write("  <h2 id=\""); out.write(category); out.write("\">");
+                out.write(description); out.write("</h2>"); out.newLine();
+                out.write("  <blockquote>"); out.newLine();
                 File lastFile = null;
                 boolean isBlockquote = false;
                 /*
@@ -368,13 +369,13 @@ public final class Departure implements Taglet, Runnable {
                          * the previous blockquote.
                          */
                         if (isBlockquote) {
-                            out.write("  </BLOCKQUOTE>");
+                            out.write("  </blockquote>");
                             out.newLine();
                             isBlockquote = false;
                         }
                         lastFile = file;
                         out.newLine();
-                        out.write("  <H3>");
+                        out.write("  <h3>");
                         element.writeClassName(out);
                         /*
                          * If this class or interface do not have any member to document for
@@ -394,14 +395,14 @@ public final class Departure implements Taglet, Runnable {
                                 for (int j=i+1; j<elements.size();) {
                                     final DepartureElement candidate = elements.get(j);
                                     if (!candidate.member && element.text.equals(candidate.text)) {
-                                        out.write(",<BR>");
+                                        out.write(",<br>");
                                         candidate.writeClassName(out);
                                         elements.remove(j);
                                     } else j++;
                                 }
                             }
                         }
-                        out.write("</H3>");
+                        out.write("</h3>");
                         out.newLine();
                     }
                     /*
@@ -410,11 +411,11 @@ public final class Departure implements Taglet, Runnable {
                      */
                     if (element.member) {
                         if (!isBlockquote) {
-                            out.write("  <BLOCKQUOTE>");
+                            out.write("  <blockquote>");
                             out.newLine();
                             isBlockquote = true;
                         }
-                        out.write("    <H4>");
+                        out.write("    <h4>");
                         element.writeFieldName(out);
                         /*
                          * If there is more elements in the same file with exactly the same
@@ -425,31 +426,31 @@ public final class Departure implements Taglet, Runnable {
                         for (int j=i+1; j<elements.size();) {
                             final DepartureElement candidate = elements.get(j);
                             if (file.equals(candidate.file) && element.text.equals(candidate.text)) {
-                                out.write(",<BR>");
+                                out.write(",<br>");
                                 candidate.writeFieldName(out);
                                 elements.remove(j);
                             } else j++;
                         }
-                        out.write("</H4>");
+                        out.write("</h4>");
                         out.newLine();
                     }
                     /*
                      * Formats the text for either interface, class, method or field.
                      */
-                    out.write("    <BLOCKQUOTE>");
+                    out.write("    <blockquote>");
                     out.write(element.text);
-                    out.write("</BLOCKQUOTE>");
+                    out.write("</blockquote>");
                     out.newLine();
                 }
-                out.write("  </BLOCKQUOTE>");
+                out.write("  </blockquote>");
                 if (isBlockquote) {
-                    out.write("</BLOCKQUOTE>");
+                    out.write("</blockquote>");
                 }
                 out.newLine();
             }
         }
-        out.write("  </BODY>"); out.newLine();
-        out.write("</HTML>"); out.newLine();
+        out.write("  </body>"); out.newLine();
+        out.write("</html>"); out.newLine();
         out.close();
     }
 }
