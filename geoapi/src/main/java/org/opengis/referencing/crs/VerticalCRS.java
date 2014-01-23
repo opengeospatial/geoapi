@@ -52,11 +52,11 @@ import static org.opengis.annotation.Specification.*;
  * in the following context:</p>
  *
  * <ul>
- *   <li>As a transient state while parsing <a href="../doc-files/WKT.html">Well Known Text</a>,
+ *   <li>As a transient state while parsing <a href="../doc-files/WKT.html">Well-Known Text 1</a>,
  *       or any other format based on legacy specifications where ellipsoidal heights were allowed
  *       as an independent axis.</li>
  *   <li>As short-lived objects to be passed or returned by methods enforcing type safety, for
- *       example {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS}.</li>
+ *       example {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS()}.</li>
  *   <li>Other cases at implementor convenience. However implementors are encouraged to
  *       assemble the full 3D CRS as soon as they can.</li>
  * </ul>

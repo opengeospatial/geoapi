@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  *        <code>GeographicCRS</code> with ellipsoidal height shall be backed by a three-dimensional
  *        <code>EllipsoidalCS</code>; they should never be built as <code>CompoundCRS</code>. If
  *        nevertheless an ellipsoidal height is needed (for example in order to process a CRS in
- *        the <a href="../doc-files/WKT.html">WKT format</a>), implementors can get a suitable
+ *        the <a href="../doc-files/WKT.html">WKT 1 format</a>), implementors can get a suitable
  *        vertical datum type using <code>VerticalDatumType.valueOf("ELLIPSOIDAL")</code>.
  *        Implementors are encouraged to not expose that datum type in public API however.}
  *

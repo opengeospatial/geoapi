@@ -304,7 +304,7 @@ public interface MathTransformFactory extends Factory {
     MathTransform createFromXML(String xml) throws FactoryException;
 
     /**
-     * Creates a math transform object from a string.
+     * Creates a math transform object from a <cite>Well-Known Text</cite>.
      * The <a href="../doc-files/WKT.html">definition for WKT</a> is
      * shown using Extended Backus Naur Form (EBNF).
      *

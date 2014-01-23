@@ -244,7 +244,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     }
 
     /**
-     * Returns a <cite>Well Known Text</cite> representation of this object, if this
+     * Returns a <cite>Well-Known Text</cite> representation of this object, if this
      * operation is supported. The default implementation thrown an exception in all
      * cases.
      */

@@ -144,18 +144,28 @@ public interface IdentifiedObject {
     InternationalString getRemarks();
 
     /**
-     * Returns a <a href="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</a> for this object.
-     * This operation may fails if an object is too complex for the WKT format capability (for
-     * example an {@linkplain org.opengis.referencing.crs.EngineeringCRS engineering CRS} with
-     * different unit for each axis).
+     * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
+     * Well-Known texts (WKT) may come in two formats:
      *
-     * @return The Well Know Text for this object.
+     * <ul>
+     *   <li>The current standard — WKT 2 — is defined by ISO 19162.</li>
+     *   <li>The legacy format — WKT 1 — was defined by OGC 01-009 and is shown using Extended Backus Naur Form (EBNF)
+     *       <a href="doc-files/WKT.html">here</a>.</li>
+     * </ul>
+     *
+     * Implementations are encouraged, but not required, to format according the most recent standard.
+     * This operation may fail if unsupported or if this instance contains elements that do not have
+     * WKT representation.
+     *
+     * @return The Well-Know Text for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added in order to provide
      *   the converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is
      *   defined in OGC 01-009.
+     *
+     * @see org.opengis.referencing.crs.CRSFactory#createFromWKT(String)
      */
     String toWKT() throws UnsupportedOperationException;
 }

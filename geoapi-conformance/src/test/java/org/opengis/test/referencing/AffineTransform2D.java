@@ -183,7 +183,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
     }
 
     /**
-     * Returns the Well Known Text of this math transform. Current implementation
+     * Returns the Well-Known Text of this math transform. Current implementation
      * thrown a {@link UnsupportedOperationException} in all cases.
      *
      * @return The WKT of this transform.
