@@ -213,10 +213,9 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * Returns a string representation of this direct position in <cite>Well Known Text</cite>
-     * format.
+     * Returns a string representation of this direct position in <cite>Well-Known Text</cite> (WKT) format.
      *
-     * @return The <cite>Well Known Text</cite> representation of this direct position.
+     * @return The <cite>Well-Known Text</cite> representation of this direct position.
      *
      * @see <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text on Wikipedia</a>
      */

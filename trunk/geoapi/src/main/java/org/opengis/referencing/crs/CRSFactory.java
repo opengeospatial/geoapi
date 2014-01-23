@@ -275,23 +275,32 @@ public interface CRSFactory extends ObjectFactory {
                                     CartesianCS   derivedCS) throws FactoryException;
 
     /**
-     * Creates a coordinate reference system object from a XML string.
+     * Creates a coordinate reference system object from a GML string.
      *
-     * @param  xml Coordinate reference system encoded in XML format.
-     * @return The coordinate reference system for the given XML.
+     * @param  xml Coordinate reference system encoded in GML format.
+     * @return The coordinate reference system for the given GML.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createFromXML", specification=OGC_01009)
     CoordinateReferenceSystem createFromXML(String xml) throws FactoryException;
 
     /**
-     * Creates a coordinate reference system object from a string.
-     * The <a href="../doc-files/WKT.html">definition for WKT</a>
-     * is shown using Extended Backus Naur Form (EBNF).
+     * Creates a coordinate reference system object from a <cite>Well-Known Text</cite>.
+     * Well-Known texts (WKT) may come in two formats:
+     *
+     * <ul>
+     *   <li>The current standard — WKT 2 — is defined by ISO 19162.</li>
+     *   <li>The legacy format — WKT 1 — was defined by OGC 01-009 and is shown using Extended Backus Naur Form (EBNF)
+     *       <a href="../doc-files/WKT.html">here</a>.</li>
+     * </ul>
+     *
+     * Implementations are encouraged, but not required, to recognize both versions.
      *
      * @param  wkt Coordinate system encoded in Well-Known Text format.
      * @return The coordinate reference system for the given WKT.
      * @throws FactoryException if the object creation failed.
+     *
+     * @see org.opengis.referencing.IdentifiedObject#toWKT()
      */
     @UML(identifier="createFromWKT", specification=OGC_01009)
     CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException;

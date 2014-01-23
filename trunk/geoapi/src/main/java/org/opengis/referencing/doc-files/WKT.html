@@ -40,17 +40,23 @@ table.ogc tr td {
     </style>
   </head>
   <body>
-  <h1>Well-Known Text format</h1>
-  <p>Many entities in this specification can be printed in a well-known text
-  format. This allows objects to be stored in databases (persistence), and transmitted between
-  interoperating computer programs. Each entity has a keyword in upper case (for example,
-  <a href="#DATUM"><code>DATUM</code></a> or <a href="#UNIT"><code>UNIT</code></a>) followed
-  by the defining, comma-delimited, parameters of the object in brackets. Some
-  objects are composed of objects so the result is a nested structure. Implementations are free
-  to substitute standard brackets (&nbsp;) for square brackets [&nbsp;] and should be prepared to
-  read both forms of brackets. The definition for WKT is shown below using Extended Backus Naur
-  Form (EBNF). The WKT for a math transform can be used inside a engineering coordinate reference
-  system, so it is shown first.</p>
+  <h1>Well-Known Text format (WKT)</h1>
+  <p>Many entities in this specification can be printed in a well-known text format.
+  This allows objects to be stored in databases (persistence), and transmitted between interoperating computer programs.
+  Each entity has a keyword (for example, <a href="#DATUM"><code>DATUM</code></a> or <a href="#UNIT"><code>UNIT</code></a>)
+  followed by the defining, comma-delimited, parameters of the object in brackets.
+  Some objects are composed of objects so the result is a nested structure.
+  Implementations are free to substitute standard brackets (&nbsp;) for square brackets [&nbsp;]
+  and should be prepared to read both forms of brackets.</p>
+
+  <blockquote style="border-style: solid; border-width: 1pt; padding: 12pt; background-color: #ffcc66">
+  WKT is now defined by ISO 19162 (<cite>Geographic information — Well known text for coordinate reference systems</cite>),
+  also known as “WKT 2”. This page describes the older format defined by OGC 01-009 (<cite>Coordinate Transformation Services</cite>),
+  referenced as “WKT 1”. See ISO 19162 instead for the recommended format to use in new softwares.
+  </blockquote>
+
+  <p>The definition for WKT 1 is shown below using Extended Backus Naur Form (EBNF).
+  The WKT for a math transform can be used inside a engineering coordinate reference system, so it is shown first.</p>
 
   <h2>Math Transform WKT</h2>
 <pre>&lt;math transform&gt; = &lt;param mt&gt; | &lt;concat mt&gt; | &lt;inv mt&gt; | &lt;passthrough mt&gt;

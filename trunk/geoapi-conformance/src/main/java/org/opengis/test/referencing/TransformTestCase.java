@@ -1242,7 +1242,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                         // WKT formatting is optional, so ignore.
                     }
                     if (wkt != null) {
-                        buffer.append(lineSeparator).append("• The transform Well Known Text (WKT) is below:")
+                        buffer.append(lineSeparator).append("• The transform Well-Known Text (WKT) is below:")
                               .append(lineSeparator).append(wkt);
                     }
                     throw new TransformFailure(buffer.toString());

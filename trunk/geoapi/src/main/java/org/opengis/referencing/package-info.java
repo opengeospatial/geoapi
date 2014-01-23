@@ -62,10 +62,15 @@
  * environments (e.g. internet servers).</p>
  *
  * <h2>Well-Known Text format</h2>
- * <p>Many entities in this specification can be printed in a well-known text
- * format. This allows objects to be stored in databases (persistence), and transmitted between
- * interoperating computer programs. The <a href="doc-files/WKT.html">definition for WKT</a> is
- * shown using Extended Backus Naur Form (EBNF).</p>
+ * <p>Many entities in this specification can be printed in a well-known text format.
+ * This allows objects to be stored in databases (persistence), and transmitted between
+ * interoperating computer programs. Well-Known texts (WKT) may come in two formats:
+ *
+ * <ul>
+ *   <li>The current standard — WKT 2 — is defined by ISO 19162.</li>
+ *   <li>The legacy format — WKT 1 — is shown using Extended Backus Naur Form (EBNF)
+ *       <a href="doc-files/WKT.html">here</a>.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
