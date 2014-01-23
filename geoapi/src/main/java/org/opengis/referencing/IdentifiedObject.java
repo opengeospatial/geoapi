@@ -149,8 +149,8 @@ public interface IdentifiedObject {
      *
      * <ul>
      *   <li>The current standard — WKT 2 — is defined by ISO 19162.</li>
-     *   <li>The legacy format — WKT 1 — was defined by OGC 01-009 and is shown using Extended Backus Naur Form (EBNF)
-     *       <a href="doc-files/WKT.html">here</a>.</li>
+     *   <li>The legacy format — WKT 1 — was defined by <a href="http://www.opengeospatial.org/standards/ct">OGC 01-009</a>
+     *       and is shown using Extended Backus Naur Form (EBNF) <a href="doc-files/WKT.html">here</a>.</li>
      * </ul>
      *
      * Implementations are encouraged, but not required, to format according the most recent standard.

@@ -90,11 +90,12 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      * @departure generalization
      *    According ISO 19111, "<cite>A Compound CRS is a coordinate reference system that combines
      *    two or more coordinate reference systems, <u>none of which can itself be compound</u></cite>".
-     *    However this constraint greatly increases the cost of extracting metadata (especially the CRS
-     *    identifier) of the three-dimensional part of a spatio-temporal CRS. Note also that in
-     *    "<u>Coordinate Transformation Services</u>" (OGC document 01-009), a compound CRS was
-     *    specified as a pair of arbitrary CRS ("head" and "tail") where each could be another
-     *    compound CRS, allowing the creation of a tree. GeoAPI follows that more general strategy.
+     *    However this constraint greatly increases the cost of extracting metadata
+     *    (especially the CRS identifier) of the three-dimensional part of a spatio-temporal CRS.
+     *    Note also that in <a href="http://www.opengeospatial.org/standards/ct">OGC 01-009</a>
+     *    (<cite>Coordinate Transformation Services</cite>), a compound CRS was specified as a pair of arbitrary CRS
+     *    ("head" and "tail") where each could be another compound CRS, allowing the creation of a tree.
+     *    GeoAPI follows that more general strategy.
      *
      * @since 2.3
      */
