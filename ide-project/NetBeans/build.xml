@@ -55,7 +55,7 @@
   -->
   <target name="-post-jar" depends="compile-test">
     <mkdir dir="${build.test.classes.dir}"/>
-    <jar destfile="${dist.dir}/GeoAPI-tests.jar"
+    <jar destfile="${dist.dir}/geoapi-tests.jar"
          basedir="${build.test.classes.dir}"
          includes="**/*"/>
   </target>
