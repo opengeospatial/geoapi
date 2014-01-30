@@ -7,8 +7,6 @@
             <source-roots>
                 <root id="src.core.dir" name="GeoAPI"/>
                 <root id="src.pending.dir" name="Pending"/>
-                <root id="src.validators.dir" name="Conformance"/>
-                <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="src.proj4.dir" name="Wrapper for Proj.4"/>
                 <root id="src.netcdf.dir" name="Wrapper for NetCDF"/>
                 <root id="src.openoffice.dir" name="OpenOffice add-in"/>
@@ -16,6 +14,8 @@
             </source-roots>
             <test-roots>
                 <root id="test.core.dir" name="Test GeoAPI"/>
+                <root id="src.validators.dir" name="Conformance"/>
+                <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="test.validators.dir" name="Tests conformance"/>
                 <root id="test.proj4.dir" name="Tests wrapper for Proj.4"/>
                 <root id="test.netcdf.dir" name="Tests wrapper for NetCDF"/>

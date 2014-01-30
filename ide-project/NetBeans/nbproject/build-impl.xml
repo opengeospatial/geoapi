@@ -120,6 +120,8 @@ is divided into following sections:
         <condition property="have.tests">
             <or>
                 <available file="${test.core.dir}"/>
+                <available file="${src.validators.dir}"/>
+                <available file="${rsc.validators.dir}"/>
                 <available file="${test.validators.dir}"/>
                 <available file="${test.proj4.dir}"/>
                 <available file="${test.netcdf.dir}"/>
@@ -130,8 +132,6 @@ is divided into following sections:
             <or>
                 <available file="${src.core.dir}"/>
                 <available file="${src.pending.dir}"/>
-                <available file="${src.validators.dir}"/>
-                <available file="${rsc.validators.dir}"/>
                 <available file="${src.proj4.dir}"/>
                 <available file="${src.netcdf.dir}"/>
                 <available file="${src.openoffice.dir}"/>
@@ -233,13 +233,13 @@ is divided into following sections:
     <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init" name="-init-check">
         <fail unless="src.core.dir">Must set src.core.dir</fail>
         <fail unless="src.pending.dir">Must set src.pending.dir</fail>
-        <fail unless="src.validators.dir">Must set src.validators.dir</fail>
-        <fail unless="rsc.validators.dir">Must set rsc.validators.dir</fail>
         <fail unless="src.proj4.dir">Must set src.proj4.dir</fail>
         <fail unless="src.netcdf.dir">Must set src.netcdf.dir</fail>
         <fail unless="src.openoffice.dir">Must set src.openoffice.dir</fail>
         <fail unless="src.examples.dir">Must set src.examples.dir</fail>
         <fail unless="test.core.dir">Must set test.core.dir</fail>
+        <fail unless="src.validators.dir">Must set src.validators.dir</fail>
+        <fail unless="rsc.validators.dir">Must set rsc.validators.dir</fail>
         <fail unless="test.validators.dir">Must set test.validators.dir</fail>
         <fail unless="test.proj4.dir">Must set test.proj4.dir</fail>
         <fail unless="test.netcdf.dir">Must set test.netcdf.dir</fail>
@@ -264,7 +264,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" if="ap.supported.internal" name="-init-macrodef-javac-with-processors">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.core.dir}:${src.pending.dir}:${src.validators.dir}:${rsc.validators.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}" name="srcdir"/>
+            <attribute default="${src.core.dir}:${src.pending.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -305,7 +305,7 @@ is divided into following sections:
     </target>
     <target depends="-init-ap-cmdline-properties" name="-init-macrodef-javac-without-processors" unless="ap.supported.internal">
         <macrodef name="javac" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.core.dir}:${src.pending.dir}:${src.validators.dir}:${rsc.validators.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}" name="srcdir"/>
+            <attribute default="${src.core.dir}:${src.pending.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <attribute default="${javac.processorpath}" name="processorpath"/>
@@ -338,7 +338,7 @@ is divided into following sections:
     </target>
     <target depends="-init-macrodef-javac-with-processors,-init-macrodef-javac-without-processors" name="-init-macrodef-javac">
         <macrodef name="depend" uri="http://www.netbeans.org/ns/j2se-project/3">
-            <attribute default="${src.core.dir}:${src.pending.dir}:${src.validators.dir}:${rsc.validators.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}" name="srcdir"/>
+            <attribute default="${src.core.dir}:${src.pending.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}" name="srcdir"/>
             <attribute default="${build.classes.dir}" name="destdir"/>
             <attribute default="${javac.classpath}" name="classpath"/>
             <sequential>
@@ -428,6 +428,12 @@ is divided into following sections:
                         <fileset dir="${test.core.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
                             <filename name="@{testincludes}"/>
                         </fileset>
+                        <fileset dir="${src.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
+                            <filename name="@{testincludes}"/>
+                        </fileset>
+                        <fileset dir="${rsc.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
+                            <filename name="@{testincludes}"/>
+                        </fileset>
                         <fileset dir="${test.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
                             <filename name="@{testincludes}"/>
                         </fileset>
@@ -470,6 +476,12 @@ is divided into following sections:
                 </condition>
                 <union id="test.set">
                     <fileset dir="${test.core.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
+                        <filename name="@{testincludes}"/>
+                    </fileset>
+                    <fileset dir="${src.validators.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
+                        <filename name="@{testincludes}"/>
+                    </fileset>
+                    <fileset dir="${rsc.validators.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
                         <filename name="@{testincludes}"/>
                     </fileset>
                     <fileset dir="${test.validators.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
@@ -594,6 +606,12 @@ is divided into following sections:
                 <junit dir="${work.dir}" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
                     <batchtest todir="${build.test.results.dir}">
                         <fileset dir="${test.core.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
+                            <filename name="@{testincludes}"/>
+                        </fileset>
+                        <fileset dir="${src.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
+                            <filename name="@{testincludes}"/>
+                        </fileset>
+                        <fileset dir="${rsc.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
                             <filename name="@{testincludes}"/>
                         </fileset>
                         <fileset dir="${test.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
@@ -972,15 +990,13 @@ is divided into following sections:
                 <include name="*"/>
             </dirset>
         </pathconvert>
-        <j2seproject3:depend srcdir="${src.core.dir}:${src.pending.dir}:${src.validators.dir}:${rsc.validators.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}:${build.generated.subdirs}"/>
+        <j2seproject3:depend srcdir="${src.core.dir}:${src.pending.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}:${build.generated.subdirs}"/>
     </target>
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile, -copy-persistence-xml,-compile-depend" if="have.sources" name="-do-compile">
         <j2seproject3:javac gensrcdir="${build.generated.sources.dir}"/>
         <copy todir="${build.classes.dir}">
             <fileset dir="${src.core.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.pending.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${rsc.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.proj4.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.netcdf.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.openoffice.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
@@ -1005,7 +1021,7 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile" name="-do-compile-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile/>
-        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.core.dir}:${src.pending.dir}:${src.validators.dir}:${rsc.validators.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}"/>
+        <j2seproject3:javac excludes="" gensrcdir="${build.generated.sources.dir}" includes="${javac.includes}" sourcepath="${src.core.dir}:${src.pending.dir}:${src.proj4.dir}:${src.netcdf.dir}:${src.openoffice.dir}:${src.examples.dir}"/>
     </target>
     <target name="-post-compile-single">
         <!-- Empty placeholder for easier customization. -->
@@ -1274,12 +1290,6 @@ is divided into following sections:
             <fileset dir="${src.pending.dir}" excludes="*.java,${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
-            <fileset dir="${src.validators.dir}" excludes="*.java,${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
-            <fileset dir="${rsc.validators.dir}" excludes="*.java,${excludes}" includes="${includes}">
-                <filename name="**/*.java"/>
-            </fileset>
             <fileset dir="${src.proj4.dir}" excludes="*.java,${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
@@ -1303,12 +1313,6 @@ is divided into following sections:
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${src.pending.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${src.validators.dir}" excludes="${excludes}" includes="${includes}">
-                <filename name="**/doc-files/**"/>
-            </fileset>
-            <fileset dir="${rsc.validators.dir}" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${src.proj4.dir}" excludes="${excludes}" includes="${includes}">
@@ -1345,12 +1349,14 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target if="do.depend.true" name="-compile-test-depend">
-        <j2seproject3:depend classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.core.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}"/>
+        <j2seproject3:depend classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}"/>
     </target>
     <target depends="init,deps-jar,compile,-pre-pre-compile-test,-pre-compile-test,-compile-test-depend" if="have.tests" name="-do-compile-test">
-        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" processorpath="${javac.test.processorpath}" srcdir="${test.core.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}"/>
+        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" processorpath="${javac.test.processorpath}" srcdir="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}"/>
         <copy todir="${build.test.classes.dir}">
             <fileset dir="${test.core.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${rsc.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.proj4.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.netcdf.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
@@ -1369,9 +1375,11 @@ is divided into following sections:
     <target depends="init,deps-jar,compile,-pre-pre-compile-test,-pre-compile-test-single" if="have.tests" name="-do-compile-test-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile destdir="${build.test.classes.dir}"/>
-        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" excludes="" includes="${javac.includes}" processorpath="${javac.test.processorpath}" sourcepath="${test.core.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}" srcdir="${test.core.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}"/>
+        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" excludes="" includes="${javac.includes}" processorpath="${javac.test.processorpath}" sourcepath="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}" srcdir="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.proj4.dir}:${test.netcdf.dir}:${test.examples.dir}"/>
         <copy todir="${build.test.classes.dir}">
             <fileset dir="${test.core.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${rsc.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.proj4.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.netcdf.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
