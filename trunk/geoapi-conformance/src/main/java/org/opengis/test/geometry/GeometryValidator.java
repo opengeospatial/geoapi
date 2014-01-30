@@ -78,6 +78,16 @@ public class GeometryValidator extends Validator {
     }
 
     /**
+     * Returns {@code true} if the given range is [+0 … -0]. Such range is used by some implementations
+     * for representing a 360° turn around the Earth. Such convention is of course not mandatory, but
+     * some tests in this class must be aware of it.
+     */
+    private static boolean isPositiveToNegativeZero(final double lower, final double upper) {
+        return Double.doubleToRawLongBits(lower) == 0L &&           // Positive zero
+               Double.doubleToRawLongBits(upper) == Long.MIN_VALUE; // Negative zero
+    }
+
+    /**
      * Validates the given envelope.
      * This method performs the following verifications:
      *
@@ -142,6 +152,13 @@ public class GeometryValidator extends Validator {
          * anti-meridian).
          */
         for (int i=0; i<dimension; i++) {
+            RangeMeaning meaning = null;
+            if (cs != null) {
+                final CoordinateSystemAxis axis = cs.getAxis(i);
+                if (axis != null) { // Should never be null, but this is not this test's job to ensure that.
+                    meaning = axis.getRangeMeaning();
+                }
+            }
             final double lower   = (lowerCorner != null) ? lowerCorner.getOrdinate(i) : NaN;
             final double upper   = (upperCorner != null) ? upperCorner.getOrdinate(i) : NaN;
             final double minimum = object.getMinimum(i);
@@ -149,13 +166,13 @@ public class GeometryValidator extends Validator {
             final double median  = object.getMedian (i);
             final double span    = object.getSpan   (i);
             if (!isNaN(minimum) && !isNaN(maximum)) {
-                if (lower <= upper) { // Do not accept NaN in this block.
+                if (lower <= upper && !isPositiveToNegativeZero(lower, upper)) { // Do not accept NaN in this block.
                     final double eps = (upper - lower) * tolerance;
                     assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.", lower, minimum, eps);
                     assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.", upper, maximum, eps);
                     assertEquals("Envelope: unexpected span value.",   (maximum - minimum),   span,   eps);
                     assertEquals("Envelope: unexpected median value.", (maximum + minimum)/2, median, eps);
-                } else {
+                } else if (RangeMeaning.EXACT.equals(meaning)) {
                     // assertBetween(…) tolerates NaN values, which is what we want.
                     assertValidRange("Envelope: invalid minimum or maximum.", minimum, maximum);
                     assertBetween   ("Envelope: invalid lower ordinate.",     minimum, maximum, lower);
@@ -163,23 +180,25 @@ public class GeometryValidator extends Validator {
                     assertBetween   ("Envelope: invalid median ordinate.",    minimum, maximum, median);
                 }
             }
-            if (lower > upper) {
-                if (cs != null) {
-                    final CoordinateSystemAxis axis = cs.getAxis(i);
-                    if (axis != null) {
-                        final RangeMeaning meaning = axis.getRangeMeaning();
-                        if (meaning != null) {
-                            assertEquals("Envelope: lower ordinate value may be greater than upper ordinate value "
-                                    + "only on axis having wrappround range.", RangeMeaning.WRAPAROUND, meaning);
-                        }
-                    }
-                }
+            if (meaning != null && (lower > upper || isPositiveToNegativeZero(lower, upper))) {
+                assertEquals("Envelope: lower ordinate value may be greater than upper ordinate value "
+                        + "only on axis having wrappround range.", RangeMeaning.WRAPAROUND, meaning);
             }
         }
     }
 
     /**
      * Validates the given position.
+     * This method ensures that the following hold:
+     *
+     * <ul>
+     *   <li>The number of dimension can not be negative.</li>
+     *   <li>If the position is associated to a CRS, then their number of dimensions must be equal.</li>
+     *   <li>Length of {@link DirectPosition#getCoordinate()} must be equals to the number of dimensions.</li>
+     *   <li>Values of above array must be equals to values returned by {@link DirectPosition#getOrdinate(int)}.</li>
+     *   <li>If the position is associated to a CRS and the axis range meaning is {@link RangeMeaning#EXACT},
+     *       then the ordinate values must be between the minimum and maximum axis value.</li>
+     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -215,13 +234,11 @@ public class GeometryValidator extends Validator {
                         dimension, cs.getDimension());
                 for (int i=0; i<dimension; i++) {
                     final CoordinateSystemAxis axis = cs.getAxis(i); // Assume already validated.
-                    if (axis != null) {
+                    if (axis != null && RangeMeaning.EXACT.equals(axis.getRangeMeaning())) {
                         final double ordinate = coordinate[i];
                         final double minimum  = axis.getMinimumValue();
                         final double maximum  = axis.getMaximumValue();
-                        final double eps = (maximum - minimum) * tolerance;
-                        assertBetween("DirectPosition: ordinate out of axis bounds.",
-                                minimum - eps, maximum + eps, ordinate);
+                        assertBetween("DirectPosition: ordinate out of axis bounds.", minimum, maximum, ordinate);
                     }
                 }
             }
