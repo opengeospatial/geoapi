@@ -5,10 +5,9 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>GeoAPI</name>
             <source-roots>
-                <root id="src.local-src.dir" name="Local sources (unversioned)"/>
-                <root id="src.core.dir" name="GeoAPI normative"/>
-                <root id="src.pending.dir" name="GeoAPI pending"/>
-                <root id="src.validators.dir" name="Conformance tests"/>
+                <root id="src.core.dir" name="GeoAPI"/>
+                <root id="src.pending.dir" name="Pending"/>
+                <root id="src.validators.dir" name="Conformance"/>
                 <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="src.proj4.dir" name="Wrapper for Proj.4"/>
                 <root id="src.netcdf.dir" name="Wrapper for NetCDF"/>
@@ -16,8 +15,8 @@
                 <root id="src.examples.dir" name="Examples"/>
             </source-roots>
             <test-roots>
-                <root id="test.core.dir" name="Tests GeoAPI normative"/>
-                <root id="test.validators.dir" name="Tests GeoAPI conformance"/>
+                <root id="test.core.dir" name="Test GeoAPI"/>
+                <root id="test.validators.dir" name="Tests conformance"/>
                 <root id="test.proj4.dir" name="Tests wrapper for Proj.4"/>
                 <root id="test.netcdf.dir" name="Tests wrapper for NetCDF"/>
                 <root id="test.examples.dir" name="Tests examples"/>
