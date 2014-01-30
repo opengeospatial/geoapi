@@ -53,7 +53,7 @@
   <!--
     Called after JAR building. Create also a JAR for the tests.
   -->
-  <target name="-post-jar">
+  <target name="-post-jar" depends="compile-test">
     <mkdir dir="${build.test.classes.dir}"/>
     <jar destfile="${dist.dir}/GeoAPI-tests.jar"
          basedir="${build.test.classes.dir}"
