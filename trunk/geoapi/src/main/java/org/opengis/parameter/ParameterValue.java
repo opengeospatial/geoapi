@@ -36,6 +36,7 @@ import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.metadata.citation.Citation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -48,18 +49,22 @@ import static org.opengis.annotation.Specification.*;
  * {@link #setValue(Object)} methods. The type and constraints on parameter values are given
  * by the {@linkplain #getDescriptor() descriptor}.
  *
- * <p>The following table summarizes the ISO attributes with the corresponding getter and setter methods:</p>
- * <table class="sis">
- *   <tr><th>ISO attributes</th>   <th>Setter methods</th>                    <th>Getter methods</th></tr>
- *   <tr><td>booleanValue</td>     <td>{@link #setValue(boolean)}</td>        <td>{@link #booleanValue()}    : {@code boolean}</td></tr>
- *   <tr><td>integerValue</td>     <td>{@link #setValue(int)}</td>            <td>{@link #intValue()}        : {@code int}</td></tr>
- *   <tr><td></td>                 <td>{@link #setValue(double)}</td>         <td>{@link #doubleValue()}     : {@code double}</td></tr>
- *   <tr><td>value</td>            <td>{@link #setValue(double, Unit)}</td>   <td>{@link #doubleValue(Unit)} : {@code double}</td></tr>
- *   <tr><td>valueList</td>        <td>{@link #setValue(double[], Unit)}</td> <td>{@link #doubleValueList()} : {@code double[]}</td></tr>
- *   <tr><td></td>                 <td>{@link #setValue(Object)}</td>         <td>{@link #getValue()}        : {@code Object}</td></tr>
- *   <tr><td>stringValue</td>      <td></td>                                  <td>{@link #stringValue()}     : {@code String}</td></tr>
- *   <tr><td>integerValueList</td> <td></td>                                  <td>{@link #intValueList()}    : {@code int[]}</td></tr>
- *   <tr><td>valueFile</td>        <td></td>                                  <td>{@link #valueFile()}       : {@code URI}</td></tr>
+ * <p>The following table summarizes the ISO 19111 attributes with the corresponding getter and
+ * setter methods:</p>
+ *
+ * <table class="ogc">
+ *   <tr><th>ISO attribute</th>             <th>Java type</th>        <th>Getter method</th>                  <th>Setter method</th></tr>
+ *   <tr><td></td>                          <td>{@link Object}</td>   <td>{@link #getValue()}</td>            <td>{@link #setValue(Object)}</td></tr>
+ *   <tr><td>{@code stringValue}</td>       <td>{@link String}</td>   <td>{@link #stringValue()}</td>         <td>{@code  setValue(Object)}</td></tr>
+ *   <tr><td>{@code value}</td>             <td>{@code double}</td>   <td>{@link #doubleValue()}</td>         <td>{@link #setValue(double)}</td></tr>
+ *   <tr><td></td>                          <td>{@code double}</td>   <td>{@link #doubleValue(Unit)}</td>     <td>{@link #setValue(double, Unit)}</td></tr>
+ *   <tr><td>{@code valueList}</td>         <td>{@code double[]}</td> <td>{@link #doubleValueList()}</td>     <td>{@code  setValue(Object)}</td></tr>
+ *   <tr><td></td>                          <td>{@code double[]}</td> <td>{@link #doubleValueList(Unit)}</td> <td>{@link #setValue(double[], Unit)}</td></tr>
+ *   <tr><td>{@code integerValue}</td>      <td>{@code int}</td>      <td>{@link #intValue()}</td>            <td>{@link #setValue(int)}</td></tr>
+ *   <tr><td>{@code integerValueList}</td>  <td>{@code int[]}</td>    <td>{@link #intValueList()}</td>        <td>{@code  setValue(Object)}</td></tr>
+ *   <tr><td>{@code booleanValue}</td>      <td>{@code boolean}</td>  <td>{@link #booleanValue()}</td>        <td>{@link #setValue(boolean)}</td></tr>
+ *   <tr><td>{@code valueFile}</td>         <td>{@link URI}</td>      <td>{@link #valueFile()}</td>           <td>{@code  setValue(Object)}</td></tr>
+ *   <tr><td>{@code valueFileCitation}</td> <td>{@link Citation}</td> <td>{@code  getValue()}</td>            <td>{@code  setValue(Object)}</td></tr>
  * </table>
  *
  * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()} method.
@@ -114,7 +119,6 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double,Unit)
      * @see #doubleValueList(Unit)
      */
-    @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     double doubleValue(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
 
     /**
@@ -135,6 +139,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList()
      */
+    @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     double doubleValue() throws IllegalStateException;
 
     /**

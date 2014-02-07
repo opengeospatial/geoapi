@@ -87,7 +87,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * or enumeration elements.
      *
      * @return A finite set of valid values (usually from a {@code CodeList}),
-     *         or {@code null} if it doesn't apply.
+     *         or {@code null} if it does not apply.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.
@@ -106,7 +106,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Returns the minimum parameter value.
      * If there is no minimum value, or if the minimum value is inappropriate for the
-     * {@linkplain #getValueClass() parameter class}, then this method returns {@code null}.
+     * {@linkplain #getValueClass() value class}, then this method returns {@code null}.
      *
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
@@ -116,7 +116,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Returns the maximum parameter value.
      * If there is no maximum value, or if the maximum value is inappropriate for the
-     * {@linkplain #getValueClass() parameter class}, then this method returns {@code null}.
+     * {@linkplain #getValueClass() value class}, then this method returns {@code null}.
      *
      * @return The maximum parameter value (often an instance of {@link Double}), or {@code null}.
      */
@@ -131,7 +131,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * This attribute apply only if the values is of numeric type
      * (usually an instance of {@link Double}).
      *
-     * @return The unit for numeric value, or {@code null} if it doesn't apply to the value type.
+     * @return The unit for numeric value, or {@code null} if it does not apply to the value type.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.
