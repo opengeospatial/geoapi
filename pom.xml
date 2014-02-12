@@ -166,7 +166,6 @@
 
   <!-- ====================================================
            Repository for the legacy JSR-275 dependency,
-           for UmlGraph (site generation only), and for
            NetCDF and vecmath (demo modules only).
        ==================================================== -->
   <repositories>
@@ -491,24 +490,11 @@
                 <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
                 <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
                 <breakiterator>true</breakiterator>
-                <linksource>true</linksource>
                 <stylesheetfile>geoapi/src/main/javadoc/stylesheet.css</stylesheetfile>
 
                 <!-- Do not add the "API" word in document title, because it is already included in the "GeoAPI name. -->
                 <doctitle>${project.name} ${project.version}</doctitle>
                 <windowtitle>${project.name} ${project.version}</windowtitle>
-
-                <!-- Generate the UML for each package and class. Credit: the configuration is inspired from the following project:
-                     http://project.smartics.de/public/de.smartics.maven.plugin/maven-issues-plugin/0.2.4/references/credits.html -->
-                <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                <docletArtifact>
-                  <groupId>org.umlgraph</groupId>
-                  <artifactId>UmlGraph</artifactId>
-                  <version>5.4</version>
-                </docletArtifact>
-                <additionalparam>
-                  -collapsible -qualify -postfixpackage -nodefontsize 9 -nodefontpackagesize 7
-                </additionalparam>
 
                 <!-- Custom taglets implemented in Java. -->
                 <taglets>
@@ -531,7 +517,6 @@
                   <tag><placement>tfmc</placement> <name>todo</name>      <head>TODO:</head></tag>
                   <tag><placement>X</placement>    <name>issue</name>     <head>JIRA:</head></tag>
                   <tag><placement>fm</placement>   <name>unitof</name>    <head>Unit:</head></tag>
-                  <tag><placement>X</placement>    <name>navassoc</name>  <head>Associated to:</head></tag> <!-- Used by UmlGraph doclet. -->
                 </tags>
 
                 <!-- Creates links to existing javadoc-generated
