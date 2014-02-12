@@ -37,13 +37,11 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1-, 2-, or 3-dimensional coordinate system. Gives the position of points relative to
- * orthogonal straight axes in the 2- and 3-dimensional cases. In the 1-dimensional case,
- * it contains a single straight coordinate axis. In the multi-dimensional case, all axes
- * shall have the same length unit of measure.
+ * A 2- or 3-dimensional coordinate system.
+ * Gives the position of points relative to orthogonal straight axes.
+ * All axes shall have the same length unit of measure.
  *
- * <p>A {@code CartesianCS} shall have one, two, or three {@linkplain #getAxis axis associations}.
- * This type of CS can be used by coordinate reference systems of type
+ * <p>This type of CS can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.GeocentricCRS},
  * {@link org.opengis.referencing.crs.ProjectedCRS},
  * {@link org.opengis.referencing.crs.EngineeringCRS} or

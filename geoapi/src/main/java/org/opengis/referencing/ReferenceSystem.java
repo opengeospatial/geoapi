@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @departure historic
  *   This interface was initially derived from an ISO 19111 specification published in 2003. Later
- *   revisions (in 2005) rely on an interface defined in ISO 19115 instead. The annotations were
+ *   revisions (in 2007) rely on an interface defined in ISO 19115 instead. The annotations were
  *   updated accordingly, but this interface is still defined in the referencing package instead
  *   of the metadata package for this historical reason.
  *
@@ -53,14 +53,12 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
- *
- * @navassoc 1 - - Extent
  */
 @UML(identifier="RS_ReferenceSystem", specification=ISO_19115)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(…)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
@@ -71,7 +69,7 @@ public interface ReferenceSystem extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(…)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
      * @see #getScope()

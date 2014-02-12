@@ -35,7 +35,7 @@ import org.opengis.util.NoSuchIdentifierException;
 
 
 /**
- * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
+ * Thrown when an {@linkplain AuthorityFactory authority factory} can not find
  * the requested authority code.
  *
  * @departure extension
@@ -73,7 +73,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      * @param  authority The authority, saved for retrieval by the {@link #getAuthority()} method.
      * @param  code The invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
      */
-    public NoSuchAuthorityCodeException(String message, String authority, String code) {
+    public NoSuchAuthorityCodeException(final String message, final String authority, final String code) {
         this(message, authority, code, (authority == null) ? code : (code == null) ? authority : authority + ':' + code);
     }
 
@@ -88,7 +88,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      * @param  identifier The full identifier as a concatenation of the authority and the code,
      *         saved for retrieval by the {@link #getIdentifierCode()} method.
      */
-    public NoSuchAuthorityCodeException(String message, String authority, String code, String identifier) {
+    public NoSuchAuthorityCodeException(final String message, final String authority, final String code, final String identifier) {
         super(message, identifier);
         this.authority = authority;
         this.code = code;

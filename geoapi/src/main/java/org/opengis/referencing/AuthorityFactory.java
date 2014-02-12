@@ -41,14 +41,13 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base interface for all authority factories. An <cite>authority</cite> is an
- * organization that maintains definitions of authority codes. An <cite>authority
- * code</cite> is a compact string defined by an authority to reference a particular
- * spatial reference object. For example the
- * <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains
- * a database of coordinate systems, and other spatial referencing objects, where each
- * object has a code number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate
- * system is '4326'.
+ * Base interface for all authority factories. An <cite>authority</cite> is an organization
+ * that maintains definitions of authority codes. An <cite>authority code</cite> is a compact
+ * string defined by an authority to reference a particular spatial reference object.
+ *
+ * <p>For example the <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains
+ * a database of coordinate systems, and other spatial referencing objects, where each object has a code
+ * number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate system is “4326”.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -66,26 +65,28 @@ public interface AuthorityFactory extends Factory {
     Citation getAuthority();
 
     /**
-     * Returns the set of authority codes of the given type. The {@code type}
-     * argument specifies the base class. For example if this factory is an instance
-     * of {@link org.opengis.referencing.crs.CRSAuthorityFactory}, then:
+     * Returns the set of authority codes for objects of the given type.
+     * The {@code type} argument specifies the base type of identified objects.
+     *
+     * <p><b>Example:</b> if this factory is an instance of {@link org.opengis.referencing.crs.CRSAuthorityFactory},
+     * then:</p>
      *
      * <ul>
-     *   <li><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class</code>
+     *   <li><p><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class</code><br>
      *       asks for all authority codes accepted by one of
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
-     *       and any other method returning a sub-type of {@code CoordinateReferenceSystem}.</li>
-     *   <li><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class</code>
+     *       and any other method returning a sub-type of {@code CoordinateReferenceSystem}.</p></li>
+     *   <li><p><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class</code><br>
      *       asks only for authority codes accepted by
-     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</li>
+     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</p></li>
      * </ul>
      *
      * @param  type The spatial reference objects type.
      * @return The set of authority codes for spatial reference objects of the given type.
-     *         If this factory doesn't contains any object of the given type, then this method
+     *         If this factory does not contain any object of the given type, then this method
      *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
      *
