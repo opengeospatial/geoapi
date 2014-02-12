@@ -45,38 +45,48 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Supplementary identification and remarks information for a CRS or CRS-related object.
- * Some typical {@code IdentifiedObject} sub-types are
- * {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic datum} (e.g. "<cite>World Geodetic System 1984</cite>"),
- * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. "<cite>WGS 84 / World Mercator</cite>") and
- * {@linkplain org.opengis.referencing.operation.Projection map projection} (e.g. "<cite>Mercator (variant A)</cite>").
+ * Identified objects contain the following attributes:
  *
- * <p>When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
+ * <ul>
+ *   <li>A {@linkplain #getName() name} (example: “<cite>North American Datum of 1983</cite>”).</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases} (example: “NAD83” abbreviation).</li>
+ *   <li>{@linkplain #getIdentifiers() Identifiers} (example: a register of geodetic codes and
+ *       parameters might give the NAD83 datum a unique code of “6269”).</li>
+ * </ul>
+ *
+ * Some typical {@code IdentifiedObject} sub-types are:
+ *
+ * <ul>
+ *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Datum} (e.g. “<cite>World Geodetic System 1984</cite>”),</li>
+ *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. “<cite>Mercator (variant A)</cite>”) and</li>
+ *   <li>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
+ * </ul>
+ *
+ * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
  * the {@linkplain ReferenceIdentifier#getAuthority() authority} and
  * {@linkplain ReferenceIdentifier#getCode() authority code} values shall be set to the
  * authority name of the factory object, and the authority code supplied by the client,
  * respectively. The other values may or may not be set. If the authority is EPSG, the
- * implementer may consider using the corresponding metadata values in the EPSG tables.</p>
+ * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
- *   ISO 19111 defines an <code>IdentifiedObjectBase</code> interface. The later is omitted in
- *   GeoAPI because the split between <code>IdentifiedObject</code> and <code>IdentifiedObjectBase</code>
- *   in the ISO/OGC specification was a workaround for introducing <code>IdentifiedObject</code>
- *   in ISO 19111 without changing the <code>ReferenceSystem</code> definition in ISO 19115 but
- *   GeoAPI does not need this workaround.
+ *   ISO 19111 defines an <code>IO_IdentifiedObjectBase</code> type. The later is omitted in GeoAPI
+ *   because the split between <code>IO_IdentifiedObject</code> and <code>IO_IdentifiedObjectBase</code>
+ *   in the ISO/OGC specification was a workaround for introducing <code>IO_IdentifiedObject</code>
+ *   in ISO 19111 without changing the <code>RS_ReferenceSystem</code> definition in ISO 19115.
+ *   Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified model,
+ *   it does not need this workaround.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - GenericName
- * @navassoc - - - ReferenceIdentifier
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="IO_IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(…)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getName()}.
      *
      * @see #getName()
@@ -85,7 +95,7 @@ public interface IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(…)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getAlias()}.
      *
      * @see #getAlias()
@@ -94,7 +104,7 @@ public interface IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(…)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getIdentifiers()}.
      *
      * @see #getIdentifiers()
@@ -103,7 +113,7 @@ public interface IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(…)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getRemarks()}.
      *
      * @see #getRemarks()
@@ -121,7 +131,7 @@ public interface IdentifiedObject {
     /**
      * An alternative name by which this object is identified.
      *
-     * @return The aliases, or an empty collection if there is none.
+     * @return Alternative name and abbreviation, or an empty collection if there is none.
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     Collection<GenericName> getAlias();
@@ -148,17 +158,17 @@ public interface IdentifiedObject {
      * Well-Known texts (WKT) may come in two formats:
      *
      * <ul>
-     *   <li>The current standard — WKT 2 — is defined by ISO 19162.</li>
-     *   <li>The legacy format — WKT 1 — was defined by <a href="http://www.opengeospatial.org/standards/ct">OGC 01-009</a>
+     *   <li>The current standard, WKT 2, is defined by ISO 19162.</li>
+     *   <li>The legacy format, WKT 1, was defined by <a href="http://www.opengeospatial.org/standards/ct">OGC 01-009</a>
      *       and is shown using Extended Backus Naur Form (EBNF) <a href="doc-files/WKT.html">here</a>.</li>
      * </ul>
      *
-     * Implementations are encouraged, but not required, to format according the most recent standard.
+     * Implementations are encouraged to format according the most recent standard.
      * This operation may fail if unsupported or if this instance contains elements that do not have
      * WKT representation.
      *
      * @return The Well-Know Text for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @throws UnsupportedOperationException If this object can not be formatted as WKT.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added in order to provide

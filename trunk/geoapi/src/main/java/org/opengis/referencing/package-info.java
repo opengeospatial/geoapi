@@ -35,23 +35,23 @@
  * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
- * <p>A reference system contains the metadata required to
- * interpret spatial location information unambiguously. The description of
- * an object's attributes can be done explicitly, by providing all defining
- * parameters, or by identifier, a reference to a recognised source that contains
- * a full description of the object.</p>
+ * <p>A reference system contains the metadata required to interpret spatial location information unambiguously.
+ * The description of an object's attributes can be done</p>
  *
- * <p>The {@link org.opengis.referencing.IdentifiedObject} interface contains
- * attributes common to several objects used in spatial referencing by coordinates. For example,
- * a {@linkplain org.opengis.referencing.datum.Datum datum} name might be "North American Datum
- * of 1983". This may have alternative names or aliases, for example the abbreviation "NAD83".
- * Object {@linkplain org.opengis.referencing.IdentifiedObject#getName primary names} have a data type
- * {@link org.opengis.metadata.Identifier} whilst {@linkplain org.opengis.referencing.IdentifiedObject#getAlias aliases}
- * have a data type {@link org.opengis.util.GenericName}.</p>
+ * <ul>
+ *   <li>explicitly, by providing all defining parameters, or</li>
+ *   <li>by identifier, a reference to a recognised source that contains a full description of the object.</li>
+ * </ul>
+ *
+ * The {@link org.opengis.referencing.IdentifiedObject} interface contains attributes common to several objects
+ * used in spatial referencing by coordinates. For example, a {@linkplain org.opengis.referencing.datum.Datum datum}
+ * {@linkplain org.opengis.referencing.IdentifiedObject#getName() primary names} might be “<cite>North American Datum
+ * of 1983</cite>”. This may have alternative names or {@linkplain org.opengis.referencing.IdentifiedObject#getAlias()
+ * aliases}, for example the abbreviation “NAD83”.
  *
  * <p>Another attribute is {@linkplain org.opengis.referencing.IdentifiedObject#getIdentifiers identifiers}.
  * This is a unique code used to reference an object in a given place. For example, an external geodetic register might
- * give the NAD83 datum a unique code of "6269". Identifiers have a data type of {@link org.opengis.metadata.Identifier}.
+ * give the NAD83 datum a unique code of “6269”. Identifiers have a data type of {@link org.opengis.referencing.ReferenceIdentifier}.
  * In addition to the use of an identifier as a reference to a definition in a remote register, it may also be included
  * in an object definition to allow remote users to refer to the object.</p>
  *
@@ -59,7 +59,7 @@
  * not to change an object's internal state once they have handed out an interface pointer. Since
  * most interfaced objects are specified to be immutable, there do not need to be any constraints
  * on operation sequencing. This means that these interfaces can be used in parallel computing
- * environments (e.g. internet servers).</p>
+ * environments (e.g. Internet servers).</p>
  *
  * <h2>Well-Known Text format</h2>
  * <p>Many entities in this specification can be printed in a well-known text format.
@@ -67,14 +67,14 @@
  * interoperating computer programs. Well-Known texts (WKT) may come in two formats:
  *
  * <ul>
- *   <li>The current standard — WKT 2 — is defined by ISO 19162.</li>
- *   <li>The legacy format — WKT 1 — is shown using Extended Backus Naur Form (EBNF)
+ *   <li>The current standard, WKT 2, is defined by ISO 19162.</li>
+ *   <li>The legacy format, WKT 1, is shown using Extended Backus Naur Form (EBNF)
  *       <a href="doc-files/WKT.html">here</a>.</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 package org.opengis.referencing;

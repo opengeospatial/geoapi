@@ -42,9 +42,10 @@ import org.opengis.metadata.citation.Citation;
  *       creates objects from a compact string defined by an authority.</li>
  *   <li>{@linkplain org.opengis.referencing.ObjectFactory Object factories}
  *       allows applications to make objects that cannot be created by an authority
- *       factory. This factory is very flexible, whereas the authority factory is
- *       easier to use.</li>
+ *       factory.</li>
  * </ul>
+ *
+ * Object factories are very flexible, whereas the authority factories are easier to use.
  *
  * @departure harmonization
  *   This interface is not part of the OGC specification. It is added for uniformity,
