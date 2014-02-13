@@ -44,8 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * A contextually local coordinate reference system. It can be divided into two broad categories:
  *
  * <ul>
- *   <li>earth-fixed systems applied to engineering activities on or near the surface of the
- *       earth;</li>
+ *   <li>earth-fixed systems applied to engineering activities on or near the surface of the earth;</li>
  *   <li>CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft.</li>
  * </ul>
  *
@@ -81,9 +80,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - EngineeringDatum
- * @navassoc 1 - - CoordinateSystem
  *
  * @see CRSAuthorityFactory#createEngineeringCRS(String)
  * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, CoordinateSystem)

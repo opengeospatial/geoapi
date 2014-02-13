@@ -55,9 +55,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - GeodeticDatum
- * @navassoc 1 - - CartesianCS
- *
  * @see CRSAuthorityFactory#createProjectedCRS(String)
  * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
  */
@@ -70,13 +67,15 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     GeographicCRS getBaseCRS();
 
     /**
-     * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
+     * Returns the map projection from the {@linkplain #getBaseCRS() base CRS} to this CRS.
      */
     @Override
     Projection getConversionFromBase();
 
     /**
-     * Returns the coordinate system, which must be Cartesian.
+     * Returns the coordinate system, which shall be Cartesian.
+     *
+     * @return The Cartesian coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

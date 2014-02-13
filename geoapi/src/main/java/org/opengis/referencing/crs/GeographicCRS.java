@@ -63,16 +63,15 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - GeodeticDatum
- * @navassoc 1 - - EllipsoidalCS
- *
  * @see CRSAuthorityFactory#createGeographicCRS(String)
  * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
  */
 @UML(identifier="SC_GeographicCRS", specification=ISO_19111)
 public interface GeographicCRS extends GeodeticCRS {
     /**
-     * Returns the coordinate system, which must be ellipsoidal.
+     * Returns the coordinate system, which shall be ellipsoidal.
+     *
+     * @return The ellipsoidal coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

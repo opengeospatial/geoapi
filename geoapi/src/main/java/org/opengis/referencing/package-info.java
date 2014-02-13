@@ -74,7 +74,7 @@
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
  */
 package org.opengis.referencing;

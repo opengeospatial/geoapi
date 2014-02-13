@@ -47,19 +47,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * <p>By implication, ellipsoidal heights (<var>h</var>) cannot be captured in a vertical coordinate
  * reference system. Ellipsoidal heights cannot exist independently, but only as inseparable part
- * of a 3D coordinate tuple defined in a geographic 3D coordinate reference system. However GeoAPI
- * does not enforce this rule. Some applications may relax this rule and accept ellipsoidal heights
- * in the following context:</p>
+ * of a 3D coordinate tuple defined in a geographic 3D coordinate reference system.</p>
  *
- * <ul>
- *   <li>As a transient state while parsing <a href="../doc-files/WKT.html">Well-Known Text 1</a>,
- *       or any other format based on legacy specifications where ellipsoidal heights were allowed
- *       as an independent axis.</li>
- *   <li>As short-lived objects to be passed or returned by methods enforcing type safety, for
- *       example {@link org.opengis.metadata.extent.VerticalExtent#getVerticalCRS()}.</li>
- *   <li>Other cases at implementor convenience. However implementors are encouraged to
- *       assemble the full 3D CRS as soon as they can.</li>
- * </ul>
+ * {@note Some applications may relax the above rule and accept ellipsoidal heights in some contexts.
+ *        For example as a transient state while parsing <a href="../doc-files/WKT.html">Well-Known Text 1</a>,
+ *        or any other format based on legacy specifications where ellipsoidal heights were allowed as an
+ *        independent axis. However implementors are encouraged to assemble the full 3D CRS as soon as they can.}
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.VerticalCS}.</p>
@@ -68,16 +61,15 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - VerticalDatum
- * @navassoc 1 - - VerticalCS
- *
  * @see CRSAuthorityFactory#createVerticalCRS(String)
  * @see CRSFactory#createVerticalCRS(Map, VerticalDatum, VerticalCS)
  */
 @UML(identifier="SC_VerticalCRS", specification=ISO_19111)
 public interface VerticalCRS extends SingleCRS {
     /**
-     * Returns the coordinate system, which must be vertical.
+     * Returns the coordinate system, which shall be vertical.
+     *
+     * @return The vertical coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

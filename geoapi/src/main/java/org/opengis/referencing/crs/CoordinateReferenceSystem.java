@@ -41,49 +41,55 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Abstract coordinate reference system, usually defined by a
- * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} and a
- * {@linkplain org.opengis.referencing.datum.Datum datum}. The concept of a coordinate
- * reference system (CRS) captures the choice of values for the parameters that constitute
+ * Abstract coordinate reference system (CRS).
+ * This is the base interface for two cases:
+ *
+ * <ul>
+ *   <li>{@link SingleCRS}, usually defined by a
+ *       {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} and a
+ *       {@linkplain org.opengis.referencing.datum.Datum datum};</li>
+ *   <li>{@link CompoundCRS}, defined as a sequence of {@code SingleCRS}.</li>
+ * </ul>
+ *
+ * <h3>Purpose</h3>
+ * A coordinate reference system (CRS) captures the choice of values for the parameters that constitute
  * the degrees of freedom of the coordinate space. The fact that such a choice has to be made,
  * either arbitrarily or by adopting values from survey measurements, leads to the large number
  * of coordinate reference systems in use around the world. It is also the cause of the little
  * understood fact that the latitude and longitude of a point are not unique. Without the full
  * specification of the coordinate reference system, coordinates are ambiguous at best and
- * meaningless at worst. However for some interchange purposes it is sufficient to confirm the
- * {@linkplain #getName identity of the system} without necessarily having the full system
- * definition.
+ * meaningless at worst.
  *
- * <p>The concept of coordinates may be expanded from a strictly spatial context to include time.
+ * <h3>Spatio-temporal CRS</h3>
+ * The concept of coordinates may be expanded from a strictly spatial context to include time.
  * Time is then added as another coordinate to the coordinate tuple. It is even possible to add
  * two time-coordinates, provided the two coordinates describe different independent quantities.
  * An example of the latter is the time/space position of a subsurface point of which the vertical
  * coordinate is expressed as the two-way travel time of a sound signal in milliseconds, as is
  * common in seismic imaging. A second time-coordinate indicates the time of observation, usually
- * expressed in whole years.</p>
+ * expressed in whole years.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - CoordinateSystem
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_CRS", specification=ISO_19111)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
-     * Returns a relevant coordinate system instance. Special cases:
+     * Returns the coordinate system of a single CRS, or a view over all coordinate systems of a compound CRS.
+     * More specifically:
      *
      * <ul>
      *   <li>If the CRS instance on which this method is invoked is an instance of the
-     *       {@linkplain SingleCRS single CRS} interface, then the CS instance which is
-     *       returned shall be one of the defined sub-interfaces of {@linkplain CoordinateSystem
-     *       coordinate system}.</li>
+     *       {@link SingleCRS} interface, then the CS instance which is returned shall
+     *       be one of the defined sub-interfaces of {@link CoordinateSystem}.</li>
      *
      *   <li>If the CRS instance on which this method is invoked is an instance of the
-     *       {@linkplain CompoundCRS compound CRS} interface, then the CS instance which is
-     *       returned shall have dimension and axis components obtained from different
-     *       {@linkplain CompoundCRS#getComponents components} of the instance CRS.</li>
+     *       {@link CompoundCRS} interface, then the CS instance which is returned shall
+     *       have a {@linkplain CoordinateSystem#getDimension() dimension} equals to the
+     *       sum of the dimensions of all {@linkplain CompoundCRS#getComponents() components},
+     *       and axes obtained from the coordinate system of each component.</li>
      * </ul>
      *
      * @return The coordinate system.

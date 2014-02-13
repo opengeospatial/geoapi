@@ -56,8 +56,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface AuthorityFactory extends Factory {
     /**
-     * Returns the organization or party responsible for definition and maintenance of the
-     * database.
+     * Returns the organization or party responsible for definition and maintenance of the database.
      *
      * @return The organization responsible for definition of the database.
      */

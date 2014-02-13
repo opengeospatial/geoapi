@@ -50,16 +50,15 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - TemporalDatum
- * @navassoc 1 - - TimeCS
- *
  * @see CRSAuthorityFactory#createTemporalCRS(String)
  * @see CRSFactory#createTemporalCRS(Map, TemporalDatum, TimeCS)
  */
 @UML(identifier="SC_TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {
     /**
-     * Returns the coordinate system, which must be temporal.
+     * Returns the coordinate system, which shall be temporal.
+     *
+     * @return The temporal coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
