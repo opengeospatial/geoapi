@@ -49,8 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.1
- *
- * @navassoc 1 - - GeodeticDatum
  */
 @UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {

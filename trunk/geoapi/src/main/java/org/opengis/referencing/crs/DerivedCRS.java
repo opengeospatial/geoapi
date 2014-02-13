@@ -39,10 +39,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system that is defined by its coordinate conversion from another
- * coordinate reference system but is not a projected coordinate reference system. This
- * category includes coordinate reference systems derived from a {@linkplain ProjectedCRS
- * projected coordinate reference system}.
+ * A coordinate reference system that is defined by its coordinate conversion from another CRS
+ * but is not a projected CRS.
+ * This category includes coordinate reference systems derived from a projected CRS.
  *
  * @departure integration
  *   ISO 19111 defines a <code>DerivedCRSType</code> code list. The later is omitted in GeoAPI since

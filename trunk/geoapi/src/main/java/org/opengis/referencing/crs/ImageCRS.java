@@ -54,16 +54,16 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - ImageDatum
- * @navassoc 1 - - AffineCS
- *
  * @see CRSAuthorityFactory#createImageCRS(String)
  * @see CRSFactory#createImageCRS(Map, ImageDatum, AffineCS)
  */
 @UML(identifier="SC_ImageCRS", specification=ISO_19111)
 public interface ImageCRS extends SingleCRS {
     /**
-     * Returns the affine coordinate system.
+     * Returns the affine coordinate system, which shall be {@linkplain AffineCS affine} or
+     * {@linkplain CartesianCS Cartsian}.
+     *
+     * @return The affine or Cartesian coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

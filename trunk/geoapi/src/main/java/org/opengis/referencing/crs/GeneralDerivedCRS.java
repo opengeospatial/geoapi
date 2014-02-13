@@ -42,15 +42,18 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A coordinate reference system that is defined by its coordinate
- * {@linkplain Conversion conversion} from another coordinate reference system
- * (not by a {@linkplain org.opengis.referencing.datum.Datum datum}).
+ * {@linkplain Conversion conversion} from another coordinate reference system.
+ * Derived CRS are not directly associated to a {@linkplain org.opengis.referencing.datum.Datum datum}.
+ *
+ * <p>In principle, all sub-types of {@link CoordinateReferenceSystem} may take on the role of either source or
+ * derived CRS with the exception of a {@link GeocentricCRS} and a {@link ProjectedCRS}. The latter is modelled
+ * as an object class under its own name, rather than as a general derived CRS of type "projected".
+ * This has been done to honour common practice, which acknowledges projected CRSs as one of the best known
+ * types of coordinate reference systems.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - CoordinateReferenceSystem
- * @navassoc 1 - - Conversion
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111)
@@ -64,14 +67,14 @@ public interface GeneralDerivedCRS extends SingleCRS {
     CoordinateReferenceSystem getBaseCRS();
 
     /**
-     * Returns the conversion from the {@linkplain #getBaseCRS base CRS} to this CRS.
+     * Returns the conversion from the {@linkplain #getBaseCRS() base CRS} to this CRS.
      *
      * @return The conversion from the base CRS.
      *
      * @departure rename
      *   "<code>conversion</code>" may be confusing as a method name
      *   since it does not indicate which CRS is the source or which is the target.
-     *   <a href="http://www.opengeospatial.org/standards/ct">OGC 01-009</a> used the <code>toBase()</code> method name.
+     *   The OGC 01-009 specification used the <code>toBase()</code> method name.
      *   By analogy with 01-009, GeoAPI defines a method name which contains the "<code>FromBase</code>" expression.
      */
     @UML(identifier="conversion", obligation=MANDATORY, specification=ISO_19111)

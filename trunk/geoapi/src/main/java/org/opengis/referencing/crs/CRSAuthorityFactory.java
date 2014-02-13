@@ -102,7 +102,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
+     * Create a engineering coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -113,7 +113,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
+     * Returns a geographic coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -127,7 +127,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain GeocentricCRS geocentric coordinate reference system} from a code.
+     * Returns a geocentric coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -140,7 +140,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
+     * Create a image coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -151,7 +151,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
+     * Returns a projected coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -165,7 +165,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
+     * Create a temporal coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -178,7 +178,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
+     * Create a vertical coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.

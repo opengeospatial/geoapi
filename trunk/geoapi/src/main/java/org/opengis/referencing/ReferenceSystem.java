@@ -41,8 +41,18 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of a spatial and temporal reference system used by a dataset.
- * Reference systems contain the following properties (including those inherited
- * from the {@link IdentifiedObject} parent interface):
+ * A reference system contains the metadata required to interpret spatial location information unambiguously.
+ * Two methods to describe spatial location are distinguished:
+ *
+ * <ul>
+ *   <li>Spatial referencing by geographic identifier.
+ *       Geographic identifiers are location descriptors such as addresses and grid indexes.</li>
+ *   <li>Spatial referencing by coordinates. This specialized case is handled by the
+ *       {@link org.opengis.referencing.crs.CoordinateReferenceSystem} subtype.</li>
+ * </ul>
+ *
+ * Reference systems contain the following properties
+ * (including those inherited from the {@link IdentifiedObject} parent interface):
  *
  * <ul>
  *   <li>A {@linkplain #getName() name} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
@@ -113,12 +123,16 @@ public interface ReferenceSystem extends IdentifiedObject {
      * @return The domain of usage, or {@code null} if none.
      *
      * @departure historic
-     *   This method has been kept conformant with the specification published in 2003.
-     *   A later revision moved this attribute to subclasses, but GeoAPI keeps this method
-     *   here for historical reasons. The obligation is still optional, as opposed to ISO 19111:2007
-     *   which makes this attribute mandatory while mandating the text "<cite>not known</cite>" if
-     *   the scope is unknown. In addition, the return value of this method is still a singleton as in
-     *   the 2003 version, as opposed to the 2007 version which mandates a collection.
+     *   This method differs from ISO 19111:2007 in 3 aspects:
+     *   <ul>
+     *     <li>ISO 19111:2007 moved this attribute from this type to the {@code SC_CRS} subtype.
+     *         GeoAPI keeps this attribute here for historical reasons.</li>
+     *     <li>ISO 19111:2007 changed the obligation from optional to mandatory
+     *         and requires the value to be "<cite>not known</cite>" if the scope is unknown.
+     *         GeoAPI lefts the obligation unchanged: optional with {@code null} value for unknown scope.</li>
+     *     <li>ISO 19111:2007 changed the multiplicity from singleton to a collection.
+     *         GeoAPI keeps the singleton type for historical reasons.</li>
+     *   </ul>
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();

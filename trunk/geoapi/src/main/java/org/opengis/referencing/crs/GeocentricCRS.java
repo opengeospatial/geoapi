@@ -61,8 +61,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - GeodeticDatum
- *
  * @see CRSAuthorityFactory#createGeocentricCRS(String)
  * @see CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)
  * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
@@ -70,8 +68,10 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111)
 public interface GeocentricCRS extends GeodeticCRS {
     /**
-     * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
+     * Returns the coordinate system, which shall be {@linkplain CartesianCS Cartesian}
      * or {@linkplain SphericalCS spherical}.
+     *
+     * @return The Cartesian or spherical coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
