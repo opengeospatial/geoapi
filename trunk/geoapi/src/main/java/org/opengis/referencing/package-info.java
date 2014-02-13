@@ -31,8 +31,8 @@
  */
 
 /**
- * {@linkplain org.opengis.referencing.ReferenceSystem Reference systems}. The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
+ * Base interfaces for {@linkplain org.opengis.referencing.ReferenceSystem reference systems}. The following
+ * is adapted from {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
  * <p>A reference system contains the metadata required to interpret spatial location information unambiguously.
@@ -64,7 +64,7 @@
  * <h2>Well-Known Text format</h2>
  * <p>Many entities in this specification can be printed in a well-known text format.
  * This allows objects to be stored in databases (persistence), and transmitted between
- * interoperating computer programs. Well-Known texts (WKT) may come in two formats:
+ * interoperating computer programs. Well-Known Texts (WKT) may come in two formats:
  *
  * <ul>
  *   <li>The current standard, WKT 2, is defined by ISO 19162.</li>

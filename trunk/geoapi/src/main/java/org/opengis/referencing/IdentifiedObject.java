@@ -48,17 +48,18 @@ import static org.opengis.annotation.Specification.*;
  * Identified objects contain the following attributes:
  *
  * <ul>
- *   <li>A {@linkplain #getName() name} (example: “<cite>North American Datum of 1983</cite>”).</li>
- *   <li>Alternative names or {@linkplain #getAlias() aliases} (example: “NAD83” abbreviation).</li>
- *   <li>{@linkplain #getIdentifiers() Identifiers} (example: a register of geodetic codes and
- *       parameters might give the NAD83 datum a unique code of “6269”).</li>
+ *   <li>A {@linkplain #getName() name} (e.g. “<cite>North American Datum of 1983</cite>”).</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases} (e.g. “NAD83” abbreviation).</li>
+ *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities
+ *       (e.g. a register of geodetic codes and parameters might give the NAD83 datum a unique code of “6269”).</li>
+ *   <li>{@linkplain #getRemarks() Remarks} about this object, including data source information.</li>
  * </ul>
  *
  * Some typical {@code IdentifiedObject} sub-types are:
  *
  * <ul>
  *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Datum} (e.g. “<cite>World Geodetic System 1984</cite>”),</li>
- *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. “<cite>Mercator (variant A)</cite>”) and</li>
+ *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. “<cite>Mercator (variant A)</cite>”),</li>
  *   <li>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
  * </ul>
  *
@@ -155,11 +156,11 @@ public interface IdentifiedObject {
 
     /**
      * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
-     * Well-Known texts (WKT) may come in two formats:
+     * Well-Known Texts (WKT) may come in two formats:
      *
      * <ul>
      *   <li>The current standard, WKT 2, is defined by ISO 19162.</li>
-     *   <li>The legacy format, WKT 1, was defined by <a href="http://www.opengeospatial.org/standards/ct">OGC 01-009</a>
+     *   <li>The legacy format, WKT 1, was defined by {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
      *       and is shown using Extended Backus Naur Form (EBNF) <a href="doc-files/WKT.html">here</a>.</li>
      * </ul>
      *
