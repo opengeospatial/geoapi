@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * This category includes coordinate reference systems derived from a projected CRS.
  *
  * @departure integration
- *   ISO 19111 defines a <code>DerivedCRSType</code> code list. The later is omitted in GeoAPI since
+ *   ISO 19111 defines a <code>SC_DerivedCRSType</code> code list. The later is omitted in GeoAPI since
  *   Java expressions like <code>(baseCRS instanceof FooCRS)</code> provides the same capability
  *   with more flexibility.
  *

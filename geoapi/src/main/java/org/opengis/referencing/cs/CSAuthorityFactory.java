@@ -41,9 +41,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates {@linkplain CoordinateSystem coordinate systems} using authority codes. External authorities
- * are used to manage definitions of objects used in this interface. The definitions of these objects are
- * referenced using code strings. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ * Creates {@linkplain CoordinateSystem coordinate systems} using authority codes.
+ * External authorities are used to manage definitions of objects used in this interface.
+ * The definitions of these objects are referenced using code strings.
+ * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

@@ -36,87 +36,76 @@
  * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
- * <h3>Coordinate system</h3>
- * <p>The coordinates of points are recorded in a coordinate
- * system. A coordinate system is the set of coordinate system axes that spans
- * the coordinate space. This concept implies the set of mathematical rules that
- * determine how coordinates are associated with invariant quantities such as
- * angles and distances. In other words, a coordinate system implies how coordinates
- * are calculated from geometric elements such as distances and angles and vice
- * versa. The calculus required to derive angles and distances from point coordinates
- * and vice versa in a map plane is simple Euclidean 2D arithmetic. To do the same
- * on the surface of an ellipsoid (curved 2D space) involves more complex ellipsoidal
- * calculus. These rules cannot be specified in detail, but are implied in the
- * geometric properties of the coordinate space.</p>
+ * <p>A coordinate system shall be composed of a non-repeating sequence of coordinate system axes.
+ * One {@link org.opengis.referencing.cs.CoordinateSystem} (CS) instance may be used by multiple
+ * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem} (CRS) instances.
+ * The dimension of the coordinate space, the names, the units of measure, the directions
+ * and sequence of the axes shall be part of the coordinate system definition.
+ * The number of axes shall be equal to the dimension of the space of which it describes the geometry.
+ * It is therefore not permitted to supply a coordinate tuple with two heights of different definition.</p>
  *
- * {@note The word "distances" is used loosely in the above description. Strictly speaking
- *        distances are not invariant quantities, as they are expressed in the unit of measure
- *        defined for the coordinate system; ratios of distances are invariant.}
+ * <p>The {@linkplain org.opengis.geometry.DirectPosition#getDimension() number of ordinates} in a coordinate tuple
+ * shall be equal to the {@linkplain org.opengis.referencing.cs.CoordinateSystem#getDimension() number of coordinate
+ * axes} in the coordinate system. Ordinates in coordinate tuples shall be supplied in the order in which
+ * the coordinate system's axes are defined.</p>
  *
- * <p>One {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system}
- * may be used by multiple {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
- * reference systems}. A coordinate system is composed of an ordered set of coordinate
- * system axes, the number of axes being equal to the dimension of the space of which
- * it describes the geometry. Its axes can be spatial, temporal, or mixed. Coordinates
- * in coordinate tuples shall be supplied in the same order as the coordinate axes are
- * defined.</p>
+ * <p>A coordinate system implies how coordinates are calculated from geometric elements such as distances
+ * and angles and vice versa. The calculus required to derive angles and distances from point coordinates
+ * and vice versa in a map plane is simple Euclidean 2D arithmetic. To do the same on the surface of an
+ * ellipsoid (curved 2D space) involves more complex ellipsoidal calculus. These rules cannot be specified
+ * in detail, but are implied in the geometric properties of the coordinate space.</p>
  *
- * <p>The dimension of the coordinate space, the names, the units
- * of measure, the directions and sequence of the axes are all part of the Coordinate
- * System definition. The number of coordinates in a tuple and consequently the number
- * of coordinate axes in a coordinate system shall be equal to the number of coordinate
- * axes in the coordinate system. It is therefore not permitted to supply a coordinate
- * tuple with two heights of different definition in the same coordinate tuple.</p>
+ * <h3>Coordinate system types and unions</h3>
+ * <p>Coordinate systems are divided into subtypes by the geometric properties of the coordinate space spanned
+ * and the geometric properties of the axes themselves (straight or curved; perpendicular or not).
+ * Certain subtypes of coordinate system shall be used only with specific subtypes of coordinate reference system.
+ * The restrictions are documented in the javadoc of each CRS subtype.</p>
  *
- * <p>Coordinate systems are divided into subtypes by the geometric
- * properties of the coordinate space spanned and the geometric properties of the axes
- * themselves (straight or curved; perpendicular or not). Certain subtypes of coordinate
- * system can only be used with specific subtypes of coordinate reference system.</p>
+ * <p>ISO 19111 defines three coordinate system <em>unions</em> in addition to the coordinate system <em>types</em>.
+ * Each union enumerates the coordinate system types that can be associated to a CRS type.
+ * However the {@code union} construct found in some languages like C/C++ is not available in Java.
+ * GeoAPI workarounds this limitation in different ways:</p>
  *
- * <h3>Coordinate system axis</h3>
- * <p>A coordinate system is composed of an ordered set of coordinate
- * system axes. Each of its axes is completely characterised by a unique combination
- * of axis name, axis abbreviation, axis direction and axis unit of measure.</p>
- *
- * <p>The concept of coordinate axis requires some clarification.
- * Consider an arbitrary <var>x</var>, <var>y</var>, <var>z</var> coordinate system.
- * The <var>x</var>-axis may be defined as the locus of points with
- * <var>y</var>&nbsp;=&nbsp;<var>z</var>&nbsp;=&nbsp;0. This is easily enough
- * understood if the <var>x</var>, <var>y</var>, <var>z</var> coordinate system is a
- * Cartesian system and the space it describes is Euclidean. It becomes a bit more
- * difficult to understand in the case of a strongly curved space, such as the surface
- * of an ellipsoid, its geometry described by an ellipsoidal coordinate system (2D or 3D).
- * Applying the same definition by analogy to the curvilinear latitude and longitude
- * coordinates the latitude axis would be the equator and the longitude axis would be
- * the prime meridian, which is not a satisfactory definition.</p>
- *
- * <p>Bearing in mind that the order of the coordinates in a coordinate
- * tuple must be the same as the defined order of the coordinate axes, the "<var>i</var>-th"
- * coordinate axis of a coordinate system is defined as the locus of points for which all
- * coordinates with sequence number not equal to "<var>i</var>", have a constant value
- * locally (whereby <var>i</var> = 1…<var>n</var>, and <var>n</var> is the dimension
- * of the coordinate space).</p>
- *
- * <p>It will be evident that the addition of the word "locally" in this
- * definition apparently adds an element of ambiguity and this is intentional. However,
- * the definition of the coordinate parameter associated with any axis must be unique.
- * The coordinate axis itself should not be interpreted as a unique mathematical object,
- * the associated coordinate parameter should. For example, geodetic latitude is defined
- * as the "Angle from the equatorial plane to the perpendicular to the ellipsoid through
- * a given point, northwards usually treated as positive". However, when used in an ellipsoidal
- * coordinate system the geodetic latitude axis will be described as pointing "north". In two
- * different points on the ellipsoid the direction "north" will be a spatially different direction,
- * but the concept of latitude is the same.</p>
+ * <table class="sis">
+ *   <tr>
+ *     <td>Union</td>
+ *     <td>Types in the union</td>
+ *     <td>GeoAPI approach</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code GeodeticCS}</td>
+ *     <td>{@link org.opengis.referencing.cs.CartesianCS},
+ *         {@link org.opengis.referencing.cs.EllipsoidalCS},
+ *         {@link org.opengis.referencing.cs.SphericalCS}</td>
+ *     <td>Provides a {@link org.opengis.referencing.crs.GeographicCRS} type for the {@code EllipsoidalCS} case.
+ *         Provides distinct {@link org.opengis.referencing.crs.CRSFactory} methods for the {@code CartesianCS}
+ *         and {@code SphericalCS} cases.</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code EnginneringCS}</td>
+ *     <td>{@link org.opengis.referencing.cs.AffineCS},
+ *         {@link org.opengis.referencing.cs.CartesianCS},
+ *         {@link org.opengis.referencing.cs.CylindricalCS},
+ *         {@link org.opengis.referencing.cs.LinearCS},
+ *         {@link org.opengis.referencing.cs.PolarCS},
+ *         {@link org.opengis.referencing.cs.SphericalCS},
+ *         {@link org.opengis.referencing.cs.UserDefinedCS}.</td>
+ *     <td>No workaround in the API. Verified by the conformance tests.</td>
+ *   </tr>
+ *   <tr>
+ *     <td>{@code ImageCS}</td>
+ *     <td>{@link org.opengis.referencing.cs.AffineCS},
+ *         {@link org.opengis.referencing.cs.CartesianCS}</td>
+ *     <td>Defines {@code CartesianCS} as a special case of {@code AffineCS}.</td>
+ *   </tr>
+ * </table>
  *
  * @departure constraint
- *   ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code>
- *   unions for type safety, which ensures, for example, that a <code>GeodeticCRS</code> only be
- *   associated to a <code>CartesianCS</code>, an <code>EllipsoidalCS</code> or a <code>SphericalCS</code>.
- *   However the <code>union</code> construct found in some languages like C/C++ is not available
- *   in Java. In the particular case of <code>ImageCS</code>, the same type-safety objective can
- *   be obtained through a slight change in the interface hierarchy (see the departure documented
- *   in <code>CartesianCS</code>). For the other two unions (<code>GeodeticCS</code> and
- *   <code>EngineeringCS</code>), no workaround is proposed.
+ *   ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code> unions.
+ *   However the <code>union</code> construct found in some languages like C/C++ is not available in Java.
+ *   For each union, a different approach has been applied and documented in the <code>org.opengis.referencing.cs</code>
+ *   package. In the particular case of <code>ImageCS</code>, the same type-safety objective can be obtained
+ *   through a slight change in the interface hierarchy.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

@@ -79,15 +79,11 @@ import static org.opengis.annotation.Specification.*;
  * The {@linkplain #getDirection() direction} of the coordinate axes is often only approximate;
  * two geographic coordinate reference systems will make use of the same ellipsoidal coordinate
  * system. These coordinate systems are associated with the earth through two different geodetic
- * datums, which may lead to the two systems being slightly rotated w.r.t. each other.
+ * datums, which may lead to the two systems being slightly rotated with respect to each other.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - AxisDirection
- * @navassoc 1 - - RangeMeaning
- * @navassoc 1 - - Unit
  *
  * @see CoordinateSystem
  * @see CSAuthorityFactory#createCoordinateSystemAxis(String)
@@ -96,9 +92,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
 public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
-     * The abbreviation used for this coordinate system axes. This abbreviation is also
-     * used to identify the ordinates in coordinate tuple. Examples are "<var>X</var>"
-     * and "<var>Y</var>".
+     * Returns the abbreviation used for this coordinate system axes.
+     * This abbreviation is also used to identify the ordinates in coordinate tuple.
+     * Examples are “<var>X</var>” and “<var>Y</var>”.
      *
      * @return The coordinate system axis abbreviation.
      */
@@ -106,18 +102,18 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     String getAbbreviation();
 
     /**
-     * Direction of this coordinate system axis. In the case of Cartesian projected
+     * Returns the direction of this coordinate system axis. In the case of Cartesian projected
      * coordinates, this is the direction of this coordinate system axis locally.
      * Examples:
      * {@linkplain AxisDirection#NORTH north} or {@linkplain AxisDirection#SOUTH south},
      * {@linkplain AxisDirection#EAST  east}  or {@linkplain AxisDirection#WEST  west},
      * {@linkplain AxisDirection#UP    up}    or {@linkplain AxisDirection#DOWN  down}.
      *
-     * <p>Within any set of coordinate system axes, only one of each pair of terms
-     * can be used. For earth-fixed coordinate reference systems, this direction is often
-     * approximate and intended to provide a human interpretable meaning to the axis. When a
-     * geodetic datum is used, the precise directions of the axes may therefore vary slightly
-     * from this approximate direction.</p>
+     * <p>Within any set of coordinate system axes, only one of each pair of terms can be used.
+     * For earth-fixed coordinate reference systems, this direction is often approximate
+     * and intended to provide a human interpretable meaning to the axis.
+     * When a geodetic datum is used, the precise directions of the axes may therefore
+     * vary slightly from this approximate direction.</p>
      *
      * <p>Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires
      * specific descriptions of the directions of its coordinate system axes.</p>
@@ -128,9 +124,21 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     AxisDirection getDirection();
 
     /**
-     * Returns the minimum value normally allowed for this axis, in the
-     * {@linkplain #getUnit unit of measure for the axis}. If there is no minimum value, then
-     * this method returns {@linkplain Double#NEGATIVE_INFINITY negative infinity}.
+     * Returns the unit of measure used for this coordinate system axis.
+     * The value of a ordinate in a coordinate tuple shall be recorded using this unit of measure,
+     * whenever those coordinates use a coordinate reference system that uses a coordinate system
+     * that uses this axis.
+     *
+     * @return The coordinate system axis unit.
+     */
+    @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
+    Unit<?> getUnit();
+
+    /**
+     * Returns the minimum value normally allowed for this axis,
+     * in the {@linkplain #getUnit() unit of measure for the axis}.
+     * If there is no minimum value, then this method returns
+     * {@linkplain Double#NEGATIVE_INFINITY negative infinity}.
      *
      * @return The minimum value, or {@link Double#NEGATIVE_INFINITY} if none.
      */
@@ -138,9 +146,10 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     double getMinimumValue();
 
     /**
-     * Returns the maximum value normally allowed for this axis, in the
-     * {@linkplain #getUnit unit of measure for the axis}. If there is no maximum value, then
-     * this method returns {@linkplain Double#POSITIVE_INFINITY positive infinity}.
+     * Returns the maximum value normally allowed for this axis,
+     * in the {@linkplain #getUnit() unit of measure for the axis}.
+     * If there is no maximum value, then this method returns
+     * {@linkplain Double#POSITIVE_INFINITY positive infinity}.
      *
      * @return The maximum value, or {@link Double#POSITIVE_INFINITY} if none.
      */
@@ -148,8 +157,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     double getMaximumValue();
 
     /**
-     * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue
-     * minimum} and {@linkplain #getMaximumValue maximum} values. This element shall be omitted
+     * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue()
+     * minimum} and {@linkplain #getMaximumValue() maximum} values. This element shall be omitted
      * when both minimum and maximum values are omitted. It may be included when minimum and/or
      * maximum values are included. If this element is omitted when minimum or maximum values are
      * included, the meaning is unspecified.
@@ -161,15 +170,4 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      */
     @UML(identifier="rangeMeaning", obligation=CONDITIONAL, specification=ISO_19111)
     RangeMeaning getRangeMeaning();
-
-    /**
-     * The unit of measure used for this coordinate system axis. The value of a
-     * coordinate in a coordinate tuple shall be recorded using this unit of measure,
-     * whenever those coordinates use a coordinate reference system that uses a
-     * coordinate system that uses this axis.
-     *
-     * @return  The coordinate system axis unit.
-     */
-    @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
-    Unit<?> getUnit();
 }

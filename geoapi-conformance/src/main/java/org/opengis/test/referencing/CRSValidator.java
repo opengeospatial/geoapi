@@ -129,8 +129,12 @@ public class CRSValidator extends ReferencingValidator {
             if (object instanceof TemporalCRS)    {validate((TemporalCRS)    object); n++;}
             if (object instanceof CompoundCRS)    {validate((CompoundCRS)    object); n++;}
             if (n == 0) {
-                validateReferenceSystem(object);
-                container.validate(object.getCoordinateSystem());
+                if (object instanceof GeodeticCRS) {
+                    validate((GeodeticCRS) object, false, false);
+                } else {
+                    validateReferenceSystem(object);
+                    container.validate(object.getCoordinateSystem());
+                }
             }
         }
         return n;
@@ -151,34 +155,7 @@ public class CRSValidator extends ReferencingValidator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final GeocentricCRS object) {
-        if (object == null) {
-            return;
-        }
-        validateReferenceSystem(object);
-        final CoordinateSystem cs = object.getCoordinateSystem();
-        mandatory("GeocentricCRS: must have a CoordinateSystem.", cs);
-        if (cs instanceof CartesianCS) {
-            container.validate((CartesianCS) cs);
-            final Set<AxisDirection> axes = getAxisDirections(cs);
-            validate(axes);
-            assertTrue("GeocentricCRS: expected Geocentric X axis direction.", axes.remove(AxisDirection.GEOCENTRIC_X));
-            assertTrue("GeocentricCRS: expected Geocentric Y axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Y));
-            assertTrue("GeocentricCRS: expected Geocentric Z axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Z));
-            assertTrue("GeocentricCRS: unknown axis direction.",               axes.isEmpty());
-            if (enforceStandardNames) {
-                assertStandardNames("GeocentricCRS", cs, GEOCENTRIC_AXIS_NAME);
-            }
-        } else if (cs instanceof SphericalCS) {
-            container.validate((SphericalCS) cs);
-            if (enforceStandardNames) {
-                assertStandardNames("GeocentricCRS", cs, SPHERICAL_AXIS_NAME);
-            }
-        } else if (cs != null) {
-            fail("GeocentricCRS: unknown CoordinateSystem of type " + cs.getClass().getCanonicalName() + '.');
-        }
-        final GeodeticDatum datum = object.getDatum();
-        mandatory("GeocentricCRS: must have a Datum.", datum);
-        container.validate(datum);
+        validate(object, true, false);
     }
 
     /**
@@ -194,18 +171,45 @@ public class CRSValidator extends ReferencingValidator {
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final GeographicCRS object) {
+        validate(object, false, true);
+    }
+
+    /**
+     * Implementation of {@link #validate(GeocentricCRS)} and {@link #validate(GeographicCRS)}.
+     */
+    private void validate(final GeodeticCRS object, final boolean skipGeographic, final boolean skipGeocentric) {
         if (object == null) {
             return;
         }
         validateReferenceSystem(object);
-        final EllipsoidalCS cs = object.getCoordinateSystem();
-        mandatory("GeographicCRS: must have a CoordinateSystem.", cs);
-        container.validate(cs);
-        if (enforceStandardNames) {
-            assertStandardNames("GeographicCRS", cs, GEOGRAPHIC_AXIS_NAME);
+        final CoordinateSystem cs = object.getCoordinateSystem();
+        mandatory("GeodeticCRS: shall have a CoordinateSystem.", cs);
+        if (!skipGeographic && cs instanceof EllipsoidalCS) {
+            container.validate((EllipsoidalCS) cs);
+            if (enforceStandardNames) {
+                assertStandardNames("GeographicCRS", cs, GEOGRAPHIC_AXIS_NAME);
+            }
+        } else if (!skipGeocentric && cs instanceof CartesianCS) {
+            container.validate((CartesianCS) cs);
+            final Set<AxisDirection> axes = getAxisDirections(cs);
+            validate(axes);
+            assertTrue("GeocentricCRS: expected Geocentric X axis direction.", axes.remove(AxisDirection.GEOCENTRIC_X));
+            assertTrue("GeocentricCRS: expected Geocentric Y axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Y));
+            assertTrue("GeocentricCRS: expected Geocentric Z axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Z));
+            assertTrue("GeocentricCRS: unknown axis direction.",               axes.isEmpty());
+            if (enforceStandardNames) {
+                assertStandardNames("GeocentricCRS", cs, GEOCENTRIC_AXIS_NAME);
+            }
+        } else if (!skipGeocentric && cs instanceof SphericalCS) {
+            container.validate((SphericalCS) cs);
+            if (enforceStandardNames) {
+                assertStandardNames("GeocentricCRS", cs, SPHERICAL_AXIS_NAME);
+            }
+        } else if (cs != null) {
+            fail("GeodeticCRS: unknown CoordinateSystem of type " + cs.getClass().getCanonicalName() + '.');
         }
         final GeodeticDatum datum = object.getDatum();
-        mandatory("GeographicCRS: must have a Datum.", datum);
+        mandatory("GeodeticCRS: shall have a Datum.", datum);
         container.validate(datum);
     }
 
@@ -228,17 +232,17 @@ public class CRSValidator extends ReferencingValidator {
         validateReferenceSystem(object);
 
         final GeographicCRS baseCRS = object.getBaseCRS();
-        mandatory("ProjectedCRS: must have a base CRS.", baseCRS);
+        mandatory("ProjectedCRS: shall have a base CRS.", baseCRS);
         validate(baseCRS);
 
         final CartesianCS cs = object.getCoordinateSystem();
-        mandatory("ProjectedCRS: must have a CoordinateSystem.", cs);
+        mandatory("ProjectedCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
         if (enforceStandardNames) {
             assertStandardNames("ProjectedCRS", cs, PROJECTED_AXIS_NAME);
         }
         final GeodeticDatum datum = object.getDatum();
-        mandatory("ProjectedCRS: must have a Datum.", datum);
+        mandatory("ProjectedCRS: shall have a Datum.", datum);
         container.validate(datum);
 
         validateGeneralDerivedCRS(object);
@@ -256,15 +260,15 @@ public class CRSValidator extends ReferencingValidator {
         validateReferenceSystem(object);
 
         final CoordinateReferenceSystem baseCRS = object.getBaseCRS();
-        mandatory("DerivedCRS: must have a base CRS.", baseCRS);
+        mandatory("DerivedCRS: shall have a base CRS.", baseCRS);
         dispatch(baseCRS);
 
         final CoordinateSystem cs = object.getCoordinateSystem();
-        mandatory("DerivedCRS: must have a CoordinateSystem.", cs);
+        mandatory("DerivedCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
 
         final Datum datum = object.getDatum();
-        mandatory("DerivedCRS: must have a Datum.", datum);
+        mandatory("DerivedCRS: shall have a Datum.", datum);
         container.validate(datum);
 
         validateGeneralDerivedCRS(object);
@@ -311,11 +315,11 @@ public class CRSValidator extends ReferencingValidator {
         }
         validateReferenceSystem(object);
         final AffineCS cs = object.getCoordinateSystem();
-        mandatory("ImageCRS: must have a CoordinateSystem.", cs);
+        mandatory("ImageCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
 
         final ImageDatum datum = object.getDatum();
-        mandatory("ImageCRS: must have a Datum.", datum);
+        mandatory("ImageCRS: shall have a Datum.", datum);
         container.validate(datum);
     }
 
@@ -330,11 +334,19 @@ public class CRSValidator extends ReferencingValidator {
         }
         validateReferenceSystem(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
-        mandatory("EngineeringCRS: must have a CoordinateSystem.", cs);
+        mandatory("EngineeringCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
+        assertTrue("EngineeringCRS: illegal coordinate system type. Shall be one of affine, "
+                + "Cartesian, cylindrical, linear, polar, spherical or user defined.",
+                cs instanceof AffineCS      || // Include the CartesianCS case.
+                cs instanceof CylindricalCS ||
+                cs instanceof LinearCS      ||
+                cs instanceof PolarCS       ||
+                cs instanceof SphericalCS   ||
+                cs instanceof UserDefinedCS);
 
         final Datum datum = object.getDatum();
-        mandatory("EngineeringCRS: must have a Datum.", datum);
+        mandatory("EngineeringCRS: shall have a Datum.", datum);
         container.validate(datum);
     }
 
@@ -355,13 +367,13 @@ public class CRSValidator extends ReferencingValidator {
         }
         validateReferenceSystem(object);
         final VerticalCS cs = object.getCoordinateSystem();
-        mandatory("VerticalCRS: must have a CoordinateSystem.", cs);
+        mandatory("VerticalCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
         if (enforceStandardNames) {
             assertStandardNames("VerticalCRS", cs, VERTICAL_AXIS_NAME);
         }
         final VerticalDatum datum = object.getDatum();
-        mandatory("VerticalCRS: must have a Datum.", datum);
+        mandatory("VerticalCRS: shall have a Datum.", datum);
         container.validate(datum);
     }
 
@@ -376,11 +388,11 @@ public class CRSValidator extends ReferencingValidator {
         }
         validateReferenceSystem(object);
         final TimeCS cs = object.getCoordinateSystem();
-        mandatory("TemporalCRS: must have a CoordinateSystem.", cs);
+        mandatory("TemporalCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
 
         final TemporalDatum datum = object.getDatum();
-        mandatory("TemporalCRS: must have a Datum.", datum);
+        mandatory("TemporalCRS: shall have a Datum.", datum);
         container.validate(datum);
     }
 
@@ -398,14 +410,14 @@ public class CRSValidator extends ReferencingValidator {
         }
         validateReferenceSystem(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
-        mandatory("CompoundCRS: must have a CoordinateSystem.", cs);
+        mandatory("CompoundCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
 
         final List<CoordinateReferenceSystem> components = object.getComponents();
-        mandatory("CompoundCRS: must have components.", components);
+        mandatory("CompoundCRS: shall have components.", components);
         if (components != null) {
             // If the above 'mandatory(...)' call accepted an empty list, we accept it too.
-            assertTrue("CompoundCRS: must have at least 2 components.", components.size() != 1);
+            assertTrue("CompoundCRS: shall have at least 2 components.", components.size() != 1);
             for (final CoordinateReferenceSystem component : components) {
                 dispatch(component);
             }

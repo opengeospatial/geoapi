@@ -53,11 +53,17 @@ import static org.opengis.annotation.Specification.*;
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>
  *
- * @departure historic
- *   This interface is kept conformant with the specification published in 2003.
- *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and
- *   <code>GeocentricCRS</code> types, handling both using the <code>GeodeticCRS</code> parent type.
- *   GeoAPI keeps them since the distinction between those two types is in wide use.
+ * @departure constraint
+ *   This interface is kept conformant with the specification published in 2003. The 2007 revision
+ *   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
+ *   handling both using the <code>SC_GeodeticCRS</code> parent type. GeoAPI keeps them for two reasons:
+ *   <ul>
+ *     <li>The distinction between those two types is in wide use.</li>
+ *     <li>A distinct geographic type allows GeoAPI to restrict the coordinate system type to <code>EllipsoidalCS</code>.
+ *         ISO 19111 uses a <code>union</code> for expressing this restriction at the <code>SC_GeodeticCRS</code> level,
+ *         but the Java language does not provide such construct. A distinct geographic type is one way to achieve the
+ *         same goal.</li>
+ *   </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

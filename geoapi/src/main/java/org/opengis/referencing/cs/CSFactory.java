@@ -38,9 +38,9 @@ import org.opengis.util.FactoryException;
 
 
 /**
- * Builds up complex {@linkplain CoordinateSystem coordinate systems} from simpler
- * objects or values. {@code CSFactory} allows applications to make {@linkplain
- * CoordinateSystem coordinate systems} that cannot be created by a {@link CSAuthorityFactory}.
+ * Builds up complex {@linkplain CoordinateSystem coordinate systems} from simpler objects or values.
+ * {@code CSFactory} allows applications to make {@linkplain CoordinateSystem coordinate systems} that
+ * cannot be created by a {@link CSAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems,
  * and {@code CSFactory} can be used to make "special" coordinate systems.
@@ -75,7 +75,7 @@ public interface CSFactory extends ObjectFactory {
                                                     Unit<?>       unit) throws FactoryException;
 
     /**
-     * Creates a two dimensional cartesian coordinate system from the given pair of axis.
+     * Creates a two dimensional Cartesian coordinate system from the given pair of axis.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -89,7 +89,7 @@ public interface CSFactory extends ObjectFactory {
                                   CoordinateSystemAxis axis1) throws FactoryException;
 
     /**
-     * Creates a three dimensional cartesian coordinate system from the given set of axis.
+     * Creates a three dimensional Cartesian coordinate system from the given set of axis.
      *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.

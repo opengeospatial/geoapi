@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The direction of positive increments in the coordinate value for a coordinate system axis.
+ * The direction of positive increase in the ordinate value for a coordinate system axis.
  * This direction is exact in some cases, and is approximate in other cases.
  *
  * <p>Some coordinate systems use non-standard orientations. For example, the first axis in
@@ -115,7 +115,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection EAST_NORTH_EAST = new AxisDirection("EAST_NORTH_EAST");
 
     /**
-     * Axis positive direction is &pi;/2 radians clockwise from north.
+     * Axis positive direction is π/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
      *
      * @category Rose
@@ -151,7 +151,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection SOUTH_SOUTH_EAST = new AxisDirection("SOUTH_SOUTH_EAST");
 
     /**
-     * Axis positive direction is &pi; radians clockwise from north.
+     * Axis positive direction is π radians clockwise from north.
      *
      * @category Rose
      */
@@ -186,7 +186,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST");
 
     /**
-     * Axis positive direction is 3&pi;/2 radians clockwise from north.
+     * Axis positive direction is 3π/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
      *
      * @category Rose
@@ -223,8 +223,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is up relative to gravity.
-     * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
-     * coordinate reference systems.
+     * This is used for {@linkplain VerticalCS vertical} coordinate systems.
      *
      * @category Vertical
      */
@@ -233,8 +232,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is down relative to gravity.
-     * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
-     * coordinate reference systems.
+     * This is used for {@linkplain VerticalCS vertical} coordinate systems.
      *
      * @category Vertical
      */
@@ -253,7 +251,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is in the equatorial plane from the centre of the
-     * modelled earth towards the intersection of the equator and the meridian &pi;/2
+     * modelled earth towards the intersection of the equator and the meridian π/2
      * radians eastwards from the prime meridian.
      *
      * @category Geocentric
@@ -274,8 +272,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is towards the future.
-     * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
-     * coordinate reference systems.
+     * This is used for {@linkplain TimeCS time} coordinate systems.
      *
      * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
@@ -288,8 +285,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is towards the past.
-     * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
-     * coordinate reference systems.
+     * This is used for {@linkplain TimeCS time} coordinate systems.
      *
      * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent

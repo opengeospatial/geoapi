@@ -95,10 +95,9 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      * @return The coordinate system.
      *
      * @departure generalization
-     *   ISO 19111 defines this method for <code>SingleCRS</code> only. GeoAPI declares this method
-     *   in this parent interface for user convenience, since CS dimension and axes are commonly
-     *   requested information and will always be available, directly or indirectly,
-     *   even for <code>CompoundCRS</code>.
+     *   ISO 19111 defines this method for <code>SC_SingleCRS</code> only. GeoAPI declares this method in
+     *   this parent interface for user convenience, since CS dimension and axes are commonly requested
+     *   information and will always be available, directly or indirectly, even for <code>SC_CompoundCRS</code>.
      */
     CoordinateSystem getCoordinateSystem();
 }

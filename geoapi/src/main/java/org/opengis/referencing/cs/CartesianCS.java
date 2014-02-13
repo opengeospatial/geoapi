@@ -37,8 +37,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate system.
- * Gives the position of points relative to orthogonal straight axes.
+ * A 2- or 3-dimensional coordinate system with orthogonal straight axes.
  * All axes shall have the same length unit of measure.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
@@ -52,9 +51,10 @@ import static org.opengis.annotation.Specification.*;
  *   ISO also defines <code>ImageCS</code> as the union of <code>AffineCS</code> and <code>CartesianCS</code>,
  *   for use by <code>ImageCRS</code>. Because the <code>union</code> construct found in some languages like
  *   C/C++ does not exist in Java, GeoAPI defines <code>CartesianCS</code> as a sub-type of <code>AffineCS</code>
- *   in order to achieve the same type safety; also, GeoAPI does not define <code>ImageCS</code> but uses
- *   <code>AffineCS</code> instead. In this hierarchy, <code>CartesianCS</code> is considered
- *   a special case of <code>AffineCS</code> where all axes are perpendicular to each other.
+ *   in order to achieve the same type safety.
+ *   With this change, GeoAPI can use <code>AffineCS</code> directly without the need to define <code>ImageCS</code>.
+ *   In this hierarchy, <code>CartesianCS</code> is considered a special case of <code>AffineCS</code> where all axes
+ *   are perpendicular to each other.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

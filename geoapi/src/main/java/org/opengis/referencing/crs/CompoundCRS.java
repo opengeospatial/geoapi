@@ -86,8 +86,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *   a temporal CRS to an existing three-dimensional compound CRS without loosing the name and identifiers
      *   of the 3D CRS, unless nesting is permitted. It is programmatically easier to convert nested CRSs to a
      *   flat list of single CRSs when needed than to reconstruct the 3D CRS from the single components.
-     *   Consequently GeoAPI has been keep conformant with the legacy
-     *   {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009} specification in this aspect,
+     *   Consequently GeoAPI has been keep conformant with the legacy OGC 01-009 specification in this aspect,
      *   which were allowing nested compound CRS.
      *
      * @since 2.3
