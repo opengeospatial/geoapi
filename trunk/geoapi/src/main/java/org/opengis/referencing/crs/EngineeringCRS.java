@@ -70,12 +70,11 @@ import static org.opengis.annotation.Specification.*;
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.AffineCS},
  * {@link org.opengis.referencing.cs.CartesianCS},
- * {@link org.opengis.referencing.cs.EllipsoidalCS},
- * {@link org.opengis.referencing.cs.SphericalCS},
  * {@link org.opengis.referencing.cs.CylindricalCS},
+ * {@link org.opengis.referencing.cs.LinearCS},
  * {@link org.opengis.referencing.cs.PolarCS},
- * {@link org.opengis.referencing.cs.VerticalCS} or
- * {@link org.opengis.referencing.cs.LinearCS}.</p>
+ * {@link org.opengis.referencing.cs.SphericalCS},
+ * {@link org.opengis.referencing.cs.UserDefinedCS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

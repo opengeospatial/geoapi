@@ -66,16 +66,16 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     private static final List<RangeMeaning> VALUES = new ArrayList<RangeMeaning>(2);
 
     /**
-     * Any value between and including {@linkplain CoordinateSystemAxis#getMinimumValue minimum value}
-     * and {@linkplain CoordinateSystemAxis#getMaximumValue maximum value} is valid.
+     * Any value between and including {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value}
+     * and {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value} is valid.
      */
     @UML(identifier="exact", obligation=CONDITIONAL, specification=ISO_19111)
     public static final RangeMeaning EXACT = new RangeMeaning("EXACT");
 
     /**
      * The axis is continuous with values wrapping around at the
-     * {@linkplain CoordinateSystemAxis#getMinimumValue minimum value} and
-     * {@linkplain CoordinateSystemAxis#getMaximumValue maximum value}.
+     * {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value} and
+     * {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value}.
      * Values with the same meaning repeat modulo the difference between maximum value and
      * minimum value.
      *

@@ -37,12 +37,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A three-dimensional coordinate system consisting of a {@linkplain PolarCS polar coordinate
- * system} extended by a straight coordinate axis perpendicular to the plane spanned by the
- * polar coordinate system.
+ * A 3-dimensional coordinate system consisting of a {@link PolarCS} extended by a straight axis perpendicular
+ * to the plane spanned by the polar CS.
  *
- * <p>A {@code CylindricalCS} shall have three {@linkplain #getAxis(int) axis associations}.
- * This type of CS can be used by coordinate reference systems of type
+ * <p>This type of CS can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
