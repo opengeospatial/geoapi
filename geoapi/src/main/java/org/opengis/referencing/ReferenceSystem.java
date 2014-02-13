@@ -41,6 +41,20 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of a spatial and temporal reference system used by a dataset.
+ * Reference systems contain the following properties (including those inherited
+ * from the {@link IdentifiedObject} parent interface):
+ *
+ * <ul>
+ *   <li>A {@linkplain #getName() name} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases}, sometime used for abbreviations.</li>
+ *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities (e.g. “EPSG:3395”).</li>
+ *   <li>The {@linkplain #getDomainOfValidity() domain of validity} in which this reference system is valid
+ *       (e.g. “<cite>World - between 80°S and 84°N</cite>”).</li>
+ *   <li>The {@linkplain #getScope() scope} or intended usage for this reference system
+ *       (e.g. “<cite>Very small scale mapping</cite>”).</li>
+ *   <li>{@linkplain #getRemarks() Remarks} about this object, including data source information
+ *       (e.g. “<cite>Euro-centric view of world excluding polar areas</cite>”).</li>
+ * </ul>
  *
  * @departure historic
  *   This interface was initially derived from an ISO 19111 specification published in 2003. Later

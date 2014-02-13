@@ -91,7 +91,7 @@ import org.opengis.util.GenericName;
  * {@note Multi-values are arrays instead than collections in order to allow implementations to check the element
  *        type by Java reflection. Such reflection can not be performed on collections because of type erasure.}
  *
- * <p>Alternative way to define the <code>"name"</code> property:</p>
+ * <p>Implementations may allow an alternative way to define the {@code "name"} property for user convenience:</p>
  * <table class="ogc">
  *   <tr>
  *     <th>Key</th>
