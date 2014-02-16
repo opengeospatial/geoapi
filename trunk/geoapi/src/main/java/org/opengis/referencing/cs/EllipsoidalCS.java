@@ -32,6 +32,8 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
+import javax.measure.unit.SI;
+import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -41,7 +43,23 @@ import static org.opengis.annotation.Specification.*;
  * geodetic latitude, geodetic longitude, and (in the 3D case) ellipsoidal height.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.GeographicCRS}.</p>
+ * {@link org.opengis.referencing.crs.GeographicCRS}.
+ * The following examples describe some possible set of axes for ellipsoidal CS used with the above-cited CRS:</p>
+ *
+ * <p><b>Example:</b> used with a two-dimensional Geographic CRS.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ * </table>
+ *
+ * <p><b>Example:</b> used with a three-dimensional Geographic CRS.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Ellipsoidal height</td><td>h</td> <td>{@link AxisDirection#UP}</td>   <td>{@link SI#METRE}</td></tr>
+ * </table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
