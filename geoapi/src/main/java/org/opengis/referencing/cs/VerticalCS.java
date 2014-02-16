@@ -44,7 +44,20 @@ import static org.opengis.annotation.Specification.*;
  * outside the scope of the ISO 19111 specification.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.VerticalCRS}.</p>
+ * {@link org.opengis.referencing.crs.VerticalCRS}.
+ * The following examples describe some possible axes for vertical CS used with the above-cited CRS:</p>
+ *
+ * <p><b>Example:</b> positive values above sea level.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Gravity-related height</td> <td>H</td> <td>{@link AxisDirection#UP}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
+ *
+ * <p><b>Example:</b> positive values below sea level.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Depth</td> <td>D</td> <td>{@link AxisDirection#DOWN}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

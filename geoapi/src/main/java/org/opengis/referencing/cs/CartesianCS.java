@@ -32,6 +32,7 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
+import javax.measure.unit.SI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -44,7 +45,39 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.crs.GeocentricCRS},
  * {@link org.opengis.referencing.crs.ProjectedCRS},
  * {@link org.opengis.referencing.crs.EngineeringCRS} or
- * {@link org.opengis.referencing.crs.ImageCRS}.</p>
+ * {@link org.opengis.referencing.crs.ImageCRS}.
+ * The following examples describe some possible set of axes for Cartesian CS used with the above-cited CRS:</p>
+ *
+ * <p><b>Example:</b> used with a Projected CRS.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Easting</td> <td>E</td> <td>{@link AxisDirection#EAST}</td>  <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Northing</td><td>N</td> <td>{@link AxisDirection#NORTH}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
+ *
+ * <p><b>Example:</b> used with a Geocentric CRS.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Geocentric X</td><td>X</td> <td>{@link AxisDirection#GEOCENTRIC_X}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Geocentric Y</td><td>Y</td> <td>{@link AxisDirection#GEOCENTRIC_Y}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Geocentric Z</td><td>Z</td> <td>{@link AxisDirection#GEOCENTRIC_Z}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
+ *
+ * <p><b>Example:</b> used with an Engineering CRS for a station fixed to Earth.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Site north</td><td>x</td> <td>{@link AxisDirection#SOUTH_EAST}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Site east</td> <td>y</td> <td>{@link AxisDirection#SOUTH_WEST}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
+ *
+ * <p><b>Example:</b> used with an Engineering CRS for a moving platform. This example uses two axis directions
+ * that are not defined in ISO 19111, but found in ISO 19162 as "{@code forward}" and "{@code starboard}".</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Ahead</td><td>x</td> <td>{@code AxisDirection.valueOf("FORDWARD")}</td>  <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Right</td><td>y</td> <td>{@code AxisDirection.valueOf("STARBOARD")}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>{@link SI#METRE}</td></tr>
+ * </table>
  *
  * @departure constraint
  *   ISO 19111 defines <code>CartesianCS</code> as a direct sub-type of <code>CoordinateSystem</code>.

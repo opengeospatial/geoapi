@@ -32,6 +32,8 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
+import javax.measure.unit.SI;
+import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -42,7 +44,25 @@ import static org.opengis.annotation.Specification.*;
  *
  * <p>This type of CS can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.GeocentricCRS} or
- * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.
+ * The following examples describe some possible set of axes for spherical CS used with the above-cited CRS:</p>
+ *
+ * <p><b>Example:</b> used with a Geocentric CRS.</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Spherical latitude</td> <td>Θ</td> <td>{@link AxisDirection#NORTH}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Spherical longitude</td><td>Ω</td> <td>{@link AxisDirection#EAST}</td>  <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Geocentric radius</td>  <td>R</td> <td>{@link AxisDirection#UP}</td>    <td>{@link SI#METRE}</td></tr>
+ * </table>
+ *
+ * <p><b>Example:</b> used with an Engineering CRS. This example uses two axis directions that are not defined
+ * in ISO 19111, but found in ISO 19162 as "{@code awayFrom}" and "{@code counterClockwise}".</p>
+ * <table class="ogc">
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Distance</td>  <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td>         <td>{@link SI#KILOMETRE}</td></tr>
+ *   <tr><td>Longitude</td> <td>φ</td> <td>{@code AxisDirection.valueOf("COUNTER_CLOCKWISE")}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                           <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ * </table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
