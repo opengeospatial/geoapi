@@ -32,6 +32,8 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
+import javax.measure.unit.SI;
+import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
