@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for spherical CS used with the above-cited CRS:</p>
  *
- * <p><b>Example:</b> used with a Geocentric CRS.</p>
+ * <p><b>Example 1:</b> used with a Geocentric CRS.</p>
  * <table class="ogc">
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Spherical latitude</td> <td>Θ</td> <td>{@link AxisDirection#NORTH}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Geocentric radius</td>  <td>R</td> <td>{@link AxisDirection#UP}</td>    <td>{@link SI#METRE}</td></tr>
  * </table>
  *
- * <p><b>Example:</b> used with an Engineering CRS. This example uses two axis directions that are not defined
+ * <p><b>Example 2:</b> used with an Engineering CRS. This example uses two axis directions that are not defined
  * in ISO 19111, but found in ISO 19162 as "{@code awayFrom}" and "{@code counterClockwise}".</p>
  * <table class="ogc">
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>

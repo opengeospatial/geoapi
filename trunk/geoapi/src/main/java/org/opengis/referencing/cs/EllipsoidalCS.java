@@ -46,14 +46,14 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.crs.GeographicCRS}.
  * The following examples describe some possible set of axes for ellipsoidal CS used with the above-cited CRS:</p>
  *
- * <p><b>Example:</b> used with a two-dimensional Geographic CRS.</p>
+ * <p><b>Example 1:</b> used with a two-dimensional Geographic CRS.</p>
  * <table class="ogc">
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  * </table>
  *
- * <p><b>Example:</b> used with a three-dimensional Geographic CRS.</p>
+ * <p><b>Example 2:</b> used with a three-dimensional Geographic CRS.</p>
  * <table class="ogc">
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
