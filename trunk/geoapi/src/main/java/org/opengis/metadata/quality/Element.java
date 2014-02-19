@@ -36,6 +36,8 @@ import java.util.Date;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -55,6 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * @navassoc 1 - - Citation
  * @navassoc - - - Result
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Element", specification=ISO_19115)
 public interface Element {
     /**

@@ -34,6 +34,8 @@ package org.opengis.metadata.spatial;
 import java.util.Collection;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.metadata.quality.DataQuality;
 
 import static org.opengis.annotation.Obligation.*;
@@ -49,6 +51,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @navassoc - - - DataQuality
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MI_GeolocationInformation", specification=ISO_19115_2)
 public interface GeolocationInformation {
     /**

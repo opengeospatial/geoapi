@@ -35,8 +35,6 @@ import java.util.Collection;
 import org.opengis.metadata.lineage.Lineage;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -56,7 +54,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @navassoc - - - Element
  * @navassoc 1 - - Lineage
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_DataQuality", specification=ISO_19115)
 public interface DataQuality {
     /**
