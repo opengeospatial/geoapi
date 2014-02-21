@@ -432,6 +432,21 @@
           </execution>
         </executions>
       </plugin>
+
+
+
+      <!-- ====================================================
+               Web site generation
+           ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <configuration>
+          <locales>en</locales>
+          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+          <outputEncoding>${website.encoding}</outputEncoding>
+        </configuration>
+      </plugin>
     </plugins>
 
     <!-- Following is for users who need to deploy using the ssh rather then the file protocol. -->
