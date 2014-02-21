@@ -286,21 +286,6 @@
           <version>3.3</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.7</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.16</version>
-        </plugin>
-        <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
           <version>2.4.0</version>
@@ -309,11 +294,6 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>1.8</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>taglist-maven-plugin</artifactId>
-          <version>2.4</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -431,230 +411,6 @@
           </archive>
         </configuration>
       </plugin>
-
-
-
-      <!-- ====================================================
-               Web site generation
-           ==================================================== -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <locales>en</locales>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${website.encoding}</outputEncoding>
-          <reportPlugins>
-            <!-- ====================================================
-                     Web site and Javadoc generation
-                 ==================================================== -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <reportSets>
-                <reportSet>
-                  <reports>
-                    <report>javadoc</report>
-                    <report>test-javadoc</report>
-                  </reports>
-                </reportSet>
-              </reportSets>
-              <configuration>
-                <encoding>${project.build.sourceEncoding}</encoding>
-                <docencoding>${website.encoding}</docencoding>
-                <charset>${website.encoding}</charset>
-                <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
-                <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
-                <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
-                <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
-                <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
-                <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
-                <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
-                <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
-                <breakiterator>true</breakiterator>
-                <stylesheetfile>geoapi/src/main/javadoc/stylesheet.css</stylesheetfile>
-
-                <!-- Do not add the "API" word in document title, because it is already included in the "GeoAPI name. -->
-                <doctitle>${project.name} ${project.version}</doctitle>
-                <windowtitle>${project.name} ${project.version}</windowtitle>
-
-                <!-- Custom taglets implemented in Java. -->
-                <taglets>
-                  <taglet><tagletClass>org.opengis.tools.taglet.Note</tagletClass></taglet>
-                  <taglet><tagletClass>org.opengis.tools.taglet.SvnUrl</tagletClass></taglet>
-                  <taglet><tagletClass>org.opengis.tools.taglet.Departure</tagletClass></taglet>
-                </taglets>
-                <tagletArtifact>
-                  <groupId>org.opengis</groupId>
-                  <artifactId>tools</artifactId>
-                  <version>${project.version}</version>
-                </tagletArtifact>
-
-                <!-- Enables the Javadoc tool to interpret a simple, one-argument
-                     custom block tag tagname in doc comments. Note: <placement/>
-                     should be a combination of the "Xaoptcmf" letters. -->
-                <tags>
-                  <tag><placement>X</placement>    <name>category</name>  <head>Category:</head></tag>
-                  <tag><placement>tfmc</placement> <name>condition</name> <head>Condition:</head></tag>
-                  <tag><placement>tfmc</placement> <name>todo</name>      <head>TODO:</head></tag>
-                  <tag><placement>X</placement>    <name>issue</name>     <head>JIRA:</head></tag>
-                  <tag><placement>fm</placement>   <name>unitof</name>    <head>Unit:</head></tag>
-                </tags>
-
-                <!-- Creates links to existing javadoc-generated
-                     documentation of external referenced classes. -->
-                <links>
-                  <link>http://docs.oracle.com/javase/6/docs/api/</link>
-                  <link>http://docs.oracle.com/javaee/6/api/</link> <!-- For InternationalString link. -->
-                  <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
-                  <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
-                  <link>http://jscience.org/jsr-275/api/</link>
-                  <link>http://junit.sourceforge.net/javadoc/</link>
-                  <link>http://www.unidata.ucar.edu/software/netcdf-java/v4.3/javadoc/</link> <!-- Used by example code. -->
-                  <link>http://www.geoapi.org/snapshot/javadoc/</link> <!-- For modules that depend on GeoAPI. -->
-                </links>
-
-                <!-- Separates packages on the overview page into the groups specified.
-                     Places the normative packages first, and the pending ones last. -->
-                <groups>
-                  <group>
-                    <title>Base package</title>
-                    <packages>org.opengis.util*:org.opengis.annotation*</packages>
-                  </group>
-                  <group>
-                    <title>Metadata</title>
-                    <packages>org.opengis.metadata*</packages>
-                  </group>
-                  <group>
-                    <title>Spatial Referencing by Coordinates</title>
-                    <packages>org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*</packages>
-                  </group>
-
-                  <!-- Pending packages. -->
-                  <group>
-                    <title>Geometry and Topology</title>
-                    <packages>org.opengis.geometry*:org.opengis.topology*</packages>
-                  </group>
-                  <group>
-                    <title>Coverage</title>
-                    <packages>org.opengis.coverage*</packages>
-                  </group>
-                  <group>
-                    <title>Feature and Filter</title>
-                    <packages>org.opengis.feature*:org.opengis.filter*</packages>
-                  </group>
-                  <group>
-                    <title>Display and Styling</title>
-                    <packages>org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*</packages>
-                  </group>
-                  <group>
-                    <title>Observations and Measurements</title>
-                    <packages>org.opengis.observation*</packages>
-                  </group>
-                  <group>
-                    <title>Catalog Services</title>
-                    <packages>org.opengis.catalog*</packages>
-                  </group>
-                  <group>
-                    <title>Web Services</title>
-                    <packages>org.opengis.web*</packages>
-                  </group>
-
-                  <!-- Other packages. -->
-                  <group>
-                    <title>Conformance tests</title>
-                    <packages>org.opengis.test*</packages>
-                  </group>
-                  <group>
-                    <title>Tests runner and reports</title>
-                    <packages>org.opengis.test.runner*:org.opengis.test.report*</packages>
-                  </group>
-                  <group>
-                    <title>Wrappers to existing libraries</title>
-                    <packages>org.opengis.wrapper*:org.opengis.openoffice*</packages>
-                  </group>
-                  <group>
-                    <title>Examples in public domain</title>
-                    <packages>org.opengis.example*</packages>
-                  </group>
-                </groups>
-              </configuration>
-            </plugin>
-
-
-
-            <!-- ====================================================
-                     Reports configuration for the web site
-                 ==================================================== -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-              <reportSets>
-                <reportSet>
-                  <reports>
-                    <report>index</report>
-                    <report>summary</report>
-                    <report>modules</report>
-                    <report>license</report>
-                    <report>scm</report>
-                    <report>cim</report>
-                    <report>project-team</report>
-                    <report>mailing-list</report>
-                    <report>issue-tracking</report>
-                    <report>dependencies</report>
-                    <report>dependency-convergence</report>
-                    <report>dependency-management</report>
-                    <report>plugin-management</report>
-                  </reports>
-                </reportSet>
-              </reportSets>
-            </plugin>
-
-
-
-            <!-- ====================================================
-                     JUnit test results
-                 ==================================================== -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-report-plugin</artifactId>
-              <executions> <!-- Workaround for http://jira.codehaus.org/browse/SUREFIRE-257 -->
-                <execution>
-                  <phase>test</phase>
-                  <goals>
-                    <goal>report-only</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-
-
-
-            <!-- ====================================================
-                     TODO tags
-                 ==================================================== -->
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>taglist-maven-plugin</artifactId>
-              <configuration>
-                <tagListOptions>
-                  <tagClasses>
-                    <tagClass>
-                      <displayName>TODO</displayName>
-                      <tags>
-                        <tag>
-                          <matchString>@todo</matchString>
-                          <matchType>ignoreCase</matchType>
-                        </tag>
-                      </tags>
-                    </tagClass>
-                  </tagClasses>
-                </tagListOptions>
-              </configuration>
-            </plugin>
-          </reportPlugins>
-        </configuration>
-      </plugin>
     </plugins>
 
     <!-- Following is for users who need to deploy using the ssh rather then the file protocol. -->
@@ -666,6 +422,212 @@
       </extension>
     </extensions>
   </build>
+
+
+
+  <!-- ==============================================================
+         Reports configuration.
+       ============================================================== -->
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>index</report>
+              <report>summary</report>
+              <report>modules</report>
+              <report>license</report>
+              <report>scm</report>
+              <report>cim</report>
+              <report>project-team</report>
+              <report>mailing-list</report>
+              <report>issue-tracking</report>
+              <report>dependencies</report>
+              <report>dependency-convergence</report>
+              <report>dependency-management</report>
+              <report>plugin-management</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+
+
+      <!-- ====================================================
+               Javadoc generation
+           ==================================================== -->
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <docencoding>${website.encoding}</docencoding>
+          <charset>${website.encoding}</charset>
+          <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
+          <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
+          <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
+          <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
+          <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
+          <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
+          <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
+          <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
+          <breakiterator>true</breakiterator>
+          <stylesheetfile>geoapi/src/main/javadoc/stylesheet.css</stylesheetfile>
+
+          <!-- Do not add the "API" word in document title, because it is already included in the "GeoAPI name. -->
+          <doctitle>${project.name} ${project.version}</doctitle>
+          <windowtitle>${project.name} ${project.version}</windowtitle>
+
+          <!-- Custom taglets implemented in Java. -->
+          <taglets>
+            <taglet><tagletClass>org.opengis.tools.taglet.Note</tagletClass></taglet>
+            <taglet><tagletClass>org.opengis.tools.taglet.SvnUrl</tagletClass></taglet>
+            <taglet><tagletClass>org.opengis.tools.taglet.Departure</tagletClass></taglet>
+          </taglets>
+          <tagletArtifact>
+            <groupId>org.opengis</groupId>
+            <artifactId>tools</artifactId>
+            <version>${project.version}</version>
+          </tagletArtifact>
+
+          <!-- Enables the Javadoc tool to interpret a simple, one-argument
+               custom block tag tagname in doc comments. Note: <placement/>
+               should be a combination of the "Xaoptcmf" letters. -->
+          <tags>
+            <tag><placement>X</placement>    <name>category</name>  <head>Category:</head></tag>
+            <tag><placement>tfmc</placement> <name>condition</name> <head>Condition:</head></tag>
+            <tag><placement>tfmc</placement> <name>todo</name>      <head>TODO:</head></tag>
+            <tag><placement>X</placement>    <name>issue</name>     <head>JIRA:</head></tag>
+            <tag><placement>fm</placement>   <name>unitof</name>    <head>Unit:</head></tag>
+          </tags>
+
+          <!-- Creates links to existing javadoc-generated
+               documentation of external referenced classes. -->
+          <links>
+            <link>http://docs.oracle.com/javase/6/docs/api/</link>
+            <link>http://docs.oracle.com/javaee/6/api/</link> <!-- For InternationalString link. -->
+            <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
+            <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
+            <link>http://jscience.org/jsr-275/api/</link>
+            <link>http://junit.sourceforge.net/javadoc/</link>
+            <link>http://www.unidata.ucar.edu/software/netcdf-java/v4.3/javadoc/</link> <!-- Used by example code. -->
+            <link>http://www.geoapi.org/snapshot/javadoc/</link> <!-- For modules that depend on GeoAPI. -->
+          </links>
+
+          <!-- Separates packages on the overview page into the groups specified.
+               Places the normative packages first, and the pending ones last. -->
+          <groups>
+            <group>
+              <title>Base package</title>
+              <packages>org.opengis.util*:org.opengis.annotation*</packages>
+            </group>
+            <group>
+              <title>Metadata</title>
+              <packages>org.opengis.metadata*</packages>
+            </group>
+            <group>
+              <title>Spatial Referencing by Coordinates</title>
+              <packages>org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*</packages>
+            </group>
+
+            <!-- Pending packages. -->
+            <group>
+              <title>Geometry and Topology</title>
+              <packages>org.opengis.geometry*:org.opengis.topology*</packages>
+            </group>
+            <group>
+              <title>Coverage</title>
+              <packages>org.opengis.coverage*</packages>
+            </group>
+            <group>
+              <title>Feature and Filter</title>
+              <packages>org.opengis.feature*:org.opengis.filter*</packages>
+            </group>
+            <group>
+              <title>Display and Styling</title>
+              <packages>org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*</packages>
+            </group>
+            <group>
+              <title>Observations and Measurements</title>
+              <packages>org.opengis.observation*</packages>
+            </group>
+            <group>
+              <title>Catalog Services</title>
+              <packages>org.opengis.catalog*</packages>
+            </group>
+            <group>
+              <title>Web Services</title>
+              <packages>org.opengis.web*</packages>
+            </group>
+
+            <!-- Other packages. -->
+            <group>
+              <title>Conformance tests</title>
+              <packages>org.opengis.test*</packages>
+            </group>
+            <group>
+              <title>Tests runner and reports</title>
+              <packages>org.opengis.test.runner*:org.opengis.test.report*</packages>
+            </group>
+            <group>
+              <title>Wrappers to existing libraries</title>
+              <packages>org.opengis.wrapper*:org.opengis.openoffice*</packages>
+            </group>
+            <group>
+              <title>Examples in public domain</title>
+              <packages>org.opengis.example*</packages>
+            </group>
+          </groups>
+        </configuration>
+      </plugin>
+
+
+
+      <!-- ====================================================
+               Reports configuration for the web site
+           ==================================================== -->
+      <plugin>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.16</version>
+        <reportSets> <!-- Workaround for http://jira.codehaus.org/browse/SUREFIRE-257 -->
+          <reportSet>
+            <reports>
+              <report>report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+
+
+      <!-- ====================================================
+               TODO tags
+           ==================================================== -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>taglist-maven-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>TODO</displayName>
+                <tags>
+                  <tag>
+                    <matchString>@todo</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
 
 
