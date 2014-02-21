@@ -165,14 +165,17 @@
 
 
   <!-- ====================================================
-           Repository for the legacy JSR-275 dependency,
-           NetCDF and vecmath (demo modules only).
+           Repository for the legacy JSR-275 dependency
+           and vecmath (demo modules only).
        ==================================================== -->
   <repositories>
     <repository>
       <id>geotoolkit</id>
       <name>Geotoolkit repository</name>
       <url>http://maven.geotoolkit.org/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
   </repositories>
 
@@ -255,7 +258,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.15</version>
+          <version>2.16</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -295,7 +298,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.15</version>
+          <version>2.16</version>
         </plugin>
         <plugin>
           <groupId>org.apache.felix</groupId>
@@ -636,6 +639,14 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-surefire-report-plugin</artifactId>
+              <executions> <!-- Workaround for http://jira.codehaus.org/browse/SUREFIRE-257 -->
+                <execution>
+                  <phase>test</phase>
+                  <goals>
+                    <goal>report-only</goal>
+                  </goals>
+                </execution>
+              </executions>
             </plugin>
 
 
