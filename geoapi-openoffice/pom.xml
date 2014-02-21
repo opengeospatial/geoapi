@@ -119,6 +119,9 @@
       <id>geotoolkit</id>
       <name>Geotoolkit.org repository</name>
       <url>http://maven.geotoolkit.org</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </pluginRepository>
   </pluginRepositories>
 
