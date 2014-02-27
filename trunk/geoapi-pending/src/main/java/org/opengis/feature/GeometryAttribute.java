@@ -33,7 +33,7 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.GeometryDescriptor;
 import org.opengis.feature.type.GeometryType;
-import org.opengis.geometry.BoundingBox;
+import org.opengis.geometry.Envelope;
 
 /**
  * An attribute which has a geometric value.
@@ -46,7 +46,7 @@ import org.opengis.geometry.BoundingBox;
  * <p>
  * Past a regular attribute, GeometryAttribute provides a method for obtaining
  * the bounds of the underlying geometry, {@link #getBounds()}. The
- * {@link #setBounds(BoundingBox)} method is used to explicitly set the bounds
+ * {@link #setBounds(Envelope)} method is used to explicitly set the bounds
  * which can be useful in situations where the data source stores the bounds
  * explicitly along with the geometry.
  * </p>
@@ -71,7 +71,7 @@ public interface GeometryAttribute extends Attribute {
      * The bounds of the attribute.
      * <p>
      * This value should be derived unless explicitly set via
-     * {@link #setBounds(BoundingBox)}.
+     * {@link #setBounds(Envelope)}.
      * </p>
      * <p>
      * In the case that the underlying geometry is <code>null</code>, this
@@ -81,7 +81,7 @@ public interface GeometryAttribute extends Attribute {
      *
      * @return The bounds of the underlying geometry, possibly empty.
      */
-    BoundingBox getBounds();
+    Envelope getBounds();
 
     /**
      * Sets the bounds of the geometry.
@@ -98,6 +98,6 @@ public interface GeometryAttribute extends Attribute {
      * @param bounds
      *            The bounds of the attribute.
      */
-    void setBounds(BoundingBox bounds);
+    void setBounds(Envelope bounds);
 
 }

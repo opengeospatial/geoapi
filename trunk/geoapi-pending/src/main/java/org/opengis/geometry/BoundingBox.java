@@ -54,6 +54,8 @@ import org.opengis.referencing.operation.TransformException;
  * @author Jody Garnett (Refractions Research)
  * @author Martin Desruisseaux (Geomatys)
  * @since GeoAPI 2.1
+ *
+ * @deprecated See <a href="http://jira.codehaus.org/browse/GEO-231">GEO-231</a>.
  */
 @Deprecated
 public interface BoundingBox extends Envelope {

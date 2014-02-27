@@ -33,11 +33,11 @@ package org.opengis.feature;
 
 import org.opengis.feature.type.FeatureType;
 import org.opengis.filter.identity.FeatureId;
-import org.opengis.geometry.BoundingBox;
+import org.opengis.geometry.Envelope;
 
 /**
  * An instance of {@link FeatureType} representing a geographic feature composed of geometric
- * and non-geometric properties. 
+ * and non-geometric properties.
  * <p>
  * Beyond being a complex attribute, a feature contains the following additional information:
  * <ul>
@@ -99,7 +99,7 @@ public interface Feature extends ComplexAttribute {
      *
      * @return the feature bounds, possibly empty.
      */
-    BoundingBox getBounds();
+    Envelope getBounds();
 
     /**
      * The default geometric attribute of the feature.
