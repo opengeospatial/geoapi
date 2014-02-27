@@ -109,7 +109,7 @@ public interface FilterFactory {
          * @return FilterCapabilities describing the abilities of this FilterFactory
          */
         // FilterCapabilities getCapabilities();
-        
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  IDENTIFIERS
@@ -161,23 +161,23 @@ public interface FilterFactory {
 
     /** Checks that the first sub-expression is not equal to the second subexpression. */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2 );
-    
+
     /**
      * Checks that the first sub-expression is not equal to the second subexpression.
-     * 
+     *
      * @param expr1 first expression
      * @param expr2 second expression
      * @param matchCase true if the comparison should be case insensitive
-     * @return evaluates to true of expr1 not equal to expr2 
+     * @return evaluates to true of expr1 not equal to expr2
      */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is greater than the second subexpression. */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
-    
+
     /**
      * Checks that the first sub-expression is greater than the second subexpression.
-     * 
+     *
      * @param expr1 first expression
      * @param expr2 second expression
      * @param matchCase true if the comparison should be case insensitive
@@ -187,18 +187,18 @@ public interface FilterFactory {
 
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
     PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2);
-    
+
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
     PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that its first sub-expression is less than its second subexpression. */
     PropertyIsLessThan less(Expression expr1, Expression expr2);
-    
+
     PropertyIsLessThan less(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
-    
+
     /** Checks that its first sub-expression is less than or equal to its second subexpression. */
     PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2);
-    
+
     PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Character string comparison operator with pattern matching and default wildcards. */
@@ -209,10 +209,10 @@ public interface FilterFactory {
 
     /** Character string comparison operator with pattern matching and specified wildcards. */
     PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
-    
+
     /** Checks if an expression's value is {@code null}. */
     PropertyIsNull isNull(Expression expr);
-    
+
     /** Checks if an expression's value is nil. */
     PropertyIsNil isNil(Expression expr);
 
@@ -226,14 +226,14 @@ public interface FilterFactory {
      * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
      * <p>
      * This method is defined in strict accordance with the Filter 1.0 specification, you may
-     * find the FilterFactory2.bbox(Expression, BoundingBox) to be easier to use.
+     * find the FilterFactory2.bbox(Expression, Envelope) to be easier to use.
      * </p>
      * @param propertyName Name of geometry property (for a PropertyName to access a Feature's Geometry)
-     * @param minx Minimum "x" value (for a literal BoundingBox)
-     * @param miny Minimum "y" value (for a literal BoundingBox)
-     * @param maxx Maximum "x" value (for a literal BoundingBox)
-     * @param maxy Maximum "y" value (for a literal BoundingBox)
-     * @param srs Indicating the CoordianteReferenceSystem to use for a literal BoundingBox
+     * @param minx Minimum "x" value (for a literal Envelope)
+     * @param miny Minimum "y" value (for a literal Envelope)
+     * @param maxx Maximum "x" value (for a literal Envelope)
+     * @param maxy Maximum "y" value (for a literal Envelope)
+     * @param srs Indicating the CoordinateReferenceSystem to use for a literal Envelope
      */
     BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
 
@@ -267,7 +267,7 @@ public interface FilterFactory {
     /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
     Within      within(String propertyName, Geometry geometry);
 
-    
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  TEMPORAL FILTERS
@@ -276,47 +276,47 @@ public interface FilterFactory {
 
     /** Check if first expression is after the second. */
     After       after(Expression expr1, Expression expr2);
-    
+
     /** Sortcut filter for NOT (Before OR Meets OR MetBy OR After). */
     AnyInteracts anyInteracts(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression is before the second. */
     Before      before(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression begins at the second. */
     Begins      begins(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression begun by the second. */
     BegunBy     begunBy(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression is during the second. */
     During      during(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression ends by the second. */
     Ends        ends(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression is ended by the second. */
     EndedBy     endedBy(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression meets the second. */
     Meets       meets(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression is met by the second. */
     MetBy       metBy(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression is overlapped by the second. */
     OverlappedBy overlappedBy(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression iscontained in the second. */
     TContains    tcontains(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression equal to the second. */
     TEquals      tequals(Expression expr1, Expression expr2);
-    
+
     /** Check if first expression overlaps the second. */
     TOverlaps     toverlaps(Expression expr1, Expression expr2);
 
-    
+
 ////////////////////////////////////////////////////////////////////////////////
 //
 //  EXPRESSIONS
@@ -406,7 +406,7 @@ public interface FilterFactory {
     /** spatial capabilities */
     SpatialCapabilities spatialCapabilities(GeometryOperand[] geometryOperands,
         SpatialOperators spatial);
-    
+
     /** temporal capabilities */
     TemporalCapabilities temporalCapabilities(TemporalOperand[] temporalOperands,
         TemporalOperators temporal);

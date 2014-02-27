@@ -70,7 +70,7 @@ public interface BBOX extends BinarySpatialOperator {
      * <li>or an OGC well-known-text representation of a coordinate system as
      *     defined in the OGC Simple Features for SQL specification.
      * </ul>
-     * @deprecated please use getExpression2(), if it is a literal BoundingBox.getCoordinateReferenceSystem()
+     * @deprecated please use getExpression2(), if it is a literal Envelope.getCoordinateReferenceSystem()
      */
     String getSRS();
 
@@ -78,14 +78,14 @@ public interface BBOX extends BinarySpatialOperator {
      * Assuming getExpression2() is a literal bounding box access
      * the minimum value for the first coordinate.
      *
-     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMinimum(0)
+     * @deprecated please use getExpression2(), to check for a literal Envelope.getMinimum(0)
      */
     double getMinX();
 
     /**
      * Assuming getExpression2() is a literal bounding box access
      * the minimum value for the second ordinate.
-     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMinimum(1)
+     * @deprecated please use getExpression2(), to check for a literal Envelope.getMinimum(1)
      */
     double getMinY();
 
@@ -93,14 +93,14 @@ public interface BBOX extends BinarySpatialOperator {
      * Assuming getExpression2() is a literal bounding box access
      * the maximum value for the first ordinate.
      *
-     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMaximum(0)
+     * @deprecated please use getExpression2(), to check for a literal Envelope.getMaximum(0)
      */
     double getMaxX();
 
     /**
      * Assuming getExpression2() is a literal bounding box access
      * the maximum value for the second coordinate.
-     * @deprecated please use getExpression2(), to check for a literal BoundingBox.getMaximum(1)
+     * @deprecated please use getExpression2(), to check for a literal Envelope.getMaximum(1)
      */
     double getMaxY();
 }
