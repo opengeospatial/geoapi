@@ -99,22 +99,16 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * {@code null} otherwise. The returned set usually contains {@linkplain CodeList code list}
      * or enumeration elements.
      *
+     * {@note It is not necessary to provide this property when all values from the code list or
+     *        enumeration are valid.}
+     *
      * @return A finite set of valid values (usually from a {@code CodeList}),
-     *         or {@code null} if it does not apply.
+     *         or {@code null} if it does not apply or if there is no restriction.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.
      */
     Set<T> getValidValues();
-
-    /**
-     * Returns the default value for the parameter.
-     * If there is no default value, then this method returns {@code null}.
-     *
-     * @return The default value, or {@code null} in none.
-     */
-    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
-    T getDefaultValue();
 
     /**
      * Returns the minimum parameter value.
@@ -137,10 +131,19 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     Comparable<T> getMaximumValue();
 
     /**
+     * Returns the default value for the parameter.
+     * If there is no default value, then this method returns {@code null}.
+     *
+     * @return The default value, or {@code null} in none.
+     */
+    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
+    T getDefaultValue();
+
+    /**
      * Returns the unit of measurement for the
-     * {@linkplain #getDefaultValue() default},
-     * {@linkplain #getMinimumValue() minimum} and
-     * {@linkplain #getMaximumValue() maximum} values.
+     * {@linkplain #getMinimumValue() minimum},
+     * {@linkplain #getMaximumValue() maximum} and
+     * {@linkplain #getDefaultValue() default} values.
      * This attribute apply only if the values is of numeric type
      * (usually an instance of {@link Double}).
      *
