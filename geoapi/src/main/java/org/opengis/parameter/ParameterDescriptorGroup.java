@@ -93,15 +93,15 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
 
     /**
      * Returns the parameter descriptor in this group for the specified
-     * {@linkplain Identifier#getCode identifier code}.
+     * {@linkplain Identifier#getCode() identifier code}.
      *
      * @param  name The case insensitive identifier code of the parameter to search for.
      * @return The parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      *
      * @departure easeOfUse
-     *   This method is not part of the ISO specification. It has been added in an attempt to make
-     *   this interface easier to use.
+     *   This method is not part of the ISO specification.
+     *   It has been added in an attempt to make this interface easier to use.
      */
     GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
 }

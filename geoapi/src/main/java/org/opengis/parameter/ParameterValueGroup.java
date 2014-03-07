@@ -111,23 +111,23 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * <ul>
      *   <li>If this group contains a parameter value of the given name, then that parameter is returned.</li>
-     *   <li>Otherwise if the {@linkplain #getDescriptor() descriptor} contains a definition for a parameter of the
-     *       given name, then a new {@code ParameterValue} instance is {@linkplain ParameterDescriptor#createValue()
-     *       created}, added to this group then returned.</li>
+     *   <li>Otherwise if a {@linkplain ParameterDescriptorGroup#descriptor(String) descriptor} of the given name
+     *       exists, then a new {@code ParameterValue} instance is {@linkplain ParameterDescriptor#createValue()
+     *       created}, added to this group and returned.</li>
      *   <li>Otherwise a {@code ParameterNotFoundException} is thrown.</li>
      * </ul>
      *
      * <p>This convenience method provides a way to get and set parameter values by name.
-     * For example the following idiom fetches a floating point value for the {@code "false_easting"} parameter:</p>
+     * For example the following idiom fetches a floating point value for the {@code "False northing"} parameter:</p>
      *
      * <blockquote><code>
-     * double value = <b>parameter</b>("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue}();
+     * double northing = <b>parameter</b>("False northing").{@linkplain ParameterValue#doubleValue() doubleValue}();
      * </code></blockquote>
      *
-     * The following idiom sets a floating point value for the {@code "false_easting"} parameter:
+     * The following idiom sets a floating point value for the {@code "False easting"} parameter:
      *
      * <blockquote><code>
-     * <b>parameter</b>("false_easting").{@linkplain ParameterValue#setValue(double) setValue}(500000.0);
+     * <b>parameter</b>("False easting").{@linkplain ParameterValue#setValue(double) setValue}(500000.0);
      * </code></blockquote>
      *
      * This method does not search recursively in subgroups. This is because more than one
