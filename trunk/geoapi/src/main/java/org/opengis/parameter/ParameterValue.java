@@ -51,7 +51,8 @@ import static org.opengis.annotation.Specification.*;
  * to some commonly used types. Those types are specified in ISO 19111 as an union of attributes, listed below with the
  * corresponding getter and setter methods:</p>
  *
- * <table class="sis">
+ * <table class="ogc">
+ * <caption>Common value types</caption>
  *   <tr><th>ISO attribute</th>     <th>Java type</th>        <th>Getter method</th>                  <th>Setter method</th></tr>
  *   <tr><td></td>                  <td>{@link Object}</td>   <td>{@link #getValue()}</td>            <td>{@link #setValue(Object)}</td></tr>
  *   <tr><td>stringValue</td>       <td>{@link String}</td>   <td>{@link #stringValue()}</td>         <td>{@link #setValue(Object)}</td></tr>

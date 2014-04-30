@@ -70,6 +70,7 @@ public interface NameFactory extends Factory {
      * be ignored.</p>
      *
      * <table class="ogc">
+     *   <caption>Keys for additional standard properties</caption>
      *   <tr>
      *     <th>Property name</th>
      *     <th>Purpose</th>

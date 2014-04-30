@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * pairs of attributes, respectively:
  *
  * <blockquote>
- * <table style="border-spacing:21pt 0">
+ * <table style="border-spacing:21pt 0" summary="Graphics showing various representations of a generic name.">
  *   <tr>
  *     <th>{@linkplain #scope() scope}.this</th>
  *     <th>{@linkplain #head() head}.{@linkplain ScopedName#tail() tail}</th>

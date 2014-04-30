@@ -125,7 +125,7 @@ public interface MathTransformFactory extends Factory {
      *   This method is not part of the OGC specification. It has been added because this information
      *   appears to be needed in practice. A more object-oriented approach would have been to
      *   return a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in the
-     *   <code>createParameterizedTransform(&hellip)</code> method, but we wanted to keep the
+     *   <code>createParameterizedTransform(…)</code> method, but we wanted to keep the
      *   later unchanged for historical reasons (it is inherited from OGC 01-009) and because
      *   only a minority of use cases need the operation method.
      *

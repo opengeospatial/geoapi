@@ -54,14 +54,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc & - - RepresentativeFraction
- * @navassoc 1 - - ReferenceSystem
- * @navassoc 1 - - Citation
- * @navassoc - - - Extent
- * @navassoc - - - ProcessStep
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - NominalResolution
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
 public interface Source {

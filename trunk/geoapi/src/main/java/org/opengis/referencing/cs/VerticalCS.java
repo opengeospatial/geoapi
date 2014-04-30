@@ -48,14 +48,14 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.crs.VerticalCRS}.
  * The following examples describe some possible axes for vertical CS used with the above-cited CRS:</p>
  *
- * <p><b>Example 1:</b> positive values above sea level.</p>
  * <table class="ogc">
+ *   <caption>Example 1: positive values above sea level</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Gravity-related height</td> <td>H</td> <td>{@link AxisDirection#UP}</td> <td>{@link SI#METRE}</td></tr>
  * </table>
  *
- * <p><b>Example 2:</b> positive values below sea level.</p>
  * <table class="ogc">
+ *   <caption>Example 2: positive values below sea level</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Depth</td> <td>D</td> <td>{@link AxisDirection#DOWN}</td> <td>{@link SI#METRE}</td></tr>
  * </table>

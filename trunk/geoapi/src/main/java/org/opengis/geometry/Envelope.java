@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * all of the data types in this specification, their state is represented by their publicly
  * accessible attributes.
  *
- * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+ * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
  * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
  * of the bounding box definition. In a WCS 1.1 data structure, the {@linkplain #getUpperCorner()
  * upper corner} defines the edges region in the directions of <em>increasing</em> coordinate
@@ -63,7 +63,7 @@ import static org.opengis.annotation.Specification.*;
  * <p>Whether an envelope supports the extended bounding box interpretation or not is
  * implementation-dependent. If supported, the extended interpretation is applicable only to
  * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning, which is usually
- * the longitude axis.</p></font></blockquote>
+ * the longitude axis.</p></blockquote>
  *
  * @departure easeOfUse
  *   The ISO specification defines this interface in the <code>coordinate</code> sub-package.
@@ -123,7 +123,7 @@ public interface Envelope {
      * This is typically a coordinate position consisting of all the minimal ordinates
      * for each dimension for all points within the {@code Envelope}.
      *
-     * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
      * of the bounding box definition. In a WCS 1.1 data structure, the lower corner defines the
      * edges region in the directions of <em>decreasing</em> coordinate values in the envelope CRS.
@@ -136,7 +136,7 @@ public interface Envelope {
      * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
      * longitude axis. On typical map representations, the <code>getLowerCorner()</code> method
      * name still "visually" appropriate since the <cite>lower</cite> corner still toward the
-     * bottom of the map even if the left corner became the right corner.</p></font></blockquote>
+     * bottom of the map even if the left corner became the right corner.</p></blockquote>
      *
      * @return The lower corner, typically (but not necessarily) containing minimal ordinate values.
      */
@@ -148,7 +148,7 @@ public interface Envelope {
      * This is typically a coordinate position consisting of all the maximal ordinates
      * for each dimension for all points within the {@code Envelope}.
      *
-     * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
      * of the bounding box definition. In a WCS 1.1 data structure, the upper corner defines the
      * edges region in the directions of <em>increasing</em> coordinate values in the envelope CRS.
@@ -161,7 +161,7 @@ public interface Envelope {
      * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
      * longitude axis. On typical map representations, the <code>getUpperCorner()</code> method
      * name still "visually" appropriate since the <cite>upper</cite> corner still toward the
-     * top of the map even if the right corner became the left corner.</p></font></blockquote>
+     * top of the map even if the right corner became the left corner.</p></blockquote>
      *
      * @return The upper corner, typically (but not necessarily) containing maximal ordinate values.
      */
@@ -177,7 +177,7 @@ public interface Envelope {
      * minimum = {@linkplain #getLowerCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
      * </code></blockquote>
      *
-     * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * If the axis range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND} and this envelope
      * supports the {@linkplain #getLowerCorner() lower} and {@linkplain #getUpperCorner() upper}
      * corners extended interpretation, then <var>lower</var> may possibly be greater than
@@ -185,7 +185,7 @@ public interface Envelope {
      * <var>minimum</var> &lt; <var>maximum</var> (ignoring NaN). It may be the
      * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis#getMinimumValue() axis minimum value},
      * {@linkplain Double#NEGATIVE_INFINITY negative infinity}, {@linkplain Double#NaN NaN} or other
-     * value, at implementor choice.</p></font></blockquote>
+     * value, at implementor choice.</p></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The minimal ordinate at the given dimension.
@@ -214,7 +214,7 @@ public interface Envelope {
      * maximum = {@linkplain #getUpperCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
      * </code></blockquote>
      *
-     * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * If the axis range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND} and this envelope
      * supports the {@linkplain #getLowerCorner() lower} and {@linkplain #getUpperCorner() upper}
      * corners extended interpretation, then <var>upper</var> may possibly be less than
@@ -222,7 +222,7 @@ public interface Envelope {
      * <var>maximum</var> &gt; <var>minimum</var> (ignoring NaN). It may be the
      * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis#getMaximumValue() axis maximum value},
      * {@linkplain Double#POSITIVE_INFINITY positive infinity}, {@linkplain Double#NaN NaN} or other
-     * value, at implementor choice.</p></font></blockquote>
+     * value, at implementor choice.</p></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The maximal ordinate at the given dimension.
@@ -250,7 +250,7 @@ public interface Envelope {
      * median = ({@linkplain #getMinimum(int) getMinimum}(dimension) + {@linkplain #getMaximum(int) getMaximum}(dimension)) / 2;
      * </code></blockquote>
      *
-     * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * If this envelope supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
@@ -261,7 +261,7 @@ public interface Envelope {
      *
      * <p>Implementations are free to use variants of the above algorithm. For example some
      * libraries may add different multiples of the periodicity in order to ensure that the
-     * median value is inside the axis range.</p></font></blockquote>
+     * median value is inside the axis range.</p></blockquote>
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The median ordinate at the given dimension.
@@ -289,7 +289,7 @@ public interface Envelope {
      * span = {@linkplain #getMaximum(int) getMaximum}(dimension) - {@linkplain #getMinimum(int) getMinimum}(dimension);
      * </code></blockquote>
      *
-     * <blockquote><font size="-1"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
+     * <blockquote style="font-size:small"><p><b>Spanning the anti-meridian of a geographic CRS</b><br>
      * If this envelope supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
@@ -299,7 +299,7 @@ public interface Envelope {
      * calculation.</p>
      *
      * <p>Implementations are free to use variants of the above algorithm. For example some
-     * libraries may add different multiples of the periodicity.</p></font></blockquote>
+     * libraries may add different multiples of the periodicity.</p></blockquote>
      *
      * @param  dimension The dimension for which to obtain the span.
      * @return The span (typically width or height) at the given dimension.

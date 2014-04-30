@@ -54,7 +54,6 @@ import java.util.Locale;
  * @version 3.0
  * @since   2.0
  *
- * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString(Map)
  */
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {

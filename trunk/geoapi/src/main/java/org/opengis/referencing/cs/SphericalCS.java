@@ -47,22 +47,24 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for spherical CS used with the above-cited CRS:</p>
  *
- * <p><b>Example 1:</b> used with a Geocentric CRS.</p>
  * <table class="ogc">
+ *   <caption>Example 1: used with a Geocentric CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Spherical latitude</td> <td>Θ</td> <td>{@link AxisDirection#NORTH}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  *   <tr><td>Spherical longitude</td><td>Ω</td> <td>{@link AxisDirection#EAST}</td>  <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  *   <tr><td>Geocentric radius</td>  <td>R</td> <td>{@link AxisDirection#UP}</td>    <td>{@link SI#METRE}</td></tr>
  * </table>
  *
- * <p><b>Example 2:</b> used with an Engineering CRS. This example uses two axis directions that are not defined
- * in ISO 19111, but found in ISO 19162 as "{@code awayFrom}" and "{@code counterClockwise}".</p>
  * <table class="ogc">
+ *   <caption>Example 2: used with an Engineering CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
  *   <tr><td>Distance</td>  <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td>         <td>{@link SI#KILOMETRE}</td></tr>
  *   <tr><td>Longitude</td> <td>φ</td> <td>{@code AxisDirection.valueOf("COUNTER_CLOCKWISE")}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                           <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  * </table>
+ *
+ * {@note The above example uses two axis directions that are not defined in ISO 19111, but found in ISO 19162
+ *        as "<code>awayFrom</code>" and "<code>counterClockwise</code>".}
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

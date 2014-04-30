@@ -35,7 +35,9 @@
  * which can not be mapped directly from Java, plus utilities.
  * Type hierarchy is as below:
  *
- * <table class="ogc"><tr>
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
  *   <th>Records</th>
  *   <th class="sep">Names</th>
  *   <th class="sep">Factories</th>
@@ -89,6 +91,7 @@
  * equivalence table:</p>
  *
  * <table class="ogc">
+ *   <caption>Equivalences between record and Java constructs</caption>
  *   <tr><th>ISO 19103</th>                                                                    <th>Java equivalent</th></tr>
  *   <tr><td>{@link org.opengis.util.Record}</td>                                              <td>{@link java.lang.Object}</td></tr>
  *   <tr><td>{@link org.opengis.util.Record#getRecordType()}</td>                              <td>{@link java.lang.Object#getClass()}</td></tr>

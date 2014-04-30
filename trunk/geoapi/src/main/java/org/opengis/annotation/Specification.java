@@ -47,7 +47,7 @@ public enum Specification {
      * This is the specification for some interfaces in package {@link org.opengis.util}.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Provides rules and guidelines for the use of a conceptual schema language
      * within the ISO geographic information standards. The chosen conceptual schema language is the
      * Unified Modeling Language (UML).</p>
@@ -55,7 +55,7 @@ public enum Specification {
      * <p>ISO TS 19103:2005 provides a profile of UML for use with geographic
      * information. In addition, it provides guidelines on how UML should be used to create
      * standardized geographic information and service models.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=37800">Buy from ISO</a>
      */
@@ -67,14 +67,14 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.geometry} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Specifies conceptual schemas for describing the spatial characteristics of
      * geographic features, and a set of spatial operations consistent with these schemas. It treats
      * vector geometry and topology up to three dimensions. It defines standard spatial operations
      * for use in access, query, management, processing, and data exchange of geographic information
      * for spatial (geometric and topological) objects of up to three topological dimensions embedded
      * in coordinate spaces of up to three axes.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=26012">Buy from ISO</a>
      */
@@ -85,7 +85,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.temporal} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Defines concepts for describing temporal characteristics of geographic
      * information. It depends upon existing information technology standards for the interchange
      * of temporal information. It provides a basis for defining temporal feature attributes,
@@ -93,7 +93,7 @@ public enum Specification {
      * metadata about geographic information. Since this International Standard is concerned with
      * the temporal characteristics of geographic information as they are abstracted from the real
      * world, it emphasizes valid time rather than transaction time.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=26013">Buy from ISO</a>
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44883">Corrigendum</a>
@@ -106,7 +106,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Defines the conceptual schema for the description of spatial referencing by
      * coordinates, optionally extended to spatio-temporal referencing. It describes the minimum
      * data required to define one-, two- and three-dimensional spatial coordinate reference systems
@@ -127,7 +127,7 @@ public enum Specification {
      * position with a third non-spatial parameter which varies monotonically with height or depth.
      * This extension to non-spatial data is beyond the scope of ISO 19111:2007 but can be implemented
      * through profiles.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see #OGC_01009
      * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=39049">Download from OGC</a>
@@ -141,7 +141,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Defines the schema required for describing geographic information and services.
      * It provides information about the identification, the extent, the quality, the spatial and
      * temporal schema, spatial reference, and distribution of digital geographic data.</p>
@@ -169,7 +169,7 @@ public enum Specification {
      *
      * <p><b>NOTE:</b> Certain mandatory metadata elements may not apply to these
      * other forms of data.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=26020">Buy from ISO</a>
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44361">Corrigendum</a>
@@ -181,7 +181,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Extends the existing geographic metadata standard by defining the schema
      * required for describing imagery and gridded data. It provides information about the properties
      * of the measuring equipment used to acquire the data, the geometry of the measuring process
@@ -190,7 +190,7 @@ public enum Specification {
      * from raw data, including the properties of the measuring system, and the numerical methods
      * and computational procedures used in the derivation. The metadata required to address coverage
      * data in general is addressed sufficiently in the general part of ISO 19115.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39229">Buy from ISO</a>
      *
@@ -203,12 +203,12 @@ public enum Specification {
      * This is an abstract specification for portraying features.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Defines a schema describing the portrayal of geographic information in a
      * form understandable by humans. It includes the methodology for describing symbols and mapping
      * of the schema to an application schema. It does not include standardization of cartographic
      * symbols, and their geometric and functional description.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40395">Buy from ISO</a>
      */
@@ -220,7 +220,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.coverage} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Defines a conceptual schema for the spatial characteristics of coverages.
      * Coverages support mapping from a spatial, temporal or spatiotemporal domain to feature attribute
      * values where feature attribute types are common to all geographic positions within the domain.
@@ -234,7 +234,7 @@ public enum Specification {
      * <p>ISO 19123:2005 defines the relationship between the domain of a coverage
      * and an associated attribute range. The characteristics of the spatial domain are defined
      * whereas the characteristics of the attribute range are not part of ISO 19123:2005.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see #OGC_01004
      * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=19820">Download from OGC</a>
@@ -247,14 +247,14 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.layer} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Specifies the behaviour of a service that produces spatially referenced
      * maps dynamically from geographic information. It specifies operations to retrieve a description
      * of the maps offered by a server, to retrieve a map, and to query a server about features
      * displayed on a map. ISO 19128:2005 is applicable to pictorial renderings of maps in a
      * graphical format; it is not applicable to retrieval of actual feature data or coverage data
      * values.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=5316">Download from OGC</a>
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32546">Buy from ISO</a>
@@ -266,10 +266,10 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote><font size="-1">
+     * <blockquote style="font-size:small">
      * <p>Defines Geographic MetaData XML ({@code gmd}) encoding, an XML Schema
      * implementation derived from ISO 19115.</p>
-     * </font></blockquote>
+     * </blockquote>
      *
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32557">Buy from ISO</a>
      *

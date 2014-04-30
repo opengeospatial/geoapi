@@ -113,7 +113,7 @@ public interface Element {
      * The collection size is 1 for a single date, or 2 for a range. Returns
      * an empty collection if this information is not available.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The element type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely

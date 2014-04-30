@@ -152,7 +152,7 @@ public interface Datum extends IdentifiedObject {
      * Alternatively, a datum may be superseded by a later datum, in which case the realization epoch
      * for the new datum defines the upper limit for the validity of the superseded datum.</p>
      *
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
