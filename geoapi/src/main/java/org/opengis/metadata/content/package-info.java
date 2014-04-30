@@ -41,7 +41,9 @@
  * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
  * together with a partial view of aggregation hierarchy:</p>
  *
- * <table class="ogc"><tr>
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td width="50%" nowrap>
@@ -58,7 +60,7 @@
  *  ├─ {@linkplain org.opengis.metadata.content.CoverageContentType}
  *  ├─ {@linkplain org.opengis.metadata.content.ImagingCondition}
  *  ├─ {@linkplain org.opengis.metadata.content.PolarizationOrientation}
- *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType}
+ *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType}</pre>
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
  * {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}

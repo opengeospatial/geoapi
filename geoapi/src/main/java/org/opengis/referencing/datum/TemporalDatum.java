@@ -55,7 +55,7 @@ public interface TemporalDatum extends Datum {
     /**
      * The date and time origin of this temporal datum.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
@@ -82,7 +82,7 @@ public interface TemporalDatum extends Datum {
      * This attribute is defined in the {@link Datum} parent interface,
      * but is not used by a temporal datum.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely

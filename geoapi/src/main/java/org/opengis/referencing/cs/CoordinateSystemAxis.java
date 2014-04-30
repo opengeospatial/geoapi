@@ -52,6 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * shall not be used in any other context.
  *
  * <table class="ogc">
+ * <caption>Context of coordinate system axis names usage</caption>
  * <tr><th>CS</th><th>CRS</th><th>Permitted coordinate system axis names</th></tr>
  * <tr><td>Cartesian</td><td>Geocentric</td>
  *     <td><cite>Geocentric X</cite>,

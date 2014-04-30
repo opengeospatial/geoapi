@@ -63,7 +63,7 @@ public interface Usage {
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely

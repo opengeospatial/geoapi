@@ -60,6 +60,7 @@ import org.opengis.util.GenericName;
  * Factory methods shall ignore unknown properties.
  *
  * <table class="ogc">
+ *   <caption>Keys for standard properties</caption>
  *   <tr>
  *     <th>Key</th>
  *     <th>Value type</th>
@@ -93,6 +94,7 @@ import org.opengis.util.GenericName;
  *
  * <p>Implementations may allow an alternative way to define the {@code "name"} property for user convenience:</p>
  * <table class="ogc">
+ *   <caption>Convenience keys (non-standard)</caption>
  *   <tr>
  *     <th>Key</th>
  *     <th>Value type</th>

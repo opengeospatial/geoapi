@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * <p><b>Example</b>:
  * The illustration below shows the head, tail, path and tip of {@code "org.opengis.util.Record"}.
  * A more complete illustration is provided in the {@link GenericName} javadoc.</p>
- * <blockquote><table border="0">
+ * <blockquote><table border="0" summary="Graphics showing various representations of a scoped name.">
  *   <tr>
  *     <th align="right">org</th>
  *     <th>.</th><th>opengis</th>

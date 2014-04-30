@@ -66,7 +66,8 @@
  * However the {@code union} construct found in some languages like C/C++ is not available in Java.
  * GeoAPI workarounds this limitation in different ways:</p>
  *
- * <table class="sis">
+ * <table class="ogc">
+ *   <caption>Representations of Coordinate System unions</caption>
  *   <tr>
  *     <td>Union</td>
  *     <td>Types in the union</td>

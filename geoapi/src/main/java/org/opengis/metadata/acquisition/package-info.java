@@ -37,7 +37,9 @@
  * Metadata extension for imagery and gridded data} specification. The following table shows the class
  * hierarchy, together with a partial view of aggregation hierarchy:</p>
  *
- * <table class="ogc"><tr>
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td width="50%" nowrap>

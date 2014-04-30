@@ -166,6 +166,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Additionally, the following properties are understood by this constructor:</p>
      *
      * <table class="ogc">
+     *   <caption>Keys for additional standard properties</caption>
      *   <tr>
      *     <th>Property name</th>
      *     <th>Value type</th>
@@ -217,6 +218,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Additionally, the following properties are understood by this constructor:</p>
      *
      * <table class="ogc">
+     *   <caption>Keys for additional standard properties</caption>
      *   <tr>
      *     <th>Property name</th>
      *     <th>Value type</th>
@@ -259,6 +261,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Examples of typical operation method names are:
      *
      * <table class="ogc">
+     *   <caption>Example of operation method names</caption>
      *   <tr>
      *     <th>OGC name</th>
      *     <th>EPSG name</th>
