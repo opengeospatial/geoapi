@@ -92,8 +92,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     @Override
     public String getAbbreviation() {
         final String name = axis.getShortName().trim();
-        if (name.equalsIgnoreCase("longitude")) return "\u03BB";
-        if (name.equalsIgnoreCase("latitude"))  return "\u03C6";
+        if (name.equalsIgnoreCase("longitude")) return "λ";
+        if (name.equalsIgnoreCase("latitude"))  return "φ";
         return name.substring(0, 1);
     }
 
