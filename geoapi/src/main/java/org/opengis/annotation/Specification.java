@@ -38,7 +38,7 @@ package org.opengis.annotation;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 public enum Specification {
@@ -99,6 +99,30 @@ public enum Specification {
      * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44883">Corrigendum</a>
      */
     ISO_19108,
+
+    /**
+     * ISO 19109, Rules for application schema.
+     * This is the specification for package {@link org.opengis.feature}.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <blockquote style="font-size:small">
+     * <p>Defines rules for creating and documenting application schemas, including principles for the definition
+     * of features. Its scope includes the following:</p>
+     * <ul>
+     *   <li>conceptual modelling of features and their properties from a universe of discourse;</li>
+     *   <li>definition of application schemas;</li>
+     *   <li>use of the conceptual schema language for application schemas;</li>
+     *   <li>transition from the concepts in the conceptual model to the data types in the application schema;</li>
+     *   <li>integration of standardized schemas from other ISO geographic information standards with the application
+     *       schema.</li>
+     * </ul>
+     * </blockquote>
+     *
+     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39891">Buy from ISO</a>
+     *
+     * @since 3.1
+     */
+    ISO_19109,
 
     /**
      * ISO 19111:2007, Spatial Referencing by Coordinates
