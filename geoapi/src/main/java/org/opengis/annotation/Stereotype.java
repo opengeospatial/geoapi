@@ -85,5 +85,12 @@ public enum Stereotype {
      *
      * @see org.opengis.metadata.Datatype#UNION_CLASS
      */
-    UNION
+    UNION,
+
+    /**
+     * Class whose instances are classes.
+     *
+     * @see org.opengis.metadata.Datatype#META_CLASS
+     */
+    METACLASS
 }
