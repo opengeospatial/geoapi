@@ -53,8 +53,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
 public interface IdentifiedType {
     /**
      * Returns the name of this type. The namespace can be either explicit
-     * ({@link org.opengis.util.iso.ScopedName}) or implicit
-     * ({@link org.opengis.util.iso.LocalName}).
+     * ({@link org.opengis.util.ScopedName}) or implicit
+     * ({@link org.opengis.util.LocalName}).
      *
      * <p>For {@link FeatureType}, the name is mandatory and shall be unique in the unit processing the data.</p>
      *
