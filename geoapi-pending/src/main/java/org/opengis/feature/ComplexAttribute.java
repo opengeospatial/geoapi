@@ -238,13 +238,12 @@ public interface ComplexAttribute extends Attribute {
      * @return The property matching the specified name, or <code>null</code>.
      */
     Property getProperty(String name);
-    
+
     /**
      * Check the properties against the constraints provided by their AttributeDescriptors.
      * <p>
      * Please note this method checks minOccurs and maxOccurs information; and calls each Attribute.validate
      * on each entry in turn (in order to check isNillable, binding and restrictions).
-     * @throws IllegalAttributeException If any attribute fails validation
      */
-    void validate() throws IllegalAttributeException;
+    void validate();
 }

@@ -66,10 +66,10 @@ import org.opengis.filter.identity.Identifier;
  * </pre>
  * </p>
  * <h3>Validation</h3>
- * 
+ *
  * An attribute may hold any value at runtime; checking that the value meets the constraints
  * supplied by the AttributeType is the work of the validate() method.
- * 
+ *
  * @see Property
  *
  * @author Jody Garnett (Refractions Research)
@@ -106,7 +106,7 @@ public interface Attribute extends Property {
      *         the attribute is non-identifiable.
      */
     Identifier getIdentifier();
-    
+
     /**
      * Check the attribute value against the constraints provided by the AttributeDescriptor.
      * <p>
@@ -116,8 +116,6 @@ public interface Attribute extends Property {
      * <p>
      * To check the the number of times an attribute is used (minOccurs and maxOccurs) please
      * use ComplexAttribute.validate().
-     * 
-     * @thorws IllegalAttributeException If value fails validation
      */
-    void validate() throws IllegalAttributeException;
+    void validate();
 }
