@@ -68,7 +68,7 @@
  * {@code  └─}     {@link org.opengis.feature.PropertyType}<br>
  * {@code      ├─} {@link org.opengis.feature.AttributeType}<br>
  * {@code      ├─} {@link org.opengis.feature.FeatureAssociationRole}<br>
- * {@code      └─} {@link org.opengis.feature.FeatureOperation}<br>
+ * {@code      └─} {@link org.opengis.feature.Operation}<br>
  * </td><td class="sep" style="width: 50%; white-space: nowrap">
  *             {@link org.opengis.feature.Feature}<br>
  *             {@link org.opengis.feature.Property}<br>
