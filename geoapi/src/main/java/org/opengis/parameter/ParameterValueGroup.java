@@ -180,7 +180,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      * @throws InvalidParameterCardinalityException If this parameter group already contains the
-     *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
+     *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs() maximum number of occurences}
      *         of subgroups of the given name.
      * @throws IllegalStateException If the group can not be added for an other raison.
      *
@@ -188,7 +188,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *   This method is not part of the ISO specification. It has been added in an attempt to make
      *   this interface easier to use.
      */
-    ParameterValueGroup addGroup(String name) throws ParameterNotFoundException, IllegalStateException;
+    ParameterValueGroup addGroup(String name) throws ParameterNotFoundException,
+            InvalidParameterCardinalityException, IllegalStateException;
 
     /**
      * Returns a copy of this group of parameter values.

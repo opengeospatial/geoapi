@@ -35,6 +35,13 @@ package org.opengis.parameter;
 /**
  * Thrown by {@link ParameterValueGroup} and {@link ParameterDescriptorGroup}
  * when a parameter is requested but not found in that group.
+ * This exception is typically thrown by the following methods:
+ *
+ * <ul>
+ *   <li>{@link ParameterDescriptorGroup#descriptor(String)}</li>
+ *   <li>{@link ParameterValueGroup#parameter(String)}</li>
+ *   <li>{@link ParameterValueGroup#groups(String)}</li>
+ * </ul>
  *
  * @departure extension
  *   This exception is not part of OGC specification.
@@ -43,8 +50,7 @@ package org.opengis.parameter;
  * @version 3.0
  * @since   1.0
  *
- * @see ParameterValueGroup#parameter(String)
- * @see ParameterDescriptorGroup#descriptor(String)
+ * @see InvalidParameterNameException
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**

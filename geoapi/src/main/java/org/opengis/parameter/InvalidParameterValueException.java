@@ -37,14 +37,23 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Thrown by {@link ParameterValue} setter methods when they are given an invalid value.
+ * The value may be invalid because it is not assignable to the Java
+ * {@linkplain ParameterDescriptor#getValueClass() value class}, not a member of the
+ * {@linkplain ParameterDescriptor#getValidValues() valid values} set, or any other reason.
+ * This exception is typically thrown by the following methods:
+ *
+ * <ul>
+ *   <li>{@link ParameterValue#setValue(int)}</li>
+ *   <li>{@link ParameterValue#setValue(double)}</li>
+ *   <li>{@link ParameterValue#setValue(Object)}</li>
+ *   <li>Any other setter method.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see ParameterValue#setValue(int)
- * @see ParameterValue#setValue(double)
- * @see ParameterValue#setValue(Object)
+ * @see InvalidParameterTypeException
  */
 @UML(identifier="GC_InvalidParameterValue", specification=OGC_01004)
 public class InvalidParameterValueException extends IllegalArgumentException {
