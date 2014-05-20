@@ -52,9 +52,6 @@ package org.opengis.parameter;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @see ParameterValueGroup#values()
- * @see ParameterValueGroup#addGroup(String)
  */
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**

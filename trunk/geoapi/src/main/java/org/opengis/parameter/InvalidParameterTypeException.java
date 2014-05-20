@@ -42,6 +42,15 @@ package org.opengis.parameter;
  *        It is rather a consequence of a zero-argument method invoked in a context where
  *        is it not allowed.}
  *
+ * This exception is typically thrown by the following methods:
+ * <ul>
+ *   <li>{@link ParameterValue#intValue()}</li>
+ *   <li>{@link ParameterValue#doubleValue()}</li>
+ *   <li>{@link ParameterValue#booleanValue()}</li>
+ *   <li>{@link ParameterValue#stringValue()}</li>
+ *   <li>{@link ParameterValue#valueFile()}</li>
+ * </ul>
+ *
  * @departure extension
  *   This exception is not part of the OGC specification.
  *
@@ -49,11 +58,7 @@ package org.opengis.parameter;
  * @version 3.0
  * @since   1.0
  *
- * @see ParameterValue#intValue()
- * @see ParameterValue#doubleValue()
- * @see ParameterValue#booleanValue()
- * @see ParameterValue#stringValue()
- * @see ParameterValue#valueFile()
+ * @see InvalidParameterValueException
  */
 public class InvalidParameterTypeException extends IllegalStateException {
     /**
