@@ -560,30 +560,30 @@
                Places the normative packages first, and the pending ones last. -->
           <groups>
             <group>
-              <title>Base package</title>
-              <packages>org.opengis.util*:org.opengis.annotation*</packages>
+              <title>Feature and coverage</title>
+              <packages>org.opengis.feature*:org.opengis.coverage*</packages>
+            </group>
+            <group>
+              <title>Geometry and Topology</title>
+              <packages>org.opengis.geometry*:org.opengis.topology*</packages>
+            </group>
+            <group>
+              <title>Spatial Referencing by Coordinates</title>
+              <packages>org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*</packages>
             </group>
             <group>
               <title>Metadata</title>
               <packages>org.opengis.metadata*</packages>
             </group>
             <group>
-              <title>Spatial Referencing by Coordinates</title>
-              <packages>org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*</packages>
+              <title>Base package</title>
+              <packages>org.opengis.util*:org.opengis.annotation*</packages>
             </group>
 
             <!-- Pending packages. -->
             <group>
-              <title>Geometry and Topology</title>
-              <packages>org.opengis.geometry*:org.opengis.topology*</packages>
-            </group>
-            <group>
-              <title>Coverage</title>
-              <packages>org.opengis.coverage*</packages>
-            </group>
-            <group>
-              <title>Feature and Filter</title>
-              <packages>org.opengis.feature*:org.opengis.filter*</packages>
+              <title>Filter</title>
+              <packages>org.opengis.filter*</packages>
             </group>
             <group>
               <title>Display and Styling</title>
@@ -596,10 +596,6 @@
             <group>
               <title>Catalog Services</title>
               <packages>org.opengis.catalog*</packages>
-            </group>
-            <group>
-              <title>Web Services</title>
-              <packages>org.opengis.web*</packages>
             </group>
 
             <!-- Other packages. -->
