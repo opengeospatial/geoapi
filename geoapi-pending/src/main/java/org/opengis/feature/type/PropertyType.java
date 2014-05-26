@@ -129,8 +129,11 @@ import org.opengis.util.InternationalString;
 
  * @author Jody Garnett, Refractions Research, Inc.
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * @deprecated Replaced by {@link org.opengis.feature.PropertyType} in the {@code org.opengis.feature} package.
  */
-public interface PropertyType {
+@Deprecated
+public interface PropertyType extends org.opengis.feature.PropertyType {
     /**
      * The name of the property type.
      * <p>
@@ -146,7 +149,10 @@ public interface PropertyType {
      * This value is never <code>null</code>.
      * </p>
      * @return The name of the property type.
+     *
+     * @deprecated Inherited from {@link org.opengis.feature.PropertyType#getName()}.
      */
+    @Override
     Name getName();
 
     /**
@@ -156,6 +162,8 @@ public interface PropertyType {
      * This value is never <code>null</code>.
      * </p>
      * @return The binding of the property type.
+     *
+     * @deprecated Moved to {@link org.opengis.feature.AttributeType#getValueClass()}.
      */
     Class<?> getBinding();
 
@@ -170,6 +178,8 @@ public interface PropertyType {
      * </p>
      *
      * @return The parent or super type, or <code>null</code>.
+     *
+     * @deprecated Moved to {@link org.opengis.feature.FeatureType#getSuperTypes()}.
      */
     PropertyType getSuper();
 
@@ -177,6 +187,8 @@ public interface PropertyType {
      * Flag indicating if the type is abstract or not.
      *
      * @return <code>true</code> if the type is abstract, otherwise <code>false</code>.
+     *
+     * @deprecated Moved to {@link org.opengis.feature.FeatureType#isAbstract()}.
      */
     boolean isAbstract();
 
@@ -193,7 +205,9 @@ public interface PropertyType {
      * This method returns an empty set in the case of no restrictions and should
      * not return <code>null</code>.
      * </p>
-     * @return List<Restriction> used to validate allowable values.
+     * @return {@code List<Restriction>} used to validate allowable values.
+     *
+     * @deprecated Defined by {@code valueDomain} in ISO 19109, but not yet implemented.
      */
     List<Filter> getRestrictions();
 
@@ -201,7 +215,10 @@ public interface PropertyType {
      * Human readable description of this property type.
      *
      * @return Human readable description of this property type.
+     *
+     * @deprecated Inherited from {@link org.opengis.feature.PropertyType#getDescription()}.
      */
+    @Override
     InternationalString getDescription();
 
     /**
@@ -231,7 +248,7 @@ public interface PropertyType {
      *
      * @return <code>true</code> if other is a PropertyType with the same name
      */
-    @Override    
+    @Override
     boolean equals(Object other);
 
     /**
