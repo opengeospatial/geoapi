@@ -52,7 +52,7 @@ import org.opengis.feature.Attribute;
  *
  * @deprecated Moved to {@link org.opengis.feature.AttributeType} in the {@code org.opengis.feature} package.
  */
-public interface AttributeType extends org.opengis.feature.AttributeType, PropertyType {
+public interface AttributeType extends org.opengis.feature.AttributeType<Object>, PropertyType {
 
     /**
      * Indicates if the type is identified or not.
