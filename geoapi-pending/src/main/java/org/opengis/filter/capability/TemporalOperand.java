@@ -85,7 +85,7 @@ public final class TemporalOperand extends CodeList<TemporalOperand> {
     }
 
     /**
-     * Returns the list of {@code GeometryOperand}s.
+     * Returns the list of {@code TemporalOperand}s.
      *
      * @return The list of codes declared in the current JVM.
      */
@@ -117,7 +117,7 @@ public final class TemporalOperand extends CodeList<TemporalOperand> {
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.
      */
-    public static GeometryOperand valueOf(final String code) {
-        return valueOf(GeometryOperand.class, code);
+    public static TemporalOperand valueOf(final String code) {
+        return valueOf(TemporalOperand.class, code);
     }
 }
