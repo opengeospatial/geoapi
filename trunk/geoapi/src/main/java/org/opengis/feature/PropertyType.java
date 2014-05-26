@@ -29,56 +29,36 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.feature.type;
+package org.opengis.feature;
+
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Stereotype;
+import org.opengis.annotation.Classifier;
+
+import static org.opengis.annotation.Specification.ISO_19109;
+
 
 /**
- * Describes an instance of an Attribute.
- * <p>
- * An AttributeDescriptor is an extension of {@link PropertyDescriptor} which
- * defines some additional information:
+ * Characteristics that may be associated with a {@linkplain FeatureType feature type}.
+ * This interface is the parent type of {@linkplain AttributeType attribute type},
+ * {@linkplain FeatureAssociationRole feature association role} and {@linkplain Operation operation},
+ * but not feature type.
+ *
+ * <p>Property types typically define the following properties:</p>
  * <ul>
- *   <li>A default value for an attribute
+ *   <li>A name and a human-readable description.</li>
+ *   <li>The type of values (in {@link AttributeType} and {@link FeatureAssociationRole}).</li>
+ *   <li>Number of allowable occurrences of the value (in {@link AttributeType} and {@link FeatureAssociationRole}).</li>
+ *   <li>A default value (in {@link AttributeType}).</li>
  * </ul>
- * </p>
- * <p>
  *
- * @author Jody Garnett, Refractions Research
- * @author Justin Deoliveira, The Open Planning Project
- *
- * @deprecated Merged with {@link org.opengis.feature.AttributeType}.
+ * @author  Jody Garnett (Refractions Research, Inc.)
+ * @author  Justin Deoliveira (The Open Planning Project)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-@Deprecated
-public interface AttributeDescriptor extends PropertyDescriptor {
-
-    /**
-     * Override of {@link PropertyDescriptor#getType()} which type narrows to
-     * {@link AttributeType}.
-     *
-     *  @see PropertyDescriptor#getType()
-     */
-    AttributeType getType();
-
-    /**
-     * The local name for this AttributeDescriptor.
-     * Specifically this returns <code>getName().getLocalPart</code>().
-     * @return The local name for this attribute descriptor.
-     *
-     * @deprecated Use {@link org.opengis.feature.IdentifiedType#getName()} instead.
-     */
-    String getLocalName();
-
-    /**
-     * The default value for the attribute.
-     * <p>
-     * This value is used when an attribute is created and no value for it is
-     * specified.
-     * </p>
-     * <p>
-     * This value may be <code>null</code>. If it is non-null it should be an
-     * instance of of the class specified by <code>getType().getBinding()</code>.
-     * </p>
-     *
-     * @deprecated Moved to {@link org.opengis.feature.AttributeType#getDefaultValue()}.
-     */
-    Object getDefaultValue();
+@Classifier(Stereotype.METACLASS)
+@UML(identifier="IdentifiedType", specification=ISO_19109)
+public interface PropertyType extends IdentifiedType {
 }

@@ -49,8 +49,10 @@ import org.opengis.feature.Attribute;
  *
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * @deprecated Moved to {@link org.opengis.feature.AttributeType} in the {@code org.opengis.feature} package.
  */
-public interface AttributeType extends PropertyType {
+public interface AttributeType extends org.opengis.feature.AttributeType, PropertyType {
 
     /**
      * Indicates if the type is identified or not.

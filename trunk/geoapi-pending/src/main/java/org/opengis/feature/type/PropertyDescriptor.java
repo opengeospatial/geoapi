@@ -101,7 +101,10 @@ import org.opengis.feature.ComplexAttribute;
  *
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * @deprecated Merged with {@link org.opengis.feature.PropertyType}.
  */
+@Deprecated
 public interface PropertyDescriptor {
     /**
      * The type of the property defined by the descriptor.
@@ -131,6 +134,8 @@ public interface PropertyDescriptor {
      * This value is always an integer greater than or equal to zero.
      * </p>
      * @return An integer >= 0
+     *
+     * @deprecated Moved to {@link org.opengis.feature.AttributeType#getMinimumOccurs()}.
      */
     int getMinOccurs();
 
@@ -142,6 +147,8 @@ public interface PropertyDescriptor {
      * the max number of occurrences is unbounded.
      * </p>
      * @return An integer >= 0, or -1.
+     *
+     * @deprecated Moved to {@link org.opengis.feature.AttributeType#getMaximumOccurs()}.
      */
     int getMaxOccurs();
 
