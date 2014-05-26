@@ -31,15 +31,14 @@
  */
 package org.opengis.filter.capability;
 
-import java.io.ObjectStreamException;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import org.opengis.feature.type.Name;
+import java.util.List;
+import java.util.ArrayList;
+import org.opengis.util.CodeList;
+
 
 /**
  * Enumeration of the different {@code TemporalOperand} types.
- * 
+ *
  * <pre>
  * &lt;complexType name="TemporalOperandsType">
  *   &lt;complexContent>
@@ -59,118 +58,66 @@ import org.opengis.feature.type.Name;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 3.1
  */
-public final class TemporalOperand implements Name, Serializable {
-   
+public final class TemporalOperand extends CodeList<TemporalOperand> {
     /**
-     * The pool of operands created up to date.
+     * For cross-version compatibility.
      */
-    private static final Map<TemporalOperand, TemporalOperand> POOL =
-            new HashMap<TemporalOperand, TemporalOperand>();
-    
-    /**
-     * The namespace URI.
-     */
-    private final String namespaceURI;
+    private static final long serialVersionUID = 8576126878446037604L;
 
     /**
-     * The name.
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
      */
-    private final String name;
+    private static final List<TemporalOperand> VALUES = new ArrayList<TemporalOperand>(19);
 
     /**
-     * Creates an operand in the given namespace.
-     */
-    private TemporalOperand(final String namespaceURI, final String name) {
-        this.namespaceURI = namespaceURI;
-        this.name = name;
-        POOL.put(this, this);
-    }
-
-    /**
-     * Returns the temporal operand for the given name.
+     * Creates an operand in the {@code "http://www.opengis.net/fes/2.0"} namespace.
      *
-     * @param  namespaceURI The namespace URI, or {@code null} for the default one.
-     * @param  name The operand name.
-     * @return The temporal operand, or {@code null} if none was found.
+     * @param name The name of the new element. This name must not be in use by an other element of this type.
      */
-    public static TemporalOperand get(String namespaceURI, String name) {
-        if (namespaceURI == null || namespaceURI.trim().length() == 0) {
-            namespaceURI = "http://www.opengis.net/fes/2.0";
+    private TemporalOperand(final String name) {
+        super(name, VALUES);
+    }
+
+    /**
+     * Returns the list of {@code GeometryOperand}s.
+     *
+     * @return The list of codes declared in the current JVM.
+     */
+    public static TemporalOperand[] values() {
+        synchronized (VALUES) {
+            return VALUES.toArray(new TemporalOperand[VALUES.size()]);
         }
-        name = name.trim();
-        return POOL.get(new TemporalOperand(namespaceURI, name));
     }
 
     /**
-     * Retrieve the Local name.
-     */
-    public String getLocalPart() {
-        return name;
-    }
-
-    /**
-     * Returns the name space.
-     */
-    public String getNamespaceURI() {
-        return namespaceURI;
-    }
-
-    /**
-     * Convert this name to a complete URI.
-     */
-    public String getURI() {
-        return namespaceURI + '/' + name;
-    }
-
-    /**
-     * Returns {@code false} since this name has a {@linkplain #getNamespaceURI namespace}.
-     */
-    public boolean isGlobal() {
-        return false;
-    }
-
-    public String getSeparator() {
-    	return "#";
-    }
-    
-    /**
-     * Returns a hash code value for this operand.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return The lit of codes of the same kind than this code list element.
      */
     @Override
-    public int hashCode() {
-        return namespaceURI.hashCode() + 37*name.hashCode();
+    public TemporalOperand[] family() {
+        return values();
     }
 
     /**
-     * Compares this operand with the specified value for equality.
+     * Returns the date type that matches the given string, or returns a
+     * new one if none match it. More specifically, this methods returns the first instance for
+     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
+     * returns {@code true}. If no existing instance is found, then a new one is created for
+     * the given name.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
-    @Override
-    public boolean equals(final Object other) {
-        if (other != null && other instanceof Name) {
-            final Name that = (Name) other;
-            return namespaceURI.equals(that.getNamespaceURI()) && name.equals(that.getLocalPart());
-        }
-        return false;
-    }
-
-    /**
-     * Returns a string representation of this operand.
-     */
-    @Override
-    public String toString() {
-        return getURI();
-    }
-
-    /**
-     * Returns the canonical instance on deserialization.
-     */
-    private Object readResolve() throws ObjectStreamException {
-        final TemporalOperand unique = POOL.get(this);
-        return (unique != null) ? unique : this;
+    public static GeometryOperand valueOf(final String code) {
+        return valueOf(GeometryOperand.class, code);
     }
 }

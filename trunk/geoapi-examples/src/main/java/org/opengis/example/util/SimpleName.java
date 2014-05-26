@@ -188,6 +188,8 @@ public class SimpleName implements GenericName, Serializable {
 
         /**
          * Returns {@code this} since this object is already a local name.
+         *
+         * @return {@code this}.
          */
         @Override
         public LocalName head() {
@@ -200,6 +202,8 @@ public class SimpleName implements GenericName, Serializable {
 
         /**
          * Returns {@code this} since this object is already a local name.
+         *
+         * @return {@code this}.
          */
         @Override
         public LocalName tip() {

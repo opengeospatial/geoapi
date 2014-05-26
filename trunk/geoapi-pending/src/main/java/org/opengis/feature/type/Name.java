@@ -70,8 +70,12 @@ import org.opengis.annotation.UML;
  * </p>
  *
  * @author Jody Garnett (Refractions Research, Inc.)
+ *
+ * @deprecated To be replaced by {@link GenericName}.
+ * See <a href="http://jira.codehaus.org/browse/GEO-237">GEO-237</a> for details.
  */
-public interface Name {
+@Deprecated
+public interface Name extends org.opengis.util.GenericName {
 
     /**
      * Returns <code>true</code> if getNamespaceURI is <code>null</code>
@@ -103,14 +107,14 @@ public interface Name {
      * <p>
      * This separator is only used to construct a visually pleasing getURI()
      * result. The value to use as a separator depends on the registry
-     * or namespace you are working with. JNDI naming services have 
+     * or namespace you are working with. JNDI naming services have
      * been known to use "/" and ":". Referring to an element in an XMLSchema
      * document has been represented with a "#" symbol.
      * <p>
      * @return A separator (such as "/" or ":").
      */
     String getSeparator();
-    
+
     /**
      * Retrieve the "local" name.
      * <p>
