@@ -31,11 +31,9 @@
  */
 package org.opengis.filter.capability;
 
-import java.io.ObjectStreamException;
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
-import org.opengis.feature.type.Name;
+import java.util.List;
+import java.util.ArrayList;
+import org.opengis.util.CodeList;
 
 
 /**
@@ -71,17 +69,17 @@ import org.opengis.feature.type.Name;
  * @author Justin Deoliveira (The Open Planning Project)
  * @author Martin Desruisseaux (Geomatys)
  */
-public final class GeometryOperand implements Name, Serializable {
+public final class GeometryOperand extends CodeList<GeometryOperand> {
     /**
      * For cross-version compatibility.
      */
-    private static final long serialVersionUID = -9006169053542932716L;
+    private static final long serialVersionUID = 6517166553565301182L;
 
     /**
-     * The pool of operands created up to date.
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
      */
-    private static final Map<GeometryOperand, GeometryOperand> POOL =
-            new HashMap<GeometryOperand, GeometryOperand>();
+    private static final List<GeometryOperand> VALUES = new ArrayList<GeometryOperand>(19);
 
     /** {@code "http://www.opengis.net/gml/Envelope"} */
     public static final GeometryOperand Envelope = new GeometryOperand("Envelope");
@@ -141,111 +139,48 @@ public final class GeometryOperand implements Name, Serializable {
     public static final GeometryOperand Solid = new GeometryOperand("Solid");
 
     /**
-     * The namespace URI.
-     */
-    private final String namespaceURI;
-
-    /**
-     * The name.
-     */
-    private final String name;
-
-    /**
      * Creates an operand in the {@code "http://www.opengis.net/gml"} namespace.
+     *
+     * @param name The name of the new element. This name must not be in use by an other element of this type.
      */
     private GeometryOperand(final String name) {
-        this("http://www.opengis.net/gml", name);
+        super(name, VALUES);
     }
 
     /**
-     * Creates an operand in the given namespace.
-     */
-    private GeometryOperand(final String namespaceURI, final String name) {
-        this.namespaceURI = namespaceURI;
-        this.name = name;
-        POOL.put(this, this);
-    }
-
-    /**
-     * Returns the geometry operand for the given name.
+     * Returns the list of {@code GeometryOperand}s.
      *
-     * @param  namespaceURI The namespace URI, or {@code null} for the default one.
-     * @param  name The operand name.
-     * @return The geometry operand, or {@code null} if none was found.
+     * @return The list of codes declared in the current JVM.
      */
-    public static GeometryOperand get(String namespaceURI, String name) {
-        if (namespaceURI == null || namespaceURI.trim().length() == 0) {
-            namespaceURI = "http://www.opengis.net/gml";
+    public static GeometryOperand[] values() {
+        synchronized (VALUES) {
+            return VALUES.toArray(new GeometryOperand[VALUES.size()]);
         }
-        name = name.trim();
-        return POOL.get(new GeometryOperand(namespaceURI, name));
     }
 
     /**
-     * Retrieve the Local name.
-     */
-    public String getLocalPart() {
-        return name;
-    }
-
-    /**
-     * Returns the name space, which is usually {@code "http://www.opengis.net/gml"}.
-     */
-    public String getNamespaceURI() {
-        return namespaceURI;
-    }
-
-    /**
-     * Convert this name to a complete URI.
-     */
-    public String getURI() {
-        return namespaceURI + '/' + name;
-    }
-
-    /**
-     * Returns {@code false} since this name has a {@linkplain #getNamespaceURI namespace}.
-     */
-    public boolean isGlobal() {
-        return false;
-    }
-
-    public String getSeparator() {
-    	return "#";
-    }
-    
-    /**
-     * Returns a hash code value for this operand.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return The lit of codes of the same kind than this code list element.
      */
     @Override
-    public int hashCode() {
-        return namespaceURI.hashCode() + 37*name.hashCode();
+    public GeometryOperand[] family() {
+        return values();
     }
 
     /**
-     * Compares this operand with the specified value for equality.
+     * Returns the date type that matches the given string, or returns a
+     * new one if none match it. More specifically, this methods returns the first instance for
+     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
+     * returns {@code true}. If no existing instance is found, then a new one is created for
+     * the given name.
+     *
+     * @param code The name of the code to fetch or to create.
+     * @return A code matching the given name.
      */
-    @Override
-    public boolean equals(final Object other) {
-        if (other != null && other instanceof Name) {
-            final Name that = (Name) other;
-            return namespaceURI.equals(that.getNamespaceURI()) && name.equals(that.getLocalPart());
-        }
-        return false;
-    }
-
-    /**
-     * Returns a string representation of this operand.
-     */
-    @Override
-    public String toString() {
-        return getURI();
-    }
-
-    /**
-     * Returns the canonical instance on deserialization.
-     */
-    private Object readResolve() throws ObjectStreamException {
-        final GeometryOperand unique = POOL.get(this);
-        return (unique != null) ? unique : this;
+    public static GeometryOperand valueOf(final String code) {
+        return valueOf(GeometryOperand.class, code);
     }
 }
