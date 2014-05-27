@@ -212,16 +212,6 @@ public interface PropertyType extends org.opengis.feature.PropertyType {
     List<Filter> getRestrictions();
 
     /**
-     * Human readable description of this property type.
-     *
-     * @return Human readable description of this property type.
-     *
-     * @deprecated Inherited from {@link org.opengis.feature.PropertyType#getDescription()}.
-     */
-    @Override
-    InternationalString getDescription();
-
-    /**
      * A map of "user data" which enables applications to store "application-specific"
      * information against a property type.
      * <p>
