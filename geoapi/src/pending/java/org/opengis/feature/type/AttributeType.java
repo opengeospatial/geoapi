@@ -33,8 +33,11 @@ package org.opengis.feature.type;
 
 
 /**
- * @deprecated Moved to the {@link org.opengis.feature} package.
+ * @deprecated {@code AttributeType} is now defined in the {@link org.opengis.feature} package.
+ * However the places where this old {@code AttributeType} was used
+ * (namely {@link org.opengis.metadata.maintenance.ScopeDescription}) while change their type
+ * to {@code CharSequence} because ISO 19115:2014 defines those types as character sequences.
  */
 @Deprecated
-public interface AttributeType extends org.opengis.feature.AttributeType<Object> {
+public interface AttributeType extends CharSequence {
 }
