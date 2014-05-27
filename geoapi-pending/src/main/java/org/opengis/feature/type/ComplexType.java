@@ -105,7 +105,10 @@ import org.opengis.feature.Property;
  *
  * @author Jody Garnett (Refractions Research)
  * @author Justin Deoliveira (The Open Planning Project)
+ *
+ * @deprecated Redesigned as {@link org.opengis.feature.FeatureType} in the {@code org.opengis.feature} package.
  */
+@Deprecated
 public interface ComplexType extends AttributeType {
     /**
      * Override and type narrow to Collection<Property>.class.
@@ -122,6 +125,8 @@ public interface ComplexType extends AttributeType {
      *
      * @return Collection of descriptors representing the composition of the
      * complex type.
+     *
+     * @deprecated Replaced by {@link org.opengis.feature.FeatureType#getProperties(boolean)}.
      */
     Collection<PropertyDescriptor> getDescriptors();
 
