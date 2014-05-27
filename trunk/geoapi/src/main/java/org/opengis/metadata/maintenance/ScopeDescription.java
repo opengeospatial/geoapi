@@ -35,7 +35,7 @@ import java.util.Set;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
-import org.opengis.feature.AttributeType;
+import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
 
 import static org.opengis.annotation.Obligation.*;
@@ -68,7 +68,7 @@ public interface ScopeDescription {
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends AttributeType<?>> getAttributes();
+    Set<? extends AttributeType> getAttributes();
 
     /**
      * Features to which the information applies.
@@ -103,7 +103,7 @@ public interface ScopeDescription {
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends AttributeType<?>> getAttributeInstances();
+    Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Dataset to which the information applies.
