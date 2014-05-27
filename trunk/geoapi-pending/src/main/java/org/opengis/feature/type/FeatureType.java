@@ -45,8 +45,11 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * @deprecated Redesigned as {@link org.opengis.feature.FeatureType} in the {@code org.opengis.feature} package.
  */
-public interface FeatureType extends ComplexType {
+@Deprecated
+public interface FeatureType extends org.opengis.feature.FeatureType, ComplexType {
 
     /**
      * Features are always identified.

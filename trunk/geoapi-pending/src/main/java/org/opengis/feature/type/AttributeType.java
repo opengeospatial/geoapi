@@ -50,8 +50,9 @@ import org.opengis.feature.Attribute;
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
  *
- * @deprecated Moved to {@link org.opengis.feature.AttributeType} in the {@code org.opengis.feature} package.
+ * @deprecated Redesigned as {@link org.opengis.feature.AttributeType} in the {@code org.opengis.feature} package.
  */
+@Deprecated
 public interface AttributeType extends org.opengis.feature.AttributeType<Object>, PropertyType {
 
     /**
