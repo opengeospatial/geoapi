@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * Names are <em>immutable</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
  * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope() scope}
- * like {@code "util.Record"} in the {@code "org.opengis"} scope. In the following illustration,
+ * like {@code "util.Record"} in the {@code "org.opengis"} namespace. In the following illustration,
  * each line is one possible construction for {@code "org.opengis.util.Record"}.
  * For each construction, the first columns shows the name in a yellow background. The second and third columns show the
  * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
@@ -91,6 +91,18 @@ import static org.opengis.annotation.Specification.*;
  *   </tr>
  * </table>
  * </blockquote>
+ *
+ * <h3>Comparison with Java Content Repository (JCR) names</h3>
+ * In the Java standard {@link javax.xml.namespace.QName} class and in the Java Content Repository (JCR) specification,
+ * a name is an ordered pair of (<var>Name space</var>, <var>Local part</var>) strings. A JCR name can take two lexical
+ * forms: <cite>expanded form</cite> and <cite>qualified form</cite>. Those names are defined as:
+ *
+ * <blockquote><pre> ExpandedName  ::= '{' Namespace '}' LocalName
+ * QualifiedName ::= [Prefix ':'] LocalName</pre></blockquote>
+ *
+ * In GeoAPI equivalence, an <cite>expanded name</cite> can be a {@code GenericName} with a {@linkplain #scope() scope}
+ * set to the namespace, while a <cite>qualified name</cite> can be a {@link ScopedName} in the global namespace.
+ * In the later case, the prefix may be the name {@linkplain ScopedName#head() head} or {@linkplain ScopedName#path() path}.
  *
  * <h3>Ordering</h3>
  * <p>The recommended {@linkplain Comparable natural ordering} for generic names is to
