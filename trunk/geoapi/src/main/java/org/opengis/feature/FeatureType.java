@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Abstraction of a real-world phenomena.
  * A {@code FeatureType} instance describes the class of all {@link Feature} instances of that type.
  *
- * <blockquote><font size="-1"><b>Note:</b>
- * Compared to the Java language, {@code FeatureType} is equivalent to {@link Class} while
+ * <blockquote><font size="-1"><b>Analogy:</b>
+ * compared to the Java language, {@code FeatureType} is equivalent to {@link Class} while
  * {@code Feature} instances are equivalent to {@link Object} instances of that class.</font></blockquote>
  *
  * <h3>Naming</h3>
@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Names can be {@linkplain org.opengis.util.ScopedName} for avoiding name collision.
  *
  * <h3>Properties and inheritance</h3>
- * Each feature type can provide descriptions for the following {@linkplain #getProperties(boolean) properties}:
+ * Each feature type can provide descriptions for the following {@link #getPropertyTypes(boolean) properties}:
  *
  * <ul>
  *   <li>{@linkplain AttributeType           Attributes}</li>
@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  *
  * In addition, a feature type can inherit the properties of one or more other feature types.
  * Properties defined in the sub-type can override properties of the same name defined in the
- * {@link #getSuperTypes() super-types}, provided that values of the sub-type property are
+ * {@linkplain #getSuperTypes() super-types}, provided that values of the sub-type property are
  * assignable to the super-type property.
  *
  * <blockquote><font size="-1"><b>Analogy:</b>
@@ -93,7 +93,7 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] cardinality,
-     * or operations. Such feature types can be handled as a {@link org.opengis.util.Record}s.
+     * or operations. Such feature types can be handled as a {@link org.opengis.util.Record} instances.
      *
      * @return {@code true} if this feature type contains only simple attributes or operations.
      */
@@ -102,8 +102,8 @@ public interface FeatureType extends IdentifiedType {
     /**
      * Returns any feature operation, any feature attribute type and any feature association role that
      * carries characteristics of a feature type. The returned collection will include the properties
-     * inherited from the {@link #getSuperTypes() super-types} only if {@code includeSuperTypes} is
-     * {@code true}.
+     * inherited from the {@linkplain #getSuperTypes() super-types} only if {@code includeSuperTypes}
+     * is {@code true}.
      *
      * @param  includeSuperTypes {@code true} for including the properties inherited from the super-types,
      *         or {@code false} for returning only the properties defined explicitely in this type.
@@ -111,10 +111,14 @@ public interface FeatureType extends IdentifiedType {
      *         feature type (not including parent types).
      */
     @UML(identifier="carrierOfCharacteristics", obligation=OPTIONAL, specification=ISO_19109)
-    Collection<? extends PropertyType> getProperties(boolean includeSuperTypes);
+    Collection<? extends PropertyType> getPropertyTypes(boolean includeSuperTypes);
 
     /**
      * Returns the direct parents of this feature type.
+     *
+     * <blockquote><font size="-1"><b>Analogy:</b>
+     * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
+     * to {@link Class#getSuperclass()} except that feature types allow multi-inheritance.</font></blockquote>
      *
      * @return The parents of this feature type, or an empty set if none.
      */
@@ -123,6 +127,10 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if this type is same or a super-type of the given type.
+     *
+     * <blockquote><font size="-1"><b>Analogy:</b>
+     * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
+     * to {@link Class#isAssignableFrom(Class)}.</font></blockquote>
      *
      * @param  type The type to be checked.
      * @return {@code true} if instances of the given type can be assigned to association of this type.
