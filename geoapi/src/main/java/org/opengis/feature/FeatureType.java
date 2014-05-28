@@ -111,7 +111,7 @@ public interface FeatureType extends IdentifiedType {
      *         feature type (not including parent types).
      */
     @UML(identifier="carrierOfCharacteristics", obligation=OPTIONAL, specification=ISO_19109)
-    Collection<PropertyType> getProperties(boolean includeSuperTypes);
+    Collection<? extends PropertyType> getProperties(boolean includeSuperTypes);
 
     /**
      * Returns the direct parents of this feature type.
@@ -119,7 +119,7 @@ public interface FeatureType extends IdentifiedType {
      * @return The parents of this feature type, or an empty set if none.
      */
     @UML(identifier="superType", obligation=OPTIONAL, specification=ISO_19109)
-    Set<FeatureType> getSuperTypes();
+    Set<? extends FeatureType> getSuperTypes();
 
     /**
      * Returns {@code true} if this type is same or a super-type of the given type.
