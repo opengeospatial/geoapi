@@ -50,11 +50,11 @@
  *  └─ {@linkplain org.opengis.util.Record}</pre>
  * </td><td class="sep" width="25%" nowrap>
  * <pre> ISO-19103 object
- *  ├─ {@linkplain org.opengis.util.GenericName}
- *  ├─ {@linkplain org.opengis.util.ScopedName}
- *  └─ {@linkplain org.opengis.util.LocalName}
- *      ├─ {@linkplain org.opengis.util.TypeName}
- *      └─ {@linkplain org.opengis.util.MemberName}</pre>
+ *  └─ {@linkplain org.opengis.util.GenericName}
+ *      ├─ {@linkplain org.opengis.util.ScopedName}
+ *      └─ {@linkplain org.opengis.util.LocalName}
+ *          ├─ {@linkplain org.opengis.util.TypeName}
+ *          └─ {@linkplain org.opengis.util.MemberName}</pre>
  * </td><td class="sep" width="25%" nowrap>
  * <pre> GeoAPI object
  *  └─ {@linkplain org.opengis.util.Factory}
@@ -77,6 +77,8 @@
  *   <li>{@link org.opengis.util.MemberName} is the name of an attribute in a {@link org.opengis.util.Record}
  *       or {@link org.opengis.util.RecordType}.</li>
  * </ul>
+ *
+ * The {@link org.opengis.util.GenericName} javadoc provides more details about name structure.
  *
  * <h3>Records and Schemas</h3>
  * <p>A {@link org.opengis.util.RecordType} is similar to a {@code struct} declaration in C/C++, a table definition

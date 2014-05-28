@@ -97,12 +97,20 @@ import static org.opengis.annotation.Specification.*;
  * a name is an ordered pair of (<var>Name space</var>, <var>Local part</var>) strings. A JCR name can take two lexical
  * forms: <cite>expanded form</cite> and <cite>qualified form</cite>. Those names are defined as:
  *
- * <blockquote><pre> ExpandedName  ::= '{' Namespace '}' LocalName
- * QualifiedName ::= [Prefix ':'] LocalName</pre></blockquote>
- *
- * In GeoAPI equivalence, an <cite>expanded name</cite> can be a {@code GenericName} with a {@linkplain #scope() scope}
- * set to the namespace, while a <cite>qualified name</cite> can be a {@link ScopedName} in the global namespace.
- * In the later case, the prefix may be the name {@linkplain ScopedName#head() head} or {@linkplain ScopedName#path() path}.
+ * <blockquote><table class="ogc">
+ *   <caption>Equivalence between JCR name and {@code GenericName}</caption>
+ *   <tr>
+ *     <th>JCR name</th>
+ *     <th>GeoAPI equivalence</th>
+ *   </tr><tr>
+ *     <td><pre>ExpandedName  ::= '{' Namespace '}' LocalName</pre></td>
+ *     <td>{@code GenericName} with its {@linkplain #scope() scope} set to the JCR namespace.</td>
+ *   </tr><tr>
+ *     <td><pre>QualifiedName ::= [Prefix ':'] LocalName</pre></td>
+ *     <td>{@link ScopedName} in the global namespace, with its {@linkplain ScopedName#head() head} or
+ *         {@linkplain ScopedName#path() path} set to the JCR prefix.</td>
+ *   </tr>
+ * </table></blockquote>
  *
  * <h3>Ordering</h3>
  * <p>The recommended {@linkplain Comparable natural ordering} for generic names is to
