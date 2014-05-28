@@ -35,7 +35,7 @@ package org.opengis.feature.type;
 /**
  * @deprecated {@code AttributeType} is now defined in the {@link org.opengis.feature} package.
  * However the places where this old {@code AttributeType} was used
- * (namely {@link org.opengis.metadata.maintenance.ScopeDescription}) while change their type
+ * (namely {@link org.opengis.metadata.maintenance.ScopeDescription}) will change their type
  * to {@code CharSequence} because ISO 19115:2014 defines those types as character sequences.
  */
 @Deprecated

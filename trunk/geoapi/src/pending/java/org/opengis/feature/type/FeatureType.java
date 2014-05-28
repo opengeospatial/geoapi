@@ -33,8 +33,11 @@ package org.opengis.feature.type;
 
 
 /**
- * Temporary placeholder for an interface defined in the
- * <a href="http://www.geoapi.org/geoapi-pending/">geoapi-pending</a> module.
+ * @deprecated {@code FeatureType} is now defined in the {@link org.opengis.feature} package.
+ * However the places where this old {@code FeatureType} was used
+ * (namely {@link org.opengis.metadata.maintenance.ScopeDescription}) will change their type
+ * to {@code CharSequence} because ISO 19115:2014 defines those types as character sequences.
  */
-public interface FeatureType {
+@Deprecated
+public interface FeatureType extends CharSequence {
 }
