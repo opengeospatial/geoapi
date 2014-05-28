@@ -103,10 +103,10 @@ import static org.opengis.annotation.Specification.*;
  *     <th>JCR name</th>
  *     <th>GeoAPI equivalence</th>
  *   </tr><tr>
- *     <td><pre>ExpandedName  ::= '{' Namespace '}' LocalName</pre></td>
+ *     <td style="nowrap"><code>ExpandedName  ::= '{' Namespace '}' LocalName</code></td>
  *     <td>{@code GenericName} with its {@linkplain #scope() scope} set to the JCR namespace.</td>
  *   </tr><tr>
- *     <td><pre>QualifiedName ::= [Prefix ':'] LocalName</pre></td>
+ *     <td style="nowrap"><code>QualifiedName ::= [Prefix ':'] LocalName</code></td>
  *     <td>{@link ScopedName} in the global namespace, with its {@linkplain ScopedName#head() head} or
  *         {@linkplain ScopedName#path() path} set to the JCR prefix.</td>
  *   </tr>
