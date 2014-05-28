@@ -48,8 +48,11 @@ import org.opengis.feature.Association;
  *
  * @author Jody Garnett, Refractions Research, Inc.
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * @deprecated Redesigned as {@link org.opengis.feature.FeatureAssociationRole} in the {@code org.opengis.feature} package.
  */
-public interface AssociationType extends PropertyType {
+@Deprecated
+public interface AssociationType extends org.opengis.feature.FeatureAssociationRole, PropertyType {
 
     /**
      * Override of {@link PropertyType#getSuper()} which type narrows to

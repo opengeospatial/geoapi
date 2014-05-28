@@ -37,7 +37,10 @@ package org.opengis.feature.type;
  *
  * @author Jody Garnett, Refractions Research
  * @author Justin Deoliveira, The Open Planning Project
+ *
+ * @deprecated Merged with {@link org.opengis.feature.FeatureAssociationRole}.
  */
+@Deprecated
 public interface AssociationDescriptor extends PropertyDescriptor {
 
     /**
