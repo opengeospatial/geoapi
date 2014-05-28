@@ -34,57 +34,53 @@ package org.opengis.feature;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.parameter.ParameterDescriptorGroup;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19109;
 
 
 /**
- * Indicates the role played by the association between two features.
- * In the area of geographic information, there exist multiple kinds of associations:
+ * Describes the behaviour of a feature type as a function or a method.
+ * Operations can:
  *
  * <ul>
- *   <li><b>Aggregation</b> represents associations between features which can exist even if the aggregate is destroyed.</li>
- *   <li><b>Composition</b> represents relationships where the owned features are destroyed together with the composite.</li>
- *   <li><b>Spatial</b> association represents spatial or topological relationships that may exist between features (e.g. “<cite>east of</cite>”).</li>
- *   <li><b>Temporal</b> association may represent for example a sequence of changes over time involving the replacement of some
- *       feature instances by other feature instances.</li>
+ *   <li>Compute values from the attributes.</li>
+ *   <li>Perform actions that change the attribute values.</li>
  * </ul>
  *
+ * <blockquote><font size="-1"><b>Example:</b> a mutator operation may raise the height of a dam. This changes
+ * may affect other properties like the watercourse and the reservoir associated with the dam.</font></blockquote>
+ *
+ * This {@code Operation} type is used for defining the required parameters and expected result.
+ *
  * @author  Jody Garnett (Refractions Research, Inc.)
- * @author  Justin Deoliveira (The Open Planning Project)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
 @Classifier(Stereotype.METACLASS)
-@UML(identifier="FeatureAssociationRole", specification=ISO_19109)
-public interface FeatureAssociationRole extends PropertyType {
+@UML(identifier="Operation", specification=ISO_19109)
+public interface Operation extends PropertyType {
     /**
-     * Returns the type of feature values.
+     * Returns a description of the input parameters.
      *
-     * @return The type of feature values.
+     * @return Description of the input parameters.
      */
-    @UML(identifier="valueType", obligation=MANDATORY, specification=ISO_19109)
-    FeatureType getValueType();
+    @UML(identifier="signature", obligation=MANDATORY, specification=ISO_19109)
+    ParameterDescriptorGroup getParameters();
 
     /**
-     * Returns the minimum number of occurrences of the association within its containing entity.
-     * The returned value is greater than or equal to zero.
+     * Returns the expected result type, or {@code null} if none.
      *
-     * @return The minimum number of occurrences of the association within its containing entity.
+     * @return The type of the result, or {@code null} if none.
      */
-    @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
-    int getMinimumOccurs();
+    @UML(identifier="signature", obligation=MANDATORY, specification=ISO_19109)
+    IdentifiedType getResult();
 
-    /**
-     * Returns the maximum number of occurrences of the association within its containing entity.
-     * The returned value is greater than or equal to the {@link #getMinimumOccurs()} value.
-     * If there is no maximum, then this method returns {@link Integer#MAX_VALUE}.
+    /*
+     * TODO: missing invoke method. A possibility is:
      *
-     * @return The maximum number of occurrences of the association within its containing entity,
-     *         or {@link Integer#MAX_VALUE} if none.
+     * Object invoke(ParameterValueGroup).
      */
-    @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
-    int getMaximumOccurs();
 }
