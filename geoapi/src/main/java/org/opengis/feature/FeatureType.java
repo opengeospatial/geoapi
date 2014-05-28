@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Names can be {@linkplain org.opengis.util.ScopedName} for avoiding name collision.
  *
  * <h3>Properties and inheritance</h3>
- * Each feature type can provide descriptions for the following {@link #getPropertyTypes(boolean) properties}:
+ * Each feature type can provide descriptions for the following {@linkplain #getProperties(boolean) properties}:
  *
  * <ul>
  *   <li>{@linkplain AttributeType           Attributes}</li>
@@ -100,6 +100,15 @@ public interface FeatureType extends IdentifiedType {
     boolean isSimple();
 
     /**
+     * Returns the attribute, operation or association role for the given name.
+     *
+     * @param  name The name of the property to search.
+     * @return The property for the given name, or {@code null} if none.
+     * @throws IllegalArgumentException If the given argument is not a property name of this feature.
+     */
+    PropertyType getProperty(String name) throws IllegalArgumentException;
+
+    /**
      * Returns any feature operation, any feature attribute type and any feature association role that
      * carries characteristics of a feature type. The returned collection will include the properties
      * inherited from the {@linkplain #getSuperTypes() super-types} only if {@code includeSuperTypes}
@@ -111,7 +120,7 @@ public interface FeatureType extends IdentifiedType {
      *         feature type (not including parent types).
      */
     @UML(identifier="carrierOfCharacteristics", obligation=OPTIONAL, specification=ISO_19109)
-    Collection<? extends PropertyType> getPropertyTypes(boolean includeSuperTypes);
+    Collection<? extends PropertyType> getProperties(boolean includeSuperTypes);
 
     /**
      * Returns the direct parents of this feature type.
