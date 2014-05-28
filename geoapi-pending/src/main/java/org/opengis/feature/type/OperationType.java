@@ -43,8 +43,11 @@ import org.opengis.filter.Filter;
  * parameters and expected result for an Operation.
  *
  * @author Jody Garnett, Refractions Research, Inc.
+ *
+ * @deprecated Redesigned as {@link org.opengis.feature.Operation} in the {@code org.opengis.feature} package.
  */
- public interface OperationType extends PropertyType {
+@Deprecated
+public interface OperationType extends org.opengis.feature.Operation, PropertyType {
 
     /**
      * Access to super type information.
@@ -76,6 +79,8 @@ import org.opengis.filter.Filter;
       * Indicates the expected result type, may be <code>null</code>.
       *
       * @return expected result type, may be <code>null</code>
+      *
+      * @deprecated Moved to {@link org.opengis.feature.Operation#getResult()}.
       */
      AttributeType getResult();
 
@@ -86,8 +91,10 @@ import org.opengis.filter.Filter;
      * are ordered, so name is not needed.
      * </p>
      * @return indicates paramters required for operation
+     *
+     * @deprecated Moved to {@link org.opengis.feature.Operation#getParameters()}.
      */
-    List<AttributeType> getParameters();
+    List<AttributeType> getParameterTypes();
 
     /**
      * List of restrictions used to limit the allowable returned value.

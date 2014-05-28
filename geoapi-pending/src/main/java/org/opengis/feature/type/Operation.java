@@ -39,7 +39,10 @@ import org.opengis.feature.Attribute;
  * An implementation of an operation that may be invoked on an Attribute.
  *
  * @author Jody Garnett, Refractions Research
+ *
+ * @deprecated Merged with {@link org.opengis.feature.Operation}.
  */
+@Deprecated
 public interface Operation extends PropertyDescriptor {
 
     /**
