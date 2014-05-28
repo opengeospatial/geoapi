@@ -154,6 +154,8 @@ public interface ComplexType extends AttributeType {
      * @param name The name of the property to get.
      *
      * @return The property matching the specified name, or <code>null</code>.
+     *
+     * @deprecated Replaced by {@link org.opengis.feature.FeatureType#getProperty(String)}.
      */
     PropertyDescriptor getDescriptor( String name );
 
