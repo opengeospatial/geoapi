@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Attributes can be used for both spatial and non-spatial properties.
  * Some examples are:
  *
- * <table class="sis">
+ * <table class="ogc">
  *   <caption>Attribute value type examples</caption>
  *   <tr><th>Attribute name</th>      <th>Value type</th></tr>
  *   <tr><td>Building shape</td>      <td>{@link org.opengis.geometry.Geometry}</td></tr>
@@ -87,9 +87,7 @@ public interface AttributeType<V> extends PropertyType {
      *
      * Rational: a CharacterString is hardly programmatically usable. A Range would be better but too specific.
      * We could follow the GeoAPI path and define a "restrictions : Filter" property. That would be more generic,
-     * but we are probably better to wait for Filter to be implemented in SIS.
-     *
-     * Reference: https://issues.apache.org/jira/browse/SIS-175
+     * but we are probably better to wait for Filter to be made submitted to a GeoAPI release.
      */
 
     /**
