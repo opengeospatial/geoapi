@@ -33,7 +33,7 @@ package org.opengis.filter;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
-import org.opengis.feature.type.FeatureType;  // For javadoc
+import org.opengis.feature.FeatureType;  // For javadoc
 
 
 /**
