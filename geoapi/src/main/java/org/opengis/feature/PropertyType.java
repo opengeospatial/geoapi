@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
 
 
 /**
- * Characteristics that may be associated with a {@linkplain FeatureType feature type}.
+ * Characteristics that may be associated with a {@link FeatureType}.
  * This interface is the parent type of {@linkplain AttributeType attribute type},
  * {@linkplain FeatureAssociationRole feature association role} and {@linkplain Operation operation},
  * but not feature type.

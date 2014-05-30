@@ -36,7 +36,7 @@ import org.opengis.util.GenericName;
 
 
 /**
- * Indicates the role played by the association between two features.
+ * An instance of an {@link FeatureAssociationRole} containing the associated feature.
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Justin Deoliveira (The Open Planning Project)

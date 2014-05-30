@@ -36,18 +36,21 @@ import org.opengis.util.GenericName;
 
 /**
  * An instance of a {@link PropertyType}.
+ * A property is usually part of another entity such as a {@link Feature}.
  * This interface is the parent type of {@linkplain Attribute attribute} and
  * {@linkplain FeatureAssociation feature association} but not feature.
  *
- * <p>A property is a wrapper around an arbitrary object or value. The value is available via the
- * {@link #getValue()} method, and can be set via a setter method provided by the sub-interface.</p>
+ * <p>A property is a wrapper around an arbitrary object or value.
+ * It provides the following information:</p>
  *
- * <p>Every property has a type. The {@link PropertyType} defines information about the property.
- * This includes which Java class the value of the property is an instance of, any restrictions on
- * the value, <i>etc</i>. The type is available via the {@code getType()} or {@code getRole()} method
- * provided by the sub-interface.</p>
- *
- * <p>A property is usually part of another entity such as a {@link Feature}.</p>
+ * <ul>
+ *   <li>A value, available via the {@link #getValue()} method.
+ *       The value can be set via a setter method provided by the sub-interface.</li>
+ *   <li>A type, available via the {@code getType()} or {@code getRole()} method provided by the sub-interface.
+ *       The {@link PropertyType} defines information about the property.
+ *       This includes which Java class the value of the property is an instance of, any restrictions on
+ *       the value, <i>etc</i>.</li>
+ * </ul>
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Justin Deoliveira (The Open Planning Project)
