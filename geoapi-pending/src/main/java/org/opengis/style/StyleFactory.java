@@ -39,7 +39,7 @@ import java.util.Set;
 import javax.measure.unit.Unit;
 import javax.swing.Icon;
 
-import org.opengis.feature.type.Name;
+import org.opengis.util.GenericName;
 import org.opengis.filter.Filter;
 import org.opengis.filter.Id;
 import org.opengis.filter.expression.Expression;
@@ -52,27 +52,27 @@ import org.opengis.util.InternationalString;
  * This factory is responsible for the production of style objects; where noted
  * these create methods are in agreement with the Symbology Encoding 1.1
  * specification.
- * 
+ *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.2
  */
 public interface StyleFactory {
     /**
-     * 
+     *
      * @param x
      * @param y
      * @return
      */
     AnchorPoint anchorPoint(Expression x, Expression y);
     /**
-     * 
+     *
      * @param gray
      * @return
      */
     ChannelSelection channelSelection(SelectedChannelType gray);
     /**
-     * 
+     *
      * @param red
      * @param green
      * @param blue
@@ -104,7 +104,7 @@ public interface StyleFactory {
 
     /**
      * Wrap up a replacement function using the provided expressions.
-     * 
+     *
      * @param propertyName
      *            Property name to categorize, or use "Raster"
      * @param mapping
@@ -114,7 +114,7 @@ public interface StyleFactory {
     ColorReplacement colorReplacement(Expression propertyName,
             Expression... mapping);
     /**
-     * 
+     *
      * @param gamma
      * @param method
      * @return
@@ -123,7 +123,7 @@ public interface StyleFactory {
             ContrastMethod method);
 
     /**
-     * 
+     *
      * @param title
      * @param description
      * @return
@@ -132,7 +132,7 @@ public interface StyleFactory {
             InternationalString description);
 
     /**
-     * 
+     *
      * @param dx
      * @param dy
      * @return
@@ -140,7 +140,7 @@ public interface StyleFactory {
     Displacement displacement(Expression dx, Expression dy);
 
     /**
-     * 
+     *
      * @param resource
      * @param format
      * @param replacements
@@ -150,7 +150,7 @@ public interface StyleFactory {
             String format, Collection<ColorReplacement> replacements);
 
     /**
-     * 
+     *
      * @param inline
      * @param replacements
      * @return
@@ -159,7 +159,7 @@ public interface StyleFactory {
             Collection<ColorReplacement> replacements);
 
     /**
-     * 
+     *
      * @param resource
      * @param format
      * @param markIndex
@@ -169,14 +169,14 @@ public interface StyleFactory {
             int markIndex);
 
     /**
-     * 
+     *
      * @param inline
      * @return
      */
     ExternalMark externalMark(Icon inline);
 
     /**
-     * 
+     *
      * @param name
      * @param description
      * @param definedFor
@@ -187,11 +187,11 @@ public interface StyleFactory {
      * @return
      */
     FeatureTypeStyle featureTypeStyle(String name,
-            Description description, Id definedFor, Set<Name> featureTypeNames,
+            Description description, Id definedFor, Set<GenericName> featureTypeNames,
             Set<SemanticType> types, List<Rule> rules);
 
     /**
-     * 
+     *
      * @param fill
      * @param color
      * @param opacity
@@ -200,7 +200,7 @@ public interface StyleFactory {
     Fill fill(GraphicFill fill, Expression color, Expression opacity);
 
     /**
-     * 
+     *
      * @param family
      * @param style
      * @param weight
@@ -215,7 +215,7 @@ public interface StyleFactory {
             AnchorPoint anchor, Displacement disp);
 
     /**
-     * 
+     *
      * @param symbols
      * @param opacity
      * @param size
@@ -228,7 +228,7 @@ public interface StyleFactory {
             AnchorPoint anchorPoint, Displacement displacement);
 
     /**
-     * 
+     *
      * @param symbols
      * @param opacity
      * @param size
@@ -240,7 +240,7 @@ public interface StyleFactory {
             Expression opacity, Expression size, Expression rotation,
             AnchorPoint anchorPoint, Displacement displacement);
     /**
-     * 
+     *
      * @param symbols
      * @param opacity
      * @param size
@@ -256,7 +256,7 @@ public interface StyleFactory {
             Expression initialGap, Expression gap);
 
     /**
-     * 
+     *
      * @param fill
      * @param radius
      * @return
@@ -264,7 +264,7 @@ public interface StyleFactory {
     Halo halo(Fill fill, Expression radius);
 
     /**
-     * 
+     *
      * @param offset
      * @param initialGap
      * @param gap
@@ -285,11 +285,11 @@ public interface StyleFactory {
      * @param offset Offset used to position line relative to origional
      * @return Newly created Line Symbolizer
      */
-    LineSymbolizer lineSymbolizer(String name, Expression geometry, 
+    LineSymbolizer lineSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Stroke stroke, Expression offset);
 
     /**
-     * 
+     *
      * @param wellKnownName
      * @param fill
      * @param stroke
@@ -297,7 +297,7 @@ public interface StyleFactory {
      */
     Mark mark(Expression wellKnownName, Fill fill, Stroke stroke);
     /**
-     * 
+     *
      * @param externalMark
      * @param fill
      * @param stroke
@@ -305,7 +305,7 @@ public interface StyleFactory {
      */
     Mark mark(ExternalMark externalMark, Fill fill, Stroke stroke);
     /**
-     * 
+     *
      * @param anchor
      * @param displacement
      * @param rotation
@@ -315,10 +315,10 @@ public interface StyleFactory {
             Displacement displacement, Expression rotation);
     /**
      * Creation of a PointSymbolizer to describe how geometry can be rendered as a point.
-     * 
+     *
      * @param name handle used to refer to this symbolizer (machine readable)
      * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
-     * @param description Human readable description of symboizer 
+     * @param description Human readable description of symboizer
      * @param unit Unit of Measure used to interpret symbolizer distances
      * @param graphic Graphic used to represent the geometry when rendering
      * @return Newly created PointSymbolizer
@@ -326,10 +326,10 @@ public interface StyleFactory {
     PointSymbolizer pointSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Graphic graphic);
     /**
-     * 
+     *
      * @param name handle used to refer to this symbolizer (machine readable)
      * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
-     * @param description Human readable description of symboizer 
+     * @param description Human readable description of symboizer
      * @param unit Unit of Measure used to interpret symbolizer distances
      * @param stroke
      * @param fill
@@ -341,10 +341,10 @@ public interface StyleFactory {
             Description description, Unit<?> unit, Stroke stroke, Fill fill,
             Displacement displacement, Expression offset);
     /**
-     * 
+     *
      * @param name handle used to refer to this symbolizer (machine readable)
      * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
-     * @param description Human readable description of symboizer 
+     * @param description Human readable description of symboizer
      * @param unit Unit of Measure used to interpret symbolizer distances
      * @param opacity
      * @param channelSelection
@@ -366,7 +366,7 @@ public interface StyleFactory {
      * facility should be used to control subject matter that is beyond the scope of the traditional
      * symbology encoding data structure (subject matter like wind barbs or extra deegrees of
      * freedom like temporal symbolizers are good examples of the use of this facility).
-     * 
+     *
      * @param name
      *            handle used to refer to this symbolizer (machine readible)
      * @param geometry
@@ -386,7 +386,7 @@ public interface StyleFactory {
 
     /**
      * Create a rule from the provided definition.
-     * 
+     *
      * @param name handle used to refer to this rule (machine readable)
      * @param description Human readable description of this rule
      * @param legend Graphic used to indicate this rule in a legend or user interface
@@ -400,14 +400,14 @@ public interface StyleFactory {
             double min, double max, List<Symbolizer> symbolizers, Filter filter);
 
     /**
-     * 
+     *
      * @param channelName
      * @param contrastEnhancement
      * @return SelectedChannelType
      */
     SelectedChannelType selectedChannelType(String channelName, ContrastEnhancement contrastEnhancement);
     /**
-     * 
+     *
      * @param reliefFactor
      * @param brightnessOnly
      * @return ShadedRelief
@@ -445,7 +445,7 @@ public interface StyleFactory {
             Expression offset);
 
     /**
-     * 
+     *
      * @param name
      * @param description
      * @param isDefault
@@ -458,7 +458,7 @@ public interface StyleFactory {
             Symbolizer defaultSymbolizer);
     /**
      * Creation of a TextSymbolizer defining how labels are portrayed.
-     *  
+     *
      * @param name Handle used to refer to this symbolizer (machine readable)
      * @param geometry Geometry to be rendered
      * @param description Human readable description

@@ -33,7 +33,7 @@ package org.opengis.filter.query;
 
 import java.util.List;
 import org.opengis.annotation.XmlElement;
-import org.opengis.feature.type.Name;
+import org.opengis.util.GenericName;
 
 
 /**
@@ -45,7 +45,7 @@ import org.opengis.feature.type.Name;
  * option selection clause that constraints the properties of those resources types in order to define a result set
  * and an optional sorting clause specifying the order in which the result set is presented.
 
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 3.1
@@ -56,45 +56,45 @@ public interface AdhocQueryExpression extends QueryExpression {
     /**
      * The mandatory typeNames parameter shall be used within an ad hoc query expression to encode the names
      * of one or more correlated resource types to be queried.
-     * 
-     * @return List<Name> , never null.
+     *
+     * @return List of names, never null.
      */
     @XmlElement("typeNames")
-    List<Name> getPropertyNames();
-    
+    List<? extends GenericName> getPropertyNames();
+
     /**
      * The optional aliases parameter may be used within an ad hoc query expression to specify alternate names for
-     * the resource type names specified as the value of the typeNames parameter. 
+     * the resource type names specified as the value of the typeNames parameter.
      * <br/>
-     * A resource type alias may be used anywhere; the resource type name may be 
+     * A resource type alias may be used anywhere; the resource type name may be
      * used within the context of the query expression.
      * <br/>
      * The number of list elements in the value of the aliases parameter shall match the number of corresponding
      * resource type names in the value of the typeNames parameter and shall be correlated 1:1.
-     * 
-     * @return List<Name> , never null.
+     *
+     * @return List of names, never null.
      */
     @XmlElement("aliases")
-    List<Name> getAliases();
+    List<? extends GenericName> getAliases();
 
     /**
      * A projection clause encodes a list of optional resource properties that shall be available in a query response.
-     * 
+     *
      * While it can be any type of objects, the common case is list of PropertyName.
      */
     @XmlElement("AbstractProjectionClause")
     List<Object> getProjectionClause();
-    
+
     /**
      * The selection clause defines a set of query predicates that shall be applied to a dataset in order to define a
      * subset of data to be operated upon.
-     * 
+     *
      * While it can be any type of objects, the common case is a Filter.
      */
     @XmlElement("AbstractSelectionClause")
     Object getSelectionClause();
-    
+
     @XmlElement("AbstractSortingClause")
     Object getSortingClause();
-    
+
 }

@@ -36,7 +36,7 @@ import java.util.Set;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
-import org.opengis.feature.type.Name;
+import org.opengis.util.GenericName;
 import org.opengis.filter.Id;
 import org.opengis.metadata.citation.OnlineResource;
 import static org.opengis.annotation.Obligation.*;
@@ -106,7 +106,7 @@ public interface FeatureTypeStyle {
      */
     @XmlElement("FeatureTypeName")
     @UML(identifier="definedFor", obligation=OPTIONAL, specification=ISO_19117)
-    Set<Name> featureTypeNames();
+    Set<GenericName> featureTypeNames();
 
     /**
      * Returns a collection that identifies the more general "type" of geometry

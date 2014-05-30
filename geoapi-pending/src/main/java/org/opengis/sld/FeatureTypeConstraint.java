@@ -33,7 +33,7 @@ package org.opengis.sld;
 
 import java.util.List;
 import org.opengis.annotation.XmlElement;
-import org.opengis.feature.type.Name;
+import org.opengis.util.GenericName;
 import org.opengis.filter.Filter;
 
 /**
@@ -54,7 +54,7 @@ public interface FeatureTypeConstraint extends Constraint{
      * FeatureType name.
      */
     @XmlElement("FeatureTypeName")
-    public Name getFeatureTypeName();
+    public GenericName getFeatureTypeName();
 
     /**
      * Filter to apply on feature collection.
