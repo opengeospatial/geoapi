@@ -53,11 +53,13 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  *
  * Names are <em>immutable</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
- * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope() scope}
- * like {@code "util.Record"} in the {@code "org.opengis"} namespace. In the following illustration,
- * each line is one possible construction for {@code "org.opengis.util.Record"}. For each construction,
- * the first columns shows <span style="background:LawnGreen">this</span> name in a green background,
- * while the second and third columns show the
+ * (e.g. {@code "org.opengis.util.Record"}), or they may be relative to a {@linkplain #scope() scope}
+ * (e.g. {@code "util.Record"} in the {@code "org.opengis"} namespace).
+ *
+ * <h3>Example</h3>
+ * In the following illustration, each line is one possible construction for {@code "org.opengis.util.Record"}.
+ * For each construction, the first columns shows <span style="background:LawnGreen">this</span> name in a green
+ * background, while the second and third columns show the
  * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
  * (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
  * components, respectively.
