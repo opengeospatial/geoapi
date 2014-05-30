@@ -55,17 +55,15 @@ import static org.opengis.annotation.Specification.*;
  * Names are <em>immutable</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
  * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope() scope}
  * like {@code "util.Record"} in the {@code "org.opengis"} namespace. In the following illustration,
- * each line is one possible construction for {@code "org.opengis.util.Record"}.
- * For each construction:
- * <ul>
- *   <li>The first columns shows the <span style="background:LawnGreen">this</span> name in a green background.
- *   <li>The second and third columns show the
- *       (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
- *       (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
- *       components, respectively.</li>
- *   <li>The parts without colored background do not appear in {@link #toString()} representation
- *       or in {@link #getParsedNames()} list.</li>
- * </ul>
+ * each line is one possible construction for {@code "org.opengis.util.Record"}. For each construction,
+ * the first columns shows <span style="background:LawnGreen">this</span> name in a green background,
+ * while the second and third columns show the
+ * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
+ * (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
+ * components, respectively.
+ * The parts without colored background do not appear in {@link #toString()} representation
+ * or in {@link #getParsedNames()} list.
+ *
  * <blockquote>
  * <table style="border-spacing:21pt 0" summary="Graphics showing various representations of a generic name.">
  *   <tr>
