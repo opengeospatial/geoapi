@@ -56,11 +56,16 @@ import static org.opengis.annotation.Specification.*;
  * like {@code "org.opengis.util.Record"}, or they may be relative to a {@linkplain #scope() scope}
  * like {@code "util.Record"} in the {@code "org.opengis"} namespace. In the following illustration,
  * each line is one possible construction for {@code "org.opengis.util.Record"}.
- * For each construction, the first columns shows the name in a yellow background. The second and third columns show the
- * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
- * (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
- * pairs of attributes, respectively:
- *
+ * For each construction:
+ * <ul>
+ *   <li>The first columns shows the <span style="background:LawnGreen">this</span> name in a green background.
+ *   <li>The second and third columns show the
+ *       (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
+ *       (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
+ *       components, respectively.</li>
+ *   <li>The parts without colored background do not appear in {@link #toString()} representation
+ *       or in {@link #getParsedNames()} list.</li>
+ * </ul>
  * <blockquote>
  * <table style="border-spacing:21pt 0" summary="Graphics showing various representations of a generic name.">
  *   <tr>
@@ -69,22 +74,22 @@ import static org.opengis.annotation.Specification.*;
  *     <th>{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
  *     <th>Type</th>
  *   </tr><tr>
- *     <td><code><span style="background:Yellow">org.opengis.util.Record</span></code></td>
+ *     <td><code><span style="background:LawnGreen">org.opengis.util.Record</span></code></td>
  *     <td><code><span style="background:LightSkyBlue">org.</span><span style="background:Yellow">opengis.util.Record</span></code></td>
  *     <td><code><span style="background:LightSkyBlue">org.opengis.util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.NameSpace#isGlobal() global namespace}</td>
  *   </tr><tr>
- *     <td><code><span style="background:LightSkyBlue">org</span>.<span style="background:Yellow">opengis.util.Record</span></code></td>
+ *     <td><code>org.<span style="background:LawnGreen">opengis.util.Record</span></code></td>
  *     <td><code>org.<span style="background:LightSkyBlue">opengis.</span><span style="background:Yellow">util.Record</span></code></td>
  *     <td><code>org.<span style="background:LightSkyBlue">opengis.util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName}</td>
  *   </tr><tr>
- *     <td><code><span style="background:LightSkyBlue">org.opengis</span>.<span style="background:Yellow">util.Record</span></code></td>
+ *     <td><code>org.opengis.<span style="background:LawnGreen">util.Record</span></code></td>
  *     <td><code>org.opengis.<span style="background:LightSkyBlue">util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td><code>org.opengis.<span style="background:LightSkyBlue">util.</span><span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName}</td>
  *   </tr><tr>
- *     <td><code><span style="background:LightSkyBlue">org.opengis.util</span>.<span style="background:Yellow">Record</span></code></td>
+ *     <td><code>org.opengis.util.<span style="background:LawnGreen">Record</span></code></td>
  *     <td><code>org.opengis.util.<span style="background:LightSkyBlue">Record</span></code></td>
  *     <td><code>org.opengis.util.<span style="background:Yellow">Record</span></code></td>
  *     <td>{@link org.opengis.util.LocalName}</td>
@@ -97,7 +102,7 @@ import static org.opengis.annotation.Specification.*;
  * a name is an ordered pair of (<var>Name space</var>, <var>Local part</var>) strings. A JCR name can take two lexical
  * forms: <cite>expanded form</cite> and <cite>qualified form</cite>. Those names are defined as:
  *
- * <blockquote><table class="ogc">
+ * <table class="ogc">
  *   <caption>Equivalence between JCR name and {@code GenericName}</caption>
  *   <tr>
  *     <th>JCR name</th>
@@ -110,7 +115,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td>{@link ScopedName} in the global namespace, with its {@linkplain ScopedName#head() head} or
  *         {@linkplain ScopedName#path() path} set to the JCR prefix.</td>
  *   </tr>
- * </table></blockquote>
+ * </table>
  *
  * <h3>Ordering</h3>
  * <p>The recommended {@linkplain Comparable natural ordering} for generic names is to
