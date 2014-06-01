@@ -42,6 +42,12 @@ table.ogc tr th.hsep {
   border-top-style: solid;
 }
 
+table.ogc tr td.hsep {
+  border-top-width: 1pt;
+  border-top-style: solid;
+  border-left-color: #AAADB2;
+}
+
 table.ogc tr th.sep {
   border-left-width: 1pt;
   border-left-style: solid;
