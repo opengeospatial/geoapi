@@ -53,11 +53,12 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  *
  * Names are <em>immutable</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
- * (e.g. {@code "org.opengis.util.Record"}), or they may be relative to a {@linkplain #scope() scope}
- * (e.g. {@code "util.Record"} in the {@code "org.opengis"} namespace).
+ * (e.g. {@code "urn:ogc:def:crs:EPSG::4326"}), or they may be relative to a {@linkplain #scope() scope}
+ * (e.g. {@code "EPSG::4326"} in the {@code "urn:ogc:def:crs"} namespace).
  *
  * <h3>Example</h3>
- * In the following illustration, each line is one possible construction for {@code "org.opengis.util.Record"}.
+ * In the following illustration, each line is one possible construction for {@code "urn:crs:epsg:4326"}
+ * (taken as an abridged form of above URN for this example only).
  * For each construction, the first columns shows <span style="background:LawnGreen">this</span> name in a green
  * background, while the second and third columns show the
  * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
@@ -74,24 +75,24 @@ import static org.opengis.annotation.Specification.*;
  *     <th>{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
  *     <th>Type</th>
  *   </tr><tr>
- *     <td><code><span style="background:LawnGreen">org.opengis.util.Record</span></code></td>
- *     <td><code><span style="background:LightSkyBlue">org.</span><span style="background:Yellow">opengis.util.Record</span></code></td>
- *     <td><code><span style="background:LightSkyBlue">org.opengis.util.</span><span style="background:Yellow">Record</span></code></td>
+ *     <td><code><span style="background:LawnGreen">urn:crs:epsg:4326</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">urn:</span><span style="background:Yellow">crs:epsg:4326</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">urn:crs:epsg:</span><span style="background:Yellow">4326</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.NameSpace#isGlobal() global namespace}</td>
  *   </tr><tr>
- *     <td><code>org.<span style="background:LawnGreen">opengis.util.Record</span></code></td>
- *     <td><code>org.<span style="background:LightSkyBlue">opengis.</span><span style="background:Yellow">util.Record</span></code></td>
- *     <td><code>org.<span style="background:LightSkyBlue">opengis.util.</span><span style="background:Yellow">Record</span></code></td>
+ *     <td><code>urn:<span style="background:LawnGreen">crs:epsg:4326</span></code></td>
+ *     <td><code>urn:<span style="background:LightSkyBlue">crs:</span><span style="background:Yellow">epsg:4326</span></code></td>
+ *     <td><code>urn:<span style="background:LightSkyBlue">crs:epsg:</span><span style="background:Yellow">4326</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName}</td>
  *   </tr><tr>
- *     <td><code>org.opengis.<span style="background:LawnGreen">util.Record</span></code></td>
- *     <td><code>org.opengis.<span style="background:LightSkyBlue">util.</span><span style="background:Yellow">Record</span></code></td>
- *     <td><code>org.opengis.<span style="background:LightSkyBlue">util.</span><span style="background:Yellow">Record</span></code></td>
+ *     <td><code>urn:crs:<span style="background:LawnGreen">epsg:4326</span></code></td>
+ *     <td><code>urn:crs:<span style="background:LightSkyBlue">epsg:</span><span style="background:Yellow">4326</span></code></td>
+ *     <td><code>urn:crs:<span style="background:LightSkyBlue">epsg:</span><span style="background:Yellow">4326</span></code></td>
  *     <td>{@link org.opengis.util.ScopedName}</td>
  *   </tr><tr>
- *     <td><code>org.opengis.util.<span style="background:LawnGreen">Record</span></code></td>
- *     <td><code>org.opengis.util.<span style="background:LightSkyBlue">Record</span></code></td>
- *     <td><code>org.opengis.util.<span style="background:Yellow">Record</span></code></td>
+ *     <td><code>urn:crs:epsg:<span style="background:LawnGreen">4326</span></code></td>
+ *     <td><code>urn:crs:epsg:<span style="background:LightSkyBlue">4326</span></code></td>
+ *     <td><code>urn:crs:epsg:<span style="background:Yellow">4326</span></code></td>
  *     <td>{@link org.opengis.util.LocalName}</td>
  *   </tr>
  * </table>
