@@ -102,20 +102,33 @@ import static org.opengis.annotation.Specification.*;
  * a name is an ordered pair of (<var>Name space</var>, <var>Local part</var>) strings. A JCR name can take two lexical
  * forms: <cite>expanded form</cite> and <cite>qualified form</cite>. Those names are defined as:
  *
- * <table class="ogc">
+ * <blockquote><table class="ogc" style="white-space: nowrap">
  *   <caption>Equivalence between JCR name and {@code GenericName}</caption>
  *   <tr>
  *     <th>JCR name</th>
- *     <th>GeoAPI equivalence</th>
+ *     <th class="sep" colspan="2">GeoAPI equivalence</th>
  *   </tr><tr>
- *     <td style="nowrap"><code>ExpandedName  ::= '{' Namespace '}' LocalName</code></td>
- *     <td>{@code GenericName} with its {@linkplain #scope() scope} set to the JCR namespace.</td>
+ *     <td><code>ExpandedName ::= '{' Namespace '}' LocalPart</code></td>
+ *     <td class="sep"><code>GenericName.{@linkplain #scope() scope()}.name().toString()</code></td>
+ *     <td>= JCR {@code Namespace}</td>
  *   </tr><tr>
- *     <td style="nowrap"><code>QualifiedName ::= [Prefix ':'] LocalName</code></td>
- *     <td>{@link ScopedName} in the global namespace, with its {@linkplain ScopedName#head() head} or
- *         {@linkplain ScopedName#path() path} set to the JCR prefix.</td>
+ *     <td></td>
+ *     <td class="sep"><code>GenericName.{@linkplain #toString() toString()}</code></td>
+ *     <td>= JCR {@code LocalPart}</td>
+ *   </tr><tr>
+ *     <td class="hsep"><code>QualifiedName ::= [Prefix ':'] LocalPart</code></td>
+ *     <td class="hsep sep"><code>ScopedName.{@linkplain #scope() scope()}</code></td>
+ *     <td class="hsep">= {@linkplain NameSpace#isGlobal() global namespace}</td>
+ *   </tr><tr>
+ *     <td></td>
+ *     <td class="sep"><code>ScopedName.{@linkplain ScopedName#head() head()}.toString()</code></td>
+ *     <td>= JCR {@code Prefix}</td>
+ *   </tr><tr>
+ *     <td></td>
+ *     <td class="sep"><code>ScopedName.{@linkplain ScopedName#tail() tail()}.toString()</code></td>
+ *     <td>= JCR {@code LocalPart}</td>
  *   </tr>
- * </table>
+ * </table></blockquote>
  *
  * <h3>Ordering</h3>
  * <p>The recommended {@linkplain Comparable natural ordering} for generic names is to

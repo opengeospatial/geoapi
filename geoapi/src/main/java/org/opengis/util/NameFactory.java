@@ -69,30 +69,33 @@ public interface NameFactory extends Factory {
      * table. Additional implementation-specific properties can be added. Unknown properties shall
      * be ignored.</p>
      *
-     * <table class="ogc">
+     * <blockquote><table class="ogc">
      *   <caption>Keys for additional standard properties</caption>
      *   <tr>
      *     <th>Property name</th>
      *     <th>Purpose</th>
      *   </tr>
      *   <tr>
-     *     <td valign="top" nowrap>{@code "separator"}</td>
+     *     <td>{@code "separator"}</td>
      *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
-     *     in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace,
-     *     it is typically {@code ":"}.</td>
+     *         in that namespace.</td>
      *   </tr>
      *   <tr>
-     *     <td valign="top" nowrap>{@code "separator.head"}</td>
-     *     <td>The separator to insert between the namespace and the
-     *     {@linkplain GenericName#head() head}. For HTTP namespace, it is {@code "://"}.
-     *     For URN namespace, it is typically {@code ":"}. If this entry is omitted, then
-     *     the default shall be the same value than the {@code "separator"} entry.</td>
+     *     <td>{@code "separator.head"}</td>
+     *     <td>The separator to insert between the namespace and the {@linkplain GenericName#head() head}.<br>
+     *         If omitted, then the default is the same value than {@code "separator"}.</td>
      *   </tr>
-     * </table>
+     * </table></blockquote>
+     *
+     * <blockquote><font size="-1"><b>Examples:</b>
+     * <ul>
+     *   <li>For URN namespace, {@code separator} = {@code ":"} is typically sufficient.</li>
+     *   <li>For HTTP namespace, {@code separator.head} = {@code "://"} and {@code separator} = {@code "."}.</li>
+     * </ul></font></blockquote>
      *
      * @param name
      *          The name of the namespace to be returned. This argument can be created using
-     *          <code>{@linkplain #createGenericName createGenericName}(null, parsedNames)</code>.
+     *          <code>{@linkplain #createGenericName createGenericName}(null, namespace)</code>.
      * @param properties
      *          An optional map of properties to be assigned to the namespace, or {@code null} if none.
      * @return A namespace having the given name and separators.
