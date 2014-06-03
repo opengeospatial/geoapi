@@ -64,8 +64,9 @@ public interface MemberName extends LocalName {
 
     /**
      * Returns the name of the member.
-     * The name typically uses a {@code '.'} navigation separator,
-     * so that it is of the form {@code "[schema].[type].[member]"}.
+     * Member names typically use a {@code '.'} navigation separator,
+     * so that their {@linkplain #toFullyQualifiedName() fully qualified name} is of the form
+     * {@code "[schema].[type].[member]"}.
      */
     @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
