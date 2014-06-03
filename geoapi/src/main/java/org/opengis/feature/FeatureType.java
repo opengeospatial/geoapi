@@ -36,7 +36,7 @@ import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
-import org.opengis.util.GenericName;
+import org.opengis.util.TypeName;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19109;
@@ -91,7 +91,7 @@ public interface FeatureType extends IdentifiedType {
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
-    GenericName getName();
+    TypeName getName();
 
     /**
      * Returns {@code true} if the feature type acts as an abstract super-type.
