@@ -34,6 +34,7 @@ package org.opengis.feature;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.util.GenericName;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19109;
@@ -60,6 +61,16 @@ import static org.opengis.annotation.Specification.ISO_19109;
 @Classifier(Stereotype.METACLASS)
 @UML(identifier="FeatureAssociationRole", specification=ISO_19109)
 public interface FeatureAssociationRole extends PropertyType {
+    /**
+     * Returns the name of this association role.
+     * For {@code FeatureAssociationRole}, the name is mandatory.
+     *
+     * @return The association role name.
+     */
+    @Override
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
+    GenericName getName();
+
     /**
      * Returns the type of feature values.
      *
