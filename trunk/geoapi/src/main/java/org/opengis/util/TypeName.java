@@ -62,9 +62,11 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 @UML(identifier="TypeName", specification=ISO_19103)
 public interface TypeName extends LocalName {
     /**
-     * Returns the name of the type.
-     * The name typically uses a {@code '.'} navigation separator,
-     * so that it is of the form {@code "[schema].[type]"}.
+     * Returns the local name of the type as a {@code String}.
+     * Type names typically use a {@code '.'} navigation separator, so that their
+     * {@linkplain #toFullyQualifiedName() fully qualified name} is of the form {@code "[schema].[type]"}.
+     *
+     * @return The local name of the type.
      */
     @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)

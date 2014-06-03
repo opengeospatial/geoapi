@@ -179,13 +179,14 @@ public interface GenericName extends Comparable<GenericName> {
      * equal to 2.
      *
      * <blockquote><font size=-1><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall return
-     * {@code 4}. If this name is {@code "util.Record"} in the {@code "org.opengis"} scope, then
-     * this method shall return {@code 2}.
+     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG:8.2:4326"} with {@code ':'} as separator,
+     * then this method shall return {@code 7}. If this name is {@code "EPSG:8.2:4326"} in the
+     * {@code "urn:ogc:def:crs"} scope, then this method shall return {@code 3}.
      * </font></blockquote>
      *
-     * <p>This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <blockquote><font size=-1><b>Analogy</b>:
+     * This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
+     * method from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
      *
      * @return The depth of this name.
      *
@@ -203,14 +204,15 @@ public interface GenericName extends Comparable<GenericName> {
      * the parsed names are the list of elements in yellow part of the <var>scope</var>.<var>this</var> column.</p>
      *
      * <blockquote><font size=-1><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns a
-     * list containing {@code {"org", "opengis", "util", "Record"}} elements in that iteration order.
-     * If this name is {@code "util.Record"} in scope {@code "org.opengis"}, then this method shall
-     * returns a list containing only {@code {"util", "Record"}} elements.
+     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns a list
+     * containing {@code {"urn", "ogc", "def", "crs", "EPSG", "", "4326}} elements in that iteration order.
+     * If this name is {@code "EPSG::4326"} in scope {@code "urn:ogc:def:crs"}, then this method shall
+     * returns a list containing only {@code {"EPSG", "", "4326"}} elements.
      * </font></blockquote>
      *
-     * <p>This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <blockquote><font size=-1><b>Analogy</b>:
+     * This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
+     * method from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
      *
      * @return The local names making this generic name, without the {@linkplain #scope() scope}.
      *         Shall never be {@code null} neither empty.
@@ -226,11 +228,12 @@ public interface GenericName extends Comparable<GenericName> {
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <blockquote><font size=-1><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.
+     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns {@code "urn"}.
      * </font></blockquote>
      *
-     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
-     * Name.get}(0)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <blockquote><font size=-1><b>Analogy</b>:
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
      *
      * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -252,12 +255,13 @@ public interface GenericName extends Comparable<GenericName> {
      * the tips are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <blockquote><font size=-1><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"} (no matter its
-     * {@linkplain #scope scope}), then this method shall returns {@code "Record"}.
+     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"} (no matter its
+     * {@linkplain #scope scope}), then this method shall returns {@code "4326"}.
      * </font></blockquote>
      *
-     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
-     * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <blockquote><font size=-1><b>Analogy</b>:
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
      *
      * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -276,9 +280,9 @@ public interface GenericName extends Comparable<GenericName> {
      * of this name is already global, then this method shall returns {@code this}.
      *
      * <blockquote><font size=-1><b>Example</b>:
-     * If {@code this} name is {@code "util.Record"} ({@linkplain #depth() depth} of two) and its
-     * {@linkplain #scope() scope} has the {@code "org.opengis"} {@linkplain NameSpace#name() name},
-     * then the fully qualified name shall be {@code "org.opengis.util.Record"}.
+     * If {@code this} name is {@code "EPSG::4326"} ({@linkplain #depth() depth} of 3) and its
+     * {@linkplain #scope() scope} is {@code "urn:ogc:def:crs"}, then the fully qualified name
+     * is {@code "urn:ogc:def:crs:EPSG::4326"}.
      * </font></blockquote>
      *
      * @return The fully-qualified name (never {@code null}).
@@ -313,13 +317,13 @@ public interface GenericName extends Comparable<GenericName> {
      * </ul>
      *
      * <blockquote><font size=-1><b>Example</b>:
-     * If {@code this} name is {@code "util.Record"} and the given {@code scope} argument is
-     * {@code "org.opengis"}, then {@code this.push(scope)} shall returns
-     * {@code "org.opengis.util.Record"}.
+     * If {@code this} name is {@code "EPSG::4326"} and the given {@code scope} argument is {@code "urn:ogc:def:crs"},
+     * then {@code this.push(scope)} shall returns {@code "urn:ogc:def:crs:EPSG::4326"}.
      * </font></blockquote>
      *
-     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
-     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <blockquote><font size=-1><b>Analogy</b>:
+     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
+     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
      *
      * @param scope The name to use as prefix.
      * @return A concatenation of the given scope with this name.
@@ -332,11 +336,10 @@ public interface GenericName extends Comparable<GenericName> {
     /**
      * Returns a string representation of this generic name. This string representation is local-independent.
      * It contains all elements listed by {@link #getParsedNames()} separated by a namespace-dependent character
-     * (usually {@code .}, {@code :} or {@code /}).
+     * (usually {@code '.'}, {@code ':'} or {@code '/'}).
      * This rule implies that the result may or may not be fully qualified.
      *
      * <p>Special cases:</p>
-     *
      * <ul>
      *   <li><code>{@linkplain #toFullyQualifiedName()}.toString()</code> is guaranteed to
      *       formats the {@linkplain #scope() scope} (if any) before this name.</li>
@@ -347,7 +350,7 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>In the {@link LocalName} sub-type, this method maps to the {@code aName} ISO 19103 attribute.
      * In the {@link ScopedName} sub-type, this method maps to the {@code scopedName} ISO 19103 attribute.</p>
      *
-     * @return A local-independent string representation of this name.
+     * @return The local-independent string representation of this name.
      */
     @Override
     String toString();
