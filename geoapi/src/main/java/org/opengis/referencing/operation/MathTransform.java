@@ -88,11 +88,10 @@ public interface MathTransform {
     int getTargetDimensions();
 
     /**
-     * Transforms the specified {@code ptSrc} and stores the result in
-     * {@code ptDst}. If {@code ptDst} is {@code null}, a new
-     * {@link DirectPosition} object is allocated and then the result of the
-     * transformation is stored in this object. In either case, {@code ptDst},
-     * which contains the transformed point, is returned for convenience.
+     * Transforms the specified {@code ptSrc} and stores the result in {@code ptDst}.
+     * If {@code ptDst} is {@code null}, a new {@link DirectPosition} object is allocated
+     * and then the result of the transformation is stored in this object. In either case,
+     * {@code ptDst}, which contains the transformed point, is returned for convenience.
      * If {@code ptSrc} and {@code ptDst} are the same object,
      * the input point is correctly overwritten with the transformed point.
      *
@@ -123,14 +122,12 @@ public interface MathTransform {
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
      *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
+     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
-     *         at the first failure, wile some other implementations will fill the untransformable
-     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
-     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(double[], int, double[], int, int)
      */
@@ -152,14 +149,12 @@ public interface MathTransform {
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
      *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
+     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
-     *         at the first failure, wile some other implementations will fill the untransformable
-     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
-     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(float[], int, float[], int, int)
      */
@@ -179,14 +174,12 @@ public interface MathTransform {
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
+     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
-     *         at the first failure, wile some other implementations will fill the untransformable
-     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
-     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(float[], int, double[], int, int)
      *
@@ -211,11 +204,10 @@ public interface MathTransform {
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
-     *         at the first failure, wile some other implementations will fill the untransformable
-     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
-     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(double[], int, float[], int, int)
      *
@@ -265,12 +257,9 @@ public interface MathTransform {
      * @return The derivative at the specified point (never {@code null}).
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.
-     * @throws NullPointerException if the derivative dependents on coordinate
-     *         and {@code point} is {@code null}.
-     * @throws MismatchedDimensionException if {@code point} doesn't have
-     *         the expected dimension.
-     * @throws TransformException if the derivative can't be evaluated at the
-     *         specified point.
+     * @throws NullPointerException if the derivative depends on coordinate and {@code point} is {@code null}.
+     * @throws MismatchedDimensionException if {@code point} does not have the expected dimension.
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     @UML(identifier="derivative", specification=OGC_01009)
     Matrix derivative(final DirectPosition point)
