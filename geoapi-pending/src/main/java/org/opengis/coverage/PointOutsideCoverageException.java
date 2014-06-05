@@ -74,13 +74,25 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public PointOutsideCoverageException(String message) {
+    public PointOutsideCoverageException(final String message) {
         super(message);
     }
 
     /**
+     * Creates an exception with the specified message and point.
+     *
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  location The position outside the coverage, or {@code null} if unknown.
+     */
+    public PointOutsideCoverageException(final String message, final DirectPosition location) {
+        super(message);
+        this.offendingLocation = location;
+    }
+
+    /**
      * Returns the {@linkplain DirectPosition direct position}
-     * which is outside the domain of the {@linkplain #getCoverage coverage}.
+     * which is outside the domain of the {@linkplain #getCoverage() coverage}.
      *
      * @return The position outside the coverage, or {@code null} if unknown.
      *
@@ -92,7 +104,7 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
 
     /**
      * Sets the {@linkplain DirectPosition direct position}
-     * which is outside the domain of the {@linkplain #getCoverage coverage}.
+     * which is outside the domain of the {@linkplain #getCoverage() coverage}.
      *
      * @param location The position outside the coverage, or {@code null} if unknown.
      *
