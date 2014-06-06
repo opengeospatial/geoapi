@@ -58,10 +58,10 @@ public interface PassThroughOperation extends SingleOperation {
     SingleOperation getOperation();
 
     /**
-     * Ordered sequence of positive integers defining the positions in a coordinate
-     * tuple of the coordinates affected by this pass-through operation.
+     * Returns the ordered sequence of positive integers defining the positions in a source
+     * coordinate tuple of the coordinates affected by this pass-through operation.
      *
-     * @return The modified coordinates.
+     * @return Indices of the modified source coordinates.
      */
     @UML(identifier="modifiedCoordinate", obligation=MANDATORY, specification=ISO_19111)
     int[] getModifiedCoordinates();
