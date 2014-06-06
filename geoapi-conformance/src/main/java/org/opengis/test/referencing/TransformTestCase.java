@@ -379,6 +379,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *       {@link Boolean#FALSE} otherwise.</li>
      * </ul>
      *
+     * @return {@inheritDoc}
+     *
      * @since 3.1
      */
     @Override
@@ -440,7 +442,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
      *
      * <p>If {@link #isInverseTransformSupported} is {@code true}, then this method will also
-     * transform the expected coordinate points using the {@linkplain MathTransform#inverse
+     * transform the expected coordinate points using the {@linkplain MathTransform#inverse()
      * inverse transform} and compare with the source coordinates.</p>
      *
      * @param  coordinates The coordinate points to transform.

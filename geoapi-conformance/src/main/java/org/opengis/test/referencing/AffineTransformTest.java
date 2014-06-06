@@ -180,6 +180,8 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      *     </ul>
      *   </li>
      * </ul>
+     *
+     * @return {@inheritDoc}
      */
     @Override
     public Configuration configuration() {
