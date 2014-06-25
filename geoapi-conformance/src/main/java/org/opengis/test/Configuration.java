@@ -34,7 +34,6 @@ package org.opengis.test;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.io.Serializable;
@@ -76,9 +75,12 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * The pre-defined keys are listed below:
  *
  * <table class="ogc">
- * <th>Supported features</th>
- * <th>Factories</th>
- * <th>Other</th></tr><tr><td valign="top">
+ * <tr>
+ *   <th>Supported features</th>
+ *   <th>Factories</th>
+ *   <th>Other</th>
+ * </tr>
+ * <tr><td valign="top">
  * {@link Key#isMultiLocaleSupported              isMultiLocaleSupported}<br>
  * {@link Key#isMixedNameSyntaxSupported          isMixedNameSyntaxSupported}<br>
  * {@link Key#isStandardNameSupported             isStandardNameSupported}<br>
@@ -607,6 +609,8 @@ public class Configuration implements Serializable {
          * Returns the list of codes of the same kind than this code list element.
          * Invoking this method is equivalent to invoking {@link #values()}, except that
          * this method can be invoked on an instance of the parent {@code CodeList} class.
+         *
+         * @return All code {@linkplain #values() values} for this code list.
          */
         @Override
         public Key<?>[] family() {

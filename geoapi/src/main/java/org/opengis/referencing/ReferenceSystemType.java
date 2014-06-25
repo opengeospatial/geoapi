@@ -356,7 +356,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *
-     * @return The list of codes declared in the current JVM.
+     * @return All code {@linkplain #values() values} for this code list.
      */
     @Override
     public ReferenceSystemType[] family() {

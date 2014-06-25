@@ -163,7 +163,7 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *
-     * @return The lit of codes of the same kind than this code list element.
+     * @return All code {@linkplain #values() values} for this code list.
      */
     @Override
     public GeometryOperand[] family() {
