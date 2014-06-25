@@ -47,6 +47,7 @@ import org.opengis.metadata.identification.*;
 import org.opengis.metadata.maintenance.*;
 import org.opengis.metadata.quality.*;
 import org.opengis.metadata.spatial.*;
+import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 
@@ -97,6 +98,7 @@ public final class CodeListTest {
         Priority                 .class,
         Progress                 .class,
         RangeMeaning             .class,
+        ReferenceSystemType      .class,
         Restriction              .class,
         Role                     .class,
         ScopeCode                .class,
