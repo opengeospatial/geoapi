@@ -48,18 +48,18 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_AttributeGroup", specification=ISO_19115)
 public interface AttributeGroup {
     /**
-     * Returns the type of information represented by the value(s).
+     * Returns the types of information represented by the value(s).
      *
-     * @return Type of information represented by the value(s).
+     * @return Types of information represented by the value(s).
      */
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
-    Collection< ? extends CoverageContentType> getContentType();
+    Collection<? extends CoverageContentType> getContentTypes();
 
     /**
-     * Returns the content type for attributes groups for a {@link RangeDimension}, or {@code null} if none.
+     * Returns the content types for attributes groups for a {@link RangeDimension}.
      *
-     * @return Content type for attributes groups for a {@link RangeDimension}, or {@code null} if none.
+     * @return Content types for attributes groups for a {@link RangeDimension}.
      */
     @UML(identifier="groupAttribute", obligation=OPTIONAL, specification=ISO_19115)
-    Collection< ? extends RangeDimension> getGroupAttribute();
+    Collection<? extends RangeDimension> getGroupAttributes();
 }
