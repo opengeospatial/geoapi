@@ -123,6 +123,8 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * Returns the list of codes of the same kind than this code list element.
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
     @Override
     public MediumFormat[] family() {
