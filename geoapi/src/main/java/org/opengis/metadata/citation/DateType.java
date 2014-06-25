@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * Identification of when a given event occurred
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="CI_DateTypeCode", specification=ISO_19115)
@@ -59,7 +59,7 @@ public final class DateType extends CodeList<DateType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<DateType> VALUES = new ArrayList<DateType>(3);
+    private static final List<DateType> VALUES = new ArrayList<DateType>(4);
 
     /**
      * Date identifies when the resource was brought into existence.
@@ -78,6 +78,14 @@ public final class DateType extends CodeList<DateType> {
      */
     @UML(identifier="revision", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType REVISION = new DateType("REVISION");
+
+    /**
+     * Date identifies when the resource will be next updated.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="nextUpdate", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType NEXT_UPDATE = new DateType("NEXT_UPDATE");
 
     /**
      * Constructs an element of the given name. The new element is

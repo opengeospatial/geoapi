@@ -33,9 +33,11 @@ package org.opengis.metadata.citation;
 
 import java.util.Collection;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Profile;
 import org.opengis.metadata.extent.Extent;
 
 import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.ComplianceLevel.CORE;
 import static org.opengis.annotation.Specification.ISO_19115;
 
 
@@ -53,22 +55,23 @@ public interface Responsibility {
      *
      * @return Function performed by the responsible party.
      */
+    @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
     Role getRole();
 
     /**
-     * Returns the spatial or temporal extent of the role, or {@code null} if none.
+     * Returns the spatial or temporal extents of the role.
      *
-     * @return Spatial or temporal extent of the role, or {@code null} if none.
+     * @return Spatial or temporal extent of the role.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtent();
+    Collection<? extends Extent> getExtents();
 
     /**
-     * Returns information about the party.
+     * Returns information about the parties.
      *
-     * @return Information about the party.
+     * @return Information about the parties.
      */
     @UML(identifier="party", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Party> getParty();
+    Collection<? extends Party> getParties();
 }

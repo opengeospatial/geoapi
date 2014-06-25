@@ -52,11 +52,13 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @version 3.1
  * @since   1.0
  *
- * @navassoc 1 - - Role
+ * @deprecated As of ISO 19115:2014, the {@code ResponsibleParty} type has been replaced by {@link Responsibility}
+ *             to allow more flexible associations of individuals, organisations, and roles.
  */
+@Deprecated
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115)
-public interface ResponsibleParty {
+public interface ResponsibleParty extends Responsibility {
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
      *
@@ -106,6 +108,7 @@ public interface ResponsibleParty {
      *
      * @return Function performed by the responsible party.
      */
+    @Override
     @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
     Role getRole();

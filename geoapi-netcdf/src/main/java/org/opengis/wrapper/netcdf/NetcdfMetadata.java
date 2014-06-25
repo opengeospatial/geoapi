@@ -468,6 +468,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Returns an empty set.
+     */
+    @Override
+    public Collection<? extends Party> getParties() {
+        return Collections.emptySet();
+    }
+
+    /**
      * Encapsulates the {@linkplain #getIndividualName() creator} and
      * {@linkplain #getOrganisationName() institution}.
      */
