@@ -64,9 +64,9 @@ public interface Party {
     InternationalString getName();
 
     /**
-     * Return contact information for the party, or {@code null} if none.
+     * Return contact information for the party.
      *
-     * @return contact information for the party, or {@code null} if none.
+     * @return contact information for the party.
      */
     @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Contact> getContactInfo();
