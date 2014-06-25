@@ -110,7 +110,10 @@ public strictfp final class ToleranceModifiers {
         @Override
         public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
             for (int i=0; i<tolerance.length; i++) {
-                tolerance[i] *= max(1, abs(coordinate.getOrdinate(i)));
+                final double scale = abs(coordinate.getOrdinate(i));
+                if (scale > 1) {
+                    tolerance[i] *= scale;
+                }
             }
         }
     };
