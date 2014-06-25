@@ -86,7 +86,7 @@ public interface MaintenanceInformation {
     /**
      * Maintenance period other than those defined.
      *
-     * @return The Maintenance period, or {@code null}.
+     * @return The maintenance period, or {@code null}.
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
     PeriodDuration getUserDefinedMaintenanceFrequency();
