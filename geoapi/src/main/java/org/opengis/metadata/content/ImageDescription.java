@@ -43,7 +43,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  *
  * @navassoc 1 - - ImagingCondition
@@ -93,16 +94,6 @@ public interface ImageDescription extends CoverageDescription {
      */
     @UML(identifier="cloudCoverPercentage", obligation=OPTIONAL, specification=ISO_19115)
     Double getCloudCoverPercentage();
-
-    /**
-     * Image distributor's code that identifies the level of radiometric and geometric
-     * processing that has been applied.
-     *
-     * @return The level of radiometric and geometric processing that has been applied,
-     *         or {@code null} if unspecified.
-     */
-    @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getProcessingLevelCode();
 
     /**
      * Count of the number of lossy compression cycles performed on the image.
