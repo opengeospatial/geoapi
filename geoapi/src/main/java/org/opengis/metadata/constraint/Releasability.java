@@ -51,15 +51,17 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_Releasability", specification=ISO_19115)
 public interface Releasability {
     /**
-     * Returns the party to which the release statement applies, or {@code null} if none.
+     * Party to which the release statement applies.
+     * Returns an empty collection if none.
      *
-     * @return Party to which the release statement applies, or {@code null} if none.
+     * @return Party to which the release statement applies.
      */
     @UML(identifier="addressee", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Responsibility> getAddressee();
 
     /**
-     * Returns the release statement, or {@code null} if none.
+     * Release statement.
+     * May be {@code null} if unspecified.
      *
      * @return Release statement, or {@code null} if none.
      */
@@ -67,9 +69,10 @@ public interface Releasability {
     InternationalString getStatement();
 
     /**
-     * Returns the component in determining releasability, or {@code null} if none.
+     * Component in determining releasability.
+     * Returns an empty collection if none.
      *
-     * @return Component in determining releasability, or {@code null} if none.
+     * @return Component in determining releasability.
      */
     @UML(identifier="disseminationConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Restriction> getDisseminationConstraints();

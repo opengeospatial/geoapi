@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="CI_Responsibility", specification=ISO_19115)
 public interface Responsibility {
     /**
-     * Returns the function performed by the responsible party.
+     * Function performed by the responsible party.
      *
      * @return Function performed by the responsible party.
      */
@@ -60,7 +60,8 @@ public interface Responsibility {
     Role getRole();
 
     /**
-     * Returns the spatial or temporal extents of the role.
+     * Spatial or temporal extents of the role.
+     * Returns an empty collection if none.
      *
      * @return Spatial or temporal extent of the role.
      */
@@ -68,7 +69,8 @@ public interface Responsibility {
     Collection<? extends Extent> getExtents();
 
     /**
-     * Returns information about the parties.
+     * Information about the parties.
+     * Returns an empty collection if none.
      *
      * @return Information about the parties.
      */

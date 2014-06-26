@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_MetadataScope", specification=ISO_19115)
 public interface MetadataScope {
     /**
-     * Returns the code for the scope.
+     * Code for the scope.
      *
      * @return Code for the scope.
      */
@@ -56,7 +56,8 @@ public interface MetadataScope {
     ScopeCode getResourceScope();
 
     /**
-     * Return the description of the scope, or {@code null} if none.
+     * Description of the scope.
+     * May be {@code null} if unspecified.
      *
      * @return The description of the scope, or {@code null} if none.
      */

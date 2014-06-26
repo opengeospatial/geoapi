@@ -50,8 +50,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {
     /**
-     * Returns the spatial extent component of composite
-     * spatial and temporal extent.
+     * The spatial extent component of composite spatial and temporal extent.
      *
      * @return The list of geographic extents (never {@code null}).
      */

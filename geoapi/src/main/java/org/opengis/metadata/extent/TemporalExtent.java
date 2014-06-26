@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_TemporalExtent", specification=ISO_19115)
 public interface TemporalExtent {
     /**
-     * Returns the date and time for the content of the dataset.
+     * The date and time for the content of the dataset.
      *
      * @return The date and time for the content.
      */

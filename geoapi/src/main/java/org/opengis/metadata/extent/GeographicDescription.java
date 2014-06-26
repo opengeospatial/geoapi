@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_GeographicDescription", specification=ISO_19115)
 public interface GeographicDescription extends GeographicExtent {
     /**
-     * Returns the identifier used to represent a geographic area.
+     * The identifier used to represent a geographic area.
      *
      * @return The identifier used to represent a geographic area.
      */

@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_VerticalExtent", specification=ISO_19115)
 public interface VerticalExtent {
     /**
-     * Returns the lowest vertical extent contained in the dataset.
+     * The lowest vertical extent contained in the dataset.
      *
      * @return The lowest vertical extent.
      */
@@ -59,7 +59,7 @@ public interface VerticalExtent {
     Double getMinimumValue();
 
     /**
-     * Returns the highest vertical extent contained in the dataset.
+     * The highest vertical extent contained in the dataset.
      *
      * @return The highest vertical extent.
      */
@@ -67,9 +67,9 @@ public interface VerticalExtent {
     Double getMaximumValue();
 
     /**
-     * Provides information about the vertical coordinate reference system to
-     * which the maximum and minimum elevation values are measured. The CRS
-     * identification includes unit of measure.
+     * Provides information about the vertical coordinate reference system
+     * to which the maximum and minimum elevation values are measured.
+     * The CRS identification includes unit of measure.
      *
      * @return The vertical CRS.
      *
