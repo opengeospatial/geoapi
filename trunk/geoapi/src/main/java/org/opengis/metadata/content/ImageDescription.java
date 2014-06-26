@@ -126,8 +126,7 @@ public interface ImageDescription extends CoverageDescription {
     Boolean isRadiometricCalibrationDataAvailable();
 
     /**
-     * Indication of whether or not constants are available which allow for camera calibration
-     * corrections.
+     * Indication of whether or not constants are available which allow for camera calibration corrections.
      *
      * @return Whether or not constants are available for camera calibration corrections,
      *         or {@code null} if unspecified.
