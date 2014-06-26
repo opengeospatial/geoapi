@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_AssociatedResource", specification=ISO_19115)
 public interface AssociatedResource {
     /**
-     * Returns citation information about the associated resource, or {@code null} if none.
+     * Citation information about the associated resource.
      *
      * @return Citation information about the associated resource, or {@code null} if none.
      *
@@ -58,7 +58,7 @@ public interface AssociatedResource {
     Citation getName();
 
     /**
-     * Returns the type of relation between the resources.
+     * Type of relation between the resources.
      *
      * @return The type of relation between the resources.
      */
@@ -66,7 +66,8 @@ public interface AssociatedResource {
     AssociationType getAssociationType();
 
     /**
-     * Returns the type of initiative under which the associated resource was produced, or {@code null} if none.
+     * Type of initiative under which the associated resource was produced.
+     * May be {@code null} if unspecified.
      *
      * @return The type of initiative under which the associated resource was produced, or {@code null} if none.
      */
@@ -74,7 +75,7 @@ public interface AssociatedResource {
     InitiativeType getInitiativeType();
 
     /**
-     * Returns a reference to the metadata of the associated resource, or {@code null} if none.
+     * Reference to the metadata of the associated resource.
      *
      * @return Reference to the metadata of the associated resource, or {@code null} if none.
      *

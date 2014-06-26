@@ -48,9 +48,8 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_GeographicBoundingBox", specification=ISO_19115)
 public interface GeographicBoundingBox extends GeographicExtent {
     /**
-     * Returns the western-most coordinate of the limit of the
-     * dataset extent. The value is expressed in longitude in
-     * decimal degrees (positive east).
+     * The western-most coordinate of the limit of the dataset extent.
+     * The value is expressed in longitude in decimal degrees (positive east).
      *
      * @return The western-most longitude between -180 and +180&deg;.
      * @unitof Angle
@@ -59,9 +58,8 @@ public interface GeographicBoundingBox extends GeographicExtent {
     double getWestBoundLongitude();
 
     /**
-     * Returns the eastern-most coordinate of the limit of the
-     * dataset extent. The value is expressed in longitude in
-     * decimal degrees (positive east).
+     * The eastern-most coordinate of the limit of the dataset extent.
+     * The value is expressed in longitude in decimal degrees (positive east).
      *
      * @return The eastern-most longitude between -180 and +180&deg;.
      * @unitof Angle
@@ -70,9 +68,8 @@ public interface GeographicBoundingBox extends GeographicExtent {
     double getEastBoundLongitude();
 
     /**
-     * Returns the southern-most coordinate of the limit of the
-     * dataset extent. The value is expressed in latitude in
-     * decimal degrees (positive north).
+     * The southern-most coordinate of the limit of the dataset extent.
+     * The value is expressed in latitude in decimal degrees (positive north).
      *
      * @return The southern-most latitude between -90 and +90&deg;.
      * @unitof Angle
@@ -81,9 +78,8 @@ public interface GeographicBoundingBox extends GeographicExtent {
     double getSouthBoundLatitude();
 
     /**
-     * Returns the northern-most, coordinate of the limit of the
-     * dataset extent. The value is expressed in latitude in
-     * decimal degrees (positive north).
+     * The northern-most coordinate of the limit of the dataset extent.
+     * The value is expressed in latitude in decimal degrees (positive north).
      *
      * @return The northern-most latitude between -90 and +90&deg;.
      * @unitof Angle

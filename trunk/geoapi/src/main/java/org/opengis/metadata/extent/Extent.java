@@ -64,7 +64,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
 @UML(identifier="EX_Extent", specification=ISO_19115)
 public interface Extent {
     /**
-     * Returns the spatial and temporal extent for the referring object.
+     * The spatial and temporal extent for the referring object.
      *
      * @return The spatial and temporal extent, or {@code null} in none.
      *

@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
 public interface CoverageDescription extends ContentInformation {
     /**
-     * Returns a description of the attribute described by the measurement value.
+     * Description of the attribute described by the measurement value.
      *
      * @return Description of the attribute.
      */
@@ -61,7 +61,8 @@ public interface CoverageDescription extends ContentInformation {
     RecordType getAttributeDescription();
 
     /**
-     * Returns an identifier for the level of processing that has been applied to the resource, or {@code null} if none.
+     * Identifier for the level of processing that has been applied to the resource.
+     * May be {@code null} if unspecified.
      *
      * @return Identifier for the level of processing that has been applied to the resource, or {@code null} if none.
      *
@@ -71,7 +72,7 @@ public interface CoverageDescription extends ContentInformation {
     Identifier getProcessingLevelCode();
 
     /**
-     * Returns information on attribute groups of the resource.
+     * Information on attribute groups of the resource.
      *
      * @return Information on attribute groups of the resource.
      *
@@ -81,7 +82,7 @@ public interface CoverageDescription extends ContentInformation {
     Collection<? extends AttributeGroup> getAttributeGroups();
 
     /**
-     * Returns the type of information represented by the cell value.
+     * Type of information represented by the cell value.
      *
      * @return Type of information represented by the cell value.
      *

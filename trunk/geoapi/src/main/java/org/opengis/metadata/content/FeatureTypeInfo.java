@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_FeatureTypeInfo", specification=ISO_19115)
 public interface FeatureTypeInfo {
     /**
-     * Returns the name of the feature type.
+     * Name of the feature type.
      *
      * @return Name of the feature type.
      */
@@ -56,7 +56,8 @@ public interface FeatureTypeInfo {
     GenericName getFeatureTypeName();
 
     /**
-     * Returns the number of occurrence of feature instances for this feature types, or {@code null} if none.
+     * Number of occurrence of feature instances for this feature types.
+     * May be {@code null} if unspecified.
      *
      * @return Number of occurrence of feature instances for this feature types, or {@code null} if none.
      */

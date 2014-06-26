@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_BoundingPolygon", specification=ISO_19115)
 public interface BoundingPolygon extends GeographicExtent {
     /**
-     * Returns the sets of points defining the bounding polygon.
+     * The sets of points defining the bounding polygon.
      *
      * @return The sets of points defining the bounding polygon.
      */

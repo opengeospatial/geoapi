@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="CI_Party", specification=ISO_19115)
 public interface Party {
     /**
-     * Returns the name of the party, or {@code null} if none.
+     * Name of the party.
      *
      * @return Name of the party, or {@code null} if none.
      *
