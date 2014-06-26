@@ -33,6 +33,7 @@ package org.opengis.metadata.content;
 
 import java.util.Collection;
 import org.opengis.util.RecordType;
+import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -45,18 +46,14 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - RecordType
- * @navassoc 1 - - CoverageContentType
- * @navassoc - - - RangeDimension
- * @navassoc - - - RangeElementDescription
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
 public interface CoverageDescription extends ContentInformation {
     /**
-     * Description of the attribute described by the measurement value.
+     * Returns a description of the attribute described by the measurement value.
      *
      * @return Description of the attribute.
      */
@@ -64,10 +61,33 @@ public interface CoverageDescription extends ContentInformation {
     RecordType getAttributeDescription();
 
     /**
-     * Type of information represented by the cell value.
+     * Returns an identifier for the level of processing that has been applied to the resource, or {@code null} if none.
+     *
+     * @return Identifier for the level of processing that has been applied to the resource, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
+    Identifier getProcessingLevelCode();
+
+    /**
+     * Returns information on attribute groups of the resource.
+     *
+     * @return Information on attribute groups of the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="attributeGroup", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends AttributeGroup> getAttributeGroups();
+
+    /**
+     * Returns the type of information represented by the cell value.
      *
      * @return Type of information represented by the cell value.
+     *
+     * @deprecated Moved to {@link AttributeGroup#getContentTypes()} as of ISO 19115:2014.
      */
+    @Deprecated
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
     CoverageContentType getContentType();
 
@@ -77,7 +97,10 @@ public interface CoverageDescription extends ContentInformation {
      * @return Dimensions of the cell measurement value.
      *
      * @since 2.1
+     *
+     * @deprecated Moved to {@link AttributeGroup#getGroupAttributes()} as of ISO 19115:2014.
      */
+    @Deprecated
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends RangeDimension> getDimensions();
 

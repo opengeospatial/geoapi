@@ -249,8 +249,7 @@ public abstract class Validator {
         // Get an array with null elements omitted.
         int count = 0;
         final Object[] elements = collection.toArray();
-        for (int i=0; i<elements.length; i++) {
-            final Object element = elements[i];
+        for (final Object element : elements) {
             if (element != null) {
                 elements[count++] = element;
             }
