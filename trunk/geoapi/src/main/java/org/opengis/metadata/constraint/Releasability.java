@@ -55,11 +55,11 @@ public interface Releasability {
      *
      * @return Party to which the release statement applies, or {@code null} if none.
      */
-    @UML(identifier="adressee", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getAdressee();
+    @UML(identifier="addressee", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Responsibility> getAddressee();
 
     /**
-     * Returns release statement, or {@code null} if none.
+     * Returns the release statement, or {@code null} if none.
      *
      * @return Release statement, or {@code null} if none.
      */
