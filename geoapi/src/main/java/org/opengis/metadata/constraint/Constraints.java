@@ -33,6 +33,10 @@ package org.opengis.metadata.constraint;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.identification.BrowseGraphic;
+import org.opengis.metadata.quality.Scope;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -43,17 +47,76 @@ import static org.opengis.annotation.Specification.*;
  * Restrictions on the access and use of a resource or metadata.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_Constraints", specification=ISO_19115)
 public interface Constraints {
     /**
      * Limitation affecting the fitness for use of the resource.
-     * Example: "not to be used for navigation".
+     * Returns an empty collection if none.
+     *
+     * <blockquote><font size="-1"><b>Example:</b> not to be used for navigation.</font></blockquote>
      *
      * @return Limitation affecting the fitness for use of the resource.
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getUseLimitations();
+
+    /**
+     * Spatial and / or temporal extents and or levels of the application of the constraints restrictions.
+     * Returns an empty collection if none.
+     *
+     * @return Spatial and / or temporal extent.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="constraintApplicationScope", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Scope> getConstraintApplicationScopes();
+
+    /**
+     * Graphics / symbols indicating the constraint.
+     * Returns an empty collection if none.
+     *
+     * @return Graphics / symbols indicating the constraint.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends BrowseGraphic> getGraphics();
+
+    /**
+     * Citations for the limitation of constraint.
+     * Returns an empty collection if none.
+     *
+     * <blockquote><font size="-1"><b>Example:</b> copyright statement, license agreement, etc…</font></blockquote>
+     *
+     * @return Citations for the limitation of constraint, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getReferences();
+
+    /**
+     * Information concerning the parties to whom the resource can or cannot be released.
+     *
+     * @return Information concerning the parties to whom the resource, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="releasability", obligation=OPTIONAL, specification=ISO_19115)
+    Releasability getReleasability();
+
+    /**
+     * Parties responsible for the resource constraints.
+     * Returns an empty collection if none.
+     *
+     * @return Parties responsible for the resource constraints.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="responsibleParty", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Responsibility> getResponsibleParties();
 }

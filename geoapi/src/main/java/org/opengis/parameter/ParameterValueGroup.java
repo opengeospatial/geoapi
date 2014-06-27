@@ -151,7 +151,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *
      * <p>This method do not create new groups: if the requested group is optional (i.e.
      * <code>{@linkplain ParameterDescriptor#getMinimumOccurs() minimumOccurs} == 0</code>)
-     * and no value were defined previously, then this method returns an empty set.</p>
+     * and no value were defined previously, then this method returns an empty list.</p>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter group to search for.

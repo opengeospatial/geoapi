@@ -51,10 +51,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Record
- * @navassoc - - - Citation
- * @navassoc - - - GeolocationInformation
  */
 @UML(identifier="MD_Georeferenceable", specification=ISO_19115)
 public interface Georeferenceable extends GridSpatialRepresentation {

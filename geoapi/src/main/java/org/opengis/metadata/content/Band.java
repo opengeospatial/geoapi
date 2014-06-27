@@ -45,35 +45,43 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - Unit
- * @navassoc 1 - - BandDefinition
- * @navassoc 1 - - TransferFunctionType
- * @navassoc - - - PolarizationOrientation
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
-public interface Band extends RangeDimension {
+public interface Band extends SampleDimension {
     /**
      * Longest wavelength that the sensor is capable of collecting within a designated band.
-     * Returns {@code null} if unspecified.
      *
      * @return Longest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null} if unspecified. The units of measurement is given by {@link #getUnits()}.
+     *         or {@code null} if unspecified.
+     *
+     * @since 3.1
      */
-    @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
-    Double getMaxValue();
+    @UML(identifier="boundMax", obligation=OPTIONAL, specification=ISO_19115)
+    Double getBoundMax();
 
     /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
-     * Returns {@code null} if unspecified.
      *
      * @return Shortest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null} if unspecified. The units of measurement is given by {@link #getUnits()}.
+     *         or {@code null} if unspecified.
+     *
+     * @since 3.1
      */
-    @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
-    Double getMinValue();
+    @UML(identifier="boundMin", obligation=OPTIONAL, specification=ISO_19115)
+    Double getBoundMin();
+
+    /**
+     * Units in which sensor wavelengths are expressed.
+     *
+     * @return Units in which sensor wavelengths are expressed, or {@code null} if unspecified.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="boundUnit", obligation=OPTIONAL, specification=ISO_19115)
+    Unit<Length>getBoundUnit();
 
     /**
      * Wavelength at which the response is the highest.
@@ -86,27 +94,6 @@ public interface Band extends RangeDimension {
     Double getPeakResponse();
 
     /**
-     * Units in which sensor wavelengths are expressed.
-     *
-     * @return Units in which sensor wavelengths are expressed, or {@code null}.
-     *
-     * @condition Mandatory if the {@linkplain #getMinValue() minimum value}, {@linkplain #getMaxValue()
-     *            maximum value} or {@linkplain #getPeakResponse() peak response} is provided.
-     */
-    @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
-    Unit<Length> getUnits();
-
-    /**
-     * Maximum number of significant bits in the uncompressed representation for the value
-     * in each band of each pixel.
-     * Returns {@code null} if unspecified.
-     *
-     * @return Maximum number of significant bits in the uncompressed representation, or {@code null}.
-     */
-    @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getBitsPerValue();
-
-    /**
      * Number of discrete numerical values in the grid data.
      * Returns {@code null} if unspecified.
      *
@@ -114,24 +101,6 @@ public interface Band extends RangeDimension {
      */
     @UML(identifier="toneGradation", obligation=OPTIONAL, specification=ISO_19115)
     Integer getToneGradation();
-
-    /**
-     * Scale factor which has been applied to the cell value.
-     * Returns {@code null} if unspecified.
-     *
-     * @return Scale factor which has been applied to the cell value, or {@code null}.
-     */
-    @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
-    Double getScaleFactor();
-
-    /**
-     * The physical value corresponding to a cell value of zero.
-     * Returns {@code null} if unspecified.
-     *
-     * @return The physical value corresponding to a cell value of zero, or {@code null}.
-     */
-    @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
-    Double getOffset();
 
     /**
      * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.

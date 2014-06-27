@@ -32,11 +32,13 @@
 package org.opengis.metadata.lineage;
 
 import java.util.Collection;
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.identification.Resolution;
 import org.opengis.metadata.identification.RepresentativeFraction;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceSystem;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 
@@ -45,14 +47,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about the source data used in creating the data specified by the scope.
+ * Information about the resource used in creating the resource specified by the scope.
+ *
  * At least one of the {@linkplain #getDescription() description} and
- * {@linkplain #getSourceExtents() source extents} shall be provided.
+ * {@linkplain #getScope() scope} shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
@@ -60,18 +64,32 @@ public interface Source {
     /**
      * Detailed description of the level of the source data.
      *
-     * @return Description of the level of the source data, or {@code null}.
+     * @return Description of the level of the source data, or {@code null} if none.
      *
-     * @condition Mandatory if the {@linkplain #getSourceExtents() source extent} is not provided.
+     * @condition Mandatory if the {@linkplain #getScope() scope} is not provided.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
+     * Spatial resolution expressed as a scale factor, an angle or a level of detail.
+     * May be {@code null} if none.
+     *
+     * @return Spatial resolution expressed as a scale factor, an angle or a level of detail, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sourceSpatialResolution", obligation=OPTIONAL, specification=ISO_19115)
+    Resolution getSourceSpatialResolution();
+
+    /**
      * Denominator of the representative fraction on a source map.
      *
      * @return Representative fraction on a source map, or {@code null}.
+     *
+     * @deprecated Moved to {@link Resolution#getEquivalentScale()}.
      */
+    @Deprecated
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
     RepresentativeFraction getScaleDenominator();
 
@@ -92,12 +110,35 @@ public interface Source {
     Citation getSourceCitation();
 
     /**
+     * References to metadata for the source.
+     * Returns an empty collection if none.
+     *
+     * @return References to metadata for the source.
+     */
+    @UML(identifier="sourceMetadata", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getSourceMetadata();
+
+    /**
+     * Type and / or extent of the source.
+     * May be {@code null} if none.
+     *
+     * @return type and / or extent of the source, or {@code null} if none.
+     *
+     * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
+     */
+    @UML(identifier="scope", obligation=CONDITIONAL, specification=ISO_19115)
+    Scope getScope();
+
+    /**
      * Information about the spatial, vertical and temporal extent of the source data.
      *
      * @return Information about the extent of the source data.
      *
      * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
+     *
+     * @deprecated Moved to {@link Scope#getExtent()}.
      */
+    @Deprecated
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getSourceExtents();
 

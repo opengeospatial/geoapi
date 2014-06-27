@@ -34,6 +34,7 @@ package org.opengis.metadata.lineage;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -50,11 +51,9 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * and {@linkplain #getSources() sources} shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - ProcessStep
- * @navassoc - - - Source
  */
 @UML(identifier="LI_Lineage", specification=ISO_19115)
 public interface Lineage {
@@ -69,6 +68,28 @@ public interface Lineage {
     @Profile(level=CORE)
     @UML(identifier="statement", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getStatement();
+
+    /**
+     * Type of resource and / or extent to which the lineage information applies.
+     * Returns an empty collection if none.
+     *
+     * @return Information about an event in the creation process.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Scope> getScopes();
+
+    /**
+     * Resource (for example publication) that describes the whole
+     * process to generate this resource (for example a dataset).
+     *
+     * @return Resource that describes the whole process to generate this resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getAdditionalDocumentation();
 
     /**
      * Information about an event in the creation process for the data specified by the scope.

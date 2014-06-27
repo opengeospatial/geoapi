@@ -34,7 +34,8 @@ package org.opengis.metadata.identification;
 import java.util.Collection;
 import java.util.Date;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -42,13 +43,12 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Brief description of ways in which the resource(s) is/are currently used.
+ * Brief description of ways in which the resource(s) is/are currently or has been used.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - ResponsibleParty
  */
 @UML(identifier="MD_Usage", specification=ISO_19115)
 public interface Usage {
@@ -72,13 +72,14 @@ public interface Usage {
      * </TABLE>
      *
      * @return Date of the first use of the resource, or {@code null}.
+     *
+     * @todo This become a collection in ISO 19115:2014.
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getUsageDate();
 
     /**
-     * Applications, determined by the user for which the resource and/or resource series
-     * is not suitable.
+     * Applications, determined by the user for which the resource and/or resource series is not suitable.
      *
      * @return Applications for which the resource and/or resource series is not suitable, or {@code null}.
      */
@@ -86,11 +87,42 @@ public interface Usage {
     InternationalString getUserDeterminedLimitations();
 
     /**
-     * Identification of and means of communicating with person(s) and organization(s)
-     * using the resource(s).
+     * Identification of and means of communicating with person(s) and organization(s) using the resource(s).
+     * Returns an empty collection if none.
      *
      * @return Means of communicating with person(s) and organization(s) using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends ResponsibleParty> getUserContactInfo();
+    Collection<? extends Responsibility> getUserContactInfo();
+
+    /**
+     * Responses to the user-determined limitations.
+     *
+     * @return Responses to the user-determined limitations.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="response", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends InternationalString> getResponses();
+
+    /**
+     * Publications that describe usage of data.
+     *
+     * @return Publications that describe usage of data.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getAdditionalDocumentation();
+
+    /**
+     * Citations of a description of known issues associated with the resource
+     * along with proposed solutions if available.
+     *
+     * @return Citations of a description of known issues associated with the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="identifiedIssues", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getIdentifiedIssues();
 }
