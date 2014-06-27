@@ -51,7 +51,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
 public interface SampleDimension extends RangeDimension {
     /**
      * Maximum value of data values in each dimension included in the resource.
-     * Restricted to unit of length in the {@link Band} type.
      * May be {@code null} if unspecified.
      *
      * @return Maximum value of data values in each dimension included in the resource, or {@code null} if none.
@@ -61,7 +60,6 @@ public interface SampleDimension extends RangeDimension {
 
     /**
      * Minimum value of data values in each dimension included in the resource.
-     * Restricted to unit of length in the {@link Band} type.
      * May be {@code null} if unspecified.
      *
      * @return Minimum value of data values in each dimension included in the resource, or {@code null} if none.
@@ -71,7 +69,6 @@ public interface SampleDimension extends RangeDimension {
 
     /**
      * Units of data in each dimension included in the resource.
-     * Note that the type of this unit is is restricted to unit of length in the {@link Band} type.
      * May be {@code null} if unspecified.
      *
      * @return Units of data in each dimension included in the resource, or {@code null} if none.
@@ -116,7 +113,7 @@ public interface SampleDimension extends RangeDimension {
      * <blockquote><font size="-1"><b>Example:</b> the number of classes in a Land Cover Type coverage
      * or the number of cells with data in other types of coverages.</font></blockquote>
      *
-     * @return The number of values used in a thematicClassification resource, or {@code null} if none.
+     * @return The number of values used in a thematic classification resource, or {@code null} if none.
      */
     @UML(identifier="numberOfValues", obligation=OPTIONAL, specification=ISO_19115)
     Integer getNumberOfValues();

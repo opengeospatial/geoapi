@@ -50,10 +50,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - Point
- * @navassoc 1 - - PixelOrientation
- * @navassoc - - - GCP
  */
 @UML(identifier="MD_Georectified", specification=ISO_19115)
 public interface Georectified extends GridSpatialRepresentation {
@@ -67,8 +63,7 @@ public interface Georectified extends GridSpatialRepresentation {
     boolean isCheckPointAvailable();
 
     /**
-     * Description of geographic position points used to test the accuracy of the
-     * georeferenced grid data.
+     * Description of geographic position points used to test the accuracy of the georeferenced grid data.
      *
      * @return Description of geographic position points used to test accuracy, or {@code null}.
      *

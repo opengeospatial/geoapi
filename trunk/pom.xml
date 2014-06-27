@@ -327,6 +327,7 @@
           <debug>false</debug>          <!-- Whether to include debugging information.     -->
           <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
           <encoding>${project.build.sourceEncoding}</encoding>
+          <useIncrementalCompilation>false</useIncrementalCompilation> <!-- https://jira.codehaus.org/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
           <compilerArgs>

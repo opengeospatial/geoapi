@@ -32,7 +32,10 @@
 package org.opengis.metadata.identification;
 
 import java.net.URI;
+import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.citation.OnlineResource;
+import org.opengis.metadata.constraint.Constraints;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -40,13 +43,13 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Graphic that provides an illustration of the dataset (should include a legend for the graphic).
+ * Graphic that provides an illustration of the dataset (including a legend for the graphic, if applicable).
+ * The graphic means a dataset, an organisation logo, security constraint or citation.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - URI
  */
 @UML(identifier="MD_BrowseGraphic", specification=ISO_19115)
 public interface BrowseGraphic {
@@ -78,4 +81,26 @@ public interface BrowseGraphic {
      */
     @UML(identifier="fileType", obligation=OPTIONAL, specification=ISO_19115)
     String getFileType();
+
+    /**
+     * Restriction on access and / or use of browse graphic.
+     * Returns an empty collection if none.
+     *
+     * @return Restriction on access and / or use of browse graphic.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="imageContraints", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Constraints> getImageConstraints();
+
+    /**
+     * Links to browse graphic.
+     * Returns an empty collection if none.
+     *
+     * @return Links to browse graphic.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="linkage", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<OnlineResource> getLinkages();
 }

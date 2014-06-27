@@ -34,6 +34,7 @@ package org.opengis.metadata.spatial;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,10 +45,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - DimensionNameType
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Dimension", specification=ISO_19115)
@@ -84,4 +84,27 @@ public interface Dimension {
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
     Double getResolution();
+
+    /**
+     * Enhancement/ modifier of the dimension name.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * dimensionName = "column", dimensionTitle = "longitude"</font></blockquote>
+     *
+     * @return Enhancement/ modifier of the dimension name, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="dimensionTitle", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getDimensionTitle();
+
+    /**
+     * Description of the axis.
+     *
+     * @return Description of the axis, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="dimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getDimensionDescription();
 }
