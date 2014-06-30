@@ -136,7 +136,7 @@ public interface Source {
      *
      * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
      *
-     * @deprecated Moved to {@link Scope#getExtent()}.
+     * @deprecated Moved to {@link Scope#getExtents()}.
      */
     @Deprecated
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)

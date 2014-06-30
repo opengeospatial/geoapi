@@ -50,10 +50,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - ScopeCode
- * @navassoc - - - ScopeDescription
- * @navassoc 1 - - Extent
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="DQ_Scope", specification=ISO_19115)
@@ -65,6 +61,16 @@ public interface Scope {
      */
     @UML(identifier="level", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getLevel();
+
+    /**
+     * Information about the spatial, vertical and temporal extents of the resource specified by the scope.
+     *
+     * @return Information about the extent of the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Extent> getExtents();
 
     /**
      * Detailed description about the level of the data specified by the scope.
@@ -82,7 +88,9 @@ public interface Scope {
      * Information about the spatial, vertical and temporal extent of the data specified by the scope.
      *
      * @return Information about the extent of the data, or {@code null}.
+     *
+     * @deprecated Replaced by {@link #getExtents()} as of ISO 19115:2014.
      */
-    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    @Deprecated
     Extent getExtent();
 }
