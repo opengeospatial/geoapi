@@ -49,10 +49,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - Scope
- * @navassoc - - - Element
- * @navassoc 1 - - Lineage
  */
 @UML(identifier="DQ_DataQuality", specification=ISO_19115)
 public interface DataQuality {

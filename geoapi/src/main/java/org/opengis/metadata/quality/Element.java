@@ -51,11 +51,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - EvaluationMethodType
- * @navassoc 1 - - Citation
- * @navassoc - - - Result
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Element", specification=ISO_19115)

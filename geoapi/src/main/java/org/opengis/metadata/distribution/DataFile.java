@@ -46,9 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc - - - LocalName
- * @navassoc 1 - - Format
  */
 @UML(identifier="MX_DataFile", specification=ISO_19139)
 public interface DataFile {

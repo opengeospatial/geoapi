@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - TemporalPrimitive
  */
 @UML(identifier="EX_TemporalExtent", specification=ISO_19115)
 public interface TemporalExtent {

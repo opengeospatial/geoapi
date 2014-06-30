@@ -47,9 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - ReferenceSystem
- * @navassoc - - - GCP
  */
 @UML(identifier="MI_GCPCollection", specification=ISO_19115_2)
 public interface GCPCollection extends GeolocationInformation {

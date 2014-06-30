@@ -46,10 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Obligation
- * @navassoc 1 - - Datatype
- * @navassoc - - - ResponsibleParty
  */
 @UML(identifier="MD_ExtendedElementInformation", specification=ISO_19115)
 public interface ExtendedElementInformation {

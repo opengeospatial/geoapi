@@ -47,8 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - TypeName
  */
 @UML(identifier="Type", specification=ISO_19103)
 public interface Type {

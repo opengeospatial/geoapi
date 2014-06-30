@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Classification
  */
 @UML(identifier="MD_SecurityConstraints", specification=ISO_19115)
 public interface SecurityConstraints extends Constraints {

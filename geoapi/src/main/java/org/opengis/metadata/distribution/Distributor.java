@@ -45,11 +45,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - ResponsibleParty
- * @navassoc - - - StandardOrderProcess
- * @navassoc - - - Format
- * @navassoc - - - DigitalTransferOptions
  */
 @UML(identifier="MD_Distributor", specification=ISO_19115)
 public interface Distributor {

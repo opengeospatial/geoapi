@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc - - - GeographicExtent
  */
 @UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {

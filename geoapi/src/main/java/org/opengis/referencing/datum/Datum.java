@@ -62,8 +62,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
- *
- * @navassoc 1 - - Extent
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CD_Datum", specification=ISO_19111)

@@ -49,9 +49,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - OnlineResource
- * @navassoc 1 - - Medium
  */
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
 public interface DigitalTransferOptions {

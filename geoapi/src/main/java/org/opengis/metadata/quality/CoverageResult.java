@@ -48,12 +48,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - SpatialRepresentationType
- * @navassoc 1 - - SpatialRepresentation
- * @navassoc 1 - - CoverageDescription
- * @navassoc 1 - - Format
- * @navassoc 1 - - DataFile
  */
 @UML(identifier="QE_CoverageResult", specification=ISO_19115_2)
 public interface CoverageResult extends Result {

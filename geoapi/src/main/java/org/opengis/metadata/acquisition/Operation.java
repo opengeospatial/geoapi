@@ -49,16 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - Citation
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - Progress
- * @navassoc 1 - - OperationType
- * @navassoc - - - Operation
- * @navassoc - - - Objective
- * @navassoc - - - Plan
- * @navassoc - - - Platform
- * @navassoc - - - Event
  */
 @UML(identifier="MI_Operation", specification=ISO_19115_2)
 public interface Operation {

@@ -48,8 +48,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc - - - DataQuality
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MI_GeolocationInformation", specification=ISO_19115_2)

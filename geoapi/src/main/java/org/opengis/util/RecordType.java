@@ -62,9 +62,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Record#getRecordType()
  * @see RecordSchema
- *
- * @navassoc 1 - - RecordSchema
- * @navassoc - - - MemberName
  */
 @UML(identifier="RecordType", specification=ISO_19103)
 public interface RecordType extends Type {

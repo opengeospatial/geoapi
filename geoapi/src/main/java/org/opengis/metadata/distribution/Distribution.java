@@ -46,10 +46,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - Format
- * @navassoc - - - Distributor
- * @navassoc - - - DigitalTransferOptions
  */
 @UML(identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {

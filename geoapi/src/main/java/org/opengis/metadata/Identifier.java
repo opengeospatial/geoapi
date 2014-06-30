@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Citation
  */
 @UML(identifier="MD_Identifier", specification=ISO_19115)
 public interface Identifier {

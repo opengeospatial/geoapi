@@ -46,8 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - Citation
  */
 @UML(identifier="LE_Algorithm", specification=ISO_19115_2)
 public interface Algorithm {

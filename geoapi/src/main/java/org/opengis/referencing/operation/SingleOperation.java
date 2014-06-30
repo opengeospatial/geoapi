@@ -49,9 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
- *
- * @navassoc 1 - - OperationMethod
- * @navassoc 1 - - ParameterValueGroup
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CC_SingleOperation", specification=ISO_19111)

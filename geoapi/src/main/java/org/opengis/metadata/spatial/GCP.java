@@ -47,9 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - DirectPosition
- * @navassoc - - - Element
  */
 @UML(identifier="MI_GCP", specification=ISO_19115_2)
 public interface GCP {

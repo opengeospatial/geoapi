@@ -52,12 +52,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - MaintenanceFrequency
- * @navassoc 1 - - PeriodDuration
- * @navassoc - - - ScopeCode
- * @navassoc - - - ScopeDescription
- * @navassoc - - - ResponsibleParty
  */
 @UML(identifier="MD_MaintenanceInformation", specification=ISO_19115)
 public interface MaintenanceInformation {

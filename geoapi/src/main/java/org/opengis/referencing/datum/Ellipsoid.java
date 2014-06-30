@@ -79,8 +79,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - Unit
- *
  * @see DatumAuthorityFactory#createEllipsoid(String)
  * @see DatumFactory#createEllipsoid(Map, double, double, Unit)
  * @see DatumFactory#createFlattenedSphere(Map, double, double, Unit)

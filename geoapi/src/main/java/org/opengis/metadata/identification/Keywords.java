@@ -46,9 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - KeywordType
- * @navassoc 1 - - Citation
  */
 @UML(identifier="MD_Keywords", specification=ISO_19115)
 public interface Keywords {

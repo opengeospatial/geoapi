@@ -46,9 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - ImagingCondition
- * @navassoc 1 - - Identifier
  */
 @UML(identifier="MD_ImageDescription", specification=ISO_19115)
 public interface ImageDescription extends CoverageDescription {

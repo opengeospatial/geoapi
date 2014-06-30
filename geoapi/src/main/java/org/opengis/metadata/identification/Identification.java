@@ -55,17 +55,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - Citation
- * @navassoc - - - Progress
- * @navassoc - - - ResponsibleParty
- * @navassoc - - - MaintenanceInformation
- * @navassoc - - - BrowseGraphic
- * @navassoc - - - Format
- * @navassoc - - - Keywords
- * @navassoc - - - Usage
- * @navassoc - - - Constraints
- * @navassoc - - - AggregateInformation
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MD_Identification", specification=ISO_19115)

@@ -46,15 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc - - - Plan
- * @navassoc - - - Requirement
- * @navassoc 1 - - EnvironmentalRecord
- * @navassoc - - - Instrument
- * @navassoc - - - Objective
- * @navassoc - - - ScopeCode
- * @navassoc - - - Operation
- * @navassoc - - - Platform
  */
 @UML(identifier="MI_AcquisitionInformation", specification=ISO_19115_2)
 public interface AcquisitionInformation {

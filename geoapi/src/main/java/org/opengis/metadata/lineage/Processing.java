@@ -49,10 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - Identifier
- * @navassoc - - - Citation
- * @navassoc - - - Algorithm
  */
 @UML(identifier="LE_Processing", specification=ISO_19115_2)
 public interface Processing {

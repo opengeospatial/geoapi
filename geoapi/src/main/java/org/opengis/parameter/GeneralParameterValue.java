@@ -48,8 +48,6 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see GeneralParameterDescriptor
- *
- * @navassoc 1 - - GeneralParameterDescriptor
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CC_GeneralParameterValue", specification=ISO_19111)

@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - Identifier
  */
 @UML(identifier="EX_GeographicDescription", specification=ISO_19115)
 public interface GeographicDescription extends GeographicExtent {

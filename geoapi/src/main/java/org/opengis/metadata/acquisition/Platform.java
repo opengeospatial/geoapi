@@ -49,11 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - Citation
- * @navassoc 1 - - Identifier
- * @navassoc - - - ResponsibleParty
- * @navassoc - - - Instrument
  */
 @UML(identifier="MI_Platform", specification=ISO_19115_2)
 public interface Platform {

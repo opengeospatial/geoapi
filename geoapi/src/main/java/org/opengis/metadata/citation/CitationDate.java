@@ -48,8 +48,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - DateType
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Date", specification=ISO_19115)

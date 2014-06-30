@@ -50,8 +50,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - RepresentativeFraction
  */
 @Classifier(Stereotype.UNION)
 @UML(identifier="MD_Resolution", specification=ISO_19115)

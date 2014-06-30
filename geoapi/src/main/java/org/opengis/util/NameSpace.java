@@ -60,8 +60,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.1
  *
- * @navassoc 1 - - GenericName
- *
  * @see NameFactory#createNameSpace(GenericName, Map)
  */
 @UML(identifier="NameSpace", specification=ISO_19103)

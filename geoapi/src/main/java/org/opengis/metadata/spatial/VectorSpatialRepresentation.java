@@ -44,9 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - TopologyLevel
- * @navassoc - - - GeometricObjects
  */
 @UML(identifier="MD_VectorSpatialRepresentation", specification=ISO_19115)
 public interface VectorSpatialRepresentation extends SpatialRepresentation {

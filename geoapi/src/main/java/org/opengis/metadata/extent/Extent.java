@@ -55,10 +55,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
- *
- * @navassoc - - - GeographicExtent
- * @navassoc - - - TemporalExtent
- * @navassoc - - - VerticalExtent
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="EX_Extent", specification=ISO_19115)
