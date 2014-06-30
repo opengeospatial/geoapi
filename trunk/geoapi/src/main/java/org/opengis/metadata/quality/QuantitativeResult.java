@@ -49,10 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - Record
- * @navassoc 1 - - RecordType
- * @navassoc 1 - - Unit
  */
 @UML(identifier="DQ_QuantitativeResult", specification=ISO_19115)
 public interface QuantitativeResult extends Result {

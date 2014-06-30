@@ -47,8 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - PixelInCell
- *
  * @see DatumAuthorityFactory#createImageDatum(String)
  * @see DatumFactory#createImageDatum(Map, PixelInCell)
  */

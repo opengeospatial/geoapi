@@ -47,12 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - GeometryType
- * @navassoc 1 - - Progress
- * @navassoc 1 - - Citation
- * @navassoc - - - Operations
- * @navassoc - - - Requirement
  */
 @UML(identifier="MI_Plan", specification=ISO_19115_2)
 public interface Plan {

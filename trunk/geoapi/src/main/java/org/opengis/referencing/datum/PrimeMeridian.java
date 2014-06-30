@@ -51,8 +51,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - Unit
- *
  * @see DatumAuthorityFactory#createPrimeMeridian(String)
  * @see DatumFactory#createPrimeMeridian(Map, double, Unit)
  */

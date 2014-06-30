@@ -56,10 +56,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.1
- *
- * @navassoc 1 - - LocalName
- * @navassoc - - - TypeName
- * @navassoc - - - RecordType
  */
 @UML(identifier="RecordSchema", specification=ISO_19103)
 public interface RecordSchema {

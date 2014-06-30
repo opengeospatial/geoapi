@@ -52,12 +52,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - SpatialRepresentationType
- * @navassoc - - - Resolution
- * @navassoc - - - CharacterSet
- * @navassoc - - - TopicCategory
- * @navassoc - - - Extent
  */
 @UML(identifier="MD_DataIdentification", specification=ISO_19115)
 public interface DataIdentification extends Identification {

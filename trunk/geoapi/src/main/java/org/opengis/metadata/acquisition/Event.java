@@ -47,14 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - Trigger
- * @navassoc 1 - - Context
- * @navassoc 1 - - Sequence
- * @navassoc - - - Objective
- * @navassoc 1 - - PlatformPass
- * @navassoc - - - Instrument
  */
 @UML(identifier="MI_Event", specification=ISO_19115_2)
 public interface Event {

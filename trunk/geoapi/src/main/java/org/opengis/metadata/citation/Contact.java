@@ -46,10 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
- *
- * @navassoc 1 - - Telephone
- * @navassoc 1 - - Address
- * @navassoc 1 - - OnlineResource
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Contact", specification=ISO_19115)

@@ -62,22 +62,6 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - CharacterSet
- * @navassoc - - - ScopeCode
- * @navassoc - - - ResponsibleParty
- * @navassoc - - - SpatialRepresentation
- * @navassoc - - - ReferenceSystem
- * @navassoc - - - MetadataExtensionInformation
- * @navassoc - - - Identification
- * @navassoc - - - ContentInformation
- * @navassoc 1 - - Distribution
- * @navassoc - - - DataQuality
- * @navassoc - - - PortrayalCatalogueReference
- * @navassoc - - - Constraints
- * @navassoc - - - ApplicationSchemaInformation
- * @navassoc 1 - - MaintenanceInformation
- * @navassoc - - - AcquisitionInformation
  */
 @UML(identifier="MD_Metadata", specification=ISO_19115)
 public interface Metadata {

@@ -49,9 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - Formula
- * @navassoc 1 - - ParameterDescriptorGroup
- *
  * @see CoordinateOperation
  * @see MathTransformFactory#getAvailableMethods(Class)
  * @see CoordinateOperationFactory#getOperationMethod(String)

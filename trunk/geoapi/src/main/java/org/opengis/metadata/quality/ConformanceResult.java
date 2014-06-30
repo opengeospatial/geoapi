@@ -47,8 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Citation
  */
 @UML(identifier="DQ_ConformanceResult", specification=ISO_19115)
 public interface ConformanceResult extends Result {

@@ -45,9 +45,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - OnlineResource
- * @navassoc - - - ExtendedElementInformation
  */
 @UML(identifier="MD_MetadataExtensionInformation", specification=ISO_19115)
 public interface MetadataExtensionInformation {

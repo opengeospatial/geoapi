@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc 1 - - SingleOperation
  */
 @UML(identifier="CC_PassThroughOperation", specification=ISO_19111)
 public interface PassThroughOperation extends SingleOperation {

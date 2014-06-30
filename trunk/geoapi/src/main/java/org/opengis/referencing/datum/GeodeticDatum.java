@@ -50,9 +50,6 @@ import static org.opengis.annotation.Specification.*;
  * @see Ellipsoid
  * @see PrimeMeridian
  *
- * @navassoc 1 - - Ellipsoid
- * @navassoc 1 - - PrimeMeridian
- *
  * @see DatumAuthorityFactory#createGeodeticDatum(String)
  * @see DatumFactory#createGeodeticDatum(Map, Ellipsoid, PrimeMeridian)
  */

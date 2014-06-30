@@ -53,8 +53,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc - - - SingleOperation
- *
  * @see CoordinateOperationFactory#createConcatenatedOperation(Map, CoordinateOperation[])
  */
 @UML(identifier="CC_ConcatenatedOperation", specification=ISO_19111)

@@ -45,8 +45,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - GeometricObjectType
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_GeometricObjects", specification=ISO_19115)

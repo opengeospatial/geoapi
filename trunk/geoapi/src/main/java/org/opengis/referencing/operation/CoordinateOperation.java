@@ -64,11 +64,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   1.0
  *
- * @navassoc 2 - - CoordinateReferenceSystem
- * @navassoc - - - PositionalAccuracy
- * @navassoc - - - Extent
- * @navassoc 1 - - MathTransform
- *
  * @see CoordinateOperationAuthorityFactory#createCoordinateOperation(String)
  * @see CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes(String, String)
  * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)

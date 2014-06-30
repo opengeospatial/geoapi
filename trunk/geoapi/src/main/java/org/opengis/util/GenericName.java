@@ -145,8 +145,6 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.naming.Name
  * @see NameFactory#createGenericName(NameSpace, CharSequence[])
  * @see NameFactory#parseGenericName(NameSpace, CharSequence)
- *
- * @navassoc 1 - - NameSpace
  */
 @Classifier(Stereotype.ABSTRACT) // This is said in the text (not the UML) of ISO 19103.
 @UML(identifier="GenericName", specification=ISO_19103)

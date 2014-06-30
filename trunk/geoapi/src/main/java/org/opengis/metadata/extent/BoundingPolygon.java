@@ -47,8 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc - - - Geometry
  */
 @UML(identifier="EX_BoundingPolygon", specification=ISO_19115)
 public interface BoundingPolygon extends GeographicExtent {

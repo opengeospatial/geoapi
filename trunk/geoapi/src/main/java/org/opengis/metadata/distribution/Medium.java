@@ -48,9 +48,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - MediumName
- * @navassoc - - - MediumFormat
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Medium", specification=ISO_19115)

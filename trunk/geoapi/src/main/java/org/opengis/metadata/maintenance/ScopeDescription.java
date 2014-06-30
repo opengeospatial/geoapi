@@ -49,10 +49,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - AttributeType
- * @navassoc - - - FeatureType
- * @navassoc - - - AttributeType
  */
 @Classifier(Stereotype.UNION)
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
