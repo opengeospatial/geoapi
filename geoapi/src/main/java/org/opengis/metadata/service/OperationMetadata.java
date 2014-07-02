@@ -65,7 +65,7 @@ public interface OperationMetadata {
      * @return Distributed computing platforms on which the operation has been implemented.
      */
     @UML(identifier="distributedComputingPlatform", obligation=MANDATORY, specification=ISO_19115)
-    Collection<DistributedComputingPlatform> getDistributedComputingPlatform();
+    Collection<DistributedComputingPlatform> getDistributedComputingPlatforms();
 
     /**
      * Free text description of the intent of the operation and the results of the operation.
@@ -77,10 +77,10 @@ public interface OperationMetadata {
     InternationalString getOperationDescription();
 
     /**
-     * The name use to invoke this interface within the context of the DCP.
+     * The name used to invoke this interface within the context of the DCP.
      * The name is identical for all Distributed computing platforms (DCPs).
      *
-     * @return The name use to invoke this interface within the context of the DCP, or {@code null} if none.
+     * @return The name used to invoke this interface within the context of the DCP, or {@code null} if none.
      */
     @UML(identifier="invocationName", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getInvocationName();
@@ -91,7 +91,7 @@ public interface OperationMetadata {
      * @return Handle for accessing the service interface.
      */
     @UML(identifier="connectPoint", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends OnlineResource> getConnectPoint();
+    Collection<? extends OnlineResource> getConnectPoints();
 
     /**
      * The parameters that are required for this interface.

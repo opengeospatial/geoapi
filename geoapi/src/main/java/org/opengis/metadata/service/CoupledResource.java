@@ -63,22 +63,22 @@ public interface CoupledResource {
     ScopedName getScopedName();
 
     /**
-     * Reference to the resource on which the services operates.
+     * References to the resource on which the services operates.
      * Returns an empty collection if none.
      *
-     * @return Reference to the resource on which the services operates.
+     * @return References to the resource on which the services operates.
      */
     @UML(identifier="resourceReference", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getResourceReference();
+    Collection<? extends Citation> getResourceReferences();
 
     /**
-     * The tightly coupled resource.
+     * The tightly coupled resources.
      * Returns an empty collection if none.
      *
-     * @return Tightly coupled resource.
+     * @return Tightly coupled resources.
      */
     @UML(identifier="resource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends DataIdentification> getResource();
+    Collection<? extends DataIdentification> getResources();
 
     /**
      * The service operation.
