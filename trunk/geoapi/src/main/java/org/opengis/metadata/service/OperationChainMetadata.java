@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,61 +29,46 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.identification;
+package org.opengis.metadata.service;
 
 import java.util.Collection;
-import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Keywords, their type and reference source.
+ * Operation chain information.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="MD_Keywords", specification=ISO_19115)
-public interface Keywords {
+@UML(identifier="SV_OperationChainMetadata", specification=ISO_19115)
+public interface OperationChainMetadata {
     /**
-     * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
+     * The name as used by the service for this chain.
      *
-     * @return Word(s) or phrase(s) used to describe the subject.
+     * @return name as used by the service for this chain.
      */
-    @UML(identifier="keyword", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends InternationalString> getKeywords();
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
+    InternationalString getName();
 
     /**
-     * Subject matter used to group similar keywords.
+     * A narrative explanation of the services in the chain and resulting output.
      *
-     * @return Subject matter used to group similar keywords, or {@code null}.
+     * @return Narrative explanation of the services in the chain and resulting output, or {@code null} if none.
      */
-    @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordType getType();
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getDescription();
 
     /**
-     * Name of the formally registered thesaurus or a similar authoritative source of keywords.
+     * Information about the operations applied by the chain.
      *
-     * @return Name of registered thesaurus or similar authoritative source of keywords, or {@code null}.
+     * @return Information about the operations applied by the chain.
      */
-    @UML(identifier="thesaurusName", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getThesaurusName();
-
-    /**
-     * User-defined categorization of groups of keywords that extend or are orthogonal
-     * to the standardized {@linkplain #getType() keyword type} codes.
-     * Keyword classes are associated with on ontology that  allow additional semantic
-     * query processing.
-     *
-     * @return User-defined categorization of groups of keywords, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="keywordClass", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordClass getKeywordClass();
+    @UML(identifier="operation", obligation=MANDATORY, specification=ISO_19115)
+    Collection<? extends OperationMetadata> getOperation();
 }
