@@ -70,5 +70,5 @@ public interface OperationChainMetadata {
      * @return Information about the operations applied by the chain.
      */
     @UML(identifier="operation", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends OperationMetadata> getOperation();
+    Collection<? extends OperationMetadata> getOperations();
 }
