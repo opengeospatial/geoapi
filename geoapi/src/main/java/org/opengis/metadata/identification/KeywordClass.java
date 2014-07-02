@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,59 +31,48 @@
  */
 package org.opengis.metadata.identification;
 
-import java.util.Collection;
-import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
+import java.net.URI;
 import org.opengis.annotation.UML;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Keywords, their type and reference source.
+ * Specification of a class to categorize keywords in a domain-specific
+ * vocabulary that has a binding to a formal ontology.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="MD_Keywords", specification=ISO_19115)
-public interface Keywords {
+@UML(identifier="MD_KeywordClass", specification=ISO_19115)
+public interface KeywordClass {
     /**
-     * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
+     * A character string to label the keyword category in natural language.
      *
-     * @return Word(s) or phrase(s) used to describe the subject.
+     * @return The keyword category in natural language.
      */
-    @UML(identifier="keyword", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends InternationalString> getKeywords();
+    @UML(identifier="className", obligation=MANDATORY, specification=ISO_19115)
+    InternationalString getClassName();
 
     /**
-     * Subject matter used to group similar keywords.
+     * URI of concept in the ontology specified by the next element (ontology)
+     * and labeled by the previous element (className).
      *
-     * @return Subject matter used to group similar keywords, or {@code null}.
+     * @return URI of concept in the specified ontology, or {@code null} if none.
      */
-    @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordType getType();
+    @UML(identifier="concept", obligation=OPTIONAL, specification=ISO_19115)
+    URI getConceptIdentifier();
 
     /**
-     * Name of the formally registered thesaurus or a similar authoritative source of keywords.
+     * A reference that binds the keyword class to a formal conceptualization
+     * of a knowledge domain for use in semantic processing.
      *
-     * @return Name of registered thesaurus or similar authoritative source of keywords, or {@code null}.
+     * @return A reference that binds the keyword class to a formal conceptualization.
      */
-    @UML(identifier="thesaurusName", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getThesaurusName();
-
-    /**
-     * User-defined categorization of groups of keywords that extend or are orthogonal
-     * to the standardized {@linkplain #getType() keyword type} codes.
-     * Keyword classes are associated with on ontology that  allow additional semantic
-     * query processing.
-     *
-     * @return User-defined categorization of groups of keywords, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="keywordClass", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordClass getKeywordClass();
+    @UML(identifier="ontology", obligation=MANDATORY, specification=ISO_19115)
+    Citation getOntology();
 }
