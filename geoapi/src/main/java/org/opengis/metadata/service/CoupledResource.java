@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,61 +29,62 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.identification;
+package org.opengis.metadata.service;
 
 import java.util.Collection;
-import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
+import org.opengis.util.ScopedName;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.identification.DataIdentification;
 
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Keywords, their type and reference source.
+ * Links a given operation name (mandatory attribute of {@link OperationMetadata})
+ * with a resource identified by an "identifier".
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="MD_Keywords", specification=ISO_19115)
-public interface Keywords {
+@UML(identifier="SV_CoupledResource", specification=ISO_19115)
+public interface CoupledResource {
     /**
-     * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
+     * Scoped identifier of the resource in the context of the given service instance.
      *
-     * @return Word(s) or phrase(s) used to describe the subject.
+     * <blockquote><font size="-1"><b>Example:</b> name of the resources (for example dataset)
+     * as it is used by a service instance (for example layer name or feature type name).</font></blockquote>
+     *
+     * @return Scoped identifier of the resource in the context of the given service instance, or {@code null} if none.
      */
-    @UML(identifier="keyword", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends InternationalString> getKeywords();
+    @UML(identifier="scopedName", obligation=OPTIONAL, specification=ISO_19115)
+    ScopedName getScopedName();
 
     /**
-     * Subject matter used to group similar keywords.
+     * Reference to the resource on which the services operates.
+     * Returns an empty collection if none.
      *
-     * @return Subject matter used to group similar keywords, or {@code null}.
+     * @return Reference to the resource on which the services operates.
      */
-    @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordType getType();
+    @UML(identifier="resourceReference", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getResourceReference();
 
     /**
-     * Name of the formally registered thesaurus or a similar authoritative source of keywords.
+     * The tightly coupled resource.
+     * Returns an empty collection if none.
      *
-     * @return Name of registered thesaurus or similar authoritative source of keywords, or {@code null}.
+     * @return Tightly coupled resource.
      */
-    @UML(identifier="thesaurusName", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getThesaurusName();
+    @UML(identifier="resource", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends DataIdentification> getResource();
 
     /**
-     * User-defined categorization of groups of keywords that extend or are orthogonal
-     * to the standardized {@linkplain #getType() keyword type} codes.
-     * Keyword classes are associated with on ontology that allow additional semantic
-     * query processing.
+     * The service operation.
      *
-     * @return User-defined categorization of groups of keywords, or {@code null} if none.
-     *
-     * @since 3.1
+     * @return The service operation, or {@code null} if none.
      */
-    @UML(identifier="keywordClass", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordClass getKeywordClass();
+    @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115)
+    OperationMetadata getOperation();
 }
