@@ -10,6 +10,11 @@
  * a light background color and a header with a darker background color. The header
  * also have a little bit more space, and a border is drawn around the table.
  */
+table.ogc caption {
+  color:          #0086E0;
+  padding-bottom: 4px;
+}
+
 table.ogc {
   background-color: #F4F8FF;
   border-color:     Black;

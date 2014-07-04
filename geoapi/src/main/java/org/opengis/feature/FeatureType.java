@@ -89,6 +89,9 @@ public interface FeatureType extends IdentifiedType {
      * The feature name is often an instance of {@link org.opengis.util.TypeName}, but this is not mandatory.
      *
      * @return The feature type name.
+     *
+     * @todo Rename as {@code getTypeName()} for consistency with {@link org.opengis.util.RecordType#getTypeName()}?
+     *       This would allow implementor to define {@code RecordType} as a special kind of {@code FeatureType}.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
@@ -105,7 +108,7 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] cardinality,
-     * or operations. Such feature types can be handled as a {@link org.opengis.util.Record} instances.
+     * or operations. Such feature types can be handled as a {@link org.opengis.util.RecordType} instances.
      *
      * @return {@code true} if this feature type contains only simple attributes or operations.
      */
