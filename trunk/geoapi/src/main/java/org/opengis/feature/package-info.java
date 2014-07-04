@@ -33,26 +33,25 @@
 /**
  * Defines the structure and content of views of real-world phenomenon.
  * A feature acts as a model of a real world entity. As such it has many similarities to object oriented programming
- * ideas of classes, fields and methods:
+ * ideas of classes, fields and methods. A {@link org.opengis.feature.FeatureType} is similar to a
+ * {@link java.lang.Class} in Java and can contain three kinds of properties:
  *
  * <ul>
- *   <li>{@link org.opengis.feature.FeatureType} defines a data structure (similar to {@link java.lang.Class} in Java).
- *     Features can contain three kinds of properties:
- *     <ul>
- *       <li>{@link org.opengis.feature.AttributeType} holds information about an attribute
- *           (similar to a {@link java.lang.reflect.Field} in Java).</li>
- *       <li>{@link org.opengis.feature.FeatureAssociationRole} defines a relationship a {@code Feature} is involved in
- *           (aggregation, composition, <i>etc.</i>).</li>
- *       <li>{@link org.opengis.feature.FeatureOperation} describes functionality a feature is able to perform
- *           (similar to {@link java.lang.reflect.Method} in Java).</li>
- *     </ul>
- *   </li>
+ *   <li>{@link org.opengis.feature.AttributeType} holds information about an attribute
+ *       (similar to a {@link java.lang.reflect.Field} in Java).</li>
+ *   <li>{@link org.opengis.feature.FeatureAssociationRole} defines a relationship a feature is involved in
+ *       (aggregation, composition, <i>etc.</i>).</li>
+ *   <li>{@link org.opengis.feature.FeatureOperation} describes functionality a feature is able to perform
+ *       (similar to {@link java.lang.reflect.Method} in Java).</li>
  * </ul>
  *
- * An important aspect of a {@code Feature} is the fact that it is a dynamic data construct defined at runtime.
- * Traditionally the Java programming language represents dynamic data structures using {@link java.util.Map}.
- * One could think of a {@code Feature} as a {@code java.util.Map} in which the keys (i.e. the property names)
- * are well defined.
+ * Features containing only attributes constrained to the [1 … 1] cardinality and said
+ * {@linkplain org.opengis.feature.FeatureType#isSimple() simple}.
+ * Such simple features can also be represented by {@link org.opengis.util.Record} instances.
+ *
+ * <p>An important aspect of a {@code Feature} is the fact that it is a dynamic data construct defined at runtime.
+ * Traditionally the Java programming language represents dynamic data structures using {@link java.util.Map java.util.Map}.
+ * One could think of a {@code Feature} as a {@code Map} in which the keys (i.e. the property names) are well defined.</p>
  *
  * <p>Feature types model is described in the {@linkplain org.opengis.annotation.Specification#ISO_19109 ISO 19109}
  * specification. The following table shows the class hierarchy:</p>
