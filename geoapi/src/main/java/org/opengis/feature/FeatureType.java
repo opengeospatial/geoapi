@@ -89,9 +89,6 @@ public interface FeatureType extends IdentifiedType {
      * The feature name is often an instance of {@link org.opengis.util.TypeName}, but this is not mandatory.
      *
      * @return The feature type name.
-     *
-     * @todo Rename as {@code getTypeName()} for consistency with {@link org.opengis.util.RecordType#getTypeName()}?
-     *       This would allow implementor to define {@code RecordType} as a special kind of {@code FeatureType}.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
