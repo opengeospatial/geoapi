@@ -68,12 +68,7 @@ public interface RecordType extends Type {
     /**
      * Returns the name that identifies this record type.
      * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema},
-     * then the record type name shall be a valid in the name space of the record schema:
-     *
-     * <blockquote><code>
-     * {@linkplain NameSpace} namespace = {@linkplain #getContainer()}.{@linkplain RecordSchema#getSchemaName()
-     * getSchemaName()}.{@linkplain LocalName#scope() scope()};
-     * </code></blockquote>
+     * then the record type name shall be a valid in the name space of the record schema.
      *
      * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
      * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
@@ -95,12 +90,8 @@ public interface RecordType extends Type {
      * </font></blockquote>
      *
      * @return The schema that contains this record type.
-     *
-     * @departure extension
-     *   This is the <code>TypeList</code> association in figure 15 of ISO 19103:2005,
-     *   but navigable in the opposite way. The navigation in the ISO way is represented
-     *   by the <code>RecordSchema.getDescription().values()</code>.
      */
+    @UML(identifier="schema", obligation=MANDATORY, specification=ISO_19103)
     RecordSchema getContainer();
 
     /**
