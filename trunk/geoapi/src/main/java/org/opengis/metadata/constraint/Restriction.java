@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Limitation(s) placed upon the access or use of the data.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_RestrictionCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class Restriction extends CodeList<Restriction> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Restriction> VALUES = new ArrayList<Restriction>(8);
+    private static final List<Restriction> VALUES = new ArrayList<Restriction>(17);
 
     /**
      * Exclusive right to the publication, production, or sale of the rights to a literary,
@@ -113,6 +114,82 @@ public final class Restriction extends CodeList<Restriction> {
      */
     @UML(identifier="otherRestrictions", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction OTHER_RESTRICTIONS = new Restriction("OTHER_RESTRICTIONS");
+
+    /**
+     * No constraints exist.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="unrestricted", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction UNRESTRICTED = new Restriction("UNRESTRICTED");
+
+    /**
+     * Formal permission not required to use the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="licenceUnrestricted", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction LICENCE_UNRESTRICTED = new Restriction("LICENCE_UNRESTRICTED");
+
+    /**
+     * Formal permission required for a person or an entity to use the resource
+     * and that may differ from the person that orders or purchases it.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="licenceEndUser", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction LICENCE_END_USER = new Restriction("LICENCE_END_USER");
+
+    /**
+     * Formal permission required for a person or an entity to commercialize or
+     * distribute the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="licenceDistributor", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction LICENCE_DISTRIBUTOR = new Restriction("LICENCE_DISTRIBUTOR");
+
+    /**
+     * Protects rights of individual or organisations from observation, intrusion,
+     * or attention of others.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="private", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction PRIVATE = new Restriction("PRIVATE");
+
+    /**
+     * Prescribed by law.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="statutory", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction STATUTORY = new Restriction("STATUTORY");
+
+    /**
+     * Not available to the public contains information that could be prejudicial
+     * to a commercial, industrial, or national interest.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction CONFIDENTIAL = new Restriction("CONFIDENTIAL");
+
+    /**
+     * Although unclassified, requires strict controls over its distribution.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction SENSITIVE_BUT_UNCLASSIFIED = new Restriction("SENSITIVE_BUT_UNCLASSIFIED");
+
+    /**
+     * With trust.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="in-confidence", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction IN_CONFIDENCE = new Restriction("IN_CONFIDENCE");
 
     /**
      * Constructs an element of the given name. The new element is

@@ -45,6 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * Identification of when a given event occurred
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   2.0
  */
@@ -59,7 +60,7 @@ public final class DateType extends CodeList<DateType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<DateType> VALUES = new ArrayList<DateType>(4);
+    private static final List<DateType> VALUES = new ArrayList<DateType>(16);
 
     /**
      * Date identifies when the resource was brought into existence.
@@ -80,12 +81,110 @@ public final class DateType extends CodeList<DateType> {
     public static final DateType REVISION = new DateType("REVISION");
 
     /**
+     * Date identifies when resource expires.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="expiry", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType EXPIRY = new DateType("EXPIRY");
+
+    /**
+     * Date identifies when resource was last updated.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="lastUpdate", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType LAST_UPDATE = new DateType("LAST_UPDATE");
+
+    /**
+     * Date identifies when the resource was examined or re-examined and improved or amended.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="lastRevision", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType LAST_REVISION = new DateType("LAST_REVISION");
+
+    /**
      * Date identifies when the resource will be next updated.
      *
      * @since 3.1
      */
     @UML(identifier="nextUpdate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType NEXT_UPDATE = new DateType("NEXT_UPDATE");
+
+    /**
+     * Date identifies when resource became not available or obtainable.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="unavailable", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType UNAVAILABLE = new DateType("UNAVAILABLE");
+
+    /**
+     * Date identifies when resource became in force.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="inForce", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType INFORCE = new DateType("INFORCE");
+
+    /**
+     * Date identifies when the resource was adopted.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="adopted", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType ADOPTED = new DateType("ADOPTED");
+
+    /**
+     * Date identifies when the resource was deprecated.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="deprecated", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType DEPRECATED = new DateType("DEPRECATED");
+
+    /**
+     * Date identifies when resource was superseded or replaced by another resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="superseded", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType SUPERSEDED = new DateType("SUPERSEDED");
+
+    /**
+     * Time at which the data are considered to become valid.
+     * <blockquote><font size="-1">Note : There could be quite a delay between
+     * creation and validity begins.</font></blockquote>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="validityBegins", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType VALIDITY_BEGINS = new DateType("VALIDITY_BEGINS");
+
+    /**
+     * Time at which the data are no longer considered to be valid.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="validityExpires", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType VALIDITY_EXPIRES = new DateType("VALIDITY_EXPIRES");
+
+    /**
+     * The date that the resource shall be released for public access.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="released", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType RELEASED = new DateType("RELEASED");
+
+    /**
+     * Date identifies when an instance of the resource was distributed.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="distribution", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final DateType DISTRIBUTION = new DateType("DISTRIBUTION");
 
     /**
      * Constructs an element of the given name. The new element is

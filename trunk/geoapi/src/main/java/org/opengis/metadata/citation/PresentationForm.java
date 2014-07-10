@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Mode in which the data is represented.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PresentationForm> VALUES = new ArrayList<PresentationForm>(14);
+    private static final List<PresentationForm> VALUES = new ArrayList<PresentationForm>(21);
 
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).
@@ -152,6 +153,68 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      */
     @UML(identifier="videoHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm VIDEO_HARDCOPY = new PresentationForm("VIDEO_HARDCOPY");
+
+    /**
+     * Digital audio recording.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="audioDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm AUDIO_DIGITAL = new PresentationForm("AUDIO_DIGITAL");
+
+    /**
+     * Audio recording delivered by analog media, such as a magnetic tape
+     *
+     * @since 3.1
+     */
+    @UML(identifier="audioHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm AUDIO_HARDCOPY = new PresentationForm("AUDIO_HARDCOPY");
+
+    /**
+     * Information representation using simultaneously various digital modes for text, sound, image.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="multimediaDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm MULTIMEDIA_DIGITAL = new PresentationForm("MULTIMEDIA_DIGITAL");
+
+    /**
+     * Information representation using simultaneously various analog modes for text, sound, image.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="multimediaHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm MULTIMEDIA_HARDCOPY = new PresentationForm("MULTIMEDIA_HARDCOPY");
+
+    /**
+     * A physical object.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * Rock or mineral sample, microscope slide.
+     * </font></blockquote>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="physicalObject", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm PHYSICAL_OBJECT = new PresentationForm("PHYSICAL_OBJECT");
+
+    /**
+     * Information represented graphically by charts such as pie chart, bar chart,
+     * and other type of diagrams and recorded in digital format.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="diagramDigital", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm DIAGRAM_DIGITAL = new PresentationForm("DIAGRAM_DIGITAL");
+
+    /**
+     * Information represented graphically by charts such as pie chart, bar chart,
+     * and other type of diagrams and printed on paper, photographic material, or other media.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="diagramHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final PresentationForm DIAGRAM_HARDCOPY = new PresentationForm("DIAGRAM_HARDCOPY");
 
     /**
      * Constructs an element of the given name. The new element is

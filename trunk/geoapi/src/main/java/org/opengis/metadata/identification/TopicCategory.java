@@ -49,7 +49,8 @@ import static org.opengis.annotation.Specification.*;
  *        is encouraged to select the one most appropriate.}
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
@@ -63,7 +64,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<TopicCategory> VALUES = new ArrayList<TopicCategory>(19);
+    private static final List<TopicCategory> VALUES = new ArrayList<TopicCategory>(21);
 
     /**
      * Rearing of animals and/or cultivation of plants.
@@ -269,6 +270,26 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      */
     @UML(identifier="utilitiesCommunication", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory UTILITIES_COMMUNICATION = new TopicCategory("UTILITIES_COMMUNICATION");
+
+    /**
+     * Region more than 100 Km above the surface of the Earth.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="extraTerrestrial", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final TopicCategory EXTRA_TERRESTRIAL = new TopicCategory("EXTRA_TERRESTRIAL");
+
+    /**
+     * Information related to disaster.
+     *
+     * <p><b>Examples:</b>
+     * site of the disaster, evacuation zone, disaster prevention facility,
+     * disaster relief activity.</p>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="disaster", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final TopicCategory DISASTER = new TopicCategory("DISASTER");
 
     /**
      * Constructs an element of the given name. The new element is
