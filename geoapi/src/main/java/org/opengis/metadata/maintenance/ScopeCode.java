@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  *
  * @see org.opengis.metadata.quality.Scope
@@ -61,7 +62,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(16);
+    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(26);
 
     /**
      * Information applies to the collection hardware class.
@@ -102,7 +103,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode DATASET = new ScopeCode("DATASET");
 
     /**
-     * Information applies to non-geographic data;
+     * Information applies to non-geographic data.
      */
     @UML(identifier="nonGeographicDataset", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode NON_GEOGRAPHIC_DATASET = new ScopeCode("NON_GEOGRAPHIC_DATASET");
@@ -207,6 +208,86 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      */
     @UML(identifier="tile", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode TILE = new ScopeCode("TILE");
+
+    /**
+     * Information applies to metadata.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="metadata", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode METADATA = new ScopeCode("METADATA");
+
+    /**
+     * Information applies to an initiative.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="initiative", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode INITIATIVE = new ScopeCode("INITIATIVE");
+
+    /**
+     * Information applies to a sample.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode SAMPLE = new ScopeCode("SAMPLE");
+
+    /**
+     * Information applies to a document.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="document", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode DOCUMENT = new ScopeCode("DOCUMENT");
+
+    /**
+     * Information applies to a repository.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="repository", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode REPOSITORY = new ScopeCode("REPOSITORY");
+
+    /**
+     * Information applies to an aggregate resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="aggregate", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode AGGREGATE = new ScopeCode("AGGREGATE");
+
+    /**
+     * Metadata describing an ISO 19131 data product specification.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode PRODUCT = new ScopeCode("PRODUCT");
+
+    /**
+     * Information applies to an unstructured set.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="collection", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode COLLECTION = new ScopeCode("COLLECTION");
+
+    /**
+     * Information applies to a coverage.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode COVERAGE = new ScopeCode("COVERAGE");
+
+    /**
+     * Information resource hosted on a specific set of hardware and accessible over network.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="application", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode APPLICATION = new ScopeCode("APPLICATION");
 
     /**
      * Constructs an element of the given name. The new element is

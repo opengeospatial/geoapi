@@ -46,7 +46,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="CI_RoleCode", specification=ISO_19115)
@@ -60,7 +61,7 @@ public final class Role extends CodeList<Role> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Role> VALUES = new ArrayList<Role>(11);
+    private static final List<Role> VALUES = new ArrayList<Role>(20);
 
     /**
      * Party that supplies the resource.
@@ -130,6 +131,78 @@ public final class Role extends CodeList<Role> {
      */
     @UML(identifier="author", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role AUTHOR = new Role("AUTHOR");
+
+    /**
+     * Party who speaks for the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sponsor", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role SPONSOR = new Role("SPONSOR");
+
+    /**
+     * Party who jointly authors the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="coAuthor", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role CO_AUTHOR = new Role("CO_AUTHOR");
+
+    /**
+     * Party who assists with the generation of the resource other than the principal investigator.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="collaborator", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role COLLABORATOR = new Role("COLLABORATOR");
+
+    /**
+     * Party who reviewed or modified the resource to improve the content.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="editor", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role EDITOR = new Role("EDITOR");
+
+    /**
+     * A class of entity that immediate access to the resource and for whom the resource is intended or useful.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="mediator", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role MEDIATOR = new Role("MEDIATOR");
+
+    /**
+     * Party owning or managing rights over the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="rightsHolder", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role RIGHTS_HOLDER = new Role("RIGHTS_HOLDER");
+
+    /**
+     * Party contributing to the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="contributor", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role CONTRIBUTOR = new Role("CONTRIBUTOR");
+
+    /**
+     * Party providing monetary support for the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="funder", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role FUNDER = new Role("FUNDER");
+
+    /**
+     * Party who has an interest in the resource or the use of the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="shakeholder", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role SHAKEHOLDER = new Role("SHAKEHOLDER");
 
     /**
      * Constructs an element of the given name. The new element is

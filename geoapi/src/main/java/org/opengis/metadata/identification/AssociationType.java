@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * Justification for the correlation of two datasets.
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.1
  */
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<AssociationType> VALUES = new ArrayList<AssociationType>(5);
+    private static final List<AssociationType> VALUES = new ArrayList<AssociationType>(10);
 
     /**
      * Reference from one dataset to another.
@@ -82,6 +83,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Mapping and charting information from which the dataset content originates.
      */
+    @Deprecated
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType SOURCE = new AssociationType("SOURCE");
 
@@ -90,6 +92,49 @@ public final class AssociationType extends CodeList<AssociationType> {
      */
     @UML(identifier="stereoMate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType STEREO_MATE = new AssociationType("STEREO_MATE");
+
+    /**
+     * Reference to resources that are parts of this resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="isComposedOf", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final AssociationType IS_COMPOSED_OF = new AssociationType("IS_COMPOSED_OF");
+
+    /**
+     * Common title for a collection of resources.
+     * <blockquote><font size="-1">NOTE : title identifies elements of a series
+     * collectively, combined with information about what volumes are available
+     * at the source cite.</font></blockquote>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="collectiveTitle", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final AssociationType COLLECTIVE_TITLE = new AssociationType("COLLECTIVE_TITLE");
+
+    /**
+     * Associated through a common heritage such as produced to a common product specification.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final AssociationType SERIES = new AssociationType("SERIES");
+
+    /**
+     * Associated through a dependency.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="dependency", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final AssociationType DEPENDENCY = new AssociationType("DEPENDENCY");
+
+    /**
+     * Resource is a revision of associated resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="revisionOf", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final AssociationType REVISION_OF = new AssociationType("REVISION_OF");
 
     /**
      * Constructs an element of the given name. The new element is

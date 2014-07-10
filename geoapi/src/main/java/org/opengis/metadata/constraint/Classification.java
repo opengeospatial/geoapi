@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Name of the handling restrictions on the dataset.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_ClassificationCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class Classification extends CodeList<Classification> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Classification> VALUES = new ArrayList<Classification>(5);
+    private static final List<Classification> VALUES = new ArrayList<Classification>(9);
 
     /**
      * Available for general disclosure.
@@ -90,6 +91,39 @@ public final class Classification extends CodeList<Classification> {
      */
     @UML(identifier="topSecret", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification TOP_SECRET = new Classification("TOP_SECRET");
+
+    /**
+     * Although unclassified, requires strict controls over its distribution.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Classification SENSITIVE_BUT_UNCLASSIFIED = new Classification("SENSITIVE_BUT_UNCLASSIFIED");
+
+    /**
+     * Unclassified information that is to be used only for official purposes
+     * determinate by the designating body.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="forOfficialUseOnly", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Classification FOR_OFFICIAL_USE = new Classification("FOR_OFFICIAL_USE");
+
+    /**
+     * Compromise of the information could cause damage.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="protected", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Classification PROTECTED = new Classification("PROTECTED");
+
+    /**
+     * Desimination limited by designating body.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="limitedDistribution", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Classification LIMITED_DISTRIBUTION = new Classification("LIMITED_DISTRIBUTION");
 
     /**
      * Constructs an element of the given name. The new element is

@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Method used to write to the medium.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_MediumFormatCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<MediumFormat> VALUES = new ArrayList<MediumFormat>(6);
+    private static final List<MediumFormat> VALUES = new ArrayList<MediumFormat>(7);
 
     /**
      * CoPy In / Out (UNIX file format and command).
@@ -74,7 +75,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     public static final MediumFormat TAR = new MediumFormat("TAR");
 
     /**
-     * High sierra file system.
+     * High Sierra file system.
      */
     @UML(identifier="highSierra", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat HIGH_SIERRA = new MediumFormat("HIGH_SIERRA");
@@ -86,16 +87,24 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     public static final MediumFormat ISO_9660 = new MediumFormat("ISO_9660");
 
     /**
-     * Rock ridge interchange protocol (UNIX).
+     * Rock Ridge interchange protocol (UNIX).
      */
     @UML(identifier="iso9660RockRidge", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660_ROCK_RIDGE = new MediumFormat("ISO_9660_ROCK_RIDGE");
 
     /**
-     * Hierarchical file system (Macintosh).
+     * Hierarchical File System (Macintosh).
      */
     @UML(identifier="iso9660AppleHFS", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660_APPLE_HFS = new MediumFormat("ISO_9660_APPLE_HFS");
+
+    /**
+     * Universal Disk Format.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="udf", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MediumFormat UDF = new MediumFormat("UDF");
 
     /**
      * Constructs an element of the given name. The new element is

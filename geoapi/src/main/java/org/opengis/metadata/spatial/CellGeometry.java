@@ -44,7 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * Code indicating whether grid data is point or area.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_CellGeometryCode", specification=ISO_19115)
@@ -58,7 +59,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CellGeometry> VALUES = new ArrayList<CellGeometry>(2);
+    private static final List<CellGeometry> VALUES = new ArrayList<CellGeometry>(4);
 
     /**
      * Each cell represents a point.
@@ -71,6 +72,22 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      */
     @UML(identifier="area", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry AREA = new CellGeometry("AREA");
+
+    /**
+     * Each cell represents a volumetric measurement on a regular grid in three dimensional space.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="voxel", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CellGeometry VOXEL = new CellGeometry("VOXEL");
+
+    /**
+     * Height range for a single point vertical profile.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CellGeometry STRATUM = new CellGeometry("STRATUM");
 
     /**
      * Constructs an element of the given name. The new element is

@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Class of information to which the referencing entity applies.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="CI_OnLineFunctionCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<OnLineFunction> VALUES = new ArrayList<OnLineFunction>(5);
+    private static final List<OnLineFunction> VALUES = new ArrayList<OnLineFunction>(11);
 
     /**
      * Online instructions for transferring data from one storage device or system to another.
@@ -90,6 +91,54 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      */
     @UML(identifier="search", obligation=CONDITIONAL, specification=ISO_19115)
     public static final OnLineFunction SEARCH = new OnLineFunction("SEARCH");
+
+    /**
+     * Complete metadata provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="completeMetadata", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final OnLineFunction COMPLETE_METADATA = new OnLineFunction("COMPLETE_METADATA");
+
+    /**
+     * Browse graphic provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="browseGraphic", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final OnLineFunction BROWSE_GRAPHIC = new OnLineFunction("BROWSE_GRAPHIC");
+
+    /**
+     * Online resource upload capability provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="upload", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final OnLineFunction UPLOAD = new OnLineFunction("UPLOAD");
+
+    /**
+     * Online email service provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="emailService", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final OnLineFunction EMAIL_SERVICE = new OnLineFunction("EMAIL_SERVICE");
+
+    /**
+     * Online browsing provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="browsing", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final OnLineFunction BROWSING = new OnLineFunction("BROWSING");
+
+    /**
+     * Online file access provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="fileAccess", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final OnLineFunction FILE_ACCESS = new OnLineFunction("FILE_ACCESS");
 
     /**
      * Constructs an element of the given name. The new element is

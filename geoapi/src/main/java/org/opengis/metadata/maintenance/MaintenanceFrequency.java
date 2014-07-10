@@ -41,10 +41,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Frequency with which modifications and deletions are made to the data after it is
- * first produced.
+ * Frequency with which modifications and deletions are made to the data after it is first produced.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Rémi Maréchal (Geomatys)
  * @version 3.0
  * @since   2.0
  */
@@ -59,7 +59,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<MaintenanceFrequency> VALUES = new ArrayList<MaintenanceFrequency>(12);
+    private static final List<MaintenanceFrequency> VALUES = new ArrayList<MaintenanceFrequency>(15);
 
     /**
      * Data is repeatedly and frequently updated.
@@ -128,10 +128,34 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     public static final MaintenanceFrequency NOT_PLANNED = new MaintenanceFrequency("NOT_PLANNED");
 
     /**
-     * Frequency of maintenance for the data is not known
+     * Frequency of maintenance for the data is not known.
      */
     @UML(identifier="unknown", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency UNKNOWN = new MaintenanceFrequency("UNKNOWN");
+
+    /**
+     * Resource is updated at regular intervals.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="periodic", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MaintenanceFrequency PERIODIC = new MaintenanceFrequency("PERIODIC");
+
+    /**
+     * Resource updated twice a monthly.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="semimonthly", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MaintenanceFrequency SEMI_MONTHLY = new MaintenanceFrequency("SEMI_MONTHLY");
+
+    /**
+     * Resource is updated every 2 years.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="biennially", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MaintenanceFrequency BIENNIALLY = new MaintenanceFrequency("BIENNIALLY");
 
     /**
      * Constructs an element of the given name. The new element is

@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Status of the dataset or progress of a review.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_ProgressCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class Progress extends CodeList<Progress> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Progress> VALUES = new ArrayList<Progress>(7);
+    private static final List<Progress> VALUES = new ArrayList<Progress>(18);
 
     /**
      * Production of the data has been completed.
@@ -102,6 +103,94 @@ public final class Progress extends CodeList<Progress> {
      */
     @UML(identifier="underDevelopment", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress UNDER_DEVELOPMENT = new Progress("UNDER_DEVELOPMENT");
+
+    /**
+     * Progress concluded and no changes will be accepted.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="final", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress FINAL = new Progress("FINAL");
+
+    /**
+     * Committed to, but not yet addressed.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="pending", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress PENDING = new Progress("PENDING");
+
+    /**
+     * Item is no longer recommended for use. It has not been superseded by another item.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="retired", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress RETIRED = new Progress("RETIRED");
+
+    /**
+     * Replaced by new.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="superseded", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress SUPERSEDED = new Progress("SUPERSEDED");
+
+    /**
+     * Provisional changes likely before resource becomes final of complete.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="tentative", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress TENTATIVE = new Progress("TENTATIVE");
+
+    /**
+     * Acceptable under specific condition.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="valid", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress VALID = new Progress("VALID");
+
+    /**
+     * Agreed to by sponsor.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="accepted", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress ACCEPTED = new Progress("ACCEPTED");
+
+    /**
+     * Rejected by sponsor.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="notAccepted", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress NOT_ACCEPTED = new Progress("NOT_ACCEPTED");
+
+    /**
+     * Removed from consideration.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="withdrawn", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress WITHDRAWN = new Progress("WITHDRAWN");
+
+    /**
+     * Suggested that development needs to be undertaken.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="proposed", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress PROPOSED = new Progress("PROPOSED");
+
+    /**
+     * Resource superseded and will become obsolete, use only for historical purposes.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="deprecated", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Progress DEPRECATED = new Progress("DEPRECATED");
 
     /**
      * Constructs an element of the given name. The new element is
