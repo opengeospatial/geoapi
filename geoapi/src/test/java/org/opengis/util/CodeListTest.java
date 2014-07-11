@@ -104,6 +104,7 @@ public final class CodeListTest {
         ScopeCode                .class,
         Sequence                 .class,
         SpatialRepresentationType.class,
+        TelephoneType            .class,
         TopicCategory            .class,
         TopologyLevel            .class,
         TransferFunctionType     .class,

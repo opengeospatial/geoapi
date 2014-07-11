@@ -70,7 +70,7 @@ public final class TelephoneType  extends CodeList<TelephoneType> {
      * Telephone provides facsimile service.
      */
     @UML(identifier="facsimile", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TelephoneType FACSIMILE = new TelephoneType("FAX");
+    public static final TelephoneType FACSIMILE = new TelephoneType("FACSIMILE");
 
     /**
      * Telephone provides SMS service.
