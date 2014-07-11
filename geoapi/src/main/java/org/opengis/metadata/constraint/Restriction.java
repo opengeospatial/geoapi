@@ -92,9 +92,19 @@ public final class Restriction extends CodeList<Restriction> {
 
     /**
      * Formal permission to do something.
+     *
+     * @since 3.1
      */
-    @UML(identifier="license", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENSE = new Restriction("LICENSE");
+    @UML(identifier="licence", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction LICENCE = new Restriction("LICENCE");
+
+    /**
+     * Formal permission to do something.
+     *
+     * @deprecated As of ISO 19115:2014, renamed {@link #LICENCE}.
+     */
+    @Deprecated
+    public static final Restriction LICENSE = LICENCE;
 
     /**
      * Rights to financial benefit from and control of distribution of non-tangible property

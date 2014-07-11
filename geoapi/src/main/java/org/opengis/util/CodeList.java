@@ -263,7 +263,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
                 constructor.setAccessible(true);
                 return constructor.newInstance(name);
-            } catch (Exception exception) {
+            } catch (Exception exception) { // TODO: catch ReflectiveOperationException on JDK7.
                 throw new IllegalArgumentException("Can't create code of type " + codeType.getSimpleName(), exception);
             }
         }
