@@ -45,6 +45,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   1.0
  */
@@ -52,12 +53,36 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CI_Telephone", specification=ISO_19115)
 public interface Telephone {
     /**
+     * Telephone number by which individuals can contact responsible organisation or individual.
+     *
+     * @return Telephone number by which individuals can contact responsible organisation or individual.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="number", obligation=MANDATORY, specification=ISO_19115)
+    String getNumber();
+
+    /**
+     * Type of telephone number, or {@code null} if none.
+     *
+     * @return Type of telephone number, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="numberType", obligation=OPTIONAL, specification=ISO_19115)
+    TelephoneType getNumberType();
+
+    /**
      * Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
      * @return Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
      * @since 2.1
+     *
+     * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
+     *             with {@link TelephoneType#VOICE}.
      */
+    @Deprecated
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getVoices();
 
@@ -67,7 +92,11 @@ public interface Telephone {
      * @return Telephone numbers of a facsimile machine for the responsible organization or individual.
      *
      * @since 2.1
+     *
+     * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
+     *             with {@link TelephoneType#FACSIMILE}.
      */
+    @Deprecated
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getFacsimiles();
 }

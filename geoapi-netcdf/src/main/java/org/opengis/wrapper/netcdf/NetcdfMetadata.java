@@ -512,6 +512,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to {@code null}.
      */
     @Override
+    public InternationalString getContactType() {
+        return null;
+    }
+
+    /**
+     * Defaults to {@code null}.
+     */
+    @Override
     public InternationalString getContactInstructions() {
         return null;
     }
@@ -551,9 +559,18 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Defaults to an empty set.
+     */
+    @Override
+    public Collection<Telephone> getPhones() {
+        return Collections.emptySet();
+    }
+
+    /**
      * Defaults to {@code null}.
      */
     @Override
+    @Deprecated
     public Telephone getPhone() {
         return null;
     }
@@ -567,11 +584,20 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Defaults to a singleton containing {@link #getAddress()}.
+     */
+    @Override
+    public Collection<Address> getAddresses() {
+        return Collections.singleton(getAddress());
+    }
+
+    /**
      * Encapsulates the creator {@linkplain #getElectronicMailAddresses() email address}.
      *
      * @return {@code this}.
      */
     @Override
+    @Deprecated
     public Address getAddress() {
         return this;
     }
@@ -673,9 +699,18 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Defaults to an empty set.
+     */
+    @Override
+    public Collection<OnlineResource> getOnlineResources() {
+        return Collections.emptySet();
+    }
+
+    /**
      * Defaults to {@code null}.
      */
     @Override
+    @Deprecated
     public OnlineResource getOnlineResource() {
         return null;
     }
