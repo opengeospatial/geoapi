@@ -48,6 +48,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   1.0
+ *
+ * @see Contact#getPhones()
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Telephone", specification=ISO_19115)
