@@ -66,7 +66,10 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @condition Mandatory if the {@linkplain #getOrganisationName() organisation name} and
      *            {@linkplain #getPositionName() position name} are not documented.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@linkIndividual}.
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
     String getIndividualName();
@@ -78,7 +81,10 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @condition Mandatory if the {@linkplain #getIndividualName() individual name} and
      *            {@linkplain #getPositionName() position name} are not documented.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Organisation}.
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getOrganisationName();
@@ -90,7 +96,10 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @condition Mandatory if the {@linkplain #getIndividualName() individual name} and
      *            {@linkplain #getOrganisationName() organisation name} are not documented.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link Individual#getPositionName()}.
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getPositionName();
@@ -99,7 +108,10 @@ public interface ResponsibleParty extends Responsibility {
      * Address of the responsible party.
      *
      * @return Address of the responsible party, or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link Party#getContactInfo()}.
      */
+    @Deprecated
     @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
     Contact getContactInfo();
 
@@ -108,6 +120,7 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @return Function performed by the responsible party.
      */
+    // No explicit @Deprecation because the inherited Responsibility.getRole() method is not deprecated.
     @Override
     @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
