@@ -181,7 +181,35 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
                     return;
                 }
             }
-            assertNull(actualProperties.put(key, value));
+            final Object previous = actualProperties.put(key, value);
+            if (previous != null) {
+                assertEquals(key, previous, value);
+            }
+        }
+    }
+
+    /**
+     * Puts the responsible party information in the {@link #actualProperties} map,
+     * using the given prefix for the keys.
+     */
+    private void putParty(final String keyPrefix, final Responsibility responsibility) {
+        if (responsibility != null) {
+            put(keyPrefix + ".role", responsibility.getRole());
+            for (final Party party : responsibility.getParties()) {
+                if (party instanceof Individual) {
+                    put(keyPrefix + ".individual.name",   party.getName());
+                }
+                if (party instanceof Organisation) {
+                    put(keyPrefix + ".organisation.name", party.getName());
+                }
+                final Contact contact = getSingleton(party.getContactInfo());
+                if (contact != null) {
+                    final Address address = getSingleton(contact.getAddresses());
+                    if (address != null) {
+                        put(keyPrefix + ".party.contactInfo.address.electronicMailAddress", getSingleton(address.getElectronicMailAddresses()));
+                    }
+                }
+            }
         }
     }
 
@@ -200,39 +228,14 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         /*
          * Metadata / Contact.
          */
-        ResponsibleParty party = getSingleton(metadata.getContacts());
-        if (party != null) {
-            put("contact.role",             party.getRole());
-            put("contact.individualName",   party.getIndividualName());
-            put("contact.organisationName", party.getOrganisationName());
-            final Contact contact = party.getContactInfo();
-            if (contact != null) {
-                final Address address = contact.getAddress();
-                if (address != null) {
-                    put("contact.contactInfo.address.electronicMailAddress", getSingleton(address.getElectronicMailAddresses()));
-                }
-            }
-        }
+        putParty("contact", getSingleton(metadata.getContacts()));
         final Identification identification = getSingleton(metadata.getIdentificationInfo());
         if (identification != null) {
             put("identificationInfo.abstract", identification.getAbstract());
             /*
              * Metadata / Data Identification / Point of Contact.
              */
-            party = getSingleton(identification.getPointOfContacts());
-            if (party != null) {
-                put("identificationInfo.pointOfContact.role",             party.getRole());
-                put("identificationInfo.pointOfContact.individualName",   party.getIndividualName());
-                put("identificationInfo.pointOfContact.organisationName", party.getOrganisationName());
-                final Contact contact = party.getContactInfo();
-                if (contact != null) {
-                    final Address address = contact.getAddress();
-                    if (address != null) {
-                        put("identificationInfo.pointOfContact.contactInfo.address.electronicMailAddress",
-                                getSingleton(address.getElectronicMailAddresses()));
-                    }
-                }
-            }
+            putParty("identificationInfo.pointOfContact", getSingleton(identification.getPointOfContacts()));
             /*
              * Metadata / Data Identification / Citation.
              */
@@ -255,20 +258,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
                 /*
                  * Metadata / Data Identification / Citation / Responsibly party.
                  */
-                party = getSingleton(citation.getCitedResponsibleParties());
-                if (party != null) {
-                    put("identificationInfo.citation.citedResponsibleParty.role",             party.getRole());
-                    put("identificationInfo.citation.citedResponsibleParty.individualName",   party.getIndividualName());
-                    put("identificationInfo.citation.citedResponsibleParty.organisationName", party.getOrganisationName());
-                    final Contact contact = party.getContactInfo();
-                    if (contact != null) {
-                        final Address address = contact.getAddress();
-                        if (address != null) {
-                            put("identificationInfo.citation.citedResponsibleParty.contactInfo.address.electronicMailAddress",
-                                    getSingleton(address.getElectronicMailAddresses()));
-                        }
-                    }
-                }
+                putParty("identificationInfo.citation.citedResponsibleParty", getSingleton(citation.getCitedResponsibleParties()));
             }
             /*
              * Metadata / Data Identification / Descriptive Keywords.
@@ -357,7 +347,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         if (content instanceof CoverageDescription) {
             final RangeDimension band = getSingleton(((CoverageDescription) content).getDimensions());
             if (band != null) {
-                put("contentInfo.dimension.descriptor",         band.getDescriptor());
+                put("contentInfo.dimension.description",        band.getDescription());
                 put("contentInfo.dimension.sequenceIdentifier", band.getSequenceIdentifier());
             }
         }
@@ -426,14 +416,14 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     @Test
     public void testTHREDDS() throws IOException {
         final Map<String,Object> expected = expectedProperties;
-        assertNull(expected.put("fileIdentifier",                                                   "crm_v1"));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",           Role.ORIGINATOR));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individualName", "David Neufeld"));
-        assertNull(expected.put("identificationInfo.pointOfContact.individualName",                 "David Neufeld"));
-        assertNull(expected.put("contact.individualName",                                           "David Neufeld"));
-        assertNull(expected.put("contact.contactInfo.address.electronicMailAddress",                                           "xxxxx.xxxxxxx@noaa.gov"));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.contactInfo.address.electronicMailAddress", "xxxxx.xxxxxxx@noaa.gov"));
-        assertNull(expected.put("identificationInfo.pointOfContact.contactInfo.address.electronicMailAddress",                 "xxxxx.xxxxxxx@noaa.gov"));
+        assertNull(expected.put("fileIdentifier",                                                    "crm_v1"));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",            Role.ORIGINATOR));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individual.name", "David Neufeld"));
+        assertNull(expected.put("identificationInfo.pointOfContact.individual.name",                 "David Neufeld"));
+        assertNull(expected.put("contact.individual.name",                                           "David Neufeld"));
+        assertNull(expected.put("contact.party.contactInfo.address.electronicMailAddress",                                           "xxxxx.xxxxxxx@noaa.gov"));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.party.contactInfo.address.electronicMailAddress", "xxxxx.xxxxxxx@noaa.gov"));
+        assertNull(expected.put("identificationInfo.pointOfContact.party.contactInfo.address.electronicMailAddress",                 "xxxxx.xxxxxxx@noaa.gov"));
         assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",         Boolean.TRUE));
         assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",    -80.0));
         assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",    -64.0));
@@ -488,10 +478,10 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("fileIdentifier",                                  "edu.ucar.unidata:NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc"));
         assertNull(expected.put("identificationInfo.citation.identifier.code",                      "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc"));
         assertNull(expected.put("identificationInfo.citation.identifier.authority",                 "edu.ucar.unidata"));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",           Role.ORIGINATOR));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individualName", "NOAA/NWS/NCEP"));
-        assertNull(expected.put("identificationInfo.pointOfContact.individualName",                 "NOAA/NWS/NCEP"));
-        assertNull(expected.put("contact.individualName",                                           "NOAA/NWS/NCEP"));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",            Role.ORIGINATOR));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individual.name", "NOAA/NWS/NCEP"));
+        assertNull(expected.put("identificationInfo.pointOfContact.individual.name",                 "NOAA/NWS/NCEP"));
+        assertNull(expected.put("contact.individual.name",                                           "NOAA/NWS/NCEP"));
         assertNull(expected.put("identificationInfo.citation.date.date",                            NetcdfMetadata.parseDate("2005-09-22T00:00")));
         assertNull(expected.put("identificationInfo.citation.date.dateType",                        DateType.CREATION));
         assertNull(expected.put("identificationInfo.citation.title",                                "Sea Surface Temperature Analysis Model"));
@@ -568,11 +558,11 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     public void testCIP() throws IOException {
         final Map<String,Object> expected = expectedProperties;
         assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",              Role.ORIGINATOR));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.organisationName", "UCAR"));
-        assertNull(expected.put("identificationInfo.pointOfContact.organisationName",                 "UCAR"));
-        assertNull(expected.put("contact.organisationName",                                           "UCAR"));
-        assertNull(expected.put("identificationInfo.supplementalInformation",                         "Created by Mdv2NetCDF"));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",         Boolean.TRUE));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.organisation.name", "UCAR"));
+        assertNull(expected.put("identificationInfo.pointOfContact.organisation.name",                 "UCAR"));
+        assertNull(expected.put("contact.organisation.name",                                           "UCAR"));
+        assertNull(expected.put("identificationInfo.supplementalInformation",                          "Created by Mdv2NetCDF"));
+        assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",          Boolean.TRUE));
         assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",     -140.290));
         assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",      -56.658));
         assertNull(expected.put("identificationInfo.extent.geographicElement.southBoundLatitude",       15.944));

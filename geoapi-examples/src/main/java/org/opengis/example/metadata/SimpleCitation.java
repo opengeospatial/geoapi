@@ -7,16 +7,18 @@
  */
 package org.opengis.example.metadata;
 
-import java.io.Serializable;
 import java.util.Set;
 import java.util.Date;
 import java.util.Locale;
+import java.io.Serializable;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.CitationDate;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.citation.Series;
+import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
 
 import static java.util.Collections.emptySet;
@@ -203,7 +205,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * for the resource. The default implementation returns an empty set.
      */
     @Override
-    public Set<ResponsibleParty> getCitedResponsibleParties() {
+    public Set<Responsibility> getCitedResponsibleParties() {
         return emptySet();
     }
 
@@ -259,6 +261,28 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
     @Override
     public String getISSN() {
         return null;
+    }
+
+    /**
+     * Returns online references to the cited resource.
+     * The default implementation returns an empty set.
+     *
+     * @return Online reference to the cited resource, or an empty collection if there is none.
+     */
+    @Override
+    public Set<OnlineResource> getOnlineResources() {
+        return emptySet();
+    }
+
+    /**
+     * Returns citation graphic or logo for cited party.
+     * The default implementation returns an empty set.
+     *
+     * @return Graphics or logo for cited party, or an empty collection if there is none.
+     */
+    @Override
+    public Set<BrowseGraphic> getGraphics() {
+        return emptySet();
     }
 
     /**

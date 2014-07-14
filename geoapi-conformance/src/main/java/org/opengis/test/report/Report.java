@@ -54,7 +54,8 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Contact;
 import org.opengis.metadata.citation.OnlineResource;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Party;
+import org.opengis.metadata.citation.Responsibility;
 
 
 /**
@@ -214,30 +215,32 @@ public abstract class Report {
             * if it was not set by the above lines.
             */
             String linkage = null;
-            for (final ResponsibleParty party : vendor.getCitedResponsibleParties()) {
-                if (party == null) continue; // Paranoiac safety.
-                if (title == null) {
-                    title = toString(party.getOrganisationName());
+search:     for (final Responsibility responsibility : vendor.getCitedResponsibleParties()) {
+                if (responsibility == null) continue; // Paranoiac safety.
+                for (final Party party : responsibility.getParties()) {
+                    if (party == null) continue; // Paranoiac safety.
                     if (title == null) {
-                        title = party.getIndividualName();
+                        title = toString(party.getName());
                     }
-                }
-                final Contact contact = party.getContactInfo();
-                if (contact != null) {
-                    final OnlineResource resource = contact.getOnlineResource();
-                    if (resource != null) {
-                        final URI uri = resource.getLinkage();
-                        if (uri != null) {
-                            linkage = uri.toString();
-                            if (title != null) break;
+                    for (final Contact contact : party.getContactInfo()) {
+                        if (contact == null) continue; // Paranoiac safety.
+                        for (final OnlineResource resource : contact.getOnlineResources()) {
+                            if (resource == null) continue; // Paranoiac safety.
+                            final URI uri = resource.getLinkage();
+                            if (uri != null) {
+                                linkage = uri.toString();
+                                if (title != null) { // This is the usual case.
+                                    break search;
+                                }
+                            }
                         }
                     }
                 }
             }
             /*
-            * If we found at least one property, set all of them together
-            * (including null values) for consistency.
-            */
+             * If we found at least one property, set all of them together
+             * (including null values) for consistency.
+             */
             if (title   != null) defaultProperties.setProperty(prefix + ".NAME",    title);
             if (version != null) defaultProperties.setProperty(prefix + ".VERSION", version);
             if (linkage != null) defaultProperties.setProperty(prefix + ".URL",     linkage);

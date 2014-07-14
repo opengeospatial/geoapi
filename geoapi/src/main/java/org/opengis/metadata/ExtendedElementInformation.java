@@ -33,7 +33,7 @@ package org.opengis.metadata;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * New metadata element, not found in ISO 19115, which is required to describe geographic data.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_ExtendedElementInformation", specification=ISO_19115)
@@ -186,5 +186,5 @@ public interface ExtendedElementInformation {
      * @return Name of the person or organization creating the extended element.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends ResponsibleParty> getSources();
+    Collection<? extends Responsibility> getSources();
 }
