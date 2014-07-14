@@ -31,9 +31,6 @@
  */
 package org.opengis.metadata.identification;
 
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Identification of capabilities which a service provider makes available to a service user
@@ -45,7 +42,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @deprecated Moved to the {@link org.opengis.metadata.service} package.
  */
-@UML(identifier="SV_ServiceIdentification", specification=ISO_19115)
+@Deprecated
 public interface ServiceIdentification extends Identification {
 }

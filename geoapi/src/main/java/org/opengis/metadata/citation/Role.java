@@ -201,8 +201,8 @@ public final class Role extends CodeList<Role> {
      *
      * @since 3.1
      */
-    @UML(identifier="shakeholder", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Role SHAKEHOLDER = new Role("SHAKEHOLDER");
+    @UML(identifier="stakeholder", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Role STAKEHOLDER = new Role("STAKEHOLDER");
 
     /**
      * Constructs an element of the given name. The new element is
