@@ -73,7 +73,6 @@ public interface Contact {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getPhones()}.
      */
     @Deprecated
-    @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
     Telephone getPhone();
 
     /**
@@ -97,7 +96,6 @@ public interface Contact {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getAddresses()}.
      */
     @Deprecated
-    @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
     Address getAddress();
 
     /**
@@ -121,7 +119,6 @@ public interface Contact {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getOnlineResources()}.
      */
     @Deprecated
-    @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
     OnlineResource getOnlineResource();
 
     /**

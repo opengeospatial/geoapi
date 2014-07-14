@@ -118,7 +118,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return reference(s) to the resource on which the service operates.
      */
-    @UML(identifier="operationDataset", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getOperatedDataset();
 
     /**

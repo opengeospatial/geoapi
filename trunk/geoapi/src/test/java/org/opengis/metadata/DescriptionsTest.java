@@ -92,13 +92,16 @@ public final class DescriptionsTest {
         org.opengis.metadata.citation.CitationDate.class,
         org.opengis.metadata.citation.Contact.class,
         org.opengis.metadata.citation.DateType.class,
+        org.opengis.metadata.citation.Individual.class,
         org.opengis.metadata.citation.OnLineFunction.class,
         org.opengis.metadata.citation.OnlineResource.class,
+        org.opengis.metadata.citation.Organisation.class,
         org.opengis.metadata.citation.PresentationForm.class,
         org.opengis.metadata.citation.ResponsibleParty.class,
         org.opengis.metadata.citation.Role.class,
         org.opengis.metadata.citation.Series.class,
         org.opengis.metadata.citation.Telephone.class,
+        org.opengis.metadata.citation.TelephoneType.class,
         org.opengis.metadata.constraint.Classification.class,
         org.opengis.metadata.constraint.Constraints.class,
         org.opengis.metadata.constraint.LegalConstraints.class,
@@ -141,12 +144,12 @@ public final class DescriptionsTest {
         org.opengis.metadata.identification.DataIdentification.class,
         org.opengis.metadata.identification.Identification.class,
         org.opengis.metadata.identification.InitiativeType.class,
+        org.opengis.metadata.identification.KeywordClass.class,
         org.opengis.metadata.identification.KeywordType.class,
         org.opengis.metadata.identification.Keywords.class,
         org.opengis.metadata.identification.Progress.class,
         org.opengis.metadata.identification.RepresentativeFraction.class,
         org.opengis.metadata.identification.Resolution.class,
-        org.opengis.metadata.identification.ServiceIdentification.class,
         org.opengis.metadata.identification.TopicCategory.class,
         org.opengis.metadata.identification.Usage.class,
         org.opengis.metadata.lineage.Algorithm.class,
@@ -189,6 +192,14 @@ public final class DescriptionsTest {
         org.opengis.metadata.quality.ThematicClassificationCorrectness.class,
         org.opengis.metadata.quality.TopologicalConsistency.class,
         org.opengis.metadata.quality.Usability.class,
+        org.opengis.metadata.service.CouplingType.class,
+        org.opengis.metadata.service.CoupledResource.class,
+        org.opengis.metadata.service.DistributedComputingPlatform.class,
+        org.opengis.metadata.service.OperationChainMetadata.class,
+        org.opengis.metadata.service.OperationMetadata.class,
+        org.opengis.metadata.service.Parameter.class,
+        org.opengis.metadata.service.ParameterDirection.class,
+        org.opengis.metadata.service.ServiceIdentification.class,
         org.opengis.metadata.spatial.CellGeometry.class,
         org.opengis.metadata.spatial.Dimension.class,
         org.opengis.metadata.spatial.DimensionNameType.class,
@@ -204,7 +215,8 @@ public final class DescriptionsTest {
         org.opengis.metadata.spatial.SpatialRepresentation.class,
         org.opengis.metadata.spatial.SpatialRepresentationType.class,
         org.opengis.metadata.spatial.TopologyLevel.class,
-        org.opengis.metadata.spatial.VectorSpatialRepresentation.class
+        org.opengis.metadata.spatial.VectorSpatialRepresentation.class,
+        org.opengis.referencing.ReferenceSystemType.class
     };
 
     /**
@@ -228,7 +240,6 @@ public final class DescriptionsTest {
      * since the English locale is used as a fallback.
      */
     @Test
-    @Ignore("Temporarily skipped until we finished to update the interfaces (GEO-232)")
     public void testAll() {
         final ResourceBundle resources = ResourceBundle.getBundle("org.opengis.metadata.Descriptions");
         /*
@@ -244,7 +255,18 @@ public final class DescriptionsTest {
             UML uml = type.getAnnotation(UML.class);
             assertNotNull("Missing UML annotation", uml);
             final String classIdentifier = uml.identifier();
-            if (CodeList.class.isAssignableFrom(type)) {
+            if (Enum.class.isAssignableFrom(type)) {
+                assertResourceExists(resources, classIdentifier);
+                assertTrue(classIdentifier, keys.remove(classIdentifier));
+                for (final Field code : type.getDeclaredFields()) {
+                    uml = code.getAnnotation(UML.class);
+                    if (uml != null) {
+                        final String identifier = classIdentifier + '.' + uml.identifier();
+                        assertResourceExists(resources, identifier);
+                        assertTrue(identifier, keys.remove(identifier));
+                    }
+                }
+            } else if (CodeList.class.isAssignableFrom(type)) {
                 /*
                  * Check a code list and its fields. Note that the fields without UML
                  * annotation (for example serialVersionUID) must be ignored. We also
@@ -255,7 +277,7 @@ public final class DescriptionsTest {
                     continue;
                 }
                 assertResourceExists(resources, classIdentifier);
-                assertTrue("Key not found", keys.remove(classIdentifier));
+                assertTrue(classIdentifier, keys.remove(classIdentifier));
                 for (final Field code : type.getDeclaredFields()) {
                     uml = code.getAnnotation(UML.class);
                     if (uml != null) {
@@ -270,7 +292,7 @@ public final class DescriptionsTest {
                         }
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue("Key not found", keys.remove(identifier));
+                        assertTrue(identifier, keys.remove(identifier));
                     }
                 }
             } else {
@@ -280,18 +302,18 @@ public final class DescriptionsTest {
                  * which must be excluded.
                  */
                 assertResourceExists(resources, classIdentifier);
-                assertTrue("Key not found", keys.remove(classIdentifier));
+                assertTrue(classIdentifier, keys.remove(classIdentifier));
                 for (final Method method : type.getDeclaredMethods()) {
                     uml = method.getAnnotation(UML.class);
                     if (uml != null) {
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue("Key not found", keys.remove(identifier));
+                        assertTrue(identifier, keys.remove(identifier));
                     }
                 }
             }
         }
-        assertTrue("Some keys do not map any class or method", keys.isEmpty());
+        assertTrue("Some keys do not map any class or method: " + keys, keys.isEmpty());
     }
 
     /**

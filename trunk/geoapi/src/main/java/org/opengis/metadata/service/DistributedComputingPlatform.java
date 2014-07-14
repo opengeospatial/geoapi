@@ -72,61 +72,61 @@ public final class DistributedComputingPlatform extends CodeList<DistributedComp
     /**
      * Extensible Markup Language.
      */
-    @UML(identifier="xml", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="XML", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform XML = new DistributedComputingPlatform("XML");
 
     /**
      * Common Object Request Broker Architecture.
      */
-    @UML(identifier="corba", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="CORBA", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform CORBA = new DistributedComputingPlatform("CORBA");
 
     /**
      * Object - oriented programming language.
      */
-    @UML(identifier="java", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="JAVA", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform JAVA = new DistributedComputingPlatform("JAVA");
 
     /**
      * Component Object Model.
      */
-    @UML(identifier="com", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="COM", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform COM = new DistributedComputingPlatform("COM");
 
     /**
      * Structured Query Language.
      */
-    @UML(identifier="sql", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="SQL", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform SQL = new DistributedComputingPlatform("SQL");
 
     /**
      * Simple Object Access Protocole.
      */
-    @UML(identifier="soap", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="SOAP", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform SOAP = new DistributedComputingPlatform("SOAP");
 
     /**
      * ISO 23950.
      */
-    @UML(identifier="z3950", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="Z3950", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform Z3950 = new DistributedComputingPlatform("Z3950");
 
     /**
      * Extensible Markup Language.
      */
-    @UML(identifier="http", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="HTTP", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform HTTP = new DistributedComputingPlatform("HTTP");
 
     /**
      * File Transfert Protocol.
      */
-    @UML(identifier="ftp", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="FTP", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform FTP = new DistributedComputingPlatform("FTP");
 
     /**
      * Web Services.
      */
-    @UML(identifier="webServices", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="WebServices", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DistributedComputingPlatform WEB_SERVICES = new DistributedComputingPlatform("WEB_SERVICES");
 
     /**

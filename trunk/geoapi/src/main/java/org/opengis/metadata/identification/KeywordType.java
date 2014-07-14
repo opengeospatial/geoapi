@@ -162,8 +162,8 @@ public final class KeywordType extends CodeList<KeywordType> {
      *
      * @since 3.1
      */
-    @UML(identifier="subTropicCategory", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType SUB_TROPIC_CATEGORY = new KeywordType("SUB_TROPIC_CATEGORY");
+    @UML(identifier="subTopicCategory", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final KeywordType SUB_TOPIC_CATEGORY = new KeywordType("SUB_TOPIC_CATEGORY");
 
     /**
      * Keyword identifies a taxonomy of the resource.
