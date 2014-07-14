@@ -258,4 +258,17 @@ public final class CodeListTest {
         assertSame   (code, CharacterSet.valueOf("UTF_8"));
         assertNotSame(code, CharacterSet.valueOf("UTF_7"));
     }
+
+    /**
+     * Tests the {@link Restriction} code list. At the difference of other code lists,
+     * its {@link CodeList#names()} method is overridden.
+     */
+    @Test
+    public void testRestriction() {
+        assertArrayEquals(new String[] {"COPYRIGHT", "copyright"}, Restriction.COPYRIGHT.names());
+        assertArrayEquals(new String[] {"LICENCE", "LICENSE", "licence", "license"}, Restriction.LICENCE.names());
+        assertSame(Restriction.COPYRIGHT, Restriction.valueOf("COPYRIGHT"));
+        assertSame(Restriction.LICENCE,   Restriction.valueOf("LICENCE"));
+        assertSame(Restriction.LICENCE,   Restriction.valueOf("LICENSE"));
+    }
 }

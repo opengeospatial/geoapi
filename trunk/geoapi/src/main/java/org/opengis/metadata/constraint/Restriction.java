@@ -213,6 +213,21 @@ public final class Restriction extends CodeList<Restriction> {
     }
 
     /**
+     * Returns the programmatic name and the UML identifier of this code, together with legacy UML identifier
+     * if any. In particular, {@link #LICENCE} is known as both {@code "licence"} (from ISO 19115:2014) and
+     * {@code "license"} (from ISO 19115:2003).
+     *
+     * @return Names of this code, including legacy names if any.
+     */
+    @Override
+    public String[] names() {
+        if (this == LICENSE) {
+            return new String[] {name(), "LICENSE", identifier(), "license"};
+        }
+        return super.names();
+    }
+
+    /**
      * Returns the list of {@code Restriction}s.
      *
      * @return The list of codes declared in the current JVM.
@@ -242,10 +257,16 @@ public final class Restriction extends CodeList<Restriction> {
      * returns {@code true}. If no existing instance is found, then a new one is created for
      * the given name.
      *
+     * <p>For compatibility reasons, the {@code "LICENSE"} string (derived from ISO 19115:2003)
+     * is taken as synonymous to {@code "LICENCE"} (derived from ISO 19115:2014).</p>
+     *
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.
      */
     public static Restriction valueOf(String code) {
+        if ("LICENSE".equals(code)) {
+            code = "LICENCE"; // For compatibility between ISO 19115:2003 and ISO 19115:2014.
+        }
         return valueOf(Restriction.class, code);
     }
 }
