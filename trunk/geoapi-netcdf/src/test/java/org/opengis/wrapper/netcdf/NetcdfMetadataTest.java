@@ -506,7 +506,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].dimensionName", DimensionNameType.ROW));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[2].dimensionName", DimensionNameType.TIME));
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier",                           "SST"));
-        assertNull(expected.put("contentInfo.dimension.descriptor",                                   "Sea temperature"));
+        assertNull(expected.put("contentInfo.dimension.description",                                  "Sea temperature"));
         assertNull(expected.put("dataQualityInfo.lineage.statement",
                 "2003-04-07 12:12:50 - created by gribtocdl              " +
                 "2005-09-26T21:50:00 - edavis - add attributes for dataset discovery"));
@@ -533,7 +533,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     public void testLandsat() throws IOException {
         final Map<String,Object> expected = expectedProperties;
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier", "Band1"));
-        assertNull(expected.put("contentInfo.dimension.descriptor",         "GDAL Band Number 1"));
+        assertNull(expected.put("contentInfo.dimension.description",        "GDAL Band Number 1"));
         final NetcdfFile file = open(LANDSAT);
         try {
             metadata = wrap(file);
@@ -579,7 +579,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[2].dimensionSize",  6));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[3].dimensionSize",  1));
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier",                           "CIP"));
-        assertNull(expected.put("contentInfo.dimension.descriptor",                                   "Current Icing Product"));
+        assertNull(expected.put("contentInfo.dimension.description",                                  "Current Icing Product"));
         assertNull(expected.put("dataQualityInfo.lineage.statement", "U.S. National Weather Service - NCEP (WMC)"));
         final NetcdfFile file = open(CIP);
         try {
