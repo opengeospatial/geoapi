@@ -15,6 +15,7 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import ucar.nc2.NetcdfFile;
@@ -73,9 +74,14 @@ import org.opengis.util.InternationalString;
  *          <ul><li>NetCDF attributes: {@code date_created}.
  *          </li></ul><br></li>
  *
- *   <li>{@link ResponsibleParty} implements the value returned by {@link Citation#getCitedResponsibleParties()},
- *          which contain only the creator. This simple implementation ignores the publisher and contributors.
+ *   <li>{@link Responsibility} implements the value returned by {@link Citation#getCitedResponsibleParties()},
+ *          which contain only the creator and the institution.
  *          <ul><li>NetCDF attributes: {@code creator_name}, {@code institution}.
+ *          </li></ul><br></li>
+ *
+ *   <li>{@link Individual} implements the value returned by {@link Responsibility#getParties()},
+ *          which contain only the creator. This simple implementation ignores the publisher and contributors.
+ *          <ul><li>NetCDF attributes: {@code creator_name}.
  *          </li></ul><br></li>
  *
  *   <li>{@link Address} implements the value returned by {@link Contact#getAddress()}.
@@ -95,7 +101,7 @@ import org.opengis.util.InternationalString;
  * @see <a href="http://www.unidata.ucar.edu/software/netcdf-java/formats/DataDiscoveryAttConvention.html">NetCDF Attribute Convention for Dataset Discovery</a>
  */
 public class NetcdfMetadata implements Metadata, DataIdentification, Identifier, Citation, CitationDate,
-        ResponsibleParty, Contact, Address, Extent, GeographicBoundingBox
+        Responsibility, Individual, Contact, Address, Extent, GeographicBoundingBox
 {
     /**
      * The hierarchy level returned by {@link #getHierarchyLevels()}.
@@ -468,20 +474,32 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns an empty set.
+     * Encapsulates the {@linkplain #getName() creator} name and email address.
      */
     @Override
     public Collection<? extends Party> getParties() {
-        return Collections.emptySet();
+        if (getOrganisationName() == null) {
+            return self;
+        }
+        final Collection<Party> parties = new ArrayList<Party>(2);
+        if (getName() != null) {
+            parties.add(this);
+        }
+        parties.add(new Organisation() {
+            @Override public InternationalString                 getName()        {return getOrganisationName();}
+            @Override public Collection<? extends BrowseGraphic> getLogo()        {return Collections.emptySet();}
+            @Override public Collection<? extends Individual>    getIndividual()  {return Collections.singleton(NetcdfMetadata.this);}
+            @Override public Collection<? extends Contact>       getContactInfo() {return Collections.singleton(NetcdfMetadata.this);}
+        });
+        return parties;
     }
 
     /**
-     * Encapsulates the {@linkplain #getIndividualName() creator} and
-     * {@linkplain #getOrganisationName() institution}.
+     * Encapsulates the {@linkplain #getName() creator} name and email address.
      */
     @Override
     public Collection<? extends ResponsibleParty> getCitedResponsibleParties() {
-        return self;
+        return Collections.singleton(new ResponsiblePartyAdapter(this));
     }
 
     /**
@@ -530,23 +548,22 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * @return {@code this}.
      */
     @Override
-    public Contact getContactInfo() {
-        return this;
+    public Collection<? extends Contact> getContactInfo() {
+        return self;
     }
 
     /**
      * Returns the NetCDF "{@code creator_name}" attribute value, or {@code null} if none.
      */
     @Override
-    public String getIndividualName() {
-        return getString("creator_name");
+    public InternationalString getName() {
+        return getInternationalString("creator_name");
     }
 
     /**
      * Returns the NetCDF "{@code institution}" attribute value, or {@code null} if none.
      */
-    @Override
-    public InternationalString getOrganisationName() {
+    final InternationalString getOrganisationName() {
         return getInternationalString("institution");
     }
 
@@ -933,6 +950,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     @Override
     public String getISSN() {
         return null;
+    }
+
+    /**
+     * Defaults to an empty set.
+     */
+    @Override
+    public Collection<? extends BrowseGraphic> getGraphics() {
+        return Collections.emptySet();
     }
 
     /**

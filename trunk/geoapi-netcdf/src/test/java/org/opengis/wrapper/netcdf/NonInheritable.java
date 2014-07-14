@@ -37,7 +37,7 @@ final strictfp class NonInheritable {
     /**
      * Asserts that {@link NetcdfMetadataTest#compareProperties(Map, Map, double)} processed all
      * relevant entries. The tests performed by this method are specific to GeoAPI. If the user
-     * overridden the {@link NetcdfMetadataTest} class, then we will not execute those tests
+     * overrides the {@link NetcdfMetadataTest} class, then we will not execute those tests
      * because the user may have modified the expected or the actual map, or may be testing
      * an other implementation which will read a different set of metadata.
      *

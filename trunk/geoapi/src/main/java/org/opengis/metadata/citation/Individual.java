@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,40 +29,31 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.extent;
+package org.opengis.metadata.citation;
 
-import java.util.Collection;
 import org.opengis.annotation.UML;
+import org.opengis.util.InternationalString;
 
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Extent with respect to date/time and spatial boundaries.
+ * Information about the party if the party is an individual.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since   3.1
  */
-@UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
-public interface SpatialTemporalExtent extends TemporalExtent {
+@UML(identifier="CI_Individual", specification=ISO_19115)
+public interface Individual extends Party {
     /**
-     * The spatial extent component of composite spatial and temporal extent.
+     * Position of the individual in an organisation.
      *
-     * @return The list of geographic extents (never {@code null}).
+     * @return Position of the individual in an organisation, or {@code null} if none.
+     *
+     * @condition Mandatory if {@linkplain #getName() name} is not documented.
      */
-    @UML(identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends GeographicExtent> getSpatialExtent();
-
-    /**
-     * Vertical extent component.
-     *
-     * @return Vertical extent component, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="verticalExtent", obligation=OPTIONAL, specification=ISO_19115)
-    VerticalExtent getVerticalExtent();
+    @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
+    InternationalString getPositionName();
 }
