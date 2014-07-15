@@ -34,7 +34,6 @@ package org.opengis.metadata.service;
 import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.util.GenericName;
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.identification.DataIdentification;
@@ -56,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ServiceIdentification extends Identification {
     /**
      * A service type name.
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <blockquote><font size="-1"><b>Examples:</b>
      * "discovery", "view", "download", "transformation", or "invoke".
      * </font></blockquote>
      *
@@ -66,15 +65,19 @@ public interface ServiceIdentification extends Identification {
     GenericName getServiceType();
 
     /**
-     * The version of the service, supports searching based on the version of serviceType.
-     * For example, we might only be interested in OGC Catalogue V1.1 services.
+     * The version(s) of the service.
+     * Supports searching based on the version of {@linkplain #getServiceType() service type}.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * We might only be interested in OGC Catalogue V1.1 services.
      * If version is maintained as a separate attribute, users can easily search
      * for all services of a type regardless of the version.
+     * </font></blockquote>
      *
      * @return the version of the service, supports searching based on the version of serviceType.
      */
     @UML(identifier="serviceTypeVersion", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getServiceTypeVersion();
+    Collection<String> getServiceTypeVersions();
 
     /**
      * Information about the availability of the service.
@@ -102,46 +105,46 @@ public interface ServiceIdentification extends Identification {
     CouplingType getCouplingType();
 
     /**
-     * Further description of the data coupling in the case of tightly coupled services.
-     * Returns an empty set if none.
+     * Further description(s) of the data coupling in the case of tightly coupled services.
+     * Returns an empty collection if none.
      *
      * @return Further description of the data coupling in the case of tightly coupled services.
      *
      * @condition mandatory if {@linkplain #getCouplingType()} is not provided.
      */
     @UML(identifier="coupledResource", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends CoupledResource> getCoupledResource();
+    Collection<? extends CoupledResource> getCoupledResources();
 
     /**
-     * Provides a reference to the resource on which the service operates.
-     * Returns an empty set if none.
+     * Provides reference(s) to the resources on which the service operates.
+     * Returns an empty collection if none.
      *
-     * @return reference(s) to the resource on which the service operates.
+     * @return Reference(s) to the resource on which the service operates.
      */
     @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getOperatedDataset();
+    Collection<? extends Citation> getOperatedDatasets();
 
     /**
-     * Profile to which the service adheres.
-     * Returns an empty set if none.
+     * Profile(s) to which the service adheres.
+     * Returns an empty collection if none.
      *
-     * @return Profile to which the service adheres.
+     * @return Profile(s) to which the service adheres.
      */
     @UML(identifier="profile", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getProfile();
+    Collection<? extends Citation> getProfiles();
 
     /**
-     * Standard to which the service adheres.
-     * Returns an empty set if none.
+     * Standard(s) to which the service adheres.
+     * Returns an empty collection if none.
      *
-     * @return Standard to which the service adheres.
+     * @return Standard(s) to which the service adheres.
      */
     @UML(identifier="serviceStandard", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getServiceStandard();
+    Collection<? extends Citation> getServiceStandards();
 
     /**
      * Provides information about the operations that comprise the service.
-     * Returns an empty set if none.
+     * Returns an empty collection if none.
      *
      * @return Information about the operations that comprise the service.
      */
@@ -150,7 +153,7 @@ public interface ServiceIdentification extends Identification {
 
     /**
      * Provides information on the resources that the service operates on.
-     * Returns an empty set if none.
+     * Returns an empty collection if none.
      *
      * @return Information on the resources that the service operates on.
      */
@@ -159,7 +162,7 @@ public interface ServiceIdentification extends Identification {
 
     /**
      * Provides information about the chain applied by the service.
-     * Returns an empty set if none.
+     * Returns an empty collection if none.
      *
      * @return Information about the chain applied by the service.
      */

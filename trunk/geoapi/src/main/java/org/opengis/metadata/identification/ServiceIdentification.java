@@ -46,5 +46,5 @@ package org.opengis.metadata.identification;
  * @deprecated Moved to the {@link org.opengis.metadata.service} package.
  */
 @Deprecated
-public interface ServiceIdentification extends Identification {
+public interface ServiceIdentification extends org.opengis.metadata.service.ServiceIdentification {
 }
