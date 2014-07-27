@@ -33,10 +33,6 @@ package org.opengis.metadata.identification;
 
 import java.util.Collection;
 import java.util.Locale;
-import org.opengis.metadata.Metadata;
-import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.maintenance.ScopeCode;
-import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -50,30 +46,11 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * Information required to identify a dataset.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_DataIdentification", specification=ISO_19115)
 public interface DataIdentification extends Identification {
-    /**
-     * Method used to spatially represent geographic information.
-     *
-     * @return Method(s) used to spatially represent geographic information.
-     */
-    @Profile(level=CORE)
-    @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<SpatialRepresentationType> getSpatialRepresentationTypes();
-
-    /**
-     * Factor which provides a general understanding of the density of spatial data
-     * in the dataset.
-     *
-     * @return Factor which provides a general understanding of the density of spatial data.
-     */
-    @Profile(level=CORE)
-    @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Resolution> getSpatialResolutions();
-
     /**
      * Language(s) used within the dataset.
      *
@@ -95,18 +72,6 @@ public interface DataIdentification extends Identification {
     Collection<CharacterSet> getCharacterSets();
 
     /**
-     * Main theme(s) of the dataset.
-     *
-     * @return Main theme(s).
-     *
-     * @condition If {@linkplain Metadata#getHierarchyLevels() hierarchy level} equals
-     *            {@link ScopeCode#DATASET}.
-     */
-    @Profile(level=CORE)
-    @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<TopicCategory> getTopicCategories();
-
-    /**
      * Description of the dataset in the producer's processing environment, including items
      * such as the software, the computer operating system, file name, and the dataset size.
      *
@@ -114,20 +79,6 @@ public interface DataIdentification extends Identification {
      */
     @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getEnvironmentDescription();
-
-    /**
-     * Additional extent information including the bounding polygon, vertical, and temporal
-     * extent of the dataset.
-     *
-     * @return Additional extent information.
-     *
-     * @condition Is hierarchyLevel equals dataset? If yes, {@link Extent#getGeographicElements()}
-     *            shall contains either a {@link org.opengis.metadata.extent.GeographicBoundingBox}
-     *            or a {@link org.opengis.metadata.extent.GeographicDescription}.
-     */
-    @Profile(level=CORE)
-    @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtents();
 
     /**
      * Any other descriptive information about the dataset.

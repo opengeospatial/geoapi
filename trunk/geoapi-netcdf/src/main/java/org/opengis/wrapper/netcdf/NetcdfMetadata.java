@@ -36,6 +36,7 @@ import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.acquisition.AcquisitionInformation;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.util.InternationalString;
+import org.opengis.temporal.Duration;
 
 
 /**
@@ -671,8 +672,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the NetCDF "{@code acknowledgment}" attribute value, or an empty set if none.
      */
     @Override
-    public Collection<String> getCredits() {
-        return singleton(getString("acknowledgment"));
+    public Collection<InternationalString> getCredits() {
+        return singleton(getInternationalString("acknowledgment"));
     }
 
     /**
@@ -821,6 +822,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Defaults to an empty set.
+     */
+    @Override
+    public Collection<? extends Duration> getTemporalResolutions() {
+        return Collections.emptySet();
+    }
+
+    /**
      * Encapsulates the {@linkplain #getGeographicElements() geographic bounding box}.
      *
      * @return {@code this}.
@@ -901,6 +910,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
+     * Defaults to {@code null}.
+     */
+    @Override
+    public Identifier getProcessingLevel() {
         return null;
     }
 
@@ -996,6 +1013,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to an empty set.
      */
     @Override
+    public Collection<? extends AssociatedResource> getAssociatedResources() {
+        return Collections.emptySet();
+    }
+
+    /**
+     * Defaults to an empty set.
+     */
+    @Override
     public Collection<? extends AggregateInformation> getAggregationInfo() {
         return Collections.emptySet();
     }
@@ -1053,6 +1078,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<? extends MetadataExtensionInformation> getMetadataExtensionInfo() {
+        return Collections.emptySet();
+    }
+
+    /**
+     * Defaults to an empty set.
+     */
+    @Override
+    public Collection<? extends Citation> getAdditionalDocumentations() {
         return Collections.emptySet();
     }
 }

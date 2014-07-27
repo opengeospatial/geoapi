@@ -32,12 +32,16 @@
 package org.opengis.metadata.identification;
 
 import java.util.Collection;
+import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Format;
-import org.opengis.util.InternationalString;
+import org.opengis.metadata.extent.Extent;
+import org.opengis.temporal.Duration;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
@@ -60,62 +64,155 @@ import static org.opengis.annotation.ComplianceLevel.*;
 @UML(identifier="MD_Identification", specification=ISO_19115)
 public interface Identification {
     /**
-     * Citation data for the resource(s).
+     * Citation for the resource.
      *
-     * @return Citation data for the resource(s).
+     * @return Citation for the resource.
      */
     @Profile(level=CORE)
     @UML(identifier="citation", obligation=MANDATORY, specification=ISO_19115)
     Citation getCitation();
 
     /**
-     * Brief narrative summary of the content of the resource(s).
+     * Brief narrative summary of the resource.
      *
-     * @return Brief narrative summary of the content.
+     * @return Brief narrative summary of the resource.
      */
     @Profile(level=CORE)
     @UML(identifier="abstract", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getAbstract();
 
     /**
-     * Summary of the intentions with which the resource(s) was developed.
+     * Summary of the intentions with which the resource was developed.
      *
-     * @return The intentions with which the resource(s) was developed, or {@code null}.
+     * @return The intentions with which the resource was developed, or {@code null}.
      */
     @UML(identifier="purpose", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getPurpose();
 
     /**
-     * Recognition of those who contributed to the resource(s).
+     * Recognition of those who contributed to the resource.
      *
-     * @return Recognition of those who contributed to the resource(s).
+     * @return Recognition of those who contributed to the resource.
      */
     @UML(identifier="credit", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getCredits();
+    Collection<? extends InternationalString> getCredits();
 
     /**
-     * Status of the resource(s).
+     * Status of the resource.
      *
-     * @return Status of the resource(s), or {@code null}.
+     * @return Status of the resource.
      */
     @UML(identifier="status", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Progress> getStatus();
 
     /**
-     * Identification of, and means of communication with, person(s) and organizations(s)
+     * Identification of, and means of communication with, person(s) and organisations
      * associated with the resource(s).
      *
-     * @return Means of communication with person(s) and organizations(s) associated with the
-     *         resource(s).
+     * @return Means of communication with person(s) and organisations(s) associated with the resource.
      *
      * @see org.opengis.metadata.Metadata#getContacts()
      */
     @Profile(level=CORE)
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ResponsibleParty> getPointOfContacts();
+    Collection<? extends Responsibility> getPointOfContacts();
 
     /**
-     * Provides information about the frequency of resource updates, and the scope of those updates.
+     * Methods used to spatially represent geographic information.
+     *
+     * @return Methods used to spatially represent geographic information.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<SpatialRepresentationType> getSpatialRepresentationTypes();
+
+    /**
+     * Factor which provides a general understanding of the density of spatial data in the resource.
+     * May also describe the range of resolutions in which a digital resource may be used.
+     *
+     * <blockquote><font size="-1"><b>Note:</b>
+     * This element should be repeated when describing upper and lower range.
+     * </font></blockquote>
+     *
+     * @return Factor which provides a general understanding of the density of spatial resource.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Resolution> getSpatialResolutions();
+
+    /**
+     * Smallest resolvable temporal period in a resource.
+     *
+     * @return Smallest resolvable temporal period in a resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Duration> getTemporalResolutions();
+
+    /**
+     * Main theme(s) of the resource.
+     *
+     * @return Main theme(s).
+     *
+     * @condition Mandatory if {@link MetadataScope#getResourceScope()} equals {@link ScopeCode#DATASET}
+     *            or {@link ScopeCode#SERIES}.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<TopicCategory> getTopicCategories();
+
+    /**
+     * Spatial and temporal extent of the resource.
+     *
+     * @return Spatial and temporal extent of the resource.
+     *
+     * @condition Mandatory with either a
+     * {@linkplain org.opengis.metadata.extent.GeographicBoundingBox geographic bounding box} or a
+     * {@linkplain org.opengis.metadata.extent.GeographicDescription geographic description} if
+     * {@link MetadataScope#getResourceScope()} equals {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends Extent> getExtents();
+
+    /**
+     * Other documentation associated with the resource.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * related articles, publications, user guides, data dictionaries.
+     * </font></blockquote>
+     *
+     * @return Other documentation associated with the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getAdditionalDocumentations();
+
+    /**
+     * Code that identifies the level of processing in the producers coding system of a resource.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * NOAA level 1B.
+     * </font></blockquote>
+     *
+     * @return Code that identifies the level of processing in the producers coding system of a resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="processingLevel", obligation=OPTIONAL, specification=ISO_19115)
+    Identifier getProcessingLevel();
+
+    /**
+     * Information about the frequency of resource updates, and the scope of those updates.
      *
      * @return Frequency and scope of resource updates.
      */
@@ -123,7 +220,7 @@ public interface Identification {
     Collection<? extends MaintenanceInformation> getResourceMaintenances();
 
     /**
-     * Provides a graphic that illustrates the resource(s) (should include a legend for the graphic).
+     * Graphic that illustrates the resource(s) (should include a legend for the graphic).
      *
      * @return A graphic that illustrates the resource(s).
      */
@@ -131,7 +228,7 @@ public interface Identification {
     Collection<? extends BrowseGraphic> getGraphicOverviews();
 
     /**
-     * Provides a description of the format of the resource(s).
+     * Description of the format of the resource(s).
      *
      * @return Description of the format.
      */
@@ -139,7 +236,7 @@ public interface Identification {
     Collection<? extends Format> getResourceFormats();
 
     /**
-     * Provides category keywords, their type, and reference source.
+     * Category keywords, their type, and reference source.
      *
      * @return Category keywords, their type, and reference source.
      */
@@ -147,7 +244,7 @@ public interface Identification {
     Collection<? extends Keywords> getDescriptiveKeywords();
 
     /**
-     * Provides basic information about specific application(s) for which the resource(s)
+     * Basic information about specific application(s) for which the resource(s)
      * has/have been or is being used by different users.
      *
      * @return Information about specific application(s) for which the resource(s)
@@ -157,7 +254,7 @@ public interface Identification {
     Collection<? extends Usage> getResourceSpecificUsages();
 
     /**
-     * Provides information about constraints which apply to the resource(s).
+     * Information about constraints which apply to the resource(s).
      *
      * @return Constraints which apply to the resource(s).
      */
@@ -165,12 +262,25 @@ public interface Identification {
     Collection<? extends Constraints> getResourceConstraints();
 
     /**
-     * Provides aggregate dataset information.
+     * Associated resource information.
+     *
+     * @return Associated resource information.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="associatedResource", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends AssociatedResource> getAssociatedResources();
+
+    /**
+     * Aggregate dataset information.
      *
      * @return Aggregate dataset information.
      *
      * @since 2.1
+     *
+     * @deprecated Replaced by {@link #getAssociatedResources()} as of ISO 19115:2014.
      */
+    @Deprecated
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends AggregateInformation> getAggregationInfo();
 }
