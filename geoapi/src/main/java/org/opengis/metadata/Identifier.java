@@ -32,6 +32,8 @@
 package org.opengis.metadata;
 
 import org.opengis.metadata.citation.Citation;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -45,6 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.0
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Identifier", specification=ISO_19115)
 public interface Identifier {
     /**

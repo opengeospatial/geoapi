@@ -138,6 +138,7 @@ public final class DescriptionsTest {
         org.opengis.metadata.extent.TemporalExtent.class,
         org.opengis.metadata.extent.VerticalExtent.class,
         org.opengis.metadata.identification.AggregateInformation.class,
+        org.opengis.metadata.identification.AssociatedResource.class,
         org.opengis.metadata.identification.AssociationType.class,
         org.opengis.metadata.identification.BrowseGraphic.class,
         org.opengis.metadata.identification.CharacterSet.class,
