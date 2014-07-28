@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2003-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,67 +29,55 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.service;
-
-import org.opengis.annotation.UML;
-import org.opengis.util.Enumerated;
-
-import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.ISO_19115;
+package org.opengis.util;
 
 
 /**
- * Class of information to which the referencing entity applies.
+ * Common interface of all {@linkplain Enum enumerations} and {@linkplain CodeList code lists} defined in GeoAPI.
  *
- * @author  Rémi Maréchal (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @departure integration
+ *   Provided for allowing developers to handles {@code Enum} and {@code CodeList} is the same way for some
+ *   common tasks.
  */
-@UML(identifier="SV_ParameterDirection", specification=ISO_19115)
-public enum ParameterDirection implements Enumerated {
+public interface Enumerated {
     /**
-     * The parameter is an input parameter to the service instance.
+     * Returns the name of this enumeration constant or code list value.
+     *
+     * @return The name of this enumeration constant or code list value.
      */
-    @UML(identifier="in", obligation=CONDITIONAL, specification=ISO_19115)
-    IN("in"),
+    String name();
 
     /**
-     * The parameter is an output parameter to the service instance.
+     * Returns all the names of this constant. The returned array contains the
+     * following elements, with duplicated values and null values removed:
+     *
+     * <ul>
+     *   <li>The programmatic {@linkplain #name() name}</li>
+     *   <li>The UML {@linkplain #identifier() identifier}</li>
+     *   <li>Any other special case, if any. See {@link CodeList#names()} for some examples.</li>
+     * </ul>
+     *
+     * @return All names of this constant. This array is never null and never empty.
      */
-    @UML(identifier="out", obligation=CONDITIONAL, specification=ISO_19115)
-    OUT("out"),
+    String[] names();
 
     /**
-     * The parameter is both an input and output parameter to the service instance.
+     * Returns the identifier declared in the {@link UML} annotation, or {@code null} if none.
+     * The UML identifier shall be the ISO or OGC name for this enumeration or code list constant.
+     *
+     * @return The ISO/OGC identifier for this constant, or {@code null} if none.
      */
-    @UML(identifier="in/out", obligation=CONDITIONAL, specification=ISO_19115)
-    IN_OUT("in/out");
+    String identifier();
 
     /**
-     * The UML identifier.
+     * Returns the ordinal of this constant. This is its position in its elements declaration,
+     * where the initial constant is assigned an ordinal of zero.
+     *
+     * @return The position of this constants in elements declaration.
      */
-    private final String identifier;
-
-    /**
-     * Creates a new constant with the given UML identifier.
-     */
-    private ParameterDirection(final String identifier) {
-        this.identifier = identifier;
-    }
-
-    /**
-     * Returns the UML identifier for this enumeration constant.
-     */
-    @Override
-    public String identifier() {
-        return identifier;
-    }
-
-    /**
-     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
-     */
-    @Override
-    public String[] names() {
-        return new String[] {name(), identifier};
-    }
+    int ordinal();
 }

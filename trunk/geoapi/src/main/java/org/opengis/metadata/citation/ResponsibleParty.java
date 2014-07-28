@@ -67,7 +67,7 @@ public interface ResponsibleParty extends Responsibility {
      * @condition Mandatory if the {@linkplain #getOrganisationName() organisation name} and
      *            {@linkplain #getPositionName() position name} are not documented.
      *
-     * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@linkIndividual}.
+     * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Individual}.
      */
     @Deprecated
     @Profile(level=CORE)

@@ -31,6 +31,8 @@
  */
 package org.opengis.annotation;
 
+import org.opengis.util.Enumerated;
+
 import static org.opengis.annotation.Specification.*;
 
 
@@ -44,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
-public enum Obligation {
+public enum Obligation implements Enumerated {
     /*
      * Implementation note: Enum or CodeList elements are usually declared with
      * Obligation.CONDITIONAL.  However such declaration in the Obligation enum
@@ -54,22 +56,22 @@ public enum Obligation {
      */
 
     /**
-     * Element is required when a specific condition is met.
+     * Element is always required.
      */
-    @UML(identifier="conditional", specification=ISO_19115)
-    CONDITIONAL,
+    @UML(identifier="mandatory", specification=ISO_19115)
+    MANDATORY("mandatory"),
 
     /**
      * Element is not required.
      */
     @UML(identifier="optional", specification=ISO_19115)
-    OPTIONAL,
+    OPTIONAL("optional"),
 
     /**
-     * Element is always required.
+     * Element is required when a specific condition is met.
      */
-    @UML(identifier="mandatory", specification=ISO_19115)
-    MANDATORY,
+    @UML(identifier="conditional", specification=ISO_19115)
+    CONDITIONAL("conditional"),
 
     /**
      * The element should always be {@code null}. This obligation code is used only when
@@ -83,5 +85,41 @@ public enum Obligation {
      *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation and
      *   which adds a flag in the Java documentation.
      */
-    FORBIDDEN
+    FORBIDDEN(null) {
+        @Override public String[] names() {
+            return new String[] {name()};
+        }
+    };
+
+    /**
+     * The UML identifier.
+     */
+    private final String identifier;
+
+    /**
+     * Creates a new constant with the given UML identifier.
+     */
+    private Obligation(final String identifier) {
+        this.identifier = identifier;
+    }
+
+    /**
+     * Returns the UML identifier for this enumeration constant, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    /**
+     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}, if any.
+     *
+     * @since 3.1
+     */
+    @Override
+    public String[] names() {
+        return new String[] {name(), identifier};
+    }
 }
