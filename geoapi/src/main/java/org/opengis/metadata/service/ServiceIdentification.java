@@ -44,8 +44,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Identification of capabilities which a service provider makes available to a service user
- * through a set of interfaces that define a behaviour.
+ * Identification of capabilities which a service provider makes available.
+ * The services are provided to a user through a set of interfaces that define a behaviour.
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1

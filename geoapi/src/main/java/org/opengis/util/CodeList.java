@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  */
 @UML(identifier="CodeList", specification=ISO_19103)
-public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, Serializable {
+public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Comparable<E>, Serializable {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -293,8 +293,13 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * <ul>
      *   <li>The programmatic {@linkplain #name() name}</li>
      *   <li>The UML {@linkplain #identifier() identifier}</li>
-     *   <li>The {@linkplain org.opengis.metadata.identification.CharacterSet#toCharset() charset} name
-     *       ({@code CharacterSet} code list only)</li>
+     *   <li>Any other special case, if any. Examples:
+     *     <ul>
+     *       <li>The {@linkplain org.opengis.metadata.identification.CharacterSet#toCharset() charset}
+     *           name of a {@code CharacterSet} code list.</li>
+     *       <li>The legacy name of {@link org.opengis.metadata.constraint.Restriction#LICENCE}.</li>
+     *     </ul>
+     *   </li>
      * </ul>
      *
      * Those names are typically equal except for the case (programmatic names are upper case
@@ -308,6 +313,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @since 2.3
      */
+    @Override
     public String[] names() {
         final String name = this.name;
         final String identifier = identifier();
@@ -327,6 +333,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @return The name of this code constant.
      */
+    @Override
     public final String name() {
         return name;
     }
@@ -343,6 +350,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      *
      * @since 2.2
      */
+    @Override
     public String identifier() {
         // Save the field in a local variable for protection against concurrent change (this
         // operation is garanteed atomic according Java specification). We don't synchronize
@@ -391,6 +399,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @departure integration
      *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
      */
+    @Override
     public final int ordinal() {
         return ordinal;
     }
