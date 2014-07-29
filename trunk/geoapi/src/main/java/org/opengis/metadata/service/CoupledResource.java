@@ -45,7 +45,15 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * Links a given operation name (mandatory attribute of {@link OperationMetadata})
  * with a resource identified by an "identifier".
  *
+ * <p><b>Constraint:</b></p>
+ * <ul>
+ *   <li>For one {@code CoupledResource} either {@linkplain #getResources() resources} or
+ *       {@linkplain #getResourceReferences() resource references} should be used
+ *       (not both for the same {@code CoupledResource}).</li>
+ * </ul>
+ *
  * @author  Rémi Maréchal (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
@@ -53,9 +61,9 @@ import static org.opengis.annotation.Specification.ISO_19115;
 public interface CoupledResource {
     /**
      * Scoped identifier of the resource in the context of the given service instance.
+     * This is the name of the resources (for example dataset) as it is used by a service instance
      *
-     * <blockquote><font size="-1"><b>Example:</b> name of the resources (for example dataset)
-     * as it is used by a service instance (for example layer name or feature type name).</font></blockquote>
+     * <blockquote><font size="-1"><b>Examples:</b> layer name or feature type name.</font></blockquote>
      *
      * @return Scoped identifier of the resource in the context of the given service instance, or {@code null} if none.
      */
@@ -65,8 +73,11 @@ public interface CoupledResource {
     /**
      * References to the resource on which the services operates.
      * Returns an empty collection if none.
+     * Only one of {@linkplain #getResources() resources} and resource references should be non-empty.
      *
      * @return References to the resource on which the services operates.
+     *
+     * @see DataIdentification#getCitation()
      */
     @UML(identifier="resourceReference", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getResourceReferences();
@@ -74,6 +85,7 @@ public interface CoupledResource {
     /**
      * The tightly coupled resources.
      * Returns an empty collection if none.
+     * Only one of resources and {@linkplain #getResourceReferences() resource references} should be non-empty.
      *
      * @return Tightly coupled resources.
      */
