@@ -31,7 +31,6 @@
  */
 package org.opengis.metadata.service;
 
-import java.util.Set;
 import java.util.List;
 import java.util.Collection;
 import org.opengis.annotation.UML;
@@ -100,7 +99,7 @@ public interface OperationMetadata {
      * @return The parameters that are required for this interface, or an empty collection if none.
      */
     @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
-    Set<? extends Parameter> getParameters();
+    Collection<? extends Parameter> getParameters();
 
     /**
      * List of operation that must be completed immediately before current operation is invoked.

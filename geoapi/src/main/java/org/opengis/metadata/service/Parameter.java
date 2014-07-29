@@ -82,7 +82,7 @@ public interface Parameter {
      * @return Indication if the parameter is required.
      */
     @UML(identifier="optionality", obligation=MANDATORY, specification=ISO_19115)
-    InternationalString getOptionality();
+    Boolean getOptionality();
 
     /**
      * Indication if more than one value of the parameter may be provided.
@@ -90,5 +90,5 @@ public interface Parameter {
      * @return indication if more than one value of the parameter may be provided.
      */
     @UML(identifier="repeatability", obligation=MANDATORY, specification=ISO_19115)
-    boolean getRepeatability();
+    Boolean getRepeatability();
 }
