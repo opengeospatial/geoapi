@@ -86,7 +86,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @return Type of information represented by the cell value.
      *
-     * @deprecated Moved to {@link AttributeGroup#getContentTypes()} as of ISO 19115:2014.
+     * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getContentTypes()}.
      */
     @Deprecated
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
@@ -99,7 +99,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @since 2.1
      *
-     * @deprecated Moved to {@link AttributeGroup#getGroupAttributes()} as of ISO 19115:2014.
+     * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getGroupAttributes()}.
      */
     @Deprecated
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)

@@ -278,7 +278,7 @@ public interface Identification {
      *
      * @since 2.1
      *
-     * @deprecated Replaced by {@link #getAssociatedResources()} as of ISO 19115:2014.
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getAssociatedResources()}.
      */
     @Deprecated
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
