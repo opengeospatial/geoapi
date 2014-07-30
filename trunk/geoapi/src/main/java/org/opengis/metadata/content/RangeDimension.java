@@ -75,7 +75,7 @@ public interface RangeDimension {
      *
      * @return Description of the range of a cell measurement value, or {@code null} if none.
      *
-     * @deprecated Renamed {@link #getDescription()} as of ISO 19115:2014.
+     * @deprecated As of ISO 19115:2014, renamed {@link #getDescription()}.
      */
     @Deprecated
     @UML(identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115)

@@ -43,7 +43,7 @@ package org.opengis.metadata.identification;
  * @version 3.0
  * @since   2.0
  *
- * @deprecated Moved to the {@link org.opengis.metadata.service} package.
+ * @deprecated As of GeoAPI 3.1, moved to the {@link org.opengis.metadata.service} package.
  */
 @Deprecated
 public interface ServiceIdentification extends org.opengis.metadata.service.ServiceIdentification {

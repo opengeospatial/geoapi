@@ -87,7 +87,7 @@ public interface Source {
      *
      * @return Representative fraction on a source map, or {@code null}.
      *
-     * @deprecated Moved to {@link Resolution#getEquivalentScale()}.
+     * @deprecated As of ISO 19115:2014, moved to {@link Resolution#getEquivalentScale()}.
      */
     @Deprecated
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
@@ -136,7 +136,7 @@ public interface Source {
      *
      * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
      *
-     * @deprecated Moved to {@link Scope#getExtents()}.
+     * @deprecated As of ISO 19115:2014, moved to {@link Scope#getExtents()}.
      */
     @Deprecated
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
