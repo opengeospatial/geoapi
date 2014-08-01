@@ -51,7 +51,7 @@ import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 
-import org.junit.*;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 
@@ -62,7 +62,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   2.0
  */
-public final class CodeListTest {
+public final strictfp class CodeListTest {
     /**
      * All code lists to be tested.
      */

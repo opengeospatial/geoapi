@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.nio.charset.Charset;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
 import ucar.nc2.time.Calendar;
@@ -704,7 +705,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to {@code null}.
      */
     @Override
-    public CharacterSet getCharacterSet() {
+    public Charset getCharacterSet() {
         return null;
     }
 
@@ -712,7 +713,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to the {@linkplain #getCharacterSet() character set}.
      */
     @Override
-    public Collection<CharacterSet> getCharacterSets() {
+    public Collection<Charset> getCharacterSets() {
         return singleton(getCharacterSet());
     }
 
@@ -1021,6 +1022,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to an empty set.
      */
     @Override
+    @SuppressWarnings("deprecation")
     public Collection<? extends AggregateInformation> getAggregationInfo() {
         return Collections.emptySet();
     }

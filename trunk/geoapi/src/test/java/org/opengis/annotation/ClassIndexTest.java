@@ -42,8 +42,8 @@ import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.ArrayList;
 import java.util.Collections;
+import org.junit.Test;
 
-import org.junit.*;
 import static org.junit.Assert.*;
 import static org.opengis.annotation.Specification.*;
 
@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-public final class ClassIndexTest implements FileFilter {
+public final strictfp class ClassIndexTest implements FileFilter {
     /**
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.
