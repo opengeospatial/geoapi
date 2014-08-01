@@ -50,14 +50,15 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
  * @since   2.0
+ *
+ * @see Identification#getSpatialResolutions()
  */
 @Classifier(Stereotype.UNION)
 @UML(identifier="MD_Resolution", specification=ISO_19115)
 public interface Resolution {
     /**
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
-     * Only one of {@linkplain #getEquivalentScale equivalent scale} and
-     * {@linkplain #getDistance ground sample distance} may be provided.
+     * Only one of equivalent scale and {@linkplain #getDistance() ground sample distance} may be provided.
      *
      * @return Level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
      *
@@ -69,8 +70,7 @@ public interface Resolution {
 
     /**
      * Ground sample distance.
-     * Only one of {@linkplain #getEquivalentScale equivalent scale} and
-     * {@linkplain #getDistance ground sample distance} may be provided.
+     * Only one of {@linkplain #getEquivalentScale() equivalent scale} and ground sample distance may be provided.
      * <p>
      * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
