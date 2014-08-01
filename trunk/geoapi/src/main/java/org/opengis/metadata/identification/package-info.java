@@ -67,7 +67,7 @@
  * </td><td class="sep" width="50%" nowrap>
  * <pre>{@linkplain org.opengis.metadata.identification.Identification} «abstract»
  *  ├─ {@linkplain org.opengis.metadata.identification.Resolution}
- *  ├─ {@linkplain org.opengis.metadata.identification.TopicCategory} «code list»</pre>
+ *  ├─ {@linkplain org.opengis.metadata.identification.TopicCategory} «code list»
  *  ├─ {@linkplain org.opengis.metadata.identification.Progress} «code list»
  *  ├─ {@linkplain org.opengis.metadata.identification.BrowseGraphic}
  *  ├─ {@linkplain org.opengis.metadata.identification.Keywords}
@@ -75,7 +75,7 @@
  *  ├─ {@linkplain org.opengis.metadata.identification.Usage}
  *  └─ {@linkplain org.opengis.metadata.identification.AssociatedResource}
  *      ├─ {@linkplain org.opengis.metadata.identification.AssociationType} «code list»
- *      └─ {@linkplain org.opengis.metadata.identification.InitiativeType} «code list»
+ *      └─ {@linkplain org.opengis.metadata.identification.InitiativeType} «code list»</pre>
  * </td></tr></table>
  *
  * <p>More specifically, {@link org.opengis.metadata.identification.Identification}

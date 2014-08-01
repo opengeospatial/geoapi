@@ -47,6 +47,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see Keywords#getKeywordClass()
  */
 @UML(identifier="MD_KeywordClass", specification=ISO_19115)
 public interface KeywordClass {
@@ -59,8 +61,8 @@ public interface KeywordClass {
     InternationalString getClassName();
 
     /**
-     * URI of concept in the ontology specified by the next element (ontology)
-     * and labeled by the previous element (className).
+     * URI of concept in the ontology specified by the {@linkplain #getOntology() ontology} citation
+     * and labeled by the {@linkplain #getClassName() class name}.
      *
      * @return URI of concept in the specified ontology, or {@code null} if none.
      */
@@ -70,6 +72,11 @@ public interface KeywordClass {
     /**
      * A reference that binds the keyword class to a formal conceptualization
      * of a knowledge domain for use in semantic processing.
+     *
+     * <blockquote><font size="-1"><b>Note:</b>
+     * {@linkplain Keywords#getKeywords() Keywords} in the associated {@link Keywords} list
+     * must be within the scope of this ontology.
+     * </font></blockquote>
      *
      * @return A reference that binds the keyword class to a formal conceptualization.
      */

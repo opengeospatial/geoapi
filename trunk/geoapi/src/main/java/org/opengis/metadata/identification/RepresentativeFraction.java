@@ -60,6 +60,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
  * @since   2.1
+ *
+ * @see Resolution#getEquivalentScale()
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_RepresentativeFraction", specification=ISO_19115)
@@ -83,10 +85,7 @@ public interface RepresentativeFraction {
 
     /**
      * Compares this representative fraction with the specified object for equality.
-     * {@code RepresentativeFraction} is a data object - {@code equals} is defined
-     * according to {@link #getDenominator()};
-     *
-     * <p>Implementations should match the following:</p>
+     * Implementations should match the following:
      *
      * <blockquote><pre>public boolean equals(Object object) {
      *    if (object instanceof RepresentativeFraction) {
@@ -105,10 +104,7 @@ public interface RepresentativeFraction {
 
     /**
      * Returns a hash value for this representative fraction.
-     * {@code RepresentativeFraction} is a data object - {@code hashcode} is defined
-     * according to {@link #getDenominator()}.
-     *
-     * <p>Implementations should match the following:</p>
+     * Implementations should match the following:
      *
      * <blockquote><pre>public int hashCode() {
      *    return (int) getDenominator();
