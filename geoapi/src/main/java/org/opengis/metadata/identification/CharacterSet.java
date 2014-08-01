@@ -45,11 +45,57 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
 
 /**
  * Name of the character coding standard used for the resource.
+ * The UML identifiers were defined in ISO 19115:2003, but removed from ISO 19115:2014.
+ * Mapping from legacy UML identifiers to the IANA names is as below:
+ *
+ * <blockquote><pre># From ISO 19115:2003 to java.nio.charset
+ * ucs2       = UCS-2
+ * ucs4       = UCS-4
+ * utf7       = UTF-7
+ * utf8       = UTF-8
+ * utf16      = UTF-16
+ * 8859part1  = ISO-8859-1
+ * 8859part2  = ISO-8859-2
+ * 8859part3  = ISO-8859-3
+ * 8859part4  = ISO-8859-4
+ * 8859part5  = ISO-8859-5
+ * 8859part6  = ISO-8859-6
+ * 8859part7  = ISO-8859-7
+ * 8859part8  = ISO-8859-8
+ * 8859part9  = ISO-8859-9
+ * 8859part10 = ISO-8859-10
+ * 8859part11 = ISO-8859-11
+ * 8859part12 = ISO-8859-12
+ * 8859part13 = ISO-8859-13
+ * 8859part14 = ISO-8859-14
+ * 8859part15 = ISO-8859-15
+ * 8859part16 = ISO-8859-16
+ * jis        = JIS_X0201
+ * shiftJIS   = Shift_JIS
+ * eucJP      = EUC-JP
+ * usAscii    = US-ASCII
+ * ebcdic     = EBCDIC
+ * eucKR      = EUC-KR
+ * big5       = Big5
+ * GB2312     = GB2312</pre></blockquote>
+ *
+ * This mapping is provided by GeoAPI in the {@code org/opengis/metadata/2003/charset-codes.properties} file.
+ * This file can be read as below:
+ *
+ * <blockquote><pre>final Properties codes = new Properties();
+ * try (InputStream in = Metadata.class.getResourceAsStream("2003/charset-codes.properties")) {
+ *     codes.load(in);
+ * }</pre></blockquote>
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.0
  * @since   2.1
+ *
+ * @deprecated As of ISO 19115:2014, replaced by a reference to the
+ * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>.
+ * Represented in Java by {@link java.nio.charset.Charset}.
  */
+@Deprecated
 @UML(identifier="MD_CharacterSetCode", specification=ISO_19115)
 public final class CharacterSet extends CodeList<CharacterSet> {
     /**

@@ -44,7 +44,7 @@ import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;
 
-import org.junit.*;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 
@@ -55,7 +55,7 @@ import static org.junit.Assert.*;
  * @version 3.0
  * @since   2.3
  */
-public final class DescriptionsTest {
+public final strictfp class DescriptionsTest {
     /**
      * List of metadata interfaces and code lists.
      */

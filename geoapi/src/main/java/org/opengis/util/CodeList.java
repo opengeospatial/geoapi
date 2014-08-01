@@ -295,8 +295,6 @@ public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Com
      *   <li>The UML {@linkplain #identifier() identifier}</li>
      *   <li>Any other special case, if any. Examples:
      *     <ul>
-     *       <li>The {@linkplain org.opengis.metadata.identification.CharacterSet#toCharset() charset}
-     *           name of a {@code CharacterSet} code list.</li>
      *       <li>The legacy name of {@link org.opengis.metadata.constraint.Restriction#LICENCE}.</li>
      *     </ul>
      *   </li>

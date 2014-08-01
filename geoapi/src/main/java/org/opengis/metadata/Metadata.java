@@ -34,6 +34,7 @@ package org.opengis.metadata;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
+import java.nio.charset.Charset;
 
 import org.opengis.metadata.acquisition.AcquisitionInformation;
 import org.opengis.metadata.quality.DataQuality;
@@ -43,7 +44,6 @@ import org.opengis.metadata.distribution.Distribution;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
-import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.referencing.ReferenceSystem;
@@ -60,7 +60,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_Metadata", specification=ISO_19115)
@@ -86,15 +86,31 @@ public interface Metadata {
     Locale getLanguage();
 
     /**
-     * Full name of the character coding standard used for the metadata set.
+     * The character coding standard used for the metadata set.
+     * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
-     * @return character coding standard used for the metadata, or {@code null}.
+     * <blockquote><font size="-1"><b>Examples:</b>
+     * {@code UCS-2}, {@code UCS-4}, {@code UTF-7}, {@code UTF-8}, {@code UTF-16},
+     * {@code ISO-8859-1} (a.k.a. {@code ISO-LATIN-1}), {@code ISO-8859-2}, {@code ISO-8859-3}, {@code ISO-8859-4},
+     * {@code ISO-8859-5}, {@code ISO-8859-6}, {@code ISO-8859-7}, {@code ISO-8859-8}, {@code ISO-8859-9},
+     * {@code ISO-8859-10}, {@code ISO-8859-11}, {@code ISO-8859-12}, {@code ISO-8859-13}, {@code ISO-8859-14},
+     * {@code ISO-8859-15}, {@code ISO-8859-16},
+     * {@code JIS_X0201}, {@code Shift_JIS}, {@code EUC-JP}, {@code US-ASCII}, {@code EBCDIC}, {@code EUC-KR},
+     * {@code Big5}, {@code GB2312}.
+     * </font></blockquote>
      *
-     * @condition Not used and not defined by encoding.
+     * @return Character coding standard used for the metadata, or {@code null}.
+     *
+     * @departure historic
+     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
+     *   See {@link #getLanguages()} for more information.
+     *
+     * @see org.opengis.metadata.identification.DataIdentification#getCharacterSets()
+     * @see Charset#forName(String)
      */
     @Profile(level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
-    CharacterSet getCharacterSet();
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003
+    Charset getCharacterSet();
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).
