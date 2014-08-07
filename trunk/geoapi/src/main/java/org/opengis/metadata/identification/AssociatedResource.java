@@ -67,7 +67,6 @@ public interface AssociatedResource {
 
     /**
      * Type of initiative under which the associated resource was produced.
-     * May be {@code null} if unspecified.
      *
      * @return The type of initiative under which the associated resource was produced, or {@code null} if none.
      */

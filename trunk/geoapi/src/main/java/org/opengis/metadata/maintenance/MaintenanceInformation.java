@@ -79,8 +79,8 @@ public interface MaintenanceInformation {
      * Scheduled revision date for resource.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMaintenanceDates()} in order to enable inclusion
-     *             of a {@link DateType} to describe the type of the date. Note that {@link DateType#NEXT_UPDATE}
-     *             was added to that code list.
+     *             of a {@link org.opengis.metadata.citation.DateType} to describe the type of the date.
+     *             Note that {@link org.opengis.metadata.citation.DateType#NEXT_UPDATE} was added to that code list.
      *
      * @return Scheduled revision date, or {@code null}.
      */

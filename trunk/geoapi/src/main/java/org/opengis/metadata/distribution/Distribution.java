@@ -34,6 +34,7 @@ package org.opengis.metadata.distribution;
 import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,11 +45,21 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * Information about the distributor of and options for obtaining the resource.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {
+    /**
+     * Brief description of a set of distribution options.
+     *
+     * @return Brief description of a set of distribution options.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getDescription();
+
     /**
      * Provides a description of the format of the data to be distributed.
      *

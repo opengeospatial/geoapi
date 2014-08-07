@@ -51,6 +51,8 @@ public interface FeatureTypeInfo {
      * Name of the feature type.
      *
      * @return Name of the feature type.
+     *
+     * @see org.opengis.feature.FeatureType#getName()
      */
     @UML(identifier="featureTypeName", obligation=MANDATORY, specification=ISO_19115)
     GenericName getFeatureTypeName();

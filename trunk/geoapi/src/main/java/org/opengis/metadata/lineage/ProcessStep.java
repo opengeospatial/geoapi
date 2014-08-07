@@ -84,7 +84,7 @@ public interface ProcessStep {
      *
      * @return Date on or over which the process step occurred, or {@code null} if none.
      */
-    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getDate();
 
     /**

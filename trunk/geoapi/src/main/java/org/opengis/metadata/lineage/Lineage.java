@@ -71,20 +71,22 @@ public interface Lineage {
 
     /**
      * Type of resource and / or extent to which the lineage information applies.
-     * Returns an empty collection if none.
      *
-     * @return Information about an event in the creation process.
+     * @return Type of resource and / or extent, or {@code null} if none.
      *
      * @since 3.1
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Scope> getScopes();
+    Scope getScope();
 
     /**
-     * Resource (for example publication) that describes the whole
-     * process to generate this resource (for example a dataset).
+     * Additional documentation.
      *
-     * @return Resource that describes the whole process to generate this resource.
+     * <blockquote><font size="-1"><b>Example</b>
+     * a publication that describes the whole process to generate this resource (for example a dataset).
+     * </font></blockquote>
+     *
+     * @return Additional documentation.
      *
      * @since 3.1
      */
@@ -92,9 +94,9 @@ public interface Lineage {
     Collection<? extends Citation> getAdditionalDocumentation();
 
     /**
-     * Information about an event in the creation process for the data specified by the scope.
+     * Information about events in the life of a resource specified by the scope.
      *
-     * @return Information about an event in the creation process.
+     * @return Information about events in the life of a resource.
      *
      * @condition Mandatory if {@linkplain #getStatement() statement} and
      *            {@linkplain #getSources() source} are not provided.

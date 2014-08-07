@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Description of the content of a dataset.
+ * Description of the content of a resource.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1

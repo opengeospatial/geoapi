@@ -49,11 +49,14 @@
  * </tr><tr><td width="50%" nowrap>
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
+ *  │   ├─ FeatureCatalogue
  *  │   ├─ {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}
  *  │   └─ {@linkplain org.opengis.metadata.content.CoverageDescription}
  *  │       └─ {@linkplain org.opengis.metadata.content.ImageDescription}
+ *  ├─ {@linkplain org.opengis.metadata.content.FeatureTypeInfo}
  *  ├─ {@linkplain org.opengis.metadata.content.RangeDimension}
- *  │   └─ {@linkplain org.opengis.metadata.content.Band}
+ *  │   └─ {@linkplain org.opengis.metadata.content.SampleDimension}
+ *  │       └─ {@linkplain org.opengis.metadata.content.Band}
  *  └─ {@linkplain org.opengis.metadata.content.RangeElementDescription}
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.content.BandDefinition}
@@ -64,9 +67,11 @@
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
  * {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}
+ *  └─ {@linkplain org.opengis.metadata.content.FeatureTypeInfo}
  * {@linkplain org.opengis.metadata.content.CoverageDescription}
- *  ├─ {@linkplain org.opengis.metadata.content.CoverageContentType} «code list»
- *  ├─ {@linkplain org.opengis.metadata.content.RangeDimension}
+ *  ├─ {@linkplain org.opengis.metadata.content.AttributeGroup}
+ *  │   ├─ {@linkplain org.opengis.metadata.content.CoverageContentType} «code list»
+ *  │   └─ {@linkplain org.opengis.metadata.content.RangeDimension}
  *  └─ {@linkplain org.opengis.metadata.content.RangeElementDescription}
  * {@linkplain org.opengis.metadata.content.Band}
  *  ├─ {@linkplain org.opengis.metadata.content.BandDefinition} «code list»

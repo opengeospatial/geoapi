@@ -75,8 +75,13 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * Earth location in the coordinate system defined by the Spatial Reference System
      * and the grid coordinate of the cells at opposite ends of grid coverage along two
-     * diagonals in the grid spatial dimensions. There are four corner points in a
-     * georectified grid; at least two corner points along one diagonal are required.
+     * diagonals in the grid spatial dimensions.
+     *
+     * <p>The {@linkplain List#size() list size} shall be 2 or 4.
+     * The list shall contain at least two corner points along one diagonal.
+     * or may contains the 4 corner points of the georectified grid.</p>
+     *
+     * <p>The first corner point corresponds to the origin of the grid.</p>
      *
      * @return The corner points.
      */
@@ -102,15 +107,16 @@ public interface Georectified extends GridSpatialRepresentation {
     PixelOrientation getPointInPixel();
 
     /**
-     * Description of the information about which grid dimensions are the spatial dimensions.
+     * General description of the transformation.
      *
-     * @return Description of the information about grid dimensions, or {@code null}.
+     * @return General description of the transformation, or {@code null}.
      */
     @UML(identifier="transformationDimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getTransformationDimensionDescription();
 
     /**
      * Information about which grid dimensions are the spatial dimensions.
+     * The list should contain at most 2 elements.
      *
      * @return Information about which grid dimensions are the spatial dimensions, or {@code null}.
      */

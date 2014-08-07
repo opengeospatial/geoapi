@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_GeometricObjects", specification=ISO_19115)
 public interface GeometricObjects {
     /**
-     * Name of point and vector spatial objects used to locate zero-, one-, and two-dimensional
+     * Name of point and vector spatial objects used to locate zero-, one-, two- or three-dimensional
      * spatial locations in the dataset.
      *
      * @return Name of spatial objects used to locate spatial locations in the dataset.

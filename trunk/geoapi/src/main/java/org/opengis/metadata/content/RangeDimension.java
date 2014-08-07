@@ -53,9 +53,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_RangeDimension", specification=ISO_19115)
 public interface RangeDimension {
     /**
-     * Number that uniquely identifies instances of bands of wavelengths on which a sensor operates.
+     * Unique name or number that identifies attributes included in the coverage.
      *
-     * @return Identifier of bands on which a sensor operates, or {@code null} if none.
+     * @return Unique name or number, or {@code null} if none.
      */
     @UML(identifier="sequenceIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     MemberName getSequenceIdentifier();
@@ -85,7 +85,9 @@ public interface RangeDimension {
      * Identifiers for each attribute included in the resource. These identifiers
      * can be use to provide names for the attribute from a standard set of names.
      *
-     * @return identifiers for each attribute included in the resource.
+     * @return Identifiers for each attribute included in the resource.
+     *
+     * @since 3.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Identifier> getNames();

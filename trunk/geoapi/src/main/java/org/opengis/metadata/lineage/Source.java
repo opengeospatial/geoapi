@@ -143,9 +143,9 @@ public interface Source {
     Collection<? extends Extent> getSourceExtents();
 
     /**
-     * Information about an event in the creation process for the source data.
+     * Information about process steps in which this source was used.
      *
-     * @return Information about an event in the creation process.
+     * @return Information about process steps in which this source was used.
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ProcessStep> getSourceSteps();

@@ -44,14 +44,16 @@
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td width="50%" nowrap>
  * <pre> ISO-19115 object
- *  └─ {@linkplain org.opengis.metadata.constraint.Constraints}
- *      ├─ {@linkplain org.opengis.metadata.constraint.LegalConstraints}
- *      └─ {@linkplain org.opengis.metadata.constraint.SecurityConstraints}
+ *  ├─ {@linkplain org.opengis.metadata.constraint.Constraints}
+ *  │   ├─ {@linkplain org.opengis.metadata.constraint.LegalConstraints}
+ *  │   └─ {@linkplain org.opengis.metadata.constraint.SecurityConstraints}
+ *  └─ {@linkplain org.opengis.metadata.constraint.Releasability}
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.constraint.Restriction}
  *  └─ {@linkplain org.opengis.metadata.constraint.Classification}</pre>
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.constraint.Constraints}
+ *  └─ {@linkplain org.opengis.metadata.constraint.Releasability}
  * {@linkplain org.opengis.metadata.constraint.LegalConstraints}
  *  └─ {@linkplain org.opengis.metadata.constraint.Restriction} «code list»
  * {@linkplain org.opengis.metadata.constraint.SecurityConstraints}

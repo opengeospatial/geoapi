@@ -29,9 +29,10 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.maintenance;
+package org.opengis.metadata;
 
 import org.opengis.annotation.UML;
+import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
