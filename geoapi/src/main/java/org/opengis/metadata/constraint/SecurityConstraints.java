@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Handling restrictions imposed on the resource for national security or similar security concerns.
+ * Handling restrictions imposed on the resource or metadata for national security or similar security concerns.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

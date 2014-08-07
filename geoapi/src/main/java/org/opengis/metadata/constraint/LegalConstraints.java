@@ -41,9 +41,6 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Restrictions and legal prerequisites for accessing and using the resource.
- * The {@linkplain #getOtherConstraints() other constraint} element shall be non-empty (used) only if
- * {@linkplain #getAccessConstraints() access constraints} and/or {@linkplain #getUseConstraints()
- * use constraints} elements have a value of {@link Restriction#OTHER_RESTRICTIONS}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -54,28 +51,40 @@ import static org.opengis.annotation.Specification.*;
 public interface LegalConstraints extends Constraints {
     /**
      * Access constraints applied to assure the protection of privacy or intellectual property,
-     * and any special restrictions or limitations on obtaining the resource.
+     * and any special restrictions or limitations on obtaining the resource or metadata.
      *
      * @return Access constraints applied to assure the protection of privacy or intellectual property.
+     *
+     * @condition Mandatory if
+     * {@linkplain #getUseConstraints() use constraints},
+     * {@linkplain #getOtherConstraints() other constraints},
+     * {@linkplain #getUseLimitations() use limitations} and
+     * {@linkplain #getReleasability() releasibility} are null or empty.
      */
-    @UML(identifier="accessConstraints", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="accessConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<Restriction> getAccessConstraints();
 
     /**
      * Constraints applied to assure the protection of privacy or intellectual property, and any
-     * special restrictions or limitations or warnings on using the resource.
+     * special restrictions or limitations or warnings on using the resource or metadata.
      *
      * @return Constraints applied to assure the protection of privacy or intellectual property.
+     *
+     * @condition Mandatory if
+     * {@linkplain #getAccessConstraints() access constraints},
+     * {@linkplain #getOtherConstraints() other constraints},
+     * {@linkplain #getUseLimitations() use limitations} and
+     * {@linkplain #getReleasability() releasibility} are null or empty.
      */
-    @UML(identifier="useConstraints", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="useConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<Restriction> getUseConstraints();
 
     /**
-     * Other restrictions and legal prerequisites for accessing and using the resource.
+     * Other restrictions and legal prerequisites for accessing and using the resource or metadata.
      *
      * @return Other restrictions and legal prerequisites for accessing and using the resource.
      *
-     * @condition Mandatory if and only if the {@linkplain #getAccessConstraints() access constraints} or
+     * @condition Mandatory if the {@linkplain #getAccessConstraints() access constraints} or
      *            {@linkplain #getUseConstraints() use constraints} contain {@link Restriction#OTHER_RESTRICTIONS}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)

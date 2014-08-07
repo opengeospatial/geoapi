@@ -79,11 +79,30 @@ public interface Metadata {
      *
      * @return Language used for documenting metadata, or {@code null}.
      *
-     * @condition Not defined by encoding.
+     * @departure historic
+     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
+     *   The ISO 19115:2014 revision merged the language and character encoding information into a single class
+     *   (namely <code>PT_Locale</code>), but this design does not fit well with the Java model.
+     *   For example the character encoding information is irrelevant to <code>InternationalString</code>
+     *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
+     *
+     * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
+     * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLanguages()
+     * @see Locale#getISO3Language()
      */
     @Profile(level=CORE)
     @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
     Locale getLanguage();
+
+    /**
+     * Provides information about an alternatively used localized character string for a linguistic extension.
+     *
+     * @return Alternatively used localized character string for a linguistic extension.
+     *
+     * @since 2.1
+     */
+    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<Locale> getLocales();
 
     /**
      * The character coding standard used for the metadata set.
@@ -103,7 +122,7 @@ public interface Metadata {
      *
      * @departure historic
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   See {@link #getLanguages()} for more information.
+     *   See <code>getLanguages()</code> for more information.
      *
      * @see org.opengis.metadata.identification.DataIdentification#getCharacterSets()
      * @see Charset#forName(String)
@@ -203,17 +222,6 @@ public interface Metadata {
      */
     @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
     String getDataSetUri();
-
-    /**
-     * Provides information about an alternatively used localized character
-     * string for a linguistic extension.
-     *
-     * @return Alternatively used localized character string for a linguistic extension.
-     *
-     * @since 2.1
-     */
-    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Locale> getLocales();
 
     /**
      * Digital representation of spatial information in the dataset.

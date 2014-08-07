@@ -42,10 +42,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information identifying the feature catalogue.
+ * Information identifying the feature catalogue or the conceptual schema.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_FeatureCatalogueDescription", specification=ISO_19115)
@@ -63,24 +63,51 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Language(s) used within the catalogue.
      *
      * @return Language(s) used within the catalogue.
+     *
+     * @departure historic
+     *   GeoAPI has kept the <code>language</code> property as defined in ISO 19115:2003.
+     *   See <code>Metadata.getLanguage()</code> for more information.
+     *
+     * @see org.opengis.metadata.Metadata#getLanguage()
      */
     @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Locale> getLanguages();
 
     /**
-     * Indication of whether or not the feature catalogue is included with the dataset.
+     * Indication of whether or not the feature catalogue is included with the resource.
      *
-     * @return whether or not the feature catalogue is included with the dataset.
+     * @return whether or not the feature catalogue is included with the resource.
      */
     @UML(identifier="includedWithDataset", obligation=MANDATORY, specification=ISO_19115)
     boolean isIncludedWithDataset();
 
     /**
-     * Subset of feature types from cited feature catalogue occurring in dataset.
+     * Subset of feature types from cited feature catalogue occurring in resource
+     * and count of feature instances.
      *
-     * @return Subset of feature types occurring in dataset.
+     * @return Subset of feature types occurring in resource.
+     *
+     * @departure rename
+     *   Renamed from "<code>featureTypes</code>" to "<code>featureTypeInfo</code>" for the following reasons:
+     *   <ol>
+     *     <li>Avoid name collision with the ISO 19115:2003 definition of "<code>featureTypes</code>".</li>
+     *     <li>Avoid confusion between <code>FeatureTypeInfo</code> and <code>org.opengis.feature.FeatureType</code>.
+     *         A <code>getFeatureTypes()</code> method name would suggest that the collection contains the later.</li>
+     *   </ol>
+     *
+     * @since 3.1
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends FeatureTypeInfo> getFeatureTypeInfo();
+
+    /**
+     * Names of the {@linkplain #getFeatureTypes() feature types}.
+     *
+     * @return Names of the feature types.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getFeatureTypeInfo()}.
+     */
+    @Deprecated
     Collection<? extends GenericName> getFeatureTypes();
 
     /**

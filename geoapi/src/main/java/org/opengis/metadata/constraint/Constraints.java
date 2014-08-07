@@ -66,14 +66,13 @@ public interface Constraints {
 
     /**
      * Spatial and / or temporal extents and or levels of the application of the constraints restrictions.
-     * Returns an empty collection if none.
      *
-     * @return Spatial and / or temporal extent.
+     * @return Spatial and / or temporal extent, or {@code null} if none.
      *
      * @since 3.1
      */
     @UML(identifier="constraintApplicationScope", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Scope> getConstraintApplicationScopes();
+    Scope getConstraintApplicationScope();
 
     /**
      * Graphics / symbols indicating the constraint.
@@ -90,7 +89,7 @@ public interface Constraints {
      * Citations for the limitation of constraint.
      * Returns an empty collection if none.
      *
-     * <blockquote><font size="-1"><b>Example:</b> copyright statement, license agreement, etc…</font></blockquote>
+     * <blockquote><font size="-1"><b>Example:</b> copyright statement, license agreement, <i>etc</i>.</font></blockquote>
      *
      * @return Citations for the limitation of constraint, or {@code null} if none.
      *
@@ -102,7 +101,7 @@ public interface Constraints {
     /**
      * Information concerning the parties to whom the resource can or cannot be released.
      *
-     * @return Information concerning the parties to whom the resource, or {@code null} if none.
+     * @return Information concerning the parties to whom the resource.
      *
      * @since 3.1
      */

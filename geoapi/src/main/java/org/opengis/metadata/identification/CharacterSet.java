@@ -48,7 +48,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * The UML identifiers were defined in ISO 19115:2003, but removed from ISO 19115:2014.
  * Mapping from legacy UML identifiers to the IANA names is as below:
  *
- * <blockquote><pre># From ISO 19115:2003 to java.nio.charset
+ * <blockquote><pre> # From ISO 19115:2003 to java.nio.charset
  * ucs2       = UCS-2
  * ucs4       = UCS-4
  * utf7       = UTF-7
@@ -82,7 +82,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * This mapping is provided by GeoAPI in the {@code org/opengis/metadata/2003/charset-codes.properties} file.
  * This file can be read as below:
  *
- * <blockquote><pre>final Properties codes = new Properties();
+ * <blockquote><pre> final Properties codes = new Properties();
  * try (InputStream in = Metadata.class.getResourceAsStream("2003/charset-codes.properties")) {
  *     codes.load(in);
  * }</pre></blockquote>

@@ -53,14 +53,14 @@ public interface AttributeGroup {
      * @return Types of information represented by the value(s).
      */
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends CoverageContentType> getContentTypes();
+    Collection<CoverageContentType> getContentTypes();
 
     /**
-     * Content types for attributes groups for a {@link RangeDimension}.
+     * Information on an attribute of the resource.
      * Returns an empty collection if none.
      *
-     * @return Content types for attributes groups for a {@link RangeDimension}.
+     * @return Information on an attribute of the resource.
      */
-    @UML(identifier="groupAttribute", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends RangeDimension> getGroupAttributes();
+    @UML(identifier="attribute", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends RangeDimension> getAttributes();
 }

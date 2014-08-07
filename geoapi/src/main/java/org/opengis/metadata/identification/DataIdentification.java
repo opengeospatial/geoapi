@@ -62,13 +62,15 @@ public interface DataIdentification extends Identification {
      *
      * @return Language(s) used.
      *
-     * @see Locale#getISO3Language()
-     *
      * @departure historic
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   The ISO 19115:2014 revision merged the language and character encoding information into a single class, but this
-     *   design does not fit well with the Java model. For example the character encoding information is irrelevant to
-     *   {@code InternationalString} since the Java language fixes the encoding of all {@code String} instances to UTF-16.
+     *   The ISO 19115:2014 revision merged the language and character encoding information into a single class
+     *   (namely <code>PT_Locale</code>), but this design does not fit well with the Java model.
+     *   For example the character encoding information is irrelevant to <code>InternationalString</code>
+     *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
+     *
+     * @see org.opengis.metadata.Metadata#getLanguage()
+     * @see Locale#getISO3Language()
      */
     @Profile(level=CORE)
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115) // Actually from ISO 19115:2003
@@ -92,7 +94,7 @@ public interface DataIdentification extends Identification {
      *
      * @departure historic
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   See {@link #getLanguages()} for more information.
+     *   See <code>getLanguages()</code> for more information.
      *
      * @see org.opengis.metadata.Metadata#getCharacterSet()
      * @see Charset#forName(String)

@@ -88,7 +88,6 @@ public interface Band extends SampleDimension {
      * Returns {@code null} if unspecified.
      *
      * @return Wavelength at which the response is the highest, or {@code null} if unspecified.
-     *         The units of measurement is given by {@link #getUnits()}.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
     Double getPeakResponse();
