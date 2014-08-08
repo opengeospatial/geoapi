@@ -33,17 +33,18 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import javax.measure.unit.Unit;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.metadata.Identifier;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about the media on which the resource can be distributed.
+ * Information about the media on which the resource can be stored or distributed.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
@@ -53,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_Medium", specification=ISO_19115)
 public interface Medium {
     /**
-     * Name of the medium on which the resource can be received.
+     * Name of the medium on which the resource can be stored or distributed.
      *
      * @return Name of the medium, or {@code null}.
      */
@@ -65,8 +66,18 @@ public interface Medium {
      * The numbers shall be greater than zero.
      *
      * @return Density at which the data is recorded, or {@code null}.
+     *
+     * @since 3.1
      */
     @UML(identifier="density", obligation=OPTIONAL, specification=ISO_19115)
+    Double getDensity();
+
+    /**
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getDensity()}.
+     *
+     * @return Density at which the data is recorded.
+     */
+    @Deprecated
     Collection<Double> getDensities();
 
     /**
@@ -103,4 +114,14 @@ public interface Medium {
      */
     @UML(identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMediumNote();
+
+    /**
+     * Unique identifier for an instance of the medium.
+     *
+     * @return Unique identifier, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
+    Identifier getIdentifier();
 }

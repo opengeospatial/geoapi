@@ -32,6 +32,8 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Date;
+import org.opengis.util.Record;
+import org.opengis.util.RecordType;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
@@ -51,9 +53,13 @@ import static org.opengis.annotation.Specification.*;
 public interface StandardOrderProcess {
     /**
      * Fees and terms for retrieving the resource.
-     * Include monetary units (as specified in ISO 4217).
+     * Includes monetary units (as specified in ISO 4217).
      *
      * @return Fees and terms for retrieving the resource, or {@code null}.
+     *
+     * @see java.util.Currency
+     *
+     * @todo Do we add a {@code getCurrencies()} method, since {@code Currency} is ISO 4217 compliant?
      */
     @UML(identifier="fees", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFees();
@@ -89,4 +95,30 @@ public interface StandardOrderProcess {
      */
     @UML(identifier="turnaround", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getTurnaround();
+
+    /**
+     * Description of the {@linkplain #getOrderOptions() order options} record.
+     *
+     * @return Description of the order options record, or {@code null} if none.
+     *
+     * @since 3.1
+     *
+     * @see Record#getRecordType()
+     */
+    @UML(identifier="orderOptionType", obligation=OPTIONAL, specification=ISO_19115)
+    RecordType getOrderOptionType();
+
+    /**
+     * Request/purchase choices.
+     *
+     * @return Request/purchase choices.
+     *
+     * @since 3.1
+     *
+     * @todo We presume that this record is filled by the vendor for describing the options chosen by the client
+     *       when he ordered the resource. We presume that this is not a record to be filled by the user for new
+     *       orders, otherwise this method would need to be a factory rather than a getter.
+     */
+    @UML(identifier="orderOptions", obligation=OPTIONAL, specification=ISO_19115)
+    Record getOrderOptions();
 }
