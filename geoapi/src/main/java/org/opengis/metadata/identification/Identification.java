@@ -34,10 +34,12 @@ package org.opengis.metadata.identification;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
+import org.opengis.metadata.MetadataScope;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
+import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Format;
 import org.opengis.metadata.extent.Extent;
@@ -207,6 +209,8 @@ public interface Identification {
      * @return Code that identifies the level of processing in the producers coding system of a resource.
      *
      * @since 3.1
+     *
+     * @see org.opengis.metadata.content.CoverageDescription#getProcessingLevelCode()
      */
     @UML(identifier="processingLevel", obligation=OPTIONAL, specification=ISO_19115)
     Identifier getProcessingLevel();

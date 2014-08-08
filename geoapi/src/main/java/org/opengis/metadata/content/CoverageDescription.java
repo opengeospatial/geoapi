@@ -67,6 +67,8 @@ public interface CoverageDescription extends ContentInformation {
      * @return Identifier for the level of processing that has been applied to the resource, or {@code null} if none.
      *
      * @since 3.1
+     *
+     * @see org.opengis.metadata.identification.Identification#getProcessingLevel()
      */
     @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
     Identifier getProcessingLevelCode();
@@ -99,7 +101,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @since 2.1
      *
-     * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getGroupAttributes()}.
+     * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getAttributes()}.
      */
     @Deprecated
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
