@@ -42,6 +42,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * New metadata element, not found in ISO 19115, which is required to describe geographic data.
+ * Metadata elements are contained in a {@linkplain MetadataExtensionInformation metadata extension information}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
@@ -53,6 +54,14 @@ public interface ExtendedElementInformation {
      * Name of the extended metadata element.
      *
      * @return Name of the extended metadata element.
+     *
+     * @departure historic
+     *    This property has been kept conform to ISO 19115:2003 for simplicity.
+     *    The 2014 revision defines two mutually exclusive names depending on the data type:
+     *    "<code>conceptName</code>" for <code>ENUMERATION</code>, <code>CODE_LIST</code> or
+     *    <code>CODE_LIST_ELEMENT</code>, and "<code>name</code>" for all other data types.
+     *    GeoAPI keeps the "<code>name</code>" property for all data types and let developers
+     *    inspect the "<code>dataType</code>" property if needed.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
     String getName();
@@ -68,7 +77,10 @@ public interface ExtendedElementInformation {
      *
      * @condition The {@linkplain #getDataType() data type} is not
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
+     *
+     * @deprecated Removed as of ISO 19115:2014.
      */
+    @Deprecated
     @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115)
     String getShortName();
 
@@ -82,7 +94,10 @@ public interface ExtendedElementInformation {
      *
      * @condition The {@linkplain #getDataType() data type} is
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
+     *
+     * @deprecated Removed as of ISO 19115:2014.
      */
+    @Deprecated
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115)
     Integer getDomainCode();
 
@@ -176,8 +191,18 @@ public interface ExtendedElementInformation {
      * Reason for creating the extended element.
      *
      * @return Reason for creating the extended element.
+     *
+     * @since 3.1
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getRationale();
+
+    /**
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getRationale()}.
+     *
+     * @return Reason for creating the extended element.
+     */
+    @Deprecated
     Collection<? extends InternationalString> getRationales();
 
     /**

@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Time period covered by the content of the dataset.
+ * Time period covered by the content of the resource.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -48,9 +48,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_TemporalExtent", specification=ISO_19115)
 public interface TemporalExtent {
     /**
-     * The date and time for the content of the dataset.
+     * Period for the content of the resource.
      *
-     * @return The date and time for the content.
+     * @return The period for the content.
      */
     @UML(identifier="extent", obligation=MANDATORY, specification=ISO_19108)
     TemporalPrimitive getExtent();

@@ -44,7 +44,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
- * Information about spatial, vertical, and temporal extent.
+ * Information about spatial, vertical, and temporal extent of the resource.
  * This interface has four optional attributes
  * ({@linkplain #getGeographicElements() geographic elements},
  *  {@linkplain #getTemporalElements() temporal elements}, and
@@ -64,7 +64,7 @@ public interface Extent {
      *
      * @return The spatial and temporal extent, or {@code null} in none.
      *
-     * @condition Mandatory if {@linkplain #getGeographicElements() Geographic element},
+     * @condition Mandatory if {@linkplain #getGeographicElements() geographic element},
      *            {@linkplain #getTemporalElements() temporal element} and
      *            {@linkplain #getVerticalElements() vertical element} are not provided.
      */
@@ -76,7 +76,7 @@ public interface Extent {
      *
      * @return The geographic extent, or an empty set if none.
      *
-     * @condition Mandatory if {@linkplain #getDescription() Description},
+     * @condition Mandatory if {@linkplain #getDescription() description},
      *            {@linkplain #getTemporalElements() temporal element} and
      *            {@linkplain #getVerticalElements() vertical element} are not provided.
      */
@@ -89,7 +89,7 @@ public interface Extent {
      *
      * @return The temporal extent, or an empty set if none.
      *
-     * @condition Mandatory if {@linkplain #getDescription() Description},
+     * @condition Mandatory if {@linkplain #getDescription() description},
      *            {@linkplain #getGeographicElements() geographic element} and
      *            {@linkplain #getVerticalElements() vertical element} are not provided.
      */
@@ -102,7 +102,7 @@ public interface Extent {
      *
      * @return The vertical extent, or an empty set if none.
      *
-     * @condition Mandatory if {@linkplain #getDescription() Description},
+     * @condition Mandatory if {@linkplain #getDescription() description},
      *            {@linkplain #getGeographicElements() geographic element} and
      *            {@linkplain #getTemporalElements() temporal element} are not provided.
      */
