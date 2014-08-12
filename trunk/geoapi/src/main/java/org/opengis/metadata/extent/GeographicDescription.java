@@ -40,6 +40,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of the geographic area using identifiers.
+ * Geographic identifiers are described in ISO 19112.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

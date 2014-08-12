@@ -56,7 +56,7 @@ public interface OperationMetadata {
      * @return An unique identifier for this interface.
      */
     @UML(identifier="operationName", obligation=MANDATORY, specification=ISO_19115)
-    InternationalString getOperationName();
+    String getOperationName();
 
     /**
      * Distributed computing platforms (DCPs) on which the operation has been implemented.

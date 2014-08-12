@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base interface for geographic area of the dataset.
+ * Base interface for geographic area of the resource.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -53,6 +53,7 @@ public interface GeographicExtent {
     /**
      * Indication of whether the bounding polygon encompasses an area covered by the data
      * (<cite>inclusion</cite>) or an area where data is not present (<cite>exclusion</cite>).
+     * The default value is {@code true}.
      *
      * @return {@code true} for inclusion, {@code false} for exclusion, or {@code null} if unspecified.
      *

@@ -31,7 +31,7 @@
  */
 package org.opengis.metadata.service;
 
-import java.util.Collection;
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
 
@@ -65,10 +65,10 @@ public interface OperationChainMetadata {
     InternationalString getDescription();
 
     /**
-     * Information about the operations applied by the chain.
+     * Ordered information about the operations applied by the chain.
      *
      * @return Information about the operations applied by the chain.
      */
     @UML(identifier="operation", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends OperationMetadata> getOperations();
+    List<? extends OperationMetadata> getOperations();
 }

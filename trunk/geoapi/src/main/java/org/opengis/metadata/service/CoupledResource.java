@@ -73,9 +73,10 @@ public interface CoupledResource {
     /**
      * References to the resource on which the services operates.
      * Returns an empty collection if none.
-     * Only one of {@linkplain #getResources() resources} and resource references should be non-empty.
      *
      * @return References to the resource on which the services operates.
+     *
+     * @condition Only one of {@linkplain #getResources() resources} and resource references should be non-empty.
      *
      * @see DataIdentification#getCitation()
      */
@@ -85,9 +86,10 @@ public interface CoupledResource {
     /**
      * The tightly coupled resources.
      * Returns an empty collection if none.
-     * Only one of resources and {@linkplain #getResourceReferences() resource references} should be non-empty.
      *
      * @return Tightly coupled resources.
+     *
+     * @condition Only one of resources and {@linkplain #getResourceReferences() resource references} should be non-empty.
      */
     @UML(identifier="resource", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends DataIdentification> getResources();

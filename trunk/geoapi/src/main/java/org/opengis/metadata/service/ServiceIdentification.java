@@ -99,7 +99,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return Type of coupling between service and associated data, or {@code null} if none.
      *
-     * @condition mandatory if {@linkplain #getCoupledResource()} is not provided.
+     * @condition mandatory if {@linkplain #getCoupledResources()} is not provided.
      */
     @UML(identifier="couplingType", obligation=CONDITIONAL, specification=ISO_19115)
     CouplingType getCouplingType();
@@ -120,6 +120,9 @@ public interface ServiceIdentification extends Identification {
      * Returns an empty collection if none.
      *
      * @return Reference(s) to the resource on which the service operates.
+     *
+     * @condition For one resource either {@code operatedDataset} or {@link #getOperatesOn() operatesOn}
+     *            may be used (not both for the same resource).
      */
     @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getOperatedDatasets();
@@ -156,6 +159,9 @@ public interface ServiceIdentification extends Identification {
      * Returns an empty collection if none.
      *
      * @return Information on the resources that the service operates on.
+     *
+     * @condition For one resource either {@link #getOperatedDatasets() operatedDataset}
+     *            or {@code operatesOn} may be used (not both for the same resource).
      */
     @UML(identifier="operatesOn", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends DataIdentification> getOperatesOn();
