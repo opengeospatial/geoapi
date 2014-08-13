@@ -74,14 +74,14 @@ public class RootValidator extends MetadataValidator {
         }
         final Collection<ScopeCode> hierarchyLevels = object.getHierarchyLevels();
         final Collection<String> hierarchyLevelNames = object.getHierarchyLevelNames();
-        final Collection<? extends ResponsibleParty> contacts = object.getContacts();
+        final Collection<? extends Responsibility> contacts = object.getContacts();
         if ((hierarchyLevels != null) && hierarchyLevels.contains(ScopeCode.DATASET)) {
             forbidden("Metadata: parentIdentifier not allowed for ScopeCode.DATASET.",   object.getParentIdentifier());
             forbidden("Metadata: hierarchyLevelName not allowed for ScopeCode.DATASET.", hierarchyLevelNames);
         }
         validate(hierarchyLevels);
         validate(hierarchyLevelNames);
-        for (final ResponsibleParty e : toArray(ResponsibleParty.class, contacts)) {
+        for (final Responsibility e : toArray(Responsibility.class, contacts)) {
             container.validate(e);
         }
         mandatory("Metadata: must have a date stamp.", object.getDateStamp());

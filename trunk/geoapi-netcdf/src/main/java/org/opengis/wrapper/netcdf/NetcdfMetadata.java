@@ -259,9 +259,10 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to {@code null}.
+     * @deprecated Removed as of ISO 19115:2014.
      */
     @Override
+    @Deprecated
     public InternationalString getCollectiveTitle() {
         return null;
     }
@@ -275,11 +276,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to {@code null}.
+     * Defaults to an empty set.
      */
     @Override
-    public InternationalString getOtherCitationDetails() {
-        return null;
+    public Collection<InternationalString> getOtherCitationDetails() {
+        return Collections.emptySet();
     }
 
     /**
@@ -1019,10 +1020,10 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to an empty set.
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getAssociatedResources()}.
      */
     @Override
-    @SuppressWarnings("deprecation")
+    @Deprecated
     public Collection<? extends AggregateInformation> getAggregationInfo() {
         return Collections.emptySet();
     }

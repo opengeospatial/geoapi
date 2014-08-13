@@ -137,11 +137,23 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CitationValidator#validate(ResponsibleParty)
+     * @see CitationValidator#validate(Responsibility)
      *
      * @since 3.1
      */
-    public static void validate(final ResponsibleParty object) {
+    public static void validate(final Responsibility object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Party)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Party object) {
         DEFAULT.validate(object);
     }
 

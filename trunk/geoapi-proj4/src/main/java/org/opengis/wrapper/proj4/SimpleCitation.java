@@ -84,12 +84,13 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString {
     @Override public Set<Responsibility>        getCitedResponsibleParties() {return emptySet();}
     @Override public Set<PresentationForm>      getPresentationForms()       {return emptySet();}
     @Override public Series                     getSeries()                  {return null;}
-    @Override public InternationalString        getOtherCitationDetails()    {return null;}
-    @Override public InternationalString        getCollectiveTitle()         {return null;}
+    @Override public Set<InternationalString>   getOtherCitationDetails()    {return emptySet();}
     @Override public String                     getISBN()                    {return null;}
     @Override public String                     getISSN()                    {return null;}
     @Override public Collection<OnlineResource> getOnlineResources()         {return emptySet();}
     @Override public Collection<BrowseGraphic>  getGraphics()                {return emptySet();}
+    @Deprecated
+    @Override public InternationalString        getCollectiveTitle()         {return null;}
 
     /*
      * Global NameSpace implementations.
