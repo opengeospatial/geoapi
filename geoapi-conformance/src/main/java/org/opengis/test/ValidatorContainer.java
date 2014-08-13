@@ -236,7 +236,8 @@ public class ValidatorContainer implements Cloneable {
     public final void dispatch(final Object object) {
         if (object instanceof Metadata)              validate((Metadata)              object);
         if (object instanceof Citation)              validate((Citation)              object);
-        if (object instanceof ResponsibleParty)      validate((ResponsibleParty)      object);
+        if (object instanceof Responsibility)        validate((Responsibility)        object);
+        if (object instanceof Party)                 validate((Party)                 object);
         if (object instanceof Contact)               validate((Contact)               object);
         if (object instanceof Telephone)             validate((Telephone)             object);
         if (object instanceof Address)               validate((Address)               object);
@@ -282,11 +283,23 @@ public class ValidatorContainer implements Cloneable {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CitationValidator#validate(ResponsibleParty)
+     * @see CitationValidator#validate(Responsibility)
      *
      * @since 3.1
      */
-    public final void validate(final ResponsibleParty object) {
+    public final void validate(final Responsibility object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Party)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Party object) {
         citation.validate(object);
     }
 

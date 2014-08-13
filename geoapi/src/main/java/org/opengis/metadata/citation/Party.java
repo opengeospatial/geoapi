@@ -58,7 +58,7 @@ public interface Party {
      * @return Name of the party, or {@code null} if none.
      *
      * @condition Mandatory if the {@linkplain Organisation#getLogo() logo} and the
-     *            {@linkplain Individual#getPositionName() positionName} are not documented.
+     *            {@linkplain Individual#getPositionName() position name} are not documented.
      */
     @UML(identifier="name", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getName();

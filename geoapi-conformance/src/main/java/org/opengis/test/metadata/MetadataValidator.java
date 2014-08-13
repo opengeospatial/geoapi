@@ -75,17 +75,15 @@ public abstract class MetadataValidator extends Validator {
     final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
         assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);
         @SuppressWarnings("unchecked")
-        final T[] array = (T[]) Array.newInstance(elementType, (objects != null) ? objects.size() : 0);
-        if (objects != null) {
-            validate(objects);
-            int count = 0;
-            for (final T element : objects) {
-                assertNotNull("Collection should not contain null element.", element);
-                assertInstanceOf("Wrong element type in the collection.", elementType, element);
-                array[count++] = element;
-            }
-            assertEquals("Unexpected end of iteration", array.length, count);
+        final T[] array = (T[]) Array.newInstance(elementType, objects.size());
+        validate(objects);
+        int count = 0;
+        for (final T element : objects) {
+            assertNotNull("Collection should not contain null element.", element);
+            assertInstanceOf("Wrong element type in the collection.", elementType, element);
+            array[count++] = element;
         }
+        assertEquals("Unexpected end of iteration", array.length, count);
         return array;
     }
 

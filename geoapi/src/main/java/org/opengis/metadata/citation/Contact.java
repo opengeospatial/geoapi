@@ -61,7 +61,7 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Telephone> getPhones();
+    Collection<? extends Telephone> getPhones();
 
     /**
      * Telephone numbers at which the organization or individual may be contacted.
@@ -84,7 +84,7 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Address> getAddresses();
+    Collection<? extends Address> getAddresses();
 
     /**
      * Physical and email address at which the organization or individual may be contacted.
@@ -107,7 +107,7 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<OnlineResource> getOnlineResources();
+    Collection<? extends OnlineResource> getOnlineResources();
 
     /**
      * On-line information that can be used to contact the individual or organization.

@@ -71,13 +71,17 @@ public class CitationValidator extends MetadataValidator {
         }
         validateMandatory(object.getTitle());
         validateOptional (object.getEdition());
-        validateOptional (object.getOtherCitationDetails());
-        validateOptional (object.getCollectiveTitle());
         for (final InternationalString e : toArray(InternationalString.class, object.getAlternateTitles())) {
             container.validate(e);
         }
         for (final Identifier e : toArray(Identifier.class, object.getIdentifiers())) {
             container.validate(e);
+        }
+        for (final InternationalString e : toArray(InternationalString.class, object.getOtherCitationDetails())) {
+            container.validate(e);
+        }
+        for (final Responsibility e : toArray(Responsibility.class, object.getCitedResponsibleParties())) {
+            validate(e);
         }
     }
 
@@ -88,20 +92,40 @@ public class CitationValidator extends MetadataValidator {
      *
      * @since 3.1
      */
-    public void validate(final ResponsibleParty object) {
+    public void validate(final Responsibility object) {
         if (object == null) {
             return;
         }
-        final String              individual   = object.getIndividualName();
-        final InternationalString organisation = object.getOrganisationName();
-        final InternationalString position     = object.getPositionName();
-        conditional("ResponsibleParty: individualName condition violation.",   individual,   organisation == null && position   == null);
-        conditional("ResponsibleParty: organisationName condition violation.", organisation, individual   == null && position   == null);
-        conditional("ResponsibleParty: positionName condition violation.",     position,     organisation == null && individual == null);
-        validateOptional(organisation);
-        validateOptional(position);
-        validate(object.getContactInfo());
-        mandatory("ResponsibleParty: must have a role.", object.getRole());
+        mandatory("Responsibility: shall have a role.", object.getRole());
+        for (final Party e : toArray(Party.class, object.getParties())) {
+            validate(e);
+        }
+    }
+
+    /**
+     * Validates the given party.
+     *
+     * @param object The object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final Party object) {
+        if (object == null) {
+            return;
+        }
+        boolean isMandatory = true;
+        if (object instanceof Individual) {
+            isMandatory &= isNullOrEmpty(((Individual) object).getPositionName());
+        }
+        if (object instanceof Organisation) {
+            isMandatory &= isNullOrEmpty(((Organisation) object).getLogo());
+        }
+        if (isMandatory) {
+            mandatory("Party: shall have a name.", object.getName());
+        }
+        for (final Contact e : toArray(Contact.class, object.getContactInfo())) {
+            validate(e);
+        }
     }
 
     /**
@@ -115,9 +139,15 @@ public class CitationValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        validate(object.getPhone());
-        validate(object.getAddress());
-        validate(object.getOnlineResource());
+        for (final Telephone e : toArray(Telephone.class, object.getPhones())) {
+            validate(e);
+        }
+        for (final Address e : toArray(Address.class, object.getAddresses())) {
+            validate(e);
+        }
+        for (final OnlineResource e : toArray(OnlineResource.class, object.getOnlineResources())) {
+            validate(e);
+        }
         validateOptional(object.getHoursOfService());
         validateOptional(object.getContactInstructions());
     }
@@ -133,8 +163,7 @@ public class CitationValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        validate(object.getVoices());
-        validate(object.getFacsimiles());
+        mandatory("Telephone: shall have a number.", object.getNumber());
     }
 
     /**
@@ -166,7 +195,7 @@ public class CitationValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("OnlineResource: must have a linkage.", object.getLinkage());
+        mandatory("OnlineResource: shall have a linkage.", object.getLinkage());
         validateOptional(object.getDescription());
     }
 }

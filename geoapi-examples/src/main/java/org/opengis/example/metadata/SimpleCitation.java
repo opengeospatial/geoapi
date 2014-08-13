@@ -229,18 +229,18 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
 
     /**
      * Other information required to complete the citation that is not recorded elsewhere.
-     * The default implementation returns {@code null}.
+     * The default implementation returns an empty set.
      */
     @Override
-    public InternationalString getOtherCitationDetails() {
-        return null;
+    public Set<InternationalString> getOtherCitationDetails() {
+        return emptySet();
     }
 
     /**
-     * Common title with holdings note.
-     * The default implementation returns {@code null}.
+     * @deprecated Removed in ISO 19115:2014.
      */
     @Override
+    @Deprecated
     public InternationalString getCollectiveTitle() {
         return null;
     }

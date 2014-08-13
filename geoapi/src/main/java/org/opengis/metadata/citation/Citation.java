@@ -156,19 +156,22 @@ public interface Citation {
 
     /**
      * Other information required to complete the citation that is not recorded elsewhere.
-     * Returns {@code null} if there is none.
+     * Returns an empty collection if there is none.
      *
-     * @return Other details, or {@code null} if none.
+     * @return Other details.
      */
     @UML(identifier="otherCitationDetails", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getOtherCitationDetails();
+    Collection<? extends InternationalString> getOtherCitationDetails();
 
     /**
      * Common title with holdings note. Title identifies elements of a series collectively,
      * combined with information about what volumes are available at the source cited.
      *
      * @return The common title, or {@code null} if none.
+     *
+     * @deprecated Removed as of ISO 19115:2014.
      */
+    @Deprecated
     @UML(identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCollectiveTitle();
 

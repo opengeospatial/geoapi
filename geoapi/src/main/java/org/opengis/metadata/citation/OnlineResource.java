@@ -57,7 +57,11 @@ import static org.opengis.annotation.Specification.*;
 public interface OnlineResource {
     /**
      * Location (address) for on-line access using a Uniform Resource Locator address or
-     * similar addressing scheme such as {@code "http://www.statkart.no/isotc211"}.
+     * similar addressing scheme.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * {@code "http://www.statkart.no/isotc211"}.
+     * </font></blockquote>
      *
      * @return Location for on-line access using a Uniform Resource Locator address or similar scheme.
      */
@@ -67,6 +71,10 @@ public interface OnlineResource {
 
     /**
      * Connection protocol to be used. Returns {@code null} if none.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * ftp, http get KVP, http POST, <i>etc</i>.
+     * </font></blockquote>
      *
      * @return Connection protocol to be used, or {@code null}.
      */
@@ -109,4 +117,23 @@ public interface OnlineResource {
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115)
     OnLineFunction getFunction();
+
+    /**
+     * Request used to access the resource depending on the protocol.
+     * This is used mainly for POST requests.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * <pre> &lt;GetFeature service="WFS" version="2.0.0"
+     *             outputFormat="application/gml+xml;verson=3.2"
+     *             xmlns="(…snip…)"&gt;
+     *     &lt;Query typeNames="Roads"/&gt;
+     * &lt;/GetFeature&gt;</pre>
+     * </font></blockquote>
+     *
+     * @return Request used to access the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="protocolRequest", obligation=OPTIONAL, specification=ISO_19115)
+    String getProtocolRequest();
 }

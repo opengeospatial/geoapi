@@ -114,8 +114,7 @@ public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, I
     @Override public Collection<Responsibility>   getCitedResponsibleParties()             {return null;}
     @Override public Collection<PresentationForm> getPresentationForms()                   {return null;}
     @Override public Series                       getSeries()                              {return null;}
-    @Override public InternationalString          getOtherCitationDetails()                {return null;}
-    @Override public InternationalString          getCollectiveTitle()                     {return null;}
+    @Override public Set<InternationalString>     getOtherCitationDetails()                {return null;}
     @Override public String                       getISBN()                                {return null;}
     @Override public String                       getISSN()                                {return null;}
     @Override public Collection<OnlineResource>   getOnlineResources()                     {return null;}
@@ -123,4 +122,6 @@ public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, I
     @Override public InternationalString          getDescriptionText(String code)          {return null;}
     @Override public IdentifiedObject             createObject(String code)                {return null;}
     @Override public Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) {return null;}
+    @Deprecated
+    @Override public InternationalString          getCollectiveTitle()                     {return null;}
 }
