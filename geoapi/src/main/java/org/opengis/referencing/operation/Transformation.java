@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -58,6 +58,7 @@ public interface Transformation extends SingleOperation {
      *
      * @return The source CRS (never {@code null}).
      */
+    @Override
     @UML(identifier="sourceCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
@@ -66,6 +67,7 @@ public interface Transformation extends SingleOperation {
      *
      * @return The target CRS (never {@code null}).
      */
+    @Override
     @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
@@ -75,6 +77,7 @@ public interface Transformation extends SingleOperation {
      *
      * @return The coordinate operation version.
      */
+    @Override
     @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)
     String getOperationVersion();
 }

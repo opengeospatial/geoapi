@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -41,49 +41,63 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Validates {@link ParameterValue} and related objects from the {@code org.opengis.parameter}
- * package. This class should not be used directly; use the {@link org.opengis.test.Validators}
- * convenience static methods instead.
+ * package.
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class ParameterValidator extends ReferencingValidator {
     /**
-     * Creates a new validator.
+     * Creates a new validator instance.
      *
-     * @param container The container of this validator.
+     * @param container The set of validators to use for validating other kinds of objects
+     *                  (see {@linkplain #container field javadoc}).
      */
     public ParameterValidator(final ValidatorContainer container) {
         super(container, "org.opengis.parameter");
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GeneralParameterDescriptor object) {
-        if (object instanceof ParameterDescriptor<?>) {
-            validate((ParameterDescriptor<?>) object);
-        } else if (object instanceof ParameterDescriptorGroup) {
-            validate((ParameterDescriptorGroup) object);
-        } else {
-            validateIdentifiedObject(object);
+    public int dispatch(final GeneralParameterDescriptor object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof ParameterDescriptor<?>)   {validate((ParameterDescriptor<?>)   object); n++;}
+            if (object instanceof ParameterDescriptorGroup) {validate((ParameterDescriptorGroup) object); n++;}
+            if (n == 0) {
+                validateIdentifiedObject(object);
+            }
         }
+        return n;
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GeneralParameterValue object) {
-        if (object instanceof ParameterValue<?>) {
-            validate((ParameterValue<?>) object);
-        } else if (object instanceof ParameterValueGroup) {
-            validate((ParameterValueGroup) object);
+    public int dispatch(final GeneralParameterValue object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof ParameterValue<?>)   {validate((ParameterValue<?>)   object); n++;}
+            if (object instanceof ParameterValueGroup) {validate((ParameterValueGroup) object); n++;}
+            if (n == 0) {
+                dispatch(object.getDescriptor());
+            }
         }
+        return n;
     }
 
     /**
@@ -101,6 +115,7 @@ public class ParameterValidator extends ReferencingValidator {
         mandatory("ParameterDescriptor: getValueClass() can not return null.", valueClass);
         Set<T> validValues = object.getValidValues();
         if (validValues != null) {
+            validate(validValues);
             for (final T value : validValues) {
                 if (value != null) {
                     assertInstanceOf("ParameterDescriptor: getValidValues() has unexpected element.", valueClass, value);
@@ -136,15 +151,19 @@ public class ParameterValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final List<GeneralParameterDescriptor> descriptors = object.descriptors();
-        mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
+        if (requireMandatoryAttributes) {
+            // Do not invoke mandatory(...) because we allow empty collections.
+            assertNotNull("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
+        }
         if (descriptors != null) {
+            validate(descriptors);
             for (final GeneralParameterDescriptor descriptor : descriptors) {
                 assertNotNull("ParameterDescriptorGroup: descriptors() can not contain null element.", descriptor);
                 dispatch(descriptor);
                 final GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
                 mandatory("ParameterDescriptorGroup: descriptor(String) should returns a value.", byName);
                 if (byName != null) {
-                    assertSame("ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().",
+                    assertEquals("ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().",
                             descriptor, byName);
                 }
             }
@@ -175,6 +194,7 @@ public class ParameterValidator extends ReferencingValidator {
                 assertInstanceOf("ParameterValue: getValue() returns unexpected value.", valueClass, value);
                 final Set<T> validValues = descriptor.getValidValues();
                 if (validValues != null) {
+                    validate(validValues);
                     assertContains("ParameterValue: getValue() not a member of getValidValues() set.",
                             validValues, value);
                 }
@@ -197,10 +217,14 @@ public class ParameterValidator extends ReferencingValidator {
         mandatory("ParameterValueGroup: must have a descriptor.", descriptors);
         validate(descriptors);
         final List<GeneralParameterValue> values = object.values();
-        mandatory("ParameterValueGroup: values() should not return null.", values);
+        if (requireMandatoryAttributes) {
+            // Do not invoke mandatory(...) because we allow empty collections.
+            assertNotNull("ParameterValueGroup: values() should not return null.", values);
+        }
         if (values == null) {
             return;
         }
+        validate(values);
         for (final GeneralParameterValue value : values) {
             assertNotNull("ParameterValueGroup: values() can not contain null element.", value);
             dispatch(value);
@@ -218,7 +242,7 @@ public class ParameterValidator extends ReferencingValidator {
                 final GeneralParameterDescriptor byName = descriptors.descriptor(name);
                 mandatory("ParameterDescriptorGroup: should never return null.", byName);
                 if (byName != null) {
-                    assertSame("ParameterValueGroup: descriptor(String) inconsistent" +
+                    assertEquals("ParameterValueGroup: descriptor(String) inconsistent" +
                             " with value.getDescriptor().", descriptor, byName);
                 }
             }
@@ -226,7 +250,7 @@ public class ParameterValidator extends ReferencingValidator {
                 final ParameterValue<?> byName = object.parameter(name);
                 mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
                 if (byName != null) {
-                    assertSame("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
+                    assertEquals("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
                 }
             }
         }

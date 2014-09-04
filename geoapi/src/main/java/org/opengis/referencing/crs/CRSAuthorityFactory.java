@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,11 +40,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates {@linkplain CoordinateReferenceSystem coordinate reference systems} using authority codes. External authorities
- * are used to manage definitions of objects used in this interface. The definitions of these objects are
- * referenced using code strings. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
- * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
- * standard.
+ * Creates {@linkplain CoordinateReferenceSystem coordinate reference systems} using authority codes.
+ * External authorities are used to manage definitions of objects used in this interface.
+ * The definitions of these objects are referenced using code strings.
+ * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -56,12 +55,13 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
-     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code. If the
-     * coordinate reference system type is know at compile time, it is recommended to invoke the most precise method
-     * instead of this one (for example
-     * <code>&nbsp;{@linkplain #createGeographicCRS createGeographicCRS}(code)&nbsp;</code>
-     * instead of <code>&nbsp;createCoordinateReferenceSystem(code)&nbsp;</code> if the caller
-     * know he is asking for a {@linkplain GeographicCRS geographic coordinate reference system}).
+     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code.
+     *
+     * <p>If the coordinate reference system type is known at compile time, then it is recommended
+     * to invoke the most precise method instead of this one. For example it is usually better to
+     * invoke <code>{@linkplain #createGeographicCRS createGeographicCRS}(code)</code> instead of
+     * <code>createCoordinateReferenceSystem(code)</code> if the requested object is known to be a
+     * {@code GeographicCRS} instance.</p>
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -102,7 +102,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain EngineeringCRS engineering coordinate reference system} from a code.
+     * Create a engineering coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -113,7 +113,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
+     * Returns a geographic coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -127,7 +127,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain GeocentricCRS geocentric coordinate reference system} from a code.
+     * Returns a geocentric coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -140,7 +140,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain ImageCRS image coordinate reference system} from a code.
+     * Create a image coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -151,7 +151,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain ProjectedCRS projected coordinate reference system} from a code.
+     * Returns a projected coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -165,7 +165,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain TemporalCRS temporal coordinate reference system} from a code.
+     * Create a temporal coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -178,7 +178,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a {@linkplain VerticalCRS vertical coordinate reference system} from a code.
+     * Create a vertical coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.

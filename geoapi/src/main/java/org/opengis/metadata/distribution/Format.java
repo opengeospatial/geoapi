@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,6 +33,7 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 
@@ -45,19 +46,45 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * Description of the computer language construct that specifies the representation
  * of data objects in a record, file, message, storage device or transmission channel.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - Distributor
  */
 @UML(identifier="MD_Format", specification=ISO_19115)
 public interface Format {
     /**
+     * Citation / URL of the specification format.
+     *
+     * @return Citation / URL of the specification format.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="formatSpecificationCitation", obligation=MANDATORY, specification=ISO_19115)
+    Citation getFormatSpecificationCitation();
+
+    /**
+     * Name of a subset, profile, or product specification of the format.
+     *
+     * @return Name of a subset, profile, or product specification of the format, or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by
+     * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getTitle() getTitle()}</code>.
+     */
+    @Deprecated
+    @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getSpecification();
+
+    /**
      * Name of the data transfer format(s).
      *
      * @return Name of the data transfer format(s).
+     *
+     * @deprecated As of ISO 19115:2014, replaced by
+     * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getAlternateTitles() getAlternateTitles()}</code>.
+     * Note that citation alternate titles are often used for abbreviations.
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getName();
@@ -66,7 +93,11 @@ public interface Format {
      * Version of the format (date, number, <i>etc</i>).
      *
      * @return Version of the format.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by
+     * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getEdition() getEdition()}</code>.
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getVersion();
@@ -80,14 +111,6 @@ public interface Format {
     InternationalString getAmendmentNumber();
 
     /**
-     * Name of a subset, profile, or product specification of the format.
-     *
-     * @return Name of a subset, profile, or product specification of the format, or {@code null}.
-     */
-    @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getSpecification();
-
-    /**
      * Recommendations of algorithms or processes that can be applied to read or
      * expand resources to which compression techniques have been applied.
      *
@@ -96,6 +119,14 @@ public interface Format {
      */
     @UML(identifier="fileDecompressionTechnique", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFileDecompressionTechnique();
+
+    /**
+     * Media used by the format.
+     *
+     * @return Media used by the format.
+     */
+    @UML(identifier="medium", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Medium> getMedia();
 
     /**
      * Provides information about the distributor's format.

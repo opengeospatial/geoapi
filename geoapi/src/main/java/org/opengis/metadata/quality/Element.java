@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -36,6 +36,8 @@ import java.util.Date;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -49,12 +51,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - EvaluationMethodType
- * @navassoc 1 - - Citation
- * @navassoc - - - Result
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Element", specification=ISO_19115)
 public interface Element {
     /**
@@ -82,7 +80,7 @@ public interface Element {
     InternationalString getMeasureDescription();
 
     /**
-     * Type of method used to evaluate quality of the dataset, or {@code null} if unspecified.
+     * Type of method used to evaluate quality of the dataset.
      *
      * @return Type of method used to evaluate quality, or {@code null}.
      */
@@ -110,7 +108,7 @@ public interface Element {
      * The collection size is 1 for a single date, or 2 for a range. Returns
      * an empty collection if this information is not available.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The element type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely

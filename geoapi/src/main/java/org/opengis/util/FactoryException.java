@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,11 +35,11 @@ package org.opengis.util;
 /**
  * Thrown when a {@linkplain Factory factory} can't create an instance
  * of the requested object.
- * <p>
- * If the failure is caused by an illegal authority code, then the actual exception should
+ *
+ * <p>If the failure is caused by an illegal authority code, then the actual exception should
  * be {@link org.opengis.referencing.NoSuchAuthorityCodeException}. Otherwise, if the failure
  * is caused by some error in the underlying database (e.g. {@link java.io.IOException} or
- * {@link java.sql.SQLException}), then the cause shall be specified to the constructor.
+ * {@link java.sql.SQLException}), then the cause shall be specified to the constructor.</p>
  *
  * @departure extension
  *   This exception is not part of the OGC specification.

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,9 +35,6 @@ package org.opengis.referencing.operation;
 /**
  * Base interface for cylindrical map projections.
  *
- * <p>&nbsp;</p>
- * <p align="center"><img src="../doc-files/CylindricalProjection.png"></p>
- *
  * @departure extension
  *   This interface is not part of the ISO specification. It has been added in GeoAPI at user
  *   request, in order to provide a way to know the kind of map projection.
@@ -47,7 +44,7 @@ package org.opengis.referencing.operation;
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
- * @see <A HREF="http://mathworld.wolfram.com/CylindricalProjection.html">Cylindrical projection on MathWorld</A>
+ * @see <a href="http://mathworld.wolfram.com/CylindricalProjection.html">Cylindrical projection on MathWorld</a>
  */
 public interface CylindricalProjection extends Projection {
 }

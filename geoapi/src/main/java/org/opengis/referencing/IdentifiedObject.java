@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -36,6 +36,8 @@ import java.util.Collection;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -43,32 +45,49 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Supplementary identification and remarks information for a CRS or CRS-related object.
+ * Identified objects contain the following attributes:
+ *
+ * <ul>
+ *   <li>A {@linkplain #getName() name} (e.g. “<cite>North American Datum of 1983</cite>”).</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases} (e.g. “NAD83” abbreviation).</li>
+ *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities
+ *       (e.g. a register of geodetic codes and parameters might give the NAD83 datum a unique code of “6269”).</li>
+ *   <li>{@linkplain #getRemarks() Remarks} about this object, including data source information.</li>
+ * </ul>
+ *
+ * Some typical {@code IdentifiedObject} sub-types are:
+ *
+ * <ul>
+ *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Datum} (e.g. “<cite>World Geodetic System 1984</cite>”),</li>
+ *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. “<cite>Mercator (variant A)</cite>”),</li>
+ *   <li>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
+ * </ul>
+ *
  * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- * the {@linkplain ReferenceIdentifier#getAuthority authority} and
- * {@linkplain ReferenceIdentifier#getCode authority code} values shall be set to the
+ * the {@linkplain ReferenceIdentifier#getAuthority() authority} and
+ * {@linkplain ReferenceIdentifier#getCode() authority code} values shall be set to the
  * authority name of the factory object, and the authority code supplied by the client,
  * respectively. The other values may or may not be set. If the authority is EPSG, the
  * implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
- *   ISO 19111 defines an <code>IdentifiedObjectBase</code> interface. The later is omitted in
- *   GeoAPI because the split between <code>IdentifiedObject</code> and <code>IdentifiedObjectBase</code>
- *   in the ISO/OGC specification was a workaround for introducing <code>IdentifiedObject</code>
- *   in ISO 19111 without changing the <code>ReferenceSystem</code> definition in ISO 19115 but
- *   GeoAPI does not need this workaround.
+ *   ISO 19111 defines an <code>IO_IdentifiedObjectBase</code> type. The later is omitted in GeoAPI
+ *   because the split between <code>IO_IdentifiedObject</code> and <code>IO_IdentifiedObjectBase</code>
+ *   in the ISO/OGC specification was a workaround for introducing <code>IO_IdentifiedObject</code>
+ *   in ISO 19111 without changing the <code>RS_ReferenceSystem</code> definition in ISO 19115.
+ *   Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified model,
+ *   it does not need this workaround.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - GenericName
- * @navassoc - - - ReferenceIdentifier
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="IO_IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getName()}.
      *
      * @see #getName()
@@ -77,7 +96,7 @@ public interface IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getAlias()}.
      *
      * @see #getAlias()
@@ -86,7 +105,7 @@ public interface IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getIdentifiers()}.
      *
      * @see #getIdentifiers()
@@ -95,7 +114,7 @@ public interface IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getRemarks()}.
      *
      * @see #getRemarks()
@@ -113,7 +132,7 @@ public interface IdentifiedObject {
     /**
      * An alternative name by which this object is identified.
      *
-     * @return The aliases, or an empty collection if there is none.
+     * @return Alternative name and abbreviation, or an empty collection if there is none.
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     Collection<GenericName> getAlias();
@@ -122,7 +141,7 @@ public interface IdentifiedObject {
      * An identifier which references elsewhere the object's defining information.
      * Alternatively an identifier by which this object can be referenced.
      *
-     * @return This object identifiers, or an empty set if there is none.
+     * @return This object identifiers, or an empty collection if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     Set<ReferenceIdentifier> getIdentifiers();
@@ -136,18 +155,28 @@ public interface IdentifiedObject {
     InternationalString getRemarks();
 
     /**
-     * Returns a <A HREF="doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
-     * This operation may fails if an object is too complex for the WKT format capability (for
-     * example an {@linkplain org.opengis.referencing.crs.EngineeringCRS engineering CRS} with
-     * different unit for each axis).
+     * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
+     * Well-Known Texts (WKT) may come in two formats:
      *
-     * @return The Well Know Text for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * <ul>
+     *   <li>The current standard, WKT 2, is defined by ISO 19162.</li>
+     *   <li>The legacy format, WKT 1, was defined by {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
+     *       and is shown using Extended Backus Naur Form (EBNF) <a href="doc-files/WKT.html">here</a>.</li>
+     * </ul>
+     *
+     * Implementations are encouraged to format according the most recent standard.
+     * This operation may fail if unsupported or if this instance contains elements that do not have
+     * WKT representation.
+     *
+     * @return The Well-Know Text for this object.
+     * @throws UnsupportedOperationException If this object can not be formatted as WKT.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added in order to provide
      *   the converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is
      *   defined in OGC 01-009.
+     *
+     * @see org.opengis.referencing.crs.CRSFactory#createFromWKT(String)
      */
     String toWKT() throws UnsupportedOperationException;
 }

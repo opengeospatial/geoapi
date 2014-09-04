@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,6 +34,7 @@ package org.opengis.metadata.lineage;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -46,16 +47,13 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Information about the events or source data used in constructing the data specified by
  * the scope or lack of knowledge about lineage.
- *
- * Only one of {@linkplain #getStatement statement}, {@linkplain #getProcessSteps process steps}
- * and {@linkplain #getSources sources} shall be provided.
+ * At least one of {@linkplain #getStatement() statement}, {@linkplain #getProcessSteps() process steps}
+ * and {@linkplain #getSources() sources} shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - ProcessStep
- * @navassoc - - - Source
  */
 @UML(identifier="LI_Lineage", specification=ISO_19115)
 public interface Lineage {
@@ -64,7 +62,7 @@ public interface Lineage {
      *
      * @return Explanation of the data producer's knowledge about the lineage, or {@code null}.
      *
-     * @condition Shall be provided only if {@linkplain Scope#getLevel scope level} is
+     * @condition Shall be provided only if {@linkplain Scope#getLevel() scope level} is
      *            {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      */
     @Profile(level=CORE)
@@ -72,12 +70,36 @@ public interface Lineage {
     InternationalString getStatement();
 
     /**
-     * Information about an event in the creation process for the data specified by the scope.
+     * Type of resource and / or extent to which the lineage information applies.
      *
-     * @return Information about an event in the creation process.
+     * @return Type of resource and / or extent, or {@code null} if none.
      *
-     * @condition Mandatory if {@linkplain #getStatement statement} and
-     *            {@linkplain #getSources source} are not provided.
+     * @since 3.1
+     */
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
+    Scope getScope();
+
+    /**
+     * Additional documentation.
+     *
+     * <blockquote><font size="-1"><b>Example</b>
+     * a publication that describes the whole process to generate this resource (for example a dataset).
+     * </font></blockquote>
+     *
+     * @return Additional documentation.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getAdditionalDocumentation();
+
+    /**
+     * Information about events in the life of a resource specified by the scope.
+     *
+     * @return Information about events in the life of a resource.
+     *
+     * @condition Mandatory if {@linkplain #getStatement() statement} and
+     *            {@linkplain #getSources() source} are not provided.
      */
     @UML(identifier="processStep", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends ProcessStep> getProcessSteps();
@@ -87,8 +109,8 @@ public interface Lineage {
      *
      * @return Information about the source data.
      *
-     * @condition Mandatory if {@linkplain #getStatement statement} and
-     *           {@linkplain #getProcessSteps process step} are not provided.
+     * @condition Mandatory if {@linkplain #getStatement() statement} and
+     *            {@linkplain #getProcessSteps() process step} are not provided.
      */
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Source> getSources();

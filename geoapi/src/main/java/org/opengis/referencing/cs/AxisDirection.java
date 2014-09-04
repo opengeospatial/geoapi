@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,17 +42,18 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The direction of positive increments in the coordinate value for a coordinate system
- * axis. This direction is exact in some cases, and is approximate in other cases.
- * <p>
- * Some coordinate systems use non-standard orientations.  For example,
- * the first axis in South African grids usually points West, instead of
- * East. This information is obviously relevant for algorithms converting
- * South African grid coordinates into Lat/Long.
+ * The direction of positive increase in the ordinate value for a coordinate system axis.
+ * This direction is exact in some cases, and is approximate in other cases.
+ *
+ * <p>Some coordinate systems use non-standard orientations. For example, the first axis in
+ * South African grids usually points West, instead of East. This information is obviously
+ * relevant for algorithms converting South African grid coordinates into Lat/Long.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see CoordinateSystemAxis#getDirection()
  */
 @UML(identifier="CS_AxisDirection", specification=ISO_19111)
 public final class AxisDirection extends CodeList<AxisDirection> {
@@ -114,7 +115,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection EAST_NORTH_EAST = new AxisDirection("EAST_NORTH_EAST");
 
     /**
-     * Axis positive direction is &pi;/2 radians clockwise from north.
+     * Axis positive direction is π/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
      *
      * @category Rose
@@ -150,7 +151,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection SOUTH_SOUTH_EAST = new AxisDirection("SOUTH_SOUTH_EAST");
 
     /**
-     * Axis positive direction is &pi; radians clockwise from north.
+     * Axis positive direction is π radians clockwise from north.
      *
      * @category Rose
      */
@@ -185,7 +186,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST");
 
     /**
-     * Axis positive direction is 3&pi;/2 radians clockwise from north.
+     * Axis positive direction is 3π/2 radians clockwise from north.
      * This is usually used for Grid X coordinates and Longitude.
      *
      * @category Rose
@@ -222,8 +223,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is up relative to gravity.
-     * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
-     * coordinate reference systems.
+     * This is used for {@linkplain VerticalCS vertical} coordinate systems.
      *
      * @category Vertical
      */
@@ -232,8 +232,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is down relative to gravity.
-     * This is used for {@linkplain org.opengis.referencing.crs.VerticalCRS vertical}
-     * coordinate reference systems.
+     * This is used for {@linkplain VerticalCS vertical} coordinate systems.
      *
      * @category Vertical
      */
@@ -252,7 +251,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is in the equatorial plane from the centre of the
-     * modelled earth towards the intersection of the equator and the meridian &pi;/2
+     * modelled earth towards the intersection of the equator and the meridian π/2
      * radians eastwards from the prime meridian.
      *
      * @category Geocentric
@@ -273,8 +272,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is towards the future.
-     * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
-     * coordinate reference systems.
+     * This is used for {@linkplain TimeCS time} coordinate systems.
      *
      * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
@@ -287,8 +285,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is towards the past.
-     * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
-     * coordinate reference systems.
+     * This is used for {@linkplain TimeCS time} coordinate systems.
      *
      * @departure historic
      *   This code was defined in an older specification (2003) and removed in more recent
@@ -372,10 +369,11 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private AxisDirection(final String name) {
         super(name, VALUES);
@@ -393,8 +391,13 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public AxisDirection[] family() {
         return values();
     }

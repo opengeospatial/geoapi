@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,6 +33,8 @@ package org.opengis.metadata.citation;
 
 import java.util.Collection;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -43,18 +45,46 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   1.0
+ *
+ * @see Contact#getPhones()
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Telephone", specification=ISO_19115)
 public interface Telephone {
+    /**
+     * Telephone number by which individuals can contact responsible organisation or individual.
+     *
+     * @return Telephone number by which individuals can contact responsible organisation or individual.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="number", obligation=MANDATORY, specification=ISO_19115)
+    String getNumber();
+
+    /**
+     * Type of telephone number, or {@code null} if none.
+     *
+     * @return Type of telephone number, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="numberType", obligation=OPTIONAL, specification=ISO_19115)
+    TelephoneType getNumberType();
+
     /**
      * Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
      * @return Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
      * @since 2.1
+     *
+     * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
+     *             with {@link TelephoneType#VOICE}.
      */
+    @Deprecated
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getVoices();
 
@@ -64,7 +94,11 @@ public interface Telephone {
      * @return Telephone numbers of a facsimile machine for the responsible organization or individual.
      *
      * @since 2.1
+     *
+     * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
+     *             with {@link TelephoneType#FACSIMILE}.
      */
+    @Deprecated
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getFacsimiles();
 }

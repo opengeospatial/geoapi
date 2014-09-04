@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -47,19 +47,13 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - GeometryType
- * @navassoc 1 - - Progress
- * @navassoc 1 - - Citation
- * @navassoc - - - Operations
- * @navassoc - - - Requirement
  */
 @UML(identifier="MI_Plan", specification=ISO_19115_2)
 public interface Plan {
     /**
      * Manner of sampling geometry that the planner expects for collection of objective data.
      *
-     * @return Manner of sampling geometry.
+     * @return Manner of sampling geometry, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     GeometryType getType();

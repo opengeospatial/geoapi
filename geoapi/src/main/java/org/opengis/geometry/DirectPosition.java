@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,6 +34,8 @@ package org.opengis.geometry;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -49,16 +51,17 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
  * the coordinate reference system is implicitly assumed to take on the value of the containing
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
- * 
+ *
  * @departure easeOfUse
- *   This interface was moved into the <code>org.opengis.geometry</code> package for convenience.
+ *   The ISO specification defines this interface in the <code>coordinate</code> sub-package.
+ *   GeoAPI moved this interface into the <code>org.opengis.geometry</code> root package for
+ *   convenience, because it is extensively used.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
- *
- * @navassoc 1 - - CoordinateReferenceSystem
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position {
     /**
@@ -101,8 +104,8 @@ public interface DirectPosition extends Position {
      * position.{@linkplain #setOrdinate setOrdinate}(i, value); // edit in place
      * </pre></blockquote>
      *
-     * There are a couple reasons for requerying a copy:
-     * <p>
+     * There are a couple reasons for requesting a copy:
+     *
      * <ul>
      *   <li>We want an array of coordinates with the intend to modify it for computation purpose
      *       (without modifying the original {@code DirectPosition}), or we want to protect the
@@ -114,7 +117,7 @@ public interface DirectPosition extends Position {
      *       forced to returns a new array anyway (for example because the coordinates were
      *       computed on the fly)</li>
      * </ul>
-     * <p>
+     *
      * Precedence is given to data integrity over {@code getOrdinates()} performance.
      * Performance concern can be avoided with usage of {@link #getOrdinate(int)}.
      *
@@ -130,7 +133,7 @@ public interface DirectPosition extends Position {
      * @param dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return The coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension envelope dimension}.
+     *         than the {@linkplain #getDimension() position dimension}.
      */
     double getOrdinate(int dimension) throws IndexOutOfBoundsException;
 
@@ -140,7 +143,7 @@ public interface DirectPosition extends Position {
      * @param dimension the dimension for the ordinate of interest.
      * @param value the ordinate value of interest.
      * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension envelope dimension}.
+     *         than the {@linkplain #getDimension() position dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      */
     void setOrdinate(int dimension, double value)
@@ -150,10 +153,10 @@ public interface DirectPosition extends Position {
      * Compares this direct position with the specified object for equality.
      * Two direct positions are considered equal if the following conditions
      * are meet:
-     * <p>
+     *
      * <ul>
      *   <li>{@code object} is non-null and is an instance of {@code DirectPosition}.</li>
-     *   <li>Both direct positions have the same {@linkplain #getDimension number of dimension}.</li>
+     *   <li>Both direct positions have the same {@linkplain #getDimension() number of dimensions}.</li>
      *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
      *       coordinate reference system}.</li>
      *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate ordinate value} of both

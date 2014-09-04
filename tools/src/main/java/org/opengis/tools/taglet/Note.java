@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -66,6 +66,7 @@ public final class Note implements Taglet {
      *
      * @return The tag name.
      */
+    @Override
     public String getName() {
         return "note";
     }
@@ -73,8 +74,9 @@ public final class Note implements Taglet {
     /**
      * Returns {@code true} since <code>@note</code> can be used in overview.
      *
-     * @return Always {@code false}.
+     * @return Always {@code true}.
      */
+    @Override
     public boolean inOverview() {
         return true;
     }
@@ -84,6 +86,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean inPackage() {
         return true;
     }
@@ -94,6 +97,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean inType() {
         return true;
     }
@@ -103,6 +107,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean inConstructor() {
         return true;
     }
@@ -112,6 +117,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean inMethod() {
         return true;
     }
@@ -121,6 +127,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean inField() {
         return true;
     }
@@ -130,6 +137,7 @@ public final class Note implements Taglet {
      *
      * @return Always {@code true}.
      */
+    @Override
     public boolean isInlineTag() {
         return true;
     }
@@ -140,6 +148,7 @@ public final class Note implements Taglet {
      * @param tag The tag to format.
      * @return A string representation of the given tag.
      */
+    @Override
     public String toString(final Tag tag) {
         final StringBuilder buffer = new StringBuilder("<blockquote><font size=-1><b>Note:</b>\n");
         buffer.append(tag.text());
@@ -154,6 +163,7 @@ public final class Note implements Taglet {
      * @param tags The tags to format.
      * @return A string representation of the given tags.
      */
+    @Override
     public String toString(final Tag[] tags) {
         final StringBuilder buffer = new StringBuilder();
         for (int i=0; i<tags.length; i++) {

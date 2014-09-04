@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,22 +31,20 @@
  */
 package org.opengis.metadata;
 
-import java.net.URI;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.citation.OnlineResource;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about the application schema used to build the dataset.
+ * Defines and exposes the structure of a resource (model and/or data dictionary).
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - Citation
  */
 @UML(identifier="MD_ApplicationSchemaInformation", specification=ISO_19115)
 public interface ApplicationSchemaInformation {
@@ -77,37 +75,31 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as an ASCII file.
      *
-     * @return Application schema as an ASCII file.
-     *
-     * @todo In UML, the type was {@code CharacterString}. It is not clear if
-     *       it should be the file name or the file content.
+     * @return Application schema as an ASCII file, or {@code null}.
      */
     @UML(identifier="schemaAscii", obligation=OPTIONAL, specification=ISO_19115)
-    URI getSchemaAscii();
+    CharSequence getSchemaAscii();
 
     /**
      * Full application schema given as a graphics file.
      *
-     * @return Application schema as a graphics file.
+     * @return Application schema as a graphics file, or {@code null}.
      */
     @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115)
-    URI getGraphicsFile();
+    OnlineResource getGraphicsFile();
 
     /**
      * Full application schema given as a software development file.
      *
-     * @return Application schema as a software development file.
-     *
-     * @todo In UML, the type was {@code binary}. It is not clear if
-     *       it was intented to be the file content.
+     * @return Application schema as a software development file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115)
-    URI getSoftwareDevelopmentFile();
+    OnlineResource getSoftwareDevelopmentFile();
 
     /**
      * Software dependent format used for the application schema software dependent file.
      *
-     * @return Format used for the application schema software file.
+     * @return Format used for the application schema software file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL, specification=ISO_19115)
     String getSoftwareDevelopmentFileFormat();

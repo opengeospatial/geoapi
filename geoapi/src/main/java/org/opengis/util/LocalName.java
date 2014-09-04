@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,10 +40,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Identifier within a {@linkplain NameSpace name space} for a local object. Local names are names
- * which are directly accessible to and maintained by a {@linkplain NameSpace name space}. Names are
- * local to one and only one name space. The name space within which they are local is indicated by
- * the {@linkplain #scope scope}.
+ * Identifier within a {@linkplain NameSpace name space} for a local object.
+ * Local names are names which are directly accessible to and maintained by a {@link NameSpace}.
+ * Names are local to one and only one name space.
+ * The name space within which they are local is indicated by the {@linkplain #scope() scope}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
@@ -55,15 +55,19 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="LocalName", specification=ISO_19103)
 public interface LocalName extends GenericName {
     /**
-     * Returns the depth, which is always 1 for a local name.
+     * Returns always 1 for a local name.
+     *
+     * @return Always 1 for a local name.
      */
+    @Override
     int depth();
 
     /**
-     * Returns the sequence of local name. Since this object is itself a locale name,
-     * this method always returns a {@linkplain Collections#singleton singleton}
-     * containing only {@code this}.
+     * Returns a singleton containing only {@code this}, since this name is itself a local name.
+     *
+     * @return A {@linkplain Collections#singleton singleton} containing only {@code this}.
      */
+    @Override
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
     List<? extends LocalName> getParsedNames();
 
@@ -85,6 +89,8 @@ public interface LocalName extends GenericName {
 
     /**
      * Returns a locale-independent string representation of this local name.
+     *
+     * @return The local-independent string representation of this name.
      */
     @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)

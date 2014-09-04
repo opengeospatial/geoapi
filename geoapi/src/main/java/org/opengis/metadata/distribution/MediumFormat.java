@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Method used to write to the medium.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_MediumFormatCode", specification=ISO_19115)
@@ -59,7 +60,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<MediumFormat> VALUES = new ArrayList<MediumFormat>(6);
+    private static final List<MediumFormat> VALUES = new ArrayList<MediumFormat>(7);
 
     /**
      * CoPy In / Out (UNIX file format and command).
@@ -74,7 +75,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     public static final MediumFormat TAR = new MediumFormat("TAR");
 
     /**
-     * High sierra file system.
+     * High Sierra file system.
      */
     @UML(identifier="highSierra", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat HIGH_SIERRA = new MediumFormat("HIGH_SIERRA");
@@ -86,22 +87,31 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     public static final MediumFormat ISO_9660 = new MediumFormat("ISO_9660");
 
     /**
-     * Rock ridge interchange protocol (UNIX).
+     * Rock Ridge interchange protocol (UNIX).
      */
     @UML(identifier="iso9660RockRidge", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660_ROCK_RIDGE = new MediumFormat("ISO_9660_ROCK_RIDGE");
 
     /**
-     * Hierarchical file system (Macintosh).
+     * Hierarchical File System (Macintosh).
      */
     @UML(identifier="iso9660AppleHFS", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat ISO_9660_APPLE_HFS = new MediumFormat("ISO_9660_APPLE_HFS");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Universal Disk Format.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @since 3.1
+     */
+    @UML(identifier="udf", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final MediumFormat UDF = new MediumFormat("UDF");
+
+    /**
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
+     *
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private MediumFormat(final String name) {
         super(name, VALUES);
@@ -119,8 +129,13 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public MediumFormat[] family() {
         return values();
     }

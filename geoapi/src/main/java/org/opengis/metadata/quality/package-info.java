@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,48 +33,79 @@
 /**
  * {@linkplain org.opengis.metadata.quality.DataQuality Data quality} and
  * {@linkplain org.opengis.metadata.quality.PositionalAccuracy positional accuracy}.
- * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
- * Coordinates (Topic 2)} specification.
  *
- * <P ALIGN="justify">The parameters that define a coordinate reference system
- * are chosen rather than measured to satisfy the degrees-of-freedom problem in
- * the changeover from observation to coordinate quantities. Coordinate reference
- * systems are therefore by definition error-free (i.e., non-stochastic).
- * A coordinate reference system is realised through a network of control points.
- * The coordinates of those control points, derived from surface and/or from
- * satellite observations, are stochastic. Their accuracy can be expressed in a
- * covariance matrix, which, due to the degrees-of-freedom problem, will have a
- * rank deficiency, described in geodetic literature.</P>
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * together with a partial view of aggregation hierarchy:</p>
  *
- * <P ALIGN="justify">Coordinate transformations between coordinate reference
- * systems usually have parameter values derived from two sets of point coordinates,
- * one set in system 1, the other set in system 2. As these coordinates are stochastic
- * (i.e., have random-error characteristics) the derived transformation parameter
- * values will also be stochastic. Their covariance matrix can be calculated.</P>
- *
- * <P ALIGN="justify">Coordinates that have not been "naturally" determined in
- * coordinate reference system 2, but have been determined in coordinate system 1
- * and then transformed to system 2, have the random error effects of the
- * transformation superimposed on their original error characteristics. It may be
- * possible in well-controlled cases to calculate the covariance matrices of the
- * point coordinates before and after the transformation, and thus isolate the
- * effect of the transformation, but in practice a user will only be interested
- * in the accuracy of the final transformed coordinates.</P>
- *
- * <P ALIGN="justify">Nevertheless the option is offered to specify the
- * covariance matrix of point coordinates resulting exclusively from the
- * transformation. It is outside the scope of this specification to describe
- * how that covariance matrix should be used. Because a covariance matrix is
- * symmetrical, only the upper or lower diagonal part (including the main diagonal)
- * needs to be specified.</P>
- *
- * <P ALIGN="justify">For some transformations, this accuracy information is
- * compacted in some assessment of an average impact on horizontal position and
- * vertical position, allowing specification of average absolute accuracy and,
- * when relevant and available, average relative accuracy. Hence separate quality
- * measures may be specified for horizontal and for vertical position in those
- * objects.</P>
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
+ *   <th>Class hierarchy</th>
+ *   <th class="sep">Aggregation hierarchy</th>
+ * </tr><tr><td width="50%" nowrap>
+ * <pre> ISO-19115 object
+ *  ├─ {@linkplain org.opengis.metadata.quality.DataQuality}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Element} «abstract»
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.Completeness} «abstract»
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.CompletenessCommission}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.CompletenessOmission}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.LogicalConsistency} «abstract»
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.ConceptualConsistency}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.DomainConsistency}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.FormatConsistency}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.TopologicalConsistency}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.PositionalAccuracy} «abstract»
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.RelativeInternalPositionalAccuracy}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.GriddedDataPositionalAccuracy}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.TemporalAccuracy} «abstract»
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.AccuracyOfATimeMeasurement}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.TemporalConsistency}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.TemporalValidity}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.ThematicAccuracy} «abstract»
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.QuantitativeAttributeAccuracy}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
+ *  │   └─ {@linkplain org.opengis.metadata.quality.Usability}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.ConformanceResult}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.QuantitativeResult}
+ *  │   └─ {@linkplain org.opengis.metadata.quality.CoverageResult}
+ *  └─ {@linkplain org.opengis.metadata.quality.Scope}
+ * {@linkplain org.opengis.util.CodeList}
+ *  └─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType}</pre>
+ * </td><td class="sep" width="50%" nowrap>
+ * <pre> {@linkplain org.opengis.metadata.quality.DataQuality}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Scope}
+ *  └─ {@linkplain org.opengis.metadata.quality.Element} «abstract»
+ *      ├─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType} «code list»
+ *      └─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
+ * {@linkplain org.opengis.metadata.quality.Completeness} «abstract»
+ * {@linkplain org.opengis.metadata.quality.CompletenessCommission}
+ * {@linkplain org.opengis.metadata.quality.CompletenessOmission}
+ * {@linkplain org.opengis.metadata.quality.LogicalConsistency} «abstract»
+ * {@linkplain org.opengis.metadata.quality.ConceptualConsistency}
+ * {@linkplain org.opengis.metadata.quality.DomainConsistency}
+ * {@linkplain org.opengis.metadata.quality.FormatConsistency}
+ * {@linkplain org.opengis.metadata.quality.TopologicalConsistency}
+ * {@linkplain org.opengis.metadata.quality.PositionalAccuracy} «abstract»
+ * {@linkplain org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy}
+ * {@linkplain org.opengis.metadata.quality.RelativeInternalPositionalAccuracy}
+ * {@linkplain org.opengis.metadata.quality.GriddedDataPositionalAccuracy}
+ * {@linkplain org.opengis.metadata.quality.TemporalAccuracy} «abstract»
+ * {@linkplain org.opengis.metadata.quality.AccuracyOfATimeMeasurement}
+ * {@linkplain org.opengis.metadata.quality.TemporalConsistency}
+ * {@linkplain org.opengis.metadata.quality.TemporalValidity}
+ * {@linkplain org.opengis.metadata.quality.ThematicAccuracy} «abstract»
+ * {@linkplain org.opengis.metadata.quality.QuantitativeAttributeAccuracy}
+ * {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy}
+ * {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
+ * {@linkplain org.opengis.metadata.quality.Usability}
+ * {@linkplain org.opengis.metadata.quality.ConformanceResult}
+ * {@linkplain org.opengis.metadata.quality.QuantitativeResult}
+ * {@linkplain org.opengis.metadata.quality.CoverageResult}</pre>
+ * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

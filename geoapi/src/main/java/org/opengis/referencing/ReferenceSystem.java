@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -41,10 +41,34 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of a spatial and temporal reference system used by a dataset.
+ * A reference system contains the metadata required to interpret spatial location information unambiguously.
+ * Two methods to describe spatial location are distinguished:
+ *
+ * <ul>
+ *   <li>Spatial referencing by geographic identifier.
+ *       Geographic identifiers are location descriptors such as addresses and grid indexes.</li>
+ *   <li>Spatial referencing by coordinates. This specialized case is handled by the
+ *       {@link org.opengis.referencing.crs.CoordinateReferenceSystem} subtype.</li>
+ * </ul>
+ *
+ * Reference systems contain the following properties
+ * (including those inherited from the {@link IdentifiedObject} parent interface):
+ *
+ * <ul>
+ *   <li>A {@linkplain #getName() name} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases}, sometime used for abbreviations.</li>
+ *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities (e.g. “EPSG:3395”).</li>
+ *   <li>The {@linkplain #getDomainOfValidity() domain of validity} in which this reference system is valid
+ *       (e.g. “<cite>World - between 80°S and 84°N</cite>”).</li>
+ *   <li>The {@linkplain #getScope() scope} or intended usage for this reference system
+ *       (e.g. “<cite>Very small scale mapping</cite>”).</li>
+ *   <li>{@linkplain #getRemarks() Remarks} about this object, including data source information
+ *       (e.g. “<cite>Euro-centric view of world excluding polar areas</cite>”).</li>
+ * </ul>
  *
  * @departure historic
  *   This interface was initially derived from an ISO 19111 specification published in 2003. Later
- *   revisions (in 2005) rely on an interface defined in ISO 19115 instead. The annotations were
+ *   revisions (in 2007) rely on an interface defined in ISO 19115 instead. The annotations were
  *   updated accordingly, but this interface is still defined in the referencing package instead
  *   of the metadata package for this historical reason.
  *
@@ -53,14 +77,12 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
- *
- * @navassoc 1 - - Extent
  */
 @UML(identifier="RS_ReferenceSystem", specification=ISO_19115)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
@@ -71,7 +93,7 @@ public interface ReferenceSystem extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} <code>createFoo(&hellip;)</code> methods.
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
      * @see #getScope()
@@ -85,8 +107,8 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003.
-     *   Later revisions changed the multiplicity, so the return type should now be a 
-     *   collection. The singleton has been preserved in GeoAPI for historical reasons, 
+     *   Later revisions changed the multiplicity, so the return type should now be a
+     *   collection. The singleton has been preserved in GeoAPI for historical reasons,
      *   and also because the <code>Extent</code> attributes already allow collections.
      *
      * @since 2.1
@@ -101,13 +123,16 @@ public interface ReferenceSystem extends IdentifiedObject {
      * @return The domain of usage, or {@code null} if none.
      *
      * @departure historic
-     *   This method has been kept conformant with the specification published in 2003. 
-     *   A later revision moved this attribute to subclasses, but GeoAPI keeps this method 
-     *   here for historical reasons. The obligation is still optional, as opposed to ISO 19111:2007
-     *   which makes this attribute mandatory while mandating the text "<cite>not known</cite>" if
-     *   the scope is unknown. In addition, the return value of this method is still a singleton as in
-     *   the 2003 version, as opposed to the 2007 version which mandates a collection. The proposed
-     *   change is still under review.
+     *   This method differs from ISO 19111:2007 in 3 aspects:
+     *   <ul>
+     *     <li>ISO 19111:2007 moved this attribute from this type to the {@code SC_CRS} subtype.
+     *         GeoAPI keeps this attribute here for historical reasons.</li>
+     *     <li>ISO 19111:2007 changed the obligation from optional to mandatory
+     *         and requires the value to be "<cite>not known</cite>" if the scope is unknown.
+     *         GeoAPI lefts the obligation unchanged: optional with {@code null} value for unknown scope.</li>
+     *     <li>ISO 19111:2007 changed the multiplicity from singleton to a collection.
+     *         GeoAPI keeps the singleton type for historical reasons.</li>
+     *   </ul>
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getScope();

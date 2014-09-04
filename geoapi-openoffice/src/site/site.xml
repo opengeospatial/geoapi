@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GeoAPI">
+  <body>
+    <menu name="OpenOffice.org add-in" inherit="none">
+      <item name="Download" href="download.html"/>
+      <item name="Javadoc"  href="apidocs/index.html"/>
+      <item name="FAQ"      href="faq.html"/>
+    </menu>
+
+    <menu ref="reports"/>  <!-- Replaced by menus for any configured reports (mailing lists, etc.) -->
+  </body>
+</project>

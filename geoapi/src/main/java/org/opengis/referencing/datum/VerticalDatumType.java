@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -47,9 +47,17 @@ import static org.opengis.annotation.Specification.*;
  *        <code>GeographicCRS</code> with ellipsoidal height shall be backed by a three-dimensional
  *        <code>EllipsoidalCS</code>; they should never be built as <code>CompoundCRS</code>. If
  *        nevertheless an ellipsoidal height is needed (for example in order to process a CRS in
- *        the <A HREF="../doc-files/WKT.html">WKT format</A>), implementors can get a suitable
+ *        the <a href="../doc-files/WKT.html">WKT 1 format</a>), implementors can get a suitable
  *        vertical datum type using <code>VerticalDatumType.valueOf("ELLIPSOIDAL")</code>.
  *        Implementors are encouraged to not expose that datum type in public API however.}
+ *
+ * @departure historic
+ *   This code list was defined in the specification published in 2003, but removed from the 2007
+ *   revision of ISO 19111. However GeoAPI keep this code list for historical reasons, and because
+ *   it provides some of the <cite>anchor definition</cite> information in a programmatic way more
+ *   suitable to coordinate transformation engines.
+ *
+ * @see VerticalDatum#getVerticalDatumType()
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -108,10 +116,11 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private VerticalDatumType(final String name) {
         super(name, VALUES);
@@ -129,8 +138,13 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public VerticalDatumType[] family() {
         return values();
     }

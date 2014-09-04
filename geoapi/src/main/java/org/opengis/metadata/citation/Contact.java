@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,8 +31,11 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -42,24 +45,46 @@ import static org.opengis.annotation.Specification.*;
  * Information required to enable contact with the responsible person and/or organization.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   1.0
- *
- * @navassoc 1 - - Telephone
- * @navassoc 1 - - Address
- * @navassoc 1 - - OnlineResource
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Contact", specification=ISO_19115)
 public interface Contact {
+    /**
+     * Telephone numbers at which the organization or individual may be contacted.
+     * Returns an empty collection if none.
+     *
+     * @return Telephone numbers at which the organization or individual may be contacted.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Telephone> getPhones();
+
     /**
      * Telephone numbers at which the organization or individual may be contacted.
      * Returns {@code null} if none.
      *
      * @return Telephone numbers at which the organization or individual may be contacted,
      *         or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getPhones()}.
      */
-    @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
+    @Deprecated
     Telephone getPhone();
+
+    /**
+     * Physical and email addresses at which the organization or individual may be contacted.
+     * Returns an empty collection if none.
+     *
+     * @return Physical and email addresses at which the organization or individual may be contacted.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Address> getAddresses();
 
     /**
      * Physical and email address at which the organization or individual may be contacted.
@@ -67,9 +92,22 @@ public interface Contact {
      *
      * @return Physical and email address at which the organization or individual may be contacted,
      *         or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getAddresses()}.
      */
-    @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
+    @Deprecated
     Address getAddress();
+
+    /**
+     * On-line information that can be used to contact the individual or organization.
+     * Returns an empty collection if none.
+     *
+     * @return On-line information that can be used to contact the individual or organization.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends OnlineResource> getOnlineResources();
 
     /**
      * On-line information that can be used to contact the individual or organization.
@@ -77,8 +115,10 @@ public interface Contact {
      *
      * @return On-line information that can be used to contact the individual or organization,
      *         or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getOnlineResources()}.
      */
-    @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
+    @Deprecated
     OnlineResource getOnlineResource();
 
     /**
@@ -100,4 +140,15 @@ public interface Contact {
      */
     @UML(identifier="contactInstructions", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getContactInstructions();
+
+    /**
+     * Type of the contact.
+     * Returns {@code null} if none.
+     *
+     * @return Type of the contact, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="contactType", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getContactType();
 }

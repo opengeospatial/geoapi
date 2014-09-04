@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,15 +40,13 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The type definition. Every {@code Type} is {@linkplain #getTypeName identified} by a
  * {@link TypeName}.
- * <p>
- * This class can be think as the equivalent of the Java {@link Class} class.
+ *
+ * <p>This class can be think as the equivalent of the Java {@link Class} class.</p>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - TypeName
  */
 @UML(identifier="Type", specification=ISO_19103)
 public interface Type {

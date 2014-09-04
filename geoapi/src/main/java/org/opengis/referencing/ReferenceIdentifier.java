@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2007-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2007-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ReferenceIdentifier extends Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
      * methods. This is used for setting the value to be returned by {@link #getCodeSpace()}.
      *
      * @see #getCodeSpace()
@@ -58,7 +58,7 @@ public interface ReferenceIdentifier extends Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(&hellip;)</code>
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
      * methods. This is used for setting the value to be returned by {@link #getVersion()}.
      *
      * @see #getVersion()

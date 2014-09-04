@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,8 +33,12 @@ package org.opengis.test;
 
 import java.util.List;
 import java.util.AbstractList;
+import javax.imageio.spi.ImageReaderSpi;
+import javax.imageio.spi.ImageWriterSpi;
+import javax.imageio.metadata.IIOMetadataFormat;
 
 import org.opengis.util.*;
+import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
@@ -49,6 +53,7 @@ import org.opengis.test.util.*;
 import org.opengis.test.metadata.*;
 import org.opengis.test.geometry.*;
 import org.opengis.test.referencing.*;
+import org.opengis.test.coverage.image.*;
 
 
 /**
@@ -57,17 +62,42 @@ import org.opengis.test.referencing.*;
  * in various packages. Vendors can change the value of fields in this class if they wish to
  * override some validation process.
  *
+ * <p><b><u>Customization</u></b><br>
+ * All {@code validate(...)} methods in this class are final because this class is not the extension
+ * point for overriding validation processes. Instead, extend the appropriate {@link Validator}
+ * subclass and assign an instance to the corresponding field in this class. For example in order
+ * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects, one
+ * can do:</p>
+ *
+ * <blockquote><pre>ValidatorContainer container = new ValidationContainer();
+ *container.crs = new {@linkplain org.opengis.test.referencing.CRSValidator}(container) {
+ *    &#64;Override
+ *    public void validate(GeographicCRS object) {
+ *        super.validate(object);
+ *        // Perform additional validation here.
+ *    }
+ *};</pre></blockquote>
+ *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
-public class ValidatorContainer {
+public class ValidatorContainer implements Cloneable {
     /**
      * The validator for {@link GenericName} and related objects.
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
     public NameValidator naming = new NameValidator(this);
+
+    /**
+     * The validator for {@link Metadata} and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     *
+     * @since 3.1
+     */
+    public RootValidator metadata = new RootValidator(this);
 
     /**
      * The validator for {@link Citation} and related objects.
@@ -126,6 +156,13 @@ public class ValidatorContainer {
     public GeometryValidator geometry = new GeometryValidator(this);
 
     /**
+     * The validator for images and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     */
+    public ImageValidator image = new ImageValidator(this);
+
+    /**
      * An unmodifiable "live" list of all validators. Any change to the value of a field declared
      * in this class is reflected immediately in this list (so this list is <cite>unmodifiable</cite>
      * but not <cite>immutable</cite>). This list is convenient if the same setting must be applied
@@ -134,66 +171,184 @@ public class ValidatorContainer {
      * field to {@code false}.
      */
     public final List<Validator> all = new AbstractList<Validator>() {
+        @Override
         public int size() {
-            return 9;
+            return 11;
         }
 
+        @Override
         public Validator get(int index) {
             switch (index) {
                 case  0: return naming;
-                case  1: return citation;
-                case  2: return extent;
-                case  3: return datum;
-                case  4: return cs;
-                case  5: return crs;
-                case  6: return parameter;
-                case  7: return coordinateOperation;
-                case  8: return geometry;
+                case  1: return metadata;
+                case  2: return citation;
+                case  3: return extent;
+                case  4: return datum;
+                case  5: return cs;
+                case  6: return crs;
+                case  7: return parameter;
+                case  8: return coordinateOperation;
+                case  9: return geometry;
+                case 10: return image;
                 default: throw new IndexOutOfBoundsException(String.valueOf(index));
             }
         }
     };
 
     /**
-     * Creates a new {@code ValidatorContainer} initialised with default validators.
+     * Creates a new {@code ValidatorContainer} initialized with new {@link Validator} instances.
+     * Note that this constructor does not inherit the configuration of the {@link Validators#DEFAULT}
+     * instance. To inherit that default configuration, use <code>DEFAULT.{@linkplain #clone()}</code>
+     * instead.
      */
     public ValidatorContainer() {
     }
 
     /**
-     * Dispatches the given object to one of the {@code validate(object)} methods.
-     * Use this method only if the type is unknow at compile-time.
+     * Returns a new container using the same validators than this instance. After this method call,
+     * the two {@code ValidatorContainer} instances will share the same {@link Validator} instances.
      *
-     * @param object The object to test, or {@code null}.
+     * <p>This method is typically used in order to use the default configuration with a few
+     * changes, as in the example below:</p>
+     *
+     * <blockquote><pre> ValidatorContainer myContainer = Validators.DEFAULT.clone();
+     * myContainer.crs = new CRSValidator();
+     * myContainer.crs.{@linkplain CRSValidator#enforceStandardNames enforceStandardNames} = false;</pre></blockquote>
+     *
+     * @return A new {@code ValidatorContainer} instance using the same {@link Validator} instances.
+     */
+    @Override
+    public ValidatorContainer clone() {
+        try {
+            return (ValidatorContainer) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(e); // Should never happen.
+        }
+    }
+
+    /**
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
+     * Use this method only if the type is unknown at compile-time.
+     *
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
      */
     public final void dispatch(final Object object) {
-        if (object instanceof InternationalString) {
-            validate((InternationalString) object);
-        } else if (object instanceof ReferenceIdentifier) {
-            validate((ReferenceIdentifier) object);
-        } else if (object instanceof Citation) {
-            validate((Citation) object);
-        } else if (object instanceof GenericName) {
-            validate((GenericName) object);
-        } else if (object instanceof NameSpace) {
-            validate((NameSpace) object);
-        } else if (object instanceof IdentifiedObject) {
-            validate((IdentifiedObject) object);
-        } else if (object instanceof GeneralParameterValue) {
-            validate((GeneralParameterValue) object);
-        } else if (object instanceof DirectPosition) {
-            validate((DirectPosition) object);
-        } else if (object instanceof Envelope) {
-            validate((Envelope) object);
-        } else if (object instanceof GeographicExtent) {
-            validate((GeographicExtent) object);
-        } else if (object instanceof VerticalExtent) {
-            validate((VerticalExtent) object);
-        } else if (object instanceof TemporalExtent) {
-            validate((TemporalExtent) object);
-        } else if (object instanceof Extent) {
-            validate((Extent) object);
-        }
+        if (object instanceof Metadata)              validate((Metadata)              object);
+        if (object instanceof Citation)              validate((Citation)              object);
+        if (object instanceof Responsibility)        validate((Responsibility)        object);
+        if (object instanceof Party)                 validate((Party)                 object);
+        if (object instanceof Contact)               validate((Contact)               object);
+        if (object instanceof Telephone)             validate((Telephone)             object);
+        if (object instanceof Address)               validate((Address)               object);
+        if (object instanceof OnlineResource)        validate((OnlineResource)        object);
+        if (object instanceof Extent)                validate((Extent)                object);
+        if (object instanceof GeographicExtent)      validate((GeographicExtent)      object);
+        if (object instanceof VerticalExtent)        validate((VerticalExtent)        object);
+        if (object instanceof TemporalExtent)        validate((TemporalExtent)        object);
+        if (object instanceof IdentifiedObject)      validate((IdentifiedObject)      object);
+        if (object instanceof ReferenceIdentifier)   validate((ReferenceIdentifier)   object);
+        if (object instanceof Identifier)            validate((Identifier)            object);
+        if (object instanceof GenericName)           validate((GenericName)           object);
+        if (object instanceof NameSpace)             validate((NameSpace)             object);
+        if (object instanceof GeneralParameterValue) validate((GeneralParameterValue) object);
+        if (object instanceof Envelope)              validate((Envelope)              object);
+        if (object instanceof DirectPosition)        validate((DirectPosition)        object);
+        if (object instanceof InternationalString)   validate((InternationalString)   object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see RootValidator#validate(Metadata)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Metadata object) {
+        metadata.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Citation)
+     */
+    public final void validate(final Citation object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Responsibility)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Responsibility object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Party)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Party object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Contact)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Contact object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Telephone)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Telephone object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Address)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Address object) {
+        citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(OnlineResource)
+     *
+     * @since 3.1
+     */
+    public final void validate(final OnlineResource object) {
+        citation.validate(object);
     }
 
     /**
@@ -373,6 +528,16 @@ public class ValidatorContainer {
      * @see CRSValidator#validate(TemporalCRS)
      */
     public final void validate(final TemporalCRS object) {
+        crs.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(CompoundCRS)
+     */
+    public final void validate(final CompoundCRS object) {
         crs.validate(object);
     }
 
@@ -730,10 +895,12 @@ public class ValidatorContainer {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CitationValidator#validate(Citation)
+     * @see RootValidator#validate(Identifier)
+     *
+     * @since 3.1
      */
-    public final void validate(final Citation object) {
-        citation.validate(object);
+    public final void validate(final Identifier object) {
+        metadata.validate(object);
     }
 
     /**
@@ -784,5 +951,35 @@ public class ValidatorContainer {
      */
     public final void validate(final InternationalString object) {
         naming.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(ImageReaderSpi)
+     */
+    public final void validate(final ImageReaderSpi object) {
+        image.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(ImageWriterSpi)
+     */
+    public final void validate(final ImageWriterSpi object) {
+        image.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(IIOMetadataFormat)
+     */
+    public void validate(final IIOMetadataFormat object) {
+        image.validate(object);
     }
 }

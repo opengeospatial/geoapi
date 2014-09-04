@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,7 +31,12 @@
  */
 package org.opengis.test;
 
+import javax.imageio.spi.ImageReaderSpi;
+import javax.imageio.spi.ImageWriterSpi;
+import javax.imageio.metadata.IIOMetadataFormat;
+
 import org.opengis.util.*;
+import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
@@ -47,6 +52,7 @@ import org.opengis.test.util.*;
 import org.opengis.test.geometry.*;
 import org.opengis.test.metadata.*;
 import org.opengis.test.referencing.*;
+import org.opengis.test.coverage.image.*;
 
 
 /**
@@ -55,23 +61,36 @@ import org.opengis.test.referencing.*;
  * {@link Validator} objects in various packages. This class is especially convenient
  * when used with the {@code static import} feature of Java 5.
  *
- * <p>To override some validation process on a system-wide basis, vendors can change the
- * {@link #DEFAULT} static field or change the configuration of the object referenced
- * by that field.</p>
+ * <p><b><u>Customization</u></b><br>
+ * To override some validation process on a <em>system-wide</em> basis, vendors can either
+ * assign a new {@link ValidatorContainer} instance to the {@link #DEFAULT} static field, or
+ * modify the fields ({@link ValidatorContainer#cs cs}, {@link ValidatorContainer#crs crs},
+ * <i>etc.</i>) in the existing instance. The following example alters the existing instance
+ * in order to accept non-standard axis names:</p>
+ *
+ * <blockquote><pre>Validators.DEFAULT.crs.enforceStandardNames = false;</pre></blockquote>
  *
  * <p>To override some validation process without changing the system-wide setting,
- * users can create a new instance of {@link ValidatorContainer} and use that instance
- * instead of this class.</p>
+ * vendors can create a new instance of {@link ValidatorContainer} and invoke its
+ * non-static methods from the vendor's test cases.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class Validators {
     /**
      * The default container to be used by all static {@code validate} methods.
-     * Vendors can change this field to a different container, or change the setting
-     * of the referenced container. This field shall not be set to {@code null} however.
+     * Vendors can change the validators referenced by this container, or change
+     * their setting.
+     *
+     * <p>This field is not final in order to allow vendors to switch easily between
+     * different configurations, for example:</p>
+     *
+     * <blockquote><pre>ValidatorContainer original = Validators.DEFAULT;
+     *Validators.DEFAULT = myConfig;
+     *... do some tests ...
+     *Validators.DEFAULT = original;</pre></blockquote>
      */
     public static ValidatorContainer DEFAULT = new ValidatorContainer();
 
@@ -82,13 +101,108 @@ public class Validators {
     }
 
     /**
-     * Dispatches the given object to one of the {@code validate(object)} methods.
-     * Use this method only if the type is unknow at compile-time.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method (if any). Use this method only if the type is
+     * unknown at compile-time.
+     *
+     * @param  object The object to dispatch to {@code validate(…)} methods, or {@code null}.
+     */
+    public static void dispatch(final Object object) {
+        DEFAULT.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
+     * @see RootValidator#validate(Metadata)
+     *
+     * @since 3.1
      */
-    public final void dispatch(final Object object) {
-        DEFAULT.dispatch(object);
+    public static void validate(final Metadata object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Citation)
+     */
+    public static void validate(final Citation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Responsibility)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Responsibility object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Party)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Party object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Contact)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Contact object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Telephone)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Telephone object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(Address)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Address object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see CitationValidator#validate(OnlineResource)
+     *
+     * @since 3.1
+     */
+    public static void validate(final OnlineResource object) {
+        DEFAULT.validate(object);
     }
 
     /**
@@ -268,6 +382,16 @@ public class Validators {
      * @see CRSValidator#validate(TemporalCRS)
      */
     public static void validate(final TemporalCRS object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param object The object to validate, or {@code null}.
+     * @see CRSValidator#validate(CompoundCRS)
+     */
+    public static void validate(final CompoundCRS object) {
         DEFAULT.validate(object);
     }
 
@@ -625,9 +749,11 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see CitationValidator#validate(Citation)
+     * @see RootValidator#validate(Identifier)
+     *
+     * @since 3.1
      */
-    public static void validate(final Citation object) {
+    public static void validate(final Identifier object) {
         DEFAULT.validate(object);
     }
 
@@ -678,6 +804,36 @@ public class Validators {
      * @see NameValidator#validate(InternationalString)
      */
     public static void validate(final InternationalString object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(ImageReaderSpi)
+     */
+    public static void validate(final ImageReaderSpi object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(ImageWriterSpi)
+     */
+    public static void validate(final ImageWriterSpi object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param object The object to test, or {@code null}.
+     * @see ImageValidator#validate(IIOMetadataFormat)
+     */
+    public static void validate(final IIOMetadataFormat object) {
         DEFAULT.validate(object);
     }
 }

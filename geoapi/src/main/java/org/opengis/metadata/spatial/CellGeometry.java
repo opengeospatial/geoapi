@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,7 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * Code indicating whether grid data is point or area.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_CellGeometryCode", specification=ISO_19115)
@@ -58,7 +59,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CellGeometry> VALUES = new ArrayList<CellGeometry>(2);
+    private static final List<CellGeometry> VALUES = new ArrayList<CellGeometry>(4);
 
     /**
      * Each cell represents a point.
@@ -73,10 +74,27 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     public static final CellGeometry AREA = new CellGeometry("AREA");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Each cell represents a volumetric measurement on a regular grid in three dimensional space.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @since 3.1
+     */
+    @UML(identifier="voxel", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CellGeometry VOXEL = new CellGeometry("VOXEL");
+
+    /**
+     * Height range for a single point vertical profile.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CellGeometry STRATUM = new CellGeometry("STRATUM");
+
+    /**
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
+     *
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private CellGeometry(final String name) {
         super(name, VALUES);
@@ -94,8 +112,13 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public CellGeometry[] family() {
         return values();
     }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,22 +31,38 @@
  */
 
 /**
- * {@linkplain org.opengis.metadata.extent.Extent} information. The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
- * specification.
+ * Geographic, vertical and temporal {@linkplain org.opengis.metadata.extent.Extent extents}.
  *
- * <P ALIGN="justify">The datatype in this package is an aggregate of the metadata
- * elements that describe the spatial and temporal extent of the referring entity.
- * The {@linkplain org.opengis.metadata.extent.Extent extent} entity contains information about the
- * {@linkplain org.opengis.metadata.extent.GeographicExtent geographic},
- * {@linkplain org.opengis.metadata.extent.TemporalExtent temporal} and the
- * {@linkplain org.opengis.metadata.extent.VerticalExtent vertical} extent of the referring
- * entity.
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * together with a partial view of aggregation hierarchy:</p>
  *
- * The {@linkplain org.opengis.metadata.extent.GeographicExtent geographic extent} can be subclassed as
- * {@linkplain org.opengis.metadata.extent.BoundingPolygon bounding polygon},
- * {@linkplain org.opengis.metadata.extent.GeographicBoundingBox geographic bounding box} and
- * {@linkplain org.opengis.metadata.extent.GeographicDescription geographic description}.</P>
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
+ *   <th>Class hierarchy</th>
+ *   <th class="sep">Aggregation hierarchy</th>
+ * </tr><tr><td width="50%" nowrap>
+ * <pre> ISO-19115 object
+ *  ├─ {@linkplain org.opengis.metadata.extent.Extent}
+ *  ├─ {@linkplain org.opengis.metadata.extent.GeographicExtent} «abstract»
+ *  │   ├─ {@linkplain org.opengis.metadata.extent.GeographicBoundingBox}
+ *  │   ├─ {@linkplain org.opengis.metadata.extent.GeographicDescription}
+ *  │   └─ {@linkplain org.opengis.metadata.extent.BoundingPolygon}
+ *  ├─ {@linkplain org.opengis.metadata.extent.VerticalExtent}
+ *  └─ {@linkplain org.opengis.metadata.extent.TemporalExtent}
+ *      └─ {@linkplain org.opengis.metadata.extent.SpatialTemporalExtent}</pre>
+ * </td><td class="sep" width="50%" nowrap>
+ * <pre> {@linkplain org.opengis.metadata.extent.Extent}
+ *  ├─ {@linkplain org.opengis.metadata.extent.GeographicExtent}
+ *  ├─ {@linkplain org.opengis.metadata.extent.VerticalExtent}
+ *  └─ {@linkplain org.opengis.metadata.extent.TemporalExtent}
+ * {@linkplain org.opengis.metadata.extent.SpatialTemporalExtent}
+ *  └─ {@linkplain org.opengis.metadata.extent.GeographicExtent} «abstract»
+ * {@linkplain org.opengis.metadata.extent.GeographicBoundingBox}
+ * {@linkplain org.opengis.metadata.extent.GeographicDescription}
+ * {@linkplain org.opengis.metadata.extent.BoundingPolygon}</pre>
+ * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

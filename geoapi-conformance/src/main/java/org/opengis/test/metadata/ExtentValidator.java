@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,45 +31,51 @@
  */
 package org.opengis.test.metadata;
 
-import java.util.Collection;
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
+import org.opengis.geometry.Geometry;
 import org.opengis.test.ValidatorContainer;
 import static org.opengis.test.Assert.*;
 
 
 /**
  * Validates {@link Extent} and related objects from the
- * {@code org.opengis.metadata.extent} package. This class should not be used directly;
- * use the {@link org.opengis.test.Validators} convenience static methods instead.
+ * {@code org.opengis.metadata.extent} package.
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public class ExtentValidator extends MetadataValidator {
     /**
-     * Creates a new validator.
+     * Creates a new validator instance.
      *
-     * @param container The container of this validator.
+     * @param container The set of validators to use for validating other kinds of objects
+     *                  (see {@linkplain #container field javadoc}).
      */
     public ExtentValidator(final ValidatorContainer container) {
         super(container, "org.opengis.metadata.extent");
     }
 
     /**
-     * Dispatches the given object to one of {@code validate} methods.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this class (if any).
      *
-     * @param object The object to dispatch.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
      */
-    public void dispatch(final GeographicExtent object) {
-        if (object instanceof GeographicBoundingBox) {
-            validate((GeographicBoundingBox) object);
-        } else if (object instanceof BoundingPolygon) {
-            validate((BoundingPolygon) object);
-        } else if (object instanceof GeographicDescription) {
-            validate((GeographicDescription) object);
+    public int dispatch(final GeographicExtent object) {
+        int n = 0;
+        if (object != null) {
+            if (object instanceof GeographicDescription) {validate((GeographicDescription) object); n++;}
+            if (object instanceof GeographicBoundingBox) {validate((GeographicBoundingBox) object); n++;}
+            if (object instanceof BoundingPolygon)       {validate((BoundingPolygon)       object); n++;}
         }
+        return n;
     }
 
     /**
@@ -96,6 +102,9 @@ public class ExtentValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
+        for (final Geometry e : toArray(Geometry.class, object.getPolygons())) {
+            // TODO
+        }
     }
 
     /**
@@ -115,8 +124,9 @@ public class ExtentValidator extends MetadataValidator {
         assertBetween("GeographicBoundingBox: illegal east bound.",  -180, +180, east);
         assertBetween("GeographicBoundingBox: illegal south bound.", -90,   +90, south);
         assertBetween("GeographicBoundingBox: illegal north bound.", -90,   +90, north);
-        assertTrue("GeographicBoundingBox: invalid range of longitudes.", west <= east);
-        assertTrue("GeographicBoundingBox: invalid range of latitudes.",  south <= north);
+        assertFalse("GeographicBoundingBox: invalid range of latitudes.",  south > north); // Accept NaN.
+        // Do not require west <= east, as this condition is not specified in ISO 19115.
+        // Some implementations may use west > east for box spanning the anti-meridian.
     }
 
     /**
@@ -135,6 +145,7 @@ public class ExtentValidator extends MetadataValidator {
         if (minimum != null && maximum != null) {
             assertTrue("VerticalExtent: invalid range.", minimum <= maximum);
         }
+        container.validate(object.getVerticalCRS());
     }
 
     /**
@@ -149,14 +160,8 @@ public class ExtentValidator extends MetadataValidator {
             return;
         }
         if (object instanceof SpatialTemporalExtent) {
-            final SpatialTemporalExtent extent = (SpatialTemporalExtent) object;
-            final Collection<? extends GeographicExtent> elements = extent.getSpatialExtent();
-            mandatory("SpatialTemporalExtent: must contains spatial extent.", elements);
-            if (elements != null) {
-                for (final GeographicExtent element : elements) {
-                    assertNotNull("SpatialTemporalExtent: getSpatialExtent() can't contain null element.", element);
-                    dispatch(element);
-                }
+            for (final GeographicExtent e : toArray(GeographicExtent.class, ((SpatialTemporalExtent) object).getSpatialExtent())) {
+                dispatch(e);
             }
         }
     }
@@ -171,8 +176,8 @@ public class ExtentValidator extends MetadataValidator {
             return;
         }
         validateOptional(object.getDescription());
-        validateCollection(GeographicExtent.class, object.getGeographicElements());
-        validateCollection(VerticalExtent.class,   object.getVerticalElements());
-        validateCollection(TemporalExtent.class,   object.getTemporalElements());
+        for (GeographicExtent e : toArray(GeographicExtent.class, object.getGeographicElements())) dispatch(e);
+        for (VerticalExtent   e : toArray(VerticalExtent  .class, object.getVerticalElements  ())) validate(e);
+        for (TemporalExtent   e : toArray(TemporalExtent  .class, object.getTemporalElements  ())) validate(e);
     }
 }

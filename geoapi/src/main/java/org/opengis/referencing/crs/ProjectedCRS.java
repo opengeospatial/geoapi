@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,8 +31,10 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.Projection;
 import org.opengis.annotation.UML;
 
@@ -46,40 +48,43 @@ import static org.opengis.annotation.Specification.*;
  * controlled and known. Distortion correction is commonly applied to calculated bearings and
  * distances to produce values that are a close match to actual field values.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.cs.CartesianCS Cartesian}
- * </TD></TR></TABLE>
+ * <p>This type of CRS can be used with coordinate systems of type
+ * {@link org.opengis.referencing.cs.CartesianCS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - GeodeticDatum
- * @navassoc 1 - - CartesianCS
+ * @see CRSAuthorityFactory#createProjectedCRS(String)
+ * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
  */
 @UML(identifier="SC_ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
      */
+    @Override
     GeographicCRS getBaseCRS();
 
     /**
-     * Returns the map projection from the {@linkplain #getBaseCRS base CRS} to this CRS.
+     * Returns the map projection from the {@linkplain #getBaseCRS() base CRS} to this CRS.
      */
+    @Override
     Projection getConversionFromBase();
 
     /**
-     * Returns the coordinate system, which must be cartesian.
+     * Returns the coordinate system, which shall be Cartesian.
+     *
+     * @return The Cartesian coordinate system.
      */
+    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CartesianCS getCoordinateSystem();
 
     /**
      * Returns the datum.
      */
+    @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     GeodeticDatum getDatum();
 }

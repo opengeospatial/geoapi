@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,19 +42,27 @@ import static org.opengis.annotation.Specification.*;
  * Extent with respect to date/time and spatial boundaries.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   1.0
- *
- * @navassoc - - - GeographicExtent
  */
 @UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {
     /**
-     * Returns the spatial extent component of composite
-     * spatial and temporal extent.
+     * The spatial extent component of composite spatial and temporal extent.
      *
      * @return The list of geographic extents (never {@code null}).
      */
     @UML(identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends GeographicExtent> getSpatialExtent();
+
+    /**
+     * Vertical extent component.
+     *
+     * @return Vertical extent component, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="verticalExtent", obligation=OPTIONAL, specification=ISO_19115)
+    VerticalExtent getVerticalExtent();
 }

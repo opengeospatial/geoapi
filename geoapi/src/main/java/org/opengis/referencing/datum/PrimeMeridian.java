@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import org.opengis.referencing.IdentifiedObject;
@@ -50,7 +51,8 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @navassoc 1 - - Unit
+ * @see DatumAuthorityFactory#createPrimeMeridian(String)
+ * @see DatumFactory#createPrimeMeridian(Map, double, Unit)
  */
 @UML(identifier="CD_PrimeMeridian", specification=ISO_19111)
 public interface PrimeMeridian extends IdentifiedObject {
@@ -67,7 +69,10 @@ public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
      *
-     * @return The angular unit of greenwich longitude.
+     * {@note This attribute is inherited from an older OGC specification. ISO 19111 compliant
+     * applications or GML documents shall always express prime meridians in decimal degrees.}
+     *
+     * @return The angular unit of Greenwich longitude.
      */
     @UML(identifier="getAngularUnit", specification=OGC_01009)
     Unit<Angle> getAngularUnit();

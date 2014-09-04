@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -50,7 +50,7 @@ public interface EnvironmentalRecord {
     /**
      * Average air temperature along the flight pass during the photo flight.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
      *     3.1. It may be replaced by the {@link javax.measure.quantity.Temperature} type in order
@@ -66,7 +66,7 @@ public interface EnvironmentalRecord {
     /**
      * Maximum relative humidity along the flight pass during the photo flight.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
      *     3.1. It may be replaced by the {@link javax.measure.quantity.Dimensionless} type in
@@ -82,7 +82,7 @@ public interface EnvironmentalRecord {
     /**
      * Maximum altitude during the photo flight.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
      *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to

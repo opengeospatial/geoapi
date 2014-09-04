@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,27 +31,41 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
+import javax.measure.unit.SI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A one-dimensional coordinate system used to record the heights (or depths) of points. Such a
- * coordinate system is usually dependent on the Earth's gravity field, perhaps loosely as when
- * atmospheric pressure is the basis for the vertical coordinate system axis. An exact definition
- * is deliberately not provided as the complexities of the subject fall outside the scope of this
- * specification. A {@code VerticalCS} shall have one {@linkplain #getAxis axis association}.
+ * A 1-dimensional coordinate system used to record the heights or depths of points.
+ * Such a coordinate system is usually dependent on the Earth's gravity field, perhaps
+ * loosely as when atmospheric pressure is the basis for the vertical coordinate system axis.
+ * An exact definition is deliberately not provided as the complexities of the subject fall
+ * outside the scope of the ISO 19111 specification.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.VerticalCRS    Vertical},
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.VerticalCRS}.
+ * The following examples describe some possible axes for vertical CS used with the above-cited CRS:</p>
+ *
+ * <table class="ogc">
+ *   <caption>Example 1: positive values above sea level</caption>
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Gravity-related height</td> <td>H</td> <td>{@link AxisDirection#UP}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
+ *
+ * <table class="ogc">
+ *   <caption>Example 2: positive values below sea level</caption>
+ *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
+ *   <tr><td>Depth</td> <td>D</td> <td>{@link AxisDirection#DOWN}</td> <td>{@link SI#METRE}</td></tr>
+ * </table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see CSAuthorityFactory#createVerticalCS(String)
+ * @see CSFactory#createVerticalCS(Map, CoordinateSystemAxis)
  */
 @UML(identifier="CS_VerticalCS", specification=ISO_19111)
 public interface VerticalCS extends CoordinateSystem {

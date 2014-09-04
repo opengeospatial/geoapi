@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,7 @@ import static org.junit.Assert.*;
  * @version 3.0
  * @since   2.2
  */
-public class ValidatorContainerTest {
+public strictfp class ValidatorContainerTest {
     /**
      * Ensures that {@link ValidatorContainer#all} contains no duplicated value.
      * Also ensures that the declared list size is the expected one.

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,6 +33,8 @@ package org.opengis.metadata.citation;
 
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -42,16 +44,17 @@ import static org.opengis.annotation.Specification.*;
  * Information about the series, or aggregate dataset, to which a dataset belongs.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Series", specification=ISO_19115)
 public interface Series {
     /**
      * Name of the series, or aggregate dataset, of which the dataset is a part.
      * Returns {@code null} if none.
      *
-     * @return The name of the series or aggregate dataset.
+     * @return The name of the series or aggregate dataset, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();
@@ -59,7 +62,7 @@ public interface Series {
     /**
      * Information identifying the issue of the series.
      *
-     * @return Information identifying the issue of the series.
+     * @return Information identifying the issue of the series, or {@code null}.
      */
     @UML(identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
     String getIssueIdentification();
@@ -67,7 +70,7 @@ public interface Series {
     /**
      * Details on which pages of the publication the article was published.
      *
-     * @return Details on which pages of the publication the article was published.
+     * @return Details on which pages of the publication the article was published, or {@code null}.
      */
     @UML(identifier="page", obligation=OPTIONAL, specification=ISO_19115)
     String getPage();

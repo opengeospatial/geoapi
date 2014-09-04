@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -48,10 +48,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc - - - Citation
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - Platform
  */
 @UML(identifier="MI_Instrument", specification=ISO_19115_2)
 public interface Instrument {
@@ -82,7 +78,7 @@ public interface Instrument {
     /**
      * Textual description of the instrument.
      *
-     * @return Textual description.
+     * @return Textual description, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -90,7 +86,7 @@ public interface Instrument {
     /**
      * Platform on which the instrument is mounted.
      *
-     * @return Platform on which the instrument is mounted.
+     * @return Platform on which the instrument is mounted, or {@code null}.
      */
     @UML(identifier="mountedOn", obligation=OPTIONAL, specification=ISO_19115_2)
     Platform getMountedOn();

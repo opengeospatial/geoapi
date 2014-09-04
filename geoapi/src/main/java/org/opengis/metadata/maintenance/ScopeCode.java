@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  *
  * @see org.opengis.metadata.quality.Scope
@@ -61,19 +62,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(16);
-
-    /**
-     * Information applies to the attribute value.
-     */
-    @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
-
-    /**
-     * Information applies to the characteristic of a feature.
-     */
-    @UML(identifier="attributeType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode ATTRIBUTE_TYPE = new ScopeCode("ATTRIBUTE_TYPE");
+    private static final List<ScopeCode> VALUES = new ArrayList<ScopeCode>(26);
 
     /**
      * Information applies to the collection hardware class.
@@ -88,19 +77,33 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode COLLECTION_SESSION = new ScopeCode("COLLECTION_SESSION");
 
     /**
-     * Information applies to the dataset.
-     */
-    @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode DATASET = new ScopeCode("DATASET");
-
-    /**
-     * Information applies to the series.  Note: "series" applies to any {@code DS_Aggregate}.
+     * Information applies to a collection of spatial data which share similar characteristics of theme,
+     * source date, resolution, and methodology. The exact definition of what constitutes a series
+     * is determined by the data provider. Examples of data series metadata entries may include:
+     *
+     * <ul>
+     *   <li>A flight line of digital aerial photographs collected during a single flight with one camera and film type.</li>
+     *   <li>A continuous scan swathe collected from a satellite using the same sensors on a single orbital pass.</li>
+     *   <li>A collection of raster map data captured from a common series of paper maps.</li>
+     *   <li>A collection of vector datasets depicting surface hydrography with associated attribution
+     *        for multiple administrative areas within a country.</li>
+     * </ul>
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SERIES = new ScopeCode("SERIES");
 
     /**
-     * information applies to non-geographic data;
+     * Information applies to a consistent spatial data product that can be provided by a
+     * data distributor. A dataset may be a member of a data {@linkplain #SERIES series}.
+     * A dataset may be composed of a set of feature {@linkplain #FEATURE_TYPE types} and
+     * {@linkplain #FEATURE instances}, and attribute {@linkplain #ATTRIBUTE_TYPE types} and
+     * {@linkplain #ATTRIBUTE instances}.
+     */
+    @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode DATASET = new ScopeCode("DATASET");
+
+    /**
+     * Information applies to non-geographic data.
      */
     @UML(identifier="nonGeographicDataset", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode NON_GEOGRAPHIC_DATASET = new ScopeCode("NON_GEOGRAPHIC_DATASET");
@@ -112,16 +115,59 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode DIMENSION_GROUP = new ScopeCode("DIMENSION_GROUP");
 
     /**
-     * Information applies to a feature.
+     * Information applies to a group of spatial primitives (geometric objects) that have a
+     * common type. Example (compare with {@linkplain #FEATURE}):
+     *
+     * <ul>
+     *   <li>All bridges within a dataset.</li>
+     * </ul>
+     *
+     * Feature type metadata are grouped in {@linkplain #DATASET dataset}s.
+     */
+    @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode FEATURE_TYPE = new ScopeCode("FEATURE_TYPE");
+
+    /**
+     * Information applies to spatial constructs (features) that have a direct correspondence
+     * with a real world object. Examples (compare with {@linkplain #FEATURE_TYPE}):
+     *
+     * <ul>
+     *   <li>The Sydney harbour bridge.</li>
+     *   <li>The Golden Gate bridge, in San Francisco.</li>
+     * </ul>
+     *
+     * Feature instance metadata are grouped in {@linkplain #DATASET dataset}s.
      */
     @UML(identifier="feature", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode FEATURE = new ScopeCode("FEATURE");
 
     /**
-     * Information applies to a feature type.
+     * Information applies to the characteristic of a feature.
+     * Attribute types are the digital parameters that describe a common aspect of grouped spatial
+     * primitives (geometric objects). Example (compare with {@linkplain #ATTRIBUTE}):
+     *
+     * <ul>
+     *   <li>Overhead clearance associated with a bridge.</li>
+     * </ul>
+     *
+     * Attribute type metadata are grouped in {@linkplain #DATASET dataset}s.
      */
-    @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode FEATURE_TYPE = new ScopeCode("FEATURE_TYPE");
+    @UML(identifier="attributeType", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode ATTRIBUTE_TYPE = new ScopeCode("ATTRIBUTE_TYPE");
+
+    /**
+     * Information applies to the attribute value.
+     * Attribute instances are the digital parameters that describe an aspect of a feature instance.
+     * Example (compare with {@linkplain #ATTRIBUTE_TYPE}):
+     *
+     * <ul>
+     *   <li>The overhead clearance associated with a specific bridge across a road.</li>
+     * </ul>
+     *
+     * Attribute instance metadata are grouped in {@linkplain #DATASET dataset}s.
+     */
+    @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
 
     /**
      * Information applies to a property type.
@@ -156,7 +202,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode MODEL = new ScopeCode("MODEL");
 
     /**
-     * Information applies to a copy or imitation of an existing or hypothetical object.
+     * Information applies to a tile, a spatial subset of geographic data.
      *
      * @since 2.1
      */
@@ -164,10 +210,91 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     public static final ScopeCode TILE = new ScopeCode("TILE");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Information applies to metadata.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @since 3.1
+     */
+    @UML(identifier="metadata", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode METADATA = new ScopeCode("METADATA");
+
+    /**
+     * Information applies to an initiative.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="initiative", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode INITIATIVE = new ScopeCode("INITIATIVE");
+
+    /**
+     * Information applies to a sample.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode SAMPLE = new ScopeCode("SAMPLE");
+
+    /**
+     * Information applies to a document.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="document", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode DOCUMENT = new ScopeCode("DOCUMENT");
+
+    /**
+     * Information applies to a repository.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="repository", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode REPOSITORY = new ScopeCode("REPOSITORY");
+
+    /**
+     * Information applies to an aggregate resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="aggregate", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode AGGREGATE = new ScopeCode("AGGREGATE");
+
+    /**
+     * Metadata describing an ISO 19131 data product specification.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode PRODUCT = new ScopeCode("PRODUCT");
+
+    /**
+     * Information applies to an unstructured set.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="collection", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode COLLECTION = new ScopeCode("COLLECTION");
+
+    /**
+     * Information applies to a coverage.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode COVERAGE = new ScopeCode("COVERAGE");
+
+    /**
+     * Information resource hosted on a specific set of hardware and accessible over network.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="application", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final ScopeCode APPLICATION = new ScopeCode("APPLICATION");
+
+    /**
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
+     *
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private ScopeCode(final String name) {
         super(name, VALUES);
@@ -185,8 +312,13 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public ScopeCode[] family() {
         return values();
     }

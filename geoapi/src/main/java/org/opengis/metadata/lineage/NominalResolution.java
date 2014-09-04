@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,6 +32,8 @@
 package org.opengis.metadata.lineage;
 
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -41,16 +43,17 @@ import static org.opengis.annotation.Specification.*;
  * Distance between consistent parts of (centre, left side, right side) adjacent pixels.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="LE_NominalResolution", specification=ISO_19115_2)
 public interface NominalResolution {
     /**
      * Distance between consistent parts of (centre, left side, right side) adjacent pixels
      * in the scan plane.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
      *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
@@ -68,7 +71,7 @@ public interface NominalResolution {
      * Distance between consistent parts of (centre, left side, right side) adjacent pixels
      * in the object space.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
      *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to

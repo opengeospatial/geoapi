@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,9 +42,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Creates {@linkplain Datum datum} objects using authority codes. External authorities are used to
  * manage definitions of objects used in this interface. The definitions of these objects are
- * referenced using code strings. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
- * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
- * standard.
+ * referenced using code strings. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -56,11 +54,13 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
-     * Returns an arbitrary {@linkplain Datum datum} from a code. If the datum type is know at
-     * compile time, it is recommended to invoke the most precise method instead of this one
-     * (for example <code>&nbsp;{@linkplain #createGeodeticDatum createGeodeticDatum}(code)&nbsp;</code>
-     * instead of <code>&nbsp;createDatum(code)&nbsp;</code> if the caller know he is asking for a
-     * {@linkplain GeodeticDatum geodetic datum}).
+     * Returns an arbitrary {@linkplain Datum datum} from a code.
+     *
+     * <p>If the datum type is known at compile time, then it is recommended to invoke the
+     * most precise method instead of this one. For example it is usually better to invoke
+     * <code>{@linkplain #createGeodeticDatum createGeodeticDatum}(code)</code> instead of
+     * <code>createDatum(code)</code> if the requested object is known to be a
+     * {@code GeodeticDatum} instance.</p>
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.

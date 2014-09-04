@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,9 +32,9 @@
 package org.opengis.referencing;
 
 import org.opengis.referencing.datum.Datum;
-
-import org.junit.*;
 import org.opengis.referencing.operation.CoordinateOperation;
+import org.junit.Test;
+
 import static org.opengis.referencing.ReferenceSystem.*;
 import static org.junit.Assert.*;
 
@@ -46,7 +46,7 @@ import static org.junit.Assert.*;
  * @version 3.0
  * @since   2.3
  */
-public final class KeyConstantsTest {
+public final strictfp class KeyConstantsTest {
     /**
      * Ensures that the key that are expected to be the same are really the same.
      * We use {@code assertSame} instead than {@code assertEquals} because we

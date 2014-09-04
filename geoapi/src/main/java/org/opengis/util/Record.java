@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,10 +40,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A list of logically related elements as (<var>name</var>, <var>value</var>) pairs in a
- * dictionary.  A record may be used as an implementation representation for features.
- * <p>
- * This class can be think as the equivalent of the Java {@link Object} class.
+ * A list of logically related elements as (<var>name</var>, <var>value</var>) pairs in a dictionary.
+ * {@code Records} are similar to an attribute-only {@code class} in Java if it were stripped of all
+ * notions of inheritance.
+ * A {@code Record} may be used as an implementation representation for features.
+ *
+ * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+ * If we think about {@code Record}s as equivalent to {@code Object} instances, then the descriptions
+ * of those records ({@link RecordType}) can be though as equivalent to Java {@link Class} instances,
+ * and the set of members in a {@code Record} can be though as the equivalent of {@link Class#getFields()}.
+ * </font></blockquote>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
@@ -51,22 +57,21 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.1
  *
  * @see RecordType
- *
- * @navassoc 1 - - RecordType
  */
 @UML(identifier="Record", specification=ISO_19103)
 public interface Record {
     /**
      * Returns the type definition of record. All attributes named in this record must be defined
-     * in the returned record type. In other words, the following relationship must holds:
-     * <p>
-     * <ul>
-     *    <li><code>getRecordType().{@linkplain RecordType#getMembers() getMemberTypes()}.{@linkplain
-     *        Set#containsAll containsAll}({@linkplain #getAttributes()}.{@linkplain
-     *        Map#keySet keySet()})</code></li>
-     * </ul>
-     * <p>
-     * This method can be think as the equivalent of the Java {@link Object#getClass()} method.
+     * in the returned record type. In other words, the following assertion must holds:
+     *
+     * <blockquote><pre> Set&lt;MemberName&gt; members    = getRecordType().{@linkplain RecordType#getMembers() getMembers()};
+     * Set&lt;MemberName&gt; attributes = {@linkplain #getAttributes()}.{@linkplain Map#keySet() keySet()};
+     * assert members.{@linkplain Set#containsAll containsAll}(attributes);</pre></blockquote>
+     *
+     * <blockquote><font size="-1"><b>Comparison with Java reflection:</b>
+     * If we think about this {@code Record} as equivalent to an {@code Object} instance, then
+     * this method can be though as the equivalent of the Java {@link Object#getClass()} method.
+     * </font></blockquote>
      *
      * @return The type definition of this record, or {@code null}.
      */
@@ -83,8 +88,8 @@ public interface Record {
      * @see RecordType#getMemberTypes()
      *
      * @departure generalization
-     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to 
-     *   contradict the semantics of the <code>locate(name)</code> and 
+     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to
+     *   contradict the semantics of the <code>locate(name)</code> and
      *   <code>RecordType.getMemberTypes()</code> methods.
      */
     @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)
@@ -108,7 +113,7 @@ public interface Record {
     /**
      * Sets the value for the attribute of the specified name. This is functionally equivalent
      * to <code>{@linkplain #getAttributes()}.{@linkplain Map#put put}(name,value)</code>.
-     * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers
+     * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers()
      * record type members} only.
      *
      * @param  name  The name of the attribute to modify.

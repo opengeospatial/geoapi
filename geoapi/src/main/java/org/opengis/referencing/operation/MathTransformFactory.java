@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -52,20 +52,20 @@ import static org.opengis.annotation.Specification.*;
  * instead. However, the {@code MathTransformFactory} interface can be used directly
  * by applications that wish to transform other types of coordinates (e.g. color coordinates,
  * or image pixel coordinates).
- * <p>
- * A {@linkplain MathTransform math transform} is an object that actually does
+ *
+ * <p>A {@linkplain MathTransform math transform} is an object that actually does
  * the work of applying formulae to coordinate values. The math transform does
  * not know or care how the coordinates relate to positions in the real world.
  * This lack of semantics makes implementing {@code MathTransformFactory}
- * significantly easier than it would be otherwise.
- * <p>
- * For example the affine transform applies a matrix to the coordinates
+ * significantly easier than it would be otherwise.</p>
+ *
+ * <p>For example the affine transform applies a matrix to the coordinates
  * without knowing how what it is doing relates to the real world. So if
  * the matrix scales <var>Z</var> values by a factor of 1000, then it could
  * be converting meters into millimeters, or it could be converting kilometers
- * into meters.
- * <p>
- * Because {@linkplain MathTransform math transforms} have low semantic value
+ * into meters.</p>
+ *
+ * <p>Because {@linkplain MathTransform math transforms} have low semantic value
  * (but high mathematical value), programmers who do not have much knowledge
  * of how GIS applications use coordinate systems, or how those coordinate
  * systems relate to the real world can implement {@code MathTransformFactory}.
@@ -73,23 +73,23 @@ import static org.opengis.annotation.Specification.*;
  * means that they will be useful in applications that have nothing to do with
  * GIS coordinates. For example, a math transform could be used to map color
  * coordinates between different color spaces, such as converting (red, green, blue)
- * colors into (hue, light, saturation) colors.
- * <p>
- * Since a {@linkplain MathTransform math transform} does not know what its source
+ * colors into (hue, light, saturation) colors.</p>
+ *
+ * <p>Since a {@linkplain MathTransform math transform} does not know what its source
  * and target coordinate systems mean, it is not necessary or desirable for a math
- * transform object to keep information on its source and target coordinate systems.
+ * transform object to keep information on its source and target coordinate systems.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>
+ * @see <a href="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</a>
  */
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
     /**
      * Returns a set of available methods for {@linkplain MathTransform math transforms}. For
-     * each element in this set, the {@linkplain OperationMethod#getName operation method name}
+     * each element in this set, the {@linkplain OperationMethod#getName() operation method name}
      * must be known to the {@link #getDefaultParameters(String)} method in this factory.
      * The set of available methods is implementation dependent.
      *
@@ -103,6 +103,7 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #getDefaultParameters(String)
      * @see #createParameterizedTransform(ParameterValueGroup)
+     * @see CoordinateOperationFactory#getOperationMethod(String)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
@@ -110,13 +111,13 @@ public interface MathTransformFactory extends Factory {
      * Returns the operation method used for the latest call to
      * {@link #createParameterizedTransform createParameterizedTransform},
      * or {@code null} if not applicable.
-     * <p>
-     * Implementors should document how their implementation behave in a multi-threads environment.
+     *
+     * <p>Implementors should document how their implementation behave in a multi-threads environment.
      * For example some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
-     * while other can choose to returns {@code null} in all cases since this method is optional.
-     * <p>
-     * Note that this method may apply as well to convenience methods that delegate their work to
-     * {@code createParameterizedTransform}, like {@link #createBaseToDerived createBaseToDerived}.
+     * while other can choose to returns {@code null} in all cases since this method is optional.</p>
+     *
+     * <p>Note that this method may apply as well to convenience methods that delegate their work to
+     * {@code createParameterizedTransform}, like {@link #createBaseToDerived createBaseToDerived}.</p>
      *
      * @return The last method used, or {@code null} if unknown of unsupported.
      *
@@ -124,12 +125,12 @@ public interface MathTransformFactory extends Factory {
      *   This method is not part of the OGC specification. It has been added because this information
      *   appears to be needed in practice. A more object-oriented approach would have been to
      *   return a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in the
-     *   <code>createParameterizedTransform(&hellip)</code> method, but we wanted to keep the
+     *   <code>createParameterizedTransform(…)</code> method, but we wanted to keep the
      *   later unchanged for historical reasons (it is inherited from OGC 01-009) and because
      *   only a minority of use cases need the operation method.
-     *   <p>
-     *   Note that the existence of this method does not break thread-safety if the implementor
-     *   stores this information in a <code>ThreadLocal</code> variable.
+     *
+     *   <p>Note that the existence of this method does not break thread-safety if the implementor
+     *   stores this information in a <code>ThreadLocal</code> variable.</p>
      *
      * @since 2.1
      */
@@ -138,15 +139,15 @@ public interface MathTransformFactory extends Factory {
     /**
      * Returns the default parameter values for a math transform using the given method.
      * The {@code method} argument is the name of any operation method returned by
-     * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
+     * <code>{@link #getAvailableMethods(Class) getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
      * A typical example is
-     * <code>"<A HREF="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</A>"</code>).
-     * <P>
-     * The {@linkplain ParameterDescriptorGroup#getName parameter group name} shall be the
+     * <code>"<a href="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</a>"</code>).
+     *
+     * <p>The {@linkplain ParameterDescriptorGroup#getName() parameter group name} shall be the
      * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
      * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
      * at every call. Parameters are intended to be modified by the user before to be given to the
-     * above-cited {@code createParameterizedTransform} method.
+     * above-cited {@code createParameterizedTransform} method.</p>
      *
      * @param  method The case insensitive name of the method to search for.
      * @return The default parameter values.
@@ -167,10 +168,12 @@ public interface MathTransformFactory extends Factory {
      * the parameterized transform with any other transform required for performing units changes and
      * ordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
      * cartographic projections}.
-     * <p>
-     * In addition, implementations are encouraged to infer the {@code "semi_major"} and
-     * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}, if
-     * they are not explicitly given.
+     *
+     * <p>In addition, implementations are encouraged to infer the {@code "semi_major"} and
+     * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}
+     * associated to the {@code baseCRS}, if those parameters are not explicitly given
+     * and if they are applicable (typically for cartographic projections).
+     * This inference is consistent with the EPSG database model.</p>
      *
      * @param  baseCRS The source coordinate reference system.
      * @param  parameters The parameter values for the transform.
@@ -193,7 +196,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a transform from a group of parameters. The method name is inferred from
-     * the {@linkplain ParameterDescriptorGroup#getName parameter group name}. Example:
+     * the {@linkplain ParameterDescriptorGroup#getName() parameter group name}. Example:
      *
      * <blockquote><pre>
      * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
@@ -203,20 +206,22 @@ public interface MathTransformFactory extends Factory {
      * </pre></blockquote>
      *
      * <b>Note on cartographic projections:</b>
-     * <P>Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
+     * <p>Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
      * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
      * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
-     * or a screen. All cartographic projection transforms created through this method will have the following properties:</P>
-     * <UL>
-     *   <LI>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</LI>
-     *   <LI>All angles are assumed to be degrees, and all distances are assumed to be meters.</LI>
-     *   <LI>The domain shall be a subset of {[-180,180)&times;(-90,90)}.</LI>
-     * </UL>
-     * <P>Although all cartographic projection transforms must have the properties listed above, many projected coordinate
+     * or a screen. All cartographic projection transforms created through this method will have the following properties:</p>
+     *
+     * <ul>
+     *   <li>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</li>
+     *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
+     *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
+     * </ul>
+     *
+     * Although all cartographic projection transforms must have the properties listed above, many projected coordinate
      * reference systems have different properties. For example, in Europe some projected CRSs use grads instead of degrees,
-     * and often the {@linkplain ProjectedCRS#getBaseCRS base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
+     * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
      * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
-     * used as a single step in a series of transforms, where the other steps change units and swap ordinates.</P>
+     * used as a single step in a series of transforms, where the other steps change units and swap ordinates.
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.
@@ -233,13 +238,12 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates an affine transform from a matrix.
-     * If the transform's input dimension is {@code M}, and output dimension
-     * is {@code N}, then the matrix will have size {@code [N+1][M+1]}.
-     * The +1 in the matrix dimensions allows the matrix to do a shift, as well as
-     * a rotation. The {@code [M][j]} element of the matrix will be the <var>j</var>'th
-     * ordinate of the moved origin. The {@code [i][N]} element of the matrix
-     * will be 0 for <var>i</var> less than {@code M}, and 1 for <var>i</var>
-     * equals {@code M}.
+     * If the transform's input dimension is {@code M}, and output dimension is {@code N},
+     * then the matrix will have size {@code [N+1][M+1]}.
+     * The +1 in the matrix dimensions allows the matrix to do a shift, as well as a rotation.
+     * The {@code [M][j]} element of the matrix will be the <var>j</var>'th ordinate of the moved origin.
+     * The {@code [i][N]} element of the matrix will be 0 for <var>i</var> less than {@code M},
+     * and 1 for <var>i</var> equals {@code M}.
      *
      * @param matrix The matrix used to define the affine transform.
      * @return The affine transform.
@@ -253,10 +257,9 @@ public interface MathTransformFactory extends Factory {
      * A concatenated transform acts in the same way as applying two
      * transforms, one after the other.
      *
-     * The dimension of the output space of the first transform must match
-     * the dimension of the input space in the second transform.
-     * If you wish to concatenate more than two transforms, then you can
-     * repeatedly use this method.
+     * <p>The dimension of the output space of the first transform must match the dimension
+     * of the input space in the second transform. If you wish to concatenate more than two
+     * transforms, then you can repeatedly use this method.</p>
      *
      * @param  transform1 The first transform to apply to points.
      * @param  transform2 The second transform to apply to points.
@@ -301,14 +304,16 @@ public interface MathTransformFactory extends Factory {
     MathTransform createFromXML(String xml) throws FactoryException;
 
     /**
-     * Creates a math transform object from a string.
-     * The <A HREF="../doc-files/WKT.html">definition for WKT</A> is
+     * Creates a math transform object from a <cite>Well-Known Text</cite>.
+     * The <a href="../doc-files/WKT.html">definition for WKT</a> is
      * shown using Extended Backus Naur Form (EBNF).
      *
      * @param  wkt Math transform encoded in Well-Known Text format.
      * @return The math transform (never {@code null}).
      * @throws FactoryException if the Well-Known Text can't be parsed,
      *         or if the math transform creation failed from some other reason.
+     *
+     * @see MathTransform#toWKT()
      */
     @UML(identifier="createFromWKT", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createFromWKT(String wkt) throws FactoryException;

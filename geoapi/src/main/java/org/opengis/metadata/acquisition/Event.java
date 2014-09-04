@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -47,14 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc 1 - - Identifier
- * @navassoc 1 - - Trigger
- * @navassoc 1 - - Context
- * @navassoc 1 - - Sequence
- * @navassoc - - - Objective
- * @navassoc 1 - - PlatformPass
- * @navassoc - - - Instrument
  */
 @UML(identifier="MI_Event", specification=ISO_19115_2)
 public interface Event {
@@ -93,7 +85,7 @@ public interface Event {
     /**
      * Time the event occurred.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
@@ -101,7 +93,7 @@ public interface Event {
      *   </TD></TR>
      * </TABLE>
      *
-     * @return Time the event occurred
+     * @return Time the event occurred.
      */
     @UML(identifier="time", obligation=MANDATORY, specification=ISO_19115_2)
     Date getTime();
@@ -117,7 +109,7 @@ public interface Event {
     /**
      * Pass during which an event occurs.
      *
-     * @return Pass during which an event occurs.
+     * @return Pass during which an event occurs, or {@code null}.
      */
     @UML(identifier="relatedPass", obligation=OPTIONAL, specification=ISO_19115_2)
     PlatformPass getRelatedPass();

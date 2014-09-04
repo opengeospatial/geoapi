@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,6 +33,7 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.temporal.PeriodDuration;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -47,16 +48,14 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc - - - OnlineResource
- * @navassoc 1 - - Medium
  */
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
 public interface DigitalTransferOptions {
     /**
      * Tiles, layers, geographic areas, <cite>etc.</cite>, in which data is available.
+     * Units of distribution apply to both onLine and offLine distributions.
      *
      * @return  Tiles, layers, geographic areas, <cite>etc.</cite> in which data is available, or {@code null}.
      */
@@ -65,7 +64,7 @@ public interface DigitalTransferOptions {
 
     /**
      * Estimated size of a unit in the specified transfer format, expressed in megabytes.
-     * The transfer size is &gt; 0.0.
+     * The transfer size shall be greater than zero.
      * Returns {@code null} if the transfer size is unknown.
      *
      * @return Estimated size of a unit in the specified transfer format in megabytes, or {@code null}.
@@ -85,8 +84,40 @@ public interface DigitalTransferOptions {
     /**
      * Information about offline media on which the resource can be obtained.
      *
-     * @return  offline media on which the resource can be obtained, or {@code null}.
+     * @return Offline media on which the resource can be obtained.
+     *
+     * @since 3.1
      */
     @UML(identifier="offLine", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Medium> getOffLines();
+
+    /**
+     * Information about offline media on which the resource can be obtained.
+     *
+     * @return Offline media on which the resource can be obtained, or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getOffLines()}.
+     */
+    @Deprecated
     Medium getOffLine();
+
+    /**
+     * Rate of occurrence of distribution.
+     *
+     * @return Rate of occurrence of distribution, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="transferFrequency", obligation=OPTIONAL, specification=ISO_19115)
+    PeriodDuration getTransferFrequency();
+
+    /**
+     * Formats of distribution.
+     *
+     * @return Formats of distribution.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="distributionFormat", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Format> getDistributionFormats();
 }

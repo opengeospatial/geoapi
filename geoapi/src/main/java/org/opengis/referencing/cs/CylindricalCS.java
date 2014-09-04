@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,27 +31,25 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A three-dimensional coordinate system consisting of a {@linkplain PolarCS polar coordinate
- * system} extended by a straight coordinate axis perpendicular to the plane spanned by the
- * polar coordinate system. A {@code CylindricalCS} shall have three
- * {@linkplain #getAxis axis associations}.
+ * A 3-dimensional coordinate system consisting of a {@link PolarCS} extended by a straight axis perpendicular
+ * to the plane spanned by the polar CS.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
- * </TD></TR></TABLE>
+ * <p>This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
  * @see PolarCS
+ * @see CSAuthorityFactory#createCylindricalCS(String)
+ * @see CSFactory#createCylindricalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
 @UML(identifier="CS_CylindricalCS", specification=ISO_19111)
 public interface CylindricalCS extends CoordinateSystem {

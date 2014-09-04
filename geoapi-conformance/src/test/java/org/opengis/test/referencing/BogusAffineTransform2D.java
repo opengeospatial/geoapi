@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,7 +31,10 @@
  */
 package org.opengis.test.referencing;
 
+import java.awt.geom.Point2D;
 import java.awt.geom.AffineTransform;
+
+import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.NoninvertibleTransformException;
 
@@ -40,11 +43,11 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
  * A math transform with intentional bugs.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 @SuppressWarnings("serial")
-final class BogusAffineTransform2D extends AffineTransform2D {
+final strictfp class BogusAffineTransform2D extends AffineTransform2D {
     /**
      * {@code true} to cause this class to produces erroneous value in
      * {@link #transform(float[],int,float[],int,int)}.
@@ -52,9 +55,16 @@ final class BogusAffineTransform2D extends AffineTransform2D {
     boolean wrongFloatToFloat;
 
     /**
-     * {@code true} to cause {@link #inverse} to be erroneous.
+     * {@code true} to cause {@link #inverse()} to be erroneous.
      */
     boolean wrongInverse;
+
+    /**
+     * {@code true} to cause {@link #derivative(Point2D)} to be erroneous.
+     *
+     * @since 3.1
+     */
+    boolean wrongDerivative;
 
     /**
      * Transforms the given array, introducing an erroneous value if
@@ -79,5 +89,19 @@ final class BogusAffineTransform2D extends AffineTransform2D {
             ((AffineTransform) inverse).translate(0, 5);
         }
         return inverse;
+    }
+
+    /**
+     * Returns the derivative, as an erroneous matrix if {@link #wrongDerivative} is {@code true}.
+     *
+     * @since 3.1
+     */
+    @Override
+    public Matrix derivative(final Point2D point) {
+        final Matrix matrix = super.derivative(point);
+        if (wrongDerivative) {
+            matrix.setElement(1,1, matrix.getElement(1,1)*2 + 1);
+        }
+        return matrix;
     }
 }

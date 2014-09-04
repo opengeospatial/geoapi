@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,22 +31,20 @@
  */
 package org.opengis.metadata.identification;
 
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Identification of capabilities which a service provider makes available to a service user
- * through a set of interfaces that define a behaviour - See ISO 19119 for further information.
+ * through a set of interfaces that define a behaviour. See ISO 19119 for further information.
  *
- * <BLOCKQUOTE><FONT SIZE=-1><B>NOTE:</B>
- * The prefix was {@code MD} in a previous ISO 19115 specification, but
- * has been renamed {@code SV} in corrigendum 2006.</FONT></BLOCKQUOTE>
+ * {@note The prefix was <code>MD</code> in a previous ISO 19115 specification,
+ *        but has been renamed <code>SV</code> in corrigendum 2006.}
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @deprecated As of GeoAPI 3.1, moved to the {@link org.opengis.metadata.service} package.
  */
-@UML(identifier="SV_ServiceIdentification", specification=ISO_19115)
-public interface ServiceIdentification extends Identification {
+@Deprecated
+public interface ServiceIdentification extends org.opengis.metadata.service.ServiceIdentification {
 }

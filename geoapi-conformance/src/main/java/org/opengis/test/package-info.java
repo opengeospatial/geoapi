@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,8 +43,15 @@
  * <p>No other validator class need to be considered, unless the validation process needs
  * to be customized.</p>
  *
+ * <p>The {@link org.opengis.test.TestSuite} class can be extended in order to run all the test cases
+ * defined in this module, using the implementor factories declared in the {@code META-INF/services/}
+ * directory. Alternatively, implementor can extend directly the {@link org.opengis.test.TestCase}
+ * subclass of their choice for gaining more control, for example in order to specify whether
+ * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
+ * derivatives are supported}.</p>
+ *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 package org.opengis.test;

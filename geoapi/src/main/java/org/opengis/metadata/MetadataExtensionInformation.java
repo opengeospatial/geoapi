@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,24 +45,21 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc 1 - - OnlineResource
- * @navassoc - - - ExtendedElementInformation
  */
 @UML(identifier="MD_MetadataExtensionInformation", specification=ISO_19115)
 public interface MetadataExtensionInformation {
     /**
      * Information about on-line sources containing the community profile name and
-     * the extended metadata elements. Information for all new metadata elements.
+     * the extended metadata elements and information for all new metadata elements.
      *
-     * @return On-line sources to community profile name and extended metadata elements.
+     * @return On-line sources to community profile name and extended metadata elements, or {@code null}.
      */
     @UML(identifier="extensionOnLineResource", obligation=OPTIONAL, specification=ISO_19115)
     OnlineResource getExtensionOnLineResource();
 
     /**
-     * Provides information about a new metadata element, not found in ISO 19115, which is
-     * required to describe geographic data.
+     * Provides information about a new metadata element, not found in ISO 19115,
+     * which is required to describe the resource.
      *
      * @return New metadata element not found in ISO 19115.
      */

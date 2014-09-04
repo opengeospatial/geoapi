@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -39,6 +39,7 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.parameter.GeneralParameterDescriptor;
+import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 
 import org.opengis.test.Validator;
@@ -47,67 +48,64 @@ import static org.opengis.test.Assert.*;
 
 
 /**
- * Validates {@link IdentifiedObject} and related objects from the {@code org.opengis.referencing}
- * package. This class should not be used directly; use the {@link org.opengis.test.Validators}
- * convenience static methods instead.
+ * Base class for validators of {@link IdentifiedObject} and related objects from the
+ * {@code org.opengis.referencing} package.
+ *
+ * <p>This class is provided for users wanting to override the validation methods. When the default
+ * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
+ * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 public abstract class ReferencingValidator extends Validator {
     /**
-     * Creates a new validator.
+     * Creates a new validator instance.
      *
-     * @param container   The container of this validator.
+     * @param container   The set of validators to use for validating other kinds of objects
+     *                    (see {@linkplain #container field javadoc}).
      * @param packageName The name of the package containing the classes to be validated.
      */
-    public ReferencingValidator(final ValidatorContainer container, final String packageName) {
+    protected ReferencingValidator(final ValidatorContainer container, final String packageName) {
         super(container, packageName);
     }
 
     /**
-     * Delegates to a {@code validate} method expecting a more specific argument.
+     * For each interface implemented by the given object, invokes the corresponding
+     * {@code validate(...)} method defined in this package (if any).
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
      */
     public final void dispatchObject(final IdentifiedObject object) {
-        if (object instanceof CoordinateReferenceSystem) {
-            container.crs.dispatch((CoordinateReferenceSystem) object);
-        } else if (object instanceof CoordinateSystem) {
-            container.cs.dispatch((CoordinateSystem) object);
-        } else if (object instanceof CoordinateSystemAxis) {
-            container.cs.validate((CoordinateSystemAxis) object);
-        } else if (object instanceof Datum) {
-            container.datum.dispatch((Datum) object);
-        } else if (object instanceof Ellipsoid) {
-            container.datum.validate((Ellipsoid) object);
-        } else if (object instanceof PrimeMeridian) {
-            container.datum.validate((PrimeMeridian) object);
-        } else if (object instanceof GeneralParameterDescriptor) {
-            container.parameter.dispatch((GeneralParameterDescriptor) object);
-        } else if (object instanceof CoordinateOperation) {
-            container.coordinateOperation.dispatch((CoordinateOperation) object);
-        } else if (object instanceof OperationMethod) {
-            container.coordinateOperation.validate((OperationMethod) object);
-        } else if (object instanceof ReferenceSystem) {
-            validateReferenceSystem((ReferenceSystem) object);
-        } else if (object != null) {
-            validateIdentifiedObject(object);
+        int n = 0;
+        if (object != null) {
+            if (object instanceof CoordinateReferenceSystem)  {container.validate((CoordinateReferenceSystem)  object); n++;}
+            if (object instanceof CoordinateSystem)           {container.validate((CoordinateSystem)           object); n++;}
+            if (object instanceof CoordinateSystemAxis)       {container.validate((CoordinateSystemAxis)       object); n++;}
+            if (object instanceof Datum)                      {container.validate((Datum)                      object); n++;}
+            if (object instanceof Ellipsoid)                  {container.validate((Ellipsoid)                  object); n++;}
+            if (object instanceof PrimeMeridian)              {container.validate((PrimeMeridian)              object); n++;}
+            if (object instanceof GeneralParameterDescriptor) {container.validate((GeneralParameterDescriptor) object); n++;}
+            if (object instanceof CoordinateOperation)        {container.validate((CoordinateOperation)        object); n++;}
+            if (object instanceof OperationMethod)            {container.validate((OperationMethod)            object); n++;}
+            if (n == 0) {
+                if (object instanceof ReferenceSystem) {
+                    validateReferenceSystem((ReferenceSystem) object);
+                } else {
+                    validateIdentifiedObject(object);
+                }
+            }
         }
     }
 
     /**
-     * Ensures that the given identifier has a {@linkplain ReferenceIdentifier#getCode code}.
+     * Ensures that the given identifier has a {@linkplain ReferenceIdentifier#getCode() code}.
      *
      * @param object The object to validate, or {@code null}.
      */
     public void validate(final ReferenceIdentifier object) {
-        if (object == null) {
-            return;
-        }
-        mandatory("ReferenceIdentifier: must have a code.", object.getCode());
-        container.citation.validate(object.getAuthority());
+        container.validate((Identifier) object);
     }
 
     /**
@@ -119,8 +117,8 @@ public abstract class ReferencingValidator extends Validator {
      */
     final void validateReferenceSystem(final ReferenceSystem object) {
         validateIdentifiedObject(object);
-        container.naming.validate(object.getScope());
-        container.extent.validate(object.getDomainOfValidity());
+        container.validate(object.getScope());
+        container.validate(object.getDomainOfValidity());
     }
 
     /**
@@ -134,6 +132,7 @@ public abstract class ReferencingValidator extends Validator {
         validate(object.getName());
         final Collection<ReferenceIdentifier> identifiers = object.getIdentifiers();
         if (identifiers != null) {
+            validate(identifiers);
             for (final ReferenceIdentifier id : identifiers) {
                 assertNotNull("IdentifiedObject: getIdentifiers() can not contain null element.", id);
                 validate(id);
@@ -141,11 +140,12 @@ public abstract class ReferencingValidator extends Validator {
         }
         final Collection<GenericName> alias = object.getAlias();
         if (alias != null) {
+            validate(alias);
             for (final GenericName name : alias) {
                 assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
-                container.naming.dispatch(name);
+                container.validate(name);
             }
         }
-        container.naming.validate(object.getRemarks());
+        container.validate(object.getRemarks());
     }
 }

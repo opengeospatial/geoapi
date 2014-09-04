@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -69,7 +69,7 @@ public class NoninvertibleTransformException extends TransformException {
 
     /**
      * Construct an exception with the specified detail message and cause. The cause
-     * is typically an other {@link java.lang.geom.NoninvertibleTransformException}
+     * is typically an other {@link java.awt.geom.NoninvertibleTransformException}
      * emitted by Java2D.
      *
      * @param  message The detail message. The detail message is saved

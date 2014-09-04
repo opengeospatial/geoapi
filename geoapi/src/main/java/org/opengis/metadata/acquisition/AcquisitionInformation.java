@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -46,15 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
- *
- * @navassoc - - - Plan
- * @navassoc - - - Requirement
- * @navassoc 1 - - EnvironmentalRecord
- * @navassoc - - - Instrument
- * @navassoc - - - Objective
- * @navassoc - - - ScopeCode
- * @navassoc - - - Operation
- * @navassoc - - - Platform
  */
 @UML(identifier="MI_AcquisitionInformation", specification=ISO_19115_2)
 public interface AcquisitionInformation {
@@ -77,7 +68,7 @@ public interface AcquisitionInformation {
     /**
      * A record of the environmental circumstances during the data acquisition.
      *
-     * @return Record of the environmental circumstances.
+     * @return Record of the environmental circumstances, or {@code null}.
      */
     @UML(identifier="environmentalConditions", obligation=OPTIONAL, specification=ISO_19115_2)
     EnvironmentalRecord getEnvironmentalConditions();

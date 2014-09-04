@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,24 +31,25 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A one-dimensional coordinate system containing a single time axis, used to describe the
- * temporal position of a point in the specified time units from a specified time origin.
- * A {@code TimeCS} shall have one {@linkplain #getAxis axis association}.
+ * A 1-dimensional coordinate system containing a single time axis.
+ * This coordinate system is used to describe the temporal position of a point
+ * in the specified time units from a specified time origin.
  *
- * <TABLE CELLPADDING='6' BORDER='1'>
- * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
- * <TR><TD>
- *   {@link org.opengis.referencing.crs.TemporalCRS Temporal}
- * </TD></TR></TABLE>
+ * <p>This type of CS can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.TemporalCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @see CSAuthorityFactory#createTimeCS(String)
+ * @see CSFactory#createTimeCS(Map, CoordinateSystemAxis)
  */
 @UML(identifier="CS_TimeCS", specification=ISO_19111)
 public interface TimeCS extends CoordinateSystem {

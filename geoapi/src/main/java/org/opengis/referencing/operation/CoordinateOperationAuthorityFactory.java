@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Creates coordinate transformation objects from codes. The codes are maintained by an
- * external authority. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
+ * external authority. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>,
  * which is also used in the GeoTIFF standard.
  *
  * @author  Martin Desruisseaux (IRD)
@@ -63,6 +63,8 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @return The operation method for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see CoordinateOperationFactory#getOperationMethod(String)
      *
      * @departure extension
      *   This method has been added because OGC 01-009 does not define a factory

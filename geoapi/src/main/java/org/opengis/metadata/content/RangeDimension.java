@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,8 +31,10 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.util.MemberName;
+import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -44,27 +46,49 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - MemberName
  */
 @UML(identifier="MD_RangeDimension", specification=ISO_19115)
 public interface RangeDimension {
     /**
-     * Number that uniquely identifies instances of bands of wavelengths on which a sensor
-     * operates.
+     * Unique name or number that identifies attributes included in the coverage.
      *
-     * @return Identifier of bands on which a sensor operates, or {@code null}.
+     * @return Unique name or number, or {@code null} if none.
      */
     @UML(identifier="sequenceIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     MemberName getSequenceIdentifier();
 
     /**
+     * Description of the attribute.
+     *
+     * @return Description of the attribute, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getDescription();
+
+    /**
      * Description of the range of a cell measurement value.
      *
-     * @return Description of the range of a cell measurement value, or {@code null}.
+     * @return Description of the range of a cell measurement value, or {@code null} if none.
+     *
+     * @deprecated As of ISO 19115:2014, renamed {@link #getDescription()}.
      */
+    @Deprecated
     @UML(identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getDescriptor();
+
+    /**
+     * Identifiers for each attribute included in the resource. These identifiers
+     * can be use to provide names for the attribute from a standard set of names.
+     *
+     * @return Identifiers for each attribute included in the resource.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Identifier> getNames();
 }

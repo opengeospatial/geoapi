@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,8 +33,11 @@ package org.opengis.test.referencing;
 
 import java.util.Arrays;
 import java.awt.geom.Point2D;
+import java.lang.reflect.Array;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -42,7 +45,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * {@link TransformTestCase}. Not public because strictly reserved to tests.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.2
  */
 final class SimpleDirectPosition implements DirectPosition {
@@ -52,12 +55,34 @@ final class SimpleDirectPosition implements DirectPosition {
     protected final double[] ordinates;
 
     /**
+     * {@code true} to freeze this position. If {@code true}, then any attempts to invoke
+     * a {@link #setOrdinate(int, double)} method will cause a JUnit test failure.
+     *
+     * <p>Note that setting this field to {@code true} does not prevent {@link TransformTestCase}
+     * to write directly in the {@link #ordinates} array. But since this class is package-private,
+     * the code writing directly in the ordinates array should know what they are doing.</p>
+     */
+    boolean unmodifiable;
+
+    /**
      * Creates a new direct position of the given dimension.
      *
      * @param dimension The dimension.
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];
+    }
+
+    /**
+     * Creates a new direct position initialized to the given ordinate values.
+     *
+     * @param ordinates The ordinate values. This array is <strong>not</strong> cloned.
+     *
+     * @since 3.1
+     */
+    public SimpleDirectPosition(final double[] ordinates) {
+        assertNotNull("Array of ordinate values shall not be null.", ordinates);
+        this.ordinates = ordinates;
     }
 
     /**
@@ -74,6 +99,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * Returns always {@code null}, since it is allowed by the specification
      * and {@link TransformTestCase} doesn't want to test the handling of CRS.
      */
+    @Override
     public CoordinateReferenceSystem getCoordinateReferenceSystem() {
         return null;
     }
@@ -81,6 +107,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int getDimension() {
         return ordinates.length;
     }
@@ -88,21 +115,46 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double[] getCoordinate() {
         return ordinates.clone();
     }
 
     /**
-     * {@inheritDoc}
+     * Sets all ordinate values. The array length must be equal to the number of dimensions.
+     *
+     * @since 3.1
      */
-    @Deprecated
-    public double[] getCoordinates() {
-        return ordinates.clone();
+    public void setCoordinate(final double... ordinates) {
+        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
+        assertEquals("Unexpected dimension.", this.ordinates.length, ordinates.length);
+        System.arraycopy(ordinates, 0, this.ordinates, 0, ordinates.length);
+    }
+
+    /**
+     * Sets all ordinate values starting at the given offset in the given array.
+     * This method is for internal usage by {@link TransformTestCase} only.
+     *
+     * @param array     The {@code float[]} or {@code double[]} array.
+     * @param offset    Index of the first element to copy from the given array.
+     * @param useDouble If {@code false}, cast the values to floats.
+     */
+    final void setCoordinate(final Object ordinates, int offset, final boolean useDouble) {
+        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
+        final int dimension = this.ordinates.length;
+        for (int i=0; i<dimension; i++) {
+            double ordinate = Array.getDouble(ordinates, offset++);
+            if (!useDouble) {
+                ordinate = (float) ordinate;
+            }
+            this.ordinates[i] = ordinate;
+        }
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public double getOrdinate(int dimension) throws IndexOutOfBoundsException {
         return ordinates[dimension];
     }
@@ -110,13 +162,16 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
+        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
         ordinates[dimension] = value;
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public DirectPosition getDirectPosition() {
         return this;
     }
@@ -144,10 +199,29 @@ final class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Returns a string representation of this direct position.
+     * Returns the <cite>Well Known Test</cite> (WKT) representation of this direct position.
      */
     @Override
     public String toString() {
-        return Arrays.toString(ordinates);
+        boolean castToFloats = true;
+        for (final double ordinate : ordinates) {
+            if (Double.doubleToLongBits(ordinate) != Double.doubleToLongBits((float) ordinate)) {
+                castToFloats = false;
+                break;
+            }
+        }
+        final StringBuilder buffer = new StringBuilder("POINT(");
+        for (int i=0; i<ordinates.length; i++) {
+            if (i != 0) {
+                buffer.append(' ');
+            }
+            final double ordinate = ordinates[i];
+            if (castToFloats) {
+                buffer.append((float) ordinate);
+            } else {
+                buffer.append(ordinate);
+            }
+        }
+        return buffer.append(')').toString();
     }
 }

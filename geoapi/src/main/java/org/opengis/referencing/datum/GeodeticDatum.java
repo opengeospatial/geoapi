@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -49,8 +50,8 @@ import static org.opengis.annotation.Specification.*;
  * @see Ellipsoid
  * @see PrimeMeridian
  *
- * @navassoc 1 - - Ellipsoid
- * @navassoc 1 - - PrimeMeridian
+ * @see DatumAuthorityFactory#createGeodeticDatum(String)
+ * @see DatumFactory#createGeodeticDatum(Map, Ellipsoid, PrimeMeridian)
  */
 @UML(identifier="CD_GeodeticDatum", specification=ISO_19111)
 public interface GeodeticDatum extends Datum {

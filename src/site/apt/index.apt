@@ -9,8 +9,8 @@ GeoAPI
   The interfaces developed by the GeoAPI project include many of the data structures and
   manipulation methods needed for geographic information system applications. In a series
   of packages, {{{./3.0/index.html}GeoAPI 3.0}} defines a core set of interfaces for metadata
-  handling, for geodetic referencing, projection and conversion. The "pending" part of GeoAPI
-  defines interfaces for the handling of georeferenced imagery, for the construction
+  handling, for geodetic referencing, projection and conversion. The "{{{./geoapi-pending/index.html}pending}}"
+  part of GeoAPI defines interfaces for the handling of georeferenced imagery, for the construction
   and manipulation of vector geometry and topological data structures, and for the
   description and use of geospatial "feature" entities. Beyond this core, GeoAPI-pending
   further defines interfaces for data access and storage including sophisticated
@@ -38,6 +38,10 @@ GeoAPI
   use. Various groups have implemented different subsets of GeoAPI, see
   the {{{./implementations.html}list of known implementations}} for details.
 
+  GeoAPI provides also {{{./geoapi-conformance/index.html}JUnit tests}} that implementors can
+  use for testing their implementations, and various {{{./geoapi-examples/index.html}examples}}
+  in the public domain.
+
 
 * The GeoAPI project
 
@@ -53,14 +57,17 @@ GeoAPI
 
     * The project uses a {{{http://jira.codehaus.org/browse/GEO}JIRA task tracker}}.
 
-    * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Main/GeoAPI}OGC wiki}}
-      for Standard Working Group (SWG) tasks.
+    * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Member/GeoAPI}OGC wiki}}
+      for the {{{https://portal.opengeospatial.org/?m=projects&a=view&project_id=294}Standard
+      Working Group}} (SWG) tasks.
 
   GeoAPI is free software. GeoAPI may be used, modified and redistributed by
   anyone for any purpose requiring only maintaining the copyright and license
   terms on the source code and derivative files. The copyright to the GeoAPI
   interfaces is held by the Open Geospatial Consortium.
   See {{{http://www.opengeospatial.org/ogc/software}the OGC legal page}} for details.
+
+  More information can be found on the {{{./faq.html}Frequently Asked Questions}} page.
 
 
 ** The GeoAPI working group of the OGC
@@ -97,6 +104,11 @@ GeoAPI
 
   The project contains a {{{./geoapi-conformance/index.html}geoapi-conformance}} module
   which can be run as a test harness to evaluate the correctness of any implementation.
+  A <proof of concept> is provided by the {{{./geoapi-proj4/index.html}geoapi-proj4}}
+  module, using wrappers around the well-known C/C++ Proj.4 library. Finally, the
+  {{{./geoapi-examples/index.html}geoapi-examples}} and {{{./geoapi-openoffice/index.html}geoapi-openoffice}}
+  modules place code samples in public domain, which implementors can use as a
+  starting point for their own products.
 
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
   projects which also use this tool can integrate GeoAPI into their Maven

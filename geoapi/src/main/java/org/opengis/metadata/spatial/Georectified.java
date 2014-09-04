@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,19 +42,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map
- * coordinate system defined in the Spatial Referencing System (SRS) so that any cell
- * in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing,
+ * Grid whose cells are regularly spaced in a geographic or projected coordinate reference system.
+ * Any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing,
  * and orientation indication of whether or not geographic.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.0
- *
- * @navassoc - - - Point
- * @navassoc 1 - - PixelOrientation
- * @navassoc - - - GCP
  */
 @UML(identifier="MD_Georectified", specification=ISO_19115)
 public interface Georectified extends GridSpatialRepresentation {
@@ -68,12 +63,11 @@ public interface Georectified extends GridSpatialRepresentation {
     boolean isCheckPointAvailable();
 
     /**
-     * Description of geographic position points used to test the accuracy of the
-     * georeferenced grid data.
+     * Description of geographic position points used to test the accuracy of the georeferenced grid data.
      *
      * @return Description of geographic position points used to test accuracy, or {@code null}.
      *
-     * @condition {@linkplain #isCheckPointAvailable() Check point availability} equals yes.
+     * @condition {@linkplain #isCheckPointAvailable() Check point availability} equals {@code true}.
      */
     @UML(identifier="checkPointDescription", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getCheckPointDescription();
@@ -81,8 +75,13 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * Earth location in the coordinate system defined by the Spatial Reference System
      * and the grid coordinate of the cells at opposite ends of grid coverage along two
-     * diagonals in the grid spatial dimensions. There are four corner points in a
-     * georectified grid; at least two corner points along one diagonal are required.
+     * diagonals in the grid spatial dimensions.
+     *
+     * <p>The {@linkplain List#size() list size} shall be 2 or 4.
+     * The list shall contain at least two corner points along one diagonal.
+     * or may contains the 4 corner points of the georectified grid.</p>
+     *
+     * <p>The first corner point corresponds to the origin of the grid.</p>
      *
      * @return The corner points.
      */
@@ -108,15 +107,16 @@ public interface Georectified extends GridSpatialRepresentation {
     PixelOrientation getPointInPixel();
 
     /**
-     * Description of the information about which grid dimensions are the spatial dimensions.
+     * General description of the transformation.
      *
-     * @return Description of the information about grid dimensions, or {@code null}.
+     * @return General description of the transformation, or {@code null}.
      */
     @UML(identifier="transformationDimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getTransformationDimensionDescription();
 
     /**
      * Information about which grid dimensions are the spatial dimensions.
+     * The list should contain at most 2 elements.
      *
      * @return Information about which grid dimensions are the spatial dimensions, or {@code null}.
      */

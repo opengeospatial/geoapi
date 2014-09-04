@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,22 +40,19 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Boundary enclosing the dataset, expressed as the closed set of
- * (<var>x</var>,<var>y</var>) coordinates of the polygon. The last
- * point replicates first point.
+ * Enclosing geometric object which locates the resource.
+ * If a polygon is used is should be closed (last point replicates first point).
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @navassoc - - - Geometry
  */
 @UML(identifier="EX_BoundingPolygon", specification=ISO_19115)
 public interface BoundingPolygon extends GeographicExtent {
     /**
-     * Returns the sets of points defining the bounding polygon.
+     * The sets of points defining the bounding polygon or any other geometry (point, line).
      *
-     * @return The sets of points defining the bounding polygon.
+     * @return The sets of points defining the resource boundary.
      */
     @UML(identifier="polygon", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Geometry> getPolygons();

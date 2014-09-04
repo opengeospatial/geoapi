@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,6 +31,8 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Map;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
@@ -41,14 +43,15 @@ import static org.opengis.annotation.Specification.*;
  * An operation on coordinates that does not include any change of Datum. The best-known
  * example of a coordinate conversion is a map projection. The parameters describing
  * coordinate conversions are defined rather than empirically derived.
- * <p>
- * Note that some conversions have no parameters.
+ *
+ * <p>Note that some conversions have no parameters.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
  * @see Transformation
+ * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
  */
 @UML(identifier="CC_Conversion", specification=ISO_19111)
 public interface Conversion extends SingleOperation {
@@ -59,6 +62,7 @@ public interface Conversion extends SingleOperation {
      *
      * @return The source CRS, or {@code null} if not available.
      */
+    @Override
     @UML(identifier="sourceCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
@@ -69,6 +73,7 @@ public interface Conversion extends SingleOperation {
      *
      * @return The target CRS, or {@code null} if not available.
      */
+    @Override
     @UML(identifier="targetCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
@@ -77,6 +82,7 @@ public interface Conversion extends SingleOperation {
      *
      * @return Always {@code null}.
      */
+    @Override
     @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)
     String getOperationVersion();
 }

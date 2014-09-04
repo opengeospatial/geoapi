@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,24 +31,29 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.Map;
+import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.operation.Conversion;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system that is defined by its coordinate conversion from another
- * coordinate reference system but is not a projected coordinate reference system. This
- * category includes coordinate reference systems derived from a {@linkplain ProjectedCRS
- * projected coordinate reference system}.
+ * A coordinate reference system that is defined by its coordinate conversion from another CRS
+ * but is not a projected CRS.
+ * This category includes coordinate reference systems derived from a projected CRS.
  *
  * @departure integration
- *   ISO 19111 defines a <code>DerivedCRSType</code> code list. The later is omitted in GeoAPI since
+ *   ISO 19111 defines a <code>SC_DerivedCRSType</code> code list. The later is omitted in GeoAPI since
  *   Java expressions like <code>(baseCRS instanceof FooCRS)</code> provides the same capability
  *   with more flexibility.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @see CRSAuthorityFactory#createDerivedCRS(String)
+ * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
  */
 @UML(identifier="SC_DerivedCRS", specification=ISO_19111)
 public interface DerivedCRS extends GeneralDerivedCRS {

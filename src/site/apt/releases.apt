@@ -22,7 +22,7 @@ GeoAPI releases
 
   * {{{./maven.html}Maven repositories}} (recommended way to get the binaries)
 
-  * {{{http://hudson.geomatys.com/job/GeoAPI}Nightly builds (last 2 weeks)}}
+  * {{{http://jenkins.geotoolkit.org/job/GeoAPI}Nightly builds (last 2 weeks)}}
 
 
 * Releases

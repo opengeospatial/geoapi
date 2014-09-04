@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,6 +34,8 @@ package org.opengis.metadata.citation;
 import java.util.Date;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,17 +46,16 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * Reference date and event used to describe it.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - DateType
  */
+@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Date", specification=ISO_19115)
 public interface CitationDate {
     /**
      * Reference date for the cited resource.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely

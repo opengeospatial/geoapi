@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,6 +33,8 @@ package org.opengis.referencing.cs;
 
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -41,21 +43,19 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS)
  * is derived from a set of (mathematical) rules for specifying how coordinates in a given space
- * are to be assigned to points. The coordinate values in a coordinate tuple shall be recorded in
+ * are to be assigned to points. The ordinate values in a coordinate tuple shall be recorded in
  * the order in which the coordinate system axes associations are recorded, whenever those
  * coordinates use a coordinate reference system that uses this coordinate system.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystemAxis
- * @see javax.measure.unit.Unit
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
- *
- * @navassoc - - - CoordinateSystemAxis
  */
+@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CS_CoordinateSystem", specification=ISO_19111)
 public interface CoordinateSystem extends IdentifiedObject {
     /**

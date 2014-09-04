@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,6 +32,57 @@
 
 /**
  * {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation Acquisition information}.
+ *
+ * <p>Metadata objects are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115_2
+ * Metadata extension for imagery and gridded data} specification. The following table shows the class
+ * hierarchy, together with a partial view of aggregation hierarchy:</p>
+ *
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
+ *   <th>Class hierarchy</th>
+ *   <th class="sep">Aggregation hierarchy</th>
+ * </tr><tr><td width="50%" nowrap>
+ * <pre> ISO-19115 object
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation Acquisition}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Objective}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.PlatformPass}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Event}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Requirement}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.RequestedDate}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Plan}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Operation}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Platform}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Instrument}
+ *  └─ {@linkplain org.opengis.metadata.acquisition.EnvironmentalRecord}
+ * {@linkplain org.opengis.util.CodeList}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.ObjectiveType}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Trigger}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Context}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Sequence}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Priority}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.GeometryType}
+ *  └─ {@linkplain org.opengis.metadata.acquisition.OperationType}</pre>
+ * </td><td class="sep" width="50%" nowrap>
+ * <pre> {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Objective}
+ *  │   ├─ {@linkplain org.opengis.metadata.acquisition.ObjectiveType} «code list»
+ *  │   ├─ {@linkplain org.opengis.metadata.acquisition.PlatformPass}
+ *  │   │   └─ {@linkplain org.opengis.metadata.acquisition.Event}
+ *  │   │       ├─ {@linkplain org.opengis.metadata.acquisition.Trigger} «code list»
+ *  │   │       ├─ {@linkplain org.opengis.metadata.acquisition.Context} «code list»
+ *  │   │       └─ {@linkplain org.opengis.metadata.acquisition.Sequence} «code list»
+ *  │   ├─ {@linkplain org.opengis.metadata.acquisition.Requirement}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.acquisition.RequestedDate}
+ *  │   │   └─ {@linkplain org.opengis.metadata.acquisition.Priority} «code list»
+ *  │   └─ {@linkplain org.opengis.metadata.acquisition.Plan}
+ *  │       ├─ {@linkplain org.opengis.metadata.acquisition.GeometryType} «code list»
+ *  │       └─ {@linkplain org.opengis.metadata.acquisition.Operation}
+ *  │           ├─ {@linkplain org.opengis.metadata.acquisition.OperationType} «code list»
+ *  │           └─ {@linkplain org.opengis.metadata.acquisition.Platform}
+ *  │               └─ {@linkplain org.opengis.metadata.acquisition.Instrument}
+ *  └─ {@linkplain org.opengis.metadata.acquisition.EnvironmentalRecord}</pre>
+ * </td></tr></table>
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0

@@ -1,8 +1,8 @@
-/*
+ /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.metadata.quality.CoverageResult;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -44,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * Specific type of information represented in the cell.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_CoverageContentTypeCode", specification=ISO_19115)
@@ -58,7 +60,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CoverageContentType> VALUES = new ArrayList<CoverageContentType>(3);
+    private static final List<CoverageContentType> VALUES = new ArrayList<CoverageContentType>(8);
 
     /**
      * Meaningful numerical representation of a physical parameter that is not the actual
@@ -80,10 +82,62 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     public static final CoverageContentType PHYSICAL_MEASUREMENT = new CoverageContentType("PHYSICAL_MEASUREMENT");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Data, usually a physical measurement, used to support the calculation of the primary
+     * {@linkplain #PHYSICAL_MEASUREMENT physical measurement} coverages in the dataset.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * <blockquote><font size="-1"><b>Example:</b>
+     * grid of aerosol optical thickness used in the calculation of a sea surface temperature product.
+     * </font></blockquote>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="auxillaryInformation", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CoverageContentType AUXILLIARY_INFORMATION = new CoverageContentType("AUXILLIARY_INFORMATION");
+
+    /**
+     * Data used to characterize the quality of the {@linkplain #PHYSICAL_MEASUREMENT physical measurement}
+     * coverage in the dataset. Typically included in a {@link CoverageResult}.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="qualityInformation", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CoverageContentType QUALITY_INFORMATION = new CoverageContentType("QUALITY_INFORMATION");
+
+    /**
+     * Reference information use to support the calculation or use of
+     * {@linkplain #PHYSICAL_MEASUREMENT physical measurement} coverages in the dataset.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * grid of latitude longitude used to geolocate the physical measurement.
+     * </font></blockquote>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="referenceInformation", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CoverageContentType REFERENCE_INFORMATION = new CoverageContentType("REFERENCE_INFORMATION");
+
+    /**
+     * Results with values that are calculated using a model rather than being observed or calculated from observations.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="modelResult", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CoverageContentType MODEL_RESULT = new CoverageContentType("MODEL_RESULT");
+
+    /**
+     * Data used to provide coordinate axis values.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="coordinate", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final CoverageContentType COORDINATE = new CoverageContentType("COORDINATE");
+
+    /**
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
+     *
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private CoverageContentType(final String name) {
         super(name, VALUES);
@@ -101,8 +155,13 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public CoverageContentType[] family() {
         return values();
     }

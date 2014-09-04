@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -131,6 +131,7 @@ final class DepartureElement implements Comparable<DepartureElement> {
     /**
      * For sorting in the order to be published on the HTML page.
      */
+    @Override
     public int compareTo(final DepartureElement other) {
         final String  n1 =  this.file.getName();
         final String  n2 = other.file.getName();

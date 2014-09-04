@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,18 +31,55 @@
  */
 
 /**
- * {@linkplain org.opengis.metadata.content.ContentInformation Content information}
- * (includes Feature catalogue and Coverage descriptions). The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
- * specification.
+ * Identification of the {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription feature catalogue used},
+ * or description of the {@linkplain org.opengis.metadata.content.CoverageDescription content of a coverage} dataset.
+ * Both description entities are subtypes of the {@linkplain org.opengis.metadata.content.ContentInformation
+ * content information} type. The coverage description may be specialized as
+ * {@linkplain org.opengis.metadata.content.ImageDescription image description}.
  *
- * <P ALIGN="justify">This package contains information identifying the feature catalogue used
- * ({@linkplain org.opengis.metadata.content.FeatureCatalogueDescription feature catalogue description})
- * and/or information describing the content of a coverage dataset
- * ({@linkplain org.opengis.metadata.content.CoverageDescription coverage description}). Both description
- * entities are subclasses of the {@linkplain org.opengis.metadata.content.ContentInformation content
- * information} entity. {@linkplain org.opengis.metadata.content.CoverageDescription Coverage description}
- * may be subclassed as {@linkplain org.opengis.metadata.content.ImageDescription image description}.</P>
+ * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * together with a partial view of aggregation hierarchy:</p>
+ *
+ * <table class="ogc">
+ * <caption>Package overview</caption>
+ * <tr>
+ *   <th>Class hierarchy</th>
+ *   <th class="sep">Aggregation hierarchy</th>
+ * </tr><tr><td width="50%" nowrap>
+ * <pre> ISO-19115 object
+ *  ├─ {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
+ *  │   ├─ FeatureCatalogue
+ *  │   ├─ {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}
+ *  │   └─ {@linkplain org.opengis.metadata.content.CoverageDescription}
+ *  │       └─ {@linkplain org.opengis.metadata.content.ImageDescription}
+ *  ├─ {@linkplain org.opengis.metadata.content.FeatureTypeInfo}
+ *  ├─ {@linkplain org.opengis.metadata.content.RangeDimension}
+ *  │   └─ {@linkplain org.opengis.metadata.content.SampleDimension}
+ *  │       └─ {@linkplain org.opengis.metadata.content.Band}
+ *  └─ {@linkplain org.opengis.metadata.content.RangeElementDescription}
+ * {@linkplain org.opengis.util.CodeList}
+ *  ├─ {@linkplain org.opengis.metadata.content.BandDefinition}
+ *  ├─ {@linkplain org.opengis.metadata.content.CoverageContentType}
+ *  ├─ {@linkplain org.opengis.metadata.content.ImagingCondition}
+ *  ├─ {@linkplain org.opengis.metadata.content.PolarizationOrientation}
+ *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType}</pre>
+ * </td><td class="sep" width="50%" nowrap>
+ * <pre> {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
+ * {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}
+ *  └─ {@linkplain org.opengis.metadata.content.FeatureTypeInfo}
+ * {@linkplain org.opengis.metadata.content.CoverageDescription}
+ *  ├─ {@linkplain org.opengis.metadata.content.AttributeGroup}
+ *  │   ├─ {@linkplain org.opengis.metadata.content.CoverageContentType} «code list»
+ *  │   └─ {@linkplain org.opengis.metadata.content.RangeDimension}
+ *  └─ {@linkplain org.opengis.metadata.content.RangeElementDescription}
+ * {@linkplain org.opengis.metadata.content.Band}
+ *  ├─ {@linkplain org.opengis.metadata.content.BandDefinition} «code list»
+ *  ├─ {@linkplain org.opengis.metadata.content.PolarizationOrientation} «code list»
+ *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType} «code list»
+ * {@linkplain org.opengis.metadata.content.ImageDescription}
+ *  └─ {@linkplain org.opengis.metadata.content.ImagingCondition} «code list»</pre>
+ * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,6 +42,15 @@ package org.opengis.parameter;
  *        It is rather a consequence of a zero-argument method invoked in a context where
  *        is it not allowed.}
  *
+ * This exception is typically thrown by the following methods:
+ * <ul>
+ *   <li>{@link ParameterValue#intValue()}</li>
+ *   <li>{@link ParameterValue#doubleValue()}</li>
+ *   <li>{@link ParameterValue#booleanValue()}</li>
+ *   <li>{@link ParameterValue#stringValue()}</li>
+ *   <li>{@link ParameterValue#valueFile()}</li>
+ * </ul>
+ *
  * @departure extension
  *   This exception is not part of the OGC specification.
  *
@@ -49,11 +58,7 @@ package org.opengis.parameter;
  * @version 3.0
  * @since   1.0
  *
- * @see ParameterValue#intValue()
- * @see ParameterValue#doubleValue()
- * @see ParameterValue#booleanValue()
- * @see ParameterValue#stringValue()
- * @see ParameterValue#valueFile()
+ * @see InvalidParameterValueException
  */
 public class InvalidParameterTypeException extends IllegalStateException {
     /**
@@ -69,12 +74,28 @@ public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message. The detail message is saved for
-     *                later retrieval by the {@link #getMessage()} method.
+     * @param message The detail message, or {@code null} if none. The detail message
+     *                is saved for later retrieval by the {@link #getMessage()} method.
      * @param parameterName The parameter name.
      */
     public InvalidParameterTypeException(String message, String parameterName) {
         super(message);
+        this.parameterName = parameterName;
+    }
+
+    /**
+     * Creates an exception with the specified message, cause and parameter name.
+     *
+     * @param message The detail message, or {@code null} if none. The detail message
+     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause   The cause, or {@code null} if none. The cause is saved
+     *                for later retrieval by the {@link #getCause()} method.
+     * @param parameterName The parameter name.
+     *
+     * @since 3.1
+     */
+    public InvalidParameterTypeException(String message, Throwable cause, String parameterName) {
+        super(message, cause);
         this.parameterName = parameterName;
     }
 

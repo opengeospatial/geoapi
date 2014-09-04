@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,7 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -43,23 +43,18 @@ import static org.opengis.annotation.Specification.*;
  * Information about the distributor.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
- *
- * @navassoc 1 - - ResponsibleParty
- * @navassoc - - - StandardOrderProcess
- * @navassoc - - - Format
- * @navassoc - - - DigitalTransferOptions
  */
 @UML(identifier="MD_Distributor", specification=ISO_19115)
 public interface Distributor {
     /**
-     * Party from whom the resource may be obtained. This list need not be exhaustive.
+     * Party from whom the resource may be obtained.
      *
      * @return Party from whom the resource may be obtained.
      */
     @UML(identifier="distributorContact", obligation=MANDATORY, specification=ISO_19115)
-    ResponsibleParty getDistributorContact();
+    Responsibility getDistributorContact();
 
     /**
      * Provides information about how the resource may be obtained, and related
@@ -75,7 +70,7 @@ public interface Distributor {
      *
      * @return Information about the format used by the distributor.
      *
-     * @condition {@link Distribution#getDistributionFormats()} not documented.
+     * @condition Mandatory if {@link Distribution#getDistributionFormats()} is empty.
      */
     @UML(identifier="distributorFormat", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Format> getDistributorFormats();

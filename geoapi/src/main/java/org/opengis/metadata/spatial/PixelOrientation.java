@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,10 +43,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Point in a pixel corresponding to the Earth location of the pixel.
- * <p>
- * This code list is restricted to the two-dimensional case. A similar code
+ *
+ * <p>This code list is restricted to the two-dimensional case. A similar code
  * list, {@link org.opengis.referencing.datum.PixelInCell}, can be used for
- * <var>n</var>-dimensional grid cell.
+ * <var>n</var>-dimensional grid cell.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -108,10 +108,11 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
 
     /**
-     * Constructs an enum with the given name. The new enum is
-     * automatically added to the list returned by {@link #values}.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The name of the new element.
+     *        This name must not be in use by an other element of this type.
      */
     private PixelOrientation(final String name) {
         super(name, VALUES);
@@ -129,8 +130,13 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return All code {@linkplain #values() values} for this code list.
      */
+    @Override
     public PixelOrientation[] family() {
         return values();
     }

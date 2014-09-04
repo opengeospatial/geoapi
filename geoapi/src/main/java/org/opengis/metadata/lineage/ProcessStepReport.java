@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -58,7 +58,7 @@ public interface ProcessStepReport {
     /**
      * Textual description of what occurred during the process step.
      *
-     * @return What occurred during the process step.
+     * @return What occurred during the process step, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -66,7 +66,7 @@ public interface ProcessStepReport {
     /**
      * Type of file that contains the processing report.
      *
-     * @return Type of file that contains the processing report.
+     * @return Type of file that contains the processing report, or {@code null}.
      */
     @UML(identifier="fileType", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getFileType();

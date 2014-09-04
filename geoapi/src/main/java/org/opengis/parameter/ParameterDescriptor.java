@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,6 +44,19 @@ import static org.opengis.annotation.Specification.*;
  * The definition of a parameter used by an operation method. Most parameter values are
  * numeric, but other types of parameter values are possible.
  *
+ * <p>A parameter descriptor contains the following properties:</p>
+ * <ul>
+ *   <li>The parameter {@linkplain #getName() name}.</li>
+ *   <li>The {@linkplain #getValueClass() class of values}. This is usually {@link Double}, {@code double[]},
+ *       {@link Integer}, {@code int[]}, {@link Boolean}, {@link String}, {@link java.net.URI} or
+ *       {@link org.opengis.metadata.citation.Citation}.</li>
+ *   <li>Whether this parameter is optional or mandatory. This is specified by the {@linkplain #getMinimumOccurs()
+ *       minimum occurences} number, which can be 0 or 1 respectively.</li>
+ *   <li>The {@linkplain #getDefaultValue() default value} and its {@linkplain #getUnit() unit of measurement}.</li>
+ *   <li>The domain of values, as a {@linkplain #getMinimumValue() minimum value}, {@linkplain #getMaximumValue()
+ *       maximum value} or an enumeration of {@linkplain #getValidValues() valid values}.</li>
+ * </ul>
+ *
  * @param <T> The type of parameter values.
  *
  * @departure rename
@@ -62,13 +75,15 @@ import static org.opengis.annotation.Specification.*;
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the
-     * {@linkplain #getDefaultValue default value}. The {@linkplain ParameterValue#getDescriptor
-     * parameter value descriptor} for the created parameter value will be {@code this} object.
+     * {@linkplain #getDefaultValue() default value}. While not a requirement, the
+     * {@linkplain ParameterValue#getDescriptor() parameter value descriptor}
+     * for the created parameter value will typically be {@code this} descriptor instance.
      *
      * @departure extension
      *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
      *   factory method.
      */
+    @Override
     ParameterValue<T> createValue();
 
     /**
@@ -84,8 +99,11 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * {@code null} otherwise. The returned set usually contains {@linkplain CodeList code list}
      * or enumeration elements.
      *
-     * @return A finite set of valid values (usually from a {@linkplain CodeList code list}),
-     *         or {@code null} if it doesn't apply.
+     * {@note It is not necessary to provide this property when all values from the code list or
+     *        enumeration are valid.}
+     *
+     * @return A finite set of valid values (usually from a {@code CodeList}),
+     *         or {@code null} if it does not apply or if there is no restriction.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.
@@ -93,25 +111,10 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     Set<T> getValidValues();
 
     /**
-     * Returns the default value for the parameter. The return type can be any type
-     * including a {@link Number} or a {@link String}. If there is no default value,
-     * then this method returns {@code null}.
-     *
-     * @return The default value, or {@code null} in none.
-     */
-    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
-    T getDefaultValue();
-
-    /**
      * Returns the minimum parameter value.
+     * If there is no minimum value, or if the minimum value is inappropriate for the
+     * {@linkplain #getValueClass() value class}, then this method returns {@code null}.
      *
-     * If there is no minimum value, or if minimum
-     * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
-     * this method returns {@code null}.
-     * <p>
-     * When the getValueClass() is an array or Collection getMinimumValue
-     * may be used to constrain the contained elements.
-     * </p>
      * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
@@ -119,28 +122,32 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
 
     /**
      * Returns the maximum parameter value.
+     * If there is no maximum value, or if the maximum value is inappropriate for the
+     * {@linkplain #getValueClass() value class}, then this method returns {@code null}.
      *
-     * If there is no maximum value, or if maximum
-     * value is inappropriate for the {@linkplain #getValueClass parameter type}, then
-     * this method returns {@code null}.
-     * <p>
-     * When the getValueClass() is an array or Collection getMaximumValue
-     * may be used to constraint the contained elements.
-     *
-     * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
+     * @return The maximum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable<T> getMaximumValue();
 
     /**
-     * Returns the unit for
-     * {@linkplain #getDefaultValue default},
-     * {@linkplain #getMinimumValue minimum} and
-     * {@linkplain #getMaximumValue maximum} values.
-     * This attribute apply only if the values is of numeric type (usually an instance
-     * of {@link Double}).
+     * Returns the default value for the parameter.
+     * If there is no default value, then this method returns {@code null}.
      *
-     * @return The unit for numeric value, or {@code null} if it doesn't apply to the value type.
+     * @return The default value, or {@code null} in none.
+     */
+    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
+    T getDefaultValue();
+
+    /**
+     * Returns the unit of measurement for the
+     * {@linkplain #getMinimumValue() minimum},
+     * {@linkplain #getMaximumValue() maximum} and
+     * {@linkplain #getDefaultValue() default} values.
+     * This attribute apply only if the values is of numeric type
+     * (usually an instance of {@link Double}).
+     *
+     * @return The unit for numeric value, or {@code null} if it does not apply to the value type.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.

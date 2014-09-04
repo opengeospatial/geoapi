@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,6 +33,9 @@ package org.opengis.metadata.identification;
 
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -41,35 +44,35 @@ import static org.opengis.annotation.ComplianceLevel.*;
 
 /**
  * Level of detail expressed as a scale factor or a ground distance.
+ * Exactly one of the {@linkplain #getEquivalentScale() equivalent scale}, {@linkplain #getDistance() distance},
+ * {@linkplain #getVertical() vertical}, {@linkplain #getAngularDistance() angular distance} and
+ * {@linkplain #getLevelOfDetail() level of detail} properties shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
- * @navassoc - - - RepresentativeFraction
+ * @see Identification#getSpatialResolutions()
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="MD_Resolution", specification=ISO_19115)
 public interface Resolution {
     /**
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
-     * Only one of {@linkplain #getEquivalentScale equivalent scale} and
-     * {@linkplain #getDistance ground sample distance} may be provided.
      *
      * @return Level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
      *
-     * @condition {@linkplain #getDistance() Distance} not documented.
+     * @condition {@code distance}, {@code vertical}, {@code angularDistance} and {@code levelOfDetail} not provided.
      */
     @Profile(level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
     RepresentativeFraction getEquivalentScale();
 
     /**
-     * Ground sample distance.
-     * Only one of {@linkplain #getEquivalentScale equivalent scale} and
-     * {@linkplain #getDistance ground sample distance} may be provided.
+     * Horizontal ground sample distance.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
      *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
@@ -80,9 +83,66 @@ public interface Resolution {
      * @return The ground sample distance, or {@code null}.
      * @unitof Distance
      *
-     * @condition {@linkplain #getEquivalentScale() Equivalent scale} not documented.
+     * @condition {@code equivalentScale}, {@code vertical}, {@code angularDistance} and {@code levelOfDetail} not provided.
      */
     @Profile(level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)
     Double getDistance();
+
+    /**
+     * Vertical sampling distance.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
+     *     provide unit of measurement together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
+     *
+     * @return The vertical sampling distance, or {@code null}.
+     * @unitof Distance
+     *
+     * @condition {@code equivalentScale}, {@code distance}, {@code angularDistance} and {@code levelOfDetail} not provided.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
+    Double getVertical();
+
+    /**
+     * Angular sampling measure.
+     * <p>
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
+     *   <TR><TD>
+     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
+     *     3.1. It may be replaced by the {@link javax.measure.quantity.Angle} type in order to
+     *     provide unit of measurement together with the value.</P>
+     *   </TD></TR>
+     * </TABLE>
+     *
+     * @return The angular sampling measure, or {@code null}.
+     * @unitof Angle
+     *
+     * @condition {@code equivalentScale}, {@code distance}, {@code vertical} and {@code levelOfDetail} not provided.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="angularDistance", obligation=CONDITIONAL, specification=ISO_19115)
+    Double getAngularDistance();
+
+    /**
+     * Brief textual description of the spatial resolution of the resource.
+     *
+     * @return Textual description of the spatial resolution of the resource, or {@code null}.
+     *
+     * @condition {@code equivalentScale}, {@code distance}, {@code vertical} and {@code angularDistance} not provided.
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="levelOfDetail", obligation=CONDITIONAL, specification=ISO_19115)
+    InternationalString getLevelOfDetail();
 }
