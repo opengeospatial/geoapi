@@ -96,7 +96,7 @@
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 package org.opengis.metadata.identification;

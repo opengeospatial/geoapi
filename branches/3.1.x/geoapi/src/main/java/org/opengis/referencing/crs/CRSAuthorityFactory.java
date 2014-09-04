@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
-     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code.
+     * Returns an arbitrary coordinate reference system from a code.
      *
      * <p>If the coordinate reference system type is known at compile time, then it is recommended
      * to invoke the most precise method instead of this one. For example it is usually better to
@@ -79,7 +79,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a 3D coordinate reference system from a code.
+     * Returns a 3D coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -91,7 +91,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a derived coordinate reference system from a code.
+     * Returns a derived coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -102,7 +102,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a engineering coordinate reference system from a code.
+     * Returns a engineering coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -140,7 +140,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a image coordinate reference system from a code.
+     * Returns a image coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -165,7 +165,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a temporal coordinate reference system from a code.
+     * Returns a temporal coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.
@@ -178,7 +178,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Create a vertical coordinate reference system from a code.
+     * Returns a vertical coordinate reference system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate reference system for the given code.

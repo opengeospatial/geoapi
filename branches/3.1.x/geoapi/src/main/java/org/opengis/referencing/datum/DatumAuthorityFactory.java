@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
-     * Returns an arbitrary {@linkplain Datum datum} from a code.
+     * Returns an arbitrary datum from a code.
      *
      * <p>If the datum type is known at compile time, then it is recommended to invoke the
      * most precise method instead of this one. For example it is usually better to invoke
@@ -75,7 +75,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a {@linkplain EngineeringDatum engineering datum} from a code.
+     * Returns a engineering datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -88,7 +88,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a {@linkplain ImageDatum image datum} from a code.
+     * Returns a image datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -101,7 +101,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a {@linkplain VerticalDatum vertical datum} from a code.
+     * Returns a vertical datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -115,7 +115,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a {@linkplain TemporalDatum temporal datum} from a code.
+     * Returns a temporal datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -128,7 +128,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
+     * Returns a geodetic datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -145,7 +145,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
+     * Returns an ellipsoid from a code.
      *
      * @param  code Value allocated by authority.
      * @return The ellipsoid for the given code.
@@ -159,7 +159,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain PrimeMeridian prime meridian} from a code.
+     * Returns a prime meridian from a code.
      *
      * @param  code Value allocated by authority.
      * @return The prime meridian for the given code.
