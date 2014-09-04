@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,11 +33,8 @@ package org.opengis.feature.type;
 
 
 /**
- * @deprecated {@code FeatureType} is now defined in the {@link org.opengis.feature} package.
- * However the places where this old {@code FeatureType} was used
- * (namely {@link org.opengis.metadata.maintenance.ScopeDescription}) will change their type
- * to {@code CharSequence} because ISO 19115:2014 defines those types as character sequences.
+ * Temporary placeholder for an interface defined in the
+ * <a href="http://www.geoapi.org/geoapi-pending/">geoapi-pending</a> module.
  */
-@Deprecated
-public interface FeatureType extends CharSequence {
+public interface FeatureType {
 }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,8 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * Mode in which the data is represented.
  *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
 @UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
@@ -60,7 +59,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PresentationForm> VALUES = new ArrayList<PresentationForm>(21);
+    private static final List<PresentationForm> VALUES = new ArrayList<PresentationForm>(14);
 
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).
@@ -155,73 +154,10 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     public static final PresentationForm VIDEO_HARDCOPY = new PresentationForm("VIDEO_HARDCOPY");
 
     /**
-     * Digital audio recording.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @since 3.1
-     */
-    @UML(identifier="audioDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm AUDIO_DIGITAL = new PresentationForm("AUDIO_DIGITAL");
-
-    /**
-     * Audio recording delivered by analog media, such as a magnetic tape
-     *
-     * @since 3.1
-     */
-    @UML(identifier="audioHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm AUDIO_HARDCOPY = new PresentationForm("AUDIO_HARDCOPY");
-
-    /**
-     * Information representation using simultaneously various digital modes for text, sound, image.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="multimediaDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MULTIMEDIA_DIGITAL = new PresentationForm("MULTIMEDIA_DIGITAL");
-
-    /**
-     * Information representation using simultaneously various analog modes for text, sound, image.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="multimediaHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MULTIMEDIA_HARDCOPY = new PresentationForm("MULTIMEDIA_HARDCOPY");
-
-    /**
-     * A physical object.
-     *
-     * <blockquote><font size="-1"><b>Example:</b>
-     * Rock or mineral sample, microscope slide.
-     * </font></blockquote>
-     *
-     * @since 3.1
-     */
-    @UML(identifier="physicalObject", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm PHYSICAL_OBJECT = new PresentationForm("PHYSICAL_OBJECT");
-
-    /**
-     * Information represented graphically by charts such as pie chart, bar chart,
-     * and other type of diagrams and recorded in digital format.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="diagramDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm DIAGRAM_DIGITAL = new PresentationForm("DIAGRAM_DIGITAL");
-
-    /**
-     * Information represented graphically by charts such as pie chart, bar chart,
-     * and other type of diagrams and printed on paper, photographic material, or other media.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="diagramHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm DIAGRAM_HARDCOPY = new PresentationForm("DIAGRAM_HARDCOPY");
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private PresentationForm(final String name) {
         super(name, VALUES);
@@ -239,13 +175,8 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public PresentationForm[] family() {
         return values();
     }

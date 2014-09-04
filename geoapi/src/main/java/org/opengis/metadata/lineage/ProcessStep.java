@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,9 +34,7 @@ package org.opengis.metadata.lineage;
 import java.util.Collection;
 import java.util.Date;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.Responsibility;
-import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -44,14 +42,15 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about an event or transformation in the life of resource.
- * This includes the process used to maintain the resource.
+ * Description of the event, including related parameters or tolerances.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
- * @author  Rémi Maréchal (Geomatys)
  * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - ResponsibleParty
+ * @navassoc - - - Source
  */
 @UML(identifier="LI_ProcessStep", specification=ISO_19115)
 public interface ProcessStep {
@@ -66,7 +65,7 @@ public interface ProcessStep {
     /**
      * Requirement or purpose for the process step.
      *
-     * @return Requirement or purpose for the process step, or {@code null} if none.
+     * @return Requirement or purpose for the process step, or {@code null}.
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getRationale();
@@ -74,7 +73,7 @@ public interface ProcessStep {
     /**
      * Date and time or range of date and time on or over which the process step occurred.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
@@ -82,9 +81,9 @@ public interface ProcessStep {
      *   </TD></TR>
      * </TABLE>
      *
-     * @return Date on or over which the process step occurred, or {@code null} if none.
+     * @return Date on or over which the process step occurred, or {@code null}.
      */
-    @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getDate();
 
     /**
@@ -95,32 +94,10 @@ public interface ProcessStep {
      *         with the process step.
      */
     @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getProcessors();
-
-    /**
-     * Process step documentation.
-     * Returns an empty collection if none.
-     *
-     * @return process step documentation.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getReferences();
-
-    /**
-     * Type of resource and / or extent to which the process step applies.
-     *
-     * @return Type of resource and / or extent to which the process step applies, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
-    Scope getScope();
+    Collection<? extends ResponsibleParty> getProcessors();
 
     /**
      * Information about the source data used in creating the data specified by the scope.
-     * Returns an empty collection if none.
      *
      * @return Information about the source data used in creating the data.
      */
@@ -142,8 +119,8 @@ public interface ProcessStep {
      * to derive geographic data from the raw instrument measurements, such as datasets,
      * software used, and the processing environment.
      *
-     * @return Procedure by which the algorithm was applied to derive geographic data,
-     *         or {@code null}.
+     * @return Procedure by which the algorithm was applied to derive geographic data
+     *         from the raw instrument measurements
      *
      * @since 2.3
      */

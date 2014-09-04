@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -37,23 +37,14 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Thrown by {@link ParameterValue} setter methods when they are given an invalid value.
- * The value may be invalid because it is not assignable to the Java
- * {@linkplain ParameterDescriptor#getValueClass() value class}, not a member of the
- * {@linkplain ParameterDescriptor#getValidValues() valid values} set, or any other reason.
- * This exception is typically thrown by the following methods:
- *
- * <ul>
- *   <li>{@link ParameterValue#setValue(int)}</li>
- *   <li>{@link ParameterValue#setValue(double)}</li>
- *   <li>{@link ParameterValue#setValue(Object)}</li>
- *   <li>Any other setter method.</li>
- * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see InvalidParameterTypeException
+ * @see ParameterValue#setValue(int)
+ * @see ParameterValue#setValue(double)
+ * @see ParameterValue#setValue(Object)
  */
 @UML(identifier="GC_InvalidParameterValue", specification=OGC_01004)
 public class InvalidParameterValueException extends IllegalArgumentException {
@@ -75,8 +66,8 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param message The detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
      * @param parameterName The parameter name.
      * @param value The invalid parameter value.
      */
@@ -89,10 +80,10 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as a floating point.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  parameterName The parameter name.
+     * @param  value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, double value) {
         this(message, parameterName, Double.valueOf(value));
@@ -101,31 +92,13 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as an integer.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  parameterName The parameter name.
+     * @param  value The invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, int value) {
         this(message, parameterName, Integer.valueOf(value));
-    }
-
-    /**
-     * Creates an exception with the specified message, cause and invalid value.
-     *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
-     *
-     * @since 3.1
-     */
-    public InvalidParameterValueException(String message, Throwable cause, String parameterName, Object value) {
-        super(message, cause);
-        this.parameterName = parameterName;
-        this.value = value;
     }
 
     /**

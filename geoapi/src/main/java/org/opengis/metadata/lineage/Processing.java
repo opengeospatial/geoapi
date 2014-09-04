@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,6 +49,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @navassoc 1 - - Identifier
+ * @navassoc - - - Citation
+ * @navassoc - - - Algorithm
  */
 @UML(identifier="LE_Processing", specification=ISO_19115_2)
 public interface Processing {
@@ -71,7 +75,7 @@ public interface Processing {
     /**
      * Additional details about the processing procedures.
      *
-     * @return Processing procedures, or {@code null}.
+     * @return Processing procedures.
      */
     @UML(identifier="procedureDescription", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getProcedureDescription();
@@ -87,7 +91,7 @@ public interface Processing {
     /**
      * Parameters to control the processing operations, entered at run time.
      *
-     * @return Parameters to control the processing operations, or {@code null}.
+     * @return Parameters to control the processing operations.
      */
     @UML(identifier="runTimeParameters", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getRunTimeParameters();
@@ -96,7 +100,8 @@ public interface Processing {
      * Details of the methodology by which geographic information was derived from the
      * instrument readings.
      *
-     * @return Methodology by which geographic information was derived from the instrument readings.
+     * @return Methodology by which geographic information was derived from the
+     * instrument readings.
      */
     @UML(identifier="algorithm", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Algorithm> getAlgorithms();

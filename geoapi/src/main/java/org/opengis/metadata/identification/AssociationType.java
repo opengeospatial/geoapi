@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2007-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2007-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,8 +45,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * Justification for the correlation of two datasets.
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.1
  */
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
@@ -60,7 +59,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<AssociationType> VALUES = new ArrayList<AssociationType>(10);
+    private static final List<AssociationType> VALUES = new ArrayList<AssociationType>(5);
 
     /**
      * Reference from one dataset to another.
@@ -83,7 +82,6 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Mapping and charting information from which the dataset content originates.
      */
-    @Deprecated
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType SOURCE = new AssociationType("SOURCE");
 
@@ -94,54 +92,10 @@ public final class AssociationType extends CodeList<AssociationType> {
     public static final AssociationType STEREO_MATE = new AssociationType("STEREO_MATE");
 
     /**
-     * Reference to resources that are parts of this resource.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @since 3.1
-     */
-    @UML(identifier="isComposedOf", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType IS_COMPOSED_OF = new AssociationType("IS_COMPOSED_OF");
-
-    /**
-     * Common title for a collection of resources.
-     * <blockquote><font size="-1">NOTE : title identifies elements of a series
-     * collectively, combined with information about what volumes are available
-     * at the source cite.</font></blockquote>
-     *
-     * @since 3.1
-     */
-    @UML(identifier="collectiveTitle", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType COLLECTIVE_TITLE = new AssociationType("COLLECTIVE_TITLE");
-
-    /**
-     * Associated through a common heritage such as produced to a common product specification.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType SERIES = new AssociationType("SERIES");
-
-    /**
-     * Associated through a dependency.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="dependency", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType DEPENDENCY = new AssociationType("DEPENDENCY");
-
-    /**
-     * Resource is a revision of associated resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="revisionOf", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType REVISION_OF = new AssociationType("REVISION_OF");
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private AssociationType(final String name) {
         super(name, VALUES);
@@ -159,13 +113,8 @@ public final class AssociationType extends CodeList<AssociationType> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public AssociationType[] family() {
         return values();
     }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,8 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * Limitation(s) placed upon the access or use of the data.
  *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
 @UML(identifier="MD_RestrictionCode", specification=ISO_19115)
@@ -60,7 +59,7 @@ public final class Restriction extends CodeList<Restriction> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Restriction> VALUES = new ArrayList<Restriction>(17);
+    private static final List<Restriction> VALUES = new ArrayList<Restriction>(8);
 
     /**
      * Exclusive right to the publication, production, or sale of the rights to a literary,
@@ -92,19 +91,9 @@ public final class Restriction extends CodeList<Restriction> {
 
     /**
      * Formal permission to do something.
-     *
-     * @since 3.1
      */
-    @UML(identifier="licence", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE = new Restriction("LICENCE");
-
-    /**
-     * Formal permission to do something.
-     *
-     * @deprecated As of ISO 19115:2014, renamed {@link #LICENCE}.
-     */
-    @Deprecated
-    public static final Restriction LICENSE = LICENCE;
+    @UML(identifier="license", obligation=CONDITIONAL, specification=ISO_19115)
+    public static final Restriction LICENSE = new Restriction("LICENSE");
 
     /**
      * Rights to financial benefit from and control of distribution of non-tangible property
@@ -126,105 +115,13 @@ public final class Restriction extends CodeList<Restriction> {
     public static final Restriction OTHER_RESTRICTIONS = new Restriction("OTHER_RESTRICTIONS");
 
     /**
-     * No constraints exist.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @since 3.1
-     */
-    @UML(identifier="unrestricted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction UNRESTRICTED = new Restriction("UNRESTRICTED");
-
-    /**
-     * Formal permission not required to use the resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="licenceUnrestricted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE_UNRESTRICTED = new Restriction("LICENCE_UNRESTRICTED");
-
-    /**
-     * Formal permission required for a person or an entity to use the resource
-     * and that may differ from the person that orders or purchases it.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="licenceEndUser", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE_END_USER = new Restriction("LICENCE_END_USER");
-
-    /**
-     * Formal permission required for a person or an entity to commercialize or
-     * distribute the resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="licenceDistributor", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE_DISTRIBUTOR = new Restriction("LICENCE_DISTRIBUTOR");
-
-    /**
-     * Protects rights of individual or organisations from observation, intrusion,
-     * or attention of others.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="private", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction PRIVATE = new Restriction("PRIVATE");
-
-    /**
-     * Prescribed by law.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="statutory", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction STATUTORY = new Restriction("STATUTORY");
-
-    /**
-     * Not available to the public contains information that could be prejudicial
-     * to a commercial, industrial, or national interest.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction CONFIDENTIAL = new Restriction("CONFIDENTIAL");
-
-    /**
-     * Although unclassified, requires strict controls over its distribution.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction SENSITIVE_BUT_UNCLASSIFIED = new Restriction("SENSITIVE_BUT_UNCLASSIFIED");
-
-    /**
-     * With trust.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="in-confidence", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction IN_CONFIDENCE = new Restriction("IN_CONFIDENCE");
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private Restriction(final String name) {
         super(name, VALUES);
-    }
-
-    /**
-     * Returns the programmatic name and the UML identifier of this code, together with legacy UML identifier
-     * if any. In particular, {@link #LICENCE} is known as both {@code "licence"} (from ISO 19115:2014) and
-     * {@code "license"} (from ISO 19115:2003).
-     *
-     * @return Names of this code, including legacy names if any.
-     */
-    @Override
-    public String[] names() {
-        if (this == LICENSE) {
-            return new String[] {name(), "LICENSE", identifier(), "license"};
-        }
-        return super.names();
     }
 
     /**
@@ -239,13 +136,8 @@ public final class Restriction extends CodeList<Restriction> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public Restriction[] family() {
         return values();
     }
@@ -257,16 +149,10 @@ public final class Restriction extends CodeList<Restriction> {
      * returns {@code true}. If no existing instance is found, then a new one is created for
      * the given name.
      *
-     * <p>For compatibility reasons, the {@code "LICENSE"} string (derived from ISO 19115:2003)
-     * is taken as synonymous to {@code "LICENCE"} (derived from ISO 19115:2014).</p>
-     *
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.
      */
     public static Restriction valueOf(String code) {
-        if ("LICENSE".equals(code)) {
-            code = "LICENCE"; // For compatibility between ISO 19115:2003 and ISO 19115:2014.
-        }
         return valueOf(Restriction.class, code);
     }
 }

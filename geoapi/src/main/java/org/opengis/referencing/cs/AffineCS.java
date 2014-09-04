@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,24 +31,26 @@
  */
 package org.opengis.referencing.cs;
 
-import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate system with straight axes that are not necessarily orthogonal.
+ * A two- or three-dimensional coordinate system with straight axes that are not necessarily orthogonal.
+ * An {@code AffineCS} shall have two or three {@linkplain #getAxis axis associations}.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.EngineeringCRS} or
- * {@link org.opengis.referencing.crs.ImageCRS}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering},
+ *   {@link org.opengis.referencing.crs.ImageCRS       Image}
+ * </TD></TR></TABLE>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
  *
- * @see CSFactory#createAffineCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
- * @see CSFactory#createAffineCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
+ * @see CartesianCS
  */
 @UML(identifier="CS_AffineCS", specification=ISO_19111)
 public interface AffineCS extends CoordinateSystem {

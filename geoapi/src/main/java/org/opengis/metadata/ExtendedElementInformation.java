@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,7 +33,7 @@ package org.opengis.metadata;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -42,11 +42,14 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * New metadata element, not found in ISO 19115, which is required to describe geographic data.
- * Metadata elements are contained in a {@linkplain MetadataExtensionInformation metadata extension information}.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - Obligation
+ * @navassoc 1 - - Datatype
+ * @navassoc - - - ResponsibleParty
  */
 @UML(identifier="MD_ExtendedElementInformation", specification=ISO_19115)
 public interface ExtendedElementInformation {
@@ -54,50 +57,36 @@ public interface ExtendedElementInformation {
      * Name of the extended metadata element.
      *
      * @return Name of the extended metadata element.
-     *
-     * @departure historic
-     *    This property has been kept conform to ISO 19115:2003 for simplicity.
-     *    The 2014 revision defines two mutually exclusive names depending on the data type:
-     *    "<code>conceptName</code>" for <code>ENUMERATION</code>, <code>CODE_LIST</code> or
-     *    <code>CODE_LIST_ELEMENT</code>, and "<code>name</code>" for all other data types.
-     *    GeoAPI keeps the "<code>name</code>" property for all data types and let developers
-     *    inspect the "<code>dataType</code>" property if needed.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
     String getName();
 
     /**
      * Short form suitable for use in an implementation method such as XML or SGML.
-     * Returns {@code null} if the {@linkplain #getDataType() data type}
+     * Returns {@code null} if the {@linkplain #getDataType data type}
      * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
      * {@link #getDomainCode()} may be used instead.
      *
      * @return Short form suitable for use in an implementation method such as XML or SGML,
      *         or {@code null}.
      *
-     * @condition The {@linkplain #getDataType() data type} is not
+     * @condition {@linkplain #getDataType Data type} not equal
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
-     *
-     * @deprecated Removed as of ISO 19115:2014.
      */
-    @Deprecated
     @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115)
     String getShortName();
 
     /**
      * Three digit code assigned to the extended element.
-     * Returns a non-null value only if the {@linkplain #getDataType() data type}
-     * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, otherwise
+     * Returns a non-null value only if the {@linkplain #getDataType data type}
+     * is {@linkplain Datatype#CODE_LIST_ELEMENT code list element}, in which case
      * {@link #getShortName()} may be used instead.
      *
      * @return Three digit code assigned to the extended element, or {@code null}.
      *
-     * @condition The {@linkplain #getDataType() data type} is
+     * @condition {@linkplain #getDataType Data type} not equal
      *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
-     *
-     * @deprecated Removed as of ISO 19115:2014.
      */
-    @Deprecated
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115)
     Integer getDomainCode();
 
@@ -114,20 +103,23 @@ public interface ExtendedElementInformation {
      *
      * @return Obligation of the extended element, or {@code null}.
      *
-     * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
-     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
+     * @condition {@linkplain #getDataType Data type} not equal
+     *            {@link Datatype#CODE_LIST CODE_LIST} or
+     *            {@link Datatype#ENUMERATION ENUMERATION} or
+     *            {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="obligation", obligation=CONDITIONAL, specification=ISO_19115)
     Obligation getObligation();
 
     /**
      * Condition under which the extended element is mandatory.
-     * Returns a non-null value only if the {@linkplain #getObligation() obligation}
+     * Returns a non-null value only if the {@linkplain #getObligation obligation}
      * is {@linkplain Obligation#CONDITIONAL conditional}.
      *
      * @return The condition under which the extended element is mandatory, or {@code null}.
      *
-     * @condition The {@linkplain #getObligation() Obligation} is {@link Obligation#CONDITIONAL CONDITIONAL}.
+     * @condition {@linkplain #getObligation Obligation} equals
+     *            {@link Obligation#CONDITIONAL CONDITIONAL}.
      */
     @UML(identifier="condition", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getCondition();
@@ -143,14 +135,11 @@ public interface ExtendedElementInformation {
     /**
      * Maximum occurrence of the extended element.
      * Returns {@code null} if it doesn't apply, for example if the
-     * {@linkplain #getDataType() data type} is {@linkplain Datatype#ENUMERATION enumeration},
+     * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
      *
      * @return Maximum occurrence of the extended element, or {@code null}.
-     *
-     * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
-     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
      */
     @UML(identifier="maximumOccurrence", obligation=CONDITIONAL, specification=ISO_19115)
     Integer getMaximumOccurrence();
@@ -158,14 +147,15 @@ public interface ExtendedElementInformation {
     /**
      * Valid values that can be assigned to the extended element.
      * Returns {@code null} if it doesn't apply, for example if the
-     * {@linkplain #getDataType() data type} is {@linkplain Datatype#ENUMERATION enumeration},
+     * {@linkplain #getDataType data type} is {@linkplain Datatype#ENUMERATION enumeration},
      * {@linkplain Datatype#CODE_LIST code list} or {@linkplain Datatype#CODE_LIST_ELEMENT
      * code list element}.
      *
      * @return Valid values that can be assigned to the extended element, or {@code null}.
      *
-     * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
-     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT CODE_LIST_ELEMENT}.
+     * @condition {@linkplain #getDataType Data type} not {@link Datatype#ENUMERATION ENUMERATION},
+     *            {@link Datatype#CODE_LIST CODE_LIST} or {@link Datatype#CODE_LIST_ELEMENT
+     *            CODE_LIST_ELEMENT}.
      */
     @UML(identifier="domainValue", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDomainValue();
@@ -191,18 +181,8 @@ public interface ExtendedElementInformation {
      * Reason for creating the extended element.
      *
      * @return Reason for creating the extended element.
-     *
-     * @since 3.1
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getRationale();
-
-    /**
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getRationale()}.
-     *
-     * @return Reason for creating the extended element.
-     */
-    @Deprecated
     Collection<? extends InternationalString> getRationales();
 
     /**
@@ -211,5 +191,5 @@ public interface ExtendedElementInformation {
      * @return Name of the person or organization creating the extended element.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Responsibility> getSources();
+    Collection<? extends ResponsibleParty> getSources();
 }

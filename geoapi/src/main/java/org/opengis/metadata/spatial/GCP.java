@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -47,6 +47,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @navassoc 1 - - DirectPosition
+ * @navassoc - - - Element
  */
 @UML(identifier="MI_GCP", specification=ISO_19115_2)
 public interface GCP {

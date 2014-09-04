@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,7 +35,7 @@ import org.opengis.util.NoSuchIdentifierException;
 
 
 /**
- * Thrown when an {@linkplain AuthorityFactory authority factory} can not find
+ * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
  * the requested authority code.
  *
  * @departure extension
@@ -73,7 +73,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      * @param  authority The authority, saved for retrieval by the {@link #getAuthority()} method.
      * @param  code The invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
      */
-    public NoSuchAuthorityCodeException(final String message, final String authority, final String code) {
+    public NoSuchAuthorityCodeException(String message, String authority, String code) {
         this(message, authority, code, (authority == null) ? code : (code == null) ? authority : authority + ':' + code);
     }
 
@@ -88,7 +88,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      * @param  identifier The full identifier as a concatenation of the authority and the code,
      *         saved for retrieval by the {@link #getIdentifierCode()} method.
      */
-    public NoSuchAuthorityCodeException(final String message, final String authority, final String code, final String identifier) {
+    public NoSuchAuthorityCodeException(String message, String authority, String code, String identifier) {
         super(message, identifier);
         this.authority = authority;
         this.code = code;

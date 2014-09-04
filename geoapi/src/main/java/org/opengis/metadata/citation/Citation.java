@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,12 +34,9 @@ package org.opengis.metadata.citation;
 import java.util.Collection;
 import java.util.Date;
 import org.opengis.metadata.Identifier;
-import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -51,11 +48,15 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
+ *
+ * @navassoc - - - CitationDate
+ * @navassoc - - - Identifier
+ * @navassoc - - - ResponsibleParty
+ * @navassoc - - - PresentationForm
+ * @navassoc 1 - - Series
  */
-@Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Citation", specification=ISO_19115)
 public interface Citation {
     /**
@@ -69,11 +70,7 @@ public interface Citation {
 
     /**
      * Short name or other language name by which the cited information is known.
-     * Returns an empty collection if there is none.
-     *
-     * <blockquote><font size="-1"><b>Example:</b>
-     * "DCW" as an alternative title for "Digital Chart of the World".
-     * </font></blockquote>
+     * Example: "DCW" as an alternative title for "Digital Chart of the World".
      *
      * @return Other names for the resource, or an empty collection if none.
      */
@@ -100,7 +97,7 @@ public interface Citation {
     /**
      * Date of the edition, or {@code null} if none.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
@@ -114,12 +111,8 @@ public interface Citation {
     Date getEditionDate();
 
     /**
-     * Unique identifier for the resource.
-     * Returns an empty collection if there is none.
-     *
-     * <blockquote><font size="-1"><b>Example:</b>
-     * Universal Product Code (UPC), National Stock Number (NSN).
-     * </font></blockquote>
+     * Unique identifier for the resource. Example: Universal Product Code (UPC),
+     * National Stock Number (NSN).
      *
      * @return The identifiers, or an empty collection if none.
      */
@@ -127,18 +120,16 @@ public interface Citation {
     Collection<? extends Identifier> getIdentifiers();
 
     /**
-     * Role, name, contact and position information for an individual or organisation that is responsible
-     * for the resource.
-     * Returns an empty collection if there is none.
+     * Name and position information for an individual or organization that is responsible
+     * for the resource. Returns an empty string if there is none.
      *
-     * @return The information for an individual or organisation that is responsible, or an empty collection if none.
+     * @return The individual or organization that is responsible, or an empty collection if none.
      */
     @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getCitedResponsibleParties();
+    Collection<? extends ResponsibleParty> getCitedResponsibleParties();
 
     /**
-     * Mode in which the resource is represented.
-     * Returns an empty collection if there is none.
+     * Mode in which the resource is represented, or an empty string if none.
      *
      * @return The presentation mode, or an empty collection if none.
      */
@@ -147,7 +138,7 @@ public interface Citation {
 
     /**
      * Information about the series, or aggregate dataset, of which the dataset is a part.
-     * Returns {@code null} if there is none.
+     * Returns {@code null} if none.
      *
      * @return The series of which the dataset is a part, or {@code null} if none.
      */
@@ -156,28 +147,25 @@ public interface Citation {
 
     /**
      * Other information required to complete the citation that is not recorded elsewhere.
-     * Returns an empty collection if there is none.
+     * Returns {@code null} if none.
      *
-     * @return Other details.
+     * @return Other details, or {@code null} if none.
      */
     @UML(identifier="otherCitationDetails", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getOtherCitationDetails();
+    InternationalString getOtherCitationDetails();
 
     /**
-     * Common title with holdings note. Title identifies elements of a series collectively,
-     * combined with information about what volumes are available at the source cited.
+     * Common title with holdings note. Note: title identifies elements of a series
+     * collectively, combined with information about what volumes are available at the
+     * source cited. Returns {@code null} if there is no title.
      *
      * @return The common title, or {@code null} if none.
-     *
-     * @deprecated Removed as of ISO 19115:2014.
      */
-    @Deprecated
     @UML(identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCollectiveTitle();
 
     /**
-     * International Standard Book Number.
-     * Returns {@code null} if there is none.
+     * International Standard Book Number, or {@code null} if none.
      *
      * @return The ISBN, or {@code null} if none.
      */
@@ -185,33 +173,10 @@ public interface Citation {
     String getISBN();
 
     /**
-     * International Standard Serial Number.
-     * Returns {@code null} if there is none.
+     * International Standard Serial Number, or {@code null} if none.
      *
      * @return The ISSN, or {@code null} if none.
      */
     @UML(identifier="ISSN", obligation=OPTIONAL, specification=ISO_19115)
     String getISSN();
-
-    /**
-     * Online references to the cited resource.
-     * Returns an empty collection if there is none.
-     *
-     * @return Online references to the cited resource, or an empty collection if there is none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OnlineResource> getOnlineResources();
-
-    /**
-     * Citation graphics or logo for cited party.
-     * Returns an empty collection if there is none.
-     *
-     * @return Graphics or logo for cited party, or an empty collection if there is none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends BrowseGraphic> getGraphics();
 }

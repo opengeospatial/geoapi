@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,8 +31,6 @@
  */
 package org.opengis.referencing.operation;
 
-import java.awt.geom.AffineTransform;
-
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.annotation.UML;
@@ -42,17 +40,14 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Transforms multi-dimensional coordinate points. This interface transforms coordinate
- * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS() source
+ * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS source
  * coordinate reference system} to coordinate value for the same point in the
- * {@linkplain CoordinateOperation#getTargetCRS() target coordinate reference system}.
+ * {@linkplain CoordinateOperation#getTargetCRS target coordinate reference system}.
  *
- * <ul>
- *   <li>In a {@linkplain Conversion conversion}, the transformation is accurate to within the
- *   limitations of the computer making the calculations.</li>
- *   <li>In a {@linkplain Transformation transformation}, where some of the operational parameters
- *   are derived from observations, the transformation is accurate to within the limitations of
- *   those observations.</li>
- * </ul>
+ * In a {@linkplain Conversion conversion}, the transformation is accurate to within the
+ * limitations of the computer making the calculations. In a {@linkplain Transformation
+ * transformation}, where some of the operational parameters are derived from observations,
+ * the transformation is accurate to within the limitations of those observations.
  *
  * If a client application wishes to query the source and target
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}
@@ -63,7 +58,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @see AffineTransform
+ * @see java.awt.geom.AffineTransform
  * @see javax.media.jai.PerspectiveTransform
  * @see javax.media.j3d.Transform3D
  * @see MathTransformFactory
@@ -88,10 +83,11 @@ public interface MathTransform {
     int getTargetDimensions();
 
     /**
-     * Transforms the specified {@code ptSrc} and stores the result in {@code ptDst}.
-     * If {@code ptDst} is {@code null}, a new {@link DirectPosition} object is allocated
-     * and then the result of the transformation is stored in this object. In either case,
-     * {@code ptDst}, which contains the transformed point, is returned for convenience.
+     * Transforms the specified {@code ptSrc} and stores the result in
+     * {@code ptDst}. If {@code ptDst} is {@code null}, a new
+     * {@link DirectPosition} object is allocated and then the result of the
+     * transformation is stored in this object. In either case, {@code ptDst},
+     * which contains the transformed point, is returned for convenience.
      * If {@code ptSrc} and {@code ptDst} are the same object,
      * the input point is correctly overwritten with the transformed point.
      *
@@ -116,20 +112,20 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
+     *                 May be the same than {@code srcPts}.
+     * @param  dstOff the offset to the location of the first transformed point that is
+     *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
-     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
-     *
-     * @see AffineTransform#transform(double[], int, double[], int, int)
+     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     *         at the first failure, wile some other implementations will fill the untransformable
+     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
+     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     @UML(identifier="transformList", specification=OGC_01009)
     void transform(double[] srcPts, int srcOff,
@@ -143,20 +139,20 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
      *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  dstOff the offset to the location of the first transformed point that is
+     *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
-     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
-     *
-     * @see AffineTransform#transform(float[], int, float[], int, int)
+     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     *         at the first failure, wile some other implementations will fill the untransformable
+     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
+     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     void transform(float[] srcPts, int srcOff,
                    float[] dstPts, int dstOff, int numPts) throws TransformException;
@@ -169,19 +165,19 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
-     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  dstOff the offset to the location of the first transformed point that is
+     *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
-     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
-     *
-     * @see AffineTransform#transform(float[], int, double[], int, int)
+     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     *         at the first failure, wile some other implementations will fill the untransformable
+     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
+     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @since 2.2
      */
@@ -196,7 +192,7 @@ public interface MathTransform {
      * will be packed in this order:
      *
      * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> ...).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -204,12 +200,11 @@ public interface MathTransform {
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
-     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
-     *
-     * @see AffineTransform#transform(double[], int, float[], int, int)
+     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     *         at the first failure, wile some other implementations will fill the untransformable
+     *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
+     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @since 2.2
      */
@@ -222,15 +217,15 @@ public interface MathTransform {
      * the point. The matrix will have dimensions corresponding to the source
      * and target coordinate systems. If the input dimension is <var>M</var>,
      * and the output dimension is <var>N</var>, then the matrix will have size
-     * <code>N×M</code>. The elements of the matrix
+     * <code>N&times;M</code>. The elements of the matrix
      *
      *              <code>{e<sub>n,m</sub> : n=0..(N-1)}</code>
      *
      * form a vector in the output space which is parallel to the displacement
      * caused by a small change in the <var>m</var>'th ordinate in the input space.
-     *
-     * <p>For example, if the input dimension is 4 and the
-     * output dimension is 3, then a small displacement</p>
+     * <p>
+     * For example, if the input dimension is 4 and the
+     * output dimension is 3, then a small displacement
      *
      * <code>(x₀,&nbsp;x₁,&nbsp;x₂,&nbsp;x₃)</code>
      *
@@ -242,12 +237,13 @@ public interface MathTransform {
      * are the matrix elements):
      *
      * <pre>
-     *┌    ┐     ┌                    ┐ ┌    ┐
-     *│ y₀ │     │ e₀₀  e₀₁  e₀₂  e₀₃ │ │ x₀ │
-     *│ y₁ │  =  │ e₁₀  e₁₁  e₁₂  e₁₃ │ │ x₁ │
-     *│ y₂ │     │ e₂₀  e₂₁  e₂₂  e₂₃ │ │ x₂ │
-     *└    ┘     └                    ┘ │ x₃ │
-     *                                  └    ┘</pre>
+     * ┌    ┐     ┌                    ┐ ┌    ┐
+     * │ y₀ │     │ e₀₀  e₀₁  e₀₂  e₀₃ │ │ x₀ │
+     * │ y₁ │  =  │ e₁₀  e₁₁  e₁₂  e₁₃ │ │ x₁ │
+     * │ y₂ │     │ e₂₀  e₂₁  e₂₂  e₂₃ │ │ x₂ │
+     * └    ┘     └                    ┘ │ x₃ │
+     *                                   └    ┘
+     * </pre>
      *
      * @param  point The coordinate point where to evaluate the derivative. Null
      *         value is accepted only if the derivative is the same everywhere.
@@ -257,9 +253,12 @@ public interface MathTransform {
      * @return The derivative at the specified point (never {@code null}).
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.
-     * @throws NullPointerException if the derivative depends on coordinate and {@code point} is {@code null}.
-     * @throws MismatchedDimensionException if {@code point} does not have the expected dimension.
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws NullPointerException if the derivative dependents on coordinate
+     *         and {@code point} is {@code null}.
+     * @throws MismatchedDimensionException if {@code point} doesn't have
+     *         the expected dimension.
+     * @throws TransformException if the derivative can't be evaluated at the
+     *         specified point.
      */
     @UML(identifier="derivative", specification=OGC_01009)
     Matrix derivative(final DirectPosition point)
@@ -275,8 +274,6 @@ public interface MathTransform {
      *
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can't be inverted.
-     *
-     * @see AffineTransform#createInverse()
      */
     @UML(identifier="inverse", specification=OGC_01009)
     MathTransform inverse() throws NoninvertibleTransformException;
@@ -286,21 +283,17 @@ public interface MathTransform {
      *
      * @return {@code true} if this {@code MathTransform} is
      *         an identity transform; {@code false} otherwise.
-     *
-     * @see AffineTransform#isIdentity()
      */
     @UML(identifier="isIdentity", specification=OGC_01009)
     boolean isIdentity();
 
     /**
-     * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
-     * Version 1 of Well-Know Text is <a href="../doc-files/WKT.html">defined in extended Backus Naur form</a>.
-     * This operation may fail if unsupported or if this instance contains elements that do not have WKT representation.
+     * Returns a <cite>Well Known Text</cite> (WKT) for this object. Well know text are
+     * <A HREF="../doc-files/WKT.html">defined in extended Backus Naur form</A>.
+     * This operation may fails if an object is too complex for the WKT format capability.
      *
-     * @return The <cite>Well-Known Text</cite> (WKT) for this object.
+     * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
      * @throws UnsupportedOperationException If this object can't be formatted as WKT.
-     *
-     * @see MathTransformFactory#createFromWKT(String)
      */
     @UML(identifier="getWKT", specification=OGC_01009)
     String toWKT() throws UnsupportedOperationException;

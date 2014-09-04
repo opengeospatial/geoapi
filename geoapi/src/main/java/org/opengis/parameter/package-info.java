@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,24 +32,24 @@
 
 /**
  * Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
- * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
- * Coordinates (Topic 2)} specification:
+ * The first two paragraphs below are adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS&reg; Spatial Referencing by
+ * Coordinates (Topic 2)} specification.
  *
- * <p>Most {@linkplain org.opengis.parameter.ParameterValue parameter values} are
+ * <P ALIGN="justify">Most {@linkplain org.opengis.parameter.ParameterValue parameter values} are
  * numeric, but for some operation methods, notably those implementing a grid interpolation
  * algorithm, the parameter value could be a file name and location (this may be a URI). An
  * example is the coordinate transformation from NAD&nbsp;27 to NAD&nbsp;83 in the USA; depending
- * on the locations of the points to be transformed, one of a series of grid files should be used.</p>
+ * on the locations of the points to be transformed, one of a series of grid files should be used.</P>
  *
- * <p>Some operation methods may require a large number of coordinate operation
+ * <P ALIGN="justify">Some operation methods may require a large number of coordinate operation
  * parameters. Also, some operation methods require that groups of parameters be repeatable as
  * a group. In such cases, it is helpful to group related parameters in
  * {@linkplain org.opengis.parameter.ParameterDescriptorGroup parameter groups}. Two or more parameter
  * groups are then associated with a particular operation method, and each parameter group consists
  * of a set of {@linkplain org.opengis.parameter.ParameterDescriptor operation parameters}, or other,
  * nested parameter groups. This way of modeling is not mandatory; all coordinate operation
- * parameters may be assigned directly to the coordinate operation method.</p>
+ * parameters may be assigned directly to the coordinate operation method.</P>
  *
  * @departure harmonization
  *   Moved the <code>GeneralParameterDescriptor</code>, <code>ParameterDescriptor</code>,

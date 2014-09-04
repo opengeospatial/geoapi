@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,12 +42,14 @@ import static java.lang.annotation.ElementType.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - ComplianceLevel
  */
 @Documented
 @Target(METHOD)
 public @interface Profile {
     /**
-     * The level for the annotated element. {@link ComplianceLevel#CORE CORE} means
+     * The level for the annoted element. {@link ComplianceLevel#CORE CORE} means
      * that all profiles should provides this element.
      *
      * @return The compliance level.

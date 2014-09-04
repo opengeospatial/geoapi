@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,8 +34,6 @@ package org.opengis.referencing.crs;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -43,13 +41,20 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Abstract coordinate reference system, consisting of a single
- * {@linkplain CoordinateSystem coordinate system} and a single {@linkplain Datum datum}.
- * A single CRS consists of an ordered sequence of coordinate system axes that are related
- * to the earth through a datum.
- *
- * <p>The valid coordinate system type and the datum type are constrained by the CRS type.
- * For example {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and
- * {@code GeodeticDatum}.</p>
+ * {@linkplain CoordinateSystem Coordinate System} and a single
+ * {@linkplain Datum Datum} (as opposed to {@linkplain CompoundCRS Compound CRS}).
+ * <p>
+ * A coordinate reference system consists of an ordered sequence of coordinate system
+ * axes that are related to the earth through a datum. A coordinate reference system
+ * is defined by one datum and by one coordinate system. Most coordinate reference system
+ * do not move relative to the earth, except for engineering coordinate reference systems
+ * defined on moving platforms such as cars, ships, aircraft, and spacecraft.
+ * <p>
+ * Coordinate reference systems are commonly divided into sub-types. The common classification
+ * criterion for sub-typing of coordinate reference systems is the way in which they deal with
+ * earth curvature. This has a direct effect on the portion of the earth's surface that can be
+ * covered by that type of CRS with an acceptable degree of error. The exception to the rule is
+ * the subtype "Temporal" which has been added by analogy.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -57,27 +62,21 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.datum.Datum
+ *
+ * @navassoc 1 - - Datum
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
-     * Returns the coordinate system associated to this CRS.
+     * Returns the coordinate system.
      */
-    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 
     /**
-     * Returns the datum associated directly or indirectly to this CRS.
-     * In the case of {@link GeneralDerivedCRS}, this method returns the
-     * datum of the {@linkplain GeneralDerivedCRS#getBaseCRS() base CRS}.
+     * Returns the datum.
      *
      * @return The datum.
-     *
-     * @departure easeOfUse
-     *   The ISO specification declares the datum as absent when the association is indirect.
-     *   GeoAPI recommends to follow the link to the base CRS for users convenience.
      */
     @UML(identifier="datum", obligation=OPTIONAL, specification=ISO_19111)
     Datum getDatum();

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,34 +31,20 @@
  */
 
 /**
- * Restrictions placed on data (legal and security {@linkplain org.opengis.metadata.constraint.Constraints constraints}).
+ * {@linkplain org.opengis.metadata.constraint.Constraints} information
+ * (includes legal and security). The following is adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
- * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
- * together with a partial view of aggregation hierarchy:</p>
- *
- * <table class="ogc">
- * <caption>Package overview</caption>
- * <tr>
- *   <th>Class hierarchy</th>
- *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
- * <pre> ISO-19115 object
- *  ├─ {@linkplain org.opengis.metadata.constraint.Constraints}
- *  │   ├─ {@linkplain org.opengis.metadata.constraint.LegalConstraints}
- *  │   └─ {@linkplain org.opengis.metadata.constraint.SecurityConstraints}
- *  └─ {@linkplain org.opengis.metadata.constraint.Releasability}
- * {@linkplain org.opengis.util.CodeList}
- *  ├─ {@linkplain org.opengis.metadata.constraint.Restriction}
- *  └─ {@linkplain org.opengis.metadata.constraint.Classification}</pre>
- * </td><td class="sep" width="50%" nowrap>
- * <pre> {@linkplain org.opengis.metadata.constraint.Constraints}
- *  └─ {@linkplain org.opengis.metadata.constraint.Releasability}
- * {@linkplain org.opengis.metadata.constraint.LegalConstraints}
- *  └─ {@linkplain org.opengis.metadata.constraint.Restriction} «code list»
- * {@linkplain org.opengis.metadata.constraint.SecurityConstraints}
- *  └─ {@linkplain org.opengis.metadata.constraint.Classification} «code list»</pre>
- * </td></tr></table>
+ * <P ALIGN="justify">This package contains information concerning the restrictions placed on data.
+ * The {@linkplain org.opengis.metadata.constraint.Constraints constraints} entity is optional and
+ * may be specified as {@linkplain org.opengis.metadata.constraint.LegalConstraints legal constraints}
+ * and/or {@linkplain org.opengis.metadata.constraint.SecurityConstraints security constraints}. The
+ * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getOtherConstraints other constraint}
+ * element shall be non-null (used) only if
+ * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getAccessConstraints access constraints} and/or
+ * {@linkplain org.opengis.metadata.constraint.LegalConstraints#getUseConstraints use constraints} elements have
+ * a value of "{@linkplain org.opengis.metadata.constraint.Restriction#OTHER_RESTRICTIONS other restrictions}".</P>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

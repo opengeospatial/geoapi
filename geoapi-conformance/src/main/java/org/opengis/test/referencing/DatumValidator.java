@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,47 +44,43 @@ import static org.opengis.test.Assert.*;
 
 
 /**
- * Validates {@link Datum} and related objects from the {@code org.opengis.datum} package.
- *
- * <p>This class is provided for users wanting to override the validation methods. When the default
- * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more
- * convenient way to validate various kinds of objects.</p>
+ * Validates {@link Datum} and related objects from the {@code org.opengis.datum} package. This
+ * class should not be used directly; use the {@link org.opengis.test.Validators} convenience
+ * static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.2
  */
 public class DatumValidator extends ReferencingValidator {
     /**
-     * Creates a new validator instance.
+     * Creates a new validator.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container The container of this validator.
      */
     public DatumValidator(ValidatorContainer container) {
         super(container, "org.opengis.referencing.datum");
     }
 
     /**
-     * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * Dispatches the given object to one of {@code validate} methods.
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param object The object to dispatch.
      */
-    public int dispatch(final Datum object) {
-        int n = 0;
-        if (object != null) {
-            if (object instanceof GeodeticDatum)    {validate((GeodeticDatum)    object); n++;}
-            if (object instanceof VerticalDatum)    {validate((VerticalDatum)    object); n++;}
-            if (object instanceof TemporalDatum)    {validate((TemporalDatum)    object); n++;}
-            if (object instanceof ImageDatum)       {validate((ImageDatum)       object); n++;}
-            if (object instanceof EngineeringDatum) {validate((EngineeringDatum) object); n++;}
-            if (n == 0) {
-                validateIdentifiedObject(object);
-            }
+    public void dispatch(final Datum object) {
+        if (object instanceof GeodeticDatum) {
+            validate((GeodeticDatum) object);
+        } else if (object instanceof VerticalDatum) {
+            validate((VerticalDatum) object);
+        } else if (object instanceof TemporalDatum) {
+            validate((TemporalDatum) object);
+        } else if (object instanceof ImageDatum) {
+            validate((ImageDatum) object);
+        } else if (object instanceof EngineeringDatum) {
+            validate((EngineeringDatum) object);
+        } else {
+            validateIdentifiedObject(object);
         }
-        return n;
     }
 
     /**
@@ -112,14 +108,6 @@ public class DatumValidator extends ReferencingValidator {
 
     /**
      * Validates the given ellipsoid.
-     * This method checks the following conditions:
-     *
-     * <ul>
-     *   <li>{@linkplain Ellipsoid#getAxisUnit() Axis unit} is defined and is linear.</li>
-     *   <li>{@linkplain Ellipsoid#getSemiMinorAxis() semi-minor} &lt;= {@linkplain Ellipsoid#getSemiMajorAxis() semi-major}.</li>
-     *   <li>{@linkplain Ellipsoid#getInverseFlattening() inverse flattening} &gt; 0.</li>
-     *   <li>Consistency of semi-minor axis length with inverse flattening factor.</li>
-     * </ul>
      *
      * @param object The object to validate, or {@code null}.
      */
@@ -133,19 +121,9 @@ public class DatumValidator extends ReferencingValidator {
         if (unit != null) {
             assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(SI.METRE));
         }
-        final double semiMajor         = object.getSemiMajorAxis();
-        final double semiMinor         = object.getSemiMinorAxis();
-        final double inverseFlattening = object.getInverseFlattening();
-        assertTrue("Ellipsoid: expected semi-major axis length > 0.", semiMajor > 0);
-        assertTrue("Ellipsoid: expected semi-minor axis length > 0.", semiMinor > 0);
+        final double semiMajor = object.getSemiMajorAxis();
+        final double semiMinor = object.getSemiMinorAxis();
         assertTrue("Ellipsoid: expected semi-minor <= semi-major axis length.", semiMinor <= semiMajor);
-        assertTrue("Ellipsoid: expected inverse flattening > 0.", inverseFlattening > 0);
-        if (!object.isSphere()) {
-            assertEquals("Ellipsoid: inconsistent semi-major axis length.",
-                    semiMajor - semiMajor/inverseFlattening, semiMinor, semiMinor*DEFAULT_TOLERANCE);
-            assertEquals("Ellipsoid: inconsistent inverse flattening.",
-                    semiMajor / (semiMajor-semiMinor), inverseFlattening, inverseFlattening*DEFAULT_TOLERANCE);
-        }
     }
 
     /**

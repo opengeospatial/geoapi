@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,7 +31,6 @@
  */
 package org.opengis.referencing.crs;
 
-import java.util.Map;
 import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.ImageDatum;
@@ -46,33 +45,31 @@ import static org.opengis.annotation.Specification.*;
  * reference systems are treated as a separate sub-type because a separate user community exists
  * for images with its own terms of reference.
  *
- * <p>This type of CRS can be used with coordinate systems of type
- * {@link org.opengis.referencing.cs.CartesianCS} or
- * {@link org.opengis.referencing.cs.AffineCS}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.cs.CartesianCS Cartesian},
+ *   {@link org.opengis.referencing.cs.AffineCS    Affine}
+ * </TD></TR></TABLE>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see CRSAuthorityFactory#createImageCRS(String)
- * @see CRSFactory#createImageCRS(Map, ImageDatum, AffineCS)
+ * @navassoc 1 - - ImageDatum
+ * @navassoc 1 - - AffineCS
  */
 @UML(identifier="SC_ImageCRS", specification=ISO_19111)
 public interface ImageCRS extends SingleCRS {
     /**
-     * Returns the affine coordinate system, which shall be {@linkplain AffineCS affine} or
-     * {@linkplain CartesianCS Cartsian}.
-     *
-     * @return The affine or Cartesian coordinate system.
+     * Returns the cartesian coordinate system.
      */
-    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     AffineCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be an image one.
      */
-    @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     ImageDatum getDatum();
 }

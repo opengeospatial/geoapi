@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,16 +31,19 @@
  */
 package org.opengis.parameter;
 
+import java.util.List;
+
 
 /**
  * Thrown by {@link ParameterValueGroup} if adding or removing a {@linkplain ParameterValue
- * parameter value} would result in more or less parameters than the expected range.
- * The minimum and maximum occurrences are defined by the {@link ParameterDescriptorGroup}
- * instance associated with the {@code ParameterValueGroup}.
- *
- * <p>This exception may be thrown directly by the {@link ParameterValueGroup#addGroup(String)}
- * method, or indirectly during the add or remove operations applied on the list returned by
- * {@link ParameterValueGroup#values()}.</p>
+ * parameter value} would result in more or less parameters than the expected range. The
+ * [{@linkplain ParameterDescriptor#getMinimumOccurs minimum} &hellip;
+ *  {@linkplain ParameterDescriptor#getMaximumOccurs maximum}] range is defined by
+ * the {@link ParameterDescriptorGroup} instance associated with the {@code ParameterValueGroup}.
+ * <p>
+ * This exception may be thrown directly by the {@link ParameterValueGroup#addGroup(String)}
+ * method, or indirectly during the {@linkplain List#add add} or {@linkplain List#remove remove}
+ * operations on the list returned by {@link ParameterValueGroup#values()}.
  *
  * {@note This exception is of kind <code>IllegalStateException</code> instead than
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
@@ -52,6 +55,9 @@ package org.opengis.parameter;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @see ParameterValueGroup#values()
+ * @see ParameterValueGroup#addGroup(String)
  */
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**
@@ -67,28 +73,12 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param message The detail message. The detail message is saved for
+     *                later retrieval by the {@link #getMessage()} method.
      * @param parameterName The name of the parameter with invalid cardinality.
      */
     public InvalidParameterCardinalityException(String message, String parameterName) {
         super(message);
-        this.parameterName = parameterName;
-    }
-
-    /**
-     * Creates an exception with the specified message, cause and parameter name.
-     *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The name of the parameter with invalid cardinality.
-     *
-     * @since 3.1
-     */
-    public InvalidParameterCardinalityException(String message, Throwable cause, String parameterName) {
-        super(message, cause);
         this.parameterName = parameterName;
     }
 

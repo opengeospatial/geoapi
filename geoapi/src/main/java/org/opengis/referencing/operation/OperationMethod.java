@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,7 +31,6 @@
  */
 package org.opengis.referencing.operation;
 
-import java.util.Map;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.annotation.UML;
@@ -50,10 +49,9 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see CoordinateOperation
- * @see MathTransformFactory#getAvailableMethods(Class)
- * @see CoordinateOperationFactory#getOperationMethod(String)
- * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
- * @see CoordinateOperationFactory#createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)
+ *
+ * @navassoc 1 - - Formula
+ * @navassoc 1 - - ParameterDescriptorGroup
  */
 @UML(identifier="CC_OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {

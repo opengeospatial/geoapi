@@ -11,7 +11,7 @@ GeoAPI normative interfaces
   with the {{{http://www.opengeospatial.org/standards/geoapi}OGC 09-083}} specification document.
 
   A page listing the GeoAPI content (interface and method names) together with the name used
-  in the OGC and ISO specifications is available {{{../snapshot/javadoc/content.html}here}}.
+  in the OGC and ISO specifications is available {{{../3.0/javadoc/content.html}here}}.
 
     * {{{../snapshot/javadoc/index.html}Browse javadoc of development branch}}
 

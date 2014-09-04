@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -39,11 +39,16 @@ import static java.lang.annotation.RetentionPolicy.*;
 
 
 /**
- * An annotation mapping each interface, methods or fields to the UML identifier where they come from.
+ * An annotation mapping each interface, methods or fields to
+ * the UML identifier where they come from.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - String
+ * @navassoc - - - Obligation
+ * @navassoc - - - Specification
  */
 @Documented
 @Retention(RUNTIME)

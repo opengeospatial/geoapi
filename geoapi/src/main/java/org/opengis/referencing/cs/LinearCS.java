@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,25 +31,26 @@
  */
 package org.opengis.referencing.cs;
 
-import java.util.Map;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1-dimensional coordinate system that consists of the points that lie on the single axis described.
- * The associated ordinate is the distance from the specified origin to the point along the axis.
+ * A one-dimensional coordinate system that consists of the points that lie on the single axis
+ * described. The associated ordinate is the distance from the specified origin to the point
+ * along the axis. Example: usage of the line feature representing a road to describe points
+ * on or along that road. A {@code LinearCS} shall have one
+ * {@linkplain #getAxis axis association}.
  *
- * <p><b>Example:</b> usage of the line feature representing a road to describe points on or along that road.</p>
- *
- * <p>This type of CS can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
+ * </TD></TR></TABLE>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @see CSFactory#createLinearCS(Map, CoordinateSystemAxis)
  */
 @UML(identifier="CS_LinearCS", specification=ISO_19111)
 public interface LinearCS extends CoordinateSystem {

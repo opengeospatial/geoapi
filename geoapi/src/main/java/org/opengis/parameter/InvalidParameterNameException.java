@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -36,14 +36,12 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Thrown when an unexpected parameter was found in a {@linkplain ParameterDescriptorGroup parameter group}.
- * For example this exception may be thrown at construction time if the same parameter name is used twice.
+ * Thrown when an unexpected parameter was found in a
+ * {@linkplain ParameterDescriptorGroup parameter group}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @see ParameterNotFoundException
  */
 @UML(identifier="GC_InvalidParameterName", specification=OGC_01004)
 public class InvalidParameterNameException extends IllegalArgumentException {
@@ -60,28 +58,12 @@ public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
      * @param parameterName The invalid parameter name.
      */
     public InvalidParameterNameException(String message, String parameterName) {
         super(message);
-        this.parameterName = parameterName;
-    }
-
-    /**
-     * Creates an exception with the specified message, cause and parameter name.
-     *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The invalid parameter name.
-     *
-     * @since 3.1
-     */
-    public InvalidParameterNameException(String message, Throwable cause, String parameterName) {
-        super(message, cause);
         this.parameterName = parameterName;
     }
 

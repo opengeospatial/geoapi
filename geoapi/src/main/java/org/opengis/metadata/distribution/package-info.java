@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,43 +31,26 @@
  */
 
 /**
- * Information concerning the distributor of, and options for obtaining, a resource.
+ * {@linkplain org.opengis.metadata.distribution.Distribution} information.
+ * The following is adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
- * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
- * together with a partial view of aggregation hierarchy:</p>
- *
- * <table class="ogc">
- * <caption>Package overview</caption>
- * <tr>
- *   <th>Class hierarchy</th>
- *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
- * <pre> ISO-19115 object
- *  ├─ {@linkplain org.opengis.metadata.distribution.Distribution}
- *  ├─ {@linkplain org.opengis.metadata.distribution.Distributor}
- *  ├─ {@linkplain org.opengis.metadata.distribution.Medium}
- *  ├─ {@linkplain org.opengis.metadata.distribution.Format}
- *  ├─ {@linkplain org.opengis.metadata.distribution.StandardOrderProcess}
- *  ├─ {@linkplain org.opengis.metadata.distribution.DigitalTransferOptions}
- *  └─ {@linkplain org.opengis.metadata.distribution.DataFile}
- * {@linkplain org.opengis.util.CodeList}
- *  ├─ {@linkplain org.opengis.metadata.distribution.MediumName}
- *  └─ {@linkplain org.opengis.metadata.distribution.MediumFormat}</pre>
- * </td><td class="sep" width="50%" nowrap>
- * <pre> {@linkplain org.opengis.metadata.distribution.Distribution}
- *  ├─ {@linkplain org.opengis.metadata.distribution.Format}
- *  ├─ {@linkplain org.opengis.metadata.distribution.Distributor}
- *  │   └─ {@linkplain org.opengis.metadata.distribution.StandardOrderProcess}
- *  └─ {@linkplain org.opengis.metadata.distribution.DigitalTransferOptions}
- *      └─ {@linkplain org.opengis.metadata.distribution.Medium}
- *          ├─ {@linkplain org.opengis.metadata.distribution.MediumName} «code list»
- *          └─ {@linkplain org.opengis.metadata.distribution.MediumFormat} «code list»
- * {@linkplain org.opengis.metadata.distribution.DataFile}</pre>
- * </td></tr></table>
- *
- * <p>The {@link org.opengis.metadata.distribution.Distribution#getDistributionFormats() Distribution.distributionFormat} element is mandatory
- * if the {@link org.opengis.metadata.distribution.Distributor#getDistributorFormats() Distributor.distributorFormat} is empty, and conversely.</p>
+ * <P ALIGN="justify">This package contains information about the distributor of, and options for
+ * obtaining, a resource. The optional {@linkplain org.opengis.metadata.distribution.Distribution
+ * distribution} entity is an aggregate of the options for the digital distribution of a dataset
+ * ({@linkplain org.opengis.metadata.distribution.DigitalTransferOptions digital transfer options}),
+ * identification of the {@linkplain org.opengis.metadata.distribution.Distributor distributor} and
+ * the {@linkplain org.opengis.metadata.distribution.Format format} of the distribution, which contain
+ * mandatory and optional elements. {@linkplain org.opengis.metadata.distribution.DigitalTransferOptions
+ * Digital transfer options} contains the {@linkplain org.opengis.metadata.distribution.Medium medium}
+ * used for the distribution of a dataset. {@linkplain org.opengis.metadata.distribution.Distributor}
+ * is an aggregate of the process for ordering a distribution
+ * ({@linkplain org.opengis.metadata.distribution.StandardOrderProcess standard order process}). The
+ * {@linkplain org.opengis.metadata.distribution.Distribution#getDistributionFormats distribution format}
+ * of {@linkplain org.opengis.metadata.distribution.Distribution distribution} is mandatory if the
+ * {@linkplain org.opengis.metadata.distribution.Distributor#getDistributorFormats distribution format}
+ * of {@linkplain org.opengis.metadata.distribution.Distributor distributor} is not set.</P>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

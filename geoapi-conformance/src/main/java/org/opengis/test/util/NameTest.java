@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,52 +32,29 @@
 package org.opengis.test.util;
 
 import java.util.Map;
-import java.util.List;
 import java.util.Locale;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import org.opengis.util.*;
-import org.opengis.test.TestCase;
-import org.opengis.test.Configuration;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.*;
+import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
+import static org.opengis.test.Validators.*;
 
 
 /**
  * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
  *
- * <p>In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as below:</p>
- *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.util.NameTest;
- *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends NameTest {
- *    public MyTest() {
- *        super(new MyNameFactory());
- *    }
- *}</pre></blockquote>
- *
- * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
- * which combine every tests defined in the GeoAPI conformance module.
- *
- * @see org.opengis.test.TestSuite
- *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.2
  */
-@RunWith(Parameterized.class)
-public strictfp class NameTest extends TestCase {
+public class NameTest extends TestCase {
     /**
      * The factory to be used for testing {@linkplain GenericName generic name} instances,
      * or {@code null} if none.
@@ -85,74 +62,13 @@ public strictfp class NameTest extends TestCase {
     protected final NameFactory factory;
 
     /**
-     * {@code true} if the {@link InternationalString} implementations created by the
-     * {@linkplain #factory} can support more than one {@linkplain Locale locale}. If
-     * {@code false}, then the factory method may retain only one locale among the set
-     * of user-provided localized strings.
-     */
-    protected boolean isMultiLocaleSupported;
-
-    /**
-     * {@code true} if the {@link GenericName} implementations created by the {@linkplain #factory}
-     * can use different syntax rules in different part of their name. If {@code true}, then URI
-     * using different separators in different parts of their name (e.g. {@code ":"}, {@code "."},
-     * {@code "/"} and {@code "#"} in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are
-     * supported. If {@code false}, then only a single rule can be applied to the name as a whole
-     * (e.g. only the {@code ":"} separator is used in {@code "urn:ogc:def:crs:epsg:4326"}).
-     */
-    protected boolean isMixedNameSyntaxSupported;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * subclassed by the implementor. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return The default set of arguments to be given to the {@code NameTest} constructor.
-     *
-     * @since 3.1
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(NameFactory.class);
-    }
-
-    /**
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
      * @param factory The factory to be used for creation of instances to be tested.
      */
-    public NameTest(final NameFactory factory) {
-        super(factory);
+    protected NameTest(final NameFactory factory) {
         this.factory = factory;
-        @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isMultiLocaleSupported,
-                Configuration.Key.isMixedNameSyntaxSupported);
-        isMultiLocaleSupported     = isEnabled[0];
-        isMixedNameSyntaxSupported = isEnabled[1];
-    }
-
-    /**
-     * Returns information about the configuration of the test which has been run.
-     * This method returns a map containing:
-     *
-     * <ul>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
-     *     <ul>
-     *       <li>{@link #isMultiLocaleSupported}</li>
-     *     </ul>
-     *   </li>
-     * </ul>
-     */
-    @Override
-    public Configuration configuration() {
-        final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.isMultiLocaleSupported, isMultiLocaleSupported));
-        return op;
     }
 
     /**
@@ -183,9 +99,9 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the creation of "My documents" folder name.
      * This test uses the following factory methods:
-     *
+     * <p>
      * <ul>
-     *   <li>{@link NameFactory#createInternationalString(Map)}</li>
+     *   <li>{@link NameFactory#createInternationalString}</li>
      * </ul>
      */
     @Test
@@ -195,14 +111,10 @@ public strictfp class NameTest extends TestCase {
         names.put(Locale.ENGLISH, "My documents");
         names.put(Locale.FRENCH,  "Mes documents");
         InternationalString localized = factory.createInternationalString(names);
-        validators.validate(localized);
-        if (isMultiLocaleSupported) {
-            configurationTip = Configuration.Key.isMultiLocaleSupported;
-            for (final Map.Entry<Locale,String> entry : names.entrySet()) {
-                assertEquals("toString(Locale) should returns the value given to the factory method.",
-                        entry.getValue(), localized.toString(entry.getKey()));
-            }
-            configurationTip = null;
+        validate(localized);
+        for (final Map.Entry<Locale,String> entry : names.entrySet()) {
+            assertEquals("toString(Locale) should returns the value given to the factory method.",
+                    entry.getValue(), localized.toString(entry.getKey()));
         }
         assertContains("toString() should returns one of the values given to the factory method.",
                 names.values(), localized.toString());
@@ -212,10 +124,10 @@ public strictfp class NameTest extends TestCase {
      * Tests the creation of {@code "EPSG:4326"} as local names. First the {@code "EPSG"}
      * namespace is created. Then a {@code "4326"} local name is created in that namespace.
      * This test uses the following factory methods:
-     *
+     * <p>
      * <ul>
-     *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
-     *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
+     *   <li>{@link NameFactory#createLocalName}</li>
+     *   <li>{@link NameFactory#createNameSpace}</li>
      * </ul>
      */
     @Test
@@ -223,18 +135,18 @@ public strictfp class NameTest extends TestCase {
         assumeNotNull(factory);
         final String EPSG = "EPSG";
         final LocalName authority = factory.createLocalName(null, EPSG);
-        validators.validate(authority);
+        validate(authority);
         assertTrue(authority.scope().isGlobal());
         assertEquals(EPSG, authority.toString());
         assertEquals(EPSG, authority.toInternationalString().toString());
 
         final NameSpace ns = createNameSpace(authority, ":", ":");
-        validators.validate(ns);
+        validate(ns);
         assertEquals(authority, ns.name());
 
         final String WGS84 = "4326";
         final LocalName code = factory.createLocalName(ns, WGS84);
-        validators.validate(code);
+        validate(code);
         assertEquals(ns, code.scope());
         assertEquals(WGS84, code.toString());
         assertEquals(EPSG + ':' + WGS84, code.toFullyQualifiedName().toString());
@@ -243,9 +155,9 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the creation of {@code "urn:ogc:def:crs:epsg:4326"} as a scoped name.
      * This test uses the following factory methods:
-     *
+     * <p>
      * <ul>
-     *   <li>{@link NameFactory#createGenericName(NameSpace, CharSequence[])}</li>
+     *   <li>{@link NameFactory#createGenericName}</li>
      * </ul>
      */
     @Test
@@ -255,7 +167,7 @@ public strictfp class NameTest extends TestCase {
             "urn","ogc","def","crs","epsg","4326"
         };
         GenericName name = factory.createGenericName(null, parsed);
-        validators.validate(name);
+        validate(name);
 
         assertEquals("Name should be already fully qualified.",
                 name, name.toFullyQualifiedName());
@@ -268,7 +180,7 @@ public strictfp class NameTest extends TestCase {
 
         for (int i=parsed.length; --i>=0;) {
             name = name.tip();
-            validators.validate(name);
+            validate(name);
             assertEquals(parsed[i], name.toString());
             name = name.scope().name();
         }
@@ -277,22 +189,22 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the parsing of {@code "urn:ogc:def:crs:epsg:4326"} as a scoped name.
      * This test uses the following factory methods:
-     *
+     * <p>
      * <ul>
-     *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
-     *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
-     *   <li>{@link NameFactory#parseGenericName(NameSpace, CharSequence)}</li>
+     *   <li>{@link NameFactory#createLocalName}</li>
+     *   <li>{@link NameFactory#createNameSpace}</li>
+     *   <li>{@link NameFactory#parseGenericName}</li>
      * </ul>
      */
     @Test
     public void testParsedURN() {
         assumeNotNull(factory);
         final LocalName urn = factory.createLocalName(null, "urn");
-        validators.validate(urn);
+        validate(urn);
         final NameSpace ns = createNameSpace(urn, ":", ":");
-        validators.validate(ns);
+        validate(ns);
         final GenericName name = factory.parseGenericName(ns, "ogc:def:crs:epsg:4326");
-        validators.validate(name);
+        validate(name);
 
         assertEquals("Depth shall be counted from the \"urn\" namespace.", 5, name.depth());
         assertEquals("ogc:def:crs:epsg:4326", name.toString());
@@ -302,50 +214,42 @@ public strictfp class NameTest extends TestCase {
     /**
      * Tests the parsing of {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"} as a local name.
      * This test uses the following factory methods:
-     *
-     * <ul>
-     *   <li>{@link NameFactory#createLocalName(NameSpace, CharSequence)}</li>
-     *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
-     *   <li>{@link NameFactory#parseGenericName(NameSpace, CharSequence)}</li>
-     * </ul>
      * <p>
-     * This tests is executed only if {@link #isMixedNameSyntaxSupported} is {@code true}.
+     * <ul>
+     *   <li>{@link NameFactory#createLocalName}</li>
+     *   <li>{@link NameFactory#createNameSpace}</li>
+     *   <li>{@link NameFactory#parseGenericName}</li>
+     * </ul>
      */
     @Test
     public void testParsedHTTP() {
         assumeNotNull(factory);
-        assumeTrue(isMixedNameSyntaxSupported);
-        configurationTip = Configuration.Key.isMixedNameSyntaxSupported;
         GenericName name = factory.createLocalName(null, "http");
         assertEquals(1, name.depth());
         assertEquals("http", name.head().toString());
         assertEquals("http", name.tip().toString());
-        assertEquals("http", name.toString());
         NameSpace ns = createNameSpace(name, "://", ".");
-        validators.validate(ns);
+        validate(ns);
 
         name = factory.parseGenericName(ns, "www.opengis.net");
         assertEquals(3, name.depth());
         assertEquals("www", name.head().toString());
         assertEquals("net", name.tip().toString());
-        assertEquals("www.opengis.net", name.toString());
         ns = createNameSpace(name, "/", "/");
-        validators.validate(ns);
+        validate(ns);
 
         name = factory.parseGenericName(ns, "gml/srs/epsg.xml");
         assertEquals(3, name.depth());
         assertEquals("gml", name.head().toString());
         assertEquals("epsg.xml", name.tip().toString());
-        assertEquals("gml/srs/epsg.xml", name.toString());
         ns = createNameSpace(name, "#", ":");
-        validators.validate(ns);
+        validate(ns);
 
         name = factory.createLocalName(ns, "4326");
         assertEquals(1, name.depth());
         assertEquals("4326", name.head().toString());
         assertEquals("4326", name.tip().toString());
-        assertEquals("4326", name.toString());
-        validators.validate(name);
+        validate(name);
 
         assertEquals("4326", name.toString());
         name = name.toFullyQualifiedName();

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,9 +43,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - ImagingCondition
+ * @navassoc 1 - - Identifier
  */
 @UML(identifier="MD_ImageDescription", specification=ISO_19115)
 public interface ImageDescription extends CoverageDescription {
@@ -54,7 +56,7 @@ public interface ImageDescription extends CoverageDescription {
      * intersection of the optical line of sight with the Earth's surface. For images from a
      * scanning device, refer to the centre pixel of the image.
      *
-     * @return A value between -90° and +90°, or {@code null} if unspecified.
+     * @return A value between -90&deg; and +90&deg;, or {@code null} if unspecified.
      */
     @UML(identifier="illuminationElevationAngle", obligation=OPTIONAL, specification=ISO_19115)
     Double getIlluminationElevationAngle();
@@ -63,23 +65,23 @@ public interface ImageDescription extends CoverageDescription {
      * Illumination azimuth measured in degrees clockwise from true north at the time the
      * image is taken. For images from a scanning device, refer to the centre pixel of the image.
      *
-     * @return A value between 0° and 360°, or {@code null} if unspecified.
+     * @return A value between 0&deg; and 360&deg;, or {@code null} if unspecified.
      */
     @UML(identifier="illuminationAzimuthAngle", obligation=OPTIONAL, specification=ISO_19115)
     Double getIlluminationAzimuthAngle();
 
     /**
-     * Conditions which affected the image.
+     * Conditions affected the image.
      *
-     * @return Conditions which affected the image, or {@code null} if unspecified.
+     * @return Conditions affected the image, or {@code null} if unknown.
      */
     @UML(identifier="imagingCondition", obligation=OPTIONAL, specification=ISO_19115)
     ImagingCondition getImagingCondition();
 
     /**
-     * Code in producer’s codespace that specifies the image quality.
+     * Specifies the image quality.
      *
-     * @return The image quality, or {@code null} if unspecified.
+     * @return The image quality, or {@code null} if unknown.
      */
     @UML(identifier="imageQualityCode", obligation=OPTIONAL, specification=ISO_19115)
     Identifier getImageQualityCode();
@@ -87,17 +89,27 @@ public interface ImageDescription extends CoverageDescription {
     /**
      * Area of the dataset obscured by clouds, expressed as a percentage of the spatial extent.
      *
-     * @return A value between 0 and 100, or {@code null} if unspecified.
+     * @return A value between 0 and 100, or {@code null} if unknown.
      */
     @UML(identifier="cloudCoverPercentage", obligation=OPTIONAL, specification=ISO_19115)
     Double getCloudCoverPercentage();
+
+    /**
+     * Image distributor's code that identifies the level of radiometric and geometric
+     * processing that has been applied.
+     *
+     * @return The level of radiometric and geometric processing that has been applied,
+     *         or {@code null} if unknown.
+     */
+    @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
+    Identifier getProcessingLevelCode();
 
     /**
      * Count of the number of lossy compression cycles performed on the image.
      * Returns {@code null} if the information is not provided.
      *
      * @return The number of lossy compression cycles performed on the image,
-     *         or {@code null} if unspecified.
+     *         or {@code null} if unknown.
      */
     @UML(identifier="compressionGenerationQuantity", obligation=OPTIONAL, specification=ISO_19115)
     Integer getCompressionGenerationQuantity();
@@ -107,7 +119,7 @@ public interface ImageDescription extends CoverageDescription {
      * Returns {@code null} if the information is not provided.
      *
      * @return Whether or not triangulation has been performed upon the image,
-     *         or {@code null} if unspecified.
+     *         or {@code null} if unknown.
      */
     @UML(identifier="triangulationIndicator", obligation=OPTIONAL, specification=ISO_19115)
     Boolean getTriangulationIndicator();
@@ -117,16 +129,17 @@ public interface ImageDescription extends CoverageDescription {
      * radiometrically calibrated standard data product is available.
      *
      * @return Whether or not the radiometric calibration information is available,
-     *         or {@code null} if unspecified.
+     *         or {@code null} if unknown.
      */
     @UML(identifier="radiometricCalibrationDataAvailability", obligation=OPTIONAL, specification=ISO_19115)
     Boolean isRadiometricCalibrationDataAvailable();
 
     /**
-     * Indication of whether or not constants are available which allow for camera calibration corrections.
+     * Indication of whether or not constants are available which allow for camera calibration
+     * corrections.
      *
      * @return Whether or not constants are available for camera calibration corrections,
-     *         or {@code null} if unspecified.
+     *         or {@code null} if unknown.
      */
     @UML(identifier="cameraCalibrationInformationAvailability", obligation=OPTIONAL, specification=ISO_19115)
     Boolean isCameraCalibrationInformationAvailable();
@@ -135,7 +148,7 @@ public interface ImageDescription extends CoverageDescription {
      * Indication of whether or not Calibration Reseau information is available.
      *
      * @return Whether or not Calibration Reseau information is available,
-     *         or {@code null} if unspecified.
+     *         or {@code null} if unknown.
      */
     @UML(identifier="filmDistortionInformationAvailability", obligation=OPTIONAL, specification=ISO_19115)
     Boolean isFilmDistortionInformationAvailable();
@@ -144,7 +157,7 @@ public interface ImageDescription extends CoverageDescription {
      * Indication of whether or not lens aberration correction information is available.
      *
      * @return Whether or not lens aberration correction information is available,
-     *         or {@code null} if unspecified.
+     *         or {@code null} if unknown.
      */
     @UML(identifier="lensDistortionInformationAvailability", obligation=OPTIONAL, specification=ISO_19115)
     Boolean isLensDistortionInformationAvailable();

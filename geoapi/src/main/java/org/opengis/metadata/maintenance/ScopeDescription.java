@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,8 +33,8 @@ package org.opengis.metadata.maintenance;
 
 import java.util.Set;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
+import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.FeatureType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -42,15 +42,16 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of the class of information covered by the information.
- * Exactly one of the {@code attributes}, {@code features}, {@code featureInstances},
- * {@code attributeInstances}, {@code dataset} and {@code other} properties shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - AttributeType
+ * @navassoc - - - FeatureType
+ * @navassoc - - - AttributeType
  */
-@Classifier(Stereotype.UNION)
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
     /**
@@ -58,33 +59,33 @@ public interface ScopeDescription {
      *
      * @return Attributes to which the information applies.
      *
-     * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
+     * @condition Features, featureInstances, attributeInstances, dataset and other not
+     *            documented.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributes();
+    Set<? extends AttributeType> getAttributes();
 
     /**
      * Features to which the information applies.
      *
      * @return Features to which the information applies.
      *
-     * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
+     * @condition attributes, featureInstances, attributeInstances, dataset and other not
+     *            documented.
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatures();
+    Set<? extends FeatureType> getFeatures();
 
     /**
      * Feature instances to which the information applies.
      *
      * @return Feature instances to which the information applies.
      *
-     * @condition {@code attributes}, {@code features}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
+     * @condition Attributes, features, attributeInstances, dataset and other not
+     *            documented.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatureInstances();
+    Set<? extends FeatureType> getFeatureInstances();
 
     /**
      * Attribute instances to which the information applies.
@@ -93,21 +94,21 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition {@code attributes}, {@code features}, {@code featureInstances},
-     *            {@code dataset} and {@code other} not provided.
+     * @condition Attributes, features, featureInstances, dataset and other not
+     *            documented.
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributeInstances();
+    Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Dataset to which the information applies.
      *
-     * @return Dataset to which the information applies, or {@code null}.
+     * @return Dataset to which the information applies.
      *
      * @since 2.1
      *
-     * @condition {@code attributes}, {@code features}, {@code featureInstances},
-     *            {@code attributeInstances} and {@code other} not provided.
+     * @condition Attributes, features, featureInstances, attributeInstances and other not
+     *            documented.
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
     String getDataset();
@@ -116,12 +117,12 @@ public interface ScopeDescription {
      * Class of information that does not fall into the other categories to
      * which the information applies.
      *
-     * @return Class of information that does not fall into the other categories, or {@code null}.
+     * @return Class of information that does not fall into the other categories.
      *
      * @since 2.1
      *
-     * @condition {@code attributes}, {@code features}, {@code featureInstances},
-     *            {@code attributeInstances} and {@code dataset} not provided.
+     * @condition Attributes, features, featureInstances, attributeInstances and dataset not
+     *            documented.
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
     String getOther();

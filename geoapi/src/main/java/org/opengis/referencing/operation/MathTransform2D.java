@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,14 +33,16 @@ package org.opengis.referencing.operation;
 
 import java.awt.Shape;
 import java.awt.geom.Point2D;
-import java.awt.geom.AffineTransform;
 
 
 /**
  * Transforms two-dimensional coordinate points. {@link CoordinateOperation#getMathTransform()} may
  * returns instance of this interface when source and destination coordinate systems are both two
  * dimensional. {@code MathTransform2D} extends {@link MathTransform} by adding some methods for
- * easier inter-operability with <a href="http://java.sun.com/products/java-media/2D/">Java2D</a>.
+ * easier inter-operability with <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
+ * <p>
+ * If the transformation is affine, then {@code MathTransform} shall be an
+ * immutable instance of {@link java.awt.geom.AffineTransform}.
  *
  * @departure integration
  *   This interface is not part of OGC specification. It has been added in GeoAPI for
@@ -66,8 +68,6 @@ public interface MathTransform2D extends MathTransform {
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
      * @throws TransformException if the point can't be transformed.
-     *
-     * @see AffineTransform#transform(Point2D, Point2D)
      */
     Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException;
 
@@ -80,8 +80,6 @@ public interface MathTransform2D extends MathTransform {
      * @return The transformed shape. Some implementations may returns
      *         {@code shape} unmodified if this transform is identity.
      * @throws TransformException if a transform failed.
-     *
-     * @see AffineTransform#createTransformedShape(Shape)
      */
     Shape createTransformedShape(final Shape shape) throws TransformException;
 
@@ -95,7 +93,7 @@ public interface MathTransform2D extends MathTransform {
      *         transform accept null value since they produces identical derivative no
      *         matter the coordinate value. But most map projection will requires a non-null
      *         value.
-     * @return The derivative at the specified point as a 2×2 matrix.  This method
+     * @return The derivative at the specified point as a 2&times;2 matrix.  This method
      *         never returns an internal object: changing the matrix will not change the
      *         state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
@@ -111,10 +109,7 @@ public interface MathTransform2D extends MathTransform {
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform can not be inverted.
      *
-     * @see AffineTransform#createInverse()
-     *
      * @since 2.2
      */
-    @Override
     MathTransform2D inverse() throws NoninvertibleTransformException;
 }

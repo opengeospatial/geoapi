@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,7 +31,6 @@
  */
 package org.opengis.referencing.crs;
 
-import java.util.Map;
 import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.annotation.UML;
@@ -43,31 +42,30 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A 1D coordinate reference system used for the recording of time.
  *
- * <p>This type of CRS can be used with coordinate systems of type
- * {@link org.opengis.referencing.cs.TimeCS}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.cs.TimeCS Time}
+ * </TD></TR></TABLE>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see CRSAuthorityFactory#createTemporalCRS(String)
- * @see CRSFactory#createTemporalCRS(Map, TemporalDatum, TimeCS)
+ * @navassoc 1 - - TemporalDatum
+ * @navassoc 1 - - TimeCS
  */
 @UML(identifier="SC_TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {
     /**
-     * Returns the coordinate system, which shall be temporal.
-     *
-     * @return The temporal coordinate system.
+     * Returns the coordinate system, which must be temporal.
      */
-    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     TimeCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be temporal.
      */
-    @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     TemporalDatum getDatum();
 }

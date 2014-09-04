@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,13 +49,20 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @navassoc 1 - - Citation
+ * @navassoc 1 - - Identifier
+ * @navassoc - - - ResponsibleParty
+ * @navassoc 1 - - Priority
+ * @navassoc 1 - - RequestDate
+ * @navassoc - - - Plan
  */
 @UML(identifier="MI_Requirement", specification=ISO_19115_2)
 public interface Requirement {
     /**
      * Identification of reference or guidance material for the requirement.
      *
-     * @return Identification of reference or guidance material, or {@code null}.
+     * @return Identification of reference or guidance material.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();
@@ -103,7 +110,7 @@ public interface Requirement {
     /**
      * Date and time after which collection is no longer valid.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely

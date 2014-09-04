@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,6 +35,9 @@ package org.opengis.referencing.operation;
 /**
  * Base interface for for azimuthal (or planar) map projections.
  *
+ * <p>&nbsp;</p>
+ * <p align="center"><img src="../doc-files/PlanarProjection.png"></p>
+ *
  * @departure extension
  *   This interface is not part of the ISO specification. It has been added in GeoAPI at user
  *   request, in order to provide a way to know the kind of map projection.
@@ -44,7 +47,7 @@ package org.opengis.referencing.operation;
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
- * @see <a href="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</a>
+ * @see <A HREF="http://mathworld.wolfram.com/AzimuthalProjection.html">Azimuthal projection on MathWorld</A>
  */
 public interface PlanarProjection extends Projection {
 }

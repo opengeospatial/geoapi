@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,8 +34,6 @@ package org.opengis.metadata.spatial;
 import java.util.Collection;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 import org.opengis.metadata.quality.DataQuality;
 
 import static org.opengis.annotation.Obligation.*;
@@ -48,8 +46,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @navassoc - - - DataQuality
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MI_GeolocationInformation", specification=ISO_19115_2)
 public interface GeolocationInformation {
     /**

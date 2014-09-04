@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,8 +34,7 @@ package org.opengis.metadata.identification;
 import java.util.Collection;
 import java.util.Date;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -43,12 +42,13 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Brief description of ways in which the resource(s) is/are currently or has been used.
+ * Brief description of ways in which the resource(s) is/are currently used.
  *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - ResponsibleParty
  */
 @UML(identifier="MD_Usage", specification=ISO_19115)
 public interface Usage {
@@ -63,7 +63,7 @@ public interface Usage {
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
      * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
+     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0">
      *   <TR><TD>
      *     <P align="justify"><B>Warning:</B> The return type of this method may change
      *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
@@ -72,14 +72,13 @@ public interface Usage {
      * </TABLE>
      *
      * @return Date of the first use of the resource, or {@code null}.
-     *
-     * @todo This become a collection in ISO 19115:2014.
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getUsageDate();
 
     /**
-     * Applications, determined by the user for which the resource and/or resource series is not suitable.
+     * Applications, determined by the user for which the resource and/or resource series
+     * is not suitable.
      *
      * @return Applications for which the resource and/or resource series is not suitable, or {@code null}.
      */
@@ -87,46 +86,11 @@ public interface Usage {
     InternationalString getUserDeterminedLimitations();
 
     /**
-     * Identification of and means of communicating with person(s) and organization(s) using the resource(s).
-     * Returns an empty collection if none.
+     * Identification of and means of communicating with person(s) and organization(s)
+     * using the resource(s).
      *
      * @return Means of communicating with person(s) and organization(s) using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Responsibility> getUserContactInfo();
-
-    /**
-     * Responses to the user-determined limitations.
-     *
-     * <blockquote><font size="-1"><b>Example:</b>
-     * This has been fixed in version <var>x</var>.
-     * </font></blockquote>
-     *
-     * @return Responses to the user-determined limitations.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="response", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getResponses();
-
-    /**
-     * Publications that describe usage of data.
-     *
-     * @return Publications that describe usage of data.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getAdditionalDocumentation();
-
-    /**
-     * Citations of a description of known issues associated with the resource
-     * along with proposed solutions if available.
-     *
-     * @return Citations of a description of known issues associated with the resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="identifiedIssues", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getIdentifiedIssues();
+    Collection<? extends ResponsibleParty> getUserContactInfo();
 }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -38,9 +38,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Geographic position of the resource. This is only an approximate reference
- * so specifying the coordinate reference system is unnecessary.
- * A precision up to 2 decimal places is usually sufficient.
+ * Geographic position of the dataset. This is only an approximate
+ * so specifying the co-ordinate reference system is unnecessary.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -49,40 +48,44 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_GeographicBoundingBox", specification=ISO_19115)
 public interface GeographicBoundingBox extends GeographicExtent {
     /**
-     * The western-most coordinate of the limit of the resource extent.
-     * The value is expressed in longitude in decimal degrees (positive east).
+     * Returns the western-most coordinate of the limit of the
+     * dataset extent. The value is expressed in longitude in
+     * decimal degrees (positive east).
      *
-     * @return The western-most longitude between -180 and +180°.
+     * @return The western-most longitude between -180 and +180&deg;.
      * @unitof Angle
      */
     @UML(identifier="westBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
     double getWestBoundLongitude();
 
     /**
-     * The eastern-most coordinate of the limit of the resource extent.
-     * The value is expressed in longitude in decimal degrees (positive east).
+     * Returns the eastern-most coordinate of the limit of the
+     * dataset extent. The value is expressed in longitude in
+     * decimal degrees (positive east).
      *
-     * @return The eastern-most longitude between -180 and +180°.
+     * @return The eastern-most longitude between -180 and +180&deg;.
      * @unitof Angle
      */
     @UML(identifier="eastBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
     double getEastBoundLongitude();
 
     /**
-     * The southern-most coordinate of the limit of the resource extent.
-     * The value is expressed in latitude in decimal degrees (positive north).
+     * Returns the southern-most coordinate of the limit of the
+     * dataset extent. The value is expressed in latitude in
+     * decimal degrees (positive north).
      *
-     * @return The southern-most latitude between -90 and +90°.
+     * @return The southern-most latitude between -90 and +90&deg;.
      * @unitof Angle
      */
     @UML(identifier="southBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
     double getSouthBoundLatitude();
 
     /**
-     * The northern-most coordinate of the limit of the resource extent.
-     * The value is expressed in latitude in decimal degrees (positive north).
+     * Returns the northern-most, coordinate of the limit of the
+     * dataset extent. The value is expressed in latitude in
+     * decimal degrees (positive north).
      *
-     * @return The northern-most latitude between -90 and +90°.
+     * @return The northern-most latitude between -90 and +90&deg;.
      * @unitof Angle
      */
     @UML(identifier="northBoundLatitude", obligation=MANDATORY, specification=ISO_19115)

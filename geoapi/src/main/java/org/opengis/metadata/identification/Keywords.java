@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,14 +43,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Keywords, their type and reference source.
  *
- * <blockquote><font size="-1"><b>Note:</b>
- * When the resource described is a service, one instance of {@code Keywords} should refer to the
- * service taxonomy defined in ISO 191119.</font></blockquote>
- *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - KeywordType
+ * @navassoc 1 - - Citation
  */
 @UML(identifier="MD_Keywords", specification=ISO_19115)
 public interface Keywords {
@@ -77,24 +75,4 @@ public interface Keywords {
      */
     @UML(identifier="thesaurusName", obligation=OPTIONAL, specification=ISO_19115)
     Citation getThesaurusName();
-
-    /**
-     * User-defined categorization of groups of keywords that extend or are orthogonal
-     * to the standardized {@linkplain #getType() keyword type} codes.
-     * Keyword classes are associated with on ontology that allow additional semantic
-     * query processing.
-     *
-     * <blockquote><font size="-1"><b>Note:</b>
-     * The {@linkplain #getThesaurusName() thesaurus citation} specifies a collection of instances from some ontology,
-     * but is not an ontology. It might be a list of places that include rivers, mountains, counties and cities.
-     * There might be a Laconte county, the city of Laconte, the Laconte River, and Mt. Laconte;
-     * when searching it is useful for the user to be able to restrict the search to only rivers.
-     * </font></blockquote>
-     *
-     * @return User-defined categorization of groups of keywords, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="keywordClass", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordClass getKeywordClass();
 }

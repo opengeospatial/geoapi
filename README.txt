@@ -9,16 +9,7 @@ Modules
                       we will occasionally issue a milestone release.  For details please visit the
                       http://www.geoapi.org/ project website.
 
-  geoapi-pending      Contains work in progress.
-
-  geoapi-examples     Examples used as part of the guidelines for turning a specification into Java
-                      interfaces. The same example is shown for a range of tradeoffs from a simple
-                      immutable interface, through to data objects and finally objects with event
-                      notification.
-
   geoapi-conformance  A test suite for testing vendor implementations.
-
-  tools               Used for generating some special pages for javadoc.
 
 
 ---------------------------------------------------------------------------------------------------

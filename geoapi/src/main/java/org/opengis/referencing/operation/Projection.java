@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,7 +34,7 @@ package org.opengis.referencing.operation;
 
 /**
  * A {@linkplain org.opengis.referencing.operation.Conversion conversion} transforming
- * (<var>longitude</var>,<var>latitude</var>) coordinates to Cartesian coordinates
+ * (<var>longitude</var>,<var>latitude</var>) coordinates to cartesian coordinates
  * (<var>x</var>,<var>y</var>). Although some map projections can be represented as a
  * geometric process, in general a map projection is a set of formulae that converts geodetic
  * latitude and longitude to plane (map) coordinates. Height plays no role in this process,
@@ -43,17 +43,17 @@ package org.opengis.referencing.operation;
  * {@linkplain org.opengis.referencing.crs.ProjectedCRS projected CRSs} each of which is related
  * to the same {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic datum} as the
  * geographic CRS on which it was based.
- *
- * <p>An unofficial list of projections and their parameters can
- * be found <a href="http://www.remotesensing.org/geotiff/proj_list/">there</a>.
+ * <P>
+ * An unofficial list of projections and their parameters can
+ * be found <A HREF="http://www.remotesensing.org/geotiff/proj_list/">there</A>.
  * Most projections expect the following parameters:
- *  {@code "semi_major"} (mandatory),
- *  {@code "semi_minor"} (mandatory),
- *  {@code "central_meridian"} (default to 0),
- *  {@code "latitude_of_origin"} (default to 0),
- *  {@code "scale_factor"} (default to 1),
- *  {@code "false_easting"} (default to 0) and
- *  {@code "false_northing"} (default to 0).</p>
+ *  <code>"semi_major"</code> (mandatory),
+ *  <code>"semi_minor"</code> (mandatory),
+ *  <code>"central_meridian"</code> (default to 0),
+ *  <code>"latitude_of_origin"</code> (default to 0),
+ *  <code>"scale_factor"</code> (default to 1),
+ *  <code>"false_easting"</code> (default to 0) and
+ *  <code>"false_northing"</code> (default to 0).
  *
  * @departure extension
  *   This interface is not part of the ISO specification. It has been added in GeoAPI at user
@@ -64,7 +64,7 @@ package org.opengis.referencing.operation;
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
- * @see <a href="http://mathworld.wolfram.com/MapProjection.html">Map projections on MathWorld</a>
+ * @see <A HREF="http://mathworld.wolfram.com/MapProjection.html">Map projections on MathWorld</A>
  */
 public interface Projection extends Conversion {
 }

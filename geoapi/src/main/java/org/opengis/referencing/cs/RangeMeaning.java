@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Meaning of the axis value range specified through
- * {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value} and
- * {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value}.
+ * {@linkplain CoordinateSystemAxis#getMinimumValue minimum value} and
+ * {@linkplain CoordinateSystemAxis#getMaximumValue maximum value}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -66,35 +66,27 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     private static final List<RangeMeaning> VALUES = new ArrayList<RangeMeaning>(2);
 
     /**
-     * Any value between and including {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value}
-     * and {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value} is valid.
+     * Any value between and including {@linkplain CoordinateSystemAxis#getMinimumValue minimum value}
+     * and {@linkplain CoordinateSystemAxis#getMaximumValue maximum value} is valid.
      */
     @UML(identifier="exact", obligation=CONDITIONAL, specification=ISO_19111)
     public static final RangeMeaning EXACT = new RangeMeaning("EXACT");
 
     /**
      * The axis is continuous with values wrapping around at the
-     * {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value} and
-     * {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value}.
+     * {@linkplain CoordinateSystemAxis#getMinimumValue minimum value} and
+     * {@linkplain CoordinateSystemAxis#getMaximumValue maximum value}.
      * Values with the same meaning repeat modulo the difference between maximum value and
      * minimum value.
-     *
-     * <blockquote><font size="-1"><b>Example:</b> In a geographic CRS, longitude values are
-     * often defined with a finite extent (e.g., from -180 degrees to +180 degrees). The minimum
-     * and maximum longitude limits define a single line (on the ellipsoid, sphere, or cylinder),
-     * known as the anti-meridian, across which longitude values are discontinuous: as this line
-     * is crossed, longitude changes abruptly (e.g., going West from a little more than -180° to
-     * a little less than +180°).</font></blockquote>
      */
     @UML(identifier="wraparound", obligation=CONDITIONAL, specification=ISO_19111)
     public static final RangeMeaning WRAPAROUND = new RangeMeaning("WRAPAROUND");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private RangeMeaning(final String name) {
         super(name, VALUES);
@@ -112,13 +104,8 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public RangeMeaning[] family() {
         return values();
     }

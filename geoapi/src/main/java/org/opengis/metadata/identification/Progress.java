@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,8 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * Status of the dataset or progress of a review.
  *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
 @UML(identifier="MD_ProgressCode", specification=ISO_19115)
@@ -60,7 +59,7 @@ public final class Progress extends CodeList<Progress> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Progress> VALUES = new ArrayList<Progress>(18);
+    private static final List<Progress> VALUES = new ArrayList<Progress>(7);
 
     /**
      * Production of the data has been completed.
@@ -105,99 +104,10 @@ public final class Progress extends CodeList<Progress> {
     public static final Progress UNDER_DEVELOPMENT = new Progress("UNDER_DEVELOPMENT");
 
     /**
-     * Progress concluded and no changes will be accepted.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @since 3.1
-     */
-    @UML(identifier="final", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress FINAL = new Progress("FINAL");
-
-    /**
-     * Committed to, but not yet addressed.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="pending", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress PENDING = new Progress("PENDING");
-
-    /**
-     * Item is no longer recommended for use. It has not been superseded by another item.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="retired", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress RETIRED = new Progress("RETIRED");
-
-    /**
-     * Replaced by new.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="superseded", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress SUPERSEDED = new Progress("SUPERSEDED");
-
-    /**
-     * Provisional changes likely before resource becomes final of complete.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="tentative", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress TENTATIVE = new Progress("TENTATIVE");
-
-    /**
-     * Acceptable under specific condition.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="valid", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress VALID = new Progress("VALID");
-
-    /**
-     * Agreed to by sponsor.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="accepted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress ACCEPTED = new Progress("ACCEPTED");
-
-    /**
-     * Rejected by sponsor.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="notAccepted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress NOT_ACCEPTED = new Progress("NOT_ACCEPTED");
-
-    /**
-     * Removed from consideration.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="withdrawn", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress WITHDRAWN = new Progress("WITHDRAWN");
-
-    /**
-     * Suggested that development needs to be undertaken.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="proposed", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress PROPOSED = new Progress("PROPOSED");
-
-    /**
-     * Resource superseded and will become obsolete, use only for historical purposes.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="deprecated", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Progress DEPRECATED = new Progress("DEPRECATED");
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private Progress(final String name) {
         super(name, VALUES);
@@ -215,13 +125,8 @@ public final class Progress extends CodeList<Progress> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public Progress[] family() {
         return values();
     }

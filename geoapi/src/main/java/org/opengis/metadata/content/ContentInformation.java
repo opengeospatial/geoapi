@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,20 +32,17 @@
 package org.opengis.metadata.content;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Description of the content of a resource.
+ * Description of the content of a dataset.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MD_ContentInformation", specification=ISO_19115)
 public interface ContentInformation {
 }

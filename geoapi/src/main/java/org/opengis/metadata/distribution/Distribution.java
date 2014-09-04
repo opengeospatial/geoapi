@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,7 +34,6 @@ package org.opengis.metadata.distribution;
 import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
-import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -45,27 +44,21 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * Information about the distributor of and options for obtaining the resource.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - Format
+ * @navassoc - - - Distributor
+ * @navassoc - - - DigitalTransferOptions
  */
 @UML(identifier="MD_Distribution", specification=ISO_19115)
 public interface Distribution {
-    /**
-     * Brief description of a set of distribution options.
-     *
-     * @return Brief description of a set of distribution options.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
-
     /**
      * Provides a description of the format of the data to be distributed.
      *
      * @return Description of the format of the data to be distributed.
      *
-     * @condition Mandatory if {@link Distributor#getDistributorFormats()} is empty.
+     * @condition {@link Distributor#getDistributorFormats()} not documented.
      */
     @Profile(level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)

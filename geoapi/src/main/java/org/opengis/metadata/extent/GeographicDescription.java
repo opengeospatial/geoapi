@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,16 +40,17 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Description of the geographic area using identifiers.
- * Geographic identifiers are described in ISO 19112.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @navassoc 1 - - Identifier
  */
 @UML(identifier="EX_GeographicDescription", specification=ISO_19115)
 public interface GeographicDescription extends GeographicExtent {
     /**
-     * The identifier used to represent a geographic area.
+     * Returns the identifier used to represent a geographic area.
      *
      * @return The identifier used to represent a geographic area.
      */

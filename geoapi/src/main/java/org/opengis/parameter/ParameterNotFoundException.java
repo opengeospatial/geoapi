@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,13 +35,6 @@ package org.opengis.parameter;
 /**
  * Thrown by {@link ParameterValueGroup} and {@link ParameterDescriptorGroup}
  * when a parameter is requested but not found in that group.
- * This exception is typically thrown by the following methods:
- *
- * <ul>
- *   <li>{@link ParameterDescriptorGroup#descriptor(String)}</li>
- *   <li>{@link ParameterValueGroup#parameter(String)}</li>
- *   <li>{@link ParameterValueGroup#groups(String)}</li>
- * </ul>
  *
  * @departure extension
  *   This exception is not part of OGC specification.
@@ -50,11 +43,12 @@ package org.opengis.parameter;
  * @version 3.0
  * @since   1.0
  *
- * @see InvalidParameterNameException
+ * @see ParameterValueGroup#parameter(String)
+ * @see ParameterDescriptorGroup#descriptor(String)
  */
 public class ParameterNotFoundException extends IllegalArgumentException {
     /**
-     * Serial number for inter-operability with different versions.
+     * Serial number for interoperability with different versions.
      */
     private static final long serialVersionUID = -8074834945993975175L;
 

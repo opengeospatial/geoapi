@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,8 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * Methods used to group similar keywords.
  *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
 @UML(identifier="MD_KeywordTypeCode", specification=ISO_19115)
@@ -59,7 +58,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<KeywordType> VALUES = new ArrayList<KeywordType>(15);
+    private static final List<KeywordType> VALUES = new ArrayList<KeywordType>(5);
 
     /**
      * Keyword identifies a branch of instruction or specialized learning.
@@ -92,93 +91,10 @@ public final class KeywordType extends CodeList<KeywordType> {
     public static final KeywordType THEME = new KeywordType("THEME");
 
     /**
-     * Keyword identifies a repository or archive that manages and distributes data.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @since 3.1
-     */
-    @UML(identifier="dataCentre", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType DATACENTRE = new KeywordType("DATACENTRE");
-
-    /**
-     * Keyword identifies a resource containing or about a collection of
-     * feature instance with common characteristics.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType FEATURE_TYPE = new KeywordType("FEATURE_TYPE");
-
-    /**
-     * Keyword identifies a device used to measure or compare physical properties.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="instrument", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType INSTRUMENT = new KeywordType("INSTRUMENT");
-
-    /**
-     * Keyword identifies a structure upon which an instrument is mounted.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="platform", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PLATFORM = new KeywordType("PLATFORM");
-
-    /**
-     * Keyword identifies a series of actions or natural occurrences.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="process", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PROCESS = new KeywordType("PROCESS");
-
-
-    /**
-     * Keyword identify an endeavour undertaken to create or modify a product or service.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="project", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PROJECT = new KeywordType("PROJECT");
-
-    /**
-     * Keyword identifies an activity carried out by one party for the benefit of another.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="service", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType SERVICE = new KeywordType("SERVICE");
-
-    /**
-     * Keyword identifies a type of product.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PRODUCT = new KeywordType("PRODUCT");
-
-    /**
-     * Refinement of a topic category for the purpose of geographic data classification.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="subTopicCategory", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType SUB_TOPIC_CATEGORY = new KeywordType("SUB_TOPIC_CATEGORY");
-
-    /**
-     * Keyword identifies a taxonomy of the resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="taxon", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType TAXON = new KeywordType("TAXON");
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private KeywordType(final String name) {
         super(name, VALUES);
@@ -196,13 +112,8 @@ public final class KeywordType extends CodeList<KeywordType> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public KeywordType[] family() {
         return values();
     }

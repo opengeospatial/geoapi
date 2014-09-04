@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,7 +44,7 @@ import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;
 
-import org.junit.Test;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 
@@ -55,7 +55,7 @@ import static org.junit.Assert.*;
  * @version 3.0
  * @since   2.3
  */
-public final strictfp class DescriptionsTest {
+public final class DescriptionsTest {
     /**
      * List of metadata interfaces and code lists.
      */
@@ -92,16 +92,13 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.citation.CitationDate.class,
         org.opengis.metadata.citation.Contact.class,
         org.opengis.metadata.citation.DateType.class,
-        org.opengis.metadata.citation.Individual.class,
         org.opengis.metadata.citation.OnLineFunction.class,
         org.opengis.metadata.citation.OnlineResource.class,
-        org.opengis.metadata.citation.Organisation.class,
         org.opengis.metadata.citation.PresentationForm.class,
         org.opengis.metadata.citation.ResponsibleParty.class,
         org.opengis.metadata.citation.Role.class,
         org.opengis.metadata.citation.Series.class,
         org.opengis.metadata.citation.Telephone.class,
-        org.opengis.metadata.citation.TelephoneType.class,
         org.opengis.metadata.constraint.Classification.class,
         org.opengis.metadata.constraint.Constraints.class,
         org.opengis.metadata.constraint.LegalConstraints.class,
@@ -118,7 +115,6 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.content.PolarizationOrientation.class,
         org.opengis.metadata.content.RangeDimension.class,
         org.opengis.metadata.content.RangeElementDescription.class,
-        org.opengis.metadata.content.SampleDimension.class,
         org.opengis.metadata.content.TransferFunctionType.class,
         org.opengis.metadata.distribution.DataFile.class,
         org.opengis.metadata.distribution.DigitalTransferOptions.class,
@@ -138,19 +134,18 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.extent.TemporalExtent.class,
         org.opengis.metadata.extent.VerticalExtent.class,
         org.opengis.metadata.identification.AggregateInformation.class,
-        org.opengis.metadata.identification.AssociatedResource.class,
         org.opengis.metadata.identification.AssociationType.class,
         org.opengis.metadata.identification.BrowseGraphic.class,
         org.opengis.metadata.identification.CharacterSet.class,
         org.opengis.metadata.identification.DataIdentification.class,
         org.opengis.metadata.identification.Identification.class,
         org.opengis.metadata.identification.InitiativeType.class,
-        org.opengis.metadata.identification.KeywordClass.class,
         org.opengis.metadata.identification.KeywordType.class,
         org.opengis.metadata.identification.Keywords.class,
         org.opengis.metadata.identification.Progress.class,
         org.opengis.metadata.identification.RepresentativeFraction.class,
         org.opengis.metadata.identification.Resolution.class,
+        org.opengis.metadata.identification.ServiceIdentification.class,
         org.opengis.metadata.identification.TopicCategory.class,
         org.opengis.metadata.identification.Usage.class,
         org.opengis.metadata.lineage.Algorithm.class,
@@ -193,14 +188,6 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.quality.ThematicClassificationCorrectness.class,
         org.opengis.metadata.quality.TopologicalConsistency.class,
         org.opengis.metadata.quality.Usability.class,
-        org.opengis.metadata.service.CouplingType.class,
-        org.opengis.metadata.service.CoupledResource.class,
-        org.opengis.metadata.service.DistributedComputingPlatform.class,
-        org.opengis.metadata.service.OperationChainMetadata.class,
-        org.opengis.metadata.service.OperationMetadata.class,
-        org.opengis.metadata.service.Parameter.class,
-        org.opengis.metadata.service.ParameterDirection.class,
-        org.opengis.metadata.service.ServiceIdentification.class,
         org.opengis.metadata.spatial.CellGeometry.class,
         org.opengis.metadata.spatial.Dimension.class,
         org.opengis.metadata.spatial.DimensionNameType.class,
@@ -216,8 +203,7 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.spatial.SpatialRepresentation.class,
         org.opengis.metadata.spatial.SpatialRepresentationType.class,
         org.opengis.metadata.spatial.TopologyLevel.class,
-        org.opengis.metadata.spatial.VectorSpatialRepresentation.class,
-        org.opengis.referencing.ReferenceSystemType.class
+        org.opengis.metadata.spatial.VectorSpatialRepresentation.class
     };
 
     /**
@@ -256,18 +242,7 @@ public final strictfp class DescriptionsTest {
             UML uml = type.getAnnotation(UML.class);
             assertNotNull("Missing UML annotation", uml);
             final String classIdentifier = uml.identifier();
-            if (Enum.class.isAssignableFrom(type)) {
-                assertResourceExists(resources, classIdentifier);
-                assertTrue(classIdentifier, keys.remove(classIdentifier));
-                for (final Field code : type.getDeclaredFields()) {
-                    uml = code.getAnnotation(UML.class);
-                    if (uml != null) {
-                        final String identifier = classIdentifier + '.' + uml.identifier();
-                        assertResourceExists(resources, identifier);
-                        assertTrue(identifier, keys.remove(identifier));
-                    }
-                }
-            } else if (CodeList.class.isAssignableFrom(type)) {
+            if (CodeList.class.isAssignableFrom(type)) {
                 /*
                  * Check a code list and its fields. Note that the fields without UML
                  * annotation (for example serialVersionUID) must be ignored. We also
@@ -278,7 +253,7 @@ public final strictfp class DescriptionsTest {
                     continue;
                 }
                 assertResourceExists(resources, classIdentifier);
-                assertTrue(classIdentifier, keys.remove(classIdentifier));
+                assertTrue("Key not found", keys.remove(classIdentifier));
                 for (final Field code : type.getDeclaredFields()) {
                     uml = code.getAnnotation(UML.class);
                     if (uml != null) {
@@ -293,7 +268,7 @@ public final strictfp class DescriptionsTest {
                         }
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue(identifier, keys.remove(identifier));
+                        assertTrue("Key not found", keys.remove(identifier));
                     }
                 }
             } else {
@@ -303,18 +278,18 @@ public final strictfp class DescriptionsTest {
                  * which must be excluded.
                  */
                 assertResourceExists(resources, classIdentifier);
-                assertTrue(classIdentifier, keys.remove(classIdentifier));
+                assertTrue("Key not found", keys.remove(classIdentifier));
                 for (final Method method : type.getDeclaredMethods()) {
                     uml = method.getAnnotation(UML.class);
                     if (uml != null) {
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue(identifier, keys.remove(identifier));
+                        assertTrue("Key not found", keys.remove(identifier));
                     }
                 }
             }
         }
-        assertTrue("Some keys do not map any class or method: " + keys, keys.isEmpty());
+        assertTrue("Some keys do not map any class or method", keys.isEmpty());
     }
 
     /**

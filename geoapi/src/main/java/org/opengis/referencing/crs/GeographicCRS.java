@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,9 +31,7 @@
  */
 package org.opengis.referencing.crs;
 
-import java.util.Map;
 import org.opengis.referencing.cs.EllipsoidalCS;
-import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -44,42 +42,36 @@ import static org.opengis.annotation.Specification.*;
  * A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides
  * an accurate representation of the geometry of geographic features for a large portion of the
  * earth's surface.
- *
- * <p>A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
+ * <P>
+ * A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
  * on a curved surface. It is impossible to represent such geometry in a Euclidean plane without
  * introducing distortions. The need to control these distortions has given rise to the development
- * of the science of {@linkplain org.opengis.referencing.operation.Projection map projections}.</p>
+ * of the science of {@linkplain org.opengis.referencing.operation.Projection map projections}.
  *
- * <p>This type of CRS can be used with coordinate systems of type
- * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal}
+ * </TD></TR></TABLE>
  *
- * @departure constraint
- *   This interface is kept conformant with the specification published in 2003. The 2007 revision
- *   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
- *   handling both using the <code>SC_GeodeticCRS</code> parent type. GeoAPI keeps them for two reasons:
- *   <ul>
- *     <li>The distinction between those two types is in wide use.</li>
- *     <li>A distinct geographic type allows GeoAPI to restrict the coordinate system type to <code>EllipsoidalCS</code>.
- *         ISO 19111 uses a <code>union</code> for expressing this restriction at the <code>SC_GeodeticCRS</code> level,
- *         but the Java language does not provide such construct. A distinct geographic type is one way to achieve the
- *         same goal.</li>
- *   </ul>
+ * @departure historic
+ *   This interface is kept conformant with the specification published in 2003. 
+ *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and 
+ *   <code>GeocentricCRS</code> types, handling both using the <code>GeodeticCRS</code> parent type.
+ *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see CRSAuthorityFactory#createGeographicCRS(String)
- * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
+ * @navassoc 1 - - GeodeticDatum
+ * @navassoc 1 - - EllipsoidalCS
  */
 @UML(identifier="SC_GeographicCRS", specification=ISO_19111)
 public interface GeographicCRS extends GeodeticCRS {
     /**
-     * Returns the coordinate system, which shall be ellipsoidal.
-     *
-     * @return The ellipsoidal coordinate system.
+     * Returns the coordinate system, which must be ellipsoidal.
      */
-    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     EllipsoidalCS getCoordinateSystem();
 }

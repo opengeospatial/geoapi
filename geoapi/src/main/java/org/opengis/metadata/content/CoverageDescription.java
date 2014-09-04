@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,7 +33,6 @@ package org.opengis.metadata.content;
 
 import java.util.Collection;
 import org.opengis.util.RecordType;
-import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -46,9 +45,13 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - RecordType
+ * @navassoc 1 - - CoverageContentType
+ * @navassoc - - - RangeDimension
+ * @navassoc - - - RangeElementDescription
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
 public interface CoverageDescription extends ContentInformation {
@@ -61,36 +64,10 @@ public interface CoverageDescription extends ContentInformation {
     RecordType getAttributeDescription();
 
     /**
-     * Identifier for the level of processing that has been applied to the resource.
-     * May be {@code null} if unspecified.
-     *
-     * @return Identifier for the level of processing that has been applied to the resource, or {@code null} if none.
-     *
-     * @since 3.1
-     *
-     * @see org.opengis.metadata.identification.Identification#getProcessingLevel()
-     */
-    @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getProcessingLevelCode();
-
-    /**
-     * Information on attribute groups of the resource.
-     *
-     * @return Information on attribute groups of the resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="attributeGroup", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends AttributeGroup> getAttributeGroups();
-
-    /**
      * Type of information represented by the cell value.
      *
      * @return Type of information represented by the cell value.
-     *
-     * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getContentTypes()}.
      */
-    @Deprecated
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
     CoverageContentType getContentType();
 
@@ -100,10 +77,7 @@ public interface CoverageDescription extends ContentInformation {
      * @return Dimensions of the cell measurement value.
      *
      * @since 2.1
-     *
-     * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getAttributes()}.
      */
-    @Deprecated
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends RangeDimension> getDimensions();
 

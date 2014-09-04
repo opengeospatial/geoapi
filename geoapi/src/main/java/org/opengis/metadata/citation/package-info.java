@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,51 +31,20 @@
  */
 
 /**
- * Type for {@linkplain org.opengis.metadata.citation.Citation citing} a resource and information
- * about the {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party}.
- * The resource can be a dataset, feature, source, publication, <i>etc</i>.
- * The responsible party} contains the identity of person(s), and/or position, and/or organization(s)
- * associated with the resource. The {@linkplain org.opengis.metadata.citation.Address address}
- * contains the location of the responsible person or organization.
+ * {@linkplain org.opengis.metadata.citation.Citation} and
+ * {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party} information.
+ * The following is adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
- * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
- * together with a partial view of aggregation hierarchy:</p>
- *
- * <table class="ogc">
- * <caption>Package overview</caption>
- * <tr>
- *   <th>Class hierarchy</th>
- *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
- * <pre> ISO-19115 object
- *  ├─ {@linkplain org.opengis.metadata.citation.Citation}
- *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
- *  ├─ {@linkplain org.opengis.metadata.citation.ResponsibleParty}
- *  ├─ {@linkplain org.opengis.metadata.citation.Contact}
- *  ├─ {@linkplain org.opengis.metadata.citation.Telephone}
- *  ├─ {@linkplain org.opengis.metadata.citation.Address}
- *  ├─ {@linkplain org.opengis.metadata.citation.OnlineResource}
- *  └─ {@linkplain org.opengis.metadata.citation.Series}
- * {@linkplain org.opengis.util.CodeList}
- *  ├─ {@linkplain org.opengis.metadata.citation.DateType}
- *  ├─ {@linkplain org.opengis.metadata.citation.OnLineFunction}
- *  ├─ {@linkplain org.opengis.metadata.citation.PresentationForm}
- *  └─ {@linkplain org.opengis.metadata.citation.Role}</pre>
- * </td><td class="sep" width="50%" nowrap>
- * <pre> {@linkplain org.opengis.metadata.citation.Citation}
- *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
- *  │   └─ {@linkplain org.opengis.metadata.citation.DateType} «code list»
- *  ├─ {@linkplain org.opengis.metadata.citation.ResponsibleParty}
- *  │   ├─ {@linkplain org.opengis.metadata.citation.Contact}
- *  │   │   ├─ {@linkplain org.opengis.metadata.citation.Telephone}
- *  │   │   ├─ {@linkplain org.opengis.metadata.citation.Address}
- *  │   │   └─ {@linkplain org.opengis.metadata.citation.OnlineResource}
- *  │   │       └─ {@linkplain org.opengis.metadata.citation.OnLineFunction} «code list»
- *  │   └─ {@linkplain org.opengis.metadata.citation.Role} «code list»
- *  ├─ {@linkplain org.opengis.metadata.citation.PresentationForm} «code list»
- *  └─ {@linkplain org.opengis.metadata.citation.Series}</pre>
- * </td></tr></table>
+ * <P ALIGN="justify">This package of datatypes provides a standardized method
+ * ({@linkplain org.opengis.metadata.citation.Citation citation}) for citing a resource
+ * (dataset, feature, source, publication, etc.), as well as information about the
+ * {@linkplain org.opengis.metadata.citation.ResponsibleParty party responsible} for a resource.
+ * The {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party} contains the
+ * identity of person(s), and/or position, and/or organization(s) associated with the resource. The
+ * location ({@linkplain org.opengis.metadata.citation.Address address}) of the responsible person
+ * or organization is also defined here.</P>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

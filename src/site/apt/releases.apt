@@ -4,9 +4,8 @@
 
 GeoAPI releases
 
-  The current development version is {{{./snapshot/index.html}GeoAPI-4.0-SNAPSHOT}}.
+  The current development version is {{{./snapshot/index.html}GeoAPI-3.1-SNAPSHOT}}.
   The latest stable release is {{{./3.0/index.html}GeoAPI 3.0.0}}.
-  The 3.1-SNAPSHOT version contains the same interfaces than 4.0-SNAPSHOT without the incompatible changes.
 
   All releases can be obtained from the {{{https://sourceforge.net/projects/geoapi/files/}SourceForge download area}}.
   Snapshots and releases are also available from the {{{./maven.html}Maven repositories}}.
@@ -14,7 +13,7 @@ GeoAPI releases
 
 * Development snapshots
 
-  The current development version is GeoAPI-4.0-SNAPSHOT.
+  The current development version is GeoAPI-3.1-SNAPSHOT.
 
   * {{{./snapshot/javadoc/index.html}Browse Javadoc of normative interfaces}}
 
@@ -23,14 +22,7 @@ GeoAPI releases
 
   * {{{./maven.html}Maven repositories}} (recommended way to get the binaries)
 
-  * {{{http://jenkins.geotoolkit.org/job/GeoAPI}Nightly builds (last 2 weeks)}}
-
-
-  The development version compatible with the last release is GeoAPI-3.1-SNAPSHOT.
-
-  * {{{./maven.html}Maven repositories}} (recommended way to get the binaries)
-
-  * {{{http://jenkins.geotoolkit.org/job/GeoAPI-3}Nightly builds (last 2 weeks)}}
+  * {{{http://hudson.geomatys.com/job/GeoAPI}Nightly builds (last 2 weeks)}}
 
 
 * Releases

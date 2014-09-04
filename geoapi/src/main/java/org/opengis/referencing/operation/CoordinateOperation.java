@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -38,8 +38,6 @@ import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -48,11 +46,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to
  * another coordinate reference system. Many but not all coordinate operations (from
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var> to
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var>)
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>A</VAR> to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>B</VAR>)
  * also uniquely define the inverse operation (from
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var> to
- * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var>).
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>B</VAR> to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} <VAR>A</VAR>).
  * In some cases, the operation method algorithm for the inverse operation is the same
  * as for the forward algorithm, but the signs of some operation parameter values must
  * be reversed. In other cases, different algorithms are required for the forward and
@@ -61,14 +59,14 @@ import static org.opengis.annotation.Specification.*;
  * shall be defined.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
  *
- * @see CoordinateOperationAuthorityFactory#createCoordinateOperation(String)
- * @see CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes(String, String)
- * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
+ * @navassoc 2 - - CoordinateReferenceSystem
+ * @navassoc - - - PositionalAccuracy
+ * @navassoc - - - Extent
+ * @navassoc 1 - - MathTransform
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CC_CoordinateOperation", specification=ISO_19111)
 public interface CoordinateOperation extends IdentifiedObject {
     /**
@@ -175,7 +173,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003.
      *   The revision published in 2007 replaced the singleton by a collection and changed the
-     *   obligation from "optional" to "mandatory", requiring a return value of
+     *   obligation from "optional" to "mandatory", requiring a return value of 
      *   "<cite>not known</cite>" if the scope is unknown. This change is still under review.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)

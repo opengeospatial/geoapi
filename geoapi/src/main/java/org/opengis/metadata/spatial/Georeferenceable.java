@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,15 +42,19 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Grid with cells irregularly spaced in any given geographic/projected coordinate reference system.
- * Individual cells can be geolocated using geolocation information supplied with the data but cannot
- * be geolocated from the grid properties alone.
+ * Grid with cells irregularly spaced in any given geographic/map projection coordinate
+ * system, whose individual cells can be geolocated using geolocation information
+ * supplied with the data but cannot be geolocated from the grid properties alone.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - Record
+ * @navassoc - - - Citation
+ * @navassoc - - - GeolocationInformation
  */
 @UML(identifier="MD_Georeferenceable", specification=ISO_19115)
 public interface Georeferenceable extends GridSpatialRepresentation {

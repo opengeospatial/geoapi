@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,7 +31,6 @@
  */
 package org.opengis.referencing.datum;
 
-import java.util.Map;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -47,8 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  *
- * @see DatumAuthorityFactory#createImageDatum(String)
- * @see DatumFactory#createImageDatum(Map, PixelInCell)
+ * @navassoc 1 - - PixelInCell
  */
 @UML(identifier="CD_ImageDatum", specification=ISO_19111)
 public interface ImageDatum extends Datum {

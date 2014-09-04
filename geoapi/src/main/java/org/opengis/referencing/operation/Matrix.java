@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -39,9 +39,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A two dimensional array of numbers. Row and column numbering begins with zero. The API for
  * this interface matches closely the API in various {@linkplain javax.vecmath.GMatrix matrix}
- * implementations available in <a href="https://java3d.dev.java.net/">Java3D</a>,
+ * implementations available in <A HREF="https://java3d.dev.java.net/">Java3D</A>,
  * which should enable straightforward implementations. Java3D provides matrix for the general
- * case and optimized versions for 3×3 and 4×4 cases, which are quite common in a
+ * case and optimized versions for 3&times;3 and 4&times;4 cases, which are quite common in a
  * transformation package.
  *
  * @author  Martin Desruisseaux (IRD)
@@ -54,8 +54,8 @@ import static org.opengis.annotation.Specification.*;
  * @see java.awt.geom.AffineTransform
  * @see javax.media.jai.PerspectiveTransform
  * @see javax.media.j3d.Transform3D
- * @see <a href="http://math.nist.gov/javanumerics/jama/">Jama matrix</a>
- * @see <a href="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</a>
+ * @see <A HREF="http://math.nist.gov/javanumerics/jama/">Jama matrix</A>
+ * @see <A HREF="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</A>
  */
 @UML(identifier="PT_Matrix", specification=OGC_01009)
 public interface Matrix {

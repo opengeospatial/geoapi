@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,9 +32,6 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
-
 import static org.opengis.annotation.Specification.*;
 
 
@@ -42,10 +39,9 @@ import static org.opengis.annotation.Specification.*;
  * Presence and absence of features, their attributes and their relationships.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Completeness", specification=ISO_19115)
 public interface Completeness extends Element {
 }

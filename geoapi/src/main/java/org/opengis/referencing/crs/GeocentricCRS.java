@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,11 +31,9 @@
  */
 package org.opengis.referencing.crs;
 
-import java.util.Map;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.SphericalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -47,33 +45,31 @@ import static org.opengis.annotation.Specification.*;
  * A geocentric CRS deals with the earth's curvature by taking a 3D spatial view, which obviates
  * the need to model the earth's curvature.
  *
- * <p>This type of CRS can be used with coordinate systems of type
- * {@link org.opengis.referencing.cs.CartesianCS Cartesian} or
- * {@link org.opengis.referencing.cs.SphericalCS Spherical}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.cs.CartesianCS Cartesian},
+ *   {@link org.opengis.referencing.cs.SphericalCS Spherical}
+ * </TD></TR></TABLE>
  *
  * @departure historic
- *   This interface is kept conformant with the specification published in 2003. The 2007 revision
- *   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
- *   handling both using the <code>SC_GeodeticCRS</code> parent type.
+ *   This interface is kept conformant with the specification published in 2003. 
+ *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and 
+ *   <code>GeocentricCRS</code> types, handling both using the <code>GeodeticCRS</code> parent type.
  *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
- * @see CRSAuthorityFactory#createGeocentricCRS(String)
- * @see CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)
- * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
+ * @navassoc 1 - - GeodeticDatum
  */
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111)
 public interface GeocentricCRS extends GeodeticCRS {
     /**
-     * Returns the coordinate system, which shall be {@linkplain CartesianCS Cartesian}
+     * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
-     *
-     * @return The Cartesian or spherical coordinate system.
      */
-    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 }

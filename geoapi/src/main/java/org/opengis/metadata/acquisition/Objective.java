@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,6 +49,13 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @navassoc - - - Identifier
+ * @navassoc - - - ObjectiveType
+ * @navassoc - - - Extent
+ * @navassoc - - - Event
+ * @navassoc - - - PlatformPass
+ * @navassoc - - - Instrument
  */
 @UML(identifier="MI_Objective", specification=ISO_19115_2)
 public interface Objective {
@@ -63,7 +70,7 @@ public interface Objective {
     /**
      * Priority applied to the target.
      *
-     * @return Priority applied, or {@code null}.
+     * @return Priority applied.
      */
     @UML(identifier="priority", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getPriority();

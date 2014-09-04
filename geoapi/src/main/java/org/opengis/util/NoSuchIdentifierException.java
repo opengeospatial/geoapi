@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -38,11 +38,11 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 /**
  * Thrown when an identifier provided to a factory method can not be found.
  * The identifier is often provided by {@link Identifier#getCode()}.
- *
- * <p><b>Example:</b> This exception is thrown when a
+ * <p>
+ * <b>Example:</b> This exception is thrown when a
  * {@linkplain org.opengis.referencing.operation.MathTransform math transform}
  * as been requested with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod
- * operation method} identifier.</p>
+ * operation method} identifier.
  *
  * @departure extension
  *   This exception is not part of the OGC specification.

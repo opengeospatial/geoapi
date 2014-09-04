@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,43 +31,25 @@
  */
 package org.opengis.referencing.cs;
 
-import java.util.Map;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate system in which position is specified by
- * geodetic latitude, geodetic longitude, and (in the 3D case) ellipsoidal height.
+ * A two- or three-dimensional coordinate system in which position is specified by geodetic
+ * latitude, geodetic longitude, and (in the three-dimensional case) ellipsoidal height. An
+ * {@code EllipsoidalCS} shall have two or three {@linkplain #getAxis axis associations}.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.GeographicCRS}.
- * The following examples describe some possible set of axes for ellipsoidal CS used with the above-cited CRS:</p>
- *
- * <table class="ogc">
- *   <caption>Example 1: used with a two-dimensional Geographic CRS</caption>
- *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- * </table>
- *
- * <table class="ogc">
- *   <caption>Example 2: used with a three-dimensional Geographic CRS</caption>
- *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Ellipsoidal height</td><td>h</td> <td>{@link AxisDirection#UP}</td>   <td>{@link SI#METRE}</td></tr>
- * </table>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CRS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.crs.GeographicCRS  Geographic},
+ *   {@link org.opengis.referencing.crs.EngineeringCRS Engineering}
+ * </TD></TR></TABLE>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @see CSAuthorityFactory#createEllipsoidalCS(String)
- * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
- * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
 @UML(identifier="CS_EllipsoidalCS", specification=ISO_19111)
 public interface EllipsoidalCS extends CoordinateSystem {

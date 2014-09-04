@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -41,21 +41,25 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A coordinate reference system associated with a geodetic datum.
  *
- * <p>This type of CRS can be used with coordinate systems of type
- * {@link org.opengis.referencing.cs.CartesianCS},
- * {@link org.opengis.referencing.cs.SphericalCS} or
- * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>
+ * <TABLE CELLPADDING='6' BORDER='1'>
+ * <TR BGCOLOR="#EEEEFF"><TH NOWRAP>Used with CS type(s)</TH></TR>
+ * <TR><TD>
+ *   {@link org.opengis.referencing.cs.CartesianCS   Cartesian}
+ *   {@link org.opengis.referencing.cs.SphericalCS   Spherical}
+ *   {@link org.opengis.referencing.cs.EllipsoidalCS Ellipsoidal}
+ * </TD></TR></TABLE>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.1
+ *
+ * @navassoc 1 - - GeodeticDatum
  */
 @UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
     /**
      * Returns the datum, which must be geodetic.
      */
-    @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     GeodeticDatum getDatum();
 }

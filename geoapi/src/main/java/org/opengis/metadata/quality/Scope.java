@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -37,8 +37,6 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.maintenance.ScopeDescription;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -48,10 +46,13 @@ import static org.opengis.annotation.Specification.*;
  * Description of the data specified by the scope.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - ScopeCode
+ * @navassoc - - - ScopeDescription
+ * @navassoc 1 - - Extent
  */
-@Classifier(Stereotype.DATATYPE)
 @UML(identifier="DQ_Scope", specification=ISO_19115)
 public interface Scope {
     /**
@@ -63,19 +64,9 @@ public interface Scope {
     ScopeCode getLevel();
 
     /**
-     * Information about the spatial, vertical and temporal extents of the resource specified by the scope.
-     *
-     * @return Information about the extent of the resource.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtents();
-
-    /**
      * Detailed description about the level of the data specified by the scope.
-     * Shall be defined only if the {@linkplain #getLevel() level} is not equal
-     * to {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
+     * Shall be defined only if the {@linkplain #getLevel level} is not equal
+     * to {@link ScopeCode#DATASET DATASET} or {@link ScopeCode#SERIES SERIES}.
      *
      * @return Detailed description about the level of the data.
      *
@@ -85,12 +76,11 @@ public interface Scope {
     Collection<? extends ScopeDescription> getLevelDescription();
 
     /**
-     * Information about the spatial, vertical and temporal extent of the data specified by the scope.
+     * Information about the spatial, vertical and temporal extent of the data specified by the
+     * scope.
      *
      * @return Information about the extent of the data, or {@code null}.
-     *
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getExtents()}.
      */
-    @Deprecated
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Extent getExtent();
 }

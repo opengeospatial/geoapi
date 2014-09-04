@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,13 +32,11 @@
 package org.opengis.metadata.lineage;
 
 import java.util.Collection;
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.quality.Scope;
-import org.opengis.metadata.identification.Resolution;
 import org.opengis.metadata.identification.RepresentativeFraction;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceSystem;
+import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 
@@ -47,49 +45,39 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about the resource used in creating the resource specified by the scope.
- *
- * At least one of the {@linkplain #getDescription() description} and
- * {@linkplain #getScope() scope} shall be provided.
+ * Information about the source data used in creating the data specified by the scope.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc & - - RepresentativeFraction
+ * @navassoc 1 - - ReferenceSystem
+ * @navassoc 1 - - Citation
+ * @navassoc - - - Extent
+ * @navassoc - - - ProcessStep
+ * @navassoc 1 - - Identifier
+ * @navassoc 1 - - NominalResolution
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
 public interface Source {
     /**
      * Detailed description of the level of the source data.
      *
-     * @return Description of the level of the source data, or {@code null} if none.
+     * @return Description of the level of the source data, or {@code null}.
      *
-     * @condition Mandatory if the {@linkplain #getScope() scope} is not provided.
+     * @condition {@linkplain #getSourceExtents() Source extent} not provided.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
 
     /**
-     * Spatial resolution expressed as a scale factor, an angle or a level of detail.
-     * May be {@code null} if none.
-     *
-     * @return Spatial resolution expressed as a scale factor, an angle or a level of detail, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="sourceSpatialResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Resolution getSourceSpatialResolution();
-
-    /**
      * Denominator of the representative fraction on a source map.
      *
      * @return Representative fraction on a source map, or {@code null}.
-     *
-     * @deprecated As of ISO 19115:2014, moved to {@link Resolution#getEquivalentScale()}.
      */
-    @Deprecated
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
     RepresentativeFraction getScaleDenominator();
 
@@ -110,42 +98,19 @@ public interface Source {
     Citation getSourceCitation();
 
     /**
-     * References to metadata for the source.
-     * Returns an empty collection if none.
-     *
-     * @return References to metadata for the source.
-     */
-    @UML(identifier="sourceMetadata", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getSourceMetadata();
-
-    /**
-     * Type and / or extent of the source.
-     * May be {@code null} if none.
-     *
-     * @return type and / or extent of the source, or {@code null} if none.
-     *
-     * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
-     */
-    @UML(identifier="scope", obligation=CONDITIONAL, specification=ISO_19115)
-    Scope getScope();
-
-    /**
      * Information about the spatial, vertical and temporal extent of the source data.
      *
      * @return Information about the extent of the source data.
      *
-     * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
-     *
-     * @deprecated As of ISO 19115:2014, moved to {@link Scope#getExtents()}.
+     * @condition {@linkplain #getDescription() Description} not provided.
      */
-    @Deprecated
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getSourceExtents();
 
     /**
-     * Information about process steps in which this source was used.
+     * Information about an event in the creation process for the source data.
      *
-     * @return Information about process steps in which this source was used.
+     * @return Information about an event in the creation process.
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ProcessStep> getSourceSteps();
@@ -153,7 +118,7 @@ public interface Source {
     /**
      * Processing level of the source data.
      *
-     * @return Processing level of the source data, or {@code null}.
+     * @return Processing level of the source data.
      *
      * @since 2.3
      */

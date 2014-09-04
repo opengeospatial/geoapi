@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,8 +33,6 @@ package org.opengis.referencing.operation;
 
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -47,10 +45,12 @@ import static org.opengis.annotation.Specification.*;
  * single (not {@linkplain ConcatenatedOperation concatenated}) coordinate operation.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
+ *
+ * @navassoc 1 - - OperationMethod
+ * @navassoc 1 - - ParameterValueGroup
  */
-@Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CC_SingleOperation", specification=ISO_19111)
 public interface SingleOperation extends CoordinateOperation {
     /**

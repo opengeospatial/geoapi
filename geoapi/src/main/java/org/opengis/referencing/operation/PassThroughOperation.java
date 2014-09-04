@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,6 +44,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
+ *
+ * @navassoc 1 - - SingleOperation
  */
 @UML(identifier="CC_PassThroughOperation", specification=ISO_19111)
 public interface PassThroughOperation extends SingleOperation {
@@ -56,10 +58,10 @@ public interface PassThroughOperation extends SingleOperation {
     SingleOperation getOperation();
 
     /**
-     * Returns the ordered sequence of positive integers defining the positions in a source
-     * coordinate tuple of the coordinates affected by this pass-through operation.
+     * Ordered sequence of positive integers defining the positions in a coordinate
+     * tuple of the coordinates affected by this pass-through operation.
      *
-     * @return Indices of the modified source coordinates.
+     * @return The modified coordinates.
      */
     @UML(identifier="modifiedCoordinate", obligation=MANDATORY, specification=ISO_19111)
     int[] getModifiedCoordinates();

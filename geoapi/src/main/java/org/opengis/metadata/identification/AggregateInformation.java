@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2007-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2007-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -46,22 +46,21 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.0
  * @since   2.1
  *
- * @deprecated As of ISO 19115:2014, replaced by {@link AssociatedResource}.
+ * @navassoc 1 - - Citation
+ * @navassoc 1 - - Identifier
+ * @navassoc 1 - - AssociationType
+ * @navassoc 1 - - InitiativeType
  */
-@Deprecated
 @UML(identifier="MD_AggregateInformation", specification=ISO_19115)
-public interface AggregateInformation extends AssociatedResource {
+public interface AggregateInformation {
     /**
      * Citation information about the aggregate dataset.
      *
      * @return Citation information about the aggregate dataset, or {@code null}.
      *
      * @condition {@linkplain #getAggregateDataSetIdentifier()} Aggregate data set identifier}
-     *            not provided.
-     *
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getName()}.
+     *            not documented.
      */
-    @Deprecated
     @UML(identifier="aggregateDataSetName", obligation=CONDITIONAL, specification=ISO_19115)
     Citation getAggregateDataSetName();
 
@@ -70,11 +69,24 @@ public interface AggregateInformation extends AssociatedResource {
      *
      * @return Identification information about aggregate dataset, or {@code null}.
      *
-     * @condition {@linkplain #getAggregateDataSetName() Aggregate data set name} not provided.
-     *
-     * @deprecated As of ISO 19115:2014, replaced by an identifier of {@link #getAggregateDataSetName()}.
+     * @condition {@linkplain #getAggregateDataSetName() Aggregate data set name} not documented.
      */
-    @Deprecated
     @UML(identifier="aggregateDataSetIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     Identifier getAggregateDataSetIdentifier();
+
+    /**
+     * Association type of the aggregate dataset.
+     *
+     * @return Association type of the aggregate dataset.
+     */
+    @UML(identifier="associationType", obligation=MANDATORY, specification=ISO_19115)
+    AssociationType getAssociationType();
+
+    /**
+     * Type of initiative under which the aggregate dataset was produced.
+     *
+     * @return Type of initiative under which the aggregate dataset was produced, or {@code null}.
+     */
+    @UML(identifier="initiativeType", obligation=OPTIONAL, specification=ISO_19115)
+    InitiativeType getInitiativeType();
 }

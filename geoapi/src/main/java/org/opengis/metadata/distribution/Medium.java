@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,28 +33,27 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import javax.measure.unit.Unit;
-import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
-import org.opengis.metadata.Identifier;
 import org.opengis.util.InternationalString;
+import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about the media on which the resource can be stored or distributed.
+ * Information about the media on which the resource can be distributed.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc 1 - - MediumName
+ * @navassoc - - - MediumFormat
  */
-@Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Medium", specification=ISO_19115)
 public interface Medium {
     /**
-     * Name of the medium on which the resource can be stored or distributed.
+     * Name of the medium on which the resource can be received.
      *
      * @return Name of the medium, or {@code null}.
      */
@@ -66,18 +65,8 @@ public interface Medium {
      * The numbers shall be greater than zero.
      *
      * @return Density at which the data is recorded, or {@code null}.
-     *
-     * @since 3.1
      */
     @UML(identifier="density", obligation=OPTIONAL, specification=ISO_19115)
-    Double getDensity();
-
-    /**
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getDensity()}.
-     *
-     * @return Density at which the data is recorded.
-     */
-    @Deprecated
     Collection<Double> getDensities();
 
     /**
@@ -85,7 +74,7 @@ public interface Medium {
      *
      * @return Units of measure for the recording density, or {@code null}.
      *
-     * @condition The {@linkplain #getDensities() densities} must be provided.
+     * @condition {@link #getDensities()} must be documented.
      */
     @UML(identifier="densityUnits", obligation=CONDITIONAL, specification=ISO_19115)
     Unit<?> getDensityUnits();
@@ -114,14 +103,4 @@ public interface Medium {
      */
     @UML(identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMediumNote();
-
-    /**
-     * Unique identifier for an instance of the medium.
-     *
-     * @return Unique identifier, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getIdentifier();
 }

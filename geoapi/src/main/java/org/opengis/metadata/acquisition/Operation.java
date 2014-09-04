@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,6 +49,16 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @navassoc 1 - - Citation
+ * @navassoc 1 - - Identifier
+ * @navassoc 1 - - Progress
+ * @navassoc 1 - - OperationType
+ * @navassoc - - - Operation
+ * @navassoc - - - Objective
+ * @navassoc - - - Plan
+ * @navassoc - - - Platform
+ * @navassoc - - - Event
  */
 @UML(identifier="MI_Operation", specification=ISO_19115_2)
 public interface Operation {
@@ -56,7 +66,7 @@ public interface Operation {
      * Description of the mission on which the platform observations are made and the
      * objectives of that mission.
      *
-     * @return Description of the mission, or {@code null}.
+     * @return Description of the mission.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -64,7 +74,7 @@ public interface Operation {
     /**
      * Identification of the mission.
      *
-     * @return Identification of the mission, or {@code null}.
+     * @return Identification of the mission.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();
@@ -88,7 +98,7 @@ public interface Operation {
     /**
      * Collection technique for the operation.
      *
-     * @return Collection technique for the operation, or {@code null}.
+     * @return Collection technique for the operation.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     OperationType getType();
@@ -120,7 +130,7 @@ public interface Operation {
     /**
      * Plan satisfied by the operation.
      *
-     * @return Plan satisfied by the operation, or {@code null}.
+     * @return Plan satisfied by the operation.
      */
     @UML(identifier="plan", obligation=OPTIONAL, specification=ISO_19115_2)
     Plan getPlan();

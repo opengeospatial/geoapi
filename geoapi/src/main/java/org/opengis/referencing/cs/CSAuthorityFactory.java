@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -41,10 +41,11 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates {@linkplain CoordinateSystem coordinate systems} using authority codes.
- * External authorities are used to manage definitions of objects used in this interface.
- * The definitions of these objects are referenced using code strings.
- * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ * Creates {@linkplain CoordinateSystem coordinate systems} using authority codes. External authorities
+ * are used to manage definitions of objects used in this interface. The definitions of these objects are
+ * referenced using code strings. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
+ * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
+ * standard.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -61,12 +62,11 @@ import static org.opengis.annotation.Specification.*;
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
-     *
-     * <p>If the coordinate system type is known at compile time, then it is recommended
-     * to invoke the most precise method instead of this one. For example it is usually better
-     * to invoke <code>{@linkplain #createCartesianCS createCartesianCS}(code)</code> instead
-     * of <code>createCoordinateSystem(code)</code> if the requested object is known to be a
-     * {@code CartesianCS} instance.</p>
+     * If the coordinate system type is know at compile time, it is recommended to invoke
+     * the most precise method instead of this one (for example
+     * <code>&nbsp;{@linkplain #createCartesianCS createCartesianCS}(code)&nbsp;</code>
+     * instead of <code>&nbsp;createCoordinateSystem(code)&nbsp;</code> if the caller
+     * know he is asking for a {@linkplain CartesianCS cartesian coordinate system}).
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -77,7 +77,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a Cartesian coordinate system from a code.
+     * Creates a cartesian coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.

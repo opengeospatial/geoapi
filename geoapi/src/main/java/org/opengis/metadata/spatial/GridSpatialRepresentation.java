@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,6 +45,9 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - Dimension
+ * @navassoc 1 - - CellGeometry
  */
 @UML(identifier="MD_GridSpatialRepresentation", specification=ISO_19115)
 public interface GridSpatialRepresentation extends SpatialRepresentation {

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -36,16 +36,15 @@ import org.opengis.metadata.citation.Citation;
 
 /**
  * Base interface for all factories. Factories can be grouped in two categories:
- *
- * <ul>
- *   <li>{@linkplain org.opengis.referencing.AuthorityFactory Authority factories}
- *       creates objects from a compact string defined by an authority.</li>
- *   <li>{@linkplain org.opengis.referencing.ObjectFactory Object factories}
+ * <p>
+ * <UL>
+ *   <LI>{@linkplain org.opengis.referencing.AuthorityFactory Authority factories}
+ *       creates objects from a compact string defined by an authority.</LI>
+ *   <LI>{@linkplain org.opengis.referencing.ObjectFactory Object factories}
  *       allows applications to make objects that cannot be created by an authority
- *       factory.</li>
- * </ul>
- *
- * Object factories are very flexible, whereas the authority factories are easier to use.
+ *       factory. This factory is very flexible, whereas the authority factory is
+ *       easier to use.</LI>
+ * </UL>
  *
  * @departure harmonization
  *   This interface is not part of the OGC specification. It is added for uniformity,

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,8 +49,7 @@ import static org.opengis.annotation.Specification.*;
  *        is encouraged to select the one most appropriate.}
  *
  * @author  Martin Desruisseaux (IRD)
- * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
@@ -64,15 +63,13 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<TopicCategory> VALUES = new ArrayList<TopicCategory>(21);
+    private static final List<TopicCategory> VALUES = new ArrayList<TopicCategory>(19);
 
     /**
      * Rearing of animals and/or cultivation of plants.
      *
-     * <p><b>Examples:</b>
-     * agriculture, irrigation, aquaculture, plantations, herding, pests and
-     * diseases affecting crops and livestock.
-     * </p>
+     * Examples: agriculture, irrigation, aquaculture, plantations, herding, pests and
+     *           diseases affecting crops and livestock.
      */
     @UML(identifier="farming", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory FARMING = new TopicCategory("FARMING");
@@ -80,9 +77,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Flora and/or fauna in natural environment.
      *
-     * <p><b>Examples:</b>
-     * wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat
-     * </p>
+     * Examples: wildlife, vegetation, biological sciences, ecology, wilderness, sealife,
+     *           wetlands, habitat
      */
     @UML(identifier="biota", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory BIOTA = new TopicCategory("BIOTA");
@@ -90,9 +86,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Legal land descriptions.
      *
-     * <p><b>Examples:</b>
-     * political and administrative boundaries.
-     * </p>
+     * Examples: political and administrative boundaries.
      */
     @UML(identifier="boundaries", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory BOUNDARIES = new TopicCategory("BOUNDARIES");
@@ -100,9 +94,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Processes and phenomena of the atmosphere.
      *
-     * <p><b>Examples:</b>
-     * cloud cover, weather, climate, atmospheric conditions, climate change, precipitation.
-     * </p>
+     * Examples: cloud cover, weather, climate, atmospheric conditions, climate change,
+     *           precipitation.
      */
     @UML(identifier="climatologyMeteorologyAtmosphere", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory CLIMATOLOGY_METEOROLOGY_ATMOSPHERE = new TopicCategory("CLIMATOLOGY_METEOROLOGY_ATMOSPHERE");
@@ -110,11 +103,9 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Economic activities, conditions and employment.
      *
-     * <p><b>Examples:</b>
-     * production, labour, revenue, commerce, industry, tourism and ecotourism,
-     * forestry, fisheries, commercial or subsistence hunting,
-     * exploration and exploitation of resources such as minerals, oil and gas.
-     * </p>
+     * Examples: production, labour, revenue, commerce, industry, tourism and
+     *           ecotourism, forestry, fisheries, commercial or subsistence hunting,
+     *           exploration and exploitation of resources such as minerals, oil and gas.
      */
     @UML(identifier="economy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory ECONOMY = new TopicCategory("ECONOMY");
@@ -122,9 +113,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Height above or below sea level.
      *
-     * <p><b>Examples:</b>
-     * altitude, bathymetry, digital elevation models, slope, derived products.
-     * </p>
+     * Examples: altitude, bathymetry, digital elevation models, slope, derived products.
      */
     @UML(identifier="elevation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory ELEVATION = new TopicCategory("ELEVATION");
@@ -132,10 +121,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Environmental resources, protection and conservation.
      *
-     * <p><b>Examples:</b>
-     * environmental pollution, waste storage and treatment, environmental impact assessment,
-     * monitoring environmental risk, nature reserves, landscape.
-     * </p>
+     * Examples: environmental pollution, waste storage and treatment, environmental
+     *           impact assessment, monitoring environmental risk, nature reserves, landscape.
      */
     @UML(identifier="environment", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory ENVIRONMENT = new TopicCategory("ENVIRONMENT");
@@ -143,11 +130,10 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Information pertaining to earth sciences.
      *
-     * <p><b>Examples:</b>
-     * geophysical features and processes, geology, minerals, sciences dealing with the composition,
-     * structure and origin of the earth's rocks, risks of earthquakes, volcanic activity, landslides,
-     * gravity information, soils, permafrost, hydrogeology, erosion.
-     * </p>
+     * Examples: geophysical features and processes, geology, minerals, sciences
+     *           dealing with the composition, structure and origin of the earth's rocks, risks of
+     *           earthquakes, volcanic activity, landslides, gravity information, soils, permafrost,
+     *           hydrogeology, erosion.
      */
     @UML(identifier="geoscientificInformation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory GEOSCIENTIFIC_INFORMATION = new TopicCategory("GEOSCIENTIFIC_INFORMATION");
@@ -155,10 +141,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Health, health services, human ecology, and safety.
      *
-     * <p><b>Examples:</b>
-     * disease and illness, factors affecting health, hygiene, substance abuse,
-     * mental and physical health, health services.
-     * </p>
+     * Examples: disease and illness, factors affecting health, hygiene, substance abuse,
+     *           mental and physical health, health services.
      *
      * @since 2.1
      */
@@ -168,9 +152,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Base maps.
      *
-     * <p><b>Examples:</b>
-     * land cover, topographic maps, imagery, unclassified images, annotations.
-     * </p>
+     * Examples: land cover, topographic maps, imagery, unclassified images,
+     *           annotations.
      */
     @UML(identifier="imageryBaseMapsEarthCover", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory IMAGERY_BASE_MAPS_EARTH_COVER = new TopicCategory("IMAGERY_BASE_MAPS_EARTH_COVER");
@@ -178,9 +161,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Military bases, structures, activities.
      *
-     * <p><b>Examples:</b>
-     * barracks, training grounds, military transportation, information collection.
-     * </p>
+     * Examples: barracks, training grounds, military transportation, information collection.
      */
     @UML(identifier="intelligenceMilitary", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory INTELLIGENCE_MILITARY = new TopicCategory("INTELLIGENCE_MILITARY");
@@ -188,10 +169,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Inland water features, drainage systems and their characteristics.
      *
-     * <p><b>Examples:</b>
-     * rivers and glaciers, salt lakes, water utilization plans, dams, currents,
-     * floods, water quality, hydrographic charts.
-     * </p>
+     * Examples: rivers and glaciers, salt lakes, water utilization plans, dams, currents,
+     *           floods, water quality, hydrographic charts.
      */
     @UML(identifier="inlandWaters", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory INLAND_WATERS = new TopicCategory("INLAND_WATERS");
@@ -199,9 +178,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Positional information and services.
      *
-     * <p><b>Examples:</b>
-     * addresses, geodetic networks, control points, postal zones and services, place names.
-     * </p>
+     * Examples: addresses, geodetic networks, control points, postal zones and
+     *           services, place names.
      */
     @UML(identifier="location", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory LOCATION = new TopicCategory("LOCATION");
@@ -209,9 +187,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Features and characteristics of salt water bodies (excluding inland waters).
      *
-     * <p><b>Examples:</b>
-     * tides, tidal waves, coastal information, reefs.
-     * </p>
+     * Examples: tides, tidal waves, coastal information, reefs.
      */
     @UML(identifier="oceans", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory OCEANS = new TopicCategory("OCEANS");
@@ -219,9 +195,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Information used for appropriate actions for future use of the land.
      *
-     * <p><b>Examples:</b>
-     * land use maps, zoning maps, cadastral surveys, land ownership.
-     * </p>
+     * Examples: land use maps, zoning maps, cadastral surveys, land ownership.
      */
     @UML(identifier="planningCadastre", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory PLANNING_CADASTRE = new TopicCategory("PLANNING_CADASTRE");
@@ -229,11 +203,9 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Characteristics of society and cultures.
      *
-     * <p><b>Examples:</b>
-     * settlements, anthropology, archaeology, education, traditional beliefs, manners and customs,
-     * demographic data, recreational areas and activities, social impact assessments,
-     * crime and justice, census information
-     * </p>
+     * Examples: settlements, anthropology, archaeology, education, traditional beliefs,
+     *           manners and customs, demographic data, recreational areas and activities, social
+     *           impact assessments, crime and justice, census information
      */
     @UML(identifier="society", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory SOCIETY = new TopicCategory("SOCIETY");
@@ -241,9 +213,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Man-made construction.
      *
-     * <p><b>Examples:</b>
-     * buildings, museums, churches, factories, housing, monuments, shops, towers.
-     * </p>
+     * Examples: buildings, museums, churches, factories, housing, monuments, shops, towers.
      */
     @UML(identifier="structure", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory STRUCTURE = new TopicCategory("STRUCTURE");
@@ -251,10 +221,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Means and aids for conveying persons and/or goods.
      *
-     * <p><b>Examples:</b>
-     * roads, airports/airstrips, shipping routes, tunnels, nautical charts,
-     * vehicle or vessel location, aeronautical charts, railways.
-     * </p>
+     * Examples: roads, airports/airstrips, shipping routes, tunnels, nautical charts,
+     *           vehicle or vessel location, aeronautical charts, railways.
      */
     @UML(identifier="transportation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory TRANSPORTATION = new TopicCategory("TRANSPORTATION");
@@ -262,41 +230,19 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     /**
      * Energy, water and waste systems and communications infrastructure and services.
      *
-     * <p><b>Examples:</b>
-     * hydroelectricity, geothermal, solar and nuclear sources of energy, water purification and
-     * distribution, sewage collection and disposal, electricity and gas distribution,
-     * data communication, telecommunication, radio, communication networks.
-     * </p>
+     * Examples: hydroelectricity, geothermal, solar and nuclear sources of energy, water
+     *           purification and distribution, sewage collection and disposal, electricity and gas
+     *           distribution, data communication, telecommunication, radio, communication
+     *           networks.
      */
     @UML(identifier="utilitiesCommunication", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory UTILITIES_COMMUNICATION = new TopicCategory("UTILITIES_COMMUNICATION");
 
     /**
-     * Region more than 100 Km above the surface of the Earth.
+     * Constructs an enum with the given name. The new enum is
+     * automatically added to the list returned by {@link #values}.
      *
-     * @since 3.1
-     */
-    @UML(identifier="extraTerrestrial", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory EXTRA_TERRESTRIAL = new TopicCategory("EXTRA_TERRESTRIAL");
-
-    /**
-     * Information related to disaster.
-     *
-     * <p><b>Examples:</b>
-     * site of the disaster, evacuation zone, disaster prevention facility,
-     * disaster relief activity.</p>
-     *
-     * @since 3.1
-     */
-    @UML(identifier="disaster", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory DISASTER = new TopicCategory("DISASTER");
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name The enum name. This name must not be in use by an other enum of this type.
      */
     private TopicCategory(final String name) {
         super(name, VALUES);
@@ -314,13 +260,8 @@ public final class TopicCategory extends CodeList<TopicCategory> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
-     *
-     * @return All code {@linkplain #values() values} for this code list.
+     * Returns the list of enumerations of the same kind than this enum.
      */
-    @Override
     public TopicCategory[] family() {
         return values();
     }

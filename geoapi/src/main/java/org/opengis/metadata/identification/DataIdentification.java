@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,7 +33,10 @@ package org.opengis.metadata.identification;
 
 import java.util.Collection;
 import java.util.Locale;
-import java.nio.charset.Charset;
+import org.opengis.metadata.Metadata;
+import org.opengis.metadata.extent.Extent;
+import org.opengis.metadata.maintenance.ScopeCode;
+import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -44,76 +47,95 @@ import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
- * Information required to identify a resource.
+ * Information required to identify a dataset.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - SpatialRepresentationType
+ * @navassoc - - - Resolution
+ * @navassoc - - - CharacterSet
+ * @navassoc - - - TopicCategory
+ * @navassoc - - - Extent
  */
 @UML(identifier="MD_DataIdentification", specification=ISO_19115)
 public interface DataIdentification extends Identification {
     /**
-     * Returns the language(s) used within the resource.
-     * The first element in iteration order shall be the default language.
-     * All other elements, if any, are alternate language(s) used within the resource.
+     * Method used to spatially represent geographic information.
      *
-     * <p>XML documents shall format languages using the ISO 639-2 language code
-     * as returned by {@link Locale#getISO3Language()}.</p>
-     *
-     * @return Language(s) used.
-     *
-     * @departure historic
-     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   The ISO 19115:2014 revision merged the language and character encoding information into a single class
-     *   (namely <code>PT_Locale</code>), but this design does not fit well with the Java model.
-     *   For example the character encoding information is irrelevant to <code>InternationalString</code>
-     *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
-     *
-     * @see org.opengis.metadata.Metadata#getLanguage()
-     * @see Locale#getISO3Language()
+     * @return Method(s) used to spatially represent geographic information.
      */
     @Profile(level=CORE)
-    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115) // Actually from ISO 19115:2003
+    @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<SpatialRepresentationType> getSpatialRepresentationTypes();
+
+    /**
+     * Factor which provides a general understanding of the density of spatial data
+     * in the dataset.
+     *
+     * @return Factor which provides a general understanding of the density of spatial data.
+     */
+    @Profile(level=CORE)
+    @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Resolution> getSpatialResolutions();
+
+    /**
+     * Language(s) used within the dataset.
+     *
+     * @return Language(s) used.
+     */
+    @Profile(level=CORE)
+    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115)
     Collection<Locale> getLanguages();
 
     /**
-     * The character coding standard(s) used for the dataset.
-     * Instances can be obtained by a call to {@link Charset#forName(String)}.
+     * Full name of the character coding standard(s) used for the dataset.
      *
-     * <blockquote><font size="-1"><b>Examples:</b>
-     * {@code UCS-2}, {@code UCS-4}, {@code UTF-7}, {@code UTF-8}, {@code UTF-16},
-     * {@code ISO-8859-1} (a.k.a. {@code ISO-LATIN-1}), {@code ISO-8859-2}, {@code ISO-8859-3}, {@code ISO-8859-4},
-     * {@code ISO-8859-5}, {@code ISO-8859-6}, {@code ISO-8859-7}, {@code ISO-8859-8}, {@code ISO-8859-9},
-     * {@code ISO-8859-10}, {@code ISO-8859-11}, {@code ISO-8859-12}, {@code ISO-8859-13}, {@code ISO-8859-14},
-     * {@code ISO-8859-15}, {@code ISO-8859-16},
-     * {@code JIS_X0201}, {@code Shift_JIS}, {@code EUC-JP}, {@code US-ASCII}, {@code EBCDIC}, {@code EUC-KR},
-     * {@code Big5}, {@code GB2312}.
-     * </font></blockquote>
+     * @return Name(s) of the character coding standard(s) used.
      *
-     * @return The character coding standard(s) used.
-     *
-     * @departure historic
-     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   See <code>getLanguages()</code> for more information.
-     *
-     * @see org.opengis.metadata.Metadata#getCharacterSet()
-     * @see Charset#forName(String)
+     * @condition ISO/IEC 10646-1 not used.
      */
     @Profile(level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003
-    Collection<Charset> getCharacterSets();
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<CharacterSet> getCharacterSets();
 
     /**
-     * Description of the resource in the producer's processing environment, including items
+     * Main theme(s) of the dataset.
+     *
+     * @return Main theme(s).
+     *
+     * @condition If {@linkplain Metadata#getHierarchyLevels() hierarchy level} equals
+     *            {@link ScopeCode#DATASET}.
+     */
+    @Profile(level=CORE)
+    @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<TopicCategory> getTopicCategories();
+
+    /**
+     * Description of the dataset in the producer's processing environment, including items
      * such as the software, the computer operating system, file name, and the dataset size.
      *
-     * @return Description of the resource in the producer's processing environment, or {@code null}.
+     * @return Description of the dataset in the producer's processing environment, or {@code null}.
      */
     @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getEnvironmentDescription();
 
     /**
-     * Any other descriptive information about the resource.
+     * Additional extent information including the bounding polygon, vertical, and temporal
+     * extent of the dataset.
+     *
+     * @return Additional extent information.
+     *
+     * @condition If hierarchyLevel equals dataset? either extent.geographicElement.EX_GeographicBoundingBox
+     *            or extent.geographicElement.EX_GeographicDescription is required.
+     */
+    @Profile(level=CORE)
+    @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends Extent> getExtents();
+
+    /**
+     * Any other descriptive information about the dataset.
      *
      * @return Other descriptive information, or {@code null}.
      */

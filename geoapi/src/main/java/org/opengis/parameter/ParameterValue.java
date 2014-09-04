@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,53 +34,31 @@ package org.opengis.parameter;
 import java.net.URI;
 import javax.measure.unit.Unit;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Classifier;
-import org.opengis.annotation.Stereotype;
-import org.opengis.metadata.citation.Citation;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A single parameter value used by an operation method. Most CRS parameter values are numeric and can be obtained
- * by the {@link #intValue()} or {@link #doubleValue()} methods. But other types of parameter values are possible
- * and can be handled by the more generic {@link #getValue()} and {@link #setValue(Object)} methods.
- *
- * <p>All {@code xxxValue()} methods in this interface are convenience methods converting the value from {@code Object}
- * to some commonly used types. Those types are specified in ISO 19111 as an union of attributes, listed below with the
- * corresponding getter and setter methods:</p>
- *
- * <table class="ogc">
- * <caption>Common value types</caption>
- *   <tr><th>ISO attribute</th>     <th>Java type</th>        <th>Getter method</th>                  <th>Setter method</th></tr>
- *   <tr><td></td>                  <td>{@link Object}</td>   <td>{@link #getValue()}</td>            <td>{@link #setValue(Object)}</td></tr>
- *   <tr><td>stringValue</td>       <td>{@link String}</td>   <td>{@link #stringValue()}</td>         <td>{@link #setValue(Object)}</td></tr>
- *   <tr><td>value</td>             <td>{@code double}</td>   <td>{@link #doubleValue()}</td>         <td>{@link #setValue(double)}</td></tr>
- *   <tr><td></td>                  <td>{@code double}</td>   <td>{@link #doubleValue(Unit)}</td>     <td>{@link #setValue(double, Unit)}</td></tr>
- *   <tr><td>valueList</td>         <td>{@code double[]}</td> <td>{@link #doubleValueList()}</td>     <td>{@link #setValue(Object)}</td></tr>
- *   <tr><td></td>                  <td>{@code double[]}</td> <td>{@link #doubleValueList(Unit)}</td> <td>{@link #setValue(double[], Unit)}</td></tr>
- *   <tr><td>integerValue</td>      <td>{@code int}</td>      <td>{@link #intValue()}</td>            <td>{@link #setValue(int)}</td></tr>
- *   <tr><td>integerValueList</td>  <td>{@code int[]}</td>    <td>{@link #intValueList()}</td>        <td>{@link #setValue(Object)}</td></tr>
- *   <tr><td>booleanValue</td>      <td>{@code boolean}</td>  <td>{@link #booleanValue()}</td>        <td>{@link #setValue(boolean)}</td></tr>
- *   <tr><td>valueFile</td>         <td>{@link URI}</td>      <td>{@link #valueFile()}</td>           <td>{@link #setValue(Object)}</td></tr>
- *   <tr><td>valueFileCitation</td> <td>{@link Citation}</td> <td>{@link #getValue()}</td>            <td>{@link #setValue(Object)}</td></tr>
- * </table>
- *
- * The type and constraints on parameter values are given by the {@linkplain #getDescriptor() descriptor},
- * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()} method.
+ * A parameter value used by an operation method. Most parameter values are numeric and can be
+ * obtained by the {@link #intValue()} or {@link #doubleValue()} methods. But other types of
+ * parameter values are possible and can be handled by the more generic {@link #getValue()} and
+ * {@link #setValue(Object)} methods. The type and constraints on parameter values are given
+ * by the {@linkplain #getDescriptor() descriptor}.
+ * <p>
+ * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()}
+ * method.
  *
  * @param <T> The type of parameter values.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.1
+ * @version 3.0
  * @since   1.0
  *
  * @see ParameterDescriptor
  * @see ParameterValueGroup
  */
-@Classifier(Stereotype.UNION)
 @UML(identifier="CC_ParameterValue", specification=ISO_19111)
 public interface ParameterValue<T> extends GeneralParameterValue {
     /**
@@ -88,11 +66,10 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return The abstract definition of this parameter value.
      */
-    @Override
     ParameterDescriptor<T> getDescriptor();
 
     /**
-     * Returns the unit of measure of the parameter value.
+     * Returns the unit of measure of the {@linkplain #doubleValue() parameter value}.
      * If the parameter value has no unit (for example because it is a {@link String} type),
      * then this method returns {@code null}. Note that "no unit" doesn't means
      * "dimensionless".
@@ -106,8 +83,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     Unit<?> getUnit();
 
     /**
-     * Returns the numeric value of this parameter in the specified unit of measure.
-     * This convenience method applies unit conversion on the fly as needed.
+     * Returns the numeric value of the coordinate operation parameter in the specified unit
+     * of measure. This convenience method applies unit conversion on the fly as needed.
      *
      * @param  unit The unit of measure for the value to be returned.
      * @return The numeric value represented by this parameter after conversion to type
@@ -123,8 +100,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     double doubleValue(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
 
     /**
-     * Returns the numeric value of this operation parameter.
-     * The units of measurement are specified by {@link #getUnit()}.
+     * Returns the numeric value of the coordinate operation parameter with its
+     * associated {@linkplain #getUnit unit of measure}.
      *
      * @return The numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
@@ -140,12 +117,11 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList()
      */
-    @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     double doubleValue() throws IllegalStateException;
 
     /**
-     * Returns the integer value of this parameter, usually used for a count.
-     * An integer value does not have an associated unit of measure.
+     * Returns the positive integer value of an operation parameter, usually used
+     * for a count. An integer value does not have an associated unit of measure.
      *
      * @return The numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
@@ -162,7 +138,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     int intValue() throws IllegalStateException;
 
     /**
-     * Returns the boolean value of this parameter.
+     * Returns the boolean value of an operation parameter
      * A boolean value does not have an associated unit of measure.
      *
      * @return The boolean value represented by this parameter.
@@ -175,7 +151,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     boolean booleanValue() throws IllegalStateException;
 
     /**
-     * Returns the string value of this parameter.
+     * Returns the string value of an operation parameter.
      * A string value does not have an associated unit of measure.
      *
      * @return The string value represented by this parameter.
@@ -206,8 +182,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     double[] doubleValueList(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
 
     /**
-     * Returns an ordered sequence of two or more numeric values of this parameter,
-     * where each value has the same associated unit of measure.
+     * Returns an ordered sequence of two or more numeric values of an operation parameter
+     * list, where each value has the same associated {@linkplain Unit unit of measure}.
      *
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
@@ -228,8 +204,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     double[] doubleValueList() throws IllegalStateException;
 
     /**
-     * Returns an ordered sequence of two or more integer values of this parameter, usually used for counts.
-     * These integer values do not have an associated unit of measure.
+     * Returns an ordered sequence of two or more integer values of an operation parameter list,
+     * usually used for counts. These integer values do not have an associated unit of measure.
      *
      * @return The sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
@@ -246,10 +222,10 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     int[] intValueList() throws IllegalStateException;
 
     /**
-     * Returns a reference to a file or a part of a file containing one or more parameter values.
-     * When referencing a part of a file, that file must contain multiple identified parts, such
-     * as an XML encoded document. Furthermore, the referenced file or part of a file can reference
-     * another part of the same or different files, as allowed in XML documents.
+     * Returns a reference to a file or a part of a file containing one or more parameter
+     * values. When referencing a part of a file, that file must contain multiple identified
+     * parts, such as an XML encoded document. Furthermore, the referenced file or part of a
+     * file can reference another part of the same or different files, as allowed in XML documents.
      *
      * @return The reference to a file containing parameter values.
      * @throws InvalidParameterTypeException if the value is not a reference to a file or an URI.
@@ -272,6 +248,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @see #setValue(Object)
      */
+    @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
     T getValue();
 
     /**
@@ -289,7 +266,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Sets the parameter value as a floating point and its associated unit.
      *
      * @param  value The parameter value.
-     * @param  unit The unit for the specified values.
+     * @param  unit The unit for the specified value.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
@@ -313,7 +290,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(double value) throws InvalidParameterValueException;
 
     /**
-     * Sets the parameter value as an integer.
+     * Set the parameter value as an integer.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the integer type is inappropriate for this parameter,
@@ -324,7 +301,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(int value) throws InvalidParameterValueException;
 
     /**
-     * Sets the parameter value as a boolean.
+     * Set the parameter value as a boolean.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the boolean type is inappropriate for this parameter.
@@ -334,14 +311,14 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(boolean value) throws InvalidParameterValueException;
 
     /**
-     * Sets the parameter value as an object. The object type is typically a {@link Double},
+     * Set the parameter value as an object. The object type is typically a {@link Double},
      * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]}
      * or {@code int[]}.
-     *
-     * <p>The argument is not restricted to the parameterized type {@code T} because the type
-     * is typically unknown (as in <code>group.{@linkplain ParameterValueGroup#parameter(String)
+     * <p>
+     * The argument is not restricted to the parameterized type {@code T} because the type
+     * is typically unknown (as in <code>group.{@linkplain ParameterValueGroup#parameter
      * parameter}("<var>name</var>").setValue(<var>value</var>)</code>) and
-     * because some implementations may choose to convert a wider range of types.</p>
+     * because some implementations may choose to convert a wider range of types.
      *
      * @param  value The parameter value.
      * @throws InvalidParameterValueException if the type of {@code value} is inappropriate
@@ -357,6 +334,5 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return A copy of this parameter value.
      */
-    @Override
     ParameterValue<T> clone();
 }

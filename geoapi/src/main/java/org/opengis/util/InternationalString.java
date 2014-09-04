@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,9 +40,9 @@ import java.util.Locale;
  * This interface is used as a replacement for the {@link String} type whenever an attribute needs to be
  * internationalization capable.
  *
- * <p>The {@linkplain Comparable natural ordering} is defined by the {@linkplain String#compareTo
+ * <P>The {@linkplain Comparable natural ordering} is defined by the {@linkplain String#compareTo
  * lexicographical ordering of strings} in the default locale, as returned by {@link #toString()}.
- * This string also defines the {@linkplain CharSequence character sequence} for this object.</p>
+ * This string also defines the {@linkplain CharSequence character sequence} for this object.</P>
  *
  * @departure extension
  *   Added this new type in order to distinguish between localizable and non-localizable character
@@ -54,33 +54,33 @@ import java.util.Locale;
  * @version 3.0
  * @since   2.0
  *
+ * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString(Map)
  */
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,
-     * then some fallback locale is used. The fallback locale is implementation-dependent, and
-     * is not necessarily the same than the default locale used by the {@link #toString()} method.
+     * then some default locale is used. The default locale is implementation-dependent. It
+     * may or may not be the {@linkplain Locale#getDefault() system default}.
      *
-     * @param  locale The desired locale for the string to be returned.
-     * @return The string in the given locale if available, or in an
-     *         implementation-dependent fallback locale otherwise.
-     *
-     * @see Locale#getDefault()
-     * @see Locale#ROOT
+     * @param  locale The desired locale for the string to be returned, or {@code null}
+     *         for a string in the implementation default locale.
+     * @return The string in the given locale if available, or in the default locale otherwise.
      */
     String toString(Locale locale);
 
     /**
      * Returns this string in the default locale. The default locale is implementation-dependent.
-     * It may be the {@linkplain Locale#getDefault() system default}, the {@linkplain Locale#ROOT
-     * root locale} or any other locale at implementation choice.
+     * It may or may not be the {@linkplain Locale#getDefault() system default}. If the default
+     * locale is the {@linkplain Locale#getDefault() system default} (a recommended practice),
+     * then invoking this method is equivalent to invoking
+     * <code>{@linkplain #toString(Locale) toString}({@linkplain Locale#getDefault})</code>.
      *
-     * <p>All methods from {@link CharSequence} operate on this string.
-     * This string is also used as the criterion for {@linkplain Comparable natural ordering}.</p>
+     * <P>All methods from {@link CharSequence} operate on this string. This string is also
+     * used as the criterion for {@linkplain Comparable natural ordering}.</P>
      *
      * @return The string in the default locale.
      */
-    @Override
+    @Override    
     String toString();
 }

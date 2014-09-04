@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,51 +31,32 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.List;
+import javax.measure.unit.NonSI;
 
+import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
-import org.opengis.util.Factory;
+import org.opengis.referencing.datum.*;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.opengis.test.TestCase;
+
+import static org.junit.Assume.*;
+import static org.opengis.test.Assert.*;
+import static org.opengis.test.Validators.*;
 
 
 /**
- * Tests {@link CoordinateReferenceSystem} and related objects
- * from the {@code org.opengis.referencing.crs} package.
- * CRS instances are created using the authority factory given at construction time.
- *
- * <p>In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as below:</p>
- *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.CRSTest;
- *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends CRSTest {
- *    public MyTest() {
- *        super(new MyCRSAuthorityFactory());
- *    }
- *}</pre></blockquote>
- *
- * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
- * which combine every tests defined in the GeoAPI conformance module.
+ * Tests {@linkplain CoordinateReferenceSystem Coordinate Reference System} and related objects
+ * from the {@code org.opengis.referencing.crs} packages. CRS instances are created using the
+ * authority factory given at construction time.
  *
  * @author  Cédric Briançon (Geomatys)
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 3.0
  * @since   2.3
- *
- * @deprecated Renamed as {@link AuthorityFactoryTest}.
  */
-@Deprecated
-@RunWith(Parameterized.class)
-public strictfp class CRSTest extends TestCase {
+public abstract class CRSTest extends TestCase {
     /**
      * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,
      * or {@code null} if none.
@@ -83,30 +64,12 @@ public strictfp class CRSTest extends TestCase {
     protected final CRSAuthorityFactory factory;
 
     /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * subclassed by the implementor. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return The default set of arguments to be given to the {@code CRSTest} constructor.
-     *
-     * @since 3.1
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(CRSAuthorityFactory.class);
-    }
-
-    /**
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
-     * @param factory Factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param factory Factory for creating a {@link CoordinateReferenceSystem}.
      */
-    public CRSTest(final CRSAuthorityFactory factory) {
-        super(factory);
+    protected CRSTest(final CRSAuthorityFactory factory) {
         this.factory = factory;
     }
 
@@ -121,6 +84,30 @@ public strictfp class CRSTest extends TestCase {
      */
     @Test
     public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {
-        new AuthorityFactoryTest(factory, null, null).testWGS84();
+        assumeNotNull(factory);
+        final GeographicCRS crs = factory.createGeographicCRS("EPSG:4326");
+        validate(crs);
+        assertNotNull(crs);
+        assertEquals("WGS 84", crs.getName().getCode());
+        /*
+         * Coordinate system validation.
+         */
+        final EllipsoidalCS cs = crs.getCoordinateSystem();
+        final CoordinateSystemAxis latitude  = cs.getAxis(0);
+        final CoordinateSystemAxis longitude = cs.getAxis(1);
+        assertEquals("Geodetic latitude",  latitude.getName().getCode());
+        assertEquals(AxisDirection.NORTH,  latitude.getDirection());
+        assertEquals(NonSI.DEGREE_ANGLE,   latitude.getUnit());
+        assertEquals("Geodetic longitude", longitude.getName().getCode());
+        assertEquals(AxisDirection.EAST,   longitude.getDirection());
+        assertEquals(NonSI.DEGREE_ANGLE,   longitude.getUnit());
+        /*
+         * Datum validation.
+         */
+        final GeodeticDatum datum = crs.getDatum();
+        assertEquals("World Geodetic System 1984", datum.getName().getCode());
+        final PrimeMeridian pm = datum.getPrimeMeridian();
+        assertEquals(0.0, pm.getGreenwichLongitude(), 0.0);
+        assertEquals(NonSI.DEGREE_ANGLE, pm.getAngularUnit());
     }
 }

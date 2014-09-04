@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,24 +31,16 @@
  */
 package org.opengis.test.referencing;
 
-import org.opengis.test.ComputationFailure;
-import org.opengis.referencing.operation.MathTransform;
-
 
 /**
- * Thrown by {@link TransformTestCase} when a {@link MathTransform} did not produced
- * the expected value.
+ * Thrown when a transform didn't produced the expected value.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
  * @since   2.2
  */
-public class TransformFailure extends ComputationFailure {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -7105975654433582652L;
-
+@SuppressWarnings("serial")
+public class TransformFailure extends AssertionError {
     /**
      * Creates a new exception with the given message.
      *

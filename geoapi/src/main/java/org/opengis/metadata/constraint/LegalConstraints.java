@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -46,46 +46,40 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
  * @since   2.0
+ *
+ * @navassoc - - - Restriction
  */
 @UML(identifier="MD_LegalConstraints", specification=ISO_19115)
 public interface LegalConstraints extends Constraints {
     /**
      * Access constraints applied to assure the protection of privacy or intellectual property,
-     * and any special restrictions or limitations on obtaining the resource or metadata.
+     * and any special restrictions or limitations on obtaining the resource.
      *
      * @return Access constraints applied to assure the protection of privacy or intellectual property.
-     *
-     * @condition Mandatory if
-     * {@linkplain #getUseConstraints() use constraints},
-     * {@linkplain #getOtherConstraints() other constraints},
-     * {@linkplain #getUseLimitations() use limitations} and
-     * {@linkplain #getReleasability() releasibility} are null or empty.
      */
-    @UML(identifier="accessConstraints", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="accessConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Restriction> getAccessConstraints();
 
     /**
      * Constraints applied to assure the protection of privacy or intellectual property, and any
-     * special restrictions or limitations or warnings on using the resource or metadata.
+     * special restrictions or limitations or warnings on using the resource.
      *
      * @return Constraints applied to assure the protection of privacy or intellectual property.
-     *
-     * @condition Mandatory if
-     * {@linkplain #getAccessConstraints() access constraints},
-     * {@linkplain #getOtherConstraints() other constraints},
-     * {@linkplain #getUseLimitations() use limitations} and
-     * {@linkplain #getReleasability() releasibility} are null or empty.
      */
-    @UML(identifier="useConstraints", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="useConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Restriction> getUseConstraints();
 
     /**
-     * Other restrictions and legal prerequisites for accessing and using the resource or metadata.
+     * Other restrictions and legal prerequisites for accessing and using the resource.
+     * This method should returns a non-empty value only if {@linkplain #getAccessConstraints
+     * access constraints} or {@linkplain #getUseConstraints use constraints} declares
+     * {@linkplain Restriction#OTHER_RESTRICTIONS other restrictions}.
      *
      * @return Other restrictions and legal prerequisites for accessing and using the resource.
      *
-     * @condition Mandatory if the {@linkplain #getAccessConstraints() access constraints} or
-     *            {@linkplain #getUseConstraints() use constraints} contain {@link Restriction#OTHER_RESTRICTIONS}.
+     * @condition {@linkplain #getAccessConstraints() Access constraints} or
+     *            {@linkplain #getUseConstraints() use constraints} equal
+     *            {@link Restriction#OTHER_RESTRICTIONS}.
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getOtherConstraints();

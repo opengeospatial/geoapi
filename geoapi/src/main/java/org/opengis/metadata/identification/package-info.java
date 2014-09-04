@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,67 +31,32 @@
  */
 
 /**
- * Information to uniquely identify the data or service.
- * {@linkplain org.opengis.metadata.identification.Identification} information is mandatory
- * and includes information about the citation for the resource, an abstract, the purpose,
- * credit, the status and points of contact. Identification may be specialized as
- * {@linkplain org.opengis.metadata.identification.DataIdentification data identification} when used
- * to identify data, or as {@linkplain org.opengis.metadata.identification.ServiceIdentification service
- * identification} when used to identify a service.
+ * {@linkplain org.opengis.metadata.identification.Identification} information
+ * (includes data and service identification). The following is adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
- * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
- * together with a partial view of aggregation hierarchy:</p>
+ * <P ALIGN="justify">Identification information contains information to uniquely identify the data.
+ * Identification information includes information about the citation for the resource, an abstract,
+ * the purpose, credit, the status and points of contact.
+ * The {@linkplain org.opengis.metadata.identification.Identification identification}
+ * entity is mandatory. It may be specified (subclassed) as
+ * {@linkplain org.opengis.metadata.identification.DataIdentification data identification}
+ * when used to identify data and as
+ * {@linkplain org.opengis.metadata.identification.ServiceIdentification service identification}
+ * when used to identify a service.</p>
  *
- * <table class="ogc">
- * <caption>Package overview</caption>
- * <tr>
- *   <th>Class hierarchy</th>
- *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
- * <pre>ISO-19115 object
- *  ├─ {@linkplain org.opengis.metadata.identification.Identification} «abstract»
- *  │   ├─ {@linkplain org.opengis.metadata.identification.DataIdentification}
- *  │   └─ {@linkplain org.opengis.metadata.service.ServiceIdentification}
- *  ├─ {@linkplain org.opengis.metadata.identification.Resolution}
- *  ├─ {@linkplain org.opengis.metadata.identification.BrowseGraphic}
- *  ├─ {@linkplain org.opengis.metadata.identification.Keywords}
- *  ├─ {@linkplain org.opengis.metadata.identification.Usage}
- *  └─ {@linkplain org.opengis.metadata.identification.AggregateInformation}
- * {@linkplain org.opengis.util.CodeList}
- *  ├─ {@linkplain org.opengis.metadata.identification.Progress}
- *  ├─ {@linkplain org.opengis.metadata.identification.KeywordType}
- *  ├─ {@linkplain org.opengis.metadata.identification.AssociationType}
- *  ├─ {@linkplain org.opengis.metadata.identification.InitiativeType}
- *  └─ {@linkplain org.opengis.metadata.identification.TopicCategory}</pre>
- * </td><td class="sep" width="50%" nowrap>
- * <pre>{@linkplain org.opengis.metadata.identification.Identification} «abstract»
- *  ├─ {@linkplain org.opengis.metadata.identification.Resolution}
- *  ├─ {@linkplain org.opengis.metadata.identification.TopicCategory} «code list»
- *  ├─ {@linkplain org.opengis.metadata.identification.Progress} «code list»
- *  ├─ {@linkplain org.opengis.metadata.identification.BrowseGraphic}
- *  ├─ {@linkplain org.opengis.metadata.identification.Keywords}
- *  │   └─ {@linkplain org.opengis.metadata.identification.KeywordType} «code list»
- *  ├─ {@linkplain org.opengis.metadata.identification.Usage}
- *  └─ {@linkplain org.opengis.metadata.identification.AssociatedResource}
- *      ├─ {@linkplain org.opengis.metadata.identification.AssociationType} «code list»
- *      └─ {@linkplain org.opengis.metadata.identification.InitiativeType} «code list»</pre>
- * </td></tr></table>
- *
- * <p>More specifically, {@link org.opengis.metadata.identification.Identification}
- * is an aggregate of the following entities:</p>
- * <ul>
- *   <li>{@link org.opengis.metadata.distribution.Format}
- *       (from the {@linkplain org.opengis.metadata.distribution distribution} package): format of the data</li>
- *   <li>{@link org.opengis.metadata.identification.BrowseGraphic}: graphic overview of the data</li>
- *   <li>{@link org.opengis.metadata.identification.Usage}: specific uses of the data</li>
- *   <li>{@link org.opengis.metadata.constraint.Constraints}
- *       (from the {@linkplain org.opengis.metadata.constraint constraint} package): constraints placed on the resource</li>
- *   <li>{@link org.opengis.metadata.identification.Keywords}: keywords describing the resource</li>
- *   <li>{@link org.opengis.metadata.maintenance.MaintenanceInformation}
- *       (from the {@linkplain org.opengis.metadata.maintenance maintenance} package):
- *       how often the data is scheduled to be updated and the scope of the update</li>
- * </ul>
+ * <P ALIGN="justify">{@linkplain org.opengis.metadata.identification.Identification}
+ * is an aggregate of the following entities:</P>
+ * <UL>
+ *   <LI>{@link org.opengis.metadata.distribution.Format}, format of the data</LI>
+ *   <LI>{@link org.opengis.metadata.identification.BrowseGraphic}, graphic overview of the data</LI>
+ *   <LI>{@link org.opengis.metadata.identification.Usage}, specific uses of the data</LI>
+ *   <LI>{@link org.opengis.metadata.constraint.Constraints}, constraints placed on the resource</LI>
+ *   <LI>{@link org.opengis.metadata.identification.Keywords}, keywords describing the resource</LI>
+ *   <LI>{@link org.opengis.metadata.maintenance.MaintenanceInformation}, how often the data is scheduled
+ *       to be updated and the scope of the update</LI>
+ * </UL>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

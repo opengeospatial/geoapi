@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2011 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,30 +31,13 @@
  */
 
 /**
- * Scope and frequency of updating data.
+ * {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation Maintenance information}.
+ * The following is adapted from
+ * {@linkplain org.opengis.annotation.Specification#ISO_19115 OpenGIS&reg; Metadata (Topic 11)}
+ * specification.
  *
- * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
- * together with a partial view of aggregation hierarchy:</p>
- *
- * <table class="ogc">
- * <caption>Package overview</caption>
- * <tr>
- *   <th>Class hierarchy</th>
- *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
- * <pre> ISO-19115 object
- *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
- *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}
- * {@linkplain org.opengis.util.CodeList}
- *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency}
- *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeCode}</pre>
- * </td><td class="sep" width="50%" nowrap>
- * <pre> {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
- *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency} «code list»
- *  ├─ {@linkplain org.opengis.metadata.maintenance.ScopeCode} «code list»
- *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}</pre>
- * </td></tr></table>
+ * <P ALIGN="justify">This package contains information about the scope and frequency of updating
+ * data.</P>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
