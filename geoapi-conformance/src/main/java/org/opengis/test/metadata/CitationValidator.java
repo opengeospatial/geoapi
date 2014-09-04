@@ -77,9 +77,7 @@ public class CitationValidator extends MetadataValidator {
         for (final Identifier e : toArray(Identifier.class, object.getIdentifiers())) {
             container.validate(e);
         }
-        for (final InternationalString e : toArray(InternationalString.class, object.getOtherCitationDetails())) {
-            container.validate(e);
-        }
+        container.validate(object.getOtherCitationDetails());
         for (final Responsibility e : toArray(Responsibility.class, object.getCitedResponsibleParties())) {
             validate(e);
         }

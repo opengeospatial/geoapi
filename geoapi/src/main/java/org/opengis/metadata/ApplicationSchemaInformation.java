@@ -31,6 +31,7 @@
  */
 package org.opengis.metadata;
 
+import java.net.URI;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.OnlineResource;
@@ -75,26 +76,40 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as an ASCII file.
      *
+     * <div class="api-change">
+     * {@code URI} will be replaced by {@link CharSequence} in GeoAPI 4.0.
+     * </div>
+     *
      * @return Application schema as an ASCII file, or {@code null}.
      */
     @UML(identifier="schemaAscii", obligation=OPTIONAL, specification=ISO_19115)
-    CharSequence getSchemaAscii();
+    URI getSchemaAscii();
 
     /**
      * Full application schema given as a graphics file.
      *
+     * <div class="api-change">as of ISO 19115:2014,
+     * {@code URI} is replaced by {@link OnlineResource}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Application schema as a graphics file, or {@code null}.
      */
     @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115)
-    OnlineResource getGraphicsFile();
+    URI getGraphicsFile();
 
     /**
      * Full application schema given as a software development file.
      *
+     * <div class="api-change">as of ISO 19115:2014,
+     * {@code URI} is replaced by {@link OnlineResource}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Application schema as a software development file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115)
-    OnlineResource getSoftwareDevelopmentFile();
+    URI getSoftwareDevelopmentFile();
 
     /**
      * Software dependent format used for the application schema software dependent file.

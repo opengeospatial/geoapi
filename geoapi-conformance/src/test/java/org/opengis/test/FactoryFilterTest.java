@@ -43,7 +43,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
@@ -111,10 +111,10 @@ public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, I
     @Override public InternationalString          getEdition()                             {return null;}
     @Override public Date                         getEditionDate()                         {return null;}
     @Override public Collection<Identifier>       getIdentifiers()                         {return null;}
-    @Override public Collection<Responsibility>   getCitedResponsibleParties()             {return null;}
+    @Override public Collection<ResponsibleParty> getCitedResponsibleParties()             {return null;}
     @Override public Collection<PresentationForm> getPresentationForms()                   {return null;}
     @Override public Series                       getSeries()                              {return null;}
-    @Override public Set<InternationalString>     getOtherCitationDetails()                {return null;}
+    @Override public InternationalString          getOtherCitationDetails()                {return null;}
     @Override public String                       getISBN()                                {return null;}
     @Override public String                       getISSN()                                {return null;}
     @Override public Collection<OnlineResource>   getOnlineResources()                     {return null;}

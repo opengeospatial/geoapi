@@ -22,7 +22,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.citation.Series;
 import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
@@ -81,10 +81,10 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString {
     @Override public InternationalString        getEdition()                 {return null;}
     @Override public Date                       getEditionDate()             {return null;}
     @Override public Set<Identifier>            getIdentifiers()             {return emptySet();}
-    @Override public Set<Responsibility>        getCitedResponsibleParties() {return emptySet();}
+    @Override public Set<ResponsibleParty>      getCitedResponsibleParties() {return emptySet();}
     @Override public Set<PresentationForm>      getPresentationForms()       {return emptySet();}
     @Override public Series                     getSeries()                  {return null;}
-    @Override public Set<InternationalString>   getOtherCitationDetails()    {return emptySet();}
+    @Override public InternationalString        getOtherCitationDetails()    {return null;}
     @Override public String                     getISBN()                    {return null;}
     @Override public String                     getISSN()                    {return null;}
     @Override public Collection<OnlineResource> getOnlineResources()         {return emptySet();}

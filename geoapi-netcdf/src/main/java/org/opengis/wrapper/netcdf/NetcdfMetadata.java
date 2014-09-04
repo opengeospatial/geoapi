@@ -276,11 +276,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to an empty set.
+     * Defaults to null.
      */
     @Override
-    public Collection<InternationalString> getOtherCitationDetails() {
-        return Collections.emptySet();
+    public InternationalString getOtherCitationDetails() {
+        return null;
     }
 
     /**
@@ -674,8 +674,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the NetCDF "{@code acknowledgment}" attribute value, or an empty set if none.
      */
     @Override
-    public Collection<InternationalString> getCredits() {
-        return singleton(getInternationalString("acknowledgment"));
+    public Collection<String> getCredits() {
+        return singleton(getString("acknowledgment"));
     }
 
     /**
@@ -706,7 +706,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to {@code null}.
      */
     @Override
-    public Charset getCharacterSet() {
+    public CharacterSet getCharacterSet() {
         return null;
     }
 
@@ -714,7 +714,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Defaults to the {@linkplain #getCharacterSet() character set}.
      */
     @Override
-    public Collection<Charset> getCharacterSets() {
+    public Collection<CharacterSet> getCharacterSets() {
         return singleton(getCharacterSet());
     }
 

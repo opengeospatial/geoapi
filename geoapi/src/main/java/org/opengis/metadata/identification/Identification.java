@@ -37,6 +37,7 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.MetadataScope;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.maintenance.ScopeCode;
@@ -94,10 +95,14 @@ public interface Identification {
     /**
      * Recognition of those who contributed to the resource.
      *
+     * <div class="api-change"><b>generalization</b> — the return type will be changed to
+     * {@code Collection<? extends InternationalString>} in GeoAPI 4.0.
+     * </div>
+     *
      * @return Recognition of those who contributed to the resource.
      */
     @UML(identifier="credit", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getCredits();
+    Collection<String> getCredits();
 
     /**
      * Status of the resource.
@@ -111,13 +116,18 @@ public interface Identification {
      * Identification of, and means of communication with, person(s) and organisations
      * associated with the resource(s).
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Means of communication with person(s) and organisations(s) associated with the resource.
      *
      * @see org.opengis.metadata.Metadata#getContacts()
      */
     @Profile(level=CORE)
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getPointOfContacts();
+    Collection<? extends ResponsibleParty> getPointOfContacts();
 
     /**
      * Methods used to spatially represent geographic information.

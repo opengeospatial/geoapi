@@ -35,6 +35,7 @@ import java.util.Collection;
 import java.util.Date;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.quality.Scope;
 import org.opengis.temporal.PeriodDuration;
 import org.opengis.util.InternationalString;
@@ -144,11 +145,16 @@ public interface MaintenanceInformation {
      * Identification of, and means of communicating with,
      * person(s) and organization(s) with responsibility for maintaining the resource.
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Means of communicating with person(s) and organization(s) with responsibility
      *         for maintaining the resource.
      *
      * @since 2.1
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getContacts();
+    Collection<? extends ResponsibleParty> getContacts();
 }
