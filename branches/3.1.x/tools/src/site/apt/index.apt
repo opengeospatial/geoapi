@@ -1,5 +1,0 @@
-GeoAPI build tools
-
-  Javadoc taglets and annotation processing tools for processing GeoAPI
-  after compilation. Those tools are used mostly for javadoc generation.
-  They are internal to the GeoAPI project and may change at any time.
