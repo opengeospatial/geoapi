@@ -1,0 +1,105 @@
+Steps for creating a GeoAPI milestone in a Unix environment
+
+
+* Prepare the trunk
+
+  If not already done, ensure that the <<<geoapi/src/main/javadoc/content.html>>>
+  file on trunk is up to date. The following commands assume that the current
+  directory (<<<pwd>>>) is the local copy of GeoAPI trunk.
+
+---------------------------------------------------------------------------------------------
+export CLASSPATH=\
+$PWD/geoapi/target/geoapi-3.1-SNAPSHOT.jar:\
+$PWD/geoapi-pending/target/geoapi-pending-3.1-SNAPSHOT.jar:\
+$PWD/tools/target/tools-3.1-SNAPSHOT.jar
+cd geoapi/src/main/java
+find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.apt.IndexGenerator
+cd -
+svn commit --message "Updated the list of GeoAPI classes and methods."
+---------------------------------------------------------------------------------------------
+
+
+* Create the tag and deploy
+
+  Edit the version number in the <<<description.xml>>> and <<<update.xml>>> files of the
+  <<<geoapi-openoffice>>> module.
+
+  Defines the version number for the GeoAPI milesone. The example below
+  uses 3.1-M05. Please edit as needed.
+
+---------------------------------------------------------------------------------------------
+export GEOAPI_VERSION=3.1-M05
+---------------------------------------------------------------------------------------------
+
+  Create a SVN tag.
+
+---------------------------------------------------------------------------------------------
+svn copy https://svn.code.sf.net/p/geoapi/code/trunk \
+         https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION \
+         --message "Created the tag for GeoAPI $GEOAPI_VERSION milestone."
+---------------------------------------------------------------------------------------------
+
+  Get a local copy of the tag and edit the version number:
+  (<<Note:>> BSD variant of <<<sed>>> expects <<<-i ''>>> parameter instead of <<<--in-place=''>>>)
+
+---------------------------------------------------------------------------------------------
+cd ../tags
+svn checkout https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION
+cd $GEOAPI_VERSION
+find . -name "pom.xml" -print | xargs sed --in-place='' "s/3.1-SNAPSHOT/$GEOAPI_VERSION/g"
+svn diff
+---------------------------------------------------------------------------------------------
+
+  Test, commit and deploy.
+
+---------------------------------------------------------------------------------------------
+mvn clean install
+svn status
+svn commit --message "Set the version number to $GEOAPI_VERSION."
+mvn clean deploy
+---------------------------------------------------------------------------------------------
+
+
+* Create the javadoc and the ZIP files
+
+  Generate javadoc. This require a little bit of manual cleaning after javadoc generation.
+  Note: <<<graphviz>>> and <<<optipng>>> must be installed and reachable on the path.
+  Note also that the content of <<<geoapi/src/main/javadoc/>>> is not copied automatically
+  (Maven documentation said that it should be copied, but it doesn't seem to be the case as
+  of Maven 2.1.0), so we need to copy ourself.
+
+---------------------------------------------------------------------------------------------
+mvn javadoc:javadoc
+find . -name "*.dot" -delete
+find . -name "*.png" -print | xargs optipng
+cp geoapi/src/main/javadoc/content.html  geoapi/target/site/apidocs/
+cp geoapi/src/main/javadoc/UML-java.html geoapi/target/site/apidocs/
+---------------------------------------------------------------------------------------------
+
+  Creates a ZIP file and deploy on the download area
+  <<(todo: which download area?)>>
+
+---------------------------------------------------------------------------------------------
+cd geoapi/target/site/
+zip -r9 ../geoapi-$GEOAPI_VERSION.zip apidocs/
+cd ..
+zip -9 geoapi-$GEOAPI_VERSION.zip geoapi-$GEOAPI_VERSION.jar
+---------------------------------------------------------------------------------------------
+
+
+* Create the list of API changes since previous releases
+
+  Edit the version numbers declared in the <<<jdiff.sh>>> file,
+  then apply the instructions documented in the {{{./index.html}tools page}}.
+
+
+* Final clean
+
+  Only at this point, the working directory can be cleaned:
+
+---------------------------------------------------------------------------------------------
+cd ../tags/$GEOAPI_VERSION/
+mvn clean
+---------------------------------------------------------------------------------------------
+
+  Do not forget to edit the <<<src/site/apt/changes/index.apt>>> file on trunk.
