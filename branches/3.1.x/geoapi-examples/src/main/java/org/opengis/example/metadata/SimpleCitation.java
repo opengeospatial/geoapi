@@ -16,7 +16,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.metadata.citation.Series;
 import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
@@ -205,7 +205,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * for the resource. The default implementation returns an empty set.
      */
     @Override
-    public Set<Responsibility> getCitedResponsibleParties() {
+    public Set<ResponsibleParty> getCitedResponsibleParties() {
         return emptySet();
     }
 
@@ -229,11 +229,11 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
 
     /**
      * Other information required to complete the citation that is not recorded elsewhere.
-     * The default implementation returns an empty set.
+     * The default implementation returns {@code null}.
      */
     @Override
-    public Set<InternationalString> getOtherCitationDetails() {
-        return emptySet();
+    public InternationalString getOtherCitationDetails() {
+        return null;
     }
 
     /**

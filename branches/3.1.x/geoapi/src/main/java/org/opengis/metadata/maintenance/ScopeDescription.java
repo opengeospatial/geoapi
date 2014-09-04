@@ -35,6 +35,8 @@ import java.util.Set;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.feature.type.AttributeType;
+import org.opengis.feature.type.FeatureType;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -56,16 +58,26 @@ public interface ScopeDescription {
     /**
      * Attributes to which the information applies.
      *
+     * <div class="api-change">as of ISO 19115:2014,
+     * the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Attributes to which the information applies.
      *
      * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributes();
+    Set<? extends AttributeType> getAttributes();
 
     /**
      * Features to which the information applies.
+     *
+     * <div class="api-change">as of ISO 19115:2014,
+     * the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
      *
      * @return Features to which the information applies.
      *
@@ -73,10 +85,15 @@ public interface ScopeDescription {
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatures();
+    Set<? extends FeatureType> getFeatures();
 
     /**
      * Feature instances to which the information applies.
+     *
+     * <div class="api-change">as of ISO 19115:2014,
+     * the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
      *
      * @return Feature instances to which the information applies.
      *
@@ -84,10 +101,15 @@ public interface ScopeDescription {
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatureInstances();
+    Set<? extends FeatureType> getFeatureInstances();
 
     /**
      * Attribute instances to which the information applies.
+     *
+     * <div class="api-change">as of ISO 19115:2014,
+     * the type become {@link Set<? extends CharSequence>}.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
      *
      * @return Attribute instances to which the information applies.
      *
@@ -97,7 +119,7 @@ public interface ScopeDescription {
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributeInstances();
+    Set<? extends AttributeType> getAttributeInstances();
 
     /**
      * Dataset to which the information applies.

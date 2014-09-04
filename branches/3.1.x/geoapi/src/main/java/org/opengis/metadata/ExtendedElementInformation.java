@@ -34,6 +34,7 @@ package org.opengis.metadata;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -208,8 +209,13 @@ public interface ExtendedElementInformation {
     /**
      * Name of the person or organization creating the extended element.
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Name of the person or organization creating the extended element.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Responsibility> getSources();
+    Collection<? extends ResponsibleParty> getSources();
 }

@@ -36,6 +36,7 @@ import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -90,10 +91,15 @@ public interface Usage {
      * Identification of and means of communicating with person(s) and organization(s) using the resource(s).
      * Returns an empty collection if none.
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Means of communicating with person(s) and organization(s) using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends Responsibility> getUserContactInfo();
+    Collection<? extends ResponsibleParty> getUserContactInfo();
 
     /**
      * Responses to the user-determined limitations.
