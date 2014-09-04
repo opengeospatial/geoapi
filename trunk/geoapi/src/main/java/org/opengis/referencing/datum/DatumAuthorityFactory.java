@@ -75,7 +75,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain EngineeringDatum engineering datum} from a code.
+     * Returns a engineering datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -88,7 +88,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain ImageDatum image datum} from a code.
+     * Returns a image datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -101,7 +101,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain VerticalDatum vertical datum} from a code.
+     * Returns a vertical datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -115,7 +115,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain TemporalDatum temporal datum} from a code.
+     * Returns a temporal datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -128,7 +128,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
+     * Returns a geodetic datum from a code.
      *
      * @param  code Value allocated by authority.
      * @return The datum for the given code.
@@ -145,7 +145,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
+     * Returns an ellipsoid from a code.
      *
      * @param  code Value allocated by authority.
      * @return The ellipsoid for the given code.
@@ -159,7 +159,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain PrimeMeridian prime meridian} from a code.
+     * Returns a prime meridian from a code.
      *
      * @param  code Value allocated by authority.
      * @return The prime meridian for the given code.
