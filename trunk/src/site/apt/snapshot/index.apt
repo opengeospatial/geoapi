@@ -1,8 +1,8 @@
 GeoAPI SNAPSHOT
 
-  The 4.0-SNAPSHOT is the unreleased version of GeoAPI currently in development.
+  The 3.1-SNAPSHOT and 4.0-SNAPSHOT are the unreleased versions of GeoAPI currently in development.
   Developers working on projects who need long term stability should use the released
-  {{{../3.0/index.html}3.0.0}} version of the API rather than the 4.0-SNAPSHOT, formalized with the
+  {{{../3.0/index.html}3.0.0}} version of the API rather than the snapshots, formalized with the
   {{{http://www.opengeospatial.org/standards/geoapi}OGC 09-083}} specification document.
   The 3.1-SNAPSHOT version contains the same interfaces than 4.0-SNAPSHOT without the incompatible changes.
 
