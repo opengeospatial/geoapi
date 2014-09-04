@@ -9,9 +9,9 @@ Steps for creating a GeoAPI milestone in a Unix environment
 
 ---------------------------------------------------------------------------------------------
 export CLASSPATH=\
-$PWD/geoapi/target/geoapi-3.1-SNAPSHOT.jar:\
-$PWD/geoapi-pending/target/geoapi-pending-3.1-SNAPSHOT.jar:\
-$PWD/tools/target/tools-3.1-SNAPSHOT.jar
+$PWD/geoapi/target/geoapi-4.0-SNAPSHOT.jar:\
+$PWD/geoapi-pending/target/geoapi-pending-4.0-SNAPSHOT.jar:\
+$PWD/tools/target/tools-4.0-SNAPSHOT.jar
 cd geoapi/src/main/java
 find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.apt.IndexGenerator
 cd -
@@ -46,7 +46,7 @@ svn copy https://svn.code.sf.net/p/geoapi/code/trunk \
 cd ../tags
 svn checkout https://svn.code.sf.net/p/geoapi/code/tags/$GEOAPI_VERSION
 cd $GEOAPI_VERSION
-find . -name "pom.xml" -print | xargs sed --in-place='' "s/3.1-SNAPSHOT/$GEOAPI_VERSION/g"
+find . -name "pom.xml" -print | xargs sed --in-place='' "s/4.0-SNAPSHOT/$GEOAPI_VERSION/g"
 svn diff
 ---------------------------------------------------------------------------------------------
 
@@ -62,16 +62,13 @@ mvn clean deploy
 
 * Create the javadoc and the ZIP files
 
-  Generate javadoc. This require a little bit of manual cleaning after javadoc generation.
-  Note: <<<graphviz>>> and <<<optipng>>> must be installed and reachable on the path.
-  Note also that the content of <<<geoapi/src/main/javadoc/>>> is not copied automatically
+  Generate javadoc.
+  Note that the content of <<<geoapi/src/main/javadoc/>>> is not copied automatically
   (Maven documentation said that it should be copied, but it doesn't seem to be the case as
   of Maven 2.1.0), so we need to copy ourself.
 
 ---------------------------------------------------------------------------------------------
 mvn javadoc:javadoc
-find . -name "*.dot" -delete
-find . -name "*.png" -print | xargs optipng
 cp geoapi/src/main/javadoc/content.html  geoapi/target/site/apidocs/
 cp geoapi/src/main/javadoc/UML-java.html geoapi/target/site/apidocs/
 ---------------------------------------------------------------------------------------------
