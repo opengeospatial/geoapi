@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)

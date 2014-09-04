@@ -1,4 +1,4 @@
- /*
+/*
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *

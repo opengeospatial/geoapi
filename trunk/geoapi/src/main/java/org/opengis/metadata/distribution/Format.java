@@ -124,6 +124,8 @@ public interface Format {
      * Media used by the format.
      *
      * @return Media used by the format.
+     *
+     * @since 3.1
      */
     @UML(identifier="medium", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Medium> getMedia();
