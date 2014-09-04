@@ -7,7 +7,7 @@ Changes in API
   The changes between different versions of GeoAPI are collected here
   (most recent changes are first):
 
-    * Changes between GeoAPI 3.0 and 3.1-SNAPSHOT (current development)
+    * Changes between GeoAPI 3.0 and 3.1-SNAPSHOT
 
        * {{{./snapshot/changes.html}API changes only}}
 

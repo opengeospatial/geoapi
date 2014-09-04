@@ -66,7 +66,7 @@
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 package org.opengis.metadata.extent;

@@ -60,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
  */
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
-     * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
+     * Returns an arbitrary coordinate system from a code.
      *
      * <p>If the coordinate system type is known at compile time, then it is recommended
      * to invoke the most precise method instead of this one. For example it is usually better
@@ -77,7 +77,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a Cartesian coordinate system from a code.
+     * Returns a Cartesian coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -88,7 +88,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a polar coordinate system from a code.
+     * Returns a polar coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -99,7 +99,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a cylindrical coordinate system from a code.
+     * Returns a cylindrical coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -110,7 +110,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a spherical coordinate system from a code.
+     * Returns a spherical coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -121,7 +121,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates an ellipsoidal coordinate system from a code.
+     * Returns an ellipsoidal coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -132,7 +132,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a vertical coordinate system from a code.
+     * Returns a vertical coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -143,7 +143,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Creates a temporal coordinate system from a code.
+     * Returns a temporal coordinate system from a code.
      *
      * @param  code Value allocated by authority.
      * @return The coordinate system for the given code.
@@ -154,7 +154,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
+     * Returns a coordinate system axis from a code.
      *
      * @param  code Value allocated by authority.
      * @return The axis for the given code.
@@ -165,7 +165,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
-     * Returns an {@linkplain Unit unit} from a code.
+     * Returns an unit of measurement from a code.
      *
      * @param  code Value allocated by authority.
      * @return The unit for the given code.
