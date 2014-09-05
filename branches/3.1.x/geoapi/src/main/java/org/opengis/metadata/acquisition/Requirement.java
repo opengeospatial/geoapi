@@ -71,6 +71,11 @@ public interface Requirement {
     /**
      * Origin of requirement.
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Origin of requirement.
      */
     @UML(identifier="requestor", obligation=MANDATORY, specification=ISO_19115_2)
@@ -78,6 +83,11 @@ public interface Requirement {
 
     /**
      * Person(s), or body(ies), to receive results of requirement.
+     *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
      *
      * @return Person(s), or body(ies), to receive results.
      */
