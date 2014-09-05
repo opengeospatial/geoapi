@@ -64,7 +64,7 @@
  *
  * <p>The {@link org.opengis.metadata.lineage.Lineage#getStatement() Lineage.statement} element is mandatory
  * if <code>{@linkplain org.opengis.metadata.quality.DataQuality#getScope() DataQuality.scope}.{@linkplain
- * org.opengis.metadata.quality.Scope#getLevel() level}</code> has a value of
+ * org.opengis.metadata.maintenance.Scope#getLevel() level}</code> has a value of
  * {@link org.opengis.metadata.maintenance.ScopeCode#DATASET} or
  * {@link org.opengis.metadata.maintenance.ScopeCode#SERIES} and the
  * {@linkplain org.opengis.metadata.lineage.Lineage#getSources() source} and

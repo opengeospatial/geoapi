@@ -68,16 +68,14 @@
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy}
  *  │   │   └─ {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
  *  │   └─ {@linkplain org.opengis.metadata.quality.Usability}
- *  ├─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
- *  │   ├─ {@linkplain org.opengis.metadata.quality.ConformanceResult}
- *  │   ├─ {@linkplain org.opengis.metadata.quality.QuantitativeResult}
- *  │   └─ {@linkplain org.opengis.metadata.quality.CoverageResult}
- *  └─ {@linkplain org.opengis.metadata.quality.Scope}
+ *  └─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
+ *      ├─ {@linkplain org.opengis.metadata.quality.ConformanceResult}
+ *      ├─ {@linkplain org.opengis.metadata.quality.QuantitativeResult}
+ *      └─ {@linkplain org.opengis.metadata.quality.CoverageResult}
  * {@linkplain org.opengis.util.CodeList}
  *  └─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType}</pre>
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.quality.DataQuality}
- *  ├─ {@linkplain org.opengis.metadata.quality.Scope}
  *  └─ {@linkplain org.opengis.metadata.quality.Element} «abstract»
  *      ├─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType} «code list»
  *      └─ {@linkplain org.opengis.metadata.quality.Result} «abstract»

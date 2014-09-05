@@ -45,6 +45,7 @@
  * </tr><tr><td width="50%" nowrap>
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
+ *  ├─ {@linkplain org.opengis.metadata.maintenance.Scope}
  *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency}
@@ -52,8 +53,9 @@
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
  *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency} «code list»
- *  ├─ {@linkplain org.opengis.metadata.maintenance.ScopeCode} «code list»
- *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}</pre>
+ *  └─ {@linkplain org.opengis.metadata.maintenance.Scope}
+ *      ├─ {@linkplain org.opengis.metadata.maintenance.ScopeCode} «code list»
+ *      └─ {@linkplain org.opengis.metadata.maintenance.ScopeDescription}</pre>
  * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
