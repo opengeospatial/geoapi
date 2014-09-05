@@ -36,7 +36,7 @@ import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
-import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.maintenance.Scope;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

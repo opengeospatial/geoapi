@@ -29,57 +29,55 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.quality;
+package org.opengis.metadata.maintenance;
 
 import java.util.Collection;
-import org.opengis.metadata.lineage.Lineage;
-import org.opengis.metadata.maintenance.Scope;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
+import org.opengis.metadata.extent.Extent;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
- * Quality information for the data specified by a data quality scope.
- * At least one of the {@linkplain #getReports() report} and {@linkplain #getLineage() lineage}
- * shall be provided.
+ * The target resource and physical extent for which information is reported.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="DQ_DataQuality", specification=ISO_19115)
-public interface DataQuality {
+@Classifier(Stereotype.DATATYPE)
+@UML(identifier="MD_Scope", specification=ISO_19115)
+public interface Scope {
     /**
-     * The specific data to which the data quality information applies.
+     * Hierarchical level of the data specified by the scope.
      *
-     * @return The specific data to which the data quality information applies.
+     * @return Hierarchical level of the data.
      */
-    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115)
-    Scope getScope();
+    @UML(identifier="level", obligation=MANDATORY, specification=ISO_19115)
+    ScopeCode getLevel();
 
     /**
-     * Quantitative quality information for the data specified by the scope.
+     * Information about the spatial, vertical and temporal extents of the resource specified by the scope.
      *
-     * @return Quantitative quality information for the data.
+     * @return Information about the extent of the resource.
      *
-     * @condition Mandatory if the {@linkplain #getLineage() lineage} is not provided.
+     * @since 3.1
      */
-    @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends Element> getReports();
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Extent> getExtents();
 
     /**
-     * Non-quantitative quality information about the lineage of the data specified by the scope.
+     * Detailed description about the level of the data specified by the scope.
+     * Shall be defined only if the {@linkplain #getLevel() level} is not equal
+     * to {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      *
-     * @return Non-quantitative quality information about the lineage of the data specified,
-     *         or {@code null}.
+     * @return Detailed description about the level of the data.
      *
-     * @condition Mandatory if the {@linkplain #getReports() report} is not provided.
+     * @since 2.1
      */
-    @Profile(level=CORE)
-    @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)
-    Lineage getLineage();
+    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends ScopeDescription> getLevelDescription();
 }

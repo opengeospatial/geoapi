@@ -35,7 +35,6 @@ import java.util.Collection;
 import java.util.Date;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.Responsibility;
-import org.opengis.metadata.quality.Scope;
 import org.opengis.temporal.PeriodDuration;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -100,6 +99,8 @@ public interface MaintenanceInformation {
      * Type of resource and / or extent to which the maintenance information applies.
      *
      * @return type of resource and / or extent to which the maintenance information applies, or {@code null} if none.
+     *
+     * @since 3.1
      */
     @UML(identifier="maintenanceScope", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Scope> getMaintenanceScopes();
