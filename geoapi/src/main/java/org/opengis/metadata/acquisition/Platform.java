@@ -79,6 +79,11 @@ public interface Platform {
     /**
      * Organization responsible for building, launch, or operation of the platform.
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return Organization responsible for building, launch, or operation of the platform.
      */
     @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2)
