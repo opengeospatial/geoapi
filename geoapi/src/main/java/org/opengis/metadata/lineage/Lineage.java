@@ -33,7 +33,7 @@ package org.opengis.metadata.lineage;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.maintenance.Scope;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.annotation.UML;

@@ -52,13 +52,14 @@ import static org.junit.Assert.*;
  * Tests the content of {@code Descriptions.properties} file.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 public final strictfp class DescriptionsTest {
     /**
      * List of metadata interfaces and code lists.
      */
+    @SuppressWarnings("deprecation")
     private static final Class<?>[] METADATA = {
         org.opengis.metadata.ApplicationSchemaInformation.class,
         org.opengis.metadata.Datatype.class,
@@ -162,6 +163,7 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.lineage.Source.class,
         org.opengis.metadata.maintenance.MaintenanceFrequency.class,
         org.opengis.metadata.maintenance.MaintenanceInformation.class,
+        org.opengis.metadata.maintenance.Scope.class,
         org.opengis.metadata.maintenance.ScopeCode.class,
         org.opengis.metadata.maintenance.ScopeDescription.class,
         org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy.class,

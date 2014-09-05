@@ -55,6 +55,12 @@ public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
      *
+     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
+     * {@code DQ_Scope} (from {@link org.opengis.metadata.quality}) is replaced by
+     * {@code MD_Scope} (from {@link org.opengis.metadata.maintenance}).
+     * This change will be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return The specific data to which the data quality information applies.
      */
     @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115)
