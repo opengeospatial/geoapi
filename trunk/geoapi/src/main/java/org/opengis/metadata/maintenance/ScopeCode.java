@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  *
- * @see org.opengis.metadata.quality.Scope
+ * @see Scope
  */
 @UML(identifier="MD_ScopeCode", specification=ISO_19115)
 public final class ScopeCode extends CodeList<ScopeCode> {
