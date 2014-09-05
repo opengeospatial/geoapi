@@ -34,7 +34,7 @@ package org.opengis.metadata.lineage;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.quality.Scope;
+import org.opengis.metadata.maintenance.Scope;
 import org.opengis.metadata.identification.Resolution;
 import org.opengis.metadata.identification.RepresentativeFraction;
 import org.opengis.metadata.citation.Citation;
@@ -114,6 +114,8 @@ public interface Source {
      * Returns an empty collection if none.
      *
      * @return References to metadata for the source.
+     *
+     * @since 3.1
      */
     @UML(identifier="sourceMetadata", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getSourceMetadata();
@@ -125,6 +127,8 @@ public interface Source {
      * @return type and / or extent of the source, or {@code null} if none.
      *
      * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
+     *
+     * @since 3.1
      */
     @UML(identifier="scope", obligation=CONDITIONAL, specification=ISO_19115)
     Scope getScope();

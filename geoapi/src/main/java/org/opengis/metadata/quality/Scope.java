@@ -41,7 +41,7 @@ import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
@@ -50,27 +50,33 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
+ *
+ * @deprecated As of ISO 19115:2014, {@code DQ_Scope} has been replaced by {@code MD_Scope}.
+ *             The later is defined in the {@link org.opengis.metadata.maintenance} package.
  */
+@Deprecated
 @Classifier(Stereotype.DATATYPE)
-@UML(identifier="DQ_Scope", specification=ISO_19115)
-public interface Scope {
+@UML(identifier="DQ_Scope", specification=ISO_19115) // Actually ISO 19115:2003.
+public interface Scope extends org.opengis.metadata.maintenance.Scope {
     /**
      * Hierarchical level of the data specified by the scope.
      *
      * @return Hierarchical level of the data.
      */
+    @Override
     @UML(identifier="level", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getLevel();
 
     /**
-     * Information about the spatial, vertical and temporal extents of the resource specified by the scope.
+     * Information about the spatial, vertical and temporal extent of the data specified by the scope.
      *
-     * @return Information about the extent of the resource.
+     * @return Information about the extent of the data, or {@code null}.
      *
-     * @since 3.1
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getExtents()}.
      */
+    @Deprecated
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtents();
+    Extent getExtent();
 
     /**
      * Detailed description about the level of the data specified by the scope.
@@ -81,16 +87,7 @@ public interface Scope {
      *
      * @since 2.1
      */
+    @Override
     @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends ScopeDescription> getLevelDescription();
-
-    /**
-     * Information about the spatial, vertical and temporal extent of the data specified by the scope.
-     *
-     * @return Information about the extent of the data, or {@code null}.
-     *
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getExtents()}.
-     */
-    @Deprecated
-    Extent getExtent();
 }
