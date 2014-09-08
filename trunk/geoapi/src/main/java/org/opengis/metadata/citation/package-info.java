@@ -34,7 +34,7 @@
  * Type for {@linkplain org.opengis.metadata.citation.Citation citing} a resource and information
  * about the {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party}.
  * The resource can be a dataset, feature, source, publication, <i>etc</i>.
- * The responsible party} contains the identity of person(s), and/or position, and/or organization(s)
+ * The responsible party contains the identity of person(s), and/or position, and/or organization(s)
  * associated with the resource. The {@linkplain org.opengis.metadata.citation.Address address}
  * contains the location of the responsible person or organization.
  *
@@ -51,7 +51,10 @@
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
- *  ├─ {@linkplain org.opengis.metadata.citation.ResponsibleParty}
+ *  ├─ {@linkplain org.opengis.metadata.citation.Responsibility}
+ *  ├─ {@linkplain org.opengis.metadata.citation.Party}
+ *  │   ├─ {@linkplain org.opengis.metadata.citation.Individual}
+ *  │   └─ {@linkplain org.opengis.metadata.citation.Organisation}
  *  ├─ {@linkplain org.opengis.metadata.citation.Contact}
  *  ├─ {@linkplain org.opengis.metadata.citation.Telephone}
  *  ├─ {@linkplain org.opengis.metadata.citation.Address}
@@ -66,12 +69,13 @@
  * <pre> {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
  *  │   └─ {@linkplain org.opengis.metadata.citation.DateType} «code list»
- *  ├─ {@linkplain org.opengis.metadata.citation.ResponsibleParty}
- *  │   ├─ {@linkplain org.opengis.metadata.citation.Contact}
- *  │   │   ├─ {@linkplain org.opengis.metadata.citation.Telephone}
- *  │   │   ├─ {@linkplain org.opengis.metadata.citation.Address}
- *  │   │   └─ {@linkplain org.opengis.metadata.citation.OnlineResource}
- *  │   │       └─ {@linkplain org.opengis.metadata.citation.OnLineFunction} «code list»
+ *  ├─ {@linkplain org.opengis.metadata.citation.Responsibility}
+ *  │   ├─ {@linkplain org.opengis.metadata.citation.Party}
+ *  │   │   └─ {@linkplain org.opengis.metadata.citation.Contact}
+ *  │   │       ├─ {@linkplain org.opengis.metadata.citation.Telephone}
+ *  │   │       ├─ {@linkplain org.opengis.metadata.citation.Address}
+ *  │   │       └─ {@linkplain org.opengis.metadata.citation.OnlineResource}
+ *  │   │           └─ {@linkplain org.opengis.metadata.citation.OnLineFunction} «code list»
  *  │   └─ {@linkplain org.opengis.metadata.citation.Role} «code list»
  *  ├─ {@linkplain org.opengis.metadata.citation.PresentationForm} «code list»
  *  └─ {@linkplain org.opengis.metadata.citation.Series}</pre>
