@@ -52,6 +52,22 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * A {@code TypeName} is similar to the name of a java {@link Class}.
  * By contrast, a {@link MemberName} is similar to the name of a field in a Java class.</p>
  *
+ * <blockquote><font size="-1"><b>Mapping {@code Class} to {@code TypeName}</b><br/>
+ * It is sometime useful to establish a mapping between {@code TypeName} and {@code Class}.
+ * Such mapping is left to implementors, but the following table can be used as examples.
+ * This example uses the element names commonly found in XML files.
+ *
+ * <table class="ogc">
+ *   <caption>Examples of mapping from Java classes to type names</caption>
+ *   <tr><th>Java class</th>             <th>Type name</th></tr>
+ *   <tr><td>{@link String}</td>         <td>"{@code gco:CharacterString}"</td></tr>
+ *   <tr><td>{@link java.util.Date}</td> <td>"{@code gco:DateTime}"</td></tr>
+ *   <tr><td>{@link Double}</td>         <td>"{@code gco:Real}"</td></tr>
+ *   <tr><td>{@link Integer}</td>        <td>"{@code gco:Integer}"</td></tr>
+ *   <tr><td>{@link Boolean}</td>        <td>"{@code gco:Boolean}"</td></tr>
+ * </table>
+ * </font></blockquote>
+ *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -63,8 +79,9 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 public interface TypeName extends LocalName {
     /**
      * Returns the local name of the type as a {@code String}.
-     * Type names typically use a {@code '.'} navigation separator, so that their
-     * {@linkplain #toFullyQualifiedName() fully qualified name} is of the form {@code "[schema].[type]"}.
+     * Type names typically use a {@code '.'} or {@code ':'} navigation separator, so that their
+     * {@linkplain #toFullyQualifiedName() fully qualified name} is of the form {@code "[package].[class]"}
+     * or {@code "[schema]:[type]"}.
      *
      * @return The local name of the type.
      */

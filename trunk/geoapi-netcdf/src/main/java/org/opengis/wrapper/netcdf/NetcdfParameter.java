@@ -23,8 +23,10 @@ import javax.measure.unit.Unit;
 import ucar.unidata.util.Parameter;
 
 import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
+import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.InvalidParameterTypeException;
 import org.opengis.parameter.InvalidParameterValueException;
 
@@ -148,6 +150,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the NetCDF object wrapped by this adapter. Note that it may be different
      * than the NetCDF object given to the constructor if a setter method has been invoked.
+     *
+     * @return NetCDF parameter.
      */
     @Override
     public Parameter delegate() {
@@ -158,6 +162,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Returns the parameter name. This method delegates to {@link Parameter#getName()}.
      * The name returned by this method is the NetCDF name. For the OGC or EPSG names,
      * see {@link #getAlias()}.
+     *
+     * @return The NetCDF parameter name.
      *
      * @see Parameter#getName()
      */
@@ -185,7 +191,25 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     }
 
     /**
+     * Returns {@code null}, since this simple class does not provide parameter description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
+     * Returns {@code this}, since this simple class is used only as input parameter.
+     */
+    @Override
+    public ParameterDirection getDirection() {
+        return ParameterDirection.IN;
+    }
+
+    /**
      * Returns a new value for this descriptor.
+     *
+     * @return A new parameter value.
      */
     @Override
     public NetcdfParameter<T> createValue() {
@@ -578,6 +602,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Compares this parameter with the given object for equality. This method compares
      * the {@linkplain #getAlias() aliases} in addition to the NetCDF parameter object.
+     *
+     * @return {@code true} if this parameter is equals to the given object.
      */
     @Override
     public boolean equals(final Object other) {

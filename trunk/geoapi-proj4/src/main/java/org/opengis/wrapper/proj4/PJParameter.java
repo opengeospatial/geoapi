@@ -20,9 +20,11 @@ import javax.measure.unit.Unit;
 import javax.measure.converter.ConversionException;
 
 import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
+import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.InvalidParameterTypeException;
 import org.opengis.parameter.InvalidParameterValueException;
 
@@ -77,6 +79,22 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
     }
 
     /**
+     * Returns {@code null}, since this simple class does not provide parameter description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
+     * Returns {@code this}, since this simple class is used only as input parameter.
+     */
+    @Override
+    public ParameterDirection getDirection() {
+        return ParameterDirection.IN;
+    }
+
+    /**
      * Returns the minimum number of times that values for this parameter are required.
      * This method returns 1, meaning that a value shall alway be supplied
      * (the {@link #getValue()} method never return {@code null}).
@@ -106,8 +124,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
     }
 
     /**
-     * Returns the {@code null}, since this simple class has no information about units
-     * of measurement.
+     * Returns {@code null}, since this simple class has no information about units of measurement.
      */
     @Override
     public Unit<?> getUnit() {

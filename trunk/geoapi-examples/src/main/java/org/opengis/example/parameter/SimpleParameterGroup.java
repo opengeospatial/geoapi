@@ -13,12 +13,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.lang.reflect.Field;
 
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
@@ -86,10 +88,28 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * {@linkplain ParameterValueGroup value} and {@linkplain ParameterDescriptorGroup descriptor}
      * interfaces, this method returns {@code this}. However more sophisticated libraries are
      * likely to return a different object.
+     *
+     * @return {@code this} descriptor.
      */
     @Override
     public ParameterDescriptorGroup getDescriptor() {
         return this;
+    }
+
+    /**
+     * Returns {@code null}, since this simple class does not provide parameters description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
+     * Returns {@code this}, since this simple class is used only as input parameters.
+     */
+    @Override
+    public ParameterDirection getDirection() {
+        return ParameterDirection.IN;
     }
 
     /**

@@ -33,8 +33,8 @@ package org.opengis.parameter;
 
 
 /**
- * Thrown by {@link ParameterValueGroup} if adding or removing a {@linkplain ParameterValue
- * parameter value} would result in more or less parameters than the expected range.
+ * Thrown if adding or removing a {@linkplain ParameterValue parameter value} in a
+ * {@linkplain ParameterValueGroup group} would result in more or less parameters than the expected range.
  * The minimum and maximum occurrences are defined by the {@link ParameterDescriptorGroup}
  * instance associated with the {@code ParameterValueGroup}.
  *
@@ -45,9 +45,6 @@ package org.opengis.parameter;
  * {@note This exception is of kind <code>IllegalStateException</code> instead than
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
  *        It is rather a consequence of an <code>ParameterValueGroup</code> being "full".}
- *
- * @departure extension
- *   This exception is not part of the OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

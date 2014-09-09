@@ -200,8 +200,6 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.service.DistributedComputingPlatform.class,
         org.opengis.metadata.service.OperationChainMetadata.class,
         org.opengis.metadata.service.OperationMetadata.class,
-        org.opengis.metadata.service.Parameter.class,
-        org.opengis.metadata.service.ParameterDirection.class,
         org.opengis.metadata.service.ServiceIdentification.class,
         org.opengis.metadata.spatial.CellGeometry.class,
         org.opengis.metadata.spatial.Dimension.class,
@@ -219,6 +217,7 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.spatial.SpatialRepresentationType.class,
         org.opengis.metadata.spatial.TopologyLevel.class,
         org.opengis.metadata.spatial.VectorSpatialRepresentation.class,
+        org.opengis.parameter.ParameterDirection.class,
         org.opengis.referencing.ReferenceSystemType.class
     };
 
