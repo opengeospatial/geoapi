@@ -31,10 +31,14 @@
  */
 package org.opengis.parameter;
 
-import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.annotation.Specification;
+import org.opengis.util.MemberName; // For javadoc
+import org.opengis.util.InternationalString;
+import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ReferenceIdentifier;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -42,6 +46,56 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Abstract definition of a parameter or group of parameters used by an operation method.
+ * This interface combines information provided by both Service Metadata (ISO 19115),
+ * Referencing by Coordinates (ISO 19111) and Web Processing Services (WPS) standards.
+ * The main information are:
+ *
+ * <table class="ogc">
+ *   <caption>Main parameter properties</caption>
+ *   <tr>
+ *     <th>ISO 19111</th>
+ *     <th>ISO 19115</th>
+ *     <th>WPS</th>
+ *     <th>Getter method</th>
+ *     <th>Remarks</th>
+ *   </tr>
+ *   <tr>
+ *      <td><b>{@code name}</b></td>
+ *      <td>{@code name}</td>
+ *      <td>{@code Identifier}</td>
+ *      <td>{@link #getName()}</td>
+ *      <td>See method javadoc for converting {@code MemberName}.</td>
+ *   </tr>
+ *   <!-- "Title" (WPS) equivalent to "designation" (Feature), but not yet provided. -->
+ *   <tr>
+ *      <td></td>
+ *      <td><b>{@code description}</b></td>
+ *      <td>{@code Abstract}</td>
+ *      <td>{@link #getDescription()}</td>
+ *      <td>Also known as “definition”.</td>
+ *   </tr>
+ *   <tr>
+ *      <td></td>
+ *      <td><b>{@code direction}</b></td>
+ *      <td></td>
+ *      <td>{@link #getDirection()}</td>
+ *      <td>Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
+ *   </tr>
+ *   <tr>
+ *      <td><b>{@code minimumOccurs}</b></td>
+ *      <td>{@code optionality}</td>
+ *      <td>{@code MinOccurs}</td>
+ *      <td>{@link #getMinimumOccurs()}</td>
+ *      <td>{@code optionality   = (minimumOccurs > 0)}</td>
+ *   </tr>
+ *   <tr>
+ *      <td><b>{@code maximumOccurs}</b></td>
+ *      <td>{@code repeatability}</td>
+ *      <td>{@code MinOccurs}</td>
+ *      <td>{@link #getMaximumOccurs()}</td>
+ *      <td>{@code repeatability = (maximumOccurs > 1)}</td>
+ *   </tr>
+ * </table>
  *
  * @departure rename
  *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
@@ -58,6 +112,102 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
+     * The name, as used by the service or operation for this parameter.
+     *
+     * <blockquote><font size="-1"><b>Note on Service Metadata name</b><br>
+     * The metadata standard ({@linkplain Specification#ISO_19111 ISO 19115}) defines the {@code name}
+     * property as of type {@link MemberName} instead than {@code Identifier}. The details of mapping
+     * the former to the later are left to implementors, but the following can be used as guidelines:
+     *
+     * <table class="ogc">
+     *   <caption>Suggested mapping from {@code MemberName} to {@code Identifier}</caption>
+     *   <tr>
+     *     <th>Member name property</th>
+     *     <th>Equivalence</th>
+     *     <th>Remarks</th>
+     *   </tr>
+     *   <tr>
+     *     <td><code>{@linkplain MemberName#scope()}.name().toString()</code></td>
+     *     <td>{@link ReferenceIdentifier#getCodeSpace()}</td>
+     *     <td></td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@link MemberName#toString()}</td>
+     *     <td>{@link ReferenceIdentifier#getCode()}</td>
+     *     <td></td>
+     *   </tr>
+     *   <tr>
+     *     <td>{@link MemberName#getAttributeType()}</td>
+     *     <td>{@link ParameterDescriptor#getValueClass()}</td>
+     *     <td>See {@link org.opengis.util.TypeName} for a suggested mapping to {@link java.lang.Class}.</td>
+     *   </tr>
+     * </table>
+     *
+     * Some implementations may allow the {@code ReferenceIdentifier} to be casted to {@link MemberType}.
+     * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
+     * </font></blockquote>
+     *
+     * @return The name, as used by the service or operation for this parameter.
+     */
+    @Override
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
+    ReferenceIdentifier getName();
+
+    /**
+     * Indication if the parameter is an input to the service, an output or both.
+     * This information applies mostly to <cite>service metadata</cite>.
+     *
+     * @return Indication if the parameter is an input to the service, an output or both,
+     *         or {@code null} if unspecified.
+     */
+    @UML(identifier="direction", obligation=OPTIONAL, specification=ISO_19115)
+    ParameterDirection getDirection();
+
+    /**
+     * A narrative explanation of the role of the parameter.
+     *
+     * @return A narrative explanation of the role of the parameter, or {@code null} if none.
+     *
+     * @since 3.1
+     *
+     * @see #getName()
+     * @see #getRemarks()
+     */
+    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    InternationalString getDescription();
+
+    /**
+     * The minimum number of times that values for this parameter group or parameter are required.
+     * The default value is 1. A value of 0 means an optional parameter.
+     *
+     * @return The minimum occurrence.
+     *
+     * @see #getMaximumOccurs()
+     */
+    @UML(identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
+    int getMinimumOccurs();
+
+    /**
+     * The maximum number of times that values for this parameter group or parameter can be included.
+     * The default value is 1. A value grater than 1 means a repeatable parameter.
+     *
+     * <p>If this parameter is an instance of {@link ParameterDescriptor} used for the description of
+     * {@link org.opengis.referencing.operation.OperationMethod} parameters, then the value is always 1.
+     * In other contexts (e.g. parameter group or service metadata) it may vary.
+     *
+     * @departure generalization
+     *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
+     *   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
+     *   with the <code>minimumOccurs</code> method.
+     *
+     * @return The maximum occurrence, or {@link Integer#MAX_VALUE} if there is no limit.
+     *
+     * @see #getMinimumOccurs()
+     */
+    @UML(identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
+    int getMaximumOccurs();
+
+    /**
      * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue default value(s)}.
      * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
@@ -70,34 +220,4 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   factory method.
      */
     GeneralParameterValue createValue();
-
-    /**
-     * The minimum number of times that values for this parameter group or
-     * parameter are required. The default value is one. A value of 0 means
-     * an optional parameter.
-     *
-     * @return The minimum occurrence.
-     *
-     * @see #getMaximumOccurs()
-     */
-    @UML(identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
-    int getMinimumOccurs();
-
-    /**
-     * The maximum number of times that values for this parameter group or
-     * parameter can be included. For a {@linkplain ParameterDescriptor single parameter},
-     * the value is always 1. For a {@linkplain ParameterDescriptorGroup parameter group},
-     * it may vary. The default value is one.
-     *
-     * @departure generalization
-     *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
-     *   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
-     *   with the <code>minimumOccurs</code> method.
-     *
-     * @return The maximum occurrence.
-     *
-     * @see #getMinimumOccurs()
-     */
-    @UML(identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
-    int getMaximumOccurs();
 }

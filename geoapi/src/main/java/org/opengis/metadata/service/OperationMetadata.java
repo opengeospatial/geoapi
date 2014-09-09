@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
+import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.metadata.citation.OnlineResource;
 
 import static org.opengis.annotation.Obligation.*;
@@ -96,10 +97,38 @@ public interface OperationMetadata {
      * The parameters that are required for this interface.
      * Returns an empty collection if none.
      *
+     * <h3>Unified parameter API</h3>
+     * In GeoAPI, the {@code SV_Parameter} type defined by ISO 19115 is replaced by {@code ParameterDescriptor}
+     * in order to provide a single parameter API (see {@link org.opengis.parameter} for more information).
+     * The mapping from ISO 19115 to GeoAPI is defined as bellow:
+     *
+     * <table class="ogc">
+     *   <caption>Service metadata properties mapped to GeoAPI</caption>
+     *   <tr><th>Metadata property</th>          <th>GeoAPI equivalence</th></tr>
+     *   <tr><td>{@code name}</td>               <td>{@link ParameterDescriptor#getName()}</td></tr>
+     *   <tr><td>{@code name.attributeType}</td> <td>{@link ParameterDescriptor#getValueClass()}</td></tr>
+     *   <tr><td>{@code direction}</td>          <td>{@link ParameterDescriptor#getDirection()}</td></tr>
+     *   <tr><td>{@code description}</td>        <td>{@link ParameterDescriptor#getDescription()}</td></tr>
+     *   <tr><td>{@code optionality}</td>        <td><code>{@linkplain ParameterDescriptor#getMinimumOccurs()} &gt; 0</code></td></tr>
+     *   <tr><td>{@code repeatability}</td>      <td><code>{@linkplain ParameterDescriptor#getMaximumOccurs()} &gt; 1</code></td></tr>
+     * </table>
+     *
+     * The equivalences are straightforward except for the {@code name} property, which is mapped to
+     * an {@link org.opengis.metadata.Identifier} instead than {@link org.opengis.util.MemberName}.
+     * The {@link ParameterDescriptor#getName()} javadoc gives more information on the mapping of names.
+     *
+     * @departure harmonization
+     *   Usage of the ISO 19115 <code>SV_Parameter</code> type has been replaced by usage of the ISO 19111
+     *   <code>CC_OperationParameter</code> type, completed with new <code>SV_Parameter</code> properties,
+     *   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
+     *   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.
+     *
      * @return The parameters that are required for this interface, or an empty collection if none.
+     *
+     * @see org.opengis.parameter.GeneralParameterDescriptor
      */
     @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Parameter> getParameters();
+    Collection<? extends ParameterDescriptor<?>> getParameters();
 
     /**
      * List of operation that must be completed immediately before current operation is invoked.

@@ -51,9 +51,6 @@ package org.opengis.parameter;
  *   <li>{@link ParameterValue#valueFile()}</li>
  * </ul>
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
