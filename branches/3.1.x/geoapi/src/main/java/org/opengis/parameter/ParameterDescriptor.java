@@ -41,8 +41,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The definition of a parameter used by an operation method. Most parameter values are
- * numeric, but other types of parameter values are possible.
+ * The definition of a parameter used by an operation method.
+ * Most parameter values are numeric, but other types of parameter values are possible.
  *
  * <p>A parameter descriptor contains the following properties:</p>
  * <ul>
@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @see ParameterValue
@@ -73,19 +73,6 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
-    /**
-     * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the
-     * {@linkplain #getDefaultValue() default value}. While not a requirement, the
-     * {@linkplain ParameterValue#getDescriptor() parameter value descriptor}
-     * for the created parameter value will typically be {@code this} descriptor instance.
-     *
-     * @departure extension
-     *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
-     *   factory method.
-     */
-    @Override
-    ParameterValue<T> createValue();
-
     /**
      * Returns the class that describe the type of the parameter.
      *
@@ -153,4 +140,17 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *   This method is not part of ISO specification. It is provided as a complement of information.
      */
     Unit<?> getUnit();
+
+    /**
+     * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the
+     * {@linkplain #getDefaultValue() default value}. While not a requirement, the
+     * {@linkplain ParameterValue#getDescriptor() parameter value descriptor}
+     * for the created parameter value will typically be {@code this} descriptor instance.
+     *
+     * @departure extension
+     *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
+     *   factory method.
+     */
+    @Override
+    ParameterValue<T> createValue();
 }

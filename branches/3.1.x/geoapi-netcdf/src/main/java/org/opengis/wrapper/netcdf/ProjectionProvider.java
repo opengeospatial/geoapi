@@ -26,6 +26,7 @@ import ucar.unidata.geoloc.ProjectionImpl;
 import ucar.unidata.geoloc.projection.*;
 
 import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.Formula;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.parameter.ParameterValueGroup;
@@ -33,6 +34,7 @@ import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.ParameterNotFoundException;
+import org.opengis.parameter.ParameterDirection;
 
 
 /**
@@ -142,6 +144,14 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
+     * Returns {@code null}, since this simple class does not provide parameters description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
      * Not yet implemented.
      */
     @Override
@@ -193,6 +203,14 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     @Override
     public ParameterDescriptorGroup getParameters() {
         return this;
+    }
+
+    /**
+     * Returns {@code this}, since this simple class is used only for input parameters.
+     */
+    @Override
+    public ParameterDirection getDirection() {
+        return ParameterDirection.IN;
     }
 
     /**

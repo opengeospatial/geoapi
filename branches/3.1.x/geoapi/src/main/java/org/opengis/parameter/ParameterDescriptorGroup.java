@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @see ParameterValueGroup
@@ -56,6 +56,28 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CC_OperationParameterGroup", specification=ISO_19111)
 public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
+    /**
+     * Returns the parameters in this group.
+     *
+     * @return The parameter descriptors in this group.
+     */
+    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
+    List<GeneralParameterDescriptor> descriptors();
+
+    /**
+     * Returns the parameter descriptor in this group for the specified
+     * {@linkplain Identifier#getCode() identifier code}.
+     *
+     * @param  name The case insensitive identifier code of the parameter to search for.
+     * @return The parameter for the given identifier code.
+     * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
+     *
+     * @departure easeOfUse
+     *   This method is not part of the ISO specification.
+     *   It has been added in an attempt to make this interface easier to use.
+     */
+    GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
+
     /**
      * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
      * initialized with the {@linkplain ParameterDescriptor#getDefaultValue() default values}.
@@ -82,26 +104,4 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      */
     @Override
     ParameterValueGroup createValue();
-
-    /**
-     * Returns the parameters in this group.
-     *
-     * @return The parameter descriptors in this group.
-     */
-    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
-    List<GeneralParameterDescriptor> descriptors();
-
-    /**
-     * Returns the parameter descriptor in this group for the specified
-     * {@linkplain Identifier#getCode() identifier code}.
-     *
-     * @param  name The case insensitive identifier code of the parameter to search for.
-     * @return The parameter for the given identifier code.
-     * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
-     *
-     * @departure easeOfUse
-     *   This method is not part of the ISO specification.
-     *   It has been added in an attempt to make this interface easier to use.
-     */
-    GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
 }

@@ -15,10 +15,12 @@ import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.InvalidParameterTypeException;
 import org.opengis.parameter.ParameterDescriptor;
+import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.ParameterValue;
 
 import org.opengis.example.referencing.SimpleIdentifiedObject;
@@ -171,6 +173,22 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptor<Double> getDescriptor() {
         return this;
+    }
+
+    /**
+     * Returns {@code null}, since this simple class does not provide parameter description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
+     * Returns {@code this}, since this simple class is used only as input parameter.
+     */
+    @Override
+    public ParameterDirection getDirection() {
+        return ParameterDirection.IN;
     }
 
     /**
@@ -544,7 +562,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         final double number;
         try {
             if (!LENIENT) {
-                number = ((Double) value).doubleValue();
+                number = (Double) value;
             } else if (value instanceof CharSequence) {
                 number = Double.parseDouble(value.toString());
             } else {
@@ -570,6 +588,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * the {@link #clone()} method. However in more sophisticated libraries, the
      * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
      * methods are likely to be defined in different objects.</font></blockquote>
+     *
+     * @return A new parameter with the same authority, code and type than this parameter.
      *
      * @see #clone()
      */
