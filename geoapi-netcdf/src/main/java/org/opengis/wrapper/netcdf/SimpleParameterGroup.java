@@ -20,10 +20,12 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
@@ -106,6 +108,22 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     @Override
     public ParameterDescriptorGroup getDescriptor() {
         return this;
+    }
+
+    /**
+     * Returns {@code null}, since this simple class does not provide parameters description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
+     * Returns {@code this}, since this simple class is used only as input parameters.
+     */
+    @Override
+    public ParameterDirection getDirection() {
+        return ParameterDirection.IN;
     }
 
     /**

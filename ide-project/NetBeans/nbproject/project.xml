@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>GeoAPI</name>
+            <name>GeoAPI 3.1</name>
             <source-roots>
                 <root id="src.core.dir" name="GeoAPI"/>
                 <root id="src.pending.dir" name="Pending"/>

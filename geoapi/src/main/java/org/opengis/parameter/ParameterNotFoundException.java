@@ -33,7 +33,8 @@ package org.opengis.parameter;
 
 
 /**
- * Thrown by {@link ParameterValueGroup} and {@link ParameterDescriptorGroup}
+ * Thrown by parameter groups
+ * ({@linkplain ParameterValueGroup value} and {@linkplain ParameterDescriptorGroup descriptor})
  * when a parameter is requested but not found in that group.
  * This exception is typically thrown by the following methods:
  *
@@ -42,9 +43,6 @@ package org.opengis.parameter;
  *   <li>{@link ParameterValueGroup#parameter(String)}</li>
  *   <li>{@link ParameterValueGroup#groups(String)}</li>
  * </ul>
- *
- * @departure extension
- *   This exception is not part of OGC specification.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

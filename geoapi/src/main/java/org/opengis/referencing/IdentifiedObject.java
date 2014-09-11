@@ -130,9 +130,9 @@ public interface IdentifiedObject {
     ReferenceIdentifier getName();
 
     /**
-     * An alternative name by which this object is identified.
+     * Alternative names by which this object is identified.
      *
-     * @return Alternative name and abbreviation, or an empty collection if there is none.
+     * @return Alternative names and abbreviations, or an empty collection if there is none.
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     Collection<GenericName> getAlias();

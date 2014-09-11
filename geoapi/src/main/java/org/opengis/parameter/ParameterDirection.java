@@ -29,66 +29,67 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-
-package org.opengis.metadata.service;
+package org.opengis.parameter;
 
 import org.opengis.annotation.UML;
-import org.opengis.util.MemberName;
-import org.opengis.util.InternationalString;
+import org.opengis.util.Enumerated;
 
-import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Parameter information.
+ * Class of information to which the referencing entity applies.
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
- *
- * @todo Overlaps {@link org.opengis.parameter.ParameterDescriptor}.
  */
-@UML(identifier="SV_Parameter", specification=ISO_19115)
-public interface Parameter {
+@UML(identifier="SV_ParameterDirection", specification=ISO_19115)
+public enum ParameterDirection implements Enumerated {
     /**
-     * The name, as used by the service for this parameter.
-     *
-     * @return The name, as used by the service for this parameter.
+     * The parameter is an input parameter to the service instance.
      */
-    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
-    MemberName getName();
+    @UML(identifier="in", obligation=CONDITIONAL, specification=ISO_19115)
+    IN("in"),
 
     /**
-     * Indication if the parameter is an input to the service, an output or both.
-     *
-     * @return Indication if the parameter is an input to the service, an output or both,
-     *         or {@code null} if unspecified.
+     * The parameter is an output parameter to the service instance.
      */
-    @UML(identifier="direction", obligation=OPTIONAL, specification=ISO_19115)
-    ParameterDirection getDirection();
+    @UML(identifier="out", obligation=CONDITIONAL, specification=ISO_19115)
+    OUT("out"),
 
     /**
-     * A narrative explanation of the role of the parameter.
-     *
-     * @return A narrative explanation of the role of the parameter, or {@code null} if none.
+     * The parameter is both an input and output parameter to the service instance.
      */
-    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    @UML(identifier="in/out", obligation=CONDITIONAL, specification=ISO_19115)
+    IN_OUT("in/out");
 
     /**
-     * Indication if the parameter is required.
-     *
-     * @return Indication if the parameter is required.
+     * The UML identifier.
      */
-    @UML(identifier="optionality", obligation=MANDATORY, specification=ISO_19115)
-    Boolean getOptionality();
+    private final String identifier;
 
     /**
-     * Indication if more than one value of the parameter may be provided.
-     *
-     * @return indication if more than one value of the parameter may be provided.
+     * Creates a new constant with the given UML identifier.
      */
-    @UML(identifier="repeatability", obligation=MANDATORY, specification=ISO_19115)
-    Boolean getRepeatability();
+    private ParameterDirection(final String identifier) {
+        this.identifier = identifier;
+    }
+
+    /**
+     * Returns the UML identifier for this enumeration constant.
+     */
+    @Override
+    public String identifier() {
+        return identifier;
+    }
+
+    /**
+     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
+     */
+    @Override
+    public String[] names() {
+        return new String[] {name(), identifier};
+    }
 }
