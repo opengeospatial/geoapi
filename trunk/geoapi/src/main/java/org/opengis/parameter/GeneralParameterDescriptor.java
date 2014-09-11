@@ -91,7 +91,7 @@ import static org.opengis.annotation.Specification.*;
  *   <tr>
  *      <td><b>{@code maximumOccurs}</b></td>
  *      <td>{@code repeatability}</td>
- *      <td>{@code MinOccurs}</td>
+ *      <td>{@code MaxOccurs}</td>
  *      <td>{@link #getMaximumOccurs()}</td>
  *      <td>{@code repeatability = (maximumOccurs > 1)}</td>
  *   </tr>
