@@ -81,6 +81,29 @@ li > ol {
   margin-bottom: 6pt;
 }
 
+/*
+ * The warning box for upcomming API changes. The warning icon is 64 pixels height.
+ * Since we have 30 pixels in top and bottom padding, There is 34 remaining pixels
+ * to set as the minimal height.
+ */
+div.warning {
+  border-width: 2pt;
+  border-style: solid;
+  border-color: darkred;
+  background:   antiquewhite;
+  margin:       12pt 30pt;
+  padding:      15px;
+  min-height:   34px;
+}
+
+div.warning:before {
+  position: relative;
+  float:    left;
+  top:      -15px;
+  left:     -15px;
+  content:  url("resources/warning.png");
+}
+
 
 
 
