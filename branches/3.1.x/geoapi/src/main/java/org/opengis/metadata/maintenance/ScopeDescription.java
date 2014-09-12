@@ -58,8 +58,8 @@ public interface ScopeDescription {
     /**
      * Attributes to which the information applies.
      *
-     * <div class="api-change">as of ISO 19115:2014,
-     * the type become {@link Set<? extends CharSequence>}.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
@@ -74,8 +74,8 @@ public interface ScopeDescription {
     /**
      * Features to which the information applies.
      *
-     * <div class="api-change">as of ISO 19115:2014,
-     * the type become {@link Set<? extends CharSequence>}.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
@@ -90,8 +90,8 @@ public interface ScopeDescription {
     /**
      * Feature instances to which the information applies.
      *
-     * <div class="api-change">as of ISO 19115:2014,
-     * the type become {@link Set<? extends CharSequence>}.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
@@ -106,8 +106,8 @@ public interface ScopeDescription {
     /**
      * Attribute instances to which the information applies.
      *
-     * <div class="api-change">as of ISO 19115:2014,
-     * the type become {@link Set<? extends CharSequence>}.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *

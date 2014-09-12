@@ -109,8 +109,8 @@ public interface Metadata {
      * The character coding standard used for the metadata set.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
-     * <div class="api-change"><b>JDK integration</b> — as of ISO 19115:2014,
-     * {@code CharacterSet} is replaced by a reference to the
+     * <div class="warning"><b>Upcoming API change — JDK integration</b><br>
+     * As of ISO 19115:2014, {@code CharacterSet} is replaced by a reference to the
      * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
      * which is represented in Java by {@link java.nio.charset.Charset}.
      * This change will be applied in GeoAPI 4.0.
@@ -176,8 +176,8 @@ public interface Metadata {
     /**
      * Parties responsible for the metadata information.
      *
-     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
-     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *

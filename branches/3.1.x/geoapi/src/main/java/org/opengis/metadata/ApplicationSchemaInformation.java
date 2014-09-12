@@ -76,7 +76,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as an ASCII file.
      *
-     * <div class="api-change">
+     * <div class="warning"><b>Upcoming API change</b><br>
      * {@code URI} will be replaced by {@link CharSequence} in GeoAPI 4.0.
      * </div>
      *
@@ -88,8 +88,8 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as a graphics file.
      *
-     * <div class="api-change">as of ISO 19115:2014,
-     * {@code URI} is replaced by {@link OnlineResource}.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, {@code URI} is replaced by {@link OnlineResource}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
@@ -101,8 +101,8 @@ public interface ApplicationSchemaInformation {
     /**
      * Full application schema given as a software development file.
      *
-     * <div class="api-change">as of ISO 19115:2014,
-     * {@code URI} is replaced by {@link OnlineResource}.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * As of ISO 19115:2014, {@code URI} is replaced by {@link OnlineResource}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *

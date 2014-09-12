@@ -47,7 +47,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Description of the data specified by the scope.
  *
- * <div class="api-change">As of ISO 19115:2014,
+ * <div class="warning"><b>Upcoming API change — renaming</b><br>
+ * As of ISO 19115:2014,
  * {@code DQ_Scope} (from {@link org.opengis.metadata.quality}) is replaced by
  * {@code MD_Scope} (from {@link org.opengis.metadata.maintenance}).
  * This interface will be deprecated in GeoAPI 4.0.

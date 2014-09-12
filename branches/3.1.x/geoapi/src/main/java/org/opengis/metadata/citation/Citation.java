@@ -131,8 +131,8 @@ public interface Citation {
      * for the resource.
      * Returns an empty collection if there is none.
      *
-     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
-     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
@@ -163,8 +163,8 @@ public interface Citation {
      * Other information required to complete the citation that is not recorded elsewhere.
      * Returns {@code null} if none.
      *
-     * <div class="api-change"><b>multiplicity</b> — as of ISO 19115:2014,
-     * this singleton has been replaced by a collection.
+     * <div class="warning"><b>Upcoming API change — multiplicity</b><br>
+     * As of ISO 19115:2014, this singleton has been replaced by a collection.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
