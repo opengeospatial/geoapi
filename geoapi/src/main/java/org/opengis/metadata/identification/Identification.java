@@ -95,8 +95,8 @@ public interface Identification {
     /**
      * Recognition of those who contributed to the resource.
      *
-     * <div class="api-change"><b>generalization</b> — the return type will be changed to
-     * {@code Collection<? extends InternationalString>} in GeoAPI 4.0.
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * The return type will be changed to {@code Collection<? extends InternationalString>} in GeoAPI 4.0.
      * </div>
      *
      * @return Recognition of those who contributed to the resource.
@@ -116,8 +116,8 @@ public interface Identification {
      * Identification of, and means of communication with, person(s) and organisations
      * associated with the resource(s).
      *
-     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
-     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *

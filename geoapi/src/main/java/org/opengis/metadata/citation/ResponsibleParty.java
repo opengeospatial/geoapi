@@ -48,8 +48,8 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * At least one of {@link #getIndividualName() individual name}, {@linkplain #getOrganisationName()
  * organisation name} and {@linkplain #getPositionName() position name} shall be provided.
  *
- * <div class="api-change"><b>deprecation</b> — as of ISO 19115:2014,
- * the {@code ResponsibleParty} type has been replaced by {@link Responsibility}
+ * <div class="warning"><b>Upcoming API change — deprecation</b><br>
+ * As of ISO 19115:2014, the {@code ResponsibleParty} type has been replaced by {@link Responsibility}
  * to allow more flexible associations of individuals, organisations, and roles.
  * This {@code ResponsibleParty} interface will be deprecated in GeoAPI 4.0.
  * </div>

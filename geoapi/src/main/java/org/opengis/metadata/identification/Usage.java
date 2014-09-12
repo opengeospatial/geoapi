@@ -91,8 +91,8 @@ public interface Usage {
      * Identification of and means of communicating with person(s) and organization(s) using the resource(s).
      * Returns an empty collection if none.
      *
-     * <div class="api-change"><b>generalization</b> — as of ISO 19115:2014,
-     * {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
