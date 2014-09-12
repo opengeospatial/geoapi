@@ -41,7 +41,7 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
  *
  * <p><b>Example:</b> This exception is thrown when a
  * {@linkplain org.opengis.referencing.operation.MathTransform math transform}
- * as been requested with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod
+ * has been requested with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod
  * operation method} identifier.</p>
  *
  * @departure extension
