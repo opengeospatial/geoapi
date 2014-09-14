@@ -370,7 +370,8 @@
                 <resource>
                   <directory>${basedir}/src/main/javadoc/</directory>
                   <includes>
-                    <include>*.html</include>
+                    <include>**/*.html</include>
+                    <include>**/*.png</include>
                   </includes>
                   <excludes>
                     <exclude>overview.html</exclude>
