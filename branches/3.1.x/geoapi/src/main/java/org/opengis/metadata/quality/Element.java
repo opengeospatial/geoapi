@@ -107,14 +107,11 @@ public interface Element {
      * Date or range of dates on which a data quality measure was applied.
      * The collection size is 1 for a single date, or 2 for a range. Returns
      * an empty collection if this information is not available.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The element type of this method may change
-     *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
-     *     either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
+     * The element type of this method may change in GeoAPI 4.0 release. It may be replaced by a
+     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * </div>
      *
      * @return Date or range of dates on which a data quality measure was applied.
      *
