@@ -70,14 +70,12 @@ public interface Dimension {
 
     /**
      * Degree of detail in the grid dataset.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
-     *     3.1. It may be replaced by the {@link javax.measure.quantity.Quantity} type in order to
-     *     provide unit of measurement together with the value.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
+     * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
+     * {@link javax.measure.quantity.Quantity} type in order to provide unit of measurement
+     * together with the value.
+     * </div>
      *
      * @return Degree of detail in the grid dataset, or {@code null}.
      * @unitof Measure

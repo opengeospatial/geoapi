@@ -54,14 +54,11 @@ import static org.opengis.annotation.Specification.*;
 public interface TemporalDatum extends Datum {
     /**
      * The date and time origin of this temporal datum.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change
-     *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
-     *     either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
+     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
+     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * </div>
      *
      * @return The date and time origin of this temporal datum.
      */
@@ -81,14 +78,11 @@ public interface TemporalDatum extends Datum {
     /**
      * This attribute is defined in the {@link Datum} parent interface,
      * but is not used by a temporal datum.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change
-     *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
-     *     either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
+     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
+     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * </div>
      *
      * @return Always {@code null}.
      */
