@@ -46,53 +46,53 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Abstract definition of a parameter or group of parameters used by an operation method.
- * This interface combines information provided by both Service Metadata (ISO 19115),
- * Referencing by Coordinates (ISO 19111) and Web Processing Services (WPS) standards.
+ * This interface combines information provided by Referencing by Coordinates (ISO 19111),
+ * Service Metadata (ISO 19115) and Web Processing Services (WPS) standards.
  * The main information are:
  *
  * <table class="ogc">
  *   <caption>Main parameter properties</caption>
  *   <tr>
- *     <th>ISO 19111</th>
- *     <th>ISO 19115</th>
- *     <th>WPS</th>
  *     <th>Getter method</th>
+ *     <th>ISO 19111</th>
+ *     <th>WPS</th>
+ *     <th>ISO 19115</th>
  *     <th>Remarks</th>
  *   </tr>
  *   <tr>
- *      <td><b>{@code name}</b></td>
+ *      <td>{@link #getName()}</td>
  *      <td>{@code name}</td>
  *      <td>{@code Identifier}</td>
- *      <td>{@link #getName()}</td>
- *      <td>See method javadoc for converting {@code MemberName}.</td>
+ *      <td>{@code name}</td>
+ *      <td>See {@linkplain #getName() method javadoc} for mapping {@code MemberName} ↔ {@code Identifier} mapping.</td>
  *   </tr>
  *   <!-- "Title" (WPS) equivalent to "designation" (Feature), but not yet provided. -->
  *   <tr>
- *      <td></td>
- *      <td><b>{@code description}</b></td>
- *      <td>{@code Abstract}</td>
  *      <td>{@link #getDescription()}</td>
+ *      <td></td>
+ *      <td>{@code Abstract}</td>
+ *      <td>{@code description}</td>
  *      <td>Also known as “definition”.</td>
  *   </tr>
  *   <tr>
- *      <td></td>
- *      <td><b>{@code direction}</b></td>
- *      <td></td>
  *      <td>{@link #getDirection()}</td>
+ *      <td></td>
+ *      <td></td>
+ *      <td>{@code direction}</td>
  *      <td>Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
  *   </tr>
  *   <tr>
- *      <td><b>{@code minimumOccurs}</b></td>
- *      <td>{@code optionality}</td>
- *      <td>{@code MinOccurs}</td>
  *      <td>{@link #getMinimumOccurs()}</td>
+ *      <td>{@code minimumOccurs}</td>
+ *      <td>{@code MinOccurs}</td>
+ *      <td>{@code optionality}</td>
  *      <td>{@code optionality   = (minimumOccurs > 0)}</td>
  *   </tr>
  *   <tr>
- *      <td><b>{@code maximumOccurs}</b></td>
- *      <td>{@code repeatability}</td>
- *      <td>{@code MaxOccurs}</td>
  *      <td>{@link #getMaximumOccurs()}</td>
+ *      <td>{@code maximumOccurs}</td>
+ *      <td>{@code MaxOccurs}</td>
+ *      <td>{@code repeatability}</td>
  *      <td>{@code repeatability = (maximumOccurs > 1)}</td>
  *   </tr>
  * </table>
