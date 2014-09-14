@@ -73,14 +73,11 @@ public interface ProcessStep {
 
     /**
      * Date and time or range of date and time on or over which the process step occurred.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change
-     *     in GeoAPI 3.1 release. It may be replaced by a type matching more closely
-     *     either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
+     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
+     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * </div>
      *
      * @return Date on or over which the process step occurred, or {@code null} if none.
      */

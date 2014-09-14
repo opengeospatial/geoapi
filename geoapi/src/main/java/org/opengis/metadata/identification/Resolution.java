@@ -71,14 +71,12 @@ public interface Resolution {
 
     /**
      * Horizontal ground sample distance.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
-     *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
-     *     provide unit of measurement together with the value.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
+     * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
+     * {@link javax.measure.quantity.Length} type in order to provide unit of measurement
+     * together with the value.
+     * </div>
      *
      * @return The ground sample distance, or {@code null}.
      * @unitof Distance
@@ -91,14 +89,12 @@ public interface Resolution {
 
     /**
      * Vertical sampling distance.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
-     *     3.1. It may be replaced by the {@link javax.measure.quantity.Length} type in order to
-     *     provide unit of measurement together with the value.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
+     * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
+     * {@link javax.measure.quantity.Length} type in order to provide unit of measurement
+     * together with the value.
+     * </div>
      *
      * @return The vertical sampling distance, or {@code null}.
      * @unitof Distance
@@ -113,14 +109,12 @@ public interface Resolution {
 
     /**
      * Angular sampling measure.
-     * <p>
-     * <TABLE WIDTH="80%" ALIGN="center" CELLPADDING="18" BORDER="4" BGCOLOR="#FFE0B0" SUMMARY="Warning! This API will change.">
-     *   <TR><TD>
-     *     <P align="justify"><B>Warning:</B> The return type of this method may change in GeoAPI
-     *     3.1. It may be replaced by the {@link javax.measure.quantity.Angle} type in order to
-     *     provide unit of measurement together with the value.</P>
-     *   </TD></TR>
-     * </TABLE>
+     *
+     * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
+     * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
+     * {@link javax.measure.quantity.Angle} type in order to provide unit of measurement
+     * together with the value.
+     * </div>
      *
      * @return The angular sampling measure, or {@code null}.
      * @unitof Angle
