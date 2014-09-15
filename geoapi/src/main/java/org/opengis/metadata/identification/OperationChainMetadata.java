@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.service;
+package org.opengis.metadata.identification;
 
 import java.util.List;
 import org.opengis.annotation.UML;
