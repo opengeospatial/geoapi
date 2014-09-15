@@ -81,7 +81,7 @@ public interface Band extends SampleDimension {
      * @since 3.1
      */
     @UML(identifier="boundUnits", obligation=OPTIONAL, specification=ISO_19115)
-    Unit<Length> getBoundUnit(); // TODO: add 's'.
+    Unit<Length> getBoundUnits();
 
     /**
      * Wavelength at which the response is the highest.
