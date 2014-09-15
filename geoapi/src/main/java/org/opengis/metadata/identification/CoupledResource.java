@@ -29,13 +29,12 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.metadata.service;
+package org.opengis.metadata.identification;
 
 import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.util.ScopedName;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.identification.DataIdentification;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19115;

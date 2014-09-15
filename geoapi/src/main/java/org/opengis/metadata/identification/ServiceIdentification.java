@@ -31,20 +31,145 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.Collection;
+import org.opengis.annotation.UML;
+import org.opengis.util.GenericName;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.distribution.StandardOrderProcess;
+
+import static org.opengis.annotation.Obligation.*;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
- * Identification of capabilities which a service provider makes available to a service user
- * through a set of interfaces that define a behaviour. See ISO 19119 for further information.
+ * Identification of capabilities which a service provider makes available.
+ * The services are provided to a user through a set of interfaces that define a behaviour.
  *
- * {@note The prefix was <code>MD</code> in a previous ISO 19115 specification,
- *        but has been renamed <code>SV</code> in corrigendum 2006.}
- *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Rémi Maréchal (Geomatys)
+ * @version 3.1
  * @since   2.0
- *
- * @deprecated As of GeoAPI 3.1, moved to the {@link org.opengis.metadata.service} package.
  */
-@Deprecated
-public interface ServiceIdentification extends org.opengis.metadata.service.ServiceIdentification {
+@UML(identifier="SV_ServiceIdentification", specification=ISO_19115)
+public interface ServiceIdentification extends Identification {
+    /**
+     * A service type name.
+     * <blockquote><font size="-1"><b>Examples:</b>
+     * "discovery", "view", "download", "transformation", or "invoke".
+     * </font></blockquote>
+     *
+     * @return A service type name.
+     */
+    @UML(identifier="serviceType", obligation=MANDATORY, specification=ISO_19115)
+    GenericName getServiceType();
+
+    /**
+     * The version(s) of the service.
+     * Supports searching based on the version of {@linkplain #getServiceType() service type}.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * We might only be interested in OGC Catalogue V1.1 services.
+     * If version is maintained as a separate attribute, users can easily search
+     * for all services of a type regardless of the version.
+     * </font></blockquote>
+     *
+     * @return the version of the service, supports searching based on the version of serviceType.
+     */
+    @UML(identifier="serviceTypeVersion", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<String> getServiceTypeVersions();
+
+    /**
+     * Information about the availability of the service.
+     * This includes:
+     * <ul>
+     *   <li>fee</li>
+     *   <li>planned available date and time</li>
+     *   <li>ordering instructions</li>
+     *   <li>turnaround</li>
+     * </ul>
+     *
+     * @return Information about the availability of the service, or {@code null} if none.
+     */
+    @UML(identifier="accessProperties", obligation=OPTIONAL, specification=ISO_19115)
+    StandardOrderProcess getAccessProperties();
+
+    /**
+     * Type of coupling between service and associated data (if exist).
+     *
+     * @return Type of coupling between service and associated data, or {@code null} if none.
+     *
+     * @condition mandatory if {@linkplain #getCoupledResources()} is not provided.
+     */
+    @UML(identifier="couplingType", obligation=CONDITIONAL, specification=ISO_19115)
+    CouplingType getCouplingType();
+
+    /**
+     * Further description(s) of the data coupling in the case of tightly coupled services.
+     * Returns an empty collection if none.
+     *
+     * @return Further description of the data coupling in the case of tightly coupled services.
+     *
+     * @condition mandatory if {@linkplain #getCouplingType()} is not provided.
+     */
+    @UML(identifier="coupledResource", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends CoupledResource> getCoupledResources();
+
+    /**
+     * Provides reference(s) to the resources on which the service operates.
+     * Returns an empty collection if none.
+     *
+     * @return Reference(s) to the resource on which the service operates.
+     *
+     * @condition For one resource either {@code operatedDataset} or {@link #getOperatesOn() operatesOn}
+     *            may be used (not both for the same resource).
+     */
+    @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getOperatedDatasets();
+
+    /**
+     * Profile(s) to which the service adheres.
+     * Returns an empty collection if none.
+     *
+     * @return Profile(s) to which the service adheres.
+     */
+    @UML(identifier="profile", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getProfiles();
+
+    /**
+     * Standard(s) to which the service adheres.
+     * Returns an empty collection if none.
+     *
+     * @return Standard(s) to which the service adheres.
+     */
+    @UML(identifier="serviceStandard", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getServiceStandards();
+
+    /**
+     * Provides information about the operations that comprise the service.
+     * Returns an empty collection if none.
+     *
+     * @return Information about the operations that comprise the service.
+     */
+    @UML(identifier="containsOperations", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends OperationMetadata> getContainsOperations();
+
+    /**
+     * Provides information on the resources that the service operates on.
+     * Returns an empty collection if none.
+     *
+     * @return Information on the resources that the service operates on.
+     *
+     * @condition For one resource either {@link #getOperatedDatasets() operatedDataset}
+     *            or {@code operatesOn} may be used (not both for the same resource).
+     */
+    @UML(identifier="operatesOn", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends DataIdentification> getOperatesOn();
+
+    /**
+     * Provides information about the chain applied by the service.
+     * Returns an empty collection if none.
+     *
+     * @return Information about the chain applied by the service.
+     */
+    @UML(identifier="containsChain", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends OperationChainMetadata> getContainsChain();
 }

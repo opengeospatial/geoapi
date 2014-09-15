@@ -99,7 +99,7 @@
  * {@code direction}, {@code description}, {@code optionality} and {@code repeatibility} properties.
  * However in order to provide a unified parameter API, GeoAPI omits the metadata parameter class
  * and instead defines a mapping from metadata properties to GeoAPI properties.
- * The mapping is documented in {@link org.opengis.metadata.service.OperationMetadata#getParameters()}
+ * The mapping is documented in {@link org.opengis.metadata.identification.OperationMetadata#getParameters()}
  * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
  *
  *
