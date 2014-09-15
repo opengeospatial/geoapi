@@ -52,7 +52,7 @@
  * <pre>ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.identification.Identification} «abstract»
  *  │   ├─ {@linkplain org.opengis.metadata.identification.DataIdentification}
- *  │   └─ {@linkplain org.opengis.metadata.service.ServiceIdentification}
+ *  │   └─ {@linkplain org.opengis.metadata.identification.ServiceIdentification}
  *  ├─ {@linkplain org.opengis.metadata.identification.Resolution}
  *  ├─ {@linkplain org.opengis.metadata.identification.BrowseGraphic}
  *  ├─ {@linkplain org.opengis.metadata.identification.Keywords}
@@ -93,9 +93,10 @@
  *       how often the data is scheduled to be updated and the scope of the update</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Cory Horner (Refractions Research)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
+ * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   2.0
  */
