@@ -86,7 +86,9 @@
  *  ├─ {@linkplain org.opengis.metadata.identification.CouplingType} «code list»
  *  ├─ {@linkplain org.opengis.metadata.identification.CoupledResource}
  *  ├─ {@linkplain org.opengis.metadata.identification.OperationMetadata}
- *  │   └─ {@linkplain org.opengis.metadata.identification.DistributedComputingPlatform} «code list»
+ *  │   ├─ {@linkplain org.opengis.metadata.identification.DistributedComputingPlatform} «code list»
+ *  │   └─ {@linkplain org.opengis.parameter.ParameterDescriptor}
+ *  │       └─ {@linkplain org.opengis.parameter.ParameterDirection} «enum»
  *  └─ {@linkplain org.opengis.metadata.identification.OperationChainMetadata}</pre>
  * </td></tr></table>
  *
