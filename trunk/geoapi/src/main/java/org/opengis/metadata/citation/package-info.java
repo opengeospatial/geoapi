@@ -52,7 +52,7 @@
  *  ├─ {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
  *  ├─ {@linkplain org.opengis.metadata.citation.Responsibility}
- *  ├─ {@linkplain org.opengis.metadata.citation.Party}
+ *  ├─ {@linkplain org.opengis.metadata.citation.Party} «abstract»
  *  │   ├─ {@linkplain org.opengis.metadata.citation.Individual}
  *  │   └─ {@linkplain org.opengis.metadata.citation.Organisation}
  *  ├─ {@linkplain org.opengis.metadata.citation.Contact}
@@ -70,7 +70,7 @@
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
  *  │   └─ {@linkplain org.opengis.metadata.citation.DateType} «code list»
  *  ├─ {@linkplain org.opengis.metadata.citation.Responsibility}
- *  │   ├─ {@linkplain org.opengis.metadata.citation.Party}
+ *  │   ├─ {@linkplain org.opengis.metadata.citation.Party} «abstract»
  *  │   │   └─ {@linkplain org.opengis.metadata.citation.Contact}
  *  │   │       ├─ {@linkplain org.opengis.metadata.citation.Telephone}
  *  │   │       ├─ {@linkplain org.opengis.metadata.citation.Address}
