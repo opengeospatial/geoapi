@@ -97,7 +97,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return Type of coupling between service and associated data, or {@code null} if none.
      *
-     * @condition mandatory if {@linkplain #getCoupledResources()} is not provided.
+     * @condition mandatory if {@link #getCoupledResources() coupledResources} is not provided.
      */
     @UML(identifier="couplingType", obligation=CONDITIONAL, specification=ISO_19115)
     CouplingType getCouplingType();
@@ -108,7 +108,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return Further description of the data coupling in the case of tightly coupled services.
      *
-     * @condition mandatory if {@linkplain #getCouplingType()} is not provided.
+     * @condition mandatory if {@link #getCouplingType() couplingType} is not provided.
      */
     @UML(identifier="coupledResource", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends CoupledResource> getCoupledResources();
