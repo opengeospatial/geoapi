@@ -38,6 +38,7 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19115;
+import static org.opengis.annotation.Specification.ISO_19115_2;
 
 
 /**
@@ -50,15 +51,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
 @UML(identifier="MD_SampleDimension", specification=ISO_19115)
 public interface SampleDimension extends RangeDimension {
     /**
-     * Maximum value of data values in each dimension included in the resource.
-     * May be {@code null} if unspecified.
-     *
-     * @return Maximum value of data values in each dimension included in the resource, or {@code null} if none.
-     */
-    @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
-    Double getMaxValue();
-
-    /**
      * Minimum value of data values in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
@@ -68,34 +60,13 @@ public interface SampleDimension extends RangeDimension {
     Double getMinValue();
 
     /**
-     * Units of data in each dimension included in the resource.
+     * Maximum value of data values in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
-     * @return Units of data in each dimension included in the resource, or {@code null} if none.
-     *
-     * @condition Mandatory if {@linkplain #getMinValue()}, {@linkplain #getMaxValue()}
-     *            or {@linkplain #getMeanValue()} are provided.
+     * @return Maximum value of data values in each dimension included in the resource, or {@code null} if none.
      */
-    @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
-    Unit<?> getUnits();
-
-    /**
-     * Scale factor which has been applied to the cell value.
-     * May be {@code null} if unspecified.
-     *
-     * @return Scale factor which has been applied to the cell value, or {@code null} if none.
-     */
-    @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
-    Double getScaleFactor();
-
-    /**
-     * Physical value corresponding to a cell value of zero.
-     * May be {@code null} if unspecified.
-     *
-     * @return Physical value corresponding to a cell value of zero, or {@code null} if none.
-     */
-    @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
-    Double getOffset();
+    @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
+    Double getMaxValue();
 
     /**
      * Mean value of data values in each dimension included in the resource.
@@ -126,6 +97,36 @@ public interface SampleDimension extends RangeDimension {
      */
     @UML(identifier="standardDeviation", obligation=OPTIONAL, specification=ISO_19115)
     Double getStandardDeviation();
+
+    /**
+     * Units of data in each dimension included in the resource.
+     * May be {@code null} if unspecified.
+     *
+     * @return Units of data in each dimension included in the resource, or {@code null} if none.
+     *
+     * @condition Mandatory if {@linkplain #getMinValue()}, {@linkplain #getMaxValue()}
+     *            or {@linkplain #getMeanValue()} are provided.
+     */
+    @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
+    Unit<?> getUnits();
+
+    /**
+     * Scale factor which has been applied to the cell value.
+     * May be {@code null} if unspecified.
+     *
+     * @return Scale factor which has been applied to the cell value, or {@code null} if none.
+     */
+    @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
+    Double getScaleFactor();
+
+    /**
+     * Physical value corresponding to a cell value of zero.
+     * May be {@code null} if unspecified.
+     *
+     * @return Physical value corresponding to a cell value of zero, or {@code null} if none.
+     */
+    @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
+    Double getOffset();
 
     /**
      * Type of other attribute description.
