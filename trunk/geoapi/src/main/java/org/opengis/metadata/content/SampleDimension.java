@@ -38,7 +38,6 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19115;
-import static org.opengis.annotation.Specification.ISO_19115_2;
 
 
 /**
@@ -129,6 +128,16 @@ public interface SampleDimension extends RangeDimension {
     Double getOffset();
 
     /**
+     * Maximum number of significant bits in the uncompressed representation for the value in each band of each pixel.
+     * May be {@code null} if unspecified.
+     *
+     * @return Maximum number of significant bits in the uncompressed representation
+     *         for the value in each band of each pixel, or {@code null} if none.
+     */
+    @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
+    Integer getBitsPerValue();
+
+    /**
      * Type of other attribute description.
      * May be {@code null} if unspecified.
      *
@@ -145,14 +154,4 @@ public interface SampleDimension extends RangeDimension {
      */
     @UML(identifier="otherProperty", obligation=OPTIONAL, specification=ISO_19115)
     Record getOtherProperty();
-
-    /**
-     * Maximum number of significant bits in the uncompressed representation for the value in each band of each pixel.
-     * May be {@code null} if unspecified.
-     *
-     * @return Maximum number of significant bits in the uncompressed representation
-     *         for the value in each band of each pixel, or {@code null} if none.
-     */
-    @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getBitsPerValue();
 }
