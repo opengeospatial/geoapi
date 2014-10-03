@@ -24,6 +24,7 @@ import javax.measure.unit.Unit;
 import javax.measure.unit.SI;
 import javax.measure.unit.NonSI;
 
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.referencing.crs.CompoundCRS;
 import org.opengis.referencing.crs.TemporalCRS;
@@ -39,7 +40,6 @@ import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.cs.TimeCS;
 import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.operation.Projection;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.test.referencing.OperationValidator;
@@ -191,8 +191,8 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * name} has the following properties:
      *
      * <ul>
-     *   <li>The {@linkplain ReferenceIdentifier#getCodeSpace() code space} is {@code "NetCDF"}.</li>
-     *   <li>The {@linkplain ReferenceIdentifier#getCode() code} is the given expected value.</li>
+     *   <li>The {@linkplain Identifier#getCodeSpace() code space} is {@code "NetCDF"}.</li>
+     *   <li>The {@linkplain Identifier#getCode() code} is the given expected value.</li>
      * </ul>
      *
      * Subclasses shall override this method if the NetCDF name is stored elsewhere
@@ -204,7 +204,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * @param object   The identified object to verify.
      */
     protected void assertNameEquals(final String expected, final IdentifiedObject object) {
-        final ReferenceIdentifier name = object.getName();
+        final Identifier name = object.getName();
         assertNotNull("IdentifiedObject.name", name);
         assertEquals("Code space", "NetCDF", name.getCodeSpace());
         assertEquals("Code value", expected, name.getCode());

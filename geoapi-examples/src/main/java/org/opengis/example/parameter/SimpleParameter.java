@@ -15,7 +15,6 @@ import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
 
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.InvalidParameterTypeException;
@@ -173,14 +172,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptor<Double> getDescriptor() {
         return this;
-    }
-
-    /**
-     * Returns {@code null}, since this simple class does not provide parameter description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**

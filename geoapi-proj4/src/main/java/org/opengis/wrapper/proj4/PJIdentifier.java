@@ -20,7 +20,7 @@ import org.opengis.util.LocalName;
 import org.opengis.util.ScopedName;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
-import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.metadata.Identifier;
 import org.proj4.PJ;
 
 
@@ -32,11 +32,11 @@ import org.proj4.PJ;
  * @version 3.1
  * @since   3.1
  */
-final class PJIdentifier implements ReferenceIdentifier, LocalName {
+final class PJIdentifier implements Identifier, LocalName {
     /**
      * Useful constant.
      */
-    static final ReferenceIdentifier WGS84 = new PJIdentifier("WGS84");
+    static final Identifier WGS84 = new PJIdentifier("WGS84");
 
     /**
      * The identifier code and codespace.
@@ -118,6 +118,14 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
     @Override
     public String getCode() {
         return code;
+    }
+
+    /**
+     * Returns {@code null} since we do not hold object description.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
     }
 
     /*

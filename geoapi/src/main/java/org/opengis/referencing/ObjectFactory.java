@@ -69,7 +69,7 @@ import org.opengis.util.GenericName;
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
- *     <td>{@link org.opengis.referencing.ReferenceIdentifier}</td><td>{@link String} (see <cite>alternative</cite> below)</td>
+ *     <td>{@link Identifier}</td><td>{@link String} (see <cite>alternative</cite> below)</td>
  *     <td>{@link IdentifiedObject#getName()}</td>
  *   </tr>
  *   <tr>
@@ -112,14 +112,14 @@ import org.opengis.util.GenericName;
  *     <td>{@link Identifier#getAuthority()}</td>
  *   </tr>
  *   <tr>
- *     <td>{@value org.opengis.referencing.ReferenceIdentifier#CODESPACE_KEY}</td>
+ *     <td>{@value org.opengis.metadata.Identifier#CODESPACE_KEY}</td>
  *     <td>{@link String}</td><td></td>
- *     <td>{@link ReferenceIdentifier#getCodeSpace()}</td>
+ *     <td>{@link Identifier#getCodeSpace()}</td>
  *   </tr>
  *   <tr>
- *     <td>{@value org.opengis.referencing.ReferenceIdentifier#VERSION_KEY}</td>
+ *     <td>{@value org.opengis.metadata.Identifier#VERSION_KEY}</td>
  *     <td>{@link String}</td><td></td>
- *     <td>{@link ReferenceIdentifier#getVersion()}</td>
+ *     <td>{@link Identifier#getVersion()}</td>
  *   </tr>
  * </table>
  *

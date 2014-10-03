@@ -27,8 +27,8 @@ import javax.measure.quantity.Length;
 import org.proj4.PJ;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
 import org.opengis.metadata.extent.Extent;
@@ -84,7 +84,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     /**
      * The datum or ellipsoid name, or {@code null} if none.
      */
-    private final ReferenceIdentifier name;
+    private final Identifier name;
 
     /**
      * The Proj4 parameters, formatted at construction time because often used.
@@ -97,7 +97,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      * @param identifier The datum identifier, or {@code null} for inferring it from the definition.
      * @param definition The Proj4 definition string.
      */
-    PJDatum(ReferenceIdentifier name, final String definition) throws IllegalArgumentException {
+    PJDatum(Identifier name, final String definition) throws IllegalArgumentException {
         super(definition);
         this.definition = super.getDefinition();
         if (name == null) {
@@ -133,7 +133,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      * simple Proj.4 wrapper is lenient about that.
      */
     @Override
-    public ReferenceIdentifier getName() {
+    public Identifier getName() {
         return name;
     }
 
@@ -141,7 +141,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      * Various GeoAPI method having no direct mapping in the Proj4 library.
      */
     @Override public Collection<GenericName>  getAlias()            {return Collections.emptySet();}
-    @Override public Set<ReferenceIdentifier> getIdentifiers()      {return Collections.emptySet();}
+    @Override public Set<Identifier>          getIdentifiers()      {return Collections.emptySet();}
     @Override public InternationalString      getScope()            {return null;}
     @Override public InternationalString      getRemarks()          {return null;}
     @Override public InternationalString      getAnchorPoint()      {return null;}

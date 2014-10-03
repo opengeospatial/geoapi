@@ -37,8 +37,8 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import org.opengis.util.NameSpace;
 import org.opengis.util.GenericName;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
@@ -64,16 +64,16 @@ final class IdentifiedObjects {
     /**
      * Compares the given identifier for order. This method performs
      * a comparison of identifier components in the following order:
-     * {@linkplain ReferenceIdentifier#getCode() code},
-     * {@linkplain ReferenceIdentifier#getCodeSpace() code space} and
-     * {@linkplain ReferenceIdentifier#getVersion() version}.
+     * {@linkplain Identifier#getCode() code},
+     * {@linkplain Identifier#getCodeSpace() code space} and
+     * {@linkplain Identifier#getVersion() version}.
      *
      * @param o1 The first operation method to compare, or {@code null}.
      * @param o2 The second operation method to compare, or {@code null}.
      * @return -1 if {@code o1} should appears before {@code o2}, -1 for the converse,
      *         or 0 if this method can not determine an ordering for the given object.
      */
-    public static int compare(final ReferenceIdentifier n1, final ReferenceIdentifier n2) {
+    public static int compare(final Identifier n1, final Identifier n2) {
         if (n1 == n2)   return  0;
         if (n1 == null) return +1;
         if (n2 == null) return -1;
@@ -99,7 +99,7 @@ final class IdentifiedObjects {
      *         or 0 if the two strings are equal.
      */
     static int compare(String s1, String s2) {
-        if (s1 == s2)   return  0;
+        if (s1 == s2)   return  0; // Identity comparison ok here, since this is only an optimization for a common case.
         if (s1 == null) return +1;
         if (s2 == null) return -1;
         /*
@@ -169,7 +169,7 @@ final class IdentifiedObjects {
     /**
      * Returns the object {@linkplain IdentifiedObject#getName() name} and all its
      * {@linkplain IdentifiedObject#getAlias() aliases} for the given
-     * {@linkplain ReferenceIdentifier#getCodeSpace() code space}.
+     * {@linkplain Identifier#getCodeSpace() code space}.
      *
      * <p>The values in the returned map are {@link Boolean#TRUE} for the primary name
      * (at most one entry) and {@link Boolean#FALSE} for aliases (all other entries).</p>
@@ -206,7 +206,7 @@ final class IdentifiedObjects {
     private static void getNameComponents(final IdentifiedObject info, final String codeSpace,
             final boolean wantCodeSpaces, final Map<String, ? super Boolean> names)
     {
-        final ReferenceIdentifier identifier = info.getName();
+        final Identifier identifier = info.getName();
         if (identifier != null) { // Mandatory attribute, but be lenient.
             if (codeSpace == null || compare(codeSpace, identifier.getCodeSpace()) == 0) {
                 names.put(wantCodeSpaces ? identifier.getCodeSpace() : identifier.getCode(), Boolean.TRUE);
@@ -240,7 +240,7 @@ final class IdentifiedObjects {
      * @return The string representation of the given identifier, or {@code null}
      *         if the given identifier was null.
      */
-    public static String toString(final ReferenceIdentifier id) {
+    public static String toString(final Identifier id) {
         if (id == null) {
             return null;
         }

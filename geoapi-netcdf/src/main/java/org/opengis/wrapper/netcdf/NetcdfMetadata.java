@@ -382,6 +382,22 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Defaults to {@code null}.
+     */
+    @Override
+    public String getCodeSpace() {
+        return null;
+    }
+
+    /**
+     * Defaults to {@code null}.
+     */
+    @Override
+    public String getVersion() {
+        return null;
+    }
+
+    /**
      * Returns the concatenation of {@linkplain #getAuthority() naming authority},
      * the {@code ':'} character and the {@linkplain #getCode() identifier code}.
      * One or both of the authority and the code can be null.

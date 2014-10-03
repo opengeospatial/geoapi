@@ -739,16 +739,6 @@ public class Validators {
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.
-     * @see ReferencingValidator#validate(ReferenceIdentifier)
-     */
-    public static void validate(final ReferenceIdentifier object) {
-        DEFAULT.validate(object);
-    }
-
-    /**
-     * Tests the conformance of the given object.
-     *
-     * @param object The object to test, or {@code null}.
      * @see RootValidator#validate(Identifier)
      *
      * @since 3.1

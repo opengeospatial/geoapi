@@ -54,18 +54,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
     /**
-     * Attributes to which the information applies.
-     *
-     * @return Attributes to which the information applies.
-     *
-     * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
-     */
-    @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributes();
-
-    /**
-     * Features to which the information applies.
+     * Instances of feature type to which the information applies.
      *
      * @return Features to which the information applies.
      *
@@ -76,11 +65,22 @@ public interface ScopeDescription {
     Set<? extends CharSequence> getFeatures();
 
     /**
+     * Instances of attribute type to which the information applies.
+     *
+     * @return Attributes to which the information applies.
+     *
+     * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
+     */
+    @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
+    Set<? extends CharSequence> getAttributes();
+
+    /**
      * Feature instances to which the information applies.
      *
      * @return Feature instances to which the information applies.
      *
-     * @condition {@code attributes}, {@code features}, {@code attributeInstances},
+     * @condition {@code features}, {@code attributes}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
@@ -93,7 +93,7 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition {@code attributes}, {@code features}, {@code featureInstances},
+     * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code dataset} and {@code other} not provided.
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
@@ -106,7 +106,7 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition {@code attributes}, {@code features}, {@code featureInstances},
+     * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code attributeInstances} and {@code other} not provided.
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
@@ -120,7 +120,7 @@ public interface ScopeDescription {
      *
      * @since 2.1
      *
-     * @condition {@code attributes}, {@code features}, {@code featureInstances},
+     * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code attributeInstances} and {@code dataset} not provided.
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)

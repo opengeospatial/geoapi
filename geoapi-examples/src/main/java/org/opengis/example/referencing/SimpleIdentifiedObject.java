@@ -13,10 +13,10 @@ import java.util.Collections;
 import java.io.Serializable;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
@@ -24,14 +24,14 @@ import org.opengis.referencing.ReferenceIdentifier;
  * attribute. All other {@code IdentifiedObject} attributes are {@code null} or empty collections.
  *
  * <p>Since the {@linkplain #getName() name} is the only identifier contained by this class,
- * {@code SimpleIdentifiedObject} implements directly the {@link ReferenceIdentifier} interface.
- * Consequently this class can also be used as a {@code ReferenceIdentifier} implementation.</p>
+ * {@code SimpleIdentifiedObject} implements directly the {@link Identifier} interface.
+ * Consequently this class can also be used as an {@code Identifier} implementation.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdentifier, Serializable {
+public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Serializable {
     /**
      * For cross-version compatibility.
      */
@@ -72,7 +72,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * returning a non-null and non-empty value.
      */
     @Override
-    public ReferenceIdentifier getName() {
+    public Identifier getName() {
         return this;
     }
 
@@ -137,8 +137,19 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * @return This object identifiers, or an empty set if there is none.
      */
     @Override
-    public Set<ReferenceIdentifier> getIdentifiers() {
+    public Set<Identifier> getIdentifiers() {
         return Collections.emptySet();
+    }
+
+    /**
+     * Returns a natural language description of this object.
+     * The default implementation returns {@code null}.
+     *
+     * @return The natural language description, or {@code null} if none.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
     }
 
     /**
