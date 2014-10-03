@@ -100,12 +100,12 @@ public abstract class ReferencingValidator extends Validator {
     }
 
     /**
-     * Ensures that the given identifier has a {@linkplain ReferenceIdentifier#getCode() code}.
+     * Ensures that the given identifier has a {@linkplain Identifier#getCode() code}.
      *
      * @param object The object to validate, or {@code null}.
      */
-    public void validate(final ReferenceIdentifier object) {
-        container.validate((Identifier) object);
+    public void validate(final Identifier object) {
+        container.validate(object);
     }
 
     /**
@@ -130,10 +130,10 @@ public abstract class ReferencingValidator extends Validator {
      */
     final void validateIdentifiedObject(final IdentifiedObject object) {
         validate(object.getName());
-        final Collection<ReferenceIdentifier> identifiers = object.getIdentifiers();
+        final Collection<Identifier> identifiers = object.getIdentifiers();
         if (identifiers != null) {
             validate(identifiers);
-            for (final ReferenceIdentifier id : identifiers) {
+            for (final Identifier id : identifiers) {
                 assertNotNull("IdentifiedObject: getIdentifiers() can not contain null element.", id);
                 validate(id);
             }

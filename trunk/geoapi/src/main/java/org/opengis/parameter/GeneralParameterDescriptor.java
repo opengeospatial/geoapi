@@ -37,8 +37,8 @@ import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Specification;
 import org.opengis.util.MemberName; // For javadoc
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -128,12 +128,12 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   </tr>
      *   <tr>
      *     <td><code>{@linkplain MemberName#scope()}.name().toString()</code></td>
-     *     <td>{@link ReferenceIdentifier#getCodeSpace()}</td>
+     *     <td>{@link Identifier#getCodeSpace()}</td>
      *     <td></td>
      *   </tr>
      *   <tr>
      *     <td>{@link MemberName#toString()}</td>
-     *     <td>{@link ReferenceIdentifier#getCode()}</td>
+     *     <td>{@link Identifier#getCode()}</td>
      *     <td></td>
      *   </tr>
      *   <tr>
@@ -143,7 +143,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   </tr>
      * </table>
      *
-     * Some implementations may allow the {@code ReferenceIdentifier} to be casted to {@link MemberType}.
+     * Some implementations may allow the {@code Identifier} to be casted to {@link MemberType}.
      * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
      * </font></blockquote>
      *
@@ -151,7 +151,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
-    ReferenceIdentifier getName();
+    Identifier getName();
 
     /**
      * Indication if the parameter is an input to the service, an output or both.

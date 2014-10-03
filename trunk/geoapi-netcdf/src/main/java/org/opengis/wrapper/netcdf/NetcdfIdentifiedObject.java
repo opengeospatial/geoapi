@@ -23,10 +23,10 @@ import ucar.nc2.VariableSimpleIF;
 
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
@@ -37,15 +37,15 @@ import org.opengis.referencing.ReferenceIdentifier;
  * change the wrapped object after construction, since GeoAPI referencing objects
  * are expected to be immutable.
  *
- * <p>This base class assumes that NetCDF objects have a single name and no alias. This assumption
- * allows us to implement directly the {@link ReferenceIdentifier} interface. The NetCDF object
- * name is returned by the {@link #getCode()} method.</p>
+ * <p>This base class assumes that NetCDF objects have a single name and no alias.
+ * This assumption allows us to implement directly the {@link Identifier} interface.
+ * The NetCDF object name is returned by the {@link #getCode()} method.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public abstract class NetcdfIdentifiedObject implements IdentifiedObject, ReferenceIdentifier, Serializable {
+public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identifier, Serializable {
     /**
      * For cross-version compatibility.
      */
@@ -104,7 +104,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
      * the {@link #getCode()} method.
      */
     @Override
-    public ReferenceIdentifier getName() {
+    public Identifier getName() {
         return this;
     }
 
@@ -121,8 +121,19 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
      * Returns an empty set, since NetCDF objects don't provide other identifiers than the name.
      */
     @Override
-    public Set<ReferenceIdentifier> getIdentifiers() {
+    public Set<Identifier> getIdentifiers() {
         return Collections.emptySet();
+    }
+
+    /**
+     * Returns a natural language description of this object.
+     * The default implementation returns {@code null}.
+     *
+     * @return The natural language description, or {@code null} if none.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
     }
 
     /**

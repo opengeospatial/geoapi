@@ -23,7 +23,7 @@ import java.util.MissingResourceException;
 import org.opengis.util.GenericName;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
-import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.metadata.Identifier;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.parameter.GeneralParameterDescriptor;
@@ -70,7 +70,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
     /**
      * Creates a new parameter group for the given identifier.
      */
-    PJParameterGroup(final ReferenceIdentifier identifier, final Collection<GenericName> aliases) {
+    PJParameterGroup(final Identifier identifier, final Collection<GenericName> aliases) {
         super(identifier, aliases);
         parameters = new ArrayList<PJParameter>();
         unmodifiable = Collections.unmodifiableList(parameters);
@@ -79,7 +79,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
     /**
      * Creates a new parameter group for the given identifier and parameters.
      */
-    PJParameterGroup(final ReferenceIdentifier identifier, final Collection<GenericName> aliases,
+    PJParameterGroup(final Identifier identifier, final Collection<GenericName> aliases,
             final PJParameter... param)
     {
         super(identifier, aliases);

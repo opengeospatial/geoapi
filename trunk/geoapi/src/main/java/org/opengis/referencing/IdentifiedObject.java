@@ -35,6 +35,7 @@ import java.util.Set;
 import java.util.Collection;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -64,11 +65,11 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  *
  * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- * the {@linkplain ReferenceIdentifier#getAuthority() authority} and
- * {@linkplain ReferenceIdentifier#getCode() authority code} values shall be set to the
- * authority name of the factory object, and the authority code supplied by the client,
- * respectively. The other values may or may not be set. If the authority is EPSG, the
- * implementer may consider using the corresponding metadata values in the EPSG tables.
+ * the {@linkplain Identifier#getAuthority() authority} and {@linkplain Identifier#getCode()
+ * authority code} values shall be set to the authority name of the factory object,
+ * and the authority code supplied by the client, respectively.
+ * The other values may or may not be set.
+ * If the authority is EPSG, the implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
  *   ISO 19111 defines an <code>IO_IdentifiedObjectBase</code> type. The later is omitted in GeoAPI
@@ -127,7 +128,7 @@ public interface IdentifiedObject {
      * @return The primary name.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
-    ReferenceIdentifier getName();
+    Identifier getName();
 
     /**
      * Alternative names by which this object is identified.
@@ -144,7 +145,7 @@ public interface IdentifiedObject {
      * @return This object identifiers, or an empty collection if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
-    Set<ReferenceIdentifier> getIdentifiers();
+    Set<Identifier> getIdentifiers();
 
     /**
      * Comments on or information about this object, including data source information.

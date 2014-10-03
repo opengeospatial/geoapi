@@ -18,9 +18,9 @@ import java.util.Collection;
 import java.util.Collections;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
@@ -51,7 +51,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     /**
      * Creates a new operation for the given source and target CRS.
      */
-    PJOperation(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
+    PJOperation(final Identifier name, final PJCRS source, final PJCRS target) {
         super(name);
         this.source = source;
         this.target = target;
@@ -287,7 +287,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
      * A specialization of {@link PJOperation} for map projections.
      */
     static final class Projection extends PJOperation implements org.opengis.referencing.operation.Projection {
-        Projection(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
+        Projection(final Identifier name, final PJCRS source, final PJCRS target) {
             super(name, source, target);
         }
 

@@ -36,6 +36,7 @@ import java.util.Collection;
 import org.opengis.util.Factory;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.util.GenericName;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.*;
 import org.opengis.test.TestCase;
 
@@ -97,7 +98,7 @@ strictfp abstract class GIGSTestCase extends TestCase {
      */
     static String getName(final IdentifiedObject object) {
         if (object != null) {
-            final ReferenceIdentifier name = object.getName();
+            final Identifier name = object.getName();
             if (name != null) {
                 return name.getCode();
             }
@@ -171,11 +172,11 @@ next:   for (final String search : expected) {
      * @param identifiers The actual identifiers.
      */
     static void assertContainsCode(final String message, final String codespace, final int expected,
-            final Collection<? extends ReferenceIdentifier> identifiers)
+            final Collection<? extends Identifier> identifiers)
     {
         assertNotNull(message, identifiers);
         int found = 0;
-        for (final ReferenceIdentifier id : identifiers) {
+        for (final Identifier id : identifiers) {
             if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
                 found++;
                 try {

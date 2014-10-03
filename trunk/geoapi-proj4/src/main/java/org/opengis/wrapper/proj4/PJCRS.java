@@ -15,7 +15,7 @@ package org.opengis.wrapper.proj4;
 
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
-import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
@@ -57,7 +57,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      * @param dimension The number of dimensions of the new CRS. Must be at least 2.
      * @param unit The horizontal axes unit.
      */
-    PJCRS(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension, final Unit<?> unit) {
+    PJCRS(final Identifier identifier, final PJDatum datum, final int dimension, final Unit<?> unit) {
         super(identifier);
         pj = datum;
         axes = new CoordinateSystemAxis[dimension];
@@ -112,7 +112,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      * The geocentric specialization of {@link PJCRS}.
      */
     static final class Geocentric extends PJCRS implements GeocentricCRS {
-        Geocentric(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
+        Geocentric(final Identifier identifier, final PJDatum datum, final int dimension) {
             super(identifier, datum, dimension, NonSI.DEGREE_ANGLE);
         }
     }
@@ -121,7 +121,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      * The geographic specialization of {@link PJCRS}.
      */
     static final class Geographic extends PJCRS implements GeographicCRS, EllipsoidalCS {
-        Geographic(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension) {
+        Geographic(final Identifier identifier, final PJDatum datum, final int dimension) {
             super(identifier, datum, dimension, NonSI.DEGREE_ANGLE);
         }
 
@@ -158,7 +158,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         /**
          * Creates a new projected CRS.
          */
-        Projected(final ReferenceIdentifier identifier, final PJDatum datum, final int dimension,
+        Projected(final Identifier identifier, final PJDatum datum, final int dimension,
                 final String axisOrientations)
         {
             super(identifier, datum, dimension, datum.getLinearUnit(false));

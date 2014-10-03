@@ -34,8 +34,8 @@ package org.opengis.temporal;
 import java.util.Collection;
 import java.util.Date;
 import javax.measure.unit.Unit;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.util.InternationalString;
 
 /**
@@ -53,7 +53,7 @@ public interface TemporalFactory {
      * @param domainOfValidit
      * @return Calendar
      */
-    Calendar createCalendar(ReferenceIdentifier name, Extent domainOfValidit);
+    Calendar createCalendar(Identifier name, Extent domainOfValidit);
 
     /**
      *
@@ -101,7 +101,7 @@ public interface TemporalFactory {
      * @param utcReference : This is the 24-hour local or UTC time that corresponds to the reference time.
      * @return Clock
      */
-    Clock createClock(ReferenceIdentifier name, Extent domainOfValidity, InternationalString referenceEvent,
+    Clock createClock(Identifier name, Extent domainOfValidity, InternationalString referenceEvent,
             ClockTime referenceTime, ClockTime utcReference);
 
     /**
@@ -137,7 +137,7 @@ public interface TemporalFactory {
             InternationalString calendarEraName, int[] calendarDate, Number[] clockTime);
 
     /**
-     * 
+     *
      * @param instant : This is the position of this TM_Instant,
      * it shall be associated with a single temporal reference system.
      * @return Instant
@@ -198,7 +198,7 @@ public interface TemporalFactory {
      * @param ordinalEraSequence : An ordinal temporal reference system  consists of a set of ordinal eras.
      * @return OrdinalReferenceSystem
      */
-    OrdinalReferenceSystem createOrdinalReferenceSystem(ReferenceIdentifier name,
+    OrdinalReferenceSystem createOrdinalReferenceSystem(Identifier name,
             Extent domainOfValidity, Collection<OrdinalEra> ordinalEraSequence);
 
     /**
@@ -256,7 +256,7 @@ public interface TemporalFactory {
      * or a multiple of one of those units, as specified by ISO 1000.
      * @return TemporalCoordinateSystem
      */
-    TemporalCoordinateSystem createTemporalCoordinateSystem(ReferenceIdentifier name,
+    TemporalCoordinateSystem createTemporalCoordinateSystem(Identifier name,
             Extent domainOfValidity, Date origin, InternationalString interval);
 
     /**
@@ -276,7 +276,7 @@ public interface TemporalFactory {
      * @param domainOfValidity
      * @return TemporalReferenceSystem
      */
-    TemporalReferenceSystem createTemporalReferenceSystem(ReferenceIdentifier name,
+    TemporalReferenceSystem createTemporalReferenceSystem(Identifier name,
             Extent domainOfValidity);
 
 }

@@ -247,7 +247,6 @@ public class ValidatorContainer implements Cloneable {
         if (object instanceof VerticalExtent)        validate((VerticalExtent)        object);
         if (object instanceof TemporalExtent)        validate((TemporalExtent)        object);
         if (object instanceof IdentifiedObject)      validate((IdentifiedObject)      object);
-        if (object instanceof ReferenceIdentifier)   validate((ReferenceIdentifier)   object);
         if (object instanceof Identifier)            validate((Identifier)            object);
         if (object instanceof GenericName)           validate((GenericName)           object);
         if (object instanceof NameSpace)             validate((NameSpace)             object);
@@ -879,16 +878,6 @@ public class ValidatorContainer implements Cloneable {
      */
     public final void validate(final IdentifiedObject object) {
         crs.dispatchObject(object);
-    }
-
-    /**
-     * Tests the conformance of the given object.
-     *
-     * @param object The object to test, or {@code null}.
-     * @see ReferencingValidator#validate(ReferenceIdentifier)
-     */
-    public final void validate(final ReferenceIdentifier object) {
-        crs.validate(object);
     }
 
     /**

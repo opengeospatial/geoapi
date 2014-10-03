@@ -21,7 +21,7 @@ import javax.measure.converter.ConversionException;
 
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
-import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.metadata.Identifier;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDirection;
@@ -58,7 +58,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
     /**
      * Creates a new parameter with the given identifier and aliases.
      */
-    PJParameter(final ReferenceIdentifier identifier, final Collection<GenericName> aliases) {
+    PJParameter(final Identifier identifier, final Collection<GenericName> aliases) {
         super(identifier, aliases);
     }
 

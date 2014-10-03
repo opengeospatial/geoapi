@@ -15,8 +15,8 @@ package org.opengis.wrapper.proj4;
 
 import java.util.Collection;
 import org.opengis.util.GenericName;
+import org.opengis.metadata.Identifier;
 import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.operation.Formula;
 import org.opengis.referencing.operation.OperationMethod;
 
@@ -32,7 +32,7 @@ final class PJMethod extends PJObject implements OperationMethod {
     /**
      * Creates a new operation method.
      */
-    PJMethod(final ReferenceIdentifier name, final Collection<GenericName> aliases) {
+    PJMethod(final Identifier name, final Collection<GenericName> aliases) {
         super(name, aliases);
     }
 

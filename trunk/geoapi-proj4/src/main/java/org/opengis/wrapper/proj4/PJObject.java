@@ -18,9 +18,9 @@ import java.util.Collection;
 import java.util.Collections;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
@@ -35,7 +35,7 @@ class PJObject implements IdentifiedObject {
     /**
      * The name of this referencing object, or {@code null} if none.
      */
-    final ReferenceIdentifier name;
+    final Identifier name;
 
     /**
      * The aliases, or an empty list if none.
@@ -47,7 +47,7 @@ class PJObject implements IdentifiedObject {
      *
      * @param identifier The name of the new object, or {@code null} if none.
      */
-    PJObject(final ReferenceIdentifier name) {
+    PJObject(final Identifier name) {
         this.name    = name;
         this.aliases = Collections.emptyList();
     }
@@ -57,7 +57,7 @@ class PJObject implements IdentifiedObject {
      *
      * @param identifier The name of the new object, or {@code null} if none.
      */
-    PJObject(final ReferenceIdentifier name, final Collection<GenericName> aliases) {
+    PJObject(final Identifier name, final Collection<GenericName> aliases) {
         this.name    = name;
         this.aliases = aliases;
     }
@@ -76,7 +76,7 @@ class PJObject implements IdentifiedObject {
      * simple Proj.4 wrapper is lenient about that.
      */
     @Override
-    public ReferenceIdentifier getName() {
+    public Identifier getName() {
         return name;
     }
 
@@ -86,7 +86,7 @@ class PJObject implements IdentifiedObject {
      * is rather the name which is quite inaccurate.
      */
     @Override
-    public Set<ReferenceIdentifier> getIdentifiers() {
+    public Set<Identifier> getIdentifiers() {
         return Collections.singleton(name);
     }
 

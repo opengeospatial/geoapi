@@ -15,7 +15,7 @@ package org.opengis.wrapper.proj4;
 
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
-import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.cs.RangeMeaning;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
@@ -34,7 +34,7 @@ final class PJAxis extends PJObject implements CoordinateSystemAxis {
      * by the ISO 19111 specification. Some names may be slightly different because we don't have
      * enough information for inferring the exact names.
      */
-    private static final ReferenceIdentifier[] NAMES = new ReferenceIdentifier[] {
+    private static final Identifier[] NAMES = new Identifier[] {
         new PJIdentifier("Easting"),
         new PJIdentifier("Westing"),
         new PJIdentifier("Northing"),
@@ -70,7 +70,7 @@ final class PJAxis extends PJObject implements CoordinateSystemAxis {
      * Work around for RFE #4093999 in Sun's bug database
      * ("Relax constraint on placement of this()/super() call in constructors").
      */
-    private static ReferenceIdentifier getName(final char direction, final Unit<?> unit) {
+    private static Identifier getName(final char direction, final Unit<?> unit) {
         final int i;
         if (isAngular(unit)) {
             switch (direction) {
