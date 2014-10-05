@@ -52,17 +52,6 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_Band", specification=ISO_19115)
 public interface Band extends SampleDimension {
     /**
-     * Longest wavelength that the sensor is capable of collecting within a designated band.
-     *
-     * @return Longest wavelength that the sensor is capable of collecting within a designated band,
-     *         or {@code null} if unspecified.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="boundMax", obligation=OPTIONAL, specification=ISO_19115)
-    Double getBoundMax();
-
-    /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
      *
      * @return Shortest wavelength that the sensor is capable of collecting within a designated band,
@@ -74,6 +63,17 @@ public interface Band extends SampleDimension {
     Double getBoundMin();
 
     /**
+     * Longest wavelength that the sensor is capable of collecting within a designated band.
+     *
+     * @return Longest wavelength that the sensor is capable of collecting within a designated band,
+     *         or {@code null} if unspecified.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="boundMax", obligation=OPTIONAL, specification=ISO_19115)
+    Double getBoundMax();
+
+    /**
      * Units in which sensor wavelengths are expressed.
      *
      * @return Units in which sensor wavelengths are expressed, or {@code null} if unspecified.
@@ -82,6 +82,16 @@ public interface Band extends SampleDimension {
      */
     @UML(identifier="boundUnits", obligation=OPTIONAL, specification=ISO_19115)
     Unit<Length> getBoundUnits();
+
+    /**
+     * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
+     *
+     * @return Criterion for defining maximum and minimum wavelengths.
+     *
+     * @since 2.3
+     */
+    @UML(identifier="bandBoundaryDefinition", obligation=OPTIONAL, specification=ISO_19115_2)
+    BandDefinition getBandBoundaryDefinition();
 
     /**
      * Wavelength at which the response is the highest.
@@ -102,16 +112,6 @@ public interface Band extends SampleDimension {
     Integer getToneGradation();
 
     /**
-     * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
-     *
-     * @return Criterion for defining maximum and minimum wavelengths.
-     *
-     * @since 2.3
-     */
-    @UML(identifier="bandBoundaryDefinition", obligation=OPTIONAL, specification=ISO_19115_2)
-    BandDefinition getBandBoundaryDefinition();
-
-    /**
      * Smallest distance between which separate points can be distinguished, as specified in instrument design.
      *
      * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
@@ -119,6 +119,8 @@ public interface Band extends SampleDimension {
      * {@link javax.measure.quantity.Length} type in order to provide unit of measurement
      * together with the value.
      * </div>
+     *
+     * @todo Move to {@link SampleDimension} parent type, since this information is not specific to bands?
      *
      * @return Smallest distance between which separate points can be distinguished.
      * @unitof Distance
@@ -134,6 +136,8 @@ public interface Band extends SampleDimension {
      * @return Type of transfer function.
      *
      * @since 2.3
+     *
+     * @todo Move to {@link SampleDimension} parent type, since this information is used together with scale and offset?
      */
     @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
     TransferFunctionType getTransferFunctionType();

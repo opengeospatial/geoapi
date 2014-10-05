@@ -57,13 +57,18 @@
  *  ├─ {@linkplain org.opengis.metadata.identification.BrowseGraphic}
  *  ├─ {@linkplain org.opengis.metadata.identification.Keywords}
  *  ├─ {@linkplain org.opengis.metadata.identification.Usage}
- *  └─ {@linkplain org.opengis.metadata.identification.AggregateInformation}
+ *  ├─ {@linkplain org.opengis.metadata.identification.AggregateInformation}
+ *  ├─ {@linkplain org.opengis.metadata.identification.CoupledResource}
+ *  ├─ {@linkplain org.opengis.metadata.identification.OperationMetadata}
+ *  └─ {@linkplain org.opengis.metadata.identification.OperationChainMetadata}
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.identification.Progress}
  *  ├─ {@linkplain org.opengis.metadata.identification.KeywordType}
  *  ├─ {@linkplain org.opengis.metadata.identification.AssociationType}
  *  ├─ {@linkplain org.opengis.metadata.identification.InitiativeType}
- *  └─ {@linkplain org.opengis.metadata.identification.TopicCategory}</pre>
+ *  ├─ {@linkplain org.opengis.metadata.identification.TopicCategory}
+ *  ├─ {@linkplain org.opengis.metadata.identification.CouplingType}
+ *  └─ {@linkplain org.opengis.metadata.identification.DistributedComputingPlatform}</pre>
  * </td><td class="sep" width="50%" nowrap>
  * <pre>{@linkplain org.opengis.metadata.identification.Identification} «abstract»
  *  ├─ {@linkplain org.opengis.metadata.identification.Resolution}
@@ -75,22 +80,31 @@
  *  ├─ {@linkplain org.opengis.metadata.identification.Usage}
  *  └─ {@linkplain org.opengis.metadata.identification.AssociatedResource}
  *      ├─ {@linkplain org.opengis.metadata.identification.AssociationType} «code list»
- *      └─ {@linkplain org.opengis.metadata.identification.InitiativeType} «code list»</pre>
+ *      └─ {@linkplain org.opengis.metadata.identification.InitiativeType} «code list»
+ * {@linkplain org.opengis.metadata.identification.DataIdentification}
+ * {@linkplain org.opengis.metadata.identification.ServiceIdentification}
+ *  ├─ {@linkplain org.opengis.metadata.identification.CouplingType} «code list»
+ *  ├─ {@linkplain org.opengis.metadata.identification.CoupledResource}
+ *  ├─ {@linkplain org.opengis.metadata.identification.OperationMetadata}
+ *  │   ├─ {@linkplain org.opengis.metadata.identification.DistributedComputingPlatform} «code list»
+ *  │   └─ {@linkplain org.opengis.parameter.ParameterDescriptor}
+ *  │       └─ {@linkplain org.opengis.parameter.ParameterDirection} «enum»
+ *  └─ {@linkplain org.opengis.metadata.identification.OperationChainMetadata}</pre>
  * </td></tr></table>
  *
  * <p>More specifically, {@link org.opengis.metadata.identification.Identification}
  * is an aggregate of the following entities:</p>
  * <ul>
  *   <li>{@link org.opengis.metadata.distribution.Format}
- *       (from the {@linkplain org.opengis.metadata.distribution distribution} package): format of the data</li>
- *   <li>{@link org.opengis.metadata.identification.BrowseGraphic}: graphic overview of the data</li>
- *   <li>{@link org.opengis.metadata.identification.Usage}: specific uses of the data</li>
+ *       (from the {@linkplain org.opengis.metadata.distribution distribution} package): format of the data.</li>
+ *   <li>{@link org.opengis.metadata.identification.BrowseGraphic}: graphic overview of the data.</li>
+ *   <li>{@link org.opengis.metadata.identification.Usage}: specific uses of the data.</li>
  *   <li>{@link org.opengis.metadata.constraint.Constraints}
- *       (from the {@linkplain org.opengis.metadata.constraint constraint} package): constraints placed on the resource</li>
- *   <li>{@link org.opengis.metadata.identification.Keywords}: keywords describing the resource</li>
+ *       (from the {@linkplain org.opengis.metadata.constraint constraint} package): constraints placed on the resource.</li>
+ *   <li>{@link org.opengis.metadata.identification.Keywords}: keywords describing the resource.</li>
  *   <li>{@link org.opengis.metadata.maintenance.MaintenanceInformation}
  *       (from the {@linkplain org.opengis.metadata.maintenance maintenance} package):
- *       how often the data is scheduled to be updated and the scope of the update</li>
+ *       how often the data is scheduled to be updated and the scope of the update.</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)

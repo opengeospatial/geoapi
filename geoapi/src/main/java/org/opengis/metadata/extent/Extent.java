@@ -45,12 +45,12 @@ import static org.opengis.annotation.ComplianceLevel.*;
 
 /**
  * Information about spatial, vertical, and temporal extent of the resource.
- * This interface has four optional attributes
- * ({@linkplain #getGeographicElements() geographic elements},
- *  {@linkplain #getTemporalElements() temporal elements}, and
- *  {@linkplain #getVerticalElements() vertical elements}) and an element called
- *  {@linkplain #getDescription() description}.
- *  At least one of the four shall be used.
+ * This interface has four optional attributes:
+ * {@linkplain #getGeographicElements() geographic elements},
+ * {@linkplain #getVerticalElements() vertical elements},
+ * {@linkplain #getTemporalElements() temporal elements} and an element called
+ * {@linkplain #getDescription() description}.
+ * At least one of the four shall be used.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
@@ -65,8 +65,8 @@ public interface Extent {
      * @return The spatial and temporal extent, or {@code null} in none.
      *
      * @condition Mandatory if {@linkplain #getGeographicElements() geographic element},
-     *            {@linkplain #getTemporalElements() temporal element} and
-     *            {@linkplain #getVerticalElements() vertical element} are not provided.
+     *            {@linkplain #getVerticalElements() vertical element} and
+     *            {@linkplain #getTemporalElements() temporal element} are not provided.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getDescription();
@@ -77,25 +77,12 @@ public interface Extent {
      * @return The geographic extent, or an empty set if none.
      *
      * @condition Mandatory if {@linkplain #getDescription() description},
-     *            {@linkplain #getTemporalElements() temporal element} and
-     *            {@linkplain #getVerticalElements() vertical element} are not provided.
+     *            {@linkplain #getVerticalElements() vertical element} and
+     *            {@linkplain #getTemporalElements() temporal element} are not provided.
      */
     @Profile(level=CORE)
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends GeographicExtent> getGeographicElements();
-
-    /**
-     * Provides temporal component of the extent of the referring object.
-     *
-     * @return The temporal extent, or an empty set if none.
-     *
-     * @condition Mandatory if {@linkplain #getDescription() description},
-     *            {@linkplain #getGeographicElements() geographic element} and
-     *            {@linkplain #getVerticalElements() vertical element} are not provided.
-     */
-    @Profile(level=CORE)
-    @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends TemporalExtent> getTemporalElements();
 
     /**
      * Provides vertical component of the extent of the referring object.
@@ -109,4 +96,17 @@ public interface Extent {
     @Profile(level=CORE)
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends VerticalExtent> getVerticalElements();
+
+    /**
+     * Provides temporal component of the extent of the referring object.
+     *
+     * @return The temporal extent, or an empty set if none.
+     *
+     * @condition Mandatory if {@linkplain #getDescription() description},
+     *            {@linkplain #getGeographicElements() geographic element} and
+     *            {@linkplain #getVerticalElements() vertical element} are not provided.
+     */
+    @Profile(level=CORE)
+    @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends TemporalExtent> getTemporalElements();
 }

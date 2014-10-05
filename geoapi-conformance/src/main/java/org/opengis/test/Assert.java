@@ -39,8 +39,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.RenderedImage;
 
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
@@ -326,7 +326,7 @@ public strictfp class Assert extends org.junit.Assert {
      * @since 3.1
      */
     public static void assertIdentifierEquals(final String message, final String authority, final String codeSpace,
-            final String version, final String code, final ReferenceIdentifier actual)
+            final String version, final String code, final Identifier actual)
     {
         if (actual == null) {
             fail(concat(message, "Identifier is null"));

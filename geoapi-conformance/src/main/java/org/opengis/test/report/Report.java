@@ -49,7 +49,6 @@ import java.util.NoSuchElementException;
 import java.text.SimpleDateFormat;
 
 import org.opengis.util.InternationalString;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Contact;
@@ -203,8 +202,8 @@ public abstract class Report {
                 if (title == null) {
                     title = identifier.getCode();
                 }
-                if (version == null && (identifier instanceof ReferenceIdentifier)) {
-                    version = ((ReferenceIdentifier) identifier).getVersion();
+                if (version == null) {
+                    version = identifier.getVersion();
                 }
                 if (title != null && version != null) {
                     break; // No need to continue.

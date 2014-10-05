@@ -37,6 +37,7 @@ import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Specification;
 import org.opengis.util.MemberName; // For javadoc
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
 
@@ -54,46 +55,46 @@ import static org.opengis.annotation.Specification.*;
  *   <caption>Main parameter properties</caption>
  *   <tr>
  *     <th>Getter method</th>
- *     <th>ISO 19111</th>
- *     <th>WPS</th>
- *     <th>ISO 19115</th>
+ *     <th class="sep">ISO 19111</th>
+ *     <th class="sep">WPS</th>
+ *     <th class="sep">ISO 19115</th>
  *     <th class="sep">Remarks</th>
  *   </tr>
  *   <tr>
- *      <td>{@link #getName()}</td>
- *      <td>{@code name}</td>
- *      <td>{@code Identifier}</td>
- *      <td>{@code name}</td>
- *      <td class="sep">See {@linkplain #getName() method javadoc} for {@code MemberName} ↔ {@code Identifier} mapping.</td>
+ *     <td>{@link #getName()}</td>
+ *     <td class="sep">{@code name}</td>
+ *     <td class="sep">{@code Identifier}</td>
+ *     <td class="sep">{@code name}</td>
+ *     <td class="sep">See {@linkplain #getName() method javadoc} for {@code MemberName} ↔ {@code Identifier} mapping.</td>
  *   </tr>
  *   <!-- "Title" (WPS) equivalent to "designation" (Feature), but not yet provided. -->
  *   <tr>
- *      <td>{@link #getDescription()}</td>
- *      <td></td>
- *      <td>{@code Abstract}</td>
- *      <td>{@code description}</td>
- *      <td class="sep">Also known as “definition”.</td>
+ *     <td>{@link #getDescription()}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep">{@code Abstract}</td>
+ *     <td class="sep">{@code description}</td>
+ *     <td class="sep">Also known as “definition”.</td>
  *   </tr>
  *   <tr>
- *      <td>{@link #getDirection()}</td>
- *      <td></td>
- *      <td></td>
- *      <td>{@code direction}</td>
- *      <td class="sep">Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
+ *     <td>{@link #getDirection()}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep">{@code direction}</td>
+ *     <td class="sep">Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
  *   </tr>
  *   <tr>
- *      <td>{@link #getMinimumOccurs()}</td>
- *      <td>{@code minimumOccurs}</td>
- *      <td>{@code MinOccurs}</td>
- *      <td>{@code optionality}</td>
- *      <td class="sep">{@code optionality   = (minimumOccurs > 0)}</td>
+ *     <td>{@link #getMinimumOccurs()}</td>
+ *     <td class="sep">{@code minimumOccurs}</td>
+ *     <td class="sep">{@code MinOccurs}</td>
+ *     <td class="sep">{@code optionality}</td>
+ *     <td class="sep">{@code optionality   = (minimumOccurs > 0)}</td>
  *   </tr>
  *   <tr>
- *      <td>{@link #getMaximumOccurs()}</td>
- *      <td>{@code maximumOccurs}</td>
- *      <td>{@code MaxOccurs}</td>
- *      <td>{@code repeatability}</td>
- *      <td class="sep">{@code repeatability = (maximumOccurs > 1)}</td>
+ *     <td>{@link #getMaximumOccurs()}</td>
+ *     <td class="sep">{@code maximumOccurs}</td>
+ *     <td class="sep">{@code MaxOccurs}</td>
+ *     <td class="sep">{@code repeatability}</td>
+ *     <td class="sep">{@code repeatability = (maximumOccurs > 1)}</td>
  *   </tr>
  * </table>
  *
@@ -128,12 +129,12 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   </tr>
      *   <tr>
      *     <td><code>{@linkplain MemberName#scope()}.name().toString()</code></td>
-     *     <td>{@link ReferenceIdentifier#getCodeSpace()}</td>
+     *     <td>{@link Identifier#getCodeSpace()}</td>
      *     <td></td>
      *   </tr>
      *   <tr>
      *     <td>{@link MemberName#toString()}</td>
-     *     <td>{@link ReferenceIdentifier#getCode()}</td>
+     *     <td>{@link Identifier#getCode()}</td>
      *     <td></td>
      *   </tr>
      *   <tr>
@@ -143,9 +144,14 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   </tr>
      * </table>
      *
-     * Some implementations may allow the {@code ReferenceIdentifier} to be casted to {@link MemberType}.
+     * Some implementations may allow the {@code Identifier} to be casted to {@link MemberType}.
      * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
      * </font></blockquote>
+     *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
+     * Consequently this method return type will be changed to {@code Identifier} in GeoAPI 4.0.
+     * </div>
      *
      * @return The name, as used by the service or operation for this parameter.
      */
