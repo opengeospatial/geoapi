@@ -31,12 +31,13 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.util.InternationalString;
 
 
 /**
- * A simple implementation of {@link ReferenceIdentifier}, used for GIGS testing purpose only.
+ * A simple implementation of {@link Identifier}, used for GIGS testing purpose only.
  *
  * @author  Alexis Manin (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
@@ -45,7 +46,7 @@ import org.opengis.referencing.ReferenceIdentifier;
  *
  * @see org.opengis.test.referencing.EPSGIdentifier
  */
-final strictfp class GIGSIdentifier implements ReferenceIdentifier {
+final strictfp class GIGSIdentifier implements Identifier {
     /**
      * The value to be returned by {@link #getCode()}.
      */
@@ -87,6 +88,14 @@ final strictfp class GIGSIdentifier implements ReferenceIdentifier {
      */
     @Override
     public String getVersion() {
+        return null;
+    }
+
+    /**
+     * Returns {@code null} since we do not hold object description.
+     */
+    @Override
+    public InternationalString getDescription() {
         return null;
     }
 

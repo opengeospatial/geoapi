@@ -55,14 +55,15 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="TM_ReferenceSystem", specification=ISO_19108)
 public interface TemporalReferenceSystem extends ReferenceSystem {
     /**
-     * Provides a name that uniquely identifies the temporal referece system.
+     * Provides a name that uniquely identifies the temporal reference system.
      *
      * Currently returns MD_Identifier, which is defined in ISO 19115, while ISO 19108
      * requires that RS_Identifier (defined in ISO 19111 and http://www.opengis.org/docs/03-073r1.zip)
      * is returned. From the looks of it, org.opengis.referencing.ReferenceSystem could also fit the bill.
      *
-     * @return {@link ReferenceIdentifier} for the temporal reference system
+     * @return {@link Identifier} for the temporal reference system
      */
+    @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)
     ReferenceIdentifier getName();
 
@@ -75,6 +76,7 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
      * <p>
      * Please note this is very similar to ReferenceSystem.getValidArea() from ISO 19115.
      */
+    @Override
     @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)
     Extent getDomainOfValidity();
 }

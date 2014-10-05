@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.lang.reflect.Field;
 
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.GeneralParameterDescriptor;
@@ -94,14 +93,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptorGroup getDescriptor() {
         return this;
-    }
-
-    /**
-     * Returns {@code null}, since this simple class does not provide parameters description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**

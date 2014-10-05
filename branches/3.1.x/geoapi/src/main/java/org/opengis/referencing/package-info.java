@@ -49,9 +49,9 @@
  * of 1983</cite>”. This may have alternative names or {@linkplain org.opengis.referencing.IdentifiedObject#getAlias()
  * aliases}, for example the abbreviation “NAD83”.
  *
- * <p>Another attribute is {@linkplain org.opengis.referencing.IdentifiedObject#getIdentifiers identifiers}.
+ * <p>Another attribute is {@linkplain org.opengis.referencing.IdentifiedObject#getIdentifiers() identifiers}.
  * This is a unique code used to reference an object in a given place. For example, an external geodetic register might
- * give the NAD83 datum a unique code of “6269”. Identifiers have a data type of {@link org.opengis.referencing.ReferenceIdentifier}.
+ * give the NAD83 datum a unique code of “6269”. Identifiers have a data type of {@link org.opengis.metadata.Identifier}.
  * In addition to the use of an identifier as a reference to a definition in a remote register, it may also be included
  * in an object definition to allow remote users to refer to the object.</p>
  *

@@ -35,6 +35,7 @@ import java.util.Set;
 import java.util.Collection;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
+import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -64,11 +65,11 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  *
  * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
- * the {@linkplain ReferenceIdentifier#getAuthority() authority} and
- * {@linkplain ReferenceIdentifier#getCode() authority code} values shall be set to the
- * authority name of the factory object, and the authority code supplied by the client,
- * respectively. The other values may or may not be set. If the authority is EPSG, the
- * implementer may consider using the corresponding metadata values in the EPSG tables.
+ * the {@linkplain Identifier#getAuthority() authority} and {@linkplain Identifier#getCode()
+ * authority code} values shall be set to the authority name of the factory object,
+ * and the authority code supplied by the client, respectively.
+ * The other values may or may not be set.
+ * If the authority is EPSG, the implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
  *   ISO 19111 defines an <code>IO_IdentifiedObjectBase</code> type. The later is omitted in GeoAPI
@@ -124,6 +125,11 @@ public interface IdentifiedObject {
     /**
      * The primary name by which this object is identified.
      *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
+     * Consequently this method return type will be changed to {@code Identifier} in GeoAPI 4.0.
+     * </div>
+     *
      * @return The primary name.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
@@ -140,6 +146,11 @@ public interface IdentifiedObject {
     /**
      * An identifier which references elsewhere the object's defining information.
      * Alternatively an identifier by which this object can be referenced.
+     *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
+     * Consequently the element type will be changed to {@code Identifier} in GeoAPI 4.0.
+     * </div>
      *
      * @return This object identifiers, or an empty collection if there is none.
      */

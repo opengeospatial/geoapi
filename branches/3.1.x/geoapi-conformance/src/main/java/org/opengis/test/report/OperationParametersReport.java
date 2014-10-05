@@ -44,10 +44,10 @@ import java.util.LinkedHashMap;
 import java.util.Properties;
 
 import org.opengis.util.GenericName;
+import org.opengis.metadata.Identifier;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.operation.SingleOperation;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -128,7 +128,7 @@ public class OperationParametersReport extends Report {
          * The {@link IdentifiedObject} name, used only for {@link #compareTo(Row)} implementation.
          * This field is not used for defining the row content.
          */
-        private final ReferenceIdentifier name;
+        private final Identifier name;
 
         /**
          * The names or aliases to write on the table row. Each entry will be formatted in a
@@ -136,10 +136,10 @@ public class OperationParametersReport extends Report {
          * is determined by the value. More specifically:
          *
          * <ul>
-         *   <li>{@linkplain Map#keySet() Map keys} are the {@linkplain ReferenceIdentifier#getCodeSpace()
+         *   <li>{@linkplain Map#keySet() Map keys} are the {@linkplain Identifier#getCodeSpace()
          *   code spaces} or {@linkplain GenericName#scope() scopes} of the name or aliases.</li>
          *
-         *   <li>{@linkplain Map#values() Map values} are the {@linkplain ReferenceIdentifier#getCode()
+         *   <li>{@linkplain Map#values() Map values} are the {@linkplain Identifier#getCode()
          *   codes} or {@linkplain GenericName#toInternationalString() string representations} of the name
          *   or aliases.</li>
          * </ul>
@@ -214,9 +214,9 @@ public class OperationParametersReport extends Report {
          * <p>The default implementation compare that {@linkplain #category} first - this is
          * needed in order to ensure that operations of the same category are grouped. Then,
          * this method compares {@linkplain IdentifiedObject#getName() object names} components
-         * in the following order: {@linkplain ReferenceIdentifier#getCode() code},
-         * {@linkplain ReferenceIdentifier#getCodeSpace() code space} and
-         * {@linkplain ReferenceIdentifier#getVersion() version}.</p>
+         * in the following order: {@linkplain Identifier#getCode() code},
+         * {@linkplain Identifier#getCodeSpace() code space} and
+         * {@linkplain Identifier#getVersion() version}.</p>
          *
          * <p>Subclasses can override this method if they want a different ordering
          * on the HTML page.</p>
@@ -421,7 +421,7 @@ public class OperationParametersReport extends Report {
 
     /**
      * Returns the HTML text to use as a column header for each
-     * {@linkplain ReferenceIdentifier#getCodeSpace() code spaces} or
+     * {@linkplain Identifier#getCodeSpace() code spaces} or
      * {@linkplain GenericName#scope() scopes}. The columns will be show in iteration order.
      *
      * @return The name of all code spaces or scopes. Some typical values are {@code "EPSG"},
@@ -447,6 +447,7 @@ public class OperationParametersReport extends Report {
      *
      * @param  destination The file to generate.
      * @return The given {@code destination} file.
+     * @throws IOException if an error occurred while writing the HTML page.
      */
     @Override
     public File write(File destination) throws IOException {

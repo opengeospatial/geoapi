@@ -34,7 +34,7 @@
  * </tr><tr>
  * <td>{@link org.opengis.example.referencing.SimpleIdentifiedObject}:</td>
  * <td>{@link org.opengis.referencing.IdentifiedObject},</td>
- * <td>{@link org.opengis.referencing.ReferenceIdentifier}</td>
+ * <td>{@link org.opengis.metadata.Identifier}</td>
  * </tr><tr>
  * <td>{@link org.opengis.example.metadata.SimpleCitation}:</td>
  * <td>{@link org.opengis.metadata.citation.Citation},</td>

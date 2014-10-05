@@ -18,7 +18,6 @@ import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.nio.charset.Charset;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
 import ucar.nc2.time.Calendar;
@@ -379,6 +378,22 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     public String getCode() {
         final String id = getString("id");
         return (id != null) ? id : file.getId();
+    }
+
+    /**
+     * Defaults to {@code null}.
+     */
+    @Override
+    public String getCodeSpace() {
+        return null;
+    }
+
+    /**
+     * Defaults to {@code null}.
+     */
+    @Override
+    public String getVersion() {
+        return null;
     }
 
     /**
