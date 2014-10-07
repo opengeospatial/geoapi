@@ -56,6 +56,10 @@ public interface BrowseGraphic {
     /**
      * Name of the file that contains a graphic that provides an illustration of the dataset.
      *
+     * @departure integration
+     *   ISO 19115 type is <code>CharacterString</code>. Since the specification clearly state that the
+     *   string shall be a filename, a more specific Java type like <code>URI</code> seem appropriate.
+     *
      * @return File that contains a graphic that provides an illustration of the dataset.
      */
     @UML(identifier="fileName", obligation=MANDATORY, specification=ISO_19115)
@@ -71,9 +75,12 @@ public interface BrowseGraphic {
 
     /**
      * Format in which the illustration is encoded.
-     * Examples: CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD.
      * Raster formats are encouraged to use one of the names returned by
      * {@link javax.imageio.ImageIO#getReaderFormatNames()}.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD.
+     * </font></blockquote>
      *
      * @return Format in which the illustration is encoded, or {@code null}.
      *
