@@ -60,7 +60,7 @@ public interface ScopeDescription {
      * If a geographic data provider is generating vector mapping for thee administrative areas
      * and if the data were processed in the same way, then the provider could record the bulk
      * of initial data at {@link ScopeCode#DATASET} level with a
-     * “<cite>Administrative area A, B & C</cite>” description.
+     * “<cite>Administrative area A, B &amp; C</cite>” description.
      * </font></blockquote>
      *
      * @return Dataset to which the information applies, or {@code null}.
