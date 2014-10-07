@@ -33,6 +33,8 @@ package org.opengis.util;
 
 import java.util.Map;  // For javadoc
 import java.util.Locale;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
@@ -44,11 +46,11 @@ import java.util.Locale;
  * lexicographical ordering of strings} in the default locale, as returned by {@link #toString()}.
  * This string also defines the {@linkplain CharSequence character sequence} for this object.</p>
  *
- * @departure extension
- *   Added this new type in order to distinguish between localizable and non-localizable character
- *   strings. Not all character strings should be localizable; for example <cite>Well Know Text</cite>
- *   or code names should probably be language neutral. Since the ISO/OGC UML does not say which character
- *   strings are localizable and which ones are not, we have done our own guesses in GeoAPI.
+ * @departure renaming
+ *   This is called <code>PT_FreeText</code> in ISO 19115 standard, and can be applied to all metadata
+ *   elements who's data type is <code>CharacterString</code> and domain is “free text”. GeoAPI uses the
+ *   <code>InternationalString</code> name for historical reasons and for consistency with similar object in
+ *   <a href="http://www.jcp.org/en/jsr/detail?id=150">JSR-150</a> <cite>(Internationalization Service for J2EE)</cite>.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -56,6 +58,7 @@ import java.util.Locale;
  *
  * @see NameFactory#createInternationalString(Map)
  */
+@UML(identifier="PT_FreeText", specification=ISO_19115)
 public interface InternationalString extends CharSequence, Comparable<InternationalString> {
     /**
      * Returns this string in the given locale. If no string is available in the given locale,

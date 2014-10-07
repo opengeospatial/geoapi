@@ -130,7 +130,7 @@ public abstract class ReferencingValidator extends Validator {
      */
     final void validateIdentifiedObject(final IdentifiedObject object) {
         validate(object.getName());
-        final Collection<Identifier> identifiers = object.getIdentifiers();
+        final Collection<? extends Identifier> identifiers = object.getIdentifiers();
         if (identifiers != null) {
             validate(identifiers);
             for (final Identifier id : identifiers) {
@@ -138,7 +138,7 @@ public abstract class ReferencingValidator extends Validator {
                 validate(id);
             }
         }
-        final Collection<GenericName> alias = object.getAlias();
+        final Collection<? extends GenericName> alias = object.getAlias();
         if (alias != null) {
             validate(alias);
             for (final GenericName name : alias) {

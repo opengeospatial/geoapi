@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * Identifier used for reference systems.
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  *
  * @deprecated As of ISO 19115:2014, merged with its {@link Identifier} parent interface.

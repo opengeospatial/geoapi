@@ -54,53 +54,14 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
     /**
-     * Instances of feature type to which the information applies.
-     *
-     * @return Features to which the information applies.
-     *
-     * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
-     */
-    @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatures();
-
-    /**
-     * Instances of attribute type to which the information applies.
-     *
-     * @return Attributes to which the information applies.
-     *
-     * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
-     */
-    @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributes();
-
-    /**
-     * Feature instances to which the information applies.
-     *
-     * @return Feature instances to which the information applies.
-     *
-     * @condition {@code features}, {@code attributes}, {@code attributeInstances},
-     *            {@code dataset} and {@code other} not provided.
-     */
-    @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatureInstances();
-
-    /**
-     * Attribute instances to which the information applies.
-     *
-     * @return Attribute instances to which the information applies.
-     *
-     * @since 2.1
-     *
-     * @condition {@code features}, {@code attributes}, {@code featureInstances},
-     *            {@code dataset} and {@code other} not provided.
-     */
-    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributeInstances();
-
-    /**
      * Dataset to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If a geographic data provider is generating vector mapping for thee administrative areas
+     * and if the data were processed in the same way, then the provider could record the bulk
+     * of initial data at {@link ScopeCode#DATASET} level with a
+     * “<cite>Administrative area A, B & C</cite>” description.
+     * </font></blockquote>
      *
      * @return Dataset to which the information applies, or {@code null}.
      *
@@ -113,8 +74,77 @@ public interface ScopeDescription {
     String getDataset();
 
     /**
-     * Class of information that does not fall into the other categories to
-     * which the information applies.
+     * Feature types to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If an administrative area performs a complete re-survey of the road network,
+     * the change can be recorded at {@link ScopeCode#FEATURE_TYPE} level with a
+     * “<cite>Administrative area A — Road network</cite>” description.
+     * </font></blockquote>
+     *
+     * @return Feature types to which the information applies.
+     *
+     * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
+     */
+    @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
+    Set<? extends CharSequence> getFeatures();
+
+    /**
+     * Attribute types to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If an administrative area detects an anomaly in all overhead clearance of the road survey,
+     * the correction can be recorded at {@link ScopeCode#ATTRIBUTE_TYPE} level with a
+     * “<cite>Administrative area A — Overhead clearance</cite>” description.
+     * </font></blockquote>
+     *
+     * @return Attribute types to which the information applies.
+     *
+     * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
+     */
+    @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
+    Set<? extends CharSequence> getAttributes();
+
+    /**
+     * Feature instances to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If a new bridge is constructed in a road network,
+     * the change can be recorded at {@link ScopeCode#FEATURE} level with a
+     * “<cite>Administrative area A — New bridge</cite>” description.
+     * </font></blockquote>
+     *
+     * @return Feature instances to which the information applies.
+     *
+     * @condition {@code features}, {@code attributes}, {@code attributeInstances},
+     *            {@code dataset} and {@code other} not provided.
+     */
+    @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    Set<? extends CharSequence> getFeatureInstances();
+
+    /**
+     * Attribute instances to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If the overhead clearance of a new bridge was wrongly recorded,
+     * the correction can be recorded at {@link ScopeCode#ATTRIBUTE} level with a
+     * “<cite>Administrative area A — New bridge — Overhead clearance</cite>” description.
+     * </font></blockquote>
+     *
+     * @return Attribute instances to which the information applies.
+     *
+     * @since 2.1
+     *
+     * @condition {@code features}, {@code attributes}, {@code featureInstances},
+     *            {@code dataset} and {@code other} not provided.
+     */
+    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    Set<? extends CharSequence> getAttributeInstances();
+
+    /**
+     * Class of information that does not fall into the other categories to which the information applies.
      *
      * @return Class of information that does not fall into the other categories, or {@code null}.
      *
