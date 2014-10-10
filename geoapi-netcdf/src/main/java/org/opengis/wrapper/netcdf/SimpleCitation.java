@@ -72,9 +72,21 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
     static final SimpleCitation EPSG = new SimpleCitation("EPSG");
 
     /**
+     * The ISO 19115 standard.
+     */
+    static final SimpleCitation ISO_19115 = new SimpleCitation(
+            "ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data",
+            new SimpleCitation("ISO 19115-2:2009(E)"));
+
+    /**
      * The citation title to be returned by {@link #getTitle()}.
      */
     private final String title;
+
+    /**
+     * The citation edition to be returned by {@link #getEdition()}.
+     */
+    private final InternationalString edition;
 
     /**
      * Creates a new citation having the given title.
@@ -82,7 +94,19 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
      * @param title The citation title to be returned by {@link #getTitle()}.
      */
     SimpleCitation(final String title) {
-        this.title = title;
+        this.title   = title;
+        this.edition = null;
+    }
+
+    /**
+     * Creates a new citation having the given title and edition.
+     *
+     * @param title   The citation title to be returned by {@link #getTitle()}.
+     * @param edition The citation edition to be returned by {@link #getEdition()}.
+     */
+    SimpleCitation(final String title, final InternationalString edition) {
+        this.title   = title;
+        this.edition = edition;
     }
 
     /*
@@ -91,7 +115,7 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
     @Override public InternationalString        getTitle()                   {return this;}
     @Override public Set<InternationalString>   getAlternateTitles()         {return emptySet();}
     @Override public Set<CitationDate>          getDates()                   {return emptySet();}
-    @Override public InternationalString        getEdition()                 {return null;}
+    @Override public InternationalString        getEdition()                 {return edition;}
     @Override public Date                       getEditionDate()             {return null;}
     @Override public Set<Identifier>            getIdentifiers()             {return emptySet();}
     @Override public Set<Responsibility>        getCitedResponsibleParties() {return emptySet();}

@@ -32,6 +32,7 @@
 package org.opengis.metadata.identification;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.nio.charset.Charset;
 import org.opengis.util.InternationalString;
@@ -53,7 +54,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
 @UML(identifier="MD_DataIdentification", specification=ISO_19115)
 public interface DataIdentification extends Identification {
     /**
-     * Returns the language(s) used within the resource.
+     * Language(s) used within the resource.
      * The first element in iteration order shall be the default language.
      * All other elements, if any, are alternate language(s) used within the resource.
      *
@@ -63,17 +64,24 @@ public interface DataIdentification extends Identification {
      * @return Language(s) used.
      *
      * @departure historic
-     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   The ISO 19115:2014 revision merged the language and character encoding information into a single class
-     *   (namely <code>PT_Locale</code>), but this design does not fit well with the Java model.
+     *   ISO 19115:2014 defines <code>defaultLocale</code> and <code>otherLocale(s)</code> attributes, who's data
+     *   type (<code>PT_Locale</code>) combines the language and character encoding information into a single class.
+     *   However this design does not fit well with the Java model.
      *   For example the character encoding information is irrelevant to <code>InternationalString</code>
      *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
+     *   Consequently GeoAPI keeps the <code>language(s)</code> and <code>characterSet(s)</code> attributes
+     *   as separated entities, as defined in ISO 19115:2003.
+     *   GeoAPI also keeps default and other locales in a single collection for compatibility with standard Java
+     *   methods like <code>Locale.lookup(List&lt;Locale.LanguageRange&gt;, Collection&lt;Locale&gt;)</code>,
+     *   which provides elaborated mechanism for choosing the best suited locale for a user.
      *
+     * @see #getCharacterSets()
      * @see org.opengis.metadata.Metadata#getLanguage()
      * @see Locale#getISO3Language()
+     * @see Locale#lookup(List, Collection)
      */
     @Profile(level=CORE)
-    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115) // Actually from ISO 19115:2003
+    @UML(identifier="defaultLocale+otherLocale", obligation=MANDATORY, specification=ISO_19115)
     Collection<Locale> getLanguages();
 
     /**
@@ -96,7 +104,8 @@ public interface DataIdentification extends Identification {
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
      *   See <code>getLanguages()</code> for more information.
      *
-     * @see org.opengis.metadata.Metadata#getCharacterSet()
+     * @see #getLanguages()
+     * @see org.opengis.metadata.Metadata#getCharacterSets()
      * @see Charset#forName(String)
      */
     @Profile(level=CORE)

@@ -69,6 +69,8 @@ public interface ScopeDescription {
      *
      * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code attributeInstances} and {@code other} not provided.
+     *
+     * @see ScopeCode#DATASET
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
     String getDataset();
@@ -86,6 +88,8 @@ public interface ScopeDescription {
      *
      * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#FEATURE_TYPE
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends CharSequence> getFeatures();
@@ -103,6 +107,8 @@ public interface ScopeDescription {
      *
      * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#ATTRIBUTE_TYPE
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends CharSequence> getAttributes();
@@ -120,6 +126,8 @@ public interface ScopeDescription {
      *
      * @condition {@code features}, {@code attributes}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#FEATURE
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends CharSequence> getFeatureInstances();
@@ -139,6 +147,8 @@ public interface ScopeDescription {
      *
      * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#ATTRIBUTE
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends CharSequence> getAttributeInstances();

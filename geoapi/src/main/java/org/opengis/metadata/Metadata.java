@@ -32,6 +32,7 @@
 package org.opengis.metadata;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Date;
 import java.util.Locale;
 import java.nio.charset.Charset;
@@ -41,11 +42,16 @@ import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Distribution;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.citation.CitationDate;
+import org.opengis.metadata.citation.DateType;
+import org.opengis.metadata.citation.Responsibility;
+import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
+import org.opengis.metadata.lineage.Lineage;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -66,31 +72,67 @@ import static org.opengis.annotation.ComplianceLevel.*;
 @UML(identifier="MD_Metadata", specification=ISO_19115)
 public interface Metadata {
     /**
-     * Unique identifier for this metadata file, or {@code null} if none.
+     * Unique identifier for this metadata record.
      *
-     * @return Unique identifier for this metadata file, or {@code null}.
+     * @return Unique identifier for this metadata record, or {@code null}.
      */
     @Profile(level=CORE)
+    @UML(identifier="metadataIdentifier", obligation=OPTIONAL, specification=ISO_19115)
+    Identifier getMetadataIdentifier();
+
+    /**
+     * Unique identifier for this metadata file, or {@code null} if none.
+     *
+     * @return Unique identifier for this metadata file, or {@code null} in none.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataIdentifier()}
+     *   in order to include the codespace attribute.
+     */
+    @Deprecated
     @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     String getFileIdentifier();
+
+    /**
+     * Language(s) used for documenting metadata.
+     * The first element in iteration order shall be the default language.
+     * All other elements, if any, are alternate language(s) used within the resource.
+     *
+     * <p>XML documents shall format languages using the ISO 639-2 language code
+     * as returned by {@link Locale#getISO3Language()}.</p>
+     *
+     * @departure historic
+     *   ISO 19115:2014 defines <code>defaultLocale</code> and <code>otherLocale(s)</code> attributes, who's data
+     *   type (<code>PT_Locale</code>) combines the language and character encoding information into a single class.
+     *   However this design does not fit well with the Java model.
+     *   For example the character encoding information is irrelevant to <code>InternationalString</code>
+     *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
+     *   Consequently GeoAPI keeps the <code>language(s)</code> and <code>characterSet(s)</code> attributes
+     *   as separated entities, as defined in ISO 19115:2003.
+     *   GeoAPI also keeps default and other locales in a single collection for compatibility with standard Java
+     *   methods like <code>Locale.lookup(List&lt;Locale.LanguageRange&gt;, Collection&lt;Locale&gt;)</code>,
+     *   which provides elaborated mechanism for choosing the best suited locale for a user.
+     *
+     * @return Language used for documenting metadata.
+     *
+     * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
+     * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLanguages()
+     * @see Locale#getISO3Language()
+     * @see Locale#lookup(List, Collection)
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<Locale> getLanguages();
 
     /**
      * Language used for documenting metadata.
      *
      * @return Language used for documenting metadata, or {@code null}.
      *
-     * @departure historic
-     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   The ISO 19115:2014 revision merged the language and character encoding information into a single class
-     *   (namely <code>PT_Locale</code>), but this design does not fit well with the Java model.
-     *   For example the character encoding information is irrelevant to <code>InternationalString</code>
-     *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
-     *
-     * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
-     * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLanguages()
-     * @see Locale#getISO3Language()
+     * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
      */
-    @Profile(level=CORE)
+    @Deprecated
     @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
     Locale getLanguage();
 
@@ -100,7 +142,10 @@ public interface Metadata {
      * @return Alternatively used localized character string for a linguistic extension.
      *
      * @since 2.1
+     *
+     * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
      */
+    @Deprecated
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Locale> getLocales();
 
@@ -118,18 +163,42 @@ public interface Metadata {
      * {@code Big5}, {@code GB2312}.
      * </font></blockquote>
      *
-     * @return Character coding standard used for the metadata, or {@code null}.
+     * @return Character coding standards used for the metadata.
      *
      * @departure historic
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
      *   See <code>getLanguages()</code> for more information.
      *
+     * @see #getLanguages()
      * @see org.opengis.metadata.identification.DataIdentification#getCharacterSets()
      * @see Charset#forName(String)
+     *
+     * @since 3.1
      */
     @Profile(level=CORE)
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003
+    Collection<Charset> getCharacterSets();
+
+    /**
+     * @deprecated As of GeoAPI 3.1, replaced by {@link #getCharacterSets()}.
+     *
+     * @return Character coding standard used for the metadata, or {@code null}.
+     */
+    @Deprecated
     Charset getCharacterSet();
+
+    /**
+     * Identification of the parent metadata record.
+     * This is non-null if this metadata is a subset (child) of another metadata.
+     *
+     * @condition Mandatory if there is an upper object.
+     *
+     * @return Identification of the parent metadata record, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="parentMetadata", obligation=CONDITIONAL, specification=ISO_19115)
+    Citation getParentMetadata();
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).
@@ -138,7 +207,10 @@ public interface Metadata {
      *
      * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
      *            {@link ScopeCode#DATASET}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getParentMetadata()}.
      */
+    @Deprecated
     @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     String getParentIdentifier();
 
@@ -150,7 +222,11 @@ public interface Metadata {
      * @return Scope to which the metadata applies.
      *
      * @condition Mandatory if the metadata is about a resource other than a dataset.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScope()}
+     *   followed by {@link MetadataScope#getResourceScope()}.
      */
+    @Deprecated
     @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<ScopeCode> getHierarchyLevels();
 
@@ -161,7 +237,11 @@ public interface Metadata {
      *
      * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
      *            {@link ScopeCode#DATASET}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScope()}
+     *   followed by {@link MetadataScope#getName()}.
      */
+    @Deprecated
     @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<String> getHierarchyLevelNames();
 
@@ -176,19 +256,30 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends ResponsibleParty> getContacts();
+    Collection<? extends Responsibility> getContacts();
+
+    /**
+     * Date(s) associated with the metadata.
+     * The collection shall contains at least an element for {@link DateType#CREATION}.
+     *
+     * @return Date(s) associated with the metadata.
+     *
+     * @see Citation#getDates()
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="dateInfo", obligation=MANDATORY, specification=ISO_19115)
+    Collection<? extends CitationDate> getDates();
 
     /**
      * Date that the metadata was created.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
-     *
      * @return Date that the metadata was created.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getDates()}.
      */
-    @Profile(level=CORE)
+    @Deprecated
     @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115)
     Date getDateStamp();
 
@@ -196,8 +287,11 @@ public interface Metadata {
      * Name of the metadata standard (including profile name) used.
      *
      * @return Name of the metadata standard used, or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataStandards()}
+     *   followed by {@link Citation#getTitle()}.
      */
-    @Profile(level=CORE)
+    @Deprecated
     @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardName();
 
@@ -205,10 +299,62 @@ public interface Metadata {
      * Version (profile) of the metadata standard used.
      *
      * @return Version of the metadata standard used, or {@code null}.
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataStandards()}
+     *   followed by {@link Citation#getEdition()}.
      */
+    @Deprecated
     @Profile(level=CORE)
     @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115)
     String getMetadataStandardVersion();
+
+    /**
+     * Citation(s) for the standard(s) to which the metadata conform.
+     * Metadata standard citations should include an identifier.
+     *
+     * @return The standard(s) to which the metadata conform.
+     *
+     * @see #getMetadataProfiles()
+     *
+     * @since 3.1
+     */
+    @Profile(level=CORE)
+    @UML(identifier="metadataStandard", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getMetadataStandards();
+
+    /**
+     * Citation(s) for the profile(s) of the metadata standard to which the metadata conform.
+     * Metadata profile standard citations should include an identifier.
+     *
+     * @return The profile(s) to which the metadata conform.
+     *
+     * @see #getMetadataStandards()
+     * @see #getMetadataExtensionInfo()
+     *
+     * @since 3.1
+     */
+    @UML(identifier="metadataProfile", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getMetadataProfiles();
+
+    /**
+     * Reference(s) to alternative metadata or metadata in a non-ISO standard for the same resource.
+     *
+     * @return Reference(s) to alternative metadata (e.g. Dublin core, FGDC).
+     *
+     * @since 3.1
+     */
+    @UML(identifier="alternativeMetadataReference", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Citation> getAlternativeMetadataReferences();
+
+    /**
+     * Online location(s) where the metadata is available.
+     *
+     * @return Online location(s) where the metadata is available.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="metadataLinkage", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends OnlineResource> getMetadataLinkages();
 
     /**
      * Uniformed Resource Identifier (URI) of the dataset to which the metadata applies.
@@ -216,7 +362,11 @@ public interface Metadata {
      * @return Uniformed Resource Identifier of the dataset, or {@code null}.
      *
      * @since 2.1
+     *
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getIdentificationInfo()} followed by
+     *    {@link Identification#getCitation()} followed by {@link Citation#getOnlineResources()}.
      */
+    @Deprecated
     @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
     String getDataSetUri();
 
@@ -241,6 +391,8 @@ public interface Metadata {
      * Information describing metadata extensions.
      *
      * @return Metadata extensions.
+     *
+     * @see #getMetadataProfiles()
      */
     @UML(identifier="metadataExtensionInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends MetadataExtensionInformation> getMetadataExtensionInfo();
@@ -255,25 +407,24 @@ public interface Metadata {
     Collection<? extends Identification> getIdentificationInfo();
 
     /**
-     * Provides information about the feature catalogue and describes the coverage and
-     * image data characteristics.
+     * Information about the feature and coverage characteristics.
      *
-     * @return The feature catalogue, coverage descriptions and image data characteristics.
+     * @return Information about the feature and coverage characteristics.
      */
     @UML(identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ContentInformation> getContentInfo();
 
     /**
-     * Provides information about the distributor of and options for obtaining the resource(s).
+     * Information about the distributor of and options for obtaining the resource(s).
      *
      * @return The distributor of and options for obtaining the resource(s), or {@code null}.
      */
     @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Distribution getDistributionInfo();
+    Collection<? extends Distribution> getDistributionInfo();
 
     /**
-     * Provides overall assessment of quality of a resource(s).
+     * Overall assessment of quality of a resource(s).
      *
      * @return Overall assessment of quality of a resource(s).
      */
@@ -282,7 +433,7 @@ public interface Metadata {
     Collection<? extends DataQuality> getDataQualityInfo();
 
     /**
-     * Provides information about the catalogue of rules defined for the portrayal of a resource(s).
+     * Information about the catalogue of rules defined for the portrayal of a resource(s).
      *
      * @return The catalogue of rules defined for the portrayal of a resource(s).
      */
@@ -290,7 +441,7 @@ public interface Metadata {
     Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo();
 
     /**
-     * Provides restrictions on the access and use of data.
+     * Restrictions on the access and use of data.
      *
      * @return Restrictions on the access and use of data.
      */
@@ -298,7 +449,7 @@ public interface Metadata {
     Collection<? extends Constraints> getMetadataConstraints();
 
     /**
-     * Provides information about the conceptual schema of a dataset.
+     * Information about the conceptual schema of a dataset.
      *
      * @return The conceptual schema of a dataset.
      */
@@ -306,7 +457,15 @@ public interface Metadata {
     Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo();
 
     /**
-     * Provides information about the frequency of metadata updates, and the scope of those updates.
+     * Information about the acquisition of the data.
+     *
+     * @return The acquisition of data.
+     */
+    @UML(identifier="acquisitionInformation", obligation=OPTIONAL, specification=ISO_19115_2)
+    Collection<? extends AcquisitionInformation> getAcquisitionInformation();
+
+    /**
+     * Information about the frequency of metadata updates, and the scope of those updates.
      *
      * @return The frequency of metadata updates and their scope, or {@code null}.
      */
@@ -314,10 +473,22 @@ public interface Metadata {
     MaintenanceInformation getMetadataMaintenance();
 
     /**
-     * Provides information about the acquisition of the data.
+     * Information about the provenance, sources and/or the production processes applied to the resource.
      *
-     * @return The acquisition of data.
+     * @return The provenance, sources and/or the production processes.
+     *
+     * @since 3.1
      */
-    @UML(identifier="acquisitionInformation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends AcquisitionInformation> getAcquisitionInformation();
+    @UML(identifier="resourceLineage", obligation=OPTIONAL, specification=ISO_19115)
+    Collection<? extends Lineage> getResourceLineage();
+
+    /**
+     * The scope or type of resource for which metadata is provided.
+     *
+     * @condition Mandatory if the metadata is about a resource other than a dataset.
+     *
+     * @return scope or type of resource for which metadata is provided.
+     */
+    @UML(identifier="metadataScope", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends MetadataScope> getMetadataScope();
 }
