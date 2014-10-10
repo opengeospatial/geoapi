@@ -85,7 +85,7 @@
  * </td></tr></table>
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 4.0
  * @since   2.3
  */
 package org.opengis.metadata.acquisition;

@@ -62,7 +62,7 @@
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.1
+ * @version 4.0
  * @since   2.0
  */
 package org.opengis.metadata.constraint;

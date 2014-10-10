@@ -122,7 +122,7 @@
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 package org.opengis.parameter;
