@@ -703,7 +703,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Constraints>                  getMetadataConstraints()           {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<MaintenanceInformation>       getResourceMaintenances()          {return Collections.emptySet();}
     /** Defaults to {@code null}. */ @Override public MaintenanceInformation                   getMetadataMaintenance()           {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<Lineage>                      getResourceLineage()               {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<Lineage>                      getResourceLineages()              {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<AcquisitionInformation>       getAcquisitionInformation()        {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<DataQuality>                  getDataQualityInfo()               {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Progress>                     getStatus()                        {return Collections.emptySet();}
@@ -716,7 +716,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAlternativeMetadataReferences() {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<PortrayalCatalogueReference>  getPortrayalCatalogueInfo()        {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Distribution>                 getDistributionInfo()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<MetadataScope>                getMetadataScope()                 {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<MetadataScope>                getMetadataScopes()                {return Collections.emptySet();}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getPositionName()                  {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getContactType()                   {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getContactInstructions()           {return null;}
