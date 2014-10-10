@@ -70,7 +70,7 @@ public interface OnlineResource {
     URI getLinkage();
 
     /**
-     * Connection protocol to be used. Returns {@code null} if none.
+     * Connection protocol to be used.
      *
      * <blockquote><font size="-1"><b>Example:</b>
      * ftp, http get KVP, http POST, <i>etc</i>.
@@ -83,7 +83,6 @@ public interface OnlineResource {
 
     /**
      * Name of an application profile that can be used with the online resource.
-     * Returns {@code null} if none.
      *
      * @return Application profile that can be used with the online resource, or {@code null}.
      */
@@ -91,18 +90,17 @@ public interface OnlineResource {
     String getApplicationProfile();
 
     /**
-     * Name of the online resource. Returns {@code null} if none.
+     * Name of the online resource.
      *
      * @return Name of the online resource, or {@code null}.
      *
      * @since 2.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    String getName();
+    InternationalString getName();
 
     /**
      * Detailed text description of what the online resource is/does.
-     * Returns {@code null} if none.
      *
      * @return Text description of what the online resource is/does, or {@code null}.
      */
@@ -111,7 +109,6 @@ public interface OnlineResource {
 
     /**
      * Code for function performed by the online resource.
-     * Returns {@code null} if unspecified.
      *
      * @return Function performed by the online resource, or {@code null}.
      */
@@ -130,7 +127,7 @@ public interface OnlineResource {
      * &lt;/GetFeature&gt;</pre>
      * </font></blockquote>
      *
-     * @return Request used to access the resource.
+     * @return Request used to access the resource, or {@code null}.
      *
      * @since 3.1
      */

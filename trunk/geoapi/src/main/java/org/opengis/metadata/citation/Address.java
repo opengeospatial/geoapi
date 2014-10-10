@@ -58,7 +58,7 @@ public interface Address {
      * @return Address line for the location.
      */
     @UML(identifier="deliveryPoint", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getDeliveryPoints();
+    Collection<? extends InternationalString> getDeliveryPoints();
 
     /**
      * The city of the location.

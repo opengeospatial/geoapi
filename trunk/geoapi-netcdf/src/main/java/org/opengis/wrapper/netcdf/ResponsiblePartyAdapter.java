@@ -51,6 +51,7 @@ final class ResponsiblePartyAdapter implements ResponsibleParty {
      * @return The first organisation name found, or {@code null} if none.
      */
     @Override
+    @Deprecated
     public InternationalString getOrganisationName() {
         for (final Party party : getParties()) {
             if (party instanceof Organisation) {
@@ -69,6 +70,7 @@ final class ResponsiblePartyAdapter implements ResponsibleParty {
      * @return The first individual name found, or {@code null} if none.
      */
     @Override
+    @Deprecated
     public String getIndividualName() {
         for (final Party party : getParties()) {
             if (party instanceof Individual) {
@@ -87,6 +89,7 @@ final class ResponsiblePartyAdapter implements ResponsibleParty {
      * @return Position of the first individual found, or {@code null} if none.
      */
     @Override
+    @Deprecated
     public InternationalString getPositionName() {
         for (final Party party : getParties()) {
             if (party instanceof Individual) {
@@ -104,6 +107,7 @@ final class ResponsiblePartyAdapter implements ResponsibleParty {
      * @return The first contact information found, or {@code null} if none.
      */
     @Override
+    @Deprecated
     public Contact getContactInfo() {
         for (final Party party : getParties()) {
             for (final Contact contact : party.getContactInfo()) {
