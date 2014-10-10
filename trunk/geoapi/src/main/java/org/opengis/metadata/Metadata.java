@@ -215,6 +215,18 @@ public interface Metadata {
     String getParentIdentifier();
 
     /**
+     * The scope or type of resource for which metadata is provided.
+     *
+     * @condition Mandatory if the metadata is about a resource other than a dataset.
+     *
+     * @return Scope or type of resource for which metadata is provided.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="metadataScope", obligation=CONDITIONAL, specification=ISO_19115)
+    Collection<? extends MetadataScope> getMetadataScopes();
+
+    /**
      * Scope to which the metadata applies.
      * Metadata for which no hierarchy is listed are interpreted to be
      * "{@linkplain ScopeCode#DATASET dataset}" metadata by default.
@@ -223,7 +235,7 @@ public interface Metadata {
      *
      * @condition Mandatory if the metadata is about a resource other than a dataset.
      *
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScope()}
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScopes()}
      *   followed by {@link MetadataScope#getResourceScope()}.
      */
     @Deprecated
@@ -238,7 +250,7 @@ public interface Metadata {
      * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
      *            {@link ScopeCode#DATASET}.
      *
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScope()}
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScopes()}
      *   followed by {@link MetadataScope#getName()}.
      */
     @Deprecated
@@ -480,15 +492,5 @@ public interface Metadata {
      * @since 3.1
      */
     @UML(identifier="resourceLineage", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Lineage> getResourceLineage();
-
-    /**
-     * The scope or type of resource for which metadata is provided.
-     *
-     * @condition Mandatory if the metadata is about a resource other than a dataset.
-     *
-     * @return scope or type of resource for which metadata is provided.
-     */
-    @UML(identifier="metadataScope", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends MetadataScope> getMetadataScope();
+    Collection<? extends Lineage> getResourceLineages();
 }
