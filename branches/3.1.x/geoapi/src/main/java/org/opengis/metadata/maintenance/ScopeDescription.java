@@ -56,39 +56,83 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)
 public interface ScopeDescription {
     /**
-     * Features to which the information applies.
+     * Dataset to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If a geographic data provider is generating vector mapping for thee administrative areas
+     * and if the data were processed in the same way, then the provider could record the bulk
+     * of initial data at {@link ScopeCode#DATASET} level with a
+     * “<cite>Administrative area A, B &amp; C</cite>” description.
+     * </font></blockquote>
+     *
+     * @return Dataset to which the information applies, or {@code null}.
+     *
+     * @since 2.1
+     *
+     * @condition {@code features}, {@code attributes}, {@code featureInstances},
+     *            {@code attributeInstances} and {@code other} not provided.
+     *
+     * @see ScopeCode#DATASET
+     */
+    @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
+    String getDataset();
+
+    /**
+     * Feature types to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If an administrative area performs a complete re-survey of the road network,
+     * the change can be recorded at {@link ScopeCode#FEATURE_TYPE} level with a
+     * “<cite>Administrative area A — Road network</cite>” description.
+     * </font></blockquote>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Features to which the information applies.
+     * @return Feature types to which the information applies.
      *
      * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#FEATURE_TYPE
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends FeatureType> getFeatures();
 
     /**
-     * Attributes to which the information applies.
+     * Attribute types to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If an administrative area detects an anomaly in all overhead clearance of the road survey,
+     * the correction can be recorded at {@link ScopeCode#ATTRIBUTE_TYPE} level with a
+     * “<cite>Administrative area A — Overhead clearance</cite>” description.
+     * </font></blockquote>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
      * This change will be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Attributes to which the information applies.
+     * @return Attribute types to which the information applies.
      *
      * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#ATTRIBUTE_TYPE
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends AttributeType> getAttributes();
 
     /**
      * Feature instances to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If a new bridge is constructed in a road network,
+     * the change can be recorded at {@link ScopeCode#FEATURE} level with a
+     * “<cite>Administrative area A — New bridge</cite>” description.
+     * </font></blockquote>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
@@ -99,12 +143,20 @@ public interface ScopeDescription {
      *
      * @condition {@code features}, {@code attributes}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#FEATURE
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends FeatureType> getFeatureInstances();
 
     /**
      * Attribute instances to which the information applies.
+     *
+     * <blockquote><font size="-1"><b>Example:</b>
+     * If the overhead clearance of a new bridge was wrongly recorded,
+     * the correction can be recorded at {@link ScopeCode#ATTRIBUTE} level with a
+     * “<cite>Administrative area A — New bridge — Overhead clearance</cite>” description.
+     * </font></blockquote>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * As of ISO 19115:2014, the type become {@link Set<? extends CharSequence>}.
@@ -117,26 +169,14 @@ public interface ScopeDescription {
      *
      * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code dataset} and {@code other} not provided.
+     *
+     * @see ScopeCode#ATTRIBUTE
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
     Set<? extends AttributeType> getAttributeInstances();
 
     /**
-     * Dataset to which the information applies.
-     *
-     * @return Dataset to which the information applies, or {@code null}.
-     *
-     * @since 2.1
-     *
-     * @condition {@code features}, {@code attributes}, {@code featureInstances},
-     *            {@code attributeInstances} and {@code other} not provided.
-     */
-    @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
-    String getDataset();
-
-    /**
-     * Class of information that does not fall into the other categories to
-     * which the information applies.
+     * Class of information that does not fall into the other categories to which the information applies.
      *
      * @return Class of information that does not fall into the other categories, or {@code null}.
      *

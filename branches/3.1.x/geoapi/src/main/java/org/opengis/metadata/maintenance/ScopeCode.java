@@ -98,6 +98,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * A dataset may be composed of a set of feature {@linkplain #FEATURE_TYPE types} and
      * {@linkplain #FEATURE instances}, and attribute {@linkplain #ATTRIBUTE_TYPE types} and
      * {@linkplain #ATTRIBUTE instances}.
+     *
+     * @see ScopeDescription#getDataset()
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode DATASET = new ScopeCode("DATASET");
@@ -123,6 +125,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * </ul>
      *
      * Feature type metadata are grouped in {@linkplain #DATASET dataset}s.
+     *
+     * @see ScopeDescription#getFeatures()
      */
     @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode FEATURE_TYPE = new ScopeCode("FEATURE_TYPE");
@@ -137,6 +141,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * </ul>
      *
      * Feature instance metadata are grouped in {@linkplain #DATASET dataset}s.
+     *
+     * @see ScopeDescription#getFeatureInstances()
      */
     @UML(identifier="feature", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode FEATURE = new ScopeCode("FEATURE");
@@ -151,6 +157,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * </ul>
      *
      * Attribute type metadata are grouped in {@linkplain #DATASET dataset}s.
+     *
+     * @see ScopeDescription#getAttributes()
      */
     @UML(identifier="attributeType", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE_TYPE = new ScopeCode("ATTRIBUTE_TYPE");
@@ -165,6 +173,8 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * </ul>
      *
      * Attribute instance metadata are grouped in {@linkplain #DATASET dataset}s.
+     *
+     * @see ScopeDescription#getAttributeInstances()
      */
     @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");

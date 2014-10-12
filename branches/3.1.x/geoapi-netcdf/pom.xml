@@ -78,8 +78,8 @@
     </dependency>
     <dependency>
       <groupId>edu.ucar</groupId>
-      <artifactId>netcdf</artifactId>
-      <version>4.3.21</version>
+      <artifactId>cdm</artifactId>
+      <version>4.4.2</version> <!-- Last version compatible with JDK6. -->
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>

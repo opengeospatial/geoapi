@@ -62,15 +62,25 @@ public interface FeatureCatalogueDescription extends ContentInformation {
     /**
      * Language(s) used within the catalogue.
      *
+     * <p>Note that contrarily to the {@code PT_Locale} object defined by ISO 19115:2014, the {@code java.util.Locale}
+     * object does not contain character encoding information. The Java language does not tie closely the encoding to
+     * the locale since all <code>String</code> instances are encoded in UTF-16 regardless the locale.</p>
+     *
+     * <p>XML documents shall format languages using the ISO 639-2 language code
+     * as returned by {@link Locale#getISO3Language()}.</p>
+     *
      * @return Language(s) used within the catalogue.
      *
      * @departure historic
-     *   GeoAPI has kept the <code>language</code> property as defined in ISO 19115:2003.
-     *   See <code>Metadata.getLanguage()</code> for more information.
+     *   GeoAPI keeps the <code>getLanguages()</code> method name for compliance with the ISO 19115:2003 model
+     *   See <code>DataIdentification.getLanguages()</code> for information about why the legacy model is more
+     *   suitable to Java than the new ISO 19115:2014 model. In addition, the <cite>language</cite> name help
+     *   to emphases the difference with the ISO 19115:2014 definition of <code>PT_Locale</code>.
      *
-     * @see org.opengis.metadata.Metadata#getLanguage()
+     * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
+     * @see org.opengis.metadata.Metadata#getLanguages()
      */
-    @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Locale> getLanguages();
 
     /**
