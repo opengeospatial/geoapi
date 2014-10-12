@@ -138,7 +138,7 @@ public abstract class ReferencingValidator extends Validator {
                 validate(id);
             }
         }
-        final Collection<GenericName> alias = object.getAlias();
+        final Collection<? extends GenericName> alias = object.getAlias();
         if (alias != null) {
             validate(alias);
             for (final GenericName name : alias) {

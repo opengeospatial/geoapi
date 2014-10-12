@@ -55,6 +55,11 @@ public interface Address {
      * Address line for the location (as described in ISO 11180, Annex A).
      * Returns an empty collection if none.
      *
+     * <div class="warning"><b>Upcoming API change — internationalization</b><br>
+     * The return type will be changed from {@code Collection<String>} to
+     * {@code Collection<? extends InternationalString>} in GeoAPI 4.0.
+     * </div>
+     *
      * @return Address line for the location.
      */
     @UML(identifier="deliveryPoint", obligation=OPTIONAL, specification=ISO_19115)

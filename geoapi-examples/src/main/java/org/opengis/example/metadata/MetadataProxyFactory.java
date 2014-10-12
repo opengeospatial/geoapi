@@ -18,15 +18,11 @@ import org.opengis.annotation.UML;
  * UML identifiers}, and values must be assignable to the return value of the corresponding
  * GeoAPI methods.
  *
- * <p><b>Example:</b> create a metadata with one contact, which is "<cite>Aristotle</cite>":</p>
+ * <p><b>Example:</b> create an {@code Individual} instance:</p>
  *
  * <blockquote><pre>Map&lt;String,Object&gt; attributes = new HashMap&lt;String,Object&gt;();
- *attributes.put("individualName", "Aristotle");
- *ResponsibleParty party = factory.create(ResponsibleParty.class, attributes);
- *
- *attributes = new HashMap&lt;String,Object&gt;();
- *attributes.put("contact", Collections.singleton(party));
- *Metadata md = factory.create(Metadata.class, attributes);</pre></blockquote>
+ *attributes.put("name", new SimpleInternationalString("Aristotle"));
+ *Individual party = factory.create(Individual.class, attributes);</pre></blockquote>
  *
  * The metadata proxy are <cite>live</cite>, i.e. any change to the maps of attributes will
  * be immediately reflected in the values returned by the metadata objects.

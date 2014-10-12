@@ -45,6 +45,7 @@
  * </tr><tr><td width="50%" nowrap>
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.Metadata}
+ *  ├─ {@linkplain org.opengis.metadata.MetadataScope}
  *  ├─ {@linkplain org.opengis.metadata.PortrayalCatalogueReference}
  *  ├─ {@linkplain org.opengis.metadata.ApplicationSchemaInformation}
  *  ├─ {@linkplain org.opengis.metadata.MetadataExtensionInformation}
@@ -56,6 +57,7 @@
  *  └─ {@linkplain org.opengis.metadata.Obligation}</pre>
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.Metadata}
+ *  ├─ {@linkplain org.opengis.metadata.MetadataScope}
  *  ├─ {@linkplain org.opengis.metadata.PortrayalCatalogueReference}
  *  ├─ {@linkplain org.opengis.metadata.ApplicationSchemaInformation}
  *  ├─ {@linkplain org.opengis.metadata.MetadataExtensionInformation}
@@ -76,7 +78,7 @@
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 package org.opengis.metadata;

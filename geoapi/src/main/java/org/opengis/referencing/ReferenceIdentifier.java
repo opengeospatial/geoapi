@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * </div>
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)

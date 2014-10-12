@@ -69,22 +69,26 @@ import org.opengis.util.GenericName;
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
- *     <td>{@link Identifier}</td><td>{@link String} (see <cite>alternative</cite> below)</td>
+ *     <td>{@link Identifier}</td>
+ *     <td>{@link String} (see <cite>alternative</cite> below)</td>
  *     <td>{@link IdentifiedObject#getName()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#ALIAS_KEY}</td>
- *     <td><code>{@linkplain GenericName}[]</code></td><td>{@link GenericName}, {@link String} or <code>{@linkplain String}[]</code></td>
+ *     <td><code>{@linkplain GenericName}[]</code></td>
+ *     <td>{@link GenericName}, {@link String} or <code>{@linkplain String}[]</code></td>
  *     <td>{@link IdentifiedObject#getAlias()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}</td>
- *     <td><code>{@linkplain Identifier}[]</code></td><td>{@link Identifier}</td>
+ *     <td><code>{@linkplain Identifier}[]</code></td>
+ *     <td>{@link Identifier}</td>
  *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
- *     <td>{@link InternationalString}</td><td>{@link String} (see <cite>localization</cite> below)</td>
+ *     <td>{@link InternationalString}</td>
+ *     <td>{@link String} (see <cite>localization</cite> below)</td>
  *     <td>{@link IdentifiedObject#getRemarks()}</td>
  *   </tr>
  * </table>
@@ -103,22 +107,26 @@ import org.opengis.util.GenericName;
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
- *     <td>{@link String}</td><td></td>
+ *     <td>{@link String}</td>
+ *     <td></td>
  *     <td>{@link Identifier#getCode()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.metadata.Identifier#AUTHORITY_KEY}</td>
- *     <td>{@link Citation}</td><td>{@link String}</td>
+ *     <td>{@link Citation}</td>
+ *     <td>{@link String}</td>
  *     <td>{@link Identifier#getAuthority()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.metadata.Identifier#CODESPACE_KEY}</td>
- *     <td>{@link String}</td><td></td>
+ *     <td>{@link String}</td>
+ *     <td></td>
  *     <td>{@link Identifier#getCodeSpace()}</td>
  *   </tr>
  *   <tr>
  *     <td>{@value org.opengis.metadata.Identifier#VERSION_KEY}</td>
- *     <td>{@link String}</td><td></td>
+ *     <td>{@link String}</td>
+ *     <td></td>
  *     <td>{@link Identifier#getVersion()}</td>
  *   </tr>
  * </table>
