@@ -24,9 +24,9 @@ svn commit --message "Updated the list of GeoAPI classes and methods."
   If the <<<geoapi-openoffice>>> module got significant change,
   edit the version number in the following files:
 
-  * <<<geoapi-openoffice/src/main/unopkg/description.xml>>>
+    * <<<geoapi-openoffice/src/main/unopkg/description.xml>>>
 
-  * <<<geoapi-openoffice/src/site/resources/update.xml>>> files of the
+    * <<<geoapi-openoffice/src/site/resources/update.xml>>> files of the
 
   Defines the version number for the GeoAPI milesone.
   The example below uses 4.0-M01. Please edit as needed.
