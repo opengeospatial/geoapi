@@ -11,7 +11,7 @@ OpenOffice.org add-in implementation replacement
   <<<identifier>>> value must be unique.
 
 +--------------------------------------------------------------------------------------------------------------------------------
-export GEOAPI_VERSION=3.1-SNAPSHOT
+export GEOAPI_VERSION=3.1-M05
 unzip geoapi-$GEOAPI_VERSION.oxt description.xml
 
 # Edit description.xml: put your identifier, product name, URL, etc.

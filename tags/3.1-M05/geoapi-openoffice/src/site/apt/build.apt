@@ -103,5 +103,5 @@ mvn install
 
 +------------------------------------------------------------------------------
 cd target
-unopkg add geoapi-3.1-SNAPSHOT.oxt --log-file log.txt
+unopkg add geoapi-3.1-M05.oxt --log-file log.txt
 +------------------------------------------------------------------------------

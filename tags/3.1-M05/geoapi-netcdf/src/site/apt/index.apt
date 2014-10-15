@@ -51,7 +51,7 @@ NetCDF bindings
   <dependency>
     <groupId>org.opengis.wrapper</groupId>
     <artifactId>geoapi-netcdf</artifactId>
-    <version>3.1-SNAPSHOT</version>
+    <version>3.1-M05</version>
   </dependency>
 </dependencies>
 +------------------------------------------+
