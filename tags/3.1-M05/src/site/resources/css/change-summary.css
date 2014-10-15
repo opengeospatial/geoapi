@@ -1,0 +1,50 @@
+/*
+ * Style sheet for the changes.html page.
+ */
+table {
+  border-style: solid;
+  border-width: 2pt;
+}
+
+table td, table th {
+  border-top-style:    none;
+  border-right-style:  none;
+  border-bottom-style: none;
+  border-left-width:   1pt;
+  border-left-color:   lightgray;
+  padding-left:        6pt;
+  padding-right:       6pt;
+}
+
+table th {
+  border-bottom-style: solid;
+  border-bottom-width: 1pt;
+  padding-top:         3pt;
+  padding-bottom:      3pt;
+  background-color:    #CCCCFF;
+}
+
+table th.section {
+  border-top-style:    solid;
+  border-top-width:    1pt;
+  border-bottom-color: lightgray;
+  background-color:    #F2F2FF;
+  color:               #666688;
+  text-align:          left;
+}
+
+span.add {
+  color: green;
+}
+
+span.remove {
+  color: red;
+}
+
+span.note {
+  color: gray;
+}
+
+span.disabled {
+  color: lightgray;
+}

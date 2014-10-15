@@ -1,0 +1,23 @@
+table {
+  border-spacing: 0pt;
+  border-style: solid;
+  white-space: nowrap;
+}
+
+table tr th {
+  background-color: #B9DCFF;
+  border-bottom-style: solid;
+  border-bottom-width: 1pt;
+  padding: 3pt;
+}
+
+table tr td {
+  padding-top:    0pt;
+  padding-bottom: 0pt;
+  padding-left:   6pt;
+  padding-right:  6pt;
+}
+
+table tr td.numeric {
+  text-align: right;
+}

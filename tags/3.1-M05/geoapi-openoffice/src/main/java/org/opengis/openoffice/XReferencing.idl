@@ -1,0 +1,133 @@
+/*
+ *    GeoAPI - Java interfaces for OGC/ISO standards
+ *    http://www.geoapi.org
+ *
+ *    This file is hereby placed into the Public Domain.
+ *    This means anyone is free to do whatever they wish with this file.
+ */
+
+#ifndef _org_opengis_openoffice_XReferencing_
+#define _org_opengis_openoffice_XReferencing_
+
+#include <com/sun/star/uno/XInterface.idl>
+#include <com/sun/star/beans/XPropertySet.idl>
+#include <com/sun/star/sheet/AddIn.idl>
+
+
+module org {
+  module opengis {
+    module openoffice {
+      /// Methods from the org.opengis.referencing package to make available to OpenOffice.
+      interface XReferencing : com::sun::star::uno::XInterface {
+        /// Returns an identified object description from an authority code.
+        string getDescription(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode
+        );
+
+        /// Returns the scope for an identified object.
+        string getScope(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode
+        );
+
+        /// Returns the valid area as a textual description for an identified object.
+        string getValidArea(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode
+        );
+
+        /// Returns the valid area as a geographic bounding box for an identified object.
+        sequence< sequence< double > > getBoundingBox(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode
+        );
+
+        /// Returns the remarks for an identified object.
+        string getRemarks(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode
+        );
+
+        /// Returns the axis name for the specified dimension in an identified object.
+        string getAxis(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode,
+          /// The dimension (1, 2, ...).
+          [in] long dimension
+        );
+
+        /// Returns the value for a coordinate reference system parameter.
+        any getParameter(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode,
+          /// The parameter name (e.g. "False easting").
+          [in] string parameter
+        );
+
+        /// Returns the Well Know Text (WKT) for an identified object.
+        string getWKT(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The authority code (e.g. "EPSG:4326").
+          [in] string authorityCode,
+          /// The authority name for choice of parameter names. Usually "OGC".
+          [in] any authority
+        );
+
+        /// Returns the Well Know Text (WKT) of a transformation between two coordinate reference systems.
+        string getTransformWKT(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// Authority code of the source coordinate reference system.
+          [in] string sourceCRS,
+          /// Authority code of the target coordinate reference system.
+          [in] string targetCRS,
+          /// The authority name for choice of parameter names. Usually "OGC".
+          [in] any authority
+        );
+
+        /// Returns the accuracy of a transformation between two coordinate reference systems.
+        double getAccuracy(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The source coordinates to transform.
+          [in] string sourceCRS,
+          /// Authority code of the target coordinate reference system.
+          [in] string targetCRS
+        );
+
+        /// Transforms a list of coordinates from source CRS to target CRS.
+        sequence< sequence< double > > getTransformedCoordinates(
+          [in] com::sun::star::beans::XPropertySet xOptions,
+          /// The source coordinates to transform.
+          [in] sequence< sequence< double > > coordinates,
+          /// Authority code of the source coordinate reference system.
+          [in] string sourceCRS,
+          /// Authority code of the target coordinate reference system.
+          [in] string targetCRS
+        );
+      };
+
+      /*
+       * Exported interfaces:
+       * This is where we put all interfaces that this service exports.
+       */
+      service Referencing {
+        interface XReferencing;
+
+        /*
+         * Necessary base service.
+         * All add-ins must implement this service
+         */
+        service com::sun::star::sheet::AddIn;
+      };
+    };
+  };
+};
+
+#endif
