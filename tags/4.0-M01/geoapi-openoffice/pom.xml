@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- ====================================================
+         Maven 2 project configuration file
+         http://maven.apache.org/maven2/
+     ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi-parent</artifactId>
+    <version>4.0-SNAPSHOT</version>
+  </parent>
+
+
+
+  <!-- ====================================================
+           Project description
+       ==================================================== -->
+  <groupId>org.opengis.example</groupId>
+  <artifactId>geoapi-openoffice</artifactId>
+  <packaging>jar</packaging>
+  <name>OpenOffice.org addin</name>
+  <description>
+    An example of GeoAPI addin for OpenOffice.org. This example uses the geoapi-proj4 implementation.
+    However vendors can replace the geoapi-proj4.jar file with their own implementation.
+  </description>
+
+  <licenses>
+    <license>
+      <name>Public Domain</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+
+
+  <!-- ====================================================
+           Developers and contributors
+       ==================================================== -->
+  <developers>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>martin.desruisseaux@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+  <contributors>
+    <contributor>
+      <name>Richard Deplanque</name>
+      <organization>Université de Nouvelle-Calédonie</organization>
+      <timezone>+11</timezone>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </contributor>
+  </contributors>
+
+
+
+  <!-- ====================================================
+           Dependencies
+       ==================================================== -->
+  <properties>
+    <openoffice.version>3.2.1</openoffice.version>
+    <geotk.version>3.20</geotk.version> <!-- For unopkg Maven plugin -->
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-pending</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opengis.wrapper</groupId>
+      <artifactId>geoapi-proj4</artifactId>
+      <version>${project.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openoffice</groupId>
+      <artifactId>juh</artifactId>
+      <version>${openoffice.version}</version>
+      <scope>provided</scope>  <!-- Already included in OpenOffice.org runtime environment -->
+    </dependency>
+    <dependency>
+      <groupId>org.openoffice</groupId>
+      <artifactId>jurt</artifactId>
+      <version>${openoffice.version}</version>
+      <scope>provided</scope>  <!-- Already included in OpenOffice.org runtime environment -->
+    </dependency>
+    <dependency>
+      <groupId>org.openoffice</groupId>
+      <artifactId>ridl</artifactId>
+      <version>${openoffice.version}</version>
+      <scope>provided</scope>  <!-- Already included in OpenOffice.org runtime environment -->
+    </dependency>
+    <dependency>
+      <groupId>org.openoffice</groupId>
+      <artifactId>unoil</artifactId>
+      <version>${openoffice.version}</version>
+      <scope>provided</scope>  <!-- Already included in OpenOffice.org runtime environment -->
+    </dependency>
+  </dependencies>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>geotoolkit</id>
+      <name>Geotoolkit.org repository</name>
+      <url>http://maven.geotoolkit.org</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+
+  <!-- ===========================================================
+           Build Configuration
+       =========================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <RegistrationClassName>
+                org.opengis.openoffice.Referencing
+              </RegistrationClassName>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <!-- Copy the OpenOffice-generated .class file and create the oxt file. -->
+      <plugin>
+        <groupId>org.geotoolkit.project</groupId>
+        <artifactId>geotk-unopkg</artifactId>
+        <version>${geotk.version}</version>
+        <configuration>
+          <oxtName>geoapi-${project.version}</oxtName>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>javamaker</goal>
+              <goal>unopkg</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Skip deployment to Maven repository-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

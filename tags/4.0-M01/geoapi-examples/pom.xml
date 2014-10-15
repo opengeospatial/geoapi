@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================
+         Maven 2 project configuration file
+         http://maven.apache.org/maven2/
+     ==================================================== -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi-parent</artifactId>
+    <version>4.0-SNAPSHOT</version>
+  </parent>
+
+
+
+  <!-- ====================================================
+           Project description
+       ==================================================== -->
+  <groupId>org.opengis.example</groupId>
+  <artifactId>geoapi-examples</artifactId>
+  <packaging>jar</packaging>
+  <name>GeoAPI examples</name>
+  <description>
+    Examples of a simple GeoAPI implementations.
+  </description>
+
+  <licenses>
+    <license>
+      <name>Public Domain</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+
+
+  <!-- ====================================================
+           Developers and contributors
+       ==================================================== -->
+  <developers>
+    <developer>
+      <id>desruisseaux</id>
+      <name>Martin Desruisseaux</name>
+      <email>martin.desruisseaux@geomatys.fr</email>
+      <organization>Geomatys</organization>
+      <organizationUrl>http://www.geomatys.com</organizationUrl>
+      <roles>
+        <role>Java developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+
+
+
+  <!-- ====================================================
+           Dependencies
+       ==================================================== -->
+  <dependencies>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-pending</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-conformance</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>java3d</groupId>
+      <artifactId>vecmath</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>
