@@ -33,7 +33,7 @@ Maven repositories
   <dependency>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi</artifactId>
-    <version>4.0-SNAPSHOT</version>
+    <version>4.0-M01</version>
   </dependency>
 </dependencies>
 +------------------------------------------+

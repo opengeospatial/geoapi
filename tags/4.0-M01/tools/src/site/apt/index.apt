@@ -41,8 +41,8 @@ tools/src/main/shell/pack.sh
   Java class. Execute the following commands from the project root directory:
 
 ---------------------------------------------------------------------------------------------
-export CLASSPATH=tools/target/tools-4.0-SNAPSHOT.jar
-java org.opengis.tools.version.ChangeReport 3.0.0 3.1-M04 src/site/resources/changes/snapshot/change-summary.html
+export CLASSPATH=tools/target/tools-4.0-M01.jar
+java org.opengis.tools.version.ChangeReport 3.0.0 4.0-M01 src/site/resources/changes/snapshot/change-summary.html
 svn diff src/site/resources/changes/snapshot/change-summary.html
 ---------------------------------------------------------------------------------------------
 

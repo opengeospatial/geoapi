@@ -103,5 +103,5 @@ mvn install
 
 +------------------------------------------------------------------------------
 cd target
-unopkg add geoapi-4.0-SNAPSHOT.oxt --log-file log.txt
+unopkg add geoapi-4.0-M01.oxt --log-file log.txt
 +------------------------------------------------------------------------------

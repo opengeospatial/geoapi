@@ -58,7 +58,7 @@ Proj.4 bindings
   <dependency>
     <groupId>org.opengis.wrapper</groupId>
     <artifactId>geoapi-proj4</artifactId>
-    <version>4.0-SNAPSHOT</version>
+    <version>4.0-M01</version>
   </dependency>
 </dependencies>
 +------------------------------------------+

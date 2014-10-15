@@ -76,8 +76,8 @@ import org.opengis.geometry.coordinate.PointArray;
  * cd geoapi/src/main/java
  * find org -name "*.java" &gt; content.txt
  * export CLASSPATH=~/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
- * export CLASSPATH=$CLASSPATH:../../../../geoapi-pending/target/geoapi-pending-4.0-SNAPSHOT.jar
- * export CLASSPATH=$CLASSPATH:../../../../tools/target/tools-4.0-SNAPSHOT.jar
+ * export CLASSPATH=$CLASSPATH:../../../../geoapi-pending/target/geoapi-pending-4.0-M01.jar
+ * export CLASSPATH=$CLASSPATH:../../../../tools/target/tools-4.0-M01.jar
  * apt -classpath $CLASSPATH -nocompile -factory org.opengis.tools.apt.IndexGenerator @content.txt
  * rm content.txt
  * </pre></blockquote>
