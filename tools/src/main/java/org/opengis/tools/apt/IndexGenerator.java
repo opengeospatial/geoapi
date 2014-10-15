@@ -241,7 +241,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
             out.print(pathToClassJavadoc);
             out.print("\">");
             printName(classname, significantChange);
-            out.print("</a></code></b></tr>");
+            out.print("</a></code></b>");
             if (identifier != null) {
                 out.print("<td><code>");
                 printName(identifier, significantChange);
