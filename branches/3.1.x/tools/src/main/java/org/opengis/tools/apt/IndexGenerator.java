@@ -142,6 +142,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
             printError(exception);
             return;
         }
+        out.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
         out.println("<!DOCTYPE html>");
         out.println("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
         out.println("  <head>");
@@ -228,11 +229,11 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
         if (true) {
             final String packageName = declaration.getPackage().getQualifiedName();
             if (!packageName.equals(lastPackage)) {
-                out.println("  <tr><td colspan=3>&nbsp;</td></tr>");
-                out.print  ("  <tr><td colspan=3 nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
+                out.println("  <tr><td colspan=\"3\">&nbsp;</td></tr>");
+                out.print  ("  <tr><td colspan=\"3\" nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
                 out.print  (packageName);
                 out.println("</code></b></td></tr>");
-                out.println("  <tr><td colspan=3><hr/></td></tr>");
+                out.println("  <tr><td colspan=\"3\"><hr/></td></tr>");
                 lastPackage = packageName;
             }
             out.print("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
@@ -241,7 +242,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
             out.print(pathToClassJavadoc);
             out.print("\">");
             printName(classname, significantChange);
-            out.print("</a></code></b></tr>");
+            out.print("</a></code></b>");
             if (identifier != null) {
                 out.print("<td><code>");
                 printName(identifier, significantChange);
@@ -346,7 +347,7 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
             }
             out.println("</tr>");
         }
-        out.println("  <tr><td colspan=3><hr></td></tr>");
+        out.println("  <tr><td colspan=\"3\"><hr></td></tr>");
     }
 
     /**
