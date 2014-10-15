@@ -12,7 +12,7 @@ OpenOffice.org add-in download
 
 * GeoAPI demo (require native Proj.4 library)
 
-  * {{{http://jenkins.geotoolkit.org/job/GeoAPI/lastSuccessfulBuild/artifact/trunk/geoapi-openoffice/target/geoapi-3.1-SNAPSHOT.oxt}Development snapshot}}
+  * {{{http://jenkins.geotoolkit.org/job/GeoAPI/lastSuccessfulBuild/artifact/trunk/geoapi-openoffice/target/geoapi-4.0-SNAPSHOT.oxt}Development snapshot}}
 
 
 
