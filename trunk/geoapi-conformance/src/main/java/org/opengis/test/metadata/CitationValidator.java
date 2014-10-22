@@ -31,10 +31,13 @@
  */
 package org.opengis.test.metadata;
 
+import java.util.Date;
 import org.opengis.metadata.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.util.InternationalString;
 import org.opengis.test.ValidatorContainer;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -80,8 +83,70 @@ public class CitationValidator extends MetadataValidator {
         for (final InternationalString e : toArray(InternationalString.class, object.getOtherCitationDetails())) {
             container.validate(e);
         }
+        validate(toArray(CitationDate.class, object.getDates()));
         for (final Responsibility e : toArray(Responsibility.class, object.getCitedResponsibleParties())) {
             validate(e);
+        }
+    }
+
+    /**
+     * Validates citation dates. If more than one dates is given, then this method will check
+     * for the following constraints:
+     *
+     * <ul>
+     *   <li>{@link DateType#CREATION} shall be before or equals to all other type of dates, ignoring user-defined codes.</li>
+     *   <li>{@link DateType#LAST_UPDATE} shall be before or equals to {@link DateType#NEXT_UPDATE}.</li>
+     *   <li>{@link DateType#VALIDITY_BEGINS} shall be before or equals to {@link DateType#VALIDITY_EXPIRES}.</li>
+     * </ul>
+     *
+     * Those constraints are verified in their iteration order. It is possible for example to have more than one
+     * (<var>validity begins</var>, <var>validity expires</var>) pair.
+     *
+     * @param dates The citation dates to validate.
+     *
+     * @since 3.1
+     */
+    public void validate(final CitationDate... dates) {
+        if (dates == null) {
+            return;
+        }
+        Date creation       = null;
+        Date lastUpdate     = null;
+        Date validityBegins = null;
+        final int lastOrdinal = DateType.DISTRIBUTION.ordinal();
+        for (final CitationDate date : dates) {
+            if (date != null) {
+                final DateType type = date.getDateType();
+                final Date     time = date.getDate();
+                mandatory("CitationDate: shall have a date type.", type);
+                mandatory("CitationDate: shall have a timestamp.", time);
+                if (type != null && time != null) {
+                    if (type.equals(DateType.CREATION)) {
+                        creation = time;
+                    } else if (type.equals(DateType.LAST_UPDATE)) {
+                        lastUpdate = time;
+                    } else if (type.equals(DateType.NEXT_UPDATE)) {
+                        assertOrdered(DateType.LAST_UPDATE, lastUpdate, DateType.NEXT_UPDATE, time);
+                    } else if (type.equals(DateType.VALIDITY_BEGINS)) {
+                        validityBegins = time;
+                    } else if (type.equals(DateType.VALIDITY_EXPIRES)) {
+                        assertOrdered(DateType.VALIDITY_BEGINS, validityBegins, DateType.VALIDITY_EXPIRES, time);
+                    }
+                    if (type.ordinal() <= lastOrdinal) {
+                        assertOrdered(DateType.CREATION, creation, type, time);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Asserts that the date {@code d2} is equals or after {@code d1}.
+     */
+    private static void assertOrdered(final DateType t1, final Date d1, final DateType t2, final Date d2) {
+        if (d1 != null && d2.before(d1)) {
+            fail("The ‘" + t2.identifier() + "’ date (" + d2 + ") shall be equal or after "
+               + "the ‘" + t1.identifier() + "’ date (" + d1 + ").");
         }
     }
 

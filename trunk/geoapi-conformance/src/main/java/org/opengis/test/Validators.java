@@ -134,6 +134,18 @@ public class Validators {
     }
 
     /**
+     * Tests the conformance of the given objects.
+     *
+     * @param object The objects to test, or {@code null}.
+     * @see CitationValidator#validate(CitationDate...)
+     *
+     * @since 3.1
+     */
+    public static void validate(final CitationDate... object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
      * Tests the conformance of the given object.
      *
      * @param object The object to test, or {@code null}.

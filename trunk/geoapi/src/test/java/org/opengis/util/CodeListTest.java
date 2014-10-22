@@ -251,6 +251,7 @@ public final strictfp class CodeListTest {
      * its {@link CodeList#names()} method is overridden.
      */
     @Test
+    @SuppressWarnings("deprecation")
     public void testCharacterSet() {
         final CodeList<CharacterSet> code = CharacterSet.UTF_8;
         assertEquals ("UTF_8", code.name());
