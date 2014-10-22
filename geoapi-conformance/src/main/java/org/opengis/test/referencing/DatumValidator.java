@@ -98,7 +98,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Unit<Angle> unit = object.getAngularUnit();
-        mandatory("PrimeMeridian: must have a unit of measurement.", unit);
+        mandatory("PrimeMeridian: shall have a unit of measurement.", unit);
         if (unit != null) {
             assertTrue("PrimeMeridian: unit must be compatible with degrees.",
                     unit.isCompatible(NonSI.DEGREE_ANGLE));
@@ -129,7 +129,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Unit<Length> unit = object.getAxisUnit();
-        mandatory("Ellipsoid: must have a unit of measurement.", unit);
+        mandatory("Ellipsoid: shall have a unit of measurement.", unit);
         if (unit != null) {
             assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(SI.METRE));
         }
@@ -159,11 +159,11 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final PrimeMeridian meridian = object.getPrimeMeridian();
-        mandatory("GeodeticDatum: must have a prime meridian.", meridian);
+        mandatory("GeodeticDatum: shall have a prime meridian.", meridian);
         validate(meridian);
 
         final Ellipsoid ellipsoid = object.getEllipsoid();
-        mandatory("GeodeticDatum: must have an ellipsoid.", ellipsoid);
+        mandatory("GeodeticDatum: shall have an ellipsoid.", ellipsoid);
         validate(ellipsoid);
     }
 
@@ -178,7 +178,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final VerticalDatumType type = object.getVerticalDatumType();
-        mandatory("VerticalDatum: must have a datum type.", type);
+        mandatory("VerticalDatum: shall have a datum type.", type);
     }
 
     /**
@@ -193,8 +193,8 @@ public class DatumValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         final Date origin = object.getOrigin();
         mandatory("TemporalDatum: expected an origin.", origin);
-        assertNull("TemporalDatum: should not have anchor point.", object.getAnchorPoint());
-        assertNull("TemporalDatum: should not have realization epoch.", object.getRealizationEpoch());
+        forbidden("TemporalDatum: should not have anchor point.", object.getAnchorPoint());
+        forbidden("TemporalDatum: should not have realization epoch.", object.getRealizationEpoch());
     }
 
     /**
@@ -208,7 +208,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final PixelInCell pc = object.getPixelInCell();
-        mandatory("ImageDatum: must specify PixelInCell.", pc);
+        mandatory("ImageDatum: shall specify PixelInCell.", pc);
     }
 
     /**

@@ -43,11 +43,10 @@ final strictfp class NonInheritable {
      *
      * @param actual        The properties actually found in the metadata object being tested.
      * @param title         The citation title to remove (implementation specific), or {@code null} if none.
-     * @param hasNoDate     {@code true} if the NetCDF file contains no creation date.
      * @param hasNoExtent   {@code true} if the NetCDF file contains no geographic extent.
      */
     static void assertProcessedAllRelevant(final Map<String,Object> actual, final String title,
-            final boolean hasNoDate, final boolean hasNoExtent)
+            final boolean hasNoExtent)
     {
         // Following values were not tested because they are hard-coded,
         // consequently they are implementation-dependent.
@@ -61,11 +60,7 @@ final strictfp class NonInheritable {
         // them because a more sophisticated implementation would not have provided values
         // for those properties when they are not applicable.
         if (title != null) {
-            assertEquals(title,           actual.remove("identificationInfo.citation.title"));
-            assertSame(DateType.CREATION, actual.remove("identificationInfo.citation.date.dateType"));
-        }
-        if (hasNoDate) {
-            assertSame(DateType.CREATION, actual.remove("identificationInfo.citation.date.dateType"));
+            assertEquals(title, actual.remove("identificationInfo.citation.title"));
         }
         if (hasNoExtent) {
             assertSame(Boolean.TRUE,      actual.remove("identificationInfo.extent.geographicElement.extentTypeCode"));

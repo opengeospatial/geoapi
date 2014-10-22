@@ -31,10 +31,10 @@
  */
 package org.opengis.test.metadata;
 
+import java.util.Date;
 import java.util.Collection;
 import org.opengis.metadata.*;
 import org.opengis.metadata.citation.*;
-import org.opengis.metadata.maintenance.*;
 import org.opengis.metadata.identification.*;
 import org.opengis.test.ValidatorContainer;
 
@@ -72,33 +72,56 @@ public class RootValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        final Collection<ScopeCode> hierarchyLevels = object.getHierarchyLevels();
-        final Collection<String> hierarchyLevelNames = object.getHierarchyLevelNames();
-        final Collection<? extends Responsibility> contacts = object.getContacts();
-        if ((hierarchyLevels != null) && hierarchyLevels.contains(ScopeCode.DATASET)) {
-            forbidden("Metadata: parentIdentifier not allowed for ScopeCode.DATASET.",   object.getParentIdentifier());
-            forbidden("Metadata: hierarchyLevelName not allowed for ScopeCode.DATASET.", hierarchyLevelNames);
+        validate(object.getMetadataIdentifier());
+        validate(object.getLanguages());
+        container.validate(object.getParentMetadata());
+        for (final MetadataScope scope : toArray(MetadataScope.class, object.getMetadataScopes())) {
+            mandatory("Metadata: shall have a scope code.", scope.getResourceScope());
         }
-        validate(hierarchyLevels);
-        validate(hierarchyLevelNames);
-        for (final Responsibility e : toArray(Responsibility.class, contacts)) {
+        for (final Responsibility e : toArray(Responsibility.class, object.getContacts())) {
             container.validate(e);
         }
-        mandatory("Metadata: must have a date stamp.", object.getDateStamp());
-        validate(object.getLocales());
+
+        final CitationDate[] dates = toArray(CitationDate.class, object.getDates());
+        container.validate(dates);
+        Date creationDate = null;
+        for (final CitationDate date : dates) {
+            if (DateType.CREATION.equals(date.getDateType())) {
+                creationDate = date.getDate();
+                if (creationDate != null) break;
+            }
+        }
+        mandatory("Metadata: shall have a creation date.", creationDate);
+
+        for (final Citation e : toArray(Citation.class, object.getMetadataStandards())) {
+            container.validate(e);
+        }
+        for (final Citation e : toArray(Citation.class, object.getMetadataProfiles())) {
+            container.validate(e);
+        }
+        for (final Citation e : toArray(Citation.class, object.getAlternativeMetadataReferences())) {
+            container.validate(e);
+        }
+        for (final OnlineResource e : toArray(OnlineResource.class, object.getMetadataLinkages())) {
+            container.validate(e);
+        }
         validate(object.getSpatialRepresentationInfo());
         validate(object.getReferenceSystemInfo());
         validate(object.getMetadataExtensionInfo());
 
         final Collection<? extends Identification> identifications = object.getIdentificationInfo();
-        mandatory("Metadata: must have an identication information.", identifications);
+        mandatory("Metadata: shall have an identication information.",
+                (identifications != null && identifications.isEmpty()) ? null : identifications);
         validate(identifications);
+
         validate(object.getContentInfo());
+        validate(object.getDistributionInfo());
         validate(object.getDataQualityInfo());
         validate(object.getPortrayalCatalogueInfo());
         validate(object.getMetadataConstraints());
         validate(object.getApplicationSchemaInfo());
         validate(object.getAcquisitionInformation());
+        validate(object.getResourceLineages());
     }
 
     /**
@@ -110,7 +133,7 @@ public class RootValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("Identifier: must have a code.", object.getCode());
+        mandatory("Identifier: shall have a code.", object.getCode());
         final Citation citation = object.getAuthority();
         if (citation != this) { // Avoid never ending loop (TODO: find a better way).
             container.validate(citation);

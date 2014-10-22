@@ -224,7 +224,11 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     protected void fetchMetadataProperties(final String filename) {
         put("metadataStandardName",    metadata.getMetadataStandardName());
         put("metadataStandardVersion", metadata.getMetadataStandardVersion());
-        put("fileIdentifier",          metadata.getFileIdentifier());
+        final Identifier metadataIdentifier = metadata.getMetadataIdentifier();
+        if (metadataIdentifier != null) {
+            put("metadataIdentifier.code",      metadataIdentifier.getCode());
+            put("metadataIdentifier.codeSpace", metadataIdentifier.getCodeSpace());
+        }
         /*
          * Metadata / Contact.
          */
@@ -401,7 +405,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * The current implementation tests:
      *
      * <ul>
-     *   <li>The {@linkplain Metadata#getFileIdentifier() file identifier}.</li>
+     *   <li>The {@linkplain Metadata#getMetadataIdentifier() metadata identifier}.</li>
      *   <li>The {@linkplain ResponsibleParty responsible party} name, role and email address.</li>
      *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
      *   <li>The {@linkplain Dimension axis dimensions} names, sizes and resolution.</li>
@@ -416,7 +420,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     @Test
     public void testTHREDDS() throws IOException {
         final Map<String,Object> expected = expectedProperties;
-        assertNull(expected.put("fileIdentifier",                                                    "crm_v1"));
+        assertNull(expected.put("metadataIdentifier.code",                                           "crm_v1"));
         assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",            Role.ORIGINATOR));
         assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individual.name", "David Neufeld"));
         assertNull(expected.put("identificationInfo.pointOfContact.individual.name",                 "David Neufeld"));
@@ -444,7 +448,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             fetchMetadataProperties(THREDDS);
             compareProperties(THREDDS, 1E-12);
             if (getClass() == NetcdfMetadataTest.class) {
-                NonInheritable.assertProcessedAllRelevant(actualProperties, "crm_v1.grd", false, false);
+                NonInheritable.assertProcessedAllRelevant(actualProperties, "crm_v1.grd", false);
             }
         } finally {
             file.close();
@@ -475,7 +479,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     @Test
     public void testNCEP() throws IOException {
         final Map<String,Object> expected = expectedProperties;
-        assertNull(expected.put("fileIdentifier",                                  "edu.ucar.unidata:NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc"));
+        assertNull(expected.put("metadataIdentifier.code",                                          "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc"));
+        assertNull(expected.put("metadataIdentifier.codeSpace",                                     "edu.ucar.unidata"));
         assertNull(expected.put("identificationInfo.citation.identifier.code",                      "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc"));
         assertNull(expected.put("identificationInfo.citation.identifier.authority",                 "edu.ucar.unidata"));
         assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",            Role.ORIGINATOR));
@@ -517,7 +522,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             fetchMetadataProperties(NCEP);
             compareProperties(NCEP, 0.0);
             if (getClass() == NetcdfMetadataTest.class) {
-                NonInheritable.assertProcessedAllRelevant(actualProperties, null, false, false);
+                NonInheritable.assertProcessedAllRelevant(actualProperties, null, false);
             }
         } finally {
             file.close();
@@ -542,7 +547,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             fetchMetadataProperties(LANDSAT);
             compareProperties(LANDSAT, 0.0);
             if (getClass() == NetcdfMetadataTest.class) {
-                NonInheritable.assertProcessedAllRelevant(actualProperties, null, true, true);
+                NonInheritable.assertProcessedAllRelevant(actualProperties, null, true);
             }
         } finally {
             file.close();
@@ -588,7 +593,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             fetchMetadataProperties(CIP);
             compareProperties(CIP, 0.001);
             if (getClass() == NetcdfMetadataTest.class) {
-                NonInheritable.assertProcessedAllRelevant(actualProperties, null, true, false);
+                NonInheritable.assertProcessedAllRelevant(actualProperties, null, false);
             }
         } finally {
             file.close();
