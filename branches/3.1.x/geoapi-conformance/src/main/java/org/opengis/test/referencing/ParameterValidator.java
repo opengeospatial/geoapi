@@ -185,7 +185,7 @@ public class ParameterValidator extends ReferencingValidator {
             return;
         }
         final ParameterDescriptor<T> descriptor = object.getDescriptor();
-        mandatory("ParameterValue: must have a descriptor.", descriptor);
+        mandatory("ParameterValue: shall have a descriptor.", descriptor);
         validate(descriptor);
         final T value = object.getValue();
         if (value != null) {
@@ -214,7 +214,7 @@ public class ParameterValidator extends ReferencingValidator {
             return;
         }
         final ParameterDescriptorGroup descriptors = object.getDescriptor();
-        mandatory("ParameterValueGroup: must have a descriptor.", descriptors);
+        mandatory("ParameterValueGroup: shall have a descriptor.", descriptors);
         validate(descriptors);
         final List<GeneralParameterValue> values = object.values();
         if (requireMandatoryAttributes) {

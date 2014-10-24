@@ -76,7 +76,7 @@ public class ImageValidator extends Validator {
         if (provider != null) {
             validateProvider(provider, ImageReader.class);
             final Class<?>[] inputTypes = provider.getInputTypes();
-            mandatory("The inputTypes array is mandatory", inputTypes);
+            mandatory("ImageReaderSpi: shall have an inputTypes array.", inputTypes);
             validateArray("inputTypes", inputTypes);
             final String[] imageWriterSpiNames = provider.getImageWriterSpiNames();
             validateArray("imageWriterSpiNames", imageWriterSpiNames);
@@ -105,7 +105,7 @@ public class ImageValidator extends Validator {
         if (provider != null) {
             validateProvider(provider, ImageWriter.class);
             final Class<?>[] outputTypes = provider.getOutputTypes();
-            mandatory("The outputTypes array is mandatory", outputTypes);
+            mandatory("ImageWriterSpi: shall have an outputTypes array.", outputTypes);
             validateArray("outputTypes", outputTypes);
             final String[] imageReaderSpiNames = provider.getImageReaderSpiNames();
             validateArray("imageReaderSpiNames", imageReaderSpiNames);
@@ -127,10 +127,10 @@ public class ImageValidator extends Validator {
      * @param spi The provider to validate, or {@code null} if none.
      */
     private void validateProvider(final ImageReaderWriterSpi spi, final Class<?> pluginType) {
-        mandatory("The vendorName string is mandatory.", spi.getVendorName());
-        mandatory("The version string is mandatory.",    spi.getVersion());
+        mandatory("ImageReaderWriterSpi: shall have a vendorName string.", spi.getVendorName());
+        mandatory("ImageReaderWriterSpi: shall have a version string.",    spi.getVersion());
         final String[] formatNames = spi.getFormatNames();
-        mandatory("The formatNames array is mandatory", formatNames);
+        mandatory("ImageReaderWriterSpi: shall have a formatNames array.", formatNames);
         validateArray("formatNames",  formatNames);
         validateArray("fileSuffixes", spi.getFileSuffixes());
         validateArray("MIMETypes",    spi.getMIMETypes());
@@ -238,14 +238,14 @@ public class ImageValidator extends Validator {
     private void validateClass(final String field, final Class<?> expectedType,
             final ClassLoader loader, final String classname)
     {
-        mandatory("The " + field + " string is mandatory", classname);
+        mandatory("ImageReaderWriterSpi: shall have a " + field + " string.", classname);
         if (classname != null) try {
             final Class<?> actual = Class.forName(classname, false, loader);
             assertTrue(actual.getCanonicalName() + " is not an instance of " +
                     expectedType.getSimpleName() + '.', expectedType.isAssignableFrom(actual));
         } catch (ClassNotFoundException e) {
             final AssertionError error = new AssertionError("Class \"" + classname + "\" declared in " + field + " was not found.");
-            error.initCause(e);
+            error.initCause(e); // Assertion(String, Throwable) not available in JDK6.
             throw error;
         }
     }
