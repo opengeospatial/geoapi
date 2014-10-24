@@ -297,6 +297,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      *
      * <p><b>Specified by:</b> {@link Citation}</p>
      *
+     * @return The title, or {@code null} if none.
+     *
      * @see NetcdfFile#getTitle()
      */
     public InternationalString getTitle() {
@@ -383,6 +385,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
+     * Returns {@code true} if this metadata has a date.
+     */
+    final boolean hasDate(final boolean data) {
+        return getString(data ? "date_created" : "metadata_creation") != null;
+    }
+
+    /**
      * Returns the NetCDF "{@code metadata_creation}" attribute value, or {@code null} if none.
      * This is the time when metadata have been created (not necessarily the time when data have
      * been collected).
@@ -396,14 +405,17 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the NetCDF "{@code date_created}" attribute value, or {@code null} if none.
      * This is the creation date of the actual dataset, not necessarily the same that the
      * metadata creation time.
+     *
+     * @return The creation date, or {@code null} if none.
      */
     public Date getDatasetDate() {
         return getDate("date_created");
     }
 
     /**
-     * Returns {@link DateType#CREATION}, because the citation encapsulated by this implementation is only
-     * for the creator. The contributors and publishers are not supported by this simple implementation.
+     * Returns {@link DateType#CREATION}.
+     * Note that the citation encapsulated by this implementation is only for the creator.
+     * The contributors and publishers are not supported by this simple implementation.
      */
     @Override
     public DateType getDateType() {
@@ -454,6 +466,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the NetCDF {@linkplain NetcdfFile#getLocation() file location}, or {@code null} if none.
      *
      * <p><b>Specified by:</b> {@link OnlineResource}</p>
+     *
+     * @return The file creation, or {@code null} if none.
      */
     public URI getLinkage() {
         final String location = file.getLocation();
@@ -582,7 +596,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<? extends CitationDate> getDates() {
-        return self;
+        return hasDate(false) ? self : Collections.<CitationDate>emptySet();
     }
 
     /**
@@ -614,13 +628,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
         @Override public URI                                    getLinkage()                 {return NetcdfMetadata.this.getLinkage();}
         @Override public Collection<? extends ResponsibleParty> getCitedResponsibleParties() {return NetcdfMetadata.this.getPointOfContacts();}
         @Override public Collection<? extends Identifier>       getIdentifiers()             {return self;}
-        @Override public Collection<? extends CitationDate>     getDates()                   {return Collections.singleton(this);}
+        @Override public Collection<? extends CitationDate>     getDates()                   {return hasDate(true) ? Collections.<CitationDate>singleton(this) : Collections.<CitationDate>emptySet();}
         @Override public Collection<? extends OnlineResource>   getOnlineResources()         {return Collections.singleton(this);}
         @Override public Collection<InternationalString>        getAlternateTitles()         {return Collections.emptySet();}
         @Override public Collection<PresentationForm>           getPresentationForms()       {return Collections.emptySet();}
         @Override public Collection<BrowseGraphic>              getGraphics()                {return Collections.emptySet();}
         @Override public InternationalString                    getOtherCitationDetails()    {return null;}
-        @Override public InternationalString                    getCollectiveTitle()         {return null;}
+        @Override @Deprecated public InternationalString        getCollectiveTitle()         {return null;}
         @Override public Series                                 getSeries()                  {return null;}
         @Override public InternationalString                    getEdition()                 {return null;}
         @Override public Date                                   getEditionDate()             {return null;}

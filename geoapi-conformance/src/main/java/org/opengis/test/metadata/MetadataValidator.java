@@ -74,9 +74,9 @@ public abstract class MetadataValidator extends Validator {
      */
     final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
         assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);
+        validate(objects);
         @SuppressWarnings("unchecked")
         final T[] array = (T[]) Array.newInstance(elementType, objects.size());
-        validate(objects);
         int count = 0;
         for (final T element : objects) {
             assertNotNull("Collection should not contain null element.", element);
@@ -98,7 +98,7 @@ public abstract class MetadataValidator extends Validator {
     }
 
     /**
-     * Validates the given mandatory string.
+     * Validates the given optional string.
      *
      * @param object The object to validate, or {@code null}.
      */
