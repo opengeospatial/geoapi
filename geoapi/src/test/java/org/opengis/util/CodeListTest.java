@@ -66,6 +66,7 @@ public final strictfp class CodeListTest {
     /**
      * All code lists to be tested.
      */
+    @SuppressWarnings("deprecation")
     private static final Class<?>[] CODE_LISTS = {
         AssociationType          .class,
         AxisDirection            .class,
