@@ -809,8 +809,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     @Deprecated
-    public Charset getCharacterSet() {
-        return first(getCharacterSets());
+    public CharacterSet getCharacterSet() {
+        return null;
     }
 
     /**

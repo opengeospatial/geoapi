@@ -37,7 +37,7 @@ import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Responsibility;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -74,7 +74,7 @@ public interface Requirement {
      * @return Origin of requirement.
      */
     @UML(identifier="requestor", obligation=MANDATORY, specification=ISO_19115_2)
-    Collection<? extends ResponsibleParty> getRequestors();
+    Collection<? extends Responsibility> getRequestors();
 
     /**
      * Person(s), or body(ies), to receive results of requirement.
@@ -82,7 +82,7 @@ public interface Requirement {
      * @return Person(s), or body(ies), to receive results.
      */
     @UML(identifier="recipient", obligation=MANDATORY, specification=ISO_19115_2)
-    Collection<? extends ResponsibleParty> getRecipients();
+    Collection<? extends Responsibility> getRecipients();
 
     /**
      * Relative ordered importance, or urgency, of the requirement.
