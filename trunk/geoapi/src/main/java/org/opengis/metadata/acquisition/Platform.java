@@ -36,7 +36,7 @@ import java.util.Collection;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.metadata.citation.Responsibility;
 import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
@@ -82,7 +82,7 @@ public interface Platform {
      * @return Organization responsible for building, launch, or operation of the platform.
      */
     @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends ResponsibleParty> getSponsors();
+    Collection<? extends Responsibility> getSponsors();
 
     /**
      * Instrument(s) mounted on a platform.

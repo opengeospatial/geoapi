@@ -49,6 +49,7 @@ import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.content.ContentInformation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
+import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.lineage.Lineage;
@@ -185,7 +186,7 @@ public interface Metadata {
      * @return Character coding standard used for the metadata, or {@code null}.
      */
     @Deprecated
-    Charset getCharacterSet();
+    CharacterSet getCharacterSet();
 
     /**
      * Identification of the parent metadata record.

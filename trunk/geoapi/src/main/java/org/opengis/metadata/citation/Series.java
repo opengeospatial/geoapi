@@ -65,7 +65,7 @@ public interface Series {
      * @return Information identifying the issue of the series, or {@code null}.
      */
     @UML(identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
-    String getIssueIdentification();
+    InternationalString getIssueIdentification();
 
     /**
      * Details on which pages of the publication the article was published.
@@ -73,5 +73,5 @@ public interface Series {
      * @return Details on which pages of the publication the article was published, or {@code null}.
      */
     @UML(identifier="page", obligation=OPTIONAL, specification=ISO_19115)
-    String getPage();
+    InternationalString getPage();
 }

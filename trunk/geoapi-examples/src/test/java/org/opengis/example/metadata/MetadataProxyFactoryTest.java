@@ -30,7 +30,7 @@ import static org.junit.Assert.*;
  */
 public strictfp class MetadataProxyFactoryTest {
     /**
-     * Tests the creation of a {@link Metadata} containing a {@link ResponsibleParty}.
+     * Tests the creation of a {@link Metadata} containing a {@link Responsibility}.
      */
     @Test
     public void testResponsibleParty() {
