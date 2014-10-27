@@ -58,6 +58,8 @@ public interface ServiceIdentification extends Identification {
      * </font></blockquote>
      *
      * @return A service type name.
+     *
+     * @since 3.1
      */
     @UML(identifier="serviceType", obligation=MANDATORY, specification=ISO_19115)
     GenericName getServiceType();
@@ -73,6 +75,8 @@ public interface ServiceIdentification extends Identification {
      * </font></blockquote>
      *
      * @return the version of the service, supports searching based on the version of serviceType.
+     *
+     * @since 3.1
      */
     @UML(identifier="serviceTypeVersion", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getServiceTypeVersions();
@@ -88,6 +92,8 @@ public interface ServiceIdentification extends Identification {
      * </ul>
      *
      * @return Information about the availability of the service, or {@code null} if none.
+     *
+     * @since 3.1
      */
     @UML(identifier="accessProperties", obligation=OPTIONAL, specification=ISO_19115)
     StandardOrderProcess getAccessProperties();
@@ -98,6 +104,8 @@ public interface ServiceIdentification extends Identification {
      * @return Type of coupling between service and associated data, or {@code null} if none.
      *
      * @condition mandatory if {@link #getCoupledResources() coupledResources} is not provided.
+     *
+     * @since 3.1
      */
     @UML(identifier="couplingType", obligation=CONDITIONAL, specification=ISO_19115)
     CouplingType getCouplingType();
@@ -109,6 +117,8 @@ public interface ServiceIdentification extends Identification {
      * @return Further description of the data coupling in the case of tightly coupled services.
      *
      * @condition mandatory if {@link #getCouplingType() couplingType} is not provided.
+     *
+     * @since 3.1
      */
     @UML(identifier="coupledResource", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends CoupledResource> getCoupledResources();
@@ -121,6 +131,8 @@ public interface ServiceIdentification extends Identification {
      *
      * @condition For one resource either {@code operatedDataset} or {@link #getOperatesOn() operatesOn}
      *            may be used (not both for the same resource).
+     *
+     * @since 3.1
      */
     @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getOperatedDatasets();
@@ -130,6 +142,8 @@ public interface ServiceIdentification extends Identification {
      * Returns an empty collection if none.
      *
      * @return Profile(s) to which the service adheres.
+     *
+     * @since 3.1
      */
     @UML(identifier="profile", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getProfiles();
@@ -139,6 +153,8 @@ public interface ServiceIdentification extends Identification {
      * Returns an empty collection if none.
      *
      * @return Standard(s) to which the service adheres.
+     *
+     * @since 3.1
      */
     @UML(identifier="serviceStandard", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getServiceStandards();
@@ -148,6 +164,8 @@ public interface ServiceIdentification extends Identification {
      * Returns an empty collection if none.
      *
      * @return Information about the operations that comprise the service.
+     *
+     * @since 3.1
      */
     @UML(identifier="containsOperations", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends OperationMetadata> getContainsOperations();
@@ -160,6 +178,8 @@ public interface ServiceIdentification extends Identification {
      *
      * @condition For one resource either {@link #getOperatedDatasets() operatedDataset}
      *            or {@code operatesOn} may be used (not both for the same resource).
+     *
+     * @since 3.1
      */
     @UML(identifier="operatesOn", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends DataIdentification> getOperatesOn();
@@ -169,6 +189,8 @@ public interface ServiceIdentification extends Identification {
      * Returns an empty collection if none.
      *
      * @return Information about the chain applied by the service.
+     *
+     * @since 3.1
      */
     @UML(identifier="containsChain", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends OperationChainMetadata> getContainsChain();

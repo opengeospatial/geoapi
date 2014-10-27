@@ -194,7 +194,7 @@ public interface Metadata {
      * @return Character coding standard used for the metadata, or {@code null}.
      */
     @Deprecated
-    Charset getCharacterSet();
+    CharacterSet getCharacterSet();
 
     /**
      * Identification of the parent metadata record.

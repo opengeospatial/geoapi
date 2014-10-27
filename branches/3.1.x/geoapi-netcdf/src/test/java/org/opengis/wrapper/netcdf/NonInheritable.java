@@ -63,8 +63,8 @@ final strictfp class NonInheritable {
             assertEquals(title, actual.remove("identificationInfo.citation.title"));
         }
         if (hasNoExtent) {
-            assertSame(Boolean.TRUE,      actual.remove("identificationInfo.extent.geographicElement.extentTypeCode"));
-            assertSame(Role.ORIGINATOR,   actual.remove("identificationInfo.citation.citedResponsibleParty.role")); // Opportunist
+            assertSame(Boolean.TRUE,    actual.remove("identificationInfo.extent.geographicElement.extentTypeCode"));
+            assertSame(Role.ORIGINATOR, actual.remove("identificationInfo.citation.citedResponsibleParty.role")); // Opportunist
         }
         assertTrue(actual.toString(), actual.isEmpty());
     }

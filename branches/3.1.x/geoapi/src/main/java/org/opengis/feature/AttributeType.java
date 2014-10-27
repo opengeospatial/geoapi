@@ -58,7 +58,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  *   <caption>Attribute value type examples</caption>
  *   <tr><th>Attribute name</th>      <th>Value type</th></tr>
  *   <tr><td>Building shape</td>      <td>{@link org.opengis.geometry.Geometry}</td></tr>
- *   <tr><td>Building owner</td>      <td>{@link org.opengis.metadata.citation.ResponsibleParty}</td></tr>
+ *   <tr><td>Building owner</td>      <td>{@link org.opengis.metadata.citation.Responsibility}</td></tr>
  *   <tr><td>Horizontal accuracy</td> <td>{@link org.opengis.metadata.quality.PositionalAccuracy}</td></tr>
  * </table>
  *
