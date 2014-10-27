@@ -127,19 +127,6 @@ public strictfp class TestSuite {
     }
 
     /**
-     * Returns a new array of the given type and length.
-     *
-     * @param <T>    The compile-time type of the {@code type} class argument.
-     * @param type   The factory interface for which an array is desired.
-     * @param length The length of the array to create.
-     * @return A new array for components of the given type.
-     */
-    @SuppressWarnings("unchecked")
-    private static <T extends Factory> T[] newArray(final Class<T> type, final int length) {
-        return (T[]) Array.newInstance(type, length);
-    }
-
-    /**
      * Specifies the factory implementations to use for the given factory interface.
      *
      * @param <T>     The compile-time type of the {@code type} class argument.
@@ -163,6 +150,7 @@ public strictfp class TestSuite {
      * @param type The factory interface for which an implementations is desired.
      * @return     The implementations for the given interface, or {@code null} if none.
      */
+    @SuppressWarnings("unchecked")
     public static <T extends Factory> T[] getFactories(final Class<T> type) {
         Objects.requireNonNull(type, "Given 'type' can not be null");
         final Iterable<? extends Factory> factories;
@@ -171,7 +159,7 @@ public strictfp class TestSuite {
         }
         if (factories instanceof Collection<?>) {
             final Collection<? extends Factory> collection = (Collection<? extends Factory>) factories;
-            return collection.toArray(newArray(type, collection.size()));
+            return collection.toArray((T[]) Array.newInstance(type, collection.size()));
         }
         return null;
     }

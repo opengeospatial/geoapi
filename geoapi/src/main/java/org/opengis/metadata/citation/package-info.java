@@ -32,7 +32,7 @@
 
 /**
  * Type for {@linkplain org.opengis.metadata.citation.Citation citing} a resource and information
- * about the {@linkplain org.opengis.metadata.citation.ResponsibleParty responsible party}.
+ * about the {@linkplain org.opengis.metadata.citation.Responsibility responsible party}.
  * The resource can be a dataset, feature, source, publication, <i>etc</i>.
  * The responsible party contains the identity of person(s), and/or position, and/or organization(s)
  * associated with the resource. The {@linkplain org.opengis.metadata.citation.Address address}

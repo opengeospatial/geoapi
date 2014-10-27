@@ -44,7 +44,7 @@ import static org.opengis.test.Assert.*;
  *
  * <ul>
  *   <li>The {@linkplain Metadata#getIdentificationInfo() identification} identifier, title, abstract and date.</li>
- *   <li>The {@linkplain ResponsibleParty responsible party} name, role and email address.</li>
+ *   <li>The {@linkplain Responsibility responsible party} name, role and email address.</li>
  *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
  * </ul>
  *
@@ -406,7 +406,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      *
      * <ul>
      *   <li>The {@linkplain Metadata#getMetadataIdentifier() metadata identifier}.</li>
-     *   <li>The {@linkplain ResponsibleParty responsible party} name, role and email address.</li>
+     *   <li>The {@linkplain Responsibility responsible party} name, role and email address.</li>
      *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
      *   <li>The {@linkplain Dimension axis dimensions} names, sizes and resolution.</li>
      *   <li>The {@linkplain Lineage lineage} statement.</li>
@@ -463,7 +463,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      *   <li>The {@linkplain Metadata#getIdentificationInfo() identification} identifier, title, abstract and date.</li>
      *   <li>The {@linkplain Citation citation} title, date and abstract.</li>
      *   <li>The {@linkplain Keywords keywords} type and thesaurus.</li>
-     *   <li>The {@linkplain ResponsibleParty responsible party} name and role.</li>
+     *   <li>The {@linkplain Responsibility responsible party} name and role.</li>
      *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
      *   <li>The {@linkplain VerticalExtent vertical extent}.</li>
      *   <li>The {@linkplain Constraints constraints} use limitation.</li>
