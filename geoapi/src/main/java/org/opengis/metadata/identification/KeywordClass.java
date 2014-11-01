@@ -64,9 +64,9 @@ public interface KeywordClass {
      * URI of concept in the ontology specified by the {@linkplain #getOntology() ontology} citation
      * and labeled by the {@linkplain #getClassName() class name}.
      *
-     * @return URI of concept in the specified ontology, or {@code null} if none.
+     * @return URI of concept in the ontology, or {@code null} if none.
      */
-    @UML(identifier="concept", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="conceptIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     URI getConceptIdentifier();
 
     /**

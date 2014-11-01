@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @since   3.1
  */
 @UML(identifier="CI_TelephoneTypeCode", specification=ISO_19115)
-public final class TelephoneType  extends CodeList<TelephoneType> {
+public final class TelephoneType extends CodeList<TelephoneType> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -85,7 +85,7 @@ public final class TelephoneType  extends CodeList<TelephoneType> {
      * @param name The name of the new element.
      *        This name must not be in use by an other element of this type.
      */
-    private TelephoneType(String name){
+    private TelephoneType(String name) {
         super(name, VALUES);
     }
 
