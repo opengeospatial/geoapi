@@ -47,8 +47,8 @@ public final class Version implements Comparable<Version> {
     /**
      * The first GeoAPI version where {@code geoapi-pending} contains the {@code geoapi} module.
      * Starting from this version, the {@code geoapi-pending-dummy} module is not needed anymore.
-     * <p>
-     * This version number is {@code 2.3-M5}.
+     *
+     * <p>This version number is {@code 2.3-M5}.</p>
      */
     public static final Version PENDING_INCLUDES_CORE = new Version((short) 2, (short) 3, (short) 5);
 

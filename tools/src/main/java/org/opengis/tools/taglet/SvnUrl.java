@@ -41,13 +41,13 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * The <code>@svnurl</code> tag for inserting a SVN URL in a javadoc comment. This tag shall
  * contains a keyword, for example <code>{@svnurl gigs}</code>.
  * Valid keywords are:
- * <p>
- * <table>
+ *
+ * <table class="ogc">
  *   <tr><th>Keyword</th> <th>path</th></tr>
  *   <tr><td>gigs</td>   <td>geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs</td></tr>
  *   <tr><td>netcdf</td> <td>geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf</td></tr>
  * </table>
- * <p>
+ *
  * The URL never contain trailing <code>'/'</code> character.
  *
  * @author  Martin Desruisseaux (Geomatys)

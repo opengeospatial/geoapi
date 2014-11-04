@@ -42,9 +42,9 @@ import java.io.IOException;
 /**
  * Reports public and protected API changes between two JAR files.
  * The arguments expected by the main methods are:
- * <p>
- * <table border="1" cellspacing="0" cellpadding="2">
- * <tr bgcolor="#CCCCFF" class="TableHeadingColor"><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
+ *
+ * <table class="ogc">
+ * <tr><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
  * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.0"}</td></tr>
  * <tr><td>{@code newVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M04"}</td></tr>
  * <tr><td>{@code outputFile}</td> <td>Name of the file to create. This file shall not exist.</td>    <td>{@code "Changes.html"}</td></tr>
