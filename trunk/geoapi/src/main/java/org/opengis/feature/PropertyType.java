@@ -59,6 +59,6 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * @since   3.1
  */
 @Classifier(Stereotype.METACLASS)
-@UML(identifier="IdentifiedType", specification=ISO_19109)
+@UML(identifier="PropertyType", specification=ISO_19109)
 public interface PropertyType extends IdentifiedType {
 }
