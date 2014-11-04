@@ -34,7 +34,6 @@ package org.opengis.tools.taglet;
 import java.util.Map;
 import com.sun.javadoc.Tag;
 import com.sun.tools.doclets.Taglet;
-import com.sun.tools.doclets.formats.html.ConfigurationImpl;
 
 
 /**
@@ -54,7 +53,7 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * @version 3.1
  * @since   3.1
  */
-public final class SvnUrl implements Taglet {
+public final class SvnUrl extends AbstractTaglet {
     /**
      * Register this taglet.
      *
@@ -80,67 +79,6 @@ public final class SvnUrl implements Taglet {
     @Override
     public String getName() {
         return "svnurl";
-    }
-
-    /**
-     * Returns {@code true} since <code>@svnurl</code> can be used in overview.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inOverview() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@svnurl</code> can be used in package documentation.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inPackage() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@svnurl</code> can be used in type documentation
-     * (classes or interfaces).
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inType() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@svnurl</code> can be used in constructor
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inConstructor() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@svnurl</code> can be used in method documentation.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inMethod() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@svnurl</code> can be used in field documentation.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inField() {
-        return true;
     }
 
     /**
@@ -170,7 +108,7 @@ public final class SvnUrl implements Taglet {
         } else if (keyword.equals("netcdf")) {
             url += "/geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf";
         } else {
-            ConfigurationImpl.getInstance().root.printWarning(tag.position(), "Unknown keyword: " + keyword);
+            printWarning(tag.position(), "Unknown keyword: " + keyword);
         }
         return url;
     }

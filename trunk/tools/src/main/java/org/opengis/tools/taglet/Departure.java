@@ -35,7 +35,6 @@ import java.io.*;
 import java.util.*;
 import com.sun.javadoc.Tag;
 import com.sun.tools.doclets.Taglet;
-import com.sun.tools.doclets.formats.html.ConfigurationImpl;
 
 
 /**
@@ -62,7 +61,7 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * @version 3.0
  * @since   2.3
  */
-public final class Departure implements Taglet, Runnable {
+public final class Departure extends AbstractTaglet implements Runnable {
     /**
      * The allowed departure categories. Keys are the departure keyword, and values are descriptions
      * of that departure category. The order of elements is the order of sections to be produced by
@@ -145,57 +144,6 @@ public final class Departure implements Taglet, Runnable {
     }
 
     /**
-     * Returns {@code true} since <code>@departure</code> can be used in package documentation.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inPackage() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@departure</code> can be used in type documentation
-     * (classes or interfaces).
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inType() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@departure</code> can be used in constructor
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inConstructor() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@departure</code> can be used in method documentation.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inMethod() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@departure</code> can be used in field documentation.
-     *
-     * @return Always {@code true}.
-     */
-    @Override
-    public boolean inField() {
-        return true;
-    }
-
-    /**
      * Returns {@code false} since <code>@departure</code> is not an inline tag.
      *
      * @return Always {@code false}.
@@ -252,7 +200,7 @@ public final class Departure implements Taglet, Runnable {
             }
         }
         if (!CATEGORIES.containsKey(category)) {
-            ConfigurationImpl.getInstance().root.printWarning(tag.position(), "Unknown category: " + category);
+            printWarning(tag.position(), "Unknown category: " + category);
         }
         /*
          * Adds the current departure to the collection of departures.
