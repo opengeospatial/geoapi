@@ -41,6 +41,8 @@ import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FilenameFilter;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import com.sun.javadoc.RootDoc;
 import com.sun.tools.doclets.formats.html.HtmlDoclet;
 
@@ -100,7 +102,10 @@ public final class Doclet extends HtmlDoclet {
             copyStylesheet(input, output);
             copyResources(input.getParentFile(), output);
         } catch (IOException e) {
-            root.printError(e.toString());
+            final StringWriter buffer = new StringWriter();
+            final PrintWriter p = new PrintWriter(buffer);
+            e.printStackTrace(p);
+            root.printError(buffer.toString());
             return false;
         }
         return status;
@@ -181,6 +186,7 @@ public final class Doclet extends HtmlDoclet {
         final File[] inputFiles = inputDirectory.listFiles(new FilenameFilter() {
             @Override public boolean accept(final File dir, final String name) {
                 return !name.startsWith(".") &&
+                       !name.equals("README.txt") &&
                        !name.equals("overview.html") &&
                        !name.equals("stylesheet.css");
             }
