@@ -57,8 +57,8 @@ import java.lang.reflect.InvocationTargetException;
  * Holds information for building the set of all {@code JavaElement}s found in a JAR file.
  * This class is used only the time needed for creating the set of elements, then discarded.
  * Every fields declared in this class are used only by the {@link JavaElement} constructors.
- * <p>
- * <b>Usage example:</b>
+ *
+ * <p><b>Usage example:</b></p>
  * <blockquote><code>
  * JavaElement[] elements = JavaElementCollector.collectAPIChanges(new Version("3.0.0"), new Version("3.1-M04"));
  * </code></blockquote>

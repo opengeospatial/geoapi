@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,20 +29,36 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
+package org.opengis.tools.apt;
 
 
 /**
- * Tools for management of various GeoAPI versions.
- * The following tools can be executed from the command line:
- *
- * <ul>
- *   <li>{@link org.opengis.tools.version.ChangeReport} produces a HTML page summarizing the
- *       API differences between two GeoAP JAR files. This is used during release processes
- *       in order to document the list of changes.</li>
- * </ul>
+ * Members of the {@link org.opengis.annotation.UML} annotation.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-package org.opengis.tools.version;
+enum UMLMember {
+    /**
+     * {@code identifier()}.
+     */
+    IDENTIFIER("identifier"),
+
+    /**
+     * {@code specification()}.
+     */
+    SPECIFICATION("specification");
+
+    /**
+     * The member name.
+     */
+    final String methodName;
+
+    /**
+     * Creates a new enumeration for the given member name.
+     */
+    private UMLMember(final String methodName) {
+        this.methodName = methodName;
+    }
+}

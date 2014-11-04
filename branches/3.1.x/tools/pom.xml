@@ -72,17 +72,4 @@
     </developer>
   </developers>
 
-
-
-  <!-- ====================================================
-           Dependencies
-       ==================================================== -->
-  <dependencies>
-    <dependency>
-      <groupId>org.opengis</groupId>
-      <artifactId>geoapi-pending</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-  </dependencies>
-
 </project>
