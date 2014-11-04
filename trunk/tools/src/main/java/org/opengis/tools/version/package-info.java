@@ -34,7 +34,7 @@
 /**
  * Tools for management of various GeoAPI versions.
  * The following tools can be executed from the command line:
- * <p>
+ *
  * <ul>
  *   <li>{@link org.opengis.tools.version.ChangeReport} produces a HTML page summarizing the
  *       API differences between two GeoAP JAR files. This is used during release processes
