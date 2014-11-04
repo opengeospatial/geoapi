@@ -53,7 +53,7 @@ import java.lang.reflect.Modifier;
 final class JavaElement implements Comparable<JavaElement> {
     /**
      * The outer element which contain this element, or {@code null} if none.
-     * <p>
+     *
      * <ul>
      *   <li>For fields and methods, the container is the class or interface that define them.</li>
      *   <li>For classes and interfaces, the container is the package that contains them.</li>
@@ -325,9 +325,9 @@ final class JavaElement implements Comparable<JavaElement> {
      * Compares this element with the given element for order. This method is used for sorting
      * elements in the order to print them. Elements having the same container (classes in the
      * same package, or methods in the same class) are grouped together.
-     * <p>
-     * This method is inconsistent with {@link #equals(Object)} since
-     * it doesn't compare every possible values.
+     *
+     * <p>This method is inconsistent with {@link #equals(Object)} since
+     * it doesn't compare every possible values.</p>
      *
      * @param  other The other element to compare with this method.
      * @return -1, 0, or +1 depending if this element shall be printed before or after the other element.

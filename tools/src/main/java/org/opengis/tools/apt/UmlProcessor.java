@@ -31,236 +31,379 @@
  */
 package org.opengis.tools.apt;
 
-// J2SE dependencies
-import java.util.Set;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.Set;
+import java.util.Map;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.io.Writer;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.AnnotatedElement;
-
-// Annotation processing tools
-import com.sun.mirror.type.TypeMirror;
-import com.sun.mirror.type.DeclaredType;
-import com.sun.mirror.type.PrimitiveType;
-import com.sun.mirror.apt.AnnotationProcessor;
-import com.sun.mirror.apt.AnnotationProcessorEnvironment;
-import com.sun.mirror.apt.AnnotationProcessorFactory;
-import com.sun.mirror.declaration.Declaration;
-import com.sun.mirror.declaration.TypeDeclaration;
-import com.sun.mirror.declaration.ClassDeclaration;
-import com.sun.mirror.declaration.AnnotationTypeDeclaration;
-import com.sun.mirror.util.DeclarationVisitors;
-import com.sun.mirror.util.SimpleDeclarationVisitor;
-
-// OpenGIS dependencies
-import org.opengis.util.CodeList;
-import org.opengis.annotation.UML;
+import javax.tools.Diagnostic;
+import javax.lang.model.util.Elements;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.AnnotationMirror;
+import javax.lang.model.element.AnnotationValue;
+import javax.lang.model.element.Modifier;
+import javax.lang.model.type.TypeKind;
+import javax.lang.model.type.TypeMirror;
+import javax.lang.model.type.DeclaredType;
+import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.ProcessingEnvironment;
 
 
 /**
- * Base class for annotation processors working on the {@link UML} tag.
+ * Provides convenience methods for annotation processors working on the
+ * {@link org.opengis.annotation.UML} annotation.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
-abstract class UmlProcessor extends SimpleDeclarationVisitor
-        implements AnnotationProcessor, AnnotationProcessorFactory
-{
+abstract class UmlProcessor extends AbstractProcessor {
     /**
-     * Annotations supported by this annotation processor.
+     * The fully qualified name of the {@link org.opengis.annotation.UML} annotation.
      */
-    private static final Collection<String> supportedAnnotations = Collections.singleton("org.opengis.annotation.UML");
+    static final String UML_CLASSNAME = "org.opengis.annotation.UML";
 
     /**
-     * Options supported by this annotation processor.
+     * A few base types of special interest.
      */
-    private static final Collection<String> supportedOptions = Collections.emptySet();
+    private final Map<Classes,TypeMirror> classes;
 
     /**
-     * Declarations of the annotation types to be processed, or {@code null} if not yet defined.
-     * This field is initialized by {@link #getProcessorFor(Set, AnnotationProcessorEnvironment)}.
+     * The {@link org.opengis.annotation.UML} methods.
      */
-    protected Set<AnnotationTypeDeclaration> types;
+    private final Map<UMLMember,ExecutableElement> umlMembers;
 
     /**
-     * Environment to use during processing, or {@code null} if not yet defined.
-     * This field is initialized by {@link #getProcessorFor(Set, AnnotationProcessorEnvironment)}.
+     * Set to {@code true} by {@link #init(ProcessingEnvironment)} methods if initialization failed.
+     * Also set to {@code true} after {@code process} execution for preventing the processor to be
+     * executed again on the second round.
      */
-    protected AnnotationProcessorEnvironment environment;
+    boolean skip;
 
     /**
      * Creates a new instance of {@code UmlProcessor}.
+     * Subclasses must supply a public no-argument constructor.
      */
-    protected UmlProcessor() {
+    UmlProcessor() {
+        classes    = new EnumMap<Classes,TypeMirror>(Classes.class);
+        umlMembers = new EnumMap<UMLMember,ExecutableElement>(UMLMember.class);
     }
 
     /**
-     * Returns the options recognized by this factory or by any of the processors it may create.
+     * Initializes this processor.
      *
-     * @return The options recognized by this factory.
+     * @param processingEnv Provides access to the tools framework.
      */
     @Override
-    public Collection<String> supportedOptions() {
-        return supportedOptions;
-    }
-
-    /**
-     * Returns the names of the annotation types supported by this factory.
-     *
-     * @return The annotation types recognized by this factory.
-     */
-    @Override
-    public Collection<String> supportedAnnotationTypes() {
-        return supportedAnnotations;
-    }
-
-    /**
-     * Returns an annotation processor for a set of annotation types.
-     * This very simple factory allows the creation of at most one processor instance.
-     *
-     * @param  types       Declarations of the annotation types to be processed.
-     * @param  environment Environment to use during processing.
-     * @return This annotation processor.
-     * @throws IllegalStateException if this method has already been invoked on this instance.
-     */
-    @Override
-    public AnnotationProcessor getProcessorFor(final Set<AnnotationTypeDeclaration> types,
-                                               final AnnotationProcessorEnvironment environment)
-    {
-        if (this.types != null || this.environment != null) {
-            throw new IllegalStateException();
-        }
-        this.types       = types;
-        this.environment = environment;
-        return this;
-    }
-
-    /**
-     * Process all program elements supported by this annotation processor. The default implementation
-     * invokes the {@code visitFoo} methods defined in {@link SimpleDeclarationVisitor} for every
-     * declaration specified in the {@linkplain AnnotationProcessorEnvironment environment}.
-     */
-    @Override
-    public void process() {
-        for (final TypeDeclaration declaration : environment.getSpecifiedTypeDeclarations()) {
-            declaration.accept(DeclarationVisitors.getSourceOrderDeclarationScanner(this, DeclarationVisitors.NO_OP));
-        }
-    }
-
-    /**
-     * Returns the UML identifier for the specified element, or {@code null}
-     * if the specified element is not part of the UML model.
-     *
-     * @param  element The element for which to get the UML identifier.
-     * @return The identifier of the given element, or {@code null} if none.
-     */
-    protected static String getUmlIdentifier(final AnnotatedElement element) {
-        return getUmlIdentifier(element.getAnnotation(UML.class));
-    }
-
-    /**
-     * Returns the UML identifier for the specified element, or {@code null}
-     * if the specified element is not part of the UML model.
-     *
-     * @param  element The element for which to get the UML identifier.
-     * @return The identifier of the given element, or {@code null} if none.
-     */
-    protected static String getUmlIdentifier(final Declaration element) {
-        return getUmlIdentifier(element.getAnnotation(UML.class));
-    }
-
-    /**
-     * Returns the UML identifier for the specified element, or {@code null}
-     * if the specified element is not part of the UML model.
-     *
-     * @param  element The element for which to get the UML identifier.
-     * @return The identifier of the given element, or {@code null} if none.
-     */
-    protected static String getUmlIdentifier(final TypeMirror element) {
-        return (element instanceof DeclaredType) ? getUmlIdentifier(((DeclaredType) element).getDeclaration()) : null;
-    }
-
-    /**
-     * Returns the UML identifier, or {@code null} if none.
-     */
-    private static String getUmlIdentifier(final UML uml) {
-        if (uml != null) {
-            String identifier = uml.identifier();
-            /*
-             * If there is two or more UML identifiers collapsed in only one
-             * Java method, keep only the first identifier (which is usually
-             * the main attribute).
-             */
-            final int split = identifier.indexOf(',');
-            if (split >= 0) {
-                identifier = identifier.substring(0, split);
+    public void init(final ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        final Elements utils = processingEnv.getElementUtils();
+        for (final Classes c : Classes.values()) {
+            final TypeElement e = utils.getTypeElement(c.classname);
+            if (e == null) {
+                if (c.isPending) {
+                    continue; // Interfaces from geoapi-pending module are optional.
+                }
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Class not found: " + c.classname);
+                skip = true;
+                return;
             }
-            return identifier;
+            classes.put(c, e.asType());
+            if (c == Classes.UML) {
+                final Map<String,Element> members = new HashMap<String,Element>();
+                for (final Element m : e.getEnclosedElements()) {
+                    members.put(m.getSimpleName().toString(), m);
+                }
+                for (final UMLMember m : UMLMember.values()) {
+                    final Element ex = members.get(m.methodName);
+                    if (ex == null) {
+                        processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Method not found: UML." + m.methodName);
+                        skip = true;
+                        return;
+                    }
+                    umlMembers.put(m, (ExecutableElement) ex);
+                }
+            }
         }
-        return null;
     }
 
     /**
-     * Returns {@code true} if the specified declaration is a {@link CodeList}.
-     * This method returns {@code true} for any subclass of {@code CodeList},
-     * but not for {@code CodeList} itself.
+     * Processes all types given to the compiler (excluding packages).
      *
-     * @param  declaration The element to test.
-     * @return {@code true} if the given element is a code list.
+     * @param elements Classes or interfaces given to the compiler.
+     * @throws IOException if an error occurred while generating a report.
      */
-    protected final boolean isCodeList(final TypeDeclaration declaration) {
-        if (declaration instanceof ClassDeclaration) {
-            final Class<?> type = getClass(declaration);
-            return CodeList.class.isAssignableFrom(type) && !CodeList.class.equals(type);
+    abstract void process(final TypeElement[] elements) throws IOException;
+
+    /**
+     * Processes all classes and interfaces, no matter in annotated by
+     * {@link org.opengis.annotation.UML} or not.
+     *
+     * @param  annotations The UML annotation to process (currently ignored).
+     * @param  roundEnv Information about current round.
+     * @return {@code false}, since this method does not prevent other processor to process {@code UML} annotations.
+     */
+    @Override
+    public final boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
+        if (!skip) {
+            skip = true; // For preventing additional execution.
+            final Set<? extends Element> elements = roundEnv.getRootElements();
+            TypeElement[] types = new TypeElement[elements.size()];
+            int count = 0;
+            for (final Element e : elements) {
+                if (isTypeElement(e)) {
+                    types[count++] = (TypeElement) e;
+                }
+            }
+            types = Arrays.copyOf(types, count);
+            try {
+                process(types);
+            } catch (IOException e) {
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
+                        "Unable to create output files. The cause is " +
+                        e.getClass().getSimpleName() + ": " + e.getLocalizedMessage());
+            }
         }
         return false;
     }
 
     /**
-     * Returns the class object for the specified declaration. If the class can't be found,
-     * then this method returns {@link Void#TYPE}. The later is not quite correct (but do
-     * the trick for this package purpose), which is why this method is package-private.
+     * Returns a writer for a file in the current directory using UTF-8 encoding.
+     *
+     * @param  relativePath The path of the file to create, relative to the current directory.
+     * @return The writer.
+     * @throws IOException if the writer can not be created.
      */
-    final Class<?> getClass(final TypeDeclaration declaration) {
-        if (declaration != null) try {
-            return Class.forName(declaration.getQualifiedName());
-        } catch (ClassNotFoundException e) {
-            environment.getMessager().printError("Class not found: " + e.getLocalizedMessage());
-        }
-        return Void.TYPE;
+    static Writer openWriter(final String relativePath) throws IOException {
+        return new OutputStreamWriter(new FileOutputStream(relativePath), "UTF-8");
     }
 
     /**
-     * Returns the class object for the specified declaration. If the class can't be found,
-     * then this method returns {@link Void#TYPE}. The later is not quite correct (but do
-     * the trick for this package purpose), which is why this method is package-private.
+     * Returns {@code true} if the given type is a subtype of the given base type.
+     * If the given base type is unknown, then this method conservatively returns {@code null}.
      */
-    final Class<?> getClass(final TypeMirror type) {
-        if (type instanceof PrimitiveType) {
-            switch (((PrimitiveType) type).getKind()) {
-                case BOOLEAN : return Boolean  .TYPE;
-                case BYTE    : return Byte     .TYPE;
-                case SHORT   : return Short    .TYPE;
-                case INT     : return Integer  .TYPE;
-                case LONG    : return Long     .TYPE;
-                case CHAR    : return Character.TYPE;
-                case FLOAT   : return Float    .TYPE;
-                case DOUBLE  : return Double   .TYPE;
-                default      : throw new AssertionError(type);
+    final boolean isSubtype(final TypeMirror type, final Classes baseType) {
+        final TypeMirror base = classes.get(baseType);
+        return (base != null) && processingEnv.getTypeUtils().isSubtype(type, base);
+    }
+
+    /**
+     * Returns {@code true} if the given element is a class or an interface.
+     * This is used as a substitute to {@code (e instanceof ElementType)}
+     * since the later is documented as non-reliable in JDK javadoc.
+     */
+    private static boolean isTypeElement(final Element e) {
+        final ElementKind kind = e.getKind();
+        return kind.isClass() || kind.isInterface();
+    }
+
+    /**
+     * Returns the package name of the given type.
+     *
+     * @param  e The class or interface for which to get the package name.
+     * @return The package name of the given type.
+     */
+    final String getPackageName(final Element e) {
+        return processingEnv.getElementUtils().getPackageOf(e).getQualifiedName().toString();
+    }
+
+    /**
+     * Returns the name of the given element, completed with the name of the outer class is any.
+     * The check for outer interface is mostly for {@code CodeList.Filter}.
+     *
+     * @param  e The type or member for which to get the name relative to the package.
+     * @return The element name, prefixed with its enclosing class if any.
+     */
+    static String getRelativeName(Element e) {
+        String classname = e.getSimpleName().toString();
+        while (isTypeElement(e = e.getEnclosingElement())) {
+            classname = e.getSimpleName().toString() + '.' + classname;
+        }
+        return classname;
+    }
+
+    /**
+     * Returns the class or interface that contains the given field or method.
+     * If the given element is already a class or interface, then it is returned directly.
+     *
+     * @param  e The element for which to get the enclosing type element.
+     * @return The enclosing type element (may be {@code e} itself).
+     */
+    static TypeElement getTypeElement(Element e) {
+        while (!isTypeElement(e)) {
+            e = e.getEnclosingElement();
+        }
+        return (TypeElement) e;
+    }
+
+    /**
+     * Gets all public or protected non-deprecated fields and methods of the given class or interface.
+     * If two members of the same name are defined, the one with a UML annotation will be selected
+     * (there should be only one).
+     *
+     * @param  element The type of interface for which to get all declared members.
+     * @return The public non-deprecated members, in declaration order.
+     */
+    final Collection<Element> getMembers(final TypeElement element) {
+        final Elements utils = processingEnv.getElementUtils();
+        final Map<String,Element> members = new LinkedHashMap<String,Element>();
+        for (final Element member : element.getEnclosedElements()) {
+            if (!utils.isDeprecated(member)) {
+                final Set<Modifier> modifiers = member.getModifiers();
+                if (modifiers.contains(Modifier.PUBLIC) || modifiers.contains(Modifier.PROTECTED)) {
+                    final String name = member.getSimpleName().toString();
+                    final Element old = members.put(name, member);
+                    if (old != null) {
+                        // Found a duplicated member. Restore the first member, unless
+                        // the new one has a UML annotation while the older one had none.
+                        final boolean oldHasUML = getUML(old)    != null;
+                        final boolean newHasUML = getUML(member) != null;
+                        if (oldHasUML || !newHasUML) {
+                            members.put(name, old);
+                            if (oldHasUML && newHasUML) {
+                                // Preserve also the new member using a generated key.
+                                int n = 0;
+                                String key;
+                                do key = name + '$' + (++n);
+                                while (members.containsKey(key));
+                                members.put(key, member);
+                            }
+                        }
+                    }
+                }
             }
         }
-        if (type instanceof DeclaredType) {
-            return getClass(((DeclaredType) type).getDeclaration());
-        }
-        return Void.TYPE;
+        return members.values();
     }
 
     /**
-     * Prints an error message after the failure to open a file.
+     * Returns the UML annotation of the given element, or {@code null} if none.
+     *
+     * @param  element The element on which to get the UML annotation.
+     * @return The UML annotation, or {@code null} if none.
      */
-    final void printError(final IOException exception) {
-        environment.getMessager().printError("Unable to create output files. The cause is " +
-                exception.getClass().getSimpleName() + ": " + exception.getLocalizedMessage());
+    final AnnotationMirror getUML(final Element element) {
+        for (final AnnotationMirror e :element.getAnnotationMirrors()) {
+            if (((TypeElement) e.getAnnotationType().asElement()).getQualifiedName().toString().equals(UML_CLASSNAME)) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the display name for the given UML identifier.
+     *
+     * @param  uml The UML annotation for which to get the display name, or {@code null}.
+     * @return The display name, or {@code null} if the given UML annotation was null.
+     */
+    final String getDisplayName(final AnnotationMirror uml) {
+        if (uml != null) {
+            final AnnotationValue a = uml.getElementValues().get(umlMembers.get(UMLMember.IDENTIFIER));
+            if (a != null) {
+                String identifier = (String) a.getValue();
+                /*
+                 * If there is two or more UML identifiers collapsed in only one Java method,
+                 * keep only the first identifier (which is usually the main attribute).
+                 */
+                final int split = identifier.indexOf(',');
+                if (split >= 0) {
+                    identifier = identifier.substring(0, split);
+                }
+                return identifier.substring(identifier.lastIndexOf('.') + 1);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the display name of the specification attribute in the given UML.
+     *
+     * @param  uml The UML annotation for which to get the specification, or {@code null}.
+     * @return The specification name, or {@code null} if the given UML annotation was null.
+     */
+    final String getSpecification(final AnnotationMirror uml) {
+        if (uml != null) {
+            final AnnotationValue a = uml.getElementValues().get(umlMembers.get(UMLMember.SPECIFICATION));
+            if (a != null) {
+                return ((Element) a.getValue()).getSimpleName().toString()
+                        .replace("ISO_","ISO ").replace("OGC_","OGC ").replace('_', '-');
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns {@code true} if the given type is an array, a collection, a map or any other type
+     * that may hold more than one value.
+     *
+     * @param  type The type to test for multi-occurrence.
+     * @return {@code true} if the given type can hold more than one value.
+     */
+    final boolean isMultiOccurrence(final TypeMirror type) {
+        if (type.getKind() == TypeKind.ARRAY) {
+            return true;
+        }
+        for (final Classes c : Classes.MULTI_OCCURRENCE) {
+            if (isSubtype(type, c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns {@code true} if the given element override an element from a parent interface.
+     * To be considered as an override, the two methods must also have the same UML identifier (if any).
+     *
+     * @param element The element to test for overriding.
+     * @return {@code true} if the given element override an element from a parent.
+     */
+    final boolean overrides(final ExecutableElement element) {
+        for (final TypeMirror t : ((TypeElement) element.getEnclosingElement()).getInterfaces()) {
+            if (t.getKind() == TypeKind.DECLARED) {
+                if (overrides(element, (TypeElement) ((DeclaredType) t).asElement())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Implementation of {@link #overrides(ExecutableElement)} to be invoked recursively.
+     */
+    private boolean overrides(final ExecutableElement element, final TypeElement parent) {
+        final TypeElement enclosing = (TypeElement) element.getEnclosingElement();
+        final Elements utils = processingEnv.getElementUtils();
+        for (final Element member : parent.getEnclosedElements()) {
+            if (member.getKind() == ElementKind.METHOD) {
+                if (utils.overrides(element, (ExecutableElement) member, enclosing)) {
+                    final String u1 = getDisplayName(getUML(element));
+                    final String u2 = getDisplayName(getUML(member));
+                    if (u1 == u2 || (u1 != null && u1.equals(u2))) {
+                        return true;
+                    }
+                }
+            }
+        }
+        for (final TypeMirror t : parent.getInterfaces()) {
+            if (t.getKind() == TypeKind.DECLARED) {
+                if (overrides(element, (TypeElement) ((DeclaredType) t).asElement())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

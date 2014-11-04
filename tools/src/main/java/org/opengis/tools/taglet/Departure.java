@@ -41,7 +41,7 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
 /**
  * The <code>@departure</code> tag for documenting the reasons for a departure from OGC/ISO
  * standard. The first word after the tag must be the departure category, one of:
- * <p>
+ *
  * <ul>
  *   <li>{@code constraint} - Some departure are required because of Java language constraint.
  *        The most common case is the mapping of the {@code union} construct, which exists in
@@ -55,7 +55,7 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  *   <li>{@code rename} - the departure is a method renaming for better compliance with Java usage,
  *        without any change in the method purpose, arguments and return type.</li>
  * </ul>
- * <p>
+ *
  * The remaining is the explanation as HTML text (no javadoc tags).
  *
  * @author  Martin Desruisseaux (Geomatys)

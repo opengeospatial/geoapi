@@ -71,7 +71,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * @since   3.1
  */
 @Classifier(Stereotype.METACLASS)
-@UML(identifier="IdentifiedType", specification=ISO_19109)
+@UML(identifier="AttributeType", specification=ISO_19109)
 public interface AttributeType<V> extends PropertyType {
     /**
      * Returns the name of this attribute type.
