@@ -31,35 +31,26 @@
  */
 package org.opengis.tools.apt;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Map;
+import java.io.Writer;
 import java.util.Set;
-import java.util.List;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Comparator;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-
-import com.sun.mirror.apt.Filer;
-import com.sun.mirror.type.InterfaceType;
-import com.sun.mirror.util.Declarations;
-import com.sun.mirror.declaration.Modifier;
-import com.sun.mirror.declaration.TypeDeclaration;
-import com.sun.mirror.declaration.ClassDeclaration;
-import com.sun.mirror.declaration.MemberDeclaration;
-import com.sun.mirror.declaration.MethodDeclaration;
-
-import org.opengis.util.CodeList;
-import org.opengis.annotation.UML;
-import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.geometry.coordinate.PointGrid;
-import org.opengis.geometry.coordinate.PointArray;
+import javax.tools.Diagnostic;
+import javax.lang.model.SourceVersion;
+import javax.lang.model.util.Elements;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
+import javax.lang.model.element.TypeElement;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.AnnotationMirror;
+import javax.lang.model.type.TypeMirror;
+import javax.lang.model.type.TypeKind;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.annotation.processing.SupportedAnnotationTypes;
+import javax.annotation.processing.SupportedOptions;
 
 
 /**
@@ -67,7 +58,7 @@ import org.opengis.geometry.coordinate.PointArray;
  * The list will be written in the {@code ../javadoc/content.html} file, relative
  * to the current directory. The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
- * <p>
+ *
  * <b><u>How to use</u></b><br>
  * {@code chdir} to the root directory of source code. Then invoke the {@code apt} command,
  * where {@code content.txt} is a file containing the path to all java classes to parse:
@@ -77,8 +68,8 @@ import org.opengis.geometry.coordinate.PointArray;
  * find org -name "*.java" &gt; content.txt
  * export CLASSPATH=~/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
  * export CLASSPATH=$CLASSPATH:../../../../geoapi-pending/target/geoapi-pending-4.0-SNAPSHOT.jar
- * export CLASSPATH=$CLASSPATH:../../../../tools/target/tools-4.0-SNAPSHOT.jar
- * apt -classpath $CLASSPATH -nocompile -factory org.opengis.tools.apt.IndexGenerator @content.txt
+ * javac --processorpath ../../../../tools/target/tools-4.0-SNAPSHOT.jar -processor org.opengis.tools.apt.IndexGenerator \\
+ *         -Aoutput=../geoapi/javadoc/src/main/javadoc/content.html @content.txt
  * rm content.txt
  * </pre></blockquote>
  *
@@ -86,7 +77,10 @@ import org.opengis.geometry.coordinate.PointArray;
  * @version 3.1
  * @since   2.0
  */
-public class IndexGenerator extends UmlProcessor implements Comparator<TypeDeclaration> {
+@SupportedSourceVersion(SourceVersion.RELEASE_6)
+@SupportedAnnotationTypes(UmlProcessor.UML_CLASSNAME)
+@SupportedOptions("output")
+public class IndexGenerator extends UmlProcessor implements Comparator<TypeElement> {
     /**
      * Method names that are part of Java specification.
      */
@@ -98,15 +92,19 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
     private final Set<String> vecmathMethods;
 
     /**
-     * The list of all declarations. They will be collected before to be processed,
-     * in order to sort them by package name before to sort them by class name.
+     * The file to write.
      */
-    private final List<TypeDeclaration> declarations;
+    private String outputFile;
 
     /**
      * The writer where to write the list.
      */
-    private PrintWriter out;
+    private Writer out;
+
+    /**
+     * The platform-specific line separator.
+     */
+    private final String lineSeparator;
 
     /**
      * Last package visited.
@@ -119,275 +117,194 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeDecla
     public IndexGenerator() {
         javaMethods    = new HashSet<String>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
         vecmathMethods = new HashSet<String>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
-        declarations   = new ArrayList<TypeDeclaration>(512);
+        lineSeparator  = System.getProperty("line.separator", "\n");
     }
 
     /**
-     * Processes all program elements supported by this annotation processor. This method scans
-     * all interfaces and their methods (as well as code lists and their fields) and writes the
-     * result to a HTML file.
-     */
-    @Override
-    public void process() {
-        // Collect all type declaration, then sort them.
-        super.process();
-        Collections.sort(declarations, this);
-
-        // Now write the HTML file.
-        final Filer filer = environment.getFiler();
-        try {
-            out = filer.createTextFile(Filer.Location.SOURCE_TREE, "",
-                        new File("../javadoc/content.html"), null);
-        } catch (IOException exception) {
-            printError(exception);
-            return;
-        }
-        out.println("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
-        out.println("<!DOCTYPE html>");
-        out.println("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
-        out.println("  <head>");
-        out.println("    <title>GeoAPI content</title>");
-        out.println("  </head>");
-        out.println("  <body><div>");
-        out.println("  <h1>GeoAPI content</h1>");
-        out.println("  <table cellpadding='0' cellspacing='0'>");
-        out.println("  <tr><th bgcolor=\"#CCCCFF\">GeoAPI identifier</th>" +
-                          "<th bgcolor=\"#CCCCFF\">ISO identifier</th>" +
-                          "<th bgcolor=\"#CCCCFF\">Standard</th></tr>");
-        lastPackage = "";
-        for (final TypeDeclaration declaration : declarations) {
-            writeTypeDeclaration(declaration);
-        }
-        out.println("  </table>");
-        out.println("  </div></body>");
-        out.println("</html>");
-        out.close();
-    }
-
-    /**
-     * Returns the simple name of the given class or interface, completed with the name of the
-     * outer class is any. The check for outer interface is mostly for {@code CodeList.Filter}.
-     */
-    private static String getSimpleName(TypeDeclaration declaration) {
-        String classname = declaration.getSimpleName();
-        while ((declaration = declaration.getDeclaringType()) != null) {
-            classname = declaration.getSimpleName() + '.' + classname;
-        }
-        return classname;
-    }
-
-    /**
-     * Compares the given declaration for order.
+     * Initializes this processor.
      *
-     * @param  o1 The first declaration.
-     * @param  o2 The second declaration.
-     * @return A negative number if {@code o1} should be printed before {@code o2}, or
-     *         a positive number if {@code o1} should be printed after {@code o2}.
+     * @param processingEnv Provides access to the tools framework.
      */
     @Override
-    public int compare(final TypeDeclaration o1, final TypeDeclaration o2) {
-        int c = o1.getPackage().getQualifiedName().compareToIgnoreCase(o2.getPackage().getQualifiedName());
+    public void init(final ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        outputFile = processingEnv.getOptions().get("output");
+        if (outputFile == null) {
+            processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "No 'output' option specified.");
+            skip = true;
+        }
+    }
+
+    /**
+     * Writes the given string to the {@link #out} writer, followed by a line separator.
+     */
+    private void writeLine(final String line) throws IOException {
+        out.write(line);
+        out.write(lineSeparator);
+    }
+
+    /**
+     * Compares the given elements for order.
+     * This will determine the order in which API changes are reported on the HTML page.
+     *
+     * @param  t1 The first element.
+     * @param  t2 The second element.
+     * @return A negative number if {@code t1} should be printed before {@code t2}, or
+     *         a positive number if {@code t1} should be printed after {@code t2}.
+     */
+    @Override
+    public int compare(final TypeElement t1, final TypeElement t2) {
+        int c = getPackageName(t1).compareToIgnoreCase(getPackageName(t2));
         if (c == 0) {
-            c = getSimpleName(o1).compareToIgnoreCase(getSimpleName(o2));
+            c = getRelativeName(t1).compareToIgnoreCase(getRelativeName(t2));
         }
         return c;
     }
 
     /**
-     * Adds the given declaration to the list of types to be written, except if it
-     * is part of a package to be omitted.
-     *
-     * @param declaration The class to check.
+     * Processes all program elements supported by this annotation processor. This method gets
+     * all interfaces and their methods (as well as code lists and their fields) and writes the
+     * result to a HTML file.
      */
     @Override
-    public void visitTypeDeclaration(final TypeDeclaration declaration) {
-        super.visitTypeDeclaration(declaration);
-        if (declaration.getAnnotation(Deprecated.class) != null) {
-            return;
+    final void process(final TypeElement[] elements) throws IOException {
+        Arrays.sort(elements, this);
+
+        // Now write the HTML file.
+        out = openWriter(outputFile);
+        try {
+            writeLine("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+            writeLine("<!DOCTYPE html>");
+            writeLine("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+            writeLine("  <head>");
+            writeLine("    <title>GeoAPI content</title>");
+            writeLine("  </head>");
+            writeLine("  <body><div>");
+            writeLine("  <h1>GeoAPI content</h1>");
+            writeLine("  <table cellpadding='0' cellspacing='0'>");
+            writeLine("  <tr><th bgcolor=\"#CCCCFF\">GeoAPI identifier</th>" +
+                          "<th bgcolor=\"#CCCCFF\">ISO identifier</th>" +
+                          "<th bgcolor=\"#CCCCFF\">Standard</th></tr>");
+            lastPackage = "";
+            final Elements utils = processingEnv.getElementUtils();
+            for (final TypeElement element : elements) {
+                if (!utils.isDeprecated(element)) {
+                    if (!utils.getPackageOf(element).getQualifiedName().toString().equals("org.opengis.annotation")) {
+                        writeTypeElement(element);
+                    }
+                }
+            }
+            writeLine("  </table>");
+            writeLine("  </div></body>");
+            writeLine("</html>");
+        } finally {
+            out.close();
+            out = null;
         }
-        if (declaration.getPackage().getQualifiedName().equals("org.opengis.annotation")) {
-            return;
-        }
-        declarations.add(declaration);
     }
 
     /**
-     * Write the HTML records for the given type, and for methods and fields inside that class.
+     * Writes the HTML records for the given class or interface.
+     * If the type is declared in a new package compared to the previous type,
+     * writes the package name first.
      */
-    private void writeTypeDeclaration(final TypeDeclaration declaration) {
-        UML    uml                = declaration.getAnnotation(UML.class);
-        String identifier         = getDisplayName(uml);
-        String classname          = getSimpleName(declaration);
-        String qualifiedClassname = declaration.getQualifiedName();
-        String pathToClassJavadoc = qualifiedClassname.replace('.', '/') + ".html";
-        boolean significantChange = !similarClassName(declaration, classname, identifier);
-        final boolean isCodeList  = isCodeList(declaration);
-        /*
-         * Writes the class name. If the class is declared in a new package
-         * compared to the previous one, writes the package name first.
-         */
-        if (true) {
-            final String packageName = declaration.getPackage().getQualifiedName();
-            if (!packageName.equals(lastPackage)) {
-                out.println("  <tr><td colspan=\"3\">&nbsp;</td></tr>");
-                out.print  ("  <tr><td colspan=\"3\" nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
-                out.print  (packageName);
-                out.println("</code></b></td></tr>");
-                out.println("  <tr><td colspan=\"3\"><hr/></td></tr>");
-                lastPackage = packageName;
-            }
-            out.print("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
-            out.print(isCodeList ? "Code list" : (declaration instanceof ClassDeclaration) ? "Class" : "Interface");
-            out.print(" <code><a href=\"");
-            out.print(pathToClassJavadoc);
-            out.print("\">");
-            printName(classname, significantChange);
-            out.print("</a></code></b>");
-            if (identifier != null) {
-                out.print("<td><code>");
-                printName(identifier, significantChange);
-                out.print("</code></td><td nowrap>");
-                out.print(getSpecification(uml));
-                out.print("</td>");
-            }
-            out.println("</tr>");
+    private void writeTypeElement(final TypeElement element) throws IOException {
+        final AnnotationMirror uml      = getUML(element);
+        final String identifier         = getDisplayName(uml);
+        final String classname          = getRelativeName(element);
+        final String qualifiedClassname = element.getQualifiedName().toString();
+        final String pathToClassJavadoc = qualifiedClassname.replace('.', '/') + ".html";
+        final boolean significantChange = !isEquivalentClassName(element, classname, identifier);
+        final boolean isCodeList        = isSubtype(element.asType(), Classes.CODE_LIST);
+        final String packageName        = getPackageName(element);
+        if (!packageName.equals(lastPackage)) {
+            writeLine("  <tr><td colspan=\"3\">&nbsp;</td></tr>");
+            out.write("  <tr><td colspan=\"3\" nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
+            out.write(packageName);
+            writeLine("</code></b></td></tr>");
+            writeLine("  <tr><td colspan=\"3\"><hr/></td></tr>");
+            lastPackage = packageName;
         }
-        /*
-         * Gets the attributes, ignoring deprecated and duplicated attributes.
-         * If an attribute is defined twice, the one with a UML annotation is
-         * selected (there should be only one).
-         */
-        final Map<String,MemberDeclaration> attributes = new LinkedHashMap<String,MemberDeclaration>();
-scan:   for (final MemberDeclaration attribute : isCodeList ? declaration.getFields() : declaration.getMethods()) {
+        out.write("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
+        out.write(isCodeList ? "Code list" : element.getKind().isClass() ? "Class" : "Interface");
+        out.write(" <code><a href=\"");
+        out.write(pathToClassJavadoc);
+        out.write("\">");
+        printName(classname, significantChange);
+        out.write("</a></code></b>");
+        if (identifier != null) {
+            out.write("<td><code>");
+            printName(identifier, significantChange);
+            out.write("</code></td><td nowrap>");
+            out.write(getSpecification(uml));
+            out.write("</td>");
+        }
+        writeLine("</tr>");
+        for (final Element member : getMembers(element)) {
+            if (member.getKind() == ElementKind.METHOD) {
+                if (overrides((ExecutableElement) member)) {
+                    continue;
+                }
+            }
+            writeMemberElement(classname, member);
+        }
+        writeLine("  <tr><td colspan=\"3\"><hr></td></tr>");
+    }
+
+    /**
+     * Writes the HTML records for the given field or method.
+     *
+     * @param classname The name of the enclosing class.
+     * @param element   The member to write.
+     */
+    private void writeMemberElement(final String classname, final Element element) throws IOException {
+        final AnnotationMirror uml = getUML(element);
+        final String identifier = getDisplayName(uml);
+        final String name = element.getSimpleName().toString();
+        boolean significantChange = true;
+        if (identifier != null) {
+            final ElementKind kind = element.getKind();
+            if (kind == ElementKind.METHOD) {
+                significantChange = !(isEquivalentMethodName((ExecutableElement) element, name, identifier));
+            } else if (kind.isField()) {
+                significantChange = !(isEquivalentFieldName(name, identifier));
+            }
+        }
+        out.write("  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;");
+        printName(name, significantChange);
+        out.write("</code></td>");
+        if (identifier != null) {
+            out.write("<td><code>&nbsp;&nbsp;");
+            printName(identifier, significantChange);
+            out.write("</code></td><td><font size=-1>");
+            out.write(getSpecification(uml));
+            out.write("</font></td>");
+        } else if (javaMethods.contains(name)) {
             /*
-             * Skip non-public members, deprecated members and members
-             * which are declared in a super-interface.
+             * The 'doubleValue()' method is considered a Java method only in the case of
+             * the RepresentativeFraction interface, because the Javadoc of that interface
+             * encourage implementors to extend java.lang.Number.
              */
-            if (!attribute.getModifiers().contains(Modifier.PUBLIC)) {
-                continue scan;
+            if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
+                out.write("<td></td><td><font size=-1>Java</font></td>");
             }
-            if (attribute.getAnnotation(Deprecated.class) != null) {
-                continue scan;
-            }
-            if (attribute instanceof MethodDeclaration) {
-                final MethodDeclaration method = (MethodDeclaration) attribute;
-                final Declarations util = environment.getDeclarationUtils();
-                for (final InterfaceType parent : declaration.getSuperinterfaces()) {
-                    for (final MethodDeclaration candidate : parent.getDeclaration().getMethods()) {
-                        if (util.overrides(candidate, method)) {
-                            continue scan; // Found the method in superclass: don't document it.
-                        }
-                        // The following check is redundant with the one we just made above, except
-                        // that we don't check the return type  (the above check considers that we
-                        // don't override the method if the overriding method restricts the return
-                        // type). We should perform only one check; performing both of them is
-                        // useless but for now we leave it that way as a reminder in case we want
-                        // to revisit the policy applied here.
-                        if (method.getSimpleName().equals(candidate.getSimpleName())) {
-                            continue scan;
-                        }
-                    }
-                }
-            }
-            final String name = attribute.getSimpleName();
-            final MemberDeclaration old = attributes.put(name, attribute);
-            if (old != null) {
-                // Found a duplicated attribute. Restore the first attribute, unless
-                // the new one has a UML annotation while the older one had none.
-                final boolean oldHasUML = old      .getAnnotation(UML.class) != null;
-                final boolean newHasUML = attribute.getAnnotation(UML.class) != null;
-                if (oldHasUML || !newHasUML) {
-                    attributes.put(name, old);
-                    if (oldHasUML && newHasUML) {
-                        // Preserve also the new attribute using a generated key.
-                        int n = 0;
-                        String key;
-                        do key = name + '$' + (++n);
-                        while (attributes.containsKey(key));
-                        attributes.put(key, attribute);
-                    }
-                }
-            }
+        } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
+            out.write("<td></td><td><font size=-1>Vecmath</font></td>");
         }
-        /*
-         * Writes the HTML lines for the attributes retained in the above iteration.
-         */
-scan:   for (final MemberDeclaration attribute : attributes.values()) {
-            uml = attribute.getAnnotation(UML.class);
-            identifier = getDisplayName(uml);
-            final String name = attribute.getSimpleName();
-            significantChange = true;
-            if (identifier != null) {
-                if (attribute instanceof MethodDeclaration) {
-                    significantChange = !(similarMethodName((MethodDeclaration) attribute, name, identifier));
-                } else {
-                    significantChange = !(similarCodeName(name, identifier));
-                }
-            }
-            out.print("  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;");
-            printName(name, significantChange);
-            out.print("</code></td>");
-            if (identifier != null) {
-                out.print("<td><code>&nbsp;&nbsp;");
-                printName(identifier, significantChange);
-                out.print("</code></td><td><font size=-1>");
-                out.print(getSpecification(uml));
-                out.print("</font></td>");
-            } else if (javaMethods.contains(name)) {
-                /*
-                 * The 'doubleValue()' method is considered a Java method only in the case of
-                 * the RepresentativeFraction interface, because the Javadoc of that interface
-                 * encourage implementors to extend java.lang.Number.
-                 */
-                if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
-                    out.print("<td></td><td><font size=-1>Java</font></td>");
-                }
-            } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
-                out.print("<td></td><td><font size=-1>Vecmath</font></td>");
-            }
-            out.println("</tr>");
-        }
-        out.println("  <tr><td colspan=\"3\"><hr></td></tr>");
-    }
-
-    /**
-     * Returns the display name for the given UML identifier.
-     */
-    private static String getDisplayName(final UML uml) {
-        if (uml == null) {
-            return null;
-        }
-        String identifier = uml.identifier();
-        /*
-         * If there is two or more UML identifiers collapsed in only one
-         * Java method, keep only the first identifier (which is usually
-         * the main attribute).
-         */
-        final int split = identifier.indexOf(',');
-        if (split >= 0) {
-            identifier = identifier.substring(0, split);
-        }
-        return identifier.substring(identifier.lastIndexOf('.') + 1);
-    }
-
-    /**
-     * Returns the display name of the specification attribute in the given UML.
-     */
-    private static String getSpecification(final UML specification) {
-        return specification.specification().name().replace("ISO_","ISO ").replace("OGC_","OGC ").replace('_', '-');
+        writeLine("</tr>");
     }
 
     /**
      * Prints the given name, using the {@code <em>} style if it is a significant
      * name change compared to the ISO or OGC specification.
      */
-    private void printName(final String name, final boolean significantChange) {
+    private void printName(final String name, final boolean significantChange) throws IOException {
         if (significantChange) {
-            out.print("<em>");
+            out.write("<em>");
         }
-        out.print(name);
+        out.write(name);
         if (significantChange) {
-            out.print("</em>");
+            out.write("</em>");
         }
     }
 
@@ -400,7 +317,7 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
         if (ogc.length() >= 4 &&
             Character.isUpperCase(ogc.charAt(0)) &&
             Character.isUpperCase(ogc.charAt(1)) &&
-            ogc.charAt(2)=='_')
+            ogc.charAt(2) == '_')
         {
             ogc = ogc.substring(3);
         }
@@ -427,10 +344,11 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
     }
 
     /**
-     * Compares a GeoAPI name with a OGC name. Returns {@code true} if the
-     * name change is not significant. Returns {@code false} otherwise.
+     * Compares a GeoAPI class name with a OGC identifier name.
+     * Returns {@code true} if the name change is not significant.
+     * Returns {@code false} otherwise.
      */
-    private boolean similarClassName(final TypeDeclaration declaration, final String geoapi, String ogc) {
+    private boolean isEquivalentClassName(final Element element, final String geoapi, String ogc) {
         if (ogc == null) {
             return false;
         }
@@ -441,21 +359,20 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
         /*
          * For exceptions, the "Exception" suffix is always added after the class name.
          */
-        if (declaration instanceof ClassDeclaration) {
-            final Class<?> classe = getClass(declaration);
-            if (Exception.class.isAssignableFrom(classe)) {
+        if (element.getKind() == ElementKind.CLASS) {
+            if (isSubtype(element.asType(), Classes.EXCEPTION)) {
                 ogc += "Exception";
             }
             /*
              * For CodeList, the "Code" suffix is usually omitted
              * (except if there is a name clash with an other class).
              */
-            if (CodeList.class.isAssignableFrom(classe)) {
+            if (isSubtype(element.asType(), Classes.CODE_LIST)) {
                 if (geoapi.equals(ogc)) {
                     return true;
                 }
                 if (ogc.endsWith("Code")) {
-                    ogc = ogc.substring(0, ogc.length()-4);
+                    ogc = ogc.substring(0, ogc.length() - 4);
                 }
             }
         }
@@ -463,12 +380,12 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
     }
 
     /**
-     * Compares a GeoAPI name with a OGC name. Returns {@code true} if the
-     * name change is not significant (e.g. addition of a {@code get} prefix).
+     * Compares a GeoAPI method name with an OGC identifier name.
+     * Returns {@code true} if the name change is not significant (e.g. addition of a {@code get} prefix).
      * Returns {@code false} otherwise.
      */
     @SuppressWarnings("fallthrough")
-    private boolean similarMethodName(final MethodDeclaration declaration, String geoapi, String ogc) {
+    private boolean isEquivalentMethodName(final ExecutableElement element, String geoapi, String ogc) {
         if (ogc == null) {
             return false;
         }
@@ -486,8 +403,8 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
          * character is adjusted (usually to a lower case).
          */
         final boolean startWithLowerCase = Character.isLowerCase(ogc.charAt(0));
-        final Class<?> returnClass = getClass(declaration.getReturnType());
-        if (returnClass.equals(Boolean.TYPE) || returnClass.equals(Boolean.class)) {
+        final TypeMirror returnType = element.getReturnType();
+        if (returnType.getKind() == TypeKind.BOOLEAN || isSubtype(returnType, Classes.BOOLEAN)) {
             if (geoapi.startsWith("is") && !ogc.startsWith("is")) {
                 geoapi = geoapi.substring(2);
                 if (startWithLowerCase) {
@@ -512,33 +429,28 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
         if (geoapi.equals(ogc)) {
             return true;
         }
-        if (returnClass.isArray() ||
-            Collection              .class.isAssignableFrom(returnClass) ||
-            Map                     .class.isAssignableFrom(returnClass) ||
-            PointGrid               .class.isAssignableFrom(returnClass) ||
-            PointArray              .class.isAssignableFrom(returnClass) ||
-            ParameterValueGroup     .class.isAssignableFrom(returnClass) ||
-            ParameterDescriptorGroup.class.isAssignableFrom(returnClass))
-        {
-            final int length = ogc.length();
-            if (length != 0) {
-                switch (ogc.charAt(length-1)) {
-                    case 'y': ogc = ogc.substring(0, length-1) + "ies"; break;
-                    case 's': if (length<2 || ogc.charAt(length-2)!='s') break;
-                    case 'h': // fall through
-                    case 'x': ogc += "es"; break;
-                    default : ogc += 's'; break;
-                }
+        if (!isMultiOccurrence(returnType)) {
+            return false;
+        }
+        final int length = ogc.length();
+        if (length != 0) {
+            switch (ogc.charAt(length - 1)) {
+                case 'y': ogc = ogc.substring(0, length-1) + "ies"; break;
+                case 's': if (length < 2 || ogc.charAt(length-2) != 's') break;
+                case 'h': // fall through
+                case 'x': ogc += "es"; break;
+                default : ogc += 's'; break;
             }
         }
         return geoapi.equals(ogc);
     }
 
     /**
-     * Compares a GeoAPI name with an OGC name. Returns {@code true} if the
-     * name change is not significant. Returns {@code false} otherwise.
+     * Compares a GeoAPI code list or enumeration name with an OGC identifier name.
+     * Returns {@code true} if the name change is not significant.
+     * Returns {@code false} otherwise.
      */
-    private static boolean similarCodeName(String geoapi, String ogc) {
+    private static boolean isEquivalentFieldName(String geoapi, String ogc) {
         if (ogc == null) {
             return false;
         }
@@ -561,7 +473,7 @@ scan:   for (final MemberDeclaration attribute : attributes.values()) {
                     Character.isLetter   (c) != Character.isLetter   (p))
                 {
                     // Next condition: special case for "1D", "2D" or "3D" suffixes.
-                    if (!(i==length-1 && Character.isDigit(p) && c=='D')) {
+                    if (!(i == length-1 && Character.isDigit(p) && c == 'D')) {
                         buffer.append('_');
                     }
                 }
