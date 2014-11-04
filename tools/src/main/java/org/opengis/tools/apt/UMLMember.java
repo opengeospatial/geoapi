@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2014 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,17 +29,36 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
+package org.opengis.tools.apt;
+
 
 /**
- * Annotation processing tools for processing GeoAPI after compilation. Those tools are
- * used mostly for javadoc generation. They are not part of normal GeoAPI distributions.
- *
- * <p>The {@link org.opengis.tools.apt.IndexGenerator} processor is used for regenerating
- * the {@code geoapi/src/main/javadoc/content.html} file.
- * See its class javadoc for usage instruction.</p>
+ * Members of the {@link org.opengis.annotation.UML} annotation.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-package org.opengis.tools.apt;
+enum UMLMember {
+    /**
+     * {@code identifier()}.
+     */
+    IDENTIFIER("identifier"),
+
+    /**
+     * {@code specification()}.
+     */
+    SPECIFICATION("specification");
+
+    /**
+     * The member name.
+     */
+    final String methodName;
+
+    /**
+     * Creates a new enumeration for the given member name.
+     */
+    private UMLMember(final String methodName) {
+        this.methodName = methodName;
+    }
+}
