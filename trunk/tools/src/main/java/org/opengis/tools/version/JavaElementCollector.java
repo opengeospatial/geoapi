@@ -102,9 +102,11 @@ final class JavaElementCollector {
      * dependencies.
      *
      * @param jarFiles The JAR files which define the API.
+     * @param hiearchy An optional map in which to store type hierarchy.
+     *        If non-null, this map will be filled with (type, parent) entries.
      */
-    private JavaElementCollector(final List<File> jarFiles) throws IOException, ClassNotFoundException,
-            NoSuchMethodException, IllegalAccessException, InvocationTargetException
+    private JavaElementCollector(final List<File> jarFiles, final Map<String,String> hierarchy)
+            throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException
     {
         final URL[] jarURLs = new URL[jarFiles.size()];
         for (int i=0; i<jarURLs.length; i++) {
@@ -144,6 +146,9 @@ final class JavaElementCollector {
                         }
                         final JavaElement element = new JavaElement(this, container, type, isPublic);
                         assert elements.contains(element);
+                        if (hierarchy != null && element.type != null) {
+                            hierarchy.put(type.getCanonicalName(), element.type);
+                        }
                     }
                 }
             }
@@ -158,9 +163,12 @@ final class JavaElementCollector {
      * @param  artefact   The artefact name, either {@code "geoapi"} or {@code "geoapi-conformance"}.
      * @param  version    The GeoAPI version, as used in Maven artefacts.
      * @param  repository The root of Maven local repository.
+     * @param  hiearchy   An optional map in which to store type hierarchy.
+     *         If non-null, this map will be filled with (type, parent) entries.
      * @return The set of elements in the given GeoAPI version.
      */
-    private static Set<JavaElement> collectAPI(String artefact, final Version version, final File repository)
+    private static Set<JavaElement> collectAPI(String artefact, final Version version, final File repository,
+            final Map<String,String> hierarchy)
             throws IOException, ClassNotFoundException, NoSuchMethodException,
                     IllegalAccessException, InvocationTargetException
     {
@@ -178,7 +186,7 @@ final class JavaElementCollector {
         final boolean pendingIncludesCore = version.compareTo(Version.PENDING_INCLUDES_CORE) >= 0;
         /*
          * At this point, we collected the version-dependent information.
-         * Now buil the list.
+         * Now build the list.
          */
         final List<File> files = new ArrayList<File>();
         files.add(new File(repository, version.getMavenArtefactPath(artefact)));
@@ -199,7 +207,7 @@ final class JavaElementCollector {
         if (artefact.endsWith("conformance")) {
             files.add(new File(repository, Dependency.JUNIT.pathInMavenRepository(version)));
         }
-        return new JavaElementCollector(files).elements;
+        return new JavaElementCollector(files, hierarchy).elements;
     }
 
     /**
@@ -217,8 +225,9 @@ final class JavaElementCollector {
                     IllegalAccessException, InvocationTargetException
     {
         final File repository = new File(System.getProperty("user.home"), ".m2/repository");
-        final Set<JavaElement> oldAPI = collectAPI(artefact, oldVersion, repository);
-        final Set<JavaElement> newAPI = collectAPI(artefact, newVersion, repository);
+        final Map<String,String> hierarchy = new HashMap<String,String>();
+        final Set<JavaElement> oldAPI = collectAPI(artefact, oldVersion, repository, null);
+        final Set<JavaElement> newAPI = collectAPI(artefact, newVersion, repository, hierarchy);
         for (final Iterator<JavaElement> it = oldAPI.iterator(); it.hasNext();) {
             final JavaElement old = it.next();
             if (newAPI.remove(old)) {
@@ -236,13 +245,35 @@ final class JavaElementCollector {
                 it.remove(); // Ignore new deprecated elements, since they shall be removed before the release.
             }
         }
-        for (final JavaElement element : oldAPI) {
+        /*
+         * If a "removed" element actually moved to a parent type, do not consider that change as a removal.
+         * Only after that, mark all remaining elements as removed.
+         */
+mark:   for (final Iterator<JavaElement> it = oldAPI.iterator(); it.hasNext();) {
+            final JavaElement element = it.next();
+            if (element.kind.isMember) {
+                final String name = element.javaName;
+                for (final JavaElement newElement : newAPI) {
+                    if (newElement.kind.isMember && name.equals(newElement.javaName)) {
+                        /*
+                         * Found a property of the same name. Verify if it is contained in a type
+                         * which is the parent of the container of the old element.
+                         */
+                        final String newType = newElement.container.getClassName();
+                        String type = element.container.getClassName();
+                        do if (newType.equals(type)) {
+                            it.remove();
+                            continue mark;
+                        } while ((type = hierarchy.get(type)) != null);
+                    }
+                }
+            }
             element.markAsRemoved();
         }
         removeChildrenOfNewOrDeleted(oldAPI);
         removeChildrenOfNewOrDeleted(newAPI);
         /*
-         * Create a consolidated list of old an new API.
+         * Create a consolidated list of old and new API.
          */
         int index = newAPI.size();
         final JavaElement[] elements = newAPI.toArray(new JavaElement[index + oldAPI.size()]);
@@ -256,10 +287,12 @@ final class JavaElementCollector {
     }
 
     /**
-     * For any new or deleted elements, remove all children of that elements.
-     * We have to copy the elements in a temporary array for protecting them from changes.
+     * For any new or deleted elements, remove all elements that are enclosed in the removed elements.
+     * For example if a new interface has been added, we will not report all methods in that interface
+     * as new elements.
      */
     private static void removeChildrenOfNewOrDeleted(final Set<JavaElement> elements) {
+        // We have to copy the elements in a temporary array for protecting them from changes.
         for (final JavaElement container : elements.toArray(new JavaElement[elements.size()])) {
             final JavaElementChanges changes = container.changes();
             if (changes == null || changes.isRemoved) {
