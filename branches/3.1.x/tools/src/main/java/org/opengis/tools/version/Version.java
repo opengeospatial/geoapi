@@ -45,12 +45,22 @@ package org.opengis.tools.version;
  */
 public final class Version implements Comparable<Version> {
     /**
+     * Special {@link #milestone} version number for snapshots.
+     */
+    public static final short SNAPSHOT = Short.MAX_VALUE - 1;
+
+    /**
+     * Special {@link #milestone} version number for final release.
+     */
+    public static final short RELEASE = Short.MAX_VALUE;
+
+    /**
      * The first GeoAPI version where {@code geoapi-pending} contains the {@code geoapi} module.
      * Starting from this version, the {@code geoapi-pending-dummy} module is not needed anymore.
      *
      * <p>This version number is {@code 2.3-M5}.</p>
      */
-    public static final Version PENDING_INCLUDES_CORE = new Version((short) 2, (short) 3, (short) 5);
+    static final Version PENDING_INCLUDES_CORE = new Version((short) 2, (short) 3, (short) 5);
 
     /**
      * The major version number.
@@ -68,8 +78,8 @@ public final class Version implements Comparable<Version> {
     public final short third;
 
     /**
-     * The milestone version number as a positive number,
-     * or {@link Short#MAX_VALUE} for a final release.
+     * The milestone version number as a positive number (may be {@link #SNAPSHOT}),
+     * or {@link #RELEASE} for a final release.
      */
     public final short milestone;
 
@@ -115,14 +125,18 @@ public final class Version implements Comparable<Version> {
                     third = 0;
                 }
                 if (++indexOfMilestone < version.length()) {
-                    if (version.charAt(indexOfMilestone) != 'M') {
+                    if (version.charAt(indexOfMilestone) == 'M') {
+                        final String substring = version.substring(++indexOfMilestone);
+                        milestone = Short.parseShort(substring);
+                        hasLeadingZero = (substring.length() >= 2 && substring.charAt(0) == '0');
+                    } else if (version.endsWith("SNAPSHOT")) {
+                        milestone = SNAPSHOT;
+                        hasLeadingZero = false;
+                    } else {
                         throw new NumberFormatException("Milestone numbers shall begin by 'M'.");
                     }
-                    final String substring = version.substring(++indexOfMilestone);
-                    milestone = Short.parseShort(substring);
-                    hasLeadingZero = (substring.length() >= 2 && substring.charAt(0) == '0');
                 } else {
-                    milestone = Short.MAX_VALUE;
+                    milestone = RELEASE;
                     hasLeadingZero = false;
                 }
                 return;
@@ -132,12 +146,12 @@ public final class Version implements Comparable<Version> {
     }
 
     /**
-     * Returns {@code true} if this version number is a milestone.
+     * Returns {@code true} if this version number is a milestone or a snapshot.
      *
      * @return If this version number is a milestone.
      */
     public boolean isMilestone() {
-        return milestone != Short.MAX_VALUE;
+        return milestone != RELEASE;
     }
 
     /**
@@ -256,11 +270,15 @@ public final class Version implements Comparable<Version> {
             buffer.append('.').append(third);
         }
         if (isMilestone()) {
-            buffer.append("-M");
-            if (hasLeadingZero) {
-                buffer.append('0');
+            if (milestone != SNAPSHOT) {
+                buffer.append("-M");
+                if (hasLeadingZero) {
+                    buffer.append('0');
+                }
+                buffer.append(milestone);
+            } else {
+                buffer.append("-SNAPSHOT");
             }
-            buffer.append(milestone);
         }
     }
 }

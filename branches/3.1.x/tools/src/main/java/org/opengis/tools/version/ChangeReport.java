@@ -41,12 +41,13 @@ import java.io.IOException;
 
 /**
  * Reports public and protected API changes between two JAR files.
+ * Instructions about this command can be found one the <a href="http://www.geoapi.org/tools/index.html">Tools</a> page.
  * The arguments expected by the main methods are:
  *
  * <table class="ogc">
  * <tr><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
  * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.0"}</td></tr>
- * <tr><td>{@code newVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M04"}</td></tr>
+ * <tr><td>{@code newVersion}</td> <td>New GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M04"}</td></tr>
  * <tr><td>{@code outputFile}</td> <td>Name of the file to create. This file shall not exist.</td>    <td>{@code "Changes.html"}</td></tr>
  * </table>
  *
@@ -55,6 +56,16 @@ import java.io.IOException;
  * @since   3.1
  */
 public final class ChangeReport {
+    /**
+     * The encoding to use for the HTML page to write.
+     */
+    private static final String ENCODING = "UTF-8";
+
+    /**
+     * No-breaking space.
+     */
+    private static final char NOBREAK = '\u00A0';
+
     /**
      * The old GeoAPI version.
      */
@@ -112,18 +123,17 @@ public final class ChangeReport {
      *         (too many checked exceptions for enumerating them all).
      */
     public void write(final File outputFile) throws Exception {
-        final Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), "UTF-8"));
-        out.write("<!DOCTYPE html>\n"
-                + "<html xmlns=\"http://www.w3.org/1999/xhtml\">\n"
+        final Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outputFile), ENCODING));
+        out.write("<?xml version=\"1.0\" encoding=\"" + ENCODING + "\" ?>\n"
+                + "<!DOCTYPE html>\n"
+                + "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">\n"
                 + "  <head>\n"
                 + "    <title>Changes between GeoAPI ");
         out.write(oldVersion.toString());
         out.write(" and ");
         out.write(newVersion.toString());
         out.write(    "</title>\n"
-                + "    <style type=\"text/css\" media=\"all\">\n"
-                + "      @import url(\"../../css/change-summary.css\");\n"
-                + "    </style>\n"
+                + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/change-summary.css\"/>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"
                 + "    <h1>GeoAPI changes</h1>\n"
@@ -165,12 +175,10 @@ public final class ChangeReport {
      * @param  artefact The GeoAPI artefact ({@code "geoapi"} or {@code "geoapi-conformance"}).
      * @throws IOException If an I/O error occurred.
      */
-    private void write(final Writer out, final JavaElement[] elements, final String artefact)
-            throws IOException
-    {
+    private void write(final Writer out, final JavaElement[] elements, final String artefact) throws IOException {
         final boolean showIdentifiers = !artefact.endsWith("conformance");
         JavaElement container = null;
-        out.write("    <table border=\"1\" cellspacing=\"0\">\n"
+        out.write("    <table cellspacing=\"0\">\n"
                 + "      <tr>\n");
         if (showIdentifiers) {
             out.write("        <th>OGC/ISO identifier</th>\n");
@@ -231,7 +239,7 @@ public final class ChangeReport {
             out.write(        "</td>\n"
                     + "        <td>\n");
             writeLinkToJavadoc(out, artefact, element, false);
-            out.write(' ');
+            out.write(NOBREAK);
             writeLinkToJavadoc(out, artefact, element, true);
             out.write(        "</td>\n"
                     + "      </tr>\n");

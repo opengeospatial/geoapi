@@ -45,6 +45,8 @@ import java.lang.reflect.Modifier;
 
 /**
  * Information about a type (class or interface) or a member (field or methods).
+ * Each GeoAPI element can be uniquely identified by the ({@link #container}, {@link #javaName}) tuple.
+ * Other fields are for information purpose.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -59,6 +61,8 @@ final class JavaElement implements Comparable<JavaElement> {
      *   <li>For classes and interfaces, the container is the package that contains them.</li>
      *   <li>For packages, there is no container.</li>
      * </ul>
+     *
+     * @see #javaName
      */
     final JavaElement container;
 
@@ -68,28 +72,37 @@ final class JavaElement implements Comparable<JavaElement> {
     final JavaElementKind kind;
 
     /**
-     * The attribute type, or {@code null} if it doesn't apply.
+     * The fully qualified name of the attribute type, or {@code null} if it doesn't apply.
+     *
      * <ul>
      *   <li>For fields, this is the type of the field.</li>
      *   <li>For methods, this is the method return type.</li>
      *   <li>For interfaces, this is the first parent interface.</li>
      * </ul>
+     *
+     * <b>Note:</b> we do not use {@code Class} object for comparison purpose between
+     * different versions of GeoAPI, since the same class may be considered different.
      */
     final String type;
 
     /**
      * The name in the Java programming language.
+     *
      * <ul>
      *   <li>For package names, this is the fully qualified name.</li>
      *   <li>For type names (classes, interfaces or enumerations), this is the simple (non-qualified) name.</li>
-     *   <li>For constructors and methods, this include the parameter names.</li>
+     *   <li>For constructors and methods, this include the fully qualified parameter names.</li>
      * </ul>
+     *
+     * With the above policies, the ({@link #container}, {@code javaName}) tuple is sufficient
+     * for uniquely identifying a GeoAPI element.
+     *
+     * @see #getClassName()
      */
     final String javaName;
 
     /**
-     * The name in OGC/ISO standards as inferred from the {@code @UML} annotation,
-     * or {@code null} if none.
+     * The name in OGC/ISO standards as inferred from the {@code @UML} annotation, or {@code null} if none.
      */
     final String ogcName;
 
@@ -150,7 +163,7 @@ final class JavaElement implements Comparable<JavaElement> {
     {
         this.container    = container;
         this.kind         = kind;
-        this.type         = (type != null) ? type.getName() : null;
+        this.type         = (type != null) ? type.getCanonicalName() : null;
         this.javaName     = javaName;
         this.isPublic     = isPublic;
         this.isDeprecated = element.isAnnotationPresent(Deprecated.class);
@@ -231,15 +244,26 @@ final class JavaElement implements Comparable<JavaElement> {
                 final boolean isPublic = Modifier.isPublic(modifiers);
                 if (isPublic || Modifier.isProtected(modifiers)) {
                     String name = member.getName();
-                    Class<?> type = null;
-                    if (member instanceof Field) {
-                        type = ((Field) member).getType();
-                    } else if (member instanceof Method) {
-                        name = addParameters(name, ((Method) member).getParameterTypes());
-                        type = ((Method) member).getReturnType();
-                    } else if (member instanceof Constructor) {
-                        name = name.substring(name.lastIndexOf('.') + 1);
-                        name = addParameters(name, ((Constructor) member).getParameterTypes());
+                    final Class<?> type;
+                    switch (kind) {
+                        case FIELD: {
+                            type = ((Field) member).getType();
+                            break;
+                        }
+                        case METHOD: {
+                            name = addParameters(name, ((Method) member).getParameterTypes());
+                            type = ((Method) member).getReturnType();
+                            break;
+                        }
+                        case CONSTRUCTOR: {
+                            name = name.substring(name.lastIndexOf('.') + 1);
+                            name = addParameters(name, ((Constructor) member).getParameterTypes());
+                            type = null;
+                            break;
+                        }
+                        default: {
+                            throw new IllegalArgumentException(kind.toString());
+                        }
                     }
                     JavaElement child = new JavaElement(collector, this, kind, type, (AnnotatedElement) member, name, isPublic);
                     assert collector.elements.contains(child);
@@ -251,7 +275,7 @@ final class JavaElement implements Comparable<JavaElement> {
     /**
      * Adds parameter types to the given method or constructor name.
      * This method adds fully-qualified parameter names. For simpler
-     * (non-qualified) parameter names, invoke {@link #getMethodName()}.
+     * (non-qualified) parameter names, invoke {@link #getSimpleName()}.
      */
     private static String addParameters(String name, final Class<?>[] parameters) {
         boolean hasParameters = false;
@@ -268,10 +292,13 @@ final class JavaElement implements Comparable<JavaElement> {
 
     /**
      * Returns the {@link #javaName} with non-qualified parameter names.
+     *
+     * <p><b>Example:</b> if {@code javaName} is {@code "foo(java.lang.String)"},
+     * then this method returns {@code "foo(String)"}.
      */
     final String getSimpleName() {
         StringBuilder buffer = null;
-        for (int i=javaName.lastIndexOf('.'); i>=0; i=javaName.lastIndexOf('.', i)) {
+        for (int i = javaName.lastIndexOf('.'); i >= 0; i = javaName.lastIndexOf('.', i)) {
             final int end = i+1;
             while (--i >= 0) {
                 final int c = javaName.charAt(i);
@@ -285,6 +312,25 @@ final class JavaElement implements Comparable<JavaElement> {
             buffer.delete(i+1, end);
         }
         return (buffer != null) ? buffer.toString() : javaName;
+    }
+
+    /**
+     * Returns the name of the class represented by this element.
+     * It is caller's responsibility to ensure that this element is not a package or a member.
+     */
+    final String getClassName() {
+        assert !kind.isMember : this;
+        return container.javaName + '.' + javaName;
+    }
+
+    /**
+     * Returns the name of the package containing the given element.
+     */
+    private static String getPackageName(JavaElement element) {
+        while (element.container != null) {
+            element = element.container;
+        }
+        return element.javaName;
     }
 
     /**
@@ -334,12 +380,17 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     @Override
     public int compareTo(final JavaElement other) {
-        int c = compare(container, other.container);
+        int c = getPackageName(this).compareTo(getPackageName(other));
         if (c == 0) {
-            c = compare(kind, other.kind);
-            if (c == 0) {
-                c = compare(javaName, other.javaName);
+            final boolean isMember = kind.isMember;
+            if (isMember != other.kind.isMember) {
+                return isMember ? +1 : -1; // Sort classes/interfaces before fields/methods.
             }
+            if (isMember) {
+                c = container.javaName.compareTo(other.container.javaName);
+                if (c != 0) return c; // Sort by class/interface name before member name.
+            }
+            c = javaName.compareTo(other.javaName);
         }
         return c;
     }
@@ -397,17 +448,6 @@ final class JavaElement implements Comparable<JavaElement> {
             buffer.append(", UML(“").append(ogcName).append("”)");
         }
         return buffer.append(']').toString();
-    }
-
-    /**
-     * Null-safe comparison of the given objects for order.
-     * Null values are sorted before non-null values.
-     */
-    private static <T extends Comparable<T>> int compare(final T a, final T b) {
-        if (a == b)    return  0;
-        if (a == null) return -1;
-        if (b == null) return +1;
-        return a.compareTo(b);
     }
 
     /**

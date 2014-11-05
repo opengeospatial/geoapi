@@ -37,7 +37,7 @@
  *
  * <ul>
  *   <li>{@link org.opengis.tools.version.ChangeReport} produces a HTML page summarizing the
- *       API differences between two GeoAP JAR files. This is used during release processes
+ *       API differences between two GeoAPI JAR files. This is used during release processes
  *       in order to document the list of changes.</li>
  * </ul>
  *
