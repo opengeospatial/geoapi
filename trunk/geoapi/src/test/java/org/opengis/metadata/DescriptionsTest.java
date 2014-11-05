@@ -281,6 +281,9 @@ public final strictfp class DescriptionsTest {
                 assertResourceExists(resources, classIdentifier);
                 assertTrue(classIdentifier, keys.remove(classIdentifier));
                 for (final Field code : type.getDeclaredFields()) {
+                    if (code.isAnnotationPresent(Deprecated.class)) {
+                        continue; // Skip deprecated fields or methods.
+                    }
                     uml = code.getAnnotation(UML.class);
                     if (uml != null) {
                         if (uml.specification() == Specification.ISO_19115_2) {
