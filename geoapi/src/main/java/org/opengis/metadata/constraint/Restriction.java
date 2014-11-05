@@ -104,6 +104,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @deprecated As of ISO 19115:2014, renamed {@link #LICENCE}.
      */
     @Deprecated
+    @UML(identifier="license", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003.
     public static final Restriction LICENSE = LICENCE;
 
     /**
