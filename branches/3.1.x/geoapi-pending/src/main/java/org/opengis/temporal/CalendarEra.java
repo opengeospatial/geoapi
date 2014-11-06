@@ -36,49 +36,54 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
+import org.opengis.referencing.IdentifiedObject;
 
 /**
  * Characteristics of each calendar era.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0 
  */
 @UML(identifier="TM_CalendarEra", specification=ISO_19108)
-public interface CalendarEra {
+public interface CalendarEra extends IdentifiedObject {
+    
     /**
-     * Uniquely identifies the calendar era within this calendar.
+     * Returns name or description of a mythical or historic event which fixes the position
+     * of the base scale of the {@link CalendarEra}.
+     * 
+     * @return name or description of a mythical or historic event which fixes the position
+     * of the base scale of the {@link CalendarEra}.
      */
-    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)
-    InternationalString getName();
-
-    /**
-     * Provides the name or description of a mythical or historic event which fixes the position
-     * of the base scale of the calendar era.
-     */
-    @UML(identifier="referenceEvent", obligation=OPTIONAL, specification=ISO_19108)
+    @UML(identifier="referenceEvent", obligation=MANDATORY, specification=ISO_19108)
     InternationalString getReferenceEvent();
 
     /**
-     * Provides the date of the reference event expressed as a date in the given calendar.
+     * Returns date of the reference event expressed as a date in the given calendar.
+     * 
+     * @return date of the reference event expressed as a date in the given calendar.
      */
-    @UML(identifier="referenceDate", obligation=OPTIONAL, specification=ISO_19108)
+    @UML(identifier="referenceDate", obligation=MANDATORY, specification=ISO_19108)
     CalendarDate getReferenceDate();
-
+    
     /**
-     * Provides the {@linkplain JulianDate julian date} that corresponds to the reference date.
+     * Returns the {@linkplain JulianDate julian date} that corresponds to the reference date.
+     * 
+     * @return the {@linkplain JulianDate julian date} that corresponds to the reference date.
      */
-    @UML(identifier="julianReference", specification=ISO_19108)
+    @UML(identifier="julianReference", obligation=MANDATORY, specification=ISO_19108)
     JulianDate getJulianReference();
 
     /**
-     * Identifies the {@linkplain Period period} for which the calendar era
-     * was used as a reference fro dating.
+     * Returns the {@linkplain Period period} for which the {@linkplain CalendarEra calendar era}
+     * was used as a basis for dating.
      *
-     *
-     * @return The period, where the data type for {@linkplain Period#getBegin begin}
-     *         and {@link Period#getEnd end} is {@link JulianDate}.
+     * @return the {@linkplain Period period} for which the {@linkplain CalendarEra calendar era}
+     * was used as a basis for dating.
      */
-    @UML(identifier="epochOfUse", specification=ISO_19108)
+    @UML(identifier="epochOfUse", obligation=MANDATORY, specification=ISO_19108)
     Period getEpochOfUse();
 }

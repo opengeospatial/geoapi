@@ -41,23 +41,33 @@ import static org.opengis.annotation.Specification.*;
  * One-dimensional topological primitive in time.
  *
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_Edge", specification=ISO_19108)
 public interface TemporalEdge extends TemporalTopologicalPrimitive {
+    
     /**
-     * An optional association that links this edge to the corresponding period.
+     * Returns an optional association that links this {@link TemporalEdge} to the corresponding {@link Period}.
+     * 
+     * @return an optional association that links this {@link TemporalEdge} to the corresponding {@link Period}.
      */
     @UML(identifier="Realization", obligation=OPTIONAL, specification=ISO_19108)
     Period getRealization();
 
     /**
-     * Links this edge to the node that is its start.
+     * Returns association that links this {@link TemporalEdge} to the {@link TemporalNode} that is its start.
+     * The {@link TemporalEdge} 
+     * 
+     * @return association that links this {@link TemporalEdge} to the {@link TemporalNode} that is its start.
      */
     @UML(identifier="start", obligation=MANDATORY, specification=ISO_19108)
     TemporalNode getStart();
 
     /**
-     * Links this edge to the node that is its end.
+     * Returns association that links this {@link TemporalEdge} to the {@link TemporalNode} that is its ends.
+     * 
+     * @return association that links this {@link TemporalEdge} to the {@link TemporalNode} that is its ends.
      */
     @UML(identifier="end", obligation=MANDATORY, specification=ISO_19108)
     TemporalNode getEnd();

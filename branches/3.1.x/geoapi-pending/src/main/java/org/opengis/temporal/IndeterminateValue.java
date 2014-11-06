@@ -37,9 +37,7 @@ import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Provides 4 values for indeterminate positions.
@@ -47,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  * @author Martin Desruisseaux (IRD)
- *
- * @todo Need javadoc for each enumeration.
+ * @since   2.3
+ * @version 4.0 
  */
 @UML(identifier="TM_IndeterminateValue", specification=ISO_19108)
 public final class IndeterminateValue extends CodeList<IndeterminateValue> {
@@ -63,9 +61,28 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      */
     private static final List<IndeterminateValue> VALUES = new ArrayList<IndeterminateValue>(4);
 
+    /**
+     * Shall be used with the parent class {@link TemporalPosition} to indicate that 
+     * not specific value for temporal position is provided.
+     */
     public static final IndeterminateValue UNKNOWN = new IndeterminateValue("UNKNOWN");
+    
+    /**
+     * Shall be used with any subtype of {@link TemporalPosition} to indicate that 
+     * the specified value shall be replaced with the current temporal position whenever the value is accessed.
+     */
     public static final IndeterminateValue NOW = new IndeterminateValue("NOW");
+    
+    /**
+     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual 
+     * temporal position is unknow, but it is know to be before the specified value.
+     */
     public static final IndeterminateValue BEFORE = new IndeterminateValue("BEFORE");
+    
+    /**
+     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual 
+     * temporal position is unknow, but it is know to be after the specified value.
+     */
     public static final IndeterminateValue AFTER = new IndeterminateValue("AFTER");
 
     /**

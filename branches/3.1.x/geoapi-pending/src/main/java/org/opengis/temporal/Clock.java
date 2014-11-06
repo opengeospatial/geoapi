@@ -31,7 +31,6 @@
  */
 package org.opengis.temporal;
 
-import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
@@ -43,38 +42,53 @@ import static org.opengis.annotation.Specification.*;
  * Provides a basis for defining temporal position within a day.
  *
  * @author Alexander Petkov
- *
- * @todo Retrofit in the referencing framework.
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0 
  */
 @UML(identifier="TM_Clock", specification=ISO_19108)
 public interface Clock extends TemporalReferenceSystem {
+    
     /**
-     * Event used as the datum for this clock.
+     * Returns event used as the datum for this clock.
+     * 
+     * @return event used as the datum for this clock.
      */
     @UML(identifier="referenceEvent", obligation=MANDATORY, specification=ISO_19108)
     InternationalString getReferenceEvent();
-
+    
     /**
-     * Time of the reference Event for this clock, usually the origin of the clock scale.
+     * Returns time of the reference event for this clock, usually the origin of the clock scale.
+     * 
+     * @return time of the reference event for this clock, usually the origin of the clock scale.
      */
-    @UML(identifier="ReferenceTime", obligation=MANDATORY, specification=ISO_19108)
+    @UML(identifier="referenceTime", obligation=MANDATORY, specification=ISO_19108)
     ClockTime getReferenceTime();
 
     /**
-     * Provides the 24-hour local or UTC time that corresponds to the reference time.
+     * Returns the 24-hour local or UTC time that corresponds to the reference time.
+     * 
+     * @return the 24-hour local or UTC time that corresponds to the reference time.
      */
     @UML(identifier="utcReference", obligation=MANDATORY, specification=ISO_19108)
     ClockTime getUTCReference();
-
+    
     /**
-     * Converts UTC time to a time on this clock.
+     * Returns convertion of an UTC time to a time on this clock.
+     * 
+     * @param uTime the UTC time which will be convert.
+     * @return convertion of an UTC time to a time on this clock.
      */
     @UML(identifier="clkTrans", obligation=MANDATORY, specification=ISO_19108)
-    ClockTime clkTrans(ClockTime clkTime);
-
+    ClockTime clkTrans(ClockTime uTime);
+    
     /**
-     * Converts UTC time to a time on this clock.
+     * Returns convertion from time on this clock to UTC time.
+     * 
+     * @param clockTime the clock time which will be convert.
+     * @return convertion from time on this clock to UTC time.
      */
     @UML(identifier="utcTrans", obligation=MANDATORY, specification=ISO_19108)
-    ClockTime utcTrans(ClockTime uTime);
+    ClockTime utcTrans(ClockTime clockTime);
 }

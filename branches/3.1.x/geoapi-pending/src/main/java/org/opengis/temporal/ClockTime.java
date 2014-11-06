@@ -31,8 +31,6 @@
  */
 package org.opengis.temporal;
 
-import java.util.Collection;
-import java.lang.Number;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -48,17 +46,19 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0 
  */
 @UML(identifier="TM_ClockTime", specification=ISO_19108)
 public interface ClockTime extends TemporalPosition {
     /**
-     * A sequence of numbers with a structure similar to that of {@link CalendarDate#getCalendarDate
-     * CalendarDate}. The first number integer identifies a specific instance of the unit used at the
+     * <p>Returns sequence of numbers with a structure similar to that of {@link CalendarDate#getCalendarDate CalendarDate}.<br/> 
+     * The first number integer identifies a specific instance of the unit used at the
      * highest level of the clock hierarchy, the second number identifies a specific instance of the
-     * unit used at the next lower level, and so on. All but the last number in the sequence shall be
-     * integers; the last number may be integer or real.
+     * unit used at the next lower level, and so on.<br/>
+     * All but the last number in the sequence shall be integers the last number may be integer or real.</p>
      *
-     * @return Instance of the units, from highest level to lowest level of the clock hierarchy.
+     * @return sequence of numbers with a structure similar to that of {@link CalendarDate#getCalendarDate CalendarDate}.
      */
     @UML(identifier="clkTime", obligation=MANDATORY, specification=ISO_19108)
     Number[] getClockTime();

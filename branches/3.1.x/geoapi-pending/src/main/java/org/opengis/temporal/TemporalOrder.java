@@ -36,21 +36,22 @@ import org.opengis.annotation.UML;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
-
 /**
  * Provides an operation for determining the position of this {@linkplain TemporalPrimitive
  * temporal primitive} relative to another {@linkplain TemporalPrimitive temporal primitive}.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
- *
- * @todo The javadoc suggests that this interface should extends some kind of
- *       {@link TemporalPrimitive}.
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_Order", specification=ISO_19108)
 public interface TemporalOrder {
+    
     /**
-     * Determines the position of this primitive relative to another primitive.
+     * Returns an determines the position of this <i>primitive</i> relative to another {@link TemporalPrimitive}.
+     * 
+     * @return {@link RelativePosition} which represente the position of this <i>primitive</i> relative to another {@link TemporalPrimitive}.
      */
     @UML(identifier="relativePosition", obligation=MANDATORY, specification=ISO_19108)
     RelativePosition relativePosition(TemporalPrimitive other);

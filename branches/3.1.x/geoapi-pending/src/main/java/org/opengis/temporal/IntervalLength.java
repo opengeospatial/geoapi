@@ -32,11 +32,9 @@
 package org.opengis.temporal;
 
 import javax.measure.unit.Unit;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Obligation.*;
 
 
 /**
@@ -45,33 +43,45 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
- * @author Martin Desruisseaux (IRD)
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_IntervalLength", specification=ISO_19108)
 public interface IntervalLength extends Duration {
+    
     /**
-     * The unit of measure used to express the length of the interval.
+     * Returns {@link Unit} of measure used to express the length of the interval.
+     * 
+     * @return {@link Unit} of measure used to express the length of the interval.
      */
-    @UML(identifier="unit", specification=ISO_19108)
+    @UML(identifier="unit", obligation = MANDATORY, specification=ISO_19108)
     Unit getUnit();
-
+    
     /**
-     * A positive integer that is the base of the mulitplier of the unit.
+     * Returns positive integer that is the base of the multiplier of the unit.
+     * 
+     * @return positive integer that is the base of the multiplier of the unit.
      */
-    @UML(identifier="radix", specification=ISO_19108)
+    @UML(identifier="radix", obligation = MANDATORY, specification=ISO_19108)
     int getRadix();
 
     /**
-     * The exponent of the base.
+     * Returns the exposant of the base.
+     * 
+     * @return the exposant of the base.
      */
-    @UML(identifier="factor", specification=ISO_19108)
+    @UML(identifier="factor", obligation = MANDATORY, specification=ISO_19108)
     int getFactor();
 
     /**
-     * The length of the time interval as an integer multiple of one
+     * Returns the length of the time interval as an integer multiple of one
      * {@linkplain #getRadix radix}<sup>(-{@linkplain #getFactor factor})</sup>
      * of the {@linkplain #getUnit specified unit}.
+     * 
+     * @return the length of the time interval. 
      */
-    @UML(identifier="value", specification=ISO_19108)
+    @UML(identifier="value", obligation = MANDATORY, specification=ISO_19108)
     int getValue();
 }

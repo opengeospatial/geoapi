@@ -33,16 +33,18 @@ package org.opengis.temporal;
 
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
 
 /**
  * Represents a single non-decomposable element of topology and its relationships to other
  * topological primitives within a topological complex.
  *
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_TopologicalPrimitive", specification=ISO_19108)
-public interface TemporalTopologicalPrimitive {
+public interface TemporalTopologicalPrimitive extends TemporalPrimitive {
 }

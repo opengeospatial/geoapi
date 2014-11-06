@@ -38,22 +38,32 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A one-dimensional geometric primitive that represent extent in time.
+ * <p>A one-dimensional geometric primitive that represent extent in time.<br/>
+ * It is an open interval bounded by beginning and ending points({@link Instant}).</p>
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
-@UML(identifier="TM_Period", specification=ISO_19108)
+ @UML(identifier="TM_Period", specification=ISO_19108)
 public interface Period extends TemporalGeometricPrimitive {
-    /**
-     * Links this period to the instant at which it starts.
-     */
+     
+     /**
+      * Returns the beginning {@link Instant} at which this {@link Period} starts.
+      * 
+      * @return the beginning {@link Instant} at which this {@link Period} starts.
+      */
     @UML(identifier="Beginning", obligation=MANDATORY, specification=ISO_19108)
     Instant getBeginning();
-
+    
     /**
-     * Links this period to the instant at which it ends.
-     */
+      * Returns the ending {@link Instant} at which this {@link Period} ends.
+      * 
+      * @return the ending {@link Instant} at which this {@link Period} ends.
+      */
     @UML(identifier="Ending", obligation=MANDATORY, specification=ISO_19108)
     Instant getEnding();
 }
