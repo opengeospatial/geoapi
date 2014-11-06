@@ -51,6 +51,8 @@ final class JavaElementChanges {
     /**
      * {@code true} if we have determined that the API element has been removed.
      * If {@code true}, then all other values are {@code null}.
+     *
+     * @see #isUmlRemoved()
      */
     final boolean isRemoved;
 
@@ -75,6 +77,15 @@ final class JavaElementChanges {
     private String oldObligation, newObligation;
 
     /**
+     * If examination of UML identifiers suggests that the UML annotation moved to an other member,
+     * the member where the annotation moved. Otherwise, or {@code null}.
+     *
+     * <p>If non null, then {@link #oldName} and {@link #oldObligation} shall be non-null while
+     * {@link #newName} and {@link #newObligation} shall be null.</p>
+     */
+    private String umlMovedTo;
+
+    /**
      * {@code TRUE} if the element has been made public, {@code FALSE} if it has been made
      * protected, or {@code null} if the visibility has not been changed.
      */
@@ -96,15 +107,15 @@ final class JavaElementChanges {
         kind      = oldElement.kind;
         isRemoved = (newElement == null);
         if (!isRemoved) {
-            if (!JavaElement.equals(oldElement.ogcName, newElement.ogcName)) {
+            if (!Objects.equals(oldElement.ogcName, newElement.ogcName)) {
                 oldName = oldElement.ogcName;
                 newName = newElement.ogcName;
             }
-            if (!JavaElement.equals(oldElement.type, newElement.type)) {
+            if (!Objects.equals(oldElement.type, newElement.type)) {
                 oldType = oldElement.type;
                 newType = newElement.type;
             }
-            if (!JavaElement.equals(oldElement.obligation, newElement.obligation)) {
+            if (!Objects.equals(oldElement.obligation, newElement.obligation)) {
                 oldObligation = oldElement.obligation;
                 newObligation = newElement.obligation;
             }
@@ -118,18 +129,44 @@ final class JavaElementChanges {
     }
 
     /**
+     * Returns {@code true} if the changes from the old to the new version include
+     * the removal of the UML annotation.
+     *
+     * @see #isRemoved
+     */
+    final boolean isUmlRemoved() {
+        return oldName != null && newName == null && oldObligation != null && newObligation == null;
+    }
+
+    /**
+     * If the UML annotation has moved to the given element, then take note of this change.
+     * This method shall be invoked only on instances for which {@link #isUmlRemoved()} returned {@code true}.
+     */
+    final void markIfUmlMovedTo(final JavaElement other) {
+        if (Objects.equals(oldName, other.ogcName) && Objects.equals(oldObligation, other.obligation)) {
+            umlMovedTo = other.getSimpleName();
+        }
+    }
+
+    /**
      * Writes the changes to the given stream.
      */
     void write(final Writer out) throws IOException {
         String separator = "";
-        separator = writeChange(out, separator, "OGC/ISO identifier ", oldName, newName);
-        separator = writeChange(out, separator, getKindOfType(), trimPackage(oldType), trimPackage(newType));
-        separator = writeChange(out, separator, "Obligation ", oldObligation, newObligation);
-        separator = writeChange(out, separator, "Made public", "Made protected", isPublic);
         separator = writeChange(out, separator, "<span class=\"remove\">Deprecated</span>", "Not deprecated anymore", isDeprecated);
-        if (!SEPARATOR.equals(separator)) {
-            out.write("</span>");
+        if (umlMovedTo != null) {
+            out.write(separator);
+            out.write("UML annotation moved to <code>");
+            out.write(umlMovedTo);
+            out.write("</code>");
+            separator = SEPARATOR;
+        } else {
+            separator = writeChange(out, separator, "OGC/ISO identifier ", oldName, newName);
+            separator = writeChange(out, separator, "Obligation ", oldObligation, newObligation);
         }
+        separator = writeChange(out, separator, getKindOfType(), trimPackage(oldType), trimPackage(newType));
+        writeChange(out, separator, "Made public", "Made protected", isPublic);
+        out.write('.');
     }
 
     /**
