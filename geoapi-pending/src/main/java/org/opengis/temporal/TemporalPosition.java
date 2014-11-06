@@ -42,17 +42,33 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_TemporalPosition", specification=ISO_19108)
 public interface TemporalPosition {
+    
     /**
-     * This attribute provides the only value for temporal position unless a subtype of
-     * {@code TemporalPosition} is used as the data type. When this attribute is used with
-     * a subtype of {@code TemporalPosition}, it provides a qualifier to the specific value
-     * for temporal position provided by the subtype.
+     * <p>Returns the only value for temporal position unless a subtype of
+     * {@link TemporalPosition} is used as the data type, or {@code null} if none.<br/>
+     * When this attribute is used with a subtype of {@link TemporalPosition}, 
+     * it provides a qualifier to the specific value for temporal position provided by the subtype.</p>
      *
-     * @todo Method name doesn't match the return type.
+     * @return the only value for temporal position unless a subtype of
+     * {@link TemporalPosition} is used as the data type, or {@code null} if none.
      */
     @UML(identifier="indeterminatePosition", obligation=OPTIONAL, specification=ISO_19108)
     IndeterminateValue getIndeterminatePosition();
+    
+    /**
+     * <p>Returns the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.<br/>
+     * Every {@link TemporalPosition} shall be associated with a {@link TemporalReferenceSystem}.<br/>
+     * This association need not be explicite at the instance level.<br/>
+     * If not specified, it is assumed to be an association to Gregorian Calendar and UTC.</p>
+     * 
+     * @return the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
+     * @since 4.0
+     */
+    @UML(identifier="frame", obligation=MANDATORY, specification=ISO_19108)
+    TemporalReferenceSystem getFrame();
 }
