@@ -273,6 +273,23 @@ mark:   for (final Iterator<JavaElement> it = oldAPI.iterator(); it.hasNext();) 
         removeChildrenOfNewOrDeleted(oldAPI);
         removeChildrenOfNewOrDeleted(newAPI);
         /*
+         * Scans the list of changes for changes that are identified as removal of the UML annotation.
+         * There is not many of such removal, and most of them are actually the UML annotation moving
+         * to an other method. Thi block tries to find where the UML annotation moved.
+         */
+        for (final JavaElement element : newAPI) {
+            if (element.kind.isMember) {
+                final JavaElementChanges changes = element.changes();
+                if (changes != null && changes.isUmlRemoved()) {
+                    for (final JavaElement other : newAPI) {
+                        if (JavaElement.isSameElement(element.container, other.container)) {
+                            changes.markIfUmlMovedTo(other);
+                        }
+                    }
+                }
+            }
+        }
+        /*
          * Create a consolidated list of old and new API.
          */
         int index = newAPI.size();
