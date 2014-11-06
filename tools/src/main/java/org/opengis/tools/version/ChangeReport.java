@@ -188,7 +188,7 @@ public final class ChangeReport {
                 + "        <th>Javadoc</th>\n"
                 + "      </tr>\n");
         for (final JavaElement element : elements) {
-            if (!JavaElement.nameEquals(element.container, container)) {
+            if (!JavaElement.isSameElement(element.container, container)) {
                 container = element.container;
                 out.write("      <tr>\n"
                         + "        <th class=\"section\"");
@@ -230,9 +230,9 @@ public final class ChangeReport {
             out.write("</code></td>\n"
                     + "        <td>");
             if (changes == null) {
-                out.write("<span class=\"add\">New</span>");
+                out.write("<span class=\"add\">New</span>.");
             } else if (changes.isRemoved) {
-                out.write("<span class=\"remove\">Removed</span>");
+                out.write("<span class=\"remove\">Removed</span>.");
             } else {
                 changes.write(out);
             }
@@ -255,8 +255,8 @@ public final class ChangeReport {
      * @param separator The separator character to insert between the names:
      *                  {@code '.'} for package name or {@code '/'} for URL.
      */
-    private static void writeFullyQualifiedName(final Writer out, final JavaElement element,
-            final char separator) throws IOException
+    private static void writeFullyQualifiedName(final Writer out, final JavaElement element, final char separator)
+            throws IOException
     {
         if (element.container != null) {
             writeFullyQualifiedName(out, element.container, separator);

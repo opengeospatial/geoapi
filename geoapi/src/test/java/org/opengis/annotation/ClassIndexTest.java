@@ -58,8 +58,8 @@ import static org.opengis.annotation.Specification.*;
  *   <li>If the {@value #INDEX_FILENAME} file does not exist, then it will be generated.</li>
  * </ul>
  *
- * This class is designated for working with the Maven directory layout. If it doesn't
- * recognize that layout, then the test is skipped.
+ * This class is designated for working with the Maven directory layout.
+ * If it does not recognize that layout, then the test is skipped.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

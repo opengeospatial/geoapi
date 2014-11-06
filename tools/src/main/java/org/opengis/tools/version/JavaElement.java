@@ -63,6 +63,7 @@ final class JavaElement implements Comparable<JavaElement> {
      * </ul>
      *
      * @see #javaName
+     * @see #isSameElement(JavaElement, JavaElement)
      */
     final JavaElement container;
 
@@ -98,6 +99,7 @@ final class JavaElement implements Comparable<JavaElement> {
      * for uniquely identifying a GeoAPI element.
      *
      * @see #getClassName()
+     * @see #isSameElement(JavaElement, JavaElement)
      */
     final String javaName;
 
@@ -356,15 +358,30 @@ final class JavaElement implements Comparable<JavaElement> {
     final void computeChanges(final Iterator<JavaElement> oldElements) {
         while (oldElements.hasNext()) {
             final JavaElement that = oldElements.next();
-            if (nameEquals(container, that.container) &&
-                    equals(kind,      that.kind)      &&
-                    equals(javaName,  that.javaName))
+            if (isSameElement(container, that.container) &&
+                Objects.equals(kind,     that.kind)      &&
+                Objects.equals(javaName, that.javaName))
             {
                 changes = new JavaElementChanges(that, this);
                 oldElements.remove();
                 break;
             }
         }
+    }
+
+    /**
+     * Compares the fully qualified name of this element with the name of the given element.
+     */
+    private boolean isSameElement(final JavaElement that) {
+        return Objects.equals(javaName, that.javaName) && isSameElement(container, that.container);
+    }
+
+    /**
+     * Returns {@code true} if the two given Java elements are the same element.
+     * This method performs the check using the ({@link #container}, {@link #javaName}) tuple.
+     */
+    static boolean isSameElement(final JavaElement a, final JavaElement b) {
+        return (a == b) || (a != null && b != null && a.isSameElement(b));
     }
 
     /**
@@ -402,29 +419,15 @@ final class JavaElement implements Comparable<JavaElement> {
     public boolean equals(final Object other) {
         if (other instanceof JavaElement) {
             final JavaElement that = (JavaElement) other;
-            return nameEquals(that) &&
-                   equals(kind,       that.kind)        &&
-                   equals(type,       that.type)        &&
-                   equals(ogcName,    that.ogcName)     &&
-                   equals(obligation, that.obligation)  &&
-                   isPublic     ==    that.isPublic     &&
-                   isDeprecated ==    that.isDeprecated;
+            return isSameElement(that) &&
+                   Objects.equals(kind,       that.kind)        &&
+                   Objects.equals(type,       that.type)        &&
+                   Objects.equals(ogcName,    that.ogcName)     &&
+                   Objects.equals(obligation, that.obligation)  &&
+                   isPublic     == that.isPublic &&
+                   isDeprecated == that.isDeprecated;
         }
         return false;
-    }
-
-    /**
-     * Compares the fully qualified name of this element with the name of the given element.
-     */
-    private boolean nameEquals(final JavaElement that) {
-        return equals(javaName, that.javaName) && nameEquals(container, that.container);
-    }
-
-    /**
-     * Compares the name of the given elements for equality.
-     */
-    static boolean nameEquals(final JavaElement a, final JavaElement b) {
-        return (a == b) || (a != null && b != null && a.nameEquals(b));
     }
 
     /**
@@ -432,10 +435,8 @@ final class JavaElement implements Comparable<JavaElement> {
      */
     @Override
     public int hashCode() {
-        return Arrays.hashCode(new Object[] {
-            (container != null) ? container.javaName : null,
-            kind, type, javaName, ogcName, obligation, isPublic, isDeprecated
-        });
+        return Objects.hash((container != null) ? container.javaName : null,
+                kind, type, javaName, ogcName, obligation, isPublic, isDeprecated);
     }
 
     /**
@@ -448,14 +449,5 @@ final class JavaElement implements Comparable<JavaElement> {
             buffer.append(", UML(“").append(ogcName).append("”)");
         }
         return buffer.append(']').toString();
-    }
-
-    /**
-     * Compares the given objects for equality.
-     *
-     * @todo To be removed with JDK7.
-     */
-    static boolean equals(final Object a, final Object b) {
-        return (a == b) || (a != null && a.equals(b));
     }
 }
