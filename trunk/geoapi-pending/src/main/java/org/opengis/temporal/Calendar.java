@@ -32,52 +32,74 @@
 package org.opengis.temporal;
 
 import java.util.Collection;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
 
 /**
  * A discrete temporal reference system that provides a
  * basis for defining temporal position to a resolution of one day.
  *
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_Calendar", specification=ISO_19108)
 public interface Calendar extends TemporalReferenceSystem {
+    
     /**
-     * Converts a {@linkplain CalendarDate date} in this calendar to a
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
+     * This is used for setting the value to be returned by {@link #getReferenceEvent()}.
+     *
+     * @see #getReferenceEvent() 
+     * @since 4.0
+     */
+    public static String REFERENCE_EVENT_KEY = "referenceEvent";
+    
+    /**
+     * Returns convertion of a {@linkplain CalendarDate date} in this calendar to a
+     * {@linkplain JulianDate julian date}.
+     * 
+     * @param date reference date which will be convert.
+     * @param time 
+     * @return convertion of a {@linkplain CalendarDate date} in this calendar to a
      * {@linkplain JulianDate julian date}.
      */
     @UML(identifier="dateTrans", obligation=MANDATORY, specification=ISO_19108)
     JulianDate dateTrans(CalendarDate date, ClockTime time);
-
+    
     /**
-     * Converts a {@linkplain JulianDate julian date} to a {@linkplain CalendarDate date}
+     * Returns convertion of a {@linkplain JulianDate julian date} to a {@linkplain CalendarDate date}
+     * in this calendar.
+     * 
+     * @param julian {@link JulianDate} which will be convert.
+     * @return convertion of a {@linkplain JulianDate julian date} to a {@linkplain CalendarDate date}
      * in this calendar.
      */
     @UML(identifier="julTrans", obligation=MANDATORY, specification=ISO_19108)
     CalendarDate julTrans(JulianDate julian);
+    
+    /**
+     * Returns all {@linkplain CalendarEra calendar eras} associated with the {@link Calendar} being described.
+     * 
+     * @return all {@linkplain CalendarEra calendar eras} associated with the {@link Calendar} being described.
+     * @since 4.0
+     */
+    @UML(identifier="referenceFrame", obligation=MANDATORY, specification=ISO_19108)
+    Collection<CalendarEra> getReferenceFrame();
 
     /**
-     * links this calendar to the {@linkplain CalendarEra calendar eras}
-     * that it uses as a reference for dating.
-     *
-     * @todo The original version of this class returned {@code TemporalCalendarEra}, which
-     *       doesn't exists in the provided sources. I assumed that it was a typo and that
-     *       the actual class was {@link CalendarEra}.
+     * Returns the clock that is use with this {@link Calendar} to define temporal 
+     * position within a calendar day, or {@code null} if none.
+     * 
+     * @return the clock that is use with this {@link Calendar} to define temporal 
+     * position within a calendar day, or {@code null} if none.
+     * @since 4.0
      */
-    @UML(identifier="Basis", specification=ISO_19108)
-    Collection<CalendarEra> getBasis();
-
-    /**
-     * Links this calendar to the {@linkplain Clock clock} that is used for specifying
-     * temporal positions within the smallest calendar interval.
-     *
-     * @todo Method name doesn't match the UML identifier.
-     */
-    @UML(identifier="Resolution", specification=ISO_19108)
-    Clock getClock();
+    @UML(identifier="timeBasis", specification=ISO_19108)
+    Clock getTimeBasis();
 }

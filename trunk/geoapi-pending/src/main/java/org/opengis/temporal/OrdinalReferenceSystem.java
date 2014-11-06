@@ -32,29 +32,32 @@
 package org.opengis.temporal;
 
 import java.util.Collection;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
-
 /**
- * Provides only the attributes inherited from temporal reference system.
+ * <p>An {@linkplain OrdinalReferenceSystem ordinal temporal reference system} consists 
+ * of a set or {@linkplain OrdinalEra ordinal era (period)}.<br/>
+ * {@linkplain OrdinalReferenceSystem ordinal reference system} are often hierarchically 
+ * structured such that an {@link OrdinalEra} at a given level of the hierarchy include 
+ * a sequence of coterminous shorter {@link OrdinalEra}.</p>
  *
  * @author Alexander Petkov
- *
- * @todo The javadoc doesn't seem accurate.
- * @todo Missing UML annotations.
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 public interface OrdinalReferenceSystem extends TemporalReferenceSystem {
+    
     /**
-     * Get the set of ordinal eras of which this ordinal reference system consists of.
-     *
-     * @return A hierarchically-structured collection of ordinal eras.
-     *
-     * @todo What the structure is exactly?
+     * Returns {@linkplain OrdinalEra ordinal era} sequence that make up the highest level of this ordinal reference system.
+     * 
+     * @return {@linkplain OrdinalEra ordinal era} sequence that make up the highest level of this ordinal reference system.
+     * @since 4.0
      */
-    @UML(identifier="structure", obligation=MANDATORY,specification=ISO_19108)
-    Collection<OrdinalEra> getOrdinalEraSequence();
+    @UML(identifier="component", obligation=MANDATORY,specification=ISO_19108)
+    Collection<OrdinalEra> getComponents();
 }

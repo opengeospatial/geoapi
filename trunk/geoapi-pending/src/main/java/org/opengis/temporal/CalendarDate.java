@@ -31,7 +31,6 @@
  */
 package org.opengis.temporal;
 
-import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
@@ -44,11 +43,14 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0 
  */
 @UML(identifier="TM_CalDate", specification=ISO_19108)
 public interface CalendarDate extends TemporalPosition {
+    
     /**
-     * Provides the name of the {@linkplain CalendarEra calendar era}
+     * Returns the name of the {@linkplain CalendarEra calendar era}
      * to which the date is referenced.
      *
      * @return The name of the calendar era.
@@ -57,7 +59,7 @@ public interface CalendarDate extends TemporalPosition {
     InternationalString getCalendarEraName();
 
     /**
-     * Provides a sequence of integers in which the first integer identifies a specific instance
+     * Returns a sequence of integers in which the first integer identifies a specific instance
      * of the unit used at the highest level of the calendar hierarchy, the second integer
      * identifies a specific instance of the unit used at the next lower level in the hierarchy,
      * and so on. The format defined in ISO 8601 for dates in the Gregorian calendar may be

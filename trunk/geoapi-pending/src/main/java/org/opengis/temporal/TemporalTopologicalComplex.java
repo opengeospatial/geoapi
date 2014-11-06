@@ -36,21 +36,27 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
+import org.opengis.referencing.IdentifiedObject;
 
 /**
  * An aggregation of connected {@linkplain TemporalTopologicalPrimitive temporal topological
  * primitives}. This is the only subclass of {@linkplain TemporalComplex temporal complex}.
  *
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_TopologicalComplex", specification=ISO_19108)
-public interface TemporalTopologicalComplex extends TemporalComplex {
+public interface TemporalTopologicalComplex extends TemporalComplex, IdentifiedObject {
     /**
-     * The aggregation of connected {@linkplain TemporalTopologicalPrimitive temporal topological
+     * Returns aggregation of connected {@linkplain TemporalTopologicalPrimitive temporal topological
      * primitives}.
      *
-     * @todo Missing UML annotation.
+     * @return aggregation of connected {@linkplain TemporalTopologicalPrimitive temporal topological
+     * primitives}.
      */
+    @UML(identifier="primitive", obligation=MANDATORY, specification=ISO_19108)
     Collection<TemporalTopologicalPrimitive> getTemporalTopologicalPrimitives();
 }

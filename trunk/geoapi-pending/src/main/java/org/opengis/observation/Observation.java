@@ -38,6 +38,7 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.Obligation.*;
+import org.opengis.metadata.Identifier;
 
 /**
  * Generic Observation event.
@@ -54,7 +55,7 @@ public interface Observation {
     /**
      * The name of the observation as an urn.
      */
-    String getName();
+    Identifier getName();
 
     /**
      * A description of the observation.
