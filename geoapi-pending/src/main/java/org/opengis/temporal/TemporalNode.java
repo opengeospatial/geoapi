@@ -41,24 +41,35 @@ import static org.opengis.annotation.Specification.*;
  * A zero dimensional topological primitive in time.
  *
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_Node", specification=ISO_19108)
 public interface TemporalNode extends TemporalTopologicalPrimitive {
+    
     /**
-     * An optional association that may link this temporal node
-     * to its corresponding instant.
+     * Returns an optional association that may link this {@link TemporalNode}
+     * to its corresponding {@link Instant}.
+     * 
+     * @return associated {@link Instant}.
      */
     @UML(identifier="Realization", obligation=OPTIONAL, specification=ISO_19108)
     Instant getRealization();
 
     /**
-     * Links this temporal node to the previous temporal edge.
+     * Returns association that links this {@link TemporalNode} to the <i>previous</i> {@link TemporalEdge}.
+     * In other word, link this {@link TemporalNode} to the {@link TemporalEdge} for which is the end.
+     * 
+     * @return association that links this {@link TemporalNode} to the <i>previous</i> {@link TemporalEdge}.
      */
     @UML(identifier="previousEdge", obligation=MANDATORY, specification=ISO_19108)
     TemporalEdge getPreviousEdge();
 
     /**
-     * Links this temporal node to the next temporal edge.
+     * Returns association that links this {@link TemporalNode} to the <i>next</i> {@link TemporalEdge}. 
+     * In other word, link this {@link TemporalNode} to the {@link TemporalEdge} for which is the start.
+     * 
+     * @return association that links this {@link TemporalNode} to the <i>next</i> {@link TemporalEdge}.
      */
     @UML(identifier="nextEdge", obligation=MANDATORY, specification=ISO_19108)
     TemporalEdge getNextEdge();

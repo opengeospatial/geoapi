@@ -54,11 +54,11 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="TM_ReferenceSystem", specification=ISO_19108)
 public interface TemporalReferenceSystem extends ReferenceSystem {
     /**
-     * Provides a name that uniquely identifies the temporal reference system.
+     * <p>Returns name that uniquely identifies the temporal reference system.<br/><br/>
      *
      * Currently returns MD_Identifier, which is defined in ISO 19115, while ISO 19108
-     * requires that RS_Identifier (defined in ISO 19111 and http://www.opengis.org/docs/03-073r1.zip)
-     * is returned. From the looks of it, org.opengis.referencing.ReferenceSystem could also fit the bill.
+     * requires that RS_Identifier (defined in ISO 19111 and http://www.opengis.org/docs/03-073r1.zip) is returned.<br/> 
+     * From the looks of it, org.opengis.referencing.ReferenceSystem could also fit the bill.</p>
      *
      * @return {@link Identifier} for the temporal reference system
      */
@@ -67,13 +67,15 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
     Identifier getName();
 
     /**
-     * Identifies the space and time within which the reference system is applicable.
-     * The return type allows for describing both spatial and temporal extent.
+     * <p>Returns the space and time within which the reference system is applicable.<br/>
+     * The return type allows for describing both spatial and temporal extent.<br/>
      * This attribute shall be used whenever an application schema includes
      * {@link TemporalPosition}s referenced to a reference system which has a valid extent
-     * that is less than the extent of a data set containing such values.
-     * <p>
-     * Please note this is very similar to ReferenceSystem.getValidArea() from ISO 19115.
+     * that is less than the extent of a data set containing such values.<br/><br/>
+     * 
+     * Please note this is very similar to ReferenceSystem.getValidArea() from ISO 19115.</p>
+     * 
+     * @return the space and time within which the reference system is applicable.
      */
     @Override
     @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)

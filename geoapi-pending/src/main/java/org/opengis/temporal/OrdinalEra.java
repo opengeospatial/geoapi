@@ -33,41 +33,46 @@ package org.opengis.temporal;
 
 import java.util.Collection;
 import java.util.Date;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
+import org.opengis.referencing.IdentifiedObject;
 
 /**
  * Provides a reference to the ordinal era in which the instant occurs.
  *
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_OrdinalEra", specification=ISO_19108)
-public interface OrdinalEra {
-    /**
-     * The unique name of the ordinal era within the ordinal reference system.
-     */
-    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)
-    InternationalString getName();
+public interface OrdinalEra  extends IdentifiedObject {
 
     /**
-     * The beginning at which the ordinal era began if it's known.
+     * Returns the beginning {@link Date} at which this {@link OrdinalEra} begun, or {@code null} if none.
+     * 
+     * @return the beginning {@link Date} at which this {@link OrdinalEra} begun, or {@code null} if none.
      */
     @UML(identifier="begin", obligation=OPTIONAL, specification=ISO_19108)
-    Date getBeginning();
-
+    Date getBegin();
+    
     /**
-     * The end at which the ordinal era began if it's known.
+     * Returns the ending {@link Date} at which this {@link OrdinalEra} stop, or {@code null} if none.
+     * 
+     * @return the ending {@link Date} at which this {@link OrdinalEra} stop, or {@code null} if none.
      */
     @UML(identifier="end", obligation=OPTIONAL, specification=ISO_19108)
     Date getEnd();
-
+    
     /**
-     * Ordinal eras that subdivide this ordinal era.
+     * Returns {@link OrdinalEra} sequence that subdivide or compose this {@link OrdinalEra}.
+     * 
+     * @return {@link OrdinalEra} sequence that subdivide or compose this {@link OrdinalEra}.
+     * @since 4.0
      */
-    @UML(identifier="Composition", obligation=MANDATORY, specification=ISO_19108)
-    Collection<OrdinalEra> getComposition();
+    @UML(identifier="member", obligation=MANDATORY, specification=ISO_19108)
+    Collection<OrdinalEra> getMember();
 }

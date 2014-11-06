@@ -33,7 +33,6 @@ package org.opengis.temporal;
 
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -43,6 +42,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_OrdinalPosition", specification=ISO_19108)
 public interface OrdinalPosition extends TemporalPosition {

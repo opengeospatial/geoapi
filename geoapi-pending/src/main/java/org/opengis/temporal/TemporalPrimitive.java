@@ -33,8 +33,8 @@ package org.opengis.temporal;
 
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.IdentifiedObject;
 
 
 /**
@@ -42,7 +42,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @author Martin Desruisseaux (Geomatys)
+ * @author Remi Marechal (Geomatys).
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_Primitive", specification=ISO_19108)
-public interface TemporalPrimitive extends TemporalObject, TemporalOrder {
+public interface TemporalPrimitive extends IdentifiedObject, TemporalObject, TemporalOrder {
 }

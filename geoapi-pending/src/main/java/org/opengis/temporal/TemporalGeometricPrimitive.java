@@ -35,13 +35,14 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
 
-
 /**
  * An abstract class with two subclasses for representing
  * a temporal instant and a temporal period.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_GeometricPrimitive", specification=ISO_19108)
 public interface TemporalGeometricPrimitive extends TemporalPrimitive, Separation {

@@ -48,41 +48,47 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Alexander Petkov
  * @author Martin Desruisseaux (IRD)
- *
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="TM_Position", specification=ISO_19108)
 public interface Position {
+    
     /**
-     * {@linkplain TemporalPosition} and its subtypes shall be used
+     * Returns {@linkplain TemporalPosition} and its subtypes shall be used
      * for describing temporal positions referenced to other reference systems, and may be used for
-     * temporal positions referenced to any calendar or clock, including the Gregorian calendar and UTC.
-     * @return TemporalPosition
+     * temporal positions referenced to any {@link Calendar} or {@link Clock}, including the Gregorian calendar and UTC.
+     * 
+     * @return TemporalPosition {@linkplain TemporalPosition} and its subtypes shall be used
+     * for describing temporal positions referenced to other reference systems
      */
     @UML(identifier="anyOther", obligation=OPTIONAL, specification=ISO_19108)
     TemporalPosition anyOther();
 
     /**
-     * May be used for describing temporal positions in ISO8601 format referenced to the
+     * Returns {@link Date} used for describing temporal positions in ISO8601 format referenced to the
      * Gregorian calendar and UTC.
-     * @return {@linkplain InternationalString}
+     * 
+     * @return {@link Date} used for describing temporal positions in ISO8601 format.
      */
     @UML(identifier="date8601", obligation=OPTIONAL, specification=ISO_19108)
     Date getDate();
 
     /**
-     * May be used for describing temporal positions in ISO8601 format referenced to the
+     * Returns {@link Time} used for describing temporal positions in ISO8601 format referenced to the
      * Gregorian calendar and UTC.
-     * @return {@linkplain InternationalString}
+     * 
+     * @return {@link Time} used for describing temporal positions.
      */
     @UML(identifier="time8601", obligation=OPTIONAL, specification=ISO_19108)
     Time getTime();
 
     /**
-     * May be used for describing temporal positions in ISO8601 format referenced to the
+     * Returns {@linkplain InternationalString} used for describing temporal positions in ISO8601 format referenced to the
      * Gregorian calendar and UTC.
-     * @return {@linkplain InternationalString}
+     * 
+     * @return {@linkplain InternationalString} used for describing temporal positions.
      */
     @UML(identifier="dateTime8601", obligation=OPTIONAL, specification=ISO_19108)
     InternationalString getDateTime();
-
 }

@@ -33,9 +33,7 @@ package org.opengis.temporal;
 
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-
 
 /**
  * The Julian day numbering system is a temporal coordinate system that has its origin at noon
@@ -43,6 +41,8 @@ import static org.opengis.annotation.Specification.*;
  * value; the Julian date is a decimal value that allows greater resolution.
  *
  * @author Stephane Fellah (Image Matters)
+ * @since   2.3
+ * @version 4.0
  */
 @UML(identifier="JulianDate", specification=ISO_19108)
 public interface JulianDate extends TemporalCoordinate {
