@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * the {@link org.opengis.metadata.Obligation} code list from the metadata package.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
@@ -121,5 +121,20 @@ public enum Obligation implements Enumerated {
     @Override
     public String[] names() {
         return new String[] {name(), identifier};
+    }
+
+    /**
+     * Returns all constants defined by this enumeration type.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that this
+     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
+     * enumeration type does not need to be known at compile-time).
+     *
+     * @return All {@linkplain #values() values} for this enumeration.
+     *
+     * @since 3.1
+     */
+    @Override
+    public Obligation[] family() {
+        return values();
     }
 }
