@@ -37,6 +37,7 @@ import org.opengis.util.GenericName;
 
 /**
  * An instance of an {@link FeatureAssociationRole} containing the associated feature.
+ * {@code FeatureAssociation} can be instantiated by calls to {@link FeatureAssociationRole#newInstance()}.
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Justin Deoliveira (The Open Planning Project)

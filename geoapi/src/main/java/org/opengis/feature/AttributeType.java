@@ -142,4 +142,11 @@ public interface AttributeType<V> extends PropertyType {
      *
      * Both of them are in the case of an attribute of attribute, and optional.
      */
+
+    /**
+     * Creates a new attribute instance of this type initialized to the {@linkplain #getDefaultValue() default value}.
+     *
+     * @return A new attribute instance.
+     */
+    Attribute<V> newInstance();
 }

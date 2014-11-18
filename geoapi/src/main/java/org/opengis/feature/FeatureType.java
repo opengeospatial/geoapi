@@ -158,4 +158,16 @@ public interface FeatureType extends IdentifiedType {
      * @return {@code true} if instances of the given type can be assigned to association of this type.
      */
     boolean isAssignableFrom(FeatureType type);
+
+    /**
+     * Creates a new feature instance of this type.
+     *
+     * <blockquote><font size="-1"><b>Analogy:</b>
+     * if we compare {@code FeatureType} to {@link Class} and {@code Feature} to {@link Object} in the Java language,
+     * then this method is equivalent to {@link Class#newInstance()}.</font></blockquote>
+     *
+     * @return A new feature instance.
+     * @throws IllegalStateException if this feature type {@linkplain #isAbstract() is abstract}.
+     */
+    Feature newInstance() throws IllegalStateException;
 }

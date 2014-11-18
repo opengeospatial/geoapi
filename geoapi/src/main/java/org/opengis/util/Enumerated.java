@@ -80,4 +80,15 @@ public interface Enumerated {
      * @return The position of this constants in elements declaration.
      */
     int ordinal();
+
+    /**
+     * Returns the enumeration or list of codes of the same kind than this item.
+     * Invoking this method gives identical results than invoking the static {@code values()} methods
+     * provided in {@code Enum} and {@code CodeList} subclasses, except that {@code family()} does not
+     * require the class to be known at compile-time — provided that at leat one instance of the family
+     * is available.
+     *
+     * @return The enumeration or list of codes of the same kind than this item.
+     */
+    public abstract Enumerated[] family();
 }
