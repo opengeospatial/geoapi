@@ -76,8 +76,8 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
 
     /**
-     * The corner in the pixel closest to the origin of the SRS; if two are at the same
-     * distance from the origin, the one with the smallest x-value.
+     * The corner in the pixel closest to the origin of the SRS.
+     * If two are at the same distance from the origin, the one with the smallest <var>x</var>-value.
      *
      * @todo The sentence "<cite>closest to the origin of the SRS</cite> probably applies to
      *       positive coordinates only. For the general case including both positive and negative
