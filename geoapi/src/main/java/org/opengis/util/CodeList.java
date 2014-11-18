@@ -271,12 +271,9 @@ public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Com
 
     /**
      * Returns the list of codes of the same kind than this code.
-     * This is similar to the static {@code values()} method provided in {@code CodeList}
-     * subclasses, except that {@code family()} does not require the class to be known at
-     * compile-time - provided that at leat one instance of the family is available. The
-     * static {@code values()} method has the opposite constraints (does not require a code
-     * instance, but the class needs to be known at compile time unless
-     * {@linkplain java.lang.reflect reflection} is used).
+     * Invoking this method gives identical results than invoking the static {@code values()} methods
+     * provided in {@code CodeList} subclasses, except that {@code family()} does not require the class
+     * to be known at compile-time — provided that at leat one instance of the family is available.
      *
      * @return The codes of the same kind than this code.
      *
@@ -284,6 +281,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Com
      *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
      *   draft of JSE 5 before the final release.
      */
+    @Override
     public abstract E[] family();
 
     /**

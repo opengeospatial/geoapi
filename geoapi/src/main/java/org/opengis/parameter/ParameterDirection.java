@@ -92,4 +92,17 @@ public enum ParameterDirection implements Enumerated {
     public String[] names() {
         return new String[] {name(), identifier};
     }
+
+    /**
+     * Returns all constants defined by this enumeration type.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that this
+     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
+     * enumeration type does not need to be known at compile-time).
+     *
+     * @return All {@linkplain #values() values} for this enumeration.
+     */
+    @Override
+    public ParameterDirection[] family() {
+        return values();
+    }
 }
