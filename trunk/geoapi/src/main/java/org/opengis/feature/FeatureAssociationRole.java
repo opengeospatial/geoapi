@@ -98,4 +98,11 @@ public interface FeatureAssociationRole extends PropertyType {
      */
     @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
     int getMaximumOccurs();
+
+    /**
+     * Creates a new feature association instance of this role.
+     *
+     * @return A new feature association instance.
+     */
+    FeatureAssociation newInstance();
 }
