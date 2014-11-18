@@ -50,6 +50,8 @@ import org.opengis.util.GenericName;
  * For a field of other Java type, use {@link Association} instead.
  * </font></blockquote>
  *
+ * {@code Attribute} can be instantiated by calls to {@link AttributeType#newInstance()}.
+ *
  * @param <V> The type of attribute values.
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
