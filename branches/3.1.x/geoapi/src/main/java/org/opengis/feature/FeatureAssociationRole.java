@@ -103,6 +103,7 @@ public interface FeatureAssociationRole extends PropertyType {
      * Creates a new feature association instance of this role.
      *
      * @return A new feature association instance.
+     * @throws UnsupportedOperationException if this role does not support new instance creation.
      */
-    FeatureAssociation newInstance();
+    FeatureAssociation newInstance() throws UnsupportedOperationException;
 }
