@@ -168,6 +168,7 @@ public interface FeatureType extends IdentifiedType {
      *
      * @return A new feature instance.
      * @throws IllegalStateException if this feature type {@linkplain #isAbstract() is abstract}.
+     * @throws UnsupportedOperationException if this type does not support new instance creation.
      */
-    Feature newInstance() throws IllegalStateException;
+    Feature newInstance() throws IllegalStateException, UnsupportedOperationException;
 }
