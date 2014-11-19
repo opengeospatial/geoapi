@@ -48,8 +48,14 @@ import static org.opengis.annotation.Specification.*;
  * list, {@link org.opengis.referencing.datum.PixelInCell}, can be used for
  * <var>n</var>-dimensional grid cell.</p>
  *
+ * <div class="warning"><b>Upcoming API change — enumeration</b><br>
+ * According ISO 19115, {@code PixelOrientation} shall be an enumeration, not a code list.
+ * This class may be changed to a Java {@code enum} in GeoAPI 4.0.
+ * See <a href="http://jira.codehaus.org/browse/GEO-199">GEO-199</a> for more information.
+ * </div>
+ *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  *
  * @see org.opengis.referencing.datum.PixelInCell

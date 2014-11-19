@@ -48,6 +48,12 @@ import static org.opengis.annotation.Specification.*;
  * {@note It is understood there are overlaps between general categories and the user
  *        is encouraged to select the one most appropriate.}
  *
+ * <div class="warning"><b>Upcoming API change — enumeration</b><br>
+ * According ISO 19115, {@code TopicCategory} shall be an enumeration, not a code list.
+ * This class may be changed to a Java {@code enum} in GeoAPI 4.0.
+ * See <a href="http://jira.codehaus.org/browse/GEO-199">GEO-199</a> for more information.
+ * </div>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1

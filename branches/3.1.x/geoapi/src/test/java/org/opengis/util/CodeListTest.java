@@ -50,6 +50,7 @@ import org.opengis.metadata.spatial.*;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.parameter.ParameterDirection;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -57,6 +58,7 @@ import static org.junit.Assert.*;
 
 /**
  * Tests every {@link CodeList}.
+ * This class can also opportunistically tests some enumerations.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
@@ -92,6 +94,7 @@ public final strictfp class CodeListTest {
         Obligation               .class,
         OnLineFunction           .class,
         OperationType            .class,
+        ParameterDirection       .class,
         PixelInCell              .class,
         PixelOrientation         .class,
         PolarizationOrientation  .class,
@@ -116,63 +119,42 @@ public final strictfp class CodeListTest {
     /**
      * Tests every code lists. This method ensures that the a {@code values()} and {@code family()}
      * method is defined for each code list, and verify each declared code lists.
+     *
+     * @throws NoSuchFieldException      if a {@code CodeList} or an {@code Enum} constant can not be found.
+     * @throws NoSuchMethodException     if a {@code values()} or {@code valueOf(String)} method is not found.
+     * @throws IllegalAccessException    if a {@code values()} or {@code valueOf(String)} method is not public.
+     * @throws InvocationTargetException if an error occurred while invoking {@code values()} or {@code valueOf(String)}.
      */
     @Test
-    public void testAll() {
+    public void testAll() throws NoSuchFieldException, NoSuchMethodException,
+            IllegalAccessException, InvocationTargetException
+    {
         for (final Class<?> codeClass : CODE_LISTS) {
             /*
              * Gets the values() method, which should public and static.
              * Then gets every CodeList instances returned by values().
              */
             final String className = codeClass.getCanonicalName();
-            final Method valuesMethod;
-            try {
-                valuesMethod = codeClass.getMethod("values", (Class<?>[]) null);
-            } catch (NoSuchMethodException e) {
-                fail("Missing " + className + ".values() method: " + e);
-                return;
-            }
+            final Method valuesMethod = codeClass.getMethod("values", (Class<?>[]) null);
             assertTrue(className + ".values() is not public.", Modifier.isPublic(valuesMethod.getModifiers()));
             assertTrue(className + ".values() is not static.", Modifier.isStatic(valuesMethod.getModifiers()));
-            final CodeList<?>[] values;
-            try {
-                values = (CodeList<?>[]) valuesMethod.invoke(null, (Object[]) null);
-            } catch (IllegalAccessException e) {
-                fail(className + ".values() is not accessible: " + e);
-                return;
-            } catch (InvocationTargetException e) {
-                fail("Can not invoke " + className + ".values(): " + e.getTargetException());
-                return;
-            }
+            final Enumerated[] values = (Enumerated[]) valuesMethod.invoke(null, (Object[]) null);
             assertNotNull(className + ".values() returned null.", values);
             /*
              * Tests every CodeList instances returned by values().
              * Every field should be public, static and final.
              */
-            for (final CodeList<?> value : values) {
+            for (final Enumerated value : values) {
                 final String valueName = value.name();
                 final String fullName  = className + '.' + valueName;
                 assertTrue(fullName + " is of unexpected type.", codeClass.isInstance(value));
-                final Field field;
-                try {
-                    field = codeClass.getField(valueName);
-                } catch (NoSuchFieldException e) {
-                    fail(fullName + " field not found: " + e);
-                    return;
-                }
+                final Field field = codeClass.getField(valueName);
                 final int modifiers = field.getModifiers();
                 assertTrue  (fullName + " is not public.", Modifier.isPublic(modifiers));
                 assertTrue  (fullName + " is not static.", Modifier.isStatic(modifiers));
                 assertTrue  (fullName + " is not final.",  Modifier.isFinal (modifiers));
                 assertEquals(fullName + " name mismatch.", valueName, field.getName());
-                final Object constant;
-                try {
-                    constant = field.get(null);
-                } catch (IllegalAccessException e) {
-                    fail(fullName + " is not accessible: " + e);
-                    continue;
-                }
-                assertSame(fullName + " is not the expected instance.", value, constant);
+                assertSame(fullName + " is not the expected instance.", value, field.get(null));
                 assertArrayEquals(className + ".family() mismatch.", values, value.family());
             }
             /*
@@ -180,13 +162,7 @@ public final strictfp class CodeListTest {
              */
             if (codeClass.getSuperclass().equals(CodeList.class)) {
                 final String arrayName = className + ".VALUES";
-                final Field field;
-                try {
-                    field = codeClass.getDeclaredField("VALUES");
-                } catch (NoSuchFieldException e) {
-                    fail(arrayName + " private list is missing: " + e);
-                    return;
-                }
+                final Field field = codeClass.getDeclaredField("VALUES");
                 final int modifiers = field.getModifiers();
                 assertTrue (arrayName + " is not static.", Modifier.isStatic   (modifiers));
                 assertTrue (arrayName + " is not final.",  Modifier.isFinal    (modifiers));
@@ -223,27 +199,20 @@ public final strictfp class CodeListTest {
                 assertEquals(arrayName + " not properly sized.", asList.size(), capacity);
             }
             /*
-             * Tries to create a new element.
+             * Tests valueOf(String).
              */
-            final Method valueOfMethod;
-            try {
-                valueOfMethod = codeClass.getMethod("valueOf", String.class);
-            } catch (NoSuchMethodException e) {
-                fail(className + ".valueOf(String) not found: " + e);
-                return;
+            final Method valueOfMethod = codeClass.getMethod("valueOf", String.class);
+            for (final Enumerated value : values) {
+                assertSame(value, valueOfMethod.invoke(null, value.name()));
             }
-            final CodeList<?> value;
-            try {
-                value = (CodeList<?>) valueOfMethod.invoke(null, "MyNewCode");
-            } catch (IllegalAccessException e) {
-                fail(className + ".valueOf(String) is not accessible: " + e);
-                return;
-            } catch (InvocationTargetException e) {
-                fail("Failed to invoke " + className + ".valueOf(String): " + e.getTargetException());
-                return;
+            /*
+             * Tries to create a new code list element.
+             */
+            if (CodeList.class.isAssignableFrom(codeClass)) {
+                final CodeList<?> value = (CodeList<?>) valueOfMethod.invoke(null, "MyNewCode");
+                assertTrue(className + ".valueOf(String) did not created an instance of the expected class.", codeClass.isInstance(value));
+                assertEquals("Newly created CodeList does not have the expected name.", "MyNewCode", value.name());
             }
-            assertTrue(className + ".valueOf(String) did not created an instance of the expected class.", codeClass.isInstance(value));
-            assertEquals("Newly created CodeList does not have the expected name.", "MyNewCode", value.name());
         }
     }
 
