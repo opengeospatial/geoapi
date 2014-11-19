@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * The services are provided to a user through a set of interfaces that define a behaviour.
  *
  * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.0
  */
 @UML(identifier="SV_ServiceIdentification", specification=ISO_19115)
