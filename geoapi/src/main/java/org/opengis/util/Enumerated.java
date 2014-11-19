@@ -40,8 +40,8 @@ package org.opengis.util;
  * @since   3.1
  *
  * @departure integration
- *   Provided for allowing developers to handles {@code Enum} and {@code CodeList} is the same way for some
- *   common tasks.
+ *   Provided for allowing developers to handles <code>Enum</code> and <code>CodeList</code>
+ *   in the same way for some common tasks.
  */
 public interface Enumerated {
     /**
