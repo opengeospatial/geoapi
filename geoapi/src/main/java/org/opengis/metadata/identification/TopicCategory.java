@@ -31,10 +31,8 @@
  */
 package org.opengis.metadata.identification;
 
-import java.util.List;
-import java.util.ArrayList;
-import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.util.Enumerated;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -50,22 +48,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
-public final class TopicCategory extends CodeList<TopicCategory> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = -4987523565852255081L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<TopicCategory> VALUES = new ArrayList<TopicCategory>(21);
-
+public enum TopicCategory implements Enumerated {
     /**
      * Rearing of animals and/or cultivation of plants.
      *
@@ -75,7 +62,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="farming", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory FARMING = new TopicCategory("FARMING");
+    FARMING("farming"),
 
     /**
      * Flora and/or fauna in natural environment.
@@ -85,7 +72,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="biota", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory BIOTA = new TopicCategory("BIOTA");
+    BIOTA("biota"),
 
     /**
      * Legal land descriptions.
@@ -95,7 +82,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="boundaries", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory BOUNDARIES = new TopicCategory("BOUNDARIES");
+    BOUNDARIES("boundaries"),
 
     /**
      * Processes and phenomena of the atmosphere.
@@ -105,7 +92,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="climatologyMeteorologyAtmosphere", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory CLIMATOLOGY_METEOROLOGY_ATMOSPHERE = new TopicCategory("CLIMATOLOGY_METEOROLOGY_ATMOSPHERE");
+    CLIMATOLOGY_METEOROLOGY_ATMOSPHERE("climatologyMeteorologyAtmosphere"),
 
     /**
      * Economic activities, conditions and employment.
@@ -117,7 +104,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="economy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory ECONOMY = new TopicCategory("ECONOMY");
+    ECONOMY("economy"),
 
     /**
      * Height above or below sea level.
@@ -127,7 +114,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="elevation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory ELEVATION = new TopicCategory("ELEVATION");
+    ELEVATION("elevation"),
 
     /**
      * Environmental resources, protection and conservation.
@@ -138,7 +125,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="environment", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory ENVIRONMENT = new TopicCategory("ENVIRONMENT");
+    ENVIRONMENT("environment"),
 
     /**
      * Information pertaining to earth sciences.
@@ -150,7 +137,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="geoscientificInformation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory GEOSCIENTIFIC_INFORMATION = new TopicCategory("GEOSCIENTIFIC_INFORMATION");
+    GEOSCIENTIFIC_INFORMATION("geoscientificInformation"),
 
     /**
      * Health, health services, human ecology, and safety.
@@ -163,7 +150,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * @since 2.1
      */
     @UML(identifier="health", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory HEALTH = new TopicCategory("HEALTH");
+    HEALTH("health"),
 
     /**
      * Base maps.
@@ -173,7 +160,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="imageryBaseMapsEarthCover", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory IMAGERY_BASE_MAPS_EARTH_COVER = new TopicCategory("IMAGERY_BASE_MAPS_EARTH_COVER");
+    IMAGERY_BASE_MAPS_EARTH_COVER("imageryBaseMapsEarthCover"),
 
     /**
      * Military bases, structures, activities.
@@ -183,7 +170,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="intelligenceMilitary", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory INTELLIGENCE_MILITARY = new TopicCategory("INTELLIGENCE_MILITARY");
+    INTELLIGENCE_MILITARY("intelligenceMilitary"),
 
     /**
      * Inland water features, drainage systems and their characteristics.
@@ -194,7 +181,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="inlandWaters", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory INLAND_WATERS = new TopicCategory("INLAND_WATERS");
+    INLAND_WATERS("inlandWaters"),
 
     /**
      * Positional information and services.
@@ -204,7 +191,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="location", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory LOCATION = new TopicCategory("LOCATION");
+    LOCATION("location"),
 
     /**
      * Features and characteristics of salt water bodies (excluding inland waters).
@@ -214,7 +201,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="oceans", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory OCEANS = new TopicCategory("OCEANS");
+    OCEANS("oceans"),
 
     /**
      * Information used for appropriate actions for future use of the land.
@@ -224,7 +211,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="planningCadastre", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory PLANNING_CADASTRE = new TopicCategory("PLANNING_CADASTRE");
+    PLANNING_CADASTRE("planningCadastre"),
 
     /**
      * Characteristics of society and cultures.
@@ -236,7 +223,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="society", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory SOCIETY = new TopicCategory("SOCIETY");
+    SOCIETY("society"),
 
     /**
      * Man-made construction.
@@ -246,7 +233,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="structure", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory STRUCTURE = new TopicCategory("STRUCTURE");
+    STRUCTURE("structure"),
 
     /**
      * Means and aids for conveying persons and/or goods.
@@ -257,7 +244,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="transportation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory TRANSPORTATION = new TopicCategory("TRANSPORTATION");
+    TRANSPORTATION("transportation"),
 
     /**
      * Energy, water and waste systems and communications infrastructure and services.
@@ -269,7 +256,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * </p>
      */
     @UML(identifier="utilitiesCommunication", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory UTILITIES_COMMUNICATION = new TopicCategory("UTILITIES_COMMUNICATION");
+    UTILITIES_COMMUNICATION("utilitiesCommunication"),
 
     /**
      * Region more than 100 Km above the surface of the Earth.
@@ -277,7 +264,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * @since 3.1
      */
     @UML(identifier="extraTerrestrial", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory EXTRA_TERRESTRIAL = new TopicCategory("EXTRA_TERRESTRIAL");
+    EXTRA_TERRESTRIAL("extraTerrestrial"),
 
     /**
      * Information related to disaster.
@@ -289,53 +276,46 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * @since 3.1
      */
     @UML(identifier="disaster", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TopicCategory DISASTER = new TopicCategory("DISASTER");
+    DISASTER("disaster");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * The UML identifier.
      */
-    private TopicCategory(final String name) {
-        super(name, VALUES);
+    private final String identifier;
+
+    /**
+     * Creates a new constant with the given UML identifier.
+     */
+    private TopicCategory(final String identifier) {
+        this.identifier = identifier;
     }
 
     /**
-     * Returns the list of {@code TopicCategory}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the UML identifier for this enumeration constant.
      */
-    public static TopicCategory[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(new TopicCategory[VALUES.size()]);
-        }
+    @Override
+    public String identifier() {
+        return identifier;
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
+     */
+    @Override
+    public String[] names() {
+        return new String[] {name(), identifier};
+    }
+
+    /**
+     * Returns all constants defined by this enumeration type.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that this
+     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
+     * enumeration type does not need to be known at compile-time).
      *
-     * @return All code {@linkplain #values() values} for this code list.
+     * @return All {@linkplain #values() values} for this enumeration.
      */
     @Override
     public TopicCategory[] family() {
         return values();
-    }
-
-    /**
-     * Returns the topic category that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
-     */
-    public static TopicCategory valueOf(String code) {
-        return valueOf(TopicCategory.class, code);
     }
 }
