@@ -31,11 +31,8 @@
  */
 package org.opengis.metadata.spatial;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.util.Enumerated;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -49,31 +46,20 @@ import static org.opengis.annotation.Specification.*;
  * <var>n</var>-dimensional grid cell.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 4.0
  * @since   2.0
  *
  * @see org.opengis.referencing.datum.PixelInCell
  */
 @UML(identifier="MD_PixelOrientationCode", specification=ISO_19115)
-public final class PixelOrientation extends CodeList<PixelOrientation> {
-    /**
-     * Serial number for compatibility with different versions.
-     */
-    private static final long serialVersionUID = 7885677198357949308L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<PixelOrientation> VALUES = new ArrayList<PixelOrientation>(5);
-
+public enum PixelOrientation implements Enumerated {
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
      *
      * @see org.opengis.referencing.datum.PixelInCell#CELL_CENTER
      */
     @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
+    CENTER("center"),
 
     /**
      * The corner in the pixel closest to the origin of the SRS.
@@ -87,71 +73,64 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      * @see org.opengis.referencing.datum.PixelInCell#CELL_CORNER
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
+    LOWER_LEFT("lowerLeft"),
 
     /**
      * Next corner counterclockwise from the {@linkplain #LOWER_LEFT lower left}.
      */
     @UML(identifier="lowerRight", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT");
+    LOWER_RIGHT("lowerRight"),
 
     /**
      * Next corner counterclockwise from the {@linkplain #LOWER_RIGHT lower right}.
      */
     @UML(identifier="upperRight", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT");
+    UPPER_RIGHT("upperRight"),
 
     /**
      * Next corner counterclockwise from the {@linkplain #UPPER_RIGHT upper right}.
      */
     @UML(identifier="upperLeft", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
+    UPPER_LEFT("upperLeft");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * The UML identifier.
      */
-    private PixelOrientation(final String name) {
-        super(name, VALUES);
+    private final String identifier;
+
+    /**
+     * Creates a new constant with the given UML identifier.
+     */
+    private PixelOrientation(final String identifier) {
+        this.identifier = identifier;
     }
 
     /**
-     * Returns the list of {@code PixelOrientation}s.
-     *
-     * @return The list of codes declared in the current JVM.
+     * Returns the UML identifier for this enumeration constant.
      */
-    public static PixelOrientation[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(new PixelOrientation[VALUES.size()]);
-        }
+    @Override
+    public String identifier() {
+        return identifier;
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
-     * Invoking this method is equivalent to invoking {@link #values()}, except that
-     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
+     */
+    @Override
+    public String[] names() {
+        return new String[] {name(), identifier};
+    }
+
+    /**
+     * Returns all constants defined by this enumeration type.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that this
+     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
+     * enumeration type does not need to be known at compile-time).
      *
-     * @return All code {@linkplain #values() values} for this code list.
+     * @return All {@linkplain #values() values} for this enumeration.
      */
     @Override
     public PixelOrientation[] family() {
         return values();
-    }
-
-    /**
-     * Returns the pixel orientation that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
-     *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
-     */
-    public static PixelOrientation valueOf(String code) {
-        return valueOf(PixelOrientation.class, code);
     }
 }
