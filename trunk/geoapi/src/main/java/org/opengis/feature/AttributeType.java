@@ -147,6 +147,7 @@ public interface AttributeType<V> extends PropertyType {
      * Creates a new attribute instance of this type initialized to the {@linkplain #getDefaultValue() default value}.
      *
      * @return A new attribute instance.
+     * @throws UnsupportedOperationException if this type does not support new instance creation.
      */
-    Attribute<V> newInstance();
+    Attribute<V> newInstance() throws UnsupportedOperationException;
 }
