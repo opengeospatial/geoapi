@@ -234,6 +234,8 @@ public final strictfp class ClassIndexTest implements FileFilter {
         targetDirectory = file;
         final Set<Class<?>> classes = new HashSet<Class<?>>();
         listClasses(file, new StringBuilder(), classes);
+        // Branch-specific patch, because of MD_Obligation duplication.
+        assertTrue(classes.remove(org.opengis.annotation.Obligation.class));
         return classes;
     }
 
