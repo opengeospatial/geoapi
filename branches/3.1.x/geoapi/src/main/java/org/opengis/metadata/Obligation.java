@@ -42,6 +42,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Obligation of the element or entity.
  *
+ * <div class="warning"><b>Upcoming API change — enumeration</b><br>
+ * According ISO 19115, {@code Obligation} shall be an enumeration, not a code list.
+ * Such enumeration already exists in the {@link org.opengis.annotation} package.
+ * Consequently this {@code Obligation} class may be deleted in favor or {@code org.opengis.annotation.Obligation}
+ * in GeoAPI 4.0. See <a href="http://jira.codehaus.org/browse/GEO-199">GEO-199</a> for more information.</div>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0

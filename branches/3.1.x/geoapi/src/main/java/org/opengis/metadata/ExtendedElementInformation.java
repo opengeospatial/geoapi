@@ -113,6 +113,13 @@ public interface ExtendedElementInformation {
     /**
      * Obligation of the extended element.
      *
+     * <div class="warning"><b>Upcoming API change — type change</b><br>
+     * According ISO 19115, {@code Obligation} shall be an enumeration, not a code list.
+     * Such enumeration already exists in the {@link org.opengis.annotation} package.
+     * Consequently the {@code org.opengis.metadata.Obligation} return type may be
+     * replaced by {@code org.opengis.annotation.Obligation} in GeoAPI 4.0.
+     * See <a href="http://jira.codehaus.org/browse/GEO-199">GEO-199</a> for more information.</div>
+     *
      * @return Obligation of the extended element, or {@code null}.
      *
      * @condition The {@linkplain #getDataType() data type} is not {@link Datatype#ENUMERATION ENUMERATION},
