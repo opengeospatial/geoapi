@@ -86,8 +86,8 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * {@code null} otherwise. The returned set usually contains {@linkplain CodeList code list}
      * or enumeration elements.
      *
-     * {@note It is not necessary to provide this property when all values from the code list or
-     *        enumeration are valid.}
+     * <div class="note"><b>Note:</b>
+     * It is not necessary to provide this property when all values from the code list or enumeration are allowed.</div>
      *
      * @return A finite set of valid values (usually from a {@code CodeList}),
      *         or {@code null} if it does not apply or if there is no restriction.

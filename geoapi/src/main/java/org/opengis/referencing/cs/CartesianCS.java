@@ -78,8 +78,9 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>{@link SI#METRE}</td></tr>
  * </table>
  *
- * {@note The above example uses two axis directions that are not defined in ISO 19111, but found in ISO 19162 as
- *        "<code>forward</code>" and "<code>starboard</code>".}
+ * <div class="note"><b>Note:</b>
+ * The above example uses two axis directions that are not defined in ISO 19111,
+ * but found in ISO 19162 as "{@code forward}" and "{@code starboard}".</div>
  *
  * @departure constraint
  *   ISO 19111 defines <code>CartesianCS</code> as a direct sub-type of <code>CoordinateSystem</code>.

@@ -42,9 +42,10 @@ package org.opengis.parameter;
  * method, or indirectly during the add or remove operations applied on the list returned by
  * {@link ParameterValueGroup#values()}.</p>
  *
- * {@note This exception is of kind <code>IllegalStateException</code> instead than
- *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
- *        It is rather a consequence of an <code>ParameterValueGroup</code> being "full".}
+ * <div class="note"><b>Note:</b>
+ * This exception is of kind {@code IllegalStateException} instead than {@code IllegalArgumentException}
+ * because it is not caused by a bad argument. It is rather a consequence of an {@link ParameterValueGroup}
+ * being "full".</div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

@@ -63,8 +63,9 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                           <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
  * </table>
  *
- * {@note The above example uses two axis directions that are not defined in ISO 19111, but found in ISO 19162
- *        as "<code>awayFrom</code>" and "<code>counterClockwise</code>".}
+ * <div class="note"><b>Note:</b>
+ * The above example uses two axis directions that are not defined in ISO 19111,
+ * but found in ISO 19162 as "{@code awayFrom}" and "{@code counterClockwise}".</div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
