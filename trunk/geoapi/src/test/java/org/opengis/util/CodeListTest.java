@@ -51,6 +51,7 @@ import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.parameter.ParameterDirection;
+import org.opengis.annotation.Obligation;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
