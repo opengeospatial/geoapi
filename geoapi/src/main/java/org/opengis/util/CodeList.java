@@ -380,6 +380,8 @@ public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Com
             }
             if (identifier == null) {
                 identifier = "";
+            } else {
+                identifier = identifier.intern();
             }
             this.identifier = identifier;
         }
