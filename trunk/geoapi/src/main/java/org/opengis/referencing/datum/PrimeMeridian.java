@@ -69,8 +69,9 @@ public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
      *
-     * {@note This attribute is inherited from an older OGC specification. ISO 19111 compliant
-     * applications or GML documents shall always express prime meridians in decimal degrees.}
+     * <div class="note"><b>Note:</b>
+     * This attribute is inherited from an older OGC specification.
+     * ISO 19111 compliant applications or GML documents shall always express prime meridians in decimal degrees.</div>
      *
      * @return The angular unit of Greenwich longitude.
      */

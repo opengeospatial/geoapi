@@ -43,13 +43,14 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Type of a vertical datum.
  *
- * {@note ISO 19111 ommits the definition of an <code>ELLIPSOIDAL</code> vertical height on intend.
- *        <code>GeographicCRS</code> with ellipsoidal height shall be backed by a three-dimensional
- *        <code>EllipsoidalCS</code>; they should never be built as <code>CompoundCRS</code>. If
- *        nevertheless an ellipsoidal height is needed (for example in order to process a CRS in
- *        the <a href="../doc-files/WKT.html">WKT 1 format</a>), implementors can get a suitable
- *        vertical datum type using <code>VerticalDatumType.valueOf("ELLIPSOIDAL")</code>.
- *        Implementors are encouraged to not expose that datum type in public API however.}
+ * <div class="note"><b>Note:</b>
+ * ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intend.
+ * {@link org.opengis.referencing.crs.GeographicCRS} with ellipsoidal height shall be backed by a three-dimensional
+ * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should never be built as
+ * {@link org.opengis.referencing.crs.CompoundCRS}. If nevertheless an ellipsoidal height is needed
+ * (for example in order to process a CRS in the <a href="../doc-files/WKT.html">WKT 1 format</a>),
+ * implementors can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
+ * Implementors are encouraged to not expose that datum type in public API however.</div>
  *
  * @departure historic
  *   This code list was defined in the specification published in 2003, but removed from the 2007
