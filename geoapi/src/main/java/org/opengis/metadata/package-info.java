@@ -54,7 +54,7 @@
  *  └─ {@linkplain org.opengis.metadata.Identifier}
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.Datatype}
- *  └─ {@linkplain org.opengis.metadata.Obligation}</pre>
+ *  └─ {@linkplain org.opengis.annotation.Obligation}</pre>
  * </td><td class="sep" width="50%" nowrap>
  * <pre> {@linkplain org.opengis.metadata.Metadata}
  *  ├─ {@linkplain org.opengis.metadata.MetadataScope}
@@ -63,7 +63,7 @@
  *  ├─ {@linkplain org.opengis.metadata.MetadataExtensionInformation}
  *  │   └─ {@linkplain org.opengis.metadata.ExtendedElementInformation}
  *  │       ├─ {@linkplain org.opengis.metadata.Datatype} «code list»
- *  │       └─ {@linkplain org.opengis.metadata.Obligation} «code list»
+ *  │       └─ {@linkplain org.opengis.annotation.Obligation} «code list»
  *  ├─ {@linkplain org.opengis.metadata.FeatureTypeList}
  *  └─ {@linkplain org.opengis.metadata.Identifier}</pre>
  * </td></tr></table>
