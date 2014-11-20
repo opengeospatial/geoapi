@@ -34,6 +34,7 @@ package org.opengis.metadata;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Responsibility;
+import org.opengis.annotation.Obligation;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

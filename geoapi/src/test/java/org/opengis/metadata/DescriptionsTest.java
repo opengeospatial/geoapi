@@ -61,6 +61,7 @@ public final strictfp class DescriptionsTest {
      */
     @SuppressWarnings("deprecation")
     private static final Class<?>[] METADATA = {
+        org.opengis.annotation.Obligation.class,
         org.opengis.metadata.ApplicationSchemaInformation.class,
         org.opengis.metadata.Datatype.class,
         org.opengis.metadata.ExtendedElementInformation.class,
@@ -68,7 +69,6 @@ public final strictfp class DescriptionsTest {
         org.opengis.metadata.Identifier.class,
         org.opengis.metadata.Metadata.class,
         org.opengis.metadata.MetadataExtensionInformation.class,
-        org.opengis.metadata.Obligation.class,
         org.opengis.metadata.PortrayalCatalogueReference.class,
         org.opengis.metadata.acquisition.AcquisitionInformation.class,
         org.opengis.metadata.acquisition.Context.class,
