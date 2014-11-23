@@ -90,7 +90,7 @@ public interface Source {
      * @deprecated As of ISO 19115:2014, moved to {@link Resolution#getEquivalentScale()}.
      */
     @Deprecated
-    @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     RepresentativeFraction getScaleDenominator();
 
     /**
@@ -143,7 +143,7 @@ public interface Source {
      * @deprecated As of ISO 19115:2014, moved to {@link Scope#getExtents()}.
      */
     @Deprecated
-    @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<? extends Extent> getSourceExtents();
 
     /**

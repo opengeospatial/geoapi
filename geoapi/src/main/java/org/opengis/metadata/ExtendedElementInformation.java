@@ -82,7 +82,7 @@ public interface ExtendedElementInformation {
      * @deprecated Removed as of ISO 19115:2014.
      */
     @Deprecated
-    @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     String getShortName();
 
     /**
@@ -99,7 +99,7 @@ public interface ExtendedElementInformation {
      * @deprecated Removed as of ISO 19115:2014.
      */
     @Deprecated
-    @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Integer getDomainCode();
 
     /**

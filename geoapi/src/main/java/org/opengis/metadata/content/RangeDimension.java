@@ -78,12 +78,12 @@ public interface RangeDimension {
      * @deprecated As of ISO 19115:2014, renamed {@link #getDescription()}.
      */
     @Deprecated
-    @UML(identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getDescriptor();
 
     /**
      * Identifiers for each attribute included in the resource. These identifiers
-     * can be use to provide names for the attribute from a standard set of names.
+     * can be used to provide names for the attribute from a standard set of names.
      *
      * @return Identifiers for each attribute included in the resource.
      *

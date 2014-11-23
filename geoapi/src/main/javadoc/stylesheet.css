@@ -77,6 +77,20 @@ li > ol {
 }
 
 /*
+ * Definition of <div class="note">
+ *
+ * Note or examples.
+ */
+div.note {
+  color:     #353833;
+  font-size:   small;
+  margin-left:  40px;
+  margin-right: 40px;
+  margin-top:    9px;
+  margin-bottom: 9px;
+}
+
+/*
  * The warning box for upcomming API changes. The warning icon is 64 pixels height.
  * Since we have 30 pixels in top and bottom padding, There is 34 remaining pixels
  * to set as the minimal height.

@@ -37,10 +37,10 @@ package org.opengis.parameter;
  * requested type. For example this exception is thrown when {@link ParameterValue#doubleValue()}
  * is invoked but the value is not convertible to a {@code double}.
  *
- * {@note This exception is of kind <code>IllegalStateException</code> instead than
- *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
- *        It is rather a consequence of a zero-argument method invoked in a context where
- *        is it not allowed.}
+ * <div class="note"><b>Note:</b>
+ * This exception is of kind {@code IllegalStateException} instead than {@code IllegalArgumentException}
+ * because it is not caused by a bad argument. It is rather a consequence of a zero-argument method invoked
+ * in a context where it is not allowed.</div>
  *
  * This exception is typically thrown by the following methods:
  * <ul>

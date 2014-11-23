@@ -39,7 +39,8 @@ import java.util.Locale;
  * Factory for {@linkplain GenericName generic names} and
  * {@linkplain InternationalString international strings}.
  *
- * {@note Despite the "<code>create</code>" name, implementations may return cached instances.}
+ * <div class="note"><b>Note:</b>
+ * Despite the "{@code create(…)}" method names, implementations may return cached instances.</div>
  *
  * @departure extension
  *   Added in order to provide constructors for <code>GenericName</code> and related interfaces.
