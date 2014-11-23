@@ -84,7 +84,7 @@ public interface MaintenanceInformation {
      * @return Scheduled revision date, or {@code null}.
      */
     @Deprecated
-    @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Date getDateOfNextUpdate();
 
     /**
@@ -115,7 +115,7 @@ public interface MaintenanceInformation {
      *             that includes a spatial and temporal extent.
      */
     @Deprecated
-    @UML(identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<ScopeCode> getUpdateScopes();
 
     /**
@@ -128,7 +128,7 @@ public interface MaintenanceInformation {
      *             that includes a spatial and temporal extent.
      */
     @Deprecated
-    @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends ScopeDescription> getUpdateScopeDescriptions();
 
     /**

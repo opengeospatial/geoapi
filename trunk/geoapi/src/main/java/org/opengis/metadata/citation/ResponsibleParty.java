@@ -57,7 +57,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  */
 @Deprecated
 @Classifier(Stereotype.DATATYPE)
-@UML(identifier="CI_ResponsibleParty", specification=ISO_19115)
+@UML(identifier="CI_ResponsibleParty", specification=ISO_19115, version=2003)
 public interface ResponsibleParty extends Responsibility {
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
@@ -71,7 +71,7 @@ public interface ResponsibleParty extends Responsibility {
      */
     @Deprecated
     @Profile(level=CORE)
-    @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     String getIndividualName();
 
     /**
@@ -86,7 +86,7 @@ public interface ResponsibleParty extends Responsibility {
      */
     @Deprecated
     @Profile(level=CORE)
-    @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getOrganisationName();
 
     /**
@@ -101,7 +101,7 @@ public interface ResponsibleParty extends Responsibility {
      */
     @Deprecated
     @Profile(level=CORE)
-    @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getPositionName();
 
     /**
@@ -112,7 +112,7 @@ public interface ResponsibleParty extends Responsibility {
      * @deprecated As of ISO 19115:2014, replaced by {@link Party#getContactInfo()}.
      */
     @Deprecated
-    @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Contact getContactInfo();
 
     /**

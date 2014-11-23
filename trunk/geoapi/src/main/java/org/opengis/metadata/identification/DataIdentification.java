@@ -81,7 +81,7 @@ public interface DataIdentification extends Identification {
      * @see Locale#lookup(List, Collection)
      */
     @Profile(level=CORE)
-    @UML(identifier="defaultLocale+otherLocale", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<Locale> getLanguages();
 
     /**

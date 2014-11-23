@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.annotation;
+package org.opengis;
 
 import java.io.*;
 import java.net.URI;
@@ -42,6 +42,8 @@ import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.ArrayList;
 import java.util.Collections;
+import org.opengis.annotation.UML;
+import org.opengis.annotation.Specification;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -49,13 +51,12 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Generates the list of every interfaces or {@linkplain org.opengis.util.CodeList code lists}
- * derived from an ISO specification. Then there is a choice:
+ * Verifications performed on all GeoAPI classes or interfaces.
  *
  * <ul>
- *   <li>If the {@value #INDEX_FILENAME} file exists, then its content will be compared with
- *       the generated index. Any difference found will cause test failure.</li>
- *   <li>If the {@value #INDEX_FILENAME} file does not exist, then it will be generated.</li>
+ *   <li>The {@link #verifyUML()} method verifies the values of all UML annotations.</li>
+ *   <li>The {@link #generateOrVerifyIndex()} method compares UML annotations against the content
+ *       of the {@value #INDEX_FILENAME} file.</li>
  * </ul>
  *
  * This class is designated for working with the Maven directory layout.
@@ -65,12 +66,12 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class ClassIndexTest implements FileFilter {
+public final strictfp class GlobalTest implements FileFilter {
     /**
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.
      */
-    public static final String INDEX_FILENAME = "class-index.properties";
+    public static final String INDEX_FILENAME = "annotation/class-index.properties";
 
     /**
      * The encoding to use for the {@value #INDEX_FILENAME} file. We use the default encoding
@@ -84,9 +85,55 @@ public final strictfp class ClassIndexTest implements FileFilter {
     private File targetDirectory;
 
     /**
-     * Verifies the index (if it exists) or generates the index (if it doesn't exist).
+     * Verifies the values of all UML annotations.
+     */
+    @Test
+    public void verifyUML() {
+        for (final Class<?> c : listClasses(UML.class)) {
+            final UML uml = c.getAnnotation(UML.class);
+            if (uml != null) {
+                final String identifier = uml.identifier().trim();
+                assertFalse("UML identifier is empty.", identifier.length() == 0);
+                /*
+                 * As a policy, we do not declare version numbers which are equal to the default version.
+                 * This make easier for users to identify methods derived from older standards.
+                 */
+                final short version = uml.version();
+                final short defaultVersion = uml.specification().defaultVersion();
+                assertFalse(identifier, version == defaultVersion);
+                /*
+                 * We expect deprecated methods to be legacy from older standards.
+                 * Consequently their version number shall not be the default one
+                 * (except if we have only one version, as in old OGC documents).
+                 */
+                if (c.isAnnotationPresent(Deprecated.class)) {
+                    if (identifier.equals("MD_CharacterSetCode")) {
+                        // Exception to the above rule for MD_CharacterSetCode because that code list has not been
+                        // removed by ISO 19115:2014 but GeoAPI nevertheless replaced it by java.nio.charset.Charset.
+                        continue;
+                    }
+                    if (defaultVersion != 1) {
+                        assertFalse(identifier, version == 0);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Verifies the class index (if it exists) or generates the class index (if it doesn't exist).
+     * First, this method get the list of every interface, enumeration or
+     * {@linkplain org.opengis.util.CodeList code list} derived from an OGC or ISO specification.
+     * Then there is a choice:
      *
-     * @throws IOException If an error occurred while reading the existing {@value #INDEX_FILENAME} file.
+     * <ul>
+     *   <li>If the {@value #INDEX_FILENAME} file exists, then its content will be compared with
+     *       the generated index. Any difference found will cause test failure.</li>
+     *   <li>If the {@value #INDEX_FILENAME} file does not exist, then it will be generated.</li>
+     * </ul>
+     *
+     * @throws IOException If an error occurred while reading the existing {@value #INDEX_FILENAME} file
+     *         or writing a new one.
      */
     @Test
     public void generateOrVerifyIndex() throws IOException {
@@ -101,7 +148,7 @@ public final strictfp class ClassIndexTest implements FileFilter {
         assertNull(merged.put("MD_Metadata",            "MI_Metadata"));
 
         final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111), merged);
-        final InputStream in = ClassIndexTest.class.getResourceAsStream(INDEX_FILENAME);
+        final InputStream in = GlobalTest.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
             assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +
                          "the content found be scanning the compiled classes.", index, load(in));
@@ -149,7 +196,7 @@ public final strictfp class ClassIndexTest implements FileFilter {
         if (file == null || !file.getName().equals("target")) {
             return "\"" + file + "\" is not a Maven target directory.";
         }
-        file = new File(file.getParentFile(), "src/main/resources/org/opengis/annotation");
+        file = new File(file.getParentFile(), "src/main/resources/org/opengis");
         if (!file.isDirectory()) {
             return "\"" + file + "\" is not a directory.";
         }

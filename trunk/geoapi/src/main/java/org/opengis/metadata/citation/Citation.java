@@ -169,7 +169,7 @@ public interface Citation {
      * @deprecated Removed as of ISO 19115:2014.
      */
     @Deprecated
-    @UML(identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getCollectiveTitle();
 
     /**

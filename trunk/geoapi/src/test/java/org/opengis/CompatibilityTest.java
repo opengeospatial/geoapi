@@ -61,14 +61,14 @@ import static org.junit.Assume.*;
  */
 public final class CompatibilityTest {
     /**
-     * The GeoAPI version used as a reference.
+     * The GeoAPI version used as a reference, which is {@value}.
      */
-    private static final String OLD_VERSION = "3.0.0";
+    public static final String OLD_VERSION = "3.0.0";
 
     /**
-     * The GeoAPI version to compare against the reference one.
+     * The GeoAPI version to compare against the reference one, which is {@value}.
      */
-    private static final String NEW_VERSION = "3.1-SNAPSHOT";
+    public static final String NEW_VERSION = "3.1-SNAPSHOT";
 
     /**
      * Filename extension of class files.

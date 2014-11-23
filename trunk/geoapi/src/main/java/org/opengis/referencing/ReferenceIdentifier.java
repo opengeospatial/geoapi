@@ -47,6 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @deprecated As of ISO 19115:2014, merged with its {@link Identifier} parent interface.
  */
 @Deprecated
-@UML(identifier="RS_Identifier", specification=ISO_19115)
+@UML(identifier="RS_Identifier", specification=ISO_19115, version=2003)
 public interface ReferenceIdentifier extends Identifier {
 }
