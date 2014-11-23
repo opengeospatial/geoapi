@@ -82,9 +82,11 @@ public final class AssociationType extends CodeList<AssociationType> {
 
     /**
      * Mapping and charting information from which the dataset content originates.
+     *
+     * @deprecated Removed in ISO 19115:2014.
      */
     @Deprecated
-    @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     public static final AssociationType SOURCE = new AssociationType("SOURCE");
 
     /**

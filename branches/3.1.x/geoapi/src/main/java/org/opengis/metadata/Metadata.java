@@ -91,7 +91,7 @@ public interface Metadata {
      *   in order to include the codespace attribute.
      */
     @Deprecated
-    @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     String getFileIdentifier();
 
     /**
@@ -124,7 +124,7 @@ public interface Metadata {
      * @since 3.1
      */
     @Profile(level=CORE)
-    @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<Locale> getLanguages();
 
     /**
@@ -135,7 +135,6 @@ public interface Metadata {
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
      */
     @Deprecated
-    @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115)
     Locale getLanguage();
 
     /**
@@ -148,7 +147,7 @@ public interface Metadata {
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
      */
     @Deprecated
-    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<Locale> getLocales();
 
     /**
@@ -185,7 +184,7 @@ public interface Metadata {
      * @since 3.1
      */
     @Profile(level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<Charset> getCharacterSets();
 
     /**
@@ -220,7 +219,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getParentMetadata()}.
      */
     @Deprecated
-    @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     String getParentIdentifier();
 
     /**
@@ -248,7 +247,7 @@ public interface Metadata {
      *   followed by {@link MetadataScope#getResourceScope()}.
      */
     @Deprecated
-    @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<ScopeCode> getHierarchyLevels();
 
     /**
@@ -263,7 +262,7 @@ public interface Metadata {
      *   followed by {@link MetadataScope#getName()}.
      */
     @Deprecated
-    @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<String> getHierarchyLevelNames();
 
     /**
@@ -306,7 +305,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getDates()}.
      */
     @Deprecated
-    @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Date getDateStamp();
 
     /**
@@ -318,7 +317,7 @@ public interface Metadata {
      *   followed by {@link Citation#getTitle()}.
      */
     @Deprecated
-    @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     String getMetadataStandardName();
 
     /**
@@ -331,7 +330,7 @@ public interface Metadata {
      */
     @Deprecated
     @Profile(level=CORE)
-    @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     String getMetadataStandardVersion();
 
     /**
@@ -393,7 +392,7 @@ public interface Metadata {
      *    {@link Identification#getCitation()} followed by {@link Citation#getOnlineResources()}.
      */
     @Deprecated
-    @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     String getDataSetUri();
 
     /**

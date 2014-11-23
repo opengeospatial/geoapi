@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @since   2.0
  */
 @Classifier(Stereotype.DATATYPE)
-@UML(identifier="DQ_Scope", specification=ISO_19115) // Actually ISO 19115:2003.
+@UML(identifier="DQ_Scope", specification=ISO_19115, version=2003)
 public interface Scope extends org.opengis.metadata.maintenance.Scope {
     /**
      * Hierarchical level of the data specified by the scope.
@@ -78,7 +78,7 @@ public interface Scope extends org.opengis.metadata.maintenance.Scope {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getExtents()}.
      */
     @Deprecated
-    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Extent getExtent();
 
     /**

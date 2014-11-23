@@ -72,7 +72,7 @@ public interface Format {
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getTitle() getTitle()}</code>.
      */
     @Deprecated
-    @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getSpecification();
 
     /**
@@ -86,7 +86,7 @@ public interface Format {
      */
     @Deprecated
     @Profile(level=CORE)
-    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115, version=2003)
     InternationalString getName();
 
     /**
@@ -99,7 +99,7 @@ public interface Format {
      */
     @Deprecated
     @Profile(level=CORE)
-    @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115, version=2003)
     InternationalString getVersion();
 
     /**

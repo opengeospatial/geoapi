@@ -85,7 +85,7 @@ public interface Telephone {
      *             with {@link TelephoneType#VOICE}.
      */
     @Deprecated
-    @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<String> getVoices();
 
     /**
@@ -99,6 +99,6 @@ public interface Telephone {
      *             with {@link TelephoneType#FACSIMILE}.
      */
     @Deprecated
-    @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<String> getFacsimiles();
 }

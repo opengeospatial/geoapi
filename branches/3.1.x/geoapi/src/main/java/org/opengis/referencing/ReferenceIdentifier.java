@@ -50,6 +50,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.1
  */
-@UML(identifier="RS_Identifier", specification=ISO_19115)
+@UML(identifier="RS_Identifier", specification=ISO_19115, version=2003)
 public interface ReferenceIdentifier extends Identifier {
 }
