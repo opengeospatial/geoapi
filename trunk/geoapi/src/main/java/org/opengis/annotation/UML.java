@@ -41,8 +41,8 @@ import static java.lang.annotation.RetentionPolicy.*;
 /**
  * An annotation mapping each interface, methods or fields to the UML identifier where they come from.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   2.0
  */
 @Documented
@@ -73,4 +73,31 @@ public @interface UML {
      * @return The originating specification.
      */
     Specification specification();
+
+    /**
+     * The version of the specification where this UML come from,
+     * or 0 for the {@linkplain Specification#defaultVersion() default version}.
+     * The valid version numbers are listed in {@link Specification} enumeration constants.
+     *
+     * <p><b>When older standard versions are used:</b></p>
+     * The vast majority of non-deprecated GeoAPI methods leave {@code UML.version()} to its default value,
+     * meaning that the {@code Specification} default version (usually latest OGC/ISO version) is used.
+     * However there is a few exceptions when an older version of an OGC or ISO standard is preferred.
+     * Examples:
+     *
+     * <ul>
+     *   <li>{@linkplain Specification#ISO_19115 ISO 19115}:2003 defined {@code PT_Locale} in a way closer
+     *       to the {@link java.util.Locale java.util.Locale} model than the newer ISO 19115:2014.</li>
+     *   <li>An {@linkplain Specification#ISO_19111 ISO 19111} revision by OGC defined geographic and geocentric CRS
+     *       in a more type-safe way than ISO 19111:2007. The later model requires C/C++ {@code union} construct for
+     *       type-safety, which does not exist in the Java language.</li>
+     * </ul>
+     *
+     * @return The specification version, or 0 for the default (usually latest) specification.
+     *
+     * @see Specification#defaultVersion()
+     *
+     * @since 3.1
+     */
+    short version() default 0;
 }
