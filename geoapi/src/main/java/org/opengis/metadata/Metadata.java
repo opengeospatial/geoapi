@@ -177,7 +177,7 @@ public interface Metadata {
      * @since 3.1
      */
     @Profile(level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003
+    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<Charset> getCharacterSets();
 
     /**

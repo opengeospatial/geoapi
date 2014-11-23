@@ -99,12 +99,12 @@ public final class Restriction extends CodeList<Restriction> {
     public static final Restriction LICENCE = new Restriction("LICENCE");
 
     /**
-     * Formal permission to do something.
+     * Formal permission to do something (ISO 19115:2003 spelling).
      *
      * @deprecated As of ISO 19115:2014, renamed {@link #LICENCE}.
      */
     @Deprecated
-    @UML(identifier="license", obligation=CONDITIONAL, specification=ISO_19115) // Actually from ISO 19115:2003.
+    @UML(identifier="license", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     public static final Restriction LICENSE = LICENCE;
 
     /**
