@@ -86,7 +86,7 @@ public interface Platform {
      *
      * @return Organization responsible for building, launch, or operation of the platform.
      */
-    @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2)
+    @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2, version=2003)
     Collection<? extends ResponsibleParty> getSponsors();
 
     /**

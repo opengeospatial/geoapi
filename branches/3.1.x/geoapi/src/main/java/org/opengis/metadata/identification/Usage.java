@@ -95,7 +95,7 @@ public interface Usage {
      *
      * @return Means of communicating with person(s) and organization(s) using the resource(s).
      */
-    @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getUserContactInfo();
 
     /**

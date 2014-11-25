@@ -223,6 +223,6 @@ public interface ExtendedElementInformation {
      *
      * @return Name of the person or organization creating the extended element.
      */
-    @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getSources();
 }

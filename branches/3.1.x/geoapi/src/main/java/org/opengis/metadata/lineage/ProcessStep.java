@@ -97,7 +97,7 @@ public interface ProcessStep {
      * @return Means of communication with person(s) and organization(s) associated
      *         with the process step.
      */
-    @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getProcessors();
 
     /**

@@ -95,7 +95,7 @@ public interface Identification {
     /**
      * Recognition of those who contributed to the resource.
      *
-     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * <div class="warning"><b>Upcoming API change — internationalization</b><br>
      * The return type will be changed to {@code Collection<? extends InternationalString>} in GeoAPI 4.0.
      * </div>
      *
@@ -126,7 +126,7 @@ public interface Identification {
      * @see org.opengis.metadata.Metadata#getContacts()
      */
     @Profile(level=CORE)
-    @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getPointOfContacts();
 
     /**
