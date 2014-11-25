@@ -32,6 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Date;
+import java.util.Currency;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
 import org.opengis.util.InternationalString;
@@ -46,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * and fee information.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_StandardOrderProcess", specification=ISO_19115)
@@ -54,15 +55,31 @@ public interface StandardOrderProcess {
     /**
      * Fees and terms for retrieving the resource.
      * Includes monetary units (as specified in ISO 4217).
+     * The monetary units may also be available with {@link #getCurrency()}.
      *
      * @return Fees and terms for retrieving the resource, or {@code null}.
-     *
-     * @see java.util.Currency
-     *
-     * @todo Do we add a {@code getCurrencies()} method, since {@code Currency} is ISO 4217 compliant?
      */
     @UML(identifier="fees", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFees();
+
+    /**
+     * The monetary units of the {@link #getFees() fees} (as specified in ISO 4217).
+     *
+     * <p><b>Constraints:</b><br>
+     * For ISO 19115 compatibility reasons, this method is <strong>not</strong> required to return
+     * a non-null value even if the text returned by {@link #getFees()} contains a currency units.
+     * However if this method returns a non-null value, then that value is required to be consistent
+     * with the fees text.</p>
+     *
+     * @departure integration
+     *   This method is not part of ISO specification. It has been added in GeoAPI for
+     *   integration with the standard JDK library.
+     *
+     * @return The fees monetary units, or {@code null} if none or unknown.
+     *
+     * @since 3.1
+     */
+    Currency getCurrency();
 
     /**
      * Date and time when the dataset will be available.
