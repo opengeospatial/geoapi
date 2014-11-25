@@ -157,6 +157,6 @@ public interface MaintenanceInformation {
      *
      * @since 2.1
      */
-    @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getContacts();
 }

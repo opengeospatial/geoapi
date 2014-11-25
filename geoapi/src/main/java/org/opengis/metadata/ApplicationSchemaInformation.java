@@ -95,7 +95,7 @@ public interface ApplicationSchemaInformation {
      *
      * @return Application schema as a graphics file, or {@code null}.
      */
-    @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     URI getGraphicsFile();
 
     /**
@@ -108,7 +108,7 @@ public interface ApplicationSchemaInformation {
      *
      * @return Application schema as a software development file, or {@code null}.
      */
-    @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     URI getSoftwareDevelopmentFile();
 
     /**

@@ -98,7 +98,7 @@ public interface ScopeDescription {
      *
      * @see ScopeCode#FEATURE_TYPE
      */
-    @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Set<? extends FeatureType> getFeatures();
 
     /**
@@ -122,7 +122,7 @@ public interface ScopeDescription {
      *
      * @see ScopeCode#ATTRIBUTE_TYPE
      */
-    @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Set<? extends AttributeType> getAttributes();
 
     /**
@@ -146,7 +146,7 @@ public interface ScopeDescription {
      *
      * @see ScopeCode#FEATURE
      */
-    @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Set<? extends FeatureType> getFeatureInstances();
 
     /**
@@ -172,7 +172,7 @@ public interface ScopeDescription {
      *
      * @see ScopeCode#ATTRIBUTE
      */
-    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Set<? extends AttributeType> getAttributeInstances();
 
     /**

@@ -63,7 +63,7 @@ public interface DataQuality {
      *
      * @return The specific data to which the data quality information applies.
      */
-    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Scope getScope();
 
     /**

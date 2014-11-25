@@ -59,7 +59,7 @@ public interface Distributor {
      *
      * @return Party from whom the resource may be obtained.
      */
-    @UML(identifier="distributorContact", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="distributorContact", obligation=MANDATORY, specification=ISO_19115, version=2003)
     ResponsibleParty getDistributorContact();
 
     /**

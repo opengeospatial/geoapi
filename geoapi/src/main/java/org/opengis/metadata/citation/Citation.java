@@ -135,7 +135,7 @@ public interface Citation {
      *
      * @return The information for an individual or organisation that is responsible, or an empty collection if none.
      */
-    @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getCitedResponsibleParties();
 
     /**
@@ -167,7 +167,7 @@ public interface Citation {
      *
      * @return Other details, or {@code null} if none.
      */
-    @UML(identifier="otherCitationDetails", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="otherCitationDetails", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getOtherCitationDetails();
 
     /**

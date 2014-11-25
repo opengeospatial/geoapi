@@ -78,7 +78,7 @@ public interface Requirement {
      *
      * @return Origin of requirement.
      */
-    @UML(identifier="requestor", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="requestor", obligation=MANDATORY, specification=ISO_19115_2, version=2003)
     Collection<? extends ResponsibleParty> getRequestors();
 
     /**
@@ -91,7 +91,7 @@ public interface Requirement {
      *
      * @return Person(s), or body(ies), to receive results.
      */
-    @UML(identifier="recipient", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="recipient", obligation=MANDATORY, specification=ISO_19115_2, version=2003)
     Collection<? extends ResponsibleParty> getRecipients();
 
     /**

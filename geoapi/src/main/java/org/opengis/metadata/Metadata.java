@@ -280,7 +280,7 @@ public interface Metadata {
      * @since 2.1
      */
     @Profile(level=CORE)
-    @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends ResponsibleParty> getContacts();
 
     /**
@@ -450,7 +450,7 @@ public interface Metadata {
      * @return The distributor of and options for obtaining the resource(s), or {@code null}.
      */
     @Profile(level=CORE)
-    @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Distribution getDistributionInfo();
 
     /**
