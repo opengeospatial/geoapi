@@ -38,6 +38,7 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19115;
+import static org.opengis.annotation.Specification.ISO_19115_2;
 
 
 /**
@@ -128,6 +129,19 @@ public interface SampleDimension extends RangeDimension {
     Double getOffset();
 
     /**
+     * Type of transfer function to be used when scaling a physical value for a given element.
+     *
+     * @departure harmonization
+     *   ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
+     *   for historical reasons. GeoAPI moves this property up in the hierarchy to a more natural place when
+     *   not constrained by historical reasons, which is together with the offset and scale factor.
+     *
+     * @return Type of transfer function.
+     */
+    @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
+    TransferFunctionType getTransferFunctionType();
+
+    /**
      * Maximum number of significant bits in the uncompressed representation for the value in each band of each pixel.
      * May be {@code null} if unspecified.
      *
@@ -136,6 +150,26 @@ public interface SampleDimension extends RangeDimension {
      */
     @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
     Integer getBitsPerValue();
+
+    /**
+     * Smallest distance between which separate points can be distinguished, as specified in instrument design.
+     *
+     * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
+     * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
+     * {@link javax.measure.quantity.Length} type in order to provide unit of measurement
+     * together with the value.
+     * </div>
+     *
+     * @departure harmonization
+     *   ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
+     *   for historical reasons. GeoAPI moves this property up in the hierarchy since this property can apply
+     *   to any sample dimension, not only the measurements in the electromagnetic spectrum.
+     *
+     * @return Smallest distance between which separate points can be distinguished.
+     * @unitof Distance
+     */
+    @UML(identifier="nominalSpatialResolution", obligation=OPTIONAL, specification=ISO_19115_2)
+    Double getNominalSpatialResolution();
 
     /**
      * Type of other attribute description.
