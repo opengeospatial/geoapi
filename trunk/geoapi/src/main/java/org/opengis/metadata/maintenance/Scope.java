@@ -63,8 +63,6 @@ public interface Scope {
      * Information about the spatial, vertical and temporal extents of the resource specified by the scope.
      *
      * @return Information about the extent of the resource.
-     *
-     * @since 3.1
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtents();
