@@ -35,6 +35,7 @@ import java.util.Set;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -164,5 +165,5 @@ public interface ScopeDescription {
      *            {@code attributeInstances} and {@code dataset} not provided.
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
-    String getOther();
+    InternationalString getOther();
 }
