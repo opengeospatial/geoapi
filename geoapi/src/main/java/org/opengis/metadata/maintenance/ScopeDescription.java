@@ -37,6 +37,7 @@ import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
+import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -177,6 +178,10 @@ public interface ScopeDescription {
 
     /**
      * Class of information that does not fall into the other categories to which the information applies.
+     *
+     * <div class="warning"><b>Upcoming API change — internationalization</b><br>
+     * The return type will be changed from {@code String} to {@code InternationalString} in GeoAPI 4.0.
+     * </div>
      *
      * @return Class of information that does not fall into the other categories, or {@code null}.
      *

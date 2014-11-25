@@ -68,14 +68,6 @@
  *  └─ {@linkplain org.opengis.metadata.Identifier}</pre>
  * </td></tr></table>
  *
- * @departure harmonization
- *   Omitted the reference system package, since it duplicates ISO 19111 / OGC Topic 2.
- *   This follows the lead of ISO 19111, which states:
- *
- *   <blockquote>"Normative reference to ISO 19115 is restricted as follows: in this international
- *   standard, normative reference to ISO 19115 excludes the <code>MD_CRS</code> class and its components
- *   classes." <i><font size=-1>(ISO 19111:2007, section 3 "Normative References")</font></i></blockquote>
- *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1

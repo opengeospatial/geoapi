@@ -112,37 +112,6 @@ public interface Band extends SampleDimension {
     Integer getToneGradation();
 
     /**
-     * Smallest distance between which separate points can be distinguished, as specified in instrument design.
-     *
-     * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
-     * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
-     * {@link javax.measure.quantity.Length} type in order to provide unit of measurement
-     * together with the value.
-     * </div>
-     *
-     * @todo Move to {@link SampleDimension} parent type, since this information is not specific to bands?
-     *
-     * @return Smallest distance between which separate points can be distinguished.
-     * @unitof Distance
-     *
-     * @since 2.3
-     */
-    @UML(identifier="nominalSpatialResolution", obligation=OPTIONAL, specification=ISO_19115_2)
-    Double getNominalSpatialResolution();
-
-    /**
-     * Type of transfer function to be used when scaling a physical value for a given element.
-     *
-     * @return Type of transfer function.
-     *
-     * @since 2.3
-     *
-     * @todo Move to {@link SampleDimension} parent type, since this information is used together with scale and offset?
-     */
-    @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
-    TransferFunctionType getTransferFunctionType();
-
-    /**
      * Polarization of the radiation transmitted.
      *
      * @return Polarization of the radiation transmitted.
