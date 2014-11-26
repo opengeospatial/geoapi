@@ -162,7 +162,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
     }
 
     /**
-     * Tests the {@link ToleranceModifiers.Maximum} implementation.
+     * Tests the {@code ToleranceModifiers.Maximum} implementation.
      */
     @Test
     public void testMaximum() {
@@ -182,7 +182,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
     }
 
     /**
-     * Tests the {@link ToleranceModifiers.Concatenate} implementation.
+     * Tests the {@code ToleranceModifiers.Concatenate} implementation.
      */
     @Test
     public void testConcatenate() {

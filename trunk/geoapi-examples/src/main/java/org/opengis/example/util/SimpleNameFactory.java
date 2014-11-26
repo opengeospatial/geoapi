@@ -39,10 +39,11 @@ public class SimpleNameFactory implements NameFactory {
     /**
      * The JNDI syntax of names. By default, this map contains the following entries:
      *
-     * <p><code><table>
+     * <table class="ogc">
+     *   <caption>JNDI properties</caption>
      *   <tr><td>"jndi.syntax.direction"</td> <td>=</td> <td>"left_to_right"</td></tr>
      *   <tr><td>"jndi.syntax.separator"</td> <td>=</td> <td>":"</td></tr>
-     * </table></code></p>
+     * </table>
      *
      * Subclasses can modify this map in their constructor. This map shall not be modified
      * after construction, because it will be passed by direct reference (no clone) to JNDI
@@ -122,6 +123,7 @@ public class SimpleNameFactory implements NameFactory {
      * This factory recognizes the properties listed in the following table:
      *
      * <table class="ogc">
+     *   <caption>Namespace properties</caption>
      *   <tr>
      *     <th nowrap>Property name</th>
      *     <th nowrap>Purpose</th>
@@ -134,7 +136,7 @@ public class SimpleNameFactory implements NameFactory {
      * </table>
      */
     @Override
-    public NameSpace createNameSpace(final GenericName name, final Map<String, ?> properties) {
+    public NameSpace createNameSpace(final GenericName name, final Map<String,?> properties) {
         SimpleNameFactory factory = this;
         if (properties != null) {
             String separator = (String) properties.get("separator");

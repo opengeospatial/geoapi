@@ -517,6 +517,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:3002 (<cite>Makassar / NEIEZ</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Mercator (variant A)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -537,6 +538,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:3388 (<cite>Pulkovo 1942 / Caspian Sea Mercator</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Mercator (variant B)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -558,6 +560,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:3857 (<cite>WGS 84 / Pseudo-Mercator</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Mercator Popular Visualisation Pseudo Mercator</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -578,6 +581,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the IGNF:MILLER (unofficial EPSG:310642901 code) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Miller</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -598,6 +602,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:29873 (<cite>Timbalai 1948 / RSO Borneo (m)</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Hotine Oblique Mercator (variant B)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -618,6 +623,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:27700 (<cite>OSGB 1936 / British National Grid</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Transverse Mercator</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -638,6 +644,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:2314 (<cite>Trinidad 1903 / Trinidad Grid</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Cassini-Soldner</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -659,6 +666,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:24200 (<cite>JAD69 / Jamaica National Grid</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (1SP)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -679,6 +687,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:32040 (<cite>NAD27 / Texas South Central</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (2SP)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -700,6 +709,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:31300 (<cite>Belge 1972 / Belge Lambert 72</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -720,6 +730,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:3035 (<cite>ETRS89 / LAEA Europe</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Lambert Azimuthal Equal Area</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -741,6 +752,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:5041 (<cite>WGS 84 / UPS North (E,N)</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Polar Stereographic (variant A)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -763,6 +775,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * This CRS is identical to EPSG:5041 except for axis order.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Polar Stereographic (variant A)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -785,6 +798,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:3032 (<cite>WGS 84 / Australian Antarctic Polar Stereographic</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Polar Stereographic (variant B)</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -806,6 +820,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:28992 (<cite>Amersfoort / RD New</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Oblique Stereographic</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
@@ -826,6 +841,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * Tests the EPSG:2065 (<cite>CRS S-JTSK (Ferro) / Krovak</cite>) projected CRS.
      *
      * <table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><td>Projection method:</td> <td>Krovak</td></tr>
      * <tr><td>Prime meridian:</td>    <td>Ferro <strong>(17°40'W from Greenwich)</strong></td></tr>
      * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>

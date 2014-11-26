@@ -55,6 +55,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * automatically generated for the {@code "COUNT.*"} and {@code "PERCENT.*"} entries.</p>
  *
  * <table class="ogc">
+ *   <caption>Report properties</caption>
  *   <tr><th>Key</th>                            <th align="center">Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>                  <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>            <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>

@@ -78,11 +78,11 @@ public interface FeatureAssociation extends Property {
     /**
      * Sets the associated feature.
      *
-     * <blockquote><font size="-1"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation:</b>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.
-     * Implementations should document their validation process.</font></blockquote>
+     * Implementations should document their validation process.</div>
      *
      * @param  value The new value, or {@code null}.
      * @throws IllegalArgumentException if this method verifies argument validity and the given value
@@ -95,7 +95,7 @@ public interface FeatureAssociation extends Property {
     /**
      * Returns all features, or an empty collection if none.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * there is different approaches in the way that collection elements are related to this property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
@@ -104,7 +104,7 @@ public interface FeatureAssociation extends Property {
      * </ul>
      * This method does not mandate a particular approach.
      * However implementations should document which policy they choose.
-     * </font></blockquote>
+     * </div>
      *
      * @return The features.
      */
@@ -113,11 +113,11 @@ public interface FeatureAssociation extends Property {
     /**
      * Sets the features. All previous values are replaced by the given collection.
      *
-     * <blockquote><font size="-1"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation:</b>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.
-     * Implementations should document their validation process.</font></blockquote>
+     * Implementations should document their validation process.</div>
      *
      * @param  values The new values.
      * @throws IllegalArgumentException if this method verifies argument validity and the given value

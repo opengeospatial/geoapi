@@ -72,7 +72,7 @@ public interface Property {
      * Returns the value or content of the property, or {@code null} if none.
      * <ul>
      *   <li>If this property is an {@link Attribute}, then the returned object may be an instance of any Java class
-     *       assignable to {@link Attribute#getValueClass()}.</li>
+     *       assignable to {@link AttributeType#getValueClass()}.</li>
      *   <li>If this property is an {@link FeatureAssociation}, then the returned object is a {@link Feature}.</li>
      * </ul>
      *

@@ -68,11 +68,11 @@ public interface GraphicsContainer<G extends Graphic> {
      * removal) are reflected into the set of graphics to be rendered. Note that the returned
      * collection must notifies the {@linkplain ContainerListener GraphicsContainer listener} about any
      * addition or removal.
-     * <p>
-     * When new graphics are {@linkplain Collection#add added}, implementations shall respect
-     * the <var>z</var>-order retrieved by calling {@link Graphic#getZOrderHint()}. When two
+     *
+     * <p>When new graphics are {@linkplain Collection#add added}, implementations shall respect
+     * the <var>z</var>-order. When two
      * added graphics have the same <var>z</var>-order, the most recently added one should be
-     * on top.
+     * on top.</p>
      *
      * @return Collection of all graphics, as a live collection.
      */

@@ -58,13 +58,13 @@ public interface Solid extends Primitive {
      * boundary component of this {@code Solid}. Each of these shells shall be a cycle
      * (closed composite surface without boundary).
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> The exterior shell of a solid is defined only because the embedding
+     * <div class="note"><b>Note:</b>
+     * The exterior shell of a solid is defined only because the embedding
      * coordinate space is always a 3D Euclidean one. In general, a solid in a bounded 3-dimensional
      * manifold has no distinguished exterior boundary. In cases where "exterior" boundary is not
      * well defined, all the shells of the {@linkplain SolidBoundary solid boundary} shall be
      * listed as "interior".
-     * </font></blockquote>
+     * </div>
      *
      * The {@linkplain OrientableSurface orientable surfaces} that bound a solid shall be oriented
      * outward - that is, the "top" of each {@linkplain Surface surface} as defined by its orientation

@@ -107,7 +107,7 @@ public enum Classification {
      * Intended for software with a full capability to perform coordinate operations.
      * This level indicates that the software establishes and maintains geospatial
      * integrity to a fully satisfactory degree, based on industry best practices.
-     * The software is suitable for global deployment in the E&P industry.
+     * The software is suitable for global deployment in the E&amp;P industry.
      *
      * <ul>
      *   <li><b>Completeness:</b><ul>

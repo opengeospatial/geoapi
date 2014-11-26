@@ -38,7 +38,7 @@ import org.opengis.annotation.XmlParameter;
 
 /**
  * Contains all the information needed to draw styled lines.  Stroke objects are contained
- * by {@link LineSymbol}s and {@link PolygonSymbol}s. There are three basic types of strokes:
+ * by {@link LineSymbolizer} and {@link PolygonSymbolizer}. There are three basic types of strokes:
  * solid-color, {@code GraphicFill} (stipple), and repeated linear {@code GraphicStroke}. A
  * repeated linear graphic is plotted linearly and has its graphic symbol bent around the curves
  * of the line string, and a graphic fill has the pixels of the line rendered with a repeating

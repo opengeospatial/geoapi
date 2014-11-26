@@ -48,8 +48,8 @@ import static org.opengis.annotation.Obligation.*;
  * feature-detection applications the initial observation may be made on a scene, but the
  * detected entity, which is the ultimate feature of interest, occupies some location within it.
  * The distinction between the proximate and ultimate feature of interest is a key
- * consideration in these cases (see sub-clauses 6.3.1 and O&M-Part 2).
- * 
+ * consideration in these cases (see sub-clauses 6.3.1 and O&amp;M-Part 2).
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/om">Implementation specification 1.0</A>
  * @author Open Geospatial Consortium
  * @author Guilhem Legal (Geomatys)
@@ -69,5 +69,5 @@ public interface Location {
      */
     @UML(identifier="nameLocation", obligation=MANDATORY, specification=OGC_07022)
     GeographicDescription getNameLocation();
-    
+
 }

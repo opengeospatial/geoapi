@@ -33,30 +33,30 @@ package org.opengis.filter.capability;
 
 import java.util.Collection;
 
+
 /**
  * Indicates support for the named temporal operator.
- * 
+ *
  * <pre>
- * &lt;complexType name="TemporalOperatorType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="TemporalOperands" type="{http://www.opengis.net/fes/2.0}TemporalOperandsType" minOccurs="0"/>
- *       &lt;/sequence>
- *       &lt;attribute name="name" use="required" type="{http://www.opengis.net/fes/2.0}TemporalOperatorNameType" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="TemporalOperatorType&lt;
+ *   &lt;complexContent&lt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&lt;
+ *       &lt;sequence&lt;
+ *         &lt;element name="TemporalOperands" type="{http://www.opengis.net/fes/2.0}TemporalOperandsType" minOccurs="0"/&lt;
+ *       &lt;/sequence&lt;
+ *       &lt;attribute name="name" use="required" type="{http://www.opengis.net/fes/2.0}TemporalOperatorNameType" /&lt;
+ *     &lt;/restriction&lt;
+ *   &lt;/complexContent&lt;
+ * &lt;/complexType&lt;
  * </pre>
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 3.1
  */
 public interface TemporalOperator extends Operator {
-
     /**
-     * The operands accepted by this temporal operator. 
+     * The operands accepted by this temporal operator.
      */
     Collection<TemporalOperand> getTemporalOperands();
 }

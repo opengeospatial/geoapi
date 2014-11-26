@@ -33,6 +33,8 @@ package org.opengis.geometry.coordinate;
 
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Draft;
+import org.opengis.geometry.DirectPosition;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.Obligation.*;
@@ -43,14 +45,14 @@ import static org.opengis.annotation.Obligation.*;
  * to determine the differences in the order in which a {@link CoordinateSystem} axes are defined
  * and the order in which they are used in a {@link DirectPosition}.
  *
- * <blockquote><font size="-1"><b>Note:</b>
+ * <div class="note"><b>Note:</b>
  * This is helpful, because forcing the {@linkplain CoordinateReferenceSystem coordinate reference system}
  * to be in the {@link CoordinateSystem} as the first coordinate offsets will often force the system
  * to be left handed. Using a odd-permutation on the spatial offsets will flip this to a right handed
  * system, and allow graphics-based or engineering-based software to deal with coordinate as stored
  * in the {@link DirectPosition} without the worry of mirror images, which is the result of getting
  * the handedness of a coordinate system wrong. The usual permutation with simply flip the first and
- * second offset.</font></blockquote>
+ * second offset.</div>
  *
  * @author  Axel Francois (LSIS/Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
@@ -67,14 +69,14 @@ public interface Permutation {
      * than the cardinality of the array. If the array length is less than the dimension of the
      * coordinate, then all offsets beyond the length of the array will be unmoved by the permutation.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * Because of its definition, the {@code newOrder} array will normally be a rearrangement
      * of the integer between 0 and <var>n</var>-1 where <var>n</var> is the dimension of the
      * {@link CoordinateSystem} in which the permutation appears. Since the most common issue
      * is that the use of “lat-long” is left handed, the most common new order will be (1, 0)
      * which simply flips the order of the latitude and longitude offsets of a geographic
      * coordinate system.
-     * </font></blockquote>
+     * </div>
      *
      * @return Returns a new order or the same order as in {@link DirectPosition}.
      */
@@ -87,12 +89,12 @@ public interface Permutation {
      * transposition (2 element swaps). Even permutation preserve handedness and odd
      * ones do not.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * Under usual circumstances, the only reason to use a permutation is to change
      * a spatial {@linkplain CoordinateReferenceSystem coordinate reference system}
      * from left handed to right handedness. A {@code null} permutation is even,
      * and the usual (1, 0) swap is odd (1 transposition).
-     * </font></blockquote>
+     * </div>
      *
      * @return {@code true} if permutation is even, or {@code false} if odd.
      */

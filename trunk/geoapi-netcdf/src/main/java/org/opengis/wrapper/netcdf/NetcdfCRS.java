@@ -464,7 +464,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * Returns the transform from grid coordinates to this CRS coordinates, or {@code null} if
      * none. If this CRS is regular and two-dimensional, then the returned transform is also an
-     * instance of Java2D {@link java.awt.geom.AffineTransform}.</li>
+     * instance of Java2D {@link java.awt.geom.AffineTransform}.
     *
     * <p><b>Limitation</b><br>
      * Current implementation can build a transform only for regular coordinate systems.

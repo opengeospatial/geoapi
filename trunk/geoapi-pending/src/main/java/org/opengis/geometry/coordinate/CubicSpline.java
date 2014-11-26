@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  * changes in such a manner that the 1<sup>st</sup> and 2<sup>nd</sup> derivative vectors are
  * the same from either side. The control parameters record must contain
  * {@link #getVectorAtStart vectorAtStart}, and {@link #getVectorAtEnd vectorAtEnd}
- * which are the unit tangent vectors at {@code controlPoint[0]} and <code>controlPoint[n]</coded>
+ * which are the unit tangent vectors at {@code controlPoint[0]} and {@code controlPoint[n]}
  * where <var>n</var> = {@code controlPoint.length-1}.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>

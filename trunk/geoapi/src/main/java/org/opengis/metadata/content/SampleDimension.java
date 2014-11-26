@@ -81,8 +81,8 @@ public interface SampleDimension extends RangeDimension {
      * Number of values used in a thematic classification resource.
      * May be {@code null} if unspecified.
      *
-     * <blockquote><font size="-1"><b>Example:</b> the number of classes in a Land Cover Type coverage
-     * or the number of cells with data in other types of coverages.</font></blockquote>
+     * <div class="note"><b>Example:</b> the number of classes in a Land Cover Type coverage
+     * or the number of cells with data in other types of coverages.</div>
      *
      * @return The number of values used in a thematic classification resource, or {@code null} if none.
      */

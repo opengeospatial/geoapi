@@ -37,11 +37,11 @@ import org.opengis.referencing.operation.CoordinateOperation;
 
 /**
  * This is an abstract supertype used to form the Positioning association between {@link Grid} and
- * either {@link RectifiedGrid} or {@link ReferencableGrid}.  Implementors should never make an
+ * either {@link RectifiedGrid} or {@link ReferenceableGrid}.  Implementors should never make an
  * instantiable implementation of this interface.  The two child interfaces represent different
  * levels of complexity for the referencing of gridded data.  A {@link RectifiedGrid} object is
  * capable of transforming coordinates through a simple affine transformation.
- * A {@link ReferencableGrid} object encapsulates an operation of arbitrary complexity.
+ * A {@link ReferenceableGrid} object encapsulates an operation of arbitrary complexity.
  * This type does not exist in ISO 19123.
  *
  * @author  Alexander Petkov
@@ -70,7 +70,8 @@ public interface GridPositioning {
      * coordinate operation it implements.  A {@link RectifiableGrid} (or child thereof) will
      * be associated with a coordinate conversion operation, and a {@link ReferenceableGrid}
      * will be associated with a coordinate transformation operation.  All operations include
-     * a reference to a {@link MathTransform} object, which actually performs the corodinate
+     * a reference to a {@link org.opengis.referencing.operation.MathTransform} object, which
+     * actually performs the coordinate
      * conversion.  The {@code targetCRS} association of the operation attribute is considered
      * mandatory in this context.
      *
@@ -81,9 +82,10 @@ public interface GridPositioning {
     /**
      * Associates this {@code GridPositioning} object with descriptive information about the
      * coordinate operation it implements.  A {@link RectifiableGrid} (or child thereof) will
-     * be associated with a coordinate conversion operation, and a {@link ReferencableGrid}
+     * be associated with a coordinate conversion operation, and a {@link ReferenceableGrid}
      * will be associated with a coordinate transformation operation.  All operations include
-     * a reference to a {@link MathTransform} object, which actually performs the corodinate
+     * a reference to a {@link org.opengis.referencing.operation.MathTransform} object, which
+     * actually performs the coordinate
      * conversion.  The {@code targetCRS} association of the {@code inverseOperation} attribute
      * is considered mandatory in this context.  This attribute shall represent the {@link CoordinateOperation}
      * which is the inverse of the operation attribute.

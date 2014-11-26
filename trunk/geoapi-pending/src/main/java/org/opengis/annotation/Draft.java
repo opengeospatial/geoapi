@@ -43,9 +43,9 @@ import static java.lang.annotation.RetentionPolicy.*;
  * is temporary by essence, since it is removed after the specification has been approved.
  * For this reason, this annotation will never move to the <cite>GeoAPI normative</cite>
  * module; it will stay in the <cite>GeoAPI pending</cite> module forever.
- * <p>
- * This annotation is used together with the following {@link UML#specification()} values:
- * <p>
+ *
+ * <p>This annotation is used together with the following {@link UML#specification()} values:</p>
+ *
  * <ul>
  *   <li>{@link Specification#ISO_19107}: for geometric objects derived from the ISO 19107:2008 draft.</li>
  *   <li>{@link Specification#ISO_19115}: for metadata objects derived from the ISO 19115:2011 draft.</li>

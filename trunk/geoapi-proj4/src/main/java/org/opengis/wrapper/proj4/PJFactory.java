@@ -84,6 +84,7 @@ public class PJFactory implements Factory {
      * implementation uses only the following properties:
      *
      * <table class="ogc">
+     *   <caption>Recognized properties</caption>
      *   <tr>
      *     <th nowrap>Property name</th>
      *     <th nowrap>Value type</th>

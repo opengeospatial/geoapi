@@ -35,16 +35,18 @@
 package org.opengis.geometry.aggregate;
 
 import java.util.Set;
+import org.opengis.geometry.primitive.Curve;
 import org.opengis.geometry.primitive.Point;
 import org.opengis.geometry.primitive.Primitive;
 import org.opengis.geometry.primitive.OrientableCurve;
 import org.opengis.geometry.primitive.OrientableSurface;
+import org.opengis.geometry.primitive.Surface;
 
 
 /**
  * A factory of {@linkplain Aggregate aggregate} geometric objects.
  * All aggregates created through this interface will use the
- * {@linkplain #getCoordinateReferenceSystem factory's coordinate reference system}.
+ * factory's coordinate reference system.
  * Creating aggregates in a different CRS may requires a different instance of
  * {@code AggregateFactory}.
  *
@@ -62,7 +64,7 @@ public interface AggregateFactory {
      * e.g. changes in the primitive instances will have consequences in the
      * geometric behaviour of the {@code MultiPrimitive} and vice versa.
      *
-     * @param points A set of primitives.
+     * @param primitives A set of primitives.
      * @return the resulting multi primitive.
      */
     MultiPrimitive createMultiPrimitive(Set<Primitive> primitives);
@@ -90,7 +92,7 @@ public interface AggregateFactory {
     MultiCurve createMultiCurve(Set<OrientableCurve> curves);
 
     /**
-     * Creates a {@linkplain MultiSurface multi surface} by a set of {@linkplain Surface surfaces}.
+     * Creates a {@linkplain MultiSurface multi-surface} by a set of {@linkplain Surface surfaces}.
      * The created {@code MultiSurface} will hold only references to the given surfaces,
      * e.g. changes in the surface instances will have consequences in the
      * geometric behaviour of the {@code MultiSurface} and vice versa.

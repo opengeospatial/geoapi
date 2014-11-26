@@ -33,17 +33,12 @@ package org.opengis.filter.identity;
 
 /**
  * An object identifier.
- * <p>
  * This class is an abstract base for identifiers. Some known identifiers are:
  * <ul>
  *   <li>FeatureId</li>
  *   <li>GMLObjectId</li>
  *   <li>RecordId</li>
  * </ul>
- * </p>
- *
- * @param <T> The type of the identifier itself.
- * @param <O> The type of objects to be identified.
  *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Jody Garnett (Refractions Research)
@@ -70,18 +65,18 @@ public interface Identifier {
      */
     @Override
     public boolean equals(Object obj);
-    
+
     /**
      * Identifier is a data object, hashCode is based just on getID()
      * @return hashCode based on getID()
      */
     @Override
     public int hashCode();
-    
+
     /**
      * Returns a string representation of the identifier.
      * @return getID().toString()
      */
-    @Override 
+    @Override
     String toString();
 }

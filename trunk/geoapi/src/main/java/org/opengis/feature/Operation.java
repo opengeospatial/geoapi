@@ -49,8 +49,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
  *   <li>Perform actions that change the attribute values.</li>
  * </ul>
  *
- * <blockquote><font size="-1"><b>Example:</b> a mutator operation may raise the height of a dam. This changes
- * may affect other properties like the watercourse and the reservoir associated with the dam.</font></blockquote>
+ * <div class="note"><b>Example:</b> a mutator operation may raise the height of a dam. This changes
+ * may affect other properties like the watercourse and the reservoir associated with the dam.</div>
  *
  * This {@code Operation} type is used for defining the required parameters and expected result.
  *

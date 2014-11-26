@@ -153,7 +153,7 @@ public interface Metadata {
      * The character coding standard used for the metadata set.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
-     * <blockquote><font size="-1"><b>Examples:</b>
+     * <div class="note"><b>Examples:</b>
      * {@code UCS-2}, {@code UCS-4}, {@code UTF-7}, {@code UTF-8}, {@code UTF-16},
      * {@code ISO-8859-1} (a.k.a. {@code ISO-LATIN-1}), {@code ISO-8859-2}, {@code ISO-8859-3}, {@code ISO-8859-4},
      * {@code ISO-8859-5}, {@code ISO-8859-6}, {@code ISO-8859-7}, {@code ISO-8859-8}, {@code ISO-8859-9},
@@ -161,7 +161,7 @@ public interface Metadata {
      * {@code ISO-8859-15}, {@code ISO-8859-16},
      * {@code JIS_X0201}, {@code Shift_JIS}, {@code EUC-JP}, {@code US-ASCII}, {@code EBCDIC}, {@code EUC-KR},
      * {@code Big5}, {@code GB2312}.
-     * </font></blockquote>
+     * </div>
      *
      * @return Character coding standards used for the metadata.
      *

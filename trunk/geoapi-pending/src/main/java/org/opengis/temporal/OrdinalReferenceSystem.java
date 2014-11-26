@@ -38,11 +38,11 @@ import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 /**
- * <p>An {@linkplain OrdinalReferenceSystem ordinal temporal reference system} consists 
- * of a set or {@linkplain OrdinalEra ordinal era (period)}.<br/>
- * {@linkplain OrdinalReferenceSystem ordinal reference system} are often hierarchically 
- * structured such that an {@link OrdinalEra} at a given level of the hierarchy include 
- * a sequence of coterminous shorter {@link OrdinalEra}.</p>
+ * An {@linkplain OrdinalReferenceSystem ordinal temporal reference system} consists
+ * of a set or {@linkplain OrdinalEra ordinal era (period)}.
+ * {@linkplain OrdinalReferenceSystem ordinal reference system} are often hierarchically
+ * structured such that an {@link OrdinalEra} at a given level of the hierarchy include
+ * a sequence of coterminous shorter {@link OrdinalEra}.
  *
  * @author Alexander Petkov
  * @author Martin Desruisseaux (Geomatys)
@@ -51,10 +51,10 @@ import static org.opengis.annotation.Specification.*;
  * @version 4.0
  */
 public interface OrdinalReferenceSystem extends TemporalReferenceSystem {
-    
+
     /**
      * Returns {@linkplain OrdinalEra ordinal era} sequence that make up the highest level of this ordinal reference system.
-     * 
+     *
      * @return {@linkplain OrdinalEra ordinal era} sequence that make up the highest level of this ordinal reference system.
      * @since 4.0
      */

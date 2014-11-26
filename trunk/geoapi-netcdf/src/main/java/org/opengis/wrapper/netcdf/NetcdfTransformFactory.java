@@ -39,6 +39,7 @@ import org.opengis.referencing.operation.*;
  * "{@code standard_parallel}" parameter are arrays of length up to 2).
  *
  * <table cellspacing="0" cellpadding="0">
+ *   <caption>Projection parameter names</caption>
  *   <tr><th>NetCDF</th><th>OGC</th><th>EPSG</th></tr>
  *   <tr><td colspan="3"><hr></td></tr>
  *   <tr><td>&nbsp;&nbsp;<i>{@linkplain AlbersEqualArea}</i></td><td>&nbsp;&nbsp;<i>Albers_Conic_Equal_Area</i></td><td>&nbsp;&nbsp;<i>Albers Equal Area</i></td></tr>

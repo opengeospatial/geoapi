@@ -88,11 +88,11 @@ public interface NameFactory extends Factory {
      *   </tr>
      * </table></blockquote>
      *
-     * <blockquote><font size="-1"><b>Examples:</b>
+     * <div class="note"><b>Examples:</b>
      * <ul>
      *   <li>For URN namespace, {@code separator} = {@code ":"} is typically sufficient.</li>
      *   <li>For HTTP namespace, {@code separator.head} = {@code "://"} and {@code separator} = {@code "."}.</li>
-     * </ul></font></blockquote>
+     * </ul></div>
      *
      * @param name
      *          The name of the namespace to be returned. This argument can be created using

@@ -546,7 +546,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Encapsulates the {@linkplain #getIdentifiers() identifiers},
+     * Encapsulates the data identifiers,
      * {@linkplain #getCitation() creator} and other information.
      */
     @Override
@@ -600,7 +600,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Encapsulates the {@linkplain #getTitle() title}, {@linkplain #getCitedResponsibleParties() creator}
+     * Encapsulates the {@linkplain #getTitle() title}, {@linkplain #getPointOfContacts() creator}
      * and {@linkplain #getDatasetDate() data creation time}.
      *
      * @return {@code this}.

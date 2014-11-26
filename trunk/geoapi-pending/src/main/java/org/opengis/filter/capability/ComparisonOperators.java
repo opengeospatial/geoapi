@@ -35,27 +35,25 @@ import java.util.Collection;
 
 /**
  * Supported comparison operators in a filter capabilities document.
- * <p>
- * <pre>
- * &lt;xsd:complexType name="ComparisonOperatorsType">
- *     &lt;xsd:sequence maxOccurs="unbounded">
- *        &lt;xsd:element name="ComparisonOperator" type="ogc:ComparisonOperatorType"/>
- *     &lt;/xsd:sequence>
- *  &lt;/xsd:complexType>
- * </pre>
- * </p>
- * @author Justin Deoliveira, The Open Planning Project
  *
+ * <pre>
+ * &lt;xsd:complexType name="ComparisonOperatorsType"&lt;
+ *     &lt;xsd:sequence maxOccurs="unbounded"&lt;
+ *        &lt;xsd:element name="ComparisonOperator" type="ogc:ComparisonOperatorType"/&lt;
+ *     &lt;/xsd:sequence&lt;
+ *  &lt;/xsd:complexType&lt;
+ * </pre>
+ *
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface ComparisonOperators {
 
     /**
      * Provided comparison operators.
-     * <p>
+     *
      *  <pre>
-     *  &lt;xsd:element name="ComparisonOperator" type="ogc:ComparisonOperatorType"/>
+     *  &lt;xsd:element name="ComparisonOperator" type="ogc:ComparisonOperatorType"/&lt;
      *  </pre>
-     * </p>
      */
     Collection<Operator> getOperators();
 

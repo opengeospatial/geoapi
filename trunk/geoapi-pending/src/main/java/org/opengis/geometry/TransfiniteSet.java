@@ -55,12 +55,12 @@ public interface TransfiniteSet {
      * equivalent of a set-element test for the {@linkplain DirectPosition direct position}
      * of that point within this {@code TransfiniteSet}.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> {@code contains} is strictly a set theoretic containment,
+     * <div class="note"><b>Note:</b>
+     * {@code contains} is strictly a set theoretic containment,
      * and has no dimensionality constraint. In a {@linkplain org.opengis.geometry.complex.Complex
      * complex}, no {@linkplain org.opengis.geometry.primitive.Primitive primitive} will contain
      * another unless a dimension is skipped.
-     * </font></blockquote>
+     * </div>
      *
      * @param  pointSet The set to be checked for containment in this set.
      * @return {@code true} if this set contains all of the elements of the specified set.
@@ -83,8 +83,8 @@ public interface TransfiniteSet {
      * In general, topologically structured data uses shared geometric objects to
      * capture intersection information.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> This intersect is strictly a set theoretic common containment of
+     * <div class="note"><b>Note:</b>
+     * This intersect is strictly a set theoretic common containment of
      * {@linkplain DirectPosition direct positions}.
      * Two {@linkplain org.opengis.geometry.primitive.Curve curves} do not intersect if they share a common
      * end point because {@linkplain org.opengis.geometry.primitive.Primitive primitives} are considered to be
@@ -92,7 +92,7 @@ public interface TransfiniteSet {
      * If two {@linkplain org.opengis.geometry.complex.CompositeCurve composite curves} share a common end point,
      * then they intersect because {@linkplain org.opengis.geometry.complex.Complex complexes} are considered to
      * be closed (contain their boundary).
-     * </font></blockquote>
+     * </div>
      *
      * @param  pointSet The set to be checked for intersection with this set.
      * @return {@code true} if this set intersects some of the elements of the specified set.
@@ -107,8 +107,8 @@ public interface TransfiniteSet {
      * direct position} within the valid range of the coordinate reference system associated
      * to the object.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> Since an infinite set of direct positions cannot be tested,
+     * <div class="note"><b>Note:</b>
+     * Since an infinite set of direct positions cannot be tested,
      * the internal implementation of equal must test for equivalence between two, possibly
      * quite different, representations. This test may be limited to the resolution of the
      * coordinate system or the accuracy of the data. Implementations may define a tolerance
@@ -116,7 +116,7 @@ public interface TransfiniteSet {
      * dimension and each direct position in this {@code TransfiniteSet} is within a
      * tolerance distance of a direct position in the passed {@code TransfiniteSet} and
      * vice versa.
-     * </font></blockquote>
+     * </div>
      *
      * @param pointSet The set to test for equality.
      * @return {@code true} if the two set are equals.

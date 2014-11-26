@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
  * call: {@code C.element().contains(P)}.
  * <p>
  * The "{@linkplain #getElements elements}" attribute allows {@code Complex} to inherit the
- * behavior of {@link Set Set&lt;Primitive&gt;} without confusing the same sort of behavior
+ * behavior of {@code Set<Primitive>} without confusing the same sort of behavior
  * inherited from {@link org.opengis.geometry.TransfiniteSet TransfiniteSet&lt;DirectPosition&gt;}
  * inherited through {@link Geometry}. Complexes shall be used in application schemas where
  * the sharing of geometry is important, such as in the use of computational topology. In a

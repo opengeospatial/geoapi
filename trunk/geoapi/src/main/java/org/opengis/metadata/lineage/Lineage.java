@@ -82,9 +82,9 @@ public interface Lineage {
     /**
      * Additional documentation.
      *
-     * <blockquote><font size="-1"><b>Example</b>
+     * <div class="note"><b>Example</b>
      * a publication that describes the whole process to generate this resource (for example a dataset).
-     * </font></blockquote>
+     * </div>
      *
      * @return Additional documentation.
      *

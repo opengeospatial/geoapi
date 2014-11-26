@@ -38,6 +38,7 @@ import org.opengis.parameter.InvalidParameterValueException;
  *
  * <p>NetCDF {@code Parameter} instances can store the following types:</p>
  * <blockquote><table border="1">
+ *   <caption>Allowed parameter types</caption>
  *   <tr><th>Value type</th>       <th>Getter method</th>              <th>Setter method</th></tr>
  *   <tr><td>{@link String}</td>   <td>{@link #stringValue()}</td>     <td>{@link #setValue(Object)}</td></tr>
  *   <tr><td>{@code double}</td>   <td>{@link #doubleValue()}</td>     <td>{@link #setValue(double)}</td></tr>

@@ -45,17 +45,15 @@ import org.opengis.annotation.XmlElement;
  * LATEST_ON_TOP or EARLIEST_ON_TOP.   The default behaviour is
  * system-dependent.
  *
- * @return LATEST_ON_TOP, EARLIEST_ON_TOP, AVERAGE or RANDOM
- *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2  
+ * @since GeoAPI 2.2
  */
 @XmlElement("OverlapBehavior")
 public enum OverlapBehavior {
-    LATEST_ON_TOP, 
-    EARLIEST_ON_TOP, 
+    LATEST_ON_TOP,
+    EARLIEST_ON_TOP,
     AVERAGE,
     RANDOM
 }

@@ -41,7 +41,7 @@
  *       (similar to a {@link java.lang.reflect.Field} in Java).</li>
  *   <li>{@link org.opengis.feature.FeatureAssociationRole} defines a relationship a feature is involved in
  *       (aggregation, composition, <i>etc.</i>).</li>
- *   <li>{@link org.opengis.feature.FeatureOperation} describes functionality a feature is able to perform
+ *   <li>{@link org.opengis.feature.Operation} describes functionality a feature is able to perform
  *       (similar to {@link java.lang.reflect.Method} in Java).</li>
  * </ul>
  *

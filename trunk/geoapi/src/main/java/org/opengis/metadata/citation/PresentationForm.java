@@ -189,9 +189,9 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * A physical object.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * Rock or mineral sample, microscope slide.
-     * </font></blockquote>
+     * </div>
      *
      * @since 3.1
      */

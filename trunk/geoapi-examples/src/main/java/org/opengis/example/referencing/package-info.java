@@ -16,7 +16,9 @@
  *
  * <p>The following table lists the classes that implement more than one GeoAPI interface:</p>
  *
- * <blockquote><table class="ogc"><tr>
+ * <blockquote><table class="ogc">
+ * <caption>Example classes implementing two or more interfaces</caption>
+ * <tr>
  * <th>Simple class</th>
  * <th colspan="2">Implements</th>
  * </tr><tr>

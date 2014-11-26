@@ -61,10 +61,9 @@ public strictfp class ExpectedDataTest {
     }
 
     /**
-     * Tests loading the data from the
-     * <a href="{@svnurl gigs}/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a> file.
-     * The purpose of this test is to ensure that the file is fully loaded. A few sampled records are
-     * tested in this process.
+     * Tests loading the data from the {@svnurl gigs/GIGS_2002_libEllipsoid.csv} file.
+     * The purpose of this test is to ensure that the file is fully loaded.
+     * A few sampled records are tested in this process.
      */
     @Test
     public void testFileLoading() {
@@ -129,8 +128,7 @@ public strictfp class ExpectedDataTest {
     }
 
     /**
-     * Tests loading the data from the
-     * <a href="{@svnurl gigs}/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a> file.
+     * Tests loading the data from the {@svnurl gigs/GIGS_2005_libProjection.csv} file.
      * This file contains range of integer values, which is the subject of this test.
      */
     @Test

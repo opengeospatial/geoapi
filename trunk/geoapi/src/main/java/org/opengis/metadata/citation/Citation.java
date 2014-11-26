@@ -71,9 +71,9 @@ public interface Citation {
      * Short name or other language name by which the cited information is known.
      * Returns an empty collection if there is none.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * "DCW" as an alternative title for "Digital Chart of the World".
-     * </font></blockquote>
+     * </div>
      *
      * @return Other names for the resource, or an empty collection if none.
      */
@@ -114,9 +114,9 @@ public interface Citation {
      * Unique identifier for the resource.
      * Returns an empty collection if there is none.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * Universal Product Code (UPC), National Stock Number (NSN).
-     * </font></blockquote>
+     * </div>
      *
      * @return The identifiers, or an empty collection if none.
      */

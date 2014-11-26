@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * The clothoid (or Cornu's spiral), a plane curve whose curvature is a fixed function of
  * its length. In suitably chosen co-ordinates it is given by Fresnel's integrals:
  *
- * <P><center>(TODO: paste the equation here)</center></P>
+ * <center>(TODO: paste the equation here)</center>
  *
  * This geometry is mainly used as a transition curve between curves of type straight
  * line/circular arc or circular arc/circular arc. With this curve type it is possible
@@ -78,14 +78,16 @@ public interface Clothoid extends CurveSegment {
      * start parameter can be either positive or negative. The parameter <var>t</var>
      * acts as a constructive parameter.
      *
-     * <P>NOTE: If 0 lies between the {@linkplain #getStartConstructiveParam start constructive
+     * <div class="note"><b>Note:</b>
+     * If 0 lies between the {@linkplain #getStartConstructiveParam start constructive
      * parameter} and {@linkplain #getEndConstructiveParam end constructive parameter} of the
      * clothoid, then the curve goes through the clothoid's inflection point, and the direction
      * of its radius of curvature, given by the second derivative vector, changes sides
      * with respect to the tangent vector. The term "length" for the parameter {@code t}
      * is applicable only in the parameter space, and its relation to arc length after use of
      * the placement, and with respect to the coordinate reference system of the curve is not
-     * deterministic.</P>
+     * deterministic.
+     * </div>
      */
     @UML(identifier="startParameter", obligation=MANDATORY, specification=ISO_19107)
     double getStartConstructiveParam();

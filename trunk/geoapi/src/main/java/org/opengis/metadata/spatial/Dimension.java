@@ -86,8 +86,8 @@ public interface Dimension {
     /**
      * Enhancement/ modifier of the dimension name.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
-     * dimensionName = "column", dimensionTitle = "longitude"</font></blockquote>
+     * <div class="note"><b>Example:</b>
+     * dimensionName = "column", dimensionTitle = "longitude"</div>
      *
      * @return Enhancement/ modifier of the dimension name, or {@code null} if none.
      *

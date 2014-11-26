@@ -133,20 +133,20 @@ public interface GridCoverage extends Coverage {
      * will be ordered as in the left side below. The 3 meter overview will have
      * 2 overviews as in the right side below:
      *
-     * <blockquote><table border=0>
+     * <blockquote><table border="0" summary="Overview indices">
      * <tr>
      *   <th align="center">1 meter GC</th> <th>&nbsp;</th>
      *   <th align="center">3 meter overview</th>
      * </tr>
      * <tr>
-     *   <td valign="top"><table border=0 align="center">
+     *   <td valign="top"><table border="0" align="center" summary="Overview indices">
      *     <tr> <th>Index&nbsp;</th>      <th>&nbsp;resolution</th>  </tr>
      *     <tr> <td align="center">0</td> <td align="center"> 3</td> </tr>
      *     <tr> <td align="center">1</td> <td align="center"> 9</td> </tr>
      *     <tr> <td align="center">2</td> <td align="center">27</td> </tr>
      *   </table></td>
      *   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-     *   <td valign="top"><table border=0 align="center">
+     *   <td valign="top"><table border="0" align="center" summary="Overview indices">
      *     <tr> <th>Index&nbsp;</th>      <th>&nbsp;resolution</th>  </tr>
      *     <tr> <td align="center">0</td> <td align="center"> 9</td> </tr>
      *     <tr> <td align="center">1</td> <td align="center">27</td> </tr>
@@ -162,8 +162,7 @@ public interface GridCoverage extends Coverage {
 
     /**
      * Returns the sources data for a grid coverage. If the {@code GridCoverage} was
-     * produced from an underlying dataset (by {@link GridCoverageReader#read read(...)}
-     * for instance), this method should returns an empty list.
+     * produced from an underlying dataset, this method should returns an empty list.
      *
      * If the {@code GridCoverage} was produced using
      * {link org.opengis.coverage.processing.GridCoverageProcessor} then it should return the
@@ -330,8 +329,8 @@ public interface GridCoverage extends Coverage {
      * The requested grid range must satisfy the following rules for each dimension of the grid
      * coverage:
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
-     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate &lt;= {@linkplain GridRange#getLower() grid range mimimun} &lt;=
+     * {@linkplain GridRange#getUpper() grid range maximum} &lt;= maximum grid coordinate
      * </center>
      *
      * The number of values returned will equal:
@@ -391,8 +390,8 @@ public interface GridCoverage extends Coverage {
      * of the grid coverage:
      *
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
-     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate &lt;= {@linkplain GridRange#getLower() grid range mimimun} &lt;=
+     * {@linkplain GridRange#getUpper() grid range maximum} &lt;= maximum grid coordinate
      * </center>
      *
      * The sequence of bytes returned will match the data type of
@@ -403,7 +402,7 @@ public interface GridCoverage extends Coverage {
      * <strong>Byte padding rules for grid values of less than 8 bits</strong><br>
      * For 2D grid coverages, padding is to the nearest byte for the following cases:
      *
-     * <table cellpadding=6 border=0>
+     * <table cellpadding="6" border="0" summary="Padding">
      * <tr> <td>For PixelInterleaved</td>
      *      <td>For grids with multiple sample dimensions, padding occurs between
      *          pixels for each change in dimension type.</td>
@@ -551,8 +550,8 @@ public interface GridCoverage extends Coverage {
      * dimension of the grid coverage:
      *
      * <center>
-     * minimum grid coordinate <= {@linkplain GridRange#getLower() grid range mimimun} <=
-     * {@linkplain GridRange#getUpper() grid range maximum} <= maximum grid coordinate
+     * minimum grid coordinate &lt;= {@linkplain GridRange#getLower() grid range mimimun} &lt;=
+     * {@linkplain GridRange#getUpper() grid range maximum} &lt;= maximum grid coordinate
      * </center>
      *
      * The number of values must equal:

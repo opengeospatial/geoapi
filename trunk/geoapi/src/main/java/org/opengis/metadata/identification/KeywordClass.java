@@ -73,10 +73,10 @@ public interface KeywordClass {
      * A reference that binds the keyword class to a formal conceptualization
      * of a knowledge domain for use in semantic processing.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * {@linkplain Keywords#getKeywords() Keywords} in the associated {@link Keywords} list
      * must be within the scope of this ontology.
-     * </font></blockquote>
+     * </div>
      *
      * @return A reference that binds the keyword class to a formal conceptualization.
      */

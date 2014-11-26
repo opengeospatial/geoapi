@@ -33,28 +33,27 @@ package org.opengis.filter.capability;
 
 import java.util.Collection;
 
+
 /**
  * Supported temporal operators in a filter capabilities document.
- * 
+ *
  * <pre>
- * &lt;complexType name="TemporalOperatorsType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="TemporalOperator" type="{http://www.opengis.net/fes/2.0}TemporalOperatorType" maxOccurs="unbounded"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="TemporalOperatorsType"&lt;
+ *   &lt;complexContent&lt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&lt;
+ *       &lt;sequence&lt;
+ *         &lt;element name="TemporalOperator" type="{http://www.opengis.net/fes/2.0}TemporalOperatorType" maxOccurs="unbounded"/&lt;
+ *       &lt;/sequence&lt;
+ *     &lt;/restriction&lt;
+ *   &lt;/complexContent&lt;
+ * &lt;/complexType&lt;
  * </pre>
- * 
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 3.1
  */
 public interface TemporalOperators {
-
     /**
      * Provided temporal operators.
      */

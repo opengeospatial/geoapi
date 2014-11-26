@@ -97,13 +97,14 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * {@linkplain InterpolationMethod#BICUBIC bicubic interpolation}) may require the use of
      * {@linkplain GridPointValuePair grid point value pairs} outside of the {@linkplain GridValueCell
      * grid value cell} that contains the {@linkplain DirectPosition direct position}.
-     * <p>
-     * <B>NOTE:</B>
+     *
+     * <div class="note"><b>Note:</b>
      * {@linkplain InterpolationMethod#NEAREST_NEIGHBOUR Nearest neighbour interpolation} will return
      * for any direct position within a {@linkplain GridValueCell grid value cell} the record associated
      * with the {@linkplain GridPointValuePair grid point value pair} at the nearest corner of the
      * {@linkplain GridValueCell grid value cell}. In other words, a continuous grid coverage
      * that uses nearest neighbour interpolation acts as a discrete surface coverage.
+     * </div>
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
      * @throws CannotEvaluateException If the point can't be evaluated for some other reason.

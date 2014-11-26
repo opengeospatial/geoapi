@@ -49,43 +49,43 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Calendar", specification=ISO_19108)
 public interface Calendar extends TemporalReferenceSystem {
-    
+
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(…)} methods.
-     * This is used for setting the value to be returned by {@link #getReferenceEvent()}.
+     * object factory {@code createFoo(…)} methods.
+     * This is used for setting the value to be returned by {@code getReferenceEvent()}.
      *
-     * @see #getReferenceEvent() 
      * @since 4.0
+     *
+     * @todo Revisit javadoc - seems inaccurate.
      */
     public static String REFERENCE_EVENT_KEY = "referenceEvent";
-    
+
     /**
-     * Returns convertion of a {@linkplain CalendarDate date} in this calendar to a
+     * Returns conversion of a {@linkplain CalendarDate date} in this calendar to a
      * {@linkplain JulianDate julian date}.
-     * 
+     *
      * @param date reference date which will be convert.
-     * @param time 
      * @return convertion of a {@linkplain CalendarDate date} in this calendar to a
      * {@linkplain JulianDate julian date}.
      */
     @UML(identifier="dateTrans", obligation=MANDATORY, specification=ISO_19108)
     JulianDate dateTrans(CalendarDate date, ClockTime time);
-    
+
     /**
      * Returns convertion of a {@linkplain JulianDate julian date} to a {@linkplain CalendarDate date}
      * in this calendar.
-     * 
+     *
      * @param julian {@link JulianDate} which will be convert.
      * @return convertion of a {@linkplain JulianDate julian date} to a {@linkplain CalendarDate date}
      * in this calendar.
      */
     @UML(identifier="julTrans", obligation=MANDATORY, specification=ISO_19108)
     CalendarDate julTrans(JulianDate julian);
-    
+
     /**
      * Returns all {@linkplain CalendarEra calendar eras} associated with the {@link Calendar} being described.
-     * 
+     *
      * @return all {@linkplain CalendarEra calendar eras} associated with the {@link Calendar} being described.
      * @since 4.0
      */
@@ -93,10 +93,10 @@ public interface Calendar extends TemporalReferenceSystem {
     Collection<CalendarEra> getReferenceFrame();
 
     /**
-     * Returns the clock that is use with this {@link Calendar} to define temporal 
+     * Returns the clock that is use with this {@link Calendar} to define temporal
      * position within a calendar day, or {@code null} if none.
-     * 
-     * @return the clock that is use with this {@link Calendar} to define temporal 
+     *
+     * @return the clock that is use with this {@link Calendar} to define temporal
      * position within a calendar day, or {@code null} if none.
      * @since 4.0
      */

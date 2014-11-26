@@ -51,20 +51,22 @@ import static org.opengis.annotation.Specification.*;
  * Evaluates a coverage at direct positions within a network of hexagons centered on a set of grid
  * points. Evaluation is based on interpolation between the centres of the {@link ValueHexagon}s
  * surrounding the input position.
- * <p>
- * Coverages are sometimes based on tessellations composed of regular hexagons. Such tessellations
+ *
+ * <p>Coverages are sometimes based on tessellations composed of regular hexagons. Such tessellations
  * are usually called hexagonal grids. In fact, the centers of a set of regular hexagons that form
  * such a tessellation correspond to the grid points of a quadrilateral grid. That grid can be
  * described as a rectified grid in which the two offset vectors are of equal length but differ in
  * direction by 60&deg;. The length of a side of the hexagon is <var>L</var> = <var>S</var>×tan&nbsp;30&deg;,
  * where <var>S</var> is the length of the offset vector. This means that the values in the coverage
  * range can be stored as a grid values matrix and accessed through a sequence rule. The hexagons
- * are the Thiessen polygons that are generated around the grid points.
- * <p>
- * <b>NOTE:</b> A set of Thiessen polygons generated from the grid points of any 2-dimensional
+ * are the Thiessen polygons that are generated around the grid points.</p>
+ *
+ * <div class="note"><b>Note:</b>
+ * A set of Thiessen polygons generated from the grid points of any 2-dimensional
  * rectified grid described by two offset vectors that are equal in length but not orthogonal
  * will be a set of congruent hexagons. The hexagons will be irregular unless the offset vectors
- * differ in direction by exactly 60&deg;.
+ * differ in direction by exactly 60°.
+ * </div>
  *
  * @version ISO 19123:2004
  * @author  Alessio Fabiani
@@ -122,14 +124,14 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
     /**
      * Links this hexagonal coverage to the grid values matrix for which it is an evaluator.
      * The returned matrix is specialized by four constraints:
-     * <p>
+     *
      * <ul>
      *   <li>It is a {@linkplain RectifiedGrid rectified grid}.</li>
      *   <li>The inherited attribute {@linkplain Grid#getDimension dimension} has a value of 2.</li>
      *   <li>The {@linkplain RectifiedGrid#getOffsetVectors offset vectors} differ in direction by
      *       60 degrees.</li>
      *   <li>The lengths of the {@linkplain RectifiedGrid#getOffsetVectors offset vectors} are equal.</li>
-     * <ul>
+     * </ul>
      *
      * @return The underlying data.
      */

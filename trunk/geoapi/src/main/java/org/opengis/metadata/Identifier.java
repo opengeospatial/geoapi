@@ -44,12 +44,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Value uniquely identifying an object within a namespace.
  *
- * <blockquote><font size="-1"><b>Example:</b>
+ * <div class="note"><b>Example:</b>
  * For the WGS 84 geographic coordinate reference system,
  * {@code code}        = {@code "4326"},
  * {@code codeSpace}   = {@code "EPSG"},
  * {@code description} = {@code "WGS 84"} and
- * {@code authority}   = OGP geodetic committee.</font></blockquote>
+ * {@code authority}   = OGP geodetic committee.</div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
@@ -107,7 +107,7 @@ public interface Identifier {
      * Alphanumeric value identifying an instance in the namespace.
      * Should avoid characters that are not legal in URLs.
      *
-     * <blockquote><font size="-1"><b>Example:</b> {@code "4326"}.</font></blockquote>
+     * <div class="note"><b>Example:</b> {@code "4326"}.</div>
      *
      * @return Value identifying an instance in the namespace.
      */
@@ -117,7 +117,7 @@ public interface Identifier {
     /**
      * Identifier or namespace in which the code is valid.
      *
-     * <blockquote><font size="-1"><b>Example:</b> {@code "EPSG"}.</font></blockquote>
+     * <div class="note"><b>Example:</b> {@code "EPSG"}.</div>
      *
      * @return The identifier code space, or {@code null} if none.
      *
@@ -131,8 +131,8 @@ public interface Identifier {
      * When appropriate, the edition is identified by the effective date, coded
      * using ISO 8601 date format.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
-     * the version of the underlying EPSG database.</font></blockquote>
+     * <div class="note"><b>Example:</b>
+     * the version of the underlying EPSG database.</div>
      *
      * @return The version identifier for the namespace, or {@code null} if none.
      *
@@ -144,7 +144,7 @@ public interface Identifier {
     /**
      * Natural language description of the meaning of the code value.
      *
-     * <blockquote><font size="-1"><b>Example:</b> World Geodetic System 1984.</font></blockquote>
+     * <div class="note"><b>Example:</b> World Geodetic System 1984.</div>
      *
      * @return The natural language description, or {@code null} if none.
      *

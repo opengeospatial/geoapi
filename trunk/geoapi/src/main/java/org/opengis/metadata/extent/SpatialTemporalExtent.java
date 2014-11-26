@@ -49,15 +49,21 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {
     /**
-     * The spatial extent component of composite spatial and temporal extent.
+     * The spatial extent components of composite spatial and temporal extent.
      *
      * @return The list of geographic extents (never {@code null}).
      */
     @UML(identifier="spatialExtent", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends GeographicExtent> getSpatialExtent();
+    /*
+     * Missing trailing "s" in the method name (because the return type is a collection),
+     * but this is probably not worth a compatibility break. Note also that the vertical
+     * and temporal extents are both singleton, so while not strictly correct at least
+     * the current name provides a uniform naming pattern in this interface.
+     */
 
     /**
-     * Vertical extent component.
+     * The vertical extent component.
      *
      * @return Vertical extent component, or {@code null} if none.
      *

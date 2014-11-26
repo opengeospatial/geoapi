@@ -42,7 +42,7 @@ import org.opengis.annotation.XmlElement;
  * Identifies the more general "type" of geometry that this style is meant to act upon.
  * In the current OGC SE specifications, this is an experimental element and
  * can take only one of the following values:
- * <p>
+ *
  * <ul>
  *   <li>{@code generic:point}</li>
  *   <li>{@code generic:line}</li>
@@ -51,7 +51,6 @@ import org.opengis.annotation.XmlElement;
  *   <li>{@code generic:raster}</li>
  *   <li>{@code generic:any}</li>
  * </ul>
- * <p>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium

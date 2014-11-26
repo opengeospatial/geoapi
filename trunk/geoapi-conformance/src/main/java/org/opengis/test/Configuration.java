@@ -75,6 +75,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * The pre-defined keys are listed below:
  *
  * <table class="ogc">
+ * <caption>Configuration properties</caption>
  * <tr>
  *   <th>Supported features</th>
  *   <th>Factories</th>

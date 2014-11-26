@@ -96,14 +96,14 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * The semi-major axis length, in metres.
      *
-     * @see #getSemiMajorAxis().
+     * @see #getSemiMajorAxis()
      */
     protected final double semiMajorAxis;
 
     /**
      * The inverse flattening factor.
      *
-     * @see #getInverseFlattening().
+     * @see #getInverseFlattening()
      */
     protected final double inverseFlattening;
 

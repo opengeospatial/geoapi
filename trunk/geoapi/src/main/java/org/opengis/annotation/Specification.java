@@ -326,7 +326,6 @@ public enum Specification {
 
     /**
      * ISO 19128, Web map server interface.
-     * This is the specification for package {@link org.opengis.layer} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
      * <blockquote style="font-size:small">
@@ -371,7 +370,6 @@ public enum Specification {
 
     /**
      * GO-1 Application Objects.
-     * This is the specification for package {@link org.opengis.go} and sub-packages.
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>

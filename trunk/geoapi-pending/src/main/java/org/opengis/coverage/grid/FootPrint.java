@@ -64,7 +64,7 @@ public interface FootPrint {
      *
      * @return the grid point to which this foot print corresponds.
      *
-     * @see GridPoint#getFootPrint
+     * @see GridPoint#getFootPrints()
      *
      * @todo his role name in ISO 19123, "center", is a misnomer.  By definition, the sample point
      *       represented in the same external coordinate reference system as the footprint, is the
