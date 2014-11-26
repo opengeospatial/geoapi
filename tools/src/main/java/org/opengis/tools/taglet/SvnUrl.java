@@ -38,7 +38,7 @@ import com.sun.tools.doclets.Taglet;
 
 /**
  * The <code>@svnurl</code> tag for inserting a SVN URL in a javadoc comment. This tag shall
- * contains a keyword, for example <code>{@svnurl gigs}</code>.
+ * contains a keyword followed by the path, for example <code>{@svnurl gigs/GIGS_2006_libProjectedCRS.csv}</code>.
  * Valid keywords are:
  *
  * <table class="ogc">
@@ -47,13 +47,19 @@ import com.sun.tools.doclets.Taglet;
  *   <tr><td>netcdf</td> <td>geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf</td></tr>
  * </table>
  *
- * The URL never contain trailing <code>'/'</code> character.
- *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
 public final class SvnUrl extends AbstractTaglet {
+    /**
+     * Keywords (at even index) and the corresponding path (at odd index).
+     */
+    private static final String[] KEYWORDS = {
+        "gigs/",   "geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs/",
+        "netcdf/", "geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf/"
+    };
+
     /**
      * Register this taglet.
      *
@@ -96,21 +102,22 @@ public final class SvnUrl extends AbstractTaglet {
      *
      * @param tag The tag to format.
      * @return A string representation of the given tag.
-     *
-     * @todo Use "switch in strings" with JDK7.
      */
     @Override
     public String toString(final Tag tag) {
-        String url = "http://svn.code.sf.net/p/geoapi/code/trunk";
-        final String keyword = tag.text();
-        if (keyword.equals("gigs")) {
-            url += "/geoapi-conformance/src/main/resources/org/opengis/test/referencing/gigs";
-        } else if (keyword.equals("netcdf")) {
-            url += "/geoapi-netcdf/src/test/resources/org/opengis/wrapper/netcdf";
-        } else {
-            printWarning(tag.position(), "Unknown keyword: " + keyword);
+        final String url = tag.text();
+        for (int i=0; i<KEYWORDS.length; i += 2) {
+            final String keyword = KEYWORDS[i];
+            if (url.startsWith(keyword)) {
+                return new StringBuilder(160)
+                        .append("<a href=\"http://svn.code.sf.net/p/geoapi/code/trunk/")
+                        .append(KEYWORDS[i+1]).append(url, keyword.length(), url.length())
+                        .append("\"><code>").append(url, url.lastIndexOf('/') + 1, url.length())
+                        .append("</code></a>").toString();
+            }
         }
-        return url;
+        printWarning(tag.position(), "Unknown URL: " + url);
+        return "<code>" + url + "</code>";
     }
 
     /**

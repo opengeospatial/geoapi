@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  * (  0, -180) (  0, -90) (  0, 0) (  0, 90) (  0, 180)
  * ( 45, -180) ( 45, -90) ( 45, 0) (45, -90) ( 45, 180)
  * ( 90, -180) ( 90, -90) ( 90, 0) (90, -90) ( 90, 180)
- * </blockquote></pre>
+ * </pre></blockquote>
  *
  * and map these points to 3D using the usual equations
  * (where <var>R</var> is the radius of the required sphere)

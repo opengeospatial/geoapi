@@ -31,6 +31,7 @@
  */
 package org.opengis.coverage.grid.quadrilateral;
 
+import org.opengis.coverage.grid.GridGeometry;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
@@ -70,7 +71,7 @@ public interface RectifiableGrid  extends GridPositioning {
 
     /**
      * Converts grid coordinates through an affine transform to a direct position.
-     * This is an adapter method for the {@link MathTransform#transform()} method.
+     * This is an adapter method for the {@link MathTransform#transform} method.
      * The {@link MathTransform} object used in the conversion is associated with
      * the "conversion" and "operation" attributes.
      */
@@ -78,7 +79,7 @@ public interface RectifiableGrid  extends GridPositioning {
 
     /**
      * Converts through an affine transform a direct position to the grid coordinates of the nearest
-     * grid point.  This is an adapter method for the {@link MathTransform#transform()} method.
+     * grid point.  This is an adapter method for the {@link MathTransform#transform} method.
      * The {@link MathTransform} object used in the conversion is associated with the "inverseConversion"
      * and "inverseOperation" attributes.
      */

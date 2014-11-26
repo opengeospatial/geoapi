@@ -53,9 +53,9 @@ import static org.opengis.annotation.Specification.*;
 public interface ServiceIdentification extends Identification {
     /**
      * A service type name.
-     * <blockquote><font size="-1"><b>Examples:</b>
+     * <div class="note"><b>Examples:</b>
      * "discovery", "view", "download", "transformation", or "invoke".
-     * </font></blockquote>
+     * </div>
      *
      * @return A service type name.
      *
@@ -68,11 +68,11 @@ public interface ServiceIdentification extends Identification {
      * The version(s) of the service.
      * Supports searching based on the version of {@linkplain #getServiceType() service type}.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * We might only be interested in OGC Catalogue V1.1 services.
      * If version is maintained as a separate attribute, users can easily search
      * for all services of a type regardless of the version.
-     * </font></blockquote>
+     * </div>
      *
      * @return the version of the service, supports searching based on the version of serviceType.
      *

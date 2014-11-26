@@ -40,23 +40,23 @@ import org.opengis.util.CodeList;
  * Enumeration of the different {@code TemporalOperand} types.
  *
  * <pre>
- * &lt;complexType name="TemporalOperandsType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="TemporalOperand" maxOccurs="unbounded">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}QName" />
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="TemporalOperandsType"&lt;
+ *   &lt;complexContent&lt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&lt;
+ *       &lt;sequence&lt;
+ *         &lt;element name="TemporalOperand" maxOccurs="unbounded"&lt;
+ *           &lt;complexType&lt;
+ *             &lt;complexContent&lt;
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&lt;
+ *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}QName" /&lt;
+ *               &lt;/restriction&lt;
+ *             &lt;/complexContent&lt;
+ *           &lt;/complexType&lt;
+ *         &lt;/element&lt;
+ *       &lt;/sequence&lt;
+ *     &lt;/restriction&lt;
+ *   &lt;/complexContent&lt;
+ * &lt;/complexType&lt;
  * </pre>
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>

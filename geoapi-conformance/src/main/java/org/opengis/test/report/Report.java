@@ -68,9 +68,10 @@ import org.opengis.metadata.citation.Responsibility;
  * </ul>
  *
  * The set of keywords, and whether a user-provided value for a given keyword is mandatory or
- * optional, is subclass-specific. However most subclasses expect at least the following keywords:<
+ * optional, is subclass-specific. However most subclasses expect at least the following keywords:
  *
  * <table class="ogc">
+ *   <caption>Report properties</caption>
  *   <tr><th>Key</th>                    <th align="center">Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>          <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DATE}</td>           <td align="center">automatic</td> <td>Date of report creation.</td></tr>

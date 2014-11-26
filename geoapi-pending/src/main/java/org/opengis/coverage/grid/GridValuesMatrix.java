@@ -59,9 +59,9 @@ public interface GridValuesMatrix extends Grid {
      * @return The feature attribute values records.
      *
      * @todo Comment (Wim): Both extracting an image for display and operation chaining require
-     *       memory effiecient and fast access to the data. How should the data be structured per
+     *       memory efficient and fast access to the data. How should the data be structured per
      *       record? Some use cases:
-     *       <table border=1>
+     *       <table border="1" summary="Use case examples">
      *         <tr><td>DTM<td>double<td>List&lt;double&gt;
      *         <tr><td>TM image<td>7 bytes<td>
      *         <tr><td>Landuse map<td>string<td>{@code List<double>} with look up table for the strings

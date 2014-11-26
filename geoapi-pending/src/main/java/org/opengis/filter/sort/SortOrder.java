@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.OGC_02059;
 /**
  * Captures the {@link SortBy} order, {@code ASC} or {@code DESC}.
  *
- * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">
+ * @see <a href="http://schemas.opengis.net/filter/1.1.0/sort.xsd">http://schemas.opengis.net/filter/1.1.0/sort.xsd</a>
  * @author Jody Garnett (Refractions Research)
  * @since GeoAPI 2.1
  */

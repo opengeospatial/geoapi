@@ -33,16 +33,16 @@ package org.opengis.filter.capability;
 
 /**
  * Supported arithmetic operators in a filter capabilities document.
- * <p>
+ *
  * <pre>
- * &lt;xsd:complexType name="ArithmeticOperatorsType">
- *     &lt;xsd:choice maxOccurs="unbounded">
- *        &lt;xsd:element ref="ogc:SimpleArithmetic"/>
- *        &lt;xsd:element name="Functions" type="ogc:FunctionsType"/>
- *     &lt;/xsd:choice>
- *  &lt;/xsd:complexType>
+ * &lt;xsd:complexType name="ArithmeticOperatorsType"&lt;
+ *     &lt;xsd:choice maxOccurs="unbounded"&lt;
+ *        &lt;xsd:element ref="ogc:SimpleArithmetic"/&lt;
+ *        &lt;xsd:element name="Functions" type="ogc:FunctionsType"/&lt;
+ *     &lt;/xsd:choice&lt;
+ *  &lt;/xsd:complexType&lt;
  * </pre>
- * </p>
+ *
  * @author Justin Deoliveira, The Open Planning Project
  *
  */
@@ -50,21 +50,19 @@ public interface ArithmeticOperators {
 
     /**
      * Indicates if simple arithmetic is provided.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element ref="ogc:SimpleArithmetic"/>
+     * &lt;xsd:element ref="ogc:SimpleArithmetic"/&lt;
      * </pre>
-     * </p>
      */
     boolean hasSimpleArithmetic();
 
     /**
      * Provided functions.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element name="Functions" type="ogc:FunctionsType"/>
+     * &lt;xsd:element name="Functions" type="ogc:FunctionsType"/&lt;
      * </pre>
-     * </p>
      */
     Functions getFunctions();
 }

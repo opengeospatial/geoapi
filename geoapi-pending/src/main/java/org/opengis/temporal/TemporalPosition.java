@@ -47,25 +47,24 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_TemporalPosition", specification=ISO_19108)
 public interface TemporalPosition {
-    
     /**
-     * <p>Returns the only value for temporal position unless a subtype of
-     * {@link TemporalPosition} is used as the data type, or {@code null} if none.<br/>
-     * When this attribute is used with a subtype of {@link TemporalPosition}, 
-     * it provides a qualifier to the specific value for temporal position provided by the subtype.</p>
+     * Returns the only value for temporal position unless a subtype of
+     * {@link TemporalPosition} is used as the data type, or {@code null} if none.
+     * When this attribute is used with a subtype of {@link TemporalPosition},
+     * it provides a qualifier to the specific value for temporal position provided by the subtype.
      *
      * @return the only value for temporal position unless a subtype of
      * {@link TemporalPosition} is used as the data type, or {@code null} if none.
      */
     @UML(identifier="indeterminatePosition", obligation=OPTIONAL, specification=ISO_19108)
     IndeterminateValue getIndeterminatePosition();
-    
+
     /**
-     * <p>Returns the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.<br/>
-     * Every {@link TemporalPosition} shall be associated with a {@link TemporalReferenceSystem}.<br/>
-     * This association need not be explicite at the instance level.<br/>
-     * If not specified, it is assumed to be an association to Gregorian Calendar and UTC.</p>
-     * 
+     * Returns the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
+     * Every {@link TemporalPosition} shall be associated with a {@link TemporalReferenceSystem}.
+     * This association need not be explicite at the instance level.
+     * If not specified, it is assumed to be an association to Gregorian Calendar and UTC.
+     *
      * @return the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
      * @since 4.0
      */

@@ -59,9 +59,9 @@ public interface OnlineResource {
      * Location (address) for on-line access using a Uniform Resource Locator address or
      * similar addressing scheme.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * {@code "http://www.statkart.no/isotc211"}.
-     * </font></blockquote>
+     * </div>
      *
      * @return Location for on-line access using a Uniform Resource Locator address or similar scheme.
      */
@@ -72,9 +72,9 @@ public interface OnlineResource {
     /**
      * Connection protocol to be used.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * ftp, http get KVP, http POST, <i>etc</i>.
-     * </font></blockquote>
+     * </div>
      *
      * @return Connection protocol to be used, or {@code null}.
      */
@@ -123,13 +123,13 @@ public interface OnlineResource {
      * Request used to access the resource depending on the protocol.
      * This is used mainly for POST requests.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * <pre> &lt;GetFeature service="WFS" version="2.0.0"
      *             outputFormat="application/gml+xml;verson=3.2"
      *             xmlns="(…snip…)"&gt;
      *     &lt;Query typeNames="Roads"/&gt;
      * &lt;/GetFeature&gt;</pre>
-     * </font></blockquote>
+     * </div>
      *
      * @return Request used to access the resource, or {@code null}.
      *

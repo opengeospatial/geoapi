@@ -79,12 +79,12 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * Values with the same meaning repeat modulo the difference between maximum value and
      * minimum value.
      *
-     * <blockquote><font size="-1"><b>Example:</b> In a geographic CRS, longitude values are
+     * <div class="note"><b>Example:</b> In a geographic CRS, longitude values are
      * often defined with a finite extent (e.g., from -180 degrees to +180 degrees). The minimum
      * and maximum longitude limits define a single line (on the ellipsoid, sphere, or cylinder),
      * known as the anti-meridian, across which longitude values are discontinuous: as this line
      * is crossed, longitude changes abruptly (e.g., going West from a little more than -180° to
-     * a little less than +180°).</font></blockquote>
+     * a little less than +180°).</div>
      */
     @UML(identifier="wraparound", obligation=CONDITIONAL, specification=ISO_19111)
     public static final RangeMeaning WRAPAROUND = new RangeMeaning("WRAPAROUND");

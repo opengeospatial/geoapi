@@ -71,13 +71,13 @@ public interface MultiSurface extends MultiPrimitive {
      * shall be in a unit of measure appropriate for measuring distances squared, such as
      * meters squared (m<sup>2</sup>).
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> Consistent with the definition of surface as a set of
+     * <div class="note"><b>Note:</b>
+     * Consistent with the definition of surface as a set of
      * {@linkplain DirectPosition direct positions}, holes in the surfaces will not contribute to
      * the total area. If the usual Green's Theorem (or more general Stokes' Theorem) integral is
      * used, the integral around the holes in the surface are subtracted from the integral
      * about the exterior of the surface patch.
-     * </font></blockquote>
+     * </div>
      *
      * @return The area.
      * @unitof Area

@@ -62,7 +62,7 @@ public interface CoupledResource {
      * Scoped identifier of the resource in the context of the given service instance.
      * This is the name of the resources (for example dataset) as it is used by a service instance
      *
-     * <blockquote><font size="-1"><b>Examples:</b> layer name or feature type name.</font></blockquote>
+     * <div class="note"><b>Examples:</b> layer name or feature type name.</div>
      *
      * @return Scoped identifier of the resource in the context of the given service instance, or {@code null} if none.
      */

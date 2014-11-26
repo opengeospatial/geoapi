@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * FilterCapabilitiesBean used to represent
- * <code>Filter<code> expressions according to the
+ * {@code Filter} expressions according to the
  * 1.0.0 as well as the 1.1.1 <code>Filter Encoding Implementation Specification</code>.
  *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe</a>
@@ -78,7 +78,7 @@ public interface FilterCapabilities {
      */
     @UML(identifier="spatialCapabilities", specification=UNSPECIFIED)
     SpatialCapabilities getSpatialCapabilities();
-    
+
     /**
      *
      */

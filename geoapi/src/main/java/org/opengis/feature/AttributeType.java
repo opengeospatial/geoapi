@@ -46,9 +46,9 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * is typically the name of the {@linkplain FeatureType feature type} containing this attribute, but this is
  * not mandatory. The scope could also be defined by the ontology for example.
  *
- * <blockquote><font size="-1"><b>Note:</b>
+ * <div class="note"><b>Note:</b>
  * Compared to the Java language, {@code AttributeType} is equivalent to {@link java.lang.reflect.Field}
- * while {@code FeatureType} is equivalent to {@link Class}.</font></blockquote>
+ * while {@code FeatureType} is equivalent to {@link Class}.</div>
  *
  * {@section Value type}
  * Attributes can be used for both spatial and non-spatial properties.

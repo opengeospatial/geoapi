@@ -43,9 +43,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Keywords, their type and reference source.
  *
- * <blockquote><font size="-1"><b>Note:</b>
+ * <div class="note"><b>Note:</b>
  * When the resource described is a service, one instance of {@code Keywords} should refer to the
- * service taxonomy defined in ISO 191119.</font></blockquote>
+ * service taxonomy defined in ISO 191119.</div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
@@ -84,12 +84,12 @@ public interface Keywords {
      * Keyword classes are associated with on ontology that allow additional semantic
      * query processing.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * The {@linkplain #getThesaurusName() thesaurus citation} specifies a collection of instances from some ontology,
      * but is not an ontology. It might be a list of places that include rivers, mountains, counties and cities.
      * There might be a Laconte county, the city of Laconte, the Laconte River, and Mt. Laconte;
      * when searching it is useful for the user to be able to restrict the search to only rivers.
-     * </font></blockquote>
+     * </div>
      *
      * @return User-defined categorization of groups of keywords, or {@code null} if none.
      *

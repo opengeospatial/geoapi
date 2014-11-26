@@ -40,9 +40,8 @@ import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 /**
- * <p>Values for relative temporal position based on the 13 temporal relationships
- * identified by Allen (1993).<br/>
- * Define comparison between two {@link TemporalTopologicalPrimitive}.</p>
+ * Values for relative temporal position based on the 13 temporal relationships identified by Allen (1993).
+ * Define comparison between two {@link TemporalTopologicalPrimitive}.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
@@ -64,76 +63,67 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     private static final List<RelativePosition> VALUES = new ArrayList<RelativePosition>(13);
 
     /**
-     * This {@link TemporalTopologicalPrimitive} is earlier in the sequence than <i>other</i> 
+     * This {@link TemporalTopologicalPrimitive} is earlier in the sequence than <i>other</i>
      * and is not linked to <i>other</i> in an <i>Initiation</i> or <i>Termination</i> association.
      */
     public static final RelativePosition BEFORE = new RelativePosition("BEFORE");
-    
+
     /**
-     * This {@link TemporalTopologicalPrimitive} is later in the sequence than <i>other</i> 
+     * This {@link TemporalTopologicalPrimitive} is later in the sequence than <i>other</i>
      * and is not linked to <i>other</i> in an <i>Initiation</i> or <i>Termination</i> association.
      */
     public static final RelativePosition AFTER = new RelativePosition("AFTER");
-    
+
     /**
      * This two {@link TemporalTopologicalPrimitive} are linked in an <i>Initiation</i> association.
      */
     public static final RelativePosition BEGINS = new RelativePosition("BEGINS");
-    
+
     /**
      * This two {@link TemporalTopologicalPrimitive} are linked in an <i>Termination</i> association.
      */
     public static final RelativePosition ENDS = new RelativePosition("ENDS");
-    
-    /**
-     * 
-     */
+
     public static final RelativePosition DURING = new RelativePosition("DURING");
-    
+
     /**
      * This {@link TemporalTopologicalPrimitive} and <i>other</i> are the same.
      */
     public static final RelativePosition EQUALS = new RelativePosition("EQUALS");
-    
-    /**
-     * 
-     */
+
     public static final RelativePosition CONTAINS = new RelativePosition("CONTAINS");
     public static final RelativePosition OVERLAPS = new RelativePosition("OVERLAPS");
-    
+
     /**
-     * The two {@link TemporalTopologicalPrimitive} are {@link TemporalEdge} associated 
-     * to the same {@link TemporalNode}, where this {@link TemporalEdge} is linked to the 
-     * {@link TemporalNode} as a <i>previousEdge</i> in a <i>Termination</i> association, 
+     * The two {@link TemporalTopologicalPrimitive} are {@link TemporalEdge} associated
+     * to the same {@link TemporalNode}, where this {@link TemporalEdge} is linked to the
+     * {@link TemporalNode} as a <i>previousEdge</i> in a <i>Termination</i> association,
      * and <i>other</i> is linked to the {@link TemporalNode} as a <i>nextEdge</i> in a
      * <i>Initiation</i> association.
      */
     public static final RelativePosition MEETS = new RelativePosition("MEETS");
-    
-    /**
-     * 
-     */
+
     public static final RelativePosition OVERLAPPED_BY = new RelativePosition("OVERLAPPED_BY");
-    
+
     /**
-     * The two {@link TemporalTopologicalPrimitive} are {@link TemporalEdge} associated 
-     * to the same {@link TemporalNode}, where this {@link TemporalEdge} is linked to the 
-     * {@link TemporalNode} as a <i>nextEdge</i> in a <i>Initiation</i> association, 
-     * and <i>other</i> is linked to the {@link TemporalNode} as a <i>previousEdge</i> 
+     * The two {@link TemporalTopologicalPrimitive} are {@link TemporalEdge} associated
+     * to the same {@link TemporalNode}, where this {@link TemporalEdge} is linked to the
+     * {@link TemporalNode} as a <i>nextEdge</i> in a <i>Initiation</i> association,
+     * and <i>other</i> is linked to the {@link TemporalNode} as a <i>previousEdge</i>
      * in a <i>Termination</i> association.
      */
     public static final RelativePosition MET_BY = new RelativePosition("MET_BY");
-    
+
     /**
-     * This {@link TemporalTopologicalPrimitive} is a {@link TemporalEdge}, 
-     * <i>other</i> is a {@link TemporalNode} and these two {@link TemporalTopologicalPrimitive} 
+     * This {@link TemporalTopologicalPrimitive} is a {@link TemporalEdge},
+     * <i>other</i> is a {@link TemporalNode} and these two {@link TemporalTopologicalPrimitive}
      * are linked in an <i>Initiation</i> association.
      */
     public static final RelativePosition BEGUN_BY = new RelativePosition("BEGUN_BY");
-    
+
     /**
-     * This {@link TemporalTopologicalPrimitive} is a {@link TemporalEdge}, 
-     * <i>other</i> is a {@link TemporalNode} and these two {@link TemporalTopologicalPrimitive} 
+     * This {@link TemporalTopologicalPrimitive} is a {@link TemporalEdge},
+     * <i>other</i> is a {@link TemporalNode} and these two {@link TemporalTopologicalPrimitive}
      * are linked in an <i>Termination</i> association.
      */
     public static final RelativePosition ENDED_BY = new RelativePosition("ENDED_BY");

@@ -47,14 +47,14 @@ import static org.opengis.annotation.Obligation.*;
  * mathematical algorithms need to know or potentially modify the handedness of a coordinate
  * system to maintain the proper representation of space.
  *
- * <blockquote><font size="-1"><b>Note:</b>
+ * <div class="note"><b>Note:</b>
  * The default for mathematics is right-handed systems (classic <var>x</var>-<var>y</var>, or
  * <var>x</var>-<var>y</var>-<var>z</var> order in Cartesian coordinates), while many geographic
  * coordinate reference systems are left-handed. This mathematical choice is seen in several
  * decisions; such as the inside of a surface is to the left of its boundary, the inside of a
  * solid is below its boundary, and the very concepts of oriented primitives and algebraic topology.
  * This bias toward right-handed systems is also seen in computer graphics and in engineering.
- * </font></blockquote>
+ * </div>
  *
  * @author  Axel Francois (LSIS/Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

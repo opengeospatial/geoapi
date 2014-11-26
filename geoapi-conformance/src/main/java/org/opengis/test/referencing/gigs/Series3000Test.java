@@ -152,6 +152,8 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *     </ul>
      *   </li>
      * </ul>
+     *
+     * @return The configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -238,12 +240,12 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Verifies that the software allows correct definition of a user-defined ellipsoid.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined ellipsoid for each of several different ellipsoids.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3002_userEllipsoid.csv">{@code GIGS_3002_userEllipsoid.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_3002_userEllipsoid.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link DatumFactory#createEllipsoid(Map, double, double, Unit)} and<br>
@@ -252,7 +254,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The software should accept the test data. The properties of the created objects will
      *       be compared with the properties given to the factory method.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error occurred while creating an ellipsoid.
      */
@@ -359,12 +361,12 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Verifies that the software allows correct definition of a user-defined prime meridian.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3003_userPrimeMeridian.csv">{@code GIGS_3003_userPrimeMeridian.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_3003_userPrimeMeridian.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link DatumFactory#createPrimeMeridian(Map, double, Unit)}.</td>
@@ -372,7 +374,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The software should accept the test data. The properties of the created objects will
      *       be compared with the properties given to the factory method.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error occurred while creating a prime meridian.
      */
@@ -456,14 +458,14 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Verifies that the software allows correct definition of a user-defined geodetic datum and geodetic CRS.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined geodetic datum for each of several different datums.
      *       Create user-defined geodetic CRS for each of several different CRSs.
      *   </td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3004_userGeodeticDatumCRS.csv">{@code GIGS_3004_userGeodeticDatumCRS.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_3004_userGeodeticDatumCRS.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)} and<br>
@@ -472,7 +474,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <th nowrap align="left" valign="top">Expected result:</th>
      *   <td>The software should accept the test data. The properties of the created objects will
      *       be compared with the properties given to the factory method.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a unit from an EPSG code.
@@ -641,14 +643,13 @@ public strictfp class Series3000Test extends GIGSTestCase {
     /**
      * Verifies that the software allows correct definition of a user-defined map projection.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Create user-defined projection for each of several different map projections.
      *   </td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_3005_userProjection.csv">{@code GIGS_3005_userProjection.csv}</a>.
-     *  </td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_3005_userProjection.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link CoordinateOperationFactory#getOperationMethod(String)} and<br>
@@ -658,7 +659,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
      *   <td>The geoscience software should accept the test data. The order in which the projection
      *       parameters are entered is not critical, although that given in the test dataset is
      *       recommended.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a unit from an EPSG code.

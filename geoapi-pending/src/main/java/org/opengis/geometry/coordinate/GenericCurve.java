@@ -149,13 +149,13 @@ public interface GenericCurve {
      * {@code endConstructiveParam}, but the parameterization must be strictly monotonic
      * (strictly increasing, or strictly decreasing).
      *
-     * <blockquote><font size=-1>
-     * <b>NOTE:</b> Constructive parameters are often chosen for convenience of
+     * <div class="note"><b>Note:</b>
+     * Constructive parameters are often chosen for convenience of
      * calculation, and seldom have any simple relation to arc distances, which are defined
      * as the default parameterization. Normally, geometric constructions will use constructive
      * parameters, as the programmer deems reasonable, and calculate arc length parameters when
      * queried.
-     * </font></blockquote>
+     * </div>
      *
      * @return The parameter used in the constructive paramerization for the start point.
      *
@@ -172,13 +172,13 @@ public interface GenericCurve {
      * {@code endConstructiveParam}, but the parameterization must be strictly monotonic
      * (strictly increasing, or strictly decreasing).
      *
-     * <blockquote><font size=-1>
-     * <b>NOTE:</b> Constructive parameters are often chosen for convenience of
+     * <div class="note"><b>Note:</b>
+     * Constructive parameters are often chosen for convenience of
      * calculation, and seldom have any simple relation to arc distances, which are defined
      * as the default parameterization. Normally, geometric constructions will use constructive
      * parameters, as the programmer deems reasonable, and calculate arc length parameters when
      * queried.
-     * </font></blockquote>
+     * </div>
      *
      * @return The parameter used in the constructive paramerization for the end point.
      *
@@ -272,10 +272,10 @@ public interface GenericCurve {
      * parameters, allowing the direct conversion between the variables used in parameterization and
      * constructive parameters.
      *
-     * Distances between direct positions determined by the default parameterization are simply
+     * <p>Distances between direct positions determined by the default parameterization are simply
      * the difference of the parameter. The length function also allows for the conversion of the
-     * constructive parameter to the arc length parameter using the following idiom:
-     * <p>
+     * constructive parameter to the arc length parameter using the following idiom:</p>
+     *
      * <center><code>
      * param=length({@linkplain #getStartConstructiveParam startConstructiveParam}, constructiveParam)
      *       + {@linkplain #getStartParam startParam}
@@ -294,7 +294,7 @@ public interface GenericCurve {
      * start point} is not equal to the {@linkplain #getEndPoint() end point}, the boundary is a
      * two point array. If the start point is equal to the end point, the boundary is an empty array.
      *
-     * <blockquote><font size=-1><b>NOTE:</b>
+     * <div class="note"><b>Note:</b>
      * The above point array will almost always be two distinct positions, but both
      * {@linkplain org.opengis.geometry.primitive.Curve curves} and
      * {@linkplain org.opengis.geometry.primitive.CurveSegment} can be cycles in themselves.
@@ -303,7 +303,7 @@ public interface GenericCurve {
      * curve. These two positions, in the case where the curve is involved in a
      * {@linkplain org.opengis.geometry.complex.Complex complex}, will be represented as
      * {@linkplain org.opengis.geometry.primitive.Point points} in the same complex.
-     * </font></blockquote>
+     * </div>
      *
      * @return The sets of positions on the boundary.
      */
@@ -315,7 +315,7 @@ public interface GenericCurve {
      * Returns an ordered array of point values that lie on the curve.
      * In most cases, these will be related to control points used in the construction of the segment.
      *
-     * <blockquote><font size=-1><b>NOTE:</b>
+     * <div class="note"><b>Note:</b>
      * The control points of a curve segment are used to control its shape, and are not always on the
      * curve segment itself. For example in a spline curve, the curve segment is given as a weighted
      * vector sum of the control points. Each weight function will have a maximum within the
@@ -323,7 +323,7 @@ public interface GenericCurve {
      * where it passes closest that the corresponding control point. These points, the values of
      * the curve at the maxima of the weight functions, will be the sample points for the curve
      * segment.
-     * </font></blockquote>
+     * </div>
      *
      * @departure easeOfUse
      *   The ISO 19107 specification returns an array of {@link org.opengis.geometry.primitive.Point}
@@ -348,8 +348,8 @@ public interface GenericCurve {
      * set to zero, then the line string returned shall be constructed from the control points of the
      * original curve.
      *
-     * <blockquote><font size=-1>
-     * <b>NOTE:</b> This function is useful in creating linear approximations of the
+     * <div class="note"><b>Note:</b>
+     * This function is useful in creating linear approximations of the
      * curve for simple actions such as display. It is often referred to as a "stroked curve".
      * For this purpose, the {@code maxOffset} version is useful in maintaining a minimal
      * representation of the curve appropriate for the display device being targeted. This
@@ -358,7 +358,7 @@ public interface GenericCurve {
      * {@code maxSpacing} version is more appropriate. Allowing both parameters to default
      * to zero does not seem to have any useful geographic nor geometric interpretation unless
      * further information is known about how the curves were constructed.
-     * </font></blockquote>
+     * </div>
      *
      * @param maxSpacing The maximal distance between control points along the generated curve,
      *                   or 0 for no constraint.

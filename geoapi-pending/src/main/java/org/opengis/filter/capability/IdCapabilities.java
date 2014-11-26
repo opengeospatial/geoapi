@@ -42,32 +42,29 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
-// J2SE direct dependencies
-
 
 /**
  * Capabilities used to convey supported id operators.
- * <p>
+ *
  * <pre>
- *  &lt;xsd:complexType name="Id_CapabilitiesType">
- *     &lt;xsd:choice maxOccurs="unbounded">
- *       &lt;xsd:element ref="ogc:EID"/>
- *       &lt;xsd:element ref="ogc:FID"/>
- *     &lt;/xsd:choice>
- *  &lt;/xsd:complexType>
- *  &lt;xsd:element name="EID">
- *     &lt;xsd:complexType/>
- *  &lt;/xsd:element>
- *  &lt;xsd:element name="FID">
- *     &lt;xsd:complexType/>
- *  &lt;/xsd:element>
+ *  &lt;xsd:complexType name="Id_CapabilitiesType"&lt;
+ *     &lt;xsd:choice maxOccurs="unbounded"&lt;
+ *       &lt;xsd:element ref="ogc:EID"/&lt;
+ *       &lt;xsd:element ref="ogc:FID"/&lt;
+ *     &lt;/xsd:choice&lt;
+ *  &lt;/xsd:complexType&lt;
+ *  &lt;xsd:element name="EID"&lt;
+ *     &lt;xsd:complexType/&lt;
+ *  &lt;/xsd:element&lt;
+ *  &lt;xsd:element name="FID"&lt;
+ *     &lt;xsd:complexType/&lt;
+ *  &lt;/xsd:element&lt;
  * </pre>
- * </p>
+ *
  * @author <a href="mailto:schneider@lat-lon.de">Markus Schneider </a>
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface IdCapabilities {
-
     /**
      * Indicates if the capabilities support EID.
      */

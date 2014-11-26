@@ -115,7 +115,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * The name, as used by the service or operation for this parameter.
      *
-     * <blockquote><font size="-1"><b>Note on Service Metadata name</b><br>
+     * <div class="note"><b>Note on Service Metadata name</b><br>
      * The metadata standard ({@linkplain Specification#ISO_19111 ISO 19115}) defines the {@code name}
      * property as of type {@link MemberName} instead than {@code Identifier}. The details of mapping
      * the former to the later are left to implementors, but the following can be used as guidelines:
@@ -144,9 +144,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   </tr>
      * </table>
      *
-     * Some implementations may allow the {@code Identifier} to be casted to {@link MemberType}.
+     * Some implementations may allow the {@code Identifier} to be casted to {@link MemberName}.
      * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
-     * </font></blockquote>
+     * </div>
      *
      * <div class="warning"><b>Upcoming API change — generalization</b><br>
      * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.

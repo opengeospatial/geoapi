@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * to LineSymbolizer, PointSymbolizer, PolygonSymbolizer, RasterSymbolizer and TextSymbolizer.</p>
  *
  * <p><b>Using a static geometry</b></p>
- * One can use static geometry if needed, see {@link #getGeometryAttribute}
+ * One can use static geometry if needed, see {@link #getGeometryPropertyName()}
  *
  * <p><b>Particular cases if the geometry is not the defined type of the symbolizer</b></p>
  * Geometry types other than inherently linear types can also be used. If a point geometry is
@@ -71,9 +71,9 @@ public interface Symbolizer {
      *
      * Recommended uom definitions are :
      * <ul>
-     *     <li>{@code metre}</li>
-     *     <li>{@code foot}</li>
-     *     <li>{@code pixel}</li>
+     *   <li>{@code metre}</li>
+     *   <li>{@code foot}</li>
+     *   <li>{@code pixel}</li>
      * </ul>
      *
      * @return can be null. If the unit is null than we shall use a the pixel unit

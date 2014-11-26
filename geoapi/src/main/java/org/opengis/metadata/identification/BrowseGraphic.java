@@ -78,9 +78,9 @@ public interface BrowseGraphic {
      * Raster formats are encouraged to use one of the names returned by
      * {@link javax.imageio.ImageIO#getReaderFormatNames()}.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD.
-     * </font></blockquote>
+     * </div>
      *
      * @return Format in which the illustration is encoded, or {@code null}.
      *

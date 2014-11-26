@@ -44,11 +44,11 @@ import org.opengis.util.GenericName;
  *   <li>A value, which may be a singleton ([0 … 1] cardinality) or multi-valued ([0 … ∞] cardinality).</li>
  * </ul>
  *
- * <blockquote><font size="-1"><b>Analogy:</b>
+ * <div class="note"><b>Analogy:</b>
  * an attribute is similar to a "field" in a Java object. A field also brings together a field name, value and type.
  * However attributes are limited to fields of primitive types or arrays of primitive types.
- * For a field of other Java type, use {@link Association} instead.
- * </font></blockquote>
+ * For a field of other Java type, use {@link FeatureAssociation} instead.
+ * </div>
  *
  * {@code Attribute} can be instantiated by calls to {@link AttributeType#newInstance()}.
  *
@@ -93,11 +93,11 @@ public interface Attribute<V> extends Property {
     /**
      * Sets the attribute value. All previous values are replaced by the given singleton.
      *
-     * <blockquote><font size="-1"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation:</b>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.
-     * Implementations should document their validation process.</font></blockquote>
+     * Implementations should document their validation process.</div>
      *
      * @param  value The new value, or {@code null} for removing all values from this attribute.
      * @throws IllegalArgumentException if this method verifies argument validity and the given value
@@ -110,7 +110,7 @@ public interface Attribute<V> extends Property {
     /**
      * Returns all attribute values, or an empty collection if none.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * there is different approaches in the way that collection elements are related to this property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
@@ -119,7 +119,7 @@ public interface Attribute<V> extends Property {
      * </ul>
      * This method does not mandate a particular approach.
      * However implementations should document which policy they choose.
-     * </font></blockquote>
+     * </div>
      *
      * @return The attribute values.
      */
@@ -128,11 +128,11 @@ public interface Attribute<V> extends Property {
     /**
      * Sets the attribute values. All previous values are replaced by the given collection.
      *
-     * <blockquote><font size="-1"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation:</b>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.
-     * Implementations should document their validation process.</font></blockquote>
+     * Implementations should document their validation process.</div>
      *
      * @param  values The new values.
      * @throws IllegalArgumentException if this method verifies argument validity and the given value

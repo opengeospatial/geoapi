@@ -185,6 +185,8 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *     </ul>
      *   </li>
      * </ul>
+     *
+     * @return The configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -202,12 +204,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference units of measure bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>.
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2001_libUnit.csv}.
      *   This file contains three separate blocks of data for linear units, angular units and scaling
      *   units. It gives the EPSG code and name for the unit of measure, together with the ratio of
      *   the unit to the ISO base unit for that unit type.</td>
@@ -221,7 +223,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   should be correct to at least 10 significant figures. Units missing from the software
      *   or included in the software additional to those in the EPSG Dataset or at variance with
      *   those in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a unit from an EPSG code.
@@ -291,12 +293,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference ellipsoid parameters bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a>.
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2002_libEllipsoid.csv}.
      *   This file gives the EPSG code and name for the ellipsoid, commonly encountered alternative
      *   name(s) for the same object, the value and units for the semi-major axis, the conversion
      *   ratio to metres for these units, and then a second parameter which will be either the value
@@ -315,7 +317,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   International, several variants exist. These must be clearly distinguished. Ellipsoids
      *   missing from the software or included in the software additional to those in the EPSG Dataset
      *   or at variance with those in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
@@ -395,12 +397,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference prime meridians bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2003_libPrimeMeridian.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link DatumAuthorityFactory#createPrimeMeridian(String)}.</td>
@@ -411,7 +413,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   The values of the Greenwich Longitude should be correct to at least 7 decimal places (of degrees or grads).
      *   Meridians missing from the software or included in the software additional to those in the EPSG Dataset or
      *   at variance with those in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a prime meridian from an EPSG code.
@@ -475,13 +477,13 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference geodetic datums and CRSs bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare geodetic datum and geocentric, geographic 3D and geographic 2D CRS definitions
      *   included in the geoscience software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2004_libGeodeticDatumCRS.csv">{@code GIGS_2004_libGeodeticDatumCRS.csv}</a>.
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2004_libGeodeticDatumCRS.csv}.
      *   Tests for component logical consistency is included: for example, if a higher-level
      *   library-defined component such as ED50 datum is selected it should then not be possible
      *   to change any of its lower-level components such as the ellipsoid from the pre-defined
@@ -497,7 +499,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   and prime meridian as in the EPSG Dataset. CRSs missing from the software or included in the
      *   geoscience software additional to those in the EPSG Dataset or at variance with those in the
      *   EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
      *         unsupported code}) occurred while creating a geodetic CRS from an EPSG code.
@@ -666,12 +668,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference map projections bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare map projection definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2005_libProjection.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}.</td>
@@ -682,7 +684,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   parameters should be correct to at least 10 significant figures. Map projections missing
      *   from the software or included in the software additional to those in the EPSG Dataset or
      *   at variance with those in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
      *         unsupported identifier}) occurred while creating an operation from an EPSG code.
@@ -733,12 +735,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference projected CRSs bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare projected CRS definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2006_libProjectedCRS.csv">{@code GIGS_2006_libProjectedCRS.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2006_libProjectedCRS.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link CRSAuthorityFactory#createProjectedCRS(String)}.</td>
@@ -749,7 +751,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   projection as in the EPSG Dataset. CRSs missing from the software or included in the
      *   software additional to those in the EPSG Dataset or at variance with those in the EPSG
      *   Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
      *         unsupported identifier}) occurred while creating a projected CRS from an EPSG code.
@@ -802,12 +804,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference coordinate transformations bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2007_libGeodTfm.csv">{@code GIGS_2007_libGeodTfm.csv}</a>.</td>
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2007_libGeodTfm.csv}.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
      *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}.</td>
@@ -818,7 +820,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   should be correct to at least 10 significant figures. Transformations missing from the software
      *   or included in the software additional to those in the EPSG Dataset or at variance with those
      *   in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
      *         unsupported identifier}) occurred while creating an operation from an EPSG code.
@@ -861,12 +863,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference vertical datums and CRSs bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>.
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2008_libVerticalDatumCRS.csv}.
      *   Compare vertical datums definition included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
@@ -879,7 +881,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   axes direction and units) as in EPSG Dataset. CRSs missing
      *   from the software or included in the software additional to those in the EPSG Dataset or at variance
      *   with those in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
      *         unsupported identifier}) occurred while creating a vertical datum from an EPSG code.
@@ -965,12 +967,12 @@ public strictfp class Series2000Test extends GIGSTestCase {
     /**
      * Verifies reference vertical transformations bundled with the geoscience software.
      *
-     * <p><table cellpadding="3"><tr>
+     * <table cellpadding="3" summary="Test description"><tr>
      *   <th nowrap align="left" valign="top">Test method:</th>
      *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file <a href="{@svnurl gigs}/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>.
+     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2009_libVertTfm.csv}.
      *   Compare vertical transformation definitions included in the software against the EPSG Dataset.</td>
      * </tr><tr>
      *   <th nowrap align="left" valign="top">Tested API:</th>
@@ -982,7 +984,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
      *   values of the parameters should be correct to at least 10 significant figures. Transformations missing
      *   from the software or included in the software additional to those in the EPSG Dataset or at variance
      *   with those in the EPSG Dataset should be reported.</td>
-     * </tr></table></p>
+     * </tr></table>
      *
      * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
      *         unsupported identifier}) occurred while creating a vertical transformation from an EPSG code.

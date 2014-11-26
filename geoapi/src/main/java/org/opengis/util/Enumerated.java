@@ -66,7 +66,7 @@ public interface Enumerated {
     String[] names();
 
     /**
-     * Returns the identifier declared in the {@link UML} annotation, or {@code null} if none.
+     * Returns the identifier declared in the {@link org.opengis.annotation.UML} annotation, or {@code null} if none.
      * The UML identifier shall be the ISO or OGC name for this enumeration or code list constant.
      *
      * @return The ISO/OGC identifier for this constant, or {@code null} if none.

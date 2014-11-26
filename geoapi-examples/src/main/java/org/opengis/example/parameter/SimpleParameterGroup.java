@@ -127,11 +127,11 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Returns the parameter descriptors in this group.
      * The list returned by this method is unmodifiable.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method
      * returns the same list than the {@link #values()} methods. However more sophisticated libraries
-     * are likely to return a distinct list.</font></blockquote>
+     * are likely to return a distinct list.</div>
      *
      * @return The parameter descriptors in this group as an unmodifiable list.
      */
@@ -145,11 +145,11 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Returns the parameter values in this group.
      * The list returned by this method is unmodifiable.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method
      * returns the same list than the {@link #descriptors()} methods. However more sophisticated
-     * libraries are likely to return a distinct list.</font></blockquote>
+     * libraries are likely to return a distinct list.</div>
      *
      * @return The parameter values in this group as an unmodifiable list.
      */
@@ -163,11 +163,11 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Returns the parameter descriptor in this group for the specified
      * {@linkplain Identifier#getCode() identifier code}.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is
      * essentially synonymous to {@link #parameter(String)}. However more sophisticated libraries
-     * are likely to return a distinct object.</font></blockquote>
+     * are likely to return a distinct object.</div>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter to search for.
@@ -200,11 +200,11 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * <b>parameter</b>("false_easting").{@linkplain ParameterValue#setValue(double) setValue}(500000.0);
      * </code></blockquote>
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is
      * essentially synonymous to {@link #descriptor(String)}. However more sophisticated libraries
-     * are likely to return a distinct object.</font></blockquote>
+     * are likely to return a distinct object.</div>
      *
      * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
      *              of the parameter to search for.
@@ -256,12 +256,12 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * and {@linkplain #parameters} than this group. The {@linkplain SimpleParameter#getValue() value}
      * of each parameter is left to their default value.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
      * {@linkplain ParameterDescriptorGroup descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However in more sophisticated libraries, the
      * {@link ParameterDescriptorGroup#createValue()} and {@link ParameterValueGroup#clone()}
-     * methods are likely to be defined in different objects.</font></blockquote>
+     * methods are likely to be defined in different objects.</div>
      *
      * @see #clone()
      */
