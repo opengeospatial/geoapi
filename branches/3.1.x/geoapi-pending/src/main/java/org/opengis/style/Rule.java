@@ -41,8 +41,8 @@ import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 /**
- * A rule consists of two important parts: a {@linkplain Filter filter} and a list of
- * {@linkplain Symbol symbols}.  When it is time to draw a given feature, the rendering
+ * A rule consists of two important parts: a {@linkplain Filter filter} and a list of symbols.
+ * When it is time to draw a given feature, the rendering
  * engine examines each rule in the FeatureStyle, first checking its Filter (or ElseFilter).  If the
  * Filter passes, then every Symbolizer for that rule is applied to the given
  * feature.
@@ -56,7 +56,6 @@ import static org.opengis.annotation.Specification.*;
 @XmlElement("Rule")
 @UML(identifier="PF_PortrayalRule", specification=ISO_19117)
 public interface Rule {
-
     /**
      * Returns a name for this rule.
      * This can be any string that uniquely identifies this rule within a given
@@ -81,12 +80,11 @@ public interface Rule {
     /**
      * Returns a small Graphic that could be used by the rendering engine to
      * draw a legend window.
-     * <p>
-     * A nice user interface may want to present the user with a legend that
+     *
+     * <p>A nice user interface may want to present the user with a legend that
      * indicates how features of a given type are being portrayed.  Through its
      * {@code LegendGraphic} property, a {@code Rule} may provide a custom picture
-     * to be used in such a legend window.
-     * @return
+     * to be used in such a legend window.</p>
      */
     @XmlElement("LegendGraphic")
     GraphicLegend getLegend();
@@ -136,14 +134,14 @@ public interface Rule {
      * This method returns the list of Symbolizer objects
      * contained by this {@code Rule}.
      *
-     * We use a list of <? extends Symbolizer> to enable the possibility
+     * We use a list of {@code <? extends Symbolizer>} to enable the possibility
      * for an implementation to return a special type of Symbolizer.
      * This doesnt mean a Rule must return a list of PointSymbolizer or
      * TextSymbolizer only, no. The purpose of this if to offer the solution
      * to return different implementations like MutableSymbolizer or RichSymbolizer
      * and then avoid redundant cast in the code.
      * If you dont intend to use a special interface you can override this method
-     * by : List<Symbolizer> symbolizers();
+     * by symbolizers();
      *
      * @return the list of Symbolizer
      */
@@ -167,5 +165,4 @@ public interface Rule {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

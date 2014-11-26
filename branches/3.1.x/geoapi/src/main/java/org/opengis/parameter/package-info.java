@@ -75,10 +75,10 @@
  *
  * <h2>Coordinate Operation parameters</h2>
  * <p>Most parameter values are real numbers. Those values can be obtained by the
- * {@link org.opengis.parameter.ParameterValue#doubleValue() ParameterValue<?>.doubleValue()} method.
+ * {@link org.opengis.parameter.ParameterValue#doubleValue() ParameterValue.doubleValue()} method.
  * But for some operation methods, notably those implementing a grid interpolation algorithm, the parameter
  * value could be a file name or URI. Those values can be obtained by the
- * {@link org.opengis.parameter.ParameterValue#getValue() ParameterValue<URI>.getValue()} method.
+ * {@link org.opengis.parameter.ParameterValue#getValue() ParameterValue.getValue()} method.
  * Note that such URI may be valid only for some locations.
  * An example is the coordinate transformation from NAD&nbsp;27 to NAD&nbsp;83 in the USA; depending
  * on the locations of the points to be transformed, one of a series of grid files should be used.</p>

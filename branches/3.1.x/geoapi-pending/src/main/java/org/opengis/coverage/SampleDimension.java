@@ -156,8 +156,6 @@ public interface SampleDimension {
 
     /**
      * The minimum value occurring in the sample dimension.
-     * If this value is not available, this value can be determined from the
-     * {@link org.opengis.coverage.processing.GridAnalysis#getMinValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The minimum value occurring in the sample dimension.
@@ -170,8 +168,6 @@ public interface SampleDimension {
 
     /**
      * The maximum value occurring in the sample dimension.
-     * If this value is not available, this value can be determined from the
-     * {@link org.opengis.coverage.processing.GridAnalysis#getMaxValue} operation.
      * This value can be empty if this value is not provided by the implementation.
      *
      * @return The maximum value occurring in the sample dimension.

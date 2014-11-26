@@ -60,12 +60,12 @@ public interface OrientableSurface extends OrientablePrimitive {
      * well defined, all the rings of the {@linkplain SurfaceBoundary surface boundary}
      * shall be listed as "interior".
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> The concept of exterior boundary for a surface is really only
+     * <div class="note"><b>Note:</b>
+     * The concept of exterior boundary for a surface is really only
      * valid in a 2-dimensional plane. A bounded cylinder has two boundary components, neither
      * of which can logically be classified as its exterior. Thus, in 3 dimensions, there is no
      * valid definition of exterior that covers all cases.
-     * </font></blockquote>
+     * </div>
      *
      * @return The sets of positions on the boundary.
      */

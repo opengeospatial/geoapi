@@ -50,22 +50,25 @@ public interface GridCell extends org.opengis.coverage.grid.GridCell {
      * geometric object which encodes only the spatial components of the grid index. Spatial axes
      * in the geometric object are specified in the same order as in the grid coordinates.
      * The temporal axis and any categorical axes are omitted.
-     * <p>
-     * In two spatial dimensions, the geometric object shall be a {@link PolyhedralSurface} composed of
-     * a single {@link Polygon}. For three spatial dimensions, the user must specify a {@link Solid}
-     * object which represents the volume bounded by the eight corners.
-     * <p>
-     * Because we consider time to be orthogonal to space, these spatial elements may be factored out.
+     *
+     * <p>In two spatial dimensions, the geometric object shall be a {@code PolyhedralSurface} composed of
+     * a single {@code Polygon}. For three spatial dimensions, the user must specify a
+     * {@link org.opengis.geometry.primitive.Solid}
+     * object which represents the volume bounded by the eight corners.</p>
+     *
+     * <p>Because we consider time to be orthogonal to space, these spatial elements may be factored out.
      * The same spatial elements participate at the start time and at the end time.
-     * Therefore, they need only be represented once.
+     * Therefore, they need only be represented once.</p>
      */
     Set<Geometry> getSpatialElements();
 
     /**
      * This role name is inherited from {@link DomainObject} and associates the grid cell
-     * with a {@linkplain Interval interval} which represents the two {@linkplain Instant instants}
+     * with a {@linkplain org.opengis.temporal.IntervalLength interval} which represents the two
+     * {@linkplain org.opengis.temporal.Instant instants}
      * which participate in the Grid Cell. Because there may be only one time axis, there can be
-     * only two relevant {@linkplain Instant instants}. Because we consider time to be orthogonal
+     * only two relevant {@linkplain org.opengis.temporal.Instant instants}.
+     * Because we consider time to be orthogonal
      * to space, these temporal elements may be factored out and represented separately from the
      * spatial elements.
      */

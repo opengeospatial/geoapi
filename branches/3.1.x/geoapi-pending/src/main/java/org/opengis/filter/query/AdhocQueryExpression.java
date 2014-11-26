@@ -39,12 +39,11 @@ import org.opengis.util.GenericName;
 /**
  * A fundamental type of query expression is the ad hoc query expression. It is ad hoc in the sense that the
  * query is not known before the time it is being executed as, for example, a stored query would be.
- * <br/>
- * An ad hoc query expression is a query expression that contains the names of one or more resource types to
+ *
+ * <p>An ad hoc query expression is a query expression that contains the names of one or more resource types to
  * query, an optional projection clause enumerating the properties of the resource to present in the response, an
  * option selection clause that constraints the properties of those resources types in order to define a result set
- * and an optional sorting clause specifying the order in which the result set is presented.
-
+ * and an optional sorting clause specifying the order in which the result set is presented.</p>
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
@@ -52,7 +51,6 @@ import org.opengis.util.GenericName;
  */
 @XmlElement("AdhocQueryExpression")
 public interface AdhocQueryExpression extends QueryExpression {
-
     /**
      * The mandatory typeNames parameter shall be used within an ad hoc query expression to encode the names
      * of one or more correlated resource types to be queried.
@@ -65,12 +63,12 @@ public interface AdhocQueryExpression extends QueryExpression {
     /**
      * The optional aliases parameter may be used within an ad hoc query expression to specify alternate names for
      * the resource type names specified as the value of the typeNames parameter.
-     * <br/>
-     * A resource type alias may be used anywhere; the resource type name may be
-     * used within the context of the query expression.
-     * <br/>
-     * The number of list elements in the value of the aliases parameter shall match the number of corresponding
-     * resource type names in the value of the typeNames parameter and shall be correlated 1:1.
+     *
+     * <p>A resource type alias may be used anywhere; the resource type name may be
+     * used within the context of the query expression.</p>
+     *
+     * <p>The number of list elements in the value of the aliases parameter shall match the number of corresponding
+     * resource type names in the value of the typeNames parameter and shall be correlated 1:1.</p>
      *
      * @return List of names, never null.
      */

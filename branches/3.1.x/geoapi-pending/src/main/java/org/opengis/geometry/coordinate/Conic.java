@@ -44,42 +44,42 @@ import static org.opengis.annotation.Specification.*;
  * Any general conic curve. Any of the conic section curves can be canonically represented
  * in polar co-ordinates (&rho;, φ) as:
  *
- * <P><center><img src="doc-files/ConicCurve.png"></center></P>
+ * <center><img src="doc-files/ConicCurve.png" alt="Conic curve"></center>
  *
- * <P>where "<var>P</var>" is semi-latus rectum and "<var>e</var>" is the eccentricity. This gives
+ * <p>where "<var>P</var>" is semi-latus rectum and "<var>e</var>" is the eccentricity. This gives
  * a conic with focus at the pole (origin), and the vertex on the conic nearest this focus in the
- * direction of the polar axis, <var>φ</var>=0.
+ * direction of the polar axis, <var>φ</var>=0.</p>
  *
  * For <var>e</var>=0, this is a circle.
  * For 0&nbsp;&lt;&nbsp;<var>e</var>&nbsp;&lt;&nbsp;1, this is an ellipse.
  * For <var>e</var>=1, this is a parabola.
- * For <var>e</var>&gt;1, this is one branch of a hyperbola.</P>
+ * For <var>e</var>&gt;1, this is one branch of a hyperbola.
  *
  *
- * <P>These generic conics can be viewed in a two-dimensional Cartesian parameter space
+ * <p>These generic conics can be viewed in a two-dimensional Cartesian parameter space
  * (<var>u</var>,&nbsp;<var>v</var>) given by the usual coordinate conversions
  * <var>u</var>=<var>&rho;</var>cos(<var>φ</var>) and
  * <var>v</var>=<var>&rho;</var>sin(<var>φ</var>).
  * We can then convert this to a 3D coordinate reference system by using an affine transformation,
  * (<var>u</var>,&nbsp;<var>v</var>) &rarr; (<var>x</var>,&nbsp;<var>y</var>,&nbsp;<var>z</var>)
- * which is defined by:</P>
+ * which is defined by:</p>
  *
- * <P><center>(TODO: paste the matrix here, same as AffinePlacement)</center></P>
+ * <center>(TODO: paste the matrix here, same as AffinePlacement)</center>
  *
- * <P>This gives us <var>φ</var> as the constructive parameter.
+ * <p>This gives us <var>φ</var> as the constructive parameter.
  * The {@linkplain DirectPosition direct position} given by
  * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>)
  * is the image of the origin in the local coordinate space (<var>u</var>, <var>v</var>)
- * Alternatively, the origin may be shifted to the vertex of the conic as</P>
+ * Alternatively, the origin may be shifted to the vertex of the conic as</p>
  *
- * <P><var>u'</var> = <var>&rho;</var>cos(<var>φ</var>) - P/(1 + <var>e</var>)
+ * <p><var>u'</var> = <var>&rho;</var>cos(<var>φ</var>) - P/(1 + <var>e</var>)
  * &nbsp;&nbsp;and&nbsp;&nbsp;
- * <var>v'</var> = <var>&rho;</var>sin(<var>φ</var>)</P>
+ * <var>v'</var> = <var>&rho;</var>sin(<var>φ</var>)</p>
  *
- * <P>and <var>v</var> can be used as the constructive parameter.
+ * <p>and <var>v</var> can be used as the constructive parameter.
  * In general, conics with small eccentricity and small <var>P</var>, use the first or
  * "central" representation. Those with large eccentricity or large <var>P</var> tend
- * to use the second or "linear" representation.
+ * to use the second or "linear" representation.</p>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
@@ -124,8 +124,8 @@ public interface Conic extends CurveSegment {
      * Return the start point parameter used in the constructive paramerization.
      * The following relation must be hold:
      *
-     * <P><code>{@linkplain #forConstructiveParam forConstructiveParam}(getStartConstructiveParam())
-     * .{@linkplain Object#equals equals}( {@link #getStartPoint getStartPoint}() )</P>
+     * <p><code>{@linkplain #forConstructiveParam forConstructiveParam}(getStartConstructiveParam())
+     * .{@linkplain Object#equals equals}( {@link #getStartPoint getStartPoint}() )</code></p>
      *
      * There is no assumption that the
      * {@linkplain #getStartConstructiveParam start constructive parameter} is less than the
@@ -139,8 +139,8 @@ public interface Conic extends CurveSegment {
      * Return the end point parameter used in the constructive paramerization.
      * The following relation must be hold:
      *
-     * <P><code>{@linkplain #forConstructiveParam forConstructiveParam}(getEndConstructiveParam())
-     * .{@linkplain Object#equals equals}( {@link #getEndPoint getEndPoint}() )</P>
+     * <p><code>{@linkplain #forConstructiveParam forConstructiveParam}(getEndConstructiveParam())
+     * .{@linkplain Object#equals equals}( {@link #getEndPoint getEndPoint}() )</code></p>
      *
      * There is no assumption that the
      * {@linkplain #getStartConstructiveParam start constructive parameter} is less than the

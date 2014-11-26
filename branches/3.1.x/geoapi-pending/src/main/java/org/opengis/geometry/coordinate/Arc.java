@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * line string, and will not be able to return values for center, radius, start angle and end
  * angle.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> In the model, an  {@code Arc} is a subclass of {@link ArcString},
+ * <div class="note"><b>Note:</b>
+ * In the model, an  {@code Arc} is a subclass of {@link ArcString},
  * being a trivial arc string consisting of only one arc. This may be counter-intuitive in the
  * sense that subclasses are often thought of as more complex than their superclass (with
  * additional methods and attributes). An {@code Arc} is simpler than a {@linkplain ArcString
@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * information such as "center", "start angle", and "end angle". This additional computational
  * complexity forces the subclassing to be the way it is. In addition the "is type of" semantics
  * works this way and not the other.
- * </font></blockquote>
+ * </div>
  *
  * In its simplest representation, the three points in the {@linkplain #getControlPoints control point}
  * sequence for an {@code Arc} shall consist of, in order, the initial point on the arc, some
@@ -64,13 +64,13 @@ import static org.opengis.annotation.Specification.*;
  * in the {@linkplain #getControlPoints control point} array in the order in which they occur on
  * the arc.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> The use of the term "midPoint" for the center {@linkplain Position position}
+ * <div class="note"><b>Note:</b>
+ * The use of the term "midPoint" for the center {@linkplain Position position}
  * of the {@linkplain #getControlPoints control point} sequence is not meant to require that
  * the {@linkplain Position position} be the geometric midpoint of the arc. This is the best
  * choice for this {@linkplain Position position} from a computational stability perspective,
  * but it is not absolutely necessary for the mathematics to work.
- * </font></blockquote>
+ * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

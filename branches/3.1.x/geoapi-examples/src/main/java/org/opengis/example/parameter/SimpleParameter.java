@@ -573,12 +573,12 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * and {@linkplain #type} than this parameter. The {@linkplain #value} is left to their default
      * value.
      *
-     * <blockquote><font size="-1"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note:</b>
      * Since this simple class implements both the {@linkplain ParameterValue value} and the
      * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However in more sophisticated libraries, the
      * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
-     * methods are likely to be defined in different objects.</font></blockquote>
+     * methods are likely to be defined in different objects.</div>
      *
      * @return A new parameter with the same authority, code and type than this parameter.
      *

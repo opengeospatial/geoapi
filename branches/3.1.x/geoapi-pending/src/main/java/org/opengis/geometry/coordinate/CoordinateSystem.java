@@ -103,12 +103,12 @@ public interface CoordinateSystem {
      * will be the natural order implied by the manner in which the {@link CoordinateSystem} is
      * constructed.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * The most common use of the permutation is to allow the {@link DirectPosition}s
      * coordinates to be stored in an order consistent with the mathematical requirement to be
      * right-handed. For example, a lat-long 2D system is left-handed so that swapping the first
      * two offsets gives a system more consistent with most mathematical libraries.
-     * </font></blockquote>
+     * </div>
      *
      * @return The offsets in the coordinate arrays for storage within the direct positions,
      *         or {@code null} for natural ordering.
@@ -128,13 +128,13 @@ public interface CoordinateSystem {
      * standard in the clauses for surfaces and solids. If not specified, the by default “right”
      * which is the standard for Mathematics and Geometry.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * A permutation can be represented by sequence of transpositions each swapping exactly two
      * offsets. Although the number of transpositions is not fixed, if one representation uses
      * an even number, then all representations use an even number. Using this, permutations can
      * be classified as either odd or even. An odd permutation changes the handedness of the system.
      * An even permutation does not.
-     * </font></blockquote>
+     * </div>
      *
      * @return The coordinate system orientation, or {@code null} if unspecified.
      */

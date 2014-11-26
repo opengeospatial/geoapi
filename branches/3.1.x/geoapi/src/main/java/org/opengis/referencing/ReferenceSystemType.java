@@ -64,7 +64,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-parametric coordinate reference system containing an
      * engineering coordinate reference system and a parametric reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> x, y, pressure.</font></blockquote>
+     * <div class="note"><b>Example:</b> x, y, pressure.</div>
      */
     @UML(identifier="compoundEngineeringParametric", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_ENGINEERING_PARAMETRIC =
@@ -74,7 +74,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-parametric-temporal coordinate reference system containing an
      * engineering, a parametric and a temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> x, y, pressure, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> x, y, pressure, time.</div>
      */
     @UML(identifier="compoundEngineeringParametricTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL =
@@ -84,7 +84,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal coordinate reference system containing an
      * engineering coordinate reference system and a temporal reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> x, y, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> x, y, time.</div>
      */
     @UML(identifier="compoundEngineeringTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_ENGINEERING_TEMPORAL =
@@ -94,7 +94,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatial reference system containing a horizontal engineering
      * coordinate reference system and a vertical coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> x, y, height.</font></blockquote>
+     * <div class="note"><b>Example:</b> x, y, height.</div>
      */
     @UML(identifier="compoundEngineeringVertical", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_ENGINEERING_VERTICAL =
@@ -104,7 +104,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal coordinate reference system containing an
      * engineering, a vertical, and a temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> x, y, height, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> x, y, height, time.</div>
      */
     @UML(identifier="compoundEngineeringVerticalTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_ENGINEERING_VERTICAL_TEMPORAL =
@@ -114,7 +114,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-parametric coordinate reference system containing a 2D
      * geographic horizontal coordinate reference system and a parametric reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> latitude, longitude, pressure.</font></blockquote>
+     * <div class="note"><b>Example:</b> latitude, longitude, pressure.</div>
      */
     @UML(identifier="compoundGeographic2DParametric", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_GEOGRAPHIC2D_PARAMETRIC =
@@ -124,7 +124,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-parametric-temporal coordinate reference system containing a 2D
      * geographic horizontal, a parametric and a temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> latitude, longitude, pressure, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> latitude, longitude, pressure, time.</div>
      */
     @UML(identifier="compoundGeographic2DParametricTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL =
@@ -134,7 +134,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal coordinate reference system containing a 2D geographic horizontal
      * coordinate reference system and a temporal reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> latitude, longitude, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> latitude, longitude, time.</div>
      */
     @UML(identifier="compoundGeographic2DTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_GEOGRAPHIC2D_TEMPORAL =
@@ -145,7 +145,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * reference system is a horizontal geodetic coordinate reference system
      * and one is a vertical coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> latitude, longitude, [gravity related] height or depth.</font></blockquote>
+     * <div class="note"><b>Example:</b> latitude, longitude, [gravity related] height or depth.</div>
      */
     @UML(identifier="compoundGeographic2DVertical", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_GEOGRAPHIC2D_VERTICAL =
@@ -155,7 +155,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal coordinate reference system containing a 2D
      * geographic horizontal, a vertical, and a temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> latitude, longitude, height, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> latitude, longitude, height, time.</div>
      */
     @UML(identifier="compoundGeographic2DVerticalTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL =
@@ -165,7 +165,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal coordinate reference system containing a 3D
      * geographic and temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> latitude, longitude, ellipsoidal height, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> latitude, longitude, ellipsoidal height, time.</div>
      */
     @UML(identifier="compoundGeographic3DTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_GEOGRAPHIC3D_TEMPORAL =
@@ -175,7 +175,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-parametric coordinate reference system containing a
      * projected horizontal coordinate reference system and a parametric reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> easting, northing, density.</font></blockquote>
+     * <div class="note"><b>Example:</b> easting, northing, density.</div>
      */
     @UML(identifier="compoundProjected2DParametric", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_PROJECTED2D_PARAMETRIC =
@@ -185,7 +185,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound statio-parametric-temporal coordinate reference system containing
      * a projected horizontal, a parametric, and a temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> easting, northing, density, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> easting, northing, density, time.</div>
      */
     @UML(identifier="compoundProjected2DParametricTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL =
@@ -195,7 +195,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal reference system containing a projected horizontal and a temporal coordinate
      * reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> easting, northing, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> easting, northing, time.</div>
      */
     @UML(identifier="compoundProjectedTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_PROJECTED_TEMPORAL =
@@ -205,7 +205,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatial reference system containing a horizontal projected coordinate
      * reference system and a vertical coordinate reference.
      *
-     * <blockquote><font size="-1"><b>Example:</b> easting, northing, height or depth.</font></blockquote>
+     * <div class="note"><b>Example:</b> easting, northing, height or depth.</div>
      */
     @UML(identifier="compoundProjectedVertical", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_PROJECTED_VERTICAL =
@@ -215,7 +215,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Compound spatio-temporal coordinate reference system containing a projected horizontal,
      * a vertical, and a temporal coordinate reference system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> easting, northing, height, time.</font></blockquote>
+     * <div class="note"><b>Example:</b> easting, northing, height, time.</div>
      */
     @UML(identifier="compoundProjectedVerticalTemporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType COMPOUND_PROJECTED_VERTICAL_TEMPORAL =
@@ -241,7 +241,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Coordinate reference system based on an image datum (engineering datum which
      * defines the relationship of a coordinate reference system to an image).
      *
-     * <blockquote><font size="-1"><b>Example:</b> row, column.</font></blockquote>
+     * <div class="note"><b>Example:</b> row, column.</div>
      */
     @UML(identifier="engineeringImage", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType ENGINEERING_IMAGE =
@@ -250,7 +250,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     /**
      * Geodetic CRS having a 3D cartesian coordinate system.
      *
-     * <blockquote><font size="-1"><b>Example:</b> [geocentric] X, Y, Z.</font></blockquote>
+     * <div class="note"><b>Example:</b> [geocentric] X, Y, Z.</div>
      */
     @UML(identifier="geodeticGeocentric", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType GEODETIC_GEOCENTRIC =
@@ -273,7 +273,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     /**
      * Spatial reference in the form of a label  or code that identifies a location.
      *
-     * <blockquote><font size="-1"><b>Example:</b> post code.</font></blockquote>
+     * <div class="note"><b>Example:</b> post code.</div>
      */
     @UML(identifier="geographicIdentifier", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType GEOGRAPHIC_IDENTIFIER =
@@ -284,7 +284,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * for implementing them reference system that identifies a location by reference
      * to a segment of a linear geographic feature and distance along that segment from a given point.
      *
-     * <blockquote><font size="-1"><b>Example:</b> <var>x</var> km along road.</font></blockquote>
+     * <div class="note"><b>Example:</b> <var>x</var> km along road.</div>
      */
     @UML(identifier="linear", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType LINEAR =
@@ -294,7 +294,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Coordinate reference system based on a parametric datum (datum describing
      * the relationship of parametric coordinate reference system to an object).
      *
-     * <blockquote><font size="-1"><b>Example:</b> pressure.</font></blockquote>
+     * <div class="note"><b>Example:</b> pressure.</div>
      */
     @UML(identifier="parametric", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType PARAMETRIC =
@@ -304,7 +304,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * Coordinate reference system derived from a two dimensional geodetic coordinate
      * reference system by applying a map projection.
      *
-     * <blockquote><font size="-1"><b>Example:</b> easting, northing.</font></blockquote>
+     * <div class="note"><b>Example:</b> easting, northing.</div>
      */
     @UML(identifier="projected", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType PROJECTED =
@@ -313,7 +313,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     /**
      * Reference system against which time is measured.
      *
-     * <blockquote><font size="-1"><b>Example:</b> time.</font></blockquote>
+     * <div class="note"><b>Example:</b> time.</div>
      */
     @UML(identifier="temporal", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType TEMPORAL =
@@ -323,7 +323,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * One-dimensional coordinate reference system based on a vertical datum
      * (datum describing the relation of gravity-related heights or depths to the earth).
      *
-     * <blockquote><font size="-1"><b>Example:</b> height or depths.</font></blockquote>
+     * <div class="note"><b>Example:</b> height or depths.</div>
      */
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType VERTICAL =

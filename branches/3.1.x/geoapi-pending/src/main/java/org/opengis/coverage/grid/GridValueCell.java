@@ -55,7 +55,7 @@ public interface GridValueCell extends ValueObject {
     /**
      * Returns the {@linkplain GridCell grid cell} that defines the structure of the
      * {@linkplain GridPointValuePair grid point value pairs} that support the interpolation
-     * of a feature attribute value at a {@linkplain DirectPosition direct position} within the
+     * of a feature attribute value at a {@linkplain org.opengis.geometry.DirectPosition direct position} within the
      * {@linkplain GridCell grid cell}.
      *
      * @departure constraint

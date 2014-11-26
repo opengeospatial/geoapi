@@ -43,8 +43,10 @@ public final class Referencing extends Formulas implements XReferencing {
     /**
      * The name for the registration of this component.
      *
-     * <p><strong>NOTE:</strong> OpenOffice expects a field with exactly that name:
-     * do not rename the field name! (but you can rename the field value, of course).</p>
+     * <div class="note"><b>Note:</b>
+     * OpenOffice expects a field with exactly that name:
+     * do not rename the field name! (but you can rename the field value, of course).
+     * </div>
      */
     private static final String __serviceName = "org.opengis.openoffice.Referencing";
 

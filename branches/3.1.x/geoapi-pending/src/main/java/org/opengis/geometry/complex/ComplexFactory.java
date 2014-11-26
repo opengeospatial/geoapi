@@ -43,7 +43,7 @@ import org.opengis.geometry.primitive.OrientableSurface;
 /**
  * A factory of {@linkplain Complex complex} geometric objects.
  * All complexes created through this interface will use the
- * {@linkplain #getCoordinateReferenceSystem factory's coordinate reference system}.
+ * factory's coordinate reference system.
  * Creating complexes in a different CRS may requires a different instance of
  * {@code ComplexFactory}.
  *

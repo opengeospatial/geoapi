@@ -79,7 +79,7 @@ public interface ExternalGraphic extends GraphicalSymbol {
     /**
      * The ColorReplacement element, which may occur multiple times, allows to replace a
      * color in the ExternalGraphic, the color specified in the OriginalColor sub-element, by
-     * another color as a result of a recode function as defined in {@link Interpolate} .
+     * another color as a result of a recode function as defined in Interpolate.
      */
     @XmlElement("ColorReplacement")
     Collection<ColorReplacement> getColorReplacements();

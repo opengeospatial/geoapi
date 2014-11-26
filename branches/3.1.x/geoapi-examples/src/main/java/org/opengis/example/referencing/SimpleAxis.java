@@ -25,6 +25,7 @@ import org.opengis.referencing.cs.RangeMeaning;
  * {@linkplain #abbreviation}, as documented in the following table:
  *
  * <blockquote><table class="ogc">
+ * <caption>Axis properties inferred from the abbreviation</caption>
  * <tr><th>Symbol</th>   <th>Common name</th>     <th>Axis direction</th>                                        <th>Unit</th>                       <th>Range</th> <th>Meaning</th></tr>
  * <tr><th>λ</th> <td>geodetic longitude</td>     <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link NonSI#DEGREE_ANGLE}</td> <td>±90°</td>  <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
  * <tr><th>φ</th> <td>geodetic latitude</td>      <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link NonSI#DEGREE_ANGLE}</td> <td>±180°</td> <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>

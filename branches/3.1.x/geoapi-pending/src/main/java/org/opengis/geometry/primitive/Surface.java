@@ -53,9 +53,9 @@ import static org.opengis.annotation.Specification.*;
  * be consistent with one another. Its included {@linkplain SurfacePatch surface patches} describe
  * the interior structure of a {@code Surface}.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> Other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
- * </font></blockquote>
+ * <div class="note"><b>Note:</b>
+ * Other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
+ * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

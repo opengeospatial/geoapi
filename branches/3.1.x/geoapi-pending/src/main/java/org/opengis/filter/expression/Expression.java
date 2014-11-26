@@ -66,12 +66,13 @@ public interface Expression {
     /**
      * Evaluates the given expressoin based on the content of the given object
      * and the context type.
-     * <p>
-     * The {@code context} parameter is used to control the type of the
+     *
+     * <p>The {@code context} parameter is used to control the type of the
      * result of the expression. A particular expression may not be able to evaluate
      * to an instance of {@code context}. Therefore to be safe calling code
      * should do a null check on the return value of this method, and call {@link #evaluate(Object)}
-     * if neccessary. Example:
+     * if neccessary. Example:</p>
+     *
      * <pre>
      *  Object input = ...;
      *  String result = expression.evaluate( input, String.class );
@@ -80,11 +81,10 @@ public interface Expression {
      *  }
      *  ...
      * </pre>
-     * </p>
-     * <p>
-     * Implementations that can not return a result as an instance of {@code context}
-     * should return {@code null}.
-     * </p>
+     *
+     * <p>Implementations that can not return a result as an instance of {@code context}
+     * should return {@code null}.</p>
+     *
      * @param <T> The type of the returned object.
      * @param object The object to evaluate the expression against.
      * @param context The type of the resulting value of the expression.

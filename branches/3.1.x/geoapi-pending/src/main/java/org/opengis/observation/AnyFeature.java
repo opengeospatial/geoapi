@@ -36,7 +36,7 @@ import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
 /**
- * This interface represents the set of all classes with the stereotype<<FeatureType>>.
+ * This interface represents the set of all classes with the stereotype {@literal <<FeatureType>>}.
  * This class is implemented in GML by the element gml:AbstractFeature
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/om">Implementation specification 1.0</A>

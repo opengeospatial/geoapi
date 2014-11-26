@@ -49,12 +49,12 @@ import static org.opengis.annotation.Specification.*;
  * operation of the parameterization to move this smaller thing into the coordinate system
  * defined by the {@linkplain #getRange() range} of the parameterization.
  *
- * <blockquote><font size="-1">
+ * <div class="note">
  * For example, if we have a 3D CAD or AEC drawing in a Euclidean design space,
  * and a 3D spline solid, then we can map designs in this drawing to geographically
  * referenced {@linkplain Geometry geometry object} by using the parameterization inherent
  * in the spline as long as the objects are within the range of the splines parameter space.
- * </font></blockquote>
+ * </div>
  *
  * It is defined as an interface, and so instantiations of this concept can carry
  * a variety of mappings, even if they are not defined within the ISO 19107 standard.
@@ -76,12 +76,12 @@ public interface Parameterization {
      * geometry object will be in the coordinate system {@linkplain #getDomain() domain} of the
      * parameterization.
      *
-     * <blockquote><font size="-1">
-     * The parameterization may be considered as a {@linkplain GeometryProxy geometry proxy} for
+     * <div class="note">
+     * The parameterization may be considered as a geometry proxy for
      * its “<code>extentOfValidity</code>” geometry object, since it creates an image of this
      * geometry object in its {@linkplain #getRange() range} coordinate system. Splines do
      * exactly this.
-     * </font></blockquote>
+     * </div>
      *
      * @return The domain of the mapping being represented by this parameterization.
      */
@@ -94,11 +94,11 @@ public interface Parameterization {
      * This shall be the same as the coordinate system of the
      * {@linkplain #getExtentOfValidity() extent of validity}.
      *
-     * <blockquote><font size="-1">
+     * <div class="note">
      * In many cases where the parameterization is the constructive mechanism for
      * a {@linkplain Geometry geometry object}, such as a spline, the domain will
      * be a simple Euclidean space of the topological dimension of this target object.
-     * </font></blockquote>
+     * </div>
      *
      * @return This parameterization {@linkplain #getDomain() domain} coordinate system.
      */
@@ -110,15 +110,15 @@ public interface Parameterization {
      * Returns the coordinate system which contains the values
      * to which this parameterization maps.
      *
-     * <blockquote><font size="-1">
+     * <div class="note">
      * In many cases where the parameterization is the constructive mechanism for a
      * {@linkplain Geometry geometry object}, such as a spline, the range will be
      * “coordinateSystem” of the target spline. In this case, the parameterization
      * shall also be a realization of {@linkplain Geometry geometry object}, e.g. the
      * object being constructed. The image in the range is thereby equivalent to a
-     * {@linkplain GeometryProxy geometry proxy}, under the parameterization of the
+     * GeometryProxy geometry proxy, under the parameterization of the
      * {@linkplain #getExtentOfValidity() extent of validity}.
-     * </font></blockquote>
+     * </div>
      *
      * @return The coordinate system mapped by this parameterization.
      */

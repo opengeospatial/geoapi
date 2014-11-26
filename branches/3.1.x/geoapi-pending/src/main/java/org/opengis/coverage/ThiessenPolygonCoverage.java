@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * of discrete {@linkplain PointValuePair point-value pairs}. Evaluation is based on interpolation
  * between the centeres of the {@linkplain ThiessenValuePolygon Thiessen value polygons} surrounding
  * the input position.
- * <p>
+ *
  * <h3>Thiessen polygon networks</h3>
  * A finite collection of points on a plane determines a partition of the plane into a collection of
  * polygons equal in number to the collection of points. A Thiessen polygon is generated from one of

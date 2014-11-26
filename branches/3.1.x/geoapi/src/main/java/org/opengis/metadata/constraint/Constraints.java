@@ -57,7 +57,7 @@ public interface Constraints {
      * Limitation affecting the fitness for use of the resource.
      * Returns an empty collection if none.
      *
-     * <blockquote><font size="-1"><b>Example:</b> not to be used for navigation.</font></blockquote>
+     * <div class="note"><b>Example:</b> not to be used for navigation.</div>
      *
      * @return Limitation affecting the fitness for use of the resource.
      */
@@ -89,7 +89,7 @@ public interface Constraints {
      * Citations for the limitation of constraint.
      * Returns an empty collection if none.
      *
-     * <blockquote><font size="-1"><b>Example:</b> copyright statement, license agreement, <i>etc</i>.</font></blockquote>
+     * <div class="note"><b>Example:</b> copyright statement, license agreement, <i>etc</i>.</div>
      *
      * @return Citations for the limitation of constraint, or {@code null} if none.
      *
