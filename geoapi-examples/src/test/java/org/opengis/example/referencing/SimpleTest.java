@@ -37,7 +37,7 @@ public strictfp class SimpleTest {
     }
 
     /**
-     * Tests the {@link org.opengis.example.referencing.SimpleCRS.GeographicCRS#WGS84} constant.
+     * Tests the {@link org.opengis.example.referencing.SimpleCRS.Geographic#WGS84} constant.
      */
     @Test
     public void testGeographicCRS() {

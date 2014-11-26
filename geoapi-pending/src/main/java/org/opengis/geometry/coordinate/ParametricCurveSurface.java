@@ -60,14 +60,14 @@ import static org.opengis.annotation.Specification.*;
  * {@code surface}(<var>s</var>,<var>t</var>);
  * </blockquote>
  *
- * The functions on {@code ParametricCurveSurface} shall expose these two families of curves. The
+ * <p>The functions on {@code ParametricCurveSurface} shall expose these two families of curves. The
  * first gives us the "horizontal" cross sections c<sub>t</sub>(<var>s</var>), the later the
  * "vertical" cross sections c<sub>s</sub>(<var>t</var>). The terms "horizontal" and "vertical"
  * refer to the parameter space and need not be either horizontal or vertical curves in the coordinate
  * reference system. The table below lists some possible pairs of types for these surface curves
- * (other representations of these same surfaces are possible).
- * <p>
- * <table border="1" cellspacing="0" cellpadding="2">
+ * (other representations of these same surfaces are possible).</p>
+ *
+ * <table border="1" cellspacing="0" cellpadding="2" summary="Examples">
  *   <tr style="background:#CCCCFF" class="TableHeadingColor">
  *     <th nowrap>&nbsp;Surface type&nbsp;</th>
  *     <th nowrap>&nbsp;Horizontal Curve type&nbsp;</th>
@@ -94,8 +94,8 @@ import static org.opengis.annotation.Specification.*;
  *     <td nowrap>&nbsp;Cubic spline&nbsp;</td>
  *   </tr>
  * </table>
- * <p>
- * The two partial derivatives of the surface parameterization, <b>i</b> and <b>j</b> are given by:
+ *
+ * <p>The two partial derivatives of the surface parameterization, <b>i</b> and <b>j</b> are given by:</p>
  *
  * <blockquote>TODO: copy equations there</blockquote>
  *
@@ -120,14 +120,14 @@ import static org.opengis.annotation.Specification.*;
  * pair of tangents. Parameterized curve surfaces have a natural moving frame and it shall be used
  * as defined in this paragraph to define the upNormal of the surface.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> The existence of a viable moving frame is the definition of "orientable"
+ * <div class="note"><b>Note:</b>
+ * The existence of a viable moving frame is the definition of "orientable"
  * manifold. This is why the existence of a continuous {@linkplain #getUpNormal upNormal} implies
  * that the surface is orientable. Non-orientable surfaces, such as the Möbius band and Klein bottle
  * are counter-intuitive. {@link Surface} forbids their use in application schemas conforming to
  * the ISO 19107 standard. Klein bottles cannot even be constructed in 3D space, but require 4D
  * space for non-singular representations.
- * </font></blockquote>
+ * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
@@ -153,14 +153,13 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * Constructs a curve that traverses the surface horizontally with respect to the parameter
      * <var>s</var>. This curve holds the parameter <var>t</var> constant.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong>
+     * <div class="note"><b>Note:</b>
      * The curve returned by this function or by the corresponding vertical curve function, are
      * normally not part of any {@linkplain Complex complex} to which this surface is included.
      * These are, in general, calculated transient values. The exceptions to this may occur at
      * the extremes of the parameter space. The boundaries of the parameter space support for
      * the surface map normally to the boundaries of the target surfaces.
-     * </font></blockquote>
+     * </div>
      *
      * @param  t The <var>t</var> value to hold constant.
      * @return The curve that traverses the surface.

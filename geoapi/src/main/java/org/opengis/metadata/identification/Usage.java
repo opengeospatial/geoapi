@@ -95,9 +95,9 @@ public interface Usage {
     /**
      * Responses to the user-determined limitations.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * This has been fixed in version <var>x</var>.
-     * </font></blockquote>
+     * </div>
      *
      * @return Responses to the user-determined limitations.
      *

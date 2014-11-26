@@ -96,7 +96,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * from plane to plane in a direction parallel to the third axis of the grid. The process can be extended to any
      * number of axes. Linear scanning is continuous only along a single grid line.
      *
-     * <center><img src="doc-files/LinearScanning.png"></center>
+     * <center><img src="doc-files/LinearScanning.png" alt="Linear scanning"></center>
      */
     @UML(identifier="Linear scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType LINEAR = new SequenceType("LINEAR");
@@ -105,10 +105,12 @@ public class SequenceType extends CodeList<SequenceType> {
      * A variant of {@linkplain #LINEAR linear} scanning, in which the direction of the scan is reversed
      * on alternate grid lines. In the case of a 3-dimensional grid, it will also be reversed in alternate
      * planes. Boustrophedonic scanning is continuous.
-     * <p>
-     * <b>NOTE:</b> Boustrophedonic scanning is also known as byte-offset scanning.
      *
-     * <center><img src="doc-files/BoustrophedonicScanning.png"></center>
+     * <div class="note"><b>Note:</b>
+     * Boustrophedonic scanning is also known as byte-offset scanning.
+     * </div>
+     *
+     * <center><img src="doc-files/BoustrophedonicScanning.png" alt="Boustrophedonic scanning"></center>
      */
     @UML(identifier="Boustrophedonic scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType BOUSTROPHEDONIC = new SequenceType("BOUSTROPHEDONIC");
@@ -120,7 +122,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * or more dimensions by repeating the scan pattern in consecutive planes. Cantor-diagonal scanning
      * is semi-continuous within a single plane.
      *
-     * <center><img src="doc-files/CantorDiagonalScanning.png"></center>
+     * <center><img src="doc-files/CantorDiagonalScanning.png" alt="Cantor-diagonal scanning"></center>
      */
     @UML(identifier="Cantor-diagonal scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType CANTOR_DIAGONAL = new SequenceType("CANTOR_DIAGONAL");
@@ -133,7 +135,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * in grids of more than two dimensions can only be maintained by reversing the inward/outward direction
      * of the scan in alternate planes.
      *
-     * <center><img src="doc-files/SpiralScanning.png"></center>
+     * <center><img src="doc-files/SpiralScanning.png" alt="Spiral scanning"></center>
      */
     @UML(identifier="Spiral scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType SPIRAL = new SequenceType("SPIRAL");
@@ -146,16 +148,18 @@ public class SequenceType extends CodeList<SequenceType> {
      * coordinate corresponding to an axis are less significant than those of the coordinate corresponding to the
      * next axis in the list. Morton ordering can be extended to any number of dimensions. Morton ordering is
      * discontinuous.
-     * <p>
-     * <b>NOTE:</b> Because of the shape of the curve formed by the initial ordering of quadrants,
+     *
+     * <div class="note"><b>Note:</b>
+     * Because of the shape of the curve formed by the initial ordering of quadrants,
      * Morton ordering is also known as Z ordering.
-     * <p>
-     * <center><img src="doc-files/Morton.png"></center>
-     * <p>
-     * A grid generated with the Morton ordering technique will be square and its size in each direction
+     * </div>
+     *
+     * <center><img src="doc-files/Morton.png" alt="Morton scanning"></center>
+     *
+     * <p>A grid generated with the Morton ordering technique will be square and its size in each direction
      * will be a multiple of a power of 2. However, the bit interleaving technique for generating an index
      * can be used to order the grid points in any grid, including grids that are irregular in shape or have
-     * grid cells of different sizes.
+     * grid cells of different sizes.</p>
      */
     @UML(identifier="Morton order", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType MORTON = new SequenceType("MORTON");
@@ -169,11 +173,13 @@ public class SequenceType extends CodeList<SequenceType> {
      * - both are positive or both negative. The right-hand column of the figure includes those for which the
      * sense of the scan directions is opposite - one is positive and one is negative. A Hilbert curve can only
      * be constructed with patterns from the same set; it uses all the patterns in that set.
-     * <p>
-     * <b>NOTE:</b> Because of the shape of the curve formed by the initial ordering of quadrants, Hilbert
-     * ordering is also known as pi ordering.
      *
-     * <center><img src="doc-files/Hilbert.png"></center>
+     * <div class="note"><b>Note:</b>
+     * Because of the shape of the curve formed by the initial ordering of quadrants, Hilbert
+     * ordering is also known as pi ordering.
+     * </div>
+     *
+     * <center><img src="doc-files/Hilbert.png" alt="Hilbert scanning"></center>
      */
     @UML(identifier="Hilbert order", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType HILBERT = new SequenceType("HILBERT");

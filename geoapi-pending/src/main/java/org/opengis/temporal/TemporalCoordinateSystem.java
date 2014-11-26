@@ -52,11 +52,11 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_CoordinateSystem", specification=ISO_19108)
 public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
-    
+
     /**
      * Returns position of the origin of the scale on which the temporal coordinate system is based
      * expressed as a date in the Gregorian calendar and time of day in UTC.
-     * 
+     *
      * @return position of the origin of the scale on which the temporal coordinate system is based
      * expressed as a date in the Gregorian calendar and time of day in UTC.
      */
@@ -64,21 +64,21 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
     Date getOrigin();
 
     /**
-     * <p>Returns standard unit of time used to measure {@link Duration} on the axis of this {@link TemporalCoordinateSystem}.<br/>
+     * Returns standard unit of time used to measure {@link Duration} on the axis of this {@link TemporalCoordinateSystem}.
      * It exprimate as a unit of measure specified by ISO 31-1,
-     * or a multiple of one of those units, as specified by ISO 1000.</p>
-     * 
+     * or a multiple of one of those units, as specified by ISO 1000.
+     *
      * @return standard unit of time used to measure {@link Duration} on the axis of this {@link TemporalCoordinateSystem}.
      */
     @UML(identifier="interval", obligation=MANDATORY, specification=ISO_19108)
     Unit<javax.measure.quantity.Duration> getInterval();
 
-    
+
     /**
      * Returns transformation of a value from a {@linkplain TemporalCoordinate coordinate} within this
      * temporal coordinate system into the equivalent {@linkplain DateAndTime date
      * and time} in the Gregorian Calendar and UTC.
-     * 
+     *
      * @param coordinates current {@linkplain TemporalCoordinate coordinate} coordinates which will be transform into UTC.
      * @return transformation of a value from a {@linkplain TemporalCoordinate coordinate} within this
      * temporal coordinate system into the equivalent {@linkplain DateAndTime date
@@ -86,12 +86,12 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
      */
     @UML(identifier="transformCoord", obligation=MANDATORY, specification=ISO_19108)
     Date transformCoord(TemporalCoordinate coordinates);
-    
+
     /**
      * Returns transformation of a {@linkplain DateAndTime date and time} in the Gregorian Calendar and UTC
      * into an equivalent {@linkplain TemporalCoordinate coordinate} within this temporal
      * coordinate system.
-     * 
+     *
      * @param datetime current UTC or {@link Date} coordinates which will be convert into this {@link TemporalCoordinateSystem}.
      * @return a transformation of a {@linkplain DateAndTime date and time} in the Gregorian Calendar and UTC
      * to an equivalent {@linkplain TemporalCoordinate coordinate} within this temporal

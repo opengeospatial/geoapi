@@ -35,7 +35,7 @@ import java.util.Collection;
 
 /**
  * Supported spatial operators in a filter capabilities document.
- * <p>
+ *
  * <pre>
  *  &lt;xsd:complexType name="Spatial_OperatorsType"&gt;
  *      &lt;xsd:choice maxOccurs="unbounded"&gt;
@@ -53,9 +53,8 @@ import java.util.Collection;
  *      &lt;/xsd:choice&gt;
  *  &lt;/xsd:complexType&gt;
  * </pre>
- * </p>
- * @author Justin Deoliveira, The Open Planning Project
  *
+ * @author Justin Deoliveira, The Open Planning Project
  */
 public interface SpatialOperators {
 

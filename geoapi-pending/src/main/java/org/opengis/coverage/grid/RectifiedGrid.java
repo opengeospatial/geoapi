@@ -47,11 +47,13 @@ import static org.opengis.annotation.Specification.*;
  * defined by an origin in an external {@linkplain CoordinateReferenceSystem coordinate reference system},
  * and a set of offset vectors that specify the direction and distance between grid lines within
  * that external CRS.
- * <p>
- * <b>NOTE:</b> If the coordinate reference system is related to the earth by a
+ *
+ * <div class="note"><b>Note:</b>
+ * If the coordinate reference system is related to the earth by a
  * {@linkplain Datum datum}, the grid is a georectified grid.
- * <p>
- * <b>Constraints:</b>
+ * </div>
+ *
+ * <p><b>Constraints:</b></p>
  * <ul>
  *   <li>The {@linkplain Grid#getDimension dimension of the grid} shall be less than or equal to the
  *       dimension of the {@linkplain DirectPosition#getCoordinateReferenceSystem coordinate

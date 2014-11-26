@@ -53,8 +53,8 @@ import static org.opengis.annotation.Specification.*;
  * that carry an "orientation" reversal flag (either "+" or "-") that determines whether this
  * primitive agrees or disagrees with the orientation of the referenced object.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> There are several reasons for subclassing the "positive" primitives
+ * <div class="note"><b>Note:</b>
+ * There are several reasons for subclassing the "positive" primitives
  * under the orientable primitives. First is a matter of the semantics of subclassing. Subclassing
  * is assumed to be a "is type of" hierarchy. In the view used, the "positive" primitive is simply
  * the orientable one with the positive orientation. If the opposite view were taken, and orientable
@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
  * deal of complexity to the subclassing tree. To minimize the number of objects and to bypass this
  * logical complexity, positively oriented primitives are self-referential (are instances of the
  * corresponding primitive subtype) while negatively oriented primitives are not.
- * </font></blockquote>
+ * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

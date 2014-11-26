@@ -36,9 +36,7 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Feature and Geometry identifier for GML3 specification.
- * <p>
  * GML3 constructs are are identified with a String, commonly referred to as a "id".
- * </p>
  *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @author Chris Dillard (SYS Technologies)
@@ -54,9 +52,9 @@ public interface GmlObjectId extends Identifier {
     String getID();
 
     /**
-     * Evaluates the identifer value against the given GML3 construct.
+     * Evaluates the identifier value against the given GML3 construct.
      *
-     * @param feature The GML3 construct to be tested.
+     * @param object The GML3 construct to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */
     boolean matches(Object object);

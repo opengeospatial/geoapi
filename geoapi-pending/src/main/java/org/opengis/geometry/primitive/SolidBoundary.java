@@ -43,13 +43,13 @@ import static org.opengis.annotation.Specification.*;
  * space, one {@linkplain Shell shell} is distinguished as the exterior. In the more
  * general case, this is not always possible.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> An alternative use of solids with no external shell would be to define
+ * <div class="note"><b>Note:</b>
+ * An alternative use of solids with no external shell would be to define
  * "complements" of finite solids. These infinite solids would have only interior boundaries. If
  * this specification is extended to 4D Euclidean space, or if 3D compact manifolds are used
  * (probably not in geographic information), then other examples of bounded solids without exterior
  * boundaries are possible.
- * </font></blockquote>
+ * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

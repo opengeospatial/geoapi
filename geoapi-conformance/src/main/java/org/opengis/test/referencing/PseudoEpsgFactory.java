@@ -233,9 +233,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns an arbitrary object from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
@@ -268,9 +268,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns an arbitrary {@linkplain Datum datum} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
      * </table>
@@ -334,9 +334,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
      * </table>
@@ -365,9 +365,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>7001</td> <td>Airy 1830</td></tr>
      *   <tr><td>7004</td> <td>Bessel 1841</td></tr>
@@ -413,9 +413,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns a {@linkplain PrimeMeridian prime meridian} from a EPSG code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>8901</td> <td>Greenwich</td></tr>
      *   <tr><td>8903</td> <td>Paris</td></tr>
@@ -456,9 +456,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
      * </table>
@@ -478,9 +478,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Creates a Cartesian coordinate system from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system, consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. UoM: m</td></tr>
      * </table>
@@ -559,9 +559,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Creates an ellipsoidal coordinate system from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6403</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: grads.</td></tr>
      *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
@@ -655,9 +655,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th>          <th>Name</th>               <th>Unit</th></tr>
      *   <tr><td>58</td>            <td>Geodetic latitude</td>  <td>grad</td></tr>
      *   <tr><td>59</td>            <td>Geodetic longitude</td> <td>grad</td></tr>
@@ -702,9 +702,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns an {@linkplain Unit unit} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>9001</td> <td>metre</td></tr>
      *   <tr><td>9102</td> <td>degree</td></tr>
@@ -740,10 +740,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system}
-     * from a code. The supported codes are:
+     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code.
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
      * </table>
@@ -796,9 +796,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
-     * The supported codes are:
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
      * </table>
@@ -901,6 +901,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * <i>Codes in italics are not official EPSG codes.</i></p>
      *
      * <table class="ogc">
+     *   <caption>Supported codes</caption>
      *   <tr><th>Code</th>      <th>Used by CRS</th><th>CRS or transformation name</th>         <th>Operation method</th></tr>
      *   <tr><td>19905</td>     <td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
      *   <tr><td>19884</td>     <td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>

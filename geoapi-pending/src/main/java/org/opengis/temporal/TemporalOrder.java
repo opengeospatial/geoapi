@@ -47,11 +47,11 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Order", specification=ISO_19108)
 public interface TemporalOrder {
-    
     /**
-     * Returns an determines the position of this <i>primitive</i> relative to another {@link TemporalPrimitive}.
-     * 
-     * @return {@link RelativePosition} which represente the position of this <i>primitive</i> relative to another {@link TemporalPrimitive}.
+     * Determines the position of this <i>primitive</i> relative to another {@link TemporalPrimitive}.
+     *
+     * @param other the other primitive.
+     * @return {@link RelativePosition} which represents the position of this <i>primitive</i> relative to another {@link TemporalPrimitive}.
      */
     @UML(identifier="relativePosition", obligation=MANDATORY, specification=ISO_19108)
     RelativePosition relativePosition(TemporalPrimitive other);

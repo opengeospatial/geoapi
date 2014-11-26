@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * is not always possible, in which case all boundaries shall be listed as interior boundaries,
  * and the exterior will be empty.
  *
- * <blockquote><font size=2>
- * <strong>NOTE:</strong> The use of exterior and interior here is not intended to invoke the
+ * <div class="note"><b>Note:</b>
+ * The use of exterior and interior here is not intended to invoke the
  * definitions of "interior" and "exterior" of geometric objects. The terms are in common usage,
  * and reflect a linguistic metaphor that uses the same linguistic constructs for the concept of
  * being inside an object to being inside a container. In normal mathematical terms, the exterior
@@ -68,7 +68,7 @@ import static org.opengis.annotation.Specification.*;
  * <strong>EXAMPLE 2:</strong> Taking the equator of a sphere, and generating a 1 meter buffer,
  * we have a surface with two isomorphic boundary components. There is no unbiased manner to
  * distinguish one of these as an exterior.
- * </font></blockquote>
+ * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)

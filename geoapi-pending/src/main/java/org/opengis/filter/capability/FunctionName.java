@@ -45,8 +45,6 @@
  ---------------------------------------------------------------------------*/
 package org.opengis.filter.capability;
 
-// Annotations
-import java.util.Collection;
 import java.util.List;
 
 import org.opengis.annotation.UML;
@@ -54,36 +52,34 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Function provided in a filter capabilities.
- * <p>
+ *
  * <pre>
- * &lt;xsd:complexType name="FunctionNameType">
- *     &lt;xsd:simpleContent>
- *        &lt;xsd:extension base="xsd:string">
- *           &lt;xsd:attribute name="nArgs" type="xsd:string" use="required"/>
- *        &lt;/xsd:extension>
- *     &lt;/xsd:simpleContent>
- *  &lt;/xsd:complexType>
+ * &lt;xsd:complexType name="FunctionNameType"&lt;
+ *     &lt;xsd:simpleContent&lt;
+ *        &lt;xsd:extension base="xsd:string"&lt;
+ *           &lt;xsd:attribute name="nArgs" type="xsd:string" use="required"/&lt;
+ *        &lt;/xsd:extension&lt;
+ *     &lt;/xsd:simpleContent&lt;
+ *  &lt;/xsd:complexType&lt;
  * </pre>
- * </p>
- * 
+ *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface FunctionName extends Operator {
     /**
      * Number of arguments the function accepts.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:attribute name="nArgs" type="xsd:string" use="required"/>
+     * &lt;xsd:attribute name="nArgs" type="xsd:string" use="required"/&lt;
      * </pre>
-     * </p>
      */
     @UML(identifier="argumentCount", specification=UNSPECIFIED)
     int getArgumentCount();
-    
+
     /**
      * Argument names for documentation purposes if known.
-     * 
+     *
      * @return Argument names (for documentation purposes) if known
      */
     List<String> getArgumentNames();

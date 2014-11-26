@@ -36,32 +36,31 @@ import java.util.Collection;
 
 /**
  * Capabilities used to convey supported temporal operators.
- * 
+ *
  * <pre>
- * &lt;complexType name="Temporal_CapabilitiesType">
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element name="TemporalOperands" type="{http://www.opengis.net/fes/2.0}TemporalOperandsType"/>
- *         &lt;element name="TemporalOperators" type="{http://www.opengis.net/fes/2.0}TemporalOperatorsType"/>
- *       &lt;/sequence>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType name="Temporal_CapabilitiesType"&lt;
+ *   &lt;complexContent&lt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&lt;
+ *       &lt;sequence&lt;
+ *         &lt;element name="TemporalOperands" type="{http://www.opengis.net/fes/2.0}TemporalOperandsType"/&lt;
+ *         &lt;element name="TemporalOperators" type="{http://www.opengis.net/fes/2.0}TemporalOperatorsType"/&lt;
+ *       &lt;/sequence&lt;
+ *     &lt;/restriction&lt;
+ *   &lt;/complexContent&lt;
+ * &lt;/complexType&lt;
  * </pre>
- * 
- * 
+ *
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 3.1
  */
 public interface TemporalCapabilities {
-
     /**
      * The temporal operands provided by this capabilities.
      */
     Collection<TemporalOperand> getTemporalOperands();
-    
+
     /**
      * The temporal operators provided by this capabilities.
      */

@@ -85,9 +85,9 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * Data, usually a physical measurement, used to support the calculation of the primary
      * {@linkplain #PHYSICAL_MEASUREMENT physical measurement} coverages in the dataset.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * grid of aerosol optical thickness used in the calculation of a sea surface temperature product.
-     * </font></blockquote>
+     * </div>
      *
      * @since 3.1
      */
@@ -107,9 +107,9 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * Reference information use to support the calculation or use of
      * {@linkplain #PHYSICAL_MEASUREMENT physical measurement} coverages in the dataset.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * grid of latitude longitude used to geolocate the physical measurement.
-     * </font></blockquote>
+     * </div>
      *
      * @since 3.1
      */

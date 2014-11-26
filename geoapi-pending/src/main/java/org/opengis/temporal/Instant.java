@@ -51,35 +51,33 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Instant", specification=ISO_19108)
 public interface Instant extends TemporalGeometricPrimitive {
-    
+
     /**
      * Returns {@link Position} in relation with this {@link Instant}.
-     * 
+     *
      * @return {@link Position} in relation with this {@link Instant}.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19108)
     Position getPosition();
-    
+
     /**
-     * <p>Returns the {@link Collection} of temporal {@link Period}s,
-     * for which this Instant is the beginning.<br/>
-     * The collection may be empty.</p>
-     * 
+     * Returns the {@link Collection} of temporal {@link Period}s,
+     * for which this Instant is the beginning.
+     * The collection may be empty.
+     *
      * @return the {@link Collection} of temporal {@link Period}s,
      * for which this Instant is the beginning.
-     * @see Period#begin
      */
     @UML(identifier="begunBy", obligation=OPTIONAL, specification=ISO_19108)
     Collection<Period> getBegunBy();
-    
+
     /**
-     * <p>Returns the {@link Collection} of temporal {@link Period}s,
-     * for which this Instant is the end.<br/>
-     * The collection may be empty.</p>
-     * 
+     * Returns the {@link Collection} of temporal {@link Period}s,
+     * for which this Instant is the end.
+     * The collection may be empty.
+     *
      * @return the {@link Collection} of temporal {@link Period}s,
      * for which this Instant is the end.
-     * @see Period#end
      */
     @UML(identifier="endedBy", obligation=OPTIONAL, specification=ISO_19108)
     Collection<Period> getEndedBy();

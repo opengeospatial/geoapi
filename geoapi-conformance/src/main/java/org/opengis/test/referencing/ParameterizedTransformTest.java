@@ -34,10 +34,10 @@ package org.opengis.test.referencing;
 import java.util.List;
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.Collections;
 import java.util.Random;
 import java.awt.geom.Rectangle2D;
 
-import java.util.Collections;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
@@ -435,8 +435,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td nowrap>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td nowrap>6356078.962818189 m</td></tr>
@@ -447,6 +448,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                 <td nowrap>900000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>110°E<br>0°N</td> <td nowrap>3900000.00 m<br>900000.00 m</td></tr>
      * <tr align="right"><td>120°E<br>3°S</td> <td nowrap>5009726.58 m<br>569150.82 m</td></tr>
@@ -472,8 +474,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td nowrap>6378245.0 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td nowrap>6356863.018773047 m</td></tr>
@@ -483,6 +486,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                    <td nowrap>0.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>51°E<br>0°N</td>  <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>53°E<br>53°N</td> <td nowrap>165704.29 m<br>5171848.07 m</td></tr>
@@ -508,8 +512,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td nowrap>6378137.0 m</td></tr>
      * <tr><td>semi-minor axis</td>             <td nowrap>6356752.314247833 m</td></tr>
@@ -519,6 +524,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>              <td nowrap>0.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
      * <tr align="right"><td>0°E<br>0°N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>100°20'00.000"W<br>24°22'54.433"N</td>
@@ -546,8 +552,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>           <th>Value</th></tr>
      * <tr><td>semi_major</td>          <td nowrap>6378137.0 m</td></tr>
      * <tr><td>semi_minor</td>          <td nowrap>6378137.0 m</td></tr>
@@ -557,6 +564,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>false_northing</td>      <td nowrap>0.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                        <th>Expected results</th></tr>
      * <tr align="right"><td>0°E<br>0°N</td>                <td nowrap>0.00 m<br>0.00 m</td></tr>
      * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td nowrap>275951.78 m<br>5910061.78 m</td></tr>
@@ -582,8 +590,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td>6377298.556 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td>6356097.550300896 m</td></tr>
@@ -596,6 +605,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Northing at projection centre</td>     <td>442857.65 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
      * <tr align="right"><td>115°E<br>4°N</td> <td nowrap>590476.87 m<br>442857.65 m</td></tr>
      * <tr align="right"><td>115°48'19.8196"E<br>5°23'14.1129"N</td>
@@ -622,8 +632,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6377563.396 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td>6356256.908909849 m</td></tr>
@@ -634,15 +645,18 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                 <td>-100000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
      * <tr align="right"><td>2°W<br>49°N</td>        <td nowrap>400000.00 m<br>-100000.00 m</td></tr>
      * <tr align="right"><td>00°30'E<br>50°30'N</td> <td nowrap>577274.98 m<br>69740.49 m</td></tr>
      * </table></td></tr></table>
-     * <p>
-     * <b>NOTE:</b> The scale factor given in the EPSG guidance notes is 0.9996013, while the actual
+     *
+     * <div class="note"><b>Note:</b>
+     * The scale factor given in the EPSG guidance notes is 0.9996013, while the actual
      * value in the EPSG database is 0.9996012717. This tiny difference shifts the expected results
      * by 0.5 cm toward zero compared to the value documented in the EPSG guidance notes. The values
      * used in this GeoAPI test have been adjusted accordingly.
+     * </div>
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
@@ -664,8 +678,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td>6378350.8704 m</td></tr>
      * <tr><td>semi-minor axis</td>             <td>6356675.0184 m</td></tr>
@@ -675,6 +690,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                       <th>Expected results</th></tr>
      * <tr align="right"><td>61°20'00"W<br>10°26'30"N</td> <td nowrap>430000.00 links<br>325000.00 links</td></tr>
      * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td nowrap>66644.94 links<br>82536.22 links</td></tr>
@@ -702,8 +718,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                       <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                 <td nowrap>6378206.4 m</td></tr>
      * <tr><td>semi-minor axis</td>                 <td nowrap>6356583.8 m</td></tr>
@@ -714,6 +731,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                  <td nowrap>150000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>77°W<br>18°N</td> <td nowrap>250000.00 m<br>150000.00 m</td></tr>
      * <tr align="right"><td>76°56'37.26"W<br>17°55'55.80"N</td>
@@ -740,8 +758,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td nowrap>6378206.4 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td nowrap>6356583.8 m</td></tr>
@@ -753,6 +772,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Northing at false origin</td>          <td nowrap>0.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
      * <tr align="right"><td>99°00'W<br>27°30'N</td> <td nowrap>2000000.00 US feet<br>0 US feet</td></tr>
      * <tr align="right"><td>96°00'W<br>28°30'N</td> <td nowrap>2963503.91 US feet<br>254759.80 US feet</td></tr>
@@ -780,8 +800,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                   <td nowrap>6378388.0 m</td></tr>
      * <tr><td>semi-minor axis</td>                   <td nowrap>6356911.9461279465 m</td></tr>
@@ -793,6 +814,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Northing at false origin</td>          <td nowrap>5400088.4378 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
      * <tr align="right"><td>4°21'24.983"E<br>90°00'00.000"N</td> <td nowrap>150000.01 m<br>5400088.44 m</td></tr>
      * <tr align="right"><td>5°48'26.533"E<br>50°40'46.461"N</td> <td nowrap>251763.20 m<br>153034.13 m</td></tr>
@@ -818,8 +840,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                   <th>Value</th></tr>
      * <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
      * <tr><td>semi-minor axis</td>             <td>6356752.314140284 m</td></tr>
@@ -829,6 +852,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>              <td>3210000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>10°E<br>52°N</td> <td nowrap>4321000.00 m<br>3210000.00 m</td></tr>
      * <tr align="right"><td>5°E<br>50°N</td>  <td nowrap>3962799.45 m<br>2999718.85 m</td></tr>
@@ -854,8 +878,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
@@ -866,6 +891,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                 <td>2000000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
      * <tr align="right"><td>0°E<br>90°N</td>  <td nowrap>2000000.00 m<br>2000000.00 m</td></tr>
      * <tr align="right"><td>44°E<br>73°N</td> <td nowrap>3320416.75 m<br>632668.43 m</td></tr>
@@ -892,8 +918,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
      * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
@@ -904,6 +931,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                 <td>6000000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
      * <tr align="right"><td>70°E<br>90°S</td>  <td nowrap>6000000.00 m<br>6000000.00 m</td></tr>
      * <tr align="right"><td>120°E<br>75°S</td> <td nowrap>7255380.79 m<br>7053389.56 m</td></tr>
@@ -929,8 +957,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                      <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                <td>6356078.9626186555 m</td></tr>
@@ -941,6 +970,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                 <td>463000.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
      * <tr align="right"><td>5°23'15.500"E<br>52°09'22.178"N</td> <td nowrap>155000.000 m<br>463000.000 m</td></tr>
      * <tr align="right"><td>6°E<br>53°N</td>                     <td nowrap>196105.283 m<br>557057.739 m</td></tr>
@@ -960,14 +990,15 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Tests the "<cite>American Polyconic</cite>" (EPSG:9818) projection.
      * First, this method transforms the some of the points given in Table 19, p 132 of
      * <a href="http://pubs.er.usgs.gov/usgspubs/pp/pp1395">Map Projections, a working manual</a>
-     * by John P.Snyder</A>. Next, this method transforms a random set of points in the projection
+     * by John P.Snyder. Next, this method transforms a random set of points in the projection
      * area of validity and ensures that the {@linkplain MathTransform#inverse() inverse transform}
      * and the {@linkplain MathTransform#derivative derivatives} are coherent.
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                                <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                          <td>6378206.4 m</td></tr>
      * <tr><td>semi-minor axis</td>                          <td>6356583.8 m</td></tr>
@@ -977,6 +1008,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
      * <tr align="right"><td>See source</td> <td nowrap>See source</td></tr>
      * </table></td></tr></table>
@@ -1000,8 +1032,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                                <th>Value</th></tr>
      * <tr><td>semi-major axis</td>                          <td>6377397.155 m</td></tr>
      * <tr><td>semi-minor axis</td>                          <td>6356078.9626186555 m</td></tr>
@@ -1014,6 +1047,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                               <th>Expected results</th></tr>
      * <tr align="right"><td>16°50'59.179"E<br>50°12'32.442"N</td> <td nowrap>-568990.997 m<br>-1050538.643 m</td></tr>
      * </table></td></tr></table>
@@ -1038,8 +1072,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15"><tr valign="top"><td>
-     * <table class="ogc">
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
      * <tr><th>Parameter</th>                         <th>Value</th></tr>
      * <tr><td>dim</td>                               <td>3</td></tr>
      * <tr><td>src_semi_major</td>                    <td>6378137.0 m</td></tr>
@@ -1051,6 +1086,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><td>Flattening difference</td>             <td>1.41927E-05</td></tr>
      * </table></td><td>
      * <table class="ogc">
+     * <caption>Test points</caption>
      * <tr><th>Source ordinates</th><th>Expected results</th></tr>
      * <tr align="right">
      *   <td nowrap>2°7'46.380"E<br>53°48'33.820"N<br>73.000 m</td>

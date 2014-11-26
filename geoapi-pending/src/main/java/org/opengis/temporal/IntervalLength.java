@@ -50,18 +50,17 @@ import static org.opengis.annotation.Obligation.*;
  */
 @UML(identifier="TM_IntervalLength", specification=ISO_19108)
 public interface IntervalLength extends Duration {
-    
     /**
      * Returns {@link Unit} of measure used to express the length of the interval.
-     * 
+     *
      * @return {@link Unit} of measure used to express the length of the interval.
      */
     @UML(identifier="unit", obligation = MANDATORY, specification=ISO_19108)
     Unit getUnit();
-    
+
     /**
      * Returns positive integer that is the base of the multiplier of the unit.
-     * 
+     *
      * @return positive integer that is the base of the multiplier of the unit.
      */
     @UML(identifier="radix", obligation = MANDATORY, specification=ISO_19108)
@@ -69,7 +68,7 @@ public interface IntervalLength extends Duration {
 
     /**
      * Returns the exposant of the base.
-     * 
+     *
      * @return the exposant of the base.
      */
     @UML(identifier="factor", obligation = MANDATORY, specification=ISO_19108)
@@ -79,8 +78,8 @@ public interface IntervalLength extends Duration {
      * Returns the length of the time interval as an integer multiple of one
      * {@linkplain #getRadix radix}<sup>(-{@linkplain #getFactor factor})</sup>
      * of the {@linkplain #getUnit specified unit}.
-     * 
-     * @return the length of the time interval. 
+     *
+     * @return the length of the time interval.
      */
     @UML(identifier="value", obligation = MANDATORY, specification=ISO_19108)
     int getValue();

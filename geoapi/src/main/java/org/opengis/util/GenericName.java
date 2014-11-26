@@ -156,12 +156,12 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>In the {@linkplain GenericName overview illustration},
      * the scopes are the blue elements in the <var>scope</var>.<var>this</var> column.</p>
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * For a {@linkplain #toFullyQualifiedName() fully qualified name} (a name having a
      * {@linkplain NameSpace#isGlobal() global namespace}) {@code "org.opengis.util.Record"},
      * if this instance is the {@code "util.Record"} name, then the scope of this instance
      * has the {@code "org.opengis"} {@linkplain NameSpace#name() name}.
-     * </font></blockquote>
+     * </div>
      *
      * @return The scope of this name.
      *
@@ -176,15 +176,15 @@ public interface GenericName extends Comparable<GenericName> {
      * any {@link LocalName}, it is always one. For a {@link ScopedName} it is some number greater than or
      * equal to 2.
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * If {@code this} name is {@code "urn:ogc:def:crs:EPSG:8.2:4326"} with {@code ':'} as separator,
      * then this method shall return {@code 7}. If this name is {@code "EPSG:8.2:4326"} in the
      * {@code "urn:ogc:def:crs"} scope, then this method shall return {@code 3}.
-     * </font></blockquote>
+     * </div>
      *
-     * <blockquote><font size=-1><b>Analogy</b>:
+     * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
+     * method from the <cite>Java Naming and Directory Interface</cite>.</div>
      *
      * @return The depth of this name.
      *
@@ -201,16 +201,16 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>In the {@linkplain GenericName overview illustration},
      * the parsed names are the list of elements in yellow part of the <var>scope</var>.<var>this</var> column.</p>
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns a list
      * containing {@code {"urn", "ogc", "def", "crs", "EPSG", "", "4326}} elements in that iteration order.
      * If this name is {@code "EPSG::4326"} in scope {@code "urn:ogc:def:crs"}, then this method shall
      * returns a list containing only {@code {"EPSG", "", "4326"}} elements.
-     * </font></blockquote>
+     * </div>
      *
-     * <blockquote><font size=-1><b>Analogy</b>:
+     * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
+     * method from the <cite>Java Naming and Directory Interface</cite>.</div>
      *
      * @return The local names making this generic name, without the {@linkplain #scope() scope}.
      *         Shall never be {@code null} neither empty.
@@ -225,13 +225,13 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>In the {@linkplain GenericName overview illustration},
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns {@code "urn"}.
-     * </font></blockquote>
+     * </div>
      *
-     * <blockquote><font size=-1><b>Analogy</b>:
+     * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
+     * from the <cite>Java Naming and Directory Interface</cite>.</div>
      *
      * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -252,14 +252,14 @@ public interface GenericName extends Comparable<GenericName> {
      * <p>In the {@linkplain GenericName overview illustration},
      * the tips are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"} (no matter its
      * {@linkplain #scope scope}), then this method shall returns {@code "4326"}.
-     * </font></blockquote>
+     * </div>
      *
-     * <blockquote><font size=-1><b>Analogy</b>:
+     * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
+     * from the <cite>Java Naming and Directory Interface</cite>.</div>
      *
      * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -277,11 +277,11 @@ public interface GenericName extends Comparable<GenericName> {
      * of a fully qualified name must be {@linkplain NameSpace#isGlobal() global}. If the scope
      * of this name is already global, then this method shall returns {@code this}.
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * If {@code this} name is {@code "EPSG::4326"} ({@linkplain #depth() depth} of 3) and its
      * {@linkplain #scope() scope} is {@code "urn:ogc:def:crs"}, then the fully qualified name
      * is {@code "urn:ogc:def:crs:EPSG::4326"}.
-     * </font></blockquote>
+     * </div>
      *
      * @return The fully-qualified name (never {@code null}).
      *
@@ -314,14 +314,14 @@ public interface GenericName extends Comparable<GenericName> {
      *       List#addAll addAll}(</code><var>this</var>.<code>getParsedNames())</code></li>
      * </ul>
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * If {@code this} name is {@code "EPSG::4326"} and the given {@code scope} argument is {@code "urn:ogc:def:crs"},
      * then {@code this.push(scope)} shall returns {@code "urn:ogc:def:crs:EPSG::4326"}.
-     * </font></blockquote>
+     * </div>
      *
-     * <blockquote><font size=-1><b>Analogy</b>:
+     * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
-     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.</font></blockquote>
+     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.</div>
      *
      * @param scope The name to use as prefix.
      * @return A concatenation of the given scope with this name.
@@ -360,10 +360,10 @@ public interface GenericName extends Comparable<GenericName> {
      * specified locale}. If no international string is available, then this method shall
      * returns an implementation mapping to {@link #toString()} for all locales.
      *
-     * <blockquote><font size=-1><b>Example</b>:
+     * <div class="note"><b>Example</b>:
      * An implementation may want to localize the {@code "My Documents"} directory name
      * into {@code "Mes Documents"} on French installation of Windows operating system.
-     * </font></blockquote>
+     * </div>
      *
      * @return A localizable string representation of this name.
      *

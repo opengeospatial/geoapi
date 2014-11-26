@@ -133,9 +133,9 @@ public interface Identification {
      * Factor which provides a general understanding of the density of spatial data in the resource.
      * May also describe the range of resolutions in which a digital resource may be used.
      *
-     * <blockquote><font size="-1"><b>Note:</b>
+     * <div class="note"><b>Note:</b>
      * This element should be repeated when describing upper and lower range.
-     * </font></blockquote>
+     * </div>
      *
      * @return Factor which provides a general understanding of the density of spatial resource.
      *
@@ -188,9 +188,9 @@ public interface Identification {
     /**
      * Other documentation associated with the resource.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * related articles, publications, user guides, data dictionaries.
-     * </font></blockquote>
+     * </div>
      *
      * @return Other documentation associated with the resource.
      *
@@ -202,9 +202,9 @@ public interface Identification {
     /**
      * Code that identifies the level of processing in the producers coding system of a resource.
      *
-     * <blockquote><font size="-1"><b>Example:</b>
+     * <div class="note"><b>Example:</b>
      * NOAA level 1B.
-     * </font></blockquote>
+     * </div>
      *
      * @return Code that identifies the level of processing in the producers coding system of a resource.
      *

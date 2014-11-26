@@ -54,7 +54,6 @@ import static org.opengis.annotation.Specification.*;
 @XmlElement("FeatureTypeStyle")
 @UML(identifier="PF_FeaturePortrayal", specification=ISO_19117)
 public interface FeatureTypeStyle {
-
     /**
      * Returns a name for this style.
      * This can be any string that uniquely identifies this style within a given
@@ -83,17 +82,14 @@ public interface FeatureTypeStyle {
      * This method enable the possibility to use a feature type style
      * on a given list of features only, which is not possible in OGC SE.
      * </p>
-     *
-     * @return Collection<String>
      */
     @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
     Id getFeatureInstanceIDs();
 
     /**
-     * <p>
      * Returns the names of the feature type that this style is meant to act
      * upon.
-     * </p>
+     *
      * <p>
      * In OGC Symbology Encoding define this method to return a single
      * String, and ISO 19117 use a Collection of String. We've chosen
@@ -113,7 +109,7 @@ public interface FeatureTypeStyle {
      * that this style is meant to act upon.
      * In the current OGC SE specifications, this is an experimental element and
      * can take only one of the following values:
-     * <p>
+     *
      * <ul>
      *   <li>{@code generic:point}</li>
      *   <li>{@code generic:line}</li>
@@ -122,8 +118,6 @@ public interface FeatureTypeStyle {
      *   <li>{@code generic:raster}</li>
      *   <li>{@code generic:any}</li>
      * </ul>
-     * <p>
-     *
      */
     @XmlElement("SemanticTypeIdentifier")
     Set<SemanticType> semanticTypeIdentifiers();
@@ -153,5 +147,4 @@ public interface FeatureTypeStyle {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

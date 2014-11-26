@@ -35,26 +35,24 @@ import java.util.Collection;
 
 /**
  * Supported functions in a capabilities document.
- * <p>
+ *
  * <pre>
- *  &lt;xsd:complexType name="FunctionsType">
- *    &lt;xsd:sequence>
- *       &lt;xsd:element name="FunctionNames" type="ogc:FunctionNamesType"/>
- *    &lt;/xsd:sequence>
- *  &lt;/xsd:complexType>
+ *  &lt;xsd:complexType name="FunctionsType"&lt;
+ *    &lt;xsd:sequence&lt;
+ *       &lt;xsd:element name="FunctionNames" type="ogc:FunctionNamesType"/&lt;
+ *    &lt;/xsd:sequence&lt;
+ *  &lt;/xsd:complexType&lt;
  * </pre>
- * </p>
+ *
  * @author Justin Deoliveira, The Open Planning Project
  */
 public interface Functions {
-
     /**
      * Provided functions.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element name="FunctionNames" type="ogc:FunctionNamesType"/>
+     * &lt;xsd:element name="FunctionNames" type="ogc:FunctionNamesType"/&lt;
      * </pre>
-     * </p>
      */
     Collection<FunctionName> getFunctionNames();
 

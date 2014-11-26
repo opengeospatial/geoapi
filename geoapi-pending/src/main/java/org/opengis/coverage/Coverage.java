@@ -58,14 +58,14 @@ import static org.opengis.annotation.Specification.*;
  * within its domain. How coverage is represented internally is not a concern.
  *
  * For example consider the following different internal representations of coverage:<br>
- *  <UL>
+ *  <ul>
  *    <li>A coverage may be represented by a set of polygons which exhaustively
  *        tile a plane (that is each point on the plane falls in precisely one polygon).
  *        The value returned by the coverage for a point is the value of an attribute of
  *        the polygon that contains the point.</li>
  *    <li>A coverage may be represented by a grid of values
  *        (a {@linkplain DiscreteGridPointCoverage Discrete Grid Point Coverage}).
- *        If the coverage is a {@linkplain ContinuousQuadrilateralGridCoverage Continuous
+ *        If the coverage is a {@linkplain org.opengis.coverage.grid.ContinuousQuadrilateralGridCoverage Continuous
  *        Quadrilateral Grid Coverage} using {@linkplain InterpolationMethod#NEAREST_NEIGHBOUR
  *        Nearest Neighbour} interpolation method, then the value returned by the coverage for
  *        a point is that of the grid value whose location is nearest the point.</li>
@@ -74,12 +74,12 @@ import static org.opengis.annotation.Specification.*;
  *        of the function when supplied the coordinates of the point as arguments.</li>
  *    <li>Coverage may be represented by combination of these.
  *        For example, coverage may be represented by a combination of mathematical
- *        functions valid over a set of polynomials.</LI>
- * </UL>
+ *        functions valid over a set of polynomials.</li>
+ * </ul>
  *
  * <h3>Metadata</h3>
- * The legacy {@linkplain Specification#OGC_01004 OGC 01-004} specification provided some methods for
- * fetching metadata values attached to a coverage. The {@linkplain Specification#ISO_19123 ISO 19123}
+ * The legacy {@linkplain org.opengis.annotation.Specification#OGC_01004 OGC 01-004} specification provided some methods for
+ * fetching metadata values attached to a coverage. The {@linkplain org.opengis.annotation.Specification#ISO_19123 ISO 19123}
  * specification do not provides such methods. Implementations that want to provide such metadata are
  * encouraged to implement the {@link javax.media.jai.PropertySource} or
  * {@link javax.media.jai.WritablePropertySource} interface.
@@ -99,10 +99,10 @@ public interface Coverage {
      * methods. This coordinate reference system is usually different than coordinate system of the
      * grid. It is the target coordinate reference system of the
      * {@link org.opengis.coverage.grid.GridGeometry#getGridToCRS gridToCRS} math transform.
-     * <p>
-     * Grid coverage can be accessed (re-projected) with new coordinate reference system with the
+     *
+     * <p>Grid coverage can be accessed (re-projected) with new coordinate reference system with the
      * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new
-     * instance of a grid coverage is created.
+     * instance of a grid coverage is created.</p>
      *
      * @return The coordinate reference system used when accessing a coverage or
      *         grid coverage with the {@code evaluate(...)} methods.
@@ -154,22 +154,24 @@ public interface Coverage {
      * homogeneous collection of records. That is, the range shall have a constant dimension
      * over the entire domain, and each field of the record shall provide a value of the same
      * attribute type over the entire domain.
-     * <p>
-     * In the case of a {@linkplain DiscreteCoverage discrete coverage}, the size of the range
+     *
+     * <p>In the case of a {@linkplain DiscreteCoverage discrete coverage}, the size of the range
      * collection equals that of the {@linkplain #getDomainElements domains} collection. In other
      * words, there is one instance of {@link AttributeValues} for each instance of {@link DomainObject}.
      * Usually, these are stored values that are accessed by the
-     * {@link #evaluate(DirectPosition,Collection) evaluate} operation.
-     * <p>
-     * In the case of a {@linkplain ContinuousCoverage continuous coverage}, there is a transfinite
+     * {@link #evaluate(DirectPosition,Collection) evaluate} operation.</p>
+     *
+     * <p>In the case of a {@linkplain ContinuousCoverage continuous coverage}, there is a transfinite
      * number of instances of {@link AttributeValues} for each {@link DomainObject}. A few instances
      * may be stored as input for the {@link #evaluate(DirectPosition,Collection) evaluate} operation,
-     * but most are generated as needed by that operation.
-     * <p>
-     * <B>NOTE:</B> ISO 19123 does not specify how the {@linkplain #getDomainElements domain}
+     * but most are generated as needed by that operation.</p>
+     *
+     * <div class="note"><b>Note:</b>
+     * ISO 19123 does not specify how the {@linkplain #getDomainElements domain}
      * and {@linkplain #getRangeElements range} associations are to be implemented. The relevant
      * data may be generated in real time, it may be held in persistent local storage, or it may
      * be electronically accessible from remote locations.
+     * </div>
      *
      * @return The attribute values in the range.
      */
@@ -237,11 +239,13 @@ public interface Coverage {
      * a distance from the direct position equal to the distance of other {@linkplain DomainObject domain
      * objects} that are not included in the sequence. In the case of an analytical coverage, the operation
      * shall return the empty set.
-     * <p>
-     * <B>NOTE:</B> This operation is useful when the domain of a coverage does not exhaustively
+     *
+     * <div class="note"><b>Note:</b>
+     * This operation is useful when the domain of a coverage does not exhaustively
      * partition the extent of the coverage. Even in that case, the first element of the sequence
      * returned may be the <var>geometry</var>-<var>value</var> pair that contains the input direct
      * position.
+     * </div>
      *
      * @param  p The search position.
      * @param  limit The maximal size of the list to be returned.
@@ -269,8 +273,10 @@ public interface Coverage {
      * exception is thrown. If the input direct position falls within two or more geometric objects
      * within the domain, the operation shall return records of feature attribute values computed
      * according to the {@linkplain #getCommonPointRule common point rule}.
-     * <P>
-     * <B>NOTE:</B> Normally, the operation will return a single record of feature attribute values.
+     *
+     * <div class="note"><b>Note:</b>
+     * Normally, the operation will return a single record of feature attribute values.
+     * </div>
      *
      * @param  p The position where to evaluate.
      * @param  list The field of interest, or {@code null} for every fields.
@@ -287,13 +293,15 @@ public interface Coverage {
      * A value for each sample dimension is included in the vector.
      * The default interpolation type used when accessing grid values for points
      * which fall between grid cells is nearest neighbor.
-     * <p>
+     *
      * The coordinate reference system of the point is the same as the grid coverage coordinate
      * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
-     * <p>
-     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     *
+     * <div class="warning"><b>Warning:</b>
+     * This method is inherited from the legacy OGC 01-004
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
+     * </div>
      *
      * @param  point Point at which to find the grid values.
      * @return The value vector for a given point in the coverage.
@@ -310,9 +318,9 @@ public interface Coverage {
      * A value for each sample dimension is included in the sequence.
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
-     * <p>
-     * The coordinate reference system of the point is the same as the grid coverage coordinate
-     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
+     *
+     * <p>The coordinate reference system of the point is the same as the grid coverage coordinate
+     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).</p>
      *
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -335,9 +343,9 @@ public interface Coverage {
      * A value for each sample dimension is included in the sequence.
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
-     * <p>
-     * The coordinate reference system of the point is the same as the grid coverage coordinate
-     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
+     *
+     * <p>The coordinate reference system of the point is the same as the grid coverage coordinate
+     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).</p>
      *
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -360,9 +368,9 @@ public interface Coverage {
      * A value for each sample dimension is included in the sequence.
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
-     * <p>
-     * The coordinate reference system of the point is the same as the grid coverage coordinate
-     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
+     *
+     * <p>The coordinate reference system of the point is the same as the grid coverage coordinate
+     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).</p>
      *
      * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -387,9 +395,9 @@ public interface Coverage {
      * A value for each sample dimension is included in the sequence.
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
-     * <p>
-     * The coordinate reference system of the point is the same as the grid coverage coordinate
-     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
+     *
+     * <p>The coordinate reference system of the point is the same as the grid coverage coordinate
+     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).</p>
      *
      * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
@@ -413,9 +421,9 @@ public interface Coverage {
      * A value for each sample dimension is included in the sequence.
      * The default interpolation type used when accessing grid values for points which
      * fall between grid cells is nearest neighbor.
-     * <p>
-     * The coordinate reference system of the point is the same as the grid coverage coordinate
-     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).
+     *
+     * <p>The coordinate reference system of the point is the same as the grid coverage coordinate
+     * reference system (specified by the {@link #getCoordinateReferenceSystem} method).</p>
      *
      * @departure integration
      *   OGC 01-004 defines this method as <code>evaluate(DirectPosition)</code>. GeoAPI adds
@@ -446,10 +454,12 @@ public interface Coverage {
      * in the domain that are associated with values equal to those in the input record. However,
      * the operation may return other {@linkplain DomainObject objects} derived from those in the
      * domain, as specified by the application schema.
-     * <p>
-     * <B>Example:</B> The {@code evaluateInverse} operation could return a set
+     *
+     * <div class="note"><b>Example:</b>
+     * The {@code evaluateInverse} operation could return a set
      * of contours derived from the feature attribute values associated with the
      * {@linkplain org.opengis.coverage.grid.GridPoint grid points} of a grid coverage.
+     * </div>
      *
      * @param  v The feature attributes.
      * @return The domain where the attributes are found.
@@ -460,10 +470,12 @@ public interface Coverage {
     /**
      * The number of sample dimensions in the coverage.
      * For grid coverages, a sample dimension is a band.
-     * <p>
-     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     *
+     * <div class="warning"><b>Warning:</b>
+     * This method is inherited from the legacy OGC 01-004
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
+     * </div>
      *
      * @return The number of sample dimensions in the coverage.
      */
@@ -476,10 +488,12 @@ public interface Coverage {
      * include such things as description, data type of the value (bit, byte, integer...),
      * the no data values, minimum and maximum values and a color table if one is
      * associated with the dimension. A coverage must have at least one sample dimension.
-     * <p>
-     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     *
+     * <div class="warning"><b>Warning:</b>
+     * This method is inherited from the legacy OGC 01-004
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
+     * </div>
      *
      * @param  index Index for sample dimension to retrieve. Indices are numbered 0 to
      *         (<var>{@linkplain #getNumSampleDimensions n}</var>-1).
@@ -493,14 +507,16 @@ public interface Coverage {
      * Returns the sources data for a coverage.
      * This is intended to allow applications to establish what {@code Coverage}s
      * will be affected when others are updated, as well as to trace back to the "raw data".
-     * <p>
-     * This implementation specification does not include interfaces for creating
+     *
+     * <p>This implementation specification does not include interfaces for creating
      * collections of coverages therefore the list size will usually be one indicating
-     * an adapted grid coverage, or zero indicating a raw grid coverage.
-     * <p>
-     * <strong>WARNING:</strong> This method is inherited from the legacy OGC 01-004
+     * an adapted grid coverage, or zero indicating a raw grid coverage.</p>
+     *
+     * <div class="warning"><b>Warning:</b>
+     * This method is inherited from the legacy OGC 01-004
      * specification and may be deprecated in a future version. We are for more experience
      * and feedbacks on the value of this method.
+     * </div>
      *
      * @departure generalization
      *   Return type of <code>Coverage.getSource(int)</code> has been relaxed from <code>GridCoverage</code>
@@ -518,7 +534,7 @@ public interface Coverage {
     /**
      * Returns 2D view of this coverage as a renderable image.
      * This optional operation allows interoperability with
-     * <A HREF="http://java.sun.com/products/java-media/2D/">Java2D</A>.
+     * <a href="http://java.sun.com/products/java-media/2D/">Java2D</a>.
      * If this coverage is a {@link org.opengis.coverage.grid.GridCoverage} backed
      * by a {@link java.awt.image.RenderedImage}, the underlying image can be obtained
      * with:

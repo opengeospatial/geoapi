@@ -48,8 +48,8 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @todo Investigate why this interface doesn't extends {@link Geometry}, since it is a cause
- *       of difficulty with {@link org.opengis.coverage.Coverage}.
+ * @todo Investigate why this interface doesn't extends {@link org.opengis.geometry.Geometry},
+ *       since it is a cause of difficulty with {@link org.opengis.coverage.Coverage}.
  */
 @UML(identifier="GM_GenericSurface", specification=ISO_19107)
 public interface GenericSurface {
@@ -64,8 +64,8 @@ public interface GenericSurface {
      * to as the "top." The function "upNormal" shall be continuous and the length
      * of the normal shall always be equal to 1.0.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> The upNormal along a boundary of a solid always points away from the
+     * <div class="note"><b>Note:</b>
+     * The upNormal along a boundary of a solid always points away from the
      * solid. This is a slight semantics problem in dealing with voids within solids, where the
      * upNormal (for sake of mathematical consistency) points into the center of the voided region,
      * which linguistically can be considered the interior of the void. What the confusion is here
@@ -77,7 +77,7 @@ public interface GenericSurface {
      * consistent across all languages, some of which may use different prepositions for these two
      * different concepts. This specification uses the linguistically neutral concept of "interior"
      * derived from mathematics (topology).
-     * </font></blockquote>
+     * </div>
      *
      * @param point The point on this {@code GenericSurface} where to compute the upNormal.
      * @return The upNormal unit vector.
@@ -91,12 +91,12 @@ public interface GenericSurface {
      * (integral) of distance, its return value shall be in a reference system appropriate
      * for measuring distances.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> The perimeter is defined as the sum of the lengths of all boundary
+     * <div class="note"><b>Note:</b>
+     * The perimeter is defined as the sum of the lengths of all boundary
      * components. The length of a curve or of a collection of curves is always positive and
      * non-zero (unless the curve is pathological). This means that holes in surfaces will
      * contribute positively to the total perimeter.
-     * </font></blockquote>
+     * </div>
      *
      * @return The perimeter.
      * @unitof Length
@@ -111,13 +111,13 @@ public interface GenericSurface {
      * be in a unit of measure appropriate for measuring distances squared, such as meters squared
      * (m<sup>2</sup>).
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> Consistent with the definition of surface as a set of
+     * <div class="note"><b>Note:</b>
+     * Consistent with the definition of surface as a set of
      * {@linkplain DirectPosition direct positions}, holes in the surfaces will not contribute to
      * the total area. If the usual Green's Theorem (or more general Stokes' Theorem) integral is
      * used, the integral around the holes in the surface are subtracted from the integral
      * about the exterior of the surface patch.
-     * </font></blockquote>
+     * </div>
      *
      * @return The area.
      * @unitof Area

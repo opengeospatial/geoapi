@@ -40,9 +40,9 @@ import java.io.Serializable;
  * This is a placeholder filter intended to be used in data structuring definition.
  * <p>
  * <ul>
- *   <li>EXCLUDE or Filter ==> Filter</li>
- *   <li>EXCLUDE and Filter ==> EXCLUDE</li>
- *   <li>EXCLUDE ==> INCLUDE</li>
+ *   <li>EXCLUDE or Filter ==&gt; Filter</li>
+ *   <li>EXCLUDE and Filter ==&gt; EXCLUDE</li>
+ *   <li>EXCLUDE ==&gt; INCLUDE</li>
  * </ul>
  * <p>
  * The above does imply that the AND opperator can short circuit on encountering ALL.

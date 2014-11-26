@@ -30,9 +30,9 @@ import static org.opengis.test.Assert.*;
 
 
 /**
- * Base class of NetCDF test cases performing I/O operations. This base class provides
- * an {@link #open(String)} method for creating {@link NetcdfFile} objects from the
- * <a href="{@svnurl netcdf}/">build-in test files</a>.
+ * Base class of NetCDF test cases performing I/O operations. This base class provides an
+ * {@link #open(String)} method for creating {@link NetcdfFile} objects from the build-in
+ * test files.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -86,11 +86,11 @@ public abstract strictfp class IOTestCase {
      *  &lt;/variable&gt;
      *&lt;/netcdf&gt;</pre></blockquote>
      *
-     * Some additional THREDDS attributes are defined but not tested by this module. The full file
-     * can be seen from the <a href="{@svnurl netcdf}/thredds.ncml">source code repository</a>.
-     * <p>
-     * The Coordinate Reference System of this dataset is
-     * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic}.
+     * Some additional THREDDS attributes are defined but not tested by this module.
+     * The full set of attributes can be seen in the {@svnurl netcdf/thredds.ncml} file.
+     *
+     * <p>The Coordinate Reference System of this dataset is
+     * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic}.</p>
      *
      * @see NetcdfMetadataTest#testTHREDDS()
      * @see NetcdfCRSTest#testGeographic()
@@ -114,7 +114,7 @@ public abstract strictfp class IOTestCase {
      *:version = 1. ;
      *:Metadata_Conventions = "Unidata Dataset Discovery v1.0" ;
      *:summary = "NCEP SST Global 5.0 x 2.5 degree model data" ;
-     *:keywords = "EARTH SCIENCE > Oceans > Ocean Temperature > Sea Surface Temperature" ;
+     *:keywords = "EARTH SCIENCE &gt; Oceans &gt; Ocean Temperature &gt; Sea Surface Temperature" ;
      *:keywords_vocabulary = "GCMD Science Keywords" ;
      *:id = "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc" ;
      *:naming_authority = "edu.ucar.unidata" ;

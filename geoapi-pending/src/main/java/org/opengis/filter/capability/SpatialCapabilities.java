@@ -52,18 +52,17 @@ import java.util.Collection;
 
 /**
  * Capabilities used to convey supported spatial operators.
- * <p>
+ *
  *   <pre>
- *  &lt;xsd:complexType name="Spatial_CapabilitiesType">
- *     &lt;xsd:sequence>
+ *  &lt;xsd:complexType name="Spatial_CapabilitiesType"&lt;
+ *     &lt;xsd:sequence&lt;
  *        &lt;xsd:element name="GeometryOperands"
- *                    type="ogc:GeometryOperandsType"/>
+ *                    type="ogc:GeometryOperandsType"/&lt;
  *        &lt;xsd:element name="SpatialOperators"
- *                     type="ogc:SpatialOperatorsType"/>
- *     &lt;/xsd:sequence>
- *  &lt;/xsd:complexType>
+ *                     type="ogc:SpatialOperatorsType"/&lt;
+ *     &lt;/xsd:sequence&lt;
+ *  &lt;/xsd:complexType&lt;
  *   </pre>
- * </p>
  *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </A>
  * @author Justin Deoliveira, The Open Planning Project
@@ -71,21 +70,19 @@ import java.util.Collection;
 public interface SpatialCapabilities {
     /**
      * Supported geometry operands.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element name="GeometryOperands" type="ogc:GeometryOperandsType"/>
+     * &lt;xsd:element name="GeometryOperands" type="ogc:GeometryOperandsType"/&lt;
      * </pre>
-     * </p>
      */
     Collection<GeometryOperand> getGeometryOperands();
 
     /**
      * Supported spatial operators.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element name="SpatialOperators" type="ogc:SpatialOperatorsType"/>
+     * &lt;xsd:element name="SpatialOperators" type="ogc:SpatialOperatorsType"/&lt;
      * </pre>
-     * </p>
      */
     SpatialOperators getSpatialOperators();
 }

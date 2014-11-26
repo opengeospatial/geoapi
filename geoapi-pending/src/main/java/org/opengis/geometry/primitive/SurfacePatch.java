@@ -54,13 +54,13 @@ public interface SurfacePatch extends GenericSurface {
      * association in ISO 19107 is navigable only from {@code Surface} to {@code SurfacePatch},
      * not the other way.
      *
-     * <blockquote><font size=2>
-     * <strong>NOTE:</strong> In the specification, surface patches do not appear except in the
+     * <div class="note"><b>Note:</b>
+     * In the specification, surface patches do not appear except in the
      * context of a surface, and therefore this method should never returns {@code null} which
      * would preclude the use of surface patches except in this manner. While this would not
      * affect the specification, allowing {@code null} owner allows other standards based on
      * ISO 19107 one to use surface patches in a more open-ended manner.
-     * </font></blockquote>
+     * </div>
      *
      * @return The owner of this surface patch, or {@code null} if the association is
      *         not available or not implemented that way.

@@ -53,20 +53,20 @@ import org.opengis.annotation.UML;
 
 /**
  * Capabilities used to convey supported scalar operators.
- * <p>
+ *
  * <pre>
- * &lt;xsd:complexType name="Scalar_CapabilitiesType">
-      &lt;xsd:sequence>
+ * &lt;xsd:complexType name="Scalar_CapabilitiesType"&lt;
+      &lt;xsd:sequence&lt;
          &lt;xsd:element ref="ogc:LogicalOperators"
-                      minOccurs="0" maxOccurs="1"/>
+                      minOccurs="0" maxOccurs="1"/&lt;
          &lt;xsd:element name="ComparisonOperators"
                       type="ogc:ComparisonOperatorsType"
-                      minOccurs="0" maxOccurs="1"/>
-                      minOccurs="0" maxOccurs="1"/>
-      &lt;/xsd:sequence>
-   &lt;/xsd:complexType>
+                      minOccurs="0" maxOccurs="1"/&lt;
+                      minOccurs="0" maxOccurs="1"/&lt;
+      &lt;/xsd:sequence&lt;
+   &lt;/xsd:complexType&lt;
  * </pre>
- * </p>
+ *
  * @author <a href="mailto:tfr@users.sourceforge.net">Torsten Friebe </a>
  * @author <a href="mailto:mschneider@lat-lon.de">Markus Schneider </a>
  * @author Justin Deoliveira, The Open Planning Project
@@ -74,36 +74,30 @@ import org.opengis.annotation.UML;
 public interface ScalarCapabilities {
     /**
      * Indicates if logical operator support is provided.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element ref="ogc:LogicalOperators" minOccurs="0" maxOccurs="1"/>
+     * &lt;xsd:element ref="ogc:LogicalOperators" minOccurs="0" maxOccurs="1"/&lt;
      * </pre>
-     * </p>
      */
     boolean hasLogicalOperators();
 
     /**
      * Provided comparison operators.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType"
-     *    minOccurs="0" maxOccurs="1"/>
+     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType" minOccurs="0" maxOccurs="1"/&lt;
      * </pre>
-     * </p>
      */
     @UML(identifier="comparisonOperators", specification=UNSPECIFIED)
     ComparisonOperators getComparisonOperators();
 
     /**
      * Provided arithmetic operators.
-     * <p>
+     *
      * <pre>
-     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType"
-     *     minOccurs="0" maxOccurs="1"/>
+     * &lt;xsd:element name="ComparisonOperators" type="ogc:ComparisonOperatorsType" minOccurs="0" maxOccurs="1"/&lt;
      * </pre>
-     * </p>
      */
     @UML(identifier="arithmeticOperators", specification=UNSPECIFIED)
     ArithmeticOperators getArithmeticOperators();
-
 }

@@ -53,7 +53,7 @@ public interface CoverageExtent {
      * description of the selected coverage offering. The value is one of the acceptable values
      * defined in the corresponding AxisDescription element.
      *
-     * @return List<RangeAxis> or null, only one between timeperiod or axis can be set.
+     * @return Range axes or null, only one between timeperiod or axis can be set.
      */
     @XmlElement("RangeAxis")
     List<RangeAxis> rangeAxis();

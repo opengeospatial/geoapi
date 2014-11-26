@@ -101,10 +101,10 @@ public interface Precision extends Comparable<Precision> {
 
     /**
      * Rounds a direct position to this precision model in place.
-     * <p>
-     * It is likely that a {@code Precision} instance will keep different rounding rules for different
-     * axis (example <var>x</var> & <var>y</var> ordinates may be handled differently then height),
-     * by always rounding a direct position as a whole we will enable this functionality.
+     *
+     * <p>It is likely that a {@code Precision} instance will keep different rounding rules for different
+     * axis (example <var>x</var> &amp; <var>y</var> ordinates may be handled differently then height),
+     * by always rounding a direct position as a whole we will enable this functionality.</p>
      */
     void round(DirectPosition position);
 }

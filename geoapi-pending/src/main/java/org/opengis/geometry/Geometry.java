@@ -84,8 +84,7 @@ public interface Geometry extends TransfiniteSet {
 
     /**
      * Returns the precision model used to guide the accuracy of topology operations.
-     * <p>
-     * </p>
+     *
      * @return the precision model used for topological operations.
      */
     Precision getPrecision();
@@ -136,7 +135,6 @@ public interface Geometry extends TransfiniteSet {
      * @see #getMbRegion
      * @see #getClosure
      * @see #getBuffer
-     * @see #getDistance
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     Boundary getBoundary();
@@ -208,12 +206,13 @@ public interface Geometry extends TransfiniteSet {
      * "distance" value shall be a positive number associated to a distance unit such as meter
      * or standard foot. If necessary, the second geometric object shall be transformed into
      * the same coordinate reference system as the first before the distance is calculated.
-     * <p>
-     * If the geometric objects overlap, or touch, then their distance apart shall be zero.
+     *
+     * <p>If the geometric objects overlap, or touch, then their distance apart shall be zero.
      * Some current implementations use a "negative" distance for such cases, but the approach
-     * is neither consistent between implementations, nor theoretically viable.
-     * <p>
-     * <strong>NOTE:</strong> The role of the reference system in distance calculations is
+     * is neither consistent between implementations, nor theoretically viable.</p>
+     *
+     * <div class="note"><b>Note:</b>
+     * The role of the reference system in distance calculations is
      * important. Generally, there are at least three types of distances that may be defined
      * between points (and therefore between geometric objects): map distance, geodesic distance,
      * and terrain distance.
@@ -230,6 +229,7 @@ public interface Geometry extends TransfiniteSet {
      *   <li>Terrain distance takes into account the local vertical displacements (hypsography).
      *       Terrain distance can be based either on a geodesic distance or a map distance.</li>
      * </ul>
+     * </div>
      *
      * @param  geometry The other object.
      * @return The distance between the two objects.
@@ -372,7 +372,6 @@ public interface Geometry extends TransfiniteSet {
      * @unitof Distance (for the argument)
      *
      * @see #getBoundary
-     * @see #getDistance
      * @see org.opengis.referencing.cs.CoordinateSystem#getAxis
      */
     @UML(identifier="buffer", obligation=MANDATORY, specification=ISO_19107)
@@ -384,27 +383,27 @@ public interface Geometry extends TransfiniteSet {
      * or indirectly (through a change in an other object this geometry depends upon). Immutable
      * geometries avoid the need for {@linkplain #clone cloning them}. More specifically:
      *
-     * <UL>
-     *   <LI><P>If {@code false}, then this geometry is <cite>immutable</cite>. It is
+     * <ul>
+     *   <li><p>If {@code false}, then this geometry is <cite>immutable</cite>. It is
      *       guarantee that a call to any {@code setFoo(...)} method will throws an
      *       {@link UnmodifiableGeometryException} (that said, <cite>immutable</cite> geometries
      *       are necessarily <cite>unmodifiable</cite>. The converse is not true, see next point
      *       below). This geometry will never change its state, and there is no need for
-     *       {@linkplain #clone cloning it}.</P></LI>
-     *   <LI><P>If {@code true}, then this geometry is <cite>mutable</cite>. Note that
+     *       {@linkplain #clone cloning it}.</p></li>
+     *   <li><p>If {@code true}, then this geometry is <cite>mutable</cite>. Note that
      *       <cite>mutable</cite> geometry is not synonymous of <cite>modifiable</cite>
      *       geometry. The nuance lays in whether the geometry may changes its state
-     *       directly (as of user request) or indirectly:<P></LI>
-     *       <UL>
-     *         <LI><P>This geometry may be <cite>modifiable</cite>, in which case invoking
-     *             {@code setFoo(...)} methods is legal and will not throws exception.</P></LI>
-     *         <LI><P>This geometry may still <cite>unmodifiable</cite>. User is not allowed to
+     *       directly (as of user request) or indirectly:</p>
+     *       <ul>
+     *         <li><p>This geometry may be <cite>modifiable</cite>, in which case invoking
+     *             {@code setFoo(...)} methods is legal and will not throws exception.</p></li>
+     *         <li><p>This geometry may still <cite>unmodifiable</cite>. User is not allowed to
      *             modify it himself and invoking any {@code setFoo(...)} method will throws
      *             an {@link UnmodifiableGeometryException}. However, the implementation may change
-     *             the geometry itself (for example a time-varying geometry).</P></LI>
-     *       </UL>
-     *   </LI>
-     * </UL>
+     *             the geometry itself (for example a time-varying geometry).</p></li>
+     *       </ul>
+     *   </li>
+     * </ul>
      *
      * @return {@code true} if this geometry is mutable.
      */

@@ -38,13 +38,13 @@ import java.io.Serializable;
 /**
  * Indicating "no filtering", evaluates to {@code true}.
  * This is a placeholder filter intended to be used in data structuring definition.
- * <p>
+ *
  * <ul>
- *   <li>INCLUDE or  Filter ==> INCLUDE</li>
- *   <li>INCLUDE and Filter ==> Filter</li>
- *   <li>not INCLUDE ==> EXCLUDE</li>
+ *   <li>INCLUDE or  Filter ==&gt; INCLUDE</li>
+ *   <li>INCLUDE and Filter ==&gt; Filter</li>
+ *   <li>not INCLUDE ==&gt; EXCLUDE</li>
  * </ul>
- * <p>
+ *
  * The above does imply that the OR opperator can short circuit on encountering NONE.
  *
  * @author Jody Garnett (Refractions Research, Inc.)

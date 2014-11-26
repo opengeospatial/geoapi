@@ -64,8 +64,8 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CV_Operation", specification=OGC_01004)
 public interface Operation {
     /**
-     * Name of the processing operation. This name is passed as a parameter to the
-     * {@link GridCoverageProcessor#doOperation doOperation} method to instantiate
+     * Name of the processing operation. This name is passed as a parameter
+     * {@link GridCoverageProcessor} to instantiate
      * a new grid coverage on which the processing operation is performed.
      *
      * @return The name of the processing operation.
