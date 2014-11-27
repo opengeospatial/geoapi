@@ -740,7 +740,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to {@code null}. */ @Override public InternationalString                      getAdministrativeArea()            {return null;}
     /** Defaults to {@code null}. */ @Override public String                                   getPostalCode()                    {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getCountry()                       {return null;}
-    /** Defaults to {@code null}. */ @Override public Collection<InternationalString>          getHoursOfService()                {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getHoursOfService()                {return Collections.emptySet();}
 
 
 
