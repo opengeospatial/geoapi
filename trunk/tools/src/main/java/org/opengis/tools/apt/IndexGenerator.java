@@ -59,7 +59,7 @@ import javax.annotation.processing.SupportedOptions;
  * to the current directory. The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
- * <b><u>How to use</u></b><br>
+ * <p><b><u>How to use</u></b></p>
  * Instructions about this processor can be found one the <a href="http://www.geoapi.org/tools/index.html">Tools</a> page.
  *
  * @author  Martin Desruisseaux (Geomatys)
