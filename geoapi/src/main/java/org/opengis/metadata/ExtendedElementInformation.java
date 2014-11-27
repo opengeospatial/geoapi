@@ -213,4 +213,8 @@ public interface ExtendedElementInformation {
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Responsibility> getSources();
+
+    /*
+     * No 'getConceptName()' method. See 'getName()' for explanation.
+     */
 }
