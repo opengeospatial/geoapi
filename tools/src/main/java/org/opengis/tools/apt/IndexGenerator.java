@@ -60,18 +60,7 @@ import javax.annotation.processing.SupportedOptions;
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
  * <b><u>How to use</u></b><br>
- * {@code chdir} to the root directory of source code. Then invoke the {@code apt} command,
- * where {@code content.txt} is a file containing the path to all java classes to parse:
- *
- * <blockquote><pre>
- * cd geoapi/src/main/java
- * find org -name "*.java" &gt; content.txt
- * export CLASSPATH=~/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
- * export CLASSPATH=$CLASSPATH:../../../../geoapi-pending/target/geoapi-pending-4.0-SNAPSHOT.jar
- * javac --processorpath ../../../../tools/target/tools-4.0-SNAPSHOT.jar -processor org.opengis.tools.apt.IndexGenerator \\
- *         -Aoutput=../geoapi/javadoc/src/main/javadoc/content.html @content.txt
- * rm content.txt
- * </pre></blockquote>
+ * Instructions about this processor can be found one the <a href="http://www.geoapi.org/tools/index.html">Tools</a> page.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

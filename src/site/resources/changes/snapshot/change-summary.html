@@ -51,6 +51,13 @@
       </tr>
       <tr>
         <td></td>
+        <td>Method <code>family()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Obligation.html#family()">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
         <td>Method <code>identifier()</code></td>
         <td><span class="add">New</span>.</td>
         <td>
@@ -72,6 +79,23 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#ISO_19109">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>defaultVersion()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#defaultVersion()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.annotation.UML</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>version()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/UML.html#version()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.feature</code></th>
@@ -151,15 +175,15 @@
       </tr>
       <tr>
         <td></td>
-        <td>Interface <code><del>AttributeType</del></code></td>
-        <td><span class="remove">Deprecated</span>, Parent set to “CharSequence”.</td>
+        <td>Interface <code>AttributeType</code></td>
+        <td>Parent set to “CharSequence”.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/feature/type/AttributeType.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/type/AttributeType.html">new</a></td>
       </tr>
       <tr>
         <td></td>
-        <td>Interface <code><del>FeatureType</del></code></td>
-        <td><span class="remove">Deprecated</span>, Parent set to “CharSequence”.</td>
+        <td>Interface <code>FeatureType</code></td>
+        <td>Parent set to “CharSequence”.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/feature/type/FeatureType.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/type/FeatureType.html">new</a></td>
       </tr>
@@ -316,14 +340,14 @@
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/Metadata.html#getHierarchyLevels()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getHierarchyLevels()">new</a></td>
       </tr>
       <tr>
-        <td><code>language</code></td>
+        <td></td>
         <td>Method <code><del>getLanguage()</del></code></td>
-        <td><span class="remove">Deprecated</span>.</td>
+        <td><span class="remove">Deprecated</span>, UML annotation moved to <code>getLanguages()</code>.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/Metadata.html#getLanguage()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getLanguage()">new</a></td>
       </tr>
       <tr>
-        <td><code>defaultLocale+otherLocale</code></td>
+        <td><code>language</code></td>
         <td>Method <code>getLanguages()</code></td>
         <td><span class="add">New</span>.</td>
         <td>
@@ -1328,6 +1352,13 @@
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.distribution.StandardOrderProcess</code></th>
       </tr>
       <tr>
+        <td></td>
+        <td>Method <code>getCurrency()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/distribution/StandardOrderProcess.html#getCurrency()">new</a></td>
+      </tr>
+      <tr>
         <td><code>orderOptionType</code></td>
         <td>Method <code>getOrderOptionType()</code></td>
         <td><span class="add">New</span>.</td>
@@ -1495,16 +1526,6 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/BrowseGraphic.html#getLinkages()">new</a></td>
-      </tr>
-      <tr>
-        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.identification.DataIdentification</code></th>
-      </tr>
-      <tr>
-        <td><code>defaultLocale+otherLocale</code></td>
-        <td>Method <code>getLanguages()</code></td>
-        <td>OGC/ISO identifier changed from “language” to “defaultLocale+otherLocale”.</td>
-        <td>
-<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/identification/DataIdentification.html#getLanguages()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/DataIdentification.html#getLanguages()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.identification.Identification</code></th>
