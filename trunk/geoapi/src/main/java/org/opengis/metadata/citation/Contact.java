@@ -122,14 +122,13 @@ public interface Contact {
     OnlineResource getOnlineResource();
 
     /**
-     * Time period (including time zone) when individuals can contact the organization or
-     * individual. Returns {@code null} if unspecified.
+     * Time period (including time zone) when individuals can contact the organization or individual.
+     * Returns an empty collection if none.
      *
-     * @return Time period when individuals can contact the organization or individual,
-     *         or {@code null}.
+     * @return Time period when individuals can contact the organization or individual.
      */
     @UML(identifier="hoursOfService", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getHoursOfService();
+    Collection<? extends InternationalString> getHoursOfService();
 
     /**
      * Supplemental instructions on how or when to contact the individual or organization.

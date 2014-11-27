@@ -213,7 +213,9 @@ public class CitationValidator extends MetadataValidator {
         for (final OnlineResource e : toArray(OnlineResource.class, object.getOnlineResources())) {
             validate(e);
         }
-        validateOptional(object.getHoursOfService());
+        for (final InternationalString e : toArray(InternationalString.class, object.getHoursOfService())) {
+            container.validate(e);
+        }
         validateOptional(object.getContactInstructions());
     }
 
