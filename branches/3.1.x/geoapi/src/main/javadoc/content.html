@@ -22,6 +22,7 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getMinimumOccurs</em></code></td><td><code>&nbsp;&nbsp;<em>cardinality</em></code></td><td><font size=-1>ISO 19109</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getMaximumOccurs</em></code></td><td><code>&nbsp;&nbsp;<em>cardinality</em></code></td><td><font size=-1>ISO 19109</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getDefaultValue</em></code></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>newInstance</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/feature/Feature.html"><em>Feature</em></a></code></b></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getType</em></code></td></tr>
@@ -40,6 +41,7 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getValueType</code></td><td><code>&nbsp;&nbsp;valueType</code></td><td><font size=-1>ISO 19109</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getMinimumOccurs</em></code></td><td><code>&nbsp;&nbsp;<em>cardinality</em></code></td><td><font size=-1>ISO 19109</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getMaximumOccurs</em></code></td><td><code>&nbsp;&nbsp;<em>cardinality</em></code></td><td><font size=-1>ISO 19109</font></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>newInstance</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/feature/FeatureType.html">FeatureType</a></code></b><td><code>FeatureType</code></td><td nowrap>ISO 19109</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;isAbstract</code></td><td><code>&nbsp;&nbsp;isAbstract</code></td><td><font size=-1>ISO 19109</font></td></tr>
@@ -48,6 +50,7 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getProperties</em></code></td><td><code>&nbsp;&nbsp;<em>carrierOfCharacteristics</em></code></td><td><font size=-1>ISO 19109</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getSuperTypes</em></code></td><td><code>&nbsp;&nbsp;<em>superType</em></code></td><td><font size=-1>ISO 19109</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>isAssignableFrom</em></code></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>newInstance</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/feature/IdentifiedType.html">IdentifiedType</a></code></b><td><code>IdentifiedType</code></td><td nowrap>ISO 19109</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getName</code></td><td><code>&nbsp;&nbsp;name</code></td><td><font size=-1>ISO 19109</font></td></tr>
@@ -87,8 +90,6 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getMedian</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getSpan</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
-  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/geometry/Geometry.html"><em>Geometry</em></a></code></b></tr>
-  <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Class <code><a href="org/opengis/geometry/MismatchedDimensionException.html"><em>MismatchedDimensionException</em></a></code></b></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em><init></em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
@@ -97,11 +98,6 @@
   <tr><td colspan="3"><hr/></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/geometry/coordinate/Position.html">Position</a></code></b><td><code>GM_Position</code></td><td nowrap>ISO 19107</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getDirectPosition</em></code></td><td><code>&nbsp;&nbsp;<em>direct</em></code></td><td><font size=-1>ISO 19107</font></td></tr>
-  <tr><td colspan="3"><hr></td></tr>
-  <tr><td colspan="3">&nbsp;</td></tr>
-  <tr><td colspan="3" nowrap bgcolor="#DDDDFF"><b>Package&nbsp; <code>org.opengis.geometry.primitive</code></b></td></tr>
-  <tr><td colspan="3"><hr/></td></tr>
-  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/geometry/primitive/Point.html"><em>Point</em></a></code></b></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td colspan="3">&nbsp;</td></tr>
   <tr><td colspan="3" nowrap bgcolor="#DDDDFF"><b>Package&nbsp; <code>org.opengis.metadata</code></b></td></tr>
@@ -197,14 +193,6 @@
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/metadata/MetadataScope.html">MetadataScope</a></code></b><td><code>MD_MetadataScope</code></td><td nowrap>ISO 19115</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getResourceScope</code></td><td><code>&nbsp;&nbsp;resourceScope</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getName</code></td><td><code>&nbsp;&nbsp;name</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td colspan="3"><hr></td></tr>
-  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Class <code><a href="org/opengis/metadata/Obligation.html"><em>Obligation</em></a></code></b><td><code><em>MD_ObligationCode</em></code></td><td nowrap>ISO 19115</td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;MANDATORY</code></td><td><code>&nbsp;&nbsp;mandatory</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;OPTIONAL</code></td><td><code>&nbsp;&nbsp;optional</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;CONDITIONAL</code></td><td><code>&nbsp;&nbsp;conditional</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>values</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>family</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>valueOf</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/metadata/PortrayalCatalogueReference.html">PortrayalCatalogueReference</a></code></b><td><code>MD_PortrayalCatalogueReference</code></td><td nowrap>ISO 19115</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getPortrayalCatalogueCitations</em></code></td><td><code>&nbsp;&nbsp;<em>portrayalCatalogueCitation</em></code></td><td><font size=-1>ISO 19115</font></td></tr>
@@ -605,8 +593,6 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getBandBoundaryDefinition</code></td><td><code>&nbsp;&nbsp;bandBoundaryDefinition</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getPeakResponse</code></td><td><code>&nbsp;&nbsp;peakResponse</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getToneGradation</code></td><td><code>&nbsp;&nbsp;toneGradation</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getNominalSpatialResolution</code></td><td><code>&nbsp;&nbsp;nominalSpatialResolution</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getTransferFunctionType</code></td><td><code>&nbsp;&nbsp;transferFunctionType</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getTransmittedPolarization</code></td><td><code>&nbsp;&nbsp;transmittedPolarization</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getDetectedPolarization</code></td><td><code>&nbsp;&nbsp;detectedPolarization</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
   <tr><td colspan="3"><hr></td></tr>
@@ -711,7 +697,9 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getUnits</code></td><td><code>&nbsp;&nbsp;units</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getScaleFactor</code></td><td><code>&nbsp;&nbsp;scaleFactor</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getOffset</code></td><td><code>&nbsp;&nbsp;offset</code></td><td><font size=-1>ISO 19115</font></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getTransferFunctionType</code></td><td><code>&nbsp;&nbsp;transferFunctionType</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getBitsPerValue</code></td><td><code>&nbsp;&nbsp;bitsPerValue</code></td><td><font size=-1>ISO 19115</font></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getNominalSpatialResolution</code></td><td><code>&nbsp;&nbsp;nominalSpatialResolution</code></td><td><font size=-1>ISO 19115-2</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getOtherPropertyType</code></td><td><code>&nbsp;&nbsp;otherPropertyType</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getOtherProperty</code></td><td><code>&nbsp;&nbsp;otherProperty</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td colspan="3"><hr></td></tr>
@@ -803,6 +791,7 @@
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/metadata/distribution/StandardOrderProcess.html">StandardOrderProcess</a></code></b><td><code>MD_StandardOrderProcess</code></td><td nowrap>ISO 19115</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getFees</code></td><td><code>&nbsp;&nbsp;fees</code></td><td><font size=-1>ISO 19115</font></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getCurrency</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getPlannedAvailableDateTime</code></td><td><code>&nbsp;&nbsp;plannedAvailableDateTime</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getOrderingInstructions</code></td><td><code>&nbsp;&nbsp;orderingInstructions</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getTurnaround</code></td><td><code>&nbsp;&nbsp;turnaround</code></td><td><font size=-1>ISO 19115</font></td></tr>
@@ -1047,6 +1036,8 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getContainsChain</code></td><td><code>&nbsp;&nbsp;containsChain</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Class <code><a href="org/opengis/metadata/identification/TopicCategory.html"><em>TopicCategory</em></a></code></b><td><code><em>MD_TopicCategoryCode</em></code></td><td nowrap>ISO 19115</td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>values</em></code></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>valueOf</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;FARMING</code></td><td><code>&nbsp;&nbsp;farming</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;BIOTA</code></td><td><code>&nbsp;&nbsp;biota</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;BOUNDARIES</code></td><td><code>&nbsp;&nbsp;boundaries</code></td><td><font size=-1>ISO 19115</font></td></tr>
@@ -1068,9 +1059,6 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;UTILITIES_COMMUNICATION</code></td><td><code>&nbsp;&nbsp;utilitiesCommunication</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;EXTRA_TERRESTRIAL</code></td><td><code>&nbsp;&nbsp;extraTerrestrial</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;DISASTER</code></td><td><code>&nbsp;&nbsp;disaster</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>values</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>family</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>valueOf</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/metadata/identification/Usage.html">Usage</a></code></b><td><code>MD_Usage</code></td><td nowrap>ISO 19115</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;getSpecificUsage</code></td><td><code>&nbsp;&nbsp;specificUsage</code></td><td><font size=-1>ISO 19115</font></td></tr>
@@ -1385,14 +1373,13 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>isTransformationParameterAvailable</em></code></td><td><code>&nbsp;&nbsp;<em>transformationParameterAvailability</em></code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Class <code><a href="org/opengis/metadata/spatial/PixelOrientation.html"><em>PixelOrientation</em></a></code></b><td><code><em>MD_PixelOrientationCode</em></code></td><td nowrap>ISO 19115</td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>values</em></code></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>valueOf</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;CENTER</code></td><td><code>&nbsp;&nbsp;center</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;LOWER_LEFT</code></td><td><code>&nbsp;&nbsp;lowerLeft</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;LOWER_RIGHT</code></td><td><code>&nbsp;&nbsp;lowerRight</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;UPPER_RIGHT</code></td><td><code>&nbsp;&nbsp;upperRight</code></td><td><font size=-1>ISO 19115</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;UPPER_LEFT</code></td><td><code>&nbsp;&nbsp;upperLeft</code></td><td><font size=-1>ISO 19115</font></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>values</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>family</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>valueOf</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/metadata/spatial/SpatialRepresentation.html">SpatialRepresentation</a></code></b><td><code>MD_SpatialRepresentation</code></td><td nowrap>ISO 19115</td></tr>
   <tr><td colspan="3"><hr></td></tr>
@@ -1925,22 +1912,12 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>setLastCompletedTransform</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td colspan="3">&nbsp;</td></tr>
-  <tr><td colspan="3" nowrap bgcolor="#DDDDFF"><b>Package&nbsp; <code>org.opengis.temporal</code></b></td></tr>
-  <tr><td colspan="3"><hr/></td></tr>
-  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/temporal/Duration.html"><em>Duration</em></a></code></b></tr>
-  <tr><td colspan="3"><hr></td></tr>
-  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/temporal/PeriodDuration.html"><em>PeriodDuration</em></a></code></b></tr>
-  <tr><td colspan="3"><hr></td></tr>
-  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/temporal/TemporalPrimitive.html"><em>TemporalPrimitive</em></a></code></b></tr>
-  <tr><td colspan="3"><hr></td></tr>
-  <tr><td colspan="3">&nbsp;</td></tr>
   <tr><td colspan="3" nowrap bgcolor="#DDDDFF"><b>Package&nbsp; <code>org.opengis.util</code></b></td></tr>
   <tr><td colspan="3"><hr/></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Code list <code><a href="org/opengis/util/CodeList.html">CodeList</a></code></b><td><code>CodeList</code></td><td nowrap>ISO 19103</td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>Filter</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em><init></em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>valueOf</em></code></td></tr>
-  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>family</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>toString</em></code></td><td></td><td><font size=-1>Java</font></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>readResolve</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
@@ -1949,6 +1926,7 @@
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>names</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>identifier</em></code></td></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>ordinal</em></code></td></tr>
+  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>family</em></code></td></tr>
   <tr><td colspan="3"><hr></td></tr>
   <tr><td nowrap><b><code>&nbsp;&nbsp;</code>Interface <code><a href="org/opengis/util/Factory.html"><em>Factory</em></a></code></b></tr>
   <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;<em>getVendor</em></code></td></tr>
