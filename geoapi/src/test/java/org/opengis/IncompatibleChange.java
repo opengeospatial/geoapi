@@ -48,7 +48,7 @@ final class IncompatibleChange {
     /**
      * The fully qualified class name and method where the incompatible changes happen.
      */
-    private final String method;
+    final String method;
 
     /**
      * The old return type.
@@ -70,14 +70,19 @@ final class IncompatibleChange {
     }
 
     /**
-     * Returns the accepted incompatible changes between GeoAPI 3.0.0 and GeoAPI 3.1.0.
+     * Returns the accepted incompatible changes between GeoAPI 3.0 and GeoAPI 3.1.
      */
-    static Set<IncompatibleChange> for310() {
-        return fill(
-                "org.opengis.metadata.content.Band.getUnits",
-                "javax.measure.unit.Unit<javax.measure.quantity.Length>",
-                "javax.measure.unit.Unit<?>"
-        );
+    static Set<IncompatibleChange> for31() {
+        return fill("org.opengis.metadata.content.Band.getUnits",
+                    "javax.measure.unit.Unit<javax.measure.quantity.Length>",
+                    "javax.measure.unit.Unit<?>");
+    }
+
+    /**
+     * Returns the accepted incompatible changes between GeoAPI 3.1 and GeoAPI 4.0.
+     */
+    static Set<IncompatibleChange> for40() {
+        return fill();
     }
 
     /**
@@ -117,9 +122,15 @@ final class IncompatibleChange {
      */
     @Override
     public String toString() {
-        final String lineSeparator = System.getProperty("line.separator", "\n"); // TODO: Use System.lineSeparator() on JDK7.
-        return "Incompatible change in the return type of " + method + ':' + lineSeparator
-                + "    (old) " + oldType + lineSeparator
-                + "    (new) " + newType + lineSeparator;
+        return toString(new StringBuilder(256), System.getProperty("line.separator", "\n")).toString();
+    }
+
+    /**
+     * Implementation of {@link #toString()}.
+     */
+    final StringBuilder toString(final StringBuilder buffer, final String lineSeparator) {
+        return buffer.append("Incompatible change in the return type of ").append(method).append(':').append(lineSeparator)
+                     .append("    (old) ").append(oldType).append(lineSeparator)
+                     .append("    (new) ").append(newType).append(lineSeparator);
     }
 }
