@@ -147,7 +147,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * @since 3.1
      */
     @UML(identifier="semimonthly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency SEMI_MONTHLY = new MaintenanceFrequency("SEMI_MONTHLY");
+    public static final MaintenanceFrequency SEMIMONTHLY = new MaintenanceFrequency("SEMIMONTHLY");
 
     /**
      * Resource is updated every 2 years.
