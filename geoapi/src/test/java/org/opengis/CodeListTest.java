@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.util;
+package org.opengis;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -54,6 +54,8 @@ import org.opengis.parameter.ParameterDirection;
 import org.opengis.annotation.Obligation;
 
 import org.junit.Test;
+import org.opengis.util.CodeList;
+import org.opengis.util.Enumerated;
 import static org.junit.Assert.*;
 
 
