@@ -79,7 +79,7 @@ public interface IdentifiedType {
      *
      * @return Natural language designator for the element.
      */
-    @UML(identifier="definition", obligation=OPTIONAL, specification=ISO_19109)
+    @UML(identifier="designation", obligation=OPTIONAL, specification=ISO_19109)
     InternationalString getDesignation();
 
     /**

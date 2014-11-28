@@ -97,7 +97,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="dataCentre", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType DATACENTRE = new KeywordType("DATACENTRE");
+    public static final KeywordType DATA_CENTRE = new KeywordType("DATA_CENTRE");
 
     /**
      * Keyword identifies a resource containing or about a collection of

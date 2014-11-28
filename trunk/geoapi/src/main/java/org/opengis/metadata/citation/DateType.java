@@ -126,7 +126,7 @@ public final class DateType extends CodeList<DateType> {
      * @since 3.1
      */
     @UML(identifier="inForce", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DateType INFORCE = new DateType("INFORCE");
+    public static final DateType IN_FORCE = new DateType("IN_FORCE");
 
     /**
      * Date identifies when the resource was adopted.
