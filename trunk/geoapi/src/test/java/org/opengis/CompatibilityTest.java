@@ -293,7 +293,7 @@ public final class CompatibilityTest {
         final CompatibilityTest c = new CompatibilityTest("3.1-SNAPSHOT", "4.0-SNAPSHOT");
         c.createIncompatibleChangesList();
         for (final IncompatibleChange change : c.incompatibleChanges) {
-            System.out.println(change.method);
+            System.out.println(change.method + "=I");
         }
     }
 }
