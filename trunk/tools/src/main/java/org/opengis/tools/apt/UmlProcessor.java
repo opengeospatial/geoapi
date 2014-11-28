@@ -43,6 +43,7 @@ import java.io.OutputStreamWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.tools.Diagnostic;
+import javax.lang.model.util.Types;
 import javax.lang.model.util.Elements;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -108,6 +109,7 @@ abstract class UmlProcessor extends AbstractProcessor {
     public void init(final ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         final Elements utils = processingEnv.getElementUtils();
+        final Types typeUtils = processingEnv.getTypeUtils();
         for (final Classes c : Classes.values()) {
             final TypeElement e = utils.getTypeElement(c.classname);
             if (e == null) {
@@ -118,7 +120,7 @@ abstract class UmlProcessor extends AbstractProcessor {
                 skip = true;
                 return;
             }
-            classes.put(c, e.asType());
+            classes.put(c, typeUtils.erasure(e.asType()));
             if (c == Classes.UML) {
                 final Map<String,Element> members = new HashMap<String,Element>();
                 for (final Element m : e.getEnclosedElements()) {
@@ -328,16 +330,27 @@ abstract class UmlProcessor extends AbstractProcessor {
 
     /**
      * Returns the display name of the specification attribute in the given UML.
+     * The returned name include the specification version number, if specified.
      *
      * @param  uml The UML annotation for which to get the specification, or {@code null}.
      * @return The specification name, or {@code null} if the given UML annotation was null.
      */
     final String getSpecification(final AnnotationMirror uml) {
         if (uml != null) {
-            final AnnotationValue a = uml.getElementValues().get(umlMembers.get(UMLMember.SPECIFICATION));
+            final Map<? extends ExecutableElement, ? extends AnnotationValue> values = uml.getElementValues();
+            AnnotationValue a = values.get(umlMembers.get(UMLMember.SPECIFICATION));
             if (a != null) {
-                return ((Element) a.getValue()).getSimpleName().toString()
-                        .replace("ISO_","ISO ").replace("OGC_","OGC ").replace('_', '-');
+                String name = ((Element) a.getValue()).getSimpleName().toString();
+                name = name.replace("ISO_","ISO ").replace("OGC_","OGC ").replace('_', '-');
+                values.get(umlMembers.get(UMLMember.VERSION));
+                a = values.get(umlMembers.get(UMLMember.VERSION));
+                if (a != null) {
+                    final int version = ((Number) a.getValue()).intValue();
+                    if (version != 0) {
+                        name = name + ':' + version;
+                    }
+                }
+                return name;
             }
         }
         return null;

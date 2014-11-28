@@ -44,9 +44,10 @@ tools/src/main/shell/pack.sh
   (execute from the GeoAPI project home directory on a Unix machine):
 
 ---------------------------------------------------------------------------------------------
+export GEOAPI_VERSION=4.0-SNAPSHOT
 export CLASSPATH=~/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
-export CLASSPATH=$CLASSPATH:$PWD/geoapi-pending/target/geoapi-pending-4.0-SNAPSHOT.jar
-export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-4.0-SNAPSHOT.jar
+export CLASSPATH=$CLASSPATH:$PWD/geoapi-pending/target/geoapi-pending-$GEOAPI_VERSION.jar
+export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-$GEOAPI_VERSION.jar
 ---------------------------------------------------------------------------------------------
 
 

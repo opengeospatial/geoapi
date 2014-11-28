@@ -54,13 +54,17 @@ import javax.annotation.processing.SupportedOptions;
 
 
 /**
- * Generates a list of all type and methods, together with their ISO identifier.
- * The list will be written in the {@code ../javadoc/content.html} file, relative
- * to the current directory. The result is published online at
+ * Generates a list of all type and methods, together with their ISO identifier. The list will be written in the
+ * given output file (usually "{@code geoapi/src/main/javadoc/content.html}"). The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
- * <p><b><u>How to use</u></b></p>
+ * <p><b><u>Usage</u></b></p>
  * Instructions about this processor can be found one the <a href="http://www.geoapi.org/tools/index.html">Tools</a> page.
+ * Options are:
+ * <ul>
+ *   <li>{@code output} (mandatory): where to write the HTML page.</li>
+ *   <li>{@code notesList} (optional): path to the "{@code src/release-notes.properties}" file.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -68,7 +72,7 @@ import javax.annotation.processing.SupportedOptions;
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 @SupportedAnnotationTypes(UmlProcessor.UML_CLASSNAME)
-@SupportedOptions("output")
+@SupportedOptions({"output", "notesList"})
 public class IndexGenerator extends UmlProcessor implements Comparator<TypeElement> {
     /**
      * Method names that are part of Java specification.
@@ -171,9 +175,6 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             writeLine("  <body><div>");
             writeLine("  <h1>GeoAPI content</h1>");
             writeLine("  <table cellpadding='0' cellspacing='0'>");
-            writeLine("  <tr><th bgcolor=\"#CCCCFF\">GeoAPI identifier</th>" +
-                          "<th bgcolor=\"#CCCCFF\">ISO identifier</th>" +
-                          "<th bgcolor=\"#CCCCFF\">Standard</th></tr>");
             lastPackage = "";
             final Elements utils = processingEnv.getElementUtils();
             for (final TypeElement element : elements) {
@@ -208,9 +209,12 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final String packageName        = getPackageName(element);
         if (!packageName.equals(lastPackage)) {
             writeLine("  <tr><td colspan=\"3\">&nbsp;</td></tr>");
-            out.write("  <tr><td colspan=\"3\" nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
+            out.write("  <tr><td colspan=\"3\" nowrap bgcolor=\"#CCCCFF\"><b>Package&nbsp; <code>");
             out.write(packageName);
             writeLine("</code></b></td></tr>");
+            writeLine("  <tr><th bgcolor=\"#DDDDFF\">GeoAPI identifier</th>" +
+                          "<th bgcolor=\"#DDDDFF\">ISO identifier</th>" +
+                          "<th bgcolor=\"#DDDDFF\">Standard</th></tr>");
             writeLine("  <tr><td colspan=\"3\"><hr/></td></tr>");
             lastPackage = packageName;
         }
@@ -250,7 +254,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final AnnotationMirror uml = getUML(element);
         final String identifier = getDisplayName(uml);
         final String name = element.getSimpleName().toString();
-        boolean significantChange = true;
+        boolean significantChange = false;
         if (identifier != null) {
             final ElementKind kind = element.getKind();
             if (kind == ElementKind.METHOD) {
@@ -400,14 +404,13 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                     geoapi = firstCharAsLowerCase(geoapi);
                 }
             }
-        } else {
-            if ((geoapi.startsWith("get") && !ogc.startsWith("get")) ||
-                (geoapi.startsWith("set") && !ogc.startsWith("set")))
-            {
-                geoapi = geoapi.substring(3);
-                if (startWithLowerCase) {
-                    geoapi = firstCharAsLowerCase(geoapi);
-                }
+        }
+        if ((geoapi.startsWith("get") && !ogc.startsWith("get")) ||
+            (geoapi.startsWith("set") && !ogc.startsWith("set")))
+        {
+            geoapi = geoapi.substring(3);
+            if (startWithLowerCase) {
+                geoapi = firstCharAsLowerCase(geoapi);
             }
         }
         /*
@@ -443,6 +446,9 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         if (ogc == null) {
             return false;
         }
+        if (ogc.equals(geoapi)) {
+            return true;
+        }
         // Special cases that we don't want to consider as significant deviation.
         geoapi = geoapi.replace("CODE_LIST",  "CODELIST");
         ogc = firstCharAsLowerCase(dropPrefix(ogc));
@@ -453,7 +459,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final int length = ogc.length();
         for (int i=0; i<length; i++) {
             final char c = ogc.charAt(i);
-            if (Character.isSpaceChar(c)) {
+            if (!Character.isLetterOrDigit(c)) {
                 continue;
             }
             if (i != 0) {
