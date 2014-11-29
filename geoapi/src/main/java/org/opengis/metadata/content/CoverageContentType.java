@@ -92,7 +92,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @since 3.1
      */
     @UML(identifier="auxillaryInformation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType AUXILLIARY_INFORMATION = new CoverageContentType("AUXILLIARY_INFORMATION");
+    public static final CoverageContentType AUXILLARY_INFORMATION = new CoverageContentType("AUXILLARY_INFORMATION");
 
     /**
      * Data used to characterize the quality of the {@linkplain #PHYSICAL_MEASUREMENT physical measurement}

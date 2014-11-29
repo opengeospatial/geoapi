@@ -31,13 +31,16 @@
  */
 package org.opengis.tools.apt;
 
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Set;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Comparator;
+import java.util.Properties;
 import javax.tools.Diagnostic;
+import java.io.FileInputStream;
+import java.io.Writer;
+import java.io.IOException;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.util.Elements;
 import javax.lang.model.element.Element;
@@ -54,13 +57,17 @@ import javax.annotation.processing.SupportedOptions;
 
 
 /**
- * Generates a list of all type and methods, together with their ISO identifier.
- * The list will be written in the {@code ../javadoc/content.html} file, relative
- * to the current directory. The result is published online at
+ * Generates a list of all type and methods, together with their ISO identifier. The list will be written in the
+ * given output file (usually "{@code geoapi/src/main/javadoc/content.html}"). The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
- * <b><u>How to use</u></b><br>
+ * <p><b><u>Usage</u></b></p>
  * Instructions about this processor can be found one the <a href="http://www.geoapi.org/tools/index.html">Tools</a> page.
+ * Options are:
+ * <ul>
+ *   <li>{@code output} (mandatory): where to write the HTML page.</li>
+ *   <li>{@code notesList} (optional): path to the "{@code src/release-notes.properties}" file.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -68,8 +75,13 @@ import javax.annotation.processing.SupportedOptions;
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_6)
 @SupportedAnnotationTypes(UmlProcessor.UML_CLASSNAME)
-@SupportedOptions("output")
+@SupportedOptions({"output", "notesList"})
 public class IndexGenerator extends UmlProcessor implements Comparator<TypeElement> {
+    /**
+     * The GeoAPI version for which we are generating the content list.
+     */
+    private static final String VERSION = "3.1-SNAPSHOT";
+
     /**
      * Method names that are part of Java specification.
      */
@@ -79,6 +91,11 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
      * Method names that are part of Java3D vecmath.
      */
     private final Set<String> vecmathMethods;
+
+    /**
+     * Symbols to write in the "notes" column.
+     */
+    private final Properties notes;
 
     /**
      * The file to write.
@@ -107,6 +124,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         javaMethods    = new HashSet<String>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
         vecmathMethods = new HashSet<String>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
         lineSeparator  = System.getProperty("line.separator", "\n");
+        notes          = new Properties();
     }
 
     /**
@@ -117,10 +135,20 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
     @Override
     public void init(final ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-        outputFile = processingEnv.getOptions().get("output");
+        final Map<String,String> options = processingEnv.getOptions();
+        outputFile = options.get("output");
         if (outputFile == null) {
             processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "No 'output' option specified.");
             skip = true;
+        }
+        final String notesList = options.get("notesList");
+        if (notesList != null) try {
+            final FileInputStream in = new FileInputStream(notesList);
+            notes.load(in);
+            in.close();
+        } catch (IOException e) {
+            processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
+                    "Can not read the \"" + notesList + "\" file:" + lineSeparator + e);
         }
     }
 
@@ -162,18 +190,35 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         // Now write the HTML file.
         out = openWriter(outputFile);
         try {
-            writeLine("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
             writeLine("<!DOCTYPE html>");
-            writeLine("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+            writeLine("<html>");
             writeLine("  <head>");
             writeLine("    <title>GeoAPI content</title>");
+            writeLine("    <meta charset=\"UTF-8\"/>");
+            writeLine("    <link rel=\"stylesheet\" type=\"text/css\" href=\"content.css\"/>");
             writeLine("  </head>");
-            writeLine("  <body><div>");
+            writeLine("  <body>");
             writeLine("  <h1>GeoAPI content</h1>");
-            writeLine("  <table cellpadding='0' cellspacing='0'>");
-            writeLine("  <tr><th bgcolor=\"#CCCCFF\">GeoAPI identifier</th>" +
-                          "<th bgcolor=\"#CCCCFF\">ISO identifier</th>" +
-                          "<th bgcolor=\"#CCCCFF\">Standard</th></tr>");
+            writeLine("  <p>This page lists all non-deprecated GeoAPI " + VERSION + " methods and fields,");
+            writeLine("     together with the identifiers specified in the international standards published by");
+            writeLine("     <abbr title=\"Open Geospatial Consortium\">OGC</abbr> and");
+            writeLine("     <abbr title=\"International Organization for Standardization\">ISO</abbr>.");
+            writeLine("     Versions of the standard used by GeoAPI are documented in the");
+            writeLine("     <a href=\"org/opengis/annotation/Specification.html\"><code>Specification</code></a> javadoc.");
+            writeLine("     Version different than the default one are specified by a colon followed by the publication year,");
+            writeLine("     for example “ISO 19115:2003”.</p>");
+            writeLine("  <p>Differences between the <abbr>OGC</abbr>/<abbr>ISO</abbr> identifiers and the GeoAPI name");
+            writeLine("     are mostly for compliance with Java usage, for example by adding the <code>get</code> prefix.");
+            writeLine("     More significant name changes are emphased by italics.</p>");
+            writeLine("  <p id=\"notes\">The “Note” column can contain the following values:</p>");
+            writeLine("  <table>");
+            writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + ".</td></tr>");
+            writeLine("    <tr><td>(I)</td>  <td>for incompatible changes compared to the previous GeoAPI release.</td></tr>");
+            writeLine("    <tr><td>(MC)</td> <td>for methods that may need to change in an incompatible way in the next major release.</td></tr>");
+            writeLine("  </table>");
+            out.write(lineSeparator);
+            writeLine("  <table>");
+            writeLine("  <caption>All non-deprecated GeoAPI " + VERSION + " fields and methods</caption>");
             lastPackage = "";
             final Elements utils = processingEnv.getElementUtils();
             for (final TypeElement element : elements) {
@@ -184,7 +229,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                 }
             }
             writeLine("  </table>");
-            writeLine("  </div></body>");
+            writeLine("  </body>");
             writeLine("</html>");
         } finally {
             out.close();
@@ -207,37 +252,48 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final boolean isCodeList        = isSubtype(element.asType(), Classes.CODE_LIST);
         final String packageName        = getPackageName(element);
         if (!packageName.equals(lastPackage)) {
-            writeLine("  <tr><td colspan=\"3\">&nbsp;</td></tr>");
-            out.write("  <tr><td colspan=\"3\" nowrap bgcolor=\"#DDDDFF\"><b>Package&nbsp; <code>");
+            out.write("  <tr><th class=\"package\" colspan=\"4\">Package <code>");
             out.write(packageName);
-            writeLine("</code></b></td></tr>");
-            writeLine("  <tr><td colspan=\"3\"><hr/></td></tr>");
+            writeLine("</code></th></tr>");
+            writeLine("  <tr><th class=\"header\">GeoAPI type or member</th>" +
+                            "<th class=\"header\">OGC/ISO identifier</th>" +
+                            "<th class=\"header\">Standard</th>" +
+                            "<th class=\"header\">Note</th></tr>");
             lastPackage = packageName;
         }
-        out.write("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
+        out.write("  <tr><td class=\"type\">");
         out.write(isCodeList ? "Code list" : element.getKind().isClass() ? "Class" : "Interface");
         out.write(" <code><a href=\"");
         out.write(pathToClassJavadoc);
         out.write("\">");
         printName(classname, significantChange);
-        out.write("</a></code></b>");
+        out.write("</a></code></td><td>");
         if (identifier != null) {
-            out.write("<td><code>");
+            out.write("<code>");
             printName(identifier, significantChange);
-            out.write("</code></td><td nowrap>");
-            out.write(getSpecification(uml));
-            out.write("</td>");
+            out.write("</code>");
         }
-        writeLine("</tr>");
+        out.write("</td><td colspan=\"2\">");
+        if (uml != null) {
+            out.write(getSpecification(uml));
+        }
+        writeLine("</td></tr>");
         for (final Element member : getMembers(element)) {
-            if (member.getKind() == ElementKind.METHOD) {
-                if (overrides((ExecutableElement) member)) {
-                    continue;
+            switch (member.getKind()) {
+                case METHOD: {
+                    if (!overrides((ExecutableElement) member)) {
+                        writeMemberElement(classname, member);
+                    }
+                    break;
+                }
+                case FIELD:
+                case ENUM_CONSTANT: {
+                    writeMemberElement(classname, member);
+                    break;
                 }
             }
-            writeMemberElement(classname, member);
         }
-        writeLine("  <tr><td colspan=\"3\"><hr></td></tr>");
+        writeLine("  <tr><td class=\"separator\" colspan=\"4\"><hr/></td></tr>");
     }
 
     /**
@@ -250,7 +306,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final AnnotationMirror uml = getUML(element);
         final String identifier = getDisplayName(uml);
         final String name = element.getSimpleName().toString();
-        boolean significantChange = true;
+        boolean significantChange = false;
         if (identifier != null) {
             final ElementKind kind = element.getKind();
             if (kind == ElementKind.METHOD) {
@@ -259,15 +315,17 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                 significantChange = !(isEquivalentFieldName(name, identifier));
             }
         }
-        out.write("  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;");
+        out.write("  <tr><td class=\"member\"><code>");
         printName(name, significantChange);
-        out.write("</code></td>");
+        out.write("</code></td><td class=\"member\">");
         if (identifier != null) {
-            out.write("<td><code>&nbsp;&nbsp;");
+            out.write("<code>");
             printName(identifier, significantChange);
-            out.write("</code></td><td><font size=-1>");
+            out.write("</code>");
+        }
+        out.write("</td><td class=\"spec\">");
+        if (uml != null) {
             out.write(getSpecification(uml));
-            out.write("</font></td>");
         } else if (javaMethods.contains(name)) {
             /*
              * The 'doubleValue()' method is considered a Java method only in the case of
@@ -275,12 +333,32 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
              * encourage implementors to extend java.lang.Number.
              */
             if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
-                out.write("<td></td><td><font size=-1>Java</font></td>");
+                out.write("Java");
             }
         } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
-            out.write("<td></td><td><font size=-1>Vecmath</font></td>");
+            out.write("Vecmath");
         }
-        writeLine("</tr>");
+        out.write("</td>");
+        /*
+         * Write the symbols refering to notes.
+         */
+        String note = notes.getProperty(getQualifiedName(element));
+        if (note != null) {
+            if (note.equals("N")) {
+                out.write("<td class=\"new\"><a href=\"#notes\">(N)</a>");
+            } else if (note.equals("I")) {
+                out.write("<td class=\"incompatible\"><a href=\"#notes\">(I)</a>");
+            } else if (note.equals("MC")) {
+                out.write("<td class=\"warning\"><a href=\"#notes\">(MC)</a>");
+            } else {
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Unknown note: " + name + " = " + note);
+                out.write("<td>");
+                out.write(note);
+            }
+        } else {
+            out.write("<td>");
+        }
+        writeLine("</td></tr>");
     }
 
     /**
@@ -400,14 +478,13 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                     geoapi = firstCharAsLowerCase(geoapi);
                 }
             }
-        } else {
-            if ((geoapi.startsWith("get") && !ogc.startsWith("get")) ||
-                (geoapi.startsWith("set") && !ogc.startsWith("set")))
-            {
-                geoapi = geoapi.substring(3);
-                if (startWithLowerCase) {
-                    geoapi = firstCharAsLowerCase(geoapi);
-                }
+        }
+        if ((geoapi.startsWith("get") && !ogc.startsWith("get")) ||
+            (geoapi.startsWith("set") && !ogc.startsWith("set")))
+        {
+            geoapi = geoapi.substring(3);
+            if (startWithLowerCase) {
+                geoapi = firstCharAsLowerCase(geoapi);
             }
         }
         /*
@@ -443,6 +520,9 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         if (ogc == null) {
             return false;
         }
+        if (ogc.equals(geoapi)) {
+            return true;
+        }
         // Special cases that we don't want to consider as significant deviation.
         geoapi = geoapi.replace("CODE_LIST",  "CODELIST");
         ogc = firstCharAsLowerCase(dropPrefix(ogc));
@@ -453,18 +533,44 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final int length = ogc.length();
         for (int i=0; i<length; i++) {
             final char c = ogc.charAt(i);
-            if (Character.isSpaceChar(c)) {
+            if (!Character.isLetterOrDigit(c)) {
                 continue;
             }
             if (i != 0) {
                 final char p = ogc.charAt(i-1);
-                if (Character.isUpperCase(c) && Character.isLowerCase(p) ||
-                    Character.isLetter   (c) != Character.isLetter   (p))
-                {
-                    // Next condition: special case for "1D", "2D" or "3D" suffixes.
-                    if (!(i == length-1 && Character.isDigit(p) && c == 'D')) {
-                        buffer.append('_');
+                boolean separateWords = Character.isUpperCase(c) && Character.isLowerCase(p); // Check for camel case.
+                if (!separateWords) {
+                    separateWords = Character.isLetter(c) != Character.isLetter(p); // e.g. "iso9660" → "ISO_9660"
+                    if (separateWords) {
+                        /*
+                         * At this point we have detected that we may need to separate a word from numbers
+                         * (or conversely) as in "ISO_9660".  However we need to make an exception for the
+                         * "1D", "2D" or "3D" suffixes, as in "COMPOUND_GEOGRAPHIC2D_VERTICAL".  Note that
+                         * the "2D" suffix may or may not be at the end of the name, but we will insert an
+                         * underscore only if the suffix is at the end of the name.
+                         */
+                        if (Character.isDigit(p) && c == 'D') {
+                            // Prevent insertion of an underscore in "2D" (we do not want "2_D").
+                            separateWords = (i+1 < length) && !Character.isLowerCase(ogc.charAt(i+1));
+                        } else if (Character.isLowerCase(p) && Character.isDigit(c)) {
+                            /*
+                             * Prevent insertion of an underscore before "2D" if not at the end of the name
+                             * (e.g. "COMPOUND_GEOGRAPHIC2D_VERTICAL"). If we detect such case, we will have
+                             * to append the character in a special way in order to insert the underscore at
+                             * a position not yet reached by the iteration (between 2 upper-case letters, so
+                             * normally not a position where we would insert an underscore).
+                             */
+                            separateWords = (i+2 >= length) || ogc.charAt(i+1) != 'D' || Character.isLowerCase(ogc.charAt(i+2));
+                            if (!separateWords) {
+                                buffer.append(c).append("D_");
+                                i++;
+                                continue;
+                            }
+                        }
                     }
+                }
+                if (separateWords) {
+                    buffer.append('_');
                 }
             }
             buffer.append(Character.toUpperCase(c));

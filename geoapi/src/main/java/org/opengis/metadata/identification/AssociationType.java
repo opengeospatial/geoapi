@@ -70,9 +70,17 @@ public final class AssociationType extends CodeList<AssociationType> {
 
     /**
      * Reference to a master dataset of which this one is a part.
+     *
+     * @since 3.1
      */
     @UML(identifier="largerWorkCitation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType LARGER_WORD_CITATION = new AssociationType("LARGER_WORD_CITATION");
+    public static final AssociationType LARGER_WORK_CITATION = new AssociationType("LARGER_WORK_CITATION");
+
+    /**
+     * @deprecated Renamed <code>LARGER_WOR<b><u>K</u></b>_CITATION</code>.
+     */
+    @Deprecated
+    public static final AssociationType LARGER_WORD_CITATION = LARGER_WORK_CITATION;
 
     /**
      * Part of same structured set of data held in a computer.
