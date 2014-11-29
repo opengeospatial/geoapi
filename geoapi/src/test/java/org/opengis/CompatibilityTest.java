@@ -292,8 +292,11 @@ public final class CompatibilityTest {
     public static void main(final String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException {
         final CompatibilityTest c = new CompatibilityTest("3.1-SNAPSHOT", "4.0-SNAPSHOT");
         c.createIncompatibleChangesList();
-        for (final IncompatibleChange change : c.incompatibleChanges) {
+        for (final IncompatibleChange change : c.acceptedIncompatibleChanges) {
             System.out.println(change.method + "=I");
+        }
+        for (final IncompatibleChange change : c.incompatibleChanges) {
+            System.out.println(change.method + "=MC");
         }
     }
 }

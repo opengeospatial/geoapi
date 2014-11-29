@@ -7,10 +7,28 @@
   </head>
   <body>
   <h1>GeoAPI content</h1>
+  <p>This page lists all non-deprecated GeoAPI 3.1-SNAPSHOT methods and fields,
+     together with the identifiers specified in the international standards published by
+     <abbr title="Open Geospatial Consortium">OGC</abbr> and
+     <abbr title="International Organization for Standardization">ISO</abbr>.
+     Versions of the standard used by GeoAPI are documented in the
+     <a href="org/opengis/annotation/Specification.html"><code>Specification</code></a> javadoc.
+     Version different than the default one are specified by a colon followed by the publication year,
+     for example “ISO 19115:2003”.</p>
+  <p>Differences between the <abbr>OGC</abbr>/<abbr>ISO</abbr> identifiers and the GeoAPI name
+     are mostly for compliance with Java usage, for example by adding the <code>get</code> prefix.
+     More significant name changes are emphased by italics.</p>
+  <p id="notes">The “Note” column can contain the following values:</p>
   <table>
+    <tr><td>(N)</td>  <td>for new methods added in GeoAPI 3.1-SNAPSHOT.</td></tr>
+    <tr><td>(I)</td>  <td>for incompatible changes compared to the previous GeoAPI release.</td></tr>
+    <tr><td>(MC)</td> <td>for methods that may need to change in an incompatible way in the next major release.</td></tr>
+  </table>
+
+  <table>
+  <caption>All non-deprecated GeoAPI 3.1-SNAPSHOT fields and methods</caption>
   <tr><th class="package" colspan="4">Package <code>org.opengis.feature</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/feature/Attribute.html"><em>Attribute</em></a></code></td><td></td><td colspan="2"></td></tr>
   <tr><td class="member"><code>getType</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="member"><code>setValue</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
@@ -69,8 +87,7 @@
   <tr><td class="type">Interface <code><a href="org/opengis/feature/PropertyType.html">PropertyType</a></code></td><td><code>PropertyType</code></td><td colspan="2">ISO 19109</td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.geometry</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/geometry/DirectPosition.html">DirectPosition</a></code></td><td><code>DirectPosition</code></td><td colspan="2">ISO 19107</td></tr>
   <tr><td class="member"><code>getCoordinateReferenceSystem</code></td><td class="member"><code>coordinateReferenceSystem</code></td><td class="spec">ISO 19107</td><td></td></tr>
   <tr><td class="member"><code>getDimension</code></td><td class="member"><code>dimension</code></td><td class="spec">ISO 19107</td><td></td></tr>
@@ -93,21 +110,19 @@
   <tr><td class="type">Class <code><a href="org/opengis/geometry/MismatchedDimensionException.html"><em>MismatchedDimensionException</em></a></code></td><td></td><td colspan="2"></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.geometry.coordinate</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/geometry/coordinate/Position.html">Position</a></code></td><td><code>GM_Position</code></td><td colspan="2">ISO 19107</td></tr>
   <tr><td class="member"><code><em>getDirectPosition</em></code></td><td class="member"><code><em>direct</em></code></td><td class="spec">ISO 19107</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/ApplicationSchemaInformation.html">ApplicationSchemaInformation</a></code></td><td><code>MD_ApplicationSchemaInformation</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getSchemaLanguage</code></td><td class="member"><code>schemaLanguage</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getConstraintLanguage</code></td><td class="member"><code>constraintLanguage</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getSchemaAscii</code></td><td class="member"><code>schemaAscii</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getGraphicsFile</code></td><td class="member"><code>graphicsFile</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getSoftwareDevelopmentFile</code></td><td class="member"><code>softwareDevelopmentFile</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getSchemaAscii</code></td><td class="member"><code>schemaAscii</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getGraphicsFile</code></td><td class="member"><code>graphicsFile</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getSoftwareDevelopmentFile</code></td><td class="member"><code>softwareDevelopmentFile</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getSoftwareDevelopmentFileFormat</code></td><td class="member"><code>softwareDevelopmentFileFormat</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Code list <code><a href="org/opengis/metadata/Datatype.html">Datatype</a></code></td><td><code>MD_DatatypeCode</code></td><td colspan="2">ISO 19115</td></tr>
@@ -133,7 +148,7 @@
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/ExtendedElementInformation.html">ExtendedElementInformation</a></code></td><td><code>MD_ExtendedElementInformation</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getDefinition</code></td><td class="member"><code>definition</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getObligation</code></td><td class="member"><code>obligation</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getObligation</code></td><td class="member"><code>obligation</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getCondition</code></td><td class="member"><code>condition</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getDataType</code></td><td class="member"><code>dataType</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMaximumOccurrence</code></td><td class="member"><code>maximumOccurrence</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -141,7 +156,7 @@
   <tr><td class="member"><code>getParentEntity</code></td><td class="member"><code>parentEntity</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getRule</code></td><td class="member"><code>rule</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getRationale</code></td><td class="member"><code>rationale</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getSources</code></td><td class="member"><code>source</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getSources</code></td><td class="member"><code>source</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/FeatureTypeList.html">FeatureTypeList</a></code></td><td><code>MD_FeatureTypeList</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getSpatialObject</code></td><td class="member"><code>spatialObject</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -165,7 +180,7 @@
   <tr><td class="member"><code>getCharacterSets</code></td><td class="member"><code>characterSet</code></td><td class="spec">ISO 19115:2003</td><td></td></tr>
   <tr><td class="member"><code>getParentMetadata</code></td><td class="member"><code>parentMetadata</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMetadataScopes</code></td><td class="member"><code>metadataScope</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getContacts</code></td><td class="member"><code>contact</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getContacts</code></td><td class="member"><code>contact</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code><em>getDates</em></code></td><td class="member"><code><em>dateInfo</em></code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMetadataStandards</code></td><td class="member"><code>metadataStandard</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMetadataProfiles</code></td><td class="member"><code>metadataProfile</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -176,7 +191,7 @@
   <tr><td class="member"><code>getMetadataExtensionInfo</code></td><td class="member"><code>metadataExtensionInfo</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getIdentificationInfo</code></td><td class="member"><code>identificationInfo</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getContentInfo</code></td><td class="member"><code>contentInfo</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getDistributionInfo</code></td><td class="member"><code>distributionInfo</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getDistributionInfo</code></td><td class="member"><code>distributionInfo</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getDataQualityInfo</code></td><td class="member"><code>dataQualityInfo</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getPortrayalCatalogueInfo</code></td><td class="member"><code>portrayalCatalogueInfo</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMetadataConstraints</code></td><td class="member"><code>metadataConstraints</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -197,8 +212,7 @@
   <tr><td class="member"><code>getPortrayalCatalogueCitations</code></td><td class="member"><code>portrayalCatalogueCitation</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.acquisition</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/acquisition/AcquisitionInformation.html">AcquisitionInformation</a></code></td><td><code>MI_AcquisitionInformation</code></td><td colspan="2">ISO 19115-2</td></tr>
   <tr><td class="member"><code>getAcquisitionPlans</code></td><td class="member"><code>acquisitionPlan</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getAcquisitionRequirements</code></td><td class="member"><code>acquisitionRequirement</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
@@ -298,7 +312,7 @@
   <tr><td class="member"><code>getCitation</code></td><td class="member"><code>citation</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getIdentifier</code></td><td class="member"><code>identifier</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getDescription</code></td><td class="member"><code>description</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
-  <tr><td class="member"><code>getSponsors</code></td><td class="member"><code>sponsor</code></td><td class="spec">ISO 19115-2</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getSponsors</code></td><td class="member"><code>sponsor</code></td><td class="spec">ISO 19115-2</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getInstruments</code></td><td class="member"><code>instrument</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/acquisition/PlatformPass.html">PlatformPass</a></code></td><td><code>MI_PlatformPass</code></td><td colspan="2">ISO 19115-2</td></tr>
@@ -322,8 +336,8 @@
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/acquisition/Requirement.html">Requirement</a></code></td><td><code>MI_Requirement</code></td><td colspan="2">ISO 19115-2</td></tr>
   <tr><td class="member"><code>getCitation</code></td><td class="member"><code>citation</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getIdentifier</code></td><td class="member"><code>identifier</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
-  <tr><td class="member"><code>getRequestors</code></td><td class="member"><code>requestor</code></td><td class="spec">ISO 19115-2</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getRecipients</code></td><td class="member"><code>recipient</code></td><td class="spec">ISO 19115-2</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getRequestors</code></td><td class="member"><code>requestor</code></td><td class="spec">ISO 19115-2</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getRecipients</code></td><td class="member"><code>recipient</code></td><td class="spec">ISO 19115-2</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getPriority</code></td><td class="member"><code>priority</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getRequestedDate</code></td><td class="member"><code>requestedDate</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getExpiryDate</code></td><td class="member"><code>expiryDate</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
@@ -346,10 +360,9 @@
   <tr><td class="member"><code>valueOf</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.citation</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/citation/Address.html">Address</a></code></td><td><code>CI_Address</code></td><td colspan="2">ISO 19115</td></tr>
-  <tr><td class="member"><code>getDeliveryPoints</code></td><td class="member"><code>deliveryPoint</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getDeliveryPoints</code></td><td class="member"><code>deliveryPoint</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getCity</code></td><td class="member"><code>city</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getAdministrativeArea</code></td><td class="member"><code>administrativeArea</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getPostalCode</code></td><td class="member"><code>postalCode</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -363,10 +376,10 @@
   <tr><td class="member"><code>getEdition</code></td><td class="member"><code>edition</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getEditionDate</code></td><td class="member"><code>editionDate</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getIdentifiers</code></td><td class="member"><code>identifier</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getCitedResponsibleParties</code></td><td class="member"><code>citedResponsibleParty</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getCitedResponsibleParties</code></td><td class="member"><code>citedResponsibleParty</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getPresentationForms</code></td><td class="member"><code>presentationForm</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getSeries</code></td><td class="member"><code>series</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getOtherCitationDetails</code></td><td class="member"><code>otherCitationDetails</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getOtherCitationDetails</code></td><td class="member"><code>otherCitationDetails</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getISBN</code></td><td class="member"><code>ISBN</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getISSN</code></td><td class="member"><code>ISSN</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getOnlineResources</code></td><td class="member"><code>onlineResource</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -380,7 +393,7 @@
   <tr><td class="member"><code>getPhones</code></td><td class="member"><code>phone</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getAddresses</code></td><td class="member"><code>address</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getOnlineResources</code></td><td class="member"><code>onlineResource</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getHoursOfService</code></td><td class="member"><code>hoursOfService</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getHoursOfService</code></td><td class="member"><code>hoursOfService</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getContactInstructions</code></td><td class="member"><code>contactInstructions</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getContactType</code></td><td class="member"><code>contactType</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -428,7 +441,7 @@
   <tr><td class="member"><code>getLinkage</code></td><td class="member"><code>linkage</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getProtocol</code></td><td class="member"><code>protocol</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getApplicationProfile</code></td><td class="member"><code>applicationProfile</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getDescription</code></td><td class="member"><code>description</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getFunction</code></td><td class="member"><code>function</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getProtocolRequest</code></td><td class="member"><code>protocolRequest</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -499,8 +512,8 @@
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/citation/Series.html">Series</a></code></td><td><code>CI_Series</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getIssueIdentification</code></td><td class="member"><code>issueIdentification</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getPage</code></td><td class="member"><code>page</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getIssueIdentification</code></td><td class="member"><code>issueIdentification</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getPage</code></td><td class="member"><code>page</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/citation/Telephone.html">Telephone</a></code></td><td><code>CI_Telephone</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getNumber</code></td><td class="member"><code>number</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -515,8 +528,7 @@
   <tr><td class="member"><code>valueOf</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.constraint</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Code list <code><a href="org/opengis/metadata/constraint/Classification.html">Classification</a></code></td><td><code>MD_ClassificationCode</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>UNCLASSIFIED</code></td><td class="member"><code>unclassified</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>RESTRICTED</code></td><td class="member"><code>restricted</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -579,8 +591,7 @@
   <tr><td class="member"><code>getHandlingDescription</code></td><td class="member"><code>handlingDescription</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.content</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/content/AttributeGroup.html">AttributeGroup</a></code></td><td><code>MD_AttributeGroup</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getContentTypes</code></td><td class="member"><code>contentType</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getAttributes</code></td><td class="member"><code>attribute</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -711,8 +722,7 @@
   <tr><td class="member"><code>valueOf</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.distribution</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/distribution/DataFile.html">DataFile</a></code></td><td><code>MX_DataFile</code></td><td colspan="2">ISO 19139</td></tr>
   <tr><td class="member"><code>getFeatureTypes</code></td><td class="member"><code>featureType</code></td><td class="spec">ISO 19139</td><td></td></tr>
   <tr><td class="member"><code>getFileFormat</code></td><td class="member"><code>fileFormat</code></td><td class="spec">ISO 19139</td><td></td></tr>
@@ -732,7 +742,7 @@
   <tr><td class="member"><code>getTransferOptions</code></td><td class="member"><code>transferOptions</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/distribution/Distributor.html">Distributor</a></code></td><td><code>MD_Distributor</code></td><td colspan="2">ISO 19115</td></tr>
-  <tr><td class="member"><code>getDistributorContact</code></td><td class="member"><code>distributorContact</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getDistributorContact</code></td><td class="member"><code>distributorContact</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getDistributionOrderProcesses</code></td><td class="member"><code>distributionOrderProcess</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getDistributorFormats</code></td><td class="member"><code>distributorFormat</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getDistributorTransferOptions</code></td><td class="member"><code>distributorTransferOptions</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -798,8 +808,7 @@
   <tr><td class="member"><code>getOrderOptions</code></td><td class="member"><code>orderOptions</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.extent</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/extent/BoundingPolygon.html">BoundingPolygon</a></code></td><td><code>EX_BoundingPolygon</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getPolygons</code></td><td class="member"><code>polygon</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -834,8 +843,7 @@
   <tr><td class="member"><code>getVerticalCRS</code></td><td class="member"><code>verticalCRS</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.identification</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/identification/AssociatedResource.html">AssociatedResource</a></code></td><td><code>MD_AssociatedResource</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getAssociationType</code></td><td class="member"><code>associationType</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -879,7 +887,7 @@
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/identification/DataIdentification.html">DataIdentification</a></code></td><td><code>MD_DataIdentification</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getLanguages</code></td><td class="member"><code>language</code></td><td class="spec">ISO 19115:2003</td><td></td></tr>
-  <tr><td class="member"><code>getCharacterSets</code></td><td class="member"><code>characterSet</code></td><td class="spec">ISO 19115:2003</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getCharacterSets</code></td><td class="member"><code>characterSet</code></td><td class="spec">ISO 19115:2003</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getEnvironmentDescription</code></td><td class="member"><code>environmentDescription</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getSupplementalInformation</code></td><td class="member"><code>supplementalInformation</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -902,9 +910,9 @@
   <tr><td class="member"><code>getCitation</code></td><td class="member"><code>citation</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getAbstract</code></td><td class="member"><code>abstract</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getPurpose</code></td><td class="member"><code>purpose</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getCredits</code></td><td class="member"><code>credit</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getCredits</code></td><td class="member"><code>credit</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getStatus</code></td><td class="member"><code>status</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getPointOfContacts</code></td><td class="member"><code>pointOfContact</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getPointOfContacts</code></td><td class="member"><code>pointOfContact</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getSpatialRepresentationTypes</code></td><td class="member"><code>spatialRepresentationType</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getSpatialResolutions</code></td><td class="member"><code>spatialResolution</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getTemporalResolutions</code></td><td class="member"><code>temporalResolution</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -1063,14 +1071,13 @@
   <tr><td class="member"><code>getSpecificUsage</code></td><td class="member"><code>specificUsage</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code><em>getUsageDate</em></code></td><td class="member"><code><em>usageDateTime</em></code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getUserDeterminedLimitations</code></td><td class="member"><code>userDeterminedLimitations</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getUserContactInfo</code></td><td class="member"><code>userContactInfo</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getUserContactInfo</code></td><td class="member"><code>userContactInfo</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getResponses</code></td><td class="member"><code>response</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getAdditionalDocumentation</code></td><td class="member"><code>additionalDocumentation</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getIdentifiedIssues</code></td><td class="member"><code>identifiedIssues</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.lineage</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/lineage/Algorithm.html">Algorithm</a></code></td><td><code>LE_Algorithm</code></td><td colspan="2">ISO 19115-2</td></tr>
   <tr><td class="member"><code>getCitation</code></td><td class="member"><code>citation</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="member"><code>getDescription</code></td><td class="member"><code>description</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
@@ -1098,7 +1105,7 @@
   <tr><td class="member"><code>getDescription</code></td><td class="member"><code>description</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getRationale</code></td><td class="member"><code>rationale</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code><em>getDate</em></code></td><td class="member"><code><em>stepDateTime</em></code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getProcessors</code></td><td class="member"><code>processor</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getProcessors</code></td><td class="member"><code>processor</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getReferences</code></td><td class="member"><code>reference</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getScope</code></td><td class="member"><code>scope</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getSources</code></td><td class="member"><code>source</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -1123,8 +1130,7 @@
   <tr><td class="member"><code>getResolution</code></td><td class="member"><code>resolution</code></td><td class="spec">ISO 19115-2</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.maintenance</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Code list <code><a href="org/opengis/metadata/maintenance/MaintenanceFrequency.html">MaintenanceFrequency</a></code></td><td><code>MD_MaintenanceFrequencyCode</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>CONTINUAL</code></td><td class="member"><code>continual</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>DAILY</code></td><td class="member"><code>daily</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -1151,7 +1157,7 @@
   <tr><td class="member"><code>getUserDefinedMaintenanceFrequency</code></td><td class="member"><code>userDefinedMaintenanceFrequency</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMaintenanceScopes</code></td><td class="member"><code>maintenanceScope</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getMaintenanceNotes</code></td><td class="member"><code>maintenanceNote</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getContacts</code></td><td class="member"><code>contact</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getContacts</code></td><td class="member"><code>contact</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/maintenance/Scope.html">Scope</a></code></td><td><code>MD_Scope</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getLevel</code></td><td class="member"><code>level</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -1191,15 +1197,14 @@
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/maintenance/ScopeDescription.html">ScopeDescription</a></code></td><td><code>MD_ScopeDescription</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>getDataset</code></td><td class="member"><code>dataset</code></td><td class="spec">ISO 19115</td><td></td></tr>
-  <tr><td class="member"><code>getFeatures</code></td><td class="member"><code>features</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getAttributes</code></td><td class="member"><code>attributes</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getFeatureInstances</code></td><td class="member"><code>featureInstances</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getAttributeInstances</code></td><td class="member"><code>attributeInstances</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
-  <tr><td class="member"><code>getOther</code></td><td class="member"><code>other</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getFeatures</code></td><td class="member"><code>features</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getAttributes</code></td><td class="member"><code>attributes</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getFeatureInstances</code></td><td class="member"><code>featureInstances</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getAttributeInstances</code></td><td class="member"><code>attributeInstances</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
+  <tr><td class="member"><code>getOther</code></td><td class="member"><code>other</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.quality</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/quality/AbsoluteExternalPositionalAccuracy.html">AbsoluteExternalPositionalAccuracy</a></code></td><td><code>DQ_AbsoluteExternalPositionalAccuracy</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/quality/AccuracyOfATimeMeasurement.html">AccuracyOfATimeMeasurement</a></code></td><td><code>DQ_AccuracyOfATimeMeasurement</code></td><td colspan="2">ISO 19115</td></tr>
@@ -1225,7 +1230,7 @@
   <tr><td class="member"><code>getResultFile</code></td><td class="member"><code>resultFile</code></td><td class="spec">ISO 19139</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/quality/DataQuality.html">DataQuality</a></code></td><td><code>DQ_DataQuality</code></td><td colspan="2">ISO 19115</td></tr>
-  <tr><td class="member"><code>getScope</code></td><td class="member"><code>scope</code></td><td class="spec">ISO 19115</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getScope</code></td><td class="member"><code>scope</code></td><td class="spec">ISO 19115</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getReports</code></td><td class="member"><code>report</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getLineage</code></td><td class="member"><code>lineage</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -1286,8 +1291,7 @@
   <tr><td class="type">Interface <code><a href="org/opengis/metadata/quality/Usability.html">Usability</a></code></td><td><code>QE_Usability</code></td><td colspan="2">ISO 19115-2</td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.metadata.spatial</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Code list <code><a href="org/opengis/metadata/spatial/CellGeometry.html">CellGeometry</a></code></td><td><code>MD_CellGeometryCode</code></td><td colspan="2">ISO 19115</td></tr>
   <tr><td class="member"><code>POINT</code></td><td class="member"><code>point</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>AREA</code></td><td class="member"><code>area</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -1410,8 +1414,7 @@
   <tr><td class="member"><code>getGeometricObjects</code></td><td class="member"><code>geometricObjects</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.parameter</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/parameter/GeneralParameterDescriptor.html"><em>GeneralParameterDescriptor</em></a></code></td><td><code><em>CC_GeneralOperationParameter</em></code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="member"><code>getDirection</code></td><td class="member"><code>direction</code></td><td class="spec">ISO 19115</td><td></td></tr>
   <tr><td class="member"><code>getDescription</code></td><td class="member"><code>description</code></td><td class="spec">ISO 19115</td><td></td></tr>
@@ -1479,8 +1482,7 @@
   <tr><td class="member"><code>addGroup</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.referencing</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/AuthorityFactory.html"><em>AuthorityFactory</em></a></code></td><td><code><em>CS_CoordinateSystemAuthorityFactory</em></code></td><td colspan="2">OGC 01009</td></tr>
   <tr><td class="member"><code>getAuthority</code></td><td class="member"><code>getAuthority</code></td><td class="spec">OGC 01009</td><td></td></tr>
   <tr><td class="member"><code>getAuthorityCodes</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
@@ -1492,9 +1494,9 @@
   <tr><td class="member"><code>ALIAS_KEY</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="member"><code>IDENTIFIERS_KEY</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="member"><code>REMARKS_KEY</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
-  <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19111</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getName</code></td><td class="member"><code>name</code></td><td class="spec">ISO 19111</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getAlias</code></td><td class="member"><code>alias</code></td><td class="spec">ISO 19111</td><td></td></tr>
-  <tr><td class="member"><code>getIdentifiers</code></td><td class="member"><code>identifier</code></td><td class="spec">ISO 19111</td><td class="warning">I</td></tr>
+  <tr><td class="member"><code>getIdentifiers</code></td><td class="member"><code>identifier</code></td><td class="spec">ISO 19111</td><td class="warning"><a href="#notes">(MC)</a></td></tr>
   <tr><td class="member"><code>getRemarks</code></td><td class="member"><code>remarks</code></td><td class="spec">ISO 19111</td><td></td></tr>
   <tr><td class="member"><code>toWKT</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -1544,8 +1546,7 @@
   <tr><td class="member"><code>valueOf</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.referencing.crs</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/crs/CompoundCRS.html">CompoundCRS</a></code></td><td><code>SC_CompoundCRS</code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="member"><code><em>getComponents</em></code></td><td class="member"><code><em>componentReferenceSystem</em></code></td><td class="spec">ISO 19111</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -1606,8 +1607,7 @@
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/crs/VerticalCRS.html">VerticalCRS</a></code></td><td><code>SC_VerticalCRS</code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.referencing.cs</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/cs/AffineCS.html">AffineCS</a></code></td><td><code>CS_AffineCS</code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><td class="type">Code list <code><a href="org/opengis/referencing/cs/AxisDirection.html">AxisDirection</a></code></td><td><code>CS_AxisDirection</code></td><td colspan="2">ISO 19111</td></tr>
@@ -1710,8 +1710,7 @@
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/cs/VerticalCS.html">VerticalCS</a></code></td><td><code>CS_VerticalCS</code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.referencing.datum</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/datum/Datum.html">Datum</a></code></td><td><code>CD_Datum</code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="member"><code>ANCHOR_POINT_KEY</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="member"><code>REALIZATION_EPOCH_KEY</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
@@ -1787,8 +1786,7 @@
   <tr><td class="member"><code>valueOf</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.referencing.operation</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Interface <code><a href="org/opengis/referencing/operation/ConcatenatedOperation.html">ConcatenatedOperation</a></code></td><td><code>CC_ConcatenatedOperation</code></td><td colspan="2">ISO 19111</td></tr>
   <tr><td class="member"><code><em>getOperations</em></code></td><td class="member"><code><em>coordOperation</em></code></td><td class="spec">ISO 19111</td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
@@ -1898,8 +1896,7 @@
   <tr><td class="member"><code>setLastCompletedTransform</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="separator" colspan="4"><hr/></td></tr>
   <tr><th class="package" colspan="4">Package <code>org.opengis.util</code></th></tr>
-  <tr><th class="header">GeoAPI type or member</th><th class="header">ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
-  <tr><td class="separator" colspan="4"><hr/></td></tr>
+  <tr><th class="header">GeoAPI type or member</th><th class="header">OGC/ISO identifier</th><th class="header">Standard</th><th class="header">Note</th></tr>
   <tr><td class="type">Code list <code><a href="org/opengis/util/CodeList.html">CodeList</a></code></td><td><code>CodeList</code></td><td colspan="2">ISO 19103</td></tr>
   <tr><td class="member"><code>valueOf</code></td><td class="member"></td><td class="spec"></td><td></td></tr>
   <tr><td class="member"><code>toString</code></td><td class="member"></td><td class="spec">Java</td><td></td></tr>

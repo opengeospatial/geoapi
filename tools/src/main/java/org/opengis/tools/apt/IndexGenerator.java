@@ -78,6 +78,11 @@ import javax.annotation.processing.SupportedOptions;
 @SupportedOptions({"output", "notesList"})
 public class IndexGenerator extends UmlProcessor implements Comparator<TypeElement> {
     /**
+     * The GeoAPI version for which we are generating the content list.
+     */
+    private static final String VERSION = "3.1-SNAPSHOT";
+
+    /**
      * Method names that are part of Java specification.
      */
     private final Set<String> javaMethods;
@@ -194,7 +199,26 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             writeLine("  </head>");
             writeLine("  <body>");
             writeLine("  <h1>GeoAPI content</h1>");
+            writeLine("  <p>This page lists all non-deprecated GeoAPI " + VERSION + " methods and fields,");
+            writeLine("     together with the identifiers specified in the international standards published by");
+            writeLine("     <abbr title=\"Open Geospatial Consortium\">OGC</abbr> and");
+            writeLine("     <abbr title=\"International Organization for Standardization\">ISO</abbr>.");
+            writeLine("     Versions of the standard used by GeoAPI are documented in the");
+            writeLine("     <a href=\"org/opengis/annotation/Specification.html\"><code>Specification</code></a> javadoc.");
+            writeLine("     Version different than the default one are specified by a colon followed by the publication year,");
+            writeLine("     for example “ISO 19115:2003”.</p>");
+            writeLine("  <p>Differences between the <abbr>OGC</abbr>/<abbr>ISO</abbr> identifiers and the GeoAPI name");
+            writeLine("     are mostly for compliance with Java usage, for example by adding the <code>get</code> prefix.");
+            writeLine("     More significant name changes are emphased by italics.</p>");
+            writeLine("  <p id=\"notes\">The “Note” column can contain the following values:</p>");
             writeLine("  <table>");
+            writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + ".</td></tr>");
+            writeLine("    <tr><td>(I)</td>  <td>for incompatible changes compared to the previous GeoAPI release.</td></tr>");
+            writeLine("    <tr><td>(MC)</td> <td>for methods that may need to change in an incompatible way in the next major release.</td></tr>");
+            writeLine("  </table>");
+            out.write(lineSeparator);
+            writeLine("  <table>");
+            writeLine("  <caption>All non-deprecated GeoAPI " + VERSION + " fields and methods</caption>");
             lastPackage = "";
             final Elements utils = processingEnv.getElementUtils();
             for (final TypeElement element : elements) {
@@ -232,10 +256,9 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             out.write(packageName);
             writeLine("</code></th></tr>");
             writeLine("  <tr><th class=\"header\">GeoAPI type or member</th>" +
-                            "<th class=\"header\">ISO identifier</th>" +
+                            "<th class=\"header\">OGC/ISO identifier</th>" +
                             "<th class=\"header\">Standard</th>" +
                             "<th class=\"header\">Note</th></tr>");
-            writeLine("  <tr><td class=\"separator\" colspan=\"4\"><hr/></td></tr>");
             lastPackage = packageName;
         }
         out.write("  <tr><td class=\"type\">");
@@ -321,8 +344,12 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
          */
         String note = notes.getProperty(getQualifiedName(element));
         if (note != null) {
-            if (note.equals("I")) {
-                out.write("<td class=\"warning\">(I)");
+            if (note.equals("N")) {
+                out.write("<td class=\"new\"><a href=\"#notes\">(N)</a>");
+            } else if (note.equals("I")) {
+                out.write("<td class=\"incompatible\"><a href=\"#notes\">(I)</a>");
+            } else if (note.equals("MC")) {
+                out.write("<td class=\"warning\"><a href=\"#notes\">(MC)</a>");
             } else {
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Unknown note: " + name + " = " + note);
                 out.write("<td>");
