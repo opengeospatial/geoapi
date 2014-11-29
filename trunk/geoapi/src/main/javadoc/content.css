@@ -1,6 +1,14 @@
 /*
  * Stylesheet for the content.html file.
  */
+caption {
+  color: darkblue;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 40px;
+  margin-bottom: 9px;
+}
+
 table {
   width:          auto;
   border:         none;
@@ -11,7 +19,7 @@ table {
 }
 
 table tr th {
-  padding: 0 9px;
+  padding: 3px 9px;
 }
 
 table tr td {
@@ -24,11 +32,13 @@ table tr td {
 }
 
 .header {
-  background: #DDDDFF;
+  background: lightgray;
 }
 
 .package {
-  background: #CCCCFF;
+  color: white;
+  background: darkblue;
+  font-size: 110%;
 }
 
 .type {
@@ -43,7 +53,22 @@ table tr td {
   font-size: smaller;
 }
 
-.warning {
+.new {
+  color: cadetblue;
+  text-align: center;
+}
+
+.incompatible {
   color: red;
   text-align: center;
+}
+
+.warning {
+  color: darkgoldenrod;
+  text-align: center;
+}
+
+.new a, .incompatible a, .warning a {
+  text-decoration: none;
+  color: currentColor;
 }
