@@ -220,6 +220,21 @@ abstract class UmlProcessor extends AbstractProcessor {
     }
 
     /**
+     * Returns the fully qualified name of the given field or method.
+     *
+     * @param  e A field or a method.
+     * @return The qualified name of the given field or method.
+     */
+    static String getQualifiedName(final Element e) {
+        String name = e.getSimpleName().toString();
+        final Element c = e.getEnclosingElement();
+        if (c instanceof TypeElement) {
+            name = ((TypeElement) c).getQualifiedName().toString() + '.' + name;
+        }
+        return name;
+    }
+
+    /**
      * Returns the name of the given element, completed with the name of the outer class is any.
      * The check for outer interface is mostly for {@code CodeList.Filter}.
      *

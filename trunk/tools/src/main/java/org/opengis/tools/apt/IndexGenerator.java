@@ -31,13 +31,16 @@
  */
 package org.opengis.tools.apt;
 
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Set;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Comparator;
+import java.util.Properties;
 import javax.tools.Diagnostic;
+import java.io.FileInputStream;
+import java.io.Writer;
+import java.io.IOException;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.util.Elements;
 import javax.lang.model.element.Element;
@@ -85,6 +88,11 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
     private final Set<String> vecmathMethods;
 
     /**
+     * Symbols to write in the "notes" column.
+     */
+    private final Properties notes;
+
+    /**
      * The file to write.
      */
     private String outputFile;
@@ -111,6 +119,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         javaMethods    = new HashSet<String>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
         vecmathMethods = new HashSet<String>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
         lineSeparator  = System.getProperty("line.separator", "\n");
+        notes          = new Properties();
     }
 
     /**
@@ -121,10 +130,20 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
     @Override
     public void init(final ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
-        outputFile = processingEnv.getOptions().get("output");
+        final Map<String,String> options = processingEnv.getOptions();
+        outputFile = options.get("output");
         if (outputFile == null) {
             processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "No 'output' option specified.");
             skip = true;
+        }
+        final String notesList = options.get("notesList");
+        if (notesList != null) try {
+            final FileInputStream in = new FileInputStream(notesList);
+            notes.load(in);
+            in.close();
+        } catch (IOException e) {
+            processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
+                    "Can not read the \"" + notesList + "\" file:" + lineSeparator + e);
         }
     }
 
@@ -166,13 +185,13 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         // Now write the HTML file.
         out = openWriter(outputFile);
         try {
-            writeLine("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
             writeLine("<!DOCTYPE html>");
-            writeLine("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+            writeLine("<html>");
             writeLine("  <head>");
             writeLine("    <title>GeoAPI content</title>");
+            writeLine("    <meta charset=\"UTF-8\">");
             writeLine("  </head>");
-            writeLine("  <body><div>");
+            writeLine("  <body>");
             writeLine("  <h1>GeoAPI content</h1>");
             writeLine("  <table cellpadding='0' cellspacing='0'>");
             lastPackage = "";
@@ -185,7 +204,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                 }
             }
             writeLine("  </table>");
-            writeLine("  </div></body>");
+            writeLine("  </body>");
             writeLine("</html>");
         } finally {
             out.close();
@@ -208,14 +227,15 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final boolean isCodeList        = isSubtype(element.asType(), Classes.CODE_LIST);
         final String packageName        = getPackageName(element);
         if (!packageName.equals(lastPackage)) {
-            writeLine("  <tr><td colspan=\"3\">&nbsp;</td></tr>");
-            out.write("  <tr><td colspan=\"3\" nowrap bgcolor=\"#CCCCFF\"><b>Package&nbsp; <code>");
+            writeLine("  <tr><td colspan=\"4\">&nbsp;</td></tr>");
+            out.write("  <tr><td colspan=\"4\" nowrap bgcolor=\"#CCCCFF\"><b>Package&nbsp; <code>");
             out.write(packageName);
             writeLine("</code></b></td></tr>");
             writeLine("  <tr><th bgcolor=\"#DDDDFF\">GeoAPI identifier</th>" +
                           "<th bgcolor=\"#DDDDFF\">ISO identifier</th>" +
-                          "<th bgcolor=\"#DDDDFF\">Standard</th></tr>");
-            writeLine("  <tr><td colspan=\"3\"><hr/></td></tr>");
+                          "<th bgcolor=\"#DDDDFF\">Standard</th>" +
+                          "<th bgcolor=\"#DDDDFF\">Note</th></tr>");
+            writeLine("  <tr><td colspan=\"4\"><hr/></td></tr>");
             lastPackage = packageName;
         }
         out.write("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
@@ -241,7 +261,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             }
             writeMemberElement(classname, member);
         }
-        writeLine("  <tr><td colspan=\"3\"><hr></td></tr>");
+        writeLine("  <tr><td colspan=\"4\"><hr></td></tr>");
     }
 
     /**
@@ -283,8 +303,23 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             }
         } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
             out.write("<td></td><td><font size=-1>Vecmath</font></td>");
+        } else {
+            out.write("<td></td><td></td>");
         }
-        writeLine("</tr>");
+        /*
+         * Write the symbols refering to notes.
+         */
+        out.write("<td>");
+        String note = notes.getProperty(getQualifiedName(element));
+        if (note != null) {
+            if (note.equals("I")) {
+                note = "Ⓘ";
+            } else {
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Unknown note: " + name + " = " + note);
+            }
+            out.write(note);
+        }
+        writeLine("</td></tr>");
     }
 
     /**

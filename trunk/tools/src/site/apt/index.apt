@@ -59,7 +59,7 @@ export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-$GEOAPI_VERSION.jar
 
 ---------------------------------------------------------------------------------------------
 find geoapi/src/main/java -name "*.java" > content.txt
-javac -proc:only -processor org.opengis.tools.apt.IndexGenerator -Aoutput=geoapi/src/main/javadoc/content.html @content.txt
+javac -proc:only -processor org.opengis.tools.apt.IndexGenerator -Aoutput=geoapi/src/main/javadoc/content.html -AnotesList=src/release-notes.properties @content.txt
 rm content.txt
 ---------------------------------------------------------------------------------------------
 
