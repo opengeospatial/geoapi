@@ -44,9 +44,10 @@ tools/src/main/shell/pack.sh
   (execute from the GeoAPI project home directory on a Unix machine):
 
 ---------------------------------------------------------------------------------------------
+export GEOAPI_VERSION=3.1-SNAPSHOT
 export CLASSPATH=~/.m2/repository/javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar
-export CLASSPATH=$CLASSPATH:$PWD/geoapi-pending/target/geoapi-pending-3.1-SNAPSHOT.jar
-export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-3.1-SNAPSHOT.jar
+export CLASSPATH=$CLASSPATH:$PWD/geoapi-pending/target/geoapi-pending-$GEOAPI_VERSION.jar
+export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-$GEOAPI_VERSION.jar
 ---------------------------------------------------------------------------------------------
 
 
@@ -58,7 +59,7 @@ export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-3.1-SNAPSHOT.jar
 
 ---------------------------------------------------------------------------------------------
 find geoapi/src/main/java -name "*.java" > content.txt
-javac -proc:only -processor org.opengis.tools.apt.IndexGenerator -Aoutput=geoapi/src/main/javadoc/content.html @content.txt
+javac -proc:only -processor org.opengis.tools.apt.IndexGenerator -Aoutput=geoapi/src/main/javadoc/content.html -AnotesList=src/release-notes.properties @content.txt
 rm content.txt
 ---------------------------------------------------------------------------------------------
 

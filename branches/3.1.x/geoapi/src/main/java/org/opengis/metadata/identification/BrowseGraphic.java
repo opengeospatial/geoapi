@@ -97,7 +97,7 @@ public interface BrowseGraphic {
      *
      * @since 3.1
      */
-    @UML(identifier="imageContraints", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="imageConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Constraints> getImageConstraints();
 
     /**

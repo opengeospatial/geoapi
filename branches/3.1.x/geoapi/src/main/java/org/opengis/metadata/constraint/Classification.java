@@ -107,7 +107,7 @@ public final class Classification extends CodeList<Classification> {
      * @since 3.1
      */
     @UML(identifier="forOfficialUseOnly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification FOR_OFFICIAL_USE = new Classification("FOR_OFFICIAL_USE");
+    public static final Classification FOR_OFFICIAL_USE_ONLY = new Classification("FOR_OFFICIAL_USE_ONLY");
 
     /**
      * Compromise of the information could cause damage.

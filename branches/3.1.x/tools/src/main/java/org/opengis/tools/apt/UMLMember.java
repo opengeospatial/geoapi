@@ -48,7 +48,12 @@ enum UMLMember {
     /**
      * {@code specification()}.
      */
-    SPECIFICATION("specification");
+    SPECIFICATION("specification"),
+
+    /**
+     * {@code version()}.
+     */
+    VERSION("version");
 
     /**
      * The member name.
