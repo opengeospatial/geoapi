@@ -189,11 +189,12 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             writeLine("<html>");
             writeLine("  <head>");
             writeLine("    <title>GeoAPI content</title>");
-            writeLine("    <meta charset=\"UTF-8\">");
+            writeLine("    <meta charset=\"UTF-8\"/>");
+            writeLine("    <link rel=\"stylesheet\" type=\"text/css\" href=\"content.css\"/>");
             writeLine("  </head>");
             writeLine("  <body>");
             writeLine("  <h1>GeoAPI content</h1>");
-            writeLine("  <table cellpadding='0' cellspacing='0'>");
+            writeLine("  <table>");
             lastPackage = "";
             final Elements utils = processingEnv.getElementUtils();
             for (final TypeElement element : elements) {
@@ -227,41 +228,49 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         final boolean isCodeList        = isSubtype(element.asType(), Classes.CODE_LIST);
         final String packageName        = getPackageName(element);
         if (!packageName.equals(lastPackage)) {
-            writeLine("  <tr><td colspan=\"4\">&nbsp;</td></tr>");
-            out.write("  <tr><td colspan=\"4\" nowrap bgcolor=\"#CCCCFF\"><b>Package&nbsp; <code>");
+            out.write("  <tr><th class=\"package\" colspan=\"4\">Package <code>");
             out.write(packageName);
-            writeLine("</code></b></td></tr>");
-            writeLine("  <tr><th bgcolor=\"#DDDDFF\">GeoAPI identifier</th>" +
-                          "<th bgcolor=\"#DDDDFF\">ISO identifier</th>" +
-                          "<th bgcolor=\"#DDDDFF\">Standard</th>" +
-                          "<th bgcolor=\"#DDDDFF\">Note</th></tr>");
-            writeLine("  <tr><td colspan=\"4\"><hr/></td></tr>");
+            writeLine("</code></th></tr>");
+            writeLine("  <tr><th class=\"header\">GeoAPI type or member</th>" +
+                            "<th class=\"header\">ISO identifier</th>" +
+                            "<th class=\"header\">Standard</th>" +
+                            "<th class=\"header\">Note</th></tr>");
+            writeLine("  <tr><td class=\"separator\" colspan=\"4\"><hr/></td></tr>");
             lastPackage = packageName;
         }
-        out.write("  <tr><td nowrap><b><code>&nbsp;&nbsp;</code>");
+        out.write("  <tr><td class=\"type\">");
         out.write(isCodeList ? "Code list" : element.getKind().isClass() ? "Class" : "Interface");
         out.write(" <code><a href=\"");
         out.write(pathToClassJavadoc);
         out.write("\">");
         printName(classname, significantChange);
-        out.write("</a></code></b>");
+        out.write("</a></code></td><td>");
         if (identifier != null) {
-            out.write("<td><code>");
+            out.write("<code>");
             printName(identifier, significantChange);
-            out.write("</code></td><td nowrap>");
-            out.write(getSpecification(uml));
-            out.write("</td>");
+            out.write("</code>");
         }
-        writeLine("</tr>");
+        out.write("</td><td colspan=\"2\">");
+        if (uml != null) {
+            out.write(getSpecification(uml));
+        }
+        writeLine("</td></tr>");
         for (final Element member : getMembers(element)) {
-            if (member.getKind() == ElementKind.METHOD) {
-                if (overrides((ExecutableElement) member)) {
-                    continue;
+            switch (member.getKind()) {
+                case METHOD: {
+                    if (!overrides((ExecutableElement) member)) {
+                        writeMemberElement(classname, member);
+                    }
+                    break;
+                }
+                case FIELD:
+                case ENUM_CONSTANT: {
+                    writeMemberElement(classname, member);
+                    break;
                 }
             }
-            writeMemberElement(classname, member);
         }
-        writeLine("  <tr><td colspan=\"4\"><hr></td></tr>");
+        writeLine("  <tr><td class=\"separator\" colspan=\"4\"><hr/></td></tr>");
     }
 
     /**
@@ -283,15 +292,17 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                 significantChange = !(isEquivalentFieldName(name, identifier));
             }
         }
-        out.write("  <tr><td><code>&nbsp;&nbsp;&nbsp;&nbsp;");
+        out.write("  <tr><td class=\"member\"><code>");
         printName(name, significantChange);
-        out.write("</code></td>");
+        out.write("</code></td><td class=\"member\">");
         if (identifier != null) {
-            out.write("<td><code>&nbsp;&nbsp;");
+            out.write("<code>");
             printName(identifier, significantChange);
-            out.write("</code></td><td><font size=-1>");
+            out.write("</code>");
+        }
+        out.write("</td><td class=\"spec\">");
+        if (uml != null) {
             out.write(getSpecification(uml));
-            out.write("</font></td>");
         } else if (javaMethods.contains(name)) {
             /*
              * The 'doubleValue()' method is considered a Java method only in the case of
@@ -299,25 +310,26 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
              * encourage implementors to extend java.lang.Number.
              */
             if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
-                out.write("<td></td><td><font size=-1>Java</font></td>");
+                out.write("Java");
             }
         } else if (vecmathMethods.contains(name) && classname.equals("Matrix")) {
-            out.write("<td></td><td><font size=-1>Vecmath</font></td>");
-        } else {
-            out.write("<td></td><td></td>");
+            out.write("Vecmath");
         }
+        out.write("</td>");
         /*
          * Write the symbols refering to notes.
          */
-        out.write("<td>");
         String note = notes.getProperty(getQualifiedName(element));
         if (note != null) {
             if (note.equals("I")) {
-                note = "Ⓘ";
+                out.write("<td class=\"warning\">(I)");
             } else {
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Unknown note: " + name + " = " + note);
+                out.write("<td>");
+                out.write(note);
             }
-            out.write(note);
+        } else {
+            out.write("<td>");
         }
         writeLine("</td></tr>");
     }
