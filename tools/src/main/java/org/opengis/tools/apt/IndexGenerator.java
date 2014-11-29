@@ -464,13 +464,39 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             }
             if (i != 0) {
                 final char p = ogc.charAt(i-1);
-                if (Character.isUpperCase(c) && Character.isLowerCase(p) ||
-                    Character.isLetter   (c) != Character.isLetter   (p))
-                {
-                    // Next condition: special case for "1D", "2D" or "3D" suffixes.
-                    if (!(i == length-1 && Character.isDigit(p) && c == 'D')) {
-                        buffer.append('_');
+                boolean separateWords = Character.isUpperCase(c) && Character.isLowerCase(p); // Check for camel case.
+                if (!separateWords) {
+                    separateWords = Character.isLetter(c) != Character.isLetter(p); // e.g. "iso9660" → "ISO_9660"
+                    if (separateWords) {
+                        /*
+                         * At this point we have detected that we may need to separate a word from numbers
+                         * (or conversely) as in "ISO_9660".  However we need to make an exception for the
+                         * "1D", "2D" or "3D" suffixes, as in "COMPOUND_GEOGRAPHIC2D_VERTICAL".  Note that
+                         * the "2D" suffix may or may not be at the end of the name, but we will insert an
+                         * underscore only if the suffix is at the end of the name.
+                         */
+                        if (Character.isDigit(p) && c == 'D') {
+                            // Prevent insertion of an underscore in "2D" (we do not want "2_D").
+                            separateWords = (i+1 < length) && !Character.isLowerCase(ogc.charAt(i+1));
+                        } else if (Character.isLowerCase(p) && Character.isDigit(c)) {
+                            /*
+                             * Prevent insertion of an underscore before "2D" if not at the end of the name
+                             * (e.g. "COMPOUND_GEOGRAPHIC2D_VERTICAL"). If we detect such case, we will have
+                             * to append the character in a special way in order to insert the underscore at
+                             * a position not yet reached by the iteration (between 2 upper-case letters, so
+                             * normally not a position where we would insert an underscore).
+                             */
+                            separateWords = (i+2 >= length) || ogc.charAt(i+1) != 'D' || Character.isLowerCase(ogc.charAt(i+2));
+                            if (!separateWords) {
+                                buffer.append(c).append("D_");
+                                i++;
+                                continue;
+                            }
+                        }
                     }
+                }
+                if (separateWords) {
+                    buffer.append('_');
                 }
             }
             buffer.append(Character.toUpperCase(c));
