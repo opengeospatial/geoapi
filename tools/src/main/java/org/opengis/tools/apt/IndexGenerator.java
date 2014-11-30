@@ -212,9 +212,10 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             writeLine("     More significant name changes are emphased by italics.</p>");
             writeLine("  <p id=\"notes\">The “Note” column can contain the following values:</p>");
             writeLine("  <table>");
-            writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + ".</td></tr>");
-            writeLine("    <tr><td>(I)</td>  <td>for incompatible changes compared to the previous GeoAPI release.</td></tr>");
-            writeLine("    <tr><td>(MC)</td> <td>for methods that may need to change in an incompatible way in the next major release.</td></tr>");
+            writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + " (sometime merely renaming of older methods).</td></tr>");
+            writeLine("    <tr><td>(I)</td>  <td>for incompatible changes compared to the previous GeoAPI release (should be very rare in minor releases).</td></tr>");
+            writeLine("    <tr><td>(MC)</td> <td>for methods that may change in an incompatible way in the next major release.");
+            writeLine("    Those changes are <em>not</em> applied in this release, but are flagged for allowing developers to anticipate.</td></tr>");
             writeLine("  </table>");
             out.write(lineSeparator);
             writeLine("  <table>");
@@ -267,11 +268,15 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         out.write(pathToClassJavadoc);
         out.write("\">");
         printName(classname, significantChange);
-        out.write("</a></code></td><td>");
+        out.write("</a></code></td>");
         if (identifier != null) {
-            out.write("<code>");
+            out.write("<td id=\"");
+            out.write(identifier);
+            out.write("\"><code>");
             printName(identifier, significantChange);
             out.write("</code>");
+        } else {
+            out.write("<td>");
         }
         out.write("</td><td colspan=\"2\">");
         if (uml != null) {
