@@ -88,13 +88,6 @@ public interface DataIdentification extends Identification {
      * The character coding standard(s) used for the dataset.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
-     * <div class="warning"><b>Upcoming API change — JDK integration</b><br>
-     * As of ISO 19115:2014, {@code CharacterSet} is replaced by a reference to the
-     * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
-     * which is represented in Java by {@link java.nio.charset.Charset}.
-     * This change may be applied in GeoAPI 4.0.
-     * </div>
-     *
      * <div class="note"><b>Examples:</b>
      * {@code UCS-2}, {@code UCS-4}, {@code UTF-7}, {@code UTF-8}, {@code UTF-16},
      * {@code ISO-8859-1} (a.k.a. {@code ISO-LATIN-1}), {@code ISO-8859-2}, {@code ISO-8859-3}, {@code ISO-8859-4},
@@ -103,6 +96,13 @@ public interface DataIdentification extends Identification {
      * {@code ISO-8859-15}, {@code ISO-8859-16},
      * {@code JIS_X0201}, {@code Shift_JIS}, {@code EUC-JP}, {@code US-ASCII}, {@code EBCDIC}, {@code EUC-KR},
      * {@code Big5}, {@code GB2312}.
+     * </div>
+     *
+     * <div class="warning"><b>Upcoming API change — JDK integration</b><br>
+     * As of ISO 19115:2014, {@code CharacterSet} is replaced by a reference to the
+     * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
+     * which is represented in Java by {@link java.nio.charset.Charset}.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return The character coding standard(s) used.
