@@ -158,7 +158,7 @@ public interface Metadata {
      * As of ISO 19115:2014, {@code CharacterSet} is replaced by a reference to the
      * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
      * which is represented in Java by {@link java.nio.charset.Charset}.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * <div class="note"><b>Examples:</b>
@@ -270,7 +270,7 @@ public interface Metadata {
      *
      * <div class="warning"><b>Upcoming API change — generalization</b><br>
      * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return Parties responsible for the metadata information.
@@ -444,7 +444,7 @@ public interface Metadata {
      *
      * <div class="warning"><b>Upcoming API change — multiplicity</b><br>
      * As of ISO 19115:2014, this singleton has been replaced by a collection.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return The distributor of and options for obtaining the resource(s), or {@code null}.

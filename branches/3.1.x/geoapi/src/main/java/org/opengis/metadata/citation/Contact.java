@@ -127,7 +127,7 @@ public interface Contact {
      *
      * <div class="warning"><b>Upcoming API change — multiplicity</b><br>
      * As of ISO 19115:2014, this singleton has been replaced by a collection.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return Time period when individuals can contact the organization or individual.

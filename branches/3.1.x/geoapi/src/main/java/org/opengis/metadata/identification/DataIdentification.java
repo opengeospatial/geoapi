@@ -92,7 +92,7 @@ public interface DataIdentification extends Identification {
      * As of ISO 19115:2014, {@code CharacterSet} is replaced by a reference to the
      * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
      * which is represented in Java by {@link java.nio.charset.Charset}.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * <div class="note"><b>Examples:</b>

@@ -90,7 +90,7 @@ public interface ApplicationSchemaInformation {
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * As of ISO 19115:2014, {@code URI} is replaced by {@link OnlineResource}.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return Application schema as a graphics file, or {@code null}.
@@ -103,7 +103,7 @@ public interface ApplicationSchemaInformation {
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * As of ISO 19115:2014, {@code URI} is replaced by {@link OnlineResource}.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return Application schema as a software development file, or {@code null}.
