@@ -130,7 +130,7 @@ public interface Citation {
      *
      * <div class="warning"><b>Upcoming API change — generalization</b><br>
      * As of ISO 19115:2014, {@code ResponsibleParty} is replaced by the {@link Responsibility} parent interface.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return The information for an individual or organisation that is responsible, or an empty collection if none.
@@ -162,7 +162,7 @@ public interface Citation {
      *
      * <div class="warning"><b>Upcoming API change — multiplicity</b><br>
      * As of ISO 19115:2014, this singleton has been replaced by a collection.
-     * This change will be applied in GeoAPI 4.0.
+     * This change may be applied in GeoAPI 4.0.
      * </div>
      *
      * @return Other details, or {@code null} if none.
