@@ -217,8 +217,8 @@ public final class Departure extends AbstractTaglet implements Runnable {
         /*
          * Nows copies the text.
          */
-        buffer.append("<blockquote><font color=\"firebrick\" size=-1><b>Departure from OGC/ISO specification:</b><br>").
-                append(text).append("</div>");
+        buffer.append("<blockquote><font color=\"firebrick\" size=\"-1\"><b>Departure from OGC/ISO specification:</b><br>").
+                append(text).append("</font></blockquote>");
     }
 
     /**
