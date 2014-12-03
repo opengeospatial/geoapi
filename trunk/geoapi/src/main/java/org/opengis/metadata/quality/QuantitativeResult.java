@@ -50,14 +50,14 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.0
  */
-@UML(identifier="DQ_QuantitativeResult", specification=ISO_19115)
+@UML(identifier="DQ_QuantitativeResult", specification=ISO_19115, version=2003)
 public interface QuantitativeResult extends Result {
     /**
      * Quantitative value or values, content determined by the evaluation procedure used.
      *
      * @return Quantitative value or values.
      */
-    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends Record> getValues();
 
     /**
@@ -65,7 +65,7 @@ public interface QuantitativeResult extends Result {
      *
      * @return Value type for reporting a data quality result, or {@code null}.
      */
-    @UML(identifier="valueType", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="valueType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     RecordType getValueType();
 
     /**
@@ -73,7 +73,7 @@ public interface QuantitativeResult extends Result {
      *
      * @return Value unit for reporting a data quality result, or {@code null}.
      */
-    @UML(identifier="valueUnit", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="valueUnit", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Unit<?> getValueUnit();
 
     /**
@@ -81,6 +81,6 @@ public interface QuantitativeResult extends Result {
      *
      * @return Statistical method used to determine the value, or {@code null}.
      */
-    @UML(identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getErrorStatistic();
 }

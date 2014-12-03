@@ -46,6 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_PositionalAccuracy", specification=ISO_19115)
+@UML(identifier="DQ_PositionalAccuracy", specification=ISO_19115, version=2003)
 public interface PositionalAccuracy extends Element {
 }
