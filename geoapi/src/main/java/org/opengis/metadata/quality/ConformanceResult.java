@@ -48,14 +48,14 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.0
  */
-@UML(identifier="DQ_ConformanceResult", specification=ISO_19115)
+@UML(identifier="DQ_ConformanceResult", specification=ISO_19115, version=2003)
 public interface ConformanceResult extends Result {
     /**
      * Citation of product specification or user requirement against which data is being evaluated.
      *
      * @return Citation of product specification or user requirement.
      */
-    @UML(identifier="specification", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="specification", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Citation getSpecification();
 
     /**
@@ -63,7 +63,7 @@ public interface ConformanceResult extends Result {
      *
      * @return Explanation of the meaning of conformance.
      */
-    @UML(identifier="explanation", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="explanation", obligation=MANDATORY, specification=ISO_19115, version=2003)
     InternationalString getExplanation();
 
     /**
@@ -71,6 +71,6 @@ public interface ConformanceResult extends Result {
      *
      * @return Indication of the conformance result.
      */
-    @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Boolean pass();
 }
