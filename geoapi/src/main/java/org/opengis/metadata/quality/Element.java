@@ -53,14 +53,14 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_Element", specification=ISO_19115)
+@UML(identifier="DQ_Element", specification=ISO_19115, version=2003)
 public interface Element {
     /**
      * Name of the test applied to the data.
      *
      * @return Name of the test applied to the data.
      */
-    @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends InternationalString> getNamesOfMeasure();
 
     /**
@@ -68,7 +68,7 @@ public interface Element {
      *
      * @return Code identifying a registered standard procedure, or {@code null}.
      */
-    @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Identifier getMeasureIdentification();
 
     /**
@@ -76,7 +76,7 @@ public interface Element {
      *
      * @return Description of the measure being determined, or {@code null}.
      */
-    @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getMeasureDescription();
 
     /**
@@ -84,7 +84,7 @@ public interface Element {
      *
      * @return Type of method used to evaluate quality, or {@code null}.
      */
-    @UML(identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     EvaluationMethodType getEvaluationMethodType();
 
     /**
@@ -92,7 +92,7 @@ public interface Element {
      *
      * @return Description of the evaluation method, or {@code null}.
      */
-    @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getEvaluationMethodDescription();
 
     /**
@@ -100,7 +100,7 @@ public interface Element {
      *
      * @return Reference to the procedure information, or {@code null}.
      */
-    @UML(identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Citation getEvaluationProcedure();
 
     /**
@@ -117,7 +117,7 @@ public interface Element {
      *
      * @since 2.1
      */
-    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends Date> getDates();
 
     /**
@@ -129,6 +129,6 @@ public interface Element {
      *
      * @since 2.1
      */
-    @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends Result> getResults();
 }

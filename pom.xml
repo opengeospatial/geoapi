@@ -108,9 +108,8 @@
            Issue managements and mailing lists
        ==================================================== -->
   <scm>
-    <connection>scm:svn:svn://svn.code.sf.net/p/geoapi/code/trunk</connection>
-    <developerConnection>scm:svn:https://desruisseaux@svn.code.sf.net/p/geoapi/code/trunk</developerConnection>
-    <url>https://sourceforge.net/p/geoapi/code/</url>
+    <connection>scm:git:https://github.com/opengeospatial/geoapi</connection>
+    <url>https://github.com/opengeospatial/geoapi</url>
   </scm>
 
   <ciManagement>

@@ -50,7 +50,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @version 3.1
  * @since   2.0
  */
-@UML(identifier="DQ_DataQuality", specification=ISO_19115)
+@UML(identifier="DQ_DataQuality", specification=ISO_19115, version=2003)
 public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
@@ -73,7 +73,7 @@ public interface DataQuality {
      *
      * @condition Mandatory if the {@linkplain #getLineage() lineage} is not provided.
      */
-    @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Collection<? extends Element> getReports();
 
     /**
@@ -85,6 +85,6 @@ public interface DataQuality {
      * @condition Mandatory if the {@linkplain #getReports() report} is not provided.
      */
     @Profile(level=CORE)
-    @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115)
+    @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Lineage getLineage();
 }

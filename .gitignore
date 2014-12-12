@@ -1,0 +1,18 @@
+# Maven files
+target/
+
+# Netbeans files
+nbactions.xml$
+nbproject/
+
+# Eclipse files
+.classpath$
+.project$
+.settings/
+
+# IntelliJ files
+.idea/
+*.iml$
+
+# MacOS files
+.DS_Store$

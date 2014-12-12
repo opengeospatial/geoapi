@@ -31,10 +31,10 @@
  */
 package org.opengis.metadata.quality;
 
-import org.opengis.metadata.distribution.DataFile;
 import org.opengis.annotation.UML;
-import org.opengis.metadata.content.CoverageDescription;
 import org.opengis.metadata.distribution.Format;
+import org.opengis.metadata.distribution.DataFile;
+import org.opengis.metadata.content.CoverageDescription;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 

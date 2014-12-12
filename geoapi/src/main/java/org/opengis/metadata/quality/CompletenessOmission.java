@@ -42,6 +42,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.0
  */
-@UML(identifier="DQ_CompletenessOmission", specification=ISO_19115)
+@UML(identifier="DQ_CompletenessOmission", specification=ISO_19115, version=2003)
 public interface CompletenessOmission extends Completeness {
 }
