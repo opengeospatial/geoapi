@@ -2,17 +2,22 @@
 target/
 
 # Netbeans files
-nbactions.xml$
-nbproject/
+nbactions.xml
+ide-project/NetBeans/build/
+ide-project/NetBeans/dist/
+ide-project/NetBeans/nbproject/private/
 
 # Eclipse files
-.classpath$
-.project$
+.classpath
+.project
 .settings/
 
 # IntelliJ files
 .idea/
-*.iml$
+*.iml
 
 # MacOS files
-.DS_Store$
+.DS_Store
+
+# Subversion files
+.svn/
