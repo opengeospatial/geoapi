@@ -16,7 +16,6 @@
 #define PJ_FIELD_NAME "ptr"
 #define PJ_FIELD_TYPE "J"
 
-PJ_CVSID("$Id$");
 
 /*!
  * \brief
