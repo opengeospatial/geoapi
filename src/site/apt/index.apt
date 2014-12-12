@@ -53,7 +53,7 @@ GeoAPI
     * The project runs a public {{{./mail-lists.html}mailing list}} for user and
       developer questions, other issues, and general discussion.
 
-    * The code repository is {{{http://sourceforge.net/projects/geoapi}hosted on sourceforge}}.
+    * The code repository is hosted in the {{{https://github.com/opengeospatial/geoapi}OGC group of projects}}.
 
     * The project uses a {{{http://jira.codehaus.org/browse/GEO}JIRA task tracker}}.
 
@@ -114,5 +114,4 @@ GeoAPI
   projects which also use this tool can integrate GeoAPI into their Maven
   dependencies using one of the {{{./maven.html}repositories listed here}}.
 
-  GeoAPI source code is hosted on a {{{./source-repository.html}Subversion repository}}
-  on SourceForge.
+  GeoAPI source code is hosted on a {{{./source-repository.html}Git repository}} on GitHub.
