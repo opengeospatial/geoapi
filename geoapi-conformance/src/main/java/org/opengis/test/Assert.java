@@ -127,8 +127,14 @@ public strictfp class Assert extends org.junit.Assert {
             if (value == null) {
                 fail(nonNull(message) + "Value is null.");
             } else {
-                fail(nonNull(message) + "Value \"" + value + "\" is of type " + value.getClass().getSimpleName() +
-                        " while the expected type was " + expectedType.getSimpleName() + '.');
+                String expectedName = expectedType.getSimpleName();
+                String actualName = value.getClass().getSimpleName();
+                if (expectedName.equals(actualName)) {
+                    expectedName = expectedType.getCanonicalName();
+                    actualName = value.getClass().getCanonicalName();
+                }
+                fail(nonNull(message) + "Value \"" + value + "\" is of type " + actualName +
+                        " while the expected type was " + expectedName + " or a subtype.");
             }
         }
     }
