@@ -90,7 +90,9 @@ public interface Identifier {
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
      * methods. This is used for setting the value to be returned by {@link #getDescription()}.
      *
-     * @see #getVersion()
+     * @see #getDescription()
+     *
+     * @since 3.1
      */
     String DESCRIPTION_KEY = "description";
 
