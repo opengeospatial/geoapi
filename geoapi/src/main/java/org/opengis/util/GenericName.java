@@ -42,30 +42,64 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A sequence of identifiers rooted within the context of a {@linkplain NameSpace namespace}.
- * This interface is similar in purpose to {@link javax.naming.Name} from the <cite>Java Naming
- * and Directory Interface</cite>. All generic names:
+ * This interface is similar to a file path in a file system relative to a default directory.
+ * All generic names:
  *
  * <ul>
- *   <li>carry an association with their {@linkplain #scope scope} in which they are
- *       considered local;</li>
- *   <li>have the ability to provide a {@linkplain #getParsedNames parsed} version of
- *       themselves.</li>
+ *   <li>carry an association with their {@linkplain #scope() scope} in which they are considered local;</li>
+ *   <li>have the ability to provide a {@linkplain #getParsedNames() parsed} version of themselves.</li>
  * </ul>
  *
- * Names are <em>immutable</em>. They may be {@linkplain #toFullyQualifiedName() fully qualified}
- * (e.g. {@code "urn:ogc:def:crs:EPSG::4326"}), or they may be relative to a {@linkplain #scope() scope}
- * (e.g. {@code "EPSG::4326"} in the {@code "urn:ogc:def:crs"} namespace).
+ * Names can be {@linkplain #toFullyQualifiedName() fully qualified} (e.g. {@code "urn:ogc:def:crs:EPSG::4326"}) or
+ * they may be relative to a {@linkplain #scope() scope} (e.g. {@code "EPSG::4326"} in the {@code "urn:ogc:def:crs"}
+ * namespace). This can be compared to the standard {@link java.nio.file.Path} interface in the JDK:
+ *
+ * <blockquote><table class="ogc" style="white-space: nowrap">
+ *   <caption>Equivalence between {@code GenericName} and {@code java.nio.file.Path}</caption>
+ *   <tr>
+ *     <th>GeoAPI {@code Name} method</th>
+ *     <th>Equivalent Java I/O method</th>
+ *   </tr><tr>
+ *     <td>{@link #scope()}</td>
+ *     <td>Default directory</td>
+ *   </tr><tr>
+ *     <td>{@link ScopedName#path()}</td>
+ *     <td>{@link java.nio.file.Path#getParent()}</td>
+ *   </tr><tr>
+ *     <td>{@link #tip()}</td>
+ *     <td>{@link java.nio.file.Path#getFileName()}</td>
+ *   </tr><tr>
+ *     <td>{@link #toFullyQualifiedName()}</td>
+ *     <td>{@link java.nio.file.Path#toAbsolutePath()}</td>
+ *   </tr><tr>
+ *     <td>{@link #depth()}</td>
+ *     <td>{@link java.nio.file.Path#getNameCount()}</td>
+ *   </tr><tr>
+ *     <td>{@link #getParsedNames()}</td>
+ *     <td>{@link java.nio.file.Path#iterator()}</td>
+ *   </tr><tr>
+ *     <td>{@link #compareTo(GenericName)}</td>
+ *     <td>{@link java.nio.file.Path#compareTo Path.compareTo(Path)}</td>
+ *   </tr><tr>
+ *     <td>{@link #toString()}</td>
+ *     <td>{@link java.nio.file.Path#toString()}</td>
+ *   </tr>
+ * </table></blockquote>
  *
  * <h3>Example</h3>
  * In the following illustration, each line is one possible construction for {@code "urn:crs:epsg:4326"}
- * (taken as an abridged form of above URN for this example only).
- * For each construction, the first columns shows <span style="background:LawnGreen">this</span> name in a green
- * background, while the second and third columns show the
- * (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
- * (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
- * components, respectively.
- * The parts without colored background do not appear in {@link #toString()} representation
- * or in {@link #getParsedNames()} list.
+ * (taken as an abridged form of above URN for this example only). For each construction:
+ *
+ * <ul>
+ *   <li>the part without colored background is the {@link #scope()} and is invisible to all other methods
+ *       except {@code toFullyQualifiedName()};</li>
+ *   <li>the first column shows the visible part of <span style="background:LawnGreen">this</span> name
+ *       in a green background;</li>
+ *   <li>the second and third columns show the
+ *       (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
+ *       (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
+ *       components, respectively.</li>
+ * </ul>
  *
  * <blockquote>
  * <table style="border-spacing:21pt 0" summary="Graphics showing various representations of a generic name.">
@@ -106,7 +140,7 @@ import static org.opengis.annotation.Specification.*;
  * <blockquote><table class="ogc" style="white-space: nowrap">
  *   <caption>Equivalence between JCR name and {@code GenericName}</caption>
  *   <tr>
- *     <th>JCR name</th>
+ *     <th>JCR name definition</th>
  *     <th class="sep" colspan="2">GeoAPI equivalence</th>
  *   </tr><tr>
  *     <td><code>ExpandedName ::= '{' Namespace '}' LocalPart</code></td>
@@ -130,12 +164,6 @@ import static org.opengis.annotation.Specification.*;
  *     <td>= JCR {@code LocalPart}</td>
  *   </tr>
  * </table></blockquote>
- *
- * <h3>Ordering</h3>
- * <p>The recommended {@linkplain Comparable natural ordering} for generic names is to
- * {@linkplain String#compareTo compare lexicographically} each element in the
- * {@linkplain #getParsedNames() list of parsed names}. Specific attributes of
- * the name, such as how it treats case, may affect the ordering.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
@@ -163,6 +191,12 @@ public interface GenericName extends Comparable<GenericName> {
      * has the {@code "org.opengis"} {@linkplain NameSpace#name() name}.
      * </div>
      *
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the current directory of a file system.</li>
+     * </ul></div>
+     *
      * @return The scope of this name.
      *
      * @since 2.1
@@ -183,8 +217,11 @@ public interface GenericName extends Comparable<GenericName> {
      * </div>
      *
      * <div class="note"><b>Analogy</b>:
-     * This method is similar in purpose to the {@link javax.naming.Name#size() Name.size()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</div>
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#getNameCount()} method in Java I/O;</li>
+     *   <li>the {@link javax.naming.Name#size()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return The depth of this name.
      *
@@ -209,8 +246,11 @@ public interface GenericName extends Comparable<GenericName> {
      * </div>
      *
      * <div class="note"><b>Analogy</b>:
-     * This method is similar in purpose to the {@link javax.naming.Name#getAll() Name.getAll()}
-     * method from the <cite>Java Naming and Directory Interface</cite>.</div>
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#iterator()} method in Java I/O;</li>
+     *   <li>the {@link javax.naming.Name#getAll()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return The local names making this generic name, without the {@linkplain #scope() scope}.
      *         Shall never be {@code null} neither empty.
@@ -230,8 +270,12 @@ public interface GenericName extends Comparable<GenericName> {
      * </div>
      *
      * <div class="note"><b>Analogy</b>:
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.</div>
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li><code>{@linkplain java.nio.file.Path#getName(int) Path.getName}(0)</code> from Java I/O;</li>
+     *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -258,8 +302,12 @@ public interface GenericName extends Comparable<GenericName> {
      * </div>
      *
      * <div class="note"><b>Analogy</b>:
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.</div>
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#getFileName()} method in Java I/O;</li>
+     *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -282,6 +330,12 @@ public interface GenericName extends Comparable<GenericName> {
      * {@linkplain #scope() scope} is {@code "urn:ogc:def:crs"}, then the fully qualified name
      * is {@code "urn:ogc:def:crs:EPSG::4326"}.
      * </div>
+     *
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#toAbsolutePath()} method in Java I/O.</li>
+     * </ul></div>
      *
      * @return The fully-qualified name (never {@code null}).
      *
@@ -320,8 +374,11 @@ public interface GenericName extends Comparable<GenericName> {
      * </div>
      *
      * <div class="note"><b>Analogy</b>:
-     * This method is similar in purpose to <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name)
-     * Name.addAll}(0, name)</code> from the <cite>Java Naming and Directory Interface</cite>.</div>
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li><code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name) Name.addAll}(0, name)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @param scope The name to use as prefix.
      * @return A concatenation of the given scope with this name.
@@ -330,6 +387,25 @@ public interface GenericName extends Comparable<GenericName> {
      */
     @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
     ScopedName push(GenericName scope);
+
+    /**
+     * Compares this name with an other name for order.
+     * The recommended ordering for generic names is to {@linkplain String#compareTo(String) compare lexicographically}
+     * each element in the {@linkplain #getParsedNames() list of parsed names}.
+     * Specific attributes of the name, such as how it treats case, may affect the ordering.
+     *
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#compareTo PathcompareTo(Path)} method in Java I/O.</li>
+     * </ul></div>
+     *
+     * @param  other The other object to be compared to this name.
+     * @return A negative integer, zero, or a positive integer as this name is lexicographically
+     *         less than, equal to, or greater than the specified name.
+     */
+    @Override
+    int compareTo(GenericName other);
 
     /**
      * Returns a string representation of this generic name. This string representation is local-independent.
@@ -347,6 +423,12 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * <p>In the {@link LocalName} sub-type, this method maps to the {@code aName} ISO 19103 attribute.
      * In the {@link ScopedName} sub-type, this method maps to the {@code scopedName} ISO 19103 attribute.</p>
+     *
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#toString()} method in Java I/O.</li>
+     * </ul></div>
      *
      * @return The local-independent string representation of this name.
      */

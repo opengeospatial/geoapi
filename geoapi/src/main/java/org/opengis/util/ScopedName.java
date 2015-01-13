@@ -39,24 +39,12 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A composite of a {@linkplain LocalName local name} (as {@linkplain #head() head}) for locating
- * another {@linkplain NameSpace name space}, and a {@linkplain GenericName generic name} (as
- * {@linkplain #tail() tail}) valid in that name space. This definition allows for iteration. The
- * {@linkplain #tail() tail} may be either a {@linkplain LocalName local name} or a scoped name.
- * If it is a scoped name, then another another step towards a remote {@linkplain LocalName local
- * name} is taken. In this way, a scoped name may represent an arbitrarily distant
- * {@linkplain LocalName local name} simply by the number of times the {@link #tail()} method
- * evaluates to a {@code ScopedName} before finally terminating on a {@link LocalName}.
+ * A composite of a {@code LocalName} (as head) for locating another name space,
+ * and a {@code GenericName} (as tail) valid in that name space.
+ * For example if this name is {@code "org.opengis.util.Record"},
+ * then the {@linkplain #head() head} and {@linkplain #tail() tail} components are as below.
+ * The {@linkplain #path() path} and {@linkplain #tip()} are also shown for completeness:
  *
- * <p>It may be seen that {@code ScopedName} is the means by which fully-qualified names are expressed.
- * However, a {@code ScopedName} is not, in itself, what is commonly thought of as a <cite>fully
- * qualified</cite> name. The {@code ScopedName} type is one link in the chain, not the entire chain.
- * A scoped name is a fully qualified name only if its {@linkplain #scope scope} is
- * {@linkplain NameSpace#isGlobal global}.</p>
- *
- * <p><b>Example</b>:
- * The illustration below shows the head, tail, path and tip of {@code "org.opengis.util.Record"}.
- * A more complete illustration is provided in the {@link GenericName} javadoc.</p>
  * <blockquote><table border="0" summary="Graphics showing various representations of a scoped name.">
  *   <tr>
  *     <th align="right">org</th>
@@ -73,6 +61,18 @@ import static org.opengis.annotation.Specification.*;
  *     <td style="background:wheat" colspan="1">{@linkplain #tip() tip}</td>
  *   </tr>
  * </table></blockquote>
+ *
+ * This definition allows for iteration.
+ * The tail may be either a {@link LocalName} or another {@code ScopedName}.
+ * If it is a scoped name, then another another step towards a remote local name is taken.
+ * In this way, a scoped name may represent an arbitrarily distant local name simply by the number of times
+ * the {@link #tail()} method evaluates to a {@code ScopedName} before finally terminating on a {@link LocalName}.
+ *
+ * <p>It may be seen that {@code ScopedName} is the means by which fully-qualified names are expressed.
+ * However, a {@code ScopedName} is not, in itself, what is commonly thought of as a <cite>fully qualified</cite> name.
+ * The {@code ScopedName} type is one link in the chain, not the entire chain.
+ * A scoped name is a fully qualified name only if its {@linkplain #scope() scope}
+ * {@linkplain NameSpace#isGlobal() is global}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
@@ -95,12 +95,16 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
-     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
-     * from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <div class="note"><b>Example</b>:
+     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.</div>
      *
-     * <p><b>Example</b>:
-     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method
-     * shall returns {@code "org"}.</p>
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li><code>{@linkplain java.nio.file.Path#getName(int) Path.getName}(0)</code> from Java I/O;</li>
+     *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -123,8 +127,12 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the tails are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
-     * <p>This method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int)
-     * Name.getSuffix}(1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li><code>{@link javax.naming.Name#getSuffix(int) Name.getSuffix}(1)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return All elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -146,8 +154,13 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the paths are the blue elements in the <var>path</var>.<var>tip</var> column.</p>
      *
-     * <p>This method is similar in purpose to <code>{@link javax.naming.Name#getPrefix(int)
-     * Name.getPrefix}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>{@link java.nio.file.Path#getParent()} from Java I/O;</li>
+     *   <li><code>{@link javax.naming.Name#getPrefix(int) Name.getPrefix}(size-1)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return All elements except the last one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -165,8 +178,13 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the tips are the yellow elements in the <var>path</var>.<var>tip</var> column.</p>
      *
-     * <p>This method is similar in purpose to <code>{@linkplain javax.naming.Name#get(int)
-     * Name.get}(size-1)</code> from the <cite>Java Naming and Directory Interface</cite>.</p>
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#getFileName()} method in Java I/O;</li>
+     *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
+     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
+     * </ul></div>
      *
      * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
@@ -177,12 +195,18 @@ public interface ScopedName extends GenericName {
 
     /**
      * Returns a locale-independent string representation of this scoped name.
-     * This method encapsulates the domain logic which formats the {@linkplain #getParsedNames()
-     * parsed names} into a legal string representation of the name. There will be variants on
-     * this theme. XML aficionados may require URIs. For Java classes, a dotted notation is more
-     * appropriate, for C/C++, a double-colon, for directories, a forward or reverse slash,
+     * This method encapsulates the domain logic which formats the {@linkplain #getParsedNames() parsed names}
+     * into a legal string representation of the name. There will be variants on this theme.
+     * XML aficionados may require URIs. For Java classes, a dotted notation is more appropriate,
+     * for C/C++, a double-colon, for directories, a forward or reverse slash,
      * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem CRS}, it
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
+     *
+     * <div class="note"><b>Analogy</b>:
+     * This method is similar in purpose to:
+     * <ul>
+     *   <li>the {@link java.nio.file.Path#toString()} method in Java I/O.</li>
+     * </ul></div>
      */
     @Override
     @UML(identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)

@@ -38,6 +38,8 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
 import static org.opengis.annotation.Specification.*;
+import org.opengis.filter.expression.Expression;
+import org.opengis.filter.expression.PropertyName;
 
 /**
  * Abstract superclass of the symbolizers defined by the Symbology Encoding specification.
@@ -92,9 +94,12 @@ public interface Symbolizer {
      * from references or literals. However, using a feature property directly is by far the most
      * commonly useful method.</p>
      *
-     * @return Geometry attribute name, or <code>null</code> to indicate default geometry
+     * @return Geometry attribute name if geometry expression is a {@link PropertyName},
+     *      or <code>null</code> if geometry expression is not a {@link PropertyName}.
+     * @deprecated use {@link Symbolizer#getGeometry()} instead.
      */
     @XmlElement("Geometry")
+    @Deprecated
     String getGeometryPropertyName();
 
     /**
@@ -103,7 +108,7 @@ public interface Symbolizer {
      *
      * @return Expression used to define a geometry for drawing, or Expression.NIL if the default geometry should be used.
      */
-    /* Expression getGeometry(); */
+    Expression getGeometry();
 
     /**
      * Returns a name for this symbolizer.
