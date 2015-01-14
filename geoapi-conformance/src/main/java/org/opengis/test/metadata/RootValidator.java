@@ -82,7 +82,7 @@ public class RootValidator extends MetadataValidator {
             container.validate(e);
         }
 
-        final CitationDate[] dates = toArray(CitationDate.class, object.getDates());
+        final CitationDate[] dates = toArray(CitationDate.class, object.getDateInfo());
         container.validate(dates);
         Date creationDate = null;
         for (final CitationDate date : dates) {
