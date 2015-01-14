@@ -43,37 +43,40 @@ import org.opengis.util.InternationalString;
  *
  * @author Open Geospatial Consortium
  * @author Guilhem Legal (Geomatys)
- * @author Johann Sorel (Geomatys)
+ * @author Johann Sorel  (Geomatys)
  * @author Remi Marechal (Geomatys).
  * @since   2.3
  * @version 4.0
  */
 public interface TemporalFactory {
+    
     /**
-     * Create {@link Calendar}
+     * Returns and create a {@link Calendar} without any {@linkplain CalendarEra referenceFrame}. 
      *
      * @param name Name that uniquely identifies the temporal reference system.
      * @param domainOfValidity space and time within which the reference system is applicable.
+     * @return {@link Calendar}.
      */
     Calendar createCalendar(Identifier name, Extent domainOfValidity);
 
     /**
-     * Create {@link Calendar}
+     * Returns and create a {@link Calendar}.
      *
      * @param name Name that uniquely identifies the temporal reference system.
      * @param domainOfValidity Space and time within which the reference system is applicable.
      * @param referenceFrame The {@linkplain CalendarEra calendar eras} associated with the calendar being described.
      * @param timeBasis The {@linkplain Clock time basis} that is use with this calendar to define temporal position within a calendar day.
+     * @return {@link Calendar}.
      */
     Calendar createCalendar(Identifier name, Extent domainOfValidity, Collection<CalendarEra> referenceFrame, Clock timeBasis);
 
     /**
-     * Create a {@link Clock} object.
+     * Create a {@link CalendarDate} object.
      *
-     * @param frame                   The TM_ReferenceSystem associated with this TM_TemporalPosition,
+     * @param frame                   The {@code ReferenceSystem} associated with this {@linkplain TemporalPosition CalendarDate},
      *                                if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
      * @param indeterminatePosition   Attribute provides the only value for
-     *                                TM_TemporalPosition unless a subtype of TM_TemporalPosition is used as the data type.
+     *                                {@code TemporalPosition} unless a subtype of {@code TemporalPosition} is used as the data type.
      * @param calendarEraName         Name of the calendar era to which the date is referenced.
      * @param calendarDate            Sequence of positive integers in which the first
      *                                integer identifies a specific instance of the unit used at the highest level
@@ -81,22 +84,25 @@ public interface TemporalFactory {
      *                                of the unit used at the next lower level in the hierarchy, and so on.
      *                                The format defined in ISO 8601 for dates in the Gregorian calendar may be
      *                                used for any date that is composed of values for year, month and day.
+     * @return {@link CalendarDate}.
      */
     CalendarDate createCalendarDate(TemporalReferenceSystem frame, IndeterminateValue indeterminatePosition,
             InternationalString calendarEraName, int[] calendarDate);
 
     /**
-     * Create a {@link Clock} object.
+     * Create a {@link CalendarEra} object.
      *
-     * @param name            Identify the calendar era within this calendar.
+     * @param name            Identify the calendarEra within this calendar.
      * @param referenceEvent  Provide the name or description of a mythical or
      *                        historic event which fixes the position of the base scale of the calendar era.
      * @param referenceDate   Provide the date of the reference referenceEvent
      *                        expressed as a date in the given calendar. In most calendars, this date is
      *                        the origin (i.e the first day) of the scale, but this is not always true.
      * @param julianReference Provide the Julian date that corresponds to the reference date.
-     * @param epochOfUse      Identify the TM_Period for which the calendar era was
-     *                        used as a basis for dating, the datatype for TM_Period.begin and Tm_Period.end shall be JulianDate.
+     * @param epochOfUse      Identify the Period for which the calendar era was
+     *                        used as a basis for dating, the datatype for {@linkplain Period#getBeginning() Period.begin} 
+     *                        and {@linkplain Period#getEnding() Period.end} shall be JulianDate.
+     * @return {@link CalendarEra}.
      */
     CalendarEra createCalendarEra(InternationalString name, InternationalString referenceEvent,
             CalendarDate referenceDate, JulianDate julianReference, Period epochOfUse);
@@ -112,6 +118,7 @@ public interface TemporalFactory {
      *                         event expressed as a time of day in the given clock, the reference time
      *                         is usually the origin of the clock scale.
      * @param utcReference     The 24-hour local or UTC time that corresponds to the reference time.
+     * @return {@link Clock}.
      */
     Clock createClock(Identifier name, Extent domainOfValidity, InternationalString referenceEvent,
             ClockTime referenceTime, ClockTime utcReference);
@@ -119,11 +126,12 @@ public interface TemporalFactory {
     /**
      * Create {@link ClockTime} object.
      *
-     * @param frame                 The TM_ReferenceSystem associated with this TM_TemporalPosition,
+     * @param frame                 The ReferenceSystem associated with this {@linkplain TemporalPosition ClockTime},
      *                              if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
      * @param indeterminatePosition The only value for
-     *                              TM_TemporalPosition unless a subtype of TM_TemporalPosition is used as the data type.
-     * @param clockTime             A sequence of positive numbers with a structure similar to a CalendarDate.
+     *                              {@code TemporalPosition} unless a subtype of TemporalPosition is used as the data type.
+     * @param clockTime             A sequence of positive numbers with a structure similar to a {@link CalendarDate}.
+     * @return {@link ClockTime}.
      */
     ClockTime createClockTime(TemporalReferenceSystem frame, IndeterminateValue indeterminatePosition,
             Number[] clockTime);
@@ -131,10 +139,10 @@ public interface TemporalFactory {
     /**
      * Create a {@link DateAndTime}.
      *
-     * @param frame                 The TM_ReferenceSystem associated with this TM_TemporalPosition,
+     * @param frame                 The ReferenceSystem associated with this TemporalPosition,
      *                              if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
      * @param indeterminatePosition Attribute provides the only value for
-     *                              TM_TemporalPosition unless a subtype of TM_TemporalPosition is used as the data type.
+     *                              TemporalPosition unless a subtype of TemporalPosition is used as the data type.
      * @param calendarEraName       Name of the calendar era to which the date is referenced.
      * @param calendarDate          A sequence of positive integers in which the first
      *                              integer identifies a specific instance of the unit used at the highest level of the calendar hierarchy,
@@ -143,6 +151,7 @@ public interface TemporalFactory {
      *                              dates in the Gregorian calendar may be used for any date that is composed
      *                              of values for year, month and day.
      * @param clockTime             A sequence of positive numbers with a structure similar to a CalendarDate.
+     * @return a {@link DateAndTime}
      */
     DateAndTime createDateAndTime(TemporalReferenceSystem frame, IndeterminateValue indeterminatePosition,
             InternationalString calendarEraName, int[] calendarDate, Number[] clockTime);
@@ -151,6 +160,7 @@ public interface TemporalFactory {
      * Create an {@link Instant}.
      *
      * @param date The date of this {@link Instant}, it shall be associated with a single temporal reference system.
+     * @return {@link Instant}.
      */
     Instant createInstant(Date date);
 
@@ -162,18 +172,20 @@ public interface TemporalFactory {
      * @param factor Exponent of the base.
      * @param value  Length of the time interval as an integer multiple
      *               of one radix(exp -factor) of the specified unit.
+     * @return {@link IntervalLength}, sub class of {@link Duration}.
      */
     IntervalLength createIntervalLenght(Unit unit, int radix, int factor, int value);
 
     /**
      * Create an {@link JulianDate}.
      *
-     * @param frame                 The TM_ReferenceSystem associated with this TM_TemporalPosition,
+     * @param frame                 The ReferenceSystem associated with this TemporalPosition,
      *                              if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
      * @param indeterminatePosition Attribute provides the only value for
-     *                              TM_TemporalPosition unless a subtype of TM_TemporalPosition is used as the data type.
+     *                              TemporalPosition unless a subtype of TemporalPosition is used as the data type.
      * @param coordinateValue       The distance from the scale origin expressed
      *                              as a multiple of the standard interval associated with the temporal coordinate system.
+     * @return {@linkplain TemporalCoordinate JulianDate}.
      */
     JulianDate createJulianDate(TemporalReferenceSystem frame, IndeterminateValue indeterminatePosition,
             Number coordinateValue);
@@ -181,10 +193,11 @@ public interface TemporalFactory {
     /**
      * Create an {@link OrdinalEra}.
      *
-     * @param name      String that identifies the ordinal era within the TM_OrdinalReferenceSystem.
+     * @param name      String that identifies the ordinal era within the {@link OrdinalReferenceSystem}.
      * @param beginning Temporal position at which the ordinal era began, if it is known.
      * @param end       Temporal position at which the ordinal era ended.
      * @param member    {@link OrdinalEra} sequence that subdivide or compose this {@link OrdinalEra}.
+     * @return {@link OrdinalEra}.
      */
     OrdinalEra createOrdinalEra(InternationalString name, Date beginning, Date end,
             Collection<OrdinalEra> member);
@@ -192,11 +205,12 @@ public interface TemporalFactory {
     /**
      * Create an {@link OrdinalPosition}.
      *
-     * @param frame                 The TM_ReferenceSystem associated with this TM_TemporalPosition,
+     * @param frame                 The ReferenceSystem associated with this {@linkplain TemporalPosition OrdinalPosition},
      *                              if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
      * @param indeterminatePosition Provides the only value for
-     *                              TM_TemporalPosition unless a subtype of TM_TemporalPosition is used as the data type.
+     *                              TemporalPosition unless a subtype of TemporalPosition is used as the data type.
      * @param ordinalPosition       A reference to the ordinal era in which the instant occurs.
+     * @return {@link OrdinalPosition}.
      */
     OrdinalPosition createOrdinalPosition(TemporalReferenceSystem frame,
             IndeterminateValue indeterminatePosition, OrdinalEra ordinalPosition);
@@ -207,6 +221,7 @@ public interface TemporalFactory {
      * @param name               Name that uniquely identifies the temporal reference system.
      * @param domainOfValidity   Space and time within which the reference system is applicable.
      * @param ordinalEraSequence An ordinal temporal reference system  consists of a set of ordinal eras.
+     * @return {@link OrdinalReferenceSystem}.
      */
     OrdinalReferenceSystem createOrdinalReferenceSystem(Identifier name,
             Extent domainOfValidity, Collection<OrdinalEra> ordinalEraSequence);
@@ -214,8 +229,9 @@ public interface TemporalFactory {
     /**
      * Create an {@link Period}.
      *
-     * @param begin The {@link Instant} at which this Period starts.
-     * @param end   The {@link Instant} at which this Period ends.
+     * @param begin The Instant at which this Period starts.
+     * @param end   The Instant at which this Period ends.
+     * @return {@link OrdinalReferenceSystem}.
      */
     Period createPeriod(Instant begin, Instant end);
 
@@ -229,18 +245,11 @@ public interface TemporalFactory {
      * @param hours   number of hours in the period.
      * @param minutes number of minutes in the period.
      * @param seconds number of seconds in the period.
+     * @return {@link PeriodDuration} a sub interface of {@link Duration}.
      */
     PeriodDuration createPeriodDuration(InternationalString years, InternationalString months,
             InternationalString week, InternationalString days, InternationalString hours,
             InternationalString minutes, InternationalString seconds);
-
-//    /**
-//     * Create an {@link Position}.
-//     *
-//     * @param position One of the data types listed as:
-//     *                 Date, Time, DateTime, and TemporalPosition with its subtypes
-//     */
-//    Position createPosition(Date position);
 
     /**
      * Create an {@link TemporalCoordinate}.
@@ -251,6 +260,7 @@ public interface TemporalFactory {
      *                              {@link TemporalCoordinate} unless a subtype of {@link TemporalCoordinate} is used as the data type.
      * @param coordinateValue       Distance from the scale origin expressed
      *                              as a multiple of the standard interval associated with the temporal coordinate system.
+     * @return {@link TemporalCoordinate}.
      */
     TemporalCoordinate createTemporalCoordinate(TemporalReferenceSystem frame,
             IndeterminateValue indeterminatePosition, Number coordinateValue);
@@ -265,6 +275,7 @@ public interface TemporalFactory {
      * @param interval         The name of a single unit of measure used as the base interval for the scale.
      *                         it shall be one of those units of measure for time specified by ISO 31-1,
      *                         or a multiple of one of those units, as specified by ISO 1000.
+     * @return {@link TemporalCoordinateSystem}.
      */
     TemporalCoordinateSystem createTemporalCoordinateSystem(Identifier name,
             Extent domainOfValidity, Date origin, Unit<javax.measure.quantity.Duration> interval);
@@ -272,10 +283,11 @@ public interface TemporalFactory {
     /**
      * Create a {@link TemporalPosition}.
      *
-     * @param frame                 The TM_ReferenceSystem associated with this TM_TemporalPosition,
+     * @param frame                 The ReferenceSystem associated with this TemporalPosition,
      *                              if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
-     * @param indeterminatePosition The only value for
-     *                              TM_TemporalPosition unless a subtype of TM_TemporalPosition is used as the data type.
+     * @param indeterminatePosition The only value for TemporalPosition unless a 
+     *                              subtype of TemporalPosition is used as the data type.
+     * @return {@link TemporalPosition}.
      */
     TemporalPosition createTemporalPosition(TemporalReferenceSystem frame,
             IndeterminateValue indeterminatePosition);
@@ -285,7 +297,7 @@ public interface TemporalFactory {
      *
      * @param name             Name that uniquely identifies the temporal reference system.
      * @param domainOfValidity The space and time within which the reference system is applicable.
+     * @return {@link TemporalReferenceSystem}.
      */
-    TemporalReferenceSystem createTemporalReferenceSystem(Identifier name,
-            Extent domainOfValidity);
+    TemporalReferenceSystem createTemporalReferenceSystem(Identifier name, Extent domainOfValidity);
 }
