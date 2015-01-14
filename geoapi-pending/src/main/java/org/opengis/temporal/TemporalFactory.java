@@ -150,9 +150,9 @@ public interface TemporalFactory {
     /**
      * Create an {@link Instant}.
      *
-     * @param instant The position of this {@link Instant}, it shall be associated with a single temporal reference system.
+     * @param date The date of this {@link Instant}, it shall be associated with a single temporal reference system.
      */
-    Instant createInstant(Position instant);
+    Instant createInstant(Date date);
 
     /**
      * Create an {@link IntervalLength}.
@@ -234,13 +234,13 @@ public interface TemporalFactory {
             InternationalString week, InternationalString days, InternationalString hours,
             InternationalString minutes, InternationalString seconds);
 
-    /**
-     * Create an {@link Position}.
-     *
-     * @param position One of the data types listed as:
-     *                 Date, Time, DateTime, and TemporalPosition with its subtypes
-     */
-    Position createPosition(Date position);
+//    /**
+//     * Create an {@link Position}.
+//     *
+//     * @param position One of the data types listed as:
+//     *                 Date, Time, DateTime, and TemporalPosition with its subtypes
+//     */
+//    Position createPosition(Date position);
 
     /**
      * Create an {@link TemporalCoordinate}.
