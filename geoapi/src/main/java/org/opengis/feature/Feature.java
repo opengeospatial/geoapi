@@ -80,6 +80,7 @@ public interface Feature {
      * @throws IllegalArgumentException If the given argument is not a property name of this feature.
      *
      * @see #getPropertyValue(String)
+     * @see FeatureType#getProperty(String)
      */
     Property getProperty(final String name) throws IllegalArgumentException;
 

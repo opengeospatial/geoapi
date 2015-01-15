@@ -120,6 +120,8 @@ public interface FeatureType extends IdentifiedType {
      * @param  name The name of the property to search.
      * @return The property for the given name, or {@code null} if none.
      * @throws IllegalArgumentException If the given argument is not a property name of this feature.
+     *
+     * @see Feature#getProperty(String)
      */
     PropertyType getProperty(String name) throws IllegalArgumentException;
 
