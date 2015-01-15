@@ -69,7 +69,7 @@ import org.opengis.temporal.Duration;
  *          {@code comment}, {@code acknowledgment}.
  *          </li></ul><br></li>
  *
- *   <li>{@link CitationDate} implements the value returned by {@link Metadata#getDates()}.
+ *   <li>{@link CitationDate} implements the value returned by {@link Metadata#getDateInfo()}.
  *          <ul><li>NetCDF attributes: {@code metadata_creation}.
  *          </li></ul><br></li>
  *
@@ -595,7 +595,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Encapsulates the data {@linkplain #getDate() metadata creation date}.
      */
     @Override
-    public Collection<? extends CitationDate> getDates() {
+    public Collection<? extends CitationDate> getDateInfo() {
         return hasDate(false) ? self : Collections.<CitationDate>emptySet();
     }
 
@@ -616,7 +616,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      *
      * <ul>
      *   <li>{@link Party#getName()} not the same name than {@link OnlineResource#getName()}.</li>
-     *   <li>{@link Metadata#getDates()} not the same date than {@link Citation#getDates()}.</li>
      *   <li>{@link Contact#getOnlineResources()} not the same link than {@link Citation#getOnlineResources()}.</li>
      * </ul>
      */

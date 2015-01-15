@@ -295,14 +295,14 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="dateInfo", obligation=MANDATORY, specification=ISO_19115)
-    Collection<? extends CitationDate> getDates();
+    Collection<? extends CitationDate> getDateInfo();
 
     /**
      * Date that the metadata was created.
      *
      * @return Date that the metadata was created.
      *
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getDates()}.
+     * @deprecated As of ISO 19115:2014, replaced by {@link #getDateInfo()}.
      */
     @Deprecated
     @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115, version=2003)
