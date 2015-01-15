@@ -56,6 +56,8 @@ package org.opengis.feature;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see FeatureType
  */
 public interface Feature {
     /**

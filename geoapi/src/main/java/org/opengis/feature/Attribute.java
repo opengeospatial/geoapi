@@ -31,6 +31,7 @@
  */
 package org.opengis.feature;
 
+import java.util.Map;
 import java.util.Collection;
 import org.opengis.util.GenericName;
 
@@ -59,6 +60,8 @@ import org.opengis.util.GenericName;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see AttributeType
  */
 public interface Attribute<V> extends Property {
     /**
@@ -139,4 +142,24 @@ public interface Attribute<V> extends Property {
      *         does not met the attribute constraints.
      */
     void setValues(Collection<? extends V> values) throws IllegalArgumentException;
+
+    /**
+     * Other attributes that describes this attribute. For example if this attribute carries a measurement,
+     * then a characteristic of this attribute could be the measurement accuracy.
+     * See "<cite>Attribute characterization</cite>" in {@link AttributeType} Javadoc for more information.
+     *
+     * <p>Attributes having a value equals to their {@linkplain AttributeType#getDefaultValue() default value}
+     * do not need to appear in this characteristics map. For example all temperature measurements in a dataset
+     * may have the same accuracy, which can be specified only once in the {@link AttributeType#characteristics()}
+     * map instead of being repeated in every {@code Attribute.characteristics()} maps.</p>
+     *
+     * <p>The characteristic values are enumerated in the {@linkplain Map#values() map values}.
+     * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
+     * characteristics {@linkplain AttributeType#getName() name}, for more convenient lookups.</p>
+     *
+     * @return Other attribute types that describes this attribute type, or an empty map if none.
+     *
+     * @see AttributeType#characteristics()
+     */
+    Map<String,Attribute<?>> characteristics();
 }

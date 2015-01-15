@@ -44,6 +44,8 @@ import org.opengis.util.GenericName;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see FeatureAssociationRole
  */
 public interface FeatureAssociation extends Property {
     /**

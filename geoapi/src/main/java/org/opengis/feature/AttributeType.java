@@ -31,6 +31,7 @@
  */
 package org.opengis.feature;
 
+import java.util.Map;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Classifier;
@@ -50,7 +51,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Compared to the Java language, {@code AttributeType} is equivalent to {@link java.lang.reflect.Field}
  * while {@code FeatureType} is equivalent to {@link Class}.</div>
  *
- * {@section Value type}
+ * <h3>Value type</h3>
  * Attributes can be used for both spatial and non-spatial properties.
  * Some examples are:
  *
@@ -62,6 +63,18 @@ import static org.opengis.annotation.Specification.ISO_19109;
  *   <tr><td>Horizontal accuracy</td> <td>{@link org.opengis.metadata.quality.PositionalAccuracy}</td></tr>
  * </table>
  *
+ * <h3>Attribute characterization</h3>
+ * An {@code Attribute} can be characterized by other attributes. For example an attribute that carries a measurement
+ * (e.g. air temperature) may have another attribute that holds the measurement accuracy (e.g. ±0.1°C).
+ * Such accuracy can be stored as a <cite>characteristic</cite> of the measurement attribute.
+ *
+ * <p>The {@link #characteristics()} method in this {@code AttributeType} interface returns a description of all
+ * characteristics that attributes of this type may have. The actual characteristics values can be stored on a
+ * record-by-record basis in the {@link Attribute#characteristics()} map.
+ * However in the common case of characteristics having a constant value for all records in a dataset,
+ * the constant can be given by the characteristic {@linkplain #getDefaultValue() default value} and
+ * {@code Attribute.characteristics()} may return an empty map (at implementation choice).</p>
+ *
  * @param <V> The type of attribute values.
  *
  * @author  Jody Garnett (Refractions Research)
@@ -69,6 +82,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see Attribute
  */
 @Classifier(Stereotype.METACLASS)
 @UML(identifier="AttributeType", specification=ISO_19109)
@@ -134,13 +149,31 @@ public interface AttributeType<V> extends PropertyType {
      */
     V getDefaultValue();
 
+    /**
+     * Other attribute types that describes this attribute type.
+     * See "<cite>Attribute characterization</cite>" in class Javadoc for more information.
+     *
+     * <div class="note"><b>Example:</b>
+     * An attribute that carries a measurement (e.g. air temperature) may have another attribute
+     * that holds the measurement accuracy.</div>
+     *
+     * The characteristics are enumerated in the {@linkplain Map#values() map values}.
+     * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
+     * characteristics {@linkplain #getName() name}, for more convenient lookups.
+     *
+     * @return Other attribute types that describes this attribute type, or an empty map if none.
+     *
+     * @see Attribute#characteristics()
+     */
+    @UML(identifier="characterizeBy", obligation=OPTIONAL, specification=ISO_19109)
+    Map<String,AttributeType<?>> characteristics();
     /*
-     * ISO 19109 associations omitted for now:
+     * Note: ISO 19109 also defines the following member
+     * for traversing the association in the opposite way:
      *
      *   - characterize the attribute type that is described by this attribute type.
-     *   - characterizeBy an attribute type that describes this attribute type.
      *
-     * Both of them are in the case of an attribute of attribute, and optional.
+     * This member has been omitted for now.
      */
 
     /**

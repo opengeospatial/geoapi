@@ -79,6 +79,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see Feature
  */
 @Classifier(Stereotype.METACLASS)
 @UML(identifier="FeatureType", specification=ISO_19109)
