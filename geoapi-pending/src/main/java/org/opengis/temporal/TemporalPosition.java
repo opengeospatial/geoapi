@@ -38,7 +38,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Used for describing temporal positions referenced to other temporal reference systems.
+ * Used for describing {@link TemporalPosition temporal positions} referenced 
+ * to other {@linkplain TemporalReferenceSystem temporal reference systems}.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
