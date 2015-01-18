@@ -41,6 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Specification of the coordinate operation method formula.
+ * This may be a reference to a publication.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0

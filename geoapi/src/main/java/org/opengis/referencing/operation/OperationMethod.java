@@ -41,9 +41,11 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Definition of an algorithm used to perform a coordinate operation. Most operation
- * methods use a number of operation parameters, although some coordinate conversions
- * use none. Each coordinate operation using the method assigns values to these parameters.
+ * Definition of an algorithm used to perform a coordinate operation. Most operation methods
+ * use a number of operation {@linkplain org.opengis.parameter.ParameterDescriptor parameters},
+ * although some coordinate conversions use none.
+ * Each {@linkplain CoordinateOperation coordinate operation} using the method assigns
+ * {@linkplain org.opengis.parameter.ParameterValue values} to these parameters.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
