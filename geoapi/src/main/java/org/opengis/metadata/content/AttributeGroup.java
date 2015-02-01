@@ -44,6 +44,8 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see CoverageDescription#getAttributeGroups()
  */
 @UML(identifier="MD_AttributeGroup", specification=ISO_19115)
 public interface AttributeGroup {

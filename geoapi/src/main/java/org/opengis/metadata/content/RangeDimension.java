@@ -49,6 +49,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   2.0
+ *
+ * @see AttributeGroup#getAttributes()
  */
 @UML(identifier="MD_RangeDimension", specification=ISO_19115)
 public interface RangeDimension {

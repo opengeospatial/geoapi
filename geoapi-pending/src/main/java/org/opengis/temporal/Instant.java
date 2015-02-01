@@ -54,7 +54,6 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Instant", specification=ISO_19108)
 public interface Instant extends TemporalGeometricPrimitive {
-
     /**
      * Returns {@link Date} used for describing temporal positions in ISO8601 format referenced to the
      * Gregorian calendar and UTC.
