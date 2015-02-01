@@ -32,7 +32,6 @@
 package org.opengis.referencing.operation;
 
 import java.awt.geom.AffineTransform;
-
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.annotation.UML;
@@ -41,17 +40,29 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Transforms multi-dimensional coordinate points. This interface transforms coordinate
- * value for a point given in the {@linkplain CoordinateOperation#getSourceCRS() source
- * coordinate reference system} to coordinate value for the same point in the
- * {@linkplain CoordinateOperation#getTargetCRS() target coordinate reference system}.
+ * Transforms multi-dimensional coordinate points. A {@code MathTransform} is an object
+ * that actually does the work of applying a {@linkplain Formula formula} to coordinate values.
+ * The math transform does not know or care how the coordinates relate to positions in the real world.
+ * For example the affine transform applies a matrix to the coordinates without knowing how what it is doing
+ * relates to the real world. So if the matrix scales <var>z</var> values by a factor of 1000,
+ * then it could be converting metres into millimetres, or it could be converting kilometres into metres.
+ *
+ * <p>Because they have low semantic value (but high mathematical value), {@link MathTransform}s can be used
+ * in applications that have nothing to do with GIS coordinates. For example, a math transform could be used
+ * to map color coordinates between different color spaces, such as converting (red, green, blue) colors into
+ * (hue, light, saturation) colors.</p>
+ *
+ * <h2>Application to coordinate operations</h2>
+ * When used for coordinate operations, this interface transforms coordinate value for a point given in the
+ * {@linkplain CoordinateOperation#getSourceCRS() source coordinate reference system} to coordinate value for
+ * the same point in the {@linkplain CoordinateOperation#getTargetCRS() target coordinate reference system}.
  *
  * <ul>
  *   <li>In a {@linkplain Conversion conversion}, the transformation is accurate to within the
- *   limitations of the computer making the calculations.</li>
+ *     limitations of the computer making the calculations.</li>
  *   <li>In a {@linkplain Transformation transformation}, where some of the operational parameters
- *   are derived from observations, the transformation is accurate to within the limitations of
- *   those observations.</li>
+ *     are derived from observations, the transformation is accurate to within the limitations of
+ *     those observations.</li>
  * </ul>
  *
  * If a client application wishes to query the source and target
@@ -64,9 +75,8 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see AffineTransform
- * @see javax.media.jai.PerspectiveTransform
- * @see javax.media.j3d.Transform3D
  * @see MathTransformFactory
+ * @see Formula
  * @see CoordinateOperation#getMathTransform()
  */
 @UML(identifier="CT_MathTransform", specification=OGC_01009)
