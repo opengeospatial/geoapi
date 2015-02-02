@@ -46,38 +46,34 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Low level factory for creating {@linkplain MathTransform math transforms}.
+ * Low level factory for creating {@code MathTransform} instances.
  * Many high level GIS applications will never need to use this factory directly;
- * they can use a {@linkplain CoordinateOperationFactory coordinate operation factory}
- * instead. However, the {@code MathTransformFactory} interface can be used directly
- * by applications that wish to transform other types of coordinates (e.g. color coordinates,
- * or image pixel coordinates).
+ * they can use a {@linkplain CoordinateOperationFactory coordinate operation factory} instead.
+ * However, the {@code MathTransformFactory} interface can be used directly
+ * by applications that wish to transform other types of coordinates
+ * (e.g. color coordinates, or image pixel coordinates).
  *
- * <p>A {@linkplain MathTransform math transform} is an object that actually does
- * the work of applying formulae to coordinate values. The math transform does
- * not know or care how the coordinates relate to positions in the real world.
- * This lack of semantics makes implementing {@code MathTransformFactory}
- * significantly easier than it would be otherwise.</p>
+ * <p>A {@link MathTransform} is an object that actually does the work of applying {@link Formula} to coordinate values.
+ * The math transform does not know or care how the coordinates relate to positions in the real world.
+ * This lack of semantics makes implementing {@code MathTransformFactory} significantly easier
+ * than it would be otherwise.</p>
  *
  * <p>For example the affine transform applies a matrix to the coordinates
- * without knowing how what it is doing relates to the real world. So if
- * the matrix scales <var>Z</var> values by a factor of 1000, then it could
- * be converting meters into millimeters, or it could be converting kilometers
- * into meters.</p>
+ * without knowing how what it is doing relates to the real world.
+ * So if the matrix scales <var>z</var> values by a factor of 1000, then it could be
+ * converting metres into millimetres, or it could be converting kilometres into metres.</p>
  *
- * <p>Because {@linkplain MathTransform math transforms} have low semantic value
- * (but high mathematical value), programmers who do not have much knowledge
- * of how GIS applications use coordinate systems, or how those coordinate
- * systems relate to the real world can implement {@code MathTransformFactory}.
- * The low semantic content of {@linkplain MathTransform math transforms} also
- * means that they will be useful in applications that have nothing to do with
- * GIS coordinates. For example, a math transform could be used to map color
- * coordinates between different color spaces, such as converting (red, green, blue)
- * colors into (hue, light, saturation) colors.</p>
+ * <p>Because {@link MathTransform}s have low semantic value (but high mathematical value),
+ * programmers who do not have much knowledge of how GIS applications use coordinate systems,
+ * or how those coordinate systems relate to the real world, can implement {@code MathTransformFactory}.
+ * The low semantic content of {@link MathTransform}s also means that they will be useful in applications
+ * that have nothing to do with GIS coordinates. For example, a math transform could be used to map color
+ * coordinates between different color spaces, such as converting (red, green, blue) colors into
+ * (hue, light, saturation) colors.</p>
  *
- * <p>Since a {@linkplain MathTransform math transform} does not know what its source
- * and target coordinate systems mean, it is not necessary or desirable for a math
- * transform object to keep information on its source and target coordinate systems.</p>
+ * <p>Since a {@link MathTransform} does not know what its source and target coordinate systems mean,
+ * it is not necessary or desirable for a math transform object to keep information on its source and
+ * target coordinate systems.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -88,8 +84,8 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
     /**
-     * Returns a set of available methods for {@linkplain MathTransform math transforms}. For
-     * each element in this set, the {@linkplain OperationMethod#getName() operation method name}
+     * Returns a set of available methods for {@code MathTransform}s.
+     * For each element in this set, the {@linkplain OperationMethod#getName() operation method name}
      * must be known to the {@link #getDefaultParameters(String)} method in this factory.
      * The set of available methods is implementation dependent.
      *

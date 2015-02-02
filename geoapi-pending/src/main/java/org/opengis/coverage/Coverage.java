@@ -77,13 +77,6 @@ import static org.opengis.annotation.Specification.*;
  *        functions valid over a set of polynomials.</li>
  * </ul>
  *
- * <h3>Metadata</h3>
- * The legacy {@linkplain org.opengis.annotation.Specification#OGC_01004 OGC 01-004} specification provided some methods for
- * fetching metadata values attached to a coverage. The {@linkplain org.opengis.annotation.Specification#ISO_19123 ISO 19123}
- * specification do not provides such methods. Implementations that want to provide such metadata are
- * encouraged to implement the {@link javax.media.jai.PropertySource} or
- * {@link javax.media.jai.WritablePropertySource} interface.
- *
  * @version ISO 19123:2004
  * @author  Stephane Fellah
  * @author  Martin Desruisseaux (IRD)

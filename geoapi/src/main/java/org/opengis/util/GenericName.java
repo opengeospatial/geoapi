@@ -64,25 +64,25 @@ import static org.opengis.annotation.Specification.*;
  *     <td>Default directory</td>
  *   </tr><tr>
  *     <td>{@link ScopedName#path()}</td>
- *     <td>{@link java.nio.file.Path#getParent()}</td>
+ *     <td>{@link java.nio.file.Path#getParent() Path.getParent()}</td>
  *   </tr><tr>
  *     <td>{@link #tip()}</td>
- *     <td>{@link java.nio.file.Path#getFileName()}</td>
+ *     <td>{@link java.nio.file.Path#getFileName() Path.getFileName()}</td>
  *   </tr><tr>
  *     <td>{@link #toFullyQualifiedName()}</td>
- *     <td>{@link java.nio.file.Path#toAbsolutePath()}</td>
+ *     <td>{@link java.nio.file.Path#toAbsolutePath() Path.toAbsolutePath()}</td>
  *   </tr><tr>
  *     <td>{@link #depth()}</td>
- *     <td>{@link java.nio.file.Path#getNameCount()}</td>
+ *     <td>{@link java.nio.file.Path#getNameCount() Path.getNameCount()}</td>
  *   </tr><tr>
  *     <td>{@link #getParsedNames()}</td>
- *     <td>{@link java.nio.file.Path#iterator()}</td>
+ *     <td>{@link java.nio.file.Path#iterator() Path.iterator()}</td>
  *   </tr><tr>
  *     <td>{@link #compareTo(GenericName)}</td>
  *     <td>{@link java.nio.file.Path#compareTo Path.compareTo(Path)}</td>
  *   </tr><tr>
  *     <td>{@link #toString()}</td>
- *     <td>{@link java.nio.file.Path#toString()}</td>
+ *     <td>{@link java.nio.file.Path#toString() Path.toString()}</td>
  *   </tr>
  * </table></blockquote>
  *
@@ -219,8 +219,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#getNameCount()} method in Java I/O;</li>
-     *   <li>the {@link javax.naming.Name#size()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
+     *   <li>the {@link java.nio.file.Path#getNameCount() Path.getNameCount()} method in Java I/O;</li>
+     *   <li>the {@link javax.naming.Name#size() Name.size()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
      * @return The depth of this name.
@@ -248,8 +248,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#iterator()} method in Java I/O;</li>
-     *   <li>the {@link javax.naming.Name#getAll()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
+     *   <li>the {@link java.nio.file.Path#iterator() Path.iterator()} method in Java I/O;</li>
+     *   <li>the {@link javax.naming.Name#getAll() Name.getAll()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
      * @return The local names making this generic name, without the {@linkplain #scope() scope}.
@@ -304,7 +304,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#getFileName()} method in Java I/O;</li>
+     *   <li>the {@link java.io.File#getName() File.getName()} or
+     *       {@link java.nio.file.Path#getFileName() Path.getFileName()} method in Java I/O;</li>
      *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
@@ -334,7 +335,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#toAbsolutePath()} method in Java I/O.</li>
+     *   <li>the {@link java.io.File#getAbsoluteFile() File.getAbsoluteFile()} or
+     *       {@link java.nio.file.Path#toAbsolutePath() Path.toAbsolutePath()} method in Java I/O.</li>
      * </ul></div>
      *
      * @return The fully-qualified name (never {@code null}).
@@ -397,7 +399,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#compareTo PathcompareTo(Path)} method in Java I/O.</li>
+     *   <li>the {@link java.io.File#compareTo File.compareTo(File)} or
+     *       {@link java.nio.file.Path#compareTo Path.compareTo(Path)} method in Java I/O.</li>
      * </ul></div>
      *
      * @param  other The other object to be compared to this name.
@@ -427,7 +430,8 @@ public interface GenericName extends Comparable<GenericName> {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#toString()} method in Java I/O.</li>
+     *   <li>the {@link java.io.File#toString() File.toString()} or
+     *       {@link java.nio.file.Path#toString() Path.toString()} method in Java I/O.</li>
      * </ul></div>
      *
      * @return The local-independent string representation of this name.

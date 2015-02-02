@@ -31,16 +31,19 @@
  */
 package org.opengis.temporal;
 
-import java.util.Collection;
+import java.util.Date;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
-
 /**
  * A zero-dimensional geometric primitive that represents position in time, equivalent to a point
  * in space.
+ *
+ * @departure integration
+ *   In ISO 19108 Position interface is define as an union class, which does not exist in java.
+ *   We choose to omit Position class and add getDate() method into {@link Instant} interface.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
@@ -51,34 +54,23 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Instant", specification=ISO_19108)
 public interface Instant extends TemporalGeometricPrimitive {
+    /**
+     * Returns {@link Date} used for describing temporal positions in ISO8601 format referenced to the
+     * Gregorian calendar and UTC.
+     *
+     * @return {@link Date} used for describing temporal positions in ISO8601 format.
+     */
+    @UML(identifier="date8601", obligation=OPTIONAL, specification=ISO_19108)
+    Date getDate();
 
     /**
-     * Returns {@link Position} in relation with this {@link Instant}.
+     * Returns {@link TemporalPosition} which contain an association between one from
+     * four classes and a {@link TemporalReferenceSystem}.
+     * The four possibles classes are {@link TemporalCoordinate}, {@link OrdinalPosition},
+     * {@link CalendarDate}, or {@link ClockTime}.
      *
-     * @return {@link Position} in relation with this {@link Instant}.
+     * @return {@link TemporalPosition} which contain an association between one from
+     * four classes and a {@link TemporalReferenceSystem}.
      */
-    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19108)
-    Position getPosition();
-
-    /**
-     * Returns the {@link Collection} of temporal {@link Period}s,
-     * for which this Instant is the beginning.
-     * The collection may be empty.
-     *
-     * @return the {@link Collection} of temporal {@link Period}s,
-     * for which this Instant is the beginning.
-     */
-    @UML(identifier="begunBy", obligation=OPTIONAL, specification=ISO_19108)
-    Collection<Period> getBegunBy();
-
-    /**
-     * Returns the {@link Collection} of temporal {@link Period}s,
-     * for which this Instant is the end.
-     * The collection may be empty.
-     *
-     * @return the {@link Collection} of temporal {@link Period}s,
-     * for which this Instant is the end.
-     */
-    @UML(identifier="endedBy", obligation=OPTIONAL, specification=ISO_19108)
-    Collection<Period> getEndedBy();
+    TemporalPosition getTemporalPosition();
 }

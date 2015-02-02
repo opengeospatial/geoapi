@@ -37,12 +37,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A two dimensional array of numbers. Row and column numbering begins with zero. The API for
- * this interface matches closely the API in various {@linkplain javax.vecmath.GMatrix matrix}
- * implementations available in <a href="https://java3d.dev.java.net/">Java3D</a>,
- * which should enable straightforward implementations. Java3D provides matrix for the general
- * case and optimized versions for 3×3 and 4×4 cases, which are quite common in a
- * transformation package.
+ * A two dimensional array of numbers. Row and column numbering begins with zero.
+ *
+ * <div class="note"><b>API note:</b>
+ * The API for this interface matches closely the API in various {@link javax.vecmath} implementations,
+ * which should enable straightforward implementations on top of {@code javax.vecmath}.
+ * The later package provides matrix for the general case and optimized versions for 3×3 and 4×4 cases,
+ * which are quite common in a transformation package.
+ * </div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -52,8 +54,6 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.vecmath.Matrix4d
  * @see javax.vecmath.GMatrix
  * @see java.awt.geom.AffineTransform
- * @see javax.media.jai.PerspectiveTransform
- * @see javax.media.j3d.Transform3D
  * @see <a href="http://math.nist.gov/javanumerics/jama/">Jama matrix</a>
  * @see <a href="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</a>
  */

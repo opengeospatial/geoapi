@@ -157,7 +157,8 @@ public interface ScopedName extends GenericName {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>{@link java.nio.file.Path#getParent()} from Java I/O;</li>
+     *   <li>the {@link java.io.File#getParentFile() File.getParentFile()} or
+     *       {@link java.nio.file.Path#getParent() Path.getParent()} from Java I/O;</li>
      *   <li><code>{@link javax.naming.Name#getPrefix(int) Name.getPrefix}(size-1)</code>
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
@@ -181,7 +182,8 @@ public interface ScopedName extends GenericName {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#getFileName()} method in Java I/O;</li>
+     *   <li>the {@link java.io.File#getName() File.getName()} or
+     *       {@link java.nio.file.Path#getFileName() Path.getFileName()} method in Java I/O;</li>
      *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(size-1)</code>
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
@@ -205,7 +207,8 @@ public interface ScopedName extends GenericName {
      * <div class="note"><b>Analogy</b>:
      * This method is similar in purpose to:
      * <ul>
-     *   <li>the {@link java.nio.file.Path#toString()} method in Java I/O.</li>
+     *   <li>the {@link java.io.File#toString() File.toString()} or
+     *       {@link java.nio.file.Path#toString() Path.toString()} method in Java I/O.</li>
      * </ul></div>
      */
     @Override

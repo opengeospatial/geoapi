@@ -59,7 +59,6 @@ import static org.opengis.annotation.Specification.*;
  * @since   GeoAPI 1.0
  *
  * @see RenderedImage
- * @see javax.media.jai.PixelAccessor
  */
 @UML(identifier="CV_GridCoverage", specification=OGC_01004)
 public interface GridCoverage extends Coverage {
@@ -220,7 +219,6 @@ public interface GridCoverage extends Coverage {
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, byte[])
-     * @see javax.media.jai.UnpackedImageData#getByteData()
      *
      * @deprecated We should use some higher level construct instead (multi-dimensional array
      *             or something similar).
@@ -247,7 +245,6 @@ public interface GridCoverage extends Coverage {
      *         and too small to hold the output.
      *
      * @see #setDataBlock(GridRange, int[])
-     * @see javax.media.jai.UnpackedImageData#getShortData()
      *
      * @deprecated We should use some higher level construct instead (multi-dimensional array
      *             or something similar).
@@ -275,7 +272,6 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, int[])
      * @see Raster#getPixels(int,int,int,int,int[])
-     * @see javax.media.jai.UnpackedImageData#getIntData()
      *
      * @deprecated We should use some higher level construct instead (multi-dimensional array
      *             or something similar).
@@ -303,7 +299,6 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, float[])
      * @see Raster#getPixels(int,int,int,int,float[])
-     * @see javax.media.jai.UnpackedImageData#getFloatData()
      *
      * @deprecated We should use some higher level construct instead (multi-dimensional array
      *             or something similar).
@@ -368,7 +363,6 @@ public interface GridCoverage extends Coverage {
      *
      * @see #setDataBlock(GridRange, double[])
      * @see Raster#getPixels(int,int,int,int,double[])
-     * @see javax.media.jai.UnpackedImageData#getDoubleData()
      *
      * @deprecated We should use some higher level construct instead (multi-dimensional array
      *             or something similar).

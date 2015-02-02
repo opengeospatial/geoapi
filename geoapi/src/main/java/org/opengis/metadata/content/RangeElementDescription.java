@@ -47,6 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @see CoverageDescription#getRangeElementDescriptions()
  */
 @UML(identifier="MI_RangeElementDescription", specification=ISO_19115_2)
 public interface RangeElementDescription {

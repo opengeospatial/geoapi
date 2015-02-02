@@ -41,10 +41,21 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Specification of the coordinate operation method formula.
+ * A formula may be {@linkplain #getFormula() given textually},
+ * or may be a {@linkplain #getCitation() reference to a publication}.
+ *
+ * <p>Formulas are given by {@link OperationMethod#getFormula()}. If the operation method is not analytic,
+ * then this object actually gives the procedure rather than an analytic formula.</p>
+ *
+ * <p>{@code Formula} objects are for human reading. The object that actually does the work of applying
+ * the formula or procedure to coordinate values is {@link MathTransform}.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @see MathTransform
+ * @see OperationMethod#getFormula()
  */
 @UML(identifier="CC_Formula", specification=ISO_19111)
 public interface Formula {
