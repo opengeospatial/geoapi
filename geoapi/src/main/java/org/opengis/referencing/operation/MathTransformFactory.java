@@ -84,14 +84,14 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
     /**
-     * Returns a set of available methods for {@code MathTransform}s.
+     * Returns a set of available methods for coordinate operations of the given type.
      * For each element in this set, the {@linkplain OperationMethod#getName() operation method name}
      * must be known to the {@link #getDefaultParameters(String)} method in this factory.
      * The set of available methods is implementation dependent.
      *
      * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
      *         or <code>{@linkplain Projection}.class</code> for fetching only map projection methods.
-     * @return All {@linkplain MathTransform math transform} methods available in this factory.
+     * @return Methods available in this factory for coordinate operations of the given type.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added as a way to publish

@@ -55,7 +55,6 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.vecmath.GMatrix
  * @see java.awt.geom.AffineTransform
  * @see <a href="http://math.nist.gov/javanumerics/jama/">Jama matrix</a>
- * @see <a href="http://jcp.org/jsr/detail/83.jsp">JSR-83 Multiarray package</a>
  */
 @UML(identifier="PT_Matrix", specification=OGC_01009)
 public interface Matrix {
