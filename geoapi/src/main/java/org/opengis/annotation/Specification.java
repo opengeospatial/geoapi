@@ -348,7 +348,7 @@ public enum Specification {
     ISO_19128((short) 2005),
 
     /**
-     * ISO 19139, Metadata. XML schema implementation.
+     * ISO 19139, Metadata XML schema implementation.
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
@@ -367,6 +367,28 @@ public enum Specification {
      * @since 2.3
      */
     ISO_19139((short) 2007),
+
+    /**
+     * ISO 19162, Well known text representation of coordinate reference systems.
+     * This is the specification of input and output format of
+     * {@link org.opengis.referencing.crs.CRSFactory#createFromWKT(String)} and
+     * {@link org.opengis.referencing.crs.CoordinateReferenceSystem#toWKT()}.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <blockquote style="font-size:small">
+     * <p>(under development)</p>
+     * </blockquote>
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2015:</b> ISO 19162:2015   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63094">Buy from ISO</a>
+     *
+     * @since 3.1
+     */
+    ISO_19162((short) 2015),
 
     /**
      * GO-1 Application Objects.
