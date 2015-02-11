@@ -116,6 +116,8 @@ public interface OperationMethod extends IdentifiedObject {
      * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
      * @return The dimension of source CRS, or {@code null} if unknown.
+     *
+     * @see MathTransform#getSourceDimensions()
      */
     @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111)
     Integer getSourceDimensions();
@@ -126,6 +128,8 @@ public interface OperationMethod extends IdentifiedObject {
      * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
      * @return The dimension of target CRS, or {@code null} if unknown.
+     *
+     * @see MathTransform#getTargetDimensions()
      */
     @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111)
     Integer getTargetDimensions();

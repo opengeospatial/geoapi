@@ -89,8 +89,21 @@ public interface MathTransformFactory extends Factory {
      * must be known to the {@link #getDefaultParameters(String)} method in this factory.
      * The set of available methods is implementation dependent.
      *
+     * <p>The {@code type} argument can be used for filtering the kind of operations described by the returned
+     * {@code OperationMethod}s. The argument is usually (but not restricted to) one of the following types:</p>
+     *
+     * <ul>
+     *   <li>{@link Transformation} for coordinate operations described by empirically derived parameters.</li>
+     *   <li>{@link Conversion} for coordinate operations described by definitions.</li>
+     *   <li>{@link Projection} for conversions from geodetic latitudes and longitudes to plane (map) coordinates.</li>
+     *   <li>{@link SingleOperation} for all coordinate operations, regardless of their type.</li>
+     * </ul>
+     *
+     * This method may conservatively return more {@code OperationMethod} elements than requested
+     * if it does not support filtering by the given type.
+     *
      * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
-     *         or <code>{@linkplain Projection}.class</code> for fetching only map projection methods.
+     *         <code>{@linkplain Projection}.class</code> for fetching only map projection methods, <i>etc</i>.
      * @return Methods available in this factory for coordinate operations of the given type.
      *
      * @departure extension
