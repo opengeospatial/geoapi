@@ -124,18 +124,17 @@ strictfp abstract class GIGSTestCase extends TestCase {
     {
         assertNotNull(message, object);
         final String name = getName(object);
-        if (name != null && expected.equalsIgnoreCase(name)) {
-            return;
-        }
-        final Collection<GenericName> aliases = object.getAlias();
-        if (aliases != null) {
-            for (GenericName alias : aliases) {
-                if (alias.tip().toString().equalsIgnoreCase(expected)) {
-                    return;
+        if (!expected.equalsIgnoreCase(name)) {
+            final Collection<GenericName> aliases = object.getAlias();
+            if (aliases != null) {
+                for (GenericName alias : aliases) {
+                    if (alias.tip().toString().equalsIgnoreCase(expected)) {
+                        return;
+                    }
                 }
             }
+            fail(message + ": name or alias not found: " + expected);
         }
-        fail(message + ": name or alias not found: " + expected);
     }
 
     /**

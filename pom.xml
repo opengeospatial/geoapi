@@ -202,7 +202,7 @@
              the whole project. Search also for version number of the Hamcrest dependency. -->
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.11</version>
+        <version>4.12</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -505,7 +505,7 @@
             <link>http://docs.oracle.com/javase/7/docs/api/</link>
             <link>http://docs.oracle.com/javaee/7/api/</link> <!-- For InternationalString link. -->
             <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
-            <link>http://junit.sourceforge.net/javadoc/</link>
+            <link>http://junit.org/javadoc/latest/</link>
             <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link> <!-- Used by example code. -->
             <link>http://www.geoapi.org/snapshot/javadoc/</link> <!-- For modules that depend on GeoAPI. -->
           </links>

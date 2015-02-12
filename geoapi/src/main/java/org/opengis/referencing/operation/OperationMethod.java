@@ -47,6 +47,39 @@ import static org.opengis.annotation.Specification.*;
  * Each {@linkplain CoordinateOperation coordinate operation} using the method assigns
  * {@linkplain org.opengis.parameter.ParameterValue values} to these parameters.
  *
+ * <div class="note"><b>Example:</b>
+ * An operation method named “<cite>Mercator (variant A)</cite>” (EPSG:9804) declares the following parameters:
+ * <ul>
+ *   <li>“<cite>Latitude of natural origin</cite>” in degrees.</li>
+ *   <li>“<cite>Longitude of natural origin</cite>” in degrees.</li>
+ *   <li>“<cite>Scale factor at natural origin</cite>” as a dimensionless number.</li>
+ *   <li>“<cite>False easting</cite>” in metres.</li>
+ *   <li>“<cite>False northing</cite>” in metres.</li>
+ * </ul>
+ * Implementations can optionally assign {@linkplain org.opengis.parameter.ParameterDescriptor#getDefaultValue()
+ * default values} to those parameters.</div>
+ *
+ * Operation method {@linkplain #getIdentifiers() identifiers} are optional but recommended,
+ * since the method {@linkplain #getName() name} is potentially ambiguous.
+ * Some recommended EPSG identifiers are reproduced below
+ * (see {@linkplain org.opengis.annotation.Specification#ISO_19162 ISO 19162}
+ * or the <a href="http://epsg-registry.org">EPSG registry</a> for a more complete list):
+ *
+ * <table class="ogc">
+ *   <caption>EPSG identifier for some operation method names</caption>
+ *   <tr><th>Name</th>                                <th>Alias</th>                       <th>Identifier</th></tr>
+ *   <tr><td>Albers Equal Area</td>                   <td>Albers</td>                      <td>9822</td></tr>
+ *   <tr><td>Hotine Oblique Mercator (variant A)</td> <td>Rectified skew orthomorphic</td> <td>9812</td></tr>
+ *   <tr><td>Hotine Oblique Mercator (variant B)</td> <td>Rectified skew orthomorphic</td> <td>9815</td></tr>
+ *   <tr><td>Lambert Azimuthal Equal Area</td>        <td>Lambert Equal Area</td>          <td>9820</td></tr>
+ *   <tr><td>Lambert Conic Conformal (1SP)</td>       <td>Lambert Conic Conformal</td>     <td>9801</td></tr>
+ *   <tr><td>Lambert Conic Conformal (2SP)</td>       <td>Lambert Conic Conformal</td>     <td>9802</td></tr>
+ *   <tr><td>Mercator (variant A)</td>                <td>Mercator</td>                    <td>9804</td></tr>
+ *   <tr><td>Mercator (variant B)</td>                <td>Mercator</td>                    <td>9805</td></tr>
+ *   <tr><td>Oblique stereographic</td>               <td>Double stereographic</td>        <td>9809</td></tr>
+ *   <tr><td>Transverse Mercator</td>                 <td>Gauss-Boaga / Gauss-Krüger</td>  <td>9807</td></tr>
+ * </table>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
@@ -83,6 +116,8 @@ public interface OperationMethod extends IdentifiedObject {
      * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
      * @return The dimension of source CRS, or {@code null} if unknown.
+     *
+     * @see MathTransform#getSourceDimensions()
      */
     @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111)
     Integer getSourceDimensions();
@@ -93,6 +128,8 @@ public interface OperationMethod extends IdentifiedObject {
      * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
      * @return The dimension of target CRS, or {@code null} if unknown.
+     *
+     * @see MathTransform#getTargetDimensions()
      */
     @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111)
     Integer getTargetDimensions();

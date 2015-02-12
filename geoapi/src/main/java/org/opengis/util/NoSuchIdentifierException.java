@@ -40,9 +40,9 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
  * The identifier is often provided by {@link Identifier#getCode()}.
  *
  * <p><b>Example:</b> This exception is thrown when a
- * {@linkplain org.opengis.referencing.operation.MathTransform math transform}
- * has been requested with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod
- * operation method} identifier.</p>
+ * {@linkplain org.opengis.referencing.operation.MathTransform math transform} has been requested
+ * with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod operation method}
+ * identifier.</p>
  *
  * @departure extension
  *   This exception is not part of the OGC specification.
