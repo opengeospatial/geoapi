@@ -83,11 +83,17 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
+    /*
+     * NOTE FOR JAVADOC WRITER:
+     * The "method" word is ambiguous here, because it can be "Java method" or "coordinate operation method".
+     * In this interface, we reserve "method" for coordinate operation methods as much as possible. For Java
+     * methods, we rather use "constructor" or "function".
+     */
+
     /**
      * Returns a set of available methods for coordinate operations of the given type.
      * For each element in this set, the {@linkplain OperationMethod#getName() operation method name}
-     * must be known to the {@link #getDefaultParameters(String)} method in this factory.
-     * The set of available methods is implementation dependent.
+     * must be a valid argument for {@link #getDefaultParameters(String)}.
      *
      * <p>The {@code type} argument can be used for filtering the kind of operations described by the returned
      * {@code OperationMethod}s. The argument is usually (but not restricted to) one of the following types:</p>
@@ -99,16 +105,16 @@ public interface MathTransformFactory extends Factory {
      *   <li>{@link SingleOperation} for all coordinate operations, regardless of their type.</li>
      * </ul>
      *
-     * This method may conservatively return more {@code OperationMethod} elements than requested
-     * if it does not support filtering by the given type.
+     * The returned set may conservatively contain more {@code OperationMethod} elements than requested
+     * if this {@code MathTransformFactory} does not support filtering by the given type.
      *
      * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
      *         <code>{@linkplain Projection}.class</code> for fetching only map projection methods, <i>etc</i>.
      * @return Methods available in this factory for coordinate operations of the given type.
      *
      * @departure extension
-     *   This method is not part of the OGC specification. It has been added as a way to publish
-     *   the capabilities of a factory.
+     *   This method is not part of the OGC specification.
+     *   It has been added as a way to publish the capabilities of a factory.
      *
      * @see #getDefaultParameters(String)
      * @see #createParameterizedTransform(ParameterValueGroup)
@@ -117,50 +123,51 @@ public interface MathTransformFactory extends Factory {
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
     /**
-     * Returns the operation method used for the latest call to
-     * {@link #createParameterizedTransform createParameterizedTransform},
+     * Returns the operation method used by the latest call to a {@code create(…)} constructor,
      * or {@code null} if not applicable.
      *
      * <p>Implementors should document how their implementation behave in a multi-threads environment.
      * For example some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
-     * while other can choose to returns {@code null} in all cases since this method is optional.</p>
+     * while other can choose to returns {@code null} in all cases since {@code getLastMethodUsed()}
+     * is optional.</p>
      *
-     * <p>Note that this method may apply as well to convenience methods that delegate their work to
-     * {@code createParameterizedTransform}, like {@link #createBaseToDerived createBaseToDerived}.</p>
+     * <p>Invoking {@code getLastMethodUsed()} can be useful after a call to
+     * {@link #createParameterizedTransform createParameterizedTransform(…)}, or after a call to another
+     * constructor that delegates its work to {@code createParameterizedTransform(…)}, for example
+     * {@link #createBaseToDerived createBaseToDerived(…)}.</p>
      *
-     * @return The last method used, or {@code null} if unknown of unsupported.
+     * @return The last method used by a {@code create(…)} constructor, or {@code null} if unknown of unsupported.
+     *
+     * @see #createParameterizedTransform(ParameterValueGroup)
      *
      * @departure extension
-     *   This method is not part of the OGC specification. It has been added because this information
-     *   appears to be needed in practice. A more object-oriented approach would have been to
-     *   return a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in the
-     *   <code>createParameterizedTransform(…)</code> method, but we wanted to keep the
-     *   later unchanged for historical reasons (it is inherited from OGC 01-009) and because
-     *   only a minority of use cases need the operation method.
-     *
-     *   <p>Note that the existence of this method does not break thread-safety if the implementor
-     *   stores this information in a <code>ThreadLocal</code> variable.</p>
+     *   This method is not part of the OGC specification.
+     *   It has been added because this information appears to be important in some situations.
+     *   We did not defined a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple
+     *   in order to keep <code>create(…)</code> simpler in the common case where the operation
+     *   method is not needed, and for historical reasons (conformance to OGC 01-009).
      *
      * @since 2.1
      */
     OperationMethod getLastMethodUsed();
 
     /**
-     * Returns the default parameter values for a math transform using the given method.
-     * The {@code method} argument is the name of any operation method returned by
-     * <code>{@link #getAvailableMethods(Class) getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
+     * Returns the default parameter values for a math transform using the given operation method.
+     * The {@code method} argument is the name of any {@code OperationMethod} instance returned by
+     * <code>{@link #getAvailableMethods(Class) getAvailableMethods}({@linkplain SingleOperation}.class)</code>.
      * A typical example is
-     * <code>"<a href="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse_Mercator</a>"</code>).
+     * "<a href="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse Mercator</a>").
      *
-     * <p>The {@linkplain ParameterDescriptorGroup#getName() parameter group name} shall be the
-     * method name, or an alias to be understood by <code>{@linkplain #createParameterizedTransform
-     * createParameterizedTransform}(parameters)</code>. This method creates new parameter instances
-     * at every call. Parameters are intended to be modified by the user before to be given to the
-     * above-cited {@code createParameterizedTransform} method.</p>
+     * <p>The {@linkplain ParameterDescriptorGroup#getName() parameter group name} shall be a method name or identifier
+     * that {@link #createParameterizedTransform(ParameterValueGroup)} can recognize without ambiguity.</p>
      *
-     * @param  method The case insensitive name of the method to search for.
-     * @return The default parameter values.
-     * @throws NoSuchIdentifierException if there is no transform registered for the specified method.
+     * <p>This function creates new parameter instances at every call.
+     * Parameters are intended to be modified by the user before to be given to the above-cited
+     * {@code createParameterizedTransform(…)} constructor.</p>
+     *
+     * @param  method The case insensitive name of the coordinate operation method to search for.
+     * @return A new group of parameter values for the {@code OperationMethod} identified by the given name.
+     * @throws NoSuchIdentifierException if there is no method registered for the given name or identifier.
      *
      * @departure extension
      *   This method is part of the GeoAPI mechanism for defining the math transform parameters
@@ -173,7 +180,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a {@linkplain #createParameterizedTransform parameterized transform} from a base CRS
-     * to a derived CS. This convenience method {@linkplain #createConcatenatedTransform concatenates}
+     * to a derived CS. This convenience constructor {@linkplain #createConcatenatedTransform concatenates}
      * the parameterized transform with any other transform required for performing units changes and
      * ordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
      * cartographic projections}.
@@ -184,11 +191,12 @@ public interface MathTransformFactory extends Factory {
      * and if they are applicable (typically for cartographic projections).
      * This inference is consistent with the EPSG database model.</p>
      *
-     * @param  baseCRS The source coordinate reference system.
+     * @param  baseCRS    The source coordinate reference system.
      * @param  parameters The parameter values for the transform.
-     * @param  derivedCS The target coordinate system.
-     * @return The parameterized transform.
-     * @throws NoSuchIdentifierException if there is no transform registered for the method.
+     * @param  derivedCS  The target coordinate system.
+     * @return The parameterized transform from {@code baseCRS} to {@code derivedCS},
+     *         including unit conversions and axis swapping.
+     * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      *
@@ -204,21 +212,20 @@ public interface MathTransformFactory extends Factory {
             throws NoSuchIdentifierException, FactoryException;
 
     /**
-     * Creates a transform from a group of parameters. The method name is inferred from
+     * Creates a transform from a group of parameters. The {@link OperationMethod} name is inferred from
      * the {@linkplain ParameterDescriptorGroup#getName() parameter group name}. Example:
      *
-     * <blockquote><pre>
-     * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
+     * <blockquote><pre>ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
      * p.parameter("semi_major").setValue(6378137.000);
      * p.parameter("semi_minor").setValue(6356752.314);
-     * MathTransform mt = factory.createParameterizedTransform(p);
-     * </pre></blockquote>
+     * MathTransform mt = factory.createParameterizedTransform(p);</pre></blockquote>
      *
-     * <b>Note on cartographic projections:</b>
+     * <p><b>Note on cartographic projections:</b></p>
      * <p>Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
      * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
      * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
-     * or a screen. All cartographic projection transforms created through this method will have the following properties:</p>
+     * or a screen. All cartographic projection transforms created through this constructor will have the following
+     * properties:</p>
      *
      * <ul>
      *   <li>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</li>
@@ -234,12 +241,13 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.
-     * @throws NoSuchIdentifierException if there is no transform registered for the method.
+     * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      *
      * @see #getDefaultParameters(String)
      * @see #getAvailableMethods(Class)
+     * @see #getLastMethodUsed()
      */
     @UML(identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createParameterizedTransform(ParameterValueGroup parameters)
@@ -268,7 +276,7 @@ public interface MathTransformFactory extends Factory {
      *
      * <p>The dimension of the output space of the first transform must match the dimension
      * of the input space in the second transform. If you wish to concatenate more than two
-     * transforms, then you can repeatedly use this method.</p>
+     * transforms, then you can repeatedly use this constructor.</p>
      *
      * @param  transform1 The first transform to apply to points.
      * @param  transform2 The second transform to apply to points.
