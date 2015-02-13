@@ -92,6 +92,12 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CC_OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {
+    /*
+     * NOTE FOR JAVADOC WRITER:
+     * The "method" word is ambiguous here, because it can be "Java method" or "coordinate operation method".
+     * In this interface, we reserve "method" for coordinate operation methods as much as possible.
+     */
+
     /**
      * Key for the <code>{@value}</code> property.
      * This is used for setting the value to be returned by {@link #getFormula()}.
