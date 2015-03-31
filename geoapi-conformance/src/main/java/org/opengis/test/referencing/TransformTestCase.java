@@ -1467,6 +1467,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @throws DerivativeFailure If at least one matrix element is not equal to the expected value.
      *
      * @see #verifyDerivative(double[])
+     * @see org.opengis.test.Assert#assertMatrixEquals(String, Matrix, Matrix, double)
      *
      * @since 3.1
      */

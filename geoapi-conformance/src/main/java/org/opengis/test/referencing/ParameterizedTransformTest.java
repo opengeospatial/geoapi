@@ -114,7 +114,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *        // In this example, we replace the ellipsoid by a sphere and test again.
  *        // Note that spherical formulas can have an error up to 30 km compared
  *        // to ellipsoidal formulas, so we have to relax again the tolerance threshold.
- *        parameters.parameter("semi-minor axis").setValue(parameters.parameter("semi-major axis").doubleValue());
+ *        parameters.parameter("semi_minor").setValue(parameters.parameter("semi_major").doubleValue());
  *        tolerance = 30000; // Increase the tolerance value to 30 km.
  *        super.testLambertAzimuthalEqualArea();
  *    }
@@ -243,6 +243,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *     </ul>
      *   </li>
      * </ul>
+     *
+     * @return {@inheritDoc}
      */
     @Override
     public Configuration configuration() {
@@ -543,8 +545,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
 
     /**
      * Tests the "<cite>IGNF:MILLER</cite>" (EPSG:310642901) projection.
-     * First, this method transforms the point given by the
-     * <a href="http://api.ign.fr/geoportail/api/doc/fr/developpeur/wmsc.html">IGN documentation</a>
+     * First, this method transforms the point given below
      * and compares the {@link MathTransform} result with the expected result. Next, this method
      * transforms a random set of points in the projection area of validity and ensures that the
      * {@linkplain MathTransform#inverse() inverse transform} and the
@@ -558,8 +559,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr><th>Parameter</th>           <th>Value</th></tr>
      * <tr><td>semi_major</td>          <td nowrap>6378137.0 m</td></tr>
      * <tr><td>semi_minor</td>          <td nowrap>6378137.0 m</td></tr>
-     * <tr><td>latitude_of_center</td>  <td nowrap>0.0°</td></tr>
-     * <tr><td>longitude_of_center</td> <td nowrap>0.0°</td></tr>
+     * <tr><td>central_meridian</td>    <td nowrap>0.0°</td></tr>
      * <tr><td>false_easting</td>       <td nowrap>0.0 m</td></tr>
      * <tr><td>false_northing</td>      <td nowrap>0.0 m</td></tr>
      * </table></td><td>

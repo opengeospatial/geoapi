@@ -458,6 +458,8 @@ public strictfp class Assert extends org.junit.Assert {
      * @param tolerance The tolerance threshold.
      *
      * @since 3.1
+     *
+     * @see org.opengis.test.referencing.TransformTestCase#assertMatrixEquals(String, Matrix, Matrix, Matrix)
      */
     public static void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final double tolerance) {
         if (isNull(message, expected, actual)) {
