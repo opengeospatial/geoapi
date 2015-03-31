@@ -200,6 +200,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation returns an empty set.
      *
+     * @throws FactoryException if this method can not provide the requested information.
+     *
      * @todo Needs to be implemented.
      */
     @Override
@@ -209,6 +211,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation returns {@code null}.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public InternationalString getDescriptionText(final String code) throws FactoryException {
@@ -290,6 +294,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public EngineeringDatum createEngineeringDatum(String code) throws FactoryException {
@@ -301,6 +307,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public ImageDatum createImageDatum(String code) throws FactoryException {
@@ -312,6 +320,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public VerticalDatum createVerticalDatum(String code) throws FactoryException {
@@ -323,6 +333,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public TemporalDatum createTemporalDatum(String code) throws FactoryException {
@@ -526,6 +538,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public PolarCS createPolarCS(final String code) throws FactoryException {
@@ -537,6 +551,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public CylindricalCS createCylindricalCS(final String code) throws FactoryException {
@@ -548,6 +564,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public SphericalCS createSphericalCS(final String code) throws FactoryException {
@@ -633,6 +651,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public VerticalCS createVerticalCS(final String code) throws FactoryException {
@@ -644,6 +664,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public TimeCS createTimeCS(final String code) throws FactoryException {
@@ -763,6 +785,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public CompoundCRS createCompoundCRS(String code) throws FactoryException {
@@ -774,6 +798,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public DerivedCRS createDerivedCRS(String code) throws FactoryException {
@@ -785,6 +811,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {
@@ -827,6 +855,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
@@ -838,6 +868,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public ImageCRS createImageCRS(String code) throws FactoryException {
@@ -849,6 +881,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public ProjectedCRS createProjectedCRS(String code) throws FactoryException {
@@ -860,6 +894,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public TemporalCRS createTemporalCRS(String code) throws FactoryException {
@@ -871,6 +907,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
 
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
      */
     @Override
     public VerticalCRS createVerticalCRS(String code) throws FactoryException {
@@ -946,8 +984,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         switch (code) {
             case 19905: { // "Makassar / NEIEZ" using operation method 9804
                 parameters = factory.getDefaultParameters("Mercator (variant A)"); // Alias "Mercator (1SP)"
-                parameters.parameter("semi-major axis").setValue(6377397.155); // Bessel 1841
-                parameters.parameter("semi-minor axis").setValue(6377397.155 * (1 - 1/299.1528128));
+                parameters.parameter("semi_major").setValue(6377397.155); // Bessel 1841
+                parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.1528128));
                 parameters.parameter("Latitude of natural origin")    .setValue(  0.0);
                 parameters.parameter("Longitude of natural origin")   .setValue(110.0);
                 parameters.parameter("Scale factor at natural origin").setValue(0.997);
@@ -957,28 +995,28 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19884: { // "Pulkovo 1942 / Caspian Sea Mercator" using operation method 9805
                 parameters = factory.getDefaultParameters("Mercator (variant B) "); // Alias "Mercator (2SP)"
-                parameters.parameter("semi-major axis").setValue(6378245.0); // Krassowski 1940
-                parameters.parameter("semi-minor axis").setValue(6378245.0 * (1 - 1/298.3));
+                parameters.parameter("semi_major").setValue(6378245.0); // Krassowski 1940
+                parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
                 parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
                 parameters.parameter("Longitude of natural origin")      .setValue(51.0);
                 break;
             }
             case 3856: { // "WGS 84 / Pseudo-Mercator" using operation method 1024
                 parameters = factory.getDefaultParameters("Popular Visualisation Pseudo Mercator");
-                parameters.parameter("semi-major axis").setValue(6378137.0); // WGS 84
-                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("semi_major").setValue(6378137.0); // WGS 84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 break;
             }
             case 310642901: { // "IGNF:MILLER" (not an official EPSG code)
                 parameters = factory.getDefaultParameters("Miller_Cylindrical");
-                parameters.parameter("semi_major").setValue(6378137.0); // Use OGC parameter names instead than EPSG.
+                parameters.parameter("semi_major").setValue(6378137.0);
                 parameters.parameter("semi_minor").setValue(6378137.0);
                 break;
             }
             case 19958: { // "Rectified Skew Orthomorphic Borneo Grid (metres)" using operation method 9815
                 parameters = factory.getDefaultParameters("Hotine Oblique Mercator (variant B)");
-                parameters.parameter("semi-major axis").setValue(6377298.556);  // Everest 1830
-                parameters.parameter("semi-minor axis").setValue(6377298.556 * (1 - 1/300.8017));
+                parameters.parameter("semi_major").setValue(6377298.556);  // Everest 1830
+                parameters.parameter("semi_minor").setValue(6377298.556 * (1 - 1/300.8017));
                 parameters.parameter("Latitude of projection centre") .setValue(  4.0); //   4°00'00"N
                 parameters.parameter("Longitude of projection centre").setValue(115.0); // 115°00'00"E
                 parameters.parameter("Azimuth of initial line").setValue(53 + (18 + 56.9537/60)/60);          //  53°18'56.9537"
@@ -990,8 +1028,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19916: { // "British National Grid" using operation method 9807
                 parameters = factory.getDefaultParameters("Transverse Mercator");
-                parameters.parameter("semi-major axis").setValue(6377563.396);  // Airy
-                parameters.parameter("semi-minor axis").setValue(6377563.396 * (1 - 1/299.32496));
+                parameters.parameter("semi_major").setValue(6377563.396);  // Airy
+                parameters.parameter("semi_minor").setValue(6377563.396 * (1 - 1/299.32496));
                 parameters.parameter("Latitude of natural origin") .setValue(49.0);
                 parameters.parameter("Longitude of natural origin").setValue(-2.0);
                 parameters.parameter("Scale factor at natural origin").setValue(0.9996012717); // EPSG guidance notes rounded this value to 0.9996013
@@ -1001,8 +1039,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19975: { // "Trinidad 1903 / Trinidad Grid" using operation method 9806
                 parameters = factory.getDefaultParameters("Cassini-Soldner");
-                parameters.parameter("semi-major axis").setValue(20926348.0 * FEET); // Clarke 1858
-                parameters.parameter("semi-minor axis").setValue(20855233.0 * FEET);
+                parameters.parameter("semi_major").setValue(20926348.0 * FEET); // Clarke 1858
+                parameters.parameter("semi_minor").setValue(20855233.0 * FEET);
                 parameters.parameter("Latitude of natural origin") .setValue(10 + (26 + 30.0/60)/60); // 10°26'30"N
                 parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));        // 61°20'00"W
                 parameters.parameter("False easting") .setValue(430000.00 * LINKS);
@@ -1011,8 +1049,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19910: { // "JAD69 / Jamaica National Grid" using operation method 9801
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (1SP)");
-                parameters.parameter("semi-major axis").setValue(6378206.4); // Clarke 1866
-                parameters.parameter("semi-minor axis").setValue(6356583.8);
+                parameters.parameter("semi_major").setValue(6378206.4); // Clarke 1866
+                parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin")    .setValue( 18.0);
                 parameters.parameter("Longitude of natural origin")   .setValue(-77.0);
                 parameters.parameter("Scale factor at natural origin").setValue(  1.0);
@@ -1022,8 +1060,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 14204: { // "NAD27 / Texas South Central" using operation method 9802
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP)");
-                parameters.parameter("semi-major axis").setValue(6378206.4); // Clarke 1866
-                parameters.parameter("semi-minor axis").setValue(6356583.8);
+                parameters.parameter("semi_major").setValue(6378206.4); // Clarke 1866
+                parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of 1st standard parallel").setValue(28 + 23.0/60); // 28°23'00"N
                 parameters.parameter("Latitude of 2nd standard parallel").setValue(30 + 17.0/60); // 30°17'00"N
                 parameters.parameter("Latitude of false origin")         .setValue(27 + 50.0/60); // 27°50'00"N
@@ -1034,8 +1072,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19902: { // "Belge 1972 / Belge Lambert 72" using operation method 9803
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Belgium)");
-                parameters.parameter("semi-major axis").setValue(6378388.0); // International 1924
-                parameters.parameter("semi-minor axis").setValue(6378388.0 * (1 - 1/297.0));
+                parameters.parameter("semi_major").setValue(6378388.0); // International 1924
+                parameters.parameter("semi_minor").setValue(6378388.0 * (1 - 1/297.0));
                 parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60);    // 49°50'00.000"N
                 parameters.parameter("Latitude of 2nd standard parallel").setValue(51 + 10.0/60);    // 51°10'00.000"N
                 parameters.parameter("Latitude of false origin")         .setValue(90.0);            // 90°00'00.000"N
@@ -1046,8 +1084,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19986: { // "Europe Equal Area 2001" using operation method 9820
                 parameters = factory.getDefaultParameters("Lambert Azimuthal Equal Area");
-                parameters.parameter("semi-major axis").setValue(6378137.0);
-                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572221));
+                parameters.parameter("semi_major").setValue(6378137.0);
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572221));
                 parameters.parameter("Latitude of natural origin") .setValue(52.0);
                 parameters.parameter("Longitude of natural origin").setValue(10.0);
                 parameters.parameter("False easting") .setValue(4321000.00);
@@ -1056,8 +1094,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 16061: { // "Universal Polar Stereographic North" using operation method 9810
                 parameters = factory.getDefaultParameters("Polar Stereographic (variant A)");
-                parameters.parameter("semi-major axis").setValue(6378137.0);  // WGS84
-                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("semi_major").setValue(6378137.0);  // WGS84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of natural origin").setValue(90.0);
                 parameters.parameter("Longitude of natural origin").setValue(0.0);
                 parameters.parameter("Scale factor at natural origin").setValue(0.994);
@@ -1067,8 +1105,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19993: { // "Australian Antarctic Polar Stereographic" using operation method 9829
                 parameters = factory.getDefaultParameters("Polar Stereographic (variant B)");
-                parameters.parameter("semi-major axis").setValue(6378137.0);  // WGS84
-                parameters.parameter("semi-minor axis").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("semi_major").setValue(6378137.0);  // WGS84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of standard parallel").setValue(-71.0);
                 parameters.parameter("Longitude of origin").setValue(70.0);
                 parameters.parameter("False easting") .setValue(6000000.00);
@@ -1077,8 +1115,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19914: { // "RD New" using operation method 9809
                 parameters = factory.getDefaultParameters("Oblique Stereographic");
-                parameters.parameter("semi-major axis").setValue(6377397.155); // Bessel 1841
-                parameters.parameter("semi-minor axis").setValue(6377397.155 * (1 - 1/299.15281));
+                parameters.parameter("semi_major").setValue(6377397.155); // Bessel 1841
+                parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.15281));
                 parameters.parameter("Latitude of natural origin").setValue(52 + ( 9 + 22.178/60)/60); // 52°09'22.178"N
                 parameters.parameter("Longitude of natural origin").setValue(5 + (23 + 15.500/60)/60); //  5°23'15.500"E
                 parameters.parameter("Scale factor at natural origin").setValue(0.9999079);
@@ -1088,8 +1126,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 9818: {  // (not an official EPSG code) using operation method 9818
                 parameters = factory.getDefaultParameters("Polyconic");
-                parameters.parameter("semi-major axis").setValue(6378206.4);
-                parameters.parameter("semi-minor axis").setValue(6356583.8);
+                parameters.parameter("semi_major").setValue(6378206.4);
+                parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin") .setValue(0.0);
                 parameters.parameter("Longitude of natural origin").setValue(0.0);
                 parameters.parameter("False easting") .setValue(0.0);
@@ -1098,8 +1136,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 19952: { // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
                 parameters = factory.getDefaultParameters("Krovak");
-                parameters.parameter("semi-major axis").setValue(6377397.155);  // Bessel
-                parameters.parameter("semi-minor axis").setValue(6377397.155 * (1 - 1/299.15281));
+                parameters.parameter("semi_major").setValue(6377397.155);  // Bessel
+                parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.15281));
                 parameters.parameter("Latitude of projection centre").setValue(49.5);  // 49°30'00"N
                 parameters.parameter("Longitude of origin").setValue(24 + 50.0/60);    // 24°30'00"E
                 parameters.parameter("Co-latitude of cone axis").setValue(30 + (17 + 17.3031/60)/60);
