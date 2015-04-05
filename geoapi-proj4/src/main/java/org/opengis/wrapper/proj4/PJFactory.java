@@ -86,19 +86,19 @@ public class PJFactory implements Factory {
      * <table class="ogc">
      *   <caption>Recognized properties</caption>
      *   <tr>
-     *     <th nowrap>Property name</th>
-     *     <th nowrap>Value type</th>
-     *     <th nowrap>Value given to</th>
+     *     <th>Property name</th>
+     *     <th>Value type</th>
+     *     <th>Value given to</th>
      *   </tr>
      *   <tr>
-     *     <td nowrap>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
-     *     <td nowrap>{@link Identifier} or {@link String}</td>
-     *     <td nowrap>{@link IdentifiedObject#getName()}</td>
+     *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
+     *     <td>{@link Identifier} or {@link String}</td>
+     *     <td>{@link IdentifiedObject#getName()}</td>
      *   </tr>
      *   <tr>
-     *     <td nowrap>{@value org.opengis.metadata.Identifier#CODESPACE_KEY}</td>
-     *     <td nowrap>{@link String}</td>
-     *     <td nowrap>{@link Identifier#getCodeSpace()} on the {@linkplain IdentifiedObject#getName name}</td>
+     *     <td>{@value org.opengis.metadata.Identifier#CODESPACE_KEY}</td>
+     *     <td>{@link String}</td>
+     *     <td>{@link Identifier#getCodeSpace()} on the {@linkplain IdentifiedObject#getName name}</td>
      *   </tr>
      * </table>
      *
@@ -421,15 +421,95 @@ public class PJFactory implements Factory {
             return crs;
         }
 
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public GeocentricCRS  createGeocentricCRS (Map<String,?> properties, GeodeticDatum datum, SphericalCS cs)                                                          throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public VerticalCRS    createVerticalCRS   (Map<String,?> properties, VerticalDatum datum, VerticalCS cs)                                                           throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public TemporalCRS    createTemporalCRS   (Map<String,?> properties, TemporalDatum datum, TimeCS cs)                                                               throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public ImageCRS       createImageCRS      (Map<String,?> properties, ImageDatum datum, AffineCS cs)                                                                throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public EngineeringCRS createEngineeringCRS(Map<String,?> properties, EngineeringDatum datum, CoordinateSystem cs)                                                  throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public DerivedCRS     createDerivedCRS    (Map<String,?> properties, CoordinateReferenceSystem baseCRS, Conversion conversionFromBase, CoordinateSystem derivedCS) throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public CompoundCRS    createCompoundCRS   (Map<String,?> properties, CoordinateReferenceSystem... elements)                                                        throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public CoordinateReferenceSystem createFromXML(String xml)                                                                                                         throws FactoryException {throw unsupportedOperation();}
-        /** Unconditionally throw an exception, since this functionality is not supported yet. */ @Override public CoordinateReferenceSystem createFromWKT(String wkt)                                                                                                         throws FactoryException {throw unsupportedOperation();}
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public GeocentricCRS createGeocentricCRS (Map<String,?> properties, GeodeticDatum datum, SphericalCS cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public VerticalCRS createVerticalCRS(Map<String,?> properties, VerticalDatum datum, VerticalCS cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public TemporalCRS createTemporalCRS(Map<String, ?> properties, TemporalDatum datum, TimeCS cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public ImageCRS createImageCRS(Map<String, ?> properties, ImageDatum datum, AffineCS cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public EngineeringCRS createEngineeringCRS(Map<String, ?> properties, EngineeringDatum datum, CoordinateSystem cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public DerivedCRS createDerivedCRS(Map<String, ?> properties, CoordinateReferenceSystem baseCRS, Conversion conversionFromBase, CoordinateSystem derivedCS) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public CompoundCRS createCompoundCRS(Map<String, ?> properties, CoordinateReferenceSystem... elements) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public CoordinateReferenceSystem createFromXML(String xml) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
+        public CoordinateReferenceSystem createFromWKT(String wkt) throws FactoryException {
+            throw unsupportedOperation();
+        }
     }
 
     /**
@@ -504,9 +584,9 @@ public class PJFactory implements Factory {
         }
 
         /**
-         * Unconditionally returns {@code null}, since this functionality is not supported yet.
-         * Note that {@code null} is not the same than an empty set, since the later would mean
-         * that there is no supported code.
+         * Returns the authority codes.
+         *
+         * @throws FactoryException if an error occurred while fetching the authority codes.
          */
         @Override
         public synchronized Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
@@ -519,6 +599,8 @@ public class PJFactory implements Factory {
         /**
          * Returns the name of the CRS identified by the given code. The default implementation
          * returns a non-null value only for a few common codes.
+         *
+         * @throws FactoryException if an error occurred while fetching the description.
          */
         @Override
         public InternationalString getDescriptionText(final String code) throws FactoryException {
@@ -594,16 +676,105 @@ public class PJFactory implements Factory {
             }
         }
 
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public GeographicCRS    createGeographicCRS (String code) throws FactoryException {return cast(GeographicCRS .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public GeocentricCRS    createGeocentricCRS (String code) throws FactoryException {return cast(GeocentricCRS .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public ProjectedCRS     createProjectedCRS  (String code) throws FactoryException {return cast(ProjectedCRS  .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public CompoundCRS      createCompoundCRS   (String code) throws FactoryException {return cast(CompoundCRS   .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public DerivedCRS       createDerivedCRS    (String code) throws FactoryException {return cast(DerivedCRS    .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public EngineeringCRS   createEngineeringCRS(String code) throws FactoryException {return cast(EngineeringCRS.class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public ImageCRS         createImageCRS      (String code) throws FactoryException {return cast(ImageCRS      .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public TemporalCRS      createTemporalCRS   (String code) throws FactoryException {return cast(TemporalCRS   .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result. */ @Override public VerticalCRS      createVerticalCRS   (String code) throws FactoryException {return cast(VerticalCRS   .class, code);}
-        /** Delegates to {@link #createCoordinateReferenceSystem(String)}. */                      @Override public IdentifiedObject createObject        (String code) throws FactoryException {return createCoordinateReferenceSystem(code);}
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public GeographicCRS createGeographicCRS(String code) throws FactoryException {
+            return cast(GeographicCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
+            return cast(GeocentricCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public ProjectedCRS createProjectedCRS(String code) throws FactoryException {
+            return cast(ProjectedCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public CompoundCRS createCompoundCRS(String code) throws FactoryException {
+            return cast(CompoundCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public DerivedCRS createDerivedCRS(String code) throws FactoryException {
+            return cast(DerivedCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {
+            return cast(EngineeringCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public ImageCRS createImageCRS(String code) throws FactoryException {
+            return cast(ImageCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public TemporalCRS createTemporalCRS(String code) throws FactoryException {
+            return cast(TemporalCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public VerticalCRS createVerticalCRS(String code) throws FactoryException {
+            return cast(VerticalCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public IdentifiedObject createObject(String code) throws FactoryException {
+            return createCoordinateReferenceSystem(code);
+        }
 
         /**
          * Invokes {@link #createCoordinateReferenceSystem(String)} and casts the result
@@ -707,6 +878,8 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public CoordinateOperation createConcatenatedOperation(Map<String,?> properties,
@@ -717,6 +890,8 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public Conversion createDefiningConversion(Map<String,?> properties,
@@ -727,15 +902,20 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
-        public OperationMethod createOperationMethod(Map<String,?> properties,
-                Integer sourceDimension, Integer targetDimension, ParameterDescriptorGroup parameters) throws FactoryException {
+        public OperationMethod createOperationMethod(Map<String,?> properties, Integer sourceDimension,
+                Integer targetDimension, ParameterDescriptorGroup parameters) throws FactoryException
+        {
             throw unsupportedOperation();
         }
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public OperationMethod getOperationMethod(String name) throws FactoryException {
@@ -809,6 +989,8 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
@@ -819,6 +1001,8 @@ public class PJFactory implements Factory {
 
         /**
          * Creates a math transform from the given Proj.4 parameters.
+         *
+         * @throws FactoryException if an error occurred while creating the transform.
          */
         @Override
         public MathTransform createParameterizedTransform(final ParameterValueGroup parameters) throws FactoryException {
@@ -890,6 +1074,8 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException {
@@ -898,6 +1084,8 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public MathTransform createFromXML(String xml) throws FactoryException {
@@ -906,6 +1094,8 @@ public class PJFactory implements Factory {
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException alway thrown.
          */
         @Override
         public MathTransform createFromWKT(String wkt) throws FactoryException {
