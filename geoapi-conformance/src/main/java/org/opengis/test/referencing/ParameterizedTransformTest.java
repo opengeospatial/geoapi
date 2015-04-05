@@ -268,8 +268,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates a math transform from the base CRS to the {@linkplain ProjectedCRS projected CRS}
-     * identified by the given EPSG code, and stores the result in the {@link #transform} field.
+     * Creates a math transform for the {@linkplain SingleOperation coordinate operation} identified by
+     * {@link SamplePoints#operation} and stores the result in the {@link #transform} field.
      * The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      *
@@ -290,65 +290,19 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       {@link MathTransform#transform MathTransform.transform(...)} method being tested.</p></li>
      * </ul>
      *
-     * Finally, run the test.
-     *
-     * @param  code The EPSG code of a target Projected CRS.
-     * @param  name The CRS name. May be used for formatting messages.
+     * @param  type Either {@code Projection.class} or {@code Transformation.class}.
      * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If a point can not be transformed.
      */
-    private void runProjectionTest(final int code, final String name)
-            throws FactoryException, TransformException
+    private void createMathTransform(final Class<? extends SingleOperation> type, final SamplePoints sample)
+            throws FactoryException
     {
-        description = name;
-        final SamplePoints sample = initialize(Projection.class, code);
-        verifyKnownSamplePoints(sample, ToleranceModifier.PROJECTION);
-        verifyInDomainOfValidity(sample.areaOfValidity, code);
-    }
-
-    /**
-     * Creates a math transform for a datum shift between WGS84 and the {@linkplain GeographicCRS
-     * geographic CRS} identified by the given EPSG code, and runs the tests. This method shall
-     * set the {@link #transform} and {@link #tolerance} fields in the same way than
-     * {@link #runProjectionTest(int, String)}.
-     *
-     * @param  code The EPSG code of a source Geographic CRS.
-     * @param  name The CRS name. May be used for formatting messages.
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If a point can not be transformed.
-     */
-    private void runDatumShiftTest(final int code, final String name)
-            throws FactoryException, TransformException
-    {
-        description = name;
-        final SamplePoints sample = initialize(Transformation.class, code);
-        verifyKnownSamplePoints(sample, ToleranceModifier.GEOGRAPHIC);
-        final Rectangle2D areaOfValidity = sample.areaOfValidity;
-        verifyInDomain(new double[] {
-            areaOfValidity.getMinX(),
-            areaOfValidity.getMinY(),
-            -1000
-        }, new double[] {
-            areaOfValidity.getMaxX(),
-            areaOfValidity.getMaxY(),
-            +1000
-        }, new int[] {
-            10, 10, 10
-        }, new Random(code));
-    }
-
-    /**
-     * Fetches the {@link MathTransform} for the given CRS code, and initializes the fields
-     * describing the test to be executed. This method does not run any test by itself.
-     */
-    private SamplePoints initialize(final Class<? extends SingleOperation> type, final int code) throws FactoryException {
-        assumeNotNull(mtFactory);
-        final SamplePoints sample = SamplePoints.getSamplePoints(code);
         if (parameters == null) {
+            assumeNotNull(mtFactory);
             parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
             validators.validate(parameters);
         }
         if (transform == null) {
+            assumeNotNull(mtFactory);
             try {
                 transform = mtFactory.createParameterizedTransform(parameters);
             } catch (NoSuchIdentifierException e) {
@@ -362,8 +316,36 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
                 throw e; // Will mark the test as "failed".
             }
             assertNotNull(description, transform);
+            validators.validate(transform);
         }
-        return sample;
+        /*
+         * Set the tolerance after we have set the transform,
+         * because we need to know the number of dimensions.
+         */
+        if (type == Projection.class) {
+            setTolerance(ToleranceModifier.PROJECTION);
+        } else if (type == Transformation.class) {
+            setTolerance(ToleranceModifier.GEOGRAPHIC);
+        } else {
+            throw new IllegalArgumentException("Illegal type: " + type);
+        }
+    }
+
+    /**
+     * Initializes the tolerance thresholds to their default values if the users did not
+     * specified his own thresholds.
+     */
+    final void setTolerance(final ToleranceModifier modifier) {
+        if (toleranceModifier == null) {
+            toleranceModifier = modifier;
+        }
+        if (!(tolerance >= TRANSFORM_TOLERANCE)) {      // !(a >= b) instead than (a < b) in order to catch NaN.
+            tolerance = TRANSFORM_TOLERANCE;
+        }
+        if (derivativeDeltas == null) {
+            derivativeDeltas = new double[transform.getSourceDimensions()];
+            Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * NAUTICAL_MILE));
+        }
     }
 
     /**
@@ -387,35 +369,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the transform using the sample points from some authoritative source.
-     *
-     * @param  modifier The tolerance modifier to use.
-     * @throws TransformException If the example point can not be transformed.
-     */
-    final void verifyKnownSamplePoints(final SamplePoints sample, final ToleranceModifier modifier)
-            throws TransformException
-    {
-        validators.validate(transform);
-        if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
-            tolerance = TRANSFORM_TOLERANCE;
-        }
-        if (toleranceModifier == null) {
-            toleranceModifier = modifier;
-        }
-        derivativeDeltas = new double[transform.getSourceDimensions()];
-        Arrays.fill(derivativeDeltas, DERIVATIVE_DELTA / (60 * NAUTICAL_MILE));
-        verifyTransform(sample.sourcePoints, sample.targetPoints);
-    }
-
-    /**
      * Tests the transform consistency using many random points inside the area of validity.
      *
-     * @param  seed The random seed. We recommend a constant value for each transform or CRS to be tested.
      * @throws TransformException If a point can not be transformed.
      */
-    final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity, final long seed)
-            throws TransformException
-    {
+    final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity) throws TransformException {
         verifyInDomain(new double[] {
             areaOfValidity.getMinX(),
             areaOfValidity.getMinY()
@@ -424,7 +382,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
             areaOfValidity.getMaxY()
         }, new int[] {
             50, 50
-        }, new Random(seed));
+        }, new Random());
     }
 
     /**
@@ -463,7 +421,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testMercator1SP() throws FactoryException, TransformException {
-        runProjectionTest(3002, "Makassar / NEIEZ");
+        description = "Makassar / NEIEZ";
+        final SamplePoints sample = SamplePoints.forCRS(3002);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -501,7 +463,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testMercator2SP() throws FactoryException, TransformException {
-        runProjectionTest(3388, "Pulkovo 1942 / Caspian Sea Mercator");
+        description = "Pulkovo 1942 / Caspian Sea Mercator";
+        final SamplePoints sample = SamplePoints.forCRS(3388);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -540,7 +506,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testPseudoMercator() throws FactoryException, TransformException {
-        runProjectionTest(3857, "WGS 84 / Pseudo-Mercator");
+        description = "WGS 84 / Pseudo-Mercator";
+        final SamplePoints sample = SamplePoints.forCRS(3857);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -577,7 +547,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testMiller() throws FactoryException, TransformException {
-        runProjectionTest(310642901, "IGNF:MILLER");
+        description = "IGNF:MILLER";
+        final SamplePoints sample = SamplePoints.forCRS(310642901);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -619,7 +593,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testHotineObliqueMercator() throws FactoryException, TransformException {
-        runProjectionTest(29873, "Timbalai 1948 / RSO Borneo (m)");
+        description = "Timbalai 1948 / RSO Borneo (m)";
+        final SamplePoints sample = SamplePoints.forCRS(29873);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -665,7 +643,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testTransverseMercator() throws FactoryException, TransformException {
-        runProjectionTest(27700, "OSGB 1936 / British National Grid");
+        description = "OSGB 1936 / British National Grid";
+        final SamplePoints sample = SamplePoints.forCRS(27700);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -705,7 +687,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testCassiniSoldner() throws FactoryException, TransformException {
-        runProjectionTest(2314, "Trinidad 1903 / Trinidad Grid");
+        description = "Trinidad 1903 / Trinidad Grid";
+        final SamplePoints sample = SamplePoints.forCRS(2314);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -745,7 +731,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertConicConformal1SP() throws FactoryException, TransformException {
-        runProjectionTest(24200, "JAD69 / Jamaica National Grid");
+        description = "JAD69 / Jamaica National Grid";
+        final SamplePoints sample = SamplePoints.forCRS(24200);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -787,7 +777,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertConicConformal2SP() throws FactoryException, TransformException {
-        runProjectionTest(32040, "NAD27 / Texas South Central");
+        description = "NAD27 / Texas South Central";
+        final SamplePoints sample = SamplePoints.forCRS(32040);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -827,7 +821,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertConicConformalBelgium() throws FactoryException, TransformException {
-        runProjectionTest(31300, "Belge 1972 / Belge Lambert 72");
+        description = "Belge 1972 / Belge Lambert 72";
+        final SamplePoints sample = SamplePoints.forCRS(31300);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -865,7 +863,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
-        runProjectionTest(3035, "ETRS89 / LAEA Europe");
+        description = "ETRS89 / LAEA Europe";
+        final SamplePoints sample = SamplePoints.forCRS(3035);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -905,7 +907,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testPolarStereographicA() throws FactoryException, TransformException {
-        runProjectionTest(5041, "WGS 84 / UPS North (E,N)");
+        description = "WGS 84 / UPS North (E,N)";
+        final SamplePoints sample = SamplePoints.forCRS(5041);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -944,7 +950,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testPolarStereographicB() throws FactoryException, TransformException {
-        runProjectionTest(3032, "Australian Antarctic Polar Stereographic");
+        description = "Australian Antarctic Polar Stereographic";
+        final SamplePoints sample = SamplePoints.forCRS(3032);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -983,7 +993,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testObliqueStereographic() throws FactoryException, TransformException {
-        runProjectionTest(28992, "Amersfoort / RD New");
+        description = "Amersfoort / RD New";
+        final SamplePoints sample = SamplePoints.forCRS(28992);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -1019,7 +1033,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     @Test
     public void testPolyconic() throws FactoryException, TransformException {
         tolerance = max(tolerance, 0.5); // The sample points are only accurate to 1 metre.
-        runProjectionTest(9818, "American Polyconic");
+        description = "American Polyconic";
+        final SamplePoints sample = SamplePoints.forCRS(9818);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -1059,7 +1077,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testKrovak() throws FactoryException, TransformException {
-        runProjectionTest(2065, "CRS S-JTSK (Ferro) / Krovak");
+        description = "CRS S-JTSK (Ferro) / Krovak";
+        final SamplePoints sample = SamplePoints.forCRS(2065);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
     /**
@@ -1098,7 +1120,22 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testAbridgedMolodensky() throws FactoryException, TransformException {
-        runDatumShiftTest(4230, "WGS84 to ED50");
+        description = "WGS84 to ED50";
+        final SamplePoints sample = SamplePoints.forCRS(4230);
+        createMathTransform(Transformation.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        final Rectangle2D areaOfValidity = sample.areaOfValidity;
+        verifyInDomain(new double[] {
+            areaOfValidity.getMinX(),
+            areaOfValidity.getMinY(),
+            -1000
+        }, new double[] {
+            areaOfValidity.getMaxX(),
+            areaOfValidity.getMaxY(),
+            +1000
+        }, new int[] {
+            10, 10, 10
+        }, new Random());
     }
 
     /**

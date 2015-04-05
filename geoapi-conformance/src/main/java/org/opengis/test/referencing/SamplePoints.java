@@ -108,7 +108,7 @@ final class SamplePoints {
      * @param  crs A code from the second column of {@link PseudoEpsgFactory#createParameters(int)}.
      * @return Sample points (never {@code null}).
      */
-    static SamplePoints getSamplePoints(final int crs) {
+    static SamplePoints forCRS(final int crs) {
         final double λ0;   // Longitude of natural origin
         final double φ0;   // Latitude of natural origin
         final double fe;   // False easting
