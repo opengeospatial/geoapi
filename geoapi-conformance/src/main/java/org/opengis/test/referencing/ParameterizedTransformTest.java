@@ -381,7 +381,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
             areaOfValidity.getMaxX(),
             areaOfValidity.getMaxY()
         }, new int[] {
-            50, 50
+            20, 20
         }, new Random());
     }
 
@@ -465,6 +465,116 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testMercator2SP() throws FactoryException, TransformException {
         description = "Pulkovo 1942 / Caspian Sea Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3388);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
+     * Tests the "<cite>Mercator (variant C)</cite>" (EPSG:1044) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are below.
+     * Note that this is similar to {@link #testMercator2SP()}, except that the
+     * <cite>"latitude of false origin"</cite> parameter is set to 42°N.</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                   <td nowrap>6378245.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td nowrap>6356863.018773047 m</td></tr>
+     * <tr><td>Latitude of 1st standard parallel</td> <td nowrap>42.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>       <td nowrap>51.0°</td></tr>
+     * <tr><td>Latitude of false origin</td>          <td nowrap>42.0°</td></tr>
+     * <tr><td>Easting at false origin</td>           <td nowrap>0.0 m</td></tr>
+     * <tr><td>Northing at false origin</td>          <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
+     * <tr align="right"><td>51°E<br>42°N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
+     * <tr align="right"><td>53°E<br>53°N</td> <td nowrap>165704.29 m<br>1351950.22 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testMercatorVariantC() throws FactoryException, TransformException {
+        description = "Pulkovo 1942 / Caspian Sea Mercator";
+        final SamplePoints sample = SamplePoints.forCRS(3388);
+        sample.sourcePoints[1] = 42;            // New latitude where we expect a northing of 0 m.
+        sample.targetPoints[3] = 1351950.22;    // New Northing value for 53°N.
+        /*
+         * Following is basically a copy-and-paste of PseudoEpsgFactory.createParameters(mtFactory, 3388)
+         * with a different projection ("variant C" instead of "variant B") and one more parameter value
+         * (the "Latitude of false origin").
+         */
+        assumeNotNull(mtFactory);
+        parameters = mtFactory.getDefaultParameters("Mercator (variant C)");
+        parameters.parameter("semi_major").setValue(6378245.0); // Krassowski 1940
+        parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
+        parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
+        parameters.parameter("Longitude of natural origin")      .setValue(51.0);
+        parameters.parameter("Latitude of false origin")         .setValue(42.0);
+        validators.validate(parameters);
+        /*
+         * Following is common to all tests in this class.
+         */
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
+     * Tests the "<cite>Mercator (Spherical)</cite>" (EPSG:1026) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are below.
+     * Note that the sample point is the same than for {@link #testPseudoMercator()},
+     * but with a different result in projected coordinates.</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                         <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                   <td nowrap>6371007.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                   <td nowrap>6371007.0 m</td></tr>
+     * <tr><td>Longitude of natural origin</td>       <td nowrap>0.0°</td></tr>
+     * <tr><td>False easting</td>                     <td nowrap>0.0 m</td></tr>
+     * <tr><td>False northing</td>                    <td nowrap>0.0 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
+     * <tr align="right"><td>0°E<br>0°N</td> <td nowrap>0.00 m<br>0.00 m</td></tr>
+     * <tr align="right"><td>100°20'00.000"W<br>24°22'54.433"N</td>
+     * <td nowrap>-11156569.90 m<br>2796869.94 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testMercatorSpherical() throws FactoryException, TransformException {
+        description = "World Spherical Mercator";
+        final SamplePoints sample = SamplePoints.forCRS(3857);
+        sample.targetPoints[2] = -11156569.90;    // New Easting value.
+        sample.targetPoints[3] =   2796869.94;    // New Northing value.
+        assumeNotNull(mtFactory);
+        parameters = mtFactory.getDefaultParameters("Mercator (Spherical)");
+        parameters.parameter("semi_major").setValue(6371007.0);
+        parameters.parameter("semi_minor").setValue(6371007.0);
+        validators.validate(parameters);
         createMathTransform(Projection.class, sample);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
