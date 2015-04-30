@@ -31,9 +31,11 @@
  */
 package org.opengis.feature;
 
+import java.lang.reflect.Method;    // For javadoc
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
 
 import static org.opengis.annotation.Obligation.*;
@@ -78,9 +80,42 @@ public interface Operation extends PropertyType {
     @UML(identifier="signature", obligation=MANDATORY, specification=ISO_19109)
     IdentifiedType getResult();
 
-    /*
-     * TODO: missing invoke method. A possibility is:
+    /**
+     * Executes the operation on the specified feature with the specified parameters.
+     * The {@code parameters} argument should be an instance created like below, where
+     * the text in italic shall be replaced by operation-specific text:
      *
-     * Object invoke(ParameterValueGroup).
+     * <blockquote><pre> ParameterValueGroup p = operation.getParameters().createValue();
+     * p.parameter(<i>"a parameter 1"</i>).setValue(<i>aValue1</i>);
+     * p.parameter(<i>"a parameter 2"</i>).setValue(<i>aValue2</i>);</pre></blockquote>
+     *
+     * The value returned by this method depends on the value returned by {@link #getResult()}:
+     * <ul>
+     *   <li>If {@code getResult()}} returns {@code null},
+     *       then this method should return {@code null}.</li>
+     *   <li>If {@code getResult()}} returns an instance of {@link AttributeType},
+     *       then this method shall return an instance of {@link Attribute}
+     *       and the {@code Attribute.getType() == getResult()} relation should hold.</li>
+     *   <li>If {@code getResult()}} returns an instance of {@link FeatureAssociationRole},
+     *       then this method shall return an instance of {@link FeatureAssociation}
+     *       and the {@code FeatureAssociation.getRole() == getResult()} relation should hold.</li>
+     * </ul>
+     *
+     * <div class="note"><b>Analogy:</b>
+     * if we compare {@code Operation} to {@link Method} in the Java language, then this method is equivalent
+     * to {@link Method#invoke(Object, Object...)}. The {@code Feature} argument is equivalent to {@code this}
+     * in the Java language, and may be {@code null} if the operation does not need a feature instance
+     * (like static methods in the Java language).</div>
+     *
+     * <div class="note"><b>API note:</b>
+     * the method signature is compatible with {@code BiFunction<Feature, ParameterValueGroup, Property>} from
+     * the {@link java.util.function} package.</div>
+     *
+     * @param  feature    The feature on which to execute the operation.
+     *                    Can be {@code null} if the operation does not need feature instance.
+     * @param  parameters The parameters to use for executing the operation.
+     *                    Can be {@code null} if the operation does not take any parameters.
+     * @return The operation result, or {@code null} if this operation does not produce any result.
      */
+    Property apply(Feature feature, ParameterValueGroup parameters);
 }
