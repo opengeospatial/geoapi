@@ -31,6 +31,7 @@
  */
 package org.opengis.referencing.operation;
 
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.crs.ProjectedCRS;
 
@@ -73,16 +74,22 @@ public interface Projection extends Conversion {
     /**
      * Returns the source CRS, which must be geographic or {@code null}.
      *
-     * @since 3.1
+     * <div class="warning"><b>Upcoming API change — specialization</b><br>
+     * The source CRS of a map projection is always {@link GeographicCRS}.
+     * This change may be applied in GeoAPI 4.0.
+     * </div>
      */
     @Override
-    GeographicCRS getSourceCRS();
+    CoordinateReferenceSystem getSourceCRS();
 
     /**
      * Returns the target CRS, which must be projected or {@code null}.
      *
-     * @since 3.1
+     * <div class="warning"><b>Upcoming API change — specialization</b><br>
+     * The target CRS of a map projection is always {@link ProjectedCRS}.
+     * This change may be applied in GeoAPI 4.0.
+     * </div>
      */
     @Override
-    ProjectedCRS getTargetCRS();
+    CoordinateReferenceSystem getTargetCRS();
 }
