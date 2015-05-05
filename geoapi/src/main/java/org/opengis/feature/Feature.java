@@ -68,7 +68,10 @@ public interface Feature {
     FeatureType getType();
 
     /**
-     * Returns the property (attribute, operation or association) of the given name.
+     * Returns the property (attribute, feature association or operation result) of the given name.
+     * If the property type is a parameterless {@link Operation}, then this method may return
+     * the result of {@linkplain Operation#apply executing} the operation on this feature,
+     * at implementation choice.
      *
      * <div class="note"><b>Tip:</b> This method returns the property <em>instance</em>.
      * If only the property <em>value</em> is desired, then {@link #getPropertyValue(String)} is preferred
@@ -85,7 +88,7 @@ public interface Feature {
     Property getProperty(final String name) throws IllegalArgumentException;
 
     /**
-     * Sets the property (attribute, operation or association).
+     * Sets the property (attribute or feature association).
      * The given property shall comply to the following conditions:
      *
      * <ul>

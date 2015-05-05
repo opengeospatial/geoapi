@@ -31,6 +31,9 @@
  */
 package org.opengis.referencing.operation;
 
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
+
 
 /**
  * A {@linkplain org.opengis.referencing.operation.Conversion conversion} transforming
@@ -67,4 +70,19 @@ package org.opengis.referencing.operation;
  * @see <a href="http://mathworld.wolfram.com/MapProjection.html">Map projections on MathWorld</a>
  */
 public interface Projection extends Conversion {
+    /**
+     * Returns the source CRS, which must be geographic or {@code null}.
+     *
+     * @since 3.1
+     */
+    @Override
+    GeographicCRS getSourceCRS();
+
+    /**
+     * Returns the target CRS, which must be projected or {@code null}.
+     *
+     * @since 3.1
+     */
+    @Override
+    ProjectedCRS getTargetCRS();
 }

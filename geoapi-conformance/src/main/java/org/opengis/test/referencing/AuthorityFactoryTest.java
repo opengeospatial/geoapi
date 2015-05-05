@@ -282,6 +282,8 @@ public strictfp class AuthorityFactoryTest extends TestCase {
      * </ul>
      *
      * @since 3.1
+     *
+     * @return The configuration of the test being run, or an empty map if none.
      */
     @Override
     public Configuration configuration() {
@@ -445,19 +447,20 @@ public strictfp class AuthorityFactoryTest extends TestCase {
             if (projection != null) {
                 test.description = getName(crs);
                 test.transform = projection;
+                validators.validate(projection);
                 /*
                  * Get the sample points and swap ordinate values if needed.
                  * Finally apply a unit conversion if the CRS doesn't use the usual units.
                  */
-                final SamplePoints sample = SamplePoints.getSamplePoints(code);
+                final SamplePoints sample = SamplePoints.forCRS(code);
                 if (primeMeridian != 0) sample.rotateLongitude(primeMeridian);
                 if (swapλφ) SamplePoints.swap(sample.sourcePoints);
                 if (swapxy) SamplePoints.swap(sample.targetPoints);
                 if (flipxy) SamplePoints.flip(sample.targetPoints);
-                test.toleranceModifier = swapλφ ? ToleranceModifier.PROJECTION_FROM_φλ : ToleranceModifier.PROJECTION;
+                test.setTolerance(swapλφ ? ToleranceModifier.PROJECTION_FROM_φλ : ToleranceModifier.PROJECTION);
                 if (toLinearUnit  != 1) test.applyUnitConversion(CalculationType.DIRECT_TRANSFORM,  sample.targetPoints, toLinearUnit);
                 if (toAngularUnit != 1) test.applyUnitConversion(CalculationType.INVERSE_TRANSFORM, sample.sourcePoints, toAngularUnit);
-                test.verifyKnownSamplePoints(sample, ToleranceModifier.PROJECTION);
+                test.verifyTransform(sample.sourcePoints, sample.targetPoints);
                 /*
                  * Tests random points in every domains of validity declared in the CRS.
                  * If the CRS does not declare any domain of validity, then we will use
@@ -481,14 +484,14 @@ public strictfp class AuthorityFactoryTest extends TestCase {
                             φmax = bbox.getNorthBoundLatitude();
                             setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
                             assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
-                            test.verifyInDomainOfValidity(areaOfValidity, code);
+                            test.verifyInDomainOfValidity(areaOfValidity);
                             tested = true;
                         }
                     }
                 }
                 if (!tested) {
                     setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
-                    test.verifyInDomainOfValidity(areaOfValidity, code);
+                    test.verifyInDomainOfValidity(areaOfValidity);
                 }
             }
         }

@@ -61,6 +61,11 @@ public interface GeneralDerivedCRS extends SingleCRS {
     /**
      * Returns the base coordinate reference system.
      *
+     * <div class="warning"><b>Upcoming API change — specialization</b><br>
+     * According ISO 19111, the return type should be {@link SingleCRS}.
+     * This change may be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @return The base coordinate reference system.
      */
     @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)

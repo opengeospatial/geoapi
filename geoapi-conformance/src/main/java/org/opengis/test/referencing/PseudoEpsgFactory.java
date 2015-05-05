@@ -351,6 +351,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
+     *   <tr><td>6284</td> <td>Pulkovo 1942</td></tr>
      * </table>
      *
      * @param  code Value allocated by authority.
@@ -365,6 +366,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int id = parseCode(code);
         switch (id) {
             case 6326: name="World Geodetic System 1984"; ellipsoid=7030; primeMeridian=8901; break;
+            case 6284: name="Pulkovo 1942";               ellipsoid=7024; primeMeridian=8901; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
         assumeNotNull(datumFactory);
@@ -386,6 +388,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>7011</td> <td>Clarke 1880 (IGN)</td></tr>
      *   <tr><td>7019</td> <td>GRS 1980</td></tr>
      *   <tr><td>7022</td> <td>International 1924</td></tr>
+     *   <tr><td>7024</td> <td>Krassowsky 1940</td></tr>
      *   <tr><td>7030</td> <td>WGS 84</td></tr>
      * </table>
      *
@@ -406,6 +409,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 7019: name="GRS 1980";           semiMajorAxis=6378137;     inverseFlattening=298.2572221;   break;
             case 7001: name="Airy 1830";          semiMajorAxis=6377563.396; inverseFlattening=299.3249646;   break;
             case 7004: name="Bessel 1841";        semiMajorAxis=6377397.155; inverseFlattening=299.1528128;   break;
+            case 7024: name="Krassowsky 1940";    semiMajorAxis=6378245;     inverseFlattening=298.3;         break;
             case 7022: name="International 1924"; semiMajorAxis=6378388;     inverseFlattening=297;           break;
             case 7011: name="Clarke 1880 (IGN)";  semiMajorAxis=6378249.2;   semiMinorAxis=6356515;           break;
             default:   throw noSuchAuthorityCode(id, code);
@@ -829,6 +833,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
+     *   <tr><td>4284</td> <td>Pulkovo 1942</td></tr>
      * </table>
      *
      * @param  code Value allocated by authority.
@@ -842,7 +847,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final int coordinateSystem;
         final int id = parseCode(code);
         switch (id) {
-            case 4326: name="WGS 84"; datum=6326; coordinateSystem=6422; break;
+            case 4326: name="WGS 84";       datum=6326; coordinateSystem=6422; break;
+            case 4284: name="Pulkovo 1942"; datum=6284; coordinateSystem=6422; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
         assumeNotNull(crsFactory);

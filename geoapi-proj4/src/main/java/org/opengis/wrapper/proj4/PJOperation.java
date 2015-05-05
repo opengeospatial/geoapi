@@ -22,6 +22,8 @@ import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.OperationMethod;
@@ -287,7 +289,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
      * A specialization of {@link PJOperation} for map projections.
      */
     static final class Projection extends PJOperation implements org.opengis.referencing.operation.Projection {
-        Projection(final ReferenceIdentifier name, final PJCRS source, final PJCRS target) {
+        Projection(final ReferenceIdentifier name, final PJCRS.Geographic source, final PJCRS.Projected target) {
             super(name, source, target);
         }
 
@@ -297,6 +299,22 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
         @Override
         public String getOperationVersion() {
             return null;
+        }
+
+        /**
+         * Returns the source CRS, which must be geographic or {@code null}.
+         */
+        @Override
+        public final GeographicCRS getSourceCRS() {
+            return (GeographicCRS) super.getSourceCRS();
+        }
+
+        /**
+         * Returns the target CRS, which must be projected or {@code null}.
+         */
+        @Override
+        public final ProjectedCRS getTargetCRS() {
+            return (ProjectedCRS) super.getTargetCRS();
         }
     }
 }
