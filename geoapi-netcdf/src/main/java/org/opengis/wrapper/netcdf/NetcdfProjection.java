@@ -36,7 +36,8 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
@@ -69,7 +70,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * @see #getSourceCRS()
      * @see #getSourceDimensions()
      */
-    private final CoordinateReferenceSystem sourceCRS;
+    private final GeographicCRS sourceCRS;
 
     /**
      * The target CRS, which determine the number of target dimensions.
@@ -77,7 +78,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * @see #getTargetCRS()
      * @see #getTargetDimensions()
      */
-    private final CoordinateReferenceSystem targetCRS;
+    private final ProjectedCRS targetCRS;
 
     /**
      * The operation method that provider this projection instance, or {@code null} if
@@ -109,8 +110,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * @param targetCRS  The target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
      */
     public NetcdfProjection(final Projection projection,
-            final CoordinateReferenceSystem sourceCRS,
-            final CoordinateReferenceSystem targetCRS)
+            final GeographicCRS sourceCRS,
+            final ProjectedCRS targetCRS)
     {
         this(projection, null, sourceCRS, targetCRS);
     }
@@ -120,8 +121,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      */
     NetcdfProjection(final Projection projection,
                      final ProjectionProvider<?> provider,
-                     final CoordinateReferenceSystem sourceCRS,
-                     final CoordinateReferenceSystem targetCRS)
+                     final GeographicCRS sourceCRS,
+                     final ProjectedCRS targetCRS)
     {
         Objects.requireNonNull(projection);
         this.sourceCRS  = sourceCRS;
@@ -135,8 +136,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Creates a new wrapper as the inverse of the given projection.
      */
     private NetcdfProjection(final NetcdfProjection other) {
-        sourceCRS  =  other.targetCRS;
-        targetCRS  =  other.sourceCRS;
+        sourceCRS  =  null;
+        targetCRS  =  null;
         provider   =  other.provider;
         projection =  other.projection;
         isInverse  = !other.isInverse;
@@ -181,7 +182,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * @return The source CRS, or {@code null} if not available.
      */
     @Override
-    public CoordinateReferenceSystem getSourceCRS() {
+    public GeographicCRS getSourceCRS() {
         return sourceCRS;
     }
 
@@ -191,7 +192,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * @return The target CRS, or {@code null} if not available.
      */
     @Override
-    public CoordinateReferenceSystem getTargetCRS() {
+    public ProjectedCRS getTargetCRS() {
         return targetCRS;
     }
 

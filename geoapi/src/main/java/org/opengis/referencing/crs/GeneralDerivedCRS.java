@@ -64,7 +64,7 @@ public interface GeneralDerivedCRS extends SingleCRS {
      * @return The base coordinate reference system.
      */
     @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
-    CoordinateReferenceSystem getBaseCRS();
+    SingleCRS getBaseCRS();
 
     /**
      * Returns the conversion from the {@linkplain #getBaseCRS() base CRS} to this CRS.

@@ -108,9 +108,8 @@ public interface CoordinateOperation extends IdentifiedObject {
     String SCOPE_KEY = "scope";
 
     /**
-     * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation
-     * transformations} only. {@linkplain Conversion Conversions} may have a source CRS that
-     * is not specified here, but through
+     * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation transformations} only.
+     * {@linkplain Conversion Conversions} may have a source CRS that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
      *
      * @return The source CRS, or {@code null} if not available.
@@ -122,9 +121,8 @@ public interface CoordinateOperation extends IdentifiedObject {
     CoordinateReferenceSystem getSourceCRS();
 
     /**
-     * Returns the target CRS. The target CRS is mandatory for {@linkplain Transformation
-     * transformations} only. {@linkplain Conversion Conversions} may have a target CRS
-     * that is not specified here, but through
+     * Returns the target CRS. The target CRS is mandatory for {@linkplain Transformation transformations} only.
+     * {@linkplain Conversion Conversions} may have a target CRS that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
      * @return The target CRS, or {@code null} if not available.

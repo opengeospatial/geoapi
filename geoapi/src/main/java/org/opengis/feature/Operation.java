@@ -91,12 +91,12 @@ public interface Operation extends PropertyType {
      *
      * The value returned by this method depends on the value returned by {@link #getResult()}:
      * <ul>
-     *   <li>If {@code getResult()}} returns {@code null},
+     *   <li>If {@code getResult()} returns {@code null},
      *       then this method should return {@code null}.</li>
-     *   <li>If {@code getResult()}} returns an instance of {@link AttributeType},
+     *   <li>If {@code getResult()} returns an instance of {@link AttributeType},
      *       then this method shall return an instance of {@link Attribute}
      *       and the {@code Attribute.getType() == getResult()} relation should hold.</li>
-     *   <li>If {@code getResult()}} returns an instance of {@link FeatureAssociationRole},
+     *   <li>If {@code getResult()} returns an instance of {@link FeatureAssociationRole},
      *       then this method shall return an instance of {@link FeatureAssociation}
      *       and the {@code FeatureAssociation.getRole() == getResult()} relation should hold.</li>
      * </ul>
