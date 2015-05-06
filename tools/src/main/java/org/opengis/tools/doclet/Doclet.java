@@ -60,7 +60,6 @@ import com.sun.tools.doclets.formats.html.HtmlDoclet;
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1
  * @version 3.1
- * @module
  */
 public final class Doclet extends HtmlDoclet {
     /**

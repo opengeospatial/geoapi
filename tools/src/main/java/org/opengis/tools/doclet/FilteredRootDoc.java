@@ -48,7 +48,6 @@ import com.sun.javadoc.SourcePosition;
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1
  * @version 3.1
- * @module
  */
 final class FilteredRootDoc implements RootDoc {
     /**

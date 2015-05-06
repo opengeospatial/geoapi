@@ -200,6 +200,11 @@ public interface CRSFactory extends ObjectFactory {
      * different than {@link #createProjectedCRS createProjectedCRS(…)} because transforms other than
      * <cite>cartographic projections</cite> are not standardized.</p>
      *
+     * <div class="warning"><b>Upcoming API change — specialization</b><br>
+     * According ISO 19111, the {@code baseCRS} type should be {@link SingleCRS}.
+     * This change may be applied in GeoAPI 4.0.
+     * </div>
+     *
      * @param  properties Name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  baseCRS Coordinate reference system to base the projection on. The number of axes

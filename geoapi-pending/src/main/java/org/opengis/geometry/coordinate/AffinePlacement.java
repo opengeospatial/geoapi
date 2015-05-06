@@ -59,8 +59,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  *
- * @navassoc 1 - - Position
- *
  * @todo Refactor as an {@code org.opengis.referencing.operation.AffineTransform} interface?
  */
 @UML(identifier="GM_AffinePlacement", specification=ISO_19107)

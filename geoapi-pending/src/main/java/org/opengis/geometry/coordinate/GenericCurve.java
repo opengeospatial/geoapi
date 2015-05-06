@@ -50,12 +50,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Axel Francois (LSIS/Geomatys)
  * @version 3.1
  * @since   1.0
- *
- * @navassoc - - - DirectPosition
- * @navassoc 1 - - ParamForPoint
- * @navassoc 1 - - LineString
- * @navassoc 1 - - PointArray
- * @navassoc 1 - - CurveBoundary
  */
 @UML(identifier="GM_GenericCurve", specification=ISO_19107)
 public interface GenericCurve {
