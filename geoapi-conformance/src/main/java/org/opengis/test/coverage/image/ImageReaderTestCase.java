@@ -449,14 +449,16 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * The pixel values for each image resulting from the above read operations are
      * compared with the corresponding pixel values of the complete image.
      *
-     * {@note In the spirit of JUnit, this test should have been splitted in smaller test cases:
+     * <div class="note"><b>Note:</b>
+     * in the spirit of JUnit, this test should have been splitted in smaller test cases:
      * one for sub-regions, one for sub-samplings, <i>etc</i>. However in this particular case,
      * consolidation of those tests in a single method provides the following benefits:
      * <ul>
      *   <li>The potentially large complete image is read only once.</li>
      *   <li>If the tests for subregions or subsamplings fails, avoid the test mixing both.</li>
      *   <li>Less methods to override if the implementor want to provide his own test.</li>
-     * </ul>}
+     * </ul>
+     * </div>
      *
      * @throws IOException If an error occurred while reading the image.
      */

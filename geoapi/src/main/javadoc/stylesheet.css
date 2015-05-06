@@ -112,3 +112,7 @@ div.warning:before {
   left:     -15px;
   content:  url("warning.png");
 }
+
+div.warning p {
+  padding-left: 70px;
+}

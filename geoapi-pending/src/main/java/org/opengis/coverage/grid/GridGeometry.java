@@ -64,10 +64,11 @@ public interface GridGeometry {
      * coordinate of 0 and maximum of 512, with 511 as the {@linkplain GridEnvelope#getHigh() highest}
      * valid index.
      *
-     * {@note The attribute name in the OGC 01-004 specification was "<code>gridRange</code>", while
-     *        the ISO 19123 specification uses "<code>extent</code>" for similar information. This
-     *        interface uses the ISO name both for consistency with ISO interfaces, and because the
-     *        <cite>range</cite> term is already used by ISO 19123 for a different meaning.}
+     * <div class="note"><b>Note:</b>
+     * the attribute name in the OGC 01-004 specification was "<code>gridRange</code>", while
+     * the ISO 19123 specification uses "<code>extent</code>" for similar information. This
+     * interface uses the ISO name both for consistency with ISO interfaces, and because the
+     * <cite>range</cite> term is already used by ISO 19123 for a different meaning.</div>
      *
      * @return The valid domain of a grid coverage.
      *
