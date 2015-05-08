@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system associated with a geodetic datum.
+ * A 2- or 3-dimensional coordinate reference system associated with a geodetic datum.
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS},

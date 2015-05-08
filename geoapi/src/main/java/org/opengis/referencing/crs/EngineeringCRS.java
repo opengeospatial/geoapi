@@ -41,7 +41,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A contextually local coordinate reference system. It can be divided into two broad categories:
+ * A 1-, 2- or 3-dimensional contextually local coordinate reference system.
+ * It can be divided into two broad categories:
  *
  * <ul>
  *   <li>earth-fixed systems applied to engineering activities on or near the surface of the earth;</li>

@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1D coordinate reference system used for the recording of time.
+ * A 1-dimensional coordinate reference system used for the recording of time.
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.TimeCS}.</p>

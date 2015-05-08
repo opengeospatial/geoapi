@@ -41,9 +41,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides
- * an accurate representation of the geometry of geographic features for a large portion of the
- * earth's surface.
+ * A 2- or 3-dimensional coordinate reference system based on an ellipsoidal approximation of the geoid.
+ * This provides an accurate representation of the geometry of geographic features for a large
+ * portion of the earth's surface.
  *
  * <p>A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
  * on a curved surface. It is impossible to represent such geometry in a Euclidean plane without

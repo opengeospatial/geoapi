@@ -43,8 +43,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 3D coordinate reference system with the origin at the approximate centre of mass of the earth.
- * A geocentric CRS deals with the earth's curvature by taking a 3D spatial view, which obviates
+ * A 3-dimensional coordinate reference system with the origin at the approximate centre of mass of the earth.
+ * A geocentric CRS deals with the earth's curvature by taking a 3-dimensional spatial view, which obviates
  * the need to model the earth's curvature.
  *
  * <p>This type of CRS can be used with coordinate systems of type
