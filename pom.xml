@@ -330,50 +330,55 @@
         </configuration>
       </plugin>
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>jar</goal>
-                        <goal>test-jar</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <archive>
-                    <manifest>
-                        <addClasspath>true</addClasspath>
-                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                    </manifest>
-                    <manifestEntries>
-                        <Specification-Title>GeoAPI</Specification-Title>
-                        <Specification-Version>${project.version}</Specification-Version>
-                        <Specification-Vendor>${project.organization.name}</Specification-Vendor>
-                        <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
-                        <Implementation-URL>http://www.geoapi.org</Implementation-URL>
-                    </manifestEntries>
-                </archive>
-            </configuration>
-        </plugin>
 
-        <plugin>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>maven-bundle-plugin</artifactId>
-            <extensions>true</extensions>
-            <configuration>
-                <instructions>
-                    <Bundle-Name>${project.groupId}.${project.artifactId}</Bundle-Name>
-                    <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
-                    <Specification-Title>GeoAPI</Specification-Title>
-                    <Specification-Version>${project.version}</Specification-Version>
-                    <Specification-Vendor>${project.organization.name}</Specification-Vendor>
-                    <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
-                    <Implementation-URL>http://www.geoapi.org</Implementation-URL>
-                </instructions>
-            </configuration>
-        </plugin>
+
+      <!-- ====================================================
+               JAR packaging (standard tools and OSGi)
+           ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+            <manifestEntries>
+              <Specification-Title>GeoAPI</Specification-Title>
+              <Specification-Version>${project.version}</Specification-Version>
+              <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+              <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
+              <Implementation-URL>http://www.geoapi.org</Implementation-URL>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.groupId}.${project.artifactId}</Bundle-Name>
+            <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
+            <Specification-Title>GeoAPI</Specification-Title>
+            <Specification-Version>${project.version}</Specification-Version>
+            <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+            <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
+            <Implementation-URL>http://www.geoapi.org</Implementation-URL>
+          </instructions>
+        </configuration>
+      </plugin>
 
 
       <!-- =======================================================
