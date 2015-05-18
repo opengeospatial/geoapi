@@ -180,8 +180,8 @@ public strictfp class ObjectFactoryTest extends TestCase {
     }
 
     /**
-     * Tests the creation of the WGS84 {@linkplain CoordinateReferenceSystem CRS}, and verifies
-     * that the axes are in the given (<var>longitude</var>, <var>latitude</var>) order.
+     * Tests the creation of the WGS84 {@linkplain CoordinateReferenceSystem CRS} with ellipsoidal height, and
+     * verifies that the axes are in the given (<var>latitude</var>, <var>longitude</var>, <var>height</var>) order.
      *
      * @throws FactoryException if a factory fails to create a referencing object.
      */
@@ -267,9 +267,23 @@ public strictfp class ObjectFactoryTest extends TestCase {
      * Tests the creation of a projected CRS with vertical height.
      *
      * @throws FactoryException if a factory fails to create a referencing object.
+     *
+     * @deprecated Renamed {@link #testProjectedWithGeoidalHeight()} for making clearer that this is not
+     *             a projected CRS associated to a 3D coordinate system.
      */
     @Test
+    @Deprecated
     public void testProjected3D() throws FactoryException {
+        testProjectedWithGeoidalHeight();
+    }
+
+    /**
+     * Tests the creation of a compound CRS made of a projected CRS with a gravity-related height.
+     *
+     * @throws FactoryException if a factory fails to create a referencing object.
+     */
+    @Test
+    public void testProjectedWithGeoidalHeight() throws FactoryException {
         final CoordinateSystemAxis axisN, axisE, axisH, axisφ, axisλ;
 
         final EllipsoidalCS   baseCS;
