@@ -35,7 +35,7 @@ package org.opengis.coverage.grid.quadrilateral;
 /**
  * Proposed extension of ISO {@link org.opengis.coverage.grid.GridCoordinates}.
  *
- * @issue http://jira.codehaus.org/browse/GEO-82
+ * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
  *
  * @author  Alexander Petkov
  */

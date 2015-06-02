@@ -68,7 +68,7 @@ public interface CompositeSolid extends Composite, Solid {
      * @return The set of solids in this composite.
      *
      * @see Solid#getComposite
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)

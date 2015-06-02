@@ -101,7 +101,7 @@ public interface Solid extends Primitive {
     /**
      * Returns always {@code null}, since solids have no proxy.
      *
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Oriented")
     @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)

@@ -143,7 +143,7 @@ public interface Primitive extends Geometry {
      *         not available or not implemented that way.
      *
      * @see Composite#getGenerators
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Composition")
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
@@ -164,7 +164,7 @@ public interface Primitive extends Geometry {
      * @return The orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Oriented")
     @UML(identifier="proxy", obligation=CONDITIONAL, specification=ISO_19107)

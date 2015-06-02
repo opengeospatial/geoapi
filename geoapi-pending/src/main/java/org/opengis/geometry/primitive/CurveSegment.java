@@ -68,7 +68,7 @@ public interface CurveSegment extends GenericCurve {
      *
      * @see Curve#getSegments
      * @see SurfacePatch#getSurface
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Segmentation")
     @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)

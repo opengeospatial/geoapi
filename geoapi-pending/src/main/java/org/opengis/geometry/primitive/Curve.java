@@ -96,7 +96,7 @@ public interface Curve extends OrientableCurve, GenericCurve {
      *
      * @see CurveSegment#getCurve
      * @see Surface#getPatches
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Segmentation")
     @UML(identifier="segment", obligation=MANDATORY, specification=ISO_19107)
@@ -108,7 +108,7 @@ public interface Curve extends OrientableCurve, GenericCurve {
      * @return The orientable curves as an array of length 2.
      *
      * @see OrientableCurve#getPrimitive
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Oriented")
     @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)

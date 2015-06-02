@@ -69,7 +69,7 @@ public interface CompositeCurve extends Composite, OrientableCurve {
      * @return The list of orientable curves in this composite.
      *
      * @see OrientableCurve#getComposite
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)

@@ -50,7 +50,7 @@ import static org.opengis.annotation.Obligation.*;
  *
  * @todo This interface is defined in the ISO 19107 draft. But maybe we should consider retrofitting
  *       it in the GeoAPI <code>org.opengis.referencing.cs.CoordinateSystem</code> interface instead.
- *       See <a href="http://jira.codehaus.org/browse/GEO-202">GEO-202</a>.
+ *       See <a href="https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-202">GEO-202</a>.
  */
 @Draft
 @UML(identifier="GM_CoordinateSystem", specification=ISO_19107)

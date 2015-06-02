@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   1.0
  *
- * @issue http://jira.codehaus.org/browse/GEO-87
+ * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-87
  */
 @Classifier(Stereotype.UNION)
 @UML(identifier="GM_Position", specification=ISO_19107)
