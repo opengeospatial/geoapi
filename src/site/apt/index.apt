@@ -55,7 +55,7 @@ GeoAPI
 
     * The code repository is hosted in the {{{https://github.com/opengeospatial/geoapi}OGC group of projects}}.
 
-    * The project uses a {{{http://jira.codehaus.org/browse/GEO}JIRA task tracker}}.
+    * The project uses a {{{https://osgeo-org.atlassian.net/projects/GEO/issues}JIRA task tracker}}.
 
     * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Member/GeoAPI}OGC wiki}}
       for the {{{https://portal.opengeospatial.org/?m=projects&a=view&project_id=294}Standard

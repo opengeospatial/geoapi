@@ -66,7 +66,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @todo This interface is defined in the ISO 19107 draft. But maybe we should consider retrofitting
  *       it in the GeoAPI <code>org.opengis.referencing.operation.MathTransform</code> interface instead.
- *       See <a href="http://jira.codehaus.org/browse/GEO-202">GEO-203</a>.
+ *       See <a href="https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-202">GEO-203</a>.
  */
 @Draft
 @UML(identifier="GM_Parameterization", specification=ISO_19107)

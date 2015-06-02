@@ -67,7 +67,7 @@ public interface OrientableCurve extends OrientablePrimitive {
      *         not available or not implemented that way.
      *
      * @see Curve#getProxy
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Oriented")
     @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
@@ -82,7 +82,7 @@ public interface OrientableCurve extends OrientablePrimitive {
      *         not available or not implemented that way.
      *
      * @see CompositeCurve#getGenerators
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Composition")
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)

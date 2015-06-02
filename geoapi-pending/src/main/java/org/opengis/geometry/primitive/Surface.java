@@ -79,7 +79,7 @@ public interface Surface extends OrientableSurface, GenericSurface {
      *
      * @see SurfacePatch#getSurface
      * @see Curve#getSegments
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Segmentation")
     @UML(identifier="patch", obligation=MANDATORY, specification=ISO_19107)
@@ -91,7 +91,7 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * @return The orientable surfaces as an array of length 2.
      *
      * @see OrientableSurface#getPrimitive
-     * @issue http://jira.codehaus.org/browse/GEO-63
+     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @Association("Oriented")
     @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)

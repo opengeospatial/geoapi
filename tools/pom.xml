@@ -39,7 +39,7 @@
     </profile>
 
     <!-- Following is a copy of the above profile with only the Java vendor name changed.
-         This copy will not be needed anymore if http://jira.codehaus.org/browse/MNG-3328
+         This copy will not be needed anymore if https://issues.apache.org/jira/browse/MNG-3328
          get fixed. -->
     <profile>
       <id>jdk6-tools.jar</id>

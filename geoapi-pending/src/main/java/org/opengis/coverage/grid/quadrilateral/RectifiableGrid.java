@@ -48,7 +48,7 @@ import org.opengis.geometry.DirectPosition;
  * only supply the {@link Conversion} object (stored in the inherited {@code operation} attribute)
  * to produce a functional coordinate conversion object.
  *
- * @issue http://jira.codehaus.org/browse/GEO-82
+ * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
  *
  * @author  Alexander Petkov
  */
