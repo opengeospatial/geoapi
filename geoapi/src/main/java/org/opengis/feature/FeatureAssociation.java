@@ -70,12 +70,12 @@ public interface FeatureAssociation extends Property {
      * features is restricted to 1 or 0.
      *
      * @return The associated feature (may be {@code null}).
-     * @throws IllegalStateException if this association contains more than one value.
+     * @throws MultiValuedPropertyException if this association contains more than one value.
      *
      * @see Feature#getPropertyValue(String)
      */
     @Override
-    Feature getValue();
+    Feature getValue() throws MultiValuedPropertyException;
 
     /**
      * Sets the associated feature.
@@ -87,12 +87,12 @@ public interface FeatureAssociation extends Property {
      * Implementations should document their validation process.</div>
      *
      * @param  value The new value, or {@code null}.
-     * @throws IllegalArgumentException if this method verifies argument validity and the given value
+     * @throws InvalidPropertyValueException if this method verifies argument validity and the given value
      *         does not met the association constraints.
      *
      * @see Feature#setPropertyValue(String, Object)
      */
-    void setValue(Feature value) throws IllegalArgumentException;
+    void setValue(Feature value) throws InvalidPropertyValueException;
 
     /**
      * Returns all features, or an empty collection if none.
@@ -122,8 +122,8 @@ public interface FeatureAssociation extends Property {
      * Implementations should document their validation process.</div>
      *
      * @param  values The new values.
-     * @throws IllegalArgumentException if this method verifies argument validity and the given value
-     *         does not met the association constraints.
+     * @throws InvalidPropertyValueException if this method verifies argument validity and the given values
+     *         do not met the association constraints.
      */
-    void setValues(Collection<? extends Feature> values) throws IllegalArgumentException;
+    void setValues(Collection<? extends Feature> values) throws InvalidPropertyValueException;
 }

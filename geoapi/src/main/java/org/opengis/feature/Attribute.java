@@ -45,7 +45,7 @@ import org.opengis.util.GenericName;
  *   <li>A value, which may be a singleton ([0 … 1] cardinality) or multi-valued ([0 … ∞] cardinality).</li>
  * </ul>
  *
- * <div class="note"><b>Analogy:</b>
+ * <div class="note"><b>Analogy with Java language:</b>
  * an attribute is similar to a "field" in a Java object. A field also brings together a field name, value and type.
  * However attributes are limited to fields of primitive types or arrays of primitive types.
  * For a field of other Java type, use {@link FeatureAssociation} instead.
@@ -86,12 +86,12 @@ public interface Attribute<V> extends Property {
      * of attribute values is restricted to 1 or 0.
      *
      * @return The attribute value (may be {@code null}).
-     * @throws IllegalStateException if this attribute contains more than one value.
+     * @throws MultiValuedPropertyException if this attribute contains more than one value.
      *
      * @see Feature#getPropertyValue(String)
      */
     @Override
-    V getValue() throws IllegalStateException;
+    V getValue() throws MultiValuedPropertyException;
 
     /**
      * Sets the attribute value. All previous values are replaced by the given singleton.
@@ -103,12 +103,12 @@ public interface Attribute<V> extends Property {
      * Implementations should document their validation process.</div>
      *
      * @param  value The new value, or {@code null} for removing all values from this attribute.
-     * @throws IllegalArgumentException if this method verifies argument validity and the given value
+     * @throws InvalidPropertyValueException if this method verifies argument validity and the given value
      *         does not met the attribute constraints.
      *
      * @see Feature#setPropertyValue(String, Object)
      */
-    void setValue(V value) throws IllegalArgumentException;
+    void setValue(V value) throws InvalidPropertyValueException;
 
     /**
      * Returns all attribute values, or an empty collection if none.
@@ -138,10 +138,10 @@ public interface Attribute<V> extends Property {
      * Implementations should document their validation process.</div>
      *
      * @param  values The new values.
-     * @throws IllegalArgumentException if this method verifies argument validity and the given value
-     *         does not met the attribute constraints.
+     * @throws InvalidPropertyValueException if this method verifies argument validity and the given values
+     *         do not met the attribute constraints.
      */
-    void setValues(Collection<? extends V> values) throws IllegalArgumentException;
+    void setValues(Collection<? extends V> values) throws InvalidPropertyValueException;
 
     /**
      * Other attributes that describes this attribute. For example if this attribute carries a measurement,
