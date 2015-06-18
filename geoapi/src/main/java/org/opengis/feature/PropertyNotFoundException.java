@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2015 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,56 +29,47 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.util;
-
-import org.opengis.metadata.Identifier;
-import org.opengis.parameter.ParameterValueGroup;  // For javadoc
+package org.opengis.feature;
 
 
 /**
- * Thrown when an identifier provided to a factory method can not be found.
- * The identifier is often provided by {@link Identifier#getCode()}.
+ * Thrown when a property requested by its name is not found in a {@link Feature} or {@link FeatureType}.
  *
- * <p><b>Example:</b> This exception is thrown when a
- * {@linkplain org.opengis.referencing.operation.MathTransform math transform} has been requested
- * with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod operation method}
- * identifier.</p>
- *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
- * @since   1.0
- *
- * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-public class NoSuchIdentifierException extends FactoryException {
+public class PropertyNotFoundException extends IllegalArgumentException {
     /**
      * Serial number for inter-operability with different versions.
      */
-    private static final long serialVersionUID = -6846799994429345902L;
+    private static final long serialVersionUID = -1669716367803931497L;
 
     /**
-     * The identifier code.
+     * Creates an exception with no message.
      */
-    private final String identifier;
-
-    /**
-     * Constructs an exception with the specified detail message and classification name.
-     *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param identifier The {@linkplain Identifier#getCode() identifier code}.
-     */
-    public NoSuchIdentifierException(final String message, final String identifier) {
-        super(message);
-        this.identifier = identifier;
+    public PropertyNotFoundException() {
+        super();
     }
 
     /**
-     * Returns the {@linkplain Identifier#getCode identifier code}.
+     * Creates an exception with the specified message.
      *
-     * @return The identifier code.
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
      */
-    public String getIdentifierCode() {
-        return identifier;
+    public PropertyNotFoundException(final String message) {
+        super(message);
+    }
+
+    /**
+     * Creates an exception with the specified message and cause.
+     *
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  cause The cause.
+     */
+    public PropertyNotFoundException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 }

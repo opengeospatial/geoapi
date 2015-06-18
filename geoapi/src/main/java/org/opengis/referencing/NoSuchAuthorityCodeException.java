@@ -38,9 +38,6 @@ import org.opengis.util.NoSuchIdentifierException;
  * Thrown when an {@linkplain AuthorityFactory authority factory} can not find
  * the requested authority code.
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

@@ -41,9 +41,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * {@linkplain CoordinateReferenceSystem coordinate reference systems},
  * or because the requested operation is not available in the environment.
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

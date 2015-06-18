@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Abstraction of a real-world phenomena.
  * A {@code FeatureType} instance describes the class of all {@link Feature} instances of that type.
  *
- * <div class="note"><b>Analogy:</b>
+ * <div class="note"><b>Analogy with Java reflection:</b>
  * compared to the Java language, {@code FeatureType} is equivalent to {@link Class} while
  * {@code Feature} instances are equivalent to {@link Object} instances of that class.</div>
  *
@@ -68,7 +68,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * {@linkplain #getSuperTypes() super-types}, provided that values of the sub-type property are
  * assignable to the super-type property.
  *
- * <div class="note"><b>Analogy:</b>
+ * <div class="note"><b>Analogy with Java language:</b>
  * compared to the Java language, the above rule is similar to overriding a method with a more specific return
  * type (a.k.a. <cite>covariant return type</cite>). This is also similar to Java arrays, which are implicitly
  * <cite>covariant</cite> (i.e. {@code String[]} can be casted to {@code CharSequence[]}, which is safe for read
@@ -119,11 +119,11 @@ public interface FeatureType extends IdentifiedType {
      *
      * @param  name The name of the property to search.
      * @return The property for the given name, or {@code null} if none.
-     * @throws IllegalArgumentException If the given argument is not a property name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not a property name of this feature type.
      *
      * @see Feature#getProperty(String)
      */
-    PropertyType getProperty(String name) throws IllegalArgumentException;
+    PropertyType getProperty(String name) throws PropertyNotFoundException;
 
     /**
      * Returns any feature operation, any feature attribute type and any feature association role that
@@ -142,7 +142,7 @@ public interface FeatureType extends IdentifiedType {
     /**
      * Returns the direct parents of this feature type.
      *
-     * <div class="note"><b>Analogy:</b>
+     * <div class="note"><b>Analogy with Java reflection:</b>
      * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
      * to {@link Class#getSuperclass()} except that feature types allow multi-inheritance.</div>
      *
@@ -154,7 +154,7 @@ public interface FeatureType extends IdentifiedType {
     /**
      * Returns {@code true} if this type is same or a super-type of the given type.
      *
-     * <div class="note"><b>Analogy:</b>
+     * <div class="note"><b>Analogy with Java reflection:</b>
      * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
      * to {@link Class#isAssignableFrom(Class)}.</div>
      *
@@ -166,13 +166,14 @@ public interface FeatureType extends IdentifiedType {
     /**
      * Creates a new feature instance of this type.
      *
-     * <div class="note"><b>Analogy:</b>
+     * <div class="note"><b>Analogy with Java reflection:</b>
      * if we compare {@code FeatureType} to {@link Class} and {@code Feature} to {@link Object} in the Java language,
      * then this method is equivalent to {@link Class#newInstance()}.</div>
      *
      * @return A new feature instance.
-     * @throws IllegalStateException if this feature type {@linkplain #isAbstract() is abstract}.
+     * @throws FeatureInstantiationException if this feature type {@linkplain #isAbstract() is abstract}
+     *         or can not be instantiated for some other reason.
      * @throws UnsupportedOperationException if this type does not support new instance creation.
      */
-    Feature newInstance() throws IllegalStateException, UnsupportedOperationException;
+    Feature newInstance() throws FeatureInstantiationException, UnsupportedOperationException;
 }

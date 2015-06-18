@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2015 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,56 +29,59 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.util;
-
-import org.opengis.metadata.Identifier;
-import org.opengis.parameter.ParameterValueGroup;  // For javadoc
+package org.opengis.feature;
 
 
 /**
- * Thrown when an identifier provided to a factory method can not be found.
- * The identifier is often provided by {@link Identifier#getCode()}.
+ * Thrown when {@link FeatureType#newInstance()} is invoked but the feature can not be instantiated.
+ * The instantiation can fail for a variety of reasons including but not limited to:
  *
- * <p><b>Example:</b> This exception is thrown when a
- * {@linkplain org.opengis.referencing.operation.MathTransform math transform} has been requested
- * with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod operation method}
- * identifier.</p>
+ * <ul>
+ *   <li>the feature type {@linkplain FeatureType#isAbstract() is abstract},</li>
+ *   <li>the feature type definition is incomplete.</li>
+ * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
- * @since   1.0
+ * <div class="note"><b>Analogy with Java reflection:</b>
+ * if we compare {@code FeatureType} to {@link Class} and {@code Feature} to {@link Object} in the Java language,
+ * then this exception is equivalent to {@link java.lang.InstantiationException}.</div>
  *
- * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   3.1
+ *
+ * @see FeatureType#newInstance()
  */
-public class NoSuchIdentifierException extends FactoryException {
+public class FeatureInstantiationException extends IllegalStateException {
     /**
      * Serial number for inter-operability with different versions.
      */
-    private static final long serialVersionUID = -6846799994429345902L;
+    private static final long serialVersionUID = 2453228493560053757L;
 
     /**
-     * The identifier code.
+     * Creates an exception with no message.
      */
-    private final String identifier;
-
-    /**
-     * Constructs an exception with the specified detail message and classification name.
-     *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param identifier The {@linkplain Identifier#getCode() identifier code}.
-     */
-    public NoSuchIdentifierException(final String message, final String identifier) {
-        super(message);
-        this.identifier = identifier;
+    public FeatureInstantiationException() {
+        super();
     }
 
     /**
-     * Returns the {@linkplain Identifier#getCode identifier code}.
+     * Creates an exception with the specified message.
      *
-     * @return The identifier code.
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
      */
-    public String getIdentifierCode() {
-        return identifier;
+    public FeatureInstantiationException(final String message) {
+        super(message);
+    }
+
+    /**
+     * Creates an exception with the specified message and cause.
+     *
+     * @param  message The detail message. The detail message is saved for
+     *         later retrieval by the {@link #getMessage()} method.
+     * @param  cause The cause.
+     */
+    public FeatureInstantiationException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 }

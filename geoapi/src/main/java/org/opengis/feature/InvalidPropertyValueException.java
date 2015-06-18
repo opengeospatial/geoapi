@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2014 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2015 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,27 +29,59 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.geometry;
+package org.opengis.feature;
+
+import java.util.Collection;
 
 
 /**
- * Indicates that an operation cannot be completed properly because
- * of a mismatch in the dimensions of object attributes.
+ * Thrown when an {@link Attribute} value or a {@link FeatureAssociation} does not met the constraints
+ * specified by its type. This exception can be thrown by implementations that perform validity checks.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
- * @since   1.0
+ * <div class="note"><b>Exception for invalid class:</b>
+ * libraries may throw {@link ClassCastException} instead than this {@code InvalidPropertyValueException} when
+ * the given value is not an instance of the expected class (typically {@link AttributeType#getValueClass()}).
+ * The reason is that libraries may rely on Java parameterized types, which throws {@code ClassCastException}
+ * at runtime when the objects are used in an unsafe way. Libraries may also rely on {@link Class#cast(Object)}
+ * or {@link Class#asSubclass(Class)} standard methods, which are designed to throw {@code ClassCastException},
+ * or may way to be consistent with all the above.</div>
+ *
+ * <p>This exception is typically thrown by the following methods:</p>
+ * <ul>
+ *   <li>In {@code Attribute}:
+ *     <ul>
+ *       <li>{@link Attribute#setValue(Object) setValue(Object)}</li>
+ *       <li>{@link Attribute#setValues(Collection) setValues(Collection)}</li>
+ *     </ul>
+ *   </li>
+ *   <li>In {@code FeatureAssociation}:
+ *     <ul>
+ *       <li>{@link FeatureAssociation#setValue(Feature) setValue(Feature)}</li>
+ *       <li>{@link FeatureAssociation#setValues(Collection) setValues(Collection)}</li>
+ *     </ul>
+ *   </li>
+ *   <li>In {@code Feature}:
+ *     <ul>
+ *       <li>{@link Feature#setProperty(Property) setProperty(Property)}</li>
+ *       <li>{@link Feature#setPropertyValue(String, Object) setPropertyValue(String, Object)}</li>
+ *     </ul>
+ *   </li>
+ * </ul>
+ *
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-public class MismatchedDimensionException extends IllegalArgumentException {
+public class InvalidPropertyValueException extends IllegalArgumentException {
     /**
      * Serial number for inter-operability with different versions.
      */
-    private static final long serialVersionUID = 3138484331425225155L;
+    private static final long serialVersionUID = 3769646492399262226L;
 
     /**
      * Creates an exception with no message.
      */
-    public MismatchedDimensionException() {
+    public InvalidPropertyValueException() {
         super();
     }
 
@@ -59,7 +91,7 @@ public class MismatchedDimensionException extends IllegalArgumentException {
      * @param  message The detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public MismatchedDimensionException(final String message) {
+    public InvalidPropertyValueException(final String message) {
         super(message);
     }
 
@@ -70,7 +102,7 @@ public class MismatchedDimensionException extends IllegalArgumentException {
      *         later retrieval by the {@link #getMessage()} method.
      * @param  cause The cause.
      */
-    public MismatchedDimensionException(final String message, final Throwable cause) {
+    public InvalidPropertyValueException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

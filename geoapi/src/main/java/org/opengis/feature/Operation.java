@@ -101,7 +101,7 @@ public interface Operation extends PropertyType {
      *       and the {@code FeatureAssociation.getRole() == getResult()} relation should hold.</li>
      * </ul>
      *
-     * <div class="note"><b>Analogy:</b>
+     * <div class="note"><b>Analogy with Java reflection:</b>
      * if we compare {@code Operation} to {@link Method} in the Java language, then this method is equivalent
      * to {@link Method#invoke(Object, Object...)}. The {@code Feature} argument is equivalent to {@code this}
      * in the Java language, and may be {@code null} if the operation does not need a feature instance

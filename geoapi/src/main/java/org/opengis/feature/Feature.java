@@ -80,12 +80,12 @@ public interface Feature {
      *
      * @param  name The property name.
      * @return The property of the given name (never {@code null}).
-     * @throws IllegalArgumentException If the given argument is not a property name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not a property name of this feature.
      *
      * @see #getPropertyValue(String)
      * @see FeatureType#getProperty(String)
      */
-    Property getProperty(final String name) throws IllegalArgumentException;
+    Property getProperty(String name) throws PropertyNotFoundException;
 
     /**
      * Sets the property (attribute or feature association).
@@ -105,12 +105,14 @@ public interface Feature {
      * the {@link #setPropertyValue(String, Object)} method is preferred.</div>
      *
      * @param  property The property to set.
-     * @throws IllegalArgumentException if the type of the given property is not one of the types
-     *         known to this feature, or if the property can not be set of an other reason.
+     * @throws PropertyNotFoundException if the name of the given property is not a property name of this feature.
+     * @throws InvalidPropertyValueException if the value of the given property is not valid.
+     * @throws IllegalArgumentException if the property can not be set for another reason
+     *         (e.g. a library may accept only some specific property instances).
      *
      * @see #setPropertyValue(String, Object)
      */
-    void setProperty(final Property property) throws IllegalArgumentException;
+    void setProperty(Property property) throws IllegalArgumentException;
 
     /**
      * Returns the value for the property of the given name.
@@ -133,12 +135,12 @@ public interface Feature {
      *
      * @param  name The property name.
      * @return The value for the given property, or {@code null} if none.
-     * @throws IllegalArgumentException If the given argument is not an attribute or association name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not an attribute or association name of this feature.
      *
      * @see Attribute#getValue()
      * @see FeatureAssociation#getValue()
      */
-    Object getPropertyValue(final String name) throws IllegalArgumentException;
+    Object getPropertyValue(String name) throws PropertyNotFoundException;
 
     /**
      * Sets the value for the property of the given name.
@@ -149,10 +151,11 @@ public interface Feature {
      * and offer an other method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
-     * @param  name  The attribute name.
-     * @param  value The new value for the given attribute (may be {@code null}).
-     * @throws ClassCastException If the value is not assignable to the expected value class.
-     * @throws IllegalArgumentException If the given value can not be assigned for an other reason.
+     * @param  name  The property name.
+     * @param  value The new value for the given property (may be {@code null}).
+     * @throws PropertyNotFoundException if the given name is not an attribute or association name of this feature.
+     * @throws ClassCastException if the value is not assignable to the expected value class.
+     * @throws InvalidPropertyValueException if the given value is not valid for a reason other than its type.
      *
      * @see Attribute#setValue(Object)
      * @see FeatureAssociation#setValue(Feature)
