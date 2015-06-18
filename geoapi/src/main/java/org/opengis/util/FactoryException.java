@@ -41,9 +41,6 @@ package org.opengis.util;
  * is caused by some error in the underlying database (e.g. {@link java.io.IOException} or
  * {@link java.sql.SQLException}), then the cause shall be specified to the constructor.</p>
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

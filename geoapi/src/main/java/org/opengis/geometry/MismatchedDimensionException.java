@@ -36,9 +36,6 @@ package org.opengis.geometry;
  * Indicates that an operation cannot be completed properly because
  * of a mismatch in the dimensions of object attributes.
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

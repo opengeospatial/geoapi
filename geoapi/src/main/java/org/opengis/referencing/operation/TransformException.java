@@ -44,9 +44,6 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

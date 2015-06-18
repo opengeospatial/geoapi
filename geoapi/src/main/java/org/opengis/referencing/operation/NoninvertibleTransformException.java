@@ -33,11 +33,7 @@ package org.opengis.referencing.operation;
 
 
 /**
- * Thrown when {@link MathTransform#inverse()} is
- * invoked but the transform can't be inverted.
- *
- * @departure extension
- *   This exception is not part of the OGC specification.
+ * Thrown when {@link MathTransform#inverse()} is invoked but the transform can not be inverted.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

@@ -44,9 +44,6 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
  * with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod operation method}
  * identifier.</p>
  *
- * @departure extension
- *   This exception is not part of the OGC specification.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
