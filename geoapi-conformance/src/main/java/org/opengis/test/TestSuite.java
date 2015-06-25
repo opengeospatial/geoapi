@@ -116,7 +116,8 @@ import org.opengis.referencing.operation.MathTransform;
   org.opengis.test.referencing.ParameterizedTransformTest.class,
   org.opengis.test.referencing.AuthorityFactoryTest.class,
   org.opengis.test.referencing.gigs.Series2000Test.class,
-  org.opengis.test.referencing.gigs.Series3000Test.class
+  org.opengis.test.referencing.gigs.Series3000Test.class,
+  org.opengis.test.wkt.CRSParserTest.class
 })
 public strictfp class TestSuite {
     /**
