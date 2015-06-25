@@ -381,7 +381,7 @@ public strictfp class CRSParserTest extends TestCase {
     }
 
     /**
-     * Parses a geodetic CRS containing a remark in non-ASCII characters.
+     * Parses a geodetic CRS which contain a remark written using non-ASCII characters.
      * The WKT parsed by this test is:
      *
      * <blockquote><pre>GEODCRS[“S-95”,
@@ -399,7 +399,7 @@ public strictfp class CRSParserTest extends TestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#34">OGC 12-063r5 §7.3.5 example 3</a>
      */
     @Test
-    public void testRussianRemark() throws FactoryException {
+    public void testGeographicWithRemark() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“S-95”,\n" +
                 "  DATUM[“Pulkovo 1995”,\n" +
