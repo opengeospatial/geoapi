@@ -290,7 +290,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * that instantiate their {@link MathTransform} directly, without using any factory.
      */
     protected TransformTestCase() {
-        this(NO_FACTORY);
+        setEnabledFlags(getEnabledFlags(getEnabledKeys(0)));
     }
 
     /**
@@ -298,7 +298,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
      */
     TransformTestCase(final boolean[] isEnabled) {
-        super(NO_FACTORY);
         setEnabledFlags(isEnabled);
     }
 

@@ -50,7 +50,6 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
-import org.opengis.test.TestCase;
 import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.Configuration;
@@ -62,7 +61,6 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
 import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
-import static org.opengis.test.referencing.Utilities.getName;
 
 
 /**
@@ -102,7 +100,7 @@ import static org.opengis.test.referencing.Utilities.getName;
  * @since   2.3
  */
 @RunWith(Parameterized.class)
-public strictfp class AuthorityFactoryTest extends TestCase {
+public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
@@ -321,7 +319,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         assertNotNull("CRSAuthorityFactory.createGeographicCRS()", crs);
         object = crs;
         validators.validate(crs);
-        assertUnicodeIdentifierEquals("GeographicCRS.getName()", "WGS 84", getName(crs), true);
+        verifyIdentification(crs, "WGS 84", null);
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
          * This is verified by the above call to validate(crs). However the user could
@@ -330,30 +328,17 @@ public strictfp class AuthorityFactoryTest extends TestCase {
          */
         final EllipsoidalCS cs = crs.getCoordinateSystem();
         if (cs != null) {
-            final CoordinateSystemAxis latitude  = cs.getAxis(0);
-            final CoordinateSystemAxis longitude = cs.getAxis(1);
-            if (latitude != null) {
-                assertEquals("Geodetic latitude",  getName(latitude));
-                assertEquals(AxisDirection.NORTH,  latitude.getDirection());
-                assertEquals(NonSI.DEGREE_ANGLE,   latitude.getUnit());
-            }
-            if (longitude != null) {
-                assertEquals("Geodetic longitude", getName(longitude));
-                assertEquals(AxisDirection.EAST,   longitude.getDirection());
-                assertEquals(NonSI.DEGREE_ANGLE,   longitude.getUnit());
-            }
+            verifyEllipsoidalCS (cs, 2, NonSI.DEGREE_ANGLE, null);
+            verifyIdentification(cs.getAxis(0), "Geodetic latitude", null);
+            verifyIdentification(cs.getAxis(1), "Geodetic longitude", null);
         }
         /*
-         * Datum validation. Same rational abouve 'null' value as for the coordinate system.
+         * Datum validation. Same rational about 'null' value as for the coordinate system.
          */
         final GeodeticDatum datum = crs.getDatum();
         if (datum != null) {
-            assertEquals("World Geodetic System 1984", getName(datum));
-            final PrimeMeridian pm = datum.getPrimeMeridian();
-            if (pm != null) {
-                assertEquals(0.0, pm.getGreenwichLongitude(), 0.0);
-                assertEquals(NonSI.DEGREE_ANGLE, pm.getAngularUnit());
-            }
+            verifyIdentification(datum, "World Geodetic System 1984", null);
+            verifyPrimeMeridian(datum.getPrimeMeridian(), "Greenwich", 0.0, NonSI.DEGREE_ANGLE);
         }
     }
 
@@ -445,7 +430,7 @@ public strictfp class AuthorityFactoryTest extends TestCase {
         if (conversion != null) {
             final MathTransform projection = conversion.getMathTransform();
             if (projection != null) {
-                test.description = getName(crs);
+                test.description = Utilities.getName(crs);
                 test.transform = projection;
                 validators.validate(projection);
                 /*

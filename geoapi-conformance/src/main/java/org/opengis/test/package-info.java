@@ -31,24 +31,46 @@
  */
 
 /**
- * Base classes for validators and test suites for all GeoAPI objects. The
- * {@link org.opengis.test.Validators} class provides static {@code validate} methods that can be
- * used for validating existing instances of various kind. Those methods can be conveniently
- * imported in a test class with the following Java statement:
+ * The GeoAPI conformance testing framework. This package does not provide any test by itself,
+ * but provides the base classes for all tests defined in sub-packages.
+ * The classes in this package can be grouped in 6 categories:
  *
- * <blockquote><code>
- * import static org.opengis.test.Validators.*;
- * </code></blockquote>
+ * <ul>
+ *   <li><p><b>Test cases</b><br>
+ *       {@link org.opengis.test.TestCase} is the base class of all GeoAPI tests. Implementors can extend directly
+ *       the {@code TestCase} subclasses of their choice for gaining some control, for example in order to specify
+ *       whether {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
+ *       derivatives are supported} by their implementation.</p></li>
  *
- * <p>No other validator class need to be considered, unless the validation process needs
- * to be customized.</p>
+ *   <li><p><b>Test suite</b><br>
+ *       {@link org.opengis.test.TestSuite} groups all GeoAPI {@code TestCases} in a single point. This is not the
+ *       easiest class to use since implementations typically support only a subset of GeoAPI functionalities. But
+ *       {@code TestSuite} can provide some help for implementors defining their own test suite.</p></li>
  *
- * <p>The {@link org.opengis.test.TestSuite} class can be extended in order to run all the test cases
- * defined in this module, using the implementor factories declared in the {@code META-INF/services/}
- * directory. Alternatively, implementor can extend directly the {@link org.opengis.test.TestCase}
- * subclass of their choice for gaining more control, for example in order to specify whether
- * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
- * derivatives are supported}.</p>
+ *   <li><p><b>Validation</b><br>
+ *       {@link org.opengis.test.Validators} class provides static {@code validate(…)} methods that can be used for
+ *       validating existing instances of various kinds. Those methods can be conveniently imported in a test class
+ *       with the following Java statement:</p>
+ *
+ *       <blockquote><pre>import static org.opengis.test.Validators.*;</pre></blockquote>
+ *
+ *       <p>{@link org.opengis.test.Validator} and {@link org.opengis.test.ValidatorContainer} are support classes for
+ *       the above, but usually do not need to be considered unless the validation process needs to be customized.</p></li>
+ *
+ *   <li><p><b>Assertions</b><br>
+ *       {@link org.opengis.test.Assert} extends {@link org.junit.Assert org.junit.Assert} class with additional
+ *       assertion methods.</p></li>
+ *
+ *   <li><p><b>Configuration</b><br>
+ *       {@link org.opengis.test.Configuration}, {@link org.opengis.test.CalculationType},
+ *       {@link org.opengis.test.ToleranceModifier}, {@link org.opengis.test.FactoryFilter} and
+ *       {@link org.opengis.test.ImplementationDetails} allow implementors to alter the tests.</p></li>
+ *
+ *   <li><p><b>Events</b><br>
+ *       {@link org.opengis.test.TestListener}, {@link org.opengis.test.TestEvent} and
+ *       {@link org.opengis.test.ComputationFailure} allow implementors to be notified about test executions,
+ *       successes or failures.</p></li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

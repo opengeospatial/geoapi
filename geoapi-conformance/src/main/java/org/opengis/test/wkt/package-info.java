@@ -32,20 +32,23 @@
 
 /**
  * Tests <cite>Well-Known Text</cite> (WKT) parsing.
- * This package gives to the vendor's parer some WKT strings from an international standards,
- * and verifies that the object created by the vendor's library has the expected values.
- * The standards used in this package are:
+ * Each {@code *ParserTest} class in this package tests a factory method implemented by the product to test.
+ * The factory method is given various WKT strings provided by the international standard defining the WKT format.
+ * The tests verify that the objects returned by the factory method have the expected values.
  *
- * <ul>
- *   <li><a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">OGC 12-063r5 —
- *      Well-known text representation of coordinate reference systems</a></li>
- * </ul>
+ * <p>The methods tested by this package and the corresponding international standards are:</p>
  *
- * The methods used for parsing the WKT strings are:
- *
- * <ul>
- *   <li>{@link org.opengis.referencing.crs.CRSFactory#createFromWKT(String)}</li>
- * </ul>
+ * <table class="ogc">
+ *   <caption>Methods for parsing WKT</caption>
+ *   <tr>
+ *     <th>Parsing method</th>
+ *     <th>Standard defining the WKT format</th>
+ *   </tr><tr>
+ *     <td>{@link org.opengis.referencing.crs.CRSFactory#createFromWKT(String)}</td>
+ *     <td><a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">OGC 12-063r5 —
+ *         Well-known text representation of coordinate reference systems</a></td>
+ *   </tr>
+ * </table>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

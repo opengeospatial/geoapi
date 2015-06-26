@@ -38,7 +38,7 @@ import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.*;
-import org.opengis.test.TestCase;
+import org.opengis.test.referencing.ReferencingTestCase;
 
 import static org.opengis.test.Assert.*;
 
@@ -53,7 +53,7 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-strictfp abstract class GIGSTestCase extends TestCase {
+strictfp abstract class GIGSTestCase extends ReferencingTestCase {
     /**
      * Relative tolerance factor from GIGS documentation.
      * This tolerance threshold is typically multiplied
@@ -71,8 +71,8 @@ strictfp abstract class GIGSTestCase extends TestCase {
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories The factories to be used by the test. Those factories passed verbatim
-     *        to the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
+     * @param factories The factories to be used by the test. Those factories passed verbatim to the
+     *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
     protected GIGSTestCase(final Factory... factories) {
         super(factories);

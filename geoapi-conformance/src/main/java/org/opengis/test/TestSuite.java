@@ -54,6 +54,7 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.Series3000Test}</li>
+ *   <li>{@link org.opengis.test.wkt.CRSParserTest}</li>
  * </ul>
  *
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
@@ -81,7 +82,7 @@ import org.opengis.referencing.operation.MathTransform;
  *import org.opengis.util.Factory;
  *import java.util.Properties;
  *
- *public class GeoapiTest extends TestSuite implements {@linkplain ImplementationDetails} {
+ *public class AllTests extends TestSuite implements {@linkplain ImplementationDetails} {
  *    &#64;Override
  *    public Properties {@linkplain ImplementationDetails#configuration configuration}({@linkplain Factory}... factories) {
  *        return null;

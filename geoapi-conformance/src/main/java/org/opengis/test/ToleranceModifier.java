@@ -43,11 +43,11 @@ import org.opengis.referencing.operation.MathTransform;
  *
  * <ul>
  *   <li>Scan every {@link ImplementationDetails} on the classpath and invoke their
- *       {@link ImplementationDetails#tolerance(MathTransform) tolerance}
+ *       {@link ImplementationDetails#tolerance(MathTransform) tolerance(…)}
  *       method for the {@link MathTransform} being tested.</li>
  *
  *   <li>For each non-null {@code ToleranceModifier}, invoke the {@link #adjust(double[],
- *       DirectPosition, CalculationType) tolerance} method. The first given argument will be
+ *       DirectPosition, CalculationType) adjust(…)} method. The first given argument will be
  *       the default tolerance thresholds computed by the {@link TestCase} being run. Implementation
  *       can modify those tolerances in an arbitrary number of dimensions.</li>
  * </ul>

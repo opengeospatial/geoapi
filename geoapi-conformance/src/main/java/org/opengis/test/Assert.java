@@ -48,15 +48,15 @@ import org.opengis.test.coverage.image.PixelIterator;
 
 
 /**
- * Assertion methods to be used by GeoAPI tests. This class inherits all assertion methods
- * from the JUnit {@link org.junit.Assert} class. Consequently, developers can replace the
- * following statement:
+ * Extension to JUnit assertion methods.
+ * This class inherits all assertion methods from the {@link org.junit.Assert org.junit.Assert} class.
+ * Consequently, developers can replace the following statement:
  *
- * <blockquote><pre>import static org.junit.Assert.*</pre></blockquote>
+ * <blockquote><pre>import static org.junit.Assert.*;</pre></blockquote>
  *
  * by
  *
- * <blockquote><pre>import static org.opengis.test.Assert.*</pre></blockquote>
+ * <blockquote><pre>import static org.opengis.test.Assert.*;</pre></blockquote>
  *
  * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *
@@ -337,10 +337,10 @@ public strictfp class Assert extends org.junit.Assert {
         if (actual == null) {
             fail(concat(message, "Identifier is null"));
         } else {
-            if (!UNRESTRICTED.equals(authority)) assertTitleEquals(message,                         authority, actual.getAuthority());
-            if (!UNRESTRICTED.equals(codeSpace)) assertEquals (concat(message, "Wrong code space"), codeSpace, actual.getCodeSpace());
-            if (!UNRESTRICTED.equals(version))   assertEquals (concat(message, "Wrong version"),    version,   actual.getVersion());
-            if (!UNRESTRICTED.equals(code))      assertEquals (concat(message, "Wrong code"),       code,      actual.getCode());
+            if (!UNRESTRICTED.equals(authority)) assertTitleEquals(message,                        authority, actual.getAuthority());
+            if (!UNRESTRICTED.equals(codeSpace)) assertEquals(concat(message, "Wrong code space"), codeSpace, actual.getCodeSpace());
+            if (!UNRESTRICTED.equals(version))   assertEquals(concat(message, "Wrong version"),    version,   actual.getVersion());
+            if (!UNRESTRICTED.equals(code))      assertEquals(concat(message, "Wrong code"),       code,      actual.getCode());
         }
     }
 
@@ -367,7 +367,7 @@ public strictfp class Assert extends org.junit.Assert {
      * <p><b>Examples:</b> {@code "WGS 84"} and {@code "WGS84"} as equal according this method.</p>
      *
      * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected   The expected character sequence, which may be {@code null}.
+     * @param expected   The expected character sequence (may be {@code null}), or {@code "##unrestricted"}.
      * @param actual     The character sequence to compare, or {@code null}.
      * @param ignoreCase {@code true} for ignoring case.
      *
@@ -376,7 +376,7 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertUnicodeIdentifierEquals(final String message,
             final CharSequence expected, final CharSequence actual, final boolean ignoreCase)
     {
-        if (isNull(message, expected, actual)) {
+        if (UNRESTRICTED.equals(expected) || isNull(message, expected, actual)) {
             return;
         }
         final int expLength = expected.length();

@@ -48,12 +48,10 @@ import org.opengis.util.FactoryException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
 import static org.opengis.referencing.cs.AxisDirection.*;
-import static org.opengis.test.referencing.Utilities.getName;
 import static javax.measure.unit.SI.METRE;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 
@@ -88,7 +86,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @since   2.3
  */
 @RunWith(Parameterized.class)
-public strictfp class ObjectFactoryTest extends TestCase {
+public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
@@ -209,28 +207,15 @@ public strictfp class ObjectFactoryTest extends TestCase {
         assumeNotNull(crsFactory);
         validators.validate(crs = crsFactory.createGeographicCRS(name("WGS84(DD)"), datum, cs));
 
-        // Validations. Fetch the new references for 'cs', 'longitudeAxis', etc.,
-        // which may or may not be the instance that we created.
-        cs = crs.getCoordinateSystem();
-        λ  = cs.getAxis(1);
-        φ  = cs.getAxis(0);
-        h  = cs.getAxis(2);
-        assertEquals("Geodetic latitude",  getName(φ));
-        assertEquals(AxisDirection.NORTH,  φ.getDirection());
-        assertEquals(DEGREE_ANGLE,         φ.getUnit());
-        assertEquals("Geodetic longitude", getName(λ));
-        assertEquals(AxisDirection.EAST,   λ.getDirection());
-        assertEquals(DEGREE_ANGLE,         λ.getUnit());
-        assertEquals("Ellipsoidal height", getName(h));
-        assertEquals(AxisDirection.UP,     h.getDirection());
-        assertEquals(METRE,                h.getUnit());
-
         datum = crs.getDatum();
-        assertEquals("World Geodetic System 1984", getName(datum));
-        final PrimeMeridian primeMeridian = datum.getPrimeMeridian();
-        assertEquals(0.0, primeMeridian.getGreenwichLongitude(), 0.0);
-        assertEquals(DEGREE_ANGLE, primeMeridian.getAngularUnit());
-        assertAxisDirectionsEqual("3D-GeographicCRS", crs.getCoordinateSystem(), NORTH, EAST, UP);
+        verifyIdentification(datum, "World Geodetic System 1984", null);
+        verifyPrimeMeridian(datum.getPrimeMeridian(), "Greenwich", 0.0, DEGREE_ANGLE);
+
+        cs = crs.getCoordinateSystem();
+        verifyEllipsoidalCS (cs, 3, DEGREE_ANGLE, METRE);
+        verifyIdentification(cs.getAxis(0), "Geodetic latitude", null);
+        verifyIdentification(cs.getAxis(1), "Geodetic longitude", null);
+        verifyIdentification(cs.getAxis(2), "Ellipsoidal height", null);
     }
 
     /**

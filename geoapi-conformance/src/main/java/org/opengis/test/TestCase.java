@@ -65,10 +65,8 @@ public strictfp abstract class TestCase {
     /**
      * An empty array of factories, as a convenience for
      * {@linkplain #TestCase() no-argument constructors}.
-     *
-     * @since 3.1
      */
-    protected static final Factory[] NO_FACTORY = new Factory[0];
+    private static final Factory[] NO_FACTORY = new Factory[0];
 
     /**
      * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
@@ -258,10 +256,9 @@ public strictfp abstract class TestCase {
     protected final ValidatorContainer validators;
 
     /**
-     * A tip set by subclasses during the execution of optional tests. If case of optional
-     * test failure, if this field is non-null, then a message will be logged at the
-     * {@linkplain java.util.logging.Level#INFO INFO} level for giving some tips to
-     * the developer about how he can disable the test.
+     * A tip set by subclasses during the execution of some optional tests.
+     * In case of optional test failure, if this field is non-null, then a message will be logged at the
+     * {@link java.util.logging.Level#INFO} for giving some tips to the developer about how he can disable the test.
      *
      * <p><b>Example</b></p>
      * <blockquote><pre>&#64;Test
@@ -503,7 +500,7 @@ public strictfp abstract class TestCase {
                     for (int i=0; i<properties.length; i++) {
                         if (isEnabled[i]) {
                             final Boolean value = config.get(properties[i]);
-                            if (value != null && !(isEnabled[i] = value.booleanValue())) {
+                            if (value != null && !(isEnabled[i] = value)) {
                                 continue; // Leave 'atLeastOneTestIsEnabled' unchanged.
                             }
                             atLeastOneTestIsEnabled = true;
