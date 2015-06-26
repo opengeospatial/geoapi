@@ -301,7 +301,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
         verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, 3, GEOCENTRIC, MMM_UNITS);
         verifyGeographicExtent(crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
-        assertTimeExtentEquals(crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
+        verifyTimeExtent      (crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
         assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", crs.getScope());
         assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());
     }
