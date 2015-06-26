@@ -48,7 +48,6 @@ import org.opengis.util.FactoryException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
@@ -88,7 +87,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @since   2.3
  */
 @RunWith(Parameterized.class)
-public strictfp class ObjectFactoryTest extends TestCase {
+public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */

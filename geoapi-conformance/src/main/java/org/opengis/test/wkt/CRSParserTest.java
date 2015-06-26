@@ -36,6 +36,7 @@ import java.util.List;
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
+import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.converter.UnitConverter;
 import javax.measure.converter.ConversionException;
@@ -48,7 +49,7 @@ import org.opengis.referencing.datum.*;
 import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
-import org.opengis.test.TestCase;
+import org.opengis.test.referencing.ReferencingTestCase;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.Test;
@@ -61,7 +62,22 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Tests the Well-Known Text (WKT) parser of Coordinate Reference System (CRS) objects.
- * This tests use the {@link CRSFactory#createFromWKT(String)} method of the product to test.
+ * For running this test, vendors need to implement the {@link CRSFactory#createFromWKT(String)} method.
+ * That method will be given various WKT strings from the
+ * <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">OGC 12-063r5 —
+ * Well-known text representation of coordinate reference systems</a> specification.
+ * The object returned by {@code createFromWKT(String)} will be checked for the following properties:
+ *
+ * <ul>
+ *   <li>{@link IdentifiedObject#getName()} and {@link IdentifiedObject#getIdentifiers() getIdentifiers()} on the CRS and the datum</li>
+ *   <li>{@link Ellipsoid#getSemiMajorAxis()} and {@link Ellipsoid#getInverseFlattening() getInverseFlattening()}</li>
+ *   <li>{@link PrimeMeridian#getGreenwichLongitude()}</li>
+ *   <li>{@link CoordinateSystem#getDimension()}</li>
+ *   <li>{@link CoordinateSystemAxis#getDirection()} and {@link CoordinateSystemAxis#getUnit() getUnit()}</li>
+ *   <li>{@link CoordinateReferenceSystem#getScope()} (optional – null allowed)</li>
+ *   <li>{@link CoordinateReferenceSystem#getDomainOfValidity()} (optional – null allowed)</li>
+ *   <li>{@link CoordinateReferenceSystem#getRemarks()} (optional – null allowed)</li>
+ * </ul>
  *
  * <p>In order to specify their factories and run the tests in a JUnit framework, implementors can
  * define a subclass as below:</p>
@@ -87,7 +103,7 @@ import static org.opengis.test.Assert.*;
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */
 @RunWith(Parameterized.class)
-public strictfp class CRSParserTest extends TestCase {
+public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * An array of length 2 containing the North and East directions, in that order. This can be an argument
      * to calls to the {@link #assertCoordinateSystemEquals(Class, AxisDirection[], CoordinateSystem)} method.
@@ -159,33 +175,40 @@ public strictfp class CRSParserTest extends TestCase {
     }
 
     /**
-     * Asserts that the given object is not null and have the given name and (optionally) identifier.
+     * Asserts that the given object has the expected name and (optionally) identifier.
      *
-     * @param property   The property being tested, for producing a message in case of assertion failure.
      * @param name       The string representation of the expected name (ignoring code space).
      * @param identifier The expected identifier code, or {@code null} if none.
      * @param object     The object to verify.
      */
-    private static void assertIdentificationEquals(final String property,
-            final String name, final String identifier, final IdentifiedObject object)
-    {
-        assertNotNull(property, object);
-        assertEquals(property + ".name.code", name, object.getName().getCode());
+    private static void assertIdentificationEquals(final String name, final String identifier, final IdentifiedObject object) {
+        assertNotNull(object);
+        assertEquals("name.code", name, object.getName().getCode());
         if (identifier != null) {
-            final String m = property + ".name.identifiers[i]";
             for (final Identifier id : object.getIdentifiers()) {
-                assertNotNull(m, id);
+                assertNotNull("name.identifiers[*]", id);
                 if (identifier.equalsIgnoreCase(id.getCode())) {
                     return;
                 }
             }
-            fail("Identifier “" + identifier + "” not found in " + property);
+            fail("Identifier “" + identifier + "” not found.");
         }
     }
 
     /**
+     * Asserts that the given datum has the expected name.
+     *
+     * @param name  The string representation of the expected name (ignoring code space).
+     * @param datum The datum to verify.
+     */
+    private static void assertDatumEquals(final String name, final Datum datum) {
+        assertNotNull("datum", datum);
+        assertEquals("datum.name.code", name, datum.getName().getCode());
+    }
+
+    /**
      * Asserts that the given ellipsoid has the given axis lengths.
-     * If th given ellipsoid uses a different unit of measurement than the given {@code axisUnit},
+     * If the given ellipsoid uses a different unit of measurement than the given {@code axisUnit},
      * then this method will convert the axis lengths to {@code axisUnit} before comparing them.
      *
      * @param semiMajor The expected semi-major axis length.
@@ -208,6 +231,26 @@ public strictfp class CRSParserTest extends TestCase {
          */
         final UnitConverter c = ellipsoid.getAxisUnit().getConverterTo(axisUnit);
         assertEquals("semiMajor", semiMajor, c.convert(ellipsoid.getSemiMajorAxis()), 5E-4);
+    }
+
+    /**
+     * Asserts that the given prime meridian has the expected name and Greenwich longitude.
+     *
+     * @param name The string representation of the expected name (ignoring code space), or {@code null} if no restriction.
+     * @param greenwichLongitude The expected longitude
+     * @param angularUnit The angular unit of the given {@code greenwichLongitude}.
+     * @param primeMeridian The prime meridian to verify.
+     */
+    private static void assertPrimeMeridianEquals(final String name, final double greenwichLongitude,
+            final Unit<Angle> angularUnit, final PrimeMeridian primeMeridian)
+    {
+        assertNotNull(primeMeridian);
+        if (name != null) {
+            assertEquals("datum.primeMeridian.name.code", name, primeMeridian.getName().getCode());
+        }
+        final UnitConverter c = primeMeridian.getAngularUnit().getConverterTo(angularUnit);
+        assertEquals("datum.primeMeridian.greenwichLongitude", greenwichLongitude,
+                c.convert(primeMeridian.getGreenwichLongitude()), 5E-4);
     }
 
     /**
@@ -411,9 +454,10 @@ public strictfp class CRSParserTest extends TestCase {
                 "    ANGLEUNIT[“degree”,0.0174532925199433],\n" +
                 "  REMARK[“Система Геодеэических Координвт года 1995(СК-95)”]]");
 
-        assertIdentificationEquals("crs",   "S-95",         null, crs);
-        assertIdentificationEquals("datum", "Pulkovo 1995", null, crs.getDatum());
+        assertIdentificationEquals("S-95", null, crs);
+        assertDatumEquals("Pulkovo 1995", crs.getDatum());
         assertEllipsoidEquals(6378245, 298.3, SI.METRE, crs.getDatum().getEllipsoid());
+        assertPrimeMeridianEquals(null, 0, NonSI.DEGREE_ANGLE, crs.getDatum().getPrimeMeridian());
         assertCoordinateSystemEquals(EllipsoidalCS.class, NORTH_EAST, DDM_UNITS, crs.getCoordinateSystem());
         assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
     }
@@ -459,9 +503,10 @@ public strictfp class CRSParserTest extends TestCase {
                 "  ID[“EPSG”,4946,URI[“urn:ogc:def:crs:EPSG::4946”]],\n" +
                 "  REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]");
 
-        assertIdentificationEquals("crs",   "JGD2000", "4946", crs);
-        assertIdentificationEquals("datum", "Japanese Geodetic Datum 2000", null, crs.getDatum());
+        assertIdentificationEquals("JGD2000", "4946", crs);
+        assertDatumEquals("Japanese Geodetic Datum 2000", crs.getDatum());
         assertEllipsoidEquals(6378137, 298.257222101, SI.METRE, crs.getDatum().getEllipsoid());
+        assertPrimeMeridianEquals(null, 0, NonSI.DEGREE_ANGLE, crs.getDatum().getPrimeMeridian());
         assertCoordinateSystemEquals(CartesianCS.class, GEOCENTRIC, MMM_UNITS, crs.getCoordinateSystem());
         assertDomainOfValidityEquals("Japan", 17.09, 122.38, 46.05, 157.64, crs.getDomainOfValidity());
         assertTimeExtentEquals(new Date(1017619200000L), new Date(1319155200000L), crs.getDomainOfValidity());

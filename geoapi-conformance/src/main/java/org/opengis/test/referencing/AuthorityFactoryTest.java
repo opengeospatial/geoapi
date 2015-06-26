@@ -50,7 +50,6 @@ import org.opengis.referencing.operation.Conversion;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
-import org.opengis.test.TestCase;
 import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.Configuration;
@@ -102,7 +101,7 @@ import static org.opengis.test.referencing.Utilities.getName;
  * @since   2.3
  */
 @RunWith(Parameterized.class)
-public strictfp class AuthorityFactoryTest extends TestCase {
+public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */

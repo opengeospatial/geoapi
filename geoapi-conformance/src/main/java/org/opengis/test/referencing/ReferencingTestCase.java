@@ -29,29 +29,36 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
+package org.opengis.test.referencing;
+
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.test.TestCase;
+import org.opengis.util.Factory;
+
 
 /**
- * Tests <cite>Well-Known Text</cite> (WKT) parsing.
- * Each {@code *ParserTest} class in this package tests a factory method implemented by the product to test.
- * The factory method is given various WKT strings provided by the international standard defining the WKT format.
- * The tests verify that the objects returned by the factory method have the expected values.
- *
- * <p>The methods tested by this package and the corresponding international standards are:</p>
- *
- * <table class="ogc">
- *   <caption>Methods for parsing WKT</caption>
- *   <tr>
- *     <th>Parsing method</th>
- *     <th>Standard defining the WKT format</th>
- *   </tr><tr>
- *     <td>{@link org.opengis.referencing.crs.CRSFactory#createFromWKT(String)}</td>
- *     <td><a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">OGC 12-063r5 —
- *         Well-known text representation of coordinate reference systems</a></td>
- *   </tr>
- * </table>
+ * Base class of {@link CoordinateReferenceSystem} implementation tests.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-package org.opengis.test.wkt;
+public strictfp abstract class ReferencingTestCase extends TestCase {
+    /**
+     * Creates a new test without factory. This constructor is provided for subclasses that
+     * instantiate their {@link CoordinateReferenceSystem} directly, without using any factory.
+     */
+    protected ReferencingTestCase() {
+    }
+
+    /**
+     * Creates a test case initialized to default values.
+     *
+     * @param factories The factories to be used by the test. Those factories passed verbatim
+     *        to the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
+     */
+    @SuppressWarnings("unchecked")
+    protected ReferencingTestCase(final Factory... factories) {
+        super(factories);
+    }
+}

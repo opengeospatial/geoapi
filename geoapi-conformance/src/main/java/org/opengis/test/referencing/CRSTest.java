@@ -41,7 +41,6 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.opengis.test.TestCase;
 
 
 /**
@@ -75,7 +74,7 @@ import org.opengis.test.TestCase;
  */
 @Deprecated
 @RunWith(Parameterized.class)
-public strictfp class CRSTest extends TestCase {
+public strictfp class CRSTest extends ReferencingTestCase {
     /**
      * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,
      * or {@code null} if none.

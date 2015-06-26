@@ -48,15 +48,15 @@ import org.opengis.test.coverage.image.PixelIterator;
 
 
 /**
- * Assertion methods to be used by GeoAPI tests. This class inherits all assertion methods
- * from the JUnit {@link org.junit.Assert} class. Consequently, developers can replace the
- * following statement:
+ * Extension to JUnit assertion methods.
+ * This class inherits all assertion methods from the {@link org.junit.Assert org.junit.Assert} class.
+ * Consequently, developers can replace the following statement:
  *
- * <blockquote><pre>import static org.junit.Assert.*</pre></blockquote>
+ * <blockquote><pre>import static org.junit.Assert.*;</pre></blockquote>
  *
  * by
  *
- * <blockquote><pre>import static org.opengis.test.Assert.*</pre></blockquote>
+ * <blockquote><pre>import static org.opengis.test.Assert.*;</pre></blockquote>
  *
  * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *
