@@ -36,17 +36,10 @@ import java.util.List;
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
 import javax.measure.unit.SI;
-import javax.measure.quantity.Angle;
-import javax.measure.quantity.Length;
-import javax.measure.converter.UnitConverter;
-import javax.measure.converter.ConversionException;
-import org.opengis.metadata.extent.*;
-import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
-import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.test.referencing.ReferencingTestCase;
@@ -54,8 +47,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.Test;
 
-import static java.lang.Double.NaN;
-import static java.lang.Double.isNaN;
 import static org.junit.Assume.assumeTrue;
 import static org.opengis.test.Assert.*;
 
@@ -105,17 +96,18 @@ import static org.opengis.test.Assert.*;
 @RunWith(Parameterized.class)
 public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
-     * An array of length 2 containing the North and East directions, in that order. This can be an argument
-     * to calls to the {@link #assertCoordinateSystemEquals(Class, AxisDirection[], CoordinateSystem)} method.
+     * An array of length 3 containing the North, East and Up directions, in that order. This can be an argument to
+     * calls to the {@link #verifyCoordinateSystem(CoordinateSystem, Class, int, AxisDirection[], Unit[])} method.
      */
-    private static final AxisDirection[] NORTH_EAST = {
+    private static final AxisDirection[] NORTH_EAST_UP = {
         AxisDirection.NORTH,
-        AxisDirection.EAST
+        AxisDirection.EAST,
+        AxisDirection.UP
     };
 
     /**
      * An array of length 3 containing the geocentric X, Y and Z directions, in that order. This can be an argument
-     * to calls to the {@link #assertCoordinateSystemEquals(Class, AxisDirection[], CoordinateSystem)} method.
+     * to calls to the {@link #verifyCoordinateSystem(CoordinateSystem, Class, int, AxisDirection[], Unit[])} method.
      */
     private static final AxisDirection[] GEOCENTRIC = {
         AxisDirection.GEOCENTRIC_X,
@@ -150,6 +142,13 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     protected final CRSFactory factory;
 
     /**
+     * The instance returned by {@link CRSFactory#createFromWKT(String)} after parsing the WKT.
+     * Subclasses can use this field if they wish to verify additional properties after the
+     * verifications done by this {@code CRSParserTest} class.
+     */
+    protected CoordinateReferenceSystem object;
+
+    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -175,223 +174,14 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Asserts that the given object has the expected name and (optionally) identifier.
-     *
-     * @param name       The string representation of the expected name (ignoring code space).
-     * @param identifier The expected identifier code, or {@code null} if none.
-     * @param object     The object to verify.
-     */
-    private static void assertIdentificationEquals(final String name, final String identifier, final IdentifiedObject object) {
-        assertNotNull(object);
-        assertEquals("name.code", name, object.getName().getCode());
-        if (identifier != null) {
-            for (final Identifier id : object.getIdentifiers()) {
-                assertNotNull("name.identifiers[*]", id);
-                if (identifier.equalsIgnoreCase(id.getCode())) {
-                    return;
-                }
-            }
-            fail("Identifier “" + identifier + "” not found.");
-        }
-    }
-
-    /**
      * Asserts that the given datum has the expected name.
      *
-     * @param name  The string representation of the expected name (ignoring code space).
      * @param datum The datum to verify.
+     * @param name  The string representation of the expected name (ignoring code space).
      */
-    private static void assertDatumEquals(final String name, final Datum datum) {
+    private static void verifyDatum(final Datum datum, final String name) {
         assertNotNull("datum", datum);
         assertEquals("datum.name.code", name, datum.getName().getCode());
-    }
-
-    /**
-     * Asserts that the given ellipsoid has the given axis lengths.
-     * If the given ellipsoid uses a different unit of measurement than the given {@code axisUnit},
-     * then this method will convert the axis lengths to {@code axisUnit} before comparing them.
-     *
-     * @param semiMajor The expected semi-major axis length.
-     * @param inverseFlattening The expected inverse flattening.
-     * @param axisUnit The unit of {@code semiMajor}.
-     * @param ellipsoid The ellipsoid to test.
-     */
-    private static void assertEllipsoidEquals(final double semiMajor, final double inverseFlattening,
-            final Unit<Length> axisUnit, final Ellipsoid ellipsoid)
-    {
-        assertNotNull("Ellipsoid", ellipsoid);
-        /*
-         * Ellipsoid in the EPSG database have up to 9 digits for inverse flattening factor.
-         * So we ask for a precision of 0.5 of the last digit.
-         */
-        assertEquals("inverseFlattening", inverseFlattening, ellipsoid.getInverseFlattening(), 5E-10);
-        /*
-         * Ellipsoid in the EPSG database have up to 3 digits for the semi-major axis length.
-         * So we ask for a precision of 0.5 of the last digit.
-         */
-        final UnitConverter c = ellipsoid.getAxisUnit().getConverterTo(axisUnit);
-        assertEquals("semiMajor", semiMajor, c.convert(ellipsoid.getSemiMajorAxis()), 5E-4);
-    }
-
-    /**
-     * Asserts that the given prime meridian has the expected name and Greenwich longitude.
-     *
-     * @param name The string representation of the expected name (ignoring code space), or {@code null} if no restriction.
-     * @param greenwichLongitude The expected longitude
-     * @param angularUnit The angular unit of the given {@code greenwichLongitude}.
-     * @param primeMeridian The prime meridian to verify.
-     */
-    private static void assertPrimeMeridianEquals(final String name, final double greenwichLongitude,
-            final Unit<Angle> angularUnit, final PrimeMeridian primeMeridian)
-    {
-        assertNotNull(primeMeridian);
-        if (name != null) {
-            assertEquals("datum.primeMeridian.name.code", name, primeMeridian.getName().getCode());
-        }
-        final UnitConverter c = primeMeridian.getAngularUnit().getConverterTo(angularUnit);
-        assertEquals("datum.primeMeridian.greenwichLongitude", greenwichLongitude,
-                c.convert(primeMeridian.getGreenwichLongitude()), 5E-4);
-    }
-
-    /**
-     * Asserts that the given coordinate system is of the given type and have the given axis directions.
-     *
-     * <p>This method does not verify axis names because the names specified by ISO 19111 and ISO 19162 differ.
-     * An implementation could rename ISO 19162 axis names as ISO 19111 axis names after parsing.</p>
-     *
-     * @param type       The expected coordinate system type.
-     * @param directions The expected axis directions.
-     * @param units      The expected units. If longer than {@code directions}, extra elements are ignored.
-     * @param cs         The coordinate system to verify.
-     */
-    private static void assertCoordinateSystemEquals(final Class<? extends CoordinateSystem> type,
-            final AxisDirection[] directions, final Unit<?>[] units, final CoordinateSystem cs)
-    {
-        assertInstanceOf("CoordinateSystem", type, cs);
-        assertEquals("CoordinateSystem.dimension", directions.length, cs.getDimension());
-        for (int i=0; i<directions.length; i++) {
-            final CoordinateSystemAxis axis = cs.getAxis(i);
-            assertNotNull("CoordinateSystem.axis[i]", axis);
-            assertEquals ("CoordinateSystem.axis[i].direction", directions[i], axis.getDirection());
-            assertEquals ("CoordinateSystem.axis[i].unit",      units[i],      axis.getUnit());
-        }
-    }
-
-    /**
-     * Asserts that the extent is equals to the given area and bounding box.
-     *
-     * @param description        The expected area, or {@code null} if none.
-     * @param southBoundLatitude The expected minimum latitude,  or NaN if none.
-     * @param westBoundLongitude The expected minimum longitude, or NaN if none.
-     * @param northBoundLatitude The expected maximum latitude,  or NaN if none.
-     * @param eastBoundLongitude The expected maximum longitude, or NaN if none.
-     * @param extent The extent to verify. Can be null since this is optional information.
-     */
-    private static void assertDomainOfValidityEquals(final String description,
-            final double southBoundLatitude, final double westBoundLongitude,
-            final double northBoundLatitude, final double eastBoundLongitude,
-            final Extent extent)
-    {
-        if (extent != null) {
-            String unknownArea = null;
-            for (final GeographicExtent e : extent.getGeographicElements()) {
-                /*
-                 * WKT 2 specification said that BBOX precision should be about 0.01°.
-                 */
-                if (e instanceof GeographicBoundingBox) {
-                    final GeographicBoundingBox bbox = (GeographicBoundingBox) e;
-                    if (!isNaN(southBoundLatitude)) assertEquals("southBoundLatitude", southBoundLatitude, bbox.getSouthBoundLatitude(), 0.005);
-                    if (!isNaN(westBoundLongitude)) assertEquals("westBoundLongitude", westBoundLongitude, bbox.getWestBoundLongitude(), 0.005);
-                    if (!isNaN(northBoundLatitude)) assertEquals("northBoundLatitude", northBoundLatitude, bbox.getNorthBoundLatitude(), 0.005);
-                    if (!isNaN(eastBoundLongitude)) assertEquals("eastBoundLongitude", eastBoundLongitude, bbox.getEastBoundLongitude(), 0.005);
-                }
-                /*
-                 * Description: optional, but if present we allow any amount of identifiers
-                 * provided that at least one contain the expected string.
-                 */
-                if (description != null && e instanceof GeographicDescription) {
-                    final String area = ((GeographicDescription) e).getGeographicIdentifier().getCode();
-                    if (description.equals(area)) {
-                        unknownArea = null;
-                        break;
-                    }
-                    if (unknownArea == null) {
-                        unknownArea = area; // For reporting an error message if we do not find the expected area.
-                    }
-                }
-            }
-            if (unknownArea != null) {
-                assertEquals("Area", description, unknownArea);
-            }
-        }
-    }
-
-    /**
-     * Returns the given wrapper as a primitive value, or NaN if null.
-     */
-    private static double toPrimitive(final Double value) {
-        return (value != null) ? value : NaN;
-    }
-
-    /**
-     * Asserts that the vertical extent is equals to the given values.
-     *
-     * @param min    The minimal vertical value.
-     * @param max    The maximal vertical value.
-     * @param eps    The tolerance value.
-     * @param unit   The unit of {@code zmin} and {@code zmax}, or {@code null} for skipping the unit check.
-     * @param extent The extent to verify. Can be null since this is optional information.
-     */
-    private static void assertVerticalExtentEquals(final double min, final double max, final double eps,
-            final Unit<?> unit, final Extent extent)
-    {
-        if (extent != null) {
-            for (final VerticalExtent e : extent.getVerticalElements()) {
-                double minValue = toPrimitive(e.getMinimumValue());
-                double maxValue = toPrimitive(e.getMaximumValue());
-                if (unit != null) {
-                    final VerticalCRS crs = e.getVerticalCRS();
-                    if (crs != null) {
-                        final VerticalCS cs = crs.getCoordinateSystem();
-                        if (cs != null) {
-                            assertEquals("VerticalExtent.crs.cs.dimension", 1, cs.getDimension());
-                            final CoordinateSystemAxis axis = cs.getAxis(0);
-                            if (axis != null) {
-                                final Unit<?> u = axis.getUnit();
-                                if (u != null) {
-                                    final UnitConverter c;
-                                    try {
-                                        c = u.getConverterToAny(unit);
-                                    } catch (ConversionException ex) {
-                                        throw (AssertionError) new AssertionError("Expected VerticalExtent in units of “"
-                                                + unit + "” but got units of “" + u + "”.").initCause(ex);
-                                    }
-                                    minValue = c.convert(minValue);
-                                    maxValue = c.convert(maxValue);
-                                }
-                            }
-                        }
-                    }
-                }
-                assertEquals("VerticalExtent.minimumValue", min, minValue, eps);
-                assertEquals("VerticalExtent.maximumValue", max, maxValue, eps);
-            }
-        }
-    }
-
-    /**
-     * Asserts that the time extent is equals to the given values.
-     *
-     * @param startTime The start time.
-     * @param endTime   The end time.
-     * @param extent    The extent to verify. Can be null since this is optional information.
-     */
-    private static void assertTimeExtentEquals(final Date startTime, final Date endTime, final Extent extent) {
-        if (extent != null) {
-            for (final TemporalExtent e : extent.getTemporalElements()) {
-                // TODO: can not yet be tested, as it depends on temporal interfaces.
-            }
-        }
     }
 
     /**
@@ -416,11 +206,11 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @return The parsed object.
      * @throws FactoryException if an error occurred during the WKT parsing.
      */
-    private <T> T parse(final Class<T> type, final String text) throws FactoryException {
+    private <T extends CoordinateReferenceSystem> T parse(final Class<T> type, final String text) throws FactoryException {
         assumeTrue("No CRSFactory.", factory != null);
-        final Object obj = factory.createFromWKT(text);
-        assertInstanceOf("CRSFactory.createFromWKT", type, obj);
-        return type.cast(obj);
+        object = factory.createFromWKT(text);
+        assertInstanceOf("CRSFactory.createFromWKT", type, object);
+        return type.cast(object);
     }
 
     /**
@@ -454,11 +244,12 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    ANGLEUNIT[“degree”,0.0174532925199433],\n" +
                 "  REMARK[“Система Геодеэических Координвт года 1995(СК-95)”]]");
 
-        assertIdentificationEquals("S-95", null, crs);
-        assertDatumEquals("Pulkovo 1995", crs.getDatum());
-        assertEllipsoidEquals(6378245, 298.3, SI.METRE, crs.getDatum().getEllipsoid());
-        assertPrimeMeridianEquals(null, 0, NonSI.DEGREE_ANGLE, crs.getDatum().getPrimeMeridian());
-        assertCoordinateSystemEquals(EllipsoidalCS.class, NORTH_EAST, DDM_UNITS, crs.getCoordinateSystem());
+        validators.validate(crs);
+        verifyIdentification  (crs, "S-95", null);
+        verifyDatum           (crs.getDatum(), "Pulkovo 1995");
+        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "Krassowsky 1940", 6378245, 298.3, SI.METRE);
+        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, 2, NORTH_EAST_UP, DDM_UNITS);
         assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
     }
 
@@ -503,13 +294,14 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  ID[“EPSG”,4946,URI[“urn:ogc:def:crs:EPSG::4946”]],\n" +
                 "  REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]");
 
-        assertIdentificationEquals("JGD2000", "4946", crs);
-        assertDatumEquals("Japanese Geodetic Datum 2000", crs.getDatum());
-        assertEllipsoidEquals(6378137, 298.257222101, SI.METRE, crs.getDatum().getEllipsoid());
-        assertPrimeMeridianEquals(null, 0, NonSI.DEGREE_ANGLE, crs.getDatum().getPrimeMeridian());
-        assertCoordinateSystemEquals(CartesianCS.class, GEOCENTRIC, MMM_UNITS, crs.getCoordinateSystem());
-        assertDomainOfValidityEquals("Japan", 17.09, 122.38, 46.05, 157.64, crs.getDomainOfValidity());
-        assertTimeExtentEquals(new Date(1017619200000L), new Date(1319155200000L), crs.getDomainOfValidity());
+        validators.validate(crs);
+        verifyIdentification  (crs, "JGD2000", "4946");
+        verifyDatum           (crs.getDatum(), "Japanese Geodetic Datum 2000");
+        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
+        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, 3, GEOCENTRIC, MMM_UNITS);
+        verifyGeographicExtent(crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
+        assertTimeExtentEquals(crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
         assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", crs.getScope());
         assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());
     }
