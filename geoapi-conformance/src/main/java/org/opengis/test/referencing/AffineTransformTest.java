@@ -64,11 +64,9 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * in order to specify their factories and run the tests in a JUnit framework, implementors can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.*;
- *import org.junit.runner.RunWith;
+ * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
  *import org.opengis.test.referencing.AffineTransformTest;
- *import static org.junit.Assert.*;
  *
  *&#64;RunWith(JUnit4.class)
  *public class MyTest extends AffineTransformTest {

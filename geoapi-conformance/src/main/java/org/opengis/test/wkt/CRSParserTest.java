@@ -76,7 +76,7 @@ import static org.opengis.test.Assert.*;
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.ObjectFactoryTest;
+ *import org.opengis.test.wkt.CRSParserTest;
  *
  *&#64;RunWith(JUnit4.class)
  *public class MyTest extends CRSParserTest {

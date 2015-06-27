@@ -59,7 +59,7 @@ import org.opengis.referencing.operation.MathTransform;
  *
  * This {@code TestSuite} class provides also some static methods for {@linkplain #setFactories specifying
  * explicitely which factories to use} or {@linkplain #addTestListener being notified of test results}.
- * Those methods take effect even if the {@link TestCase}s are run outside of a {@code TestSuite} context.
+ * Those methods take effect even if the {@link TestCase} are run outside of a {@code TestSuite} context.
  *
  * <div class="section">How implementations are discovered</div>
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
