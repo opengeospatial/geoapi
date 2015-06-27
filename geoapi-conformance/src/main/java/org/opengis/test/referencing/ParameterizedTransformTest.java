@@ -86,12 +86,12 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *   <li>Override {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}.</li>
  * </ul>
  *
- * <p><b>Example:</b><br>
- * In order to specify their factory and run the tests in a JUnit framework, implementors can define
- * a subclass as in the example below. That example shows also how implementors can alter some tests
- * (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection) and add
- * more checks to be executed after every tests (here ensuring that the {@linkplain #transform
- * transform} implements the {@link MathTransform2D} interface):</p>
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can define
+ * a subclass in their own test suite as in the example below. That example shows also how implementors
+ * can alter some tests (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection)
+ * and add more checks to be executed after every tests (here ensuring that the {@linkplain #transform transform}
+ * implements the {@link MathTransform2D} interface):
  *
  * <blockquote><pre>import org.junit.*;
  *import org.junit.runner.RunWith;
@@ -124,6 +124,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *        assertTrue(transform instanceof MathTransform2D);
  *    }
  *}</pre></blockquote>
+ * </div>
  *
  * @see AffineTransformTest
  * @see AuthorityFactoryTest

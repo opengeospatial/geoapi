@@ -60,9 +60,9 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * from the {@code org.opengis.referencing.operation} package. Math transform instances are
  * created using the factory given at construction time.
  *
- * <p><b>Example:</b><br>
- * In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as in the example below:</p>
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.*;
  *import org.junit.runner.RunWith;
@@ -76,6 +76,7 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  *        super(new MyMathTransformFactory());
  *    }
  *}</pre></blockquote>
+ * </div>
  *
  * @see ParameterizedTransformTest
  * @see org.opengis.test.TestSuite
