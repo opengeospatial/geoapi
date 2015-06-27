@@ -55,11 +55,11 @@ import org.opengis.util.Factory;
  * construction time either directly by the implementor, or indirectly by calls to the
  * {@link #factories(Class[])} method.
  *
- * @see TestSuite
- *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.2
+ *
+ * @see TestSuite
  */
 public strictfp abstract class TestCase {
     /**
@@ -163,8 +163,17 @@ public strictfp abstract class TestCase {
     private static TestListener[] listeners = new TestListener[0];
 
     /**
+     * Returns all currently registered test listeners, or an empty array if none.
+     * This method returns directly the internal array, so it is important to never modify it.
+     * This method is for internal usage by the {@link #listener} field only.
+     */
+    static synchronized TestListener[] getTestListeners() {
+        return listeners;
+    }
+
+    /**
      * A JUnit {@linkplain Rule rule} for listening to test execution events. This rule forwards
-     * events to all {@linkplain TestCase#addTestListener(TestListener) registered listeners}.
+     * events to all {@linkplain TestSuite#addTestListener(TestListener) registered listeners}.
      *
      * <p>This field is public because JUnit requires us to do so, but should be considered as
      * an implementation details (it should have been a private field).</p>
@@ -543,15 +552,11 @@ public strictfp abstract class TestCase {
     }
 
     /**
-     * Adds a listener to be informed every time a test begin or finish, either on success
-     * or failure. This method does not check if the given listener was already registered
-     * (i.e. the same listener may be added more than once).
+     * Implementation of the {@link TestSuite#addTestListener(TestListener)} public method.
      *
      * @param listener The listener to add. {@code null} values are silently ignored.
-     *
-     * @since 3.1
      */
-    public static synchronized void addTestListener(final TestListener listener) {
+    static synchronized void addTestListener(final TestListener listener) {
         if (listener != null) {
             final int length = listeners.length;
             listeners = Arrays.copyOf(listeners, length + 1);
@@ -560,15 +565,11 @@ public strictfp abstract class TestCase {
     }
 
     /**
-     * Removes a previously {@linkplain #addTestListener(TestListener) added} listener. If the
-     * given listener has been added more than once, then only the last occurrence is removed.
-     * If the given listener is not found, then this method does nothing.
+     * Implementation of the {@link TestSuite#removeTestListener(TestListener)} public method.
      *
      * @param listener The listener to remove. {@code null} values are silently ignored.
-     *
-     * @since 3.1
      */
-    public static synchronized void removeTestListener(final TestListener listener) {
+    static synchronized void removeTestListener(final TestListener listener) {
         for (int i=listeners.length; --i>=0;) {
             if (listeners[i] == listener) {
                 final int length = listeners.length - 1;
@@ -577,14 +578,5 @@ public strictfp abstract class TestCase {
                 break;
             }
         }
-    }
-
-    /**
-     * Returns all currently registered test listeners, or an empty array if none.
-     * This method returns directly the internal array, so it is important to never
-     * modify it. This method is for internal usage by the {@link #listener} field only.
-     */
-    static synchronized TestListener[] getTestListeners() {
-        return listeners;
     }
 }

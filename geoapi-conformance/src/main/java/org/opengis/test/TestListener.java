@@ -36,11 +36,14 @@ import java.util.EventListener;
 
 /**
  * A listener which is notified when a test begin, complete or fail.
- * Listeners can be registered by invoking {@link TestCase#addTestListener(TestListener)}.
+ * Listeners can be registered by invoking {@link TestSuite#addTestListener(TestListener)}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see TestSuite#addTestListener(TestListener)
+ * @see TestEvent
  */
 public interface TestListener extends EventListener {
     /**
