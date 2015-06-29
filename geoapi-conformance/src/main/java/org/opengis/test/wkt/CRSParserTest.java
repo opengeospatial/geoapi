@@ -236,7 +236,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Parses a geodetic CRS.
+     * Parses a three-dimensional geodetic CRS.
      * The WKT parsed by this test is:
      *
      * <blockquote><pre>GEODCRS[“WGS 84”,
@@ -265,11 +265,11 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]");
 
         validators.validate(crs);
-        verifyIdentification  (crs, "WGS 84", null);
-        verifyDatum           (crs.getDatum(), "World Geodetic System 1984");
-        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
-        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, 3, NORTH_EAST_UP, DDM_UNITS);
+        verifyIdentification   (crs, "WGS 84", null);
+        verifyDatum            (crs.getDatum(), "World Geodetic System 1984");
+        verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
+        verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), EllipsoidalCS.class, 3, NORTH_EAST_UP, DDM_UNITS);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), null, null, "h");
     }
 
@@ -311,6 +311,87 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, 2, NORTH_EAST_UP, DDM_UNITS);
         assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
+    }
+
+    /**
+     * Parses a geodetic CRS which contains a remark and an identifier.
+     * The WKT parsed by this test is:
+     *
+     * <blockquote><pre>GEODCRS[“NAD83”,
+     *  DATUM[“North American Datum 1983”,
+     *    ELLIPSOID[“GRS 1980”,6378137,298.257222101,LENGTHUNIT[“metre”,1.0]]],
+     *  CS[ellipsoidal,2],
+     *    AXIS[“latitude”,north],
+     *    AXIS[“longitude”,east],
+     *    ANGLEUNIT[“degree”,0.017453292519943],
+     *    ID[“EPSG”,4269],
+     *    REMARK[“1986 realisation”]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 3</a>
+     */
+    @Test
+    public void testGeographicWithId() throws FactoryException {
+        final GeodeticCRS crs = parse(GeodeticCRS.class,
+                "GEODCRS[“NAD83”,\n" +
+                "  DATUM[“North American Datum 1983”,\n" +
+                "    ELLIPSOID[“GRS 1980”,6378137,298.257222101,LENGTHUNIT[“metre”,1.0]]],\n" +
+                "  CS[ellipsoidal,2],\n" +
+                "    AXIS[“latitude”,north],\n" +
+                "    AXIS[“longitude”,east],\n" +
+                "    ANGLEUNIT[“degree”,0.017453292519943],\n" +
+                "  ID[“EPSG”,4269],\n" +
+                "  REMARK[“1986 realisation”]]");
+
+        validators.validate(crs);
+        verifyIdentification  (crs, "NAD83", "4269");
+        verifyDatum           (crs.getDatum(), "North American Datum 1983");
+        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
+        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, 2, NORTH_EAST_UP, DDM_UNITS);
+        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
+    }
+
+    /**
+     * Parses a geodetic CRS with a prime meridian other than Greenwich and all angular units in grads.
+     * The WKT parsed by this test is:
+     *
+     * <blockquote><pre>GEODCRS[“NTF (Paris)”,
+     *  DATUM[“Nouvelle Triangulation Francaise”,
+     *    ELLIPSOID[“Clarke 1880 (IGN)”,6378249.2,293.4660213]],
+     *  PRIMEM[“Paris”,2.5969213],
+     *  CS[ellipsoidal,2],
+     *    AXIS[“latitude”,north,ORDER[1]],
+     *    AXIS[“longitude”,east,ORDER[2]],
+     *    ANGLEUNIT[“grad”,0.015707963267949],
+     *  REMARK[“Nouvelle Triangulation Française”]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 4</a>
+     */
+    @Test
+    public void testGeographicWithGradUnits() throws FactoryException {
+        final GeodeticCRS crs = parse(GeodeticCRS.class,
+                "GEODCRS[“NTF (Paris)”,\n" +
+                "  DATUM[“Nouvelle Triangulation Francaise”,\n" +
+                "    ELLIPSOID[“Clarke 1880 (IGN)”,6378249.2,293.4660213]],\n" +
+                "  PRIMEM[“Paris”,2.5969213],\n" +
+                "  CS[ellipsoidal,2],\n" +
+                "    AXIS[“latitude”,north,ORDER[1]],\n" +
+                "    AXIS[“longitude”,east,ORDER[2]],\n" +
+                "    ANGLEUNIT[“grad”,0.015707963267949],\n" +
+                "  REMARK[“Nouvelle Triangulation Française”]]");
+
+        validators.validate(crs);
+        verifyIdentification  (crs, "NTF (Paris)", null);
+        verifyDatum           (crs.getDatum(), "Nouvelle Triangulation Francaise");
+        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "Clarke 1880 (IGN)", 6378249.2, 293.4660213, SI.METRE);
+        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), "Paris", 2.5969213, NonSI.GRADE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, 2, NORTH_EAST_UP,
+                new Unit<?>[] {NonSI.GRADE, NonSI.GRADE});
+        assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks());
     }
 
     /**
