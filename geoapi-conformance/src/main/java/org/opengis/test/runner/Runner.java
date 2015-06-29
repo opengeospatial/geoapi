@@ -51,7 +51,6 @@ import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
-import org.opengis.test.TestCase;
 import org.opengis.test.TestSuite;
 import org.opengis.test.TestEvent;
 import org.opengis.test.TestListener;
@@ -125,10 +124,10 @@ final class Runner extends RunListener implements TestListener {
         junit.addListener(this);
         final Result result;
         try {
-            TestCase.addTestListener(this);
+            TestSuite.addTestListener(this);
             result = junit.run(TestSuite.class);
         } finally {
-            TestCase.removeTestListener(this);
+            TestSuite.removeTestListener(this);
         }
         if (result.getRunCount() == 1 && result.getFailureCount() == 1) {
             final Throwable exception = result.getFailures().get(0).getException();

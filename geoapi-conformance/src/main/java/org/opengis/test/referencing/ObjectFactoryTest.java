@@ -60,8 +60,9 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * Tests the creation of referencing objects from the {@linkplain ObjectFactory object factories}
  * given at construction time.
  *
- * <p>In order to specify their factories and run the tests in a JUnit framework, implementors can
- * define a subclass as below:</p>
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
@@ -73,9 +74,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  *        super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory(), new MyOpFactory());
  *    }
  *}</pre></blockquote>
- *
- * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
- * which combine every tests defined in the GeoAPI conformance module.
+ * </div>
  *
  * @see AuthorityFactoryTest
  * @see org.opengis.test.TestSuite

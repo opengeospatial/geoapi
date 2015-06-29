@@ -57,6 +57,11 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.wkt.CRSParserTest}</li>
  * </ul>
  *
+ * This {@code TestSuite} class provides also some static methods for {@linkplain #setFactories specifying
+ * explicitely which factories to use} or {@linkplain #addTestListener being notified of test results}.
+ * Those methods take effect even if the {@link TestCase} are run outside of a {@code TestSuite} context.
+ *
+ * <div class="section">How implementations are discovered</div>
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
@@ -68,8 +73,9 @@ import org.opengis.referencing.operation.MathTransform;
  * {@code META-INF/services/} directory. As an alternative, implementors can also extend directly
  * the various {@link TestCase} subclasses.</p>
  *
- * <p><b>Example:</b> The test suite below declares that the tolerance threshold for {@code MyProjection}
- * needs to be relaxed by a factor 10 during inverse projections.</p>
+ * <div class="note"><b>Example:</b>
+ * The test suite below declares that the tolerance threshold for {@code MyProjection}
+ * needs to be relaxed by a factor 10 during inverse projections.
  *
  * <blockquote><pre>package org.myproject;
  *
@@ -100,6 +106,7 @@ import org.opengis.referencing.operation.MathTransform;
  * The above {@code AllTests} class needs to be registered in the {@code META-INF/services/}
  * directory if the implementation details shall be honored (otherwise the tests will be run,
  * but the implementation details will be ignored).
+ * </div>
  *
  * @see ImplementationDetails
  * @see TestCase
@@ -126,6 +133,16 @@ public strictfp class TestSuite {
      * Instances of this class usually don't need to be created.
      */
     protected TestSuite() {
+    }
+
+    /**
+     * Sets the class loader to use for loading implementations. A {@code null} value restores
+     * the default {@linkplain Thread#getContextClassLoader() context class loader}.
+     *
+     * @param loader The class loader to use, or {@code null} for the default.
+     */
+    public static void setClassLoader(final ClassLoader loader) {
+        TestCase.setClassLoader(loader);
     }
 
     /**
@@ -167,13 +184,25 @@ public strictfp class TestSuite {
     }
 
     /**
-     * Sets the class loader to use for loading implementations. A {@code null} value restores
-     * the default {@linkplain Thread#getContextClassLoader() context class loader}.
+     * Adds a listener to be informed every time a test begin or finish, either on success
+     * or failure. This method does not check if the given listener was already registered
+     * (i.e. the same listener may be added more than once).
      *
-     * @param loader The class loader to use, or {@code null} for the default.
+     * @param listener The listener to add. {@code null} values are silently ignored.
      */
-    public static void setClassLoader(final ClassLoader loader) {
-        TestCase.setClassLoader(loader);
+    public static void addTestListener(final TestListener listener) {
+        TestCase.addTestListener(listener);
+    }
+
+    /**
+     * Removes a previously {@linkplain #addTestListener(TestListener) added} listener. If the
+     * given listener has been added more than once, then only the last occurrence is removed.
+     * If the given listener is not found, then this method does nothing.
+     *
+     * @param listener The listener to remove. {@code null} values are silently ignored.
+     */
+    public static void removeTestListener(final TestListener listener) {
+        TestCase.removeTestListener(listener);
     }
 
     /**

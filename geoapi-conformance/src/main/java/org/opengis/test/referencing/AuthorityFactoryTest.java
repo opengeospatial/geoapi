@@ -67,8 +67,15 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority
  * factories} given at construction time.
  *
- * <p>In order to specify their factories and run the tests in a JUnit framework, implementors can
- * define a subclass as below:</p>
+ * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
+ * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the later
+ * test class expects (λ,φ) input ordinates in degrees and (<var>x</var>,<var>y</var>)
+ * output ordinates in metres, while this {@code AuthorityFactoryTest} class expects input and
+ * output ordinates in CRS-dependent units and axis order.</p>
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
@@ -80,15 +87,7 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  *        super(new MyCRSAuthorityFactory(), new MyCSAuthorityFactory(), new MyDatumAuthorityFactory());
  *    }
  *}</pre></blockquote>
- *
- * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
- * which combine every tests defined in the GeoAPI conformance module.
- *
- * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
- * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the later
- * test class expects (λ,φ) input ordinates in degrees and (<var>x</var>,<var>y</var>)
- * output ordinates in metres, while this {@code AuthorityFactoryTest} class expects input and
- * output ordinates in CRS-dependent units and axis order.</p>
+ * </div>
  *
  * @see ObjectFactoryTest
  * @see ParameterizedTransformTest

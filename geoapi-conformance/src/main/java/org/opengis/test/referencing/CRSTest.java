@@ -48,8 +48,9 @@ import org.junit.runners.Parameterized;
  * from the {@code org.opengis.referencing.crs} package.
  * CRS instances are created using the authority factory given at construction time.
  *
- * <p>In order to specify their factory and run the tests in a JUnit framework, implementors can
- * define a subclass as below:</p>
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
  *import org.junit.runners.JUnit4;
@@ -61,9 +62,7 @@ import org.junit.runners.Parameterized;
  *        super(new MyCRSAuthorityFactory());
  *    }
  *}</pre></blockquote>
- *
- * Alternatively this test class can also be used directly in the {@link org.opengis.test.TestSuite},
- * which combine every tests defined in the GeoAPI conformance module.
+ * </div>
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

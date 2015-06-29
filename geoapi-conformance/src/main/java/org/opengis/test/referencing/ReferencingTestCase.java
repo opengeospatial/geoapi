@@ -307,7 +307,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param angularUnit The unit of the latitude an longitude axes.
      * @param linearUnit  The unit of the ellipsoidal height axis, if any.
      */
-    protected void verifyEllipsoidalCS(final EllipsoidalCS cs, final int dimension,
+    final void verifyEllipsoidalCS(final EllipsoidalCS cs, final int dimension,
             final Unit<Angle> angularUnit, final Unit<Length> linearUnit)
     {
         verifyCoordinateSystem(cs, EllipsoidalCS.class, dimension, new AxisDirection[] {
@@ -432,7 +432,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * @see CoordinateReferenceSystem#getDomainOfValidity()
      */
-    protected void assertVerticalExtentEquals(final Extent extent,
+    protected void verifyVerticalExtent(final Extent extent,
             final double minimumValue, final double maximumValue, final double tolerance, final Unit<?> unit)
     {
         if (extent != null) {
@@ -495,7 +495,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * @see CoordinateReferenceSystem#getDomainOfValidity()
      */
-    protected void assertTimeExtentEquals(final Extent extent, final Date startTime, final Date endTime, final double tolerance) {
+    protected void verifyTimeExtent(final Extent extent, final Date startTime, final Date endTime, final double tolerance) {
         if (extent != null) {
             Date min = null;
             Date max = null;
