@@ -64,6 +64,7 @@ import static org.opengis.test.Assert.*;
  *   <li>{@link Ellipsoid#getSemiMajorAxis()} and {@link Ellipsoid#getInverseFlattening() getInverseFlattening()}</li>
  *   <li>{@link PrimeMeridian#getGreenwichLongitude()}</li>
  *   <li>{@link CoordinateSystem#getDimension()}</li>
+ *   <li>{@link CoordinateSystemAxis#getAbbreviation()} when they were explicitly given in the WKT and do not need transliteration.</li>
  *   <li>{@link CoordinateSystemAxis#getDirection()} and {@link CoordinateSystemAxis#getUnit() getUnit()}</li>
  *   <li>{@link CoordinateReferenceSystem#getScope()} (optional – null allowed)</li>
  *   <li>{@link CoordinateReferenceSystem#getDomainOfValidity()} (optional – null allowed)</li>
@@ -184,6 +185,28 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
+     * Compares the abbreviations of coordinate system axes against the expected values.
+     * The comparison is case-sensitive, e.g. <var>h</var> (ellipsoidal height) is not the same than
+     * <var>H</var> (gravity-related height).
+     *
+     * <p>The GeoAPI conformance tests invoke this method only for abbreviations that should not need transliteration.
+     * For example the GeoAPI tests do not invoke this method for geodetic latitude and longitude axes, because some
+     * implementations may keep the Greek letters φ and λ as specified in ISO 19111 while other implementations may
+     * transliterate those Greek letters to the <var>P</var> and <var>L</var> Latin letters.</p>
+     *
+     * @param cs The coordinate system to verify.
+     * @param abbreviations The expected abbreviations. Null elements are considered unrestricted.
+     */
+    private static void verifyAxisAbbreviations(final CoordinateSystem cs, final String... abbreviations) {
+        for (int i=0; i<abbreviations.length; i++) {
+            final String expected = abbreviations[i];
+            if (expected != null) {
+                assertEquals("CoordinateSystemAxis.getAbbreviation()", expected, cs.getAxis(i).getAbbreviation());
+            }
+        }
+    }
+
+    /**
      * Asserts the the given character sequence is either null or equals to the given value.
      * This is used for optional elements like remarks.
      *
@@ -210,6 +233,44 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         object = factory.createFromWKT(text);
         assertInstanceOf("CRSFactory.createFromWKT", type, object);
         return type.cast(object);
+    }
+
+    /**
+     * Parses a geodetic CRS.
+     * The WKT parsed by this test is:
+     *
+     * <blockquote><pre>GEODCRS[“WGS 84”,
+     *  DATUM[“World Geodetic System 1984”,
+     *    ELLIPSOID[“WGS 84”,6378137,298.257223563,
+     *      LENGTHUNIT[“metre”,1.0]]],
+     *  CS[ellipsoidal,3],
+     *    AXIS[“(lat)”,north,ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    AXIS[“(lon)”,east,ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 2</a>
+     */
+    @Test
+    public void testGeographic() throws FactoryException {
+        final GeodeticCRS crs = parse(GeodeticCRS.class,
+                "GEODCRS[“WGS 84”,\n" +
+                "  DATUM[“World Geodetic System 1984”,\n" +
+                "    ELLIPSOID[“WGS 84”,6378137,298.257223563,\n" +
+                "      LENGTHUNIT[“metre”,1.0]]],\n" +
+                "  CS[ellipsoidal,3],\n" +
+                "    AXIS[“(lat)”,north,ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    AXIS[“(lon)”,east,ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]");
+
+        validators.validate(crs);
+        verifyIdentification  (crs, "WGS 84", null);
+        verifyDatum           (crs.getDatum(), "World Geodetic System 1984");
+        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
+        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, 3, NORTH_EAST_UP, DDM_UNITS);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), null, null, "h");
     }
 
     /**
@@ -294,13 +355,14 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]");
 
         validators.validate(crs);
-        verifyIdentification  (crs, "JGD2000", "4946");
-        verifyDatum           (crs.getDatum(), "Japanese Geodetic Datum 2000");
-        verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
-        verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, 3, GEOCENTRIC, MMM_UNITS);
-        verifyGeographicExtent(crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
-        verifyTimeExtent      (crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
+        verifyIdentification   (crs, "JGD2000", "4946");
+        verifyDatum            (crs.getDatum(), "Japanese Geodetic Datum 2000");
+        verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
+        verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, 3, GEOCENTRIC, MMM_UNITS);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y", "Z");
+        verifyGeographicExtent (crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
+        verifyTimeExtent       (crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
         assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", crs.getScope());
         assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());
     }
