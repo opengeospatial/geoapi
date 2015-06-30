@@ -747,6 +747,35 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
+     * Parses a temporal CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>TIMECRS[“GPS Time”,
+     *   TDATUM[“Time origin”,TIMEORIGIN[1980-01-01T00:00:00.0Z]],
+     *   CS[temporal,1],AXIS[“time”,future],TIMEUNIT[“day”,86400.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#92">OGC 12-063r5 §14.4</a>
+     */
+    @Test
+    public void testTemporal() throws FactoryException {
+        final TemporalCRS crs = parse(TemporalCRS.class,
+                "TIMECRS[“GPS Time”,\n" +
+                "  TDATUM[“Time origin”,TIMEORIGIN[1980-01-01T00:00:00.0Z]],\n" +
+                "  CS[temporal,1],AXIS[“time”,future],TIMEUNIT[“day”,86400.0]]");
+
+        if (isValidationEnabled) {
+            validators.validate(crs);
+        }
+        verifyIdentification   (crs, "GPS Time", null);
+        verifyDatum            (crs.getDatum(), "Time origin");
+        verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class,
+                new AxisDirection[] {AxisDirection.FUTURE}, NonSI.DAY);
+        assertEquals("TimeOrigin", new Date(315532800000L), crs.getDatum().getOrigin());
+    }
+
+    /**
      * Parses an engineering CRS with North and West axis directions.
      * The WKT parsed by this test is (except for quote characters):
      *
