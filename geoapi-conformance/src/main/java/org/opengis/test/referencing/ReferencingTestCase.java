@@ -46,6 +46,8 @@ import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.TemporalExtent;
 import org.opengis.metadata.extent.VerticalExtent;
+import org.opengis.parameter.ParameterValue;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
@@ -279,11 +281,12 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param dimension  The expected coordinate system dimension.
      * @param directions The expected axis directions. If the array length is greater than {@code dimension}, extra elements are ignored.
      * @param units      The expected axis units. If the array length is greater than {@code dimension}, extra elements are ignored.
+     *                   If the array length is less than {@code dimension}, the last unit is repeated for all remaining dimensions.
      *
      * @see CoordinateReferenceSystem#getCoordinateSystem()
      */
     protected void verifyCoordinateSystem(final CoordinateSystem cs, final Class<? extends CoordinateSystem> type,
-            final int dimension, final AxisDirection[] directions, final Unit<?>[] units)
+            final int dimension, final AxisDirection[] directions, final Unit<?>... units)
     {
         if (cs != null) {
             assertEquals("CoordinateSystem.getDimension()", dimension, cs.getDimension());
@@ -291,7 +294,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
                 assertNotNull("CoordinateSystem.getAxis(*)", axis);
                 assertEquals ("CoordinateSystem.getAxis(*).getDirection()", directions[i], axis.getDirection());
-                assertEquals ("CoordinateSystem.getAxis(*).getUnit()",      units[i],      axis.getUnit());
+                assertEquals ("CoordinateSystem.getAxis(*).getUnit()", units[Math.min(i, units.length-1)], axis.getUnit());
             }
         }
     }
@@ -319,6 +322,32 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
             angularUnit,
             linearUnit
         });
+    }
+
+    /**
+     * Compares an operation parameter against the expected value.
+     * This method allows for some flexibilities:
+     *
+     * <ul>
+     *   <li>The parameter does not need to use the unit of measurement given by the {@code unit} argument.
+     *       Unit conversion should be applied as needed by the {@link ParameterValue#doubleValue(Unit)} method.</li>
+     * </ul>
+     *
+     * If the given {@code group} is {@code null}, then this method does nothing.
+     * Deciding if {@code null} parameters are allowed or not is {@link org.opengis.test.Validator}'s job.
+     *
+     * @param group The parameter group containing the parameter to test.
+     * @param name  The name of the parameter to test.
+     * @param value The expected parameter value when expressed in units given by the {@code unit} argument.
+     * @param unit  The units of measurement of the {@code value} argument
+     *              (not necessarily the unit actually used by the implementation).
+     */
+    protected void verifyParameter(final ParameterValueGroup group, final String name, final double value, final Unit<?> unit) {
+        if (group != null) {
+            final ParameterValue<?> param = group.parameter(name);
+            assertNotNull(name, param);
+            assertEquals(name, param.doubleValue(unit), value, StrictMath.abs(value * 1E-10));
+        }
     }
 
     /**

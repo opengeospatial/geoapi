@@ -93,11 +93,16 @@ public strictfp class NameTest extends TestCase {
 
     /**
      * {@code true} if the {@link GenericName} implementations created by the {@linkplain #factory}
-     * can use different syntax rules in different part of their name. If {@code true}, then URI
-     * using different separators in different parts of their name (e.g. {@code ":"}, {@code "."},
-     * {@code "/"} and {@code "#"} in {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}) are
-     * supported. If {@code false}, then only a single rule can be applied to the name as a whole
-     * (e.g. only the {@code ":"} separator is used in {@code "urn:ogc:def:crs:epsg:4326"}).
+     * can use different syntax rules in different part of their name.
+     *
+     * <ul>
+     *   <li>If {@code true}, then URI using different separators in different parts of their name are supported.
+     *       <div class="note"><b>Example:</b> {@code ":"}, {@code "."}, {@code "/"} and {@code "#"} in
+     *       {@code "http://www.opengis.net/gml/srs/epsg.xml#4326"}.</div></li>
+     *   <li>If {@code false}, then only a single rule can be applied to the name as a whole.
+     *       <div class="note"><b>Example:</b> only the {@code ":"} separator is used in
+     *       {@code "urn:ogc:def:crs:epsg:4326"}.</div></li>
+     * </ul>
      */
     protected boolean isMixedNameSyntaxSupported;
 
@@ -143,14 +148,18 @@ public strictfp class NameTest extends TestCase {
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
      *       <li>{@link #isMultiLocaleSupported}</li>
+     *       <li>{@link #isMixedNameSyntaxSupported}</li>
      *     </ul>
      *   </li>
      * </ul>
+     *
+     * @return {@inheritDoc}
      */
     @Override
     public Configuration configuration() {
         final Configuration op = super.configuration();
-        assertNull(op.put(Configuration.Key.isMultiLocaleSupported, isMultiLocaleSupported));
+        assertNull(op.put(Configuration.Key.isMultiLocaleSupported,     isMultiLocaleSupported));
+        assertNull(op.put(Configuration.Key.isMixedNameSyntaxSupported, isMixedNameSyntaxSupported));
         return op;
     }
 
