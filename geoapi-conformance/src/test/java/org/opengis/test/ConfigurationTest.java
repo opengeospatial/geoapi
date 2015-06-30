@@ -52,7 +52,10 @@ public strictfp class ConfigurationTest {
     @Test
     public void testKeyNames() {
         for (final Configuration.Key<?> e : Configuration.Key.values()) {
-            if (e.type == Boolean.class && e != Configuration.Key.isToleranceRelaxed) {
+            if (e.type == Boolean.class
+                    && e != Configuration.Key.isValidationEnabled
+                    && e != Configuration.Key.isToleranceRelaxed)
+            {
                 final String key = e.name();
                 assertTrue("Expected \"is\" prefix.", key.startsWith("is"));
                 assertTrue("Expected \"Supported\" prefix.", key.endsWith("Supported"));

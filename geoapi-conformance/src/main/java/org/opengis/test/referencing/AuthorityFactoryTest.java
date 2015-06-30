@@ -327,7 +327,11 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
          */
         final EllipsoidalCS cs = crs.getCoordinateSystem();
         if (cs != null) {
-            verifyEllipsoidalCS (cs, 2, NonSI.DEGREE_ANGLE, null);
+            verifyCoordinateSystem(cs, EllipsoidalCS.class,
+                    new AxisDirection[] {
+                        AxisDirection.NORTH,
+                        AxisDirection.EAST
+                    }, NonSI.DEGREE_ANGLE);
             verifyIdentification(cs.getAxis(0), "Geodetic latitude", null);
             verifyIdentification(cs.getAxis(1), "Geodetic longitude", null);
         }

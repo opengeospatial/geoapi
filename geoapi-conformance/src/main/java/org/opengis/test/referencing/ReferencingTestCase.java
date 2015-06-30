@@ -46,6 +46,8 @@ import org.opengis.metadata.extent.GeographicDescription;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.TemporalExtent;
 import org.opengis.metadata.extent.VerticalExtent;
+import org.opengis.parameter.ParameterValue;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
@@ -55,7 +57,6 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.VerticalCRS;
-import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.temporal.Instant;
 import org.opengis.temporal.Period;
@@ -276,49 +277,50 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * @param cs         The coordinate system to verify, or {@code null} if none.
      * @param type       The expected coordinate system type.
-     * @param dimension  The expected coordinate system dimension.
-     * @param directions The expected axis directions. If the array length is greater than {@code dimension}, extra elements are ignored.
-     * @param units      The expected axis units. If the array length is greater than {@code dimension}, extra elements are ignored.
+     * @param directions The expected axis directions. The length of this array determines the expected {@code cs} dimension.
+     * @param units      The expected axis units. If the array length is less than the {@code cs} dimension,
+     *                   then the last unit is repeated for all remaining dimensions.
      *
      * @see CoordinateReferenceSystem#getCoordinateSystem()
      */
     protected void verifyCoordinateSystem(final CoordinateSystem cs, final Class<? extends CoordinateSystem> type,
-            final int dimension, final AxisDirection[] directions, final Unit<?>[] units)
+            final AxisDirection[] directions, final Unit<?>... units)
     {
         if (cs != null) {
-            assertEquals("CoordinateSystem.getDimension()", dimension, cs.getDimension());
-            for (int i=0; i<dimension; i++) {
+            assertEquals("CoordinateSystem.getDimension()", directions.length, cs.getDimension());
+            for (int i=0; i<directions.length; i++) {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
                 assertNotNull("CoordinateSystem.getAxis(*)", axis);
                 assertEquals ("CoordinateSystem.getAxis(*).getDirection()", directions[i], axis.getDirection());
-                assertEquals ("CoordinateSystem.getAxis(*).getUnit()",      units[i],      axis.getUnit());
+                assertEquals ("CoordinateSystem.getAxis(*).getUnit()", units[Math.min(i, units.length-1)], axis.getUnit());
             }
         }
     }
 
     /**
-     * Compares axis units and directions of the given coordinate system against the expected values.
-     * This is a convenience method which delegates to the
-     * {@link #verifyCoordinateSystem(CoordinateSystem, Class, int, AxisDirection[], Unit[])} method
-     * with a {@code directions} array of length 3 containing the North, East and Up directions, in that order.
+     * Compares an operation parameter against the expected value.
+     * This method allows for some flexibilities:
      *
-     * @param cs          The coordinate system to verify, or {@code null} if none.
-     * @param dimension   The expected coordinate system dimension (2 or 3).
-     * @param angularUnit The unit of the latitude an longitude axes.
-     * @param linearUnit  The unit of the ellipsoidal height axis, if any.
+     * <ul>
+     *   <li>The parameter does not need to use the unit of measurement given by the {@code unit} argument.
+     *       Unit conversion should be applied as needed by the {@link ParameterValue#doubleValue(Unit)} method.</li>
+     * </ul>
+     *
+     * If the given {@code group} is {@code null}, then this method does nothing.
+     * Deciding if {@code null} parameters are allowed or not is {@link org.opengis.test.Validator}'s job.
+     *
+     * @param group The parameter group containing the parameter to test.
+     * @param name  The name of the parameter to test.
+     * @param value The expected parameter value when expressed in units given by the {@code unit} argument.
+     * @param unit  The units of measurement of the {@code value} argument
+     *              (not necessarily the unit actually used by the implementation).
      */
-    final void verifyEllipsoidalCS(final EllipsoidalCS cs, final int dimension,
-            final Unit<Angle> angularUnit, final Unit<Length> linearUnit)
-    {
-        verifyCoordinateSystem(cs, EllipsoidalCS.class, dimension, new AxisDirection[] {
-            AxisDirection.NORTH,
-            AxisDirection.EAST,
-            AxisDirection.UP
-        }, new Unit<?>[] {
-            angularUnit,
-            angularUnit,
-            linearUnit
-        });
+    protected void verifyParameter(final ParameterValueGroup group, final String name, final double value, final Unit<?> unit) {
+        if (group != null) {
+            final ParameterValue<?> param = group.parameter(name);
+            assertNotNull(name, param);
+            assertEquals(name, param.doubleValue(unit), value, StrictMath.abs(value * 1E-10));
+        }
     }
 
     /**

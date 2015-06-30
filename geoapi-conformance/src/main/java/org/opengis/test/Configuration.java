@@ -107,6 +107,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@link Key#datumFactory                        datumFactory}<br>
  * {@link Key#datumAuthorityFactory               datumAuthorityFactory}</td><td valign="top">
  * {@link Key#validators                          validators}<br>
+ * {@link Key#isValidationEnabled                 isValidationEnabled}<br>
  * {@link Key#isToleranceRelaxed                  isToleranceRelaxed}
  * </td></tr></table>
  *
@@ -437,6 +438,23 @@ public class Configuration implements Serializable {
          */
         public static final Key<Boolean> isAxisSwappingSupported =
                 new Key<Boolean>(Boolean.class, "isAxisSwappingSupported");
+
+        /**
+         * Whether the test methods can invoke a <code>{@linkplain TestCase#validators validators}.validate(…)}</code>
+         * method. GeoAPI allows to disable the validation checks in some tests where strict conformance to a standard
+         * is relaxed.
+         *
+         * <div class="note"><b>Example:</b>
+         * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
+         * the latitude axis in a geographic CRS shall be <cite>"Geodetic latitude"</cite> while ISO 19162
+         * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently the GeoAPI
+         * conformance module allows implementor to disable the check for ISO 19111 conformance if their WKT
+         * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
+         *
+         * @see org.opengis.test.wkt.CRSParserTest#isValidationEnabled
+         */
+        public static final Key<Boolean> isValidationEnabled =
+                new Key<Boolean>(Boolean.class, "isValidationEnabled");
 
         /**
          * Whether the tolerance threshold of a {@linkplain org.opengis.test.referencing.TransformTestCase
