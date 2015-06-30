@@ -211,7 +211,12 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         verifyPrimeMeridian(datum.getPrimeMeridian(), "Greenwich", 0.0, DEGREE_ANGLE);
 
         cs = crs.getCoordinateSystem();
-        verifyEllipsoidalCS (cs, 3, DEGREE_ANGLE, METRE);
+        verifyCoordinateSystem(cs, EllipsoidalCS.class,
+                new AxisDirection[] {
+                    AxisDirection.NORTH,
+                    AxisDirection.EAST,
+                    AxisDirection.UP
+                }, DEGREE_ANGLE, DEGREE_ANGLE, METRE);
         verifyIdentification(cs.getAxis(0), "Geodetic latitude", null);
         verifyIdentification(cs.getAxis(1), "Geodetic longitude", null);
         verifyIdentification(cs.getAxis(2), "Ellipsoidal height", null);

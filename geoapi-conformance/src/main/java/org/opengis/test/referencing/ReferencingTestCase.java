@@ -57,7 +57,6 @@ import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.VerticalCRS;
-import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.temporal.Instant;
 import org.opengis.temporal.Period;
@@ -278,50 +277,24 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * @param cs         The coordinate system to verify, or {@code null} if none.
      * @param type       The expected coordinate system type.
-     * @param dimension  The expected coordinate system dimension.
-     * @param directions The expected axis directions. If the array length is greater than {@code dimension}, extra elements are ignored.
-     * @param units      The expected axis units. If the array length is greater than {@code dimension}, extra elements are ignored.
-     *                   If the array length is less than {@code dimension}, the last unit is repeated for all remaining dimensions.
+     * @param directions The expected axis directions. The length of this array determines the expected {@code cs} dimension.
+     * @param units      The expected axis units. If the array length is less than the {@code cs} dimension,
+     *                   then the last unit is repeated for all remaining dimensions.
      *
      * @see CoordinateReferenceSystem#getCoordinateSystem()
      */
     protected void verifyCoordinateSystem(final CoordinateSystem cs, final Class<? extends CoordinateSystem> type,
-            final int dimension, final AxisDirection[] directions, final Unit<?>... units)
+            final AxisDirection[] directions, final Unit<?>... units)
     {
         if (cs != null) {
-            assertEquals("CoordinateSystem.getDimension()", dimension, cs.getDimension());
-            for (int i=0; i<dimension; i++) {
+            assertEquals("CoordinateSystem.getDimension()", directions.length, cs.getDimension());
+            for (int i=0; i<directions.length; i++) {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
                 assertNotNull("CoordinateSystem.getAxis(*)", axis);
                 assertEquals ("CoordinateSystem.getAxis(*).getDirection()", directions[i], axis.getDirection());
                 assertEquals ("CoordinateSystem.getAxis(*).getUnit()", units[Math.min(i, units.length-1)], axis.getUnit());
             }
         }
-    }
-
-    /**
-     * Compares axis units and directions of the given coordinate system against the expected values.
-     * This is a convenience method which delegates to the
-     * {@link #verifyCoordinateSystem(CoordinateSystem, Class, int, AxisDirection[], Unit[])} method
-     * with a {@code directions} array of length 3 containing the North, East and Up directions, in that order.
-     *
-     * @param cs          The coordinate system to verify, or {@code null} if none.
-     * @param dimension   The expected coordinate system dimension (2 or 3).
-     * @param angularUnit The unit of the latitude an longitude axes.
-     * @param linearUnit  The unit of the ellipsoidal height axis, if any.
-     */
-    final void verifyEllipsoidalCS(final EllipsoidalCS cs, final int dimension,
-            final Unit<Angle> angularUnit, final Unit<Length> linearUnit)
-    {
-        verifyCoordinateSystem(cs, EllipsoidalCS.class, dimension, new AxisDirection[] {
-            AxisDirection.NORTH,
-            AxisDirection.EAST,
-            AxisDirection.UP
-        }, new Unit<?>[] {
-            angularUnit,
-            angularUnit,
-            linearUnit
-        });
     }
 
     /**
