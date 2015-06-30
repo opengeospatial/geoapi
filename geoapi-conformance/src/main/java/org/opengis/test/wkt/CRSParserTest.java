@@ -659,7 +659,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Parses a projected CRS with implicit units.
+     * Parses a projected CRS with implicit parameter units.
      * The WKT parsed by this test is (except for quote characters and the line feed in {@code REMARK}):
      *
      * <blockquote><pre>PROJCRS[“NAD83 UTM 10”,
@@ -688,7 +688,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#68">OGC 12-063r5 §9.5 example 3</a>
      */
     @Test
-    public void testProjectedWithImplicitUnits() throws FactoryException {
+    public void testProjectedWithImplicitParameterUnits() throws FactoryException {
         final ProjectedCRS crs = parse(ProjectedCRS.class,
                 "PROJCRS[“NAD83 UTM 10”,\n" +
                 "  BASEGEODCRS[“NAD83(86)”,\n" +
@@ -729,5 +729,36 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "Scale factor",                0.9996, Unit.ONE);
         verifyParameter(group, "False easting",             500000.0, SI.METRE);
         verifyParameter(group, "False northing",                 0.0, SI.METRE);
+    }
+
+    /**
+     * Parses a vertical CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>VERTCRS[“NAVD88”,
+     *  VDATUM[“North American Vertical Datum 1988”],
+     *  CS[vertical,1],
+     *    AXIS[“gravity-related height (H)”,up],LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#73">OGC 12-063r5 §10.4</a>
+     */
+    @Test
+    public void testVertical() throws FactoryException {
+        final VerticalCRS crs = parse(VerticalCRS.class,
+                "VERTCRS[“NAVD88”,\n" +
+                "  VDATUM[“North American Vertical Datum 1988”],\n" +
+                "  CS[vertical,1],\n" +
+                "    AXIS[“gravity-related height (H)”,up],LENGTHUNIT[“metre”,1.0]]");
+
+        if (isValidationEnabled) {
+            validators.validate(crs);
+        }
+        verifyIdentification   (crs, "NAVD88", null);
+        verifyDatum            (crs.getDatum(), "North American Vertical Datum 1988");
+        verifyCoordinateSystem (crs.getCoordinateSystem(), VerticalCS.class, 1,
+                new AxisDirection[] {AxisDirection.UP}, SI.METRE);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "H");
     }
 }
