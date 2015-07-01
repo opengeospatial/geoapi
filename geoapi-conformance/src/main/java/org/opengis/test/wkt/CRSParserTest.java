@@ -263,7 +263,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "WGS 84", null);
         verifyDatum            (crs.getDatum(), "World Geodetic System 1984");
@@ -310,7 +312,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“Система Геодеэических Координвт года 1995(СК-95)”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification  (crs, "S-95", null);
         verifyDatum           (crs.getDatum(), "Pulkovo 1995");
@@ -356,7 +360,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“1986 realisation”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification  (crs, "NAD83", "4269");
         verifyDatum           (crs.getDatum(), "North American Datum 1983");
@@ -402,7 +408,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“Nouvelle Triangulation Française”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification  (crs, "NTF (Paris)", null);
         verifyDatum           (crs.getDatum(), "Nouvelle Triangulation Francaise");
@@ -458,7 +466,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "JGD2000", "4946");
         verifyDatum            (crs.getDatum(), "Japanese Geodetic Datum 2000");
@@ -525,7 +535,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  ID[“EuroGeographics”,“ETRS-LAEA”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "ETRS89 Lambert Azimuthal Equal Area CRS", "ETRS-LAEA");
         verifyIdentification   (crs.getBaseCRS(), "ETRS89", null);
@@ -612,7 +624,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "NAD27 / Texas South Central", null);
         verifyIdentification   (crs.getBaseCRS(), "NAD27", null);
@@ -692,7 +706,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                          " as in the previous two examples.”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "NAD83 UTM 10", null);
         verifyIdentification   (crs.getBaseCRS(), "NAD83(86)", null);
@@ -737,7 +753,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    AXIS[“gravity-related height (H)”,up],LENGTHUNIT[“metre”,1.0]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "NAVD88", null);
         verifyDatum            (crs.getDatum(), "North American Vertical Datum 1988");
@@ -766,7 +784,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  CS[temporal,1],AXIS[“time”,future],TIMEUNIT[“day”,86400.0]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "GPS Time", null);
         verifyDatum            (crs.getDatum(), "Time origin");
@@ -803,7 +823,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  ID[“EPSG”,5800]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "Astra Minas Grid", "5800");
         verifyDatum            (crs.getDatum(), "Astra Minas");
@@ -843,7 +865,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  TIMEEXTENT[“date/time t1”,“date/time t2”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "A construction site CRS", null);
         verifyDatum            (crs.getDatum(), "P1");
@@ -862,9 +886,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * <blockquote><pre>ENGCRS[“A ship-centred CRS”,
      *  EDATUM[“Ship reference point”,ANCHOR[“Centre of buoyancy”]],
      *  CS[Cartesian,3],
-     *    AXIS["(x)",forward],
-     *    AXIS["(y)",starboard],
-     *    AXIS["(z)",down],
+     *    AXIS[“(x)”,forward],
+     *    AXIS[“(y)”,starboard],
+     *    AXIS[“(z)”,down],
      *    LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
@@ -883,7 +907,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    LENGTHUNIT[“metre”,1.0]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "A ship-centred CRS", null);
         verifyDatum            (crs.getDatum(), "Ship reference point");
