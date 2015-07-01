@@ -517,8 +517,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    PARAMETER[“False easting”,  4321000.0, LENGTHUNIT[“metre”,1.0]],\n" +
                 "    PARAMETER[“False northing”, 3210000.0, LENGTHUNIT[“metre”,1.0]]],\n" +
                 "  CS[Cartesian,2],\n" +
-                "    AXIS[“(y)”,north,ORDER[1]],\n" +
-                "    AXIS[“(x)”,east,ORDER[2]],\n" +
+                "    AXIS[“(Y)”,north,ORDER[1]],\n" +
+                "    AXIS[“(X)”,east,ORDER[2]],\n" +
                 "    LENGTHUNIT[“metre”,1.0],\n" +
                 "  SCOPE[“Description of a purpose”],\n" +
                 "  AREA[“An area description”],\n" +
@@ -538,7 +538,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                     AxisDirection.NORTH,
                     AxisDirection.EAST
                 }, SI.METRE);
-        verifyAxisAbbreviations(crs.getCoordinateSystem(), "y", "x");
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "Y", "X");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
         verifyParameter(group, "Latitude of natural origin",  52.0, NonSI.DEGREE_ANGLE);
@@ -606,8 +606,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    PARAMETER[“Northing at false origin”,0.0,\n" +
                 "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]],\n" +
                 "  CS[Cartesian,2],\n" +
-                "    AXIS[“(x)”,east],\n" +
-                "    AXIS[“(y)”,north],\n" +
+                "    AXIS[“(X)”,east],\n" +
+                "    AXIS[“(Y)”,north],\n" +
                 "    LENGTHUNIT[“US survey foot”,0.304800609601219],\n" +
                 "  REMARK[“Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.”]]");
 
@@ -625,7 +625,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                     AxisDirection.EAST,
                     AxisDirection.NORTH
                 }, NonSI.FOOT_SURVEY_US);
-        verifyAxisAbbreviations(crs.getCoordinateSystem(), "x", "y");
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
         verifyParameter(group, "Latitude of false origin",          27.83333333333333, NonSI.DEGREE_ANGLE);
@@ -847,7 +847,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         }
         verifyIdentification   (crs, "A construction site CRS", null);
         verifyDatum            (crs.getDatum(), "P1");
-        assertNullOrEquals     ("datum.anchor", "A construction site CRS", crs.getDatum().getAnchorPoint());
+        assertNullOrEquals     ("datum.anchor", "Peg in south corner", crs.getDatum().getAnchorPoint());
         verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
                 new AxisDirection[] {
                     AxisDirection.SOUTH_WEST,
