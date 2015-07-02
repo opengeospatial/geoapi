@@ -628,18 +628,26 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyIdentification   (crs, "NAD27 / Texas South Central", null);
-        verifyIdentification   (crs.getBaseCRS(), "NAD27", null);
-        verifyIdentification   (crs.getConversionFromBase(), "Texas South Central SPCS27", null);
-        verifyDatum            (crs.getDatum(), "North American Datum 1927");
-        verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "Clarke 1866", 20925832.164, 294.97869821, NonSI.FOOT_SURVEY_US);
-        verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
         verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
                 new AxisDirection[] {
                     AxisDirection.EAST,
                     AxisDirection.NORTH
                 }, NonSI.FOOT_SURVEY_US);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y");
+        verifyTexasSouthCentral(crs);
+        assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
+    }
+
+    /**
+     * Verifies the CRS name, datum and conversion parameters for PROJCRS[“NAD27 / Texas South Central”].
+     */
+    private void verifyTexasSouthCentral(final ProjectedCRS crs) {
+        verifyIdentification   (crs, "NAD27 / Texas South Central", null);
+        verifyIdentification   (crs.getBaseCRS(), "NAD27", null);
+        verifyIdentification   (crs.getConversionFromBase(), "Texas South Central SPCS27", null);
+        verifyDatum            (crs.getDatum(), "North American Datum 1927");
+        verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "Clarke 1866", 20925832.164, 294.97869821, NonSI.FOOT_SURVEY_US);
+        verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
         verifyParameter(group, "Latitude of false origin",          27.83333333333333, NonSI.DEGREE_ANGLE);
@@ -648,8 +656,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "Latitude of 2nd standard parallel", 30.283333333333,   NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Easting at false origin",           2000000.0,         NonSI.FOOT_SURVEY_US);
         verifyParameter(group, "Northing at false origin",          0.0,               NonSI.FOOT_SURVEY_US);
-
-        assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
     }
 
     /**
@@ -1062,5 +1068,134 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "Latitude of topocentric origin",          55, NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Longitude of topocentric origin",          5, NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Ellipsoidal height of topocentric origin", 0,    SI.METRE);
+    }
+
+    /**
+     * Parses a derived engineering CRS having a base projected CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>ENGCRS[“Gulf of Mexico speculative seismic survey bin grid”,
+     *  BASEPROJCRS[“NAD27 / Texas South Central”,
+     *    BASEGEODCRS[“NAD27”,
+     *      DATUM[“North American Datum 1927”,
+     *        ELLIPSOID[“Clarke 1866”,20925832.164,294.97869821,
+     *          LENGTHUNIT[“US survey foot”,0.304800609601219]]]],
+     *    CONVERSION[“Texas South CentralSPCS27”,
+     *      METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],
+     *      PARAMETER[“Latitude of false origin”,27.83333333333333,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],
+     *      PARAMETER[“Longitude of false origin”,-99.0,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],
+     *      PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],
+     *      PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],
+     *      PARAMETER[“Easting at false origin”,2000000.0,
+     *        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],
+     *      PARAMETER[“Northing at false origin”,0.0,
+     *        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]]],
+     *  DERIVINGCONVERSION[“Gulf of Mexico speculative survey bin grid”,
+     *    METHOD[“P6 (I = J-90°) seismic bin grid transformation”,ID[“EPSG”,1049]],
+     *    PARAMETER[“Bin grid origin I”,5000,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8733]],
+     *    PARAMETER[“Bin grid origin J”,0,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8734]],
+     *    PARAMETER[“Bin grid origin Easting”,871200,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8735]],
+     *    PARAMETER[“Bin grid origin Northing”, 10280160,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8736]],
+     *    PARAMETER[“Scale factor of bin grid”,1.0,
+     *      SCALEUNIT[“Unity”,1.0],ID[“EPSG”,8737]],
+     *    PARAMETER[“Bin width on I-axis”,82.5,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8738]],
+     *    PARAMETER[“Bin width on J-axis”,41.25,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8739]],
+     *    PARAMETER[“Map grid bearing of bin grid J-axis”,340,
+     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8740]],
+     *    PARAMETER[“Bin node increment on I-axis”,1.0,
+     *      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8741]],
+     *    PARAMETER[“Bin node increment on J-axis”,1.0,
+     *      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8742]]],
+     *  CS[Cartesian,2],
+     *    AXIS[“(I)”,northNorthWest],
+     *    AXIS[“(J)”,westSouthWest],
+     *    SCALEUNIT[“Bin”,1.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#107">OGC 12-063r5 §15.5.2 example 1</a>
+     */
+    @Test
+    public void testDerivedEngineeringFromProjected() throws FactoryException {
+        final DerivedCRS crs = parse(DerivedCRS.class,
+                "ENGCRS[“Gulf of Mexico speculative seismic survey bin grid”,\n" +
+                "  BASEPROJCRS[“NAD27 / Texas South Central”,\n" +
+                "    BASEGEODCRS[“NAD27”,\n" +
+                "      DATUM[“North American Datum 1927”,\n" +
+                "        ELLIPSOID[“Clarke 1866”,20925832.164,294.97869821,\n" +
+                "          LENGTHUNIT[“US survey foot”,0.304800609601219]]]],\n" +
+                "    CONVERSION[“Texas South CentralSPCS27”,\n" +
+                "      METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],\n" +
+                "      PARAMETER[“Latitude of false origin”,27.83333333333333,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],\n" +
+                "      PARAMETER[“Longitude of false origin”,-99.0,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],\n" +
+                "      PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],\n" +
+                "      PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],\n" +
+                "      PARAMETER[“Easting at false origin”,2000000.0,\n" +
+                "        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],\n" +
+                "      PARAMETER[“Northing at false origin”,0.0,\n" +
+                "        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]]],\n" +
+                "  DERIVINGCONVERSION[“Gulf of Mexico speculative survey bin grid”,\n" +
+                "    METHOD[“P6 (I = J-90°) seismic bin grid transformation”,ID[“EPSG”,1049]],\n" +
+                "    PARAMETER[“Bin grid origin I”,5000,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8733]],\n" +
+                "    PARAMETER[“Bin grid origin J”,0,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8734]],\n" +
+                "    PARAMETER[“Bin grid origin Easting”,871200,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8735]],\n" +
+                "    PARAMETER[“Bin grid origin Northing”, 10280160,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8736]],\n" +
+                "    PARAMETER[“Scale factor of bin grid”,1.0,\n" +
+                "      SCALEUNIT[“Unity”,1.0],ID[“EPSG”,8737]],\n" +
+                "    PARAMETER[“Bin width on I-axis”,82.5,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8738]],\n" +
+                "    PARAMETER[“Bin width on J-axis”,41.25,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8739]],\n" +
+                "    PARAMETER[“Map grid bearing of bin grid J-axis”,340,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8740]],\n" +
+                "    PARAMETER[“Bin node increment on I-axis”,1.0,\n" +
+                "      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8741]],\n" +
+                "    PARAMETER[“Bin node increment on J-axis”,1.0,\n" +
+                "      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8742]]],\n" +
+                "  CS[Cartesian,2],\n" +
+                "    AXIS[“(I)”,northNorthWest],\n" +
+                "    AXIS[“(J)”,westSouthWest],\n" +
+                "    SCALEUNIT[“Bin”,1.0]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification  (crs, "Gulf of Mexico speculative seismic survey bin grid", null);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class,
+                new AxisDirection[] {
+                    AxisDirection.NORTH_NORTH_WEST,
+                    AxisDirection.WEST_SOUTH_WEST
+                }, Unit.ONE);
+
+        assertInstanceOf("baseCRS", ProjectedCRS.class, crs.getBaseCRS());
+        verifyTexasSouthCentral((ProjectedCRS) crs.getBaseCRS());
+
+        final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
+        verifyParameter(group, "Bin grid origin I",                  5000,  Unit.ONE);
+        verifyParameter(group, "Bin grid origin J",                     0,  Unit.ONE);
+        verifyParameter(group, "Bin grid origin Easting",          871200, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Bin grid origin Northing",       10280160, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Scale factor of bin grid",              1,  Unit.ONE);
+        verifyParameter(group, "Bin width on I-axis",               82.50, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Bin width on J-axis",               41.25, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Map grid bearing of bin grid J-axis", 340, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Bin node increment on I-axis",          1,  Unit.ONE);
+        verifyParameter(group, "Bin node increment on J-axis",          1,  Unit.ONE);
     }
 }
