@@ -52,6 +52,7 @@ import org.junit.Test;
 import static java.lang.Double.NaN;
 import static org.junit.Assume.assumeTrue;
 import static org.opengis.test.Assert.*;
+import static org.opengis.referencing.cs.AxisDirection.*;
 
 
 /**
@@ -178,8 +179,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @param name  The string representation of the expected name (ignoring code space).
      */
     private static void verifyDatum(final Datum datum, final String name) {
-        assertNotNull("datum", datum);
-        assertEquals("datum.name.code", name, datum.getName().getCode());
+        assertNotNull("SingleCRS.getDatum()", datum);
+        assertEquals("datum.getName().getCode()", name, datum.getName().getCode());
     }
 
     /**
@@ -196,7 +197,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @param abbreviations The expected abbreviations. Null elements are considered unrestricted.
      */
     private static void verifyAxisAbbreviations(final CoordinateSystem cs, final String... abbreviations) {
-        for (int i=0; i<abbreviations.length; i++) {
+        final int dimension = Math.min(abbreviations.length, cs.getDimension());
+        for (int i=0; i<dimension; i++) {
             final String expected = abbreviations[i];
             if (expected != null) {
                 assertEquals("CoordinateSystemAxis.getAbbreviation()", expected, cs.getAxis(i).getAbbreviation());
@@ -229,7 +231,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     private <T extends CoordinateReferenceSystem> T parse(final Class<T> type, final String text) throws FactoryException {
         assumeTrue("No CRSFactory.", crsFactory != null);
         object = crsFactory.createFromWKT(text);
-        assertInstanceOf("CRSFactory.createFromWKT", type, object);
+        assertInstanceOf("CRSFactory.createFromWKT(String)", type, object);
         return type.cast(object);
     }
 
@@ -251,7 +253,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 2</a>
      */
     @Test
-    public void testGeographic() throws FactoryException {
+    public void testGeographic3D() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“WGS 84”,\n" +
                 "  DATUM[“World Geodetic System 1984”,\n" +
@@ -263,19 +265,31 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
-        verifyIdentification   (crs, "WGS 84", null);
-        verifyDatum            (crs.getDatum(), "World Geodetic System 1984");
-        verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
-        verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST,
-                    AxisDirection.UP
-                }, NonSI.DEGREE_ANGLE, NonSI.DEGREE_ANGLE, SI.METRE);
+        verifyWGS84(crs, true);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), null, null, "h");
+    }
+
+    /**
+     * Verifies the CRS name, datum and axes for {@code GEODCRS[“WGS 84”]}.
+     * This method does not verify axis abbreviations.
+     */
+    private void verifyWGS84(final GeodeticCRS crs, final boolean is3D) {
+        verifyIdentification (crs, "WGS 84", null);
+        verifyDatum          (crs.getDatum(), "World Geodetic System 1984");
+        verifyFlattenedSphere(crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
+        verifyPrimeMeridian  (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        final AxisDirection[] directions = new AxisDirection[is3D ? 3 : 2];
+        directions[0] = NORTH;
+        directions[1] = EAST;
+        if (is3D) {
+            directions[2] = UP;
+        }
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, directions,
+                NonSI.DEGREE_ANGLE, NonSI.DEGREE_ANGLE, SI.METRE);
     }
 
     /**
@@ -297,7 +311,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#34">OGC 12-063r5 §7.3.5 example 3</a>
      */
     @Test
-    public void testGeographicWithRemark() throws FactoryException {
+    public void testGeographicWithUnicode() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“S-95”,\n" +
                 "  DATUM[“Pulkovo 1995”,\n" +
@@ -310,17 +324,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“Система Геодеэических Координвт года 1995(СК-95)”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification  (crs, "S-95", null);
         verifyDatum           (crs.getDatum(), "Pulkovo 1995");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "Krassowsky 1940", 6378245, 298.3, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.DEGREE_ANGLE);
         assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
     }
 
@@ -335,15 +347,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *    AXIS[“latitude”,north],
      *    AXIS[“longitude”,east],
      *    ANGLEUNIT[“degree”,0.017453292519943],
-     *    ID[“EPSG”,4269],
-     *    REMARK[“1986 realisation”]]</pre></blockquote>
+     *  ID[“EPSG”,4269],
+     *  REMARK[“1986 realisation”]]</pre></blockquote>
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 3</a>
      */
     @Test
-    public void testGeographicWithId() throws FactoryException {
+    public void testGeographicWithIdentifier() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“NAD83”,\n" +
                 "  DATUM[“North American Datum 1983”,\n" +
@@ -356,18 +368,24 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“1986 realisation”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
-        verifyIdentification  (crs, "NAD83", "4269");
+        verifyNAD23(crs, true);
+        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
+    }
+
+    /**
+     * Verifies the CRS name, datum and axes for {@code GEODCRS[“NAD83”]}.
+     * This method does not verify the remark, since it is not included in the components of {@code COMPOUNDCRS[…]}.
+     */
+    private void verifyNAD23(final GeodeticCRS crs, final boolean hasIdentifier) {
+        verifyIdentification  (crs, "NAD83", hasIdentifier ? "4269" : null);
         verifyDatum           (crs.getDatum(), "North American Datum 1983");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.DEGREE_ANGLE);
-        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.DEGREE_ANGLE);
     }
 
     /**
@@ -402,17 +420,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“Nouvelle Triangulation Française”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification  (crs, "NTF (Paris)", null);
         verifyDatum           (crs.getDatum(), "Nouvelle Triangulation Francaise");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "Clarke 1880 (IGN)", 6378249.2, 293.4660213, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), "Paris", 2.5969213, NonSI.GRADE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.GRADE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.GRADE);
         assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks());
     }
 
@@ -458,18 +474,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "JGD2000", "4946");
         verifyDatum            (crs.getDatum(), "Japanese Geodetic Datum 2000");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.GEOCENTRIC_X,
-                    AxisDirection.GEOCENTRIC_Y,
-                    AxisDirection.GEOCENTRIC_Z
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Y, GEOCENTRIC_Z}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y", "Z");
         verifyGeographicExtent (crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
         verifyTimeExtent       (crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
@@ -478,7 +491,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Parses a projected CRS with linear units in metres and axes in (<var>y</var>,<var>x</var>) order.
+     * Parses a projected CRS with linear units in metres and axes in (<var>Y</var>,<var>X</var>) order.
      * The WKT parsed by this test is (except for quote characters):
      *
      * <blockquote><pre>PROJCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
@@ -492,8 +505,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *    PARAMETER[“False easting”,  4321000.0, LENGTHUNIT[“metre”,1.0]],
      *    PARAMETER[“False northing”, 3210000.0, LENGTHUNIT[“metre”,1.0]]],
      *  CS[Cartesian,2],
-     *    AXIS[“(y)”,north,ORDER[1]],
-     *    AXIS[“(x)”,east,ORDER[2]],
+     *    AXIS[“(Y)”,north,ORDER[1]],
+     *    AXIS[“(X)”,east,ORDER[2]],
      *    LENGTHUNIT[“metre”,1.0],
      *  SCOPE[“Description of a purpose”],
      *  AREA[“An area description”],
@@ -504,7 +517,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#68">OGC 12-063r5 §9.5 example 1</a>
      */
     @Test
-    public void testProjected() throws FactoryException {
+    public void testProjectedYX() throws FactoryException {
         final ProjectedCRS crs = parse(ProjectedCRS.class,
                 "PROJCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,\n" +
                 "  BASEGEODCRS[“ETRS89”,\n" +
@@ -517,15 +530,17 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    PARAMETER[“False easting”,  4321000.0, LENGTHUNIT[“metre”,1.0]],\n" +
                 "    PARAMETER[“False northing”, 3210000.0, LENGTHUNIT[“metre”,1.0]]],\n" +
                 "  CS[Cartesian,2],\n" +
-                "    AXIS[“(y)”,north,ORDER[1]],\n" +
-                "    AXIS[“(x)”,east,ORDER[2]],\n" +
+                "    AXIS[“(Y)”,north,ORDER[1]],\n" +
+                "    AXIS[“(X)”,east,ORDER[2]],\n" +
                 "    LENGTHUNIT[“metre”,1.0],\n" +
                 "  SCOPE[“Description of a purpose”],\n" +
                 "  AREA[“An area description”],\n" +
                 "  ID[“EuroGeographics”,“ETRS-LAEA”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "ETRS89 Lambert Azimuthal Equal Area CRS", "ETRS-LAEA");
         verifyIdentification   (crs.getBaseCRS(), "ETRS89", null);
@@ -533,12 +548,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum            (crs.getDatum(), "ETRS89");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 80", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, SI.METRE);
-        verifyAxisAbbreviations(crs.getCoordinateSystem(), "y", "x");
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {NORTH,EAST}, SI.METRE);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "Y", "X");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
         verifyParameter(group, "Latitude of natural origin",  52.0, NonSI.DEGREE_ANGLE);
@@ -606,26 +617,33 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    PARAMETER[“Northing at false origin”,0.0,\n" +
                 "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]],\n" +
                 "  CS[Cartesian,2],\n" +
-                "    AXIS[“(x)”,east],\n" +
-                "    AXIS[“(y)”,north],\n" +
+                "    AXIS[“(X)”,east],\n" +
+                "    AXIS[“(Y)”,north],\n" +
                 "    LENGTHUNIT[“US survey foot”,0.304800609601219],\n" +
                 "  REMARK[“Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {EAST,NORTH}, NonSI.FOOT_SURVEY_US);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y");
+        verifyTexasSouthCentral(crs);
+        assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
+    }
+
+    /**
+     * Verifies the CRS name, datum and conversion parameters for {@code PROJCRS[“NAD27 / Texas South Central”]}.
+     * This method does not verify the axes and remark, since they are not specified in {@code BASEPROJCRS[…]}.
+     */
+    private void verifyTexasSouthCentral(final ProjectedCRS crs) {
         verifyIdentification   (crs, "NAD27 / Texas South Central", null);
         verifyIdentification   (crs.getBaseCRS(), "NAD27", null);
         verifyIdentification   (crs.getConversionFromBase(), "Texas South Central SPCS27", null);
         verifyDatum            (crs.getDatum(), "North American Datum 1927");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "Clarke 1866", 20925832.164, 294.97869821, NonSI.FOOT_SURVEY_US);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.EAST,
-                    AxisDirection.NORTH
-                }, NonSI.FOOT_SURVEY_US);
-        verifyAxisAbbreviations(crs.getCoordinateSystem(), "x", "y");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
         verifyParameter(group, "Latitude of false origin",          27.83333333333333, NonSI.DEGREE_ANGLE);
@@ -634,8 +652,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "Latitude of 2nd standard parallel", 30.283333333333,   NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Easting at false origin",           2000000.0,         NonSI.FOOT_SURVEY_US);
         verifyParameter(group, "Northing at false origin",          0.0,               NonSI.FOOT_SURVEY_US);
-
-        assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
     }
 
     /**
@@ -692,7 +708,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                          " as in the previous two examples.”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "NAD83 UTM 10", null);
         verifyIdentification   (crs.getBaseCRS(), "NAD83(86)", null);
@@ -700,11 +718,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum            (crs.getDatum(), "North American Datum 1983");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.EAST,
-                    AxisDirection.NORTH
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {EAST,NORTH}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "E", "N");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
@@ -737,12 +751,20 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    AXIS[“gravity-related height (H)”,up],LENGTHUNIT[“metre”,1.0]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
-        verifyIdentification   (crs, "NAVD88", null);
-        verifyDatum            (crs.getDatum(), "North American Vertical Datum 1988");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), VerticalCS.class,
-                new AxisDirection[] {AxisDirection.UP}, SI.METRE);
+        verifyNAD28(crs);
+    }
+
+    /**
+     * Verifies the CRS name, datum and axis for {@code VERTCRS[“NAD88”]}.
+     */
+    private void verifyNAD28(final VerticalCRS crs) {
+        verifyIdentification(crs, "NAVD88", null);
+        verifyDatum(crs.getDatum(), "North American Vertical Datum 1988");
+        verifyCoordinateSystem (crs.getCoordinateSystem(), VerticalCS.class, new AxisDirection[] {UP}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "H");
     }
 
@@ -766,12 +788,20 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  CS[temporal,1],AXIS[“time”,future],TIMEUNIT[“day”,86400.0]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
+        verifyGPSTime(crs);
+    }
+
+    /**
+     * Verifies the CRS name, datum and axis for {@code TIMECRS[“GPS Time”]}.
+     */
+    private void verifyGPSTime(final TemporalCRS crs) {
         verifyIdentification   (crs, "GPS Time", null);
         verifyDatum            (crs.getDatum(), "Time origin");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class,
-                new AxisDirection[] {AxisDirection.FUTURE}, NonSI.DAY);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class, new AxisDirection[] {FUTURE}, NonSI.DAY);
         assertEquals("TimeOrigin", new Date(315532800000L), crs.getDatum().getOrigin());
     }
 
@@ -803,15 +833,13 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  ID[“EPSG”,5800]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "Astra Minas Grid", "5800");
         verifyDatum            (crs.getDatum(), "Astra Minas");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.WEST
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {NORTH,WEST}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y");
     }
 
@@ -832,7 +860,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#78">OGC 12-063r5 §11.4 example 1</a>
      */
     @Test
-    public void testEngineeringInclined() throws FactoryException {
+    public void testEngineeringRotated() throws FactoryException {
         final EngineeringCRS crs = parse(EngineeringCRS.class,
                 "ENGCRS[“A construction site CRS”,\n" +
                 "  EDATUM[“P1”,ANCHOR[“Peg in south corner”]],\n" +
@@ -843,16 +871,14 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  TIMEEXTENT[“date/time t1”,“date/time t2”]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "A construction site CRS", null);
         verifyDatum            (crs.getDatum(), "P1");
-        assertNullOrEquals     ("datum.anchor", "A construction site CRS", crs.getDatum().getAnchorPoint());
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.SOUTH_WEST,
-                    AxisDirection.SOUTH_EAST
-                }, SI.METRE);
+        assertNullOrEquals     ("datum.anchor", "Peg in south corner", crs.getDatum().getAnchorPoint());
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {SOUTH_WEST, SOUTH_EAST}, SI.METRE);
     }
 
     /**
@@ -862,9 +888,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * <blockquote><pre>ENGCRS[“A ship-centred CRS”,
      *  EDATUM[“Ship reference point”,ANCHOR[“Centre of buoyancy”]],
      *  CS[Cartesian,3],
-     *    AXIS["(x)",forward],
-     *    AXIS["(y)",starboard],
-     *    AXIS["(z)",down],
+     *    AXIS[“(x)”,forward],
+     *    AXIS[“(y)”,starboard],
+     *    AXIS[“(z)”,down],
      *    LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
@@ -883,17 +909,382 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    LENGTHUNIT[“metre”,1.0]]");
 
         if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
             validators.validate(crs);
+            configurationTip = null;
         }
         verifyIdentification   (crs, "A ship-centred CRS", null);
         verifyDatum            (crs.getDatum(), "Ship reference point");
         assertNullOrEquals     ("datum.anchor", "Centre of buoyancy", crs.getDatum().getAnchorPoint());
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.valueOf("forward"),
-                    AxisDirection.valueOf("starboard"),
-                    AxisDirection.DOWN
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {valueOf("forward"), valueOf("starboard"), DOWN}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "x", "y", "z");
+    }
+
+    /**
+     * Parses a derived geodetic CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>GEODCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
+     *  BASEGEODCRS[“WGS 84”,
+     *    DATUM[“WGS 84”,
+     *      ELLIPSOID[“WGS 84”,6378137,298.2572236,LENGTHUNIT[“metre”,1.0]]]],
+     *  DERIVINGCONVERSION[“Atlantic pole”,
+     *    METHOD[“Pole rotation”,ID[“Authority”,1234]],
+     *    PARAMETER[“Latitude of rotated pole”,52.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Longitude of rotated pole”,-30.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Axis rotation”,-25.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]]],
+     *  CS[ellipsoidal,2],
+     *    AXIS[“latitude”,north,ORDER[1]],
+     *    AXIS[“longitude”,east,ORDER[2]],
+     *    ANGLEUNIT[“degree”,0.0174532925199433]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#103">OGC 12-063r5 §15.3.5 example 3</a>
+     */
+    @Test
+    public void testDerivedGeodetic() throws FactoryException {
+        final DerivedCRS crs = parse(DerivedCRS.class,
+                "GEODCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,\n" +
+                "  BASEGEODCRS[“WGS 84”,\n" +
+                "    DATUM[“WGS 84”,\n" +
+                "      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],\n" +
+                "  DERIVINGCONVERSION[“Atlantic pole”,\n" +
+                "    METHOD[“Pole rotation”,ID[“Authority”,1234]],\n" +
+                "    PARAMETER[“Latitude of rotated pole”,52.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Longitude of rotated pole”,-30.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Axis rotation”,-25.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]]],\n" +
+                "  CS[ellipsoidal,2],\n" +
+                "    AXIS[“latitude”,north,ORDER[1]],\n" +
+                "    AXIS[“longitude”,east,ORDER[2]],\n" +
+                "    ANGLEUNIT[“degree”,0.0174532925199433]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification  (crs, "ETRS89 Lambert Azimuthal Equal Area CRS", null);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.DEGREE_ANGLE);
+
+        assertInstanceOf("baseCRS", GeodeticCRS.class, crs.getBaseCRS());
+        final GeodeticCRS baseCRS = (GeodeticCRS) crs.getBaseCRS();
+        verifyDatum           (baseCRS.getDatum(), "WGS 84");
+        verifyFlattenedSphere (baseCRS.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.2572236, SI.METRE);
+        verifyPrimeMeridian   (baseCRS.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+
+        final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
+        verifyParameter(group, "Latitude of rotated pole",   52, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Longitude of rotated pole", -30, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Axis rotation",             -25, NonSI.DEGREE_ANGLE);
+    }
+
+    /**
+     * Parses a derived engineering CRS having a base geodetic CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>ENGCRS[“Topocentric example A”,
+     *  BASEGEODCRS[“WGS 84”,
+     *    DATUM[“WGS 84”,
+     *      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],
+     *  DERIVINGCONVERSION[“Topocentric example A”,
+     *    METHOD[“Geographic/topocentric conversions”,ID[“EPSG”,9837]],
+     *    PARAMETER[“Latitude of topocentric origin”,55.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Longitude of topocentric origin”,5.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Ellipsoidal height of topocentric origin”,0.0,
+     *      LENGTHUNIT[“metre”,1.0]]],
+     *  CS[Cartesian,3],
+     *    AXIS[“Topocentric East (U)”,east,ORDER[1]],
+     *    AXIS[“Topocentric North (V)”,north,ORDER[2]],
+     *    AXIS[“Topocentric height (W)”,up,ORDER[3]],
+     *    LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#107">OGC 12-063r5 §15.5.2 example 2</a>
+     */
+    @Test
+    public void testDerivedEngineeringFromGeodetic() throws FactoryException {
+        final DerivedCRS crs = parse(DerivedCRS.class,
+                "ENGCRS[“Topocentric example A”,\n" +
+                "  BASEGEODCRS[“WGS 84”,\n" +
+                "    DATUM[“WGS 84”,\n" +
+                "      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],\n" +
+                "  DERIVINGCONVERSION[“Topocentric example A”,\n" +
+                "    METHOD[“Geographic/topocentric conversions”,ID[“EPSG”,9837]],\n" +
+                "    PARAMETER[“Latitude of topocentric origin”,55.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Longitude of topocentric origin”,5.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Ellipsoidal height of topocentric origin”,0.0,\n" +
+                "     LENGTHUNIT[“metre”,1.0]]],\n" +
+                "  CS[Cartesian,3],\n" +
+                "    AXIS[“Topocentric East (U)”,east,ORDER[1]],\n" +
+                "    AXIS[“Topocentric North (V)”,north,ORDER[2]],\n" +
+                "    AXIS[“Topocentric height (W)”,up,ORDER[3]],\n" +
+                "    LENGTHUNIT[“metre”,1.0]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification   (crs, "Topocentric example A", null);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {EAST,NORTH,UP}, SI.METRE);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "U", "V", "W");
+
+        assertInstanceOf("baseCRS", GeodeticCRS.class, crs.getBaseCRS());
+        final GeodeticCRS baseCRS = (GeodeticCRS) crs.getBaseCRS();
+        verifyDatum           (baseCRS.getDatum(), "WGS 84");
+        verifyFlattenedSphere (baseCRS.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.2572236, SI.METRE);
+        verifyPrimeMeridian   (baseCRS.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+
+        final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
+        verifyParameter(group, "Latitude of topocentric origin",          55, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Longitude of topocentric origin",          5, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Ellipsoidal height of topocentric origin", 0,    SI.METRE);
+    }
+
+    /**
+     * Parses a derived engineering CRS having a base projected CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>ENGCRS[“Gulf of Mexico speculative seismic survey bin grid”,
+     *  BASEPROJCRS[“NAD27 / Texas South Central”,
+     *    BASEGEODCRS[“NAD27”,
+     *      DATUM[“North American Datum 1927”,
+     *        ELLIPSOID[“Clarke 1866”,20925832.164,294.97869821,
+     *          LENGTHUNIT[“US survey foot”,0.304800609601219]]]],
+     *    CONVERSION[“Texas South CentralSPCS27”,
+     *      METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],
+     *      PARAMETER[“Latitude of false origin”,27.83333333333333,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],
+     *      PARAMETER[“Longitude of false origin”,-99.0,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],
+     *      PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],
+     *      PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,
+     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],
+     *      PARAMETER[“Easting at false origin”,2000000.0,
+     *        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],
+     *      PARAMETER[“Northing at false origin”,0.0,
+     *        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]]],
+     *  DERIVINGCONVERSION[“Gulf of Mexico speculative survey bin grid”,
+     *    METHOD[“P6 (I = J-90°) seismic bin grid transformation”,ID[“EPSG”,1049]],
+     *    PARAMETER[“Bin grid origin I”,5000,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8733]],
+     *    PARAMETER[“Bin grid origin J”,0,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8734]],
+     *    PARAMETER[“Bin grid origin Easting”,871200,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8735]],
+     *    PARAMETER[“Bin grid origin Northing”, 10280160,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8736]],
+     *    PARAMETER[“Scale factor of bin grid”,1.0,
+     *      SCALEUNIT[“Unity”,1.0],ID[“EPSG”,8737]],
+     *    PARAMETER[“Bin width on I-axis”,82.5,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8738]],
+     *    PARAMETER[“Bin width on J-axis”,41.25,
+     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8739]],
+     *    PARAMETER[“Map grid bearing of bin grid J-axis”,340,
+     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8740]],
+     *    PARAMETER[“Bin node increment on I-axis”,1.0,
+     *      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8741]],
+     *    PARAMETER[“Bin node increment on J-axis”,1.0,
+     *      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8742]]],
+     *  CS[Cartesian,2],
+     *    AXIS[“(I)”,northNorthWest],
+     *    AXIS[“(J)”,westSouthWest],
+     *    SCALEUNIT[“Bin”,1.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#107">OGC 12-063r5 §15.5.2 example 1</a>
+     */
+    @Test
+    public void testDerivedEngineeringFromProjected() throws FactoryException {
+        final DerivedCRS crs = parse(DerivedCRS.class,
+                "ENGCRS[“Gulf of Mexico speculative seismic survey bin grid”,\n" +
+                "  BASEPROJCRS[“NAD27 / Texas South Central”,\n" +
+                "    BASEGEODCRS[“NAD27”,\n" +
+                "      DATUM[“North American Datum 1927”,\n" +
+                "        ELLIPSOID[“Clarke 1866”,20925832.164,294.97869821,\n" +
+                "          LENGTHUNIT[“US survey foot”,0.304800609601219]]]],\n" +
+                "    CONVERSION[“Texas South CentralSPCS27”,\n" +
+                "      METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],\n" +
+                "      PARAMETER[“Latitude of false origin”,27.83333333333333,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],\n" +
+                "      PARAMETER[“Longitude of false origin”,-99.0,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],\n" +
+                "      PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],\n" +
+                "      PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,\n" +
+                "        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],\n" +
+                "      PARAMETER[“Easting at false origin”,2000000.0,\n" +
+                "        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],\n" +
+                "      PARAMETER[“Northing at false origin”,0.0,\n" +
+                "        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]]],\n" +
+                "  DERIVINGCONVERSION[“Gulf of Mexico speculative survey bin grid”,\n" +
+                "    METHOD[“P6 (I = J-90°) seismic bin grid transformation”,ID[“EPSG”,1049]],\n" +
+                "    PARAMETER[“Bin grid origin I”,5000,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8733]],\n" +
+                "    PARAMETER[“Bin grid origin J”,0,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8734]],\n" +
+                "    PARAMETER[“Bin grid origin Easting”,871200,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8735]],\n" +
+                "    PARAMETER[“Bin grid origin Northing”, 10280160,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8736]],\n" +
+                "    PARAMETER[“Scale factor of bin grid”,1.0,\n" +
+                "      SCALEUNIT[“Unity”,1.0],ID[“EPSG”,8737]],\n" +
+                "    PARAMETER[“Bin width on I-axis”,82.5,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8738]],\n" +
+                "    PARAMETER[“Bin width on J-axis”,41.25,\n" +
+                "      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8739]],\n" +
+                "    PARAMETER[“Map grid bearing of bin grid J-axis”,340,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8740]],\n" +
+                "    PARAMETER[“Bin node increment on I-axis”,1.0,\n" +
+                "      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8741]],\n" +
+                "    PARAMETER[“Bin node increment on J-axis”,1.0,\n" +
+                "      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8742]]],\n" +
+                "  CS[Cartesian,2],\n" +
+                "    AXIS[“(I)”,northNorthWest],\n" +
+                "    AXIS[“(J)”,westSouthWest],\n" +
+                "    SCALEUNIT[“Bin”,1.0]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification   (crs, "Gulf of Mexico speculative seismic survey bin grid", null);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {NORTH_NORTH_WEST, WEST_SOUTH_WEST}, Unit.ONE);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "I", "J");
+        assertInstanceOf("baseCRS", ProjectedCRS.class, crs.getBaseCRS());
+        verifyTexasSouthCentral((ProjectedCRS) crs.getBaseCRS());
+
+        final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
+        verifyParameter(group, "Bin grid origin I",                  5000,  Unit.ONE);
+        verifyParameter(group, "Bin grid origin J",                     0,  Unit.ONE);
+        verifyParameter(group, "Bin grid origin Easting",          871200, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Bin grid origin Northing",       10280160, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Scale factor of bin grid",              1,  Unit.ONE);
+        verifyParameter(group, "Bin width on I-axis",               82.50, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Bin width on J-axis",               41.25, NonSI.FOOT_SURVEY_US);
+        verifyParameter(group, "Map grid bearing of bin grid J-axis", 340, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Bin node increment on I-axis",          1,  Unit.ONE);
+        verifyParameter(group, "Bin node increment on J-axis",          1,  Unit.ONE);
+    }
+
+    /**
+     * Parses a compound CRS with a vertical component.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>COMPOUNDCRS[“NAD83 + NAVD88”,
+     *  GEODCRS[“NAD83”,
+     *    DATUM[“North American Datum 1983”,
+     *      ELLIPSOID[“GRS 1980”,6378137,298.257222101,
+     *        LENGTHUNIT[“metre”,1.0]]],
+     *      PRIMEMERIDIAN[“Greenwich”,0],
+     *    CS[ellipsoidal,2],
+     *      AXIS[“latitude”,north,ORDER[1]],
+     *      AXIS[“longitude”,east,ORDER[2]],
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    VERTCRS[“NAVD88”,
+     *      VDATUM[“North American Vertical Datum 1983”],
+     *      CS[vertical,1],
+     *        AXIS[“gravity-related height (H)”,up],
+     *        LENGTHUNIT[“metre”,1]]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 1</a>
+     */
+    @Test
+    public void testCompoundWithVertical() throws FactoryException {
+        final CompoundCRS crs = parse(CompoundCRS.class,
+                "COMPOUNDCRS[“NAD83 + NAVD88”,\n" +
+                "  GEODCRS[“NAD83”,\n" +
+                "    DATUM[“North American Datum 1983”,\n" +
+                "      ELLIPSOID[“GRS 1980”,6378137,298.257222101,\n" +
+                "        LENGTHUNIT[“metre”,1.0]]],\n" +
+                "      PRIMEMERIDIAN[“Greenwich”,0],\n" +
+                "    CS[ellipsoidal,2],\n" +
+                "      AXIS[“latitude”,north,ORDER[1]],\n" +
+                "      AXIS[“longitude”,east,ORDER[2]],\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "  VERTCRS[“NAVD88”,\n" +
+                "    VDATUM[“North American Vertical Datum 1988”],\n" +
+                "    CS[vertical,1],\n" +
+                "      AXIS[“gravity-related height (H)”,up],\n" +
+                "      LENGTHUNIT[“metre”,1]]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification(crs, "NAD83 + NAVD88", null);
+        final List<CoordinateReferenceSystem> components = crs.getComponents();
+        assertEquals("components.size()", 2, components.size());
+        assertInstanceOf("components[0]", GeodeticCRS.class, components.get(0));
+        assertInstanceOf("components[1]", VerticalCRS.class, components.get(1));
+        verifyNAD23((GeodeticCRS) components.get(0), false);
+        verifyNAD28((VerticalCRS) components.get(1));
+    }
+
+    /**
+     * Parses a compound CRS with a temporal component.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>COMPOUNDCRS[“GPS position and time”,
+     *   GEODCRS[“WGS 84”,
+     *     DATUM[“World Geodetic System 1984”,
+     *       ELLIPSOID[“WGS 84”,6378137,298.257223563]],
+     *     CS[ellipsoidal,2],
+     *       AXIS[“(lat)”,north,ORDER[1]],
+     *       AXIS[“(lon)”,east,ORDER[2]],
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *   TIMECRS[“GPS Time”,
+     *     TIMEDATUM[“Time origin”,TIMEORIGIN[1980-01-01]],
+     *     CS[temporal,1],
+     *       AXIS[“time (T)”,future],
+     *       TIMEUNIT[“day”,86400]]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 3</a>
+     */
+    @Test
+    public void testCompoundWithTime() throws FactoryException {
+        final CompoundCRS crs = parse(CompoundCRS.class,
+                "COMPOUNDCRS[“GPS position and time”,\n" +
+                "  GEODCRS[“WGS 84”,\n" +
+                "    DATUM[“World Geodetic System 1984”,\n" +
+                "      ELLIPSOID[“WGS 84”,6378137,298.257223563]],\n" +
+                "    CS[ellipsoidal,2],\n" +
+                "      AXIS[“(lat)”,north,ORDER[1]],\n" +
+                "      AXIS[“(lon)”,east,ORDER[2]],\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "  TIMECRS[“GPS Time”,\n" +
+                "    TIMEDATUM[“Time origin”,TIMEORIGIN[1980-01-01]],\n" +
+                "    CS[temporal,1],\n" +
+                "      AXIS[“time (T)”,future],\n" +
+                "      TIMEUNIT[“day”,86400]]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification(crs, "GPS position and time", null);
+        final List<CoordinateReferenceSystem> components = crs.getComponents();
+        assertEquals("components.size()", 2, components.size());
+        assertInstanceOf("components[0]", GeodeticCRS.class, components.get(0));
+        assertInstanceOf("components[1]", TemporalCRS.class, components.get(1));
+        verifyWGS84  ((GeodeticCRS) components.get(0), false);
+        verifyGPSTime((TemporalCRS) components.get(1));
     }
 }

@@ -94,6 +94,21 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     }
 
     /**
+     * Returns the programmatic name and the UML identifier of this code, together with alternative UML identifier
+     * if any. In particular, {@link #CELL_CENTER} is known as both {@code "cell center"} (from ISO 19111:2007) and
+     * {@code "cell centre"} (derived from ISO 19162:2015).
+     *
+     * @return Names of this code, including alternative names if any.
+     */
+    @Override
+    public String[] names() {
+        if (this == CELL_CENTER) {
+            return new String[] {name(), identifier(), "cell centre"};
+        }
+        return super.names();
+    }
+
+    /**
      * Returns the list of {@code PixelInCell}s.
      *
      * @return The list of codes declared in the current JVM.

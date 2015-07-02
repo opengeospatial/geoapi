@@ -294,6 +294,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Com
      *   <li>Any other special case, if any. Examples:
      *     <ul>
      *       <li>The legacy name of {@link org.opengis.metadata.constraint.Restriction#LICENCE}.</li>
+     *       <li>The alternative name of {@link org.opengis.referencing.datum.PixelInCell#CELL_CENTER}.</li>
      *     </ul>
      *   </li>
      * </ul>
