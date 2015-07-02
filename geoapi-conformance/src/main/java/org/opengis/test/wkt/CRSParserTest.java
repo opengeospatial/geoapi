@@ -922,4 +922,73 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 }, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "x", "y", "z");
     }
+
+    /**
+     * Parses a derived geodetic CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>GEODCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
+     *  BASEGEODCRS[“WGS 84”,
+     *    DATUM[“WGS 84”,
+     *      ELLIPSOID[“WGS 84”,6378137,298.2572236,LENGTHUNIT[“metre”,1.0]]]],
+     *  DERIVINGCONVERSION[“Atlantic pole”,
+     *    METHOD[“Pole rotation”,ID[“Authority”,1234]],
+     *    PARAMETER[“Latitude of rotated pole”,52.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Longitude of rotated pole”,-30.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Axis rotation”,-25.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]]],
+     *  CS[ellipsoidal,2],
+     *    AXIS[“latitude”,north,ORDER[1]],
+     *    AXIS[“longitude”,east,ORDER[2]],
+     *    ANGLEUNIT[“degree”,0.0174532925199433]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#103">OGC 12-063r5 §15.3.5 example 3</a>
+     */
+    @Test
+    public void testDerivedGeodetic() throws FactoryException {
+        final DerivedCRS crs = parse(DerivedCRS.class,
+                "GEODCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,\n" +
+                "  BASEGEODCRS[“WGS 84”,\n" +
+                "    DATUM[“WGS 84”,\n" +
+                "      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],\n" +
+                "  DERIVINGCONVERSION[“Atlantic pole”,\n" +
+                "    METHOD[“Pole rotation”,ID[“Authority”,1234]],\n" +
+                "    PARAMETER[“Latitude of rotated pole”,52.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Longitude of rotated pole”,-30.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Axis rotation”,-25.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]]],\n" +
+                "  CS[ellipsoidal,2],\n" +
+                "    AXIS[“latitude”,north,ORDER[1]],\n" +
+                "    AXIS[“longitude”,east,ORDER[2]],\n" +
+                "    ANGLEUNIT[“degree”,0.0174532925199433]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification  (crs, "ETRS89 Lambert Azimuthal Equal Area CRS", null);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
+                new AxisDirection[] {
+                    AxisDirection.NORTH,
+                    AxisDirection.EAST
+                }, NonSI.DEGREE_ANGLE);
+
+        assertInstanceOf("baseCRS", GeodeticCRS.class, crs.getBaseCRS());
+        final GeodeticCRS baseCRS = (GeodeticCRS) crs.getBaseCRS();
+        verifyDatum           (baseCRS.getDatum(), "WGS 84");
+        verifyFlattenedSphere (baseCRS.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.2572236, SI.METRE);
+        verifyPrimeMeridian   (baseCRS.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+
+        final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
+        verifyParameter(group, "Latitude of rotated pole",   52, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Longitude of rotated pole", -30, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Axis rotation",             -25, NonSI.DEGREE_ANGLE);
+    }
 }
