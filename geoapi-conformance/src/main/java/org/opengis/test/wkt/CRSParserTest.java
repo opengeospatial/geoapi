@@ -364,7 +364,16 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyIdentification  (crs, "NAD83", "4269");
+        verifyNAD23(crs, true);
+        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
+    }
+
+    /**
+     * Verifies the CRS name, datum and axes for {@code GEODCRS[“NAD83”]}.
+     * This method does not verify the remark, since it is not included in the components of {@code COMPOUNDCRS[…]}.
+     */
+    private void verifyNAD23(final GeodeticCRS crs, final boolean hasIdentifier) {
+        verifyIdentification  (crs, "NAD83", hasIdentifier ? "4269" : null);
         verifyDatum           (crs.getDatum(), "North American Datum 1983");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
@@ -373,7 +382,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                     AxisDirection.NORTH,
                     AxisDirection.EAST
                 }, NonSI.DEGREE_ANGLE);
-        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
     }
 
     /**
@@ -639,7 +647,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Verifies the CRS name, datum and conversion parameters for PROJCRS[“NAD27 / Texas South Central”].
+     * Verifies the CRS name, datum and conversion parameters for {@code PROJCRS[“NAD27 / Texas South Central”]}.
+     * This method does not verify the axes and remark, since they are not specified in {@code BASEPROJCRS[…]}.
      */
     private void verifyTexasSouthCentral(final ProjectedCRS crs) {
         verifyIdentification   (crs, "NAD27 / Texas South Central", null);
@@ -763,9 +772,16 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyIdentification   (crs, "NAVD88", null);
-        verifyDatum            (crs.getDatum(), "North American Vertical Datum 1988");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), VerticalCS.class,
+        verifyNAD28(crs);
+    }
+
+    /**
+     * Verifies the CRS name, datum and axis for VERTCRS[“NAD88”].
+     */
+    private void verifyNAD28(final VerticalCRS crs) {
+        verifyIdentification(crs, "NAVD88", null);
+        verifyDatum(crs.getDatum(), "North American Vertical Datum 1988");
+        verifyCoordinateSystem(crs.getCoordinateSystem(), VerticalCS.class,
                 new AxisDirection[] {AxisDirection.UP}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "H");
     }
@@ -1197,5 +1213,62 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "Map grid bearing of bin grid J-axis", 340, NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Bin node increment on I-axis",          1,  Unit.ONE);
         verifyParameter(group, "Bin node increment on J-axis",          1,  Unit.ONE);
+    }
+
+    /**
+     * Parses a compound CRS with a vertical component.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>COMPOUNDCRS[“NAD83 + NAVD88”,
+     *  GEODCRS[“NAD83”,
+     *    DATUM[“North American Datum 1983”,
+     *      ELLIPSOID[“GRS 1980”,6378137,298.257222101,
+     *        LENGTHUNIT[“metre”,1.0]]],
+     *      PRIMEMERIDIAN[“Greenwich”,0],
+     *    CS[ellipsoidal,2],
+     *      AXIS[“latitude”,north,ORDER[1]],
+     *      AXIS[“longitude”,east,ORDER[2]],
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    VERTCRS[“NAVD88”,
+     *      VDATUM[“North American Vertical Datum 1983”],
+     *      CS[vertical,1],
+     *        AXIS[“gravity-related height (H)”,up],
+     *        LENGTHUNIT[“metre”,1]]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2</a>
+     */
+    @Test
+    public void testCompoundWithVertical() throws FactoryException {
+        final CompoundCRS crs = parse(CompoundCRS.class,
+                "COMPOUNDCRS[“NAD83 + NAVD88”,\n" +
+                "  GEODCRS[“NAD83”,\n" +
+                "    DATUM[“North American Datum 1983”,\n" +
+                "      ELLIPSOID[“GRS 1980”,6378137,298.257222101,\n" +
+                "        LENGTHUNIT[“metre”,1.0]]],\n" +
+                "      PRIMEMERIDIAN[“Greenwich”,0],\n" +
+                "    CS[ellipsoidal,2],\n" +
+                "      AXIS[“latitude”,north,ORDER[1]],\n" +
+                "      AXIS[“longitude”,east,ORDER[2]],\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "  VERTCRS[“NAVD88”,\n" +
+                "    VDATUM[“North American Vertical Datum 1988”],\n" +
+                "    CS[vertical,1],\n" +
+                "      AXIS[“gravity-related height (H)”,up],\n" +
+                "      LENGTHUNIT[“metre”,1]]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification(crs, "NAD83 + NAVD88", null);
+        final List<CoordinateReferenceSystem> components = crs.getComponents();
+        assertEquals("components.size()", 2, components.size());
+        assertInstanceOf("components[0]", GeodeticCRS.class, components.get(0));
+        assertInstanceOf("components[1]", VerticalCRS.class, components.get(1));
+        verifyNAD23((GeodeticCRS) components.get(0), false);
+        verifyNAD28((VerticalCRS) components.get(1));
     }
 }
