@@ -339,8 +339,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *    AXIS[“latitude”,north],
      *    AXIS[“longitude”,east],
      *    ANGLEUNIT[“degree”,0.017453292519943],
-     *    ID[“EPSG”,4269],
-     *    REMARK[“1986 realisation”]]</pre></blockquote>
+     *  ID[“EPSG”,4269],
+     *  REMARK[“1986 realisation”]]</pre></blockquote>
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -990,5 +990,77 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "Latitude of rotated pole",   52, NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Longitude of rotated pole", -30, NonSI.DEGREE_ANGLE);
         verifyParameter(group, "Axis rotation",             -25, NonSI.DEGREE_ANGLE);
+    }
+
+    /**
+     * Parses a derived engineering CRS having a base geodetic CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>ENGCRS[“Topocentric example A”,
+     *  BASEGEODCRS[“WGS 84”,
+     *    DATUM[“WGS 84”,
+     *      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],
+     *  DERIVINGCONVERSION[“Topocentric example A”,
+     *    METHOD[“Geographic/topocentric conversions”,ID[“EPSG”,9837]],
+     *    PARAMETER[“Latitude of topocentric origin”,55.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Longitude of topocentric origin”,5.0,
+     *      ANGLEUNIT[“degree”,0.0174532925199433]],
+     *    PARAMETER[“Ellipsoidal height of topocentric origin”,0.0,
+     *      LENGTHUNIT[“metre”,1.0]]],
+     *  CS[Cartesian,3],
+     *    AXIS[“Topocentric East (U)”,east,ORDER[1]],
+     *    AXIS[“Topocentric North (V)”,north,ORDER[2]],
+     *    AXIS[“Topocentric height (W)”,up,ORDER[3]],
+     *    LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#107">OGC 12-063r5 §15.5.2 example 2</a>
+     */
+    @Test
+    public void testDerivedEngineeringFromGeodetic() throws FactoryException {
+        final DerivedCRS crs = parse(DerivedCRS.class,
+                "ENGCRS[“Topocentric example A”,\n" +
+                "  BASEGEODCRS[“WGS 84”,\n" +
+                "    DATUM[“WGS 84”,\n" +
+                "      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],\n" +
+                "  DERIVINGCONVERSION[“Topocentric example A”,\n" +
+                "    METHOD[“Geographic/topocentric conversions”,ID[“EPSG”,9837]],\n" +
+                "    PARAMETER[“Latitude of topocentric origin”,55.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Longitude of topocentric origin”,5.0,\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "    PARAMETER[“Ellipsoidal height of topocentric origin”,0.0,\n" +
+                "     LENGTHUNIT[“metre”,1.0]]],\n" +
+                "  CS[Cartesian,3],\n" +
+                "    AXIS[“Topocentric East (U)”,east,ORDER[1]],\n" +
+                "    AXIS[“Topocentric North (V)”,north,ORDER[2]],\n" +
+                "    AXIS[“Topocentric height (W)”,up,ORDER[3]],\n" +
+                "    LENGTHUNIT[“metre”,1.0]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification  (crs, "Topocentric example A", null);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
+                new AxisDirection[] {
+                    AxisDirection.EAST,
+                    AxisDirection.NORTH,
+                    AxisDirection.UP
+                }, SI.METRE);
+
+        assertInstanceOf("baseCRS", GeodeticCRS.class, crs.getBaseCRS());
+        final GeodeticCRS baseCRS = (GeodeticCRS) crs.getBaseCRS();
+        verifyDatum           (baseCRS.getDatum(), "WGS 84");
+        verifyFlattenedSphere (baseCRS.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.2572236, SI.METRE);
+        verifyPrimeMeridian   (baseCRS.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+
+        final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
+        verifyParameter(group, "Latitude of topocentric origin",          55, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Longitude of topocentric origin",          5, NonSI.DEGREE_ANGLE);
+        verifyParameter(group, "Ellipsoidal height of topocentric origin", 0,    SI.METRE);
     }
 }
