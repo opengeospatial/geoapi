@@ -52,6 +52,7 @@ import org.junit.Test;
 import static java.lang.Double.NaN;
 import static org.junit.Assume.assumeTrue;
 import static org.opengis.test.Assert.*;
+import static org.opengis.referencing.cs.AxisDirection.*;
 
 
 /**
@@ -178,8 +179,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @param name  The string representation of the expected name (ignoring code space).
      */
     private static void verifyDatum(final Datum datum, final String name) {
-        assertNotNull("datum", datum);
-        assertEquals("datum.name.code", name, datum.getName().getCode());
+        assertNotNull("SingleCRS.getDatum()", datum);
+        assertEquals("datum.getName().getCode()", name, datum.getName().getCode());
     }
 
     /**
@@ -196,7 +197,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @param abbreviations The expected abbreviations. Null elements are considered unrestricted.
      */
     private static void verifyAxisAbbreviations(final CoordinateSystem cs, final String... abbreviations) {
-        for (int i=0; i<abbreviations.length; i++) {
+        final int dimension = Math.min(abbreviations.length, cs.getDimension());
+        for (int i=0; i<dimension; i++) {
             final String expected = abbreviations[i];
             if (expected != null) {
                 assertEquals("CoordinateSystemAxis.getAbbreviation()", expected, cs.getAxis(i).getAbbreviation());
@@ -229,7 +231,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     private <T extends CoordinateReferenceSystem> T parse(final Class<T> type, final String text) throws FactoryException {
         assumeTrue("No CRSFactory.", crsFactory != null);
         object = crsFactory.createFromWKT(text);
-        assertInstanceOf("CRSFactory.createFromWKT", type, object);
+        assertInstanceOf("CRSFactory.createFromWKT(String)", type, object);
         return type.cast(object);
     }
 
@@ -281,10 +283,10 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere(crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
         verifyPrimeMeridian  (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
         final AxisDirection[] directions = new AxisDirection[is3D ? 3 : 2];
-        directions[0] = AxisDirection.NORTH;
-        directions[1] = AxisDirection.EAST;
+        directions[0] = NORTH;
+        directions[1] = EAST;
         if (is3D) {
-            directions[2] = AxisDirection.UP;
+            directions[2] = UP;
         }
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, directions,
                 NonSI.DEGREE_ANGLE, NonSI.DEGREE_ANGLE, SI.METRE);
@@ -330,11 +332,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum           (crs.getDatum(), "Pulkovo 1995");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "Krassowsky 1940", 6378245, 298.3, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.DEGREE_ANGLE);
         assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
     }
 
@@ -387,11 +385,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum           (crs.getDatum(), "North American Datum 1983");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.DEGREE_ANGLE);
     }
 
     /**
@@ -434,11 +428,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum           (crs.getDatum(), "Nouvelle Triangulation Francaise");
         verifyFlattenedSphere (crs.getDatum().getEllipsoid(), "Clarke 1880 (IGN)", 6378249.2, 293.4660213, SI.METRE);
         verifyPrimeMeridian   (crs.getDatum().getPrimeMeridian(), "Paris", 2.5969213, NonSI.GRADE);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.GRADE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.GRADE);
         assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks());
     }
 
@@ -492,12 +482,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum            (crs.getDatum(), "Japanese Geodetic Datum 2000");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.GEOCENTRIC_X,
-                    AxisDirection.GEOCENTRIC_Y,
-                    AxisDirection.GEOCENTRIC_Z
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Y, GEOCENTRIC_Z}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y", "Z");
         verifyGeographicExtent (crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
         verifyTimeExtent       (crs.getDomainOfValidity(), new Date(1017619200000L), new Date(1319155200000L), 1);
@@ -563,11 +548,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum            (crs.getDatum(), "ETRS89");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 80", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {NORTH,EAST}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "Y", "X");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
@@ -646,11 +627,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.EAST,
-                    AxisDirection.NORTH
-                }, NonSI.FOOT_SURVEY_US);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {EAST,NORTH}, NonSI.FOOT_SURVEY_US);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y");
         verifyTexasSouthCentral(crs);
         assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
@@ -741,11 +718,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum            (crs.getDatum(), "North American Datum 1983");
         verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "GRS 1980", 6378137, 298.257222101, SI.METRE);
         verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.EAST,
-                    AxisDirection.NORTH
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {EAST,NORTH}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "E", "N");
 
         final ParameterValueGroup group = crs.getConversionFromBase().getParameterValues();
@@ -791,8 +764,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     private void verifyNAD28(final VerticalCRS crs) {
         verifyIdentification(crs, "NAVD88", null);
         verifyDatum(crs.getDatum(), "North American Vertical Datum 1988");
-        verifyCoordinateSystem(crs.getCoordinateSystem(), VerticalCS.class,
-                new AxisDirection[] {AxisDirection.UP}, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), VerticalCS.class, new AxisDirection[] {UP}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "H");
     }
 
@@ -829,8 +801,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     private void verifyGPSTime(final TemporalCRS crs) {
         verifyIdentification   (crs, "GPS Time", null);
         verifyDatum            (crs.getDatum(), "Time origin");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class,
-                new AxisDirection[] {AxisDirection.FUTURE}, NonSI.DAY);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class, new AxisDirection[] {FUTURE}, NonSI.DAY);
         assertEquals("TimeOrigin", new Date(315532800000L), crs.getDatum().getOrigin());
     }
 
@@ -868,11 +839,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         }
         verifyIdentification   (crs, "Astra Minas Grid", "5800");
         verifyDatum            (crs.getDatum(), "Astra Minas");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.WEST
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {NORTH,WEST}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "X", "Y");
     }
 
@@ -911,11 +878,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyIdentification   (crs, "A construction site CRS", null);
         verifyDatum            (crs.getDatum(), "P1");
         assertNullOrEquals     ("datum.anchor", "Peg in south corner", crs.getDatum().getAnchorPoint());
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.SOUTH_WEST,
-                    AxisDirection.SOUTH_EAST
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {SOUTH_WEST, SOUTH_EAST}, SI.METRE);
     }
 
     /**
@@ -953,12 +916,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyIdentification   (crs, "A ship-centred CRS", null);
         verifyDatum            (crs.getDatum(), "Ship reference point");
         assertNullOrEquals     ("datum.anchor", "Centre of buoyancy", crs.getDatum().getAnchorPoint());
-        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.valueOf("forward"),
-                    AxisDirection.valueOf("starboard"),
-                    AxisDirection.DOWN
-                }, SI.METRE);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {valueOf("forward"), valueOf("starboard"), DOWN}, SI.METRE);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), "x", "y", "z");
     }
 
@@ -1013,11 +971,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             configurationTip = null;
         }
         verifyIdentification  (crs, "ETRS89 Lambert Azimuthal Equal Area CRS", null);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST
-                }, NonSI.DEGREE_ANGLE);
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, NonSI.DEGREE_ANGLE);
 
         assertInstanceOf("baseCRS", GeodeticCRS.class, crs.getBaseCRS());
         final GeodeticCRS baseCRS = (GeodeticCRS) crs.getBaseCRS();
@@ -1083,13 +1037,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyIdentification  (crs, "Topocentric example A", null);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.EAST,
-                    AxisDirection.NORTH,
-                    AxisDirection.UP
-                }, SI.METRE);
+        verifyIdentification   (crs, "Topocentric example A", null);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {EAST,NORTH,UP}, SI.METRE);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "U", "V", "W");
 
         assertInstanceOf("baseCRS", GeodeticCRS.class, crs.getBaseCRS());
         final GeodeticCRS baseCRS = (GeodeticCRS) crs.getBaseCRS();
@@ -1209,13 +1159,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyIdentification  (crs, "Gulf of Mexico speculative seismic survey bin grid", null);
-        verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH_NORTH_WEST,
-                    AxisDirection.WEST_SOUTH_WEST
-                }, Unit.ONE);
-
+        verifyIdentification   (crs, "Gulf of Mexico speculative seismic survey bin grid", null);
+        verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {NORTH_NORTH_WEST, WEST_SOUTH_WEST}, Unit.ONE);
+        verifyAxisAbbreviations(crs.getCoordinateSystem(), "I", "J");
         assertInstanceOf("baseCRS", ProjectedCRS.class, crs.getBaseCRS());
         verifyTexasSouthCentral((ProjectedCRS) crs.getBaseCRS());
 
