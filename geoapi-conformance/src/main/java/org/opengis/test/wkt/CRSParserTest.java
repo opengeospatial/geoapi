@@ -251,7 +251,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 2</a>
      */
     @Test
-    public void testGeographic() throws FactoryException {
+    public void testGeographic3D() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“WGS 84”,\n" +
                 "  DATUM[“World Geodetic System 1984”,\n" +
@@ -309,7 +309,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#34">OGC 12-063r5 §7.3.5 example 3</a>
      */
     @Test
-    public void testGeographicWithRemark() throws FactoryException {
+    public void testGeographicWithUnicode() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“S-95”,\n" +
                 "  DATUM[“Pulkovo 1995”,\n" +
@@ -357,7 +357,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#56">OGC 12-063r5 §8.4 example 3</a>
      */
     @Test
-    public void testGeographicWithId() throws FactoryException {
+    public void testGeographicWithIdentifier() throws FactoryException {
         final GeodeticCRS crs = parse(GeodeticCRS.class,
                 "GEODCRS[“NAD83”,\n" +
                 "  DATUM[“North American Datum 1983”,\n" +
@@ -506,7 +506,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Parses a projected CRS with linear units in metres and axes in (<var>y</var>,<var>x</var>) order.
+     * Parses a projected CRS with linear units in metres and axes in (<var>Y</var>,<var>X</var>) order.
      * The WKT parsed by this test is (except for quote characters):
      *
      * <blockquote><pre>PROJCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
@@ -520,8 +520,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *    PARAMETER[“False easting”,  4321000.0, LENGTHUNIT[“metre”,1.0]],
      *    PARAMETER[“False northing”, 3210000.0, LENGTHUNIT[“metre”,1.0]]],
      *  CS[Cartesian,2],
-     *    AXIS[“(y)”,north,ORDER[1]],
-     *    AXIS[“(x)”,east,ORDER[2]],
+     *    AXIS[“(Y)”,north,ORDER[1]],
+     *    AXIS[“(X)”,east,ORDER[2]],
      *    LENGTHUNIT[“metre”,1.0],
      *  SCOPE[“Description of a purpose”],
      *  AREA[“An area description”],
@@ -532,7 +532,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#68">OGC 12-063r5 §9.5 example 1</a>
      */
     @Test
-    public void testProjected() throws FactoryException {
+    public void testProjectedYX() throws FactoryException {
         final ProjectedCRS crs = parse(ProjectedCRS.class,
                 "PROJCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,\n" +
                 "  BASEGEODCRS[“ETRS89”,\n" +
@@ -893,7 +893,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#78">OGC 12-063r5 §11.4 example 1</a>
      */
     @Test
-    public void testEngineeringInclined() throws FactoryException {
+    public void testEngineeringRotated() throws FactoryException {
         final EngineeringCRS crs = parse(EngineeringCRS.class,
                 "ENGCRS[“A construction site CRS”,\n" +
                 "  EDATUM[“P1”,ANCHOR[“Peg in south corner”]],\n" +
