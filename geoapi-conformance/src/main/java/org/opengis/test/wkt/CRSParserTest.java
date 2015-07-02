@@ -267,17 +267,27 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
-        verifyIdentification   (crs, "WGS 84", null);
-        verifyDatum            (crs.getDatum(), "World Geodetic System 1984");
-        verifyFlattenedSphere  (crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
-        verifyPrimeMeridian    (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
-        verifyCoordinateSystem (crs.getCoordinateSystem(), EllipsoidalCS.class,
-                new AxisDirection[] {
-                    AxisDirection.NORTH,
-                    AxisDirection.EAST,
-                    AxisDirection.UP
-                }, NonSI.DEGREE_ANGLE, NonSI.DEGREE_ANGLE, SI.METRE);
+        verifyWGS84(crs, true);
         verifyAxisAbbreviations(crs.getCoordinateSystem(), null, null, "h");
+    }
+
+    /**
+     * Verifies the CRS name, datum and axes for {@code GEODCRS[“WGS 84”]}.
+     * This method does not verify axis abbreviations.
+     */
+    private void verifyWGS84(final GeodeticCRS crs, final boolean is3D) {
+        verifyIdentification (crs, "WGS 84", null);
+        verifyDatum          (crs.getDatum(), "World Geodetic System 1984");
+        verifyFlattenedSphere(crs.getDatum().getEllipsoid(), "WGS 84", 6378137, 298.257223563, SI.METRE);
+        verifyPrimeMeridian  (crs.getDatum().getPrimeMeridian(), null, 0, NonSI.DEGREE_ANGLE);
+        final AxisDirection[] directions = new AxisDirection[is3D ? 3 : 2];
+        directions[0] = AxisDirection.NORTH;
+        directions[1] = AxisDirection.EAST;
+        if (is3D) {
+            directions[2] = AxisDirection.UP;
+        }
+        verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, directions,
+                NonSI.DEGREE_ANGLE, NonSI.DEGREE_ANGLE, SI.METRE);
     }
 
     /**
@@ -776,7 +786,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Verifies the CRS name, datum and axis for VERTCRS[“NAD88”].
+     * Verifies the CRS name, datum and axis for {@code VERTCRS[“NAD88”]}.
      */
     private void verifyNAD28(final VerticalCRS crs) {
         verifyIdentification(crs, "NAVD88", null);
@@ -810,6 +820,13 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             validators.validate(crs);
             configurationTip = null;
         }
+        verifyGPSTime(crs);
+    }
+
+    /**
+     * Verifies the CRS name, datum and axis for {@code TIMECRS[“GPS Time”]}.
+     */
+    private void verifyGPSTime(final TemporalCRS crs) {
         verifyIdentification   (crs, "GPS Time", null);
         verifyDatum            (crs.getDatum(), "Time origin");
         verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class,
@@ -1237,7 +1254,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
-     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2</a>
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 1</a>
      */
     @Test
     public void testCompoundWithVertical() throws FactoryException {
@@ -1270,5 +1287,58 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         assertInstanceOf("components[1]", VerticalCRS.class, components.get(1));
         verifyNAD23((GeodeticCRS) components.get(0), false);
         verifyNAD28((VerticalCRS) components.get(1));
+    }
+
+    /**
+     * Parses a compound CRS with a temporal component.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>COMPOUNDCRS[“GPS position and time”,
+     *   GEODCRS[“WGS 84”,
+     *     DATUM[“World Geodetic System 1984”,
+     *       ELLIPSOID[“WGS 84”,6378137,298.257223563]],
+     *     CS[ellipsoidal,2],
+     *       AXIS[“(lat)”,north,ORDER[1]],
+     *       AXIS[“(lon)”,east,ORDER[2]],
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *   TIMECRS[“GPS Time”,
+     *     TIMEDATUM[“Time origin”,TIMEORIGIN[1980-01-01]],
+     *     CS[temporal,1],
+     *       AXIS[“time (T)”,future],
+     *       TIMEUNIT[“day”,86400]]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 3</a>
+     */
+    @Test
+    public void testCompoundWithTime() throws FactoryException {
+        final CompoundCRS crs = parse(CompoundCRS.class,
+                "COMPOUNDCRS[“GPS position and time”,\n" +
+                "  GEODCRS[“WGS 84”,\n" +
+                "    DATUM[“World Geodetic System 1984”,\n" +
+                "      ELLIPSOID[“WGS 84”,6378137,298.257223563]],\n" +
+                "    CS[ellipsoidal,2],\n" +
+                "      AXIS[“(lat)”,north,ORDER[1]],\n" +
+                "      AXIS[“(lon)”,east,ORDER[2]],\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "  TIMECRS[“GPS Time”,\n" +
+                "    TIMEDATUM[“Time origin”,TIMEORIGIN[1980-01-01]],\n" +
+                "    CS[temporal,1],\n" +
+                "      AXIS[“time (T)”,future],\n" +
+                "      TIMEUNIT[“day”,86400]]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification(crs, "GPS position and time", null);
+        final List<CoordinateReferenceSystem> components = crs.getComponents();
+        assertEquals("components.size()", 2, components.size());
+        assertInstanceOf("components[0]", GeodeticCRS.class, components.get(0));
+        assertInstanceOf("components[1]", TemporalCRS.class, components.get(1));
+        verifyWGS84  ((GeodeticCRS) components.get(0), false);
+        verifyGPSTime((TemporalCRS) components.get(1));
     }
 }
