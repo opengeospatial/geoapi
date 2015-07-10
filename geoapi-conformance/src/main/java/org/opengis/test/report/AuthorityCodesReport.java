@@ -59,7 +59,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  *   <tr><th>Key</th>                            <th align="center">Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>                  <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>            <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>           <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. "<cite>Coordinate Reference Systems</cite>").</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>           <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. <cite>"Coordinate Reference Systems"</cite>).</td></tr>
  *   <tr><td>{@code FACTORY.NAME}</td>           <td align="center">&nbsp;</td>    <td>The name of the authority factory.</td></tr>
  *   <tr><td>{@code FACTORY.VERSION}</td>        <td align="center">&nbsp;</td>    <td>The version of the authority factory.</td></tr>
  *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td align="center">optional</td>  <td>An optional text to write after the factory version.</td></tr>

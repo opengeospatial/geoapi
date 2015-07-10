@@ -224,7 +224,7 @@ public interface SampleDimension {
      *
      * @departure generalization
      *   Added this optional method as a generalization of <code>scale</code> and <code>offset</code>
-     *   attributes. Note that ISO 19115-2 refers to a similar function as "<cite>the transfert function</cite>".
+     *   attributes. Note that ISO 19115-2 refers to a similar function as <cite>"the transfert function"</cite>.
      *
      * @return The transform from sample to geophysics values, or {@code null} if
      *         it doesn't apply.

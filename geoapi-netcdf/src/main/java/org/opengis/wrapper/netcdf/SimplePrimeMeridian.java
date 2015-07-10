@@ -22,7 +22,7 @@ import org.opengis.referencing.datum.PrimeMeridian;
 
 /**
  * The Greenwich prime meridian, implemented as a separated class because ISO 19111
- * requires the name to be "<cite>Greenwich</cite>".
+ * requires the name to be <cite>"Greenwich"</cite>.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

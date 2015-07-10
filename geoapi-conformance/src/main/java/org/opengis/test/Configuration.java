@@ -254,8 +254,8 @@ public class Configuration implements Serializable {
      *
      * <p><b><u>Note on field names:</u></b><br>
      * Every constants declared in this class have a name matching exactly the field names in
-     * {@link TestCase} subclasses. This is a departure from the usual "<cite>all upper-case
-     * letters</cite>" convention, but make the relationship with fields more obvious
+     * {@link TestCase} subclasses. This is a departure from the usual <cite>"all upper-case
+     * letters"</cite> convention, but make the relationship with fields more obvious
      * and the parsing of {@link java.util.Properties} files easier.</p>
      *
      * @param <T> The type of values associated with the key.
