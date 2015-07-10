@@ -211,6 +211,16 @@ final class SamplePoints {
                 λmax = -93.41; φmax = 30.66;
                 break;
             }
+            case 6201: { // "NAD27 / Michigan Central"
+                operation = 6198;
+                fe = 2000000.00/R_US_FEET;  λ0 = -84 - 20.0/60;
+                fn =       0.00/R_US_FEET;  φ0 =  43 + 19.0/60;
+                e  = 2308335.75/R_US_FEET;  λ  = -83 - 10.0/60;  // 83°10'00.00"W
+                n  =  160210.48/R_US_FEET;  φ  =  43 + 45.0/60;  // 43°45'00.00"N
+                λmin = -87.06; φmin = 43.80;
+                λmax = -82.27; φmax = 45.92;
+                break;
+            }
             case 31300: {  // "Belge 1972 / Belge Lambert 72"
                 operation = 19902;
                 fe =    150000.01;  λ0 =  4 + (21 + 24.983/60)/60;
