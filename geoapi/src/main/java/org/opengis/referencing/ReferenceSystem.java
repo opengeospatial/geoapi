@@ -128,7 +128,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *     <li>ISO 19111:2007 moved this attribute from this type to the {@code SC_CRS} subtype.
      *         GeoAPI keeps this attribute here for historical reasons.</li>
      *     <li>ISO 19111:2007 changed the obligation from optional to mandatory
-     *         and requires the value to be "<cite>not known</cite>" if the scope is unknown.
+     *         and requires the value to be <cite>"not known"</cite> if the scope is unknown.
      *         GeoAPI lefts the obligation unchanged: optional with {@code null} value for unknown scope.</li>
      *     <li>ISO 19111:2007 changed the multiplicity from singleton to a collection.
      *         GeoAPI keeps the singleton type for historical reasons.</li>

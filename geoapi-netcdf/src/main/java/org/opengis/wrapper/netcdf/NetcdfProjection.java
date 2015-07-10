@@ -654,7 +654,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         }
 
         /**
-         * Returns the map projection class name, for example "<cite>Transverse Mercator</cite>".
+         * Returns the map projection class name, for example <cite>"Transverse Mercator"</cite>.
          *
          * @see Projection#getClassName()
          */

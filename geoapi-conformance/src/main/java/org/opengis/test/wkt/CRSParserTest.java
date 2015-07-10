@@ -221,6 +221,37 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
+     * Pre-process the WKT string before parsing.
+     * The default implementation performs the following changes for strict ISO 19162 compliance:
+     *
+     * <ul>
+     *   <li>Double the straight quotation marks {@code "} (U+0022).</li>
+     *   <li>Replace the left quotation marks {@code “} (U+201C) and right quotation marks {@code ”} (U+201D)
+     *       by straight quotation marks {@code "} (U+0022).</li>
+     * </ul>
+     *
+     * Subclasses can override this method if they wish to perform additional pre-processing.
+     * The use of left and right quotation marks is intended to make easier for subclasses to
+     * identify the beginning and end of quoted texts.
+     *
+     * @param  wkt The Well-Known Text to pre-process.
+     * @return The Well-Known Text to parse.
+     */
+    protected String preprocessWKT(final String wkt) {
+        final StringBuilder b = new StringBuilder(wkt);
+        for (int i = wkt.lastIndexOf('"'); i >= 0; i = wkt.lastIndexOf('"', i-1)) {
+            b.insert(i, '"');
+        }
+        for (int i=0; i<b.length(); i++) {
+            final char c = b.charAt(i);
+            if (c == '“' || c == '”') {
+                b.setCharAt(i, '"');
+            }
+        }
+        return b.toString();
+    }
+
+    /**
      * Parses the given WKT.
      *
      * @param  type The expected object type.
@@ -230,7 +261,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      */
     private <T extends CoordinateReferenceSystem> T parse(final Class<T> type, final String text) throws FactoryException {
         assumeTrue("No CRSFactory.", crsFactory != null);
-        object = crsFactory.createFromWKT(text);
+        object = crsFactory.createFromWKT(preprocessWKT(text));
         assertInstanceOf("CRSFactory.createFromWKT(String)", type, object);
         return type.cast(object);
     }

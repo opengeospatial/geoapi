@@ -85,7 +85,7 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      * The corner in the pixel closest to the origin of the SRS.
      * If two are at the same distance from the origin, the one with the smallest <var>x</var>-value.
      *
-     * @todo The sentence "<cite>closest to the origin of the SRS</cite> probably applies to
+     * @todo The sentence <cite>"closest to the origin of the SRS</cite> probably applies to
      *       positive coordinates only. For the general case including both positive and negative
      *       coordinates, we should probably read "in the direction of negative infinity". This
      *       interpretation should be clarified with ISO.

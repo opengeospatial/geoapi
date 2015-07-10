@@ -515,7 +515,7 @@ public interface Coverage {
      *   Return type of <code>Coverage.getSource(int)</code> has been relaxed from <code>GridCoverage</code>
      *   to <code>Coverage</code>. Instead, the return type has been constrained to <code>GridCoverage</code>
      *   only in <code>GridCoverage.getSource(int)</code>. This approach (<cite>return type covariance</cite>)
-     *   was already used in "<cite>Spatial Referencing by Coordinates</cite>" (ISO 19111). It avoid forward
+     *   was already used in <cite>"Spatial Referencing by Coordinates"</cite> (ISO 19111). It avoid forward
      *   dependency of <code>Coverage</code> toward <code>GridCoverage</code> and give more flexibility for
      *   use of <code>Coverage</code> with non-gridded sources.
      *

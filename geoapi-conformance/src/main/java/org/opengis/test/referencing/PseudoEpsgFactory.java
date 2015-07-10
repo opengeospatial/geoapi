@@ -956,6 +956,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
      *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
+     *   <tr><td>6198</td>      <td>6201</td>      <td>Michigan CS27 Central zone</td>          <td>Lambert Conic Conformal (2SP Michigan)</td></tr>
      *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
      *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe</td>                <td>Lambert Azimuthal Equal Area</td></tr>
      *   <tr><td>16061</td>     <td>5041</td>      <td>WGS 84 / UPS North (E,N)</td>            <td>Polar Stereographic (variant A)</td></tr>
@@ -1074,6 +1075,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of false origin")        .setValue(-99.0);        // 99°00'00"W
                 parameters.parameter("Easting at false origin") .setValue(2000000 / R_US_FEET);
                 parameters.parameter("Northing at false origin").setValue(      0 / R_US_FEET);
+                break;
+            }
+            case 6198: { // "Michigan CS27 Central zone" using operation method 1051
+                parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Michigan)");
+                parameters.parameter("semi_major").setValue(6378206.4); // Clarke 1866
+                parameters.parameter("semi_minor").setValue(6356583.8);
+                parameters.parameter("Latitude of 1st standard parallel").setValue( 44 + 11.0/60);  // 44°11' N
+                parameters.parameter("Latitude of 2nd standard parallel").setValue( 45 + 42.0/60);  // 45°42' N
+                parameters.parameter("Latitude of false origin")         .setValue( 43 + 19.0/60);  // 43°19' N
+                parameters.parameter("Longitude of false origin")        .setValue(-84 - 20.0/60);  // 84°20' W
+                parameters.parameter("Easting at false origin") .setValue(2000000 / R_US_FEET);
+                parameters.parameter("Northing at false origin").setValue(      0 / R_US_FEET);
+                parameters.parameter("Ellipsoid scaling factor").setValue(1.0000382);
                 break;
             }
             case 19902: { // "Belge 1972 / Belge Lambert 72" using operation method 9803

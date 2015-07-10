@@ -383,7 +383,7 @@ public strictfp class PixelIterator {
      *       {@linkplain #getDataType() datatype} and the datatype of the given iterator).</li>
      * </ul>
      *
-     * If the images have different sizes, then an "<cite>Unexpected end of iteration</cite>"
+     * If the images have different sizes, then an <cite>"Unexpected end of iteration"</cite>
      * exception will be thrown when the first iterator reaches the iteration end.
      *
      * @param actual The iterator that contains the actual values to be compared with the

@@ -179,7 +179,7 @@ public interface Datum extends IdentifiedObject {
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003. The revision
      *   published in 2007 replaced the singleton by a collection and changed the obligation
-     *   from "optional" to "mandatory", requiring a return value of "<cite>not known</cite>"
+     *   from "optional" to "mandatory", requiring a return value of <cite>"not known"</cite>
      *   if the scope is unknown.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)

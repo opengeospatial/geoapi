@@ -159,7 +159,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
 
     /**
      * {@code true} if the {@linkplain CoordinateReferenceSystem Coordinate Reference System} being
-     * tested is a polar CRS. Such CRS have axis orientation like "<cite>South along 90°E</cite>"
+     * tested is a polar CRS. Such CRS have axis orientation like <cite>"South along 90°E"</cite>
      * instead than {@linkplain AxisDirection#EAST East} or {@linkplain AxisDirection#NORTH North}.
      *
      * <p><b>Default value:</b> {@code false}.</p>
