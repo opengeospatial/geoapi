@@ -220,17 +220,21 @@ public interface MathTransformFactory extends Factory {
      * p.parameter("semi_minor").setValue(6356752.314);
      * MathTransform mt = factory.createParameterizedTransform(p);</pre></blockquote>
      *
-     * <p><b>Note on cartographic projections:</b></p>
-     * <p>Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
+     * <div class="section">Note on cartographic projections:</div>
+     * Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
      * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
      * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
      * or a screen. All cartographic projection transforms created through this constructor will have the following
-     * properties:</p>
+     * properties:
      *
      * <ul>
      *   <li>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</li>
      *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
      *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
+     *   <li>Axis directions are usually ({@linkplain org.opengis.referencing.cs.AxisDirection#EAST east},
+     *       {@linkplain org.opengis.referencing.cs.AxisDirection#NORTH north}), but exceptions may exist
+     *       for some operation methods like <cite>"Lambert Conic Conformal (West Orientated)"</cite>
+     *       (EPSG:9826) or <cite>"Transverse Mercator (South Orientated)"</cite> (EPSG:9808).</li>
      * </ul>
      *
      * Although all cartographic projection transforms must have the properties listed above, many projected coordinate
@@ -238,6 +242,12 @@ public interface MathTransformFactory extends Factory {
      * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
      * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
      * used as a single step in a series of transforms, where the other steps change units and swap ordinates.
+     *
+     * <p>When the change of axis directions is part of the map projection definition as in <cite>"Transverse Mercator
+     * (South Orientated)"</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
+     * In such cases the {@code createParameterizedTransform(…)} behavior is implementation specific, since different
+     * libraries may resolve this conflict in different ways.
+     * Users can invoke {@link #createBaseToDerived createBaseToDerived(…)} instead for more determinist results.</p>
      *
      * @param  parameters The parameter values.
      * @return The parameterized transform.

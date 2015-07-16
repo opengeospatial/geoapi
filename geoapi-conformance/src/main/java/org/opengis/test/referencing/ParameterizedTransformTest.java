@@ -780,7 +780,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <caption>Test points</caption>
      * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
      * <tr align="right"><td>20°E<br>0°S</td>        <td>0 m<br>0 m</td></tr>
-     * <tr align="right"><td>28°16'57.479"E<br>25°43'55.302"S</td> <td>71984.49 m<br>2847342.74 m</td></tr>
+     * <tr align="right"><td>28°16'57.479"E<br>25°43'55.302"S</td> <td>71984.48 m<br>2847342.74 m</td></tr>
      * </table></td></tr></table>
      *
      * @throws FactoryException If the math transform can not be created.
@@ -791,7 +791,27 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Hartebeesthoek94 / Lo29";
         final SamplePoints sample = SamplePoints.forCRS(2053);
         createMathTransform(Projection.class, sample);
-        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        /*
+         * In this particular case we have a conflict between the change of axis direction performed by the
+         * "Transverse Mercator (South Orientated)" operation method  and the (east, north) axis directions
+         * documented in the MathTransformFactory.createParameterizedTransform(…) method. We do not mandate
+         * any particular behavior at this time, so we have to determine what the implementor choose to do,
+         * by projecting a point in the south hemisphere and checking the sign of the result.
+         */
+        double[] expected = sample.targetPoints;
+        final double[] check = new double[] {-0.5, -0.5};
+        transform.transform(check, 0, check, 0, 1);
+        if (check[1] < 0) {
+            /*
+             * Point in the South hemisphere have negative y values. In other words, the implementor chooses to
+             * keep (east,north) directions instead of (west,south). Reverse the sign of all expected coordinates.
+             */
+            expected = expected.clone();
+            for (int i=0; i<expected.length; i++) {
+                expected[i] = -expected[i];
+            }
+        }
+        verifyTransform(sample.sourcePoints, expected);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
