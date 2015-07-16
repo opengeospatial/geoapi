@@ -740,13 +740,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>00°30'E<br>50°30'N</td> <td>577274.98 m<br>69740.49 m</td></tr>
      * </table></td></tr></table>
      *
-     * <div class="note"><b>Note:</b>
-     * The scale factor given in the EPSG guidance notes is 0.9996013, while the actual
-     * value in the EPSG database is 0.9996012717. This tiny difference shifts the expected results
-     * by 0.5 cm toward zero compared to the value documented in the EPSG guidance notes. The values
-     * used in this GeoAPI test have been adjusted accordingly.
-     * </div>
-     *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
