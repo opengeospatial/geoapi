@@ -953,6 +953,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>           <td><i>Miller_Cylindrical</i></td></tr>
      *   <tr><td>19958</td>     <td>29873</td>     <td>Timbalai 1948 / RSO Borneo (m)</td>      <td>Hotine Oblique Mercator (variant B)</td></tr>
      *   <tr><td>19916</td>     <td>27700</td>     <td>OSGB 1936 / British National Grid</td>   <td>Transverse Mercator</td></tr>
+     *   <tr><td>17529</td>     <td>2053</td>      <td>South African Survey Grid zone 29</td>   <td>Transverse Mercator</td></tr>
      *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
      *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
@@ -1039,9 +1040,20 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("semi_minor").setValue(6377563.396 * (1 - 1/299.32496));
                 parameters.parameter("Latitude of natural origin") .setValue(49.0);
                 parameters.parameter("Longitude of natural origin").setValue(-2.0);
-                parameters.parameter("Scale factor at natural origin").setValue(0.9996012717); // EPSG guidance notes rounded this value to 0.9996013
+                parameters.parameter("Scale factor at natural origin").setValue(0.9996012717);
                 parameters.parameter("False easting") .setValue( 400000.00);
                 parameters.parameter("False northing").setValue(-100000.00);
+                break;
+            }
+            case 17529: { // "South African Survey Grid zone 29" using operation method 9808
+                parameters = factory.getDefaultParameters("Transverse Mercator (South Orientated)");
+                parameters.parameter("semi_major").setValue(6378137.0); // WGS 84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Latitude of natural origin").setValue(0.0);
+                parameters.parameter("Longitude of natural origin").setValue(29.0);
+                parameters.parameter("Scale factor at natural origin").setValue(1.0);
+                parameters.parameter("False easting") .setValue(0.0);
+                parameters.parameter("False northing").setValue(0.0);
                 break;
             }
             case 19975: { // "Trinidad 1903 / Trinidad Grid" using operation method 9806

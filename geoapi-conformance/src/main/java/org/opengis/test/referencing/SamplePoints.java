@@ -175,10 +175,18 @@ final class SamplePoints {
                 fn = -100000.00;  φ0 =  49;
                 e  =  577274.98;  λ  =    30.0/60; // 00°30'00.00"E
                 n  =   69740.49;  φ  = 50+30.0/60; // 50°30'00.00"N
-                // The above (e,n) values are 1 cm less than the values documented in the EPSG
-                // guidance notes. This shift is caused by the slightly different scale factor.
                 λmin = -7.56; φmin = 49.96;
                 λmax =  1.78; φmax = 60.84;
+                break;
+            }
+            case 2053: {   // "Hartebeesthoek94 / Lo29"
+                operation = 17529;
+                fe =  0;  λ0 = 29;
+                fn =  0;  φ0 =  0;
+                e  =    71984.49;  λ  =  28 + (16 + 57.479/60)/60;  // 28°16'57.479"E
+                n  =  2847342.74;  φ  = -25 - (43 + 55.302/60)/60;  // 25°43'55.302"S
+                λmin = 27.99; φmin = -33.03;
+                λmax = 30.00; φmax = -22.13;
                 break;
             }
             case 2314: {  // "Trinidad 1903 / Trinidad Grid"

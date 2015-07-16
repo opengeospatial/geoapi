@@ -755,6 +755,47 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>29°</td></tr>
+     * <tr><td>Scale factor at natural origin</td> <td>1</td></tr>
+     * <tr><td>False easting</td>                  <td>0 m</td></tr>
+     * <tr><td>False northing</td>                 <td>0 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
+     * <tr align="right"><td>20°E<br>0°S</td>        <td>0 m<br>0 m</td></tr>
+     * <tr align="right"><td>28°16'57.479"E<br>25°43'55.302"S</td> <td>71984.49 m<br>2847342.74 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testTransverseMercatorSouthOrientated() throws FactoryException, TransformException {
+        description = "Hartebeesthoek94 / Lo29";
+        final SamplePoints sample = SamplePoints.forCRS(2053);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <cite>"Cassini-Soldner"</cite> (EPSG:9806) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
@@ -966,8 +1007,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
-     *
-     * @see AuthorityFactoryTest#testEPSG_32040()
      */
     @Test
     public void testLambertConicConformalMichigan() throws FactoryException, TransformException {
