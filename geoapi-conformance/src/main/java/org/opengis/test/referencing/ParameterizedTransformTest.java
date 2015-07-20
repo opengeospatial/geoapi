@@ -1167,6 +1167,49 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>"Polar Stereographic (variant C)"</cite> (EPSG:9830) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6378388.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356911.9461279465 m</td></tr>
+     * <tr><td>Latitude of standard parallel</td>  <td>-67°</td></tr>
+     * <tr><td>Longitude of origin</td>            <td>140°</td></tr>
+     * <tr><td>False easting</td>                  <td>300000 m</td></tr>
+     * <tr><td>False northing</td>                 <td>200000 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
+     * <tr align="right"><td>67°E<br>90°S</td>  <td>300000.00 m<br>200000.00 m</td></tr>
+     * <tr align="right"><td>140°04'17.040"E<br>66°36'18.820"S</td> <td>303169.52 m<br>244055.72 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3032()
+     */
+    @Test
+    public void testPolarStereographicC() throws FactoryException, TransformException {
+        description = "Petrels 1972 / Terre Adelie Polar Stereographic";
+        final SamplePoints sample = SamplePoints.forCRS(2985);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <cite>"Oblique Stereographic"</cite> (EPSG:9809) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.

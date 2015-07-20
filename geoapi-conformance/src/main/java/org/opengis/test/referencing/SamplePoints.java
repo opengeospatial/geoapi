@@ -270,6 +270,16 @@ final class SamplePoints {
                 λmax = 160.0; φmax = -60.0;
                 break;
             }
+            case 2985: {  // "Petrels 1972 / Terre Adelie Polar Stereographic"
+                operation = 19983;
+                fe =    300000.0;  λ0 = 140;
+                fn =    200000.0;  φ0 = -67;
+                e  =   303169.52;  λ  = 140 + ( 4 + 17.040/60)/60;   // 140°04'17.040"E
+                n  =   244055.72;  φ  = -66 - (36 + 18.820/60)/60;   // 66°36'18.820"S
+                λmin = 139.44; φmin = -66.78;
+                λmax = 141.50; φmax = -66.10;
+                break;
+            }
             case 28992: {  // "Amersfoort / RD New"
                 operation = 19914;
                 fe =  155000.000;  λ0 =  5 + (23 + 15.500/60)/60; //  5°23'15.500"E
