@@ -110,7 +110,7 @@ public final class SvnUrl extends AbstractTaglet {
             final String keyword = KEYWORDS[i];
             if (url.startsWith(keyword)) {
                 return new StringBuilder(160)
-                        .append("<a href=\"http://svn.code.sf.net/p/geoapi/code/trunk/")
+                        .append("<a href=\"https://raw.githubusercontent.com/opengeospatial/geoapi/master/")
                         .append(KEYWORDS[i+1]).append(url, keyword.length(), url.length())
                         .append("\"><code>").append(url, url.lastIndexOf('/') + 1, url.length())
                         .append("</code></a>").toString();

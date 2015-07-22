@@ -946,25 +946,27 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
-     *   <tr><th>Code</th>      <th>Used by CRS</th><th>CRS or transformation name</th>         <th>Operation method</th></tr>
-     *   <tr><td>19905</td>     <td>3002</td>      <td>Makassar / NEIEZ</td>                    <td>Mercator (variant A)</td></tr>
-     *   <tr><td>19884</td>     <td>3388</td>      <td>Pulkovo 1942 / Caspian Sea Mercator</td> <td>Mercator (variant B)</td></tr>
-     *   <tr><td>3856</td>      <td>3857</td>      <td>WGS 84 / Pseudo-Mercator</td>            <td>Popular Visualisation Pseudo Mercator</td></tr>
-     *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>           <td><i>Miller_Cylindrical</i></td></tr>
-     *   <tr><td>19958</td>     <td>29873</td>     <td>Timbalai 1948 / RSO Borneo (m)</td>      <td>Hotine Oblique Mercator (variant B)</td></tr>
-     *   <tr><td>19916</td>     <td>27700</td>     <td>OSGB 1936 / British National Grid</td>   <td>Transverse Mercator</td></tr>
-     *   <tr><td>19975</td>     <td>2314</td>      <td>Trinidad 1903 / Trinidad Grid</td>       <td>Cassini-Soldner</td></tr>
-     *   <tr><td>19910</td>     <td>24200</td>     <td>JAD69 / Jamaica National Grid</td>       <td>Lambert Conic Conformal (1SP)</td></tr>
-     *   <tr><td>14204</td>     <td>32040</td>     <td>NAD27 / Texas South Central</td>         <td>Lambert Conic Conformal (2SP)</td></tr>
-     *   <tr><td>6198</td>      <td>6201</td>      <td>Michigan CS27 Central zone</td>          <td>Lambert Conic Conformal (2SP Michigan)</td></tr>
-     *   <tr><td>19902</td>     <td>31300</td>     <td>Belge 1972 / Belge Lambert 72</td>       <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
-     *   <tr><td>19986</td>     <td>3035</td>      <td>ETRS89 / LAEA Europe</td>                <td>Lambert Azimuthal Equal Area</td></tr>
-     *   <tr><td>16061</td>     <td>5041</td>      <td>WGS 84 / UPS North (E,N)</td>            <td>Polar Stereographic (variant A)</td></tr>
-     *   <tr><td>19993</td>     <td>3032</td>      <td>WGS 84 / Australian Antarctic Polar</td> <td>Polar Stereographic (variant B)</td></tr>
-     *   <tr><td>19914</td>     <td>28992</td>     <td>Amersfoort / RD New</td>                 <td>Oblique Stereographic</td></tr>
-     *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                <td><i>Polyconic</i></td></tr>
-     *   <tr><td>19952</td>     <td>2065</td>      <td>CRS S-JTSK (Ferro) / Krovak</td>         <td>Krovak</td></tr>
-     *   <tr><td><i>9605</i></td> <td>4230</td>    <td>ED50 to WGS 84</td>                      <td>Abridged Molodensky</td></tr>
+     *   <tr><th>Code</th>  <th>Used by CRS</th><th>CRS or transformation name</th>                 <th>Operation method</th></tr>
+     *   <tr><td>19905</td> <td>3002</td>  <td>Makassar / NEIEZ</td>                                <td>Mercator (variant A)</td></tr>
+     *   <tr><td>19884</td> <td>3388</td>  <td>Pulkovo 1942 / Caspian Sea Mercator</td>             <td>Mercator (variant B)</td></tr>
+     *   <tr><td>3856</td>  <td>3857</td>  <td>WGS 84 / Pseudo-Mercator</td>                        <td>Popular Visualisation Pseudo Mercator</td></tr>
+     *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>               <td><i>Miller_Cylindrical</i></td></tr>
+     *   <tr><td>19958</td> <td>29873</td> <td>Timbalai 1948 / RSO Borneo (m)</td>                  <td>Hotine Oblique Mercator (variant B)</td></tr>
+     *   <tr><td>19916</td> <td>27700</td> <td>OSGB 1936 / British National Grid</td>               <td>Transverse Mercator</td></tr>
+     *   <tr><td>17529</td> <td>2053</td>  <td>South African Survey Grid zone 29</td>               <td>Transverse Mercator</td></tr>
+     *   <tr><td>19975</td> <td>2314</td>  <td>Trinidad 1903 / Trinidad Grid</td>                   <td>Cassini-Soldner</td></tr>
+     *   <tr><td>19910</td> <td>24200</td> <td>JAD69 / Jamaica National Grid</td>                   <td>Lambert Conic Conformal (1SP)</td></tr>
+     *   <tr><td>14204</td> <td>32040</td> <td>NAD27 / Texas South Central</td>                     <td>Lambert Conic Conformal (2SP)</td></tr>
+     *   <tr> <td>6198</td> <td>6201</td>  <td>Michigan CS27 Central zone</td>                      <td>Lambert Conic Conformal (2SP Michigan)</td></tr>
+     *   <tr><td>19902</td> <td>31300</td> <td>Belge 1972 / Belge Lambert 72</td>                   <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     *   <tr><td>19986</td> <td>3035</td>  <td>ETRS89 / LAEA Europe</td>                            <td>Lambert Azimuthal Equal Area</td></tr>
+     *   <tr><td>16061</td> <td>5041</td>  <td>WGS 84 / UPS North (E,N)</td>                        <td>Polar Stereographic (variant A)</td></tr>
+     *   <tr><td>19993</td> <td>3032</td>  <td>WGS 84 / Australian Antarctic Polar</td>             <td>Polar Stereographic (variant B)</td></tr>
+     *   <tr><td>19983</td> <td>2985</td>  <td>Petrels 1972 / Terre Adelie Polar Stereographic</td> <td>Polar Stereographic (variant C)</td></tr>
+     *   <tr><td>19914</td> <td>28992</td> <td>Amersfoort / RD New</td>                             <td>Oblique Stereographic</td></tr>
+     *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                    <td><i>Polyconic</i></td></tr>
+     *   <tr><td>19952</td> <td>2065</td>  <td>CRS S-JTSK (Ferro) / Krovak</td>                     <td>Krovak</td></tr>
+     *   <tr><td><i>9605</i></td> <td>4230</td> <td>ED50 to WGS 84</td>                             <td>Abridged Molodensky</td></tr>
      * </table>
      *
      * @param  code The EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
@@ -1039,9 +1041,20 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("semi_minor").setValue(6377563.396 * (1 - 1/299.32496));
                 parameters.parameter("Latitude of natural origin") .setValue(49.0);
                 parameters.parameter("Longitude of natural origin").setValue(-2.0);
-                parameters.parameter("Scale factor at natural origin").setValue(0.9996012717); // EPSG guidance notes rounded this value to 0.9996013
+                parameters.parameter("Scale factor at natural origin").setValue(0.9996012717);
                 parameters.parameter("False easting") .setValue( 400000.00);
                 parameters.parameter("False northing").setValue(-100000.00);
+                break;
+            }
+            case 17529: { // "South African Survey Grid zone 29" using operation method 9808
+                parameters = factory.getDefaultParameters("Transverse Mercator (South Orientated)");
+                parameters.parameter("semi_major").setValue(6378137.0); // WGS 84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Latitude of natural origin").setValue(0.0);
+                parameters.parameter("Longitude of natural origin").setValue(29.0);
+                parameters.parameter("Scale factor at natural origin").setValue(1.0);
+                parameters.parameter("False easting") .setValue(0.0);
+                parameters.parameter("False northing").setValue(0.0);
                 break;
             }
             case 19975: { // "Trinidad 1903 / Trinidad Grid" using operation method 9806
@@ -1131,6 +1144,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of origin").setValue(70.0);
                 parameters.parameter("False easting") .setValue(6000000.00);
                 parameters.parameter("False northing").setValue(6000000.00);
+                break;
+            }
+            case 19983: { // "Petrels 1972 / Terre Adelie Polar Stereographic" using operation method 9830
+                parameters = factory.getDefaultParameters("Polar Stereographic (variant C)");
+                parameters.parameter("semi_major").setValue(6378388.0); // International 1924
+                parameters.parameter("semi_minor").setValue(6378388.0 * (1 - 1/297.0));
+                parameters.parameter("Latitude of standard parallel").setValue(-67.0);
+                parameters.parameter("Longitude of origin").setValue(140.0);
+                parameters.parameter("Easting at false origin") .setValue(300000.00);
+                parameters.parameter("Northing at false origin").setValue(200000.00);
                 break;
             }
             case 19914: { // "RD New" using operation method 9809

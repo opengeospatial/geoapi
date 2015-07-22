@@ -625,7 +625,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"IGNF:MILLER"</cite> (EPSG:310642901) projection.
+     * Tests the <cite>"IGNF:MILLER"</cite> projection.
      * First, this method transforms the point given below
      * and compares the {@link MathTransform} result with the expected result. Next, this method
      * transforms a random set of points in the projection area of validity and ensures that the
@@ -740,13 +740,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>00°30'E<br>50°30'N</td> <td>577274.98 m<br>69740.49 m</td></tr>
      * </table></td></tr></table>
      *
-     * <div class="note"><b>Note:</b>
-     * The scale factor given in the EPSG guidance notes is 0.9996013, while the actual
-     * value in the EPSG database is 0.9996012717. This tiny difference shifts the expected results
-     * by 0.5 cm toward zero compared to the value documented in the EPSG guidance notes. The values
-     * used in this GeoAPI test have been adjusted accordingly.
-     * </div>
-     *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
      *
@@ -758,6 +751,67 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         final SamplePoints sample = SamplePoints.forCRS(27700);
         createMathTransform(Projection.class, sample);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
+     * Tests the <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>     <td>0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>    <td>29°</td></tr>
+     * <tr><td>Scale factor at natural origin</td> <td>1</td></tr>
+     * <tr><td>False easting</td>                  <td>0 m</td></tr>
+     * <tr><td>False northing</td>                 <td>0 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
+     * <tr align="right"><td>20°E<br>0°S</td>        <td>0 m<br>0 m</td></tr>
+     * <tr align="right"><td>28°16'57.479"E<br>25°43'55.302"S</td> <td>71984.48 m<br>2847342.74 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     */
+    @Test
+    public void testTransverseMercatorSouthOrientated() throws FactoryException, TransformException {
+        description = "Hartebeesthoek94 / Lo29";
+        final SamplePoints sample = SamplePoints.forCRS(2053);
+        createMathTransform(Projection.class, sample);
+        /*
+         * In this particular case we have a conflict between the change of axis direction performed by the
+         * "Transverse Mercator (South Orientated)" operation method  and the (east, north) axis directions
+         * documented in the MathTransformFactory.createParameterizedTransform(…) method. We do not mandate
+         * any particular behavior at this time, so we have to determine what the implementor choose to do,
+         * by projecting a point in the south hemisphere and checking the sign of the result.
+         */
+        double[] expected = sample.targetPoints;
+        final double[] check = new double[] {-0.5, -0.5};
+        transform.transform(check, 0, check, 0, 1);
+        if (check[1] < 0) {
+            /*
+             * Point in the South hemisphere have negative y values. In other words, the implementor chooses to
+             * keep (east,north) directions instead of (west,south). Reverse the sign of all expected coordinates.
+             */
+            expected = expected.clone();
+            for (int i=0; i<expected.length; i++) {
+                expected[i] = -expected[i];
+            }
+        }
+        verifyTransform(sample.sourcePoints, expected);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
 
@@ -973,8 +1027,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * @throws FactoryException If the math transform can not be created.
      * @throws TransformException If the example point can not be transformed.
-     *
-     * @see AuthorityFactoryTest#testEPSG_32040()
      */
     @Test
     public void testLambertConicConformalMichigan() throws FactoryException, TransformException {
@@ -1109,6 +1161,49 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testPolarStereographicB() throws FactoryException, TransformException {
         description = "Australian Antarctic Polar Stereographic";
         final SamplePoints sample = SamplePoints.forCRS(3032);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
+     * Tests the <cite>"Polar Stereographic (variant C)"</cite> (EPSG:9830) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                      <th>Value</th></tr>
+     * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
+     * <tr><td>semi-major axis</td>                <td>6378388.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                <td>6356911.9461279465 m</td></tr>
+     * <tr><td>Latitude of standard parallel</td>  <td>-67°</td></tr>
+     * <tr><td>Longitude of origin</td>            <td>140°</td></tr>
+     * <tr><td>False easting</td>                  <td>300000 m</td></tr>
+     * <tr><td>False northing</td>                 <td>200000 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
+     * <tr align="right"><td>67°E<br>90°S</td>  <td>300000.00 m<br>200000.00 m</td></tr>
+     * <tr align="right"><td>140°04'17.040"E<br>66°36'18.820"S</td> <td>303169.52 m<br>244055.72 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException If the math transform can not be created.
+     * @throws TransformException If the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3032()
+     */
+    @Test
+    public void testPolarStereographicC() throws FactoryException, TransformException {
+        description = "Petrels 1972 / Terre Adelie Polar Stereographic";
+        final SamplePoints sample = SamplePoints.forCRS(2985);
         createMathTransform(Projection.class, sample);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
