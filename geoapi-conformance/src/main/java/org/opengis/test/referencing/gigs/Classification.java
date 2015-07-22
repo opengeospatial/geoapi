@@ -39,7 +39,7 @@ package org.opengis.test.referencing.gigs;
  * comparison possible, this package distinguishes four levels of compliance.
  *
  * <blockquote><b>Source:</b> Documentation in this class is derived from the
- * <a href="http://www.ogp.org.uk/pubs/430-1.pdf">GIGS 430-1</a> document, focusing
+ * <a href="http://www.iogp.org/pubs/430-1.pdf">GIGS 430-1</a> document, focusing
  * on the requirements that can be verified programmatically by this test suite.
  * See the original GIGS document for the full list of requirements.</blockquote>
  *
