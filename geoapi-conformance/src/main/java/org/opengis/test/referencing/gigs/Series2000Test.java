@@ -35,8 +35,6 @@ import java.util.List;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import javax.measure.converter.UnitConverter;
-import javax.measure.converter.ConversionException;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -54,10 +52,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
-import static java.lang.StrictMath.*;
-import static javax.measure.unit.Unit.ONE;
 import static javax.measure.unit.SI.METRE;
-import static javax.measure.unit.SI.RADIAN;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 import static org.opengis.test.Assert.*;
 
@@ -202,95 +197,6 @@ public strictfp class Series2000Test extends GIGSTestCase {
     }
 
     /**
-     * Verifies reference units of measure bundled with the geoscience software.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2001_libUnit.csv}.
-     *   This file contains three separate blocks of data for linear units, angular units and scaling
-     *   units. It gives the EPSG code and name for the unit of measure, together with the ratio of
-     *   the unit to the ISO base unit for that unit type.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link CSAuthorityFactory#createUnit(String)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>Unit of measure definitions bundled with software should have the ratio to the
-     *   appropriate base unit as in the EPSG Dataset. The values of the base unit per unit
-     *   should be correct to at least 10 significant figures. Units missing from the software
-     *   or included in the software additional to those in the EPSG Dataset or at variance with
-     *   those in the EPSG Dataset should be reported.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
-     *         unsupported code}) occurred while creating a unit from an EPSG code.
-     * @throws ConversionException If an error occurred while converting a sample value from the
-     *         tested unit to the base unit.
-     */
-    @Test
-    public void test2001() throws FactoryException, ConversionException {
-        assumeNotNull(csAuthorityFactory);
-        final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
-                Integer.class,  // [0]: EPSG UoM Code
-                String .class,  // [1]: Type
-                String .class,  // [2]: Name of Units used in EPSG db parameters
-                Double .class,  // [3]: Base units per unit
-                Boolean.class,  // [4]: Particularly important to E&P industry?
-                String .class); // [5]: Specific usage / Remarks
-
-        while (data.next()) {
-            final int    code   = data.getInt   (0);
-            final String type   = data.getString(1);
-            final String name   = data.getString(2);
-            final double factor = data.getDouble(3);
-            final Unit<?> unit, base;
-            try {
-                unit = csAuthorityFactory.createUnit(String.valueOf(code));
-            } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Unit.class, code, e, data.getBoolean(4));
-                continue;
-            }
-            if      (type.equalsIgnoreCase("Linear")) base = METRE;
-            else if (type.equalsIgnoreCase("Angle" )) base = RADIAN;
-            else if (type.equalsIgnoreCase("Scale" )) base = ONE;
-            else throw new DataException("Unknown type: " + type);
-            UnitConverter converter = unit.getConverterToAny(base);
-            assertEquals(name, 0, converter.convert( 0), TOLERANCE);
-            switch (code) {
-                default: {
-                    assertEquals(name,  factor, converter.convert( 1), TOLERANCE * factor);
-                    assertEquals(name, -factor, converter.convert(-1), TOLERANCE * factor);
-                    for (double sample=-90; sample<=90; sample += 2.8125) {
-                        final double expected = sample * factor;
-                        assertEquals(name, expected, converter.convert(sample), (expected != 0) ? abs(expected)*TOLERANCE : TOLERANCE);
-                    }
-                    break;
-                }
-                case 9110: {
-                    // Special cases for sexagesimal degrees
-                    converter = unit.getConverterToAny(DEGREE_ANGLE);
-                    assertEquals(name,  10.00, converter.convert( 10.0000), 10*TOLERANCE);
-                    assertEquals(name, -10.00, converter.convert(-10.0000), 10*TOLERANCE);
-                    assertEquals(name,  20.01, converter.convert( 20.0036), 20*TOLERANCE);
-                    assertEquals(name, -20.01, converter.convert(-20.0036), 20*TOLERANCE);
-                    assertEquals(name,  30.50, converter.convert( 30.3000), 30*TOLERANCE);
-                    assertEquals(name, -30.50, converter.convert(-30.3000), 30*TOLERANCE);
-                    assertEquals(name,  40.99, converter.convert( 40.5924), 40*TOLERANCE);
-                    assertEquals(name, -40.99, converter.convert(-40.5924), 40*TOLERANCE);
-                    break;
-                }
-                case 9203: {
-                    // Special cases for dimensionless coefficient.
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
      * Verifies reference ellipsoid parameters bundled with the geoscience software.
      *
      * <table cellpadding="3" summary="Test description"><tr>
@@ -341,12 +247,13 @@ public strictfp class Series2000Test extends GIGSTestCase {
          final StringBuilder prefix = new StringBuilder("Ellipsoid[");
          final int prefixLength = prefix.length();
          while (data.next()) {
+            important = data.getBoolean(1);
             final int code = data.getInt(0);
             final Ellipsoid ellipsoid;
             try {
                 ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Ellipsoid.class, code, e, data.getBoolean(1));
+                unsupportedCode(Ellipsoid.class, code, e);
                 continue;
             }
             validators.validate(ellipsoid);
@@ -434,12 +341,13 @@ public strictfp class Series2000Test extends GIGSTestCase {
          final StringBuilder prefix = new StringBuilder("PrimeMeridian[");
          final int prefixLength = prefix.length();
          while (data.next()) {
+            important = data.getBoolean(1);
             final int code = data.getInt(0);
             final PrimeMeridian pm;
             try {
                 pm = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(PrimeMeridian.class, code, e, data.getBoolean(1));
+                unsupportedCode(PrimeMeridian.class, code, e);
                 continue;
             }
             validators.validate(pm);
@@ -521,10 +429,10 @@ public strictfp class Series2000Test extends GIGSTestCase {
 
         final StringBuilder prefix = new StringBuilder();
         while (data.next()) {
+            important = data.getBoolean(6);
             final int     datumCode = data.getInt   (0);
             final String  datumName = data.getString(1);
             final String  crsName   = data.getString(5);
-            final boolean important = data.getBoolean(6);
             final String  ellName   = data.getString(7);
             final String  pmName    = data.getString(8);
             for (int column=1; column<=4; column++) {
@@ -541,7 +449,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                     try {
                         datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(datumCode));
                     } catch (NoSuchAuthorityCodeException e) {
-                        unsupportedCode(GeodeticDatum.class, datumCode, e, important);
+                        unsupportedCode(GeodeticDatum.class, datumCode, e);
                         continue;
                     }
                     validators.validate(datum);
@@ -577,7 +485,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                             case 2:  type = GeocentricCRS.class; break;
                             default: throw new AssertionError(column);
                         }
-                        unsupportedCode(type, crsCode, e, important);
+                        unsupportedCode(type, crsCode, e);
                         continue;
                     }
                     validators.validate(crs);
@@ -702,6 +610,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
         final StringBuilder prefix = new StringBuilder("Projection[");
         final int prefixLength = prefix.length();
         while (data.next()) {
+            important = data.getBoolean(1);
             final String method = data.getString(3);
             for (final int code : data.getInts(0)) {
                 final CoordinateOperation cop;
@@ -712,7 +621,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                     // CoordinateOperation creation will typically use MathTransformFactory
                     // under the hood, which throws NoSuchIdentifierException for non-implemented
                     // operation methods (may be identified by their name rather than EPSG code).
-                    unsupportedCode(CoordinateOperation.class, code, e, data.getBoolean(1));
+                    unsupportedCode(CoordinateOperation.class, code, e);
                     continue;
                 }
                 validators.validate(cop);
@@ -770,6 +679,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
         final StringBuilder prefix = new StringBuilder("ProjectedCRS[");
         final int prefixLength = prefix.length();
         while (data.next()) {
+            important = data.getBoolean(2);
             final int  datumCode = data.getInt(1);
             final String geoName = data.getString(3);
             for (final int code : data.getInts(0)) {
@@ -777,7 +687,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 try {
                     crs = crsAuthorityFactory.createProjectedCRS(String.valueOf(code));
                 } catch (NoSuchIdentifierException e) { // See comment in test2005()
-                    unsupportedCode(ProjectedCRS.class, code, e, data.getBoolean(2));
+                    unsupportedCode(ProjectedCRS.class, code, e);
                     continue;
                 }
                 validators.validate(crs);
@@ -838,12 +748,13 @@ public strictfp class Series2000Test extends GIGSTestCase {
         final StringBuilder prefix = new StringBuilder("CoordinateOperation[");
         final int prefixLength = prefix.length();
         while (data.next()) {
+            important = data.getBoolean(1);
             final int code = data.getInt(0);
             final CoordinateOperation operation;
             try {
                 operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
             } catch (NoSuchIdentifierException e) { // See comment in test2005()
-                unsupportedCode(CoordinateOperation.class, code, e, data.getBoolean(1));
+                unsupportedCode(CoordinateOperation.class, code, e);
                 continue;
             }
             validators.validate(operation);
@@ -898,17 +809,17 @@ public strictfp class Series2000Test extends GIGSTestCase {
 
         final StringBuilder prefix = new StringBuilder();
         while (data.next()) {
+            important = data.getBoolean(4);
             final int     code      = data.getInt    (0);
             final String  name      = data.getString (1);
             final int     crsCode   = data.getInt    (2);
             final String  crsName   = data.getString (3);
-            final boolean important = data.getBoolean(4);
             // Try to get vertical datum.
             final VerticalDatum datum;
             try {
                 datum = datumAuthorityFactory.createVerticalDatum(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalDatum.class, code, e, important);
+                unsupportedCode(VerticalDatum.class, code, e);
                 continue;
             }
             // Test it.
@@ -937,7 +848,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 try {
                     crs = crsAuthorityFactory.createVerticalCRS(String.valueOf(crsCode));
                 } catch (NoSuchAuthorityCodeException e) {
-                    unsupportedCode(VerticalCRS.class, code, e, important);
+                    unsupportedCode(VerticalCRS.class, code, e);
                     continue;
                 }
                 validators.validate(crs);
@@ -1002,8 +913,8 @@ public strictfp class Series2000Test extends GIGSTestCase {
         final StringBuilder prefix = new StringBuilder("Vertical Transformation[");
         final int prefixLength = prefix.length();
         while (data.next()) {
+            important = data.getBoolean(1);
             final int code = data.getInt(0);
-            final boolean important = data.getBoolean(1);
             final String name = data.getString(2);
             final String method = data.getString(3);
             // Try to get vertical datum.
@@ -1011,7 +922,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             try {
                 operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
             } catch (NoSuchIdentifierException e) {
-                unsupportedCode(CoordinateOperation.class, code, e, important);
+                unsupportedCode(CoordinateOperation.class, code, e);
                 continue;
             }
             // Test it.

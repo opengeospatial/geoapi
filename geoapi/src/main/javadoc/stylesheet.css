@@ -61,6 +61,15 @@ table.ogc tr td.sep {
 }
 
 /*
+ * Table providing description of GIGS tests.
+ */
+table.gigs th {
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+/*
  * Bullet and ordered lists. Put some space before and after the list.
  * Listes of the "verbose" class also have some space betweem items.
  */
