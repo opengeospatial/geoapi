@@ -32,15 +32,13 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.Collection;
-
 import org.opengis.util.Factory;
-import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.*;
 import org.opengis.test.referencing.ReferencingTestCase;
 
-import static org.junit.Assume.*;
+import static org.junit.Assume.assumeTrue;
 import static org.opengis.test.Assert.*;
 
 
@@ -70,12 +68,6 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
     static final double ANGULAR_TOLERANCE = 1E-7;
 
     /**
-     * {@code true} if the tested object is particularly important to E&amp;P industry.
-     * This field is set at the beginning of test methods.
-     */
-    boolean important;
-
-    /**
      * Creates a new test which will use the given factories to execute.
      *
      * @param factories The factories to be used by the test. Those factories passed verbatim to the
@@ -87,13 +79,20 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
 
     /**
      * Invoked when the implementation does not support one of the code defined in the GIGS test suite.
-     * The current implementation causes the test to be ignored.
+     * This method can have two behaviors:
      *
-     * @param type      The GeoAPI interface of the object to construct.
-     * @param code      The EPSG code of the object to create.
-     * @param exception The exception we got while trying to instantiate the object.
+     * <ul>
+     *   <li>If the test should be ignored, then this method should invoke {@code assumeTrue(false)} or any
+     *       other {@link org.junit.Assume} method which will case the test to terminate with the "ignored"
+     *       status.</li>
+     *   <li>Otherwise this method can return normally, in which case the caller test method will consider
+     *       that we have a test failure.</li>
+     * </ul>
+     *
+     * @param type The GeoAPI interface of the object to construct.
+     * @param code The EPSG code of the object to create.
      */
-    final void unsupportedCode(final Class<?> type, final int code, final NoSuchIdentifierException exception) {
+    final void unsupportedCode(final Class<?> type, final int code) {
         assumeTrue(false);
     }
 

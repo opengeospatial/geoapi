@@ -34,7 +34,6 @@ package org.opengis.test.referencing.gigs;
 import java.util.List;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
-import javax.measure.quantity.Length;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -52,7 +51,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
-import static javax.measure.unit.SI.METRE;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 import static org.opengis.test.Assert.*;
 
@@ -71,7 +69,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class Series2000Test extends GIGSTestCase {
+public strictfp class Series2000Test extends EPSGTestCase {
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
@@ -91,33 +89,6 @@ public strictfp class Series2000Test extends GIGSTestCase {
      * Factory to use for building {@link CoordinateOperation} instances, or {@code null} if none.
      */
     protected final CoordinateOperationAuthorityFactory copAuthorityFactory;
-
-    /**
-     * {@code true} if the factories support {@linkplain IdentifiedObject#getName() name}.
-     * If {@code true} (the default), then the test methods will ensure that the identified
-     * objects created by the factories declare the same name than the GIGS tests.
-     * If {@code false}, then the names are ignored.
-     */
-    protected boolean isStandardNameSupported;
-
-    /**
-     * {@code true} if the factories support {@linkplain IdentifiedObject#getAlias() aliases}.
-     * If {@code true} (the default), then the test methods will ensure that the identified
-     * objects created by the factories declare at least all the aliases enumerated in the
-     * GIGS tests - additional aliases, if any, are ignored. If {@code false}, then the aliases
-     * are ignored.
-     */
-    protected boolean isStandardAliasSupported;
-
-    /**
-     * {@code true} if the {@link IdentifiedObject} instances created indirectly by the factories
-     * are expected to have correct identification information. For example when testing a
-     * {@linkplain CoordinateReferenceSystem Coordinate Reference System} (CRS) object, the CRS
-     * authority code will be verified unconditionally but the authority codes of associated
-     * objects ({@linkplain GeodeticDatum Geodetic Datum} or {@linkplain CoordinateSystem
-     * Coordinate System}) will be verified only if this flag is {@code true}.
-     */
-    protected boolean isDependencyIdentificationSupported;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -153,14 +124,6 @@ public strictfp class Series2000Test extends GIGSTestCase {
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
         copAuthorityFactory   = copFactory;
-        @SuppressWarnings("unchecked")
-        final boolean[] isEnabled = getEnabledFlags(
-                Configuration.Key.isStandardNameSupported,
-                Configuration.Key.isStandardAliasSupported,
-                Configuration.Key.isDependencyIdentificationSupported);
-        isStandardNameSupported             = isEnabled[0];
-        isStandardAliasSupported            = isEnabled[1];
-        isDependencyIdentificationSupported = isEnabled[2];
     }
 
     /**
@@ -194,111 +157,6 @@ public strictfp class Series2000Test extends GIGSTestCase {
         assertNull(op.put(Configuration.Key.datumAuthorityFactory,               datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.copAuthorityFactory,                 copAuthorityFactory));
         return op;
-    }
-
-    /**
-     * Verifies reference ellipsoid parameters bundled with the geoscience software.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2002_libEllipsoid.csv}.
-     *   This file gives the EPSG code and name for the ellipsoid, commonly encountered alternative
-     *   name(s) for the same object, the value and units for the semi-major axis, the conversion
-     *   ratio to metres for these units, and then a second parameter which will be either the value
-     *   of the inverse flattening (unitless) or the value of the semi-minor axis (in the same units
-     *   as the semi-major axis). It additionally contain a flag to indicate that the figure is a
-     *   sphere: if {@code false} the figure is an oblate ellipsoid.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumAuthorityFactory#createEllipsoid(String)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>Ellipsoid definitions bundled with software, if any, should have same name and defining
-     *   parameters as in the EPSG Dataset. Equivalent alternative parameters are acceptable but
-     *   should be reported. The values of the parameters should be correct to at least 10 significant
-     *   figures. For ellipsoids defined by Clarke and Everest, as well as those adopted by IUGG as
-     *   International, several variants exist. These must be clearly distinguished. Ellipsoids
-     *   missing from the software or included in the software additional to those in the EPSG Dataset
-     *   or at variance with those in the EPSG Dataset should be reported.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
-     *         unsupported code}) occurred while creating an ellipsoid from an EPSG code.
-     */
-    @Test
-    public void test2002() throws FactoryException {
-        assumeNotNull(datumAuthorityFactory);
-        final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
-            Integer.class,  // [ 0]: EPSG Ellipsoid Code
-            Boolean.class,  // [ 1]: Particularly important to E&P industry?
-            String .class,  // [ 2]: EPSG Ellipsoid Name
-            String .class,  // [ 3]: Alias(es) given by EPSG
-            Double .class,  // [ 4]: Semi-major axis (a)
-            String .class,  // [ 5]: Unit Name
-            Double .class,  // [ 6]: Unit Conversion Factor
-            Double .class,  // [ 7]: Semi-major axis (a) in metres
-            Double .class,  // [ 8]: Second defining parameter: Inverse flattening (1/f)
-            Double .class,  // [ 9]: Second defining parameter: Semi-minor axis (b)
-            Boolean.class); // [10]: Sphere?
-
-         final StringBuilder prefix = new StringBuilder("Ellipsoid[");
-         final int prefixLength = prefix.length();
-         while (data.next()) {
-            important = data.getBoolean(1);
-            final int code = data.getInt(0);
-            final Ellipsoid ellipsoid;
-            try {
-                ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
-            } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(Ellipsoid.class, code, e);
-                continue;
-            }
-            validators.validate(ellipsoid);
-            prefix.setLength(prefixLength);
-            prefix.append(code).append(']');
-            assertNotNull(prefix.toString(), ellipsoid);
-            prefix.append('.');
-            assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, ellipsoid.getIdentifiers());
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), data.getString(2), getName(ellipsoid));
-                configurationTip = null;
-            }
-            if (isStandardAliasSupported) {
-                configurationTip = Configuration.Key.isStandardAliasSupported;
-                assertContainsAll(message(prefix, "getAlias()"), data.getStrings(3), ellipsoid.getAlias());
-                configurationTip = null;
-            }
-            /*
-             * Get the axis lengths and their unit. Null units are assumed to mean metres
-             * (whether we accept null unit or not is determined by the validators).
-             * If the implementation uses metre units but the EPSG definition expected
-             * another unit, convert the axis lengths from the later units to metre units.
-             */
-            final Unit<Length> unit = ellipsoid.getAxisUnit();
-            double  semiMajor         = data.getDouble ( 4);
-            double  semiMinor         = data.getDouble ( 9);
-            double  inverseFlattening = data.getDouble ( 8);
-            double  toMetres          = data.getDouble ( 6);
-            boolean isSphere          = data.getBoolean(10);
-            if (!Double.isNaN(toMetres) && (unit == null || unit.equals(METRE))) {
-                semiMajor  = data.getDouble(7);
-                semiMinor *= toMetres;
-            }
-            assertEquals(message(prefix, "isSphere()"),         isSphere,  ellipsoid.isSphere());
-            assertEquals(message(prefix, "getSemiMajorAxis()"), semiMajor, ellipsoid.getSemiMajorAxis(), TOLERANCE*semiMajor);
-            if (!Double.isNaN(semiMinor)) {
-                assertEquals(message(prefix, "getSemiMinorAxis()"), semiMinor,
-                        ellipsoid.getSemiMinorAxis(), TOLERANCE*semiMinor);
-            }
-            if (!Double.isNaN(inverseFlattening)) {
-                assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening,
-                        ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
-            }
-        }
     }
 
     /**
@@ -347,7 +205,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             try {
                 pm = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(PrimeMeridian.class, code, e);
+                unsupportedCode(PrimeMeridian.class, code);
                 continue;
             }
             validators.validate(pm);
@@ -449,7 +307,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                     try {
                         datum = datumAuthorityFactory.createGeodeticDatum(String.valueOf(datumCode));
                     } catch (NoSuchAuthorityCodeException e) {
-                        unsupportedCode(GeodeticDatum.class, datumCode, e);
+                        unsupportedCode(GeodeticDatum.class, datumCode);
                         continue;
                     }
                     validators.validate(datum);
@@ -485,7 +343,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                             case 2:  type = GeocentricCRS.class; break;
                             default: throw new AssertionError(column);
                         }
-                        unsupportedCode(type, crsCode, e);
+                        unsupportedCode(type, crsCode);
                         continue;
                     }
                     validators.validate(crs);
@@ -621,7 +479,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                     // CoordinateOperation creation will typically use MathTransformFactory
                     // under the hood, which throws NoSuchIdentifierException for non-implemented
                     // operation methods (may be identified by their name rather than EPSG code).
-                    unsupportedCode(CoordinateOperation.class, code, e);
+                    unsupportedCode(CoordinateOperation.class, code);
                     continue;
                 }
                 validators.validate(cop);
@@ -687,7 +545,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 try {
                     crs = crsAuthorityFactory.createProjectedCRS(String.valueOf(code));
                 } catch (NoSuchIdentifierException e) { // See comment in test2005()
-                    unsupportedCode(ProjectedCRS.class, code, e);
+                    unsupportedCode(ProjectedCRS.class, code);
                     continue;
                 }
                 validators.validate(crs);
@@ -754,7 +612,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             try {
                 operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
             } catch (NoSuchIdentifierException e) { // See comment in test2005()
-                unsupportedCode(CoordinateOperation.class, code, e);
+                unsupportedCode(CoordinateOperation.class, code);
                 continue;
             }
             validators.validate(operation);
@@ -819,7 +677,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             try {
                 datum = datumAuthorityFactory.createVerticalDatum(String.valueOf(code));
             } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalDatum.class, code, e);
+                unsupportedCode(VerticalDatum.class, code);
                 continue;
             }
             // Test it.
@@ -848,7 +706,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 try {
                     crs = crsAuthorityFactory.createVerticalCRS(String.valueOf(crsCode));
                 } catch (NoSuchAuthorityCodeException e) {
-                    unsupportedCode(VerticalCRS.class, code, e);
+                    unsupportedCode(VerticalCRS.class, code);
                     continue;
                 }
                 validators.validate(crs);
@@ -922,7 +780,7 @@ public strictfp class Series2000Test extends GIGSTestCase {
             try {
                 operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
             } catch (NoSuchIdentifierException e) {
-                unsupportedCode(CoordinateOperation.class, code, e);
+                unsupportedCode(CoordinateOperation.class, code);
                 continue;
             }
             // Test it.
@@ -950,5 +808,10 @@ public strictfp class Series2000Test extends GIGSTestCase {
                 configurationTip = null;
             }
         }
+    }
+
+    @Override
+    public Object getIdentifiedObject() throws FactoryException {
+        throw new UnsupportedOperationException();
     }
 }

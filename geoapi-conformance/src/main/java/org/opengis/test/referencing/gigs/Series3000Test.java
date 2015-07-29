@@ -742,7 +742,7 @@ public strictfp class Series3000Test extends GIGSTestCase {
             } catch (NoSuchIdentifierException e) {
                 // Set the type to Projection rather than OperationMethod
                 // because the numerical code value is for the projection.
-                unsupportedCode(Projection.class, code, e);
+                unsupportedCode(Projection.class, code);
                 continue;
             }
             prefix.setLength(0);

@@ -83,6 +83,15 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Returns {@code true} if the given value should be skipped from javadoc.
+     */
+    private static boolean omitFromJavadoc(final Object value) {
+        if (value instanceof Double)   return ((Double) value).isNaN();
+        if (value instanceof Object[]) return ((Object[]) value).length == 0;
+        return false;
+    }
+
+    /**
      * Prints a sequence of key-values as a list in javadoc.
      * Boolean value are treated especially: the key is printed only if the value is {@code true}.
      *
@@ -93,20 +102,39 @@ public abstract class TestMethodGenerator {
         indent(1); out.println(" * <ul>");
         for (int i=0; i<pairs.length; i += 2) {
             final Object value = pairs[i+1];
-            if (value instanceof Boolean) {
-                if ((Boolean) value) {
+            if (value != null && !omitFromJavadoc(value)) {
+                if (value instanceof Boolean) {
+                    if ((Boolean) value) {
+                        indent(1);
+                        out.print(" *   <li>");
+                        out.print(pairs[i]);
+                        out.println("</li>");
+                    }
+                } else {
                     indent(1);
                     out.print(" *   <li>");
                     out.print(pairs[i]);
-                    out.println("</li>");
+                    out.print(": <b>");
+                    if (value instanceof Object[]) {
+                        String separator = "";
+                        for (final Object e : (Object[]) value) {
+                            out.print(separator);
+                            out.print(e);
+                            separator = "</b>, <b>";
+                        }
+                    } else if (value instanceof Double) {
+                        final double asDouble = (Double) value;
+                        final int asInteger = (int) asDouble;
+                        if (asDouble == asInteger) {
+                            out.print(asInteger);
+                        } else {
+                            out.print(asDouble);
+                        }
+                    } else {
+                        out.print(value);
+                    }
+                    out.println("</b></li>");
                 }
-            } else {
-                indent(1);
-                out.print(" *   <li>");
-                out.print(pairs[i]);
-                out.print(": <b>");
-                out.print(value);
-                out.println("</b></li>");
             }
         }
         indent(1); out.println(" * </ul>");
@@ -170,19 +198,35 @@ public abstract class TestMethodGenerator {
             final String name  = (String) pairs[i];
             final Object value = pairs[i+1];
             if (!(value instanceof Boolean) || (Boolean) value) {
-                final boolean quote = (value instanceof CharSequence);
                 indent(2);
                 out.print(name);
                 for (int j = length - name.length(); --j >= 0;) {
                     out.print(' ');
                 }
                 out.print(" = ");
-                if (quote) {
-                    out.print('"');
-                }
-                out.print(value);
-                if (quote) {
-                    out.print('"');
+                if (value instanceof String[]) {
+                    if (((String[]) value).length == 0) {
+                        out.print("NONE");
+                    } else {
+                        String separator = "new String[] {\"";
+                        for (final String e : (String[]) value) {
+                            out.print(separator);
+                            out.print(e);
+                            separator = "\", \"";
+                        }
+                        out.print("\"}");
+                    }
+                } else if (value instanceof Double && ((Double) value).isNaN()) {
+                    out.print("Double.NaN");
+                } else {
+                    final boolean quote = (value instanceof CharSequence);
+                    if (quote) {
+                        out.print('"');
+                    }
+                    out.print(value);
+                    if (quote) {
+                        out.print('"');
+                    }
                 }
                 out.println(';');
             }

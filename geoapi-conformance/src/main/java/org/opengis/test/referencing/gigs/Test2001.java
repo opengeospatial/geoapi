@@ -62,7 +62,7 @@ import static org.junit.Assert.*;
  *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG {@linkplain #code} and {@linkplain #name} for the unit of measure, together with the
+ *   <td>EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
  *       {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
  *       The test methods are separated in three blocks for linear units, angular units and scaling units.</td>
  * </tr><tr>
@@ -83,30 +83,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class Test2001 extends GIGSTestCase {
+public strictfp class Test2001 extends EPSGTestCase<Unit<?>> {
     /**
-     * Factory to use for building {@link Unit} instances, or {@code null} if none.
-     * Objects created by this factory will be assigned to the {@link #unit} field.
-     */
-    protected final CSAuthorityFactory csAuthorityFactory;
-
-    /**
-     * The EPSG code of the unit of measurement to test.
-     * This field is set by the all test methods before to test the unit creation.
-     */
-    protected int code;
-
-    /**
-     * The name of the unit of measurement to test, as used in the EPSG dataset.
-     * This field is set by the all test methods before to test the unit creation.
-     */
-    protected String name;
-
-    /**
-     * Amount of {@linkplain #baseUnit base units} in one {@linkplain #unit tested unit}.
+     * Amount of {@linkplain #baseUnit base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.
      */
-    protected double unitToBase;
+    public double unitToBase;
 
     /**
      * The base unit of the unit to create. This field will have one of the following values:
@@ -120,14 +102,21 @@ public strictfp class Test2001 extends GIGSTestCase {
      *       set to {@link Double#NaN}.</li>
      * </ul>
      */
-    protected Unit<?> baseUnit;
+    public Unit<?> baseUnit;
 
     /**
-     * The unit of measurement created by the factory, or {@code null} if the unit creation failed.
+     * The unit of measurement created by the factory,
+     * or {@code null} if not yet created or if the unit creation failed.
      *
      * @see #csAuthorityFactory
      */
-    protected Unit<?> unit;
+    private Unit<?> unit;
+
+    /**
+     * Factory to use for building {@link Unit} instances, or {@code null} if none.
+     * This is the factory used by the {@link #getIdentifiedObject()} method.
+     */
+    protected final CSAuthorityFactory csAuthorityFactory;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -162,6 +151,9 @@ public strictfp class Test2001 extends GIGSTestCase {
      * <ul>
      *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
      *     <ul>
+     *       <li>{@link #isStandardNameSupported}</li>
+     *       <li>{@link #isStandardAliasSupported}</li>
+     *       <li>{@link #isDependencyIdentificationSupported}</li>
      *       <li>{@link #csAuthorityFactory}</li>
      *     </ul>
      *   </li>
@@ -177,22 +169,40 @@ public strictfp class Test2001 extends GIGSTestCase {
     }
 
     /**
+     * Returns the unit instance to be tested. When this method is invoked for the first time, it creates the unit
+     * to test by invoking the {@link CSAuthorityFactory#createUnit(String)} method with the current {@link #code}
+     * value in argument. The created object is then cached and returned in all subsequent invocations of this method.
+     *
+     * @return The unit instance to test.
+     * @throws FactoryException if an error occurred while creating the unit instance.
+     */
+    @Override
+    public Unit<?> getIdentifiedObject() throws FactoryException {
+        if (unit == null) {
+            assumeNotNull(csAuthorityFactory);
+            try {
+                unit = csAuthorityFactory.createUnit(String.valueOf(code));
+            } catch (NoSuchAuthorityCodeException e) {
+                unsupportedCode(Unit.class, code);
+                throw e;
+            }
+            if (unit == null) {
+                fail("CSAuthorityFactory.createUnit(\"" + code + "\") shall not return null.");
+            }
+        }
+        return unit;
+    }
+
+    /**
      * Creates the unit of measurement identified by the value of the {@link #code} field.
      * Then, creates and returns the converter from that unit to the base unit.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     private UnitConverter createUnitAndConverter() throws FactoryException {
-        assumeNotNull(csAuthorityFactory);
-        try {
-            unit = csAuthorityFactory.createUnit(String.valueOf(code));
-        } catch (NoSuchAuthorityCodeException e) {
-            unsupportedCode(Unit.class, code, e);
-            throw e;
-        }
         final UnitConverter converter;
         try {
-            converter = unit.getConverterToAny(baseUnit);
+            converter = getIdentifiedObject().getConverterToAny(baseUnit);
         } catch (ConversionException e) {
             throw (AssertionError) new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “"
                     + baseUnit + "”.").initCause(e);
@@ -237,6 +247,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9001;
         name       = "metre";
+        aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -261,6 +272,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9036;
         name       = "kilometre";
+        aliases    = NONE;
         unitToBase = 1000.0;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -285,6 +297,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9002;
         name       = "foot";
+        aliases    = NONE;
         unitToBase = 0.3048;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -309,6 +322,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9003;
         name       = "US survey foot";
+        aliases    = NONE;
         unitToBase = 0.30480060960121924;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -333,6 +347,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9031;
         name       = "German legal metre";
+        aliases    = NONE;
         unitToBase = 1.0000135965;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -357,6 +372,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9005;
         name       = "Clarke's foot";
+        aliases    = NONE;
         unitToBase = 0.3047972654;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -381,6 +397,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9039;
         name       = "Clarke's link";
+        aliases    = NONE;
         unitToBase = 0.201166195164;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -407,6 +424,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9042;
         name       = "British chain (Sears 1922)";
+        aliases    = NONE;
         unitToBase = 20.116765121552632;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -431,6 +449,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9051;
         name       = "British foot (Sears 1922)";
+        aliases    = NONE;
         unitToBase = 0.3047997333333333;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -455,6 +474,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9040;
         name       = "British yard (Sears 1922)";
+        aliases    = NONE;
         unitToBase = 0.9143984146160287;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -481,6 +501,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9301;
         name       = "British chain (Sears 1922 truncated)";
+        aliases    = NONE;
         unitToBase = 20.116756;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -503,6 +524,7 @@ public strictfp class Test2001 extends GIGSTestCase {
     public void testIndianYard() throws FactoryException {
         code       = 9084;
         name       = "Indian yard";
+        aliases    = NONE;
         unitToBase = 0.9143985307444408;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -525,6 +547,7 @@ public strictfp class Test2001 extends GIGSTestCase {
     public void testGoldCoastFoot() throws FactoryException {
         code       = 9094;
         name       = "Gold Coast foot";
+        aliases    = NONE;
         unitToBase = 0.3047997101815088;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -547,6 +570,7 @@ public strictfp class Test2001 extends GIGSTestCase {
     public void testLink() throws FactoryException {
         code       = 9098;
         name       = "link";
+        aliases    = NONE;
         unitToBase = 0.201168;
         baseUnit   = SI.METRE;
         verifyLinearConversions(createUnitAndConverter());
@@ -571,6 +595,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9101;
         name       = "radian";
+        aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = SI.RADIAN;
         verifyLinearConversions(createUnitAndConverter());
@@ -595,6 +620,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9102;
         name       = "degree";
+        aliases    = NONE;
         unitToBase = 0.017453292519943278;
         baseUnit   = SI.RADIAN;
         verifyLinearConversions(createUnitAndConverter());
@@ -619,6 +645,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9104;
         name       = "arc-second";
+        aliases    = NONE;
         unitToBase = 4.848136811095355E-6;
         baseUnit   = SI.RADIAN;
         verifyLinearConversions(createUnitAndConverter());
@@ -643,6 +670,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9105;
         name       = "grad";
+        aliases    = NONE;
         unitToBase = 0.01570796326794895;
         baseUnit   = SI.RADIAN;
         verifyLinearConversions(createUnitAndConverter());
@@ -667,6 +695,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9109;
         name       = "microradian";
+        aliases    = NONE;
         unitToBase = 1E-6;
         baseUnit   = SI.RADIAN;
         verifyLinearConversions(createUnitAndConverter());
@@ -693,6 +722,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9110;
         name       = "sexagesimal DMS";
+        aliases    = NONE;
         unitToBase = Double.NaN;
         baseUnit   = NonSI.DEGREE_ANGLE;
         final UnitConverter converter = createUnitAndConverter();
@@ -724,6 +754,7 @@ public strictfp class Test2001 extends GIGSTestCase {
     public void testCentesimalSecond() throws FactoryException {
         code       = 9113;
         name       = "centesimal second";
+        aliases    = NONE;
         unitToBase = 1.570796326794895E-6;
         baseUnit   = SI.RADIAN;
         verifyLinearConversions(createUnitAndConverter());
@@ -748,6 +779,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9201;
         name       = "unity";
+        aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = Unit.ONE;
         verifyLinearConversions(createUnitAndConverter());
@@ -772,6 +804,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9202;
         name       = "parts per million";
+        aliases    = NONE;
         unitToBase = 1E-6;
         baseUnit   = Unit.ONE;
         verifyLinearConversions(createUnitAndConverter());
@@ -796,6 +829,7 @@ public strictfp class Test2001 extends GIGSTestCase {
         important  = true;
         code       = 9203;
         name       = "coefficient";
+        aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = Unit.ONE;
         verifyLinearConversions(createUnitAndConverter());

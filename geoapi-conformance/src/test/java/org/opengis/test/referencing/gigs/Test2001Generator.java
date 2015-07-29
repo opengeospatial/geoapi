@@ -96,6 +96,7 @@ public class Test2001Generator extends TestMethodGenerator {
             printFieldAssignments("important",  important,
                                   "code",       code,
                                   "name",       name,
+                                  "aliases",    EPSGTestCase.NONE,
                                   "unitToBase", unitToBase);
             indent(2); out.print("baseUnit   = ");
             printProgrammaticName(base);
