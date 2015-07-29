@@ -459,8 +459,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
         aliases           = NONE;
         toMetres          = 0.304797265;
         semiMajorInMetres = 6378293.645;
-        semiMajorAxis     = 2.0926348E7;
-        semiMinorAxis     = 2.0855233E7;
+        semiMajorAxis     = 20926348.0;
+        semiMinorAxis     = 20855233.0;
         inverseFlattening = Double.NaN;
         createAndVerifyEllipsoid();
     }
@@ -498,8 +498,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7009</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1866 Michigan</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>2.0926631531E7</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>2.0855688674E7</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20926631.531</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20855688.674</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -513,8 +513,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
         aliases           = NONE;
         toMetres          = 0.30480061;
         semiMajorInMetres = 6378450.048;
-        semiMajorAxis     = 2.0926631531E7;
-        semiMinorAxis     = 2.0855688674E7;
+        semiMajorAxis     = 20926631.531;
+        semiMinorAxis     = 20855688.674;
         inverseFlattening = Double.NaN;
         createAndVerifyEllipsoid();
     }
@@ -1109,8 +1109,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
         aliases           = NONE;
         toMetres          = 0.304797265;
         semiMajorInMetres = 6378249.145;
-        semiMajorAxis     = 2.0926202E7;
-        semiMinorAxis     = 2.0854895E7;
+        semiMajorAxis     = 20926202.0;
+        semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
         createAndVerifyEllipsoid();
     }
@@ -1185,8 +1185,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
         aliases           = NONE;
         toMetres          = 0.3048;
         semiMajorInMetres = 6378306.37;
-        semiMajorAxis     = 2.0926202E7;
-        semiMinorAxis     = 2.0854895E7;
+        semiMajorAxis     = 20926202.0;
+        semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
         createAndVerifyEllipsoid();
     }
@@ -1247,8 +1247,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7042</b></li>
      *   <li>EPSG ellipsoid name: <b>Everest (1830 Definition)</b></li>
-     *   <li>Semi-major axis (<var>a</var>): <b>2.09229318E7</b></li>
-     *   <li>Semi-minor axis (<var>b</var>): <b>2.085337458E7</b></li>
+     *   <li>Semi-major axis (<var>a</var>): <b>20922931.80</b></li>
+     *   <li>Semi-minor axis (<var>b</var>): <b>20853374.58</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
@@ -1260,8 +1260,8 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
         aliases           = NONE;
         toMetres          = 0.30479951;
         semiMajorInMetres = 6377299.366;
-        semiMajorAxis     = 2.09229318E7;
-        semiMinorAxis     = 2.085337458E7;
+        semiMajorAxis     = 20922931.80;
+        semiMinorAxis     = 20853374.58;
         inverseFlattening = Double.NaN;
         createAndVerifyEllipsoid();
     }
