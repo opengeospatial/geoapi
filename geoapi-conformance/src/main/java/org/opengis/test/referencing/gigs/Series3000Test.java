@@ -76,7 +76,11 @@ import static org.opengis.test.Assert.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @deprecated Each test method in this class will be soon replaced by its own test class.
+ *             The intend is to give to software providers more fine-grain control on the tests.
  */
+@Deprecated
 @RunWith(Parameterized.class)
 public strictfp class Series3000Test extends GIGSTestCase {
     /**
