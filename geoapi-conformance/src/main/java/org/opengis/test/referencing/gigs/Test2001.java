@@ -125,7 +125,7 @@ public strictfp class Test2001 extends EPSGTestCase<Unit<?>> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Series2000Test} constructor.
+     * @return The default set of arguments to be given to the {@code Test2001} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")

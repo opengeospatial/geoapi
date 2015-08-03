@@ -149,7 +149,7 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Series2000Test} constructor.
+     * @return The default set of arguments to be given to the {@code Test2002} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -253,15 +253,9 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      * Creates an ellipsoid for the current {@link #code}, then verifies its name and axis lengths.
      */
     private void createAndVerifyEllipsoid() throws FactoryException {
-        assumeNotNull(datumAuthorityFactory);
-         final StringBuilder prefix = new StringBuilder("Ellipsoid[");
-         final int prefixLength = prefix.length();
-        try {
-            ellipsoid = datumAuthorityFactory.createEllipsoid(String.valueOf(code));
-        } catch (NoSuchAuthorityCodeException e) {
-            unsupportedCode(Ellipsoid.class, code);
-            throw e;
-        }
+        final Ellipsoid ellipsoid = getIdentifiedObject();
+        final StringBuilder prefix = new StringBuilder("Ellipsoid[");
+        final int prefixLength = prefix.length();
         validators.validate(ellipsoid);
         prefix.setLength(prefixLength);
         prefix.append(code).append(']');

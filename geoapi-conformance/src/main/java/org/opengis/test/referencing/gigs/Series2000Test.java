@@ -32,8 +32,6 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.Unit;
-import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -51,7 +49,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
-import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 import static org.opengis.test.Assert.*;
 
 
@@ -161,87 +158,6 @@ public strictfp class Series2000Test extends EPSGTestCase {
         assertNull(op.put(Configuration.Key.datumAuthorityFactory,               datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.copAuthorityFactory,                 copAuthorityFactory));
         return op;
-    }
-
-    /**
-     * Verifies reference prime meridians bundled with the geoscience software.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2003_libPrimeMeridian.csv}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumAuthorityFactory#createPrimeMeridian(String)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>Prime meridian definitions bundled with the software should have the same name and Greenwich
-     *   Longitude as in the EPSG Dataset. Equivalent alternative units are acceptable but should be reported.
-     *   The values of the Greenwich Longitude should be correct to at least 7 decimal places (of degrees or grads).
-     *   Meridians missing from the software or included in the software additional to those in the EPSG Dataset or
-     *   at variance with those in the EPSG Dataset should be reported.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchAuthorityCodeException
-     *         unsupported code}) occurred while creating a prime meridian from an EPSG code.
-     */
-    @Test
-    public void test2003() throws FactoryException {
-        assumeNotNull(datumAuthorityFactory);
-        final ExpectedData data = new ExpectedData("GIGS_2003_libPrimeMeridian.csv",
-            Integer.class,  // [0]: EPSG Prime Meridian Code
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: EPSG Prime Meridian Name
-            String .class,  // [3]: EPSG Alias
-            String .class,  // [4]: Longitude from Greenwich (sexagesimal)
-            String .class,  // [5]: Unit Name
-            Double .class,  // [6]: Longitude from Greenwich (decimal degrees)
-            String .class); // [7]: Remarks
-
-         final StringBuilder prefix = new StringBuilder("PrimeMeridian[");
-         final int prefixLength = prefix.length();
-         while (data.next()) {
-            important = data.getBoolean(1);
-            final int code = data.getInt(0);
-            final PrimeMeridian pm;
-            try {
-                pm = datumAuthorityFactory.createPrimeMeridian(String.valueOf(code));
-            } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(PrimeMeridian.class, code);
-                continue;
-            }
-            validators.validate(pm);
-            prefix.setLength(prefixLength);
-            prefix.append(code).append(']');
-            assertNotNull(prefix.toString(), pm);
-            prefix.append('.');
-            assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, pm.getIdentifiers());
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), data.getString(2), getName(pm));
-                configurationTip = null;
-            }
-            if (isStandardAliasSupported) {
-                configurationTip = Configuration.Key.isStandardAliasSupported;
-                assertContainsAll(message(prefix, "getAlias()"), data.getStrings(3), pm.getAlias());
-                configurationTip = null;
-            }
-            /*
-             * Before to compare the Greenwich longitude, convert the expected angular value
-             * from decimal degrees to the units actually used by the implementation. We do
-             * the conversion that way rather than the opposite way in order to have a more
-             * appropriate error message in case of failure.
-             */
-            final Unit<Angle> unit = pm.getAngularUnit();
-            double longitude = data.getDouble(6);
-            if (unit != null && !unit.equals(DEGREE_ANGLE)) {
-                longitude = DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
-            }
-            assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
-                    pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);
-        }
     }
 
     /**

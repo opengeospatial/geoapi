@@ -75,6 +75,7 @@ public class Test2001Generator extends TestMethodGenerator {
             final String  name       = data.getString (2);
             final double  unitToBase = data.getDouble (3);
             final boolean important  = data.getBoolean(4);
+            final String  remarks    = data.getString (5);
             final Unit<?> base;
             if      (type.equalsIgnoreCase("Linear")) base = METRE;
             else if (type.equalsIgnoreCase("Angle" )) base = RADIAN;
@@ -89,7 +90,7 @@ public class Test2001Generator extends TestMethodGenerator {
                                   "Type", type,
                                   "Name of Units used in EPSG dataset", name,
                                   "Base units per unit", unitToBase,
-                                  "Specific usage / Remarks", data.getString(5),
+                                  "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the unit from the EPSG code.");
             printTestMethodSignature(name);
