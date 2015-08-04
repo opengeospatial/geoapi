@@ -78,8 +78,7 @@ import static org.junit.Assert.*;
  *   The values of the parameters should be correct to at least 10 significant figures.
  *   For ellipsoids defined by Clarke and Everest, as well as those adopted by IUGG as International,
  *   several variants exist. These must be clearly distinguished.
- *   Ellipsoids missing from the software or included in the software additional to those in the EPSG Dataset
- *   or at variance with those in the EPSG Dataset should be reported.</td>
+ *   Ellipsoids missing from the software or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
  *
  * @author  GIGS (IOGP)

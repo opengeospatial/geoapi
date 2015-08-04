@@ -54,9 +54,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
-import static org.junit.Assert.*;
-import static org.opengis.test.Assert.assertAxisDirectionsEqual;
-import static org.opengis.test.referencing.gigs.GIGSTestCase.assertContainsCode;
+import static org.opengis.test.Assert.*;
 
 
 /**

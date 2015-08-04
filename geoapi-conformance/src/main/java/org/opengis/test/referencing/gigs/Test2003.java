@@ -50,7 +50,6 @@ import org.junit.runners.Parameterized;
 import static org.junit.Assume.*;
 import static org.junit.Assert.*;
 import static javax.measure.unit.NonSI.DEGREE_ANGLE;
-import static org.opengis.test.referencing.gigs.GIGSTestCase.assertContainsCode;
 
 
 /**
@@ -70,8 +69,7 @@ import static org.opengis.test.referencing.gigs.GIGSTestCase.assertContainsCode;
  *   <td>Prime meridian definitions bundled with the software should have the same name and Greenwich Longitude
  *       as in the EPSG Dataset. Equivalent alternative units are acceptable but should be reported.
  *       The values of the Greenwich Longitude should be correct to at least 7 decimal places (of degrees or grads).
- *       Meridians missing from the software or included in the software additional to those in the EPSG Dataset or
- *       at variance with those in the EPSG Dataset should be reported.</td>
+ *       Meridians missing from the software or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
  *
  * @author  GIGS (IOGP)

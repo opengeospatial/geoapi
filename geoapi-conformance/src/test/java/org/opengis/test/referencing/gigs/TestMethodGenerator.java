@@ -122,6 +122,21 @@ public abstract class TestMethodGenerator {
                             out.print(e);
                             separator = "</b>, <b>";
                         }
+                    } else if (value instanceof int[]) {
+                        String separator = "";
+                        final int length = ((int[]) value).length;
+                        final int stopAt = Math.min(length, 10);
+                        for (int j=0; j<stopAt; j++) {
+                            out.print(separator);
+                            out.print(((int[]) value)[j]);
+                            separator = "</b>, <b>";
+                        }
+                        if (stopAt != length) {
+                            out.print("</b>, <i>…");
+                            out.print(length - stopAt);
+                            out.println(" more</i></li>");
+                            continue; // Because we already wrote the closing </li>.
+                        }
                     } else if (value instanceof Double) {
                         final double asDouble = (Double) value;
                         final int asInteger = (int) asDouble;

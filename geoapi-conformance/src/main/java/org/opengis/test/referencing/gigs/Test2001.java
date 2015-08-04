@@ -72,8 +72,7 @@ import static org.junit.Assert.*;
  *   <th>Expected result:</th>
  *   <td>Unit of measure definitions bundled with software should have the ratio to the appropriate base unit
  *   as in the EPSG Dataset. The values of the base unit per unit should be correct to at least 10 significant figures.
- *   Units missing from the software or included in the software additional to those in the EPSG Dataset or at variance
- *   with those in the EPSG Dataset should be reported.</td>
+ *   Units missing from the software or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
  *
  * @author  GIGS (IOGP)
