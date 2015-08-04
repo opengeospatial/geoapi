@@ -34,7 +34,6 @@ package org.opengis.test.referencing.gigs;
 import java.util.List;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Angle;
-import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -50,6 +49,7 @@ import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.junit.Assert.*;
+import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 import static org.opengis.test.referencing.gigs.GIGSTestCase.assertContainsCode;
 
 
@@ -99,7 +99,7 @@ public class Test2003 extends EPSGTestCase<PrimeMeridian> {
      * Factory to use for building {@link PrimeMeridian} instances, or {@code null} if none.
      * This is the factory used by the {@link #getIdentifiedObject()} method.
      */
-    public final DatumAuthorityFactory datumAuthorityFactory;
+    protected final DatumAuthorityFactory datumAuthorityFactory;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given

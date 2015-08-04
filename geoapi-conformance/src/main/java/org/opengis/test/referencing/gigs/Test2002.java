@@ -140,7 +140,7 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      * Factory to use for building {@link Ellipsoid} instances, or {@code null} if none.
      * This is the factory used by the {@link #getIdentifiedObject()} method.
      */
-    public final DatumAuthorityFactory datumAuthorityFactory;
+    protected final DatumAuthorityFactory datumAuthorityFactory;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given

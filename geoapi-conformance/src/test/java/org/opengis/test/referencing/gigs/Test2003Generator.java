@@ -93,7 +93,7 @@ public class Test2003Generator extends TestMethodGenerator {
                                   "greenwichLongitude", longitude);
             indent(2); out.println("createAndVerifyPrimeMeridian();");
             out.println("    }");
-         }
+        }
     }
 
     /**
