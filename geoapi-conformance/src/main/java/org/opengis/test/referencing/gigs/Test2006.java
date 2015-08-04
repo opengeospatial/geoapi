@@ -587,7 +587,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * Tests “DHDN”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b></b></li>
+     *   <li>Projected CRS codes: <b>31466</b>, <b>31467</b>, <b>31468</b>, <b>31469</b></li>
      *   <li>Geographic CRS name: <b>DHDN</b></li>
      *   <li>Projection names (informative): <b>3-degree Gauss-Kruger</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
@@ -602,6 +602,9 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
         name        = "DHDN";
         projections = new String[] {"3-degree Gauss-Kruger"};
         datum       = 6314;
+        for (int code = 31466; code <= 31469; code++) {    // Loop over 4 codes
+            createAndVerifyProjectedCRS(code);
+        }
     }
 
     /**
@@ -972,7 +975,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * Tests “Kalianpur 1962”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b>24376</b>, <b>24377</b></li>
+     *   <li>Projected CRS codes: <b>24312</b>, <b>24313</b>, <b>24376</b>, <b>24377</b></li>
      *   <li>Geographic CRS name: <b>Kalianpur 1962</b></li>
      *   <li>Projection names (informative): <b>India zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -986,6 +989,8 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
         name        = "Kalianpur 1962";
         projections = new String[] {"India zones", "UTM"};
         datum       = 6145;
+        createAndVerifyProjectedCRS(24312);
+        createAndVerifyProjectedCRS(24313);
         createAndVerifyProjectedCRS(24376);
         createAndVerifyProjectedCRS(24377);
     }
@@ -994,7 +999,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * Tests “Kalianpur 1975”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b>24379</b>, <b>24380</b></li>
+     *   <li>Projected CRS codes: <b>24342</b>, <b>24343</b>, <b>24379</b>, <b>24380</b></li>
      *   <li>Geographic CRS name: <b>Kalianpur 1975</b></li>
      *   <li>Projection names (informative): <b>India zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -1008,6 +1013,8 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
         name        = "Kalianpur 1975";
         projections = new String[] {"India zones", "UTM"};
         datum       = 6146;
+        createAndVerifyProjectedCRS(24342);
+        createAndVerifyProjectedCRS(24343);
         createAndVerifyProjectedCRS(24379);
         createAndVerifyProjectedCRS(24380);
     }
@@ -1016,7 +1023,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * Tests “Kertau 1968”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b></b></li>
+     *   <li>Projected CRS codes: <b>24547</b>, <b>24548</b></li>
      *   <li>Geographic CRS name: <b>Kertau 1968</b></li>
      *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -1030,6 +1037,8 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
         name        = "Kertau 1968";
         projections = new String[] {"UTM"};
         datum       = 6245;
+        createAndVerifyProjectedCRS(24547);
+        createAndVerifyProjectedCRS(24548);
     }
 
     /**
@@ -1107,7 +1116,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * Tests “Luzon 1911”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b></b></li>
+     *   <li>Projected CRS codes: <b>25391</b>, <b>25392</b>, <b>25393</b>, <b>25394</b>, <b>25395</b></li>
      *   <li>Geographic CRS name: <b>Luzon 1911</b></li>
      *   <li>Projection names (informative): <b>Philippine zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -1121,6 +1130,9 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
         name        = "Luzon 1911";
         projections = new String[] {"Philippine zones"};
         datum       = 6253;
+        for (int code = 25391; code <= 25395; code++) {    // Loop over 5 codes
+            createAndVerifyProjectedCRS(code);
+        }
     }
 
     /**
@@ -1770,7 +1782,8 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * Tests “PSAD56”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b></b></li>
+     *   <li>Projected CRS codes: <b>24817</b>, <b>24818</b>, <b>24819</b>, <b>24820</b>, <b>24877</b>, <b>24878</b>,
+     *       <b>24879</b>, <b>24891</b>, <b>24892</b>, <b>24893</b></li>
      *   <li>Geographic CRS name: <b>PSAD56</b></li>
      *   <li>Projection names (informative): <b>UTM</b>, <b>Peru zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -1784,6 +1797,15 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
         name        = "PSAD56";
         projections = new String[] {"UTM", "Peru zones"};
         datum       = 6248;
+        for (int code = 24817; code <= 24820; code++) {    // Loop over 4 codes
+            createAndVerifyProjectedCRS(code);
+        }
+        createAndVerifyProjectedCRS(24877);
+        createAndVerifyProjectedCRS(24878);
+        createAndVerifyProjectedCRS(24879);
+        createAndVerifyProjectedCRS(24891);
+        createAndVerifyProjectedCRS(24892);
+        createAndVerifyProjectedCRS(24893);
     }
 
     /**

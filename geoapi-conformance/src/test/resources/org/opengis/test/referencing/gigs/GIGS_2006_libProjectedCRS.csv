@@ -30,7 +30,7 @@
 31600,6316,true,Dealul Piscului 1930,Stereo 30,Check axes order and abbreviations
 22700; 22770,6227,true,Deir ez Zor,"Levant zone, Syria Lambert"
 23866-23872; 23877-23884,6755,true,DGN95,UTM
-31466-69,6314,true,DHDN,3-degree Gauss-Kruger,Check axes order and abbreviations
+31466-31469,6314,true,DHDN,3-degree Gauss-Kruger,Check axes order and abbreviations
 23028-23035; 23090; 23095,6230,true,ED50,UTM; TM 5 NE; TM 0 N
 2058-2060,6154,true,ED50(ED77),UTM
 22991-22994,6229,true,Egypt 1907,Egypt belts
@@ -47,13 +47,13 @@
 3148; 3149,6131,true,Indian 1960,UTM
 24047; 24048,6240,true,Indian 1975,UTM
 24305; 24306; 24375,6144,true,Kalianpur 1937,India zones; UTM
-24312-13; 24376-24377,6145,true,Kalianpur 1962,India zones; UTM
-24342-43; 24379-24380,6146,true,Kalianpur 1975,India zones; UTM
-24547-48,6245,true,Kertau 1968,UTM
+24312-24313; 24376-24377,6145,true,Kalianpur 1962,India zones; UTM
+24342-24343; 24379-24380,6146,true,Kalianpur 1975,India zones; UTM
+24547-24548,6245,true,Kertau 1968,UTM
 3167; 3168,6751,true,Kertau (RSO),RSO
 24600,6246,true,KOC,KOC Lambert
 3177; 3190-3199; 3201-3203,6754,true,LGD2006,Libya zones; UTM
-25391-95,6253,true,Luzon 1911,Philippine zones
+25391-25395,6253,true,Luzon 1911,Philippine zones
 3114-3118,6686,true,MAGNA-SIRGAS,Colombia zones
 25932,6259,true,Malongo 1987,UTM
 2215,6193,true,Manoca 1962,UTM
@@ -85,7 +85,7 @@
 22181-22187,6694,true,POSGAR 94,Argentina zones
 22171-22177,6190,true,POSGAR 98,Argentina zones
 3121-3125,6683,true,PRS92,Philippine zones
-24817-20; 24877-79; 24891-93,6248,true,PSAD56,UTM; Peru zones
+24817-24820; 24877-24879; 24891-24893,6248,true,PSAD56,UTM; Peru zones
 28409; 28416; 28424,6284,true,Pulkovo 1942,6-degree Gauss-Kruger,Check axes order and abbreviations
 3334; 3335; 3844,6179,true,Pulkovo 1942(58),6-degree Gauss-Kruger; Stereo70,Check axes order and abbreviations
 3836,6178,true,Pulkovo 1942(83),6-degree Gauss-Kruger,Check axes order and abbreviations
