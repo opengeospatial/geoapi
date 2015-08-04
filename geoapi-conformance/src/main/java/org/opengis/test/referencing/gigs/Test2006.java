@@ -77,21 +77,14 @@ import static org.opengis.test.Assert.*;
 @RunWith(Parameterized.class)
 public class Test2006 extends EPSGTestCase<ProjectedCRS> {
     /**
-     * Projection suffixes to ignore. For example if the expected projection name is “Argentina zones”
-     * but the actual name is “Argentina zone 1”, we will compare only the “Argentina” part.
-     */
-    private static final String[] PROJECTION_SUFFIX_TO_IGNORE = {
-        " zones"
-    };
-
-    /**
      * The EPSG code of the expected datum.
      */
     public int datum;
 
     /**
-     * The names of expected conversion methods. The projected CRS conversion should begin by one of those names
-     * (ignoring the {@code "zones"} word in names like “Argentina zones”).
+     * The names of map projection (informative). Projected CRS conversion should have one of those names.
+     * However those names are approximative. For example the “Argentina zones” name may apply to a wide
+     * range of names like “Argentina zone 1”, “Argentina zone 2”, <i>etc</i>.
      */
     public String[] projections;
 
@@ -216,32 +209,6 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
                     "EPSG", datum, crs.getDatum().getIdentifiers());
             configurationTip = null;
         }
-        /*
-         * Verify the projection name. We will verify only if the actual projection name starts by the expected
-         * name, in order to accept names like "UTM zone 1" when the expected projection name was only "UTM".
-         */
-        if (isStandardNameSupported) {
-            final String pn = getName(crs.getConversionFromBase());
-            assertNotNull(message(prefix, "getConversionFromBase().getName()"), crs);
-            for (String projection : projections) {
-                for (final String suffix : PROJECTION_SUFFIX_TO_IGNORE) {
-                    if (projection.endsWith(suffix)) {
-                        projection = projection.substring(0, projection.length() - suffix.length());
-                        break;
-                    }
-                }
-                if (pn.startsWith(projection)) {
-                    return;
-                }
-            }
-            final StringBuilder buffer = new StringBuilder("Unexpected conversion name: “").append(pn);
-            String separator = "”. Expected one of “";
-            for (final String projection : projections) {
-                buffer.append(separator).append(projection);
-                separator = "”, “";
-            }
-            fail(buffer.append("”.").toString());
-        }
     }
 
     /**
@@ -250,7 +217,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2165</b>, <b>2043</b>, <b>2041</b></li>
      *   <li>Geographic CRS name: <b>Abidjan 1987</b></li>
-     *   <li>Projection names: <b>TM 5 NW</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>TM 5 NW</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -273,7 +240,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2136</b>, <b>2137</b></li>
      *   <li>Geographic CRS name: <b>Accra</b></li>
-     *   <li>Projection names: <b>TM 1 NW</b>, <b>Ghana National Grid</b></li>
+     *   <li>Projection names (informative): <b>TM 1 NW</b>, <b>Ghana National Grid</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -296,7 +263,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>20249</b>, <b>20250</b>, <b>20251</b>, <b>20252</b>, <b>20253</b>,
      *       <b>20254</b>, <b>20255</b>, <b>20256</b></li>
      *   <li>Geographic CRS name: <b>AGD66</b></li>
-     *   <li>Projection names: <b>Australian Map Grid zones</b></li>
+     *   <li>Projection names (informative): <b>Australian Map Grid zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -320,7 +287,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>20349</b>, <b>20350</b>, <b>20351</b>, <b>20352</b>, <b>20353</b>,
      *       <b>20354</b>, <b>20355</b>, <b>20356</b></li>
      *   <li>Geographic CRS name: <b>AGD84</b></li>
-     *   <li>Projection names: <b>Australian Map Grid zones</b></li>
+     *   <li>Projection names (informative): <b>Australian Map Grid zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -343,7 +310,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2318</b>, <b>20436</b>, <b>20437</b></li>
      *   <li>Geographic CRS name: <b>Ain el Abd</b></li>
-     *   <li>Projection names: <b>Aramco Lambert</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Aramco Lambert</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -366,7 +333,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>28992</b></li>
      *   <li>Geographic CRS name: <b>Amersfoort</b></li>
-     *   <li>Projection names: <b>RD New</b></li>
+     *   <li>Projection names (informative): <b>RD New</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -387,7 +354,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>20822</b>, <b>20823</b>, <b>20824</b></li>
      *   <li>Geographic CRS name: <b>Aratu</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -410,7 +377,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3001</b>, <b>2308</b></li>
      *   <li>Geographic CRS name: <b>Batavia</b></li>
-     *   <li>Projection names: <b>NEIEZ</b>, <b>TM 109 SE</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>NEIEZ</b>, <b>TM 109 SE</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -433,7 +400,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>21413</b>, <b>21414</b>, <b>21415</b>, <b>21416</b>, <b>21417</b>, <b>21418</b>,
      *       <b>21419</b>, <b>21420</b>, <b>21421</b>, <b>21422</b>, <b>21423</b></li>
      *   <li>Geographic CRS name: <b>Beijing 1954</b></li>
-     *   <li>Projection names: <b>6-degree Gauss-Kruger</b></li>
+     *   <li>Projection names (informative): <b>6-degree Gauss-Kruger</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -457,7 +424,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>21896</b>, <b>21897</b>, <b>21898</b>, <b>21899</b></li>
      *   <li>Geographic CRS name: <b>Bogota 1975</b></li>
-     *   <li>Projection names: <b>Colombia zones</b></li>
+     *   <li>Projection names (informative): <b>Colombia zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -480,7 +447,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22091</b>, <b>22092</b>, <b>22032</b>, <b>22033</b></li>
      *   <li>Geographic CRS name: <b>Camacupa</b></li>
-     *   <li>Projection names: <b>TM 11.30 SE</b>, <b>TM 12 SE</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>TM 11.30 SE</b>, <b>TM 12 SE</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -504,7 +471,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22191</b>, <b>22192</b>, <b>22193</b>, <b>22194</b>, <b>22195</b>, <b>22196</b>, <b>22197</b>, <b>2315</b>, <b>2316</b></li>
      *   <li>Geographic CRS name: <b>Campo Inchauspe</b></li>
-     *   <li>Projection names: <b>Argentina zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Argentina zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -529,7 +496,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22391</b>, <b>22392</b></li>
      *   <li>Geographic CRS name: <b>Carthage</b></li>
-     *   <li>Projection names: <b>Tunisia zones</b></li>
+     *   <li>Projection names (informative): <b>Tunisia zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -551,7 +518,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>31600</b></li>
      *   <li>Geographic CRS name: <b>Dealul Piscului 1930</b></li>
-     *   <li>Projection names: <b>Stereo 30</b></li>
+     *   <li>Projection names (informative): <b>Stereo 30</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -573,7 +540,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22700</b>, <b>22770</b></li>
      *   <li>Geographic CRS name: <b>Deir ez Zor</b></li>
-     *   <li>Projection names: <b>Levant zone, Syria Lambert</b></li>
+     *   <li>Projection names (informative): <b>Levant zone, Syria Lambert</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -596,7 +563,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>23866</b>, <b>23867</b>, <b>23868</b>, <b>23869</b>, <b>23870</b>,
      *       <b>23871</b>, <b>23872</b>, <b>23877</b>, <b>23878</b>, <b>23879</b>, <i>…5 more</i></li>
      *   <li>Geographic CRS name: <b>DGN95</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -622,7 +589,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b></b></li>
      *   <li>Geographic CRS name: <b>DHDN</b></li>
-     *   <li>Projection names: <b>3-degree Gauss-Kruger</b></li>
+     *   <li>Projection names (informative): <b>3-degree Gauss-Kruger</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -644,7 +611,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>23028</b>, <b>23029</b>, <b>23030</b>, <b>23031</b>, <b>23032</b>,
      *       <b>23033</b>, <b>23034</b>, <b>23035</b>, <b>23090</b>, <b>23095</b></li>
      *   <li>Geographic CRS name: <b>ED50</b></li>
-     *   <li>Projection names: <b>UTM</b>, <b>TM 5 NE</b>, <b>TM 0 N</b></li>
+     *   <li>Projection names (informative): <b>UTM</b>, <b>TM 5 NE</b>, <b>TM 0 N</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -669,7 +636,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2058</b>, <b>2059</b>, <b>2060</b></li>
      *   <li>Geographic CRS name: <b>ED50(ED77)</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -692,7 +659,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22991</b>, <b>22992</b>, <b>22993</b>, <b>22994</b></li>
      *   <li>Geographic CRS name: <b>Egypt 1907</b></li>
-     *   <li>Projection names: <b>Egypt belts</b></li>
+     *   <li>Projection names (informative): <b>Egypt belts</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -715,7 +682,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3355</b></li>
      *   <li>Geographic CRS name: <b>Egypt Gulf of Suez S-650 TL</b></li>
-     *   <li>Projection names: <b>Egypt Red belt</b></li>
+     *   <li>Projection names (informative): <b>Egypt Red belt</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -737,7 +704,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>2068</b>, <b>2069</b>, <b>2070</b>, <b>2071</b>, <b>2072</b>, <b>2073</b>,
      *       <b>2074</b>, <b>2075</b>, <b>2076</b>, <b>2077</b>, <i>…3 more</i></li>
      *   <li>Geographic CRS name: <b>ELD79</b></li>
-     *   <li>Projection names: <b>Libya zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Libya zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -761,7 +728,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>25828</b>, <b>25829</b>, <b>25830</b>, <b>25831</b>, <b>25832</b>,
      *       <b>25833</b>, <b>25834</b>, <b>25835</b></li>
      *   <li>Geographic CRS name: <b>ETRS89</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -784,7 +751,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>23239</b>, <b>23240</b></li>
      *   <li>Geographic CRS name: <b>Fahud</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -806,7 +773,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3200</b></li>
      *   <li>Geographic CRS name: <b>FD58</b></li>
-     *   <li>Projection names: <b>Iraq zone</b></li>
+     *   <li>Projection names (informative): <b>Iraq zone</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -828,7 +795,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>28349</b>, <b>28350</b>, <b>28351</b>, <b>28352</b>, <b>28353</b>,
      *       <b>28354</b>, <b>28355</b>, <b>28356</b></li>
      *   <li>Geographic CRS name: <b>GDA94</b></li>
-     *   <li>Projection names: <b>Australian Map Grid zones</b></li>
+     *   <li>Projection names (informative): <b>Australian Map Grid zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -851,7 +818,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3375</b>, <b>3376</b></li>
      *   <li>Geographic CRS name: <b>GDM2000</b></li>
-     *   <li>Projection names: <b>RSO grids</b></li>
+     *   <li>Projection names (informative): <b>RSO grids</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -873,7 +840,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>23700</b></li>
      *   <li>Geographic CRS name: <b>HD72</b></li>
-     *   <li>Projection names: <b>EOV</b></li>
+     *   <li>Projection names (informative): <b>EOV</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -894,7 +861,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3367</b>, <b>3368</b>, <b>3369</b></li>
      *   <li>Geographic CRS name: <b>IGN Astro 1960</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -917,7 +884,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>23946</b>, <b>23947</b>, <b>23948</b></li>
      *   <li>Geographic CRS name: <b>Indian 1954</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -940,7 +907,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3148</b>, <b>3149</b></li>
      *   <li>Geographic CRS name: <b>Indian 1960</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -962,7 +929,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>24047</b>, <b>24048</b></li>
      *   <li>Geographic CRS name: <b>Indian 1975</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -984,7 +951,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>24305</b>, <b>24306</b>, <b>24375</b></li>
      *   <li>Geographic CRS name: <b>Kalianpur 1937</b></li>
-     *   <li>Projection names: <b>India zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>India zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1007,7 +974,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>24376</b>, <b>24377</b></li>
      *   <li>Geographic CRS name: <b>Kalianpur 1962</b></li>
-     *   <li>Projection names: <b>India zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>India zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1029,7 +996,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>24379</b>, <b>24380</b></li>
      *   <li>Geographic CRS name: <b>Kalianpur 1975</b></li>
-     *   <li>Projection names: <b>India zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>India zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1051,7 +1018,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b></b></li>
      *   <li>Geographic CRS name: <b>Kertau 1968</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1071,7 +1038,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3167</b>, <b>3168</b></li>
      *   <li>Geographic CRS name: <b>Kertau (RSO)</b></li>
-     *   <li>Projection names: <b>RSO</b></li>
+     *   <li>Projection names (informative): <b>RSO</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1093,7 +1060,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>24600</b></li>
      *   <li>Geographic CRS name: <b>KOC</b></li>
-     *   <li>Projection names: <b>KOC Lambert</b></li>
+     *   <li>Projection names (informative): <b>KOC Lambert</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1115,7 +1082,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>3177</b>, <b>3190</b>, <b>3191</b>, <b>3192</b>, <b>3193</b>, <b>3194</b>,
      *       <b>3195</b>, <b>3196</b>, <b>3197</b>, <b>3198</b>, <i>…4 more</i></li>
      *   <li>Geographic CRS name: <b>LGD2006</b></li>
-     *   <li>Projection names: <b>Libya zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Libya zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1142,7 +1109,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b></b></li>
      *   <li>Geographic CRS name: <b>Luzon 1911</b></li>
-     *   <li>Projection names: <b>Philippine zones</b></li>
+     *   <li>Projection names (informative): <b>Philippine zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1162,7 +1129,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3114</b>, <b>3115</b>, <b>3116</b>, <b>3117</b>, <b>3118</b></li>
      *   <li>Geographic CRS name: <b>MAGNA-SIRGAS</b></li>
-     *   <li>Projection names: <b>Colombia zones</b></li>
+     *   <li>Projection names (informative): <b>Colombia zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1185,7 +1152,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>25932</b></li>
      *   <li>Geographic CRS name: <b>Malongo 1987</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1206,7 +1173,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2215</b></li>
      *   <li>Geographic CRS name: <b>Manoca 1962</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1227,7 +1194,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3343</b>, <b>3344</b>, <b>3345</b></li>
      *   <li>Geographic CRS name: <b>Mauritania 1999</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1250,7 +1217,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3346</b></li>
      *   <li>Geographic CRS name: <b>LKS94</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1271,7 +1238,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3350</b>, <b>3351</b>, <b>3352</b></li>
      *   <li>Geographic CRS name: <b>Pulkovo 1942</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1294,7 +1261,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3354</b></li>
      *   <li>Geographic CRS name: <b>Mhast (offshore)</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1315,7 +1282,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3353</b></li>
      *   <li>Geographic CRS name: <b>Mhast (onshore)</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1336,7 +1303,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>26331</b>, <b>26332</b>, <b>26391</b>, <b>26392</b>, <b>26393</b></li>
      *   <li>Geographic CRS name: <b>Minna</b></li>
-     *   <li>Projection names: <b>Nigeria belts</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Nigeria belts</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1361,7 +1328,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3003</b>, <b>3004</b></li>
      *   <li>Geographic CRS name: <b>Monte Mario</b></li>
-     *   <li>Projection names: <b>Italy zones</b></li>
+     *   <li>Projection names (informative): <b>Italy zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1383,7 +1350,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>26632</b>, <b>26692</b></li>
      *   <li>Geographic CRS name: <b>M'poraloko</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1405,7 +1372,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>26711</b>, <b>26712</b>, <b>32012</b>, <b>32040</b>, <b>32064</b>, <b>32065</b>, <b>32066</b></li>
      *   <li>Geographic CRS name: <b>NAD27</b></li>
-     *   <li>Projection names: <b>State Plane zones</b>, <b>BLM zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>State Plane zones</b>, <b>BLM zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1432,7 +1399,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>26811</b>, <b>26812</b>, <b>26813</b></li>
      *   <li>Geographic CRS name: <b>NAD27 Michigan</b></li>
-     *   <li>Projection names: <b>State Plane zones</b></li>
+     *   <li>Projection names (informative): <b>State Plane zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1456,7 +1423,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>3347</b>, <b>26911</b>, <b>26912</b>, <b>32156</b>, <b>3736</b>, <b>26990</b>,
      *       <b>2253</b>, <b>32140</b>, <b>2278</b></li>
      *   <li>Geographic CRS name: <b>NAD83</b></li>
-     *   <li>Projection names: <b>State Plane zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>State Plane zones</b>, <b>UTM</b></li>
      *   <li>Specific usage / Remarks: <b>Check units</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -1486,7 +1453,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3348</b>, <b>2955</b>, <b>2956</b></li>
      *   <li>Geographic CRS name: <b>NAD83(CSRS)</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1509,7 +1476,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2845</b>, <b>2917</b>, <b>2809</b>, <b>2898</b></li>
      *   <li>Geographic CRS name: <b>NAD83(HARN)</b></li>
-     *   <li>Projection names: <b>State Plane zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>State Plane zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1533,7 +1500,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>27038</b>, <b>27039</b>, <b>27040</b></li>
      *   <li>Geographic CRS name: <b>Nahrwan 1967</b></li>
-     *   <li>Projection names: <b>Nahrwan 1967</b></li>
+     *   <li>Projection names (informative): <b>Nahrwan 1967</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1556,7 +1523,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2067</b></li>
      *   <li>Geographic CRS name: <b>Naparima 1955</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1577,7 +1544,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>30791</b>, <b>30792</b>, <b>30730</b>, <b>30731</b>, <b>30732</b></li>
      *   <li>Geographic CRS name: <b>Nord Sahara 1959</b></li>
-     *   <li>Projection names: <b>Voirol Unifie</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Voirol Unifie</b>, <b>UTM</b></li>
      *   <li>Specific usage / Remarks: <b>Check old Voirol</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -1603,7 +1570,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>27571</b>, <b>27572</b>, <b>27573</b></li>
      *   <li>Geographic CRS name: <b>NTF (Paris)</b></li>
-     *   <li>Projection names: <b>Lambert zones</b></li>
+     *   <li>Projection names (informative): <b>Lambert zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1626,7 +1593,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2193</b>, <b>2133</b>, <b>2134</b>, <b>2135</b></li>
      *   <li>Geographic CRS name: <b>NZGD2000</b></li>
-     *   <li>Projection names: <b>TM</b></li>
+     *   <li>Projection names (informative): <b>TM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1650,7 +1617,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>27200</b>, <b>27291</b>, <b>27292</b></li>
      *   <li>Geographic CRS name: <b>NZGD49</b></li>
-     *   <li>Projection names: <b>NZMG</b>, <b>TM zones</b></li>
+     *   <li>Projection names (informative): <b>NZMG</b>, <b>TM zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1673,7 +1640,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>27700</b></li>
      *   <li>Geographic CRS name: <b>OSGB 1936</b></li>
-     *   <li>Projection names: <b>TM</b></li>
+     *   <li>Projection names (informative): <b>TM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1694,7 +1661,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3440</b></li>
      *   <li>Geographic CRS name: <b>PSD93</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1715,7 +1682,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>28232</b></li>
      *   <li>Geographic CRS name: <b>Pointe Noire</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1736,7 +1703,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22181</b>, <b>22182</b>, <b>22183</b>, <b>22184</b>, <b>22185</b>, <b>22186</b>, <b>22187</b></li>
      *   <li>Geographic CRS name: <b>POSGAR 94</b></li>
-     *   <li>Projection names: <b>Argentina zones</b></li>
+     *   <li>Projection names (informative): <b>Argentina zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1759,7 +1726,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>22171</b>, <b>22172</b>, <b>22173</b>, <b>22174</b>, <b>22175</b>, <b>22176</b>, <b>22177</b></li>
      *   <li>Geographic CRS name: <b>POSGAR 98</b></li>
-     *   <li>Projection names: <b>Argentina zones</b></li>
+     *   <li>Projection names (informative): <b>Argentina zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1782,7 +1749,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3121</b>, <b>3122</b>, <b>3123</b>, <b>3124</b>, <b>3125</b></li>
      *   <li>Geographic CRS name: <b>PRS92</b></li>
-     *   <li>Projection names: <b>Philippine zones</b></li>
+     *   <li>Projection names (informative): <b>Philippine zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1805,7 +1772,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b></b></li>
      *   <li>Geographic CRS name: <b>PSAD56</b></li>
-     *   <li>Projection names: <b>UTM</b>, <b>Peru zones</b></li>
+     *   <li>Projection names (informative): <b>UTM</b>, <b>Peru zones</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1825,7 +1792,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>28409</b>, <b>28416</b>, <b>28424</b></li>
      *   <li>Geographic CRS name: <b>Pulkovo 1942</b></li>
-     *   <li>Projection names: <b>6-degree Gauss-Kruger</b></li>
+     *   <li>Projection names (informative): <b>6-degree Gauss-Kruger</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -1849,7 +1816,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3334</b>, <b>3335</b>, <b>3844</b></li>
      *   <li>Geographic CRS name: <b>Pulkovo 1942(58)</b></li>
-     *   <li>Projection names: <b>6-degree Gauss-Kruger</b>, <b>Stereo70</b></li>
+     *   <li>Projection names (informative): <b>6-degree Gauss-Kruger</b>, <b>Stereo70</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -1873,7 +1840,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>3836</b></li>
      *   <li>Geographic CRS name: <b>Pulkovo 1942(83)</b></li>
-     *   <li>Projection names: <b>6-degree Gauss-Kruger</b></li>
+     *   <li>Projection names (informative): <b>6-degree Gauss-Kruger</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -1895,7 +1862,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2099</b></li>
      *   <li>Geographic CRS name: <b>Qatar 1948</b></li>
-     *   <li>Projection names: <b>Qatar Grid</b></li>
+     *   <li>Projection names (informative): <b>Qatar Grid</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1916,7 +1883,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>28600</b></li>
      *   <li>Geographic CRS name: <b>Qatar 1974</b></li>
-     *   <li>Projection names: <b>Qatar National Grid</b></li>
+     *   <li>Projection names (informative): <b>Qatar National Grid</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1937,7 +1904,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2932</b></li>
      *   <li>Geographic CRS name: <b>QND95</b></li>
-     *   <li>Projection names: <b>Qatar National Grid</b></li>
+     *   <li>Projection names (informative): <b>Qatar National Grid</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1958,7 +1925,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2201</b>, <b>2202</b>, <b>2203</b></li>
      *   <li>Geographic CRS name: <b>REGVEN</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -1981,7 +1948,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2154</b></li>
      *   <li>Geographic CRS name: <b>RGF93</b></li>
-     *   <li>Projection names: <b>Lambert 93</b></li>
+     *   <li>Projection names (informative): <b>Lambert 93</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2002,7 +1969,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>29101</b>, <b>29194</b></li>
      *   <li>Geographic CRS name: <b>SAD69</b></li>
-     *   <li>Projection names: <b>UTM</b>, <b>Brazil Polyconic</b></li>
+     *   <li>Projection names (informative): <b>UTM</b>, <b>Brazil Polyconic</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2024,7 +1991,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>29371</b>, <b>29333</b></li>
      *   <li>Geographic CRS name: <b>Schwarzeck</b></li>
-     *   <li>Projection names: <b>Lo/22 zones</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>Lo/22 zones</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2046,7 +2013,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>31997</b></li>
      *   <li>Geographic CRS name: <b>SIRGAS 1995</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2067,7 +2034,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>31982</b></li>
      *   <li>Geographic CRS name: <b>SIRGAS 2000</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2088,7 +2055,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>29738</b></li>
      *   <li>Geographic CRS name: <b>Tananarive</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2109,7 +2076,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>29701</b>, <b>29702</b></li>
      *   <li>Geographic CRS name: <b>Tananarive (Paris)</b></li>
-     *   <li>Projection names: <b>Laborde</b></li>
+     *   <li>Projection names (informative): <b>Laborde</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2131,7 +2098,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>30339</b></li>
      *   <li>Geographic CRS name: <b>TC(1948)</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2152,7 +2119,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>29850</b>, <b>29871</b>, <b>29872</b>, <b>29873</b></li>
      *   <li>Geographic CRS name: <b>Timbalai 1948</b></li>
-     *   <li>Projection names: <b>RSO</b>, <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>RSO</b>, <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2176,7 +2143,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>30200</b>, <b>2314</b></li>
      *   <li>Geographic CRS name: <b>Trinidad 1903</b></li>
-     *   <li>Projection names: <b>Cassini</b></li>
+     *   <li>Projection names (informative): <b>Cassini</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2198,7 +2165,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>32488</b></li>
      *   <li>Geographic CRS name: <b>WGS 72BE</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -2220,7 +2187,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      *   <li>Projected CRS codes: <b>3349</b>, <b>32601</b>, <b>32602</b>, <b>32603</b>, <b>32604</b>, <b>32605</b>,
      *       <b>32606</b>, <b>32607</b>, <b>32608</b>, <b>32609</b>, <b>32610</b>, <i>…110 more</i></li>
      *   <li>Geographic CRS name: <b>WGS 84</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -2248,7 +2215,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2338</b>, <b>2339</b>, <b>2340</b>, <b>2341</b>, <b>2342</b>, <b>2343</b>, <b>2344</b>, <b>2345</b>, <b>2346</b>, <b>2347</b>, <i>…1 more</i></li>
      *   <li>Geographic CRS name: <b>Xian 1980</b></li>
-     *   <li>Projection names: <b>6-degree Gauss-Kruger</b></li>
+     *   <li>Projection names (informative): <b>6-degree Gauss-Kruger</b></li>
      *   <li>Specific usage / Remarks: <b>Check axes order and abbreviations</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
@@ -2272,7 +2239,7 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * <ul>
      *   <li>Projected CRS codes: <b>2089</b>, <b>2090</b></li>
      *   <li>Geographic CRS name: <b>Yemen NGN96</b></li>
-     *   <li>Projection names: <b>UTM</b></li>
+     *   <li>Projection names (informative): <b>UTM</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *

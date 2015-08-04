@@ -77,7 +77,7 @@ public class Test2006Generator extends TestMethodGenerator {
             indent(1); out.println(" *");
             printJavadocKeyValues("Projected CRS codes", codes,
                                   "Geographic CRS name", name,
-                                  "Projection names", projections,
+                                  "Projection names (informative)", projections,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the projected CRS from the EPSG code.");
