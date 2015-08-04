@@ -118,9 +118,9 @@ public class Test2005Generator extends TestMethodGenerator {
                             out.println("createAndVerifyCoordinateOperation(code);");
                             indent(2);
                             out.println("}");
+                            i = upper - 1;  // Skip the sequence.
+                            continue;
                         }
-                        i = upper - 1;  // Skip the sequence.
-                        continue;
                     }
                 }
                 indent(2);

@@ -970,6 +970,8 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Malaysia RSO grids";
         method    = "Hotine Oblique Mercator (variant A)";
+        createAndVerifyCoordinateOperation(19871);
+        createAndVerifyCoordinateOperation(19872);
         createAndVerifyCoordinateOperation(19894);
         createAndVerifyCoordinateOperation(19895);
     }
@@ -1000,6 +1002,8 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         for (int code = 15032; code <= 15039; code++) {    // Loop over 8 codes
             createAndVerifyCoordinateOperation(code);
         }
+        createAndVerifyCoordinateOperation(13001);
+        createAndVerifyCoordinateOperation(13031);
         createAndVerifyCoordinateOperation(15339);
         createAndVerifyCoordinateOperation(14903);
         createAndVerifyCoordinateOperation(14933);
@@ -1026,6 +1030,34 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "US State Plane zones";
         method    = "Lambert Conic Conformal (2SP)";
+        createAndVerifyCoordinateOperation(10404);
+        createAndVerifyCoordinateOperation(10405);
+        createAndVerifyCoordinateOperation(10406);
+        createAndVerifyCoordinateOperation(10408);
+        createAndVerifyCoordinateOperation(10434);
+        createAndVerifyCoordinateOperation(10435);
+        createAndVerifyCoordinateOperation(10436);
+        createAndVerifyCoordinateOperation(15310);
+        createAndVerifyCoordinateOperation(15311);
+        createAndVerifyCoordinateOperation(15312);
+        createAndVerifyCoordinateOperation(11701);
+        createAndVerifyCoordinateOperation(11702);
+        createAndVerifyCoordinateOperation(11731);
+        createAndVerifyCoordinateOperation(11732);
+        createAndVerifyCoordinateOperation(15391);
+        createAndVerifyCoordinateOperation(15392);
+        createAndVerifyCoordinateOperation(12112);
+        createAndVerifyCoordinateOperation(12113);
+        createAndVerifyCoordinateOperation(12142);
+        createAndVerifyCoordinateOperation(12143);
+        createAndVerifyCoordinateOperation(15334);
+        createAndVerifyCoordinateOperation(15335);
+        createAndVerifyCoordinateOperation(13501);
+        createAndVerifyCoordinateOperation(13502);
+        createAndVerifyCoordinateOperation(13531);
+        createAndVerifyCoordinateOperation(13532);
+        createAndVerifyCoordinateOperation(15349);
+        createAndVerifyCoordinateOperation(15350);
         for (int code = 14201; code <= 14205; code++) {    // Loop over 5 codes
             createAndVerifyCoordinateOperation(code);
         }
