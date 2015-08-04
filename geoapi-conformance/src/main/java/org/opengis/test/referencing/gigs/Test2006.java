@@ -38,6 +38,8 @@ import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.ProjectedCRS;
+import org.opengis.referencing.cs.AxisDirection;
+import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.test.Configuration;
 import org.opengis.test.FactoryFilter;
 
@@ -87,6 +89,24 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      * range of names like “Argentina zone 1”, “Argentina zone 2”, <i>etc</i>.
      */
     public String[] projections;
+
+    /**
+     * {@code true} if the expected axis directions are ({@link AxisDirection#NORTH NORTH},
+     * {@link AxisDirection#EAST EAST}) instead than the usual ({@code EAST}, {@code NORTH}).
+     */
+    public boolean isNorthAxisFirst;
+
+    /**
+     * {@code true} if the <var>x</var> values are increasing toward {@link AxisDirection#WEST WEST}
+     * instead than {@link AxisDirection#EAST EAST}.
+     */
+    public boolean isWestOrientated;
+
+    /**
+     * {@code true} if the <var>y</var> values are increasing toward {@link AxisDirection#SOUTH SOUTH}
+     * instead than {@link AxisDirection#NORTH NORTH}.
+     */
+    public boolean isSouthOrientated;
 
     /**
      * The CRS created by the factory, or {@code null} if not yet created or if CRS creation failed.
@@ -209,6 +229,19 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
                     "EPSG", datum, crs.getDatum().getIdentifiers());
             configurationTip = null;
         }
+        /*
+         * Verify the coordinate system (dimension, axis order and orientation).
+         */
+        final CartesianCS cs = crs.getCoordinateSystem();
+        prefix.append("getCoordinateSystem()");
+        assertNotNull(prefix.toString(), crs);
+
+        prefix.append('.');
+        assertEquals(message(prefix, "getDimension()"), 2, cs.getDimension());
+        final AxisDirection[] directions = new AxisDirection[2];
+        directions[isNorthAxisFirst ? 1 : 0] = isWestOrientated  ? AxisDirection.WEST  : AxisDirection.EAST;
+        directions[isNorthAxisFirst ? 0 : 1] = isSouthOrientated ? AxisDirection.SOUTH : AxisDirection.NORTH;
+        assertAxisDirectionsEqual(message(prefix, "axes"), cs, directions);
     }
 
     /**
@@ -409,10 +442,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testBeijing() throws FactoryException {
-        important   = true;
-        name        = "Beijing 1954";
-        projections = new String[] {"6-degree Gauss-Kruger"};
-        datum       = 6214;
+        important        = true;
+        name             = "Beijing 1954";
+        projections      = new String[] {"6-degree Gauss-Kruger"};
+        datum            = 6214;
+        isNorthAxisFirst = true;
         for (int code = 21413; code <= 21423; code++) {    // Loop over 11 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -432,10 +466,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testBogota() throws FactoryException {
-        important   = true;
-        name        = "Bogota 1975";
-        projections = new String[] {"Colombia zones"};
-        datum       = 6218;
+        important        = true;
+        name             = "Bogota 1975";
+        projections      = new String[] {"Colombia zones"};
+        datum            = 6218;
+        isNorthAxisFirst = true;
         for (int code = 21896; code <= 21899; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -479,13 +514,15 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testCampoInchauspe() throws FactoryException {
-        important   = true;
-        name        = "Campo Inchauspe";
-        projections = new String[] {"Argentina zones", "UTM"};
-        datum       = 6221;
+        important        = true;
+        name             = "Campo Inchauspe";
+        projections      = new String[] {"Argentina zones", "UTM"};
+        datum            = 6221;
+        isNorthAxisFirst = true;
         for (int code = 22191; code <= 22197; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
         }
+        isNorthAxisFirst = false;
         createAndVerifyProjectedCRS(2315);
         createAndVerifyProjectedCRS(2316);
     }
@@ -598,10 +635,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testDHDN() throws FactoryException {
-        important   = true;
-        name        = "DHDN";
-        projections = new String[] {"3-degree Gauss-Kruger"};
-        datum       = 6314;
+        important        = true;
+        name             = "DHDN";
+        projections      = new String[] {"3-degree Gauss-Kruger"};
+        datum            = 6314;
+        isNorthAxisFirst = true;
         for (int code = 31466; code <= 31469; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1149,10 +1187,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testMAGNA_SIRGAS() throws FactoryException {
-        important   = true;
-        name        = "MAGNA-SIRGAS";
-        projections = new String[] {"Colombia zones"};
-        datum       = 6686;
+        important        = true;
+        name             = "MAGNA-SIRGAS";
+        projections      = new String[] {"Colombia zones"};
+        datum            = 6686;
+        isNorthAxisFirst = true;
         for (int code = 3114; code <= 3118; code++) {    // Loop over 5 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1237,10 +1276,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testLKS94() throws FactoryException {
-        important   = true;
-        name        = "LKS94";
-        projections = new String[] {"UTM"};
-        datum       = 6126;
+        important        = true;
+        name             = "LKS94";
+        projections      = new String[] {"UTM"};
+        datum            = 6126;
+        isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3346);
     }
 
@@ -1258,10 +1298,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testPulkovo1942_UTM() throws FactoryException {
-        important   = true;
-        name        = "Pulkovo 1942";
-        projections = new String[] {"UTM"};
-        datum       = 6284;
+        important        = true;
+        name             = "Pulkovo 1942";
+        projections      = new String[] {"UTM"};
+        datum            = 6284;
+        isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3350);
         createAndVerifyProjectedCRS(3351);
         createAndVerifyProjectedCRS(3352);
@@ -1613,11 +1654,13 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testNZGD2000() throws FactoryException {
-        important   = true;
-        name        = "NZGD2000";
-        projections = new String[] {"TM"};
-        datum       = 6167;
+        important        = true;
+        name             = "NZGD2000";
+        projections      = new String[] {"TM"};
+        datum            = 6167;
+        isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(2193);
+        isNorthAxisFirst = false;
         createAndVerifyProjectedCRS(2133);
         createAndVerifyProjectedCRS(2134);
         createAndVerifyProjectedCRS(2135);
@@ -1723,10 +1766,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testPOSGAR94() throws FactoryException {
-        important   = true;
-        name        = "POSGAR 94";
-        projections = new String[] {"Argentina zones"};
-        datum       = 6694;
+        important        = true;
+        name             = "POSGAR 94";
+        projections      = new String[] {"Argentina zones"};
+        datum            = 6694;
+        isNorthAxisFirst = true;
         for (int code = 22181; code <= 22187; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1746,10 +1790,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testPOSGAR98() throws FactoryException {
-        important   = true;
-        name        = "POSGAR 98";
-        projections = new String[] {"Argentina zones"};
-        datum       = 6190;
+        important        = true;
+        name             = "POSGAR 98";
+        projections      = new String[] {"Argentina zones"};
+        datum            = 6190;
+        isNorthAxisFirst = true;
         for (int code = 22171; code <= 22177; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1823,10 +1868,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testPulkovo1942() throws FactoryException {
-        important   = true;
-        name        = "Pulkovo 1942";
-        projections = new String[] {"6-degree Gauss-Kruger"};
-        datum       = 6284;
+        important        = true;
+        name             = "Pulkovo 1942";
+        projections      = new String[] {"6-degree Gauss-Kruger"};
+        datum            = 6284;
+        isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(28409);
         createAndVerifyProjectedCRS(28416);
         createAndVerifyProjectedCRS(28424);
@@ -1847,10 +1893,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testPulkovo1942_58() throws FactoryException {
-        important   = true;
-        name        = "Pulkovo 1942(58)";
-        projections = new String[] {"6-degree Gauss-Kruger", "Stereo70"};
-        datum       = 6179;
+        important        = true;
+        name             = "Pulkovo 1942(58)";
+        projections      = new String[] {"6-degree Gauss-Kruger", "Stereo70"};
+        datum            = 6179;
+        isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3334);
         createAndVerifyProjectedCRS(3335);
         createAndVerifyProjectedCRS(3844);
@@ -1871,10 +1918,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testPulkovo1942_83() throws FactoryException {
-        important   = true;
-        name        = "Pulkovo 1942(83)";
-        projections = new String[] {"6-degree Gauss-Kruger"};
-        datum       = 6178;
+        important        = true;
+        name             = "Pulkovo 1942(83)";
+        projections      = new String[] {"6-degree Gauss-Kruger"};
+        datum            = 6178;
+        isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3836);
     }
 
@@ -2021,11 +2069,15 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testSchwarzeck() throws FactoryException {
-        important   = true;
-        name        = "Schwarzeck";
-        projections = new String[] {"Lo/22 zones", "UTM"};
-        datum       = 6293;
+        important         = true;
+        name              = "Schwarzeck";
+        projections       = new String[] {"Lo/22 zones", "UTM"};
+        datum             = 6293;
+        isWestOrientated  = true;
+        isSouthOrientated = true;
         createAndVerifyProjectedCRS(29371);
+        isWestOrientated  = false;
+        isSouthOrientated = false;
         createAndVerifyProjectedCRS(29333);
     }
 
@@ -2246,10 +2298,11 @@ public class Test2006 extends EPSGTestCase<ProjectedCRS> {
      */
     @Test
     public void testXian() throws FactoryException {
-        important   = true;
-        name        = "Xian 1980";
-        projections = new String[] {"6-degree Gauss-Kruger"};
-        datum       = 6610;
+        important        = true;
+        name             = "Xian 1980";
+        projections      = new String[] {"6-degree Gauss-Kruger"};
+        datum            = 6610;
+        isNorthAxisFirst = true;
         for (int code = 2338; code <= 2348; code++) {    // Loop over 11 codes
             createAndVerifyProjectedCRS(code);
         }
