@@ -41,49 +41,52 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class Test2005Generator extends TestMethodGenerator {
+public class Test2006Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
      */
     public static void main(String[] args) {
-        new Test2005Generator().run();
+        new Test2006Generator().run();
     }
 
     /**
      * Generates the code.
      */
     private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2005_libProjection.csv",
-            String .class,  // [0]: EPSG Coordinate Operation Code(s)
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: Map Projection Name(s)
-            String .class,  // [3]: Coordinate Operation Method
-            String .class); // [4]: Remarks
+        final ExpectedData data = new ExpectedData("GIGS_2006_libProjectedCRS.csv",
+            String .class,  // [0]: EPSG projected CRS Code(s)
+            Integer.class,  // [1]: EPSG Datum Code
+            Boolean.class,  // [2]: Particularly important to E&P industry?
+            String .class,  // [3]: Geographic CRS Name
+            String .class,  // [4]: Associated projection(s)
+            String .class); // [5]: Remarks
 
         while (data.next()) {
-            final int[]   codes     = data.getInts   (0);
-            final boolean important = data.getBoolean(1);
-            final String  name      = data.getString (2);
-            final String  method    = data.getString (3);
-            final String  remarks   = data.getString (4);
+            final int[]    codes       = data.getInts   (0);
+            final int      datum       = data.getInt    (1);
+            final boolean  important   = data.getBoolean(2);
+            final String   name        = data.getString (3);
+            final String[] projections = data.getStrings(4);
+            final String   remarks     = data.getString (5);
 
             out.println();
             indent(1); out.println("/**");
-            indent(1); out.print(" * Tests “"); out.print(name); out.println("” coordinate operation creation from the factory.");
+            indent(1); out.print(" * Tests “"); out.print(name); out.println("”-based projected CRS creation from the factory.");
             indent(1); out.println(" *");
-            printJavadocKeyValues("EPSG coordinate operation codes", codes,
-                                  "EPSG coordinate operation name", name,
-                                  "Coordinate operation method", method,
+            printJavadocKeyValues("Projected CRS codes", codes,
+                                  "Geographic CRS name", name,
+                                  "Projection names", projections,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
-            printJavadocThrows("if an error occurred while creating the coordinate operation from the EPSG code.");
+            printJavadocThrows("if an error occurred while creating the projected CRS from the EPSG code.");
             printTestMethodSignature(name);
-            printFieldAssignments("important", important,
-                                  "name",      name,
-                                  "method",    method);
-            printCallsToMethod("createAndVerifyCoordinateOperation", codes);
+            printFieldAssignments("important",   important,
+                                  "name",        name,
+                                  "projections", projections,
+                                  "datum",       datum);
+            printCallsToMethod("createAndVerifyProjectedCRS", codes);
             out.println("    }");
         }
     }

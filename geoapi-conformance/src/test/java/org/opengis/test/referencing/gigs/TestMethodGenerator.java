@@ -51,6 +51,11 @@ import static org.junit.Assert.*;
  */
 public abstract class TestMethodGenerator {
     /**
+     * Minimum number of calls to a method before we replace the calls by a loop.
+     */
+    private static final int CALL_IN_LOOP_THRESHOLD = 4;
+
+    /**
      * The programmatic names of unit.
      */
     private static final Map<Unit<?>,String> UNIT_NAMES;
@@ -264,5 +269,59 @@ public abstract class TestMethodGenerator {
         final String name = UNIT_NAMES.get(unit);
         assertNotNull(unit.toString(), name);
         out.print(name);
+    }
+
+    /**
+     * Prints a sequence of calls to the given method, each call using a different argument value.
+     * If this method detects a sequence of at least {@value #CALL_IN_LOOP_THRESHOLD} consecutive
+     * values, then this method will invoke the given method in a loop.
+     *
+     * @param method The name of the method to call (without arguments).
+     * @param codes  The arguments to give to the method.
+     */
+    final void printCallsToMethod(final String method, final int[] codes) {
+        for (int i=0; i<codes.length; i++) {
+            if (i+CALL_IN_LOOP_THRESHOLD <= codes.length) {
+                final int delta = codes[i+1] - codes[i];
+                if (delta >= 1) {
+                    int upper = i + 2;  // Exclusive
+                    while (upper < codes.length) {
+                        if (codes[upper] - codes[upper - 1] != delta) {
+                            break;
+                        }
+                        upper++;
+                    }
+                    if (upper - i >= CALL_IN_LOOP_THRESHOLD) {
+                        indent(2);
+                        out.print("for (int code = ");
+                        out.print(codes[i]);
+                        out.print("; code <= ");
+                        out.print(codes[upper - 1]);
+                        out.print("; ");
+                        if (delta == 1) {
+                            out.print("code++");
+                        } else {
+                            out.print("code += ");
+                            out.print(delta);
+                        }
+                        out.print(") {    // Loop over ");
+                        out.print(upper - i);
+                        out.println(" codes");
+                        indent(3);
+                        out.print(method);
+                        out.println("(code);");
+                        indent(2);
+                        out.println("}");
+                        i = upper - 1;  // Skip the sequence.
+                        continue;
+                    }
+                }
+            }
+            indent(2);
+            out.print(method);
+            out.print('(');
+            out.print(codes[i]);
+            out.println(");");
+        }
     }
 }

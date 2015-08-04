@@ -85,9 +85,9 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
 
     /**
      * The coordinate operation created by the factory,
-     * or {@code null} if not yet created or if the prime meridian creation failed.
+     * or {@code null} if not yet created or if the coordinate operation creation failed.
      *
-     * @see #datumAuthorityFactory
+     * @see #copAuthorityFactory
      */
     private CoordinateOperation operation;
 
@@ -179,7 +179,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
     }
 
     /**
-     * Creates a coordinate operation for the current {@link #code}, then verifies its name and properties.
+     * Creates a coordinate operation for the given {@code code}, then verifies its name and properties.
      */
     private void createAndVerifyCoordinateOperation(final int code) throws FactoryException {
         this.code = code;
