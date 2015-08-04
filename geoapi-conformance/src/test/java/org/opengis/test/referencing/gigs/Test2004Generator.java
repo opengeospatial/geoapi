@@ -88,7 +88,7 @@ public class Test2004Generator extends TestMethodGenerator {
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the datum or a CRS from the EPSG code.");
-            printTestMethodSignature(name);
+            printTestMethodSignature(crsName);  // CRS name is simpler than datum name.
             printFieldAssignments("important",     important,
                                   "code",          code,
                                   "name",          name,

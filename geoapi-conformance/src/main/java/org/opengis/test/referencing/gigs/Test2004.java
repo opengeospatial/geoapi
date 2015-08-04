@@ -405,7 +405,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAbidjan1987() throws FactoryException {
+    public void testAbidjan() throws FactoryException {
         important     = true;
         code          = 6143;
         name          = "Abidjan 1987";
@@ -457,7 +457,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAustralianGeodeticDatum1966() throws FactoryException {
+    public void testAGD66() throws FactoryException {
         important     = true;
         code          = 6202;
         name          = "Australian Geodetic Datum 1966";
@@ -483,7 +483,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAustralianGeodeticDatum1984() throws FactoryException {
+    public void testAGD84() throws FactoryException {
         important     = true;
         code          = 6203;
         name          = "Australian Geodetic Datum 1984";
@@ -509,7 +509,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAinElAbd1970() throws FactoryException {
+    public void testAinElAbd() throws FactoryException {
         important     = true;
         code          = 6204;
         name          = "Ain el Abd 1970";
@@ -613,7 +613,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBataviaJakarta() throws FactoryException {
+    public void testBatavia_Jakarta() throws FactoryException {
         important     = true;
         code          = 6813;
         name          = "Batavia (Jakarta)";
@@ -639,7 +639,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBeijing1954() throws FactoryException {
+    public void testBeijing() throws FactoryException {
         important     = true;
         code          = 6214;
         name          = "Beijing 1954";
@@ -665,7 +665,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBogota1975() throws FactoryException {
+    public void testBogota() throws FactoryException {
         important     = true;
         code          = 6218;
         name          = "Bogota 1975";
@@ -769,7 +769,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testChosMalal1914() throws FactoryException {
+    public void testChosMalal() throws FactoryException {
         important     = true;
         code          = 6160;
         name          = "Chos Malal 1914";
@@ -795,7 +795,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDealulPiscului1930() throws FactoryException {
+    public void testDealulPiscului() throws FactoryException {
         important     = true;
         code          = 6316;
         name          = "Dealul Piscului 1930";
@@ -847,7 +847,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDatumGeodesiNasional1995() throws FactoryException {
+    public void testDGN95() throws FactoryException {
         important     = true;
         code          = 6755;
         name          = "Datum Geodesi Nasional 1995";
@@ -875,7 +875,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDeutschesHauptdreiecksnetz() throws FactoryException {
+    public void testDHDN() throws FactoryException {
         important     = true;
         code          = 6314;
         name          = "Deutsches Hauptdreiecksnetz";
@@ -901,7 +901,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDouala1948() throws FactoryException {
+    public void testDouala() throws FactoryException {
         important     = true;
         code          = 6192;
         name          = "Douala 1948";
@@ -927,7 +927,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEuropeanDatum1950() throws FactoryException {
+    public void testED50() throws FactoryException {
         important     = true;
         code          = 6230;
         name          = "European Datum 1950";
@@ -953,7 +953,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEuropeanDatum19501977() throws FactoryException {
+    public void testED50_77() throws FactoryException {
         important     = true;
         code          = 6154;
         name          = "European Datum 1950(1977)";
@@ -1005,7 +1005,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEgyptGulfOfSuezS650TL() throws FactoryException {
+    public void testGulfOfSuez() throws FactoryException {
         important     = true;
         code          = 6706;
         name          = "Egypt Gulf of Suez S-650 TL";
@@ -1031,7 +1031,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEuropeanLibyanDatum1979() throws FactoryException {
+    public void testELD79() throws FactoryException {
         important     = true;
         code          = 6159;
         name          = "European Libyan Datum 1979";
@@ -1057,7 +1057,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEuropeanTerrestrialReferenceSystem1989() throws FactoryException {
+    public void testETRS89() throws FactoryException {
         important     = true;
         code          = 6258;
         name          = "European Terrestrial Reference System 1989";
@@ -1111,7 +1111,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testFinalDatum1958() throws FactoryException {
+    public void testFD58() throws FactoryException {
         important     = true;
         code          = 6132;
         name          = "Final Datum 1958";
@@ -1137,7 +1137,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGeocentricDatumOfAustralia1994() throws FactoryException {
+    public void testGDA94() throws FactoryException {
         important     = true;
         code          = 6283;
         name          = "Geocentric Datum of Australia 1994";
@@ -1165,7 +1165,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGeodeticDatumOfMalaysia2000() throws FactoryException {
+    public void testGDM2000() throws FactoryException {
         important     = true;
         code          = 6742;
         name          = "Geodetic Datum of Malaysia 2000";
@@ -1193,7 +1193,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHungarianDatum1972() throws FactoryException {
+    public void testHD72() throws FactoryException {
         important     = true;
         code          = 6237;
         name          = "Hungarian Datum 1972";
@@ -1219,7 +1219,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHitoXVIII1963() throws FactoryException {
+    public void testHito() throws FactoryException {
         important     = true;
         code          = 6254;
         name          = "Hito XVIII 1963";
@@ -1245,7 +1245,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIndonesianDatum1974() throws FactoryException {
+    public void testID74() throws FactoryException {
         important     = true;
         code          = 6238;
         name          = "Indonesian Datum 1974";
@@ -1453,7 +1453,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKertau1968() throws FactoryException {
+    public void testKertau() throws FactoryException {
         important     = true;
         code          = 6245;
         name          = "Kertau 1968";
@@ -1479,7 +1479,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKuwaitOilCompany() throws FactoryException {
+    public void testKOC() throws FactoryException {
         important     = true;
         code          = 6246;
         name          = "Kuwait Oil Company";
@@ -1505,7 +1505,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLibyanGeodeticDatum2006() throws FactoryException {
+    public void testLGD2006() throws FactoryException {
         important     = true;
         code          = 6754;
         name          = "Libyan Geodetic Datum 2006";
@@ -1533,7 +1533,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLuzon1911() throws FactoryException {
+    public void testLuzon() throws FactoryException {
         important     = true;
         code          = 6253;
         name          = "Luzon 1911";
@@ -1559,7 +1559,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMarcoGeocentricoNacionalDeReferencia() throws FactoryException {
+    public void testMAGNA_SIRGAS() throws FactoryException {
         important     = true;
         code          = 6686;
         name          = "Marco Geocentrico Nacional de Referencia";
@@ -1587,7 +1587,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMalongo1987() throws FactoryException {
+    public void testMalongo() throws FactoryException {
         important     = true;
         code          = 6259;
         name          = "Malongo 1987";
@@ -1613,7 +1613,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testManoca1962() throws FactoryException {
+    public void testManoca() throws FactoryException {
         important     = true;
         code          = 6193;
         name          = "Manoca 1962";
@@ -1639,7 +1639,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMauritania1999() throws FactoryException {
+    public void testMauritania() throws FactoryException {
         important     = true;
         code          = 6702;
         name          = "Mauritania 1999";
@@ -1667,7 +1667,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMilitarGeographischeInstitut() throws FactoryException {
+    public void testMGI() throws FactoryException {
         important     = true;
         code          = 6312;
         name          = "Militar-Geographische Institut";
@@ -1693,7 +1693,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMilitarGeographischeInstitutFerro() throws FactoryException {
+    public void testMGI_Ferro() throws FactoryException {
         important     = true;
         code          = 6805;
         name          = "Militar-Geographische Institut (Ferro)";
@@ -1719,7 +1719,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMhastOffshore() throws FactoryException {
+    public void testMhast_offshore() throws FactoryException {
         important     = true;
         code          = 6705;
         name          = "Mhast (offshore)";
@@ -1745,7 +1745,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMhastOnshore() throws FactoryException {
+    public void testMhast_onshore() throws FactoryException {
         important     = true;
         code          = 6704;
         name          = "Mhast (onshore)";
@@ -1849,7 +1849,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNorthAmericanDatum1927() throws FactoryException {
+    public void testNAD27() throws FactoryException {
         important     = true;
         code          = 6267;
         name          = "North American Datum 1927";
@@ -1875,7 +1875,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNAD27Michigan() throws FactoryException {
+    public void testNAD27_Michigan() throws FactoryException {
         important     = true;
         code          = 6268;
         name          = "NAD27 Michigan";
@@ -1901,7 +1901,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNorthAmericanDatum1983() throws FactoryException {
+    public void testNAD83() throws FactoryException {
         important     = true;
         code          = 6269;
         name          = "North American Datum 1983";
@@ -1927,7 +1927,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNAD83CanadianSpatialReferenceSystem() throws FactoryException {
+    public void testNAD83_CSRS() throws FactoryException {
         important     = true;
         code          = 6140;
         name          = "NAD83 Canadian Spatial Reference System";
@@ -1955,7 +1955,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNAD83HighAccuracyReferenceNetwork() throws FactoryException {
+    public void testNAD83_HARN() throws FactoryException {
         important     = true;
         code          = 6152;
         name          = "NAD83 (High Accuracy Reference Network)";
@@ -1983,7 +1983,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNAD83NationalSpatialReferenceSystem2007() throws FactoryException {
+    public void testNAD83_NSRS2007() throws FactoryException {
         important     = true;
         code          = 6759;
         name          = "NAD83 (National Spatial Reference System 2007)";
@@ -2063,7 +2063,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNordSahara1959() throws FactoryException {
+    public void testNordSahara() throws FactoryException {
         important     = true;
         code          = 6307;
         name          = "Nord Sahara 1959";
@@ -2089,7 +2089,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNouvelleTriangulationFrancaise() throws FactoryException {
+    public void testNTF() throws FactoryException {
         important     = true;
         code          = 6275;
         name          = "Nouvelle Triangulation Francaise";
@@ -2115,7 +2115,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNouvelleTriangulationFrancaiseParis() throws FactoryException {
+    public void testNTF_Paris() throws FactoryException {
         important     = true;
         code          = 6807;
         name          = "Nouvelle Triangulation Francaise (Paris)";
@@ -2141,7 +2141,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNewZealandGeodeticDatum2000() throws FactoryException {
+    public void testNZGD2000() throws FactoryException {
         important     = true;
         code          = 6167;
         name          = "New Zealand Geodetic Datum 2000";
@@ -2169,7 +2169,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNewZealandGeodeticDatum1949() throws FactoryException {
+    public void testNZGD49() throws FactoryException {
         important     = true;
         code          = 6272;
         name          = "New Zealand Geodetic Datum 1949";
@@ -2221,7 +2221,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPadang1884() throws FactoryException {
+    public void testPadang() throws FactoryException {
         important     = true;
         code          = 6280;
         name          = "Padang 1884";
@@ -2247,7 +2247,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPadang1884Jakarta() throws FactoryException {
+    public void testPadang_Jakarta() throws FactoryException {
         important     = true;
         code          = 6808;
         name          = "Padang 1884 (Jakarta)";
@@ -2273,7 +2273,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPDOSurveyDatum1993() throws FactoryException {
+    public void testPSD93() throws FactoryException {
         important     = true;
         code          = 6134;
         name          = "PDO Survey Datum 1993";
@@ -2299,7 +2299,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCongo1960PointeNoire() throws FactoryException {
+    public void testPointeNoire() throws FactoryException {
         important     = true;
         code          = 6282;
         name          = "Congo 1960 Pointe Noire";
@@ -2325,7 +2325,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPosicionesGeodesicasArgentinas1994() throws FactoryException {
+    public void testPOSGAR94() throws FactoryException {
         important     = true;
         code          = 6694;
         name          = "Posiciones Geodesicas Argentinas 1994";
@@ -2353,7 +2353,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPosicionesGeodesicasArgentinas1998() throws FactoryException {
+    public void testPOSGAR98() throws FactoryException {
         important     = true;
         code          = 6190;
         name          = "Posiciones Geodesicas Argentinas 1998";
@@ -2381,7 +2381,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPhilippineReferenceSystem1992() throws FactoryException {
+    public void testPRS92() throws FactoryException {
         important     = true;
         code          = 6683;
         name          = "Philippine Reference System 1992";
@@ -2409,7 +2409,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testProvisionalSouthAmericanDatum1956() throws FactoryException {
+    public void testPSAD56() throws FactoryException {
         important     = true;
         code          = 6248;
         name          = "Provisional South American Datum 1956";
@@ -2461,7 +2461,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPulkovo194258() throws FactoryException {
+    public void testPulkovo1942_58() throws FactoryException {
         important     = true;
         code          = 6179;
         name          = "Pulkovo 1942(58)";
@@ -2487,7 +2487,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPulkovo194283() throws FactoryException {
+    public void testPulkovo1942_83() throws FactoryException {
         important     = true;
         code          = 6178;
         name          = "Pulkovo 1942(83)";
@@ -2565,7 +2565,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testQatarNationalDatum1995() throws FactoryException {
+    public void testQatar1995() throws FactoryException {
         important     = true;
         code          = 6614;
         name          = "Qatar National Datum 1995";
@@ -2591,7 +2591,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testRedGeodesicaVenezolana() throws FactoryException {
+    public void testREGVEN() throws FactoryException {
         important     = true;
         code          = 6189;
         name          = "Red Geodesica Venezolana";
@@ -2619,7 +2619,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauGeodesiqueFrancais1993() throws FactoryException {
+    public void testRGF93() throws FactoryException {
         important     = true;
         code          = 6171;
         name          = "Reseau Geodesique Francais 1993";
@@ -2647,7 +2647,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSouthAmericanDatum1969() throws FactoryException {
+    public void testSAD69() throws FactoryException {
         important     = true;
         code          = 6618;
         name          = "South American Datum 1969";
@@ -2699,7 +2699,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSistemaDeReferenciaGeocentricoParaAmericaDelSur1995() throws FactoryException {
+    public void testSIRGAS1995() throws FactoryException {
         important     = true;
         code          = 6170;
         name          = "Sistema de Referencia Geocentrico para America del Sur 1995";
@@ -2727,7 +2727,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSistemaDeReferenciaGeocentricoParaLasAmericaS2000() throws FactoryException {
+    public void testSIRGAS2000() throws FactoryException {
         important     = true;
         code          = 6674;
         name          = "Sistema de Referencia Geocentrico para las AmericaS 2000";
@@ -2755,7 +2755,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTananarive1925() throws FactoryException {
+    public void testTananarive() throws FactoryException {
         important     = true;
         code          = 6297;
         name          = "Tananarive 1925";
@@ -2781,7 +2781,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTananarive1925Paris() throws FactoryException {
+    public void testTananarive_Paris() throws FactoryException {
         important     = true;
         code          = 6810;
         name          = "Tananarive 1925 (Paris)";
@@ -2807,7 +2807,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTrucialCoast1948() throws FactoryException {
+    public void testTrucialCoast() throws FactoryException {
         important     = true;
         code          = 6303;
         name          = "Trucial Coast 1948";
@@ -2833,7 +2833,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTimbalai1948() throws FactoryException {
+    public void testTimbalai() throws FactoryException {
         important     = true;
         code          = 6298;
         name          = "Timbalai 1948";
@@ -2859,7 +2859,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTrinidad1903() throws FactoryException {
+    public void testTrinidad() throws FactoryException {
         important     = true;
         code          = 6302;
         name          = "Trinidad 1903";
@@ -2911,7 +2911,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testVoirol1875Paris() throws FactoryException {
+    public void testVoirol1875_Paris() throws FactoryException {
         important     = true;
         code          = 6811;
         name          = "Voirol 1875 (Paris)";
@@ -2937,7 +2937,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testWorldGeodeticSystem1972() throws FactoryException {
+    public void testWGS72() throws FactoryException {
         important     = true;
         code          = 6322;
         name          = "World Geodetic System 1972";
@@ -2965,7 +2965,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testWGS72TransitBroadcastEphemeris() throws FactoryException {
+    public void testWGS72BE() throws FactoryException {
         important     = true;
         code          = 6324;
         name          = "WGS 72 Transit Broadcast Ephemeris";
@@ -2993,7 +2993,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testWorldGeodeticSystem1984() throws FactoryException {
+    public void testWGS84() throws FactoryException {
         important     = true;
         code          = 6326;
         name          = "World Geodetic System 1984";
@@ -3021,7 +3021,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testXian1980() throws FactoryException {
+    public void testXian() throws FactoryException {
         important     = true;
         code          = 6610;
         name          = "Xian 1980";
@@ -3047,7 +3047,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testYemenNationalGeodeticNetwork1996() throws FactoryException {
+    public void testYemen() throws FactoryException {
         important     = true;
         code          = 6163;
         name          = "Yemen National Geodetic Network 1996";
@@ -3145,7 +3145,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAlbanian1987() throws FactoryException {
+    public void testAlbanian() throws FactoryException {
         code          = 6191;
         name          = "Albanian 1987";
         crsName       = "Albanian 1987";
@@ -3169,7 +3169,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAmericanSamoa1962() throws FactoryException {
+    public void testAmericanSamoa() throws FactoryException {
         code          = 6169;
         name          = "American Samoa 1962";
         crsName       = "American Samoa 1962";
@@ -3193,7 +3193,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAmmassalik1958() throws FactoryException {
+    public void testAmmassalik() throws FactoryException {
         code          = 6196;
         name          = "Ammassalik 1958";
         crsName       = "Ammassalik 1958";
@@ -3217,7 +3217,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAnguilla1957() throws FactoryException {
+    public void testAnguilla() throws FactoryException {
         code          = 6600;
         name          = "Anguilla 1957";
         crsName       = "Anguilla 1957";
@@ -3241,7 +3241,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAntigua1943() throws FactoryException {
+    public void testAntigua() throws FactoryException {
         code          = 6601;
         name          = "Antigua 1943";
         crsName       = "Antigua 1943";
@@ -3313,7 +3313,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAscensionIsland1958() throws FactoryException {
+    public void testAscensionIsland() throws FactoryException {
         code          = 6712;
         name          = "Ascension Island 1958";
         crsName       = "Ascension Island 1958";
@@ -3337,7 +3337,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAncienneTriangulationFrancaiseParis() throws FactoryException {
+    public void testATF_Paris() throws FactoryException {
         code          = 6901;
         name          = "Ancienne Triangulation Francaise (Paris)";
         crsName       = "ATF (Paris)";
@@ -3361,7 +3361,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAverageTerrestrialSystem1977() throws FactoryException {
+    public void testATS77() throws FactoryException {
         code          = 6122;
         name          = "Average Terrestrial System 1977";
         crsName       = "ATS77";
@@ -3385,7 +3385,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAustralianAntarcticDatum1998() throws FactoryException {
+    public void testAustralianAntarctic() throws FactoryException {
         code          = 6176;
         name          = "Australian Antarctic Datum 1998";
         crsName       = "Australian Antarctic";
@@ -3433,7 +3433,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAzoresCentralIslands1948() throws FactoryException {
+    public void testAzoresCentral1948() throws FactoryException {
         code          = 6183;
         name          = "Azores Central Islands 1948";
         crsName       = "Azores Central 1948";
@@ -3457,7 +3457,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAzoresCentralIslands1995() throws FactoryException {
+    public void testAzoresCentral1995() throws FactoryException {
         code          = 6665;
         name          = "Azores Central Islands 1995";
         crsName       = "Azores Central 1995";
@@ -3481,7 +3481,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAzoresOccidentalIslands1939() throws FactoryException {
+    public void testAzoresOccidental1939() throws FactoryException {
         code          = 6182;
         name          = "Azores Occidental Islands 1939";
         crsName       = "Azores Occidental 1939";
@@ -3505,7 +3505,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAzoresOrientalIslands1940() throws FactoryException {
+    public void testAzoresOriental1940() throws FactoryException {
         code          = 6184;
         name          = "Azores Oriental Islands 1940";
         crsName       = "Azores Oriental 1940";
@@ -3529,7 +3529,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testAzoresOrientalIslands1995() throws FactoryException {
+    public void testAzoresOriental1995() throws FactoryException {
         code          = 6664;
         name          = "Azores Oriental Islands 1995";
         crsName       = "Azores Oriental 1995";
@@ -3553,7 +3553,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBarbados1938() throws FactoryException {
+    public void testBarbados() throws FactoryException {
         code          = 6212;
         name          = "Barbados 1938";
         crsName       = "Barbados 1938";
@@ -3577,7 +3577,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBermuda2000() throws FactoryException {
+    public void testBDA2000() throws FactoryException {
         code          = 6762;
         name          = "Bermuda 2000";
         crsName       = "BDA2000";
@@ -3625,7 +3625,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauNationalBelge1950() throws FactoryException {
+    public void testBelge1950() throws FactoryException {
         code          = 6215;
         name          = "Reseau National Belge 1950";
         crsName       = "Belge 1950";
@@ -3649,7 +3649,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauNationalBelge1950Brussels() throws FactoryException {
+    public void testBelge1950_Brussels() throws FactoryException {
         code          = 6809;
         name          = "Reseau National Belge 1950 (Brussels)";
         crsName       = "Belge 1950 (Brussels)";
@@ -3673,7 +3673,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauNationalBelge1972() throws FactoryException {
+    public void testBelge1972() throws FactoryException {
         code          = 6313;
         name          = "Reseau National Belge 1972";
         crsName       = "Belge 1972";
@@ -3721,7 +3721,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBermuda1957() throws FactoryException {
+    public void testBermuda() throws FactoryException {
         code          = 6216;
         name          = "Bermuda 1957";
         crsName       = "Bermuda 1957";
@@ -3745,7 +3745,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCH1903Bern() throws FactoryException {
+    public void testBern1898() throws FactoryException {
         code          = 6801;
         name          = "CH1903 (Bern)";
         crsName       = "Bern 1898 (Bern)";
@@ -3817,7 +3817,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testBogota1975Bogota() throws FactoryException {
+    public void testBogota_Bogota() throws FactoryException {
         code          = 6802;
         name          = "Bogota 1975 (Bogota)";
         crsName       = "Bogota 1975 (Bogota)";
@@ -3937,7 +3937,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCarthageParis() throws FactoryException {
+    public void testCarthage_Paris() throws FactoryException {
         code          = 6816;
         name          = "Carthage (Paris)";
         crsName       = "Carthage (Paris)";
@@ -4009,7 +4009,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testChathamIslandsDatum1971() throws FactoryException {
+    public void testChathamIslands1971() throws FactoryException {
         code          = 6672;
         name          = "Chatham Islands Datum 1971";
         crsName       = "Chatham Islands 1971";
@@ -4033,7 +4033,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testChathamIslandsDatum1979() throws FactoryException {
+    public void testChathamIslands1979() throws FactoryException {
         code          = 6673;
         name          = "Chatham Islands Datum 1979";
         crsName       = "Chatham Islands 1979";
@@ -4057,7 +4057,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSwissTerrestrialReferenceFrame1995() throws FactoryException {
+    public void testCHTRF95() throws FactoryException {
         code          = 6151;
         name          = "Swiss Terrestrial Reference Frame 1995";
         crsName       = "CHTRF95";
@@ -4105,7 +4105,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCocosIslands1965() throws FactoryException {
+    public void testCocosIslands() throws FactoryException {
         code          = 6708;
         name          = "Cocos Islands 1965";
         crsName       = "Cocos Islands 1965";
@@ -4129,7 +4129,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCombani1950() throws FactoryException {
+    public void testCombani() throws FactoryException {
         code          = 6632;
         name          = "Combani 1950";
         crsName       = "Combani 1950";
@@ -4153,7 +4153,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testConakry1905() throws FactoryException {
+    public void testConakry() throws FactoryException {
         code          = 6315;
         name          = "Conakry 1905";
         crsName       = "Conakry 1905";
@@ -4177,7 +4177,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCorregoAlegre197072() throws FactoryException {
+    public void testCorregoAlegre() throws FactoryException {
         code          = 6225;
         name          = "Corrego Alegre 1970-72";
         crsName       = "Corrego Alegre 1970-72";
@@ -4201,7 +4201,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCentreSpatialGuyanais1967() throws FactoryException {
+    public void testCSG67() throws FactoryException {
         code          = 6623;
         name          = "Centre Spatial Guyanais 1967";
         crsName       = "CSG67";
@@ -4225,7 +4225,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDabola1981() throws FactoryException {
+    public void testDabola() throws FactoryException {
         code          = 6155;
         name          = "Dabola 1981";
         crsName       = "Dabola 1981";
@@ -4297,7 +4297,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDiegoGarcia1969() throws FactoryException {
+    public void testDiegoGarcia() throws FactoryException {
         code          = 6724;
         name          = "Diego Garcia 1969";
         crsName       = "Diego Garcia 1969";
@@ -4321,7 +4321,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testDominica1945() throws FactoryException {
+    public void testDominica() throws FactoryException {
         code          = 6602;
         name          = "Dominica 1945";
         crsName       = "Dominica 1945";
@@ -4345,7 +4345,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEasterIsland1967() throws FactoryException {
+    public void testEasterIsland() throws FactoryException {
         code          = 6719;
         name          = "Easter Island 1967";
         crsName       = "Easter Island 1967";
@@ -4369,7 +4369,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEuropeanDatum1979() throws FactoryException {
+    public void testED79() throws FactoryException {
         code          = 6668;
         name          = "European Datum 1979";
         crsName       = "ED79";
@@ -4393,7 +4393,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEuropeanDatum1987() throws FactoryException {
+    public void testED87() throws FactoryException {
         code          = 6231;
         name          = "European Datum 1987";
         crsName       = "ED87";
@@ -4441,7 +4441,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEstonia1992() throws FactoryException {
+    public void testEST92() throws FactoryException {
         code          = 6133;
         name          = "Estonia 1992";
         crsName       = "EST92";
@@ -4465,7 +4465,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testEstonia1997() throws FactoryException {
+    public void testEST97() throws FactoryException {
         code          = 6180;
         name          = "Estonia 1997";
         crsName       = "EST97";
@@ -4489,7 +4489,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testFatuIva72() throws FactoryException {
+    public void testFatuIva() throws FactoryException {
         code          = 6688;
         name          = "Fatu Iva 72";
         crsName       = "Fatu Iva 72";
@@ -4513,7 +4513,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testFaroeDatum1954() throws FactoryException {
+    public void testFD54() throws FactoryException {
         code          = 6741;
         name          = "Faroe Datum 1954";
         crsName       = "FD54";
@@ -4561,7 +4561,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testFijiGeodeticDatum1986() throws FactoryException {
+    public void testFiji1986() throws FactoryException {
         code          = 6720;
         name          = "Fiji Geodetic Datum 1986";
         crsName       = "Fiji 1986";
@@ -4633,7 +4633,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGan1970() throws FactoryException {
+    public void testGan() throws FactoryException {
         code          = 6684;
         name          = "Gan 1970";
         crsName       = "Gan 1970";
@@ -4681,7 +4681,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGreekGeodeticReferenceSystem1987() throws FactoryException {
+    public void testGGRS87() throws FactoryException {
         code          = 6121;
         name          = "Greek Geodetic Reference System 1987";
         crsName       = "GGRS87";
@@ -4705,7 +4705,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGreenland1996() throws FactoryException {
+    public void testGR96() throws FactoryException {
         code          = 6747;
         name          = "Greenland 1996";
         crsName       = "GR96";
@@ -4729,7 +4729,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGrandCayman1959() throws FactoryException {
+    public void testGrandCayman() throws FactoryException {
         code          = 6723;
         name          = "Grand Cayman 1959";
         crsName       = "Grand Cayman 1959";
@@ -4801,7 +4801,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGreekAthens() throws FactoryException {
+    public void testGreek_Athens() throws FactoryException {
         code          = 6815;
         name          = "Greek (Athens)";
         crsName       = "Greek (Athens)";
@@ -4825,7 +4825,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGrenada1953() throws FactoryException {
+    public void testGrenada() throws FactoryException {
         code          = 6603;
         name          = "Grenada 1953";
         crsName       = "Grenada 1953";
@@ -4849,7 +4849,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGuadeloupe1948() throws FactoryException {
+    public void testGuadeloupe() throws FactoryException {
         code          = 6622;
         name          = "Guadeloupe 1948";
         crsName       = "Guadeloupe 1948";
@@ -4873,7 +4873,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGuam1963() throws FactoryException {
+    public void testGuam() throws FactoryException {
         code          = 6675;
         name          = "Guam 1963";
         crsName       = "Guam 1963";
@@ -4897,7 +4897,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGulshan303() throws FactoryException {
+    public void testGulshan() throws FactoryException {
         code          = 6682;
         name          = "Gulshan 303";
         crsName       = "Gulshan 303";
@@ -4921,7 +4921,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHanoi1972() throws FactoryException {
+    public void testHanoi() throws FactoryException {
         code          = 6147;
         name          = "Hanoi 1972";
         crsName       = "Hanoi 1972";
@@ -4945,7 +4945,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHartebeesthoek94() throws FactoryException {
+    public void testHartebeesthoek() throws FactoryException {
         code          = 6148;
         name          = "Hartebeesthoek94";
         crsName       = "Hartebeesthoek94";
@@ -4969,7 +4969,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHungarianDatum1909() throws FactoryException {
+    public void testHD1909() throws FactoryException {
         code          = 1024;
         name          = "Hungarian Datum 1909";
         crsName       = "HD1909";
@@ -4993,7 +4993,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHelle1954() throws FactoryException {
+    public void testHelle() throws FactoryException {
         code          = 6660;
         name          = "Helle 1954";
         crsName       = "Helle 1954";
@@ -5041,7 +5041,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHjorsey1955() throws FactoryException {
+    public void testHjorsey() throws FactoryException {
         code          = 6658;
         name          = "Hjorsey 1955";
         crsName       = "Hjorsey 1955";
@@ -5089,7 +5089,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHongKong196367() throws FactoryException {
+    public void testHongKong1963_67() throws FactoryException {
         code          = 6739;
         name          = "Hong Kong 1963(67)";
         crsName       = "Hong Kong 1963(67)";
@@ -5137,7 +5137,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testCroatianTerrestrialReferenceSystem() throws FactoryException {
+    public void testHTRS96() throws FactoryException {
         code          = 6761;
         name          = "Croatian Terrestrial Reference System";
         crsName       = "HTRS96";
@@ -5161,7 +5161,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testHuTzuShan1950() throws FactoryException {
+    public void testHuTzuShan() throws FactoryException {
         code          = 6236;
         name          = "Hu Tzu Shan 1950";
         crsName       = "Hu Tzu Shan 1950";
@@ -5185,7 +5185,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGC1962ArcOfThe6thParallelSouth() throws FactoryException {
+    public void testIGC1962() throws FactoryException {
         code          = 6697;
         name          = "IGC 1962 Arc of the 6th Parallel South";
         crsName       = "IGC 1962 6th Parallel South";
@@ -5209,7 +5209,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testInstitutGeographiqueDuCongoBelge1955() throws FactoryException {
+    public void testCongoBelge() throws FactoryException {
         code          = 6701;
         name          = "Institut Geographique du Congo Belge 1955";
         crsName       = "IGCB 1955";
@@ -5233,7 +5233,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIstitutoGeograficoMilitaire1995() throws FactoryException {
+    public void testIGM95() throws FactoryException {
         code          = 6670;
         name          = "Istituto Geografico Militaire 1995";
         crsName       = "IGM95";
@@ -5257,7 +5257,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGN1962Kerguelen() throws FactoryException {
+    public void testKerguelen() throws FactoryException {
         code          = 6698;
         name          = "IGN 1962 Kerguelen";
         crsName       = "IGN 1962 Kerguelen";
@@ -5281,7 +5281,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGN53Mare() throws FactoryException {
+    public void testMare() throws FactoryException {
         code          = 6641;
         name          = "IGN53 Mare";
         crsName       = "IGN53 Mare";
@@ -5305,7 +5305,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGN56Lifou() throws FactoryException {
+    public void testLifou() throws FactoryException {
         code          = 6633;
         name          = "IGN56 Lifou";
         crsName       = "IGN56 Lifou";
@@ -5329,7 +5329,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGN63HivaOa() throws FactoryException {
+    public void testHivaOa() throws FactoryException {
         code          = 6689;
         name          = "IGN63 Hiva Oa";
         crsName       = "IGN63 Hiva Oa";
@@ -5353,7 +5353,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGN72GrandeTerre() throws FactoryException {
+    public void testGrandeTerre() throws FactoryException {
         code          = 6634;
         name          = "IGN72 Grande Terre";
         crsName       = "IGN72 Grande Terre";
@@ -5377,7 +5377,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIGN72NukuHiva() throws FactoryException {
+    public void testNukuHiva() throws FactoryException {
         code          = 6630;
         name          = "IGN72 Nuku Hiva";
         crsName       = "IGN72 Nuku Hiva";
@@ -5401,7 +5401,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIraqKuwaitBoundaryDatum1992() throws FactoryException {
+    public void testIKBD92() throws FactoryException {
         code          = 6667;
         name          = "Iraq-Kuwait Boundary Datum 1992";
         crsName       = "IKBD-92";
@@ -5449,7 +5449,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIslandsNet1993() throws FactoryException {
+    public void testISN93() throws FactoryException {
         code          = 6659;
         name          = "Islands Net 1993";
         crsName       = "ISN93";
@@ -5497,7 +5497,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testIwoJima1945() throws FactoryException {
+    public void testIwoJima() throws FactoryException {
         code          = 6709;
         name          = "Iwo Jima 1945";
         crsName       = "Iwo Jima 1945";
@@ -5593,7 +5593,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testJapaneseGeodeticDatum2000() throws FactoryException {
+    public void testJGD2000() throws FactoryException {
         code          = 6612;
         name          = "Japanese Geodetic Datum 2000";
         crsName       = "JGD2000";
@@ -5617,7 +5617,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testJohnstonIsland1961() throws FactoryException {
+    public void testJohnstonIsland() throws FactoryException {
         code          = 6725;
         name          = "Johnston Island 1961";
         crsName       = "Johnston Island 1961";
@@ -5641,7 +5641,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testJouik1961() throws FactoryException {
+    public void testJouik() throws FactoryException {
         code          = 6679;
         name          = "Jouik 1961";
         crsName       = "Jouik 1961";
@@ -5665,7 +5665,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKalianpur1880() throws FactoryException {
+    public void testKalianpur() throws FactoryException {
         code          = 6243;
         name          = "Kalianpur 1880";
         crsName       = "Kalianpur 1880";
@@ -5713,7 +5713,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKarbala1979() throws FactoryException {
+    public void testKarbala() throws FactoryException {
         code          = 6743;
         name          = "Karbala 1979";
         crsName       = "Karbala 1979";
@@ -5737,7 +5737,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKasai1953() throws FactoryException {
+    public void testKasai() throws FactoryException {
         code          = 6696;
         name          = "Kasai 1953";
         crsName       = "Kasai 1953";
@@ -5761,7 +5761,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKatanga1955() throws FactoryException {
+    public void testKatanga() throws FactoryException {
         code          = 6695;
         name          = "Katanga 1955";
         crsName       = "Katanga 1955";
@@ -5785,7 +5785,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKertauRSO() throws FactoryException {
+    public void testKertau_RSO() throws FactoryException {
         code          = 6751;
         name          = "Kertau (RSO)";
         crsName       = "Kertau (RSO)";
@@ -5809,7 +5809,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKartastokoordinaattijarjestelma1966() throws FactoryException {
+    public void testKKJ() throws FactoryException {
         code          = 6123;
         name          = "Kartastokoordinaattijarjestelma (1966)";
         crsName       = "KKJ";
@@ -5833,7 +5833,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGeocentricDatumOfKorea() throws FactoryException {
+    public void testKorea2000() throws FactoryException {
         code          = 6737;
         name          = "Geocentric datum of Korea";
         crsName       = "Korea 2000";
@@ -5857,7 +5857,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKoreanDatum1985() throws FactoryException {
+    public void testKorea1985() throws FactoryException {
         code          = 6162;
         name          = "Korean Datum 1985";
         crsName       = "Korean 1985";
@@ -5881,7 +5881,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKoreanDatum1995() throws FactoryException {
+    public void testKorea1995() throws FactoryException {
         code          = 6166;
         name          = "Korean Datum 1995";
         crsName       = "Korean 1995";
@@ -5929,7 +5929,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKuwaitUtility() throws FactoryException {
+    public void testKUDAMS() throws FactoryException {
         code          = 6319;
         name          = "Kuwait Utility";
         crsName       = "KUDAMS";
@@ -5953,7 +5953,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testKusaie1951() throws FactoryException {
+    public void testKusaie() throws FactoryException {
         code          = 6735;
         name          = "Kusaie 1951";
         crsName       = "Kusaie 1951";
@@ -6049,7 +6049,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLaoNationalDatum1997() throws FactoryException {
+    public void testLao1997() throws FactoryException {
         code          = 6678;
         name          = "Lao National Datum 1997";
         crsName       = "Lao 1997";
@@ -6073,7 +6073,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLePouce1934() throws FactoryException {
+    public void testLePouce() throws FactoryException {
         code          = 6699;
         name          = "Le Pouce 1934";
         crsName       = "Le Pouce 1934";
@@ -6121,7 +6121,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLiberia1964() throws FactoryException {
+    public void testLiberia() throws FactoryException {
         code          = 6251;
         name          = "Liberia 1964";
         crsName       = "Liberia 1964";
@@ -6169,7 +6169,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLisbon1937Lisbon() throws FactoryException {
+    public void testLisbon1937_Lisbon() throws FactoryException {
         code          = 6803;
         name          = "Lisbon 1937 (Lisbon)";
         crsName       = "Lisbon (Lisbon)";
@@ -6217,7 +6217,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLisbon1890Lisbon() throws FactoryException {
+    public void testLisbon1890_Lisbon() throws FactoryException {
         code          = 6904;
         name          = "Lisbon 1890 (Lisbon)";
         crsName       = "Lisbon 1890 (Lisbon)";
@@ -6241,7 +6241,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLittleCayman1961() throws FactoryException {
+    public void testLittleCayman() throws FactoryException {
         code          = 6726;
         name          = "Little Cayman 1961";
         crsName       = "Little Cayman 1961";
@@ -6265,7 +6265,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLatvia1992() throws FactoryException {
+    public void testLKS92() throws FactoryException {
         code          = 6661;
         name          = "Latvia 1992";
         crsName       = "LKS92";
@@ -6289,7 +6289,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLithuania1994ETRS89() throws FactoryException {
+    public void testLKS94() throws FactoryException {
         code          = 6126;
         name          = "Lithuania 1994 (ETRS89)";
         crsName       = "LKS94";
@@ -6313,7 +6313,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLocodjo1965() throws FactoryException {
+    public void testLocodjo() throws FactoryException {
         code          = 6142;
         name          = "Locodjo 1965";
         crsName       = "Locodjo 1965";
@@ -6385,7 +6385,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testLuxembourg1930() throws FactoryException {
+    public void testLuxembourg() throws FactoryException {
         code          = 6181;
         name          = "Luxembourg 1930";
         crsName       = "Luxembourg 1930";
@@ -6409,7 +6409,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMadrid1870Madrid() throws FactoryException {
+    public void testMadrid() throws FactoryException {
         code          = 6903;
         name          = "Madrid 1870 (Madrid)";
         crsName       = "Madrid 1870 (Madrid)";
@@ -6457,7 +6457,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMahe1971() throws FactoryException {
+    public void testMahe() throws FactoryException {
         code          = 6256;
         name          = "Mahe 1971";
         crsName       = "Mahe 1971";
@@ -6505,7 +6505,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMakassarJakarta() throws FactoryException {
+    public void testMakassar_Jakarta() throws FactoryException {
         code          = 6804;
         name          = "Makassar (Jakarta)";
         crsName       = "Makassar (Jakarta)";
@@ -6529,7 +6529,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMarcusIsland1952() throws FactoryException {
+    public void testMarcusIsland() throws FactoryException {
         code          = 6711;
         name          = "Marcus Island 1952";
         crsName       = "Marcus Island 1952";
@@ -6553,7 +6553,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMarshallIslands1960() throws FactoryException {
+    public void testMarshallIslands() throws FactoryException {
         code          = 6732;
         name          = "Marshall Islands 1960";
         crsName       = "Marshall Islands 1960";
@@ -6577,7 +6577,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMartinique1938() throws FactoryException {
+    public void testMartinique() throws FactoryException {
         code          = 6625;
         name          = "Martinique 1938";
         crsName       = "Martinique 1938";
@@ -6625,7 +6625,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMaupiti83() throws FactoryException {
+    public void testMaupiti() throws FactoryException {
         code          = 6692;
         name          = "Maupiti 83";
         crsName       = "Maupiti 83";
@@ -6673,7 +6673,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMissaoHidrograficoAngolaYSaoTome1951() throws FactoryException {
+    public void testMhast() throws FactoryException {
         code          = 6703;
         name          = "Missao Hidrografico Angola y Sao Tome 1951";
         crsName       = "Mhast 1951";
@@ -6697,7 +6697,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMidway1961() throws FactoryException {
+    public void testMidway() throws FactoryException {
         code          = 6727;
         name          = "Midway 1961";
         crsName       = "Midway 1961";
@@ -6721,7 +6721,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMonteMarioRome() throws FactoryException {
+    public void testMonteMario_Rome() throws FactoryException {
         code          = 6806;
         name          = "Monte Mario (Rome)";
         crsName       = "Monte Mario (Rome)";
@@ -6745,7 +6745,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMontserrat1958() throws FactoryException {
+    public void testMontserrat() throws FactoryException {
         code          = 6604;
         name          = "Montserrat 1958";
         crsName       = "Montserrat 1958";
@@ -6769,7 +6769,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMoorea87() throws FactoryException {
+    public void testMoorea() throws FactoryException {
         code          = 6691;
         name          = "Moorea 87";
         crsName       = "Moorea 87";
@@ -6841,7 +6841,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testMoznetITRF94() throws FactoryException {
+    public void testMoznet() throws FactoryException {
         code          = 6130;
         name          = "Moznet (ITRF94)";
         crsName       = "Moznet";
@@ -6865,7 +6865,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNorthAmericanDatum19271976() throws FactoryException {
+    public void testNAD27_76() throws FactoryException {
         code          = 6608;
         name          = "North American Datum 1927 (1976)";
         crsName       = "NAD27(76)";
@@ -6889,7 +6889,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNorthAmericanDatum1927CGQ77() throws FactoryException {
+    public void testNAD27_CGQ77() throws FactoryException {
         code          = 6609;
         name          = "North American Datum 1927 (CGQ77)";
         crsName       = "NAD27(CGQ77)";
@@ -6986,7 +6986,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNEA74Noumea() throws FactoryException {
+    public void testNoumea() throws FactoryException {
         code          = 6644;
         name          = "NEA74 Noumea";
         crsName       = "NEA74 Noumea";
@@ -7010,7 +7010,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNationalGeodeticNetwork() throws FactoryException {
+    public void testNGN() throws FactoryException {
         code          = 6318;
         name          = "National Geodetic Network";
         crsName       = "NGN";
@@ -7058,7 +7058,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNGO1948Oslo() throws FactoryException {
+    public void testNGO1948_Oslo() throws FactoryException {
         code          = 6817;
         name          = "NGO 1948 (Oslo)";
         crsName       = "NGO 1948 (Oslo)";
@@ -7082,7 +7082,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testNouakchott1965() throws FactoryException {
+    public void testNouakchott() throws FactoryException {
         code          = 6680;
         name          = "Nouakchott 1965";
         crsName       = "Nouakchott 1965";
@@ -7178,7 +7178,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testOSSN1980() throws FactoryException {
+    public void testOS_SN_80() throws FactoryException {
         code          = 6279;
         name          = "OS (SN) 1980";
         crsName       = "OS(SN)80";
@@ -7202,7 +7202,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testOSGB1970SN() throws FactoryException {
+    public void testOSGB70() throws FactoryException {
         code          = 6278;
         name          = "OSGB 1970 (SN)";
         crsName       = "OSGB70";
@@ -7250,7 +7250,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPalestine1923() throws FactoryException {
+    public void testPalestine() throws FactoryException {
         code          = 6281;
         name          = "Palestine 1923";
         crsName       = "Palestine 1923";
@@ -7298,7 +7298,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPotsdamDatum83() throws FactoryException {
+    public void testPD83() throws FactoryException {
         code          = 6746;
         name          = "Potsdam Datum/83";
         crsName       = "PD/83";
@@ -7322,7 +7322,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPointeGeologiePerroud1950() throws FactoryException {
+    public void testPerroud() throws FactoryException {
         code          = 6637;
         name          = "Pointe Geologie Perroud 1950";
         crsName       = "Perroud 1950";
@@ -7346,7 +7346,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPetrels1972() throws FactoryException {
+    public void testPetrels() throws FactoryException {
         code          = 6636;
         name          = "Petrels 1972";
         crsName       = "Petrels 1972";
@@ -7370,7 +7370,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPhoenixIslands1966() throws FactoryException {
+    public void testPhoenixIslands() throws FactoryException {
         code          = 6716;
         name          = "Phoenix Islands 1966";
         crsName       = "Phoenix Islands 1966";
@@ -7394,7 +7394,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPicoDeLasNieves1984() throws FactoryException {
+    public void testPicoDeLasNieves() throws FactoryException {
         code          = 6728;
         name          = "Pico de las Nieves 1984";
         crsName       = "Pico de las Nieves 1984";
@@ -7490,7 +7490,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testPopularVisualisationDatum() throws FactoryException {
+    public void testPopularVisualisation() throws FactoryException {
         code          = 6055;
         name          = "Popular Visualisation Datum";
         crsName       = "Popular Visualisation CRS";
@@ -7610,7 +7610,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testParametropZemp1990() throws FactoryException {
+    public void testPZ90() throws FactoryException {
         code          = 6740;
         name          = "Parametrop Zemp 1990";
         crsName       = "PZ-90";
@@ -7634,7 +7634,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testQornoq1927() throws FactoryException {
+    public void testQornoq() throws FactoryException {
         code          = 6194;
         name          = "Qornoq 1927";
         crsName       = "Qornoq 1927";
@@ -7682,7 +7682,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testRauenbergDatum83() throws FactoryException {
+    public void testRD83() throws FactoryException {
         code          = 6745;
         name          = "Rauenberg Datum/83";
         crsName       = "RD/83";
@@ -7706,7 +7706,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReunion1947() throws FactoryException {
+    public void testReunion() throws FactoryException {
         code          = 6626;
         name          = "Reunion 1947";
         crsName       = "Reunion 1947";
@@ -7730,7 +7730,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReykjavik1900() throws FactoryException {
+    public void testReykjavik() throws FactoryException {
         code          = 6657;
         name          = "Reykjavik 1900";
         crsName       = "Reykjavik 1900";
@@ -7754,7 +7754,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauGeodesiqueFrancaisGuyane1995() throws FactoryException {
+    public void testRGFG95() throws FactoryException {
         code          = 6624;
         name          = "Reseau Geodesique Francais Guyane 1995";
         crsName       = "RGFG95";
@@ -7778,7 +7778,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauGeodesiqueDeNouvelleCaledonie9193() throws FactoryException {
+    public void testRGNC9193() throws FactoryException {
         code          = 6749;
         name          = "Reseau Geodesique de Nouvelle Caledonie 91-93";
         crsName       = "RGNC91-93";
@@ -7802,7 +7802,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauGeodesiqueDeLaPolynesieFrancaise() throws FactoryException {
+    public void testRGPF() throws FactoryException {
         code          = 6687;
         name          = "Reseau Geodesique de la Polynesie Francaise";
         crsName       = "RGPF";
@@ -7826,7 +7826,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauGeodesiqueDeLaReunion1992() throws FactoryException {
+    public void testRGR92() throws FactoryException {
         code          = 6627;
         name          = "Reseau Geodesique de la Reunion 1992";
         crsName       = "RGR92";
@@ -7850,7 +7850,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testReseauDeReferenceDesAntillesFrancaises1991() throws FactoryException {
+    public void testRRAF1991() throws FactoryException {
         code          = 6640;
         name          = "Reseau de Reference des Antilles Francaises 1991";
         crsName       = "RRAF 1991";
@@ -7874,7 +7874,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testRossSeaRegionGeodeticDatum2000() throws FactoryException {
+    public void testRSRGD2000() throws FactoryException {
         code          = 6764;
         name          = "Ross Sea Region Geodetic Datum 2000";
         crsName       = "RSRGD2000";
@@ -7898,7 +7898,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testStockholm1938() throws FactoryException {
+    public void testRT38() throws FactoryException {
         code          = 6308;
         name          = "Stockholm 1938";
         crsName       = "RT38";
@@ -7922,7 +7922,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testStockholm1938Stockholm() throws FactoryException {
+    public void testRT38_Stockholm() throws FactoryException {
         code          = 6814;
         name          = "Stockholm 1938 (Stockholm)";
         crsName       = "RT38 (Stockholm)";
@@ -7946,7 +7946,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testRiketsKoordinatsystem1990() throws FactoryException {
+    public void testRT90() throws FactoryException {
         code          = 6124;
         name          = "Rikets koordinatsystem 1990";
         crsName       = "RT90";
@@ -7970,7 +7970,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSaintPierreEtMiquelon1950() throws FactoryException {
+    public void testSaintPierreEtMiquelon() throws FactoryException {
         code          = 6638;
         name          = "Saint Pierre et Miquelon 1950";
         crsName       = "Saint Pierre et Miquelon 1950";
@@ -7994,7 +7994,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSanto1965() throws FactoryException {
+    public void testSanto() throws FactoryException {
         code          = 6730;
         name          = "Santo 1965";
         crsName       = "Santo 1965";
@@ -8018,7 +8018,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSapperHill1943() throws FactoryException {
+    public void testSapperHill() throws FactoryException {
         code          = 6292;
         name          = "Sapper Hill 1943";
         crsName       = "Sapper Hill 1943";
@@ -8042,7 +8042,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testScoresbysund1952() throws FactoryException {
+    public void testScoresbysund() throws FactoryException {
         code          = 6195;
         name          = "Scoresbysund 1952";
         crsName       = "Scoresbysund 1952";
@@ -8066,7 +8066,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGunungSegara() throws FactoryException {
+    public void testSegara() throws FactoryException {
         code          = 6613;
         name          = "Gunung Segara";
         crsName       = "Segara";
@@ -8090,7 +8090,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGunungSegaraJakarta() throws FactoryException {
+    public void testSegara_Jakarta() throws FactoryException {
         code          = 6820;
         name          = "Gunung Segara (Jakarta)";
         crsName       = "Segara (Jakarta)";
@@ -8162,7 +8162,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSierraLeoneColony1924() throws FactoryException {
+    public void testSierraLeone1924() throws FactoryException {
         code          = 6174;
         name          = "Sierra Leone Colony 1924";
         crsName       = "Sierra Leone 1924";
@@ -8210,7 +8210,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSystemJednotneTrigonometrickeSiteKatastralni() throws FactoryException {
+    public void testSJTSK() throws FactoryException {
         code          = 6156;
         name          = "System Jednotne Trigonometricke Site Katastralni";
         crsName       = "S-JTSK";
@@ -8234,7 +8234,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSystemJednotneTrigonometrickeSiteKatastralniFerro() throws FactoryException {
+    public void testSJTSK_Ferro() throws FactoryException {
         code          = 6818;
         name          = "System Jednotne Trigonometricke Site Katastralni (Ferro)";
         crsName       = "S-JTSK (Ferro)";
@@ -8258,7 +8258,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSloveniaGeodeticDatum1996() throws FactoryException {
+    public void testSlovenia() throws FactoryException {
         code          = 6765;
         name          = "Slovenia Geodetic Datum 1996";
         crsName       = "Slovenia 1996";
@@ -8282,7 +8282,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSolomon1968() throws FactoryException {
+    public void testSolomon() throws FactoryException {
         code          = 6718;
         name          = "Solomon 1968";
         crsName       = "Solomon 1968";
@@ -8306,7 +8306,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testSouthGeorgia1968() throws FactoryException {
+    public void testSouthGeorgia() throws FactoryException {
         code          = 6722;
         name          = "South Georgia 1968";
         crsName       = "South Georgia 1968";
@@ -8378,7 +8378,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testStHelena1971() throws FactoryException {
+    public void testStHelena() throws FactoryException {
         code          = 6710;
         name          = "St. Helena 1971";
         crsName       = "St. Helena 1971";
@@ -8402,7 +8402,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testStKitts1955() throws FactoryException {
+    public void testStKitts() throws FactoryException {
         code          = 6605;
         name          = "St. Kitts 1955";
         crsName       = "St. Kitts 1955";
@@ -8450,7 +8450,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testStLucia1955() throws FactoryException {
+    public void testStLucia() throws FactoryException {
         code          = 6606;
         name          = "St. Lucia 1955";
         crsName       = "St. Lucia 1955";
@@ -8498,7 +8498,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testStVincent1945() throws FactoryException {
+    public void testStVincent() throws FactoryException {
         code          = 6607;
         name          = "St. Vincent 1945";
         crsName       = "St. Vincent 1945";
@@ -8522,7 +8522,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testST71Belep() throws FactoryException {
+    public void testBelep() throws FactoryException {
         code          = 6643;
         name          = "ST71 Belep";
         crsName       = "ST71 Belep";
@@ -8546,7 +8546,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testST84IleDesPins() throws FactoryException {
+    public void testIleDesPins() throws FactoryException {
         code          = 6642;
         name          = "ST84 Ile des Pins";
         crsName       = "ST84 Ile des Pins";
@@ -8570,7 +8570,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testST87Ouvea() throws FactoryException {
+    public void testOuvea() throws FactoryException {
         code          = 6750;
         name          = "ST87 Ouvea";
         crsName       = "ST87 Ouvea";
@@ -8642,7 +8642,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTahaa54() throws FactoryException {
+    public void testTahaa() throws FactoryException {
         code          = 6629;
         name          = "Tahaa 54";
         crsName       = "Tahaa 54";
@@ -8714,7 +8714,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTernIsland1961() throws FactoryException {
+    public void testTernIsland() throws FactoryException {
         code          = 6707;
         name          = "Tern Island 1961";
         crsName       = "Tern Island 1961";
@@ -8786,7 +8786,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testGeodeticDatumOf1965() throws FactoryException {
+    public void testTM75() throws FactoryException {
         code          = 6300;
         name          = "Geodetic Datum of 1965";
         crsName       = "TM75";
@@ -8834,7 +8834,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTristan1968() throws FactoryException {
+    public void testTristan() throws FactoryException {
         code          = 6734;
         name          = "Tristan 1968";
         crsName       = "Tristan 1968";
@@ -8858,7 +8858,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTaiwanDatum1967() throws FactoryException {
+    public void testTWD67() throws FactoryException {
         code          = 1025;
         name          = "Taiwan Datum 1967";
         crsName       = "TWD67";
@@ -8882,7 +8882,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testTaiwanDatum1997() throws FactoryException {
+    public void testTWD97() throws FactoryException {
         code          = 1026;
         name          = "Taiwan Datum 1997";
         crsName       = "TWD97";
@@ -8906,7 +8906,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testVanuaLevu1915() throws FactoryException {
+    public void testVanuaLevu() throws FactoryException {
         code          = 6748;
         name          = "Vanua Levu 1915";
         crsName       = "Vanua Levu 1915";
@@ -8930,7 +8930,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testVientiane1982() throws FactoryException {
+    public void testVientiane() throws FactoryException {
         code          = 6676;
         name          = "Vientiane 1982";
         crsName       = "Vientiane 1982";
@@ -8954,7 +8954,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testVitiLevu1912() throws FactoryException {
+    public void testVitiLevu() throws FactoryException {
         code          = 6752;
         name          = "Viti Levu 1912";
         crsName       = "Viti Levu 1912";
@@ -8978,7 +8978,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testVietnam2000() throws FactoryException {
+    public void testVN2000() throws FactoryException {
         code          = 6756;
         name          = "Vietnam 2000";
         crsName       = "VN-2000";
@@ -9026,7 +9026,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testVoirol1879Paris() throws FactoryException {
+    public void testVoirol1879_Paris() throws FactoryException {
         code          = 6821;
         name          = "Voirol 1879 (Paris)";
         crsName       = "Voirol 1879 (Paris)";
@@ -9050,7 +9050,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testWakeIsland1952() throws FactoryException {
+    public void testWakeIsland() throws FactoryException {
         code          = 6733;
         name          = "Wake Island 1952";
         crsName       = "Wake Island 1952";
@@ -9074,7 +9074,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
      */
     @Test
-    public void testWorldGeodeticSystem1966() throws FactoryException {
+    public void testWGS66() throws FactoryException {
         code          = 6760;
         name          = "World Geodetic System 1966";
         crsName       = "WGS 66";

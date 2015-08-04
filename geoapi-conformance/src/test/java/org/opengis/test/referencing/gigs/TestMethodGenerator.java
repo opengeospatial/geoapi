@@ -169,7 +169,14 @@ public abstract class TestMethodGenerator {
                 }
                 out.print(c);
             } else {
-                toUpperCase = true;
+                if (c == '(' || c == ')') {
+                    if (i+1 < name.length()) {
+                        out.print('_');
+                        toUpperCase = false;
+                    }
+                } else {
+                    toUpperCase = true;
+                }
                 /*
                  * For name like “Clarke's foot”, skip also the "s" after the single quote.
                  * The result will be “ClarkeFoot”.
