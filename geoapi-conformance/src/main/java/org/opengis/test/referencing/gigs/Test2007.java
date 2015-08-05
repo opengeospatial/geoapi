@@ -117,7 +117,7 @@ public class Test2007 extends EPSGTestCase<Transformation> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param copFactory Factory for creating {@link CoordinateOperation} instances.
+     * @param copFactory Factory for creating {@link Transformation} instances.
      */
     public Test2007(final CoordinateOperationAuthorityFactory copFactory) {
         super(copFactory);
@@ -193,20 +193,22 @@ public class Test2007 extends EPSGTestCase<Transformation> {
         final StringBuilder prefix = new StringBuilder("Transformation[").append(code).append(']');
         assertNotNull(prefix.toString(), transformation);
 
-        prefix.append('.');
-        assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, transformation.getIdentifiers());
+        // Transformation identifier.
+        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
+                "EPSG", code, transformation.getIdentifiers());
 
+        // Transformation name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
             assertEquals(message(prefix, "getName()"), name, getName(transformation));
             configurationTip = null;
         }
-        /*
-         * Verify the operation method.
-         */
+
+        // Operation method.
         final OperationMethod m = transformation.getMethod();
-        prefix.append("getMethod()");
-        assertNotNull(prefix.toString(), m);
+        assertNotNull(prefix.append("getMethod()").toString(), m);
+
+        // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
             assertEquals(message(prefix, "getName()"), method, getName(m));

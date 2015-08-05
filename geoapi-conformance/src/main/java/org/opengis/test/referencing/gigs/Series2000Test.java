@@ -35,7 +35,6 @@ import java.util.List;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
-import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
@@ -43,11 +42,9 @@ import org.opengis.referencing.operation.*;
 import org.opengis.test.Configuration;
 import org.opengis.test.FactoryFilter;
 
-import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
 
 
@@ -157,83 +154,6 @@ public strictfp class Series2000Test extends EPSGTestCase {
         assertNull(op.put(Configuration.Key.datumAuthorityFactory,               datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.copAuthorityFactory,                 copAuthorityFactory));
         return op;
-    }
-
-    /**
-     * Verifies reference vertical transformations bundled with the geoscience software.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2009_libVertTfm.csv}.
-     *   Compare vertical transformation definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>Transformation definitions bundled with the software should have same name, method name, defining
-     *   parameters and parameter values as in EPSG Dataset. See current version of the EPSG Dataset. The
-     *   values of the parameters should be correct to at least 10 significant figures. Transformations missing
-     *   from the software or included in the software additional to those in the EPSG Dataset or at variance
-     *   with those in the EPSG Dataset should be reported.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
-     *         unsupported identifier}) occurred while creating a vertical transformation from an EPSG code.
-     */
-    @Test
-    public void test2009() throws FactoryException {
-        assumeNotNull(copAuthorityFactory);
-        final ExpectedData data = new ExpectedData("GIGS_2009_libVertTfm.csv",
-                Integer.class, // [0]: EPSG Coordinate Operation Code
-                Boolean.class, // [1]: Particularly important to E&P industry?
-                String.class,  // [2]: Transformation Name(s)
-                String.class,  // [3]: Coordinate operation method
-                String.class); // [4]: Remarks
-
-        final StringBuilder prefix = new StringBuilder("Vertical Transformation[");
-        final int prefixLength = prefix.length();
-        while (data.next()) {
-            important = data.getBoolean(1);
-            final int code = data.getInt(0);
-            final String name = data.getString(2);
-            final String method = data.getString(3);
-            // Try to get vertical datum.
-            final CoordinateOperation operation;
-            try {
-                operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
-            } catch (NoSuchIdentifierException e) {
-                unsupportedCode(CoordinateOperation.class, code);
-                continue;
-            }
-            // Test it.
-            validators.validate(operation);
-            prefix.setLength(prefixLength);
-            prefix.append(code).append(']');
-            assertNotNull(prefix.toString(), operation);
-            prefix.append('.');
-            // Test of the Identifiers.
-            assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, operation.getIdentifiers());
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), name, getName(operation));
-                configurationTip = null;
-            }
-            /*
-             * Test method. We have to cast our operation to subclass because
-             * the super type does not define access to Operation method.
-             */
-            assertInstanceOf(message(prefix, "getMethod()"), SingleOperation.class, operation);
-            final OperationMethod methodForTests = ((SingleOperation) operation).getMethod();
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getMethod().getName()"), method, getName(methodForTests));
-                configurationTip = null;
-            }
-        }
     }
 
     @Override
