@@ -33,10 +33,10 @@ package org.opengis.test.referencing.gigs;
 
 import java.util.List;
 
-import org.opengis.referencing.operation.Conversion;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.test.Configuration;
@@ -77,22 +77,22 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class Test2005 extends EPSGTestCase<CoordinateOperation> {
+public class Test2005 extends EPSGTestCase<Conversion> {
     /**
      * The name of the expected operation method.
      */
     public String method;
 
     /**
-     * The coordinate operation created by the factory,
-     * or {@code null} if not yet created or if the coordinate operation creation failed.
+     * The coordinate conversion created by the factory,
+     * or {@code null} if not yet created or if the conversion creation failed.
      *
      * @see #copAuthorityFactory
      */
-    private CoordinateOperation operation;
+    private Conversion conversion;
 
     /**
-     * Factory to use for building {@link CoordinateOperation} instances, or {@code null} if none.
+     * Factory to use for building {@link Conversion} instances, or {@code null} if none.
      * This is the factory used by the {@link #getIdentifiedObject()} method.
      */
     protected final CoordinateOperationAuthorityFactory copAuthorityFactory;
@@ -157,11 +157,13 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
      * @throws FactoryException if an error occurred while creating the coordinate operation instance.
      */
     @Override
-    public CoordinateOperation getIdentifiedObject() throws FactoryException {
-        if (operation == null) {
+    public Conversion getIdentifiedObject() throws FactoryException {
+        if (conversion == null) {
             assumeNotNull(copAuthorityFactory);
+            final String codeAsString = String.valueOf(code);
+            final CoordinateOperation operation;
             try {
-                operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
+                operation = copAuthorityFactory.createCoordinateOperation(codeAsString);
             } catch (NoSuchIdentifierException e) {
                 /*
                  * Relaxed the exception type from NoSuchAuthorityCodeException because CoordinateOperation creation
@@ -174,16 +176,18 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
             if (operation == null) {
                 fail("CoordinateOperationAuthorityFactory.createCoordinateOperation(\"" + code + "\") shall not return null.");
             }
+            assertInstanceOf(codeAsString, Conversion.class, operation);
+            conversion = (Conversion) operation;
         }
-        return operation;
+        return conversion;
     }
 
     /**
-     * Creates a coordinate operation for the given {@code code}, then verifies its name and properties.
+     * Creates a coordinate conversion for the given {@code code}, then verifies its name and properties.
      */
-    private void createAndVerifyCoordinateOperation(final int code) throws FactoryException {
+    private void createAndVerifyProjection(final int code) throws FactoryException {
         this.code = code;
-        operation = null; // For forcing the fetch of a new operation.
+        conversion = null; // For forcing the fetch of a new operation.
         final CoordinateOperation operation = getIdentifiedObject();
         validators.validate(operation);
 
@@ -222,10 +226,10 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "UTM";
         method    = "Transverse Mercator";
         for (int code = 16001; code <= 16060; code++) {    // Loop over 60 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 16101; code <= 16160; code++) {    // Loop over 60 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -249,7 +253,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "6-degree Gauss-Kruger";
         method    = "Transverse Mercator";
         for (int code = 16201; code <= 16260; code++) {    // Loop over 60 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -273,7 +277,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "6-degree Gauss-Kruger";
         method    = "Transverse Mercator";
         for (int code = 16301; code <= 16360; code++) {    // Loop over 60 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -297,14 +301,14 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "3-degree Gauss-Kruger";
         method    = "Transverse Mercator";
         for (int code = 16261; code <= 16299; code++) {    // Loop over 39 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 16070; code <= 16089; code++) {    // Loop over 20 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
-        createAndVerifyCoordinateOperation(16099);
+        createAndVerifyProjection(16099);
         for (int code = 16091; code <= 16094; code++) {    // Loop over 4 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -328,10 +332,10 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "3-degree Gauss-Kruger";
         method    = "Transverse Mercator";
         for (int code = 16362; code <= 16398; code += 2) {    // Loop over 19 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 16170; code <= 16194; code += 2) {    // Loop over 13 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -352,7 +356,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Aramco Lambert";
         method    = "Lambert Conic Conformal (2SP)";
-        createAndVerifyCoordinateOperation(19977);
+        createAndVerifyProjection(19977);
     }
 
     /**
@@ -373,7 +377,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "Argentina zones";
         method    = "Transverse Mercator";
         for (int code = 18031; code <= 18037; code++) {    // Loop over 7 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -396,7 +400,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "Australian Map Grid zones";
         method    = "Transverse Mercator";
         for (int code = 17448; code <= 17458; code++) {    // Loop over 11 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -419,7 +423,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "BLM zones";
         method    = "Transverse Mercator";
         for (int code = 15914; code <= 15917; code++) {    // Loop over 4 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -440,7 +444,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "British National Grid";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(19916);
+        createAndVerifyProjection(19916);
     }
 
     /**
@@ -460,7 +464,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Brazil Polyconic";
         method    = "American Polyconic";
-        createAndVerifyCoordinateOperation(19941);
+        createAndVerifyProjection(19941);
     }
 
     /**
@@ -482,7 +486,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "Colombia zones";
         method    = "Transverse Mercator";
         for (int code = 18051; code <= 18059; code++) {    // Loop over 9 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -504,7 +508,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "Egypt belts";
         method    = "Transverse Mercator";
         for (int code = 18071; code <= 18074; code++) {    // Loop over 4 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -525,7 +529,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "EOV";
         method    = "Hotine Oblique Mercator (variant B)";
-        createAndVerifyCoordinateOperation(19931);
+        createAndVerifyProjection(19931);
     }
 
     /**
@@ -546,9 +550,9 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "France mainland zones";
         method    = "Lambert Conic Conformal (1SP)";
-        createAndVerifyCoordinateOperation(18081);
-        createAndVerifyCoordinateOperation(18082);
-        createAndVerifyCoordinateOperation(18083);
+        createAndVerifyProjection(18081);
+        createAndVerifyProjection(18082);
+        createAndVerifyProjection(18083);
     }
 
     /**
@@ -569,7 +573,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Lambert-93";
         method    = "Lambert Conic Conformal (2SP)";
-        createAndVerifyCoordinateOperation(18085);
+        createAndVerifyProjection(18085);
     }
 
     /**
@@ -589,7 +593,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Ghana National Grid";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(19959);
+        createAndVerifyProjection(19959);
     }
 
     /**
@@ -611,7 +615,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "India zones";
         method    = "Lambert Conic Conformal (1SP)";
         for (int code = 18231; code <= 18238; code++) {    // Loop over 8 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -632,7 +636,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Iraq zone";
         method    = "Lambert Conic Conformal (1SP)";
-        createAndVerifyCoordinateOperation(19906);
+        createAndVerifyProjection(19906);
     }
 
     /**
@@ -652,8 +656,8 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Italy zones";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(18121);
-        createAndVerifyCoordinateOperation(18122);
+        createAndVerifyProjection(18121);
+        createAndVerifyProjection(18122);
     }
 
     /**
@@ -673,8 +677,8 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Laborde";
         method    = "Hotine Oblique Mercator (variant B)";
-        createAndVerifyCoordinateOperation(19911);
-        createAndVerifyCoordinateOperation(19861);
+        createAndVerifyProjection(19911);
+        createAndVerifyProjection(19861);
     }
 
     /**
@@ -694,7 +698,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Levant zone";
         method    = "Lambert Conic Near Conformal";
-        createAndVerifyCoordinateOperation(19940);
+        createAndVerifyProjection(19940);
     }
 
     /**
@@ -716,10 +720,10 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "Libya zones";
         method    = "Transverse Mercator";
         for (int code = 18240; code <= 18248; code++) {    // Loop over 9 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 18310; code <= 18319; code++) {    // Loop over 10 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -740,7 +744,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "SW Africa Survey Grid";
         method    = "Transverse Mercator (South Orientated)";
-        createAndVerifyCoordinateOperation(17611);
+        createAndVerifyProjection(17611);
     }
 
     /**
@@ -760,7 +764,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "NEIEZ";
         method    = "Mercator (variant A)";
-        createAndVerifyCoordinateOperation(19905);
+        createAndVerifyProjection(19905);
     }
 
     /**
@@ -780,9 +784,9 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Nigeria belts";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(18151);
-        createAndVerifyCoordinateOperation(18152);
-        createAndVerifyCoordinateOperation(18153);
+        createAndVerifyProjection(18151);
+        createAndVerifyProjection(18152);
+        createAndVerifyProjection(18153);
     }
 
     /**
@@ -802,9 +806,9 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "NZ TM zones";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(18141);
-        createAndVerifyCoordinateOperation(18142);
-        createAndVerifyCoordinateOperation(19971);
+        createAndVerifyProjection(18141);
+        createAndVerifyProjection(18142);
+        createAndVerifyProjection(19971);
     }
 
     /**
@@ -824,7 +828,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "NZMG";
         method    = "New Zealand Map Grid";
-        createAndVerifyCoordinateOperation(19917);
+        createAndVerifyProjection(19917);
     }
 
     /**
@@ -844,9 +848,9 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Peru zones";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(18161);
-        createAndVerifyCoordinateOperation(18162);
-        createAndVerifyCoordinateOperation(18163);
+        createAndVerifyProjection(18161);
+        createAndVerifyProjection(18162);
+        createAndVerifyProjection(18163);
     }
 
     /**
@@ -867,7 +871,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "Philippine zones";
         method    = "Transverse Mercator";
         for (int code = 18171; code <= 18175; code++) {    // Loop over 5 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -888,7 +892,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Qatar Grid";
         method    = "Cassini-Soldner";
-        createAndVerifyCoordinateOperation(19953);
+        createAndVerifyProjection(19953);
     }
 
     /**
@@ -908,7 +912,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Qatar National Grid";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(19919);
+        createAndVerifyProjection(19919);
     }
 
     /**
@@ -928,7 +932,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "RD New";
         method    = "Oblique Stereographic";
-        createAndVerifyCoordinateOperation(19914);
+        createAndVerifyProjection(19914);
     }
 
     /**
@@ -948,9 +952,9 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Malaysia RSO grids";
         method    = "Hotine Oblique Mercator (variant B)";
-        createAndVerifyCoordinateOperation(19956);
-        createAndVerifyCoordinateOperation(19957);
-        createAndVerifyCoordinateOperation(19958);
+        createAndVerifyProjection(19956);
+        createAndVerifyProjection(19957);
+        createAndVerifyProjection(19958);
     }
 
     /**
@@ -970,10 +974,10 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Malaysia RSO grids";
         method    = "Hotine Oblique Mercator (variant A)";
-        createAndVerifyCoordinateOperation(19871);
-        createAndVerifyCoordinateOperation(19872);
-        createAndVerifyCoordinateOperation(19894);
-        createAndVerifyCoordinateOperation(19895);
+        createAndVerifyProjection(19871);
+        createAndVerifyProjection(19872);
+        createAndVerifyProjection(19894);
+        createAndVerifyProjection(19895);
     }
 
     /**
@@ -997,17 +1001,17 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         name      = "US State Plane zones";
         method    = "Transverse Mercator";
         for (int code = 15002; code <= 15009; code++) {    // Loop over 8 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 15032; code <= 15039; code++) {    // Loop over 8 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
-        createAndVerifyCoordinateOperation(13001);
-        createAndVerifyCoordinateOperation(13031);
-        createAndVerifyCoordinateOperation(15339);
-        createAndVerifyCoordinateOperation(14903);
-        createAndVerifyCoordinateOperation(14933);
-        createAndVerifyCoordinateOperation(14937);
+        createAndVerifyProjection(13001);
+        createAndVerifyProjection(13031);
+        createAndVerifyProjection(15339);
+        createAndVerifyProjection(14903);
+        createAndVerifyProjection(14933);
+        createAndVerifyProjection(14937);
     }
 
     /**
@@ -1030,42 +1034,42 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "US State Plane zones";
         method    = "Lambert Conic Conformal (2SP)";
-        createAndVerifyCoordinateOperation(10404);
-        createAndVerifyCoordinateOperation(10405);
-        createAndVerifyCoordinateOperation(10406);
-        createAndVerifyCoordinateOperation(10408);
-        createAndVerifyCoordinateOperation(10434);
-        createAndVerifyCoordinateOperation(10435);
-        createAndVerifyCoordinateOperation(10436);
-        createAndVerifyCoordinateOperation(15310);
-        createAndVerifyCoordinateOperation(15311);
-        createAndVerifyCoordinateOperation(15312);
-        createAndVerifyCoordinateOperation(11701);
-        createAndVerifyCoordinateOperation(11702);
-        createAndVerifyCoordinateOperation(11731);
-        createAndVerifyCoordinateOperation(11732);
-        createAndVerifyCoordinateOperation(15391);
-        createAndVerifyCoordinateOperation(15392);
-        createAndVerifyCoordinateOperation(12112);
-        createAndVerifyCoordinateOperation(12113);
-        createAndVerifyCoordinateOperation(12142);
-        createAndVerifyCoordinateOperation(12143);
-        createAndVerifyCoordinateOperation(15334);
-        createAndVerifyCoordinateOperation(15335);
-        createAndVerifyCoordinateOperation(13501);
-        createAndVerifyCoordinateOperation(13502);
-        createAndVerifyCoordinateOperation(13531);
-        createAndVerifyCoordinateOperation(13532);
-        createAndVerifyCoordinateOperation(15349);
-        createAndVerifyCoordinateOperation(15350);
+        createAndVerifyProjection(10404);
+        createAndVerifyProjection(10405);
+        createAndVerifyProjection(10406);
+        createAndVerifyProjection(10408);
+        createAndVerifyProjection(10434);
+        createAndVerifyProjection(10435);
+        createAndVerifyProjection(10436);
+        createAndVerifyProjection(15310);
+        createAndVerifyProjection(15311);
+        createAndVerifyProjection(15312);
+        createAndVerifyProjection(11701);
+        createAndVerifyProjection(11702);
+        createAndVerifyProjection(11731);
+        createAndVerifyProjection(11732);
+        createAndVerifyProjection(15391);
+        createAndVerifyProjection(15392);
+        createAndVerifyProjection(12112);
+        createAndVerifyProjection(12113);
+        createAndVerifyProjection(12142);
+        createAndVerifyProjection(12143);
+        createAndVerifyProjection(15334);
+        createAndVerifyProjection(15335);
+        createAndVerifyProjection(13501);
+        createAndVerifyProjection(13502);
+        createAndVerifyProjection(13531);
+        createAndVerifyProjection(13532);
+        createAndVerifyProjection(15349);
+        createAndVerifyProjection(15350);
         for (int code = 14201; code <= 14205; code++) {    // Loop over 5 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 14231; code <= 14235; code++) {    // Loop over 5 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
         for (int code = 15357; code <= 15361; code++) {    // Loop over 5 codes
-            createAndVerifyCoordinateOperation(code);
+            createAndVerifyProjection(code);
         }
     }
 
@@ -1086,7 +1090,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Stereo33";
         method    = "Oblique Stereographic";
-        createAndVerifyCoordinateOperation(19927);
+        createAndVerifyProjection(19927);
     }
 
     /**
@@ -1106,7 +1110,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Stereo70";
         method    = "Oblique Stereographic";
-        createAndVerifyCoordinateOperation(19926);
+        createAndVerifyProjection(19926);
     }
 
     /**
@@ -1126,7 +1130,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Syria Lambert";
         method    = "Lambert Conic Conformal (1SP)";
-        createAndVerifyCoordinateOperation(19948);
+        createAndVerifyProjection(19948);
     }
 
     /**
@@ -1146,7 +1150,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 0 N";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(16400);
+        createAndVerifyProjection(16400);
     }
 
     /**
@@ -1166,7 +1170,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 1 NW";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(17001);
+        createAndVerifyProjection(17001);
     }
 
     /**
@@ -1186,7 +1190,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 109 SE";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(16709);
+        createAndVerifyProjection(16709);
     }
 
     /**
@@ -1206,7 +1210,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 11.30 SE";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(16611);
+        createAndVerifyProjection(16611);
     }
 
     /**
@@ -1226,7 +1230,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 12 SE";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(16612);
+        createAndVerifyProjection(16612);
     }
 
     /**
@@ -1246,7 +1250,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 5 NE";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(16405);
+        createAndVerifyProjection(16405);
     }
 
     /**
@@ -1266,7 +1270,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "TM 5 NW";
         method    = "Transverse Mercator";
-        createAndVerifyCoordinateOperation(17005);
+        createAndVerifyProjection(17005);
     }
 
     /**
@@ -1286,8 +1290,8 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Trinidad grid";
         method    = "Cassini-Soldner";
-        createAndVerifyCoordinateOperation(19925);
-        createAndVerifyCoordinateOperation(19975);
+        createAndVerifyProjection(19925);
+        createAndVerifyProjection(19975);
     }
 
     /**
@@ -1307,8 +1311,8 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Tunisia zones";
         method    = "Lambert Conic Conformal (1SP)";
-        createAndVerifyCoordinateOperation(18181);
-        createAndVerifyCoordinateOperation(18182);
+        createAndVerifyProjection(18181);
+        createAndVerifyProjection(18182);
     }
 
     /**
@@ -1329,7 +1333,7 @@ public class Test2005 extends EPSGTestCase<CoordinateOperation> {
         important = true;
         name      = "Voirol Unifie";
         method    = "Lambert Conic Conformal (1SP)";
-        createAndVerifyCoordinateOperation(18021);
-        createAndVerifyCoordinateOperation(18022);
+        createAndVerifyProjection(18021);
+        createAndVerifyProjection(18022);
     }
 }

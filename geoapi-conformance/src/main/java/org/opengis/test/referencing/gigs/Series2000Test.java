@@ -161,66 +161,6 @@ public strictfp class Series2000Test extends EPSGTestCase {
     }
 
     /**
-     * Verifies reference coordinate transformations bundled with the geoscience software.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2007_libGeodTfm.csv}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>Transformation definitions bundled with the software should have the same name, method
-     *   name, defining parameters and parameter values as in EPSG Dataset. The values of the parameters
-     *   should be correct to at least 10 significant figures. Transformations missing from the software
-     *   or included in the software additional to those in the EPSG Dataset or at variance with those
-     *   in the EPSG Dataset should be reported.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
-     *         unsupported identifier}) occurred while creating an operation from an EPSG code.
-     */
-    @Test
-    public void test2007() throws FactoryException {
-        assumeNotNull(copAuthorityFactory);
-        final ExpectedData data = new ExpectedData("GIGS_2007_libGeodTfm.csv",
-            Integer.class,  // [0]: EPSG Coordinate Operation Code
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: Transformation Name(s)
-            String .class,  // [4]: Coordinate Operation Method
-            String .class); // [5]: Remarks
-
-        final StringBuilder prefix = new StringBuilder("CoordinateOperation[");
-        final int prefixLength = prefix.length();
-        while (data.next()) {
-            important = data.getBoolean(1);
-            final int code = data.getInt(0);
-            final CoordinateOperation operation;
-            try {
-                operation = copAuthorityFactory.createCoordinateOperation(String.valueOf(code));
-            } catch (NoSuchIdentifierException e) { // See comment in test2005()
-                unsupportedCode(CoordinateOperation.class, code);
-                continue;
-            }
-            validators.validate(operation);
-            prefix.setLength(prefixLength);
-            prefix.append(code).append(']');
-            assertNotNull(prefix.toString(), operation);
-            prefix.append('.');
-            assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, operation.getIdentifiers());
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), data.getString(2), getName(operation));
-                configurationTip = null;
-            }
-        }
-    }
-
-    /**
      * Verifies reference vertical datums and CRSs bundled with the geoscience software.
      *
      * <table cellpadding="3" summary="Test description"><tr>

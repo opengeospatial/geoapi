@@ -33,7 +33,7 @@ package org.opengis.test.referencing.gigs;
 
 
 /**
- * Code generator for {@link Test2005}. This generator needs to be executed only if the GIGS data changed.
+ * Code generator for {@link Test2006}. This generator needs to be executed only if the GIGS data changed.
  * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the
  * test class, but be aware that the original code may contain manual changes that need to be preserved.
  *
