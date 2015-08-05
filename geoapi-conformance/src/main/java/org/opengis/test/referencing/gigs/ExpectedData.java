@@ -77,13 +77,10 @@ final class ExpectedData {
     /**
      * The character used for quoting strings. The column separator
      * can be used as an ordinary character inside the quoted string.
+     *
+     * Quotes that need to be escaped shall be doubled.
      */
     private static final char QUOTE = '"';
-
-    /**
-     * Escape character for escaping quotes.
-     */
-    private static final char ESCAPE = '\\';
 
     /**
      * The expected data.
@@ -139,9 +136,16 @@ final class ExpectedData {
             // the closing quote before to search for the column separator.
             int skip=0, end=0;
             if (line.charAt(0) == QUOTE) {
-                do if ((end = line.indexOf(QUOTE, end+1)) < 0) {
-                    throw new DataException("Unbalanced quote.");
-                } while (line.charAt(end-1) == ESCAPE);
+                while (true) {
+                    if ((end = line.indexOf(QUOTE, end+1)) < 0) {
+                        throw new DataException("Unbalanced quote.");
+                    }
+                    if (end+1 >= line.length() || line.charAt(end+1) != QUOTE) {
+                        break;
+                    }
+                    // If we reach this point, the quote has been escaped.
+                    line = line.substring(0, end) + line.substring(end+1);
+                }
                 skip = 1; // Skip the quotes.
             }
             end = line.indexOf(COLUMN_SEPARATOR, end);
@@ -150,7 +154,7 @@ final class ExpectedData {
             }
             String part = line.substring(0, end).trim();
             if (skip != 0) {
-                part = line.substring(skip, part.length()-skip).trim();
+                part = line.substring(skip, part.length() - skip).trim();
             }
             if (!part.isEmpty()) {
                 final Class<?> type = columnTypes[i];
