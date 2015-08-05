@@ -79,7 +79,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class Test2003 extends EPSGTestCase<PrimeMeridian> {
+public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
     /**
      * The expected Greenwich longitude in decimal degrees.
      */
@@ -106,7 +106,7 @@ public class Test2003 extends EPSGTestCase<PrimeMeridian> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Test2003} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS2003} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -120,7 +120,7 @@ public class Test2003 extends EPSGTestCase<PrimeMeridian> {
      *
      * @param datumFactory Factory for creating {@link PrimeMeridian} instances.
      */
-    public Test2003(final DatumAuthorityFactory datumFactory) {
+    public GIGS2003(final DatumAuthorityFactory datumFactory) {
         super(datumFactory);
         datumAuthorityFactory = datumFactory;
     }

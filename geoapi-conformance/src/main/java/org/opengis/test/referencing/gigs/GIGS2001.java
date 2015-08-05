@@ -82,7 +82,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class Test2001 extends EPSGTestCase<Unit<?>> {
+public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
     /**
      * Amount of {@linkplain #baseUnit base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.
@@ -124,7 +124,7 @@ public strictfp class Test2001 extends EPSGTestCase<Unit<?>> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Test2001} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS2001} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -138,7 +138,7 @@ public strictfp class Test2001 extends EPSGTestCase<Unit<?>> {
      *
      * @param csFactory Factory for creating {@link Unit} instances.
      */
-    public Test2001(final CSAuthorityFactory csFactory) {
+    public GIGS2001(final CSAuthorityFactory csFactory) {
         super(csFactory);
         csAuthorityFactory = csFactory;
     }

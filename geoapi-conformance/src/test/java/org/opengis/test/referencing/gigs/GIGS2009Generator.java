@@ -33,7 +33,7 @@ package org.opengis.test.referencing.gigs;
 
 
 /**
- * Code generator for {@link Test2008}. This generator needs to be executed only if the GIGS data changed.
+ * Code generator for {@link GIGS2009}. This generator needs to be executed only if the GIGS data changed.
  * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the
  * test class, but be aware that the original code may contain manual changes that need to be preserved.
  *
@@ -41,52 +41,49 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class Test2008Generator extends TestMethodGenerator {
+public class GIGS2009Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
      */
     public static void main(String[] args) {
-        new Test2008Generator().run();
+        new GIGS2009Generator().run();
     }
 
     /**
      * Generates the code.
      */
     private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2008_libVerticalDatumCRS.csv",
-                Integer.class,      // [0]: EPSG Datum Code
-                String.class,       // [1]: Datum name
-                Integer.class,      // [2]: EPSG CRS code
-                String.class,       // [3]: CRS name
-                Boolean.class);     // [4]: Particularly important to E&P industry?
+        final ExpectedData data = new ExpectedData("GIGS_2009_libVertTfm.csv",
+            Integer.class, // [0]: EPSG Coordinate Operation Code
+            Boolean.class, // [1]: Particularly important to E&P industry?
+            String.class,  // [2]: Transformation Name(s)
+            String.class,  // [3]: Coordinate operation method
+            String.class); // [4]: Remarks
 
         while (data.next()) {
-            final int     datumCode = data.getInt    (0);
-            final String  datumName = data.getString (1);
-            final int     code      = data.getInt    (2);
-            final String  name      = data.getString (3);
-            final boolean important = data.getBoolean(4);
+            final int      code      = data.getInt    (0);
+            final boolean  important = data.getBoolean(1);
+            final String   name      = data.getString (2);
+            final String   method    = data.getString (3);
+            final String   remarks   = data.getString (4);
 
             out.println();
             indent(1); out.println("/**");
-            indent(1); out.print(" * Tests “"); out.print(name); out.println("” vertical CRS creation from the factory.");
+            indent(1); out.print(" * Tests “"); out.print(name); out.println("” transformation creation from the factory.");
             indent(1); out.println(" *");
-            printJavadocKeyValues("EPSG vertical datum code", datumCode,
-                                  "EPSG vertical datum name", datumName,
-                                  "EPSG vertical CRS code",   code,
-                                  "EPSG vertical CRS name",   name,
+            printJavadocKeyValues("EPSG transformation code", code,
+                                  "EPSG transformation name", name,
+                                  "Transformation method", method,
+                                  "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
-            printJavadocThrows("if an error occurred while creating the vertical datum or CRS from the EPSG code.");
+            printJavadocThrows("if an error occurred while creating the transformation from the EPSG code.");
             printTestMethodSignature(name);
             printFieldAssignments("important", important,
-                                  "datumName", datumName,
-                                  "datumCode", datumCode,
                                   "name",      name,
-                                  "code",      code);
-            indent(2); out.println("createAndVerifyVerticalDatum();");
-            indent(2); out.println("createAndVerifyVerticalCRS();");
+                                  "method",    method);
+            indent(2); out.println("createAndVerifyTransformation();");
             out.println("    }");
         }
     }

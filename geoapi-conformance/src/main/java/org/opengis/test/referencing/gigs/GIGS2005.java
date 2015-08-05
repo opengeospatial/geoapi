@@ -77,7 +77,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class Test2005 extends EPSGTestCase<Conversion> {
+public class GIGS2005 extends EPSGTestCase<Conversion> {
     /**
      * The name of the expected operation method.
      */
@@ -104,7 +104,7 @@ public class Test2005 extends EPSGTestCase<Conversion> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Test2005} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS2005} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -118,7 +118,7 @@ public class Test2005 extends EPSGTestCase<Conversion> {
      *
      * @param copFactory Factory for creating {@link CoordinateOperation} instances.
      */
-    public Test2005(final CoordinateOperationAuthorityFactory copFactory) {
+    public GIGS2005(final CoordinateOperationAuthorityFactory copFactory) {
         super(copFactory);
         copAuthorityFactory = copFactory;
     }

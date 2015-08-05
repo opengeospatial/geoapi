@@ -88,7 +88,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
+public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
     /**
      * The conversion factor from the unit of {@link #semiMajorAxis} to metres.
      */
@@ -148,7 +148,7 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Test2002} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS2002} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -162,7 +162,7 @@ public strictfp class Test2002 extends EPSGTestCase<Ellipsoid> {
      *
      * @param datumFactory Factory for creating {@link Ellipsoid} instances.
      */
-    public Test2002(final DatumAuthorityFactory datumFactory) {
+    public GIGS2002(final DatumAuthorityFactory datumFactory) {
         super(datumFactory);
         datumAuthorityFactory = datumFactory;
     }

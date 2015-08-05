@@ -78,7 +78,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class Test2008 extends EPSGTestCase<VerticalCRS> {
+public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
     /**
      * The EPSG code of the expected {@link VerticalDatum}.
      */
@@ -119,7 +119,7 @@ public class Test2008 extends EPSGTestCase<VerticalCRS> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Test2008} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS2008} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -134,7 +134,7 @@ public class Test2008 extends EPSGTestCase<VerticalCRS> {
      * @param datumFactory Factory for creating {@link VerticalDatum} instances.
      * @param crsFactory Factory for creating {@link VerticalCRS} instances.
      */
-    public Test2008(final DatumAuthorityFactory datumFactory, final CRSAuthorityFactory crsFactory) {
+    public GIGS2008(final DatumAuthorityFactory datumFactory, final CRSAuthorityFactory crsFactory) {
         super(datumFactory, crsFactory);
         datumAuthorityFactory = datumFactory;
         crsAuthorityFactory = crsFactory;

@@ -90,7 +90,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class Test2004 extends EPSGTestCase<GeodeticDatum> {
+public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     /**
      * The expected axis directions of two-dimensional geographic CRS.
      */
@@ -163,7 +163,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code Test2004} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS2004} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -178,7 +178,7 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      * @param datumFactory Factory for creating {@link GeodeticDatum} instances.
      * @param crsFactory Factory for creating {@link GeodeticCRS} instances.
      */
-    public Test2004(final DatumAuthorityFactory datumFactory, final CRSAuthorityFactory crsFactory) {
+    public GIGS2004(final DatumAuthorityFactory datumFactory, final CRSAuthorityFactory crsFactory) {
         super(datumFactory);
         datumAuthorityFactory = datumFactory;
         crsAuthorityFactory = crsFactory;

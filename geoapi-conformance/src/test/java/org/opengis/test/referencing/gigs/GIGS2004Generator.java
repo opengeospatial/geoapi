@@ -33,7 +33,7 @@ package org.opengis.test.referencing.gigs;
 
 
 /**
- * Code generator for {@link Test2004}. This generator needs to be executed only if the GIGS data changed.
+ * Code generator for {@link GIGS2004}. This generator needs to be executed only if the GIGS data changed.
  * The code is sent to the standard output; maintainer need to copy-and-paste the relevant methods to the
  * test class, but be aware that the original code may contain manual changes that need to be preserved.
  *
@@ -41,14 +41,14 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class Test2004Generator extends TestMethodGenerator {
+public class GIGS2004Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
      */
     public static void main(String[] args) {
-        new Test2004Generator().run();
+        new GIGS2004Generator().run();
     }
 
     /**
