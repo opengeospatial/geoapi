@@ -535,7 +535,7 @@ public strictfp abstract class TestCase {
      *   <li>{@link org.opengis.test.referencing.AffineTransformTest#configuration()}</li>
      *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#configuration()}</li>
      *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#configuration()}</li>
-     *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test#configuration()}</li>
+     *   <li>{@link org.opengis.test.referencing.gigs.EPSGTestCase#configuration()}</li>
      * </ul>
      *
      * @return The configuration of the test being run, or an empty map if none. This method

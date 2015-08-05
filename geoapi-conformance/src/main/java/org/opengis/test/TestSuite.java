@@ -52,7 +52,15 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.referencing.AffineTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.Series2000Test}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2001}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2002}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2003}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2004}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2005}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2006}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2007}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2008}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS2009}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.Series3000Test}</li>
  *   <li>{@link org.opengis.test.wkt.CRSParserTest}</li>
  * </ul>
@@ -123,7 +131,15 @@ import org.opengis.referencing.operation.MathTransform;
   org.opengis.test.referencing.AffineTransformTest.class,
   org.opengis.test.referencing.ParameterizedTransformTest.class,
   org.opengis.test.referencing.AuthorityFactoryTest.class,
-  org.opengis.test.referencing.gigs.Series2000Test.class,
+  org.opengis.test.referencing.gigs.GIGS2001.class,
+  org.opengis.test.referencing.gigs.GIGS2002.class,
+  org.opengis.test.referencing.gigs.GIGS2003.class,
+  org.opengis.test.referencing.gigs.GIGS2004.class,
+  org.opengis.test.referencing.gigs.GIGS2005.class,
+  org.opengis.test.referencing.gigs.GIGS2006.class,
+  org.opengis.test.referencing.gigs.GIGS2007.class,
+  org.opengis.test.referencing.gigs.GIGS2008.class,
+  org.opengis.test.referencing.gigs.GIGS2009.class,
   org.opengis.test.referencing.gigs.Series3000Test.class,
   org.opengis.test.wkt.CRSParserTest.class
 })

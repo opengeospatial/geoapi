@@ -32,14 +32,13 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.Collection;
-
 import org.opengis.util.Factory;
-import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.*;
 import org.opengis.test.referencing.ReferencingTestCase;
 
+import static org.junit.Assume.assumeTrue;
 import static org.opengis.test.Assert.*;
 
 
@@ -79,18 +78,22 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
     }
 
     /**
-     * Invoked when the implementation does not support one of the code defined in
-     * the GIGS test suite.
+     * Invoked when the implementation does not support one of the code defined in the GIGS test suite.
+     * This method can have two behaviors:
      *
-     * @param type      The GeoAPI interface of the object to construct.
-     * @param code      The EPSG code of the object to create.
-     * @param e         The exception we got while trying to instantiate the object.
-     * @param important Was the object particularly important to E&P industry?
+     * <ul>
+     *   <li>If the test should be ignored, then this method should invoke {@code assumeTrue(false)} or any
+     *       other {@link org.junit.Assume} method which will case the test to terminate with the "ignored"
+     *       status.</li>
+     *   <li>Otherwise this method can return normally, in which case the caller test method will consider
+     *       that we have a test failure.</li>
+     * </ul>
+     *
+     * @param type The GeoAPI interface of the object to construct.
+     * @param code The EPSG code of the object to create.
      */
-    static void unsupportedCode(final Class<?> type, final int code,
-            final NoSuchIdentifierException e, final boolean important)
-    {
-        // TODO
+    final void unsupportedCode(final Class<?> type, final int code) {
+        assumeTrue(false);
     }
 
     /**
