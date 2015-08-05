@@ -36,7 +36,6 @@ import java.util.List;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
-import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
@@ -158,110 +157,6 @@ public strictfp class Series2000Test extends EPSGTestCase {
         assertNull(op.put(Configuration.Key.datumAuthorityFactory,               datumAuthorityFactory));
         assertNull(op.put(Configuration.Key.copAuthorityFactory,                 copAuthorityFactory));
         return op;
-    }
-
-    /**
-     * Verifies reference vertical datums and CRSs bundled with the geoscience software.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_2008_libVerticalDatumCRS.csv}.
-     *   Compare vertical datums definition included in the software against the EPSG Dataset.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumAuthorityFactory#createVerticalDatum(String)} and<br>
-     *       {@link CRSAuthorityFactory#createVerticalCRS(String)}.</td>
-     * </tr><tr>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>Definitions bundled with the software should have the same name and coordinate system (including
-     *   axes direction and units) as in EPSG Dataset. CRSs missing
-     *   from the software or included in the software additional to those in the EPSG Dataset or at variance
-     *   with those in the EPSG Dataset should be reported.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error (other than {@linkplain NoSuchIdentifierException
-     *         unsupported identifier}) occurred while creating a vertical datum from an EPSG code.
-     */
-    @Test
-    public void test2008() throws FactoryException {
-        assumeNotNull(datumAuthorityFactory);
-        final ExpectedData data = new ExpectedData("GIGS_2008_libVerticalDatumCRS.csv",
-                Integer.class,      // [0]: EPSG Datum Code
-                String.class,       // [1]: Datum name
-                Integer.class,      // [2]: EPSG CRS code
-                String.class,       // [3]: CRS name
-                Boolean.class);     // [4]: Particularly important to E&P industry?
-
-        final StringBuilder prefix = new StringBuilder();
-        while (data.next()) {
-            important = data.getBoolean(4);
-            final int     code      = data.getInt    (0);
-            final String  name      = data.getString (1);
-            final int     crsCode   = data.getInt    (2);
-            final String  crsName   = data.getString (3);
-            // Try to get vertical datum.
-            final VerticalDatum datum;
-            try {
-                datum = datumAuthorityFactory.createVerticalDatum(String.valueOf(code));
-            } catch (NoSuchAuthorityCodeException e) {
-                unsupportedCode(VerticalDatum.class, code);
-                continue;
-            }
-            // Test it.
-            validators.validate(datum);
-            prefix.setLength(0);
-            prefix.append("VerticalDatum[").append(code).append(']');
-            assertNotNull(prefix.toString(), datum);
-            prefix.append('.');
-            /*
-             * Identifiers test. It's important because it's the only way to
-             * distinguish datums at first sight.
-             */
-            assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, datum.getIdentifiers());
-            if (isStandardNameSupported) {
-                configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), name, getName(datum));
-                configurationTip = null;
-            }
-            /*
-             * For each vertical datum, data defines a crs which should use it.
-             * The aim is to get the crs thanks to the given code, check for its
-             * name and test it really use the current datum.
-             */
-            if (crsAuthorityFactory != null) {
-                final VerticalCRS crs;
-                try {
-                    crs = crsAuthorityFactory.createVerticalCRS(String.valueOf(crsCode));
-                } catch (NoSuchAuthorityCodeException e) {
-                    unsupportedCode(VerticalCRS.class, code);
-                    continue;
-                }
-                validators.validate(crs);
-                prefix.setLength(0);
-                prefix.append("VerticalCRS[").append(crsCode).append(']');
-                assertNotNull(prefix.toString(), crs);
-                prefix.append('.');
-                if (isStandardNameSupported) {
-                    configurationTip = Configuration.Key.isStandardNameSupported;
-                    assertEquals(message(prefix, "getName()"), crsName, getName(crs));
-                    configurationTip = null;
-                }
-                if (isDependencyIdentificationSupported) {
-                    final VerticalDatum datumFromCRS = crs.getDatum();
-                    assertNotNull(prefix.append("getDatum()").toString(), datumFromCRS);
-                    prefix.append('.');
-                    configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                    assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, datumFromCRS.getIdentifiers());
-                    configurationTip = Configuration.Key.isStandardNameSupported;
-                    assertEquals(message(prefix, "getName()"), name, getName(datumFromCRS));
-                    configurationTip = null;
-                }
-            }
-        }
     }
 
     /**

@@ -59,6 +59,8 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Verifies reference geodetic datums and CRSs bundled with the geoscience software.
+ * Each test method in this class instantiate exactly one {@link GeodeticDatum}, but
+ * may instantiate an arbitrary amount of {@link GeodeticCRS} using that datum.
  *
  * <table class="gigs" summary="Test description"><tr>
  *   <th>Test method:</th>
@@ -239,11 +241,12 @@ public class Test2004 extends EPSGTestCase<GeodeticDatum> {
      */
     private void createAndVerifyDatum() throws FactoryException {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
+        prefix = new StringBuilder(60);
         if (datumAuthorityFactory != null) {
             final GeodeticDatum datum = getIdentifiedObject();
             validators.validate(datum);
 
-            prefix = new StringBuilder().append("GeodeticDatum[").append(code).append(']');
+            prefix.append("GeodeticDatum[").append(code).append(']');
             assertNotNull(prefix.toString(), datum);
 
             prefix.append('.');
