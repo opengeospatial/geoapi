@@ -72,6 +72,24 @@ import static org.opengis.test.Assert.*;
  *       or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
  *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2008;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2008 {
+ *    public MyTest() {
+ *        super(new MyDatumAuthorityFactory(),
+ *              new MyCRSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
+ *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Alexis Manin (Geomatys)
