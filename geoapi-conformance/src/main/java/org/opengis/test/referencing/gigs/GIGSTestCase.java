@@ -37,8 +37,8 @@ import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.*;
 import org.opengis.test.referencing.ReferencingTestCase;
+import org.junit.AssumptionViolatedException;
 
-import static org.junit.Assume.assumeTrue;
 import static org.opengis.test.Assert.*;
 
 
@@ -93,7 +93,7 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
      * @param code The EPSG code of the object to create.
      */
     final void unsupportedCode(final Class<?> type, final int code) {
-        assumeTrue(false);
+        throw new AssumptionViolatedException(type.getSimpleName() + '[' + code + "] not supported.");
     }
 
     /**

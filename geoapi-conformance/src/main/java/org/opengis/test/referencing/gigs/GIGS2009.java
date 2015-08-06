@@ -189,7 +189,7 @@ public class GIGS2009 extends EPSGTestCase<Transformation> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(CoordinateOperation.class, code);
+                unsupportedCode(Transformation.class, code);
                 throw e;
             }
             if (operation == null) {
