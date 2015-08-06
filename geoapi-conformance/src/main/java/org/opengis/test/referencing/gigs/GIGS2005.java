@@ -188,17 +188,17 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
     private void createAndVerifyProjection(final int code) throws FactoryException {
         this.code = code;
         conversion = null; // For forcing the fetch of a new operation.
-        final CoordinateOperation operation = getIdentifiedObject();
-        validators.validate(operation);
 
+        final Conversion conversion = getIdentifiedObject();
         final StringBuilder prefix = new StringBuilder("Projection[").append(code).append(']');
-        assertNotNull(prefix.toString(), operation);
+        assertNotNull(prefix.toString(), conversion);
+        validators.validate(conversion);
 
-        prefix.append('.');
-        assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, operation.getIdentifiers());
-        assertInstanceOf(message(prefix, "class"), Conversion.class, operation);
+        // Map projection identifier.
+        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
+                "EPSG", code, conversion.getIdentifiers());
 
-        final Conversion conversion = (Conversion) operation;
+        // Map projection name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
             assertEquals(message(prefix, "getMethod().getName()"), method, getName(conversion.getMethod()));

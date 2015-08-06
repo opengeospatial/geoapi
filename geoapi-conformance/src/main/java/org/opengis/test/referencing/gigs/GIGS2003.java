@@ -180,19 +180,22 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
      */
     private void createAndVerifyPrimeMeridian() throws FactoryException {
         final PrimeMeridian pm = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("PrimeMeridian[");
-        final int prefixLength = prefix.length();
-        validators.validate(pm);
-        prefix.setLength(prefixLength);
-        prefix.append(code).append(']');
+        final StringBuilder prefix = new StringBuilder("PrimeMeridian[").append(code).append(']');
         assertNotNull(prefix.toString(), pm);
-        prefix.append('.');
-        assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, pm.getIdentifiers());
+        validators.validate(pm);
+
+        // Prime meridian identifiers.
+        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
+                "EPSG", code, pm.getIdentifiers());
+
+        // Prime meridian name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
             assertEquals(message(prefix, "getName()"), name, getName(pm));
             configurationTip = null;
         }
+
+        // Prime meridian alias.
         if (isStandardAliasSupported) {
             configurationTip = Configuration.Key.isStandardAliasSupported;
             assertContainsAll(message(prefix, "getAlias()"), aliases, pm.getAlias());

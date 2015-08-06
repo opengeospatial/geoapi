@@ -208,36 +208,40 @@ public class GIGS2006 extends EPSGTestCase<ProjectedCRS> {
     private void createAndVerifyProjectedCRS(final int code) throws FactoryException {
         this.code = code;
         crs = null; // For forcing the fetch of a new projected CRS.
-        final ProjectedCRS crs = getIdentifiedObject();
-        validators.validate(crs);
 
+        final ProjectedCRS crs = getIdentifiedObject();
         final StringBuilder prefix = new StringBuilder("ProjectedCRS[").append(code).append(']');
         assertNotNull(prefix.toString(), crs);
+        validators.validate(crs);
 
-        prefix.append('.');
-        assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, crs.getIdentifiers());
-        /*
-         * Verify the base geographic CRS and the geodetic datum.
-         */
+        // Projected CRS identifier.
+        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
+                "EPSG", code, crs.getIdentifiers());
+
+        // Projected CRS components.
         if (isDependencyIdentificationSupported) {
+            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
+
+            // Geodetic datum name.
+            assertContainsCode(message(prefix, "getDatum().getIdentifiers()"),
+                    "EPSG", datum, crs.getDatum().getIdentifiers());
+
+            // Base geographic CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
                 assertEquals(message(prefix, "getBaseCRS().getName()"), name, getName(crs.getBaseCRS()));
             }
-            configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertContainsCode(message(prefix, "getDatum().getIdentifiers()"),
-                    "EPSG", datum, crs.getDatum().getIdentifiers());
             configurationTip = null;
         }
-        /*
-         * Verify the coordinate system (dimension, axis order and orientation).
-         */
-        final CartesianCS cs = crs.getCoordinateSystem();
-        prefix.append("getCoordinateSystem()");
-        assertNotNull(prefix.toString(), crs);
 
-        prefix.append('.');
-        assertEquals(message(prefix, "getDimension()"), 2, cs.getDimension());
+        // Projected CRS coordinate system.
+        final CartesianCS cs = crs.getCoordinateSystem();
+        assertNotNull(prefix.append("getCoordinateSystem()").toString(), crs);
+
+        // Coordinate system dimension.
+        assertEquals(message(prefix.append('.'), "getDimension()"), 2, cs.getDimension());
+
+        // Coordinate sytem axis directions.
         final AxisDirection[] directions = new AxisDirection[2];
         directions[isNorthAxisFirst ? 1 : 0] = isWestOrientated  ? AxisDirection.WEST  : AxisDirection.EAST;
         directions[isNorthAxisFirst ? 0 : 1] = isSouthOrientated ? AxisDirection.SOUTH : AxisDirection.NORTH;

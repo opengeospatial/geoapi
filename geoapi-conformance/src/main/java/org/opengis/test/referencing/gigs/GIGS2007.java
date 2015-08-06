@@ -188,10 +188,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
      */
     private void createAndVerifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();
-        validators.validate(transformation);
-
         final StringBuilder prefix = new StringBuilder("Transformation[").append(code).append(']');
         assertNotNull(prefix.toString(), transformation);
+        validators.validate(transformation);
 
         // Transformation identifier.
         assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),

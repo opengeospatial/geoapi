@@ -253,19 +253,22 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      */
     private void createAndVerifyEllipsoid() throws FactoryException {
         final Ellipsoid ellipsoid = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Ellipsoid[");
-        final int prefixLength = prefix.length();
-        validators.validate(ellipsoid);
-        prefix.setLength(prefixLength);
-        prefix.append(code).append(']');
+        final StringBuilder prefix = new StringBuilder("Ellipsoid[").append(code).append(']');
         assertNotNull(prefix.toString(), ellipsoid);
-        prefix.append('.');
-        assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, ellipsoid.getIdentifiers());
+        validators.validate(ellipsoid);
+
+        // Ellipsoid identifier.
+        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
+                "EPSG", code, ellipsoid.getIdentifiers());
+
+        // Ellipsoid name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
             assertEquals(message(prefix, "getName()"), name, getName(ellipsoid));
             configurationTip = null;
         }
+
+        // Ellipsoid alias.
         if (isStandardAliasSupported) {
             configurationTip = Configuration.Key.isStandardAliasSupported;
             assertContainsAll(message(prefix, "getAlias()"), aliases, ellipsoid.getAlias());
