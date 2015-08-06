@@ -208,8 +208,8 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
             }
 
             // Datum validation.
-            validators.validate(datum);
             assertNotNull(prefix.append("VerticalDatum[").append(datumCode).append(']').toString(), datum);
+            validators.validate(datum);
 
             // Datum identifier. Important in order to distinguish datum.
             assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
@@ -233,8 +233,8 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
             final VerticalCRS crs = getIdentifiedObject();
 
             // CRS validation.
-            validators.validate(crs);
             assertNotNull(prefix.append("VerticalCRS[").append(code).append(']').toString(), crs);
+            validators.validate(crs);
 
             // CRS identifier.
             assertContainsCode(message(prefix.append('.'), "getIdentifiers()"), "EPSG", code, crs.getIdentifiers());
@@ -246,11 +246,11 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
                 configurationTip = null;
             }
 
-            // Datum associated to the CRS
+            // Datum associated to the CRS.
             final VerticalDatum datum = crs.getDatum();
             assertNotNull(prefix.append("getDatum()").toString(), datum);
 
-            // Datum identification
+            // Datum identification.
             if (isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isDependencyIdentificationSupported;
                 assertContainsCode(message(prefix.append('.'), "getIdentifiers()"), "EPSG",

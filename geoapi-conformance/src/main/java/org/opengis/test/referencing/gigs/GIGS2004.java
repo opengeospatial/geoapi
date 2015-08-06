@@ -244,10 +244,9 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
         prefix = new StringBuilder(60);
         if (datumAuthorityFactory != null) {
             final GeodeticDatum datum = getIdentifiedObject();
-            validators.validate(datum);
-
             prefix.append("GeodeticDatum[").append(code).append(']');
             assertNotNull(prefix.toString(), datum);
+            validators.validate(datum);
 
             prefix.append('.');
             verifyGeodeticDatum(datum);
@@ -310,36 +309,38 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
      */
     private void verifyGeodeticCRS(final int crsCode, final GeodeticCRS crs, final AxisDirection[] expectedDirections) {
         prefix.setLength(0);
-        prefix.append("GeodeticCRS[").append(crsCode).append(']');
-        assertNotNull(prefix.toString(), crs);
+        assertNotNull(prefix.append("GeodeticCRS[").append(crsCode).append(']').toString(), crs);
 
-        prefix.append('.');
-        assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", crsCode, crs.getIdentifiers());
+        // Geodetic CRS identifier.
+        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
+                "EPSG", crsCode, crs.getIdentifiers());
 
+        // Geodetic CRS name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
             assertEquals(message(prefix, "getName()"), crsName, getName(crs));
             configurationTip = null;
         }
-        /*
-         * Verify the axis directions in the coordinate system.
-         */
-        final CoordinateSystem cs = crs.getCoordinateSystem();
-        final int lengthAfterCRS = prefix.length();
-        prefix.append("getCoordinateSystem()");
-        assertNotNull(prefix.toString(), cs);
 
-        prefix.append('.');
-        assertEquals(message(prefix, "getDimension()"), expectedDirections.length, cs.getDimension());
-        assertAxisDirectionsEqual(message(prefix, "axes"), cs, expectedDirections);
-
-        prefix.setLength(lengthAfterCRS);
-        prefix.append("getDatum()");
+        // Geodetic CRS datum.
         final GeodeticDatum crsDatum = crs.getDatum();
-        assertNotNull(prefix.toString(), crsDatum);
+        final int lengthAfterCRS = prefix.length();
+        assertNotNull(prefix.append("getDatum()").toString(), crsDatum);
 
         prefix.append('.');
         verifyGeodeticDatum(crsDatum);
+
+        // Geodetic CRS coordinate system.
+        final CoordinateSystem cs = crs.getCoordinateSystem();
+        prefix.setLength(lengthAfterCRS);
+        assertNotNull(prefix.append("getCoordinateSystem()").toString(), cs);
+
+        // Coordinate system dimension.
+        assertEquals(message(prefix.append('.'), "getDimension()"),
+                expectedDirections.length, cs.getDimension());
+
+        // Coordinate system axis directions.
+        assertAxisDirectionsEqual(message(prefix, "axes"), cs, expectedDirections);
     }
 
     /**
@@ -362,31 +363,27 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
             }
             configurationTip = null;
         }
-        /*
-         * Verify the ellipsoid name.
-         */
-        final Ellipsoid e = toVerify.getEllipsoid();
-        prefix.append("getEllipsoid()");
-        assertNotNull(prefix.toString(), e);
 
-        prefix.append('.');
+        // Geodetic datum ellipsoid.
+        final Ellipsoid e = toVerify.getEllipsoid();
+        assertNotNull(prefix.append("getEllipsoid()").toString(), e);
+
+        // Ellipsoid name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals(message(prefix, "getName()"), ellipsoid, getName(e));
+            assertEquals(message(prefix.append('.'), "getName()"), ellipsoid, getName(e));
             configurationTip = null;
         }
-        /*
-         * Verify the prime meridian name.
-         */
+
+        // Geodetic datum prime meridian.
         final PrimeMeridian pm = toVerify.getPrimeMeridian();
         prefix.setLength(lengthAfterDatum);
-        prefix.append("getPrimeMeridian()");
-        assertNotNull(prefix.toString(), pm);
+        assertNotNull(prefix.append("getPrimeMeridian()").toString(), pm);
 
-        prefix.append('.');
+        // Prime meridian name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals(message(prefix, "getName()"), primeMeridian, getName(pm));
+            assertEquals(message(prefix.append('.'), "getName()"), primeMeridian, getName(pm));
             configurationTip = null;
         }
     }
