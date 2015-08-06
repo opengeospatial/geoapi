@@ -197,7 +197,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *   <li>9 decimal digits for {@code inverseFlattening} values.</li>
      * </ul>
      *
-     * If the given {@code datum} is {@code null}, then this method does nothing.
+     * If the given {@code ellipsoid} is {@code null}, then this method does nothing.
      * Deciding if {@code null} datum are allowed or not is {@link org.opengis.test.Validator}'s job.
      *
      * @param ellipsoid         The ellipsoid to verify, or {@code null} if none.

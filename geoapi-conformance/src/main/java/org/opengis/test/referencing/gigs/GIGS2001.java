@@ -62,9 +62,11 @@ import static org.junit.Assert.*;
  *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
- *       {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
- *       The test methods are separated in three blocks for linear units, angular units and scaling units.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>
+ *   and EPSG Dataset.
+ *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
+ *   {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
+ *   The test methods are separated in three blocks for linear units, angular units and scaling units.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CSAuthorityFactory#createUnit(String)}.</td>
@@ -74,6 +76,23 @@ import static org.junit.Assert.*;
  *   as in the EPSG Dataset. The values of the base unit per unit should be correct to at least 10 significant figures.
  *   Units missing from the software or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
+ *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2001;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2001 {
+ *    public MyTest() {
+ *        super(new MyCSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
  *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)

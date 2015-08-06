@@ -59,7 +59,8 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare projected CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2006_libProjectedCRS.csv">{@code GIGS_2006_libProjectedCRS.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CRSAuthorityFactory#createProjectedCRS(String)}.</td>
@@ -69,6 +70,23 @@ import static org.opengis.test.Assert.*;
  *       (including units and axes abbreviations and axes order) and map projection as in the EPSG Dataset.
  *       CRSs missing from the software or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
+ *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2006;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2006 {
+ *    public MyTest() {
+ *        super(new MyCRSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
  *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)

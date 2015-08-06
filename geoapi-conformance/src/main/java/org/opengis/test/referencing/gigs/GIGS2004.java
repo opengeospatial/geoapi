@@ -68,7 +68,9 @@ import static org.opengis.test.Assert.*;
  *       included in the geoscience software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>Tests for component logical consistency: for example, if a higher-level library-defined component
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2004_libGeodeticDatumCRS.csv">{@code GIGS_2004_libGeodeticDatumCRS.csv}</a>
+ *       and EPSG Dataset.
+ *       Tests for component logical consistency: for example, if a higher-level library-defined component
  *       such as ED50 datum is selected it should then not be possible to change any of its lower-level
  *       components such as the ellipsoid from the pre-defined value (in this example International 1924).</td>
  * </tr><tr>
@@ -82,6 +84,24 @@ import static org.opengis.test.Assert.*;
  *       as in the EPSG Dataset. CRSs missing from the software or at variance with those in the EPSG Dataset should
  *       be reported.</td>
  * </tr></table>
+ *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2004;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2004 {
+ *    public MyTest() {
+ *        super(new MyDatumAuthorityFactory(),
+ *              new MyCRSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
  *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)

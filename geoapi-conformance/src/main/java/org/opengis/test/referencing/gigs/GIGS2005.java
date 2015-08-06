@@ -58,7 +58,8 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare map projection definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CoordinateOperationAuthorityFactory#createCoordinateOperation(String)}.</td>
@@ -69,6 +70,23 @@ import static org.opengis.test.Assert.*;
  *       should be correct to at least 10 significant figures. Map projections missing from the software
  *       or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
+ *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2005;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2005 {
+ *    public MyTest() {
+ *        super(new MyCoordinateOperationAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
  *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)
@@ -170,7 +188,7 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
                  * will typically use MathTransformFactory under the hood, which throws NoSuchIdentifierException for
                  * non-implemented operation methods (may be identified by their name rather than EPSG code).
                  */
-                unsupportedCode(CoordinateOperation.class, code);
+                unsupportedCode(Conversion.class, code);
                 throw e;
             }
             if (operation == null) {

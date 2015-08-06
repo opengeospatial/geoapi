@@ -60,7 +60,8 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumAuthorityFactory#createPrimeMeridian(String)}.</td>
@@ -71,6 +72,23 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  *       The values of the Greenwich Longitude should be correct to at least 7 decimal places (of degrees or grads).
  *       Meridians missing from the software or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
+ *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2003;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2003 {
+ *    public MyTest() {
+ *        super(new MyDatumAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
  *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)

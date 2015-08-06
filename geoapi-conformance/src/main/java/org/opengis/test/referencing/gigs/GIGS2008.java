@@ -59,7 +59,8 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumAuthorityFactory#createVerticalDatum(String)} and<br>
@@ -70,6 +71,24 @@ import static org.opengis.test.Assert.*;
  *       (including axes direction and units) as in EPSG Dataset. CRSs missing from the software
  *       or at variance with those in the EPSG Dataset should be reported.</td>
  * </tr></table>
+ *
+ *
+ * <div class="note"><b>Usage example:</b>
+ * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * define a subclass in their own test suite as in the example below:
+ *
+ * <blockquote><pre>import org.junit.runner.RunWith;
+ *import org.junit.runners.JUnit4;
+ *import org.opengis.test.referencing.gigs.GIGS2008;
+ *
+ *&#64;RunWith(JUnit4.class)
+ *public class MyTest extends GIGS2008 {
+ *    public MyTest() {
+ *        super(new MyDatumAuthorityFactory(),
+ *              new MyCRSAuthorityFactory());
+ *    }
+ *}</pre></blockquote>
+ * </div>
  *
  * @author  GIGS (IOGP)
  * @author  Martin Desruisseaux (Geomatys)
