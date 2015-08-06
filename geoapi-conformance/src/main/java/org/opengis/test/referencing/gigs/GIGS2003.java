@@ -60,7 +60,8 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumAuthorityFactory#createPrimeMeridian(String)}.</td>

@@ -59,7 +59,8 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare projected CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2006_libProjectedCRS.csv">{@code GIGS_2006_libProjectedCRS.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CRSAuthorityFactory#createProjectedCRS(String)}.</td>

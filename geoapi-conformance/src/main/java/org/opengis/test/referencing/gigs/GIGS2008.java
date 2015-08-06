@@ -59,7 +59,8 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG Dataset.</td>
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>
+ *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumAuthorityFactory#createVerticalDatum(String)} and<br>

@@ -60,7 +60,9 @@ import static org.junit.Assert.*;
  *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td>EPSG {@linkplain #code code} and {@linkplain #name name} for the ellipsoid,
+ *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a>
+ *   and EPSG Dataset.
+ *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the ellipsoid,
  *   commonly encountered {@linkplain #aliases alternative name(s)} for the same object,
  *   the value and units for the {@link #semiMajorAxis semi-major axis},
  *   the conversion ratio to metres for these units, and then a second parameter which will be either
