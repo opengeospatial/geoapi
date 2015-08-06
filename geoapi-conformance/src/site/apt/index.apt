@@ -27,7 +27,7 @@ Conformance tests
    for each test).
 
    The GeoAPI conformance module provides also a partial implementation of
-   {{{http://www.epsg.org/gigs.html}Geospatial Integrity of Geoscience Software}} tests in its
+   {{{http://www.iogp.org/Geomatics#2521115-gigs}Geospatial Integrity of Geoscience Software}} tests in its
    {{{./apidocs/org/opengis/test/referencing/gigs/package-summary.html}GIGS package}}.
 
 

@@ -8342,7 +8342,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. George Island” geodetic datum creation from the factory.
+     * Tests “St&#46; George Island” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6138</b></li>
@@ -8366,7 +8366,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. Helena 1971” geodetic datum creation from the factory.
+     * Tests “St&#46; Helena 1971” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6710</b></li>
@@ -8390,7 +8390,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. Kitts 1955” geodetic datum creation from the factory.
+     * Tests “St&#46; Kitts 1955” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6605</b></li>
@@ -8414,7 +8414,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. Lawrence Island” geodetic datum creation from the factory.
+     * Tests “St&#46; Lawrence Island” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6136</b></li>
@@ -8438,7 +8438,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. Lucia 1955” geodetic datum creation from the factory.
+     * Tests “St&#46; Lucia 1955” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6606</b></li>
@@ -8462,7 +8462,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. Paul Island” geodetic datum creation from the factory.
+     * Tests “St&#46; Paul Island” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6137</b></li>
@@ -8486,7 +8486,7 @@ public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St. Vincent 1945” geodetic datum creation from the factory.
+     * Tests “St&#46; Vincent 1945” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6607</b></li>

@@ -9,7 +9,7 @@
     <faq id="bindings">
       <question>Note on the terms "<cite>early-binding</cite>" and "<cite>late-binding</cite>"</question>
       <answer>
-        <p>This definition is adapted from the <a href="http://www.epsg.org/gigs.html">Geospatial
+        <p>This definition is adapted from the <a href="http://www.iogp.org/Geomatics#2521115-gigs">Geospatial
         integrity of geoscience software (GIGS)</a> documentation, part 1: <cite>Guidlines</cite>:</p>
 
         <p>As the values of coordinate transformation parameters are based on sample data, there may
