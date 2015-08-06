@@ -97,7 +97,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
+public strictfp class GIGS2008 extends EPSGTestCase<VerticalCRS> {
     /**
      * The EPSG code of the expected {@link VerticalDatum}.
      */

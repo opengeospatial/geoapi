@@ -110,7 +110,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
+public strictfp class GIGS2004 extends EPSGTestCase<GeodeticDatum> {
     /**
      * The expected axis directions of two-dimensional geographic CRS.
      */

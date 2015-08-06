@@ -96,7 +96,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2009 extends EPSGTestCase<Transformation> {
+public strictfp class GIGS2009 extends EPSGTestCase<Transformation> {
     /**
      * Name of the expected transformation method.
      */

@@ -95,7 +95,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2006 extends EPSGTestCase<ProjectedCRS> {
+public strictfp class GIGS2006 extends EPSGTestCase<ProjectedCRS> {
     /**
      * The EPSG code of the expected datum.
      */

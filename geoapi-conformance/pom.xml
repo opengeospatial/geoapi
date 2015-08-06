@@ -82,10 +82,17 @@
 
 
   <!-- ===========================================================
-           JAR packaging
+           Compilation, JAR packaging and Javadoc
        =========================================================== -->
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <debug>true</debug>  <!-- For allowing implementors to step through the test methods. -->
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -99,5 +106,15 @@
       </plugin>
     </plugins>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <linksource>true</linksource>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>

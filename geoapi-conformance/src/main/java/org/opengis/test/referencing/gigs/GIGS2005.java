@@ -95,7 +95,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2005 extends EPSGTestCase<Conversion> {
+public strictfp class GIGS2005 extends EPSGTestCase<Conversion> {
     /**
      * The name of the expected operation method.
      */
