@@ -62,12 +62,12 @@ public strictfp class GIGS2001Generator extends TestMethodGenerator {
      */
     private void run() {
         final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
-                Integer.class,  // [0]: EPSG UoM Code
-                String .class,  // [1]: Type
-                String .class,  // [2]: Name of Units used in EPSG db parameters
-                Double .class,  // [3]: Base units per unit
-                Boolean.class,  // [4]: Particularly important to E&P industry?
-                String .class); // [5]: Specific usage / Remarks
+                Integer.class,      // [0]: EPSG UoM Code
+                String .class,      // [1]: Type
+                String .class,      // [2]: Name of Units used in EPSG db parameters
+                Double .class,      // [3]: Base units per unit
+                Boolean.class,      // [4]: Particularly important to E&P industry?
+                String .class);     // [5]: Specific usage / Remarks
 
         while (data.next()) {
             final int     code       = data.getInt    (0);

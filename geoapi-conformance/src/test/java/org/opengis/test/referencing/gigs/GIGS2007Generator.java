@@ -56,11 +56,11 @@ public strictfp class GIGS2007Generator extends TestMethodGenerator {
      */
     private void run() {
         final ExpectedData data = new ExpectedData("GIGS_2007_libGeodTfm.csv",
-            Integer.class,  // [0]: EPSG Coordinate Operation Code
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: Transformation Name(s)
-            String .class,  // [3]: Coordinate Operation Method
-            String .class); // [4]: Remarks
+                Integer.class,      // [0]: EPSG Coordinate Operation Code
+                Boolean.class,      // [1]: Particularly important to E&P industry?
+                String .class,      // [2]: Transformation Name(s)
+                String .class,      // [3]: Coordinate Operation Method
+                String .class);     // [4]: Remarks
 
         while (data.next()) {
             final int      code      = data.getInt    (0);

@@ -56,16 +56,16 @@ public strictfp class GIGS2004Generator extends TestMethodGenerator {
      */
     private void run() {
         final ExpectedData data = new ExpectedData("GIGS_2004_libGeodeticDatumCRS.csv",
-            Integer.class,  // [0]: EPSG Datum Code
-            String .class,  // [1]: Datum Name
-            Integer.class,  // [2]: EPSG geocen CRS Code
-            Integer.class,  // [3]: EPSG geog3D CRS Code
-            Integer.class,  // [4]: EPSG geog2D CRS Code
-            String .class,  // [5]: CRS Name
-            Boolean.class,  // [6]: Particularly important to E&P industry?
-            String .class,  // [7]: Ellipsoid Name
-            String .class,  // [8]: Prime Meridian Name
-            String .class); // [9]: Remarks
+                Integer.class,      // [0]: EPSG Datum Code
+                String .class,      // [1]: Datum Name
+                Integer.class,      // [2]: EPSG geocen CRS Code
+                Integer.class,      // [3]: EPSG geog3D CRS Code
+                Integer.class,      // [4]: EPSG geog2D CRS Code
+                String .class,      // [5]: CRS Name
+                Boolean.class,      // [6]: Particularly important to E&P industry?
+                String .class,      // [7]: Ellipsoid Name
+                String .class,      // [8]: Prime Meridian Name
+                String .class);     // [9]: Remarks
 
         while (data.next()) {
             final int     code      = data.getInt    (0);

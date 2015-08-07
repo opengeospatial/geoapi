@@ -56,14 +56,14 @@ public strictfp class GIGS2003Generator extends TestMethodGenerator {
      */
     private void run() {
         final ExpectedData data = new ExpectedData("GIGS_2003_libPrimeMeridian.csv",
-            Integer.class,  // [0]: EPSG Prime Meridian Code
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: EPSG Prime Meridian Name
-            String .class,  // [3]: EPSG Alias
-            String .class,  // [4]: Longitude from Greenwich (sexagesimal)
-            String .class,  // [5]: Unit Name
-            Double .class,  // [6]: Longitude from Greenwich (decimal degrees)
-            String .class); // [7]: Remarks
+                Integer.class,      // [0]: EPSG Prime Meridian Code
+                Boolean.class,      // [1]: Particularly important to E&P industry?
+                String .class,      // [2]: EPSG Prime Meridian Name
+                String .class,      // [3]: EPSG Alias
+                String .class,      // [4]: Longitude from Greenwich (sexagesimal)
+                String .class,      // [5]: Unit Name
+                Double .class,      // [6]: Longitude from Greenwich (decimal degrees)
+                String .class);     // [7]: Remarks
 
          while (data.next()) {
             final int      code      = data.getInt    (0);

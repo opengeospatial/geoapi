@@ -56,17 +56,17 @@ public strictfp class GIGS2002Generator extends TestMethodGenerator {
      */
     private void run() {
         final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
-            Integer.class,  // [ 0]: EPSG Ellipsoid Code
-            Boolean.class,  // [ 1]: Particularly important to E&P industry?
-            String .class,  // [ 2]: EPSG Ellipsoid Name
-            String .class,  // [ 3]: Alias(es) given by EPSG
-            Double .class,  // [ 4]: Semi-major axis (a)
-            String .class,  // [ 5]: Unit Name
-            Double .class,  // [ 6]: Unit Conversion Factor
-            Double .class,  // [ 7]: Semi-major axis (a) in metres
-            Double .class,  // [ 8]: Second defining parameter: Inverse flattening (1/f)
-            Double .class,  // [ 9]: Second defining parameter: Semi-minor axis (b)
-            Boolean.class); // [10]: Sphere?
+                Integer.class,      // [ 0]: EPSG Ellipsoid Code
+                Boolean.class,      // [ 1]: Particularly important to E&P industry?
+                String .class,      // [ 2]: EPSG Ellipsoid Name
+                String .class,      // [ 3]: Alias(es) given by EPSG
+                Double .class,      // [ 4]: Semi-major axis (a)
+                String .class,      // [ 5]: Unit Name
+                Double .class,      // [ 6]: Unit Conversion Factor
+                Double .class,      // [ 7]: Semi-major axis (a) in metres
+                Double .class,      // [ 8]: Second defining parameter: Inverse flattening (1/f)
+                Double .class,      // [ 9]: Second defining parameter: Semi-minor axis (b)
+                Boolean.class);     // [10]: Sphere?
 
         while (data.next()) {
             final int      code              = data.getInt    ( 0);
