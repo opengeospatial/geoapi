@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
 
 
 /**
- * Base class of tests from series 2000.
+ * Base class for tests of EPSG definitions (2000 series).
  * The tests for this series are designed to verify the correctness of geodetic parameters that
  * are delivered with the software. The comparison to be taken as truth is the EPSG Dataset.
  *
@@ -55,7 +55,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp abstract class EPSGTestCase<T> extends GIGSTestCase {
+public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase {
     /**
      * The value to give to the {@link #aliases} field for meaning "no alias".
      */
@@ -127,7 +127,7 @@ public strictfp abstract class EPSGTestCase<T> extends GIGSTestCase {
      * @param factories The factories to be used by the test. Those factories passed verbatim to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
-    protected EPSGTestCase(final AuthorityFactory... factories) {
+    protected AuthorityFactoryTestCase(final AuthorityFactory... factories) {
         super(factories);
         @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(

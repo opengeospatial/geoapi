@@ -101,7 +101,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
+public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
     /**
      * Amount of {@linkplain #baseUnit base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.

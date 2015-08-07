@@ -97,7 +97,7 @@ public class GIGS2001Generator extends TestMethodGenerator {
             printFieldAssignments("important",  important,
                                   "code",       code,
                                   "name",       name,
-                                  "aliases",    EPSGTestCase.NONE,
+                                  "aliases",    AuthorityFactoryTestCase.NONE,
                                   "unitToBase", unitToBase);
             indent(2); out.print("baseUnit   = ");
             printProgrammaticName(base);

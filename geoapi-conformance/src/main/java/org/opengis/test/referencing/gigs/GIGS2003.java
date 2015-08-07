@@ -97,7 +97,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
+public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
     /**
      * The expected Greenwich longitude in decimal degrees.
      */

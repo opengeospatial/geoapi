@@ -107,7 +107,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
+public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
     /**
      * The conversion factor from the unit of {@link #semiMajorAxis} to metres.
      */

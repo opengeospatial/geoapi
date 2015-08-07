@@ -307,7 +307,7 @@ public class Configuration implements Serializable {
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase#isStandardNameSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isStandardNameSupported
          */
         public static final Key<Boolean> isStandardNameSupported =
                 new Key<Boolean>(Boolean.class, "isStandardNameSupported");
@@ -316,7 +316,7 @@ public class Configuration implements Serializable {
          * Whether the {@link IdentifiedObject} instances have at least the
          * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase#isStandardAliasSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isStandardAliasSupported
          */
         public static final Key<Boolean> isStandardAliasSupported =
                 new Key<Boolean>(Boolean.class, "isStandardAliasSupported");
@@ -325,7 +325,7 @@ public class Configuration implements Serializable {
          * Whether the {@link IdentifiedObject} instances created indirectly by the factories
          * are expected to have correct identification information.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase#isDependencyIdentificationSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDependencyIdentificationSupported
          */
         public static final Key<Boolean> isDependencyIdentificationSupported =
                 new Key<Boolean>(Boolean.class, "isDependencyIdentificationSupported");
@@ -487,7 +487,7 @@ public class Configuration implements Serializable {
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
                 new Key<CoordinateOperationAuthorityFactory>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
@@ -507,7 +507,7 @@ public class Configuration implements Serializable {
          * instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#crsAuthorityFactory
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
                 new Key<CRSAuthorityFactory>(CRSAuthorityFactory.class, "crsAuthorityFactory");
@@ -526,7 +526,7 @@ public class Configuration implements Serializable {
          * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#csAuthorityFactory
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CSAuthorityFactory> csAuthorityFactory =
                 new Key<CSAuthorityFactory>(CSAuthorityFactory.class, "csAuthorityFactory");
@@ -545,7 +545,7 @@ public class Configuration implements Serializable {
          * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#datumAuthorityFactory
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
                 new Key<DatumAuthorityFactory>(DatumAuthorityFactory.class, "datumAuthorityFactory");
