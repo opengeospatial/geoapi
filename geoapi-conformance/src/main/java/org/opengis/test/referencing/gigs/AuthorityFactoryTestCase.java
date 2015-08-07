@@ -168,8 +168,11 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
     /**
      * Returns the instance to be tested. When this method is invoked for the first time, it creates the instance
      * to test by invoking a {@code createXXX(String)} method from the user-specified {@link AuthorityFactory}
-     * with the current {@link #code} value in argument. The created object is then cached and returned in all
+     * with the current {@link #code} value in argument. The created object is then cached and returned in
      * subsequent invocations of this method.
+     *
+     * <p>Usually, each test method creates exactly one object. But a few (relatively rare) tests may create
+     * more than one object. In such case, the instance returned by this method may vary.</p>
      *
      * @return The instance to test.
      * @throws FactoryException if an error occurred while creating the identified object.

@@ -82,7 +82,7 @@ import static org.opengis.test.Assert.*;
  */
 @Deprecated
 @RunWith(Parameterized.class)
-public strictfp class Series3000Test extends GIGSTestCase {
+public strictfp class Series3000Test extends UserObjectFactoryTestCase {
     /**
      * Factory to use for build user's coordinate reference systems,
      * or {@code null} if none.
@@ -242,32 +242,6 @@ public strictfp class Series3000Test extends GIGSTestCase {
     }
 
     /**
-     * Verifies that the software allows correct definition of a user-defined ellipsoid.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Create user-defined ellipsoid for each of several different ellipsoids.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_3002_userEllipsoid.csv}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumFactory#createEllipsoid(Map, double, double, Unit)} and<br>
-     *       {@link DatumFactory#createFlattenedSphere(Map, double, double, Unit)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>The software should accept the test data. The properties of the created objects will
-     *       be compared with the properties given to the factory method.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error occurred while creating an ellipsoid.
-     */
-    @Test
-    public void test3002() throws FactoryException {
-        test3002(null);
-    }
-
-    /**
      * Creates the ellipsoids and optionally tests them.
      * The behavior of this method depends on whether {@code objects} is null or not:
      *
@@ -294,8 +268,6 @@ public strictfp class Series3000Test extends GIGSTestCase {
                 Double .class,  // [5]: Semi-minor axis
                 Boolean.class); // [6]: Is sphere ?
 
-        final StringBuilder prefix = new StringBuilder("Ellipsoid[\"");
-        final int prefixLength = prefix.length();
         while (data.next()) {
             final String name = data.getString(1);
             if (objects != null && !objects.containsKey(name)) {
@@ -308,20 +280,17 @@ public strictfp class Series3000Test extends GIGSTestCase {
             final String unitName    = data.getString(3);
             double inverseFlattening = data.getDouble(4);
             double semiMinor         = data.getDouble(5);
-            final boolean isSphere, isIvfDefinitive;
+            final boolean isIvfDefinitive;
             if (isNaN(semiMinor)) {
                 if (isNaN(inverseFlattening)) {
-                    isSphere          = true;
                     isIvfDefinitive   = false;
                     semiMinor         = semiMajor;
                     inverseFlattening = POSITIVE_INFINITY;
                 } else {
-                    isSphere        = false;
                     isIvfDefinitive = true;
                     semiMinor       = semiMajor - semiMajor/inverseFlattening;
                 }
             } else {
-                isSphere        = false;
                 isIvfDefinitive = false;
                 if (isNaN(inverseFlattening)) {
                     inverseFlattening = semiMajor / (semiMajor-semiMinor);
@@ -332,33 +301,15 @@ public strictfp class Series3000Test extends GIGSTestCase {
              */
             final Map<String,Object> properties = properties(name, code);
             final Unit<Length> unit = parseLinearUnit(unitName);
-            assertNotNull(unitName, unit); // Failure here would be a geoapi-conformance bug.
             final Ellipsoid ellipsoid;
             if (isIvfDefinitive) {
                 ellipsoid = datumFactory.createFlattenedSphere(properties, semiMajor, inverseFlattening, unit);
             } else {
                 ellipsoid = datumFactory.createEllipsoid(properties, semiMajor, semiMinor, unit);
             }
-            prefix.setLength(prefixLength);
-            prefix.append(name).append("\"]");
-            assertNotNull(prefix.toString(), ellipsoid);
             if (objects != null) {
                 assertNull("An object already exists for the same name.", objects.put(name, ellipsoid));
-                continue;
             }
-            /*
-             * Test the ellipsoid.
-             */
-            validators.validate(ellipsoid);
-            prefix.append('.');
-            assertEquals(message(prefix, "getName()"),              name,              getName(ellipsoid));
-            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", code,      ellipsoid.getIdentifiers());
-            assertEquals(message(prefix, "getAxisUnit()"),          unit,              ellipsoid.getAxisUnit());
-            assertEquals(message(prefix, "getSemiMajorAxis()"),     semiMajor,         ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajor);
-            assertEquals(message(prefix, "getSemiMinorAxis()"),     semiMinor,         ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinor);
-            assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
-            assertEquals(message(prefix, "isIvfDefinitive()"),      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
-            assertEquals(message(prefix, "isSphere()"),             isSphere,          ellipsoid.isSphere());
         }
     }
 
@@ -854,5 +805,10 @@ public strictfp class Series3000Test extends GIGSTestCase {
                 }
             }
         }
+    }
+
+    @Override
+    public Object getIdentifiedObject() throws FactoryException {
+        throw new UnsupportedOperationException();
     }
 }
