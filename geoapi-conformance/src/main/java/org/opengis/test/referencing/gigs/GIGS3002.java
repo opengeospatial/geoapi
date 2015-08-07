@@ -215,6 +215,9 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * Creates an ellipsoid for the current {@link #properties}, then verifies its name and axis lengths.
      */
     private void createAndTestEllipsoid() throws FactoryException {
+        if (skipTests) {
+            return;
+        }
         final String name = getName();
         final String code = getCode();
         final Ellipsoid ellipsoid = getIdentifiedObject();
@@ -226,12 +229,14 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         verifyIdentification(ellipsoid, name, code);
         if (isFactoryPreservingUserValues) {
             prefix.append('.');
+            configurationTip = Configuration.Key.isFactoryPreservingUserValues;
             assertEquals(message(prefix, "getAxisUnit()"),          axisUnit,          ellipsoid.getAxisUnit());
             assertEquals(message(prefix, "getSemiMajorAxis()"),     semiMajorAxis,     ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajorAxis);
             assertEquals(message(prefix, "getSemiMinorAxis()"),     semiMinorAxis,     ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinorAxis);
             assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
             assertEquals(message(prefix, "isIvfDefinitive()"),      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
             assertEquals(message(prefix, "isSphere()"),             isSphere,          ellipsoid.isSphere());
+            configurationTip = null;
         }
     }
 

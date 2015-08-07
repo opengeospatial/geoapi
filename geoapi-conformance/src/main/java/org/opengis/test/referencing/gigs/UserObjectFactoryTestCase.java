@@ -95,7 +95,7 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
     protected boolean isFactoryPreservingUserValues;
 
     /**
-     * {@code true} for constructing the object without testing it.
+     * If {@code true}, initialize the data but do not run the test.
      */
     boolean skipTests;
 
