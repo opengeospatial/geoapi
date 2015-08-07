@@ -110,7 +110,7 @@ public strictfp class GIGS2004Generator extends TestMethodGenerator {
                     out.println(");");
                 }
             }
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

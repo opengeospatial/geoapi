@@ -84,7 +84,7 @@ public strictfp class GIGS2005Generator extends TestMethodGenerator {
                                   "name",      name,
                                   "method",    method);
             printCallsToMethod("createAndVerifyProjection", codes);
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

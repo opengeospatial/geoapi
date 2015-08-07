@@ -107,7 +107,7 @@ public strictfp class GIGS2002Generator extends TestMethodGenerator {
                                   "inverseFlattening", inverseFlattening,
                                   "isSphere",          isSphere);
             indent(2); out.println("createAndVerifyEllipsoid();");
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

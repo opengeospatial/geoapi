@@ -84,7 +84,7 @@ public strictfp class GIGS2009Generator extends TestMethodGenerator {
                                   "name",      name,
                                   "method",    method);
             indent(2); out.println("createAndVerifyTransformation();");
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

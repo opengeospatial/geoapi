@@ -87,7 +87,7 @@ public strictfp class GIGS2006Generator extends TestMethodGenerator {
                                   "projections", projections,
                                   "datum",       datum);
             printCallsToMethod("createAndVerifyProjectedCRS", codes);
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

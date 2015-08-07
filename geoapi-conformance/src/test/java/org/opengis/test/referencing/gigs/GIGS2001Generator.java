@@ -103,7 +103,7 @@ public strictfp class GIGS2001Generator extends TestMethodGenerator {
             printProgrammaticName(base);
             out.println(';');
             indent(2); out.println("verifyLinearConversions(createUnitAndConverter());");
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }
