@@ -204,9 +204,6 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
                 unsupportedCode(VerticalCRS.class, code);
                 throw e;
             }
-            if (crs == null) {
-                fail("CRSAuthorityFactory.createVerticalCRS(\"" + code + "\") shall not return null.");
-            }
         }
         return crs;
     }

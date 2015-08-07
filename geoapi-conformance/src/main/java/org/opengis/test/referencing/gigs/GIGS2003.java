@@ -186,9 +186,6 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
                 unsupportedCode(PrimeMeridian.class, code);
                 throw e;
             }
-            if (primeMeridian == null) {
-                fail("DatumAuthorityFactory.createPrimeMeridian(\"" + code + "\") shall not return null.");
-            }
         }
         return primeMeridian;
     }

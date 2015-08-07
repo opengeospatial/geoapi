@@ -191,11 +191,10 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
                 unsupportedCode(Conversion.class, code);
                 throw e;
             }
-            if (operation == null) {
-                fail("CoordinateOperationAuthorityFactory.createCoordinateOperation(\"" + code + "\") shall not return null.");
+            if (operation != null) {  // For consistency with the behavior in other classes.
+                assertInstanceOf(codeAsString, Conversion.class, operation);
+                conversion = (Conversion) operation;
             }
-            assertInstanceOf(codeAsString, Conversion.class, operation);
-            conversion = (Conversion) operation;
         }
         return conversion;
     }

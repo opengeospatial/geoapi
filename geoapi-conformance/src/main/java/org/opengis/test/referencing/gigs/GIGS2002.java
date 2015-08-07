@@ -229,9 +229,6 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
                 unsupportedCode(Ellipsoid.class, code);
                 throw e;
             }
-            if (ellipsoid == null) {
-                fail("DatumAuthorityFactory.createEllipsoid(\"" + code + "\") shall not return null.");
-            }
         }
         return ellipsoid;
     }

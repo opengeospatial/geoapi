@@ -249,9 +249,6 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
                 unsupportedCode(GeodeticDatum.class, code);
                 throw e;
             }
-            if (datum == null) {
-                fail("DatumAuthorityFactory.createGeodeticDatum(\"" + code + "\") shall not return null.");
-            }
         }
         return datum;
     }

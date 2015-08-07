@@ -204,9 +204,6 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
                 unsupportedCode(Unit.class, code);
                 throw e;
             }
-            if (unit == null) {
-                fail("CSAuthorityFactory.createUnit(\"" + code + "\") shall not return null.");
-            }
         }
         return unit;
     }
@@ -218,6 +215,9 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
     private UnitConverter createUnitAndConverter() throws FactoryException {
+        final Unit<?> unit = getIdentifiedObject();
+        final StringBuilder prefix = new StringBuilder("Unit[").append(code).append(']');
+        assertNotNull(prefix.toString(), unit);
         final UnitConverter converter;
         try {
             converter = getIdentifiedObject().getConverterToAny(baseUnit);

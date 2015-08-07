@@ -213,9 +213,6 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
                 unsupportedCode(ProjectedCRS.class, code);
                 throw e;
             }
-            if (crs == null) {
-                fail("CRSAuthorityFactory.createProjectedCRS(\"" + code + "\") shall not return null.");
-            }
         }
         return crs;
     }
