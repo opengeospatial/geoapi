@@ -41,7 +41,7 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2009Generator extends TestMethodGenerator {
+public strictfp class GIGS2009Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *

@@ -47,7 +47,7 @@ import static javax.measure.unit.Unit.ONE;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2001Generator extends TestMethodGenerator {
+public strictfp class GIGS2001Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *

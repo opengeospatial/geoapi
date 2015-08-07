@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public abstract class TestMethodGenerator {
+public strictfp abstract class TestMethodGenerator {
     /**
      * Minimum number of calls to a method before we replace the calls by a loop.
      */
@@ -130,7 +130,7 @@ public abstract class TestMethodGenerator {
                     } else if (value instanceof int[]) {
                         String separator = "";
                         final int length = ((int[]) value).length;
-                        final int stopAt = Math.min(length, 10);
+                        final int stopAt = StrictMath.min(length, 10);
                         for (int j=0; j<stopAt; j++) {
                             out.print(separator);
                             out.print(((int[]) value)[j]);
@@ -219,7 +219,7 @@ public abstract class TestMethodGenerator {
         assertTrue("Array length shall be even", (pairs.length & 1) == 0);
         int length = 0;
         for (int i=0; i<pairs.length; i += 2) {
-            length = Math.max(length, ((String) pairs[i]).length());
+            length = StrictMath.max(length, ((String) pairs[i]).length());
         }
         for (int i=0; i<pairs.length; i += 2) {
             final String name  = (String) pairs[i];
