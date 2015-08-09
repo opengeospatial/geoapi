@@ -244,9 +244,9 @@ public strictfp abstract class TestMethodGenerator {
      * but not NaN, then it will also be formatted. This is used for inclusion in the list of argument
      * given to {@link #printJavadocKeyValues(Object[])}.
      */
-    static String quantityAndAlternative(final double value, final String unit, final double altValue, final String altUnit) {
+    static String quantityAndAlternative(final Object value, final String unit, final double altValue, final String altUnit) {
         final StringBuilder buffer = new StringBuilder().append(value).append(' ').append(unit);
-        if (altValue != value && !Double.isNaN(altValue)) {
+        if (!value.equals(altValue) && !Double.isNaN(altValue)) {
             buffer.append(" (").append(altValue).append(' ').append(altUnit).append(')');
         }
         return buffer.toString();

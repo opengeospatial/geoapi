@@ -326,6 +326,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testAiry()
      */
     @Test
     public void testAiry() throws FactoryException {
@@ -381,9 +383,11 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testAustralianNationalSpheroid()
      */
     @Test
-    public void testAustralianNational() throws FactoryException {
+    public void testAustralianNationalSpheroid() throws FactoryException {
         important         = true;
         code              = 7003;
         name              = "Australian National Spheroid";
@@ -408,6 +412,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testBessel()
      */
     @Test
     public void testBessel() throws FactoryException {
@@ -489,6 +495,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testClarke1866()
      */
     @Test
     public void testClarke1866() throws FactoryException {
@@ -543,6 +551,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testClarkeIGN()
      */
     @Test
     public void testClarkeIGN() throws FactoryException {
@@ -734,6 +744,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testGRS1967()
      */
     @Test
     public void testGRS1967() throws FactoryException {
@@ -790,6 +802,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testGRS1980()
      */
     @Test
     public void testGRS1980() throws FactoryException {
@@ -872,6 +886,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testInternational1924()
      */
     @Test
     public void testInternational1924() throws FactoryException {
@@ -899,6 +915,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testKrassowsky()
      */
     @Test
     public void testKrassowsky() throws FactoryException {
@@ -983,6 +1001,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testWGS84()
      */
     @Test
     public void testWGS84() throws FactoryException {
@@ -1087,6 +1107,8 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testClarkeAuthalicSphere()
      */
     @Test
     public void testClarkeAuthalicSphere() throws FactoryException {

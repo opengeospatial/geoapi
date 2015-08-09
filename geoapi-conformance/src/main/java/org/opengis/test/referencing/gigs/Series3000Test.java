@@ -314,31 +314,6 @@ public strictfp class Series3000Test extends UserObjectFactoryTestCase {
     }
 
     /**
-     * Verifies that the software allows correct definition of a user-defined prime meridian.
-     *
-     * <table cellpadding="3" summary="Test description"><tr>
-     *   <th nowrap align="left" valign="top">Test method:</th>
-     *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Test data:</th>
-     *   <td>EPSG Dataset and file {@svnurl gigs/GIGS_3003_userPrimeMeridian.csv}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Tested API:</th>
-     *   <td>{@link DatumFactory#createPrimeMeridian(Map, double, Unit)}.</td>
-     * </tr><tr>
-     *   <th nowrap align="left" valign="top">Expected result:</th>
-     *   <td>The software should accept the test data. The properties of the created objects will
-     *       be compared with the properties given to the factory method.</td>
-     * </tr></table>
-     *
-     * @throws FactoryException If an error occurred while creating a prime meridian.
-     */
-    @Test
-    public void test3003() throws FactoryException {
-        test3003(null);
-    }
-
-    /**
      * Creates the prime meridians and optionally tests them.
      * The behavior of this method depends on whether {@code objects} is null or not:
      *
@@ -363,8 +338,6 @@ public strictfp class Series3000Test extends UserObjectFactoryTestCase {
                 String.class,   // [3]: EPSG unit name
                 Double.class);  // [4]: Longitude from Greenwich in decimal degrees
 
-        final StringBuilder prefix = new StringBuilder("PrimeMeridian[\"");
-        final int prefixLength = prefix.length();
         while (data.next()) {
             final String name = data.getString(1);
             if (objects != null && !objects.containsKey(name)) {
@@ -394,19 +367,9 @@ public strictfp class Series3000Test extends UserObjectFactoryTestCase {
              * Create the prime meridian and save it in the map given by the caller, if non-null.
              */
             final PrimeMeridian meridian = datumFactory.createPrimeMeridian(properties(name, code), longitude, unit);
-            prefix.setLength(prefixLength);
-            prefix.append(name).append("\"]");
-            assertNotNull(prefix.toString(), meridian);
             if (objects != null) {
                 assertNull("An object already exists for the same name.", objects.put(name, meridian));
-                continue;
             }
-            validators.validate(meridian);
-            prefix.append('.');
-            assertEquals(message(prefix, "getName()"),               name,        getName(meridian));
-            assertContainsCode(message(prefix, "getIdentifiers()"), "GIGS", code, meridian.getIdentifiers());
-            assertEquals(message(prefix, "getAngularUnit()"),        unit,        meridian.getAngularUnit());
-            assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,   meridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
         }
     }
 

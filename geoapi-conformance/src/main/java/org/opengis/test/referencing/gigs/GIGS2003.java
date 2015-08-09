@@ -241,6 +241,8 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testGreenwich()
      */
     @Test
     public void testGreenwich() throws FactoryException {
@@ -285,6 +287,8 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testJakarta()
      */
     @Test
     public void testJakarta() throws FactoryException {
@@ -308,6 +312,8 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testParis()
      */
     @Test
     public void testParis() throws FactoryException {
@@ -369,6 +375,8 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testBogota()
      */
     @Test
     public void testBogota() throws FactoryException {

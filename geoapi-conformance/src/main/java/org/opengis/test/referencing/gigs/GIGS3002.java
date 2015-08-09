@@ -149,7 +149,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS2002} constructor.
+     * @return The default set of arguments to be given to the {@code GIGS3002} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -254,6 +254,8 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testWGS84()
      */
     @Test
     public void testWGS84() throws FactoryException {
@@ -280,9 +282,11 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testAiry()
      */
     @Test
-    public void testAiry1830() throws FactoryException {
+    public void testAiry() throws FactoryException {
         setCodeAndName(67001, "GIGS ellipsoid B");
         semiMajorAxis     = 6377563.396;
         semiMinorAxis     = 6356256.909237285;
@@ -306,9 +310,11 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testBessel()
      */
     @Test
-    public void testBessel1841() throws FactoryException {
+    public void testBessel() throws FactoryException {
         setCodeAndName(67004, "GIGS ellipsoid C");
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = 6356078.962818189;
@@ -332,6 +338,8 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testInternational1924()
      */
     @Test
     public void testInternational1924() throws FactoryException {
@@ -358,6 +366,8 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testGRS1980()
      */
     @Test
     public void testGRS1980() throws FactoryException {
@@ -384,9 +394,11 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testClarkeIGN()
      */
     @Test
-    public void testClarke1880_IGN() throws FactoryException {
+    public void testClarkeIGN() throws FactoryException {
         setCodeAndName(67011, "GIGS ellipsoid H");
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = 6356515.0;
@@ -409,9 +421,11 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testClarkeAuthalicSphere()
      */
     @Test
-    public void testClarke1866AuthalicSphere() throws FactoryException {
+    public void testClarkeAuthalicSphere() throws FactoryException {
         setCodeAndName(67052, "GIGS ellipsoid I");
         semiMajorAxis     = 6370997.0;
         semiMinorAxis     = 6370997.0;
@@ -435,6 +449,8 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testClarke1866()
      */
     @Test
     public void testClarke1866() throws FactoryException {
@@ -461,6 +477,8 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testGRS1967()
      */
     @Test
     public void testGRS1967() throws FactoryException {
@@ -487,6 +505,8 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testAustralianNationalSpheroid()
      */
     @Test
     public void testAustralianNationalSpheroid() throws FactoryException {
@@ -513,9 +533,11 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the properties.
+     *
+     * @see GIGS2002#testKrassowsky()
      */
     @Test
-    public void testKrassowsky1940() throws FactoryException {
+    public void testKrassowsky() throws FactoryException {
         setCodeAndName(67024, "GIGS ellipsoid Y");
         semiMajorAxis     = 6378245.0;
         semiMinorAxis     = 6356863.018773047;
