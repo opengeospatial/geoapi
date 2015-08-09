@@ -167,6 +167,7 @@ public strictfp abstract class TestCase {
      * This method returns directly the internal array, so it is important to never modify it.
      * This method is for internal usage by the {@link #listener} field only.
      */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
     static synchronized TestListener[] getTestListeners() {
         return listeners;
     }

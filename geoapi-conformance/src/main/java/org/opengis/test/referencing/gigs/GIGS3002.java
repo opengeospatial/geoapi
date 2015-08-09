@@ -191,9 +191,10 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
     }
 
     /**
-     * Returns the ellipsoid instance to be tested. When this method is invoked for the first time, it creates the
-     * ellipsoid to test by invoking the {@link DatumFactory} method with the current {@link #properties properties}
-     * in argument. The created object is then cached and returned in all subsequent invocations of this method.
+     * Returns the ellipsoid instance to be tested. When this method is invoked for the first time,
+     * it creates the ellipsoid to test by invoking the corresponding method from {@link DatumFactory}
+     * with the current {@link #properties properties} map in argument.
+     * The created object is then cached and returned in all subsequent invocations of this method.
      *
      * @return The ellipsoid instance to test.
      * @throws FactoryException if an error occurred while creating the ellipsoid instance.
@@ -214,7 +215,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
     /**
      * Creates an ellipsoid for the current {@link #properties}, then verifies its name and axis lengths.
      */
-    private void createAndTestEllipsoid() throws FactoryException {
+    private void createAndVerifyEllipsoid() throws FactoryException {
         if (skipTests) {
             return;
         }
@@ -265,7 +266,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 298.2572236;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -293,7 +294,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 299.3249646;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -321,7 +322,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 299.1528128;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -349,7 +350,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 297.0;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -377,7 +378,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.KILOMETRE;
         inverseFlattening = 298.2572221;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -404,7 +405,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6356515.0;
         axisUnit          = SI.METRE;
         inverseFlattening = 293.4660212936269;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -432,7 +433,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = Double.POSITIVE_INFINITY;
         isSphere          = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -460,7 +461,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = NonSI.FOOT_SURVEY_US;
         inverseFlattening = 294.9786982;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -488,7 +489,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 298.2471674;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -516,7 +517,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 298.25;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 
     /**
@@ -544,6 +545,6 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         axisUnit          = SI.METRE;
         inverseFlattening = 298.3;
         isIvfDefinitive   = true;
-        createAndTestEllipsoid();
+        createAndVerifyEllipsoid();
     }
 }
