@@ -240,6 +240,21 @@ public strictfp abstract class TestMethodGenerator {
     }
 
     /**
+     * Formats codes and names on the same line, for inclusion in the list of argument given to
+     * {@link #printJavadocKeyValues(Object[])}.
+     */
+    static String codeAndName(final int[] code, final String[] name) {
+        final StringBuilder buffer = new StringBuilder();
+        for (int i=0; i<code.length; i++) {
+            if (buffer.length() != 0) {
+                buffer.append("</b>, <b>");
+            }
+            buffer.append(code[i]).append(" – ").append(name[i]);
+        }
+        return (buffer.length() != 0) ? buffer.toString() : null;
+    }
+
+    /**
      * Formats a value followed by its unit of measurement. If the given alternative value is different
      * but not NaN, then it will also be formatted. This is used for inclusion in the list of argument
      * given to {@link #printJavadocKeyValues(Object[])}.
@@ -253,48 +268,97 @@ public strictfp abstract class TestMethodGenerator {
     }
 
     /**
+     * Replaces repetition of ASCII {@code '} character by the Unicode single, double or triple prime character.
+     */
+    static String replaceAsciiPrimeByUnicode(String text) {
+        if (text.endsWith("'''")) {
+            text = text.substring(0, text.length() - 3) + '‴';
+        } else if (text.endsWith("''")) {
+            text = text.substring(0, text.length() - 2) + '″';
+        } else if (text.endsWith("'")) {
+            text = text.substring(0, text.length() - 1) + '′';
+        }
+        return text;
+    }
+
+    /**
      * Prints the javadoc {@code throws FactoryException} followed by the given explanatory text.
-     * Then close the javadoc comment block.
      */
     final void printJavadocThrows(final String condition) {
         indent(1); out.println(" *");
         indent(1); out.print  (" * @throws FactoryException "); out.println(condition);
-        indent(1); out.println(" */");
     }
 
     /**
-     * Prints the test method signature, including the {@code throws FactoryException} declaration.
+     * Prints a "see" annotation if the given {@code method} is non-null.
      *
-     * @param name The name to use for generating a method name. This name may contain illegal characters like spaces;
-     *        they will be trimmed in an implementation-dependant way.
+     * @param classe The class, or {@code null} for the current class.
+     * @param method The method, or {@code null} if unknown.
      */
+    final void printJavadocSee(final String classe, final String method) {
+        if (method != null) {
+            indent(1); out.println(" *");
+            indent(1); out.print(" * @see ");
+            if (classe != null) {
+                out.print(classe);
+            }
+            out.print('#');
+            out.print(method);
+            out.println("()");
+        }
+    }
+
+    /**
+     * @deprecated We needs to complete the {@code METHOD_NAMES} map in all generator classes.
+     */
+    @Deprecated
     final void printTestMethodSignature(final String name) {
+        printTestMethodSignature(java.util.Collections.<String,String>emptyMap(), name);
+    }
+
+    /**
+     * Closes the javadoc comment block, then prints the test method signature.
+     * The signature includes the {@code throws FactoryException} declaration.
+     *
+     * @param nameToMethod A map of test method names to use for the given {@code name}.
+     *        If this map does not contain an entry for the given {@code name}, then this method
+     *        will generate a new name by trimming illegal characters from the given {@code name}.
+     * @param name The name to use for generating a method name.
+     */
+    final void printTestMethodSignature(final Map<String,String> nameToMethod, final String name) {
+        indent(1); out.println(" */");
         indent(1); out.println("@Test");
-        indent(1); out.print  ("public void test");
-        boolean toUpperCase = true;
-        for (int i=0; i<name.length(); i++) {
-            char c = name.charAt(i);
-            if (Character.isJavaIdentifierPart(c)) {
-                if (toUpperCase) {
-                    toUpperCase = false;
-                    c = Character.toUpperCase(c);
-                }
-                out.print(c);
-            } else {
-                if (c == '(' || c == ')') {
-                    if (i+1 < name.length()) {
-                        out.print('_');
+        indent(1); out.print  ("public void ");
+        final String predefined = nameToMethod.get(name);
+        if (predefined != null) {
+            out.print(predefined);
+        } else {
+            out.print("test");
+            boolean toUpperCase = true;
+            for (int i=0; i<name.length(); i++) {
+                char c = name.charAt(i);
+                if (Character.isJavaIdentifierPart(c)) {
+                    if (toUpperCase) {
                         toUpperCase = false;
+                        c = Character.toUpperCase(c);
                     }
+                    out.print(c);
                 } else {
-                    toUpperCase = true;
-                }
-                /*
-                 * For name like “Clarke's foot”, skip also the "s" after the single quote.
-                 * The result will be “ClarkeFoot”.
-                 */
-                if (c == '\'' && i+1 < name.length() && name.charAt(i+1) == 's') {
-                    i++;
+                    if (c == '(' || c == ')') {
+                        if (i+1 < name.length()) {
+                            out.print('_');
+                            toUpperCase = false;
+                        }
+                    } else {
+                        toUpperCase = true;
+                    }
+                    /*
+                     * For name like “Clarke's foot”, skip also the "s" after the single quote.
+                     * The result will be “ClarkeFoot”.
+                     */
+                    if (c == '\'' && i+1 < name.length() && name.charAt(i+1) == 's') {
+                        i++;
+                    }
                 }
             }
         }

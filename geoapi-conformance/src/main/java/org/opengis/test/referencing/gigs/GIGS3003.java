@@ -166,6 +166,15 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     }
 
     /**
+     * Sets the prime meridian instance to verify. This method is invoked only by other test classes
+     * which need to verify the prime meridian contained in a geodetic datum instead than the prime
+     * meridian immediately after creation.
+     */
+    final void setIdentifiedObject(final PrimeMeridian instance) {
+        primeMeridian = instance;
+    }
+
+    /**
      * Returns the prime meridian instance to be tested. When this method is invoked for the first time,
      * it creates the prime meridian to test by invoking the corresponding method from {@link DatumFactory}
      * with the current {@link #properties properties} map in argument.
@@ -184,16 +193,16 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     }
 
     /**
-     * Creates a prime meridian for the current {@link #properties}, then verifies its name and Greenwich longitude.
+     * Verifies the properties of the prime meridian given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyPrimeMeridian() throws FactoryException {
+    final void verifyPrimeMeridian() throws FactoryException {
         if (skipTests) {
             return;
         }
         final String name = getName();
         final String code = getCode();
         final PrimeMeridian primeMeridian = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("PrimeMeridian[\"").append(name).append("\"]");
+        final StringBuilder prefix = new StringBuilder("PrimeMeridian[").append(code).append(']');
         assertNotNull(prefix.toString(), primeMeridian);
         validators.validate(primeMeridian);
 
@@ -227,7 +236,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
         setCodeAndName(68901, "GIGS PM A");
         greenwichLongitude = 0.0;
         angularUnit        = NonSI.DEGREE_ANGLE;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -249,7 +258,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
         setCodeAndName(68908, "GIGS PM D");
         greenwichLongitude = 106.80771944444444;
         angularUnit        = NonSI.DEGREE_ANGLE;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -272,7 +281,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
         setCodeAndName(68903, "GIGS PM H");
         greenwichLongitude = 2.5969213;
         angularUnit        = NonSI.GRADE;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -294,6 +303,6 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
         setCodeAndName(68904, "GIGS PM I");
         greenwichLongitude = 74.08091666666667;
         angularUnit        = NonSI.DEGREE_ANGLE;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 }

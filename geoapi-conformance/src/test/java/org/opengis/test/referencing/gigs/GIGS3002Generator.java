@@ -31,8 +31,13 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collections;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Length;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -45,6 +50,41 @@ import javax.measure.quantity.Length;
  * @since   3.1
  */
 public strictfp class GIGS3002Generator extends TestMethodGenerator {
+    /**
+     * The mapping from GIGS ellipsoid names to test method names.
+     */
+    static final Map<String,String> METHOD_NAMES;
+    static {
+        final Map<String,String> m = new HashMap<String,String>();
+        assertNull(m.put("GIGS ellipsoid A", "testWGS84"));
+        assertNull(m.put("GIGS ellipsoid B", "testAiry"));
+        assertNull(m.put("GIGS ellipsoid C", "testBessel"));
+        assertNull(m.put("GIGS ellipsoid E", "testInternational1924"));
+        assertNull(m.put("GIGS ellipsoid F", "testGRS1980"));
+        assertNull(m.put("GIGS ellipsoid H", "testClarkeIGN"));
+        assertNull(m.put("GIGS ellipsoid I", "testClarkeAuthalicSphere"));
+        assertNull(m.put("GIGS ellipsoid J", "testClarke1866"));
+        assertNull(m.put("GIGS ellipsoid K", "testGRS1967"));
+        assertNull(m.put("GIGS ellipsoid X", "testAustralianNationalSpheroid"));
+        assertNull(m.put("GIGS ellipsoid Y", "testKrassowsky"));
+        /*
+         * EPSG names, declared because the GIGS 3004 tests use sometime the GIGS name,
+         * and sometime the EPSG name.
+         */
+        assertNull(m.put("WGS 84",                       "testWGS84"));
+        assertNull(m.put("Airy 1830",                    "testAiry"));
+        assertNull(m.put("Bessel 1841",                  "testBessel"));
+        assertNull(m.put("International 1924",           "testInternational1924"));
+        assertNull(m.put("GRS 1980",                     "testGRS1980"));
+        assertNull(m.put("Clarke 1880 (IGN)",            "testClarkeIGN"));
+        assertNull(m.put("Clarke 1866 Authalic Sphere",  "testClarkeAuthalicSphere"));
+        assertNull(m.put("Clarke 1866",                  "testClarke1866"));
+        assertNull(m.put("GRS 1967",                     "testGRS1967"));
+        assertNull(m.put("Australian National Spheroid", "testAustralianNationalSpheroid"));
+        assertNull(m.put("Krassowsky 1940",              "testKrassowsky"));
+        METHOD_NAMES = Collections.unmodifiableMap(m);
+    }
+
     /**
      * Launcher.
      *
@@ -115,11 +155,12 @@ public strictfp class GIGS3002Generator extends TestMethodGenerator {
                                   "Inverse flattening (1/<var>f</var>)", inverseFlattening,
                                   "Specific usage / Remarks", remarks);
             printJavadocThrows("if an error occurred while creating the ellipsoid from the properties.");
+            printJavadocSee("GIGS2002", METHOD_NAMES.get(name));
             /*
              * Write test method.
              */
             final Unit<Length> axisUnit = parseLinearUnit(unitName);
-            printTestMethodSignature(nameEPSG);
+            printTestMethodSignature(METHOD_NAMES, name);
             printCallToSetCodeAndName(code, name);
             printFieldAssignments("semiMajorAxis",     semiMajorAxis,
                                   "semiMinorAxis",     semiMinorAxis,
@@ -128,7 +169,7 @@ public strictfp class GIGS3002Generator extends TestMethodGenerator {
                                   "isIvfDefinitive",   isIvfDefinitive,
                                   "isSphere",          isSphere);
 
-            indent(2); out.println("createAndTestEllipsoid();");
+            indent(2); out.println("verifyEllipsoid();");
             indent(1); out.println('}');
         }
     }

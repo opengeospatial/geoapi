@@ -31,6 +31,9 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Collections;
 import javax.measure.unit.Unit;
 import javax.measure.unit.NonSI;
 import javax.measure.quantity.Angle;
@@ -48,6 +51,27 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public strictfp class GIGS3003Generator extends TestMethodGenerator {
+    /**
+     * The mapping from GIGS prime meridian names to test method names.
+     */
+    static final Map<String,String> METHOD_NAMES;
+    static {
+        final Map<String,String> m = new HashMap<String,String>();
+        assertNull(m.put("GIGS PM A", "testGreenwich"));
+        assertNull(m.put("GIGS PM D", "testJakarta"));
+        assertNull(m.put("GIGS PM H", "testParis"));
+        assertNull(m.put("GIGS PM I", "testBogota"));
+        /*
+         * EPSG names, declared because the GIGS 3004 tests use sometime the GIGS name,
+         * and sometime the EPSG name.
+         */
+        assertNull(m.put("Greenwich", "testGreenwich"));
+        assertNull(m.put("Jakarta",   "testJakarta"));
+        assertNull(m.put("Paris",     "testParis"));
+        assertNull(m.put("Bogota",    "testBogota"));
+        METHOD_NAMES = Collections.unmodifiableMap(m);
+    }
+
     /**
      * Launcher.
      *
@@ -108,15 +132,16 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
                                   "Greenwich longitude", quantityAndAlternative(greenwichLongitude, unitName, longitudeInDegrees, "°"),
                                   "Specific usage / Remarks", remarks);
             printJavadocThrows("if an error occurred while creating the prime meridian from the properties.");
+            printJavadocSee("GIGS2003", METHOD_NAMES.get(name));
             /*
              * Write test method.
              */
-            printTestMethodSignature(name);
+            printTestMethodSignature(METHOD_NAMES, name);
             printCallToSetCodeAndName(code, name);
             printFieldAssignments("greenwichLongitude", longitude,
                                   "angularUnit",        unit);
 
-            indent(2); out.println("createAndTestPrimeMeridian();");
+            indent(2); out.println("verifyPrimeMeridian();");
             indent(1); out.println('}');
         }
     }

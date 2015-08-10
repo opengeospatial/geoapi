@@ -137,6 +137,31 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
     }
 
     /**
+     * Copies the configuration to the given test cases. This method is invoked when a test depends on
+     * other tests, in which case the other tests need to be run with the same configuration in order
+     * to get data.
+     */
+    final void copyConfigurationTo(final UserObjectFactoryTestCase<?>... destinations) {
+        for (final UserObjectFactoryTestCase<?> destination : destinations) {
+            destination.isFactoryPreservingUserValues = isFactoryPreservingUserValues;
+        }
+    }
+
+    /**
+     * Creates a map containing the given name and code, to be given to object factories.
+     *
+     * @param  code The GIGS (not EPSG) code of the object to create.
+     * @param  name The name of the object to create.
+     * @return Properties to be given to the {@code create(…)} method.
+     */
+    static Map<String,Object> properties(final int code, final String name) {
+        final Map<String,Object> properties = new HashMap<String,Object>(4);
+        assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new GIGSIdentifier(code)));
+        assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
+        return properties;
+    }
+
+    /**
      * Sets the GIGS code name in the {@link #properties} map.
      *
      * @param code The GIGS (not EPSG) code of the object to create.
