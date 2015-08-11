@@ -191,9 +191,9 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
     }
 
     /**
-     * Creates a prime meridian for the current {@link #code}, then verifies its name and Greenwich longitude.
+     * Verifies the properties of the prime meridian given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyPrimeMeridian() throws FactoryException {
+    private void verifyPrimeMeridian() throws FactoryException {
         final PrimeMeridian pm = getIdentifiedObject();
         final StringBuilder prefix = new StringBuilder("PrimeMeridian[").append(code).append(']');
         assertNotNull(prefix.toString(), pm);
@@ -251,7 +251,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Greenwich";
         aliases            = NONE;
         greenwichLongitude = 0.0;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -273,7 +273,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Ferro";
         aliases            = NONE;
         greenwichLongitude = -17.666666666666668;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -297,7 +297,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Jakarta";
         aliases            = NONE;
         greenwichLongitude = 106.80771944444444;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -322,7 +322,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Paris";
         aliases            = NONE;
         greenwichLongitude = 2.33722917;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -342,7 +342,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Athens";
         aliases            = NONE;
         greenwichLongitude = 23.7163375;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -362,7 +362,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Bern";
         aliases            = NONE;
         greenwichLongitude = 7.439583333333333;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -384,7 +384,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Bogota";
         aliases            = NONE;
         greenwichLongitude = -74.08091666666667;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -404,7 +404,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Brussels";
         aliases            = NONE;
         greenwichLongitude = 4.367975;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -424,7 +424,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Lisbon";
         aliases            = NONE;
         greenwichLongitude = -9.13190611111111;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -444,7 +444,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Madrid";
         aliases            = NONE;
         greenwichLongitude = -3.687938888888889;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -465,7 +465,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Oslo";
         aliases            = new String[] {"Kristiania"};
         greenwichLongitude = 10.722916666666666;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -485,7 +485,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Paris RGS";
         aliases            = NONE;
         greenwichLongitude = 2.3372083333333333;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -505,7 +505,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Rome";
         aliases            = NONE;
         greenwichLongitude = 12.452333333333334;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -525,6 +525,6 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         name               = "Stockholm";
         aliases            = NONE;
         greenwichLongitude = 18.05827777777778;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 }

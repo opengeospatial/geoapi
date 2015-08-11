@@ -99,14 +99,14 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     /**
      * The EPSG code of the expected datum.
      */
-    public int datum;
+    public int datumCode;
 
     /**
      * The names of map projection (informative). Projected CRS conversion should have one of those names.
      * However those names are approximative. For example the “Argentina zones” name may apply to a wide
      * range of names like “Argentina zone 1”, “Argentina zone 2”, <i>etc</i>.
      */
-    public String[] projections;
+    public String[] projectionNames;
 
     /**
      * {@code true} if the expected axis directions are ({@link AxisDirection#NORTH NORTH},
@@ -218,7 +218,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     }
 
     /**
-     * Creates a projected CRS for the given {@code code}, then verifies its name and properties.
+     * Verifies the properties of the projected CRS given by {@link #getIdentifiedObject()}.
      */
     private void createAndVerifyProjectedCRS(final int code) throws FactoryException {
         this.code = code;
@@ -239,7 +239,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
 
             // Geodetic datum name.
             assertContainsCode(message(prefix, "getDatum().getIdentifiers()"),
-                    "EPSG", datum, crs.getDatum().getIdentifiers());
+                    "EPSG", datumCode, crs.getDatum().getIdentifiers());
 
             // Base geographic CRS name.
             if (isStandardNameSupported) {
@@ -277,10 +277,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAbidjan() throws FactoryException {
-        important   = true;
-        name        = "Abidjan 1987";
-        projections = new String[] {"TM 5 NW", "UTM"};
-        datum       = 6143;
+        important       = true;
+        name            = "Abidjan 1987";
+        projectionNames = new String[] {"TM 5 NW", "UTM"};
+        datumCode       = 6143;
         createAndVerifyProjectedCRS(2165);
         createAndVerifyProjectedCRS(2043);
         createAndVerifyProjectedCRS(2041);
@@ -300,10 +300,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAccra() throws FactoryException {
-        important   = true;
-        name        = "Accra";
-        projections = new String[] {"TM 1 NW", "Ghana National Grid"};
-        datum       = 6168;
+        important       = true;
+        name            = "Accra";
+        projectionNames = new String[] {"TM 1 NW", "Ghana National Grid"};
+        datumCode       = 6168;
         createAndVerifyProjectedCRS(2136);
         createAndVerifyProjectedCRS(2137);
     }
@@ -323,10 +323,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAGD66() throws FactoryException {
-        important   = true;
-        name        = "AGD66";
-        projections = new String[] {"Australian Map Grid zones"};
-        datum       = 6202;
+        important       = true;
+        name            = "AGD66";
+        projectionNames = new String[] {"Australian Map Grid zones"};
+        datumCode       = 6202;
         for (int code = 20249; code <= 20256; code++) {    // Loop over 8 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -347,10 +347,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAGD84() throws FactoryException {
-        important   = true;
-        name        = "AGD84";
-        projections = new String[] {"Australian Map Grid zones"};
-        datum       = 6203;
+        important       = true;
+        name            = "AGD84";
+        projectionNames = new String[] {"Australian Map Grid zones"};
+        datumCode       = 6203;
         for (int code = 20349; code <= 20356; code++) {    // Loop over 8 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -370,10 +370,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAinElAbd() throws FactoryException {
-        important   = true;
-        name        = "Ain el Abd";
-        projections = new String[] {"Aramco Lambert", "UTM"};
-        datum       = 6204;
+        important       = true;
+        name            = "Ain el Abd";
+        projectionNames = new String[] {"Aramco Lambert", "UTM"};
+        datumCode       = 6204;
         createAndVerifyProjectedCRS(2318);
         createAndVerifyProjectedCRS(20436);
         createAndVerifyProjectedCRS(20437);
@@ -393,10 +393,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAmersfoort() throws FactoryException {
-        important   = true;
-        name        = "Amersfoort";
-        projections = new String[] {"RD New"};
-        datum       = 6289;
+        important       = true;
+        name            = "Amersfoort";
+        projectionNames = new String[] {"RD New"};
+        datumCode       = 6289;
         createAndVerifyProjectedCRS(28992);
     }
 
@@ -414,10 +414,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testAratu() throws FactoryException {
-        important   = true;
-        name        = "Aratu";
-        projections = new String[] {"UTM"};
-        datum       = 6208;
+        important       = true;
+        name            = "Aratu";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6208;
         createAndVerifyProjectedCRS(20822);
         createAndVerifyProjectedCRS(20823);
         createAndVerifyProjectedCRS(20824);
@@ -437,10 +437,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testBatavia() throws FactoryException {
-        important   = true;
-        name        = "Batavia";
-        projections = new String[] {"NEIEZ", "TM 109 SE", "UTM"};
-        datum       = 6211;
+        important       = true;
+        name            = "Batavia";
+        projectionNames = new String[] {"NEIEZ", "TM 109 SE", "UTM"};
+        datumCode       = 6211;
         createAndVerifyProjectedCRS(3001);
         createAndVerifyProjectedCRS(2308);
     }
@@ -463,8 +463,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testBeijing() throws FactoryException {
         important        = true;
         name             = "Beijing 1954";
-        projections      = new String[] {"6-degree Gauss-Kruger"};
-        datum            = 6214;
+        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
+        datumCode            = 6214;
         isNorthAxisFirst = true;
         for (int code = 21413; code <= 21423; code++) {    // Loop over 11 codes
             createAndVerifyProjectedCRS(code);
@@ -487,8 +487,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testBogota() throws FactoryException {
         important        = true;
         name             = "Bogota 1975";
-        projections      = new String[] {"Colombia zones"};
-        datum            = 6218;
+        projectionNames      = new String[] {"Colombia zones"};
+        datumCode            = 6218;
         isNorthAxisFirst = true;
         for (int code = 21896; code <= 21899; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
@@ -509,10 +509,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testCamacupa() throws FactoryException {
-        important   = true;
-        name        = "Camacupa";
-        projections = new String[] {"TM 11.30 SE", "TM 12 SE", "UTM"};
-        datum       = 6220;
+        important       = true;
+        name            = "Camacupa";
+        projectionNames = new String[] {"TM 11.30 SE", "TM 12 SE", "UTM"};
+        datumCode       = 6220;
         createAndVerifyProjectedCRS(22091);
         createAndVerifyProjectedCRS(22092);
         createAndVerifyProjectedCRS(22032);
@@ -535,8 +535,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testCampoInchauspe() throws FactoryException {
         important        = true;
         name             = "Campo Inchauspe";
-        projections      = new String[] {"Argentina zones", "UTM"};
-        datum            = 6221;
+        projectionNames      = new String[] {"Argentina zones", "UTM"};
+        datumCode            = 6221;
         isNorthAxisFirst = true;
         for (int code = 22191; code <= 22197; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
@@ -560,10 +560,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testCarthage() throws FactoryException {
-        important   = true;
-        name        = "Carthage";
-        projections = new String[] {"Tunisia zones"};
-        datum       = 6223;
+        important       = true;
+        name            = "Carthage";
+        projectionNames = new String[] {"Tunisia zones"};
+        datumCode       = 6223;
         createAndVerifyProjectedCRS(22391);
         createAndVerifyProjectedCRS(22392);
     }
@@ -583,10 +583,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testDealulPiscului() throws FactoryException {
-        important   = true;
-        name        = "Dealul Piscului 1930";
-        projections = new String[] {"Stereo 30"};
-        datum       = 6316;
+        important       = true;
+        name            = "Dealul Piscului 1930";
+        projectionNames = new String[] {"Stereo 30"};
+        datumCode       = 6316;
         createAndVerifyProjectedCRS(31600);
     }
 
@@ -604,10 +604,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testDeirEzZor() throws FactoryException {
-        important   = true;
-        name        = "Deir ez Zor";
-        projections = new String[] {"Levant zone, Syria Lambert"};
-        datum       = 6227;
+        important       = true;
+        name            = "Deir ez Zor";
+        projectionNames = new String[] {"Levant zone, Syria Lambert"};
+        datumCode       = 6227;
         createAndVerifyProjectedCRS(22700);
         createAndVerifyProjectedCRS(22770);
     }
@@ -627,10 +627,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testDGN95() throws FactoryException {
-        important   = true;
-        name        = "DGN95";
-        projections = new String[] {"UTM"};
-        datum       = 6755;
+        important       = true;
+        name            = "DGN95";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6755;
         for (int code = 23866; code <= 23872; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -656,8 +656,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testDHDN() throws FactoryException {
         important        = true;
         name             = "DHDN";
-        projections      = new String[] {"3-degree Gauss-Kruger"};
-        datum            = 6314;
+        projectionNames      = new String[] {"3-degree Gauss-Kruger"};
+        datumCode            = 6314;
         isNorthAxisFirst = true;
         for (int code = 31466; code <= 31469; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
@@ -679,10 +679,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testED50() throws FactoryException {
-        important   = true;
-        name        = "ED50";
-        projections = new String[] {"UTM", "TM 5 NE", "TM 0 N"};
-        datum       = 6230;
+        important       = true;
+        name            = "ED50";
+        projectionNames = new String[] {"UTM", "TM 5 NE", "TM 0 N"};
+        datumCode       = 6230;
         for (int code = 23028; code <= 23035; code++) {    // Loop over 8 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -704,10 +704,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testED50_77() throws FactoryException {
-        important   = true;
-        name        = "ED50(ED77)";
-        projections = new String[] {"UTM"};
-        datum       = 6154;
+        important       = true;
+        name            = "ED50(ED77)";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6154;
         createAndVerifyProjectedCRS(2058);
         createAndVerifyProjectedCRS(2059);
         createAndVerifyProjectedCRS(2060);
@@ -727,10 +727,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testEgypt() throws FactoryException {
-        important   = true;
-        name        = "Egypt 1907";
-        projections = new String[] {"Egypt belts"};
-        datum       = 6229;
+        important       = true;
+        name            = "Egypt 1907";
+        projectionNames = new String[] {"Egypt belts"};
+        datumCode       = 6229;
         for (int code = 22991; code <= 22994; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -750,10 +750,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testGulfOfSuez() throws FactoryException {
-        important   = true;
-        name        = "Egypt Gulf of Suez S-650 TL";
-        projections = new String[] {"Egypt Red belt"};
-        datum       = 6706;
+        important       = true;
+        name            = "Egypt Gulf of Suez S-650 TL";
+        projectionNames = new String[] {"Egypt Red belt"};
+        datumCode       = 6706;
         createAndVerifyProjectedCRS(3355);
     }
 
@@ -772,10 +772,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testELD79() throws FactoryException {
-        important   = true;
-        name        = "ELD79";
-        projections = new String[] {"Libya zones", "UTM"};
-        datum       = 6159;
+        important       = true;
+        name            = "ELD79";
+        projectionNames = new String[] {"Libya zones", "UTM"};
+        datumCode       = 6159;
         for (int code = 2068; code <= 2080; code++) {    // Loop over 13 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -796,10 +796,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testETRS89() throws FactoryException {
-        important   = true;
-        name        = "ETRS89";
-        projections = new String[] {"UTM"};
-        datum       = 6258;
+        important       = true;
+        name            = "ETRS89";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6258;
         for (int code = 25828; code <= 25835; code++) {    // Loop over 8 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -819,10 +819,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testFahud() throws FactoryException {
-        important   = true;
-        name        = "Fahud";
-        projections = new String[] {"UTM"};
-        datum       = 6232;
+        important       = true;
+        name            = "Fahud";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6232;
         createAndVerifyProjectedCRS(23239);
         createAndVerifyProjectedCRS(23240);
     }
@@ -841,10 +841,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testFD58() throws FactoryException {
-        important   = true;
-        name        = "FD58";
-        projections = new String[] {"Iraq zone"};
-        datum       = 6132;
+        important       = true;
+        name            = "FD58";
+        projectionNames = new String[] {"Iraq zone"};
+        datumCode       = 6132;
         createAndVerifyProjectedCRS(3200);
     }
 
@@ -863,10 +863,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testGDA94() throws FactoryException {
-        important   = true;
-        name        = "GDA94";
-        projections = new String[] {"Australian Map Grid zones"};
-        datum       = 6283;
+        important       = true;
+        name            = "GDA94";
+        projectionNames = new String[] {"Australian Map Grid zones"};
+        datumCode       = 6283;
         for (int code = 28349; code <= 28356; code++) {    // Loop over 8 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -886,10 +886,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testGDM2000() throws FactoryException {
-        important   = true;
-        name        = "GDM2000";
-        projections = new String[] {"RSO grids"};
-        datum       = 6742;
+        important       = true;
+        name            = "GDM2000";
+        projectionNames = new String[] {"RSO grids"};
+        datumCode       = 6742;
         createAndVerifyProjectedCRS(3375);
         createAndVerifyProjectedCRS(3376);
     }
@@ -908,10 +908,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testHD72() throws FactoryException {
-        important   = true;
-        name        = "HD72";
-        projections = new String[] {"EOV"};
-        datum       = 6237;
+        important       = true;
+        name            = "HD72";
+        projectionNames = new String[] {"EOV"};
+        datumCode       = 6237;
         createAndVerifyProjectedCRS(23700);
     }
 
@@ -929,10 +929,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testIGNAstro() throws FactoryException {
-        important   = true;
-        name        = "IGN Astro 1960";
-        projections = new String[] {"UTM"};
-        datum       = 6700;
+        important       = true;
+        name            = "IGN Astro 1960";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6700;
         createAndVerifyProjectedCRS(3367);
         createAndVerifyProjectedCRS(3368);
         createAndVerifyProjectedCRS(3369);
@@ -952,10 +952,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testIndian1954() throws FactoryException {
-        important   = true;
-        name        = "Indian 1954";
-        projections = new String[] {"UTM"};
-        datum       = 6239;
+        important       = true;
+        name            = "Indian 1954";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6239;
         createAndVerifyProjectedCRS(23946);
         createAndVerifyProjectedCRS(23947);
         createAndVerifyProjectedCRS(23948);
@@ -975,10 +975,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testIndian1960() throws FactoryException {
-        important   = true;
-        name        = "Indian 1960";
-        projections = new String[] {"UTM"};
-        datum       = 6131;
+        important       = true;
+        name            = "Indian 1960";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6131;
         createAndVerifyProjectedCRS(3148);
         createAndVerifyProjectedCRS(3149);
     }
@@ -997,10 +997,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testIndian1975() throws FactoryException {
-        important   = true;
-        name        = "Indian 1975";
-        projections = new String[] {"UTM"};
-        datum       = 6240;
+        important       = true;
+        name            = "Indian 1975";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6240;
         createAndVerifyProjectedCRS(24047);
         createAndVerifyProjectedCRS(24048);
     }
@@ -1019,10 +1019,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testKalianpur1937() throws FactoryException {
-        important   = true;
-        name        = "Kalianpur 1937";
-        projections = new String[] {"India zones", "UTM"};
-        datum       = 6144;
+        important       = true;
+        name            = "Kalianpur 1937";
+        projectionNames = new String[] {"India zones", "UTM"};
+        datumCode       = 6144;
         createAndVerifyProjectedCRS(24305);
         createAndVerifyProjectedCRS(24306);
         createAndVerifyProjectedCRS(24375);
@@ -1042,10 +1042,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testKalianpur1962() throws FactoryException {
-        important   = true;
-        name        = "Kalianpur 1962";
-        projections = new String[] {"India zones", "UTM"};
-        datum       = 6145;
+        important       = true;
+        name            = "Kalianpur 1962";
+        projectionNames = new String[] {"India zones", "UTM"};
+        datumCode       = 6145;
         createAndVerifyProjectedCRS(24312);
         createAndVerifyProjectedCRS(24313);
         createAndVerifyProjectedCRS(24376);
@@ -1066,10 +1066,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testKalianpur1975() throws FactoryException {
-        important   = true;
-        name        = "Kalianpur 1975";
-        projections = new String[] {"India zones", "UTM"};
-        datum       = 6146;
+        important       = true;
+        name            = "Kalianpur 1975";
+        projectionNames = new String[] {"India zones", "UTM"};
+        datumCode       = 6146;
         createAndVerifyProjectedCRS(24342);
         createAndVerifyProjectedCRS(24343);
         createAndVerifyProjectedCRS(24379);
@@ -1090,10 +1090,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testKertau() throws FactoryException {
-        important   = true;
-        name        = "Kertau 1968";
-        projections = new String[] {"UTM"};
-        datum       = 6245;
+        important       = true;
+        name            = "Kertau 1968";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6245;
         createAndVerifyProjectedCRS(24547);
         createAndVerifyProjectedCRS(24548);
     }
@@ -1112,10 +1112,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testKertau_RSO() throws FactoryException {
-        important   = true;
-        name        = "Kertau (RSO)";
-        projections = new String[] {"RSO"};
-        datum       = 6751;
+        important       = true;
+        name            = "Kertau (RSO)";
+        projectionNames = new String[] {"RSO"};
+        datumCode       = 6751;
         createAndVerifyProjectedCRS(3167);
         createAndVerifyProjectedCRS(3168);
     }
@@ -1134,10 +1134,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testKOC() throws FactoryException {
-        important   = true;
-        name        = "KOC";
-        projections = new String[] {"KOC Lambert"};
-        datum       = 6246;
+        important       = true;
+        name            = "KOC";
+        projectionNames = new String[] {"KOC Lambert"};
+        datumCode       = 6246;
         createAndVerifyProjectedCRS(24600);
     }
 
@@ -1156,10 +1156,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testLGD2006() throws FactoryException {
-        important   = true;
-        name        = "LGD2006";
-        projections = new String[] {"Libya zones", "UTM"};
-        datum       = 6754;
+        important       = true;
+        name            = "LGD2006";
+        projectionNames = new String[] {"Libya zones", "UTM"};
+        datumCode       = 6754;
         createAndVerifyProjectedCRS(3177);
         for (int code = 3190; code <= 3199; code++) {    // Loop over 10 codes
             createAndVerifyProjectedCRS(code);
@@ -1183,10 +1183,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testLuzon() throws FactoryException {
-        important   = true;
-        name        = "Luzon 1911";
-        projections = new String[] {"Philippine zones"};
-        datum       = 6253;
+        important       = true;
+        name            = "Luzon 1911";
+        projectionNames = new String[] {"Philippine zones"};
+        datumCode       = 6253;
         for (int code = 25391; code <= 25395; code++) {    // Loop over 5 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1208,8 +1208,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testMAGNA_SIRGAS() throws FactoryException {
         important        = true;
         name             = "MAGNA-SIRGAS";
-        projections      = new String[] {"Colombia zones"};
-        datum            = 6686;
+        projectionNames      = new String[] {"Colombia zones"};
+        datumCode            = 6686;
         isNorthAxisFirst = true;
         for (int code = 3114; code <= 3118; code++) {    // Loop over 5 codes
             createAndVerifyProjectedCRS(code);
@@ -1230,10 +1230,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMalongo() throws FactoryException {
-        important   = true;
-        name        = "Malongo 1987";
-        projections = new String[] {"UTM"};
-        datum       = 6259;
+        important       = true;
+        name            = "Malongo 1987";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6259;
         createAndVerifyProjectedCRS(25932);
     }
 
@@ -1251,10 +1251,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testManoca() throws FactoryException {
-        important   = true;
-        name        = "Manoca 1962";
-        projections = new String[] {"UTM"};
-        datum       = 6193;
+        important       = true;
+        name            = "Manoca 1962";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6193;
         createAndVerifyProjectedCRS(2215);
     }
 
@@ -1272,10 +1272,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMauritania() throws FactoryException {
-        important   = true;
-        name        = "Mauritania 1999";
-        projections = new String[] {"UTM"};
-        datum       = 6702;
+        important       = true;
+        name            = "Mauritania 1999";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6702;
         createAndVerifyProjectedCRS(3343);
         createAndVerifyProjectedCRS(3344);
         createAndVerifyProjectedCRS(3345);
@@ -1297,8 +1297,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testLKS94() throws FactoryException {
         important        = true;
         name             = "LKS94";
-        projections      = new String[] {"UTM"};
-        datum            = 6126;
+        projectionNames      = new String[] {"UTM"};
+        datumCode            = 6126;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3346);
     }
@@ -1319,8 +1319,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942_UTM() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942";
-        projections      = new String[] {"UTM"};
-        datum            = 6284;
+        projectionNames      = new String[] {"UTM"};
+        datumCode            = 6284;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3350);
         createAndVerifyProjectedCRS(3351);
@@ -1341,10 +1341,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMhast_offshore() throws FactoryException {
-        important   = true;
-        name        = "Mhast (offshore)";
-        projections = new String[] {"UTM"};
-        datum       = 6705;
+        important       = true;
+        name            = "Mhast (offshore)";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6705;
         createAndVerifyProjectedCRS(3354);
     }
 
@@ -1362,10 +1362,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMhast_onshore() throws FactoryException {
-        important   = true;
-        name        = "Mhast (onshore)";
-        projections = new String[] {"UTM"};
-        datum       = 6704;
+        important       = true;
+        name            = "Mhast (onshore)";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6704;
         createAndVerifyProjectedCRS(3353);
     }
 
@@ -1383,10 +1383,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMinna() throws FactoryException {
-        important   = true;
-        name        = "Minna";
-        projections = new String[] {"Nigeria belts", "UTM"};
-        datum       = 6263;
+        important       = true;
+        name            = "Minna";
+        projectionNames = new String[] {"Nigeria belts", "UTM"};
+        datumCode       = 6263;
         createAndVerifyProjectedCRS(26331);
         createAndVerifyProjectedCRS(26332);
         createAndVerifyProjectedCRS(26391);
@@ -1408,10 +1408,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMonteMario() throws FactoryException {
-        important   = true;
-        name        = "Monte Mario";
-        projections = new String[] {"Italy zones"};
-        datum       = 6265;
+        important       = true;
+        name            = "Monte Mario";
+        projectionNames = new String[] {"Italy zones"};
+        datumCode       = 6265;
         createAndVerifyProjectedCRS(3003);
         createAndVerifyProjectedCRS(3004);
     }
@@ -1430,10 +1430,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testMPoraloko() throws FactoryException {
-        important   = true;
-        name        = "M'poraloko";
-        projections = new String[] {"UTM"};
-        datum       = 6266;
+        important       = true;
+        name            = "M'poraloko";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6266;
         createAndVerifyProjectedCRS(26632);
         createAndVerifyProjectedCRS(26692);
     }
@@ -1452,10 +1452,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNAD27() throws FactoryException {
-        important   = true;
-        name        = "NAD27";
-        projections = new String[] {"State Plane zones", "BLM zones", "UTM"};
-        datum       = 6267;
+        important       = true;
+        name            = "NAD27";
+        projectionNames = new String[] {"State Plane zones", "BLM zones", "UTM"};
+        datumCode       = 6267;
         createAndVerifyProjectedCRS(26711);
         createAndVerifyProjectedCRS(26712);
         createAndVerifyProjectedCRS(32012);
@@ -1479,10 +1479,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNAD27_Michigan() throws FactoryException {
-        important   = true;
-        name        = "NAD27 Michigan";
-        projections = new String[] {"State Plane zones"};
-        datum       = 6268;
+        important       = true;
+        name            = "NAD27 Michigan";
+        projectionNames = new String[] {"State Plane zones"};
+        datumCode       = 6268;
         createAndVerifyProjectedCRS(26811);
         createAndVerifyProjectedCRS(26812);
         createAndVerifyProjectedCRS(26813);
@@ -1504,10 +1504,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNAD83() throws FactoryException {
-        important   = true;
-        name        = "NAD83";
-        projections = new String[] {"State Plane zones", "UTM"};
-        datum       = 6269;
+        important       = true;
+        name            = "NAD83";
+        projectionNames = new String[] {"State Plane zones", "UTM"};
+        datumCode       = 6269;
         createAndVerifyProjectedCRS(3347);
         createAndVerifyProjectedCRS(26911);
         createAndVerifyProjectedCRS(26912);
@@ -1533,10 +1533,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNAD83_CSRS() throws FactoryException {
-        important   = true;
-        name        = "NAD83(CSRS)";
-        projections = new String[] {"UTM"};
-        datum       = 6140;
+        important       = true;
+        name            = "NAD83(CSRS)";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6140;
         createAndVerifyProjectedCRS(3348);
         createAndVerifyProjectedCRS(2955);
         createAndVerifyProjectedCRS(2956);
@@ -1556,10 +1556,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNAD83_HARN() throws FactoryException {
-        important   = true;
-        name        = "NAD83(HARN)";
-        projections = new String[] {"State Plane zones", "UTM"};
-        datum       = 6152;
+        important       = true;
+        name            = "NAD83(HARN)";
+        projectionNames = new String[] {"State Plane zones", "UTM"};
+        datumCode       = 6152;
         createAndVerifyProjectedCRS(2845);
         createAndVerifyProjectedCRS(2917);
         createAndVerifyProjectedCRS(2809);
@@ -1580,10 +1580,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNahrwan() throws FactoryException {
-        important   = true;
-        name        = "Nahrwan 1967";
-        projections = new String[] {"Nahrwan 1967"};
-        datum       = 6270;
+        important       = true;
+        name            = "Nahrwan 1967";
+        projectionNames = new String[] {"Nahrwan 1967"};
+        datumCode       = 6270;
         createAndVerifyProjectedCRS(27038);
         createAndVerifyProjectedCRS(27039);
         createAndVerifyProjectedCRS(27040);
@@ -1603,10 +1603,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNaparima() throws FactoryException {
-        important   = true;
-        name        = "Naparima 1955";
-        projections = new String[] {"UTM"};
-        datum       = 6158;
+        important       = true;
+        name            = "Naparima 1955";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6158;
         createAndVerifyProjectedCRS(2067);
     }
 
@@ -1625,10 +1625,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNordSahara() throws FactoryException {
-        important   = true;
-        name        = "Nord Sahara 1959";
-        projections = new String[] {"Voirol Unifie", "UTM"};
-        datum       = 6307;
+        important       = true;
+        name            = "Nord Sahara 1959";
+        projectionNames = new String[] {"Voirol Unifie", "UTM"};
+        datumCode       = 6307;
         createAndVerifyProjectedCRS(30791);
         createAndVerifyProjectedCRS(30792);
         createAndVerifyProjectedCRS(30730);
@@ -1650,10 +1650,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNTF_Paris() throws FactoryException {
-        important   = true;
-        name        = "NTF (Paris)";
-        projections = new String[] {"Lambert zones"};
-        datum       = 6807;
+        important       = true;
+        name            = "NTF (Paris)";
+        projectionNames = new String[] {"Lambert zones"};
+        datumCode       = 6807;
         createAndVerifyProjectedCRS(27571);
         createAndVerifyProjectedCRS(27572);
         createAndVerifyProjectedCRS(27573);
@@ -1675,8 +1675,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testNZGD2000() throws FactoryException {
         important        = true;
         name             = "NZGD2000";
-        projections      = new String[] {"TM"};
-        datum            = 6167;
+        projectionNames      = new String[] {"TM"};
+        datumCode            = 6167;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(2193);
         isNorthAxisFirst = false;
@@ -1699,10 +1699,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testNZGD49() throws FactoryException {
-        important   = true;
-        name        = "NZGD49";
-        projections = new String[] {"NZMG", "TM zones"};
-        datum       = 6272;
+        important       = true;
+        name            = "NZGD49";
+        projectionNames = new String[] {"NZMG", "TM zones"};
+        datumCode       = 6272;
         createAndVerifyProjectedCRS(27200);
         createAndVerifyProjectedCRS(27291);
         createAndVerifyProjectedCRS(27292);
@@ -1722,10 +1722,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testOSGB1936() throws FactoryException {
-        important   = true;
-        name        = "OSGB 1936";
-        projections = new String[] {"TM"};
-        datum       = 6277;
+        important       = true;
+        name            = "OSGB 1936";
+        projectionNames = new String[] {"TM"};
+        datumCode       = 6277;
         createAndVerifyProjectedCRS(27700);
     }
 
@@ -1743,10 +1743,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testPSD93() throws FactoryException {
-        important   = true;
-        name        = "PSD93";
-        projections = new String[] {"UTM"};
-        datum       = 6134;
+        important       = true;
+        name            = "PSD93";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6134;
         createAndVerifyProjectedCRS(3440);
     }
 
@@ -1764,10 +1764,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testPointeNoire() throws FactoryException {
-        important   = true;
-        name        = "Pointe Noire";
-        projections = new String[] {"UTM"};
-        datum       = 6282;
+        important       = true;
+        name            = "Pointe Noire";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6282;
         createAndVerifyProjectedCRS(28232);
     }
 
@@ -1787,8 +1787,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPOSGAR94() throws FactoryException {
         important        = true;
         name             = "POSGAR 94";
-        projections      = new String[] {"Argentina zones"};
-        datum            = 6694;
+        projectionNames      = new String[] {"Argentina zones"};
+        datumCode            = 6694;
         isNorthAxisFirst = true;
         for (int code = 22181; code <= 22187; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
@@ -1811,8 +1811,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPOSGAR98() throws FactoryException {
         important        = true;
         name             = "POSGAR 98";
-        projections      = new String[] {"Argentina zones"};
-        datum            = 6190;
+        projectionNames      = new String[] {"Argentina zones"};
+        datumCode            = 6190;
         isNorthAxisFirst = true;
         for (int code = 22171; code <= 22177; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
@@ -1833,10 +1833,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testPRS92() throws FactoryException {
-        important   = true;
-        name        = "PRS92";
-        projections = new String[] {"Philippine zones"};
-        datum       = 6683;
+        important       = true;
+        name            = "PRS92";
+        projectionNames = new String[] {"Philippine zones"};
+        datumCode       = 6683;
         for (int code = 3121; code <= 3125; code++) {    // Loop over 5 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1857,10 +1857,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testPSAD56() throws FactoryException {
-        important   = true;
-        name        = "PSAD56";
-        projections = new String[] {"UTM", "Peru zones"};
-        datum       = 6248;
+        important       = true;
+        name            = "PSAD56";
+        projectionNames = new String[] {"UTM", "Peru zones"};
+        datumCode       = 6248;
         for (int code = 24817; code <= 24820; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
         }
@@ -1889,8 +1889,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942";
-        projections      = new String[] {"6-degree Gauss-Kruger"};
-        datum            = 6284;
+        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
+        datumCode            = 6284;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(28409);
         createAndVerifyProjectedCRS(28416);
@@ -1914,8 +1914,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942_58() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942(58)";
-        projections      = new String[] {"6-degree Gauss-Kruger", "Stereo70"};
-        datum            = 6179;
+        projectionNames      = new String[] {"6-degree Gauss-Kruger", "Stereo70"};
+        datumCode            = 6179;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3334);
         createAndVerifyProjectedCRS(3335);
@@ -1939,8 +1939,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942_83() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942(83)";
-        projections      = new String[] {"6-degree Gauss-Kruger"};
-        datum            = 6178;
+        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
+        datumCode            = 6178;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3836);
     }
@@ -1959,10 +1959,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testQatar1948() throws FactoryException {
-        important   = true;
-        name        = "Qatar 1948";
-        projections = new String[] {"Qatar Grid"};
-        datum       = 6286;
+        important       = true;
+        name            = "Qatar 1948";
+        projectionNames = new String[] {"Qatar Grid"};
+        datumCode       = 6286;
         createAndVerifyProjectedCRS(2099);
     }
 
@@ -1980,10 +1980,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testQatar1974() throws FactoryException {
-        important   = true;
-        name        = "Qatar 1974";
-        projections = new String[] {"Qatar National Grid"};
-        datum       = 6285;
+        important       = true;
+        name            = "Qatar 1974";
+        projectionNames = new String[] {"Qatar National Grid"};
+        datumCode       = 6285;
         createAndVerifyProjectedCRS(28600);
     }
 
@@ -2001,10 +2001,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testQND95() throws FactoryException {
-        important   = true;
-        name        = "QND95";
-        projections = new String[] {"Qatar National Grid"};
-        datum       = 6614;
+        important       = true;
+        name            = "QND95";
+        projectionNames = new String[] {"Qatar National Grid"};
+        datumCode       = 6614;
         createAndVerifyProjectedCRS(2932);
     }
 
@@ -2022,10 +2022,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testREGVEN() throws FactoryException {
-        important   = true;
-        name        = "REGVEN";
-        projections = new String[] {"UTM"};
-        datum       = 6189;
+        important       = true;
+        name            = "REGVEN";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6189;
         createAndVerifyProjectedCRS(2201);
         createAndVerifyProjectedCRS(2202);
         createAndVerifyProjectedCRS(2203);
@@ -2045,10 +2045,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testRGF93() throws FactoryException {
-        important   = true;
-        name        = "RGF93";
-        projections = new String[] {"Lambert 93"};
-        datum       = 6171;
+        important       = true;
+        name            = "RGF93";
+        projectionNames = new String[] {"Lambert 93"};
+        datumCode       = 6171;
         createAndVerifyProjectedCRS(2154);
     }
 
@@ -2066,10 +2066,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testSAD69() throws FactoryException {
-        important   = true;
-        name        = "SAD69";
-        projections = new String[] {"UTM", "Brazil Polyconic"};
-        datum       = 6618;
+        important       = true;
+        name            = "SAD69";
+        projectionNames = new String[] {"UTM", "Brazil Polyconic"};
+        datumCode       = 6618;
         createAndVerifyProjectedCRS(29101);
         createAndVerifyProjectedCRS(29194);
     }
@@ -2090,8 +2090,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testSchwarzeck() throws FactoryException {
         important         = true;
         name              = "Schwarzeck";
-        projections       = new String[] {"Lo/22 zones", "UTM"};
-        datum             = 6293;
+        projectionNames       = new String[] {"Lo/22 zones", "UTM"};
+        datumCode             = 6293;
         isWestOrientated  = true;
         isSouthOrientated = true;
         createAndVerifyProjectedCRS(29371);
@@ -2114,10 +2114,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testSIRGAS1995() throws FactoryException {
-        important   = true;
-        name        = "SIRGAS 1995";
-        projections = new String[] {"UTM"};
-        datum       = 6170;
+        important       = true;
+        name            = "SIRGAS 1995";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6170;
         createAndVerifyProjectedCRS(31997);
     }
 
@@ -2135,10 +2135,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testSIRGAS2000() throws FactoryException {
-        important   = true;
-        name        = "SIRGAS 2000";
-        projections = new String[] {"UTM"};
-        datum       = 6674;
+        important       = true;
+        name            = "SIRGAS 2000";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6674;
         createAndVerifyProjectedCRS(31982);
     }
 
@@ -2156,10 +2156,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testTananarive() throws FactoryException {
-        important   = true;
-        name        = "Tananarive";
-        projections = new String[] {"UTM"};
-        datum       = 6297;
+        important       = true;
+        name            = "Tananarive";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6297;
         createAndVerifyProjectedCRS(29738);
     }
 
@@ -2177,10 +2177,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testTananarive_Paris() throws FactoryException {
-        important   = true;
-        name        = "Tananarive (Paris)";
-        projections = new String[] {"Laborde"};
-        datum       = 6810;
+        important       = true;
+        name            = "Tananarive (Paris)";
+        projectionNames = new String[] {"Laborde"};
+        datumCode       = 6810;
         createAndVerifyProjectedCRS(29701);
         createAndVerifyProjectedCRS(29702);
     }
@@ -2199,10 +2199,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testTC_1948() throws FactoryException {
-        important   = true;
-        name        = "TC(1948)";
-        projections = new String[] {"UTM"};
-        datum       = 6303;
+        important       = true;
+        name            = "TC(1948)";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6303;
         createAndVerifyProjectedCRS(30339);
     }
 
@@ -2220,10 +2220,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testTimbalai() throws FactoryException {
-        important   = true;
-        name        = "Timbalai 1948";
-        projections = new String[] {"RSO", "UTM"};
-        datum       = 6298;
+        important       = true;
+        name            = "Timbalai 1948";
+        projectionNames = new String[] {"RSO", "UTM"};
+        datumCode       = 6298;
         createAndVerifyProjectedCRS(29850);
         createAndVerifyProjectedCRS(29871);
         createAndVerifyProjectedCRS(29872);
@@ -2244,10 +2244,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testTrinidad() throws FactoryException {
-        important   = true;
-        name        = "Trinidad 1903";
-        projections = new String[] {"Cassini"};
-        datum       = 6302;
+        important       = true;
+        name            = "Trinidad 1903";
+        projectionNames = new String[] {"Cassini"};
+        datumCode       = 6302;
         createAndVerifyProjectedCRS(30200);
         createAndVerifyProjectedCRS(2314);
     }
@@ -2266,10 +2266,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testWGS72BE() throws FactoryException {
-        important   = true;
-        name        = "WGS 72BE";
-        projections = new String[] {"UTM"};
-        datum       = 6324;
+        important       = true;
+        name            = "WGS 72BE";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6324;
         createAndVerifyProjectedCRS(32488);
     }
 
@@ -2289,10 +2289,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testWGS84() throws FactoryException {
-        important   = true;
-        name        = "WGS 84";
-        projections = new String[] {"UTM"};
-        datum       = 6326;
+        important       = true;
+        name            = "WGS 84";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6326;
         createAndVerifyProjectedCRS(3349);
         for (int code = 32601; code <= 32660; code++) {    // Loop over 60 codes
             createAndVerifyProjectedCRS(code);
@@ -2319,8 +2319,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testXian() throws FactoryException {
         important        = true;
         name             = "Xian 1980";
-        projections      = new String[] {"6-degree Gauss-Kruger"};
-        datum            = 6610;
+        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
+        datumCode            = 6610;
         isNorthAxisFirst = true;
         for (int code = 2338; code <= 2348; code++) {    // Loop over 11 codes
             createAndVerifyProjectedCRS(code);
@@ -2341,10 +2341,10 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     @Test
     public void testYemen() throws FactoryException {
-        important   = true;
-        name        = "Yemen NGN96";
-        projections = new String[] {"UTM"};
-        datum       = 6163;
+        important       = true;
+        name            = "Yemen NGN96";
+        projectionNames = new String[] {"UTM"};
+        datumCode       = 6163;
         createAndVerifyProjectedCRS(2089);
         createAndVerifyProjectedCRS(2090);
     }

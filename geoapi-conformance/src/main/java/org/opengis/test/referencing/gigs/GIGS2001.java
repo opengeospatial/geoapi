@@ -209,18 +209,18 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
     }
 
     /**
-     * Creates the unit of measurement identified by the value of the {@link #code} field.
-     * Then, creates and returns the converter from that unit to the base unit.
+     * Gets the unit given by {@link #getIdentifiedObject()},
+     * then creates and returns the converter from that unit to the base unit.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
-    private UnitConverter createUnitAndConverter() throws FactoryException {
+    private UnitConverter createConverter() throws FactoryException {
         final Unit<?> unit = getIdentifiedObject();
         final StringBuilder prefix = new StringBuilder("Unit[").append(code).append(']');
         assertNotNull(prefix.toString(), unit);
         final UnitConverter converter;
         try {
-            converter = getIdentifiedObject().getConverterToAny(baseUnit);
+            converter = unit.getConverterToAny(baseUnit);
         } catch (ConversionException e) {
             throw (AssertionError) new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “"
                     + baseUnit + "”.").initCause(e);
@@ -268,7 +268,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -293,7 +293,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1000.0;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -318,7 +318,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3048;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -343,7 +343,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.30480060960121924;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -368,7 +368,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0000135965;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -393,7 +393,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3047972654;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -418,7 +418,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.201166195164;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -445,7 +445,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 20.116765121552632;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -470,7 +470,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3047997333333333;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -495,7 +495,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.9143984146160287;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -522,7 +522,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 20.116756;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -545,7 +545,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.9143985307444408;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -568,7 +568,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3047997101815088;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -591,7 +591,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.201168;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -616,7 +616,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -641,7 +641,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.017453292519943278;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -666,7 +666,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 4.848136811095355E-6;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -691,7 +691,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.01570796326794895;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -716,7 +716,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1E-6;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -743,7 +743,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = Double.NaN;
         baseUnit   = NonSI.DEGREE_ANGLE;
-        final UnitConverter converter = createUnitAndConverter();
+        final UnitConverter converter = createConverter();
         final double tolerance = 10*TOLERANCE;
         assertEquals(name,  10.00, converter.convert( 10.0000), tolerance);
         assertEquals(name, -10.00, converter.convert(-10.0000), tolerance);
@@ -775,7 +775,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.570796326794895E-6;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -800,7 +800,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = Unit.ONE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -825,7 +825,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1E-6;
         baseUnit   = Unit.ONE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -850,6 +850,6 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = Unit.ONE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 }

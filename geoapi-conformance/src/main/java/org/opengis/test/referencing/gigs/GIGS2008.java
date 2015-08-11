@@ -241,9 +241,9 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     }
 
     /**
-     * Creates a vertical CRS for the current {@link #code}, then verifies its name and properties.
+     * Verifies the properties of the vertical CRS given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyVerticalCRS() throws FactoryException {
+    private void verifyVerticalCRS() throws FactoryException {
         prefix.setLength(0);
         if (crsAuthorityFactory != null) {
             final VerticalCRS crs = getIdentifiedObject();
@@ -300,7 +300,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "AHD (Tasmania) height";
         code      = 5712;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -324,7 +324,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "AHD height";
         code      = 5711;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -348,7 +348,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "AIOC95 depth";
         code      = 5734;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -372,7 +372,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "AIOC95 height";
         code      = 5797;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -396,7 +396,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Baltic 1982 height";
         code      = 5786;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -420,7 +420,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Baltic depth";
         code      = 5612;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -444,7 +444,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Baltic height";
         code      = 5705;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -468,7 +468,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Bandar Abbas height";
         code      = 5752;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -492,7 +492,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Caspian depth";
         code      = 5706;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -516,7 +516,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "CGVD28 height";
         code      = 5713;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -540,7 +540,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "DHHN85 height";
         code      = 5784;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -564,7 +564,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "DHHN92 height";
         code      = 5783;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -588,7 +588,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "EGM96 geoid height";
         code      = 5773;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -612,7 +612,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "EVRF2000 height";
         code      = 5730;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -636,7 +636,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "EVRF2007 height";
         code      = 5621;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -660,7 +660,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Fahud HD height";
         code      = 5725;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -684,7 +684,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Fao height";
         code      = 5751;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -708,7 +708,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "KOC CD height";
         code      = 5790;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -732,7 +732,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "KOC WD depth";
         code      = 5789;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -756,7 +756,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "KOC WD depth (ft)";
         code      = 5614;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -780,7 +780,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Kuwait PWD height";
         code      = 5788;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -804,7 +804,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Lagos 1955 height";
         code      = 5796;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -828,7 +828,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "msl depth";
         code      = 5715;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -852,7 +852,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "msl height";
         code      = 5714;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -876,7 +876,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "NAP height";
         code      = 5709;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -900,7 +900,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "NAVD88 height";
         code      = 5703;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -924,7 +924,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "NGF IGN69 height";
         code      = 5720;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -948,7 +948,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "NGF Lallemand height";
         code      = 5719;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -972,7 +972,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "NGVD29 height";
         code      = 5702;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -996,7 +996,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "ODN height";
         code      = 5701;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -1020,7 +1020,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "PHD93 height";
         code      = 5724;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -1044,7 +1044,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Yellow Sea 1956 height";
         code      = 5736;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -1068,6 +1068,6 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         name      = "Yellow Sea 1985 height";
         code      = 5737;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 }

@@ -63,11 +63,11 @@ public strictfp class GIGS2005Generator extends TestMethodGenerator {
                 String .class);     // [4]: Remarks
 
         while (data.next()) {
-            final int[]   codes     = data.getInts   (0);
-            final boolean important = data.getBoolean(1);
-            final String  name      = data.getString (2);
-            final String  method    = data.getString (3);
-            final String  remarks   = data.getString (4);
+            final int[]   codes      = data.getInts   (0);
+            final boolean important  = data.getBoolean(1);
+            final String  name       = data.getString (2);
+            final String  methodName = data.getString (3);
+            final String  remarks    = data.getString (4);
 
             out.println();
             indent(1); out.println("/**");
@@ -75,14 +75,14 @@ public strictfp class GIGS2005Generator extends TestMethodGenerator {
             indent(1); out.println(" *");
             printJavadocKeyValues("EPSG coordinate operation codes", codes,
                                   "EPSG coordinate operation name", name,
-                                  "Coordinate operation method", method,
+                                  "Coordinate operation method", methodName,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the coordinate operation from the EPSG code.");
             printTestMethodSignature(name);
-            printFieldAssignments("important", important,
-                                  "name",      name,
-                                  "method",    method);
+            printFieldAssignments("important",  important,
+                                  "name",       name,
+                                  "methodName", methodName);
             printCallsToMethod("createAndVerifyProjection", codes);
             indent(1); out.println('}');
         }

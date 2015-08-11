@@ -265,9 +265,9 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
     }
 
     /**
-     * Creates an ellipsoid for the current {@link #code}, then verifies its name and axis lengths.
+     * Verifies the properties of the ellipsoid given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyEllipsoid() throws FactoryException {
+    private void verifyEllipsoid() throws FactoryException {
         final Ellipsoid ellipsoid = getIdentifiedObject();
         final StringBuilder prefix = new StringBuilder("Ellipsoid[").append(code).append(']');
         assertNotNull(prefix.toString(), ellipsoid);
@@ -340,7 +340,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377563.396;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.3249646;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -367,7 +367,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377340.189;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.3249646;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -397,7 +397,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.25;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -426,7 +426,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -453,7 +453,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -480,7 +480,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20926348.0;
         semiMinorAxis     = 20855233.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -509,7 +509,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378206.4;
         semiMinorAxis     = 6356583.8;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -536,7 +536,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20926631.531;
         semiMinorAxis     = 20855688.674;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -565,7 +565,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = 6356515.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -593,7 +593,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.145;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.465;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -620,7 +620,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377276.345;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -647,7 +647,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377301.243;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017255;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -674,7 +674,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377298.556;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -701,7 +701,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377299.151;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017255;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -728,7 +728,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377304.063;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -758,7 +758,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.2471674;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -786,7 +786,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.25;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -816,7 +816,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.2572221;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -843,7 +843,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378200.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.3;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -870,7 +870,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.247;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -900,7 +900,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378388.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 297.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -929,7 +929,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378245.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.3;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -957,7 +957,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378300.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 296.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -985,7 +985,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378135.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.26;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1015,7 +1015,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1043,7 +1043,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378140.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1068,7 +1068,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378135.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1093,7 +1093,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377492.018;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1121,7 +1121,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6370997.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1146,7 +1146,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1172,7 +1172,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.145;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.4663077;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1197,7 +1197,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378300.789;
         semiMinorAxis     = 6356566.435;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1222,7 +1222,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1247,7 +1247,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.46598;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1272,7 +1272,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377019.27;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1297,7 +1297,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20922931.80;
         semiMinorAxis     = 20853374.58;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1322,7 +1322,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6377295.664;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1347,7 +1347,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1373,7 +1373,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6371007.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1398,7 +1398,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378270.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 297.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1423,7 +1423,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378273.0;
         semiMinorAxis     = 6356889.449;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1449,7 +1449,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6371228.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1475,7 +1475,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378145.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.25;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1500,7 +1500,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378136.2;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1525,7 +1525,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378136.3;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1550,7 +1550,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6376523.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 308.64;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1576,7 +1576,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6378137.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1601,7 +1601,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378136.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.2578393;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1626,6 +1626,6 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 6378298.3;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 294.73;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 }

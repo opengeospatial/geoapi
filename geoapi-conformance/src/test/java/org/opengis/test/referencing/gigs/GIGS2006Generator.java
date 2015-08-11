@@ -64,12 +64,12 @@ public strictfp class GIGS2006Generator extends TestMethodGenerator {
                 String .class);     // [5]: Remarks
 
         while (data.next()) {
-            final int[]    codes       = data.getInts   (0);
-            final int      datum       = data.getInt    (1);
-            final boolean  important   = data.getBoolean(2);
-            final String   name        = data.getString (3);
-            final String[] projections = data.getStrings(4);
-            final String   remarks     = data.getString (5);
+            final int[]    codes           = data.getInts   (0);
+            final int      datumCode       = data.getInt    (1);
+            final boolean  important       = data.getBoolean(2);
+            final String   name            = data.getString (3);
+            final String[] projectionNames = data.getStrings(4);
+            final String   remarks         = data.getString (5);
 
             out.println();
             indent(1); out.println("/**");
@@ -77,15 +77,15 @@ public strictfp class GIGS2006Generator extends TestMethodGenerator {
             indent(1); out.println(" *");
             printJavadocKeyValues("Projected CRS codes", codes,
                                   "Geographic CRS name", name,
-                                  "Projection names (informative)", projections,
+                                  "Projection names (informative)", projectionNames,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the projected CRS from the EPSG code.");
             printTestMethodSignature(name);
-            printFieldAssignments("important",   important,
-                                  "name",        name,
-                                  "projections", projections,
-                                  "datum",       datum);
+            printFieldAssignments("important",       important,
+                                  "name",            name,
+                                  "projectionNames", projectionNames,
+                                  "datumCode",       datumCode);
             printCallsToMethod("createAndVerifyProjectedCRS", codes);
             indent(1); out.println('}');
         }

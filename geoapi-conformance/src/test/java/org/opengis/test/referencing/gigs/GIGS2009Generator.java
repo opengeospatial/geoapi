@@ -63,11 +63,11 @@ public strictfp class GIGS2009Generator extends TestMethodGenerator {
                 String.class);      // [4]: Remarks
 
         while (data.next()) {
-            final int      code      = data.getInt    (0);
-            final boolean  important = data.getBoolean(1);
-            final String   name      = data.getString (2);
-            final String   method    = data.getString (3);
-            final String   remarks   = data.getString (4);
+            final int      code       = data.getInt    (0);
+            final boolean  important  = data.getBoolean(1);
+            final String   name       = data.getString (2);
+            final String   methodName = data.getString (3);
+            final String   remarks    = data.getString (4);
 
             out.println();
             indent(1); out.println("/**");
@@ -75,15 +75,15 @@ public strictfp class GIGS2009Generator extends TestMethodGenerator {
             indent(1); out.println(" *");
             printJavadocKeyValues("EPSG transformation code", code,
                                   "EPSG transformation name", name,
-                                  "Transformation method", method,
+                                  "Transformation method", methodName,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the transformation from the EPSG code.");
             printTestMethodSignature(name);
-            printFieldAssignments("important", important,
-                                  "name",      name,
-                                  "method",    method);
-            indent(2); out.println("createAndVerifyTransformation();");
+            printFieldAssignments("important",  important,
+                                  "name",       name,
+                                  "methodName", methodName);
+            indent(2); out.println("verifyTransformation();");
             indent(1); out.println('}');
         }
     }

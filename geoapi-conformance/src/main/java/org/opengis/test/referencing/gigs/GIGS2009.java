@@ -100,7 +100,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
     /**
      * Name of the expected transformation method.
      */
-    public String method;
+    public String methodName;
 
     /**
      * The coordinate transformation created by the factory,
@@ -201,9 +201,9 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
     }
 
     /**
-     * Creates a transformation for the current {@link #code}, then verifies its name and properties.
+     * Verifies the properties of the transformation given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyTransformation() throws FactoryException {
+    private void verifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();
         final StringBuilder prefix = new StringBuilder("Transformation[").append(code).append(']');
         assertNotNull(prefix.toString(), transformation);
@@ -227,7 +227,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
         // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), method, getName(m));
+            assertEquals(message(prefix, "getName()"), methodName, getName(m));
             configurationTip = null;
         }
     }
@@ -246,10 +246,10 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      */
     @Test
     public void testBalticDepth_to_AIOC95() throws FactoryException {
-        important = true;
-        name      = "Baltic depth to AIOC95 depth (1)";
-        method    = "Vertical Offset";
-        createAndVerifyTransformation();
+        important  = true;
+        name       = "Baltic depth to AIOC95 depth (1)";
+        methodName = "Vertical Offset";
+        verifyTransformation();
     }
 
     /**
@@ -266,10 +266,10 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      */
     @Test
     public void testBalticHeight_to_AIOC95() throws FactoryException {
-        important = true;
-        name      = "Baltic height to AIOC95 height (1)";
-        method    = "Vertical Offset";
-        createAndVerifyTransformation();
+        important  = true;
+        name       = "Baltic height to AIOC95 height (1)";
+        methodName = "Vertical Offset";
+        verifyTransformation();
     }
 
     /**
@@ -287,9 +287,9 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      */
     @Test
     public void testWGS84_to_EGM96() throws FactoryException {
-        important = true;
-        name      = "WGS 84 to EGM96 Geoid height (1)";
-        method    = "Geographic3D to GravityRelatedHeight (EGM)";
-        createAndVerifyTransformation();
+        important  = true;
+        name       = "WGS 84 to EGM96 Geoid height (1)";
+        methodName = "Geographic3D to GravityRelatedHeight (EGM)";
+        verifyTransformation();
     }
 }

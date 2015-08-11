@@ -91,7 +91,7 @@ public strictfp class GIGS2003Generator extends TestMethodGenerator {
                                   "name",               name,
                                   "aliases",            aliases,
                                   "greenwichLongitude", longitude);
-            indent(2); out.println("createAndVerifyPrimeMeridian();");
+            indent(2); out.println("verifyPrimeMeridian();");
             indent(1); out.println('}');
         }
     }

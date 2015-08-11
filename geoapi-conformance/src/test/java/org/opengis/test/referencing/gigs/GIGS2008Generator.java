@@ -86,7 +86,7 @@ public strictfp class GIGS2008Generator extends TestMethodGenerator {
                                   "name",      name,
                                   "code",      code);
             indent(2); out.println("createAndVerifyVerticalDatum();");
-            indent(2); out.println("createAndVerifyVerticalCRS();");
+            indent(2); out.println("verifyVerticalCRS();");
             indent(1); out.println('}');
         }
     }
