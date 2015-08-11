@@ -48,7 +48,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
-import static org.opengis.test.Assert.*;
+import static org.junit.Assert.*;
 
 
 /**

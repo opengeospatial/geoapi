@@ -90,10 +90,16 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
      * </ul>
      *
      * @param type The GeoAPI interface of the object to construct.
-     * @param code The EPSG code of the object to create.
+     * @param code The EPSG code or name of the object to create.
      */
-    final void unsupportedCode(final Class<?> type, final int code) {
-        throw new AssumptionViolatedException(type.getSimpleName() + '[' + code + "] not supported.");
+    final void unsupportedCode(final Class<?> type, final Object code) {
+        final StringBuilder buffer = new StringBuilder(50).append(type.getSimpleName()).append('[');
+        final boolean quote = !(code instanceof Number);
+        if (quote) buffer.append('"');
+        buffer.append(code);
+        if (quote) buffer.append('"');
+        buffer.append("] not supported.");
+        throw new AssumptionViolatedException(buffer.toString());
     }
 
     /**

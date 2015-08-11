@@ -61,7 +61,10 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.referencing.gigs.GIGS2007}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.GIGS2008}</li>
  *   <li>{@link org.opengis.test.referencing.gigs.GIGS2009}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.Series3000Test}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS3002}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS3003}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS3004}</li>
+ *   <li>{@link org.opengis.test.referencing.gigs.GIGS3005}</li>
  *   <li>{@link org.opengis.test.wkt.CRSParserTest}</li>
  * </ul>
  *
@@ -140,7 +143,10 @@ import org.opengis.referencing.operation.MathTransform;
   org.opengis.test.referencing.gigs.GIGS2007.class,
   org.opengis.test.referencing.gigs.GIGS2008.class,
   org.opengis.test.referencing.gigs.GIGS2009.class,
-  org.opengis.test.referencing.gigs.Series3000Test.class,
+  org.opengis.test.referencing.gigs.GIGS3002.class,
+  org.opengis.test.referencing.gigs.GIGS3003.class,
+  org.opengis.test.referencing.gigs.GIGS3004.class,
+  org.opengis.test.referencing.gigs.GIGS3005.class,
   org.opengis.test.wkt.CRSParserTest.class
 })
 public strictfp class TestSuite {

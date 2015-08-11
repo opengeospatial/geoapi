@@ -282,6 +282,47 @@ public strictfp abstract class TestMethodGenerator {
     }
 
     /**
+     * Prints the first lines for the table of parameters in Javadoc.
+     *
+     * @param caption The table caption (e.g. "Conversion parameters").
+     */
+    final void printParameterTableHeader(final String caption) {
+        indent(1); out.println(" * <table class=\"ogc\">");
+        indent(1); out.print(" *   <caption>"); out.print(caption); out.println("</caption>");
+        indent(1); out.println(" *   <tr><th>Parameter name</th><th>Value</th></tr>");
+    }
+
+    /**
+     * Prints a parameter name, value and units in Javadoc.
+     */
+    final void printParameterTableRow(final String name, final String value, String unit) {
+        indent(1);
+        out.print(" *   <tr><td>");
+        out.print(name);
+        out.print("</td><td>");
+        out.print(value);
+        if (unit != null && !unit.equals("unity") && !unit.equals(GIGS3003Generator.SEXAGESIMAL_DEGREE)) {
+            if (unit.equals("degree")) {
+                out.print('°');
+            } else {
+                if (StrictMath.abs(Double.valueOf(value)) > 1) {
+                    unit += 's';
+                }
+                out.print(' ');
+                out.print(unit);
+            }
+        }
+        out.println("</td></tr>");
+    }
+
+    /**
+     * Prints the last lines for the table of parameters in Javadoc.
+     */
+    final void printParameterTableFooter() {
+        indent(1); out.println(" * </table>");
+    }
+
+    /**
      * Prints the javadoc {@code throws FactoryException} followed by the given explanatory text.
      */
     final void printJavadocThrows(final String condition) {

@@ -61,7 +61,6 @@ import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.junit.Assert.*;
-import static org.opengis.test.referencing.gigs.GIGSTestCase.message;
 
 
 /**
@@ -98,7 +97,7 @@ import static org.opengis.test.referencing.gigs.GIGSTestCase.message;
  *&#64;RunWith(JUnit4.class)
  *public class MyTest extends GIGS3004 {
  *    public MyTest() {
- *        super(new MyCRSFactory());
+ *        super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory());
  *    }
  *}</pre></blockquote>
  * </div>
@@ -230,12 +229,13 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
         if (crsFactory != null) {
             final GeographicCRS crs = crsFactory.createGeographicCRS(properties(crsCode, crsName),
                     getIdentifiedObject(), epsgFactory.createEllipsoidalCS(String.valueOf(csCode)));
-            if (crs == null) {
-                fail("CRSFactory.createGeographicCRS(…) shall not return null.");
-            }
+            assertNotNull("CRSFactory.createGeographicCRS(…) shall not return null.", crs);
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
-
+            /*
+             * Verify axes: may be two- or three-dimensional, (φ,λ) or (λ,φ) order, in angular degrees or grads.
+             * Those properties are inferred from the coordinate system code.
+             */
             Unit<Angle> angularUnit = NonSI.DEGREE_ANGLE;
             AxisDirection[] directions = GIGS2004.GEOGRAPHIC_2D;
             switch (csCode) {
@@ -263,9 +263,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
         if (crsFactory != null) {
             final GeocentricCRS crs = crsFactory.createGeocentricCRS(properties(crsCode, crsName),
                     getIdentifiedObject(), epsgFactory.createCartesianCS(String.valueOf(csCode)));
-            if (crs == null) {
-                fail("CRSFactory.createGeocentricCRSCRS(…) shall not return null.");
-            }
+            assertNotNull("CRSFactory.createGeocentricCRS(…) shall not return null.", crs);
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
             verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, GIGS2004.GEOCENTRIC, SI.METRE);

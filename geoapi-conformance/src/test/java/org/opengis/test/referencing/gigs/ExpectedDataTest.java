@@ -47,6 +47,7 @@ public strictfp class ExpectedDataTest {
      * Tests {@link ExpectedData#parseRow(String, Class[])}.
      */
     @Test
+    @SuppressWarnings("UnnecessaryBoxing")
     public void testParseRow() {
         final Object[] values = ExpectedData.parseRow("8901,true,Greenwich,,\"0°\",sexagesimal degree,0",
             Integer.class, Boolean.class, String.class, String.class, String.class, String.class, Double.class);

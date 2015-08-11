@@ -73,6 +73,11 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
     }
 
     /**
+     * The {@value} unit name, which is handled specially.
+     */
+    static final String SEXAGESIMAL_DEGREE = "sexagesimal degree";
+
+    /**
      * Launcher.
      *
      * @param args Ignored.
@@ -104,7 +109,7 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
             final int     codeEPSG           = data.getInt    ( 6);
             final double longitude;
             final Unit<Angle> unit;
-            if (unitName.equalsIgnoreCase("sexagesimal degree")) {
+            if (unitName.equalsIgnoreCase(SEXAGESIMAL_DEGREE)) {
                 /*
                  * Sexagesimal degrees are written in a String not directly convertible to 'double'
                  * values. Even if we performed the conversion, we do not expect implementations to

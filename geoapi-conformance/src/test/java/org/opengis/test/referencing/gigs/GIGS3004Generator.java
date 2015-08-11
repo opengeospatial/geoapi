@@ -113,8 +113,8 @@ public strictfp class GIGS3004Generator extends TestMethodGenerator {
                 Integer.class,    // [ 8]: GIGS datum code (see column 0)
                 Integer.class,    // [ 9]: EPSG coordinate system code
                 String.class,     // [10]: Remarks regarding CRS definition
-                String.class,     // [11]: Equivalent EPSG CRS code
-                String.class,     // [12]: Equivalent EPSG CRS name
+                String.class,     // [11]: Equivalent EPSG CRS codes (may be a list)
+                String.class,     // [12]: Equivalent EPSG CRS names (may be a list)
                 Integer.class);   // [13]: Early binding transformation code (see test 3007)
         /*
          * Each line define both a datum and a CRS. However some lines omit the datum
