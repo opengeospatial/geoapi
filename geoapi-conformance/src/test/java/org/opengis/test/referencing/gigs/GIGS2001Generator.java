@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
 import javax.measure.unit.Unit;
 
 import static javax.measure.unit.SI.METRE;
@@ -52,16 +53,19 @@ public strictfp class GIGS2001Generator extends TestMethodGenerator {
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2001Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2001_libUnit.csv",
                 Integer.class,      // [0]: EPSG UoM Code
                 String .class,      // [1]: Type
                 String .class,      // [2]: Name of Units used in EPSG db parameters
@@ -80,7 +84,7 @@ public strictfp class GIGS2001Generator extends TestMethodGenerator {
             if      (type.equalsIgnoreCase("Linear")) base = METRE;
             else if (type.equalsIgnoreCase("Angle" )) base = RADIAN;
             else if (type.equalsIgnoreCase("Scale" )) base = ONE;
-            else throw new DataException("Unknown type: " + type);
+            else throw new IOException("Unknown type: " + type);
 
             out.println();
             indent(1); out.println("/**");

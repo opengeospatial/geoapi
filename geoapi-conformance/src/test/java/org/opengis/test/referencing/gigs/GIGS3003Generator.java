@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
@@ -81,16 +82,19 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS3003Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_3003_userPrimeMeridian.csv",
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_3003_userPrimeMeridian.csv",
                 Integer.class,      // [0]: GIGS prime meridian code
                 String.class,       // [1]: GIGS prime meridian name
                 String.class,       // [2]: Longitude from greenwich

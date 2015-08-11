@@ -31,25 +31,29 @@
  */
 package org.opengis.test.referencing.gigs;
 
-import org.junit.*;
+import java.io.IOException;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 
 /**
- * Tests the {@link ExpectedData} class.
+ * Tests the {@link DataParser} class.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ExpectedDataTest {
+public strictfp class DataParserTest {
     /**
-     * Tests {@link ExpectedData#parseRow(String, Class[])}.
+     * Tests {@link DataParser#parseRow(String, Class[])}.
+     *
+     * @throws IOException if an error occurred while parsing the row.
      */
     @Test
     @SuppressWarnings("UnnecessaryBoxing")
-    public void testParseRow() {
-        final Object[] values = ExpectedData.parseRow("8901,true,Greenwich,,\"0°\",sexagesimal degree,0",
+    public void testParseRow() throws IOException {
+        final Object[] values = DataParser.parseRow("8901,true,Greenwich,,\"0°\",sexagesimal degree,0",
             Integer.class, Boolean.class, String.class, String.class, String.class, String.class, Double.class);
 
         assertEquals("EPSG Prime Meridian Code",                Integer.valueOf(8901), values[0]);
@@ -65,9 +69,11 @@ public strictfp class ExpectedDataTest {
      * Tests loading the data from the {@code GIGS_2002_libEllipsoid.csv} file.
      * The purpose of this test is to ensure that the file is fully loaded.
      * A few sampled records are tested in this process.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
     @Test
-    public void testFileLoading() {
+    public void testFileLoading() throws IOException {
         final int[] expectedCodes = {
             // Following records are flagged as particularly important to E&P industry.
             7001, 7002, 7003, 7004, 7046, 7007, 7008, 7009, 7011, 7012, 7015, 7044, 7016,
@@ -77,7 +83,7 @@ public strictfp class ExpectedDataTest {
             7053, 7058, 7057, 7025, 7032, 7033, 7027, 7059, 7054, 7028};
 
         // We will inspect only the first 5 columns for this test.
-        final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
+        final DataParser data = new DataParser("GIGS_2002_libEllipsoid.csv",
             Integer.class,  // [ 0]: EPSG Ellipsoid Code
             Boolean.class,  // [ 1]: Particularly important to E&P industry?
             String .class,  // [ 2]: EPSG Ellipsoid Name
@@ -131,11 +137,13 @@ public strictfp class ExpectedDataTest {
     /**
      * Tests loading the data from the {@code GIGS_2005_libProjection.csv} file.
      * This file contains range of integer values, which is the subject of this test.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
     @Test
-    public void testGetInts() {
+    public void testGetInts() throws IOException {
         // We will inspect only the first column for this test.
-        final ExpectedData data = new ExpectedData("GIGS_2005_libProjection.csv", String.class);
+        final DataParser data = new DataParser("GIGS_2005_libProjection.csv", String.class);
         assertTrue(data.next());
         assertEquals("16001-16060; 16101-16160", data.getString(0));
         assertArrayEquals("16001-16060; 16101-16160", new int[] {

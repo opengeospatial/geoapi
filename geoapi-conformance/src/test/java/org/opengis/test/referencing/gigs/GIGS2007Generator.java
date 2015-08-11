@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2007}. This generator needs to be executed only if the GIGS data changed.
@@ -46,16 +48,19 @@ public strictfp class GIGS2007Generator extends TestMethodGenerator {
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2007Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2007_libGeodTfm.csv",
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2007_libGeodTfm.csv",
                 Integer.class,      // [0]: EPSG Coordinate Operation Code
                 Boolean.class,      // [1]: Particularly important to E&P industry?
                 String .class,      // [2]: Transformation Name(s)

@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
@@ -89,16 +90,19 @@ public strictfp class GIGS3002Generator extends TestMethodGenerator {
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS3002Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_3002_userEllipsoid.csv",
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_3002_userEllipsoid.csv",
                 Integer.class,      // [ 0]: GIGS ellipsoid code
                 String .class,      // [ 1]: GIGS ellipsoid name
                 Double .class,      // [ 2]: Semi-major axis

@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2006}. This generator needs to be executed only if the GIGS data changed.
@@ -46,16 +48,19 @@ public strictfp class GIGS2006Generator extends TestMethodGenerator {
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2006Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2006_libProjectedCRS.csv",
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2006_libProjectedCRS.csv",
                 String .class,      // [0]: EPSG projected CRS Code(s)
                 Integer.class,      // [1]: EPSG Datum Code
                 Boolean.class,      // [2]: Particularly important to E&P industry?
