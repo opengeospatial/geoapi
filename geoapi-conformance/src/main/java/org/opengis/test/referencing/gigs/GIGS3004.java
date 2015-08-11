@@ -306,7 +306,6 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
         }
     }
 
-
     /**
      * Tests “GIGS geodetic datum A” geodetic datum creation from the factory.
      *
@@ -320,9 +319,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testWGS84()
      */
     @Test
-    public void testGeocentric_A() throws FactoryException {
+    public void testWGS84() throws FactoryException {
         setCodeAndName(66001, "GIGS geodetic datum A");
         ellipsoidData.testWGS84();
         primeMeridianData.testGreenwich();
@@ -346,9 +347,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testOSGB1936()
      */
     @Test
-    public void testGeographic3D_B() throws FactoryException {
+    public void testOSGB1936() throws FactoryException {
         setCodeAndName(66002, "GIGS geodetic datum B");
         ellipsoidData.testAiry();
         primeMeridianData.testGreenwich();
@@ -369,9 +372,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testAmersfoort()
      */
     @Test
-    public void testGeographic3D_C() throws FactoryException {
+    public void testAmersfoort() throws FactoryException {
         setCodeAndName(66003, "GIGS geodetic datum C");
         ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
@@ -393,9 +398,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testBatavia_Jakarta()
      */
     @Test
-    public void testGeographic_D() throws FactoryException {
+    public void testBatavia_Jakarta() throws FactoryException {
         setCodeAndName(66004, "GIGS geodetic datum D");
         ellipsoidData.testBessel();
         primeMeridianData.testJakarta();
@@ -415,9 +422,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testBelge1972()
      */
     @Test
-    public void testGeographic3D_E() throws FactoryException {
+    public void testBelge1972() throws FactoryException {
         setCodeAndName(66005, "GIGS geodetic datum E");
         ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
@@ -440,9 +449,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testGDA94()
      */
     @Test
-    public void testGeographic_F() throws FactoryException {
+    public void testGDA94() throws FactoryException {
         setCodeAndName(66006, "GIGS geodetic datum F");
         assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin F"));
         ellipsoidData.testGRS1980();
@@ -466,9 +477,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testETRS89()
      */
     @Test
-    public void testGeographic_G() throws FactoryException {
+    public void testETRS89() throws FactoryException {
         setCodeAndName(66007, "GIGS geodetic datum G");
         assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin G"));
         ellipsoidData.testGRS1980();
@@ -490,9 +503,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testNTF_Paris()
      */
     @Test
-    public void testGeographic_H() throws FactoryException {
+    public void testNTF_Paris() throws FactoryException {
         setCodeAndName(66008, "GIGS geodetic datum H");
         ellipsoidData.testClarkeIGN();
         primeMeridianData.testParis();
@@ -513,9 +528,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testNAD27()
      */
     @Test
-    public void testGeographic_J() throws FactoryException {
+    public void testNAD27() throws FactoryException {
         setCodeAndName(66009, "GIGS geodetic datum J");
         ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
@@ -536,9 +553,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testHD72()
      */
     @Test
-    public void testGeographic_K() throws FactoryException {
+    public void testHD72() throws FactoryException {
         setCodeAndName(66012, "GIGS geodetic datum K");
         ellipsoidData.testGRS1967();
         primeMeridianData.testGreenwich();
@@ -560,9 +579,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testBatavia()
      */
     @Test
-    public void testGeographic_L() throws FactoryException {
+    public void testBatavia() throws FactoryException {
         setCodeAndName(66011, "GIGS geodetic datum L");
         assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin L"));
         ellipsoidData.testBessel();
@@ -584,9 +605,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testED50()
      */
     @Test
-    public void testGeographic_M() throws FactoryException {
+    public void testED50() throws FactoryException {
         setCodeAndName(66016, "GIGS geodetic datum M");
         ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
@@ -607,9 +630,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testNTF()
      */
     @Test
-    public void testGeographic_T() throws FactoryException {
+    public void testNTF() throws FactoryException {
         setCodeAndName(66010, "GIGS geodetic datum T");
         ellipsoidData.testClarkeIGN();
         primeMeridianData.testGreenwich();
@@ -630,9 +655,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testAGD66()
      */
     @Test
-    public void testGeographic_X() throws FactoryException {
+    public void testAGD66() throws FactoryException {
         setCodeAndName(66013, "GIGS geodetic datum X");
         ellipsoidData.testAustralianNationalSpheroid();
         primeMeridianData.testGreenwich();
@@ -653,9 +680,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testPulkovo1942()
      */
     @Test
-    public void testGeographic_Y() throws FactoryException {
+    public void testPulkovo1942() throws FactoryException {
         setCodeAndName(66014, "GIGS geodetic datum Y");
         ellipsoidData.testKrassowsky();
         primeMeridianData.testGreenwich();
@@ -677,9 +706,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see GIGS2004#testNAD83()
      */
     @Test
-    public void testGeographic_Z() throws FactoryException {
+    public void testNAD83() throws FactoryException {
         setCodeAndName(66015, "GIGS geodetic datum Z");
         assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin Z"));
         ellipsoidData.testGRS1980();
@@ -701,9 +732,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testWGS84()
      */
     @Test
-    public void testGeographic_AA() throws FactoryException {
+    public void testWGS84_bis() throws FactoryException {
         setCodeAndName(66326, "GIGS geodetic datum AA");
         ellipsoidData.testWGS84();
         primeMeridianData.testGreenwich();
@@ -724,9 +757,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testOSGB1936()
      */
     @Test
-    public void testGeographic_BB() throws FactoryException {
+    public void testOSGB1936_bis() throws FactoryException {
         setCodeAndName(66277, "GIGS geodetic datum BB");
         ellipsoidData.testAiry();
         primeMeridianData.testGreenwich();
@@ -747,9 +782,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testAmersfoort()
      */
     @Test
-    public void testGeographic_CC() throws FactoryException {
+    public void testAmersfoort_bis() throws FactoryException {
         setCodeAndName(66289, "GIGS geodetic datum CC");
         ellipsoidData.testBessel();
         primeMeridianData.testGreenwich();
@@ -770,9 +807,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testBatavia_Jakarta()
      */
     @Test
-    public void testGeographic_DD() throws FactoryException {
+    public void testBatavia_Jakarta_bis() throws FactoryException {
         setCodeAndName(66813, "GIGS geodetic datum DD");
         ellipsoidData.testBessel();
         primeMeridianData.testJakarta();
@@ -793,9 +832,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testBelge1972()
      */
     @Test
-    public void testGeographic_EE() throws FactoryException {
+    public void testBelge1972_bis() throws FactoryException {
         setCodeAndName(66313, "GIGS geodetic datum EE");
         ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
@@ -816,9 +857,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testGDA94()
      */
     @Test
-    public void testGeographic_FF() throws FactoryException {
+    public void testGDA94_bis() throws FactoryException {
         setCodeAndName(66283, "GIGS geodetic datum FF");
         ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
@@ -839,9 +882,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNTF_Paris()
      */
     @Test
-    public void testGeographic_HH() throws FactoryException {
+    public void testNTF_Paris_bis() throws FactoryException {
         setCodeAndName(66807, "GIGS geodetic datum HH");
         ellipsoidData.testClarkeIGN();
         primeMeridianData.testParis();
@@ -862,9 +907,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNAD83()
      */
     @Test
-    public void testGeographic_ZZ() throws FactoryException {
+    public void testNAD83_bis() throws FactoryException {
         setCodeAndName(66269, "GIGS geodetic datum ZZ");
         ellipsoidData.testGRS1980();
         primeMeridianData.testGreenwich();
@@ -884,9 +931,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testOSGB1936()
      */
     @Test
-    public void testGeographic_B() throws FactoryException {
+    public void testOSGB1936_p1() throws FactoryException {
         setCodeAndName(66017, "GIGS geodetic datum B′");
         ellipsoidData.testAiry();
         primeMeridianData.testGreenwich();
@@ -908,9 +957,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testAmersfoort()
      */
     @Test
-    public void testGeographic_C() throws FactoryException {
+    public void testAmersfoort_p1() throws FactoryException {
         setCodeAndName(66018, "GIGS geodetic datum C′");
         assertNull(GeodeticDatum.ANCHOR_POINT_KEY, properties.put(GeodeticDatum.ANCHOR_POINT_KEY, "Origin C"));
         ellipsoidData.testBessel();
@@ -932,9 +983,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testBelge1972()
      */
     @Test
-    public void testGIGSGeodeticDatumE() throws FactoryException {
+    public void testBelge1972_p1() throws FactoryException {
         setCodeAndName(66023, "GIGS geodetic datum E′");
         ellipsoidData.testInternational1924();
         primeMeridianData.testGreenwich();
@@ -955,9 +1008,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNAD27()
      */
     @Test
-    public void testGeographic_J1() throws FactoryException {
+    public void testNAD27_p1() throws FactoryException {
         setCodeAndName(66021, "GIGS geodetic datum J′");
         ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
@@ -977,9 +1032,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNAD27()
      */
     @Test
-    public void testGeographic_J2() throws FactoryException {
+    public void testNAD27_p2() throws FactoryException {
         setCodeAndName(66019, "GIGS geodetic datum J″");
         ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
@@ -999,9 +1056,11 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
+     *
+     * @see #testNAD27()
      */
     @Test
-    public void testGeographic_J3() throws FactoryException {
+    public void testNAD27_p3() throws FactoryException {
         setCodeAndName(66020, "GIGS geodetic datum J‴");
         ellipsoidData.testClarke1866();
         primeMeridianData.testGreenwich();
@@ -1023,7 +1082,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the properties.
      */
     @Test
-    public void testGeographic_X1() throws FactoryException {
+    public void testAGD66_p1() throws FactoryException {
         setCodeAndName(66022, "GIGS geodetic datum X′");
         ellipsoidData.testAustralianNationalSpheroid();
         primeMeridianData.testGreenwich();
