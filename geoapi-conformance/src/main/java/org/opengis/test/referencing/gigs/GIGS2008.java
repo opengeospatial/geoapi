@@ -127,11 +127,6 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
-     * A temporary buffer for creating error message.
-     */
-    private StringBuilder prefix;
-
-    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -213,7 +208,6 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      */
     private void createAndVerifyVerticalDatum() throws FactoryException {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
-        prefix = new StringBuilder(60);
         if (datumAuthorityFactory != null) {
             final VerticalDatum datum;
             try {
@@ -224,17 +218,16 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
             }
 
             // Datum validation.
-            assertNotNull(prefix.append("VerticalDatum[").append(datumCode).append(']').toString(), datum);
+            assertNotNull("VerticalDatum", datum);
             validators.validate(datum);
 
             // Datum identifier. Important in order to distinguish datum.
-            assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                    "EPSG", datumCode, datum.getIdentifiers());
+            assertContainsCode("VerticalDatum.getIdentifiers()", "EPSG", datumCode, datum.getIdentifiers());
 
             // Datum name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                assertEquals("VerticalDatum.getName()", datumName, getName(datum));
                 configurationTip = null;
             }
         }
@@ -244,36 +237,35 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      * Verifies the properties of the vertical CRS given by {@link #getIdentifiedObject()}.
      */
     private void verifyVerticalCRS() throws FactoryException {
-        prefix.setLength(0);
         if (crsAuthorityFactory != null) {
             final VerticalCRS crs = getIdentifiedObject();
 
             // CRS validation.
-            assertNotNull(prefix.append("VerticalCRS[").append(code).append(']').toString(), crs);
+            assertNotNull("VerticalCRS", crs);
             validators.validate(crs);
 
             // CRS identifier.
-            assertContainsCode(message(prefix.append('.'), "getIdentifiers()"), "EPSG", code, crs.getIdentifiers());
+            assertContainsCode("VerticalCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
 
             // CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), name, getName(crs));
+                assertEquals("VerticalCRS.getName()", name, getName(crs));
                 configurationTip = null;
             }
 
             // Datum associated to the CRS.
             final VerticalDatum datum = crs.getDatum();
-            assertNotNull(prefix.append("getDatum()").toString(), datum);
+            assertNotNull("VerticalCRS.getDatum()", datum);
 
             // Datum identification.
             if (isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                assertContainsCode(message(prefix.append('.'), "getIdentifiers()"), "EPSG",
+                assertContainsCode("VerticalCRS.getDatum().getIdentifiers()", "EPSG",
                         datumCode, datum.getIdentifiers());
 
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                assertEquals("VerticalCRS.getDatum().getName()", datumName, getName(datum));
                 configurationTip = null;
             }
         }

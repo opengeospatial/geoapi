@@ -216,8 +216,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      */
     private UnitConverter createConverter() throws FactoryException {
         final Unit<?> unit = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Unit[").append(code).append(']');
-        assertNotNull(prefix.toString(), unit);
+        assertNotNull("Unit", unit);
         final UnitConverter converter;
         try {
             converter = unit.getConverterToAny(baseUnit);

@@ -207,18 +207,16 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         conversion = null; // For forcing the fetch of a new operation.
 
         final Conversion conversion = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Projection[").append(code).append(']');
-        assertNotNull(prefix.toString(), conversion);
+        assertNotNull("Conversion", conversion);
         validators.validate(conversion);
 
         // Map projection identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, conversion.getIdentifiers());
+        assertContainsCode("Conversion.getIdentifiers()", "EPSG", code, conversion.getIdentifiers());
 
         // Map projection name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getMethod().getName()"), methodName, getName(conversion.getMethod()));
+            assertEquals("Conversion.getMethod().getName()", methodName, getName(conversion.getMethod()));
             configurationTip = null;
         }
     }

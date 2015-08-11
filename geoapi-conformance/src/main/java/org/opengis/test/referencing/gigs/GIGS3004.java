@@ -281,8 +281,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
         final String code = getCode();
         final String anchorPoint = (String) properties.get(GeodeticDatum.ANCHOR_POINT_KEY);
         final GeodeticDatum datum = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("GeodeticDatum[").append(code).append(']');
-        assertNotNull(prefix.toString(), datum);
+        assertNotNull("GeodeticDatum", datum);
         validators.validate(datum);
 
         verifyIdentification(datum, name, code);
@@ -297,10 +296,9 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
         primeMeridianData.verifyPrimeMeridian();
 
         if (anchorPoint != null) {
-            final String message = message(prefix.append('.'), "getAnchorPoint()");
             final InternationalString actual = datum.getAnchorPoint();
-            assertNotNull(message, actual);
-            assertEquals (message, anchorPoint, actual.toString());
+            assertNotNull("GeodeticDatum.getAnchorPoint()", actual);
+            assertEquals ("GeodeticDatum.getAnchorPoint()", anchorPoint, actual.toString());
         }
     }
 

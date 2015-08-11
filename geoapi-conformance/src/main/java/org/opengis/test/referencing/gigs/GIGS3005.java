@@ -249,8 +249,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         final String name = getName();
         final String code = getCode();
         final Conversion conversion = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("GeodeticDatum[").append(code).append(']');
-        assertNotNull(prefix.toString(), conversion);
+        assertNotNull("Conversion", conversion);
         validators.validate(conversion);
         verifyIdentification(conversion, name, code);
         /*

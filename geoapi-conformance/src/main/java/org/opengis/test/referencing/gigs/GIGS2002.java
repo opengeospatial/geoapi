@@ -269,25 +269,23 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      */
     private void verifyEllipsoid() throws FactoryException {
         final Ellipsoid ellipsoid = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Ellipsoid[").append(code).append(']');
-        assertNotNull(prefix.toString(), ellipsoid);
+        assertNotNull("Ellipsoid", ellipsoid);
         validators.validate(ellipsoid);
 
         // Ellipsoid identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, ellipsoid.getIdentifiers());
+        assertContainsCode("Ellipsoid.getIdentifiers()", "EPSG", code, ellipsoid.getIdentifiers());
 
         // Ellipsoid name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(ellipsoid));
+            assertEquals("Ellipsoid.getName()", name, getName(ellipsoid));
             configurationTip = null;
         }
 
         // Ellipsoid alias.
         if (isStandardAliasSupported) {
             configurationTip = Configuration.Key.isStandardAliasSupported;
-            assertContainsAll(message(prefix, "getAlias()"), aliases, ellipsoid.getAlias());
+            assertContainsAll("Ellipsoid.getAlias()", aliases, ellipsoid.getAlias());
             configurationTip = null;
         }
         /*
@@ -299,19 +297,19 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         final Unit<Length> unit = ellipsoid.getAxisUnit();
         final boolean inMetres = toMetres != 1 && (unit == null || unit.equals(SI.METRE));
         double expectedAxisLength = getSemiMajorAxis(inMetres);
-        assertEquals(message(prefix, "getSemiMajorAxis()"),
+        assertEquals("Ellipsoid.getSemiMajorAxis()",
                 expectedAxisLength, ellipsoid.getSemiMajorAxis(), TOLERANCE*expectedAxisLength);
 
         if (!Double.isNaN(semiMinorAxis)) {
             expectedAxisLength = getSemiMinorAxis(inMetres);
-            assertEquals(message(prefix, "getSemiMinorAxis()"), expectedAxisLength,
+            assertEquals("Ellipsoid.getSemiMinorAxis()", expectedAxisLength,
                     ellipsoid.getSemiMinorAxis(), TOLERANCE*expectedAxisLength);
         }
         if (!Double.isNaN(inverseFlattening)) {
-            assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening,
+            assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening,
                     ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
         }
-        assertEquals(message(prefix, "isSphere()"), isSphere, ellipsoid.isSphere());
+        assertEquals("Ellipsoid.isSphere()", isSphere, ellipsoid.isSphere());
     }
 
     /**

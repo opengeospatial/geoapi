@@ -205,29 +205,27 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      */
     private void verifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Transformation[").append(code).append(']');
-        assertNotNull(prefix.toString(), transformation);
+        assertNotNull("Transformation", transformation);
         validators.validate(transformation);
 
         // Transformation identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, transformation.getIdentifiers());
+        assertContainsCode("Transformation.getIdentifiers()", "EPSG", code, transformation.getIdentifiers());
 
         // Transformation name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(transformation));
+            assertEquals("Transformation.getName()", name, getName(transformation));
             configurationTip = null;
         }
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
-        assertNotNull(prefix.append("getMethod()").toString(), m);
+        assertNotNull("Transformation.getMethod()", m);
 
         // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), methodName, getName(m));
+            assertEquals("Transformation.getMethod().getName()", methodName, getName(m));
             configurationTip = null;
         }
     }

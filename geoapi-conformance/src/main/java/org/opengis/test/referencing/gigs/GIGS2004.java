@@ -181,11 +181,6 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     protected final CRSAuthorityFactory crsAuthorityFactory;
 
     /**
-     * A temporary buffer for creating error message.
-     */
-    private StringBuilder prefix;
-
-    /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
@@ -267,14 +262,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     private void verifyDatum() throws FactoryException {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
-        prefix = new StringBuilder(60);
         if (datumAuthorityFactory != null) {
             final GeodeticDatum datum = getIdentifiedObject();
-            prefix.append("GeodeticDatum[").append(code).append(']');
-            assertNotNull(prefix.toString(), datum);
+            assertNotNull("GeodeticDatum", datum);
             validators.validate(datum);
-
-            prefix.append('.');
             verifyGeodeticDatum(datum);
         }
     }
@@ -334,39 +325,28 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      * @param expectedDirections Either {@link #GEOGRAPHIC_2D}, {@link #GEOGRAPHIC_3D} or {@link #GEOCENTRIC}.
      */
     private void verifyGeodeticCRS(final int crsCode, final GeodeticCRS crs, final AxisDirection[] expectedDirections) {
-        prefix.setLength(0);
-        assertNotNull(prefix.append("GeodeticCRS[").append(crsCode).append(']').toString(), crs);
+        assertNotNull("GeodeticCRS", crs);
 
         // Geodetic CRS identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", crsCode, crs.getIdentifiers());
+        assertContainsCode("GeodeticCRS.getIdentifiers()", "EPSG", crsCode, crs.getIdentifiers());
 
         // Geodetic CRS name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), crsName, getName(crs));
+            assertEquals("GeodeticCRS.getName()", crsName, getName(crs));
             configurationTip = null;
         }
 
         // Geodetic CRS datum.
         final GeodeticDatum crsDatum = crs.getDatum();
-        final int lengthAfterCRS = prefix.length();
-        assertNotNull(prefix.append("getDatum()").toString(), crsDatum);
-
-        prefix.append('.');
+        assertNotNull("GeodeticCRS.getDatum()", crsDatum);
         verifyGeodeticDatum(crsDatum);
 
         // Geodetic CRS coordinate system.
         final CoordinateSystem cs = crs.getCoordinateSystem();
-        prefix.setLength(lengthAfterCRS);
-        assertNotNull(prefix.append("getCoordinateSystem()").toString(), cs);
-
-        // Coordinate system dimension.
-        assertEquals(message(prefix.append('.'), "getDimension()"),
-                expectedDirections.length, cs.getDimension());
-
-        // Coordinate system axis directions.
-        assertAxisDirectionsEqual(message(prefix, "axes"), cs, expectedDirections);
+        assertNotNull("GeodeticCRS.getCoordinateSystem()", cs);
+        assertEquals("GeodeticCRS.getCoordinateSystem().getDimension()",  expectedDirections.length, cs.getDimension());
+        assertAxisDirectionsEqual("GeodeticCRS.getCoordinateSystem().getAxis(*)", cs, expectedDirections);
     }
 
     /**
@@ -378,38 +358,36 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
          * identifier unconditionally. Otherwise (for all datum obtained indirectly from a CRS), verify
          * the identifier only if the implementation supports identification of associated objects.
          */
-        final int lengthAfterDatum = prefix.length();
         if (isDependencyIdentificationSupported || (toVerify == datum)) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertContainsCode(message(prefix, "getIdentifiers()"), "EPSG", code, toVerify.getIdentifiers());
+            assertContainsCode("GeodeticDatum.getIdentifiers()", "EPSG", code, toVerify.getIdentifiers());
 
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), name, getName(toVerify));
+                assertEquals("GeodeticDatum.getName()", name, getName(toVerify));
             }
             configurationTip = null;
         }
 
         // Geodetic datum ellipsoid.
         final Ellipsoid e = toVerify.getEllipsoid();
-        assertNotNull(prefix.append("getEllipsoid()").toString(), e);
+        assertNotNull("GeodeticDatum.getEllipsoid()", e);
 
         // Ellipsoid name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals(message(prefix.append('.'), "getName()"), ellipsoidName, getName(e));
+            assertEquals("GeodeticDatum.getEllipsoid().getName()", ellipsoidName, getName(e));
             configurationTip = null;
         }
 
         // Geodetic datum prime meridian.
         final PrimeMeridian pm = toVerify.getPrimeMeridian();
-        prefix.setLength(lengthAfterDatum);
-        assertNotNull(prefix.append("getPrimeMeridian()").toString(), pm);
+        assertNotNull("GeodeticDatum.getPrimeMeridian()", pm);
 
         // Prime meridian name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals(message(prefix.append('.'), "getName()"), primeMeridianName, getName(pm));
+            assertEquals("GeodeticDatum.getPrimeMeridian().getName()", primeMeridianName, getName(pm));
             configurationTip = null;
         }
     }

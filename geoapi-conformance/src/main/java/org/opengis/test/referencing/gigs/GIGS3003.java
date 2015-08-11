@@ -202,17 +202,15 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
         final String name = getName();
         final String code = getCode();
         final PrimeMeridian primeMeridian = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("PrimeMeridian[").append(code).append(']');
-        assertNotNull(prefix.toString(), primeMeridian);
+        assertNotNull("PrimeMeridian", primeMeridian);
         validators.validate(primeMeridian);
 
         verifyPrimeMeridian(primeMeridian, name, greenwichLongitude, angularUnit);
         verifyIdentification(primeMeridian, name, code);
         if (isFactoryPreservingUserValues) {
-            prefix.append('.');
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
-            assertEquals(message(prefix, "getAngularUnit()"),        angularUnit,        primeMeridian.getAngularUnit());
-            assertEquals(message(prefix, "getGreenwichLongitude()"), greenwichLongitude, primeMeridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
+            assertEquals("PrimeMeridian.getAngularUnit()",        angularUnit,        primeMeridian.getAngularUnit());
+            assertEquals("PrimeMeridian.getGreenwichLongitude()", greenwichLongitude, primeMeridian.getGreenwichLongitude(), ANGULAR_TOLERANCE);
             configurationTip = null;
         }
     }

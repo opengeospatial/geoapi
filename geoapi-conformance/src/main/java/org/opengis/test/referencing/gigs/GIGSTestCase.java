@@ -197,15 +197,4 @@ next:   for (final String search : expected) {
         }
         assertEquals(message + ": occurrence of " + codespace + ':' + expected, 1, found);
     }
-
-    /**
-     * Returns the concatenation of the given prefix and suffix.
-     * This is used for building messages in JUnit assert statements.
-     */
-    static String message(final StringBuilder prefix, final String suffix) {
-        final int length = prefix.length();
-        final String message = prefix.append(suffix).toString();
-        prefix.setLength(length);
-        return message;
-    }
 }

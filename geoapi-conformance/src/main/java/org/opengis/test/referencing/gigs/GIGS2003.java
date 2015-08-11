@@ -195,25 +195,23 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
      */
     private void verifyPrimeMeridian() throws FactoryException {
         final PrimeMeridian pm = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("PrimeMeridian[").append(code).append(']');
-        assertNotNull(prefix.toString(), pm);
+        assertNotNull("PrimeMeridian", pm);
         validators.validate(pm);
 
         // Prime meridian identifiers.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, pm.getIdentifiers());
+        assertContainsCode("PrimeMeridian.getIdentifiers()", "EPSG", code, pm.getIdentifiers());
 
         // Prime meridian name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(pm));
+            assertEquals("PrimeMeridian.getName()", name, getName(pm));
             configurationTip = null;
         }
 
         // Prime meridian alias.
         if (isStandardAliasSupported) {
             configurationTip = Configuration.Key.isStandardAliasSupported;
-            assertContainsAll(message(prefix, "getAlias()"), aliases, pm.getAlias());
+            assertContainsAll("PrimeMeridian.getAlias()", aliases, pm.getAlias());
             configurationTip = null;
         }
         /*
@@ -226,7 +224,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         if (unit != null && !unit.equals(NonSI.DEGREE_ANGLE)) {
             longitude = NonSI.DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
         }
-        assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
+        assertEquals("PrimeMeridian.getGreenwichLongitude()", longitude,
                 pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);
     }
 

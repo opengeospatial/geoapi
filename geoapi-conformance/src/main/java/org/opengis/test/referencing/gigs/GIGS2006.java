@@ -225,42 +225,38 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
         crs = null; // For forcing the fetch of a new projected CRS.
 
         final ProjectedCRS crs = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("ProjectedCRS[").append(code).append(']');
-        assertNotNull(prefix.toString(), crs);
+        assertNotNull("ProjectedCRS", crs);
         validators.validate(crs);
 
         // Projected CRS identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, crs.getIdentifiers());
+        assertContainsCode("ProjectedCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
 
         // Projected CRS components.
         if (isDependencyIdentificationSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
 
             // Geodetic datum name.
-            assertContainsCode(message(prefix, "getDatum().getIdentifiers()"),
+            assertContainsCode("ProjectedCRS.getDatum().getIdentifiers()",
                     "EPSG", datumCode, crs.getDatum().getIdentifiers());
 
             // Base geographic CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getBaseCRS().getName()"), name, getName(crs.getBaseCRS()));
+                assertEquals("ProjectedCRS.getBaseCRS().getName()", name, getName(crs.getBaseCRS()));
             }
             configurationTip = null;
         }
 
         // Projected CRS coordinate system.
         final CartesianCS cs = crs.getCoordinateSystem();
-        assertNotNull(prefix.append("getCoordinateSystem()").toString(), crs);
-
-        // Coordinate system dimension.
-        assertEquals(message(prefix.append('.'), "getDimension()"), 2, cs.getDimension());
+        assertNotNull("ProjectedCRS.getCoordinateSystem()", crs);
+        assertEquals("ProjectedCRS.getCoordinateSystem().getDimension()", 2, cs.getDimension());
 
         // Coordinate sytem axis directions.
         final AxisDirection[] directions = new AxisDirection[2];
         directions[isNorthAxisFirst ? 1 : 0] = isWestOrientated  ? AxisDirection.WEST  : AxisDirection.EAST;
         directions[isNorthAxisFirst ? 0 : 1] = isSouthOrientated ? AxisDirection.SOUTH : AxisDirection.NORTH;
-        assertAxisDirectionsEqual(message(prefix, "axes"), cs, directions);
+        assertAxisDirectionsEqual("ProjectedCRS.getCoordinateSystem().getAxis(*)", cs, directions);
     }
 
     /**

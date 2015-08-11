@@ -230,21 +230,19 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         final String name = getName();
         final String code = getCode();
         final Ellipsoid ellipsoid = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Ellipsoid[").append(code).append(']');
-        assertNotNull(prefix.toString(), ellipsoid);
+        assertNotNull("Ellipsoid", ellipsoid);
         validators.validate(ellipsoid);
 
         verifyFlattenedSphere(ellipsoid, name, semiMajorAxis, inverseFlattening, axisUnit);
         verifyIdentification(ellipsoid, name, code);
         if (isFactoryPreservingUserValues) {
-            prefix.append('.');
             configurationTip = Configuration.Key.isFactoryPreservingUserValues;
-            assertEquals(message(prefix, "getAxisUnit()"),          axisUnit,          ellipsoid.getAxisUnit());
-            assertEquals(message(prefix, "getSemiMajorAxis()"),     semiMajorAxis,     ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajorAxis);
-            assertEquals(message(prefix, "getSemiMinorAxis()"),     semiMinorAxis,     ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinorAxis);
-            assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
-            assertEquals(message(prefix, "isIvfDefinitive()"),      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
-            assertEquals(message(prefix, "isSphere()"),             isSphere,          ellipsoid.isSphere());
+            assertEquals("Ellipsoid.getAxisUnit()",          axisUnit,          ellipsoid.getAxisUnit());
+            assertEquals("Ellipsoid.getSemiMajorAxis()",     semiMajorAxis,     ellipsoid.getSemiMajorAxis(),     TOLERANCE*semiMajorAxis);
+            assertEquals("Ellipsoid.getSemiMinorAxis()",     semiMinorAxis,     ellipsoid.getSemiMinorAxis(),     TOLERANCE*semiMinorAxis);
+            assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening, ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
+            assertEquals("Ellipsoid.isIvfDefinitive()",      isIvfDefinitive,   ellipsoid.isIvfDefinitive());
+            assertEquals("Ellipsoid.isSphere()",             isSphere,          ellipsoid.isSphere());
             configurationTip = null;
         }
     }
