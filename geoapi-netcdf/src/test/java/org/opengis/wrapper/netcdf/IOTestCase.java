@@ -87,7 +87,7 @@ public abstract strictfp class IOTestCase {
      *&lt;/netcdf&gt;</pre></blockquote>
      *
      * Some additional THREDDS attributes are defined but not tested by this module.
-     * The full set of attributes can be seen in the {@svnurl netcdf/thredds.ncml} file.
+     * The full set of attributes can be seen in the {@code thredds.ncml} file.
      *
      * <p>The Coordinate Reference System of this dataset is
      * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic}.</p>

@@ -494,7 +494,6 @@
 
           <!-- Custom taglets implemented in Java. -->
           <taglets>
-            <taglet><tagletClass>org.opengis.tools.taglet.SvnUrl</tagletClass></taglet>
             <taglet><tagletClass>org.opengis.tools.taglet.Departure</tagletClass></taglet>
           </taglets>
           <tagletArtifact>
