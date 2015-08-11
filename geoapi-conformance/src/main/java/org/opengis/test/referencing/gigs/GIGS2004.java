@@ -430,7 +430,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAbidjan() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6143;
         name              = "Abidjan 1987";
         crsName           = "Abidjan 1987";
@@ -456,7 +456,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAccra() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6168;
         name              = "Accra";
         crsName           = "Accra";
@@ -482,7 +482,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAGD66() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6202;
         name              = "Australian Geodetic Datum 1966";
         crsName           = "AGD66";
@@ -508,7 +508,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAGD84() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6203;
         name              = "Australian Geodetic Datum 1984";
         crsName           = "AGD84";
@@ -534,7 +534,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAinElAbd() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6204;
         name              = "Ain el Abd 1970";
         crsName           = "Ain el Abd";
@@ -560,7 +560,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAmersfoort() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6289;
         name              = "Amersfoort";
         crsName           = "Amersfoort";
@@ -586,7 +586,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testAratu() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6208;
         name              = "Aratu";
         crsName           = "Aratu";
@@ -612,7 +612,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testBatavia() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6211;
         name              = "Batavia";
         crsName           = "Batavia";
@@ -638,7 +638,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testBatavia_Jakarta() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6813;
         name              = "Batavia (Jakarta)";
         crsName           = "Batavia (Jakarta)";
@@ -664,7 +664,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testBeijing() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6214;
         name              = "Beijing 1954";
         crsName           = "Beijing 1954";
@@ -690,7 +690,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testBogota() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6218;
         name              = "Bogota 1975";
         crsName           = "Bogota 1975";
@@ -716,7 +716,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testCamacupa() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6220;
         name              = "Camacupa";
         crsName           = "Camacupa";
@@ -742,7 +742,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testCampoInchauspe() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6221;
         name              = "Campo Inchauspe";
         crsName           = "Campo Inchauspe";
@@ -768,7 +768,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testCarthage() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6223;
         name              = "Carthage";
         crsName           = "Carthage";
@@ -794,7 +794,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testChosMalal() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6160;
         name              = "Chos Malal 1914";
         crsName           = "Chos Malal 1914";
@@ -820,7 +820,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testDealulPiscului() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6316;
         name              = "Dealul Piscului 1930";
         crsName           = "Dealul Piscului 1930";
@@ -846,7 +846,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testDeirEzZor() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6227;
         name              = "Deir ez Zor";
         crsName           = "Deir ez Zor";
@@ -872,7 +872,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testDGN95() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6755;
         name              = "Datum Geodesi Nasional 1995";
         crsName           = "DGN95";
@@ -900,7 +900,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testDHDN() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6314;
         name              = "Deutsches Hauptdreiecksnetz";
         crsName           = "DHDN";
@@ -926,7 +926,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testDouala() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6192;
         name              = "Douala 1948";
         crsName           = "Douala 1948";
@@ -952,7 +952,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testED50() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6230;
         name              = "European Datum 1950";
         crsName           = "ED50";
@@ -978,7 +978,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testED50_77() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6154;
         name              = "European Datum 1950(1977)";
         crsName           = "ED50(ED77)";
@@ -1004,7 +1004,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testEgypt1907() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6229;
         name              = "Egypt 1907";
         crsName           = "Egypt 1907";
@@ -1030,7 +1030,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testGulfOfSuez() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6706;
         name              = "Egypt Gulf of Suez S-650 TL";
         crsName           = "Egypt Gulf of Suez S-650 TL";
@@ -1056,7 +1056,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testELD79() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6159;
         name              = "European Libyan Datum 1979";
         crsName           = "ELD79";
@@ -1082,7 +1082,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testETRS89() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6258;
         name              = "European Terrestrial Reference System 1989";
         crsName           = "ETRS89";
@@ -1110,7 +1110,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testFahud() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6232;
         name              = "Fahud";
         crsName           = "Fahud";
@@ -1136,7 +1136,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testFD58() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6132;
         name              = "Final Datum 1958";
         crsName           = "FD58";
@@ -1162,7 +1162,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testGDA94() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6283;
         name              = "Geocentric Datum of Australia 1994";
         crsName           = "GDA94";
@@ -1190,7 +1190,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testGDM2000() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6742;
         name              = "Geodetic Datum of Malaysia 2000";
         crsName           = "GDM2000";
@@ -1218,7 +1218,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testHD72() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6237;
         name              = "Hungarian Datum 1972";
         crsName           = "HD72";
@@ -1244,7 +1244,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testHito() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6254;
         name              = "Hito XVIII 1963";
         crsName           = "Hito XVIII 1963";
@@ -1270,7 +1270,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testID74() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6238;
         name              = "Indonesian Datum 1974";
         crsName           = "ID74";
@@ -1296,7 +1296,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testIGNAstro1960() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6700;
         name              = "IGN Astro 1960";
         crsName           = "IGN Astro 1960";
@@ -1322,7 +1322,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testIndian1954() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6239;
         name              = "Indian 1954";
         crsName           = "Indian 1954";
@@ -1348,7 +1348,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testIndian1960() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6131;
         name              = "Indian 1960";
         crsName           = "Indian 1960";
@@ -1374,7 +1374,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testIndian1975() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6240;
         name              = "Indian 1975";
         crsName           = "Indian 1975";
@@ -1400,7 +1400,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testKalianpur1937() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6144;
         name              = "Kalianpur 1937";
         crsName           = "Kalianpur 1937";
@@ -1426,7 +1426,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testKalianpur1962() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6145;
         name              = "Kalianpur 1962";
         crsName           = "Kalianpur 1962";
@@ -1452,7 +1452,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testKalianpur1975() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6146;
         name              = "Kalianpur 1975";
         crsName           = "Kalianpur 1975";
@@ -1478,7 +1478,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testKertau() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6245;
         name              = "Kertau 1968";
         crsName           = "Kertau 1968";
@@ -1504,7 +1504,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testKOC() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6246;
         name              = "Kuwait Oil Company";
         crsName           = "KOC";
@@ -1530,7 +1530,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testLGD2006() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6754;
         name              = "Libyan Geodetic Datum 2006";
         crsName           = "LGD2006";
@@ -1558,7 +1558,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testLuzon() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6253;
         name              = "Luzon 1911";
         crsName           = "Luzon 1911";
@@ -1584,7 +1584,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMAGNA_SIRGAS() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6686;
         name              = "Marco Geocentrico Nacional de Referencia";
         crsName           = "MAGNA-SIRGAS";
@@ -1612,7 +1612,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMalongo() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6259;
         name              = "Malongo 1987";
         crsName           = "Malongo 1987";
@@ -1638,7 +1638,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testManoca() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6193;
         name              = "Manoca 1962";
         crsName           = "Manoca 1962";
@@ -1664,7 +1664,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMauritania() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6702;
         name              = "Mauritania 1999";
         crsName           = "Mauritania 1999";
@@ -1692,7 +1692,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMGI() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6312;
         name              = "Militar-Geographische Institut";
         crsName           = "MGI";
@@ -1718,7 +1718,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMGI_Ferro() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6805;
         name              = "Militar-Geographische Institut (Ferro)";
         crsName           = "MGI (Ferro)";
@@ -1744,7 +1744,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMhast_offshore() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6705;
         name              = "Mhast (offshore)";
         crsName           = "Mhast (offshore)";
@@ -1770,7 +1770,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMhast_onshore() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6704;
         name              = "Mhast (onshore)";
         crsName           = "Mhast (onshore)";
@@ -1796,7 +1796,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMinna() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6263;
         name              = "Minna";
         crsName           = "Minna";
@@ -1822,7 +1822,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMonteMario() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6265;
         name              = "Monte Mario";
         crsName           = "Monte Mario";
@@ -1848,7 +1848,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testMPoraloko() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6266;
         name              = "M'poraloko";
         crsName           = "M'poraloko";
@@ -1874,7 +1874,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNAD27() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6267;
         name              = "North American Datum 1927";
         crsName           = "NAD27";
@@ -1900,7 +1900,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNAD27_Michigan() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6268;
         name              = "NAD27 Michigan";
         crsName           = "NAD27 Michigan";
@@ -1926,7 +1926,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNAD83() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6269;
         name              = "North American Datum 1983";
         crsName           = "NAD83";
@@ -1952,7 +1952,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNAD83_CSRS() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6140;
         name              = "NAD83 Canadian Spatial Reference System";
         crsName           = "NAD83(CSRS)";
@@ -1980,7 +1980,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNAD83_HARN() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6152;
         name              = "NAD83 (High Accuracy Reference Network)";
         crsName           = "NAD83(HARN)";
@@ -2008,7 +2008,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNAD83_NSRS2007() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6759;
         name              = "NAD83 (National Spatial Reference System 2007)";
         crsName           = "NAD83(NSRS2007)";
@@ -2036,7 +2036,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNahrwan1967() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6270;
         name              = "Nahrwan 1967";
         crsName           = "Nahrwan 1967";
@@ -2062,7 +2062,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNaparima1955() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6158;
         name              = "Naparima 1955";
         crsName           = "Naparima 1955";
@@ -2088,7 +2088,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNordSahara() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6307;
         name              = "Nord Sahara 1959";
         crsName           = "Nord Sahara 1959";
@@ -2114,7 +2114,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNTF() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6275;
         name              = "Nouvelle Triangulation Francaise";
         crsName           = "NTF";
@@ -2140,7 +2140,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNTF_Paris() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6807;
         name              = "Nouvelle Triangulation Francaise (Paris)";
         crsName           = "NTF (Paris)";
@@ -2166,7 +2166,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNZGD2000() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6167;
         name              = "New Zealand Geodetic Datum 2000";
         crsName           = "NZGD2000";
@@ -2194,7 +2194,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testNZGD49() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6272;
         name              = "New Zealand Geodetic Datum 1949";
         crsName           = "NZGD49";
@@ -2220,7 +2220,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testOSGB1936() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6277;
         name              = "OSGB 1936";
         crsName           = "OSGB 1936";
@@ -2246,7 +2246,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPadang() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6280;
         name              = "Padang 1884";
         crsName           = "Padang";
@@ -2272,7 +2272,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPadang_Jakarta() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6808;
         name              = "Padang 1884 (Jakarta)";
         crsName           = "Padang (Jakarta)";
@@ -2298,7 +2298,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPSD93() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6134;
         name              = "PDO Survey Datum 1993";
         crsName           = "PSD93";
@@ -2324,7 +2324,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPointeNoire() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6282;
         name              = "Congo 1960 Pointe Noire";
         crsName           = "Pointe Noire";
@@ -2350,7 +2350,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPOSGAR94() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6694;
         name              = "Posiciones Geodesicas Argentinas 1994";
         crsName           = "POSGAR 94";
@@ -2378,7 +2378,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPOSGAR98() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6190;
         name              = "Posiciones Geodesicas Argentinas 1998";
         crsName           = "POSGAR 98";
@@ -2406,7 +2406,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPRS92() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6683;
         name              = "Philippine Reference System 1992";
         crsName           = "PRS92";
@@ -2434,7 +2434,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPSAD56() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6248;
         name              = "Provisional South American Datum 1956";
         crsName           = "PSAD56";
@@ -2460,7 +2460,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPulkovo1942() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6284;
         name              = "Pulkovo 1942";
         crsName           = "Pulkovo 1942";
@@ -2486,7 +2486,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPulkovo1942_58() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6179;
         name              = "Pulkovo 1942(58)";
         crsName           = "Pulkovo 1942(58)";
@@ -2512,7 +2512,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testPulkovo1942_83() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6178;
         name              = "Pulkovo 1942(83)";
         crsName           = "Pulkovo 1942(83)";
@@ -2538,7 +2538,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testQatar1948() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6286;
         name              = "Qatar 1948";
         crsName           = "Qatar 1948";
@@ -2564,7 +2564,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testQatar1974() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6285;
         name              = "Qatar 1974";
         crsName           = "Qatar 1974";
@@ -2590,7 +2590,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testQatar1995() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6614;
         name              = "Qatar National Datum 1995";
         crsName           = "QND95";
@@ -2616,7 +2616,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testREGVEN() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6189;
         name              = "Red Geodesica Venezolana";
         crsName           = "REGVEN";
@@ -2644,7 +2644,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testRGF93() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6171;
         name              = "Reseau Geodesique Francais 1993";
         crsName           = "RGF93";
@@ -2672,7 +2672,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testSAD69() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6618;
         name              = "South American Datum 1969";
         crsName           = "SAD69";
@@ -2698,7 +2698,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testSchwarzeck() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6293;
         name              = "Schwarzeck";
         crsName           = "Schwarzeck";
@@ -2724,7 +2724,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testSIRGAS1995() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6170;
         name              = "Sistema de Referencia Geocentrico para America del Sur 1995";
         crsName           = "SIRGAS 1995";
@@ -2752,7 +2752,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testSIRGAS2000() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6674;
         name              = "Sistema de Referencia Geocentrico para las AmericaS 2000";
         crsName           = "SIRGAS 2000";
@@ -2780,7 +2780,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testTananarive() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6297;
         name              = "Tananarive 1925";
         crsName           = "Tananarive";
@@ -2806,7 +2806,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testTananarive_Paris() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6810;
         name              = "Tananarive 1925 (Paris)";
         crsName           = "Tananarive (Paris)";
@@ -2832,7 +2832,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testTrucialCoast() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6303;
         name              = "Trucial Coast 1948";
         crsName           = "TC(1948)";
@@ -2858,7 +2858,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testTimbalai() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6298;
         name              = "Timbalai 1948";
         crsName           = "Timbalai 1948";
@@ -2884,7 +2884,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testTrinidad() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6302;
         name              = "Trinidad 1903";
         crsName           = "Trinidad 1903";
@@ -2910,7 +2910,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testVoirol1875() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6304;
         name              = "Voirol 1875";
         crsName           = "Voirol 1875";
@@ -2936,7 +2936,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testVoirol1875_Paris() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6811;
         name              = "Voirol 1875 (Paris)";
         crsName           = "Voirol 1875 (Paris)";
@@ -2962,7 +2962,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testWGS72() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6322;
         name              = "World Geodetic System 1972";
         crsName           = "WGS 72";
@@ -2990,7 +2990,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testWGS72BE() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6324;
         name              = "WGS 72 Transit Broadcast Ephemeris";
         crsName           = "WGS 72BE";
@@ -3018,7 +3018,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testWGS84() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6326;
         name              = "World Geodetic System 1984";
         crsName           = "WGS 84";
@@ -3046,7 +3046,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testXian() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6610;
         name              = "Xian 1980";
         crsName           = "Xian 1980";
@@ -3072,7 +3072,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testYemen() throws FactoryException {
-        important     = true;
+        important         = true;
         code              = 6163;
         name              = "Yemen National Geodetic Network 1996";
         crsName           = "Yemen NGN96";
