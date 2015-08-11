@@ -58,7 +58,7 @@ import static org.junit.Assert.*;
  *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_3003_userPrimeMeridian.csv">{@code GIGS_3003_userPrimeMeridian.csv}</a>.</td>
+ *   <td><a href="doc-files/GIGS_3003_userPrimeMeridian.csv">{@code GIGS_3003_userPrimeMeridian.csv}</a>.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumFactory#createPrimeMeridian(Map, double, Unit)}.</td>

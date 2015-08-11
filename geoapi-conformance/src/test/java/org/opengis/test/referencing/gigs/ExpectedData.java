@@ -38,10 +38,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -52,6 +56,13 @@ import java.io.FileNotFoundException;
  * @since   3.1
  */
 final class ExpectedData {
+    /**
+     * Path from the root of {@code geoapi-conformance} module to the GIGS data.
+     */
+    private static final String[] PATH_TO_DATA = {
+        "geoapi-conformance","src","main","java","org","opengis","test","referencing","gigs","doc-files"
+    };
+
     /**
      * The character used as column separator.
      */
@@ -106,11 +117,18 @@ final class ExpectedData {
      */
     ExpectedData(final String file, final Class<?>... columnTypes) {
         try {
-            final InputStream stream = ExpectedData.class.getResourceAsStream(file);
-            if (stream == null) {
-                throw new FileNotFoundException(file);
+            File path = new File(ExpectedData.class.getResource("ExpectedData.class").toURI());
+            do {
+                path = path.getParentFile();
+                if (path == null) {
+                    throw new FileNotFoundException("Can not find the root directory of GeoAPI project.");
+                }
+            } while (!new File(path, "geoapi-conformance").exists());
+            for (final String name : PATH_TO_DATA) {
+                path = new File(path, name);
+                assertTrue(name, path.isDirectory());
             }
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path, file)), "UTF-8"));
             data = new ArrayList<Object[]>();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -120,6 +138,8 @@ final class ExpectedData {
                 }
             }
             reader.close();
+        } catch (URISyntaxException e) {
+            throw new DataException("Can not read " + file, e);
         } catch (IOException e) {
             throw new DataException("Can not read " + file, e);
         }

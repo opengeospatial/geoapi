@@ -68,7 +68,7 @@ import static org.opengis.test.Assert.*;
  *       included in the geoscience software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2004_libGeodeticDatumCRS.csv">{@code GIGS_2004_libGeodeticDatumCRS.csv}</a>
+ *   <td><a href="doc-files/GIGS_2004_libGeodeticDatumCRS.csv">{@code GIGS_2004_libGeodeticDatumCRS.csv}</a>
  *       and EPSG Dataset.
  *       Tests for component logical consistency: for example, if a higher-level library-defined component
  *       such as ED50 datum is selected it should then not be possible to change any of its lower-level

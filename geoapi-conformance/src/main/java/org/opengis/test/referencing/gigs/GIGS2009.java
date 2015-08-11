@@ -59,7 +59,7 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>
+ *   <td><a href="doc-files/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>

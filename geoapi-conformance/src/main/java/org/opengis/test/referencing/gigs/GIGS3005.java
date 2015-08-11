@@ -64,7 +64,7 @@ import static org.opengis.test.Assert.*;
  *   <td>Create user-defined projection for each of several different map projections.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_3005_userProjection.csv">{@code GIGS_3005_userProjection.csv}</a>.</td>
+ *   <td><a href="doc-files/GIGS_3005_userProjection.csv">{@code GIGS_3005_userProjection.csv}</a>.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CoordinateOperationFactory#getOperationMethod(String)} and<br>

@@ -59,7 +59,7 @@ import static org.junit.Assert.*;
  *   <td>Create user-defined ellipsoid for each of several different ellipsoids.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_3002_userEllipsoid.csv">{@code GIGS_3002_userEllipsoid.csv}</a>.</td>
+ *   <td><a href="doc-files/GIGS_3002_userEllipsoid.csv">{@code GIGS_3002_userEllipsoid.csv}</a>.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumFactory#createEllipsoid(Map, double, double, Unit)} and<br>

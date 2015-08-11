@@ -62,7 +62,7 @@ import static org.junit.Assert.*;
  *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>
+ *   <td><a href="doc-files/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>
  *   and EPSG Dataset.
  *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
  *   {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.

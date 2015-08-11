@@ -74,7 +74,7 @@ import static org.junit.Assert.*;
  *       Create user-defined geodetic CRS for each of several different CRSs.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_3004_userGeodeticDatumCRS.csv">{@code GIGS_3004_userGeodeticDatumCRS.csv}</a>.</td>
+ *   <td><a href="doc-files/GIGS_3004_userGeodeticDatumCRS.csv">{@code GIGS_3004_userGeodeticDatumCRS.csv}</a>.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)} and<br>
