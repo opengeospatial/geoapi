@@ -279,7 +279,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param type       The expected coordinate system type.
      * @param directions The expected axis directions. The length of this array determines the expected {@code cs} dimension.
      * @param units      The expected axis units. If the array length is less than the {@code cs} dimension,
-     *                   then the last unit is repeated for all remaining dimensions.
+     *                   then the last unit is repeated for all remaining dimensions. If the array length is
+     *                   greater, than extra units are ignored.
      *
      * @see CoordinateReferenceSystem#getCoordinateSystem()
      */

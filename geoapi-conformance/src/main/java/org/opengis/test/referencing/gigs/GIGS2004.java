@@ -112,9 +112,18 @@ import static org.opengis.test.Assert.*;
 @RunWith(Parameterized.class)
 public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     /**
+     * The expected axis directions of two-dimensional geographic CRS with longitude first.
+     * This axis order does not appear in the EPSG database, but appears often in user-defined CRS.
+     */
+    static final AxisDirection[] GEOGRAPHIC_XY = {
+        AxisDirection.EAST,
+        AxisDirection.NORTH
+    };
+
+    /**
      * The expected axis directions of two-dimensional geographic CRS.
      */
-    private static final AxisDirection[] GEOGRAPHIC_2D = {
+    static final AxisDirection[] GEOGRAPHIC_2D = {
         AxisDirection.NORTH,
         AxisDirection.EAST
     };
@@ -122,7 +131,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     /**
      * The expected axis directions of three-dimensional geographic CRS.
      */
-    private static final AxisDirection[] GEOGRAPHIC_3D = {
+    static final AxisDirection[] GEOGRAPHIC_3D = {
         AxisDirection.NORTH,
         AxisDirection.EAST,
         AxisDirection.UP
@@ -131,7 +140,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     /**
      * The expected axis directions of geocentric CRS.
      */
-    private static final AxisDirection[] GEOCENTRIC = {
+    static final AxisDirection[] GEOCENTRIC = {
         AxisDirection.GEOCENTRIC_X,
         AxisDirection.GEOCENTRIC_Y,
         AxisDirection.GEOCENTRIC_Z

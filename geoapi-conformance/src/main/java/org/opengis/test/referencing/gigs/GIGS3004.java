@@ -32,6 +32,10 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
+import javax.measure.unit.SI;
+import javax.measure.unit.NonSI;
+import javax.measure.unit.Unit;
+import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -41,6 +45,7 @@ import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.GeocentricCRS;
 import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
@@ -218,6 +223,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * @param  csCode  The EPSG code of the coordinate system.
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
+    @SuppressWarnings("null")
     private void createAndVerifyGeographicCRS(final int crsCode, final String crsName, final int csCode)
             throws FactoryException
     {
@@ -229,6 +235,16 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
             }
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
+
+            Unit<Angle> angularUnit = NonSI.DEGREE_ANGLE;
+            AxisDirection[] directions = GIGS2004.GEOGRAPHIC_2D;
+            switch (csCode) {
+                case 6403: angularUnit = NonSI.GRADE; break;
+                case 6423: directions = GIGS2004.GEOGRAPHIC_3D; break;
+                case 6424: directions = GIGS2004.GEOGRAPHIC_XY; break;
+            }
+            verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
+                    directions, angularUnit, angularUnit, SI.METRE);
         }
     }
 
@@ -240,6 +256,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * @param  csCode  The EPSG code of the coordinate system.
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
+    @SuppressWarnings("null")
     private void createAndVerifyGeocentricCRS(final int crsCode, final String crsName, final int csCode)
             throws FactoryException
     {
@@ -251,6 +268,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
             }
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
+            verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, GIGS2004.GEOCENTRIC, SI.METRE);
         }
     }
 
