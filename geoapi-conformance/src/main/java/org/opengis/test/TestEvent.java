@@ -76,6 +76,8 @@ public final class TestEvent extends EventObject {
     /**
      * Returns the {@link TestCase} instance which is been run. This allow inspection of
      * the test state, for example by invoking {@link TestCase#configuration()}.
+     *
+     * @return The {@code TestCase} instance which is been run.
      */
     @Override
     public TestCase getSource() {

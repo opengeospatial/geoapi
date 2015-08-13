@@ -62,7 +62,7 @@ import static org.junit.Assert.*;
  *   <td>Compare unit definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>
+ *   <td><a href="doc-files/GIGS_2001_libUnit.csv">{@code GIGS_2001_libUnit.csv}</a>
  *   and EPSG Dataset.
  *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the unit of measure, together with the
  *   {@linkplain #unitToBase ratio} of the unit to the ISO {@linkplain #baseUnit base unit} for that unit type.
@@ -101,7 +101,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
+public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
     /**
      * Amount of {@linkplain #baseUnit base units} in one {@linkplain #getIdentifiedObject() tested unit}.
      * If this amount is not a constant (as in sexagesimal unit), then this factor is set to {@link Double#NaN}.
@@ -204,23 +204,22 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
                 unsupportedCode(Unit.class, code);
                 throw e;
             }
-            if (unit == null) {
-                fail("CSAuthorityFactory.createUnit(\"" + code + "\") shall not return null.");
-            }
         }
         return unit;
     }
 
     /**
-     * Creates the unit of measurement identified by the value of the {@link #code} field.
-     * Then, creates and returns the converter from that unit to the base unit.
+     * Gets the unit given by {@link #getIdentifiedObject()},
+     * then creates and returns the converter from that unit to the base unit.
      *
      * @throws FactoryException if an error occurred while creating the unit from the EPSG code.
      */
-    private UnitConverter createUnitAndConverter() throws FactoryException {
+    private UnitConverter createConverter() throws FactoryException {
+        final Unit<?> unit = getIdentifiedObject();
+        assertNotNull("Unit", unit);
         final UnitConverter converter;
         try {
-            converter = getIdentifiedObject().getConverterToAny(baseUnit);
+            converter = unit.getConverterToAny(baseUnit);
         } catch (ConversionException e) {
             throw (AssertionError) new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “"
                     + baseUnit + "”.").initCause(e);
@@ -268,7 +267,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -293,7 +292,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1000.0;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -318,7 +317,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3048;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -343,7 +342,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.30480060960121924;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -368,7 +367,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0000135965;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -393,7 +392,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3047972654;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -418,7 +417,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.201166195164;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -445,7 +444,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 20.116765121552632;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -470,7 +469,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3047997333333333;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -495,7 +494,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.9143984146160287;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -522,7 +521,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 20.116756;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -545,7 +544,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.9143985307444408;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -568,7 +567,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.3047997101815088;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -591,7 +590,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.201168;
         baseUnit   = SI.METRE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -616,7 +615,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -641,7 +640,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.017453292519943278;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -666,7 +665,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 4.848136811095355E-6;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -691,7 +690,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 0.01570796326794895;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -716,7 +715,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1E-6;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -743,7 +742,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = Double.NaN;
         baseUnit   = NonSI.DEGREE_ANGLE;
-        final UnitConverter converter = createUnitAndConverter();
+        final UnitConverter converter = createConverter();
         final double tolerance = 10*TOLERANCE;
         assertEquals(name,  10.00, converter.convert( 10.0000), tolerance);
         assertEquals(name, -10.00, converter.convert(-10.0000), tolerance);
@@ -775,7 +774,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.570796326794895E-6;
         baseUnit   = SI.RADIAN;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -800,7 +799,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = Unit.ONE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -825,7 +824,7 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1E-6;
         baseUnit   = Unit.ONE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 
     /**
@@ -850,6 +849,6 @@ public strictfp class GIGS2001 extends EPSGTestCase<Unit<?>> {
         aliases    = NONE;
         unitToBase = 1.0;
         baseUnit   = Unit.ONE;
-        verifyLinearConversions(createUnitAndConverter());
+        verifyLinearConversions(createConverter());
     }
 }

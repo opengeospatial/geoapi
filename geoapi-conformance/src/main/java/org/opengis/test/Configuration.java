@@ -62,12 +62,10 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@code Configuration} is used in two places:
  *
  * <ul>
- *   <li>Before each test is executed, {@link ImplementationDetails} can provide configuration
- *       information. For example an implementation can declare that it does not support the
- *       calculation of transform derivative.</li>
- *   <li>After each test is executed, {@link TestListener} can obtain the actual configuration
- *       used by the test. For example listeners can know which {@linkplain Factory factories}
- *       were used.</li>
+ *   <li>Before each test is executed, {@link ImplementationDetails} can provide configuration information.
+ *       For example an implementation can declare that it does not support the calculation of transform derivative.</li>
+ *   <li>After each test is executed, {@link TestListener} can obtain the actual configuration used by the test.
+ *       For example listeners can know which {@link Factory} instances were used.</li>
  * </ul>
  *
  * This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
@@ -105,7 +103,8 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@link Key#csFactory                           csFactory}<br>
  * {@link Key#csAuthorityFactory                  csAuthorityFactory}<br>
  * {@link Key#datumFactory                        datumFactory}<br>
- * {@link Key#datumAuthorityFactory               datumAuthorityFactory}</td><td valign="top">
+ * {@link Key#datumAuthorityFactory               datumAuthorityFactory}<br>
+ * {@link Key#isFactoryPreservingUserValues       isFactoryPreservingUserValues}</td><td valign="top">
  * {@link Key#validators                          validators}<br>
  * {@link Key#isValidationEnabled                 isValidationEnabled}<br>
  * {@link Key#isToleranceRelaxed                  isToleranceRelaxed}
@@ -214,6 +213,7 @@ public class Configuration implements Serializable {
      *
      * @return A map view over the entries in this {@code Configuration} object.
      */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
     public Map<Key<?>,Object> map() {
         return unmodifiable;
     }
@@ -281,9 +281,9 @@ public class Configuration implements Serializable {
          */
 
         /**
-         * Whether the {@link InternationalString} instances can support more than one
-         * {@linkplain java.util.Locale locale}. If {@code false}, then the factory method
-         * may retain only one locale among the set of user-provided localized strings.
+         * Whether the {@link InternationalString} instances can support more than one {@link java.util.Locale}.
+         * If {@code false}, then the factory method may retain only one locale among the set of user-provided
+         * localized strings.
          *
          * @see org.opengis.test.util.NameTest#isMultiLocaleSupported
          */
@@ -307,7 +307,7 @@ public class Configuration implements Serializable {
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase#isStandardNameSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isStandardNameSupported
          */
         public static final Key<Boolean> isStandardNameSupported =
                 new Key<Boolean>(Boolean.class, "isStandardNameSupported");
@@ -316,7 +316,7 @@ public class Configuration implements Serializable {
          * Whether the {@link IdentifiedObject} instances have at least the
          * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase#isStandardAliasSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isStandardAliasSupported
          */
         public static final Key<Boolean> isStandardAliasSupported =
                 new Key<Boolean>(Boolean.class, "isStandardAliasSupported");
@@ -325,7 +325,7 @@ public class Configuration implements Serializable {
          * Whether the {@link IdentifiedObject} instances created indirectly by the factories
          * are expected to have correct identification information.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase#isDependencyIdentificationSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDependencyIdentificationSupported
          */
         public static final Key<Boolean> isDependencyIdentificationSupported =
                 new Key<Boolean>(Boolean.class, "isDependencyIdentificationSupported");
@@ -333,7 +333,7 @@ public class Configuration implements Serializable {
         /**
          * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
-         * {@linkplain MathTransform math transforms} which are not yet fully implemented.
+         * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported
          */
@@ -343,7 +343,7 @@ public class Configuration implements Serializable {
         /**
          * Whether {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
-         * {@linkplain MathTransform math transforms} which are not yet fully implemented.
+         * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported
          */
@@ -353,7 +353,7 @@ public class Configuration implements Serializable {
         /**
          * Whether {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
-         * {@linkplain MathTransform math transforms} which are not yet fully implemented.
+         * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported
          */
@@ -363,7 +363,7 @@ public class Configuration implements Serializable {
         /**
          * Whether {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
-         * {@linkplain MathTransform math transforms} which are not yet fully implemented.
+         * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported
          */
@@ -393,7 +393,7 @@ public class Configuration implements Serializable {
         /**
          * Whether {@link MathTransform#inverse()} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
-         * {@linkplain MathTransform math transforms} which are not yet fully implemented.
+         * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported
          */
@@ -403,7 +403,7 @@ public class Configuration implements Serializable {
         /**
          * Whether {@link MathTransform#derivative(DirectPosition)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
-         * {@linkplain MathTransform math transforms} which are not yet fully implemented.
+         * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isDerivativeSupported
          */
@@ -457,8 +457,8 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isValidationEnabled");
 
         /**
-         * Whether the tolerance threshold of a {@linkplain org.opengis.test.referencing.TransformTestCase
-         * transform test case} has been relaxed. This information is determined after test execution.
+         * Whether the tolerance threshold of a {@link org.opengis.test.referencing.TransformTestCase}
+         * has been relaxed. This information is determined after test execution.
          */
         public static final Key<Boolean> isToleranceRelaxed =
                 new Key<Boolean>(Boolean.class, "isToleranceRelaxed");
@@ -474,8 +474,7 @@ public class Configuration implements Serializable {
                 new Key<MathTransformFactory>(MathTransformFactory.class, "mtFactory");
 
         /**
-         * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used
-         * for a test.
+         * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.PseudoEpsgFactory#copFactory
          * @see org.opengis.test.referencing.gigs.Series3000Test#copFactory
@@ -487,7 +486,7 @@ public class Configuration implements Serializable {
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
          *
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
                 new Key<CoordinateOperationAuthorityFactory>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
@@ -507,7 +506,7 @@ public class Configuration implements Serializable {
          * instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#crsAuthorityFactory
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
                 new Key<CRSAuthorityFactory>(CRSAuthorityFactory.class, "crsAuthorityFactory");
@@ -526,7 +525,7 @@ public class Configuration implements Serializable {
          * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#csAuthorityFactory
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CSAuthorityFactory> csAuthorityFactory =
                 new Key<CSAuthorityFactory>(CSAuthorityFactory.class, "csAuthorityFactory");
@@ -545,10 +544,32 @@ public class Configuration implements Serializable {
          * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#datumAuthorityFactory
-         * @see org.opengis.test.referencing.gigs.EPSGTestCase
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
                 new Key<DatumAuthorityFactory>(DatumAuthorityFactory.class, "datumAuthorityFactory");
+
+        /**
+         * Whether the objects created by the tested {@link org.opengis.referencing.ObjectFactory} use the
+         * specified values <i>as-is</i>. This flag should be set to {@code false} if the factory performs
+         * any of the following operations:
+         *
+         * <ul>
+         *   <li>Convert numerical values from user-provided linear units to metres.</li>
+         *   <li>Convert numerical values from user-provided angular units to degrees.</li>
+         *   <li>Change ellipsoid second defining parameter
+         *       (e.g. from <i>semi-major axis length</i> to an equivalent <i>inverse flattening factor</i>).</li>
+         *   <li>Change map projection parameters
+         *       (e.g. from <i>standard parallel</i> to an equivalent <i>scale factor</i>).</li>
+         *   <li>Any other change that preserve numeric equivalence.</li>
+         * </ul>
+         *
+         * If the factory does not perform any of the above conversions, then this flag can be {@code true}.
+         *
+         * @see org.opengis.test.referencing.gigs.UserObjectFactoryTestCase#isFactoryPreservingUserValues
+         */
+        public static final Key<Boolean> isFactoryPreservingUserValues =
+                new Key<Boolean>(Boolean.class, "isFactoryPreservingUserValues");
 
         /**
          * The set of {@link Validator} instances to use for validating objects.

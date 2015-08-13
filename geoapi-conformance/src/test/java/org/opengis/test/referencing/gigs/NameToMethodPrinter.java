@@ -31,37 +31,62 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.PrintStream;
+import org.opengis.test.TestEvent;
+import org.opengis.test.TestListener;
+import org.opengis.test.TestSuite;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+
 
 /**
- * Exception throw if there is a problem with the data file.
- * This exception is not public because it should never happen.
+ * Prints the mapping between the GIGS object name and the test method name.
+ * This is used for updating the {@code METHOD_NAMES} map in {@code GIGS*Generator} classes.
+ *
+ * <p>To use this class, just extend the GIGS test class for which the mapping is wanted.
+ * The mapping will be sent to the standard output.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class DataException extends RuntimeException {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 885395339443023923L;
-
-    /**
-     * Creates a new exception with the given message.
-     *
-     * @param message The details message.
-     */
-    public DataException(final String message) {
-        super(message);
+@RunWith(JUnit4.class)
+public final strictfp class NameToMethodPrinter extends GIGS3002 implements TestListener {
+    static {
+        TestSuite.addTestListener(new NameToMethodPrinter());
     }
 
     /**
-     * Creates a new exception with the given message and cause.
-     *
-     * @param message The details message.
-     * @param cause   The cause for the failure.
+     * Creates a new mapper.
      */
-    public DataException(final String message, final Throwable cause) {
-        super(message, cause);
+    public NameToMethodPrinter() {
+        super(null);
     }
+
+    /**
+     * Writes the mapping of a test to the standard output stream.
+     */
+    @Override
+    public void finished(final TestEvent event) {
+        final UserObjectFactoryTestCase<?> t = (UserObjectFactoryTestCase<?>) event.getSource();
+        final String method = event.getMethodName();
+        printPutInstruction(t.getName(), method);
+    }
+
+    /**
+     * Prints a "put" instruction for the given key-value pair.
+     */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    static void printPutInstruction(final String name, final String method) {
+        final PrintStream out = System.out;
+        out.print("        assertNull(m.put(\"");
+        out.print(name);
+        out.print("\", \"");
+        out.print(method);
+        out.println("\"));");
+    }
+
+    /** Ignored. */ @Override public void starting(TestEvent event) {}
+    /** Ignored. */ @Override public void succeeded(TestEvent event) {}
+    /** Ignored. */ @Override public void failed(TestEvent event, Throwable exception) {}
 }

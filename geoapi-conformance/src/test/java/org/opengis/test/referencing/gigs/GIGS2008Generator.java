@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2008}. This generator needs to be executed only if the GIGS data changed.
@@ -41,21 +43,24 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2008Generator extends TestMethodGenerator {
+public strictfp class GIGS2008Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2008Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2008_libVerticalDatumCRS.csv",
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2008_libVerticalDatumCRS.csv",
                 Integer.class,      // [0]: EPSG Datum Code
                 String.class,       // [1]: Datum name
                 Integer.class,      // [2]: EPSG CRS code
@@ -86,8 +91,8 @@ public class GIGS2008Generator extends TestMethodGenerator {
                                   "name",      name,
                                   "code",      code);
             indent(2); out.println("createAndVerifyVerticalDatum();");
-            indent(2); out.println("createAndVerifyVerticalCRS();");
-            out.println("    }");
+            indent(2); out.println("verifyVerticalCRS();");
+            indent(1); out.println('}');
         }
     }
 }

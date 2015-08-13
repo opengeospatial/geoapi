@@ -48,7 +48,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
-import static org.opengis.test.Assert.*;
+import static org.junit.Assert.*;
 
 
 /**
@@ -59,7 +59,7 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>
+ *   <td><a href="doc-files/GIGS_2008_libVerticalDatumCRS.csv">{@code GIGS_2008_libVerticalDatumCRS.csv}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -97,7 +97,7 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
+public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     /**
      * The EPSG code of the expected {@link VerticalDatum}.
      */
@@ -125,11 +125,6 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
      * This is the factory used by the {@link #getIdentifiedObject()} method.
      */
     protected final CRSAuthorityFactory crsAuthorityFactory;
-
-    /**
-     * A temporary buffer for creating error message.
-     */
-    private StringBuilder prefix;
 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
@@ -204,9 +199,6 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
                 unsupportedCode(VerticalCRS.class, code);
                 throw e;
             }
-            if (crs == null) {
-                fail("CRSAuthorityFactory.createVerticalCRS(\"" + code + "\") shall not return null.");
-            }
         }
         return crs;
     }
@@ -216,7 +208,6 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
      */
     private void createAndVerifyVerticalDatum() throws FactoryException {
         assumeTrue(datumAuthorityFactory != null || crsAuthorityFactory != null);
-        prefix = new StringBuilder(60);
         if (datumAuthorityFactory != null) {
             final VerticalDatum datum;
             try {
@@ -227,56 +218,54 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
             }
 
             // Datum validation.
-            assertNotNull(prefix.append("VerticalDatum[").append(datumCode).append(']').toString(), datum);
+            assertNotNull("VerticalDatum", datum);
             validators.validate(datum);
 
             // Datum identifier. Important in order to distinguish datum.
-            assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                    "EPSG", datumCode, datum.getIdentifiers());
+            assertContainsCode("VerticalDatum.getIdentifiers()", "EPSG", datumCode, datum.getIdentifiers());
 
             // Datum name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                assertEquals("VerticalDatum.getName()", datumName, getName(datum));
                 configurationTip = null;
             }
         }
     }
 
     /**
-     * Creates a vertical CRS for the current {@link #code}, then verifies its name and properties.
+     * Verifies the properties of the vertical CRS given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyVerticalCRS() throws FactoryException {
-        prefix.setLength(0);
+    private void verifyVerticalCRS() throws FactoryException {
         if (crsAuthorityFactory != null) {
             final VerticalCRS crs = getIdentifiedObject();
 
             // CRS validation.
-            assertNotNull(prefix.append("VerticalCRS[").append(code).append(']').toString(), crs);
+            assertNotNull("VerticalCRS", crs);
             validators.validate(crs);
 
             // CRS identifier.
-            assertContainsCode(message(prefix.append('.'), "getIdentifiers()"), "EPSG", code, crs.getIdentifiers());
+            assertContainsCode("VerticalCRS.getIdentifiers()", "EPSG", code, crs.getIdentifiers());
 
             // CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), name, getName(crs));
+                assertEquals("VerticalCRS.getName()", name, getName(crs));
                 configurationTip = null;
             }
 
             // Datum associated to the CRS.
             final VerticalDatum datum = crs.getDatum();
-            assertNotNull(prefix.append("getDatum()").toString(), datum);
+            assertNotNull("VerticalCRS.getDatum()", datum);
 
             // Datum identification.
             if (isDependencyIdentificationSupported) {
                 configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-                assertContainsCode(message(prefix.append('.'), "getIdentifiers()"), "EPSG",
+                assertContainsCode("VerticalCRS.getDatum().getIdentifiers()", "EPSG",
                         datumCode, datum.getIdentifiers());
 
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals(message(prefix, "getName()"), datumName, getName(datum));
+                assertEquals("VerticalCRS.getDatum().getName()", datumName, getName(datum));
                 configurationTip = null;
             }
         }
@@ -303,7 +292,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "AHD (Tasmania) height";
         code      = 5712;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -327,7 +316,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "AHD height";
         code      = 5711;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -351,7 +340,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "AIOC95 depth";
         code      = 5734;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -375,7 +364,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "AIOC95 height";
         code      = 5797;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -399,7 +388,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Baltic 1982 height";
         code      = 5786;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -423,7 +412,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Baltic depth";
         code      = 5612;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -447,7 +436,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Baltic height";
         code      = 5705;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -471,7 +460,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Bandar Abbas height";
         code      = 5752;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -495,7 +484,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Caspian depth";
         code      = 5706;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -519,7 +508,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "CGVD28 height";
         code      = 5713;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -543,7 +532,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "DHHN85 height";
         code      = 5784;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -567,7 +556,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "DHHN92 height";
         code      = 5783;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -591,7 +580,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "EGM96 geoid height";
         code      = 5773;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -615,7 +604,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "EVRF2000 height";
         code      = 5730;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -639,7 +628,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "EVRF2007 height";
         code      = 5621;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -663,7 +652,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Fahud HD height";
         code      = 5725;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -687,7 +676,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Fao height";
         code      = 5751;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -711,7 +700,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "KOC CD height";
         code      = 5790;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -735,7 +724,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "KOC WD depth";
         code      = 5789;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -759,7 +748,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "KOC WD depth (ft)";
         code      = 5614;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -783,7 +772,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Kuwait PWD height";
         code      = 5788;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -807,7 +796,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Lagos 1955 height";
         code      = 5796;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -831,7 +820,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "msl depth";
         code      = 5715;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -855,7 +844,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "msl height";
         code      = 5714;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -879,7 +868,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "NAP height";
         code      = 5709;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -903,7 +892,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "NAVD88 height";
         code      = 5703;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -927,7 +916,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "NGF IGN69 height";
         code      = 5720;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -951,7 +940,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "NGF Lallemand height";
         code      = 5719;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -975,7 +964,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "NGVD29 height";
         code      = 5702;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -999,7 +988,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "ODN height";
         code      = 5701;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -1023,7 +1012,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "PHD93 height";
         code      = 5724;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -1047,7 +1036,7 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Yellow Sea 1956 height";
         code      = 5736;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 
     /**
@@ -1071,6 +1060,6 @@ public class GIGS2008 extends EPSGTestCase<VerticalCRS> {
         name      = "Yellow Sea 1985 height";
         code      = 5737;
         createAndVerifyVerticalDatum();
-        createAndVerifyVerticalCRS();
+        verifyVerticalCRS();
     }
 }

@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2004}. This generator needs to be executed only if the GIGS data changed.
@@ -41,40 +43,43 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2004Generator extends TestMethodGenerator {
+public strictfp class GIGS2004Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2004Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2004_libGeodeticDatumCRS.csv",
-            Integer.class,  // [0]: EPSG Datum Code
-            String .class,  // [1]: Datum Name
-            Integer.class,  // [2]: EPSG geocen CRS Code
-            Integer.class,  // [3]: EPSG geog3D CRS Code
-            Integer.class,  // [4]: EPSG geog2D CRS Code
-            String .class,  // [5]: CRS Name
-            Boolean.class,  // [6]: Particularly important to E&P industry?
-            String .class,  // [7]: Ellipsoid Name
-            String .class,  // [8]: Prime Meridian Name
-            String .class); // [9]: Remarks
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2004_libGeodeticDatumCRS.csv",
+                Integer.class,      // [0]: EPSG Datum Code
+                String .class,      // [1]: Datum Name
+                Integer.class,      // [2]: EPSG geocen CRS Code
+                Integer.class,      // [3]: EPSG geog3D CRS Code
+                Integer.class,      // [4]: EPSG geog2D CRS Code
+                String .class,      // [5]: CRS Name
+                Boolean.class,      // [6]: Particularly important to E&P industry?
+                String .class,      // [7]: Ellipsoid Name
+                String .class,      // [8]: Prime Meridian Name
+                String .class);     // [9]: Remarks
 
         while (data.next()) {
-            final int     code      = data.getInt    (0);
-            final String  name      = data.getString (1);
-            final String  crsName   = data.getString (5);
-            final boolean important = data.getBoolean(6);
-            final String  ellipsoid = data.getString (7);
-            final String  meridian  = data.getString (8);
-            final String  remarks   = data.getString (9);
+            final int     code              = data.getInt    (0);
+            final String  name              = data.getString (1);
+            final String  crsName           = data.getString (5);
+            final boolean important         = data.getBoolean(6);
+            final String  ellipsoidName     = data.getString (7);
+            final String  primeMeridianName = data.getString (8);
+            final String  remarks           = data.getString (9);
 
             out.println();
             indent(1); out.println("/**");
@@ -82,20 +87,20 @@ public class GIGS2004Generator extends TestMethodGenerator {
             indent(1); out.println(" *");
             printJavadocKeyValues("EPSG datum code", code,
                                   "EPSG datum name", name,
-                                  "Ellipsoid name", ellipsoid,
-                                  "Prime meridian name", meridian,
+                                  "Ellipsoid name", ellipsoidName,
+                                  "Prime meridian name", primeMeridianName,
                                   "CRS using the datum", crsName,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the datum or a CRS from the EPSG code.");
             printTestMethodSignature(crsName);  // CRS name is simpler than datum name.
-            printFieldAssignments("important",     important,
-                                  "code",          code,
-                                  "name",          name,
-                                  "crsName",       crsName,
-                                  "ellipsoid",     ellipsoid,
-                                  "primeMeridian", meridian);
-            indent(2); out.println("createAndVerifyDatum();");
+            printFieldAssignments("important",         important,
+                                  "code",              code,
+                                  "name",              name,
+                                  "crsName",           crsName,
+                                  "ellipsoidName",     ellipsoidName,
+                                  "primeMeridianName", primeMeridianName);
+            indent(2); out.println("verifyDatum();");
             for (int column=2; column<=4; column++) {
                 final Integer crsCode = data.getIntOptional(column);
                 if (crsCode != null) {
@@ -110,7 +115,7 @@ public class GIGS2004Generator extends TestMethodGenerator {
                     out.println(");");
                 }
             }
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

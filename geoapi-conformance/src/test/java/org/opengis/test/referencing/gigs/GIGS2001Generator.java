@@ -31,6 +31,7 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
 import javax.measure.unit.Unit;
 
 import static javax.measure.unit.SI.METRE;
@@ -47,27 +48,30 @@ import static javax.measure.unit.Unit.ONE;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2001Generator extends TestMethodGenerator {
+public strictfp class GIGS2001Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2001Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2001_libUnit.csv",
-                Integer.class,  // [0]: EPSG UoM Code
-                String .class,  // [1]: Type
-                String .class,  // [2]: Name of Units used in EPSG db parameters
-                Double .class,  // [3]: Base units per unit
-                Boolean.class,  // [4]: Particularly important to E&P industry?
-                String .class); // [5]: Specific usage / Remarks
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2001_libUnit.csv",
+                Integer.class,      // [0]: EPSG UoM Code
+                String .class,      // [1]: Type
+                String .class,      // [2]: Name of Units used in EPSG db parameters
+                Double .class,      // [3]: Base units per unit
+                Boolean.class,      // [4]: Particularly important to E&P industry?
+                String .class);     // [5]: Specific usage / Remarks
 
         while (data.next()) {
             final int     code       = data.getInt    (0);
@@ -80,7 +84,7 @@ public class GIGS2001Generator extends TestMethodGenerator {
             if      (type.equalsIgnoreCase("Linear")) base = METRE;
             else if (type.equalsIgnoreCase("Angle" )) base = RADIAN;
             else if (type.equalsIgnoreCase("Scale" )) base = ONE;
-            else throw new DataException("Unknown type: " + type);
+            else throw new IOException("Unknown type: " + type);
 
             out.println();
             indent(1); out.println("/**");
@@ -97,13 +101,13 @@ public class GIGS2001Generator extends TestMethodGenerator {
             printFieldAssignments("important",  important,
                                   "code",       code,
                                   "name",       name,
-                                  "aliases",    EPSGTestCase.NONE,
+                                  "aliases",    AuthorityFactoryTestCase.NONE,
                                   "unitToBase", unitToBase);
             indent(2); out.print("baseUnit   = ");
             printProgrammaticName(base);
             out.println(';');
-            indent(2); out.println("verifyLinearConversions(createUnitAndConverter());");
-            out.println("    }");
+            indent(2); out.println("verifyLinearConversions(createConverter());");
+            indent(1); out.println('}');
         }
     }
 }

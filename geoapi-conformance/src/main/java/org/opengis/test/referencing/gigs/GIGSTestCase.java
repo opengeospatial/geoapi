@@ -31,15 +31,11 @@
  */
 package org.opengis.test.referencing.gigs;
 
-import java.util.Collection;
 import org.opengis.util.Factory;
-import org.opengis.util.GenericName;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.*;
 import org.opengis.test.referencing.ReferencingTestCase;
 import org.junit.AssumptionViolatedException;
-
-import static org.opengis.test.Assert.*;
 
 
 /**
@@ -90,10 +86,16 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
      * </ul>
      *
      * @param type The GeoAPI interface of the object to construct.
-     * @param code The EPSG code of the object to create.
+     * @param code The EPSG code or name of the object to create.
      */
-    final void unsupportedCode(final Class<?> type, final int code) {
-        throw new AssumptionViolatedException(type.getSimpleName() + '[' + code + "] not supported.");
+    final void unsupportedCode(final Class<?> type, final Object code) {
+        final StringBuilder buffer = new StringBuilder(50).append(type.getSimpleName()).append('[');
+        final boolean quote = !(code instanceof Number);
+        if (quote) buffer.append('"');
+        buffer.append(code);
+        if (quote) buffer.append('"');
+        buffer.append("] not supported.");
+        throw new AssumptionViolatedException(buffer.toString());
     }
 
     /**
@@ -107,99 +109,5 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
             }
         }
         return null;
-    }
-
-    /**
-     * Asserts that the {@linkplain IdentifiedObject#getName() name} or at least one
-     * {@linkplain IdentifiedObject#getAlias() alias} of the given object is equals
-     * to the given string. This method ignore the case.
-     *
-     * <p>This method does not raise error if the object name or the alias collection
-     * is null, because it is validators job to determine whether such malformed
-     * objects should be accepted or not.</p>
-     *
-     * @param message  The message to show in case of failure.
-     * @param expected The name which is expected to exist as a name or an alias.
-     * @param object   The object for which to check the name or the aliases.
-     */
-    static void assertContainsNameOrAlias(final String message,
-            final String expected, final IdentifiedObject object)
-    {
-        assertNotNull(message, object);
-        final String name = getName(object);
-        if (!expected.equalsIgnoreCase(name)) {
-            final Collection<GenericName> aliases = object.getAlias();
-            if (aliases != null) {
-                for (GenericName alias : aliases) {
-                    if (alias.tip().toString().equalsIgnoreCase(expected)) {
-                        return;
-                    }
-                }
-            }
-            fail(message + ": name or alias not found: " + expected);
-        }
-    }
-
-    /**
-     * Compares the given generic names with the given set of expected aliases.
-     * This method verifies that the given collection contains at least the expected aliases.
-     * However the collection may contain additional aliases, which will be ignored.
-     *
-     * @param message  The prefix of the message to show in case of failure.
-     * @param expected The expected aliases.
-     * @param aliases  The actual aliases.
-     */
-    static void assertContainsAll(final String message, final String[] expected,
-            final Collection<GenericName> aliases)
-    {
-        assertNotNull(message, aliases);
-next:   for (final String search : expected) {
-            for (final GenericName alias : aliases) {
-                final String tip = alias.tip().toString();
-                if (search.equalsIgnoreCase(tip)) {
-                    continue next;
-                }
-            }
-            fail(message + ": alias not found: " + search);
-        }
-    }
-
-    /**
-     * Ensures that the given collection contains at least one identifier having the given
-     * codespace (ignoring case) and the given code value.
-     *
-     * @param message     The message to show in case of failure.
-     * @param codespace   The code space of identifiers to search.
-     * @param expected    The expected identifier code.
-     * @param identifiers The actual identifiers.
-     */
-    static void assertContainsCode(final String message, final String codespace, final int expected,
-            final Collection<? extends Identifier> identifiers)
-    {
-        assertNotNull(message, identifiers);
-        int found = 0;
-        for (final Identifier id : identifiers) {
-            if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
-                found++;
-                try {
-                    assertEquals(message, expected, Integer.parseInt(id.getCode()));
-                } catch (NumberFormatException e) {
-                    fail(message + ".getCode(): expected " + expected +
-                            " but got a non-numerical value: " + e);
-                }
-            }
-        }
-        assertEquals(message + ": occurrence of " + codespace + ':' + expected, 1, found);
-    }
-
-    /**
-     * Returns the concatenation of the given prefix and suffix.
-     * This is used for building messages in JUnit assert statements.
-     */
-    static String message(final StringBuilder prefix, final String suffix) {
-        final int length = prefix.length();
-        final String message = prefix.append(suffix).toString();
-        prefix.setLength(length);
-        return message;
     }
 }

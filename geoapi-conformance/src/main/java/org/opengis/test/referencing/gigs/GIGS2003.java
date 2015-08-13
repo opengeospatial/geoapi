@@ -33,6 +33,7 @@ package org.opengis.test.referencing.gigs;
 
 import java.util.List;
 import javax.measure.unit.Unit;
+import javax.measure.unit.NonSI;
 import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
@@ -49,7 +50,6 @@ import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.junit.Assert.*;
-import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 
 
 /**
@@ -60,7 +60,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  *   <td>Compare prime meridian definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>
+ *   <td><a href="doc-files/GIGS_2003_libPrimeMeridian.csv">{@code GIGS_2003_libPrimeMeridian.csv}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -97,7 +97,7 @@ import static javax.measure.unit.NonSI.DEGREE_ANGLE;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
+public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
     /**
      * The expected Greenwich longitude in decimal degrees.
      */
@@ -186,37 +186,32 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
                 unsupportedCode(PrimeMeridian.class, code);
                 throw e;
             }
-            if (primeMeridian == null) {
-                fail("DatumAuthorityFactory.createPrimeMeridian(\"" + code + "\") shall not return null.");
-            }
         }
         return primeMeridian;
     }
 
     /**
-     * Creates a prime meridian for the current {@link #code}, then verifies its name and Greenwich longitude.
+     * Verifies the properties of the prime meridian given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyPrimeMeridian() throws FactoryException {
+    private void verifyPrimeMeridian() throws FactoryException {
         final PrimeMeridian pm = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("PrimeMeridian[").append(code).append(']');
-        assertNotNull(prefix.toString(), pm);
+        assertNotNull("PrimeMeridian", pm);
         validators.validate(pm);
 
         // Prime meridian identifiers.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, pm.getIdentifiers());
+        assertContainsCode("PrimeMeridian.getIdentifiers()", "EPSG", code, pm.getIdentifiers());
 
         // Prime meridian name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(pm));
+            assertEquals("PrimeMeridian.getName()", name, getName(pm));
             configurationTip = null;
         }
 
         // Prime meridian alias.
         if (isStandardAliasSupported) {
             configurationTip = Configuration.Key.isStandardAliasSupported;
-            assertContainsAll(message(prefix, "getAlias()"), aliases, pm.getAlias());
+            assertContainsAll("PrimeMeridian.getAlias()", aliases, pm.getAlias());
             configurationTip = null;
         }
         /*
@@ -226,10 +221,10 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
          */
         final Unit<Angle> unit = pm.getAngularUnit();
         double longitude = greenwichLongitude;
-        if (unit != null && !unit.equals(DEGREE_ANGLE)) {
-            longitude = DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
+        if (unit != null && !unit.equals(NonSI.DEGREE_ANGLE)) {
+            longitude = NonSI.DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
         }
-        assertEquals(message(prefix, "getGreenwichLongitude()"), longitude,
+        assertEquals("PrimeMeridian.getGreenwichLongitude()", longitude,
                 pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);
     }
 
@@ -244,6 +239,8 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testGreenwich()
      */
     @Test
     public void testGreenwich() throws FactoryException {
@@ -252,7 +249,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Greenwich";
         aliases            = NONE;
         greenwichLongitude = 0.0;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -274,7 +271,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Ferro";
         aliases            = NONE;
         greenwichLongitude = -17.666666666666668;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -288,6 +285,8 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testJakarta()
      */
     @Test
     public void testJakarta() throws FactoryException {
@@ -296,7 +295,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Jakarta";
         aliases            = NONE;
         greenwichLongitude = 106.80771944444444;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -311,6 +310,8 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testParis()
      */
     @Test
     public void testParis() throws FactoryException {
@@ -319,7 +320,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Paris";
         aliases            = NONE;
         greenwichLongitude = 2.33722917;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -339,7 +340,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Athens";
         aliases            = NONE;
         greenwichLongitude = 23.7163375;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -359,7 +360,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Bern";
         aliases            = NONE;
         greenwichLongitude = 7.439583333333333;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -372,6 +373,8 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
+     *
+     * @see GIGS3003#testBogota()
      */
     @Test
     public void testBogota() throws FactoryException {
@@ -379,7 +382,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Bogota";
         aliases            = NONE;
         greenwichLongitude = -74.08091666666667;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -399,7 +402,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Brussels";
         aliases            = NONE;
         greenwichLongitude = 4.367975;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -419,7 +422,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Lisbon";
         aliases            = NONE;
         greenwichLongitude = -9.13190611111111;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -439,7 +442,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Madrid";
         aliases            = NONE;
         greenwichLongitude = -3.687938888888889;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -460,7 +463,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Oslo";
         aliases            = new String[] {"Kristiania"};
         greenwichLongitude = 10.722916666666666;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -480,7 +483,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Paris RGS";
         aliases            = NONE;
         greenwichLongitude = 2.3372083333333333;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -500,7 +503,7 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Rome";
         aliases            = NONE;
         greenwichLongitude = 12.452333333333334;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 
     /**
@@ -520,6 +523,6 @@ public class GIGS2003 extends EPSGTestCase<PrimeMeridian> {
         name               = "Stockholm";
         aliases            = NONE;
         greenwichLongitude = 18.05827777777778;
-        createAndVerifyPrimeMeridian();
+        verifyPrimeMeridian();
     }
 }

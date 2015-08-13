@@ -38,10 +38,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
+import static org.junit.Assert.*;
 
 
 /**
@@ -51,7 +55,14 @@ import java.io.FileNotFoundException;
  * @version 3.1
  * @since   3.1
  */
-final class ExpectedData {
+final class DataParser {
+    /**
+     * Path from the root of {@code geoapi-conformance} module to the GIGS data.
+     */
+    private static final String[] PATH_TO_DATA = {
+        "geoapi-conformance","src","main","java","org","opengis","test","referencing","gigs","doc-files"
+    };
+
     /**
      * The character used as column separator.
      */
@@ -103,32 +114,41 @@ final class ExpectedData {
      * @param file  The file name, without path.
      * @param types The type of each column. The only legal values at this time are
      *              {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    ExpectedData(final String file, final Class<?>... columnTypes) {
+    DataParser(final String file, final Class<?>... columnTypes) throws IOException {
+        File path;
         try {
-            final InputStream stream = ExpectedData.class.getResourceAsStream(file);
-            if (stream == null) {
-                throw new FileNotFoundException(file);
-            }
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
-            data = new ArrayList<Object[]>();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                line = line.trim();
-                if (!line.isEmpty() && line.charAt(0) != '#') {
-                    data.add(parseRow(line, columnTypes));
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            throw new DataException("Can not read " + file, e);
+            path = new File(DataParser.class.getResource("DataParser.class").toURI());
+        } catch (URISyntaxException e) {
+            throw (FileNotFoundException) new FileNotFoundException("Can not read " + file).initCause(e);
         }
+        do {
+            path = path.getParentFile();
+            if (path == null) {
+                throw new FileNotFoundException("Can not find the root directory of GeoAPI project.");
+            }
+        } while (!new File(path, "geoapi-conformance").exists());
+        for (final String name : PATH_TO_DATA) {
+            path = new File(path, name);
+            assertTrue(name, path.isDirectory());
+        }
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path, file)), "UTF-8"));
+        data = new ArrayList<Object[]>();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (!line.isEmpty() && line.charAt(0) != '#') {
+                data.add(parseRow(line, columnTypes));
+            }
+        }
+        reader.close();
     }
 
     /**
      * Parses a single row. The given line must be non-empty.
      */
-    static Object[] parseRow(String line, final Class<?>... columnTypes) {
+    static Object[] parseRow(String line, final Class<?>... columnTypes) throws IOException {
         final Object[] row = new Object[columnTypes.length];
         for (int i=0; i<columnTypes.length; i++) {
             // Find the start index and end index of substring to parse.
@@ -138,7 +158,7 @@ final class ExpectedData {
             if (line.charAt(0) == QUOTE) {
                 while (true) {
                     if ((end = line.indexOf(QUOTE, end+1)) < 0) {
-                        throw new DataException("Unbalanced quote.");
+                        throw new IOException("Unbalanced quote.");
                     }
                     if (end+1 >= line.length() || line.charAt(end+1) != QUOTE) {
                         break;
@@ -163,7 +183,7 @@ final class ExpectedData {
                 else if (type == Integer.class) value = Integer.valueOf(part);
                 else if (type == Double .class) value = Double .valueOf(part);
                 else if (type == Boolean.class) value = Boolean.valueOf(part);
-                else throw new DataException("Unsupported column type: " + type);
+                else throw new IOException("Unsupported column type: " + type);
                 row[i] = value;
             }
             if (++end >= line.length()) {
@@ -365,7 +385,7 @@ final class ExpectedData {
      */
     @Override
     public String toString() {
-        final StringBuilder buffer = new StringBuilder("ExpectedData[");
+        final StringBuilder buffer = new StringBuilder("DataParser[");
         if (currentRow == null) {
             buffer.append("no active row");
         } else {

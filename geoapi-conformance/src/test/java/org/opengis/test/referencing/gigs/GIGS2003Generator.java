@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2003}. This generator needs to be executed only if the GIGS data changed.
@@ -41,29 +43,32 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2003Generator extends TestMethodGenerator {
+public strictfp class GIGS2003Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2003Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2003_libPrimeMeridian.csv",
-            Integer.class,  // [0]: EPSG Prime Meridian Code
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: EPSG Prime Meridian Name
-            String .class,  // [3]: EPSG Alias
-            String .class,  // [4]: Longitude from Greenwich (sexagesimal)
-            String .class,  // [5]: Unit Name
-            Double .class,  // [6]: Longitude from Greenwich (decimal degrees)
-            String .class); // [7]: Remarks
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2003_libPrimeMeridian.csv",
+                Integer.class,      // [0]: EPSG Prime Meridian Code
+                Boolean.class,      // [1]: Particularly important to E&P industry?
+                String .class,      // [2]: EPSG Prime Meridian Name
+                String .class,      // [3]: EPSG Alias
+                String .class,      // [4]: Longitude from Greenwich (sexagesimal)
+                String .class,      // [5]: Unit Name
+                Double .class,      // [6]: Longitude from Greenwich (decimal degrees)
+                String .class);     // [7]: Remarks
 
          while (data.next()) {
             final int      code      = data.getInt    (0);
@@ -91,8 +96,8 @@ public class GIGS2003Generator extends TestMethodGenerator {
                                   "name",               name,
                                   "aliases",            aliases,
                                   "greenwichLongitude", longitude);
-            indent(2); out.println("createAndVerifyPrimeMeridian();");
-            out.println("    }");
+            indent(2); out.println("verifyPrimeMeridian();");
+            indent(1); out.println('}');
         }
     }
 

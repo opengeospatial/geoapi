@@ -1,0 +1,73 @@
+#
+# Derived from file: GIGS_3005_userProjection_v2-0_2011-06-28.xls
+# Test 3005, Application user-definable geodetic parameter library - map projections.
+#
+# Instructions:
+# Step 1: Using the data in each row below, create transformation with identifier as in columns 0 and 1,
+# using method given in column 3 and parameters given in columns 4 through 27.
+# If the application can satisfactorily define projection code 65002, there is no requirement to define 65021 or 65022.
+# However if the application cannot create 65002 because it has a latitude of origin not on the equator, report the fact
+# and create both 65021 and 65022 instead. These are needed for later tests.
+#
+# Note: The codes 65003 and 65020 and names GIGS projection 3, 20, 21 and 22 are deliberately missing from the sequence.
+# (Equivalent EPSG code and name are given in last columns for information only).
+#
+# Columns:
+#  [ 0]: GIGS projection code
+#  [ 1]: GIGS projection name
+#  [ 2]: EPSG Conversion method name
+#  [ 3]: Parameter 1 name
+#  [ 4]: Parameter 1 value
+#  [ 5]: Parameter 1 unit
+#  [ 6]: Parameter 1 value in decimal degrees
+#  [ 7]: Parameter 2 name
+#  [ 8]: Parameter 2 value
+#  [ 9]: Parameter 2 unit
+#  [10]: Parameter 2 value in decimal degrees
+#  [11]: Parameter 3 name
+#  [12]: Parameter 3 value
+#  [13]: Parameter 3 unit
+#  [14]: Parameter 3 value in decimal degrees
+#  [15]: Parameter 4 name
+#  [16]: Parameter 4 value
+#  [17]: Parameter 4 unit
+#  [18]: Parameter 4 value in decimal degrees
+#  [19]: Parameter 5 name
+#  [20]: Parameter 5 value
+#  [21]: Parameter 5 unit
+#  [22]: Parameter 6 name
+#  [23]: Parameter 6 value
+#  [24]: Parameter 6 unit
+#  [25]: Parameter 7 name
+#  [26]: Parameter 7 value
+#  [27]: Parameter 7 unit
+#  [28]: Remarks
+#  [29]: Equivalent EPSG code
+#  [30]: Equivalent EPSG name
+#
+65001,GIGS projection 1,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,3,degree,,Scale factor at natural origin,0.9996,unity,,False easting,500000,metre,,False northing,0,metre,,,,,,,,16031,UTM zone 31N
+65002,GIGS projection 2,Transverse Mercator,Latitude of natural origin,49,degree,,Longitude of natural origin,-2,degree,,Scale factor at natural origin,0.999601272,unity,,False easting,400000,metre,,False northing,-100000,metre,,,,,,,If application is unable to define a TM with origin away from the equator use the following definitions instead.,19916,British National Grid
+65021,GIGS projection 2 alt A,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,-2,degree,,Scale factor at natural origin,0.999601272,unity,,False easting,400000,metre,,False northing,-5527462.688,metre,,,,,,,Alternative when proj applied to WGS 84 ellipsoid. Only needed if previous projection definition 61002 is not possible.
+65022,GIGS projection 2 alt B,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,-2,degree,,Scale factor at natural origin,0.999601272,unity,,False easting,400000,metre,,False northing,-5527063.816,metre,,,,,,,Alternative when proj applied to Airy 1830 ellipsoid. Only needed if previous projection definition 61002 is not possible.
+65004,GIGS projection 4,Oblique Stereographic,Latitude of natural origin,52°09'22.178N,sexagesimal degree,52.1561606,Longitude of natural origin,5°23'15.5E,sexagesimal degree,5.3876389,Scale factor at natural origin,0.9999079,unity,,False easting,155000,metre,,False northing,463000,metre,,,,,,,,19914,RD New
+65005,GIGS projection 5,Mercator (1SP),Latitude of natural origin,0,degree,,Longitude of natural origin,3°11'32.21E,sexagesimal degree,3.1922806,Scale factor at natural origin,0.997,unity,,False easting,3900000,metre,,False northing,900000,metre,,,,,,,EPSG proj 19905 but referenced to Jakarta meridian rather than Greenwich meridian.
+65006,GIGS projection 6,Lambert Conic Conformal (2SP),Latitude of false origin,90,degree,,Longitude of false origin,4°22'02.952E,sexagesimal degree,4.3674867,Latitude of 1st standard parallel,51°10'00.00204N,sexagesimal degree,51.1666672,Latitude of 2nd standard parallel,49°50'00.00204N,sexagesimal degree,49.8333339,Easting at false origin,150000.013,metre,Northing at false origin,5400088.438,metre,,,,,19961,Belgian Lambert 72
+65007,GIGS projection 7,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,141,degree,,Scale factor at natural origin,0.9996,unity,,False easting,500000,metre,,False northing,10000000,metre,,,,,,,,17454,Australian Map Grid zone 54
+65008,GIGS projection 8,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,147,degree,,Scale factor at natural origin,0.9996,unity,,False easting,500000,metre,,False northing,10000000,metre,,,,,,,,17455,Australian Map Grid zone 55
+65009,GIGS projection 9,Albers Equal Area,Latitude of false origin,0,degree,,Longitude of false origin,132,degree,,Latitude of 1st standard parallel,-18,degree,,Latitude of 2nd standard parallel,-36,degree,,Easting at false origin,0,metre,Northing at false origin,0,metre,,,,,17365,Australian Albers
+65010,GIGS projection 10,Transverse Mercator (South Orientated),Latitude of natural origin,0,degree,,Longitude of natural origin,21,degree,,Scale factor at natural origin,1,unity,,False easting,0,metre,,False northing,0,metre,,,,,,,,17521,South African Survey Grid zone 21
+65011,GIGS projection 11,Transverse Mercator,Latitude of natural origin,-90,degree,,Longitude of natural origin,-60,degree,,Scale factor at natural origin,1,unity,,False easting,5500000,metre,,False northing,0,metre,,,,,,,,18035,Argentina zone 5
+65012,GIGS projection 12,American Polyconic,Latitude of natural origin,0,degree,,Longitude of natural origin,-54,degree,,False easting,5000000,metre,,False northing,10000000,metre,,,,,,,,,,,,19941,Brazil Polyconic
+65013,GIGS projection 13,Hotine Oblique Mercator (variant B),Latitude of projection centre,4,degree,,Longitude of projection centre,115,degree,,Azimuth of initial line,53°18'56.9158,sexagesimal degree,53.3158099,Angle from Rectified to Skew Grid,53°07'48.3685,sexagesimal degree,53.1301024,Scale factor on initial line,0.99984,unity,Easting at projection centre,590521.147,metre,Northing at projection centre,442890.861,metre,EPSG proj 19894 but referenced using Hotine Oblique Mercator (variant B) rather than Hotine Oblique Mercator (variant A) method.
+65014,GIGS projection 14,Hotine Oblique Mercator (variant A),Latitude of projection centre,4,degree,,Longitude of projection centre,115,degree,,Azimuth of initial line,53°18'56.9158,sexagesimal degree,53.3158099,Angle from Rectified to Skew Grid,53°07'48.3685,sexagesimal degree,53.1301024,Scale factor on initial line,0.99984,unity,False easting,0,metre,False northing,0,metre,,19894,East Malaysia BRSO
+65015,GIGS projection 15,Cassini-Soldner,Latitude of natural origin,2°07'18.0471N,sexagesimal degree,2.1216797,Longitude of natural origin,103°25'40.5704E,sexagesimal degree,103.4279361,False easting,-14810.562,metre,,False northing,8758.32,metre,,,,,,,,,,,,19893,Johor Grid
+65016,GIGS projection 16,Lambert Azimuthal Equal Area,Latitude of natural origin,52,degree,,Longitude of natural origin,10,degree,,False easting,4321000,metre,,False northing,3210000,metre,,,,,,,,,,,,19986,Europe Equal Area 2001
+65017,GIGS projection 17,Lambert Conic Conformal (2SP),Latitude of false origin,40°20'N,sexagesimal degree,40.3333333,Longitude of false origin,111°30'W,sexagesimal degree,-111.5000000,Latitude of 1st standard parallel,41°47'N,sexagesimal degree,41.7833333,Latitude of 2nd standard parallel,40°43'N,sexagesimal degree,40.7166667,Easting at false origin,1640419.948,foot,Northing at false origin,3280839.895,foot,,,,,15262,Utah North (ft)
+65018,GIGS projection 18,Lambert Conic Conformal (2SP),Latitude of false origin,40°20'N,sexagesimal degree,40.3333333,Longitude of false origin,111°30'W,sexagesimal degree,-111.5000000,Latitude of 1st standard parallel,41°47'N,sexagesimal degree,41.7833333,Latitude of 2nd standard parallel,40°43'N,sexagesimal degree,40.7166667,Easting at false origin,1640416.667,US survey foot,Northing at false origin,3280833.333,US survey foot,,,,,15297,Utah North (ftUS)
+65019,GIGS projection 19,Lambert Conic Conformal (1SP),Latitude of natural origin,52,grad,,Longitude of natural origin,0,grad,,Scale factor at natural origin,0.99987742,unity,,False easting,600000,metre,,False northing,2200000,metre,,,,,,,Referenced to Paris meridian.,18082,Lambert zone II
+65023,GIGS projection 23,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,3,degree,,Scale factor at natural origin,0.9996,unity,,False easting,1640416.667,US survey foot,,False northing,0,US survey foot,,,,,,,EPSG proj 16031 (UTM zone 31N) but units in ftUS rather than m.,,No direct equivalent, but would be called BLM 31N (ftUS).
+65024,GIGS projection 24,Mercator (Variant B),Latitude of 1st standard parallel,42,degree,,Longitude of natural origin,51,degree,,False easting,0,metre,,False northing,0,metre,,,,,,,,,,,,19884,Caspian Sea Mercator
+65025,GIGS projection 25,Lambert Conic Conformal (1SP),Latitude of natural origin,46°48'N,sexagesimal degree,46.8000000,Longitude of natural origin,2°20'14.025E,sexagesimal degree,2.3372292,Scale factor at natural origin,0.99987742,unity,,False easting,600000,metre,,False northing,2200000,metre,,,,,,,,18086,France EuroLambert
+65026,GIGS projection 26,Hotine Oblique Mercator (variant B),Latitude of projection centre,47°08'39.8174N,sexagesimal degree,47.144393722222222,Longitude of projection centre,19°02'54.8584E,sexagesimal degree,19.048571777777777,Azimuth of initial line,90°,sexagesimal degree,90.0000000,Angle from Rectified to Skew Grid,90°,sexagesimal degree,90.0000000,Scale factor on initial line,0.99993,unity,Easting at projection centre,650000,metre,Northing at projection centre,200000,metre,,19931,EOV
+65027,GIGS projection 27,Mercator (variant A),Latitude of natural origin,0,degree,,Longitude of natural origin,110,degree,,Scale factor at natural origin,0.997,unity,,False easting,3900000,metre,,False northing,900000,metre,,,,,,,,19905,NEIEZ
+65028,GIGS projection 28,Transverse Mercator,Latitude of natural origin,0,degree,,Longitude of natural origin,-135,degree,,Scale factor at natural origin,0.9996,unity,,False easting,500000,metre,,False northing,0,metre,,,,,,,,16008,UTM zone 8N

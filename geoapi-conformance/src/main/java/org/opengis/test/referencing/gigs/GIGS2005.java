@@ -58,7 +58,7 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare map projection definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>
+ *   <td><a href="doc-files/GIGS_2005_libProjection.csv">{@code GIGS_2005_libProjection.csv}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -95,11 +95,11 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2005 extends EPSGTestCase<Conversion> {
+public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
     /**
      * The name of the expected operation method.
      */
-    public String method;
+    public String methodName;
 
     /**
      * The coordinate conversion created by the factory,
@@ -191,35 +191,32 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
                 unsupportedCode(Conversion.class, code);
                 throw e;
             }
-            if (operation == null) {
-                fail("CoordinateOperationAuthorityFactory.createCoordinateOperation(\"" + code + "\") shall not return null.");
+            if (operation != null) {  // For consistency with the behavior in other classes.
+                assertInstanceOf(codeAsString, Conversion.class, operation);
+                conversion = (Conversion) operation;
             }
-            assertInstanceOf(codeAsString, Conversion.class, operation);
-            conversion = (Conversion) operation;
         }
         return conversion;
     }
 
     /**
-     * Creates a coordinate conversion for the given {@code code}, then verifies its name and properties.
+     * Verifies the properties of the conversion given by {@link #getIdentifiedObject()}.
      */
     private void createAndVerifyProjection(final int code) throws FactoryException {
         this.code = code;
         conversion = null; // For forcing the fetch of a new operation.
 
         final Conversion conversion = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Projection[").append(code).append(']');
-        assertNotNull(prefix.toString(), conversion);
+        assertNotNull("Conversion", conversion);
         validators.validate(conversion);
 
         // Map projection identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, conversion.getIdentifiers());
+        assertContainsCode("Conversion.getIdentifiers()", "EPSG", code, conversion.getIdentifiers());
 
         // Map projection name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getMethod().getName()"), method, getName(conversion.getMethod()));
+            assertEquals("Conversion.getMethod().getName()", methodName, getName(conversion.getMethod()));
             configurationTip = null;
         }
     }
@@ -240,9 +237,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testUTM() throws FactoryException {
-        important = true;
-        name      = "UTM";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "UTM";
+        methodName = "Transverse Mercator";
         for (int code = 16001; code <= 16060; code++) {    // Loop over 60 codes
             createAndVerifyProjection(code);
         }
@@ -267,9 +264,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void test6DegreeGaussKrugerWithZonePrefix() throws FactoryException {
-        important = true;
-        name      = "6-degree Gauss-Kruger";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "6-degree Gauss-Kruger";
+        methodName = "Transverse Mercator";
         for (int code = 16201; code <= 16260; code++) {    // Loop over 60 codes
             createAndVerifyProjection(code);
         }
@@ -291,9 +288,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void test6DegreeGaussKruger() throws FactoryException {
-        important = true;
-        name      = "6-degree Gauss-Kruger";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "6-degree Gauss-Kruger";
+        methodName = "Transverse Mercator";
         for (int code = 16301; code <= 16360; code++) {    // Loop over 60 codes
             createAndVerifyProjection(code);
         }
@@ -315,9 +312,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void test3DegreeGaussKrugerWithZonePrefix() throws FactoryException {
-        important = true;
-        name      = "3-degree Gauss-Kruger";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "3-degree Gauss-Kruger";
+        methodName = "Transverse Mercator";
         for (int code = 16261; code <= 16299; code++) {    // Loop over 39 codes
             createAndVerifyProjection(code);
         }
@@ -346,9 +343,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void test3DegreeGaussKruger() throws FactoryException {
-        important = true;
-        name      = "3-degree Gauss-Kruger";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "3-degree Gauss-Kruger";
+        methodName = "Transverse Mercator";
         for (int code = 16362; code <= 16398; code += 2) {    // Loop over 19 codes
             createAndVerifyProjection(code);
         }
@@ -371,9 +368,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testAramcoLambert() throws FactoryException {
-        important = true;
-        name      = "Aramco Lambert";
-        method    = "Lambert Conic Conformal (2SP)";
+        important  = true;
+        name       = "Aramco Lambert";
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(19977);
     }
 
@@ -391,9 +388,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testArgentinaZones() throws FactoryException {
-        important = true;
-        name      = "Argentina zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Argentina zones";
+        methodName = "Transverse Mercator";
         for (int code = 18031; code <= 18037; code++) {    // Loop over 7 codes
             createAndVerifyProjection(code);
         }
@@ -414,9 +411,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testAustralianMapGridZones() throws FactoryException {
-        important = true;
-        name      = "Australian Map Grid zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Australian Map Grid zones";
+        methodName = "Transverse Mercator";
         for (int code = 17448; code <= 17458; code++) {    // Loop over 11 codes
             createAndVerifyProjection(code);
         }
@@ -437,9 +434,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testBLMZones() throws FactoryException {
-        important = true;
-        name      = "BLM zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "BLM zones";
+        methodName = "Transverse Mercator";
         for (int code = 15914; code <= 15917; code++) {    // Loop over 4 codes
             createAndVerifyProjection(code);
         }
@@ -459,9 +456,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testBritishNationalGrid() throws FactoryException {
-        important = true;
-        name      = "British National Grid";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "British National Grid";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(19916);
     }
 
@@ -479,9 +476,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testBrazilPolyconic() throws FactoryException {
-        important = true;
-        name      = "Brazil Polyconic";
-        method    = "American Polyconic";
+        important  = true;
+        name       = "Brazil Polyconic";
+        methodName = "American Polyconic";
         createAndVerifyProjection(19941);
     }
 
@@ -500,9 +497,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testColombiaZones() throws FactoryException {
-        important = true;
-        name      = "Colombia zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Colombia zones";
+        methodName = "Transverse Mercator";
         for (int code = 18051; code <= 18059; code++) {    // Loop over 9 codes
             createAndVerifyProjection(code);
         }
@@ -522,9 +519,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testEgyptBelts() throws FactoryException {
-        important = true;
-        name      = "Egypt belts";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Egypt belts";
+        methodName = "Transverse Mercator";
         for (int code = 18071; code <= 18074; code++) {    // Loop over 4 codes
             createAndVerifyProjection(code);
         }
@@ -544,9 +541,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testEOV() throws FactoryException {
-        important = true;
-        name      = "EOV";
-        method    = "Hotine Oblique Mercator (variant B)";
+        important  = true;
+        name       = "EOV";
+        methodName = "Hotine Oblique Mercator (variant B)";
         createAndVerifyProjection(19931);
     }
 
@@ -565,9 +562,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testFranceMainlandZones() throws FactoryException {
-        important = true;
-        name      = "France mainland zones";
-        method    = "Lambert Conic Conformal (1SP)";
+        important  = true;
+        name       = "France mainland zones";
+        methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(18081);
         createAndVerifyProjection(18082);
         createAndVerifyProjection(18083);
@@ -588,9 +585,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testLambert93() throws FactoryException {
-        important = true;
-        name      = "Lambert-93";
-        method    = "Lambert Conic Conformal (2SP)";
+        important  = true;
+        name       = "Lambert-93";
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(18085);
     }
 
@@ -608,9 +605,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testGhanaNationalGrid() throws FactoryException {
-        important = true;
-        name      = "Ghana National Grid";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Ghana National Grid";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(19959);
     }
 
@@ -629,9 +626,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testIndiaZones() throws FactoryException {
-        important = true;
-        name      = "India zones";
-        method    = "Lambert Conic Conformal (1SP)";
+        important  = true;
+        name       = "India zones";
+        methodName = "Lambert Conic Conformal (1SP)";
         for (int code = 18231; code <= 18238; code++) {    // Loop over 8 codes
             createAndVerifyProjection(code);
         }
@@ -651,9 +648,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testIraqZone() throws FactoryException {
-        important = true;
-        name      = "Iraq zone";
-        method    = "Lambert Conic Conformal (1SP)";
+        important  = true;
+        name       = "Iraq zone";
+        methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(19906);
     }
 
@@ -671,9 +668,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testItalyZones() throws FactoryException {
-        important = true;
-        name      = "Italy zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Italy zones";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(18121);
         createAndVerifyProjection(18122);
     }
@@ -692,9 +689,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testLaborde() throws FactoryException {
-        important = true;
-        name      = "Laborde";
-        method    = "Hotine Oblique Mercator (variant B)";
+        important  = true;
+        name       = "Laborde";
+        methodName = "Hotine Oblique Mercator (variant B)";
         createAndVerifyProjection(19911);
         createAndVerifyProjection(19861);
     }
@@ -713,9 +710,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testLevantZone() throws FactoryException {
-        important = true;
-        name      = "Levant zone";
-        method    = "Lambert Conic Near Conformal";
+        important  = true;
+        name       = "Levant zone";
+        methodName = "Lambert Conic Near Conformal";
         createAndVerifyProjection(19940);
     }
 
@@ -734,9 +731,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testLibyaZones() throws FactoryException {
-        important = true;
-        name      = "Libya zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Libya zones";
+        methodName = "Transverse Mercator";
         for (int code = 18240; code <= 18248; code++) {    // Loop over 9 codes
             createAndVerifyProjection(code);
         }
@@ -759,9 +756,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testSWAfricaSurveyGrid() throws FactoryException {
-        important = true;
-        name      = "SW Africa Survey Grid";
-        method    = "Transverse Mercator (South Orientated)";
+        important  = true;
+        name       = "SW Africa Survey Grid";
+        methodName = "Transverse Mercator (South Orientated)";
         createAndVerifyProjection(17611);
     }
 
@@ -779,9 +776,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testNEIEZ() throws FactoryException {
-        important = true;
-        name      = "NEIEZ";
-        method    = "Mercator (variant A)";
+        important  = true;
+        name       = "NEIEZ";
+        methodName = "Mercator (variant A)";
         createAndVerifyProjection(19905);
     }
 
@@ -799,9 +796,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testNigeriaBelts() throws FactoryException {
-        important = true;
-        name      = "Nigeria belts";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Nigeria belts";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(18151);
         createAndVerifyProjection(18152);
         createAndVerifyProjection(18153);
@@ -821,9 +818,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testNZTMZones() throws FactoryException {
-        important = true;
-        name      = "NZ TM zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "NZ TM zones";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(18141);
         createAndVerifyProjection(18142);
         createAndVerifyProjection(19971);
@@ -843,9 +840,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testNZMG() throws FactoryException {
-        important = true;
-        name      = "NZMG";
-        method    = "New Zealand Map Grid";
+        important  = true;
+        name       = "NZMG";
+        methodName = "New Zealand Map Grid";
         createAndVerifyProjection(19917);
     }
 
@@ -863,9 +860,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testPeruZones() throws FactoryException {
-        important = true;
-        name      = "Peru zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Peru zones";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(18161);
         createAndVerifyProjection(18162);
         createAndVerifyProjection(18163);
@@ -885,9 +882,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testPhilippineZones() throws FactoryException {
-        important = true;
-        name      = "Philippine zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Philippine zones";
+        methodName = "Transverse Mercator";
         for (int code = 18171; code <= 18175; code++) {    // Loop over 5 codes
             createAndVerifyProjection(code);
         }
@@ -907,9 +904,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testQatarGrid() throws FactoryException {
-        important = true;
-        name      = "Qatar Grid";
-        method    = "Cassini-Soldner";
+        important  = true;
+        name       = "Qatar Grid";
+        methodName = "Cassini-Soldner";
         createAndVerifyProjection(19953);
     }
 
@@ -927,9 +924,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testQatarNationalGrid() throws FactoryException {
-        important = true;
-        name      = "Qatar National Grid";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "Qatar National Grid";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(19919);
     }
 
@@ -947,9 +944,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testRDNew() throws FactoryException {
-        important = true;
-        name      = "RD New";
-        method    = "Oblique Stereographic";
+        important  = true;
+        name       = "RD New";
+        methodName = "Oblique Stereographic";
         createAndVerifyProjection(19914);
     }
 
@@ -967,9 +964,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testMalaysiaRSOGrids_VariantB() throws FactoryException {
-        important = true;
-        name      = "Malaysia RSO grids";
-        method    = "Hotine Oblique Mercator (variant B)";
+        important  = true;
+        name       = "Malaysia RSO grids";
+        methodName = "Hotine Oblique Mercator (variant B)";
         createAndVerifyProjection(19956);
         createAndVerifyProjection(19957);
         createAndVerifyProjection(19958);
@@ -989,9 +986,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testMalaysiaRSOGrids_VariantA() throws FactoryException {
-        important = true;
-        name      = "Malaysia RSO grids";
-        method    = "Hotine Oblique Mercator (variant A)";
+        important  = true;
+        name       = "Malaysia RSO grids";
+        methodName = "Hotine Oblique Mercator (variant A)";
         createAndVerifyProjection(19871);
         createAndVerifyProjection(19872);
         createAndVerifyProjection(19894);
@@ -1015,9 +1012,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testUSStatePlaneZones_TM() throws FactoryException {
-        important = true;
-        name      = "US State Plane zones";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "US State Plane zones";
+        methodName = "Transverse Mercator";
         for (int code = 15002; code <= 15009; code++) {    // Loop over 8 codes
             createAndVerifyProjection(code);
         }
@@ -1049,9 +1046,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testUSStatePlaneZones_LCC() throws FactoryException {
-        important = true;
-        name      = "US State Plane zones";
-        method    = "Lambert Conic Conformal (2SP)";
+        important  = true;
+        name       = "US State Plane zones";
+        methodName = "Lambert Conic Conformal (2SP)";
         createAndVerifyProjection(10404);
         createAndVerifyProjection(10405);
         createAndVerifyProjection(10406);
@@ -1105,9 +1102,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testStereo33() throws FactoryException {
-        important = true;
-        name      = "Stereo33";
-        method    = "Oblique Stereographic";
+        important  = true;
+        name       = "Stereo33";
+        methodName = "Oblique Stereographic";
         createAndVerifyProjection(19927);
     }
 
@@ -1125,9 +1122,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testStereo70() throws FactoryException {
-        important = true;
-        name      = "Stereo70";
-        method    = "Oblique Stereographic";
+        important  = true;
+        name       = "Stereo70";
+        methodName = "Oblique Stereographic";
         createAndVerifyProjection(19926);
     }
 
@@ -1145,9 +1142,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testSyriaLambert() throws FactoryException {
-        important = true;
-        name      = "Syria Lambert";
-        method    = "Lambert Conic Conformal (1SP)";
+        important  = true;
+        name       = "Syria Lambert";
+        methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(19948);
     }
 
@@ -1165,9 +1162,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM0N() throws FactoryException {
-        important = true;
-        name      = "TM 0 N";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 0 N";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(16400);
     }
 
@@ -1185,9 +1182,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM1NW() throws FactoryException {
-        important = true;
-        name      = "TM 1 NW";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 1 NW";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(17001);
     }
 
@@ -1205,9 +1202,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM109SE() throws FactoryException {
-        important = true;
-        name      = "TM 109 SE";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 109 SE";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(16709);
     }
 
@@ -1225,9 +1222,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM1130SE() throws FactoryException {
-        important = true;
-        name      = "TM 11.30 SE";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 11.30 SE";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(16611);
     }
 
@@ -1245,9 +1242,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM12SE() throws FactoryException {
-        important = true;
-        name      = "TM 12 SE";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 12 SE";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(16612);
     }
 
@@ -1265,9 +1262,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM5NE() throws FactoryException {
-        important = true;
-        name      = "TM 5 NE";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 5 NE";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(16405);
     }
 
@@ -1285,9 +1282,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTM5NW() throws FactoryException {
-        important = true;
-        name      = "TM 5 NW";
-        method    = "Transverse Mercator";
+        important  = true;
+        name       = "TM 5 NW";
+        methodName = "Transverse Mercator";
         createAndVerifyProjection(17005);
     }
 
@@ -1305,9 +1302,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTrinidadGrid() throws FactoryException {
-        important = true;
-        name      = "Trinidad grid";
-        method    = "Cassini-Soldner";
+        important  = true;
+        name       = "Trinidad grid";
+        methodName = "Cassini-Soldner";
         createAndVerifyProjection(19925);
         createAndVerifyProjection(19975);
     }
@@ -1326,9 +1323,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testTunisiaZones() throws FactoryException {
-        important = true;
-        name      = "Tunisia zones";
-        method    = "Lambert Conic Conformal (1SP)";
+        important  = true;
+        name       = "Tunisia zones";
+        methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(18181);
         createAndVerifyProjection(18182);
     }
@@ -1348,9 +1345,9 @@ public class GIGS2005 extends EPSGTestCase<Conversion> {
      */
     @Test
     public void testVoirolUnifie() throws FactoryException {
-        important = true;
-        name      = "Voirol Unifie";
-        method    = "Lambert Conic Conformal (1SP)";
+        important  = true;
+        name       = "Voirol Unifie";
+        methodName = "Lambert Conic Conformal (1SP)";
         createAndVerifyProjection(18021);
         createAndVerifyProjection(18022);
     }

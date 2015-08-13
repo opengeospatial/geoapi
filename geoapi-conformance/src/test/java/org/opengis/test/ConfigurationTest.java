@@ -53,6 +53,7 @@ public strictfp class ConfigurationTest {
     public void testKeyNames() {
         for (final Configuration.Key<?> e : Configuration.Key.values()) {
             if (e.type == Boolean.class
+                    && e != Configuration.Key.isFactoryPreservingUserValues
                     && e != Configuration.Key.isValidationEnabled
                     && e != Configuration.Key.isToleranceRelaxed)
             {

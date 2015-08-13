@@ -59,7 +59,7 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2007_libGeodTfm.csv">{@code GIGS_2007_libGeodTfm.csv}</a>
+ *   <td><a href="doc-files/GIGS_2007_libGeodTfm.csv">{@code GIGS_2007_libGeodTfm.csv}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -96,11 +96,11 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2007 extends EPSGTestCase<Transformation> {
+public strictfp class GIGS2007 extends AuthorityFactoryTestCase<Transformation> {
     /**
      * Name of the expected transformation method.
      */
-    public String method;
+    public String methodName;
 
     /**
      * The coordinate transformation created by the factory,
@@ -192,43 +192,40 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
                 unsupportedCode(Transformation.class, code);
                 throw e;
             }
-            if (operation == null) {
-                fail("CoordinateOperationAuthorityFactory.createCoordinateOperation(\"" + code + "\") shall not return null.");
+            if (operation != null) {  // For consistency with the behavior in other classes.
+                assertInstanceOf(codeAsString, Transformation.class, operation);
+                transformation = (Transformation) operation;
             }
-            assertInstanceOf(codeAsString, Transformation.class, operation);
-            transformation = (Transformation) operation;
         }
         return transformation;
     }
 
     /**
-     * Creates a transformation for the current {@link #code}, then verifies its name and properties.
+     * Verifies the properties of the transformation given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyTransformation() throws FactoryException {
+    private void verifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Transformation[").append(code).append(']');
-        assertNotNull(prefix.toString(), transformation);
+        assertNotNull("Transformation", transformation);
         validators.validate(transformation);
 
         // Transformation identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, transformation.getIdentifiers());
+        assertContainsCode("Transformation.getIdentifiers()", "EPSG", code, transformation.getIdentifiers());
 
         // Transformation name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(transformation));
+            assertEquals("Transformation.getName()", name, getName(transformation));
             configurationTip = null;
         }
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
-        assertNotNull(prefix.append("getMethod()").toString(), m);
+        assertNotNull("Transformation.getMethod()", m);
 
         // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), method, getName(m));
+            assertEquals("Transformation.getMethod().getName()", methodName, getName(m));
             configurationTip = null;
         }
     }
@@ -248,9 +245,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testAGD66_to_GDA94() throws FactoryException {
         important = true;
-        name      = "AGD66 to GDA94 (11)";
-        method    = "NTv2";
-        createAndVerifyTransformation();
+        name       = "AGD66 to GDA94 (11)";
+        methodName = "NTv2";
+        verifyTransformation();
     }
 
     /**
@@ -269,9 +266,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testAGD66_to_WGS84() throws FactoryException {
         important = true;
-        name      = "AGD66 to WGS 84 (17)";
-        method    = "NTv2";
-        createAndVerifyTransformation();
+        name       = "AGD66 to WGS 84 (17)";
+        methodName = "NTv2";
+        verifyTransformation();
     }
 
     /**
@@ -289,9 +286,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testAGD84_to_GDA94() throws FactoryException {
         important = true;
-        name      = "AGD84 to GDA94 (5)";
-        method    = "NTv2";
-        createAndVerifyTransformation();
+        name       = "AGD84 to GDA94 (5)";
+        methodName = "NTv2";
+        verifyTransformation();
     }
 
     /**
@@ -310,9 +307,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testAGD84_to_WGS84() throws FactoryException {
         important = true;
-        name      = "AGD84 to WGS 84 (9)";
-        method    = "NTv2";
-        createAndVerifyTransformation();
+        name       = "AGD84 to WGS 84 (9)";
+        methodName = "NTv2";
+        verifyTransformation();
     }
 
     /**
@@ -329,9 +326,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
      */
     @Test
     public void testAmersfoort_to_WGS84() throws FactoryException {
-        name      = "Amersfoort to WGS 84 (3)";
-        method    = "Coordinate Frame rotation";
-        createAndVerifyTransformation();
+        name       = "Amersfoort to WGS 84 (3)";
+        methodName = "Coordinate Frame rotation";
+        verifyTransformation();
     }
 
     /**
@@ -348,9 +345,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
      */
     @Test
     public void testBogota1975_to_MAGNASIRGAS() throws FactoryException {
-        name      = "Bogota 1975 to MAGNA-SIRGAS (9)";
-        method    = "Molodensky-Badekas 10-parameter transformation";
-        createAndVerifyTransformation();
+        name       = "Bogota 1975 to MAGNA-SIRGAS (9)";
+        methodName = "Molodensky-Badekas 10-parameter transformation";
+        verifyTransformation();
     }
 
     /**
@@ -369,9 +366,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testBogota1975_to_WGS84() throws FactoryException {
         important = true;
-        name      = "Bogota 1975 to WGS 84 (3)";
-        method    = "Coordinate Frame rotation";
-        createAndVerifyTransformation();
+        name       = "Bogota 1975 to WGS 84 (3)";
+        methodName = "Coordinate Frame rotation";
+        verifyTransformation();
     }
 
     /**
@@ -389,9 +386,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testCamacupa_to_WGS84() throws FactoryException {
         important = true;
-        name      = "Camacupa to WGS 84 (10)";
-        method    = "Geocentric translations";
-        createAndVerifyTransformation();
+        name       = "Camacupa to WGS 84 (10)";
+        methodName = "Geocentric translations";
+        verifyTransformation();
     }
 
     /**
@@ -408,9 +405,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
      */
     @Test
     public void testCH1903_to_WGS84() throws FactoryException {
-        name      = "CH1903 to WGS 84 (1)";
-        method    = "Coordinate Frame rotation";
-        createAndVerifyTransformation();
+        name       = "CH1903 to WGS 84 (1)";
+        methodName = "Coordinate Frame rotation";
+        verifyTransformation();
     }
 
     /**
@@ -428,9 +425,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testED50_to_WGS84_18() throws FactoryException {
         important = true;
-        name      = "ED50 to WGS 84 (18)";
-        method    = "Position Vector 7-param. transformation";
-        createAndVerifyTransformation();
+        name       = "ED50 to WGS 84 (18)";
+        methodName = "Position Vector 7-param. transformation";
+        verifyTransformation();
     }
 
     /**
@@ -448,9 +445,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testED50_to_WGS84_23() throws FactoryException {
         important = true;
-        name      = "ED50 to WGS 84 (23)";
-        method    = "Position Vector 7-param. transformation";
-        createAndVerifyTransformation();
+        name       = "ED50 to WGS 84 (23)";
+        methodName = "Position Vector 7-param. transformation";
+        verifyTransformation();
     }
 
     /**
@@ -468,9 +465,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testED50_to_WGS84_24() throws FactoryException {
         important = true;
-        name      = "ED50 to WGS 84 (24)";
-        method    = "Position Vector 7-param. transformation";
-        createAndVerifyTransformation();
+        name       = "ED50 to WGS 84 (24)";
+        methodName = "Position Vector 7-param. transformation";
+        verifyTransformation();
     }
 
     /**
@@ -488,9 +485,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testED50_to_WGS84_32() throws FactoryException {
         important = true;
-        name      = "ED50 to WGS 84 (32)";
-        method    = "Position Vector 7-param. transformation";
-        createAndVerifyTransformation();
+        name       = "ED50 to WGS 84 (32)";
+        methodName = "Position Vector 7-param. transformation";
+        verifyTransformation();
     }
 
     /**
@@ -508,9 +505,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testED50_to_WGS84_36() throws FactoryException {
         important = true;
-        name      = "ED50 to WGS 84 (36)";
-        method    = "Position Vector 7-param. transformation";
-        createAndVerifyTransformation();
+        name       = "ED50 to WGS 84 (36)";
+        methodName = "Position Vector 7-param. transformation";
+        verifyTransformation();
     }
 
     /**
@@ -529,9 +526,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testLaCanoa_to_WGS84() throws FactoryException {
         important = true;
-        name      = "La Canoa to WGS 84 (2)";
-        method    = "Molodensky-Badekas 10-parameter transformation";
-        createAndVerifyTransformation();
+        name       = "La Canoa to WGS 84 (2)";
+        methodName = "Molodensky-Badekas 10-parameter transformation";
+        verifyTransformation();
     }
 
     /**
@@ -549,9 +546,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNAD27_to_NAD83_1() throws FactoryException {
         important = true;
-        name      = "NAD27 to NAD83 (1)";
-        method    = "NADCON";
-        createAndVerifyTransformation();
+        name       = "NAD27 to NAD83 (1)";
+        methodName = "NADCON";
+        verifyTransformation();
     }
 
     /**
@@ -569,9 +566,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNAD27_to_NAD83_2() throws FactoryException {
         important = true;
-        name      = "NAD27 to NAD83 (2)";
-        method    = "NADCON";
-        createAndVerifyTransformation();
+        name       = "NAD27 to NAD83 (2)";
+        methodName = "NADCON";
+        verifyTransformation();
     }
 
     /**
@@ -589,9 +586,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNAD27_to_NAD83_4() throws FactoryException {
         important = true;
-        name      = "NAD27 to NAD83 (4)";
-        method    = "NTv2";
-        createAndVerifyTransformation();
+        name       = "NAD27 to NAD83 (4)";
+        methodName = "NTv2";
+        verifyTransformation();
     }
 
     /**
@@ -610,9 +607,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNAD27_to_WGS84() throws FactoryException {
         important = true;
-        name      = "NAD27 to WGS 84 (33)";
-        method    = "NTv2";
-        createAndVerifyTransformation();
+        name       = "NAD27 to WGS 84 (33)";
+        methodName = "NTv2";
+        verifyTransformation();
     }
 
     /**
@@ -631,9 +628,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNAD27_to_WGS84_79() throws FactoryException {
         important = true;
-        name      = "NAD27 to WGS 84 (79)";
-        method    = "NADCON";
-        createAndVerifyTransformation();
+        name       = "NAD27 to WGS 84 (79)";
+        methodName = "NADCON";
+        verifyTransformation();
     }
 
     /**
@@ -652,9 +649,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNAD27_to_WGS84_85() throws FactoryException {
         important = true;
-        name      = "NAD27 to WGS 84 (85)";
-        method    = "NADCON";
-        createAndVerifyTransformation();
+        name       = "NAD27 to WGS 84 (85)";
+        methodName = "NADCON";
+        verifyTransformation();
     }
 
     /**
@@ -673,9 +670,9 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testNTF_Paris__to_NTF() throws FactoryException {
         important = true;
-        name      = "NTF (Paris) to NTF (1)";
-        method    = "Longitude rotation";
-        createAndVerifyTransformation();
+        name       = "NTF (Paris) to NTF (1)";
+        methodName = "Longitude rotation";
+        verifyTransformation();
     }
 
     /**
@@ -694,8 +691,8 @@ public class GIGS2007 extends EPSGTestCase<Transformation> {
     @Test
     public void testPSAD56_to_WGS84() throws FactoryException {
         important = true;
-        name      = "PSAD56 to WGS 84 (13)";
-        method    = "Molodensky-Badekas 10-parameter transformation";
-        createAndVerifyTransformation();
+        name       = "PSAD56 to WGS 84 (13)";
+        methodName = "Molodensky-Badekas 10-parameter transformation";
+        verifyTransformation();
     }
 }

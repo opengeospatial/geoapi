@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2005}. This generator needs to be executed only if the GIGS data changed.
@@ -41,33 +43,36 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2005Generator extends TestMethodGenerator {
+public strictfp class GIGS2005Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2005Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2005_libProjection.csv",
-            String .class,  // [0]: EPSG Coordinate Operation Code(s)
-            Boolean.class,  // [1]: Particularly important to E&P industry?
-            String .class,  // [2]: Map Projection Name(s)
-            String .class,  // [3]: Coordinate Operation Method
-            String .class); // [4]: Remarks
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2005_libProjection.csv",
+                String .class,      // [0]: EPSG Coordinate Operation Code(s)
+                Boolean.class,      // [1]: Particularly important to E&P industry?
+                String .class,      // [2]: Map Projection Name(s)
+                String .class,      // [3]: Coordinate Operation Method
+                String .class);     // [4]: Remarks
 
         while (data.next()) {
-            final int[]   codes     = data.getInts   (0);
-            final boolean important = data.getBoolean(1);
-            final String  name      = data.getString (2);
-            final String  method    = data.getString (3);
-            final String  remarks   = data.getString (4);
+            final int[]   codes      = data.getInts   (0);
+            final boolean important  = data.getBoolean(1);
+            final String  name       = data.getString (2);
+            final String  methodName = data.getString (3);
+            final String  remarks    = data.getString (4);
 
             out.println();
             indent(1); out.println("/**");
@@ -75,16 +80,16 @@ public class GIGS2005Generator extends TestMethodGenerator {
             indent(1); out.println(" *");
             printJavadocKeyValues("EPSG coordinate operation codes", codes,
                                   "EPSG coordinate operation name", name,
-                                  "Coordinate operation method", method,
+                                  "Coordinate operation method", methodName,
                                   "Specific usage / Remarks", remarks,
                                   "Particularly important to E&amp;P industry.", important);
             printJavadocThrows("if an error occurred while creating the coordinate operation from the EPSG code.");
             printTestMethodSignature(name);
-            printFieldAssignments("important", important,
-                                  "name",      name,
-                                  "method",    method);
+            printFieldAssignments("important",  important,
+                                  "name",       name,
+                                  "methodName", methodName);
             printCallsToMethod("createAndVerifyProjection", codes);
-            out.println("    }");
+            indent(1); out.println('}');
         }
     }
 }

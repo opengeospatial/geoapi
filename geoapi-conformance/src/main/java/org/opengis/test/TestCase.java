@@ -167,6 +167,7 @@ public strictfp abstract class TestCase {
      * This method returns directly the internal array, so it is important to never modify it.
      * This method is for internal usage by the {@link #listener} field only.
      */
+    @SuppressWarnings("ReturnOfCollectionOrArrayField")
     static synchronized TestListener[] getTestListeners() {
         return listeners;
     }
@@ -329,7 +330,7 @@ public strictfp abstract class TestCase {
      * annotation in subclasses. For example if a subclass constructor expects 3 factories of kind
      * {@link org.opengis.referencing.crs.CRSFactory}, {@link org.opengis.referencing.cs.CSFactory}
      * and {@link org.opengis.referencing.datum.DatumFactory} in that order, then that subclass
-     * contain the following method:</p>
+     * contains the following method:</p>
      *
      * <blockquote><pre>&#64;Parameterized.Parameters
      *public static List&lt;Factory[]&gt; factories() {
@@ -535,7 +536,7 @@ public strictfp abstract class TestCase {
      *   <li>{@link org.opengis.test.referencing.AffineTransformTest#configuration()}</li>
      *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest#configuration()}</li>
      *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest#configuration()}</li>
-     *   <li>{@link org.opengis.test.referencing.gigs.EPSGTestCase#configuration()}</li>
+     *   <li>{@link org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#configuration()}</li>
      * </ul>
      *
      * @return The configuration of the test being run, or an empty map if none. This method

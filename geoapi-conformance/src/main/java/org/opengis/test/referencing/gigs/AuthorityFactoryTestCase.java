@@ -31,8 +31,11 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.util.Collection;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.GenericName;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.test.referencing.ReferencingTestCase;
@@ -42,7 +45,7 @@ import static org.junit.Assert.*;
 
 
 /**
- * Base class of tests from series 2000.
+ * Base class for tests of EPSG definitions (2000 series).
  * The tests for this series are designed to verify the correctness of geodetic parameters that
  * are delivered with the software. The comparison to be taken as truth is the EPSG Dataset.
  *
@@ -55,7 +58,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp abstract class EPSGTestCase<T> extends GIGSTestCase {
+public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase {
     /**
      * The value to give to the {@link #aliases} field for meaning "no alias".
      */
@@ -127,7 +130,7 @@ public strictfp abstract class EPSGTestCase<T> extends GIGSTestCase {
      * @param factories The factories to be used by the test. Those factories passed verbatim to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
-    protected EPSGTestCase(final AuthorityFactory... factories) {
+    protected AuthorityFactoryTestCase(final AuthorityFactory... factories) {
         super(factories);
         @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
@@ -168,11 +171,66 @@ public strictfp abstract class EPSGTestCase<T> extends GIGSTestCase {
     /**
      * Returns the instance to be tested. When this method is invoked for the first time, it creates the instance
      * to test by invoking a {@code createXXX(String)} method from the user-specified {@link AuthorityFactory}
-     * with the current {@link #code} value in argument. The created object is then cached and returned in all
+     * with the current {@link #code} value in argument. The created object is then cached and returned in
      * subsequent invocations of this method.
+     *
+     * <p>Usually, each test method creates exactly one object. But a few (relatively rare) tests may create
+     * more than one object. In such case, the instance returned by this method may vary.</p>
      *
      * @return The instance to test.
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
+
+    /**
+     * Compares the given generic names with the given set of expected aliases.
+     * This method verifies that the given collection contains at least the expected aliases.
+     * However the collection may contain additional aliases, which will be ignored.
+     *
+     * @param message  The prefix of the message to show in case of failure.
+     * @param expected The expected aliases.
+     * @param aliases  The actual aliases.
+     */
+    static void assertContainsAll(final String message, final String[] expected,
+            final Collection<GenericName> aliases)
+    {
+        assertNotNull(message, aliases);
+next:   for (final String search : expected) {
+            for (final GenericName alias : aliases) {
+                final String tip = alias.tip().toString();
+                if (search.equalsIgnoreCase(tip)) {
+                    continue next;
+                }
+            }
+            fail(message + ": alias not found: " + search);
+        }
+    }
+
+    /**
+     * Ensures that the given collection contains at least one identifier having the given
+     * codespace (ignoring case) and the given code value.
+     *
+     * @param message     The message to show in case of failure.
+     * @param codespace   The code space of identifiers to search.
+     * @param expected    The expected identifier code.
+     * @param identifiers The actual identifiers.
+     */
+    static void assertContainsCode(final String message, final String codespace, final int expected,
+            final Collection<? extends Identifier> identifiers)
+    {
+        assertNotNull(message, identifiers);
+        int found = 0;
+        for (final Identifier id : identifiers) {
+            if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
+                found++;
+                try {
+                    assertEquals(message, expected, Integer.parseInt(id.getCode()));
+                } catch (NumberFormatException e) {
+                    fail(message + ".getCode(): expected " + expected +
+                            " but got a non-numerical value: " + e);
+                }
+            }
+        }
+        assertEquals(message + ": occurrence of " + codespace + ':' + expected, 1, found);
+    }
 }

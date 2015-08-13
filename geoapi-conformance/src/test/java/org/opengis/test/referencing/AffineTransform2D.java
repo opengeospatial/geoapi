@@ -44,9 +44,9 @@ import static org.junit.Assert.*;
 
 
 /**
- * A math transform implemented by the JDK affine transform. Math transform should be immutable,
- * but this test class is not. It may be modified after construction, but should not be modified
- * anymore once the tests begin.
+ * A math transform implemented by the JDK affine transform. {@code MathTransform} instances should be immutable,
+ * but this test class is not. It may be modified after construction, but should not be modified anymore after the
+ * tests began.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

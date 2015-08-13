@@ -31,38 +31,36 @@
  */
 package org.opengis.test.referencing.gigs;
 
-import javax.measure.unit.Unit;
+import org.opengis.referencing.cs.CSFactory;
+import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.test.ValidatorContainer;
+import org.opengis.test.referencing.PseudoEpsgFactory;
 
 
 /**
- * Information about a single parameter value.
+ * Provides data for geodetic objects defined by the EPSG dataset but not present in the GIGS files.
+ * This class is used when a test case needs some dependencies, and those dependencies are expected
+ * to be defined in the EPSG dataset instead than in a previous test case.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class ParameterInfo {
+final class EPSGMock extends PseudoEpsgFactory {
     /**
-     * The parameter name.
+     * Creates a new EPSG pseudo-factory which will use the given factories for creating coordinate system instances.
      */
-    final String name;
+    EPSGMock(final DatumFactory       datumFactory,
+             final CSFactory          csFactory,
+             final ValidatorContainer validators)
+    {
+        super(datumFactory, csFactory, null, null, null, validators);
+    }
 
     /**
-     * The parameter value, expressed in the {@linkplain #unit}.
+     * Returns the coordinate system factory specified at construction time.
      */
-    final double value;
-
-    /**
-     * The unit of the parameter {@linkplain #value}.
-     */
-    final Unit<?> unit;
-
-    /**
-     * Creates a new parameter info.
-     */
-    ParameterInfo(final String name, final double value, final Unit<?> unit) {
-        this.name  = name;
-        this.value = value;
-        this.unit  = unit;
+    CSFactory getCSFactory() {
+        return csFactory;
     }
 }

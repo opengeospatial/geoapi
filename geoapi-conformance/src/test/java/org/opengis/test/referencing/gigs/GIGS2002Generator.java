@@ -31,6 +31,8 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.io.IOException;
+
 
 /**
  * Code generator for {@link GIGS2002}. This generator needs to be executed only if the GIGS data changed.
@@ -41,32 +43,35 @@ package org.opengis.test.referencing.gigs;
  * @version 3.1
  * @since   3.1
  */
-public class GIGS2002Generator extends TestMethodGenerator {
+public strictfp class GIGS2002Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
      * @param args Ignored.
+     * @throws IOException if an error occurred while reading the test data.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new GIGS2002Generator().run();
     }
 
     /**
      * Generates the code.
+     *
+     * @throws IOException if an error occurred while reading the test data.
      */
-    private void run() {
-        final ExpectedData data = new ExpectedData("GIGS_2002_libEllipsoid.csv",
-            Integer.class,  // [ 0]: EPSG Ellipsoid Code
-            Boolean.class,  // [ 1]: Particularly important to E&P industry?
-            String .class,  // [ 2]: EPSG Ellipsoid Name
-            String .class,  // [ 3]: Alias(es) given by EPSG
-            Double .class,  // [ 4]: Semi-major axis (a)
-            String .class,  // [ 5]: Unit Name
-            Double .class,  // [ 6]: Unit Conversion Factor
-            Double .class,  // [ 7]: Semi-major axis (a) in metres
-            Double .class,  // [ 8]: Second defining parameter: Inverse flattening (1/f)
-            Double .class,  // [ 9]: Second defining parameter: Semi-minor axis (b)
-            Boolean.class); // [10]: Sphere?
+    private void run() throws IOException {
+        final DataParser data = new DataParser("GIGS_2002_libEllipsoid.csv",
+                Integer.class,      // [ 0]: EPSG Ellipsoid Code
+                Boolean.class,      // [ 1]: Particularly important to E&P industry?
+                String .class,      // [ 2]: EPSG Ellipsoid Name
+                String .class,      // [ 3]: Alias(es) given by EPSG
+                Double .class,      // [ 4]: Semi-major axis (a)
+                String .class,      // [ 5]: Unit Name
+                Double .class,      // [ 6]: Unit Conversion Factor
+                Double .class,      // [ 7]: Semi-major axis (a) in metres
+                Double .class,      // [ 8]: Second defining parameter: Inverse flattening (1/f)
+                Double .class,      // [ 9]: Second defining parameter: Semi-minor axis (b)
+                Boolean.class);     // [10]: Sphere?
 
         while (data.next()) {
             final int      code              = data.getInt    ( 0);
@@ -106,8 +111,8 @@ public class GIGS2002Generator extends TestMethodGenerator {
                                   "semiMinorAxis",     semiMinorAxis,
                                   "inverseFlattening", inverseFlattening,
                                   "isSphere",          isSphere);
-            indent(2); out.println("createAndVerifyEllipsoid();");
-            out.println("    }");
+            indent(2); out.println("verifyEllipsoid();");
+            indent(1); out.println('}');
         }
     }
 }

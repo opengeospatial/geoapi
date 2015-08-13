@@ -59,7 +59,7 @@ import static org.opengis.test.Assert.*;
  *   <td>Compare transformation definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>
+ *   <td><a href="doc-files/GIGS_2009_libVertTfm.csv">{@code GIGS_2009_libVertTfm.csv}</a>
  *       and EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Tested API:</th>
@@ -96,11 +96,11 @@ import static org.opengis.test.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public class GIGS2009 extends EPSGTestCase<Transformation> {
+public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> {
     /**
      * Name of the expected transformation method.
      */
-    public String method;
+    public String methodName;
 
     /**
      * The coordinate transformation created by the factory,
@@ -192,43 +192,40 @@ public class GIGS2009 extends EPSGTestCase<Transformation> {
                 unsupportedCode(Transformation.class, code);
                 throw e;
             }
-            if (operation == null) {
-                fail("CoordinateOperationAuthorityFactory.createCoordinateOperation(\"" + code + "\") shall not return null.");
+            if (operation != null) {  // For consistency with the behavior in other classes.
+                assertInstanceOf(codeAsString, Transformation.class, operation);
+                transformation = (Transformation) operation;
             }
-            assertInstanceOf(codeAsString, Transformation.class, operation);
-            transformation = (Transformation) operation;
         }
         return transformation;
     }
 
     /**
-     * Creates a transformation for the current {@link #code}, then verifies its name and properties.
+     * Verifies the properties of the transformation given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyTransformation() throws FactoryException {
+    private void verifyTransformation() throws FactoryException {
         final Transformation transformation = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Transformation[").append(code).append(']');
-        assertNotNull(prefix.toString(), transformation);
+        assertNotNull("Transformation", transformation);
         validators.validate(transformation);
 
         // Transformation identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, transformation.getIdentifiers());
+        assertContainsCode("Transformation.getIdentifiers()", "EPSG", code, transformation.getIdentifiers());
 
         // Transformation name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(transformation));
+            assertEquals("Transformation.getName()", name, getName(transformation));
             configurationTip = null;
         }
 
         // Operation method.
         final OperationMethod m = transformation.getMethod();
-        assertNotNull(prefix.append("getMethod()").toString(), m);
+        assertNotNull("Transformation.getMethod()", m);
 
         // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), method, getName(m));
+            assertEquals("Transformation.getMethod().getName()", methodName, getName(m));
             configurationTip = null;
         }
     }
@@ -247,10 +244,10 @@ public class GIGS2009 extends EPSGTestCase<Transformation> {
      */
     @Test
     public void testBalticDepth_to_AIOC95() throws FactoryException {
-        important = true;
-        name      = "Baltic depth to AIOC95 depth (1)";
-        method    = "Vertical Offset";
-        createAndVerifyTransformation();
+        important  = true;
+        name       = "Baltic depth to AIOC95 depth (1)";
+        methodName = "Vertical Offset";
+        verifyTransformation();
     }
 
     /**
@@ -267,10 +264,10 @@ public class GIGS2009 extends EPSGTestCase<Transformation> {
      */
     @Test
     public void testBalticHeight_to_AIOC95() throws FactoryException {
-        important = true;
-        name      = "Baltic height to AIOC95 height (1)";
-        method    = "Vertical Offset";
-        createAndVerifyTransformation();
+        important  = true;
+        name       = "Baltic height to AIOC95 height (1)";
+        methodName = "Vertical Offset";
+        verifyTransformation();
     }
 
     /**
@@ -288,9 +285,9 @@ public class GIGS2009 extends EPSGTestCase<Transformation> {
      */
     @Test
     public void testWGS84_to_EGM96() throws FactoryException {
-        important = true;
-        name      = "WGS 84 to EGM96 Geoid height (1)";
-        method    = "Geographic3D to GravityRelatedHeight (EGM)";
-        createAndVerifyTransformation();
+        important  = true;
+        name       = "WGS 84 to EGM96 Geoid height (1)";
+        methodName = "Geographic3D to GravityRelatedHeight (EGM)";
+        verifyTransformation();
     }
 }

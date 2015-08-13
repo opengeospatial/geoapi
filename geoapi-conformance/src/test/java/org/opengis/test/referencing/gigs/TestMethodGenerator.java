@@ -36,6 +36,10 @@ import java.util.HashMap;
 import java.io.PrintStream;
 import javax.measure.unit.SI;
 import javax.measure.unit.Unit;
+import javax.measure.unit.NonSI;
+import javax.measure.quantity.Angle;
+import javax.measure.quantity.Length;
+import javax.measure.quantity.Dimensionless;
 
 import static org.junit.Assert.*;
 
@@ -49,34 +53,101 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public abstract class TestMethodGenerator {
+public strictfp abstract class TestMethodGenerator {
     /**
      * Minimum number of calls to a method before we replace the calls by a loop.
      */
     private static final int CALL_IN_LOOP_THRESHOLD = 4;
 
     /**
-     * The programmatic names of unit.
-     */
-    private static final Map<Unit<?>,String> UNIT_NAMES;
-    static {
-        final Map<Unit<?>,String> m = new HashMap<Unit<?>,String>();
-        assertNull(m.put(Unit.ONE,  "Unit.ONE"));
-        assertNull(m.put(SI.METRE,  "SI.METRE"));
-        assertNull(m.put(SI.RADIAN, "SI.RADIAN"));
-        UNIT_NAMES = m;
-    }
-
-    /**
      * Where to write the generated code.
      */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    final PrintStream out = System.out;
+    final PrintStream out;
 
     /**
      * For subclasses constructor only.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     TestMethodGenerator() {
+        out = System.out;
+    }
+
+    /**
+     * Retrieves the unit of the given name.
+     *
+     * @param  name The unit name.
+     * @return The unit for the given name, or {@code null} if unknown.
+     */
+    protected static Unit<?> parseUnit(final String name) {
+        Unit<?> unit = parseLinearUnit(name);
+        if (unit == null) {
+            unit = parseAngularUnit(name);
+            if (unit == null) {
+                unit = parseScaleUnit(name);
+            }
+        }
+        return unit;
+    }
+
+    /**
+     * Returns the linear unit (compatible with metres) of the given name.
+     *
+     * @param  name The unit name.
+     * @return The linear unit for the given name, or {@code null} if unknown.
+     */
+    protected static Unit<Length> parseLinearUnit(final String name) {
+        if (name.equalsIgnoreCase("metre"))          return SI.METRE;
+        if (name.equalsIgnoreCase("kilometre"))      return SI.KILOMETRE;
+        if (name.equalsIgnoreCase("US survey foot")) return NonSI.FOOT_SURVEY_US;
+        if (name.equalsIgnoreCase("ft(US)"))         return NonSI.FOOT_SURVEY_US;
+        if (name.equalsIgnoreCase("foot"))           return NonSI.FOOT;
+        return null;
+    }
+
+    /**
+     * Retrieves the angular unit (compatible with degrees) of the given name.
+     *
+     * @param  name The unit name.
+     * @return The angular unit for the given name, or {@code null} if unknown.
+     */
+    protected static Unit<Angle> parseAngularUnit(final String name) {
+        if (name.equalsIgnoreCase("degree"))      return NonSI.DEGREE_ANGLE;
+        if (name.equalsIgnoreCase("grad"))        return NonSI.GRADE;
+        if (name.equalsIgnoreCase("arc-second"))  return NonSI.SECOND_ANGLE;
+        if (name.equalsIgnoreCase("microradian")) return NonSI.CENTIRADIAN;
+        return null;
+    }
+
+    /**
+     * Retrieves the scale unit (dimensionless) of the given name.
+     *
+     * @param  name The unit name.
+     * @return The scale unit for the given name, or {@code null} if unknown.
+     */
+    protected static Unit<Dimensionless> parseScaleUnit(final String name) {
+        if (name.equalsIgnoreCase("unity"))             return Unit.ONE;
+        if (name.equalsIgnoreCase("parts per million")) return UserObjectFactoryTestCase.PPM;
+        return null;
+    }
+
+    /**
+     * The programmatic names of above units.
+     */
+    private static final Map<Unit<?>,String> UNIT_NAMES;
+    static {
+        final Map<Unit<?>,String> m = new HashMap<Unit<?>,String>();
+        assertNull(m.put( Unit.ONE,                      "Unit.ONE"));
+        assertNull(m.put(   SI.METRE,                      "SI.METRE"));
+        assertNull(m.put(   SI.KILOMETRE,                  "SI.KILOMETRE"));
+        assertNull(m.put(   SI.RADIAN,                     "SI.RADIAN"));
+        assertNull(m.put(NonSI.CENTIRADIAN,             "NonSI.CENTIRADIAN"));
+        assertNull(m.put(NonSI.GRADE,                   "NonSI.GRADE"));
+        assertNull(m.put(NonSI.DEGREE_ANGLE,            "NonSI.DEGREE_ANGLE"));
+        assertNull(m.put(NonSI.SECOND_ANGLE,            "NonSI.SECOND_ANGLE"));
+        assertNull(m.put(NonSI.FOOT,                    "NonSI.FOOT"));
+        assertNull(m.put(NonSI.FOOT_SURVEY_US,          "NonSI.FOOT_SURVEY_US"));
+        assertNull(m.put(UserObjectFactoryTestCase.PPM, "UserObjectFactoryTestCase.PPM"));
+        UNIT_NAMES = m;
     }
 
     /**
@@ -130,7 +201,7 @@ public abstract class TestMethodGenerator {
                     } else if (value instanceof int[]) {
                         String separator = "";
                         final int length = ((int[]) value).length;
-                        final int stopAt = Math.min(length, 10);
+                        final int stopAt = StrictMath.min(length, 10);
                         for (int j=0; j<stopAt; j++) {
                             out.print(separator);
                             out.print(((int[]) value)[j]);
@@ -161,48 +232,174 @@ public abstract class TestMethodGenerator {
     }
 
     /**
+     * Formats code and name on the same line, for inclusion in the list of argument given to
+     * {@link #printJavadocKeyValues(Object[])}.
+     */
+    static String codeAndName(final int code, final String name) {
+        return code + " – " + name;
+    }
+
+    /**
+     * Formats codes and names on the same line, for inclusion in the list of argument given to
+     * {@link #printJavadocKeyValues(Object[])}.
+     */
+    static String codeAndName(final int[] code, final String[] name) {
+        final StringBuilder buffer = new StringBuilder();
+        for (int i=0; i<code.length; i++) {
+            if (buffer.length() != 0) {
+                buffer.append("</b>, <b>");
+            }
+            buffer.append(code[i]).append(" – ").append(name[i]);
+        }
+        return (buffer.length() != 0) ? buffer.toString() : null;
+    }
+
+    /**
+     * Formats a value followed by its unit of measurement. If the given alternative value is different
+     * but not NaN, then it will also be formatted. This is used for inclusion in the list of argument
+     * given to {@link #printJavadocKeyValues(Object[])}.
+     */
+    static String quantityAndAlternative(final Object value, final String unit, final double altValue, final String altUnit) {
+        final StringBuilder buffer = new StringBuilder().append(value).append(' ').append(unit);
+        if (!value.equals(altValue) && !Double.isNaN(altValue)) {
+            buffer.append(" (").append(altValue).append(' ').append(altUnit).append(')');
+        }
+        return buffer.toString();
+    }
+
+    /**
+     * Replaces repetition of ASCII {@code '} character by the Unicode single, double or triple prime character.
+     */
+    static String replaceAsciiPrimeByUnicode(String text) {
+        if (text.endsWith("'''")) {
+            text = text.substring(0, text.length() - 3) + '‴';
+        } else if (text.endsWith("''")) {
+            text = text.substring(0, text.length() - 2) + '″';
+        } else if (text.endsWith("'")) {
+            text = text.substring(0, text.length() - 1) + '′';
+        }
+        return text;
+    }
+
+    /**
+     * Prints the first lines for the table of parameters in Javadoc.
+     *
+     * @param caption The table caption (e.g. "Conversion parameters").
+     */
+    final void printParameterTableHeader(final String caption) {
+        indent(1); out.println(" * <table class=\"ogc\">");
+        indent(1); out.print(" *   <caption>"); out.print(caption); out.println("</caption>");
+        indent(1); out.println(" *   <tr><th>Parameter name</th><th>Value</th></tr>");
+    }
+
+    /**
+     * Prints a parameter name, value and units in Javadoc.
+     */
+    final void printParameterTableRow(final String name, final String value, String unit) {
+        indent(1);
+        out.print(" *   <tr><td>");
+        out.print(name);
+        out.print("</td><td>");
+        out.print(value);
+        if (unit != null && !unit.equals("unity") && !unit.equals(GIGS3003Generator.SEXAGESIMAL_DEGREE)) {
+            if (unit.equals("degree")) {
+                out.print('°');
+            } else {
+                if (StrictMath.abs(Double.valueOf(value)) > 1) {
+                    unit += 's';
+                }
+                out.print(' ');
+                out.print(unit);
+            }
+        }
+        out.println("</td></tr>");
+    }
+
+    /**
+     * Prints the last lines for the table of parameters in Javadoc.
+     */
+    final void printParameterTableFooter() {
+        indent(1); out.println(" * </table>");
+    }
+
+    /**
      * Prints the javadoc {@code throws FactoryException} followed by the given explanatory text.
-     * Then close the javadoc comment block.
      */
     final void printJavadocThrows(final String condition) {
         indent(1); out.println(" *");
         indent(1); out.print  (" * @throws FactoryException "); out.println(condition);
-        indent(1); out.println(" */");
     }
 
     /**
-     * Prints the test method signature, including the {@code throws FactoryException} declaration.
+     * Prints a "see" annotation if the given {@code method} is non-null.
      *
-     * @param name The name to use for generating a method name. This name may contain illegal characters like spaces;
-     *        they will be trimmed in an implementation-dependant way.
+     * @param classe The class, or {@code null} for the current class.
+     * @param method The method, or {@code null} if unknown.
      */
+    final void printJavadocSee(final String classe, final String method) {
+        if (method != null) {
+            indent(1); out.println(" *");
+            indent(1); out.print(" * @see ");
+            if (classe != null) {
+                out.print(classe);
+            }
+            out.print('#');
+            out.print(method);
+            out.println("()");
+        }
+    }
+
+    /**
+     * @deprecated We needs to complete the {@code METHOD_NAMES} map in all generator classes.
+     */
+    @Deprecated
     final void printTestMethodSignature(final String name) {
+        printTestMethodSignature(java.util.Collections.<String,String>emptyMap(), name);
+    }
+
+    /**
+     * Closes the javadoc comment block, then prints the test method signature.
+     * The signature includes the {@code throws FactoryException} declaration.
+     *
+     * @param nameToMethod A map of test method names to use for the given {@code name}.
+     *        If this map does not contain an entry for the given {@code name}, then this method
+     *        will generate a new name by trimming illegal characters from the given {@code name}.
+     * @param name The name to use for generating a method name.
+     */
+    final void printTestMethodSignature(final Map<String,String> nameToMethod, final String name) {
+        indent(1); out.println(" */");
         indent(1); out.println("@Test");
-        indent(1); out.print  ("public void test");
-        boolean toUpperCase = true;
-        for (int i=0; i<name.length(); i++) {
-            char c = name.charAt(i);
-            if (Character.isJavaIdentifierPart(c)) {
-                if (toUpperCase) {
-                    toUpperCase = false;
-                    c = Character.toUpperCase(c);
-                }
-                out.print(c);
-            } else {
-                if (c == '(' || c == ')') {
-                    if (i+1 < name.length()) {
-                        out.print('_');
+        indent(1); out.print  ("public void ");
+        final String predefined = nameToMethod.get(name);
+        if (predefined != null) {
+            out.print(predefined);
+        } else {
+            out.print("test");
+            boolean toUpperCase = true;
+            for (int i=0; i<name.length(); i++) {
+                char c = name.charAt(i);
+                if (Character.isJavaIdentifierPart(c)) {
+                    if (toUpperCase) {
                         toUpperCase = false;
+                        c = Character.toUpperCase(c);
                     }
+                    out.print(c);
                 } else {
-                    toUpperCase = true;
-                }
-                /*
-                 * For name like “Clarke's foot”, skip also the "s" after the single quote.
-                 * The result will be “ClarkeFoot”.
-                 */
-                if (c == '\'' && i+1 < name.length() && name.charAt(i+1) == 's') {
-                    i++;
+                    if (c == '(' || c == ')') {
+                        if (i+1 < name.length()) {
+                            out.print('_');
+                            toUpperCase = false;
+                        }
+                    } else {
+                        toUpperCase = true;
+                    }
+                    /*
+                     * For name like “Clarke's foot”, skip also the "s" after the single quote.
+                     * The result will be “ClarkeFoot”.
+                     */
+                    if (c == '\'' && i+1 < name.length() && name.charAt(i+1) == 's') {
+                        i++;
+                    }
                 }
             }
         }
@@ -219,7 +416,7 @@ public abstract class TestMethodGenerator {
         assertTrue("Array length shall be even", (pairs.length & 1) == 0);
         int length = 0;
         for (int i=0; i<pairs.length; i += 2) {
-            length = Math.max(length, ((String) pairs[i]).length());
+            length = StrictMath.max(length, ((String) pairs[i]).length());
         }
         for (int i=0; i<pairs.length; i += 2) {
             final String name  = (String) pairs[i];
@@ -231,7 +428,9 @@ public abstract class TestMethodGenerator {
                     out.print(' ');
                 }
                 out.print(" = ");
-                if (value instanceof String[]) {
+                if (value instanceof Unit<?>) {
+                    printProgrammaticName((Unit<?>) value);
+                } else if (value instanceof String[]) {
                     if (((String[]) value).length == 0) {
                         out.print("NONE");
                     } else {
@@ -323,5 +522,17 @@ public abstract class TestMethodGenerator {
             out.print(codes[i]);
             out.println(");");
         }
+    }
+
+    /**
+     * Prints a call to the {@link UserObjectFactoryTestCase#setCodeAndName(String, int)} method.
+     */
+    final void printCallToSetCodeAndName(final int code, final String name) {
+        indent(2);
+        out.print("setCodeAndName(");
+        out.print(code);
+        out.print(", \"");
+        out.print(name);
+        out.println("\");");
     }
 }

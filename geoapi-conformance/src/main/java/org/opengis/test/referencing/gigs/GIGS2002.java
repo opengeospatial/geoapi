@@ -60,7 +60,7 @@ import static org.junit.Assert.*;
  *   <td>Compare ellipsoid definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>
  *   <th>Test data:</th>
- *   <td><a href="https://raw.githubusercontent.com/opengeospatial/geoapi/master/geoapi-conformance/src/test/resources/org/opengis/test/referencing/gigs/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a>
+ *   <td><a href="doc-files/GIGS_2002_libEllipsoid.csv">{@code GIGS_2002_libEllipsoid.csv}</a>
  *   and EPSG Dataset.
  *   Contains EPSG {@linkplain #code code} and {@linkplain #name name} for the ellipsoid,
  *   commonly encountered {@linkplain #aliases alternative name(s)} for the same object,
@@ -107,7 +107,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(Parameterized.class)
-public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
+public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
     /**
      * The conversion factor from the unit of {@link #semiMajorAxis} to metres.
      */
@@ -229,9 +229,6 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
                 unsupportedCode(Ellipsoid.class, code);
                 throw e;
             }
-            if (ellipsoid == null) {
-                fail("DatumAuthorityFactory.createEllipsoid(\"" + code + "\") shall not return null.");
-            }
         }
         return ellipsoid;
     }
@@ -268,29 +265,27 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
     }
 
     /**
-     * Creates an ellipsoid for the current {@link #code}, then verifies its name and axis lengths.
+     * Verifies the properties of the ellipsoid given by {@link #getIdentifiedObject()}.
      */
-    private void createAndVerifyEllipsoid() throws FactoryException {
+    private void verifyEllipsoid() throws FactoryException {
         final Ellipsoid ellipsoid = getIdentifiedObject();
-        final StringBuilder prefix = new StringBuilder("Ellipsoid[").append(code).append(']');
-        assertNotNull(prefix.toString(), ellipsoid);
+        assertNotNull("Ellipsoid", ellipsoid);
         validators.validate(ellipsoid);
 
         // Ellipsoid identifier.
-        assertContainsCode(message(prefix.append('.'), "getIdentifiers()"),
-                "EPSG", code, ellipsoid.getIdentifiers());
+        assertContainsCode("Ellipsoid.getIdentifiers()", "EPSG", code, ellipsoid.getIdentifiers());
 
         // Ellipsoid name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals(message(prefix, "getName()"), name, getName(ellipsoid));
+            assertEquals("Ellipsoid.getName()", name, getName(ellipsoid));
             configurationTip = null;
         }
 
         // Ellipsoid alias.
         if (isStandardAliasSupported) {
             configurationTip = Configuration.Key.isStandardAliasSupported;
-            assertContainsAll(message(prefix, "getAlias()"), aliases, ellipsoid.getAlias());
+            assertContainsAll("Ellipsoid.getAlias()", aliases, ellipsoid.getAlias());
             configurationTip = null;
         }
         /*
@@ -302,19 +297,19 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         final Unit<Length> unit = ellipsoid.getAxisUnit();
         final boolean inMetres = toMetres != 1 && (unit == null || unit.equals(SI.METRE));
         double expectedAxisLength = getSemiMajorAxis(inMetres);
-        assertEquals(message(prefix, "getSemiMajorAxis()"),
+        assertEquals("Ellipsoid.getSemiMajorAxis()",
                 expectedAxisLength, ellipsoid.getSemiMajorAxis(), TOLERANCE*expectedAxisLength);
 
         if (!Double.isNaN(semiMinorAxis)) {
             expectedAxisLength = getSemiMinorAxis(inMetres);
-            assertEquals(message(prefix, "getSemiMinorAxis()"), expectedAxisLength,
+            assertEquals("Ellipsoid.getSemiMinorAxis()", expectedAxisLength,
                     ellipsoid.getSemiMinorAxis(), TOLERANCE*expectedAxisLength);
         }
         if (!Double.isNaN(inverseFlattening)) {
-            assertEquals(message(prefix, "getInverseFlattening()"), inverseFlattening,
+            assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening,
                     ellipsoid.getInverseFlattening(), TOLERANCE*inverseFlattening);
         }
-        assertEquals(message(prefix, "isSphere()"), isSphere, ellipsoid.isSphere());
+        assertEquals("Ellipsoid.isSphere()", isSphere, ellipsoid.isSphere());
     }
 
     /**
@@ -329,6 +324,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testAiry()
      */
     @Test
     public void testAiry() throws FactoryException {
@@ -341,7 +338,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377563.396;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.3249646;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -368,7 +365,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377340.189;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.3249646;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -384,9 +381,11 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testAustralianNationalSpheroid()
      */
     @Test
-    public void testAustralianNational() throws FactoryException {
+    public void testAustralianNationalSpheroid() throws FactoryException {
         important         = true;
         code              = 7003;
         name              = "Australian National Spheroid";
@@ -396,7 +395,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.25;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -411,6 +410,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testBessel()
      */
     @Test
     public void testBessel() throws FactoryException {
@@ -423,7 +424,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -450,7 +451,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -477,7 +478,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 20926348.0;
         semiMinorAxis     = 20855233.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -492,6 +493,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testClarke1866()
      */
     @Test
     public void testClarke1866() throws FactoryException {
@@ -504,7 +507,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378206.4;
         semiMinorAxis     = 6356583.8;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -531,7 +534,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 20926631.531;
         semiMinorAxis     = 20855688.674;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -546,6 +549,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testClarkeIGN()
      */
     @Test
     public void testClarkeIGN() throws FactoryException {
@@ -558,7 +563,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = 6356515.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -586,7 +591,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.145;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.465;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -613,7 +618,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377276.345;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -640,7 +645,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377301.243;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017255;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -667,7 +672,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377298.556;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -694,7 +699,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377299.151;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017255;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -721,7 +726,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377304.063;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -737,6 +742,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testGRS1967()
      */
     @Test
     public void testGRS1967() throws FactoryException {
@@ -749,7 +756,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.2471674;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -777,7 +784,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.25;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -793,6 +800,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testGRS1980()
      */
     @Test
     public void testGRS1980() throws FactoryException {
@@ -805,7 +814,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.2572221;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -832,7 +841,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378200.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.3;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -859,7 +868,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.247;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -875,6 +884,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testInternational1924()
      */
     @Test
     public void testInternational1924() throws FactoryException {
@@ -887,7 +898,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378388.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 297.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -902,6 +913,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testKrassowsky()
      */
     @Test
     public void testKrassowsky() throws FactoryException {
@@ -914,7 +927,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378245.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.3;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -942,7 +955,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378300.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 296.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -970,7 +983,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378135.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.26;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -986,6 +999,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testWGS84()
      */
     @Test
     public void testWGS84() throws FactoryException {
@@ -998,7 +1013,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1026,7 +1041,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378140.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1051,7 +1066,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378135.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1076,7 +1091,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377492.018;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 299.1528128;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1090,6 +1105,8 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
+     *
+     * @see GIGS3002#testClarkeAuthalicSphere()
      */
     @Test
     public void testClarkeAuthalicSphere() throws FactoryException {
@@ -1102,7 +1119,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMinorAxis     = 6370997.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1127,7 +1144,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1153,7 +1170,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.145;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.4663077;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1178,7 +1195,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378300.789;
         semiMinorAxis     = 6356566.435;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1203,7 +1220,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 20926202.0;
         semiMinorAxis     = 20854895.0;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1228,7 +1245,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 293.46598;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1253,7 +1270,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377019.27;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1278,7 +1295,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 20922931.80;
         semiMinorAxis     = 20853374.58;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1303,7 +1320,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6377295.664;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 300.8017;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1328,7 +1345,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1354,7 +1371,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMinorAxis     = 6371007.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1379,7 +1396,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378270.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 297.0;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1404,7 +1421,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378273.0;
         semiMinorAxis     = 6356889.449;
         inverseFlattening = Double.NaN;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1430,7 +1447,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMinorAxis     = 6371228.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1456,7 +1473,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378145.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.25;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1481,7 +1498,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378136.2;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1506,7 +1523,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378136.3;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.257223563;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1531,7 +1548,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6376523.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 308.64;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1557,7 +1574,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMinorAxis     = 6378137.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1582,7 +1599,7 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378136.0;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 298.2578393;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 
     /**
@@ -1607,6 +1624,6 @@ public strictfp class GIGS2002 extends EPSGTestCase<Ellipsoid> {
         semiMajorAxis     = 6378298.3;
         semiMinorAxis     = Double.NaN;
         inverseFlattening = 294.73;
-        createAndVerifyEllipsoid();
+        verifyEllipsoid();
     }
 }
