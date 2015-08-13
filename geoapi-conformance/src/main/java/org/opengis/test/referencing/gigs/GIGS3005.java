@@ -202,9 +202,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         try {
             method = copFactory.getOperationMethod(methodName);
         } catch (NoSuchIdentifierException e) {
-            // Set the type to Projection rather than OperationMethod
-            // because the numerical code value is for the projection.
-            unsupportedCode(Conversion.class, methodName);
+            unsupportedCode(OperationMethod.class, methodName);
             throw e;
         }
         if (method == null) {

@@ -330,7 +330,7 @@ public strictfp abstract class TestCase {
      * annotation in subclasses. For example if a subclass constructor expects 3 factories of kind
      * {@link org.opengis.referencing.crs.CRSFactory}, {@link org.opengis.referencing.cs.CSFactory}
      * and {@link org.opengis.referencing.datum.DatumFactory} in that order, then that subclass
-     * contain the following method:</p>
+     * contains the following method:</p>
      *
      * <blockquote><pre>&#64;Parameterized.Parameters
      *public static List&lt;Factory[]&gt; factories() {

@@ -31,8 +31,11 @@
  */
 package org.opengis.test.referencing.gigs;
 
+import java.util.Collection;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.GenericName;
+import org.opengis.metadata.Identifier;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.test.referencing.ReferencingTestCase;
@@ -178,4 +181,56 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
+
+    /**
+     * Compares the given generic names with the given set of expected aliases.
+     * This method verifies that the given collection contains at least the expected aliases.
+     * However the collection may contain additional aliases, which will be ignored.
+     *
+     * @param message  The prefix of the message to show in case of failure.
+     * @param expected The expected aliases.
+     * @param aliases  The actual aliases.
+     */
+    static void assertContainsAll(final String message, final String[] expected,
+            final Collection<GenericName> aliases)
+    {
+        assertNotNull(message, aliases);
+next:   for (final String search : expected) {
+            for (final GenericName alias : aliases) {
+                final String tip = alias.tip().toString();
+                if (search.equalsIgnoreCase(tip)) {
+                    continue next;
+                }
+            }
+            fail(message + ": alias not found: " + search);
+        }
+    }
+
+    /**
+     * Ensures that the given collection contains at least one identifier having the given
+     * codespace (ignoring case) and the given code value.
+     *
+     * @param message     The message to show in case of failure.
+     * @param codespace   The code space of identifiers to search.
+     * @param expected    The expected identifier code.
+     * @param identifiers The actual identifiers.
+     */
+    static void assertContainsCode(final String message, final String codespace, final int expected,
+            final Collection<? extends Identifier> identifiers)
+    {
+        assertNotNull(message, identifiers);
+        int found = 0;
+        for (final Identifier id : identifiers) {
+            if (codespace.equalsIgnoreCase(id.getCodeSpace().trim())) {
+                found++;
+                try {
+                    assertEquals(message, expected, Integer.parseInt(id.getCode()));
+                } catch (NumberFormatException e) {
+                    fail(message + ".getCode(): expected " + expected +
+                            " but got a non-numerical value: " + e);
+                }
+            }
+        }
+        assertEquals(message + ": occurrence of " + codespace + ':' + expected, 1, found);
+    }
 }
