@@ -207,7 +207,7 @@
  * operation.</p>
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 package org.opengis.referencing.operation;

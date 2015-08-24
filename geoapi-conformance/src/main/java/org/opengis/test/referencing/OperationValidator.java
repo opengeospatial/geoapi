@@ -102,7 +102,7 @@ public class OperationValidator extends ReferencingValidator {
         final MathTransform transform = object.getMathTransform();
         mandatory("PassThroughOperation: shall have a MathTransform.", transform);
 
-        final SingleOperation operation = object.getOperation();
+        final CoordinateOperation operation = object.getOperation();
         mandatory("PassThroughOperation: getOperation() is mandatory.", operation);
         assertNotSame("PassThroughOperation: getOperation() can't be this.", object, operation);
         dispatch(operation);
@@ -112,23 +112,7 @@ public class OperationValidator extends ReferencingValidator {
         if (operation == null || index == null) {
             return;
         }
-        // Do not validate the method since it was already done by validate(operation).
-        final OperationMethod method = operation.getMethod();
-        if (method == null) {
-            return;
-        }
-        final int     sourceDimension   = transform.getSourceDimensions();
-        final int     targetDimension   = transform.getTargetDimensions();
-        final Integer opSourceDimension = method.getSourceDimensions();
-        final Integer opTargetDimension = method.getTargetDimensions();
-        if (opSourceDimension != null) {
-            assertEquals("PassThroughOperation: the number of modified ordinates must match the " +
-                    "source dimension of the operation to apply.", opSourceDimension.intValue(), index.length);
-            if (opTargetDimension != null) {
-                assertEquals("PassThroughOperation: wrong target dimension.",
-                        sourceDimension + (opSourceDimension - opTargetDimension), targetDimension);
-            }
-        }
+        final int sourceDimension = transform.getSourceDimensions();
         for (int i : index) {
             assertBetween("PassThroughOperation: invalid modified ordinate index.", 0, sourceDimension-1, i);
         }
@@ -252,6 +236,7 @@ public class OperationValidator extends ReferencingValidator {
      *
      * @param object The object to validate, or {@code null}.
      */
+    @SuppressWarnings("UnnecessaryUnboxing")
     private void validateOperation(final SingleOperation object) {
         if (object == null) {
             return;

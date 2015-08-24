@@ -42,18 +42,18 @@ import static org.opengis.annotation.Specification.*;
  * coordinate operation.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 4.0
  * @since   1.0
  */
 @UML(identifier="CC_PassThroughOperation", specification=ISO_19111)
-public interface PassThroughOperation extends SingleOperation {
+public interface PassThroughOperation extends CoordinateOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
      *
      * @return The operation to apply on the subset of a coordinate tuple.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
-    SingleOperation getOperation();
+    CoordinateOperation getOperation();
 
     /**
      * Returns the ordered sequence of positive integers defining the positions in a source
