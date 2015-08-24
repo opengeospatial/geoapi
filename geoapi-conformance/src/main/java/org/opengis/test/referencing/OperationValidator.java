@@ -131,14 +131,14 @@ public class OperationValidator extends ReferencingValidator {
         final MathTransform transform = object.getMathTransform();
         mandatory("ConcatenatedOperation: shall have a MathTransform.", transform);
 
-        final List<SingleOperation> operations = object.getOperations();
-        mandatory("ConcatenatedOperation: shall provide a list of single operations.", operations);
+        final List<CoordinateOperation> operations = object.getOperations();
+        mandatory("ConcatenatedOperation: shall provide a list of operations.", operations);
         if (operations == null) {
             return;
         }
         validate(operations);
-        SingleOperation first=null, last=null;
-        for (final SingleOperation single : operations) {
+        CoordinateOperation first=null, last=null;
+        for (final CoordinateOperation single : operations) {
             assertNotNull("ConcatenatedOperation: getOperations() can't contain null element.", single);
             assertNotSame("ConcatenatedOperation: can't contain itself as a single element.", single, object);
             dispatch(single);

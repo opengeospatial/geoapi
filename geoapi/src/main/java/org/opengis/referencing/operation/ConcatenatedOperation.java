@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * operation is uniquely defined by the forward operation.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 4.0
  * @since   1.0
  *
  * @see CoordinateOperationFactory#createConcatenatedOperation(Map, CoordinateOperation[])
@@ -63,5 +63,5 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * @return The sequence of operations.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
-    List<SingleOperation> getOperations();
+    List<CoordinateOperation> getOperations();
 }
