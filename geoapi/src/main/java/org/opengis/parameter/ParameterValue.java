@@ -89,6 +89,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @return The abstract definition of this parameter value.
      */
     @Override
+    @UML(identifier="CC_OperationParameterValue.parameter", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptor<T> getDescriptor();
 
     /**
