@@ -60,6 +60,12 @@ public interface ConcatenatedOperation extends CoordinateOperation {
     /**
      * Returns the sequence of operations.
      *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * This method is conformant to ISO 19111:2003. But the ISO 19111:2007 revision changed the element type
+     * from {@code SingleOperation} to {@link CoordinateOperation}. This change may be applied in GeoAPI 4.0.
+     * This is necessary for supporting usage of {@code PassThroughOperation} with {@link ConcatenatedOperation}.
+     * </div>
+     *
      * @return The sequence of operations.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
