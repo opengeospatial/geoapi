@@ -41,6 +41,12 @@ import static org.opengis.annotation.Specification.*;
  * A pass-through operation specifies that a subset of a coordinate tuple is subject to a specific
  * coordinate operation.
  *
+ * <div class="warning"><b>Upcoming API change</b><br>
+ * This interface is conformant to ISO 19111:2003. But the ISO 19111:2007 revision changed the parent
+ * interface from {@code SingleOperation} to {@link CoordinateOperation}. This change may be applied
+ * in GeoAPI 4.0.
+ * </div>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
@@ -49,6 +55,12 @@ import static org.opengis.annotation.Specification.*;
 public interface PassThroughOperation extends SingleOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
+     *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * This method is conformant to ISO 19111:2003. But the ISO 19111:2007 revision changed the type from
+     * {@code SingleOperation} to {@link CoordinateOperation}. This change may be applied in GeoAPI 4.0.
+     * This is necessary for supporting usage of {@code PassThroughOperation} with {@link ConcatenatedOperation}.
+     * </div>
      *
      * @return The operation to apply on the subset of a coordinate tuple.
      */
