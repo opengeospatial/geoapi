@@ -43,8 +43,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 2-dimensional engineering coordinate reference system applied to locations in images.
- * Image coordinate reference systems are treated as a separate sub-type because a separate
- * user community exists for images with its own terms of reference.
+ *
+ * <div class="note"><b>Note:</b>
+ * image coordinate reference systems are treated as a separate sub-type because a separate
+ * user community exists for images with its own terms of reference. Furthermore, image datum
+ * contains a property not relevant to other engineering datums.</div>
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS} or

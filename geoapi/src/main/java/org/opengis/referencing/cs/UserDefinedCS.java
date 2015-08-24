@@ -38,9 +38,12 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 2- or 3-dimensional coordinate system that consists of any combination of axes not covered by any other CS type.
- * An example is a multilinear coordinate system which contains one coordinate axis that may have any 1-D shape which
- * has no intersections with itself. This non-straight axis is supplemented by one or two straight axes to complete a
+ *
+ * <div class="note"><b>Example:</b>
+ * a multilinear coordinate system which contains one coordinate axis that may have any 1-D shape which has no
+ * intersections with itself. This non-straight axis is supplemented by one or two straight axes to complete a
  * 2 or 3 dimensional coordinate system. The non-straight axis is typically incrementally straight or curved.
+ * </div>
  *
  * <p>This type of CS can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>

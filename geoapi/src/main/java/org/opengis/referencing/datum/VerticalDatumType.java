@@ -78,7 +78,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     private static final List<VerticalDatumType> VALUES = new ArrayList<VerticalDatumType>(4);
 
     /**
-     * In some cases, e.g. oil exploration and production, a geological feature, such as the top
+     * In some cases, for example oil exploration and production, a geological feature, such as the top
      * or bottom of a geologically identifiable and meaningful subsurface layer, is used as a
      * vertical datum. Other variations to the above three vertical datum types may exist
      * and are all included in this type.

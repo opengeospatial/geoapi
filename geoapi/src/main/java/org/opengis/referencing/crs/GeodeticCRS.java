@@ -40,6 +40,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 2- or 3-dimensional coordinate reference system associated with a geodetic datum.
+ * Geodetic CRSs provide an accurate representation of the geometry of geographic features
+ * for a large portion of the Earth's surface.
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS},

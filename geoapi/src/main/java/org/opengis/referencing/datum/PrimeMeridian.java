@@ -43,9 +43,15 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A prime meridian defines the origin from which longitude values are determined.
- * The default {@linkplain #getName name} is "Greenwich", and that value shall be
- * used when the {@linkplain #getGreenwichLongitude greenwich longitude} value is
- * zero.
+ * Most geodetic datums use Greenwich as their prime meridian.
+ *
+ * <p>Constraints:</p>
+ * <ul>
+ *   <li>If the prime meridian {@linkplain #getName() name} is “Greenwich” then the value of
+ *       {@linkplain #getGreenwichLongitude() Greenwich longitude} shall be 0 degrees.</li>
+ *   <li>Conversely if the Greenwich longitude value is zero, then the prime meridian name
+ *       shall be “Greenwich”.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -58,20 +64,22 @@ import static org.opengis.annotation.Specification.*;
 public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
-     * The {@code greenwichLongitude} initial value is zero, and that value shall be used
-     * when the {@linkplain #getName meridian name} value is "Greenwich".
+     * The {@code greenwichLongitude} default value is zero, and that value shall be used
+     * when the {@linkplain #getName() meridian name} value is "Greenwich".
      *
      * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
+     * @unitof Angle
      */
     @UML(identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
     double getGreenwichLongitude();
 
     /**
-     * Returns the angular unit of the {@linkplain #getGreenwichLongitude Greenwich longitude}.
+     * Returns the angular unit of the {@linkplain #getGreenwichLongitude() Greenwich longitude}.
      *
-     * <div class="note"><b>Note:</b>
-     * This attribute is inherited from an older OGC specification.
-     * ISO 19111 compliant applications or GML documents shall always express prime meridians in decimal degrees.</div>
+     * @departure historic
+     *   This attribute is inherited from an older OGC specification.
+     *   In ISO 19111, <code>greenwichLongitude</code> is a property of type <code>Angle</code>
+     *   rather than <code>double</code>, and the unit of measure is part of the <code>Angle</code> value.
      *
      * @return The angular unit of Greenwich longitude.
      */

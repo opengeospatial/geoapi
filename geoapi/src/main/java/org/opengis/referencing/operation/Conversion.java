@@ -45,6 +45,11 @@ import static org.opengis.annotation.Specification.*;
  * example of a coordinate conversion is a map projection. The parameters describing
  * coordinate conversions are defined rather than empirically derived.
  *
+ * <div class="note"><b>Example:</b>
+ * Conversion from an ellipsoidal coordinate reference system based on the WGS 84 datum
+ * to a Cartesian coordinate reference system also based on the WGS 84 datum, or change
+ * of units such as from radians to degrees or feet to meters.</div>
+ *
  * <p>Note that some conversions have no parameters.</p>
  *
  * @author  Martin Desruisseaux (IRD)
@@ -81,7 +86,7 @@ public interface Conversion extends SingleOperation {
     /**
      * This attribute is declared in {@link CoordinateOperation} but is not used in a conversion.
      *
-     * @return Always {@code null}.
+     * @return Usually {@code null}.
      */
     @Override
     @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)

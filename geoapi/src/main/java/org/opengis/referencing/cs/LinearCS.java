@@ -38,9 +38,12 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 1-dimensional coordinate system that consists of the points that lie on the single axis described.
- * The associated ordinate is the distance from the specified origin to the point along the axis.
+ * The associated coordinate is the distance – with or without offset – from the origin point, specified
+ * through the datum definition, to the point along the axis.
  *
- * <p><b>Example:</b> usage of the line feature representing a road to describe points on or along that road.</p>
+ * <div class="note"><b>Example:</b>
+ * usage of the line feature representing a road to describe points on or along that road.
+ * </div>
  *
  * <p>This type of CS can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>

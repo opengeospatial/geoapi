@@ -33,6 +33,8 @@ package org.opengis.referencing.operation;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -57,6 +59,7 @@ import static org.opengis.annotation.Specification.*;
  * @see MathTransform
  * @see OperationMethod#getFormula()
  */
+@Classifier(Stereotype.UNION)
 @UML(identifier="CC_Formula", specification=ISO_19111)
 public interface Formula {
     /**

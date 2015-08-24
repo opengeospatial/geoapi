@@ -47,7 +47,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to
- * another coordinate reference system. Many but not all coordinate operations (from
+ * another coordinate reference system.
+ *
+ * <h3>Inverse operation</h3>
+ * Many but not all coordinate operations (from
  * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var> to
  * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var>)
  * also uniquely define the inverse operation (from
@@ -181,10 +184,10 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Gets the math transform. The math transform will transform positions in the
-     * {@linkplain #getSourceCRS source coordinate reference system} into positions in the
-     * {@linkplain #getTargetCRS target coordinate reference system}. It may be {@code null}
-     * in the case of {@linkplain CoordinateOperationFactory#createDefiningConversion
-     * defining conversions}.
+     * {@linkplain #getSourceCRS() source coordinate reference system} into positions in the
+     * {@linkplain #getTargetCRS() target coordinate reference system}.
+     * It may be {@code null} in the case of
+     * {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversions}.
      *
      * @return The transform from source to target CRS, or {@code null} if not applicable.
      */
