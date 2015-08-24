@@ -37,25 +37,37 @@
  * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
  * Coordinates (Topic 2)} specification.
  *
- * <p>A datum specifies the relationship of a coordinate system
- * to the earth or, in some applications to an Engineering CRS, to a moving
- * platform, thus creating a coordinate reference system. A datum can be used
- * as the basis for one-, two- or three-dimensional systems.</p>
+ * <p>A datum can be used as the basis for one-, two- or three-dimensional systems.
+ * For {@linkplain org.opengis.referencing.crs.GeodeticCRS geodetic}
+ * and {@linkplain org.opengis.referencing.crs.VerticalCRS vertical} coordinate reference systems,
+ * the datum shall relate the coordinate system to the Earth.
+ * With other types of coordinate reference systems (CRS), the datum may relate the coordinate system
+ * to another physical or virtual object. In some applications of an
+ * {@linkplain org.opengis.referencing.crs.EngineeringCRS Engineering CRS}, the object may be a platform
+ * moving relative to the Earth. In these applications, the datum itself is not time-dependent,
+ * but any transformations of the associated coordinates to an Earth-fixed or other coordinate reference system
+ * shall contain time-dependent parameters.</p>
  *
- * <p>Five subtypes of datum are specified: geodetic, vertical,
- * engineering, image and temporal. Each datum subtype can be associated only
- * with specific types of coordinate reference systems. A geodetic datum is used
- * with three-dimensional or horizontal (two-dimensional) coordinate reference
- * systems, and requires an ellipsoid definition and a prime meridian definition.
- * It is used to describe large portions of the earth's surface up to the entire
- * earth's surface. A vertical datum can only be associated with a vertical
- * coordinate reference system. Image datum and engineering datum are both used
- * in a local context only: to describe the origin of an image and the origin of
- * an engineering (or local) coordinate reference system.</p>
+ * <p>Five subtypes of datum are specified:
+ * {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic},
+ * {@linkplain org.opengis.referencing.datum.VerticalDatum vertical},
+ * {@linkplain org.opengis.referencing.datum.EngineeringDatum engineering},
+ * {@linkplain org.opengis.referencing.datum.ImageDatum image} and
+ * {@linkplain org.opengis.referencing.datum.TemporalDatum temporal}.
+ * Each datum subtype can be associated only with specific types of coordinate reference systems:</p>
+ *
+ * <ul>
+ *   <li>A geodetic datum is used with three-dimensional or horizontal (two-dimensional) coordinate reference systems,
+ *       and requires an ellipsoid definition and a prime meridian definition.
+ *       It is used to describe large portions of the earth's surface up to the entire earth's surface.</li>
+ *   <li>A vertical datum can only be associated with a vertical coordinate reference system.</li>
+ *   <li>Image datum and engineering datum are both used in a local context only:
+ *       to describe the origin of an image and the origin of an engineering (or local) coordinate reference system.</li>
+ * </ul>
  *
  * <h3>Vertical datum</h3>
- * <p>Further sub-typing is required to describe vertical datums
- * adequately. The following types of vertical datum are distinguished:</p>
+ * <p>Further sub-typing is required to describe vertical datums adequately.
+ * The following types of vertical datum are distinguished:</p>
  * <ul>
  *   <li><p><b>Geoidal</b><br>
  *   The zero value of the associated (vertical) coordinate system axis is defined
@@ -172,7 +184,7 @@
  * specified.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 package org.opengis.referencing.datum;

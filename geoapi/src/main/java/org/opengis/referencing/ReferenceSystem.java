@@ -66,12 +66,6 @@ import static org.opengis.annotation.Specification.*;
  *       (e.g. “<cite>Euro-centric view of world excluding polar areas</cite>”).</li>
  * </ul>
  *
- * @departure historic
- *   This interface was initially derived from an ISO 19111 specification published in 2003. Later
- *   revisions (in 2007) rely on an interface defined in ISO 19115 instead. The annotations were
- *   updated accordingly, but this interface is still defined in the referencing package instead
- *   of the metadata package for this historical reason.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
@@ -123,10 +117,11 @@ public interface ReferenceSystem extends IdentifiedObject {
      * @return The domain of usage, or {@code null} if none.
      *
      * @departure historic
-     *   This method differs from ISO 19111:2007 in 3 aspects:
+     *   This method was initially derived from the ISO 19111 specification published in 2003.
+     *   Later revision (ISO 19111:2007) differs in 3 aspects:
      *   <ul>
-     *     <li>ISO 19111:2007 moved this attribute from this type to the {@code SC_CRS} subtype.
-     *         GeoAPI keeps this attribute here for historical reasons.</li>
+     *     <li>ISO 19111:2007 moved this property from this type to the {@code SC_CRS} subtype.
+     *         GeoAPI keeps this property here for historical reasons.</li>
      *     <li>ISO 19111:2007 changed the obligation from optional to mandatory
      *         and requires the value to be <cite>"not known"</cite> if the scope is unknown.
      *         GeoAPI lefts the obligation unchanged: optional with {@code null} value for unknown scope.</li>

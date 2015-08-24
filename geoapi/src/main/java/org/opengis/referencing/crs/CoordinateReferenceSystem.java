@@ -41,11 +41,11 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Abstract coordinate reference system (CRS).
+ * Base type of all Coordinate Reference Systems (CRS).
  * This is the base interface for two cases:
  *
  * <ul>
- *   <li>{@link SingleCRS}, usually defined by a
+ *   <li>{@link SingleCRS}, defined by a
  *       {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} and a
  *       {@linkplain org.opengis.referencing.datum.Datum datum};</li>
  *   <li>{@link CompoundCRS}, defined as a sequence of {@code SingleCRS}.</li>

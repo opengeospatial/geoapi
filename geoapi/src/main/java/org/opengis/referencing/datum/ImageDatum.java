@@ -43,6 +43,11 @@ import static org.opengis.annotation.Specification.*;
  * context only. For an image datum, the anchor point is usually either the centre of the image
  * or the corner of the image.
  *
+ * <div class="note"><b>Note:</b>
+ * the image datum definition applies regardless of whether or not the image is georeferenced.
+ * Georeferencing is performed through a transformation of image CRS to geodetic or projected CRS.
+ * The transformation plays no part in the image datum definition.</div>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0

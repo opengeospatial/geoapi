@@ -43,8 +43,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Specification of the way the image grid is associated with the image data attributes.
  *
- * <p>This code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
- * except that the later is more clearly restricted to the two-dimensional case.</p>
+ * <div class="note"><b>Note:</b>
+ * this code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
+ * except that the later is more clearly restricted to the two-dimensional case.</div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -74,8 +75,8 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER");
 
     /**
-     * The origin of the image coordinate system is the corner of a grid cell, or half-way
-     * between the centres of adjacent image pixels.
+     * The origin of the image coordinate system is the corner of a grid cell,
+     * or half-way between the centres of adjacent image pixels.
      *
      * @see org.opengis.metadata.spatial.PixelOrientation#LOWER_LEFT
      */

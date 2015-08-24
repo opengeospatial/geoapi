@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Supplementary identification and remarks information for a CRS or CRS-related object.
- * Identified objects contain the following attributes:
+ * Identification and remarks information for a reference system or CRS-related object.
+ * Identified objects contain the following properties:
  *
  * <ul>
  *   <li>A {@linkplain #getName() name} (e.g. “<cite>North American Datum of 1983</cite>”).</li>
@@ -72,12 +72,12 @@ import static org.opengis.annotation.Specification.*;
  * If the authority is EPSG, the implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
- *   ISO 19111 defines an <code>IO_IdentifiedObjectBase</code> type. The later is omitted in GeoAPI
- *   because the split between <code>IO_IdentifiedObject</code> and <code>IO_IdentifiedObjectBase</code>
- *   in the ISO/OGC specification was a workaround for introducing <code>IO_IdentifiedObject</code>
- *   in ISO 19111 without changing the <code>RS_ReferenceSystem</code> definition in ISO 19115.
- *   Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified model,
- *   it does not need this workaround.
+ *   ISO 19111 defines two types, <code>IO_IdentifiedObjectBase</code> and <code>IO_IdentifiedObject</code>, as a
+ *   workaround for introducing a base type for the <code>name</code>, <code>identifier</code>, <code>alias</code>
+ *   and <code>remarks </code>properties without changing the <code>RS_ReferenceSystem</code> definition inherited
+ *   from ISO 19115. Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified
+ *   model, it does not need this workaround. Consequently GeoAPI merges <code>IO_IdentifiedObjectBase</code> and
+ *   <code>IO_IdentifiedObject</code> into this single interface.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -169,7 +169,7 @@ public interface IdentifiedObject {
      * This operation may fail if unsupported or if this instance contains elements that do not have
      * WKT representation.
      *
-     * @return The Well-Know Text for this object.
+     * @return The Well-Known Text (WKT) for this object.
      * @throws UnsupportedOperationException If this object can not be formatted as WKT.
      *
      * @departure extension

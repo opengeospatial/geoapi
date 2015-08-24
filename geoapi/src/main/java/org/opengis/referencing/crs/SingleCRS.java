@@ -42,10 +42,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Abstract coordinate reference system, consisting of a single
- * {@linkplain CoordinateSystem coordinate system} and a single {@linkplain Datum datum}.
- * A single CRS consists of an ordered sequence of coordinate system axes that are related
- * to the earth through a datum.
+ * Base type of {@linkplain CoordinateSystem coordinate systems} related to an object by a {@linkplain Datum datum}.
+ * For {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic}
+ * and {@linkplain org.opengis.referencing.datum.VerticalDatum vertical} datums, the object will be the Earth.
  *
  * <p>The valid coordinate system type and the datum type are constrained by the CRS type.
  * For example {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and

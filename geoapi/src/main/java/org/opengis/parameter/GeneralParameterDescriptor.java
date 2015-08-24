@@ -159,6 +159,8 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @return Indication if the parameter is an input to the service, an output or both,
      *         or {@code null} if unspecified.
+     *
+     * @since 3.1
      */
     @UML(identifier="direction", obligation=OPTIONAL, specification=ISO_19115)
     ParameterDirection getDirection();
