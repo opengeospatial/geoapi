@@ -59,9 +59,11 @@ import static org.opengis.annotation.Specification.*;
 public interface ConcatenatedOperation extends CoordinateOperation {
     /**
      * Returns the sequence of operations.
+     * The sequence can contain {@link SingleOperation}s or {@link PassThroughOperation}s,
+     * but should not contain other {@code ConcatenatedOperation}s.
      *
      * @return The sequence of operations.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
-    List<CoordinateOperation> getOperations();
+    List<? extends CoordinateOperation> getOperations();
 }
