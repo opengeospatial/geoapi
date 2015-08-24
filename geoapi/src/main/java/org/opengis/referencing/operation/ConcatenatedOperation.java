@@ -59,6 +59,8 @@ import static org.opengis.annotation.Specification.*;
 public interface ConcatenatedOperation extends CoordinateOperation {
     /**
      * Returns the sequence of operations.
+     * The sequence can contain {@link SingleOperation}s or {@link PassThroughOperation}s,
+     * but should not contain other {@code ConcatenatedOperation}s.
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * This method is conformant to ISO 19111:2003. But the ISO 19111:2007 revision changed the element type

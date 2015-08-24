@@ -131,7 +131,7 @@ public class OperationValidator extends ReferencingValidator {
         final MathTransform transform = object.getMathTransform();
         mandatory("ConcatenatedOperation: shall have a MathTransform.", transform);
 
-        final List<SingleOperation> operations = object.getOperations();
+        final List<? extends CoordinateOperation> operations = object.getOperations();
         mandatory("ConcatenatedOperation: shall provide a list of operations.", operations);
         if (operations == null) {
             return;
