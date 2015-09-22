@@ -295,11 +295,10 @@ into the Bursa Wolf formulas, or you can take a short cut. The Bursa Wolf transf
 on geocentric coordinates, so you cannot apply it onto geographic coordinates directly. If there
 are only three parameters then you can use the Molodenski or abridged Molodenski formulas.</p>
 <p>The <a href="#DATUM"><code>DATUM</code></a> clause may not contain a
-<code>TOWGS84</code> clause in the following
-situations:</p>
+<code>TOWGS84</code> clause in the following situations:</p>
 <ul>
   <li>The writing application was using the Simple Features specification, which does not
-      specify <code>TOWGS84</code> as a valid keyword</li>
+      specify <code>TOWGS84</code> as a valid keyword.</li>
   <li>The writing application did not have an available transformation.</li>
   <li>There is no possible transformation. For example, the horizontal datum could be a
       surface that rotates relative to the Earth's surface.</li>
