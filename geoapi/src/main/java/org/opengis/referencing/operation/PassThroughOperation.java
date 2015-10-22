@@ -59,7 +59,7 @@ public interface PassThroughOperation extends CoordinateOperation {
      * Returns the ordered sequence of positive integers defining the positions in a source
      * coordinate tuple of the coordinates affected by this pass-through operation.
      *
-     * @return Indices of the modified source coordinates.
+     * @return Zero-based indices of the modified source coordinates.
      */
     @UML(identifier="modifiedCoordinate", obligation=MANDATORY, specification=ISO_19111)
     int[] getModifiedCoordinates();
