@@ -32,7 +32,7 @@
 package org.opengis.metadata.spatial;
 
 import org.opengis.annotation.UML;
-import org.opengis.util.Enumerated;
+import org.opengis.util.ControlledVocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * @see org.opengis.referencing.datum.PixelInCell
  */
 @UML(identifier="MD_PixelOrientationCode", specification=ISO_19115)
-public enum PixelOrientation implements Enumerated {
+public enum PixelOrientation implements ControlledVocabulary {
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
      *
@@ -124,8 +124,8 @@ public enum PixelOrientation implements Enumerated {
     /**
      * Returns all constants defined by this enumeration type.
      * Invoking this method is equivalent to invoking {@link #values()}, except that this
-     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
-     * enumeration type does not need to be known at compile-time).
+     * method can be invoked on an instance of the {@code ControlledVocabulary} interface
+     * (i.e. the enumeration type does not need to be known at compile-time).
      *
      * @return All {@linkplain #values() values} for this enumeration.
      */

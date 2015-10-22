@@ -32,7 +32,7 @@
 package org.opengis.metadata.identification;
 
 import org.opengis.annotation.UML;
-import org.opengis.util.Enumerated;
+import org.opengis.util.ControlledVocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
-public enum TopicCategory implements Enumerated {
+public enum TopicCategory implements ControlledVocabulary {
     /**
      * Rearing of animals and/or cultivation of plants.
      *
@@ -310,8 +310,8 @@ public enum TopicCategory implements Enumerated {
     /**
      * Returns all constants defined by this enumeration type.
      * Invoking this method is equivalent to invoking {@link #values()}, except that this
-     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
-     * enumeration type does not need to be known at compile-time).
+     * method can be invoked on an instance of the {@code ControlledVocabulary} interface
+     * (i.e. the enumeration type does not need to be known at compile-time).
      *
      * @return All {@linkplain #values() values} for this enumeration.
      */

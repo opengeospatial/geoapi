@@ -43,7 +43,7 @@ package org.opengis.util;
  *   Provided for allowing developers to handles <code>Enum</code> and <code>CodeList</code>
  *   in the same way for some common tasks.
  */
-public interface Enumerated {
+public interface ControlledVocabulary {
     /**
      * Returns the name of this enumeration constant or code list value.
      *
@@ -90,5 +90,5 @@ public interface Enumerated {
      *
      * @return The enumeration or list of codes of the same kind than this item.
      */
-    public abstract Enumerated[] family();
+    public abstract ControlledVocabulary[] family();
 }

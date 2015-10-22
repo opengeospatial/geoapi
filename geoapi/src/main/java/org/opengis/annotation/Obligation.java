@@ -31,7 +31,7 @@
  */
 package org.opengis.annotation;
 
-import org.opengis.util.Enumerated;
+import org.opengis.util.ControlledVocabulary;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
-public enum Obligation implements Enumerated {
+public enum Obligation implements ControlledVocabulary {
     /*
      * Implementation note: Enum or CodeList elements are usually declared with
      * Obligation.CONDITIONAL.  However such declaration in the Obligation enum
@@ -124,8 +124,8 @@ public enum Obligation implements Enumerated {
     /**
      * Returns all constants defined by this enumeration type.
      * Invoking this method is equivalent to invoking {@link #values()}, except that this
-     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
-     * enumeration type does not need to be known at compile-time).
+     * method can be invoked on an instance of the {@code ControlledVocabulary} interface
+     * (i.e. the enumeration type does not need to be known at compile-time).
      *
      * @return All {@linkplain #values() values} for this enumeration.
      *

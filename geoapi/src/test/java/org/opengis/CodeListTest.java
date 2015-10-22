@@ -55,7 +55,7 @@ import org.opengis.annotation.Obligation;
 
 import org.junit.Test;
 import org.opengis.util.CodeList;
-import org.opengis.util.Enumerated;
+import org.opengis.util.ControlledVocabulary;
 import static org.junit.Assert.*;
 
 
@@ -141,13 +141,13 @@ public final strictfp class CodeListTest {
             final Method valuesMethod = codeClass.getMethod("values", (Class<?>[]) null);
             assertTrue(className + ".values() is not public.", Modifier.isPublic(valuesMethod.getModifiers()));
             assertTrue(className + ".values() is not static.", Modifier.isStatic(valuesMethod.getModifiers()));
-            final Enumerated[] values = (Enumerated[]) valuesMethod.invoke(null, (Object[]) null);
+            final ControlledVocabulary[] values = (ControlledVocabulary[]) valuesMethod.invoke(null, (Object[]) null);
             assertNotNull(className + ".values() returned null.", values);
             /*
              * Tests every CodeList instances returned by values().
              * Every field should be public, static and final.
              */
-            for (final Enumerated value : values) {
+            for (final ControlledVocabulary value : values) {
                 final String valueName = value.name();
                 final String fullName  = className + '.' + valueName;
                 assertTrue(fullName + " is of unexpected type.", codeClass.isInstance(value));
@@ -205,7 +205,7 @@ public final strictfp class CodeListTest {
              * Tests valueOf(String).
              */
             final Method valueOfMethod = codeClass.getMethod("valueOf", String.class);
-            for (final Enumerated value : values) {
+            for (final ControlledVocabulary value : values) {
                 assertSame(value, valueOfMethod.invoke(null, value.name()));
             }
             /*

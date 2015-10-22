@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  */
 @UML(identifier="CodeList", specification=ISO_19103)
-public abstract class CodeList<E extends CodeList<E>> implements Enumerated, Comparable<E>, Serializable {
+public abstract class CodeList<E extends CodeList<E>> implements ControlledVocabulary, Comparable<E>, Serializable {
     /**
      * Serial number for compatibility with different versions.
      */

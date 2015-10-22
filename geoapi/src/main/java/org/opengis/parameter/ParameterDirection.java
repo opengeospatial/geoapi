@@ -32,7 +32,7 @@
 package org.opengis.parameter;
 
 import org.opengis.annotation.UML;
-import org.opengis.util.Enumerated;
+import org.opengis.util.ControlledVocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @since   3.1
  */
 @UML(identifier="SV_ParameterDirection", specification=ISO_19115)
-public enum ParameterDirection implements Enumerated {
+public enum ParameterDirection implements ControlledVocabulary {
     /**
      * The parameter is an input parameter to the service instance.
      */
@@ -96,8 +96,8 @@ public enum ParameterDirection implements Enumerated {
     /**
      * Returns all constants defined by this enumeration type.
      * Invoking this method is equivalent to invoking {@link #values()}, except that this
-     * method can be invoked on an instance of the {@code Enumerated} interface (i.e. the
-     * enumeration type does not need to be known at compile-time).
+     * method can be invoked on an instance of the {@code ControlledVocabulary} interface
+     * (i.e. the enumeration type does not need to be known at compile-time).
      *
      * @return All {@linkplain #values() values} for this enumeration.
      */
