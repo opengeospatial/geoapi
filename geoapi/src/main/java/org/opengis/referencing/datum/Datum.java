@@ -171,8 +171,7 @@ public interface Datum extends IdentifiedObject {
     Extent getDomainOfValidity();
 
     /**
-     * Description of domain of usage, or limitations of usage, for which this
-     * datum object is valid.
+     * Description of domain of usage, or limitations of usage, for which this datum object is valid.
      *
      * @return A description of domain of usage, or {@code null} if none.
      *

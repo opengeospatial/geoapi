@@ -1224,7 +1224,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *      AXIS[“longitude”,east,ORDER[2]],
      *      ANGLEUNIT[“degree”,0.0174532925199433]],
      *    VERTCRS[“NAVD88”,
-     *      VDATUM[“North American Vertical Datum 1983”],
+     *      VDATUM[“North American Vertical Datum 1988”],
      *      CS[vertical,1],
      *        AXIS[“gravity-related height (H)”,up],
      *        LENGTHUNIT[“metre”,1]]]</pre></blockquote>
