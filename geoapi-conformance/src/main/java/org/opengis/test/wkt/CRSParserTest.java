@@ -693,8 +693,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *  BASEGEODCRS[“NAD83(86)”,
      *    DATUM[“North American Datum 1983”,
      *      ELLIPSOID[“GRS 1980”,6378137,298.257222101]],
-     *    ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PRIMEM[“Greenwich”,0],
+     *    ANGLEUNIT[“degree”,0.0174532925199433],
+     *    PRIMEM[“Greenwich”,0]],
      *  CONVERSION[“UTM zone 10N”,ID[“EPSG”,16010],
      *    METHOD[“Transverse Mercator”],
      *    PARAMETER[“Latitude of natural origin”,0.0],
@@ -721,8 +721,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  BASEGEODCRS[“NAD83(86)”,\n" +
                 "    DATUM[“North American Datum 1983”,\n" +
                 "      ELLIPSOID[“GRS 1980”, 6378137, 298.257222101]],\n" +
-                "    ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
-                "    PRIMEM[“Greenwich”,0],\n" +
+                "    ANGLEUNIT[“degree”,0.0174532925199433],\n" +
+                "    PRIMEM[“Greenwich”,0]],\n" +
                 "  CONVERSION[“UTM zone 10N”,ID[“EPSG”,16010],\n" +
                 "    METHOD[“Transverse Mercator”],\n" +
                 "    PARAMETER[“Latitude of natural origin”,0.0],\n" +
