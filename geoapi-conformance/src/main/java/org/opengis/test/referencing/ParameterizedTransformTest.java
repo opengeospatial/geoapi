@@ -1372,6 +1372,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testAbridgedMolodensky() throws FactoryException, TransformException {
+        tolerance = max(tolerance, 0.001 * (NAUTICAL_MILE/60));    // 0.001 angular second (about 3 cm at equator).
         description = "WGS84 to ED50";
         final SamplePoints sample = SamplePoints.forCRS(4230);
         createMathTransform(Transformation.class, sample);
