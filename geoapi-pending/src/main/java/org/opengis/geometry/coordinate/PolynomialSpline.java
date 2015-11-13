@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * Parameters shall include directions for as many as degree - 2 derivatives of the polynomial
  * at the start and end point of the segment. {@link LineString} is equivalent to a
  * 1<sup>st</sup> degree polynomial spline. It has simple continuity at the
- * {@linkplain #getControlPoints control points} (C<sup>0</sup>), but does
+ * {@linkplain #getControlPoints control points} (C⁰), but does
  * not require derivative information (degree - 2 = -1).
  * <p>
  * NOTE: The major difference between the polynomial splines and the b-splines (basis splines)

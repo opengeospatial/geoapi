@@ -46,14 +46,14 @@ import static org.opengis.annotation.Specification.*;
  * for 1-dimensional geometry. A curve is a continuous image of an open interval and so could be
  * written as a parameterized function such as
  *
- * <code>c(t):(a,&nbsp;b) &rarr; E<sup>n</sup></code>
+ * <code>c(t):(a,&nbsp;b) → Eⁿ</code>
  *
- * where "t" is a real parameter and E<sup>n</sup> is Euclidean space of dimension <var>n</var>
+ * where "t" is a real parameter and Eⁿ is Euclidean space of dimension <var>n</var>
  * (usually 2 or 3, as determined by the coordinate reference system). Any other parameterization
  * that results in the same image curve, traced in the same direction, such as any linear shifts
  * and positive scales such as
  *
- * <code>e(t) = c(a&nbsp;+&nbsp;t(b-a)):(0,1) &rarr; E<sup>n</sup></code>,
+ * <code>e(t) = c(a&nbsp;+&nbsp;t(b-a)):(0,1) → Eⁿ</code>,
  *
  * is an equivalent representation of the same curve. For the sake of simplicity, {@code Curve}s
  * should be parameterized by arc length, so that the parameterization operation inherited from
@@ -65,11 +65,11 @@ import static org.opengis.annotation.Specification.*;
  * always point in the "forward" direction. The parameterization of the reversal of the curve defined
  * by
  *
- * <code>c(t):(a,&nbsp;b) &rarr; E<sup>n</sup></code>
+ * <code>c(t):(a,&nbsp;b) → Eⁿ</code>
  *
  * would be defined by a function of the form
  *
- * <code>s(t) = c(a&nbsp;+&nbsp;b&nbsp;-&nbsp;t):(a,&nbsp;b) &rarr; E<sup>n</sup></code>.
+ * <code>s(t) = c(a&nbsp;+&nbsp;b&nbsp;-&nbsp;t):(a,&nbsp;b) → Eⁿ</code>.
  *
  * <p>
  * A curve is composed of one or more curve segments. Each curve segment within a curve may be

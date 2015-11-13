@@ -129,8 +129,8 @@ public interface MathTransform {
      * values. For example, if the source dimension is 3, then the ordinals
      * will be packed in this order:
      *
-     * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
+     *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -156,8 +156,8 @@ public interface MathTransform {
      * values.  For example, if the source dimension is 3, then the ordinals
      * will be packed in this order:
      *
-     * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
+     *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -182,8 +182,8 @@ public interface MathTransform {
      * values.  For example, if the source dimension is 3, then the ordinals
      * will be packed in this order:
      *
-     * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
+     *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
@@ -209,8 +209,8 @@ public interface MathTransform {
      * values.  For example, if the source dimension is 3, then the ordinals
      * will be packed in this order:
      *
-     * (<var>x<sub>0</sub></var>,<var>y<sub>0</sub></var>,<var>z<sub>0</sub></var>,
-     *  <var>x<sub>1</sub></var>,<var>y<sub>1</sub></var>,<var>z<sub>1</sub></var> …).
+     * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
+     *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.

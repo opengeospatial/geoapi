@@ -88,10 +88,10 @@ public interface SurfacePatch extends GenericSurface {
      * with which it shares a boundary curve. The sequence of values corresponds to the
      * {@linkplain Ring rings} in the {@linkplain SurfaceBoundary surface boundary} returned by
      * {@link #getBoundary} for this patch. The default value of "0" means simple continuity, which
-     * is a mandatory minimum level of continuity. This level is referred to as "C<sup>0</sup>" in
+     * is a mandatory minimum level of continuity. This level is referred to as "C⁰" in
      * mathematical texts. A value of 1 means that the functions are continuous and differentiable
-     * at the appropriate end point: "C<sup>1</sup>" continuity. A value of "n" for any integer means
-     * <var>n</var>-times differentiable: "C<sup>n</sup>" continuity.
+     * at the appropriate end point: "C¹" continuity. A value of "n" for any integer means
+     * <var>n</var>-times differentiable: "Cⁿ" continuity.
      *
      * @return The type of continuity between this surface patch and its immediate neighbors.
      */

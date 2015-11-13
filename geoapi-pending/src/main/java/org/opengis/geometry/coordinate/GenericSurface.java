@@ -109,7 +109,7 @@ public interface GenericSurface {
      * object shall be a numeric measure of its surface area (in a square unit of distance). Since
      * area is an accumulation (integral) of the product of two distances, its return value shall
      * be in a unit of measure appropriate for measuring distances squared, such as meters squared
-     * (m<sup>2</sup>).
+     * (m²).
      *
      * <div class="note"><b>Note:</b>
      * Consistent with the definition of surface as a set of

@@ -40,23 +40,23 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A planar polygon defined by 3 corners. That is, a triangle would be the result of a constructor
- * of the form: {@code Polygon(LineString({P1, P2, P3, P1}))} where <var>P</var><sub>1</sub>,
- * <var>P</var><sub>2</sub>, and <var>P</var><sub>3</sub> are three {@linkplain Position positions}.
+ * of the form: {@code Polygon(LineString({P1, P2, P3, P1}))} where <var>P₁</var>,
+ * <var>P₂</var>, and <var>P₃</var> are three {@linkplain Position positions}.
  * Triangles have no holes. Triangle shall be used to construct
  * {@linkplain TriangulatedSurface triangulated surfaces}.
  * <p>
  * <strong>Note:</strong> The points in a triangle can be located in terms of their corner points
- * by defining a set of barycentric coordinates, three nonnegative numbers <var>c</var><sub>1</sub>,
- * <var>c</var><sub>2</sub>, and <var>c</var><sub>3</sub> such that
+ * by defining a set of barycentric coordinates, three nonnegative numbers <var>c₁</var>,
+ * <var>c₂</var>, and <var>c₃</var> such that
  *
- * <var>c</var><sub>1</sub> + <var>c</var><sub>2</sub> + <var>c</var><sub>3</sub> = 1.0.
+ * <var>c₁</var> + <var>c₂</var> + <var>c₃</var> = 1.0.
  *
  * Then, each point <var>P</var> in the triangle can be expressed for some set of barycentric coordinates as:
  *
  * <blockquote>
- * P = <var>c</var><sub>1</sub><var>P</var><sub>1</sub> +
- *     <var>c</var><sub>2</sub><var>P</var><sub>2</sub> +
- *     <var>c</var><sub>3</sub><var>P</var><sub>3</sub>
+ * P = <var>c₁</var>⋅<var>P₁</var> +
+ *     <var>c₂</var>⋅<var>P₂</var> +
+ *     <var>c₃</var>⋅<var>P₃</var>
  * </blockquote>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>

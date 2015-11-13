@@ -90,10 +90,10 @@ public interface CurveSegment extends GenericCurve {
      *
      * <div class="note"><b>Note:</b>
      * Use of these values is only appropriate when the basic curve definition is an underdetermined
-     * system. For example, line strings and segments cannot support continuity above C<sup>0</sup>,
+     * system. For example, line strings and segments cannot support continuity above C⁰,
      * since there is no spare control parameter to adjust the incoming angle at the end points of
      * the segment. Spline functions on the other hand often have extra degrees of freedom on end
-     * segments that allow them to adjust the values of the derivatives to support C<sup>1</sup>
+     * segments that allow them to adjust the values of the derivatives to support C¹
      * or higher continuity.
      * </div>
      *
@@ -108,10 +108,10 @@ public interface CurveSegment extends GenericCurve {
     /**
      * Specifies the type of continuity that is guaranteed interior to the curve. The default
      * value of "0" means simple continuity, which is a mandatory minimum level of continuity.
-     * This level is referred to as "C<sup>0</sup>" in mathematical texts. A value of 1 means
+     * This level is referred to as "C⁰" in mathematical texts. A value of 1 means
      * that the function and its first derivative are continuous at the appropriate end point:
-     * "C<sup>1</sup>" continuity. A value of "n" for any integer means the function and its
-     * first <var>n</var> derivatives are continuous: "C<sup>n</sup>" continuity.
+     * "C¹" continuity. A value of "n" for any integer means the function and its
+     * first <var>n</var> derivatives are continuous: "Cⁿ" continuity.
      *
      * @return The type of continuity that is guaranteed interior to the curve.
      *
@@ -127,10 +127,10 @@ public interface CurveSegment extends GenericCurve {
      *
      * <div class="note"><b>Note:</b>
      * Use of these values is only appropriate when the basic curve definition is an underdetermined
-     * system. For example, line strings and segments cannot support continuity above C<sup>0</sup>,
+     * system. For example, line strings and segments cannot support continuity above C⁰,
      * since there is no spare control parameter to adjust the incoming angle at the end points of
      * the segment. Spline functions on the other hand often have extra degrees of freedom on end
-     * segments that allow them to adjust the values of the derivatives to support C<sup>1</sup>
+     * segments that allow them to adjust the values of the derivatives to support C¹
      * or higher continuity.
      * </div>
      *

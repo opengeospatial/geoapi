@@ -177,17 +177,17 @@ public interface GeometryFactory {
      * In 2D coordinate reference systems, the bulge can be given a sign and the normal can be
      * assumed to be the perpendicular to the line segment between the start and end point of
      * the arc (the chord of the arc), pointing left. For example if the two points are
-     * <var>P</var><sub>0</sub> = (<var>x</var><sub>0</sub>,&nbsp;<var>y</var><sub>0</sub>) and
-     * <var>P</var><sub>1</sub> = (<var>x</var><sub>1</sub>,&nbsp;<var>y</var><sub>1</sub>), and
-     * the bulge is <var>b</var>, then the vector in the direction of <var>P</var><sub>1</sub>
-     * from <var>P</var><sub>0</sub> is:
+     * <var>P₀</var> = (<var>x₀</var>,&nbsp;<var>y₀</var>) and
+     * <var>P₁</var> = (<var>x₁</var>,&nbsp;<var>y₁</var>), and
+     * the bulge is <var>b</var>, then the vector in the direction of <var>P₁</var>
+     * from <var>P₀</var> is:
      *
      * <blockquote>
-     * <b><var>u</var></b> = (<var>u</var><sub>0</sub>,&nbsp;<var>u</var><sub>1</sub>) =
-     * (<var>x</var><sub>1</sub>-<var>x</var><sub>0</sub>,
-     *  <var>y</var><sub>1</sub>-<var>y</var><sub>0</sub>) /
-     * {@link Math#sqrt sqrt}((<var>x</var><sub>1</sub>-<var>x</var><sub>0</sub>)<sup>2</sup> +
-     *                        (<var>y</var><sub>1</sub>-<var>y</var><sub>0</sub>)<sup>2</sup>)
+     * <b><var>u</var></b> = (<var>u₀</var>,&nbsp;<var>u₁</var>) =
+     * (<var>x₁</var>-<var>x₀</var>,
+     *  <var>y₁</var>-<var>y₀</var>) /
+     * {@link Math#sqrt sqrt}((<var>x₁</var>-<var>x₀</var>)² +
+     *                        (<var>y₁</var>-<var>y₀</var>)²)
      * </blockquote>
      *
      * To complete a right-handed local coordinate system {<b>u</b>,<b>v</b>}, the two vectors
@@ -195,14 +195,14 @@ public interface GeometryFactory {
      * the leftward normal to complete the pair is:
      *
      * <blockquote>
-     * <b><var>v</var></b> = (<var>v</var><sub>0</sub>,&nbsp;<var>v</var><sub>1</sub>) =
-     *                      (-<var>u</var><sub>1</sub>,&nbsp;<var>u</var><sub>0</sub>)
+     * <b><var>v</var></b> = (<var>v₀</var>,&nbsp;<var>v₁</var>) =
+     *                      (-<var>u₁</var>,&nbsp;<var>u₀</var>)
      * </blockquote>
      *
      * The midpoint of the arc, which is the midpoint of the chord offset by the bulge, becomes:
      *
      * <blockquote>
-     * <var>m</var> = (<var>P</var><sub>0</sub> + <var>P</var><sub>1</sub>)/2
+     * <var>m</var> = (<var>P₀</var> + <var>P₁</var>)/2
      *              + <var>b</var>×<b><var>v</var></b>
      * </blockquote>
      *

@@ -103,7 +103,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * distance along a value segment.
      *
      * <blockquote>
-     * <var>v</var> = <var>a</var> + <var>b</var><var>x</var>
+     * <var>v</var> = <var>a</var> + <var>b</var>⋅<var>x</var>
      * </blockquote>
      *
      * <p>Linear interpolation may be used to interpolate feature attribute values along a line segment
@@ -132,8 +132,8 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      *
      * <blockquote>
      * <var>v</var> = <var>a</var>
-     *              + <var>b</var><var>x</var>
-     *              + <var>c</var><var>x</var><sup>2</sup>
+     *              + <var>b</var>⋅<var>x</var>
+     *              + <var>c</var>⋅<var>x</var>²
      * </blockquote>
      *
      * where <var>a</var> is the value of a feature attribute at the start of a value segment and
@@ -150,9 +150,9 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      *
      * <blockquote>
      * <var>v</var> = <var>a</var>
-     *              + <var>b</var><var>x</var>
-     *              + <var>c</var><var>x</var><sup>2</sup>
-     *              + <var>d</var><var>x</var><sup>3</sup>
+     *              + <var>b</var>⋅<var>x</var>
+     *              + <var>c</var>⋅<var>x</var>²
+     *              + <var>d</var>⋅<var>x</var>³
      * </blockquote>
      *
      * where <var>a</var> is the value of a feature attribute at the start of a value segment and
