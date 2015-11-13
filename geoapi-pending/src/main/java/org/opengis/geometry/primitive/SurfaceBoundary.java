@@ -63,7 +63,7 @@ import static org.opengis.annotation.Specification.*;
  * unbounded portions of the cylinders. In this case, either cut could reasonably be called
  * exterior. In cases of such ambiguity, the standard chooses to list all boundaries in the
  * "interior" set. The only guarantee of an exterior boundary being unique is in the 2-dimensional
- * plane, E<sup>2</sup>.
+ * plane, E².
  * <p>
  * <strong>EXAMPLE 2:</strong> Taking the equator of a sphere, and generating a 1 meter buffer,
  * we have a surface with two isomorphic boundary components. There is no unbiased manner to

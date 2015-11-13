@@ -191,8 +191,8 @@ public class PJ {
     public native double getSemiMinorAxis();
 
     /**
-     * Returns the square of the ellipsoid eccentricity (&epsilon;&sup2;). The eccentricity
-     * is related to axis length by &epsilon;=√(1-(<var>b</var>/<var>a</var>)&sup2;). The
+     * Returns the square of the ellipsoid eccentricity (ε²). The eccentricity
+     * is related to axis length by ε=√(1-(<var>b</var>/<var>a</var>)²). The
      * eccentricity of a sphere is zero.
      *
      * @return The eccentricity.

@@ -61,14 +61,14 @@ import static org.opengis.annotation.Specification.*;
  * <var>u</var>=<var>&rho;</var>cos(<var>φ</var>) and
  * <var>v</var>=<var>&rho;</var>sin(<var>φ</var>).
  * We can then convert this to a 3D coordinate reference system by using an affine transformation,
- * (<var>u</var>,&nbsp;<var>v</var>) &rarr; (<var>x</var>,&nbsp;<var>y</var>,&nbsp;<var>z</var>)
+ * (<var>u</var>,&nbsp;<var>v</var>) → (<var>x</var>,&nbsp;<var>y</var>,&nbsp;<var>z</var>)
  * which is defined by:</p>
  *
  * <center>(TODO: paste the matrix here, same as AffinePlacement)</center>
  *
  * <p>This gives us <var>φ</var> as the constructive parameter.
  * The {@linkplain DirectPosition direct position} given by
- * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>)
+ * (<var>x₀</var>, <var>y₀</var>, <var>z₀</var>)
  * is the image of the origin in the local coordinate space (<var>u</var>, <var>v</var>)
  * Alternatively, the origin may be shifted to the vertex of the conic as</p>
  *

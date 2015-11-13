@@ -41,13 +41,13 @@ import static org.opengis.annotation.Specification.*;
  * A placement defined by linear transformation from the parameter space to the target
  * coordinate space. In 2-dimensional Cartesian parameter space, (<var>u</var>, <var>v</var>),
  * transforms into a 3-dimensional coordinate reference system, (<var>x</var>, <var>y</var>, <var>z</var>),
- * by using an affine transformation, (<var>u</var>, <var>v</var>) &rarr; (<var>x</var>, <var>y</var>, <var>z</var>),
+ * by using an affine transformation, (<var>u</var>, <var>v</var>) → (<var>x</var>, <var>y</var>, <var>z</var>),
  * which is defined:
  *
  * <center><img src="doc-files/AffinePlacement.png" alt="Afine placement"></center>
  *
  * Then, given this equation, the {@link #getLocation()} method returns the direct position
- * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>), which
+ * (<var>x₀</var>, <var>y₀</var>, <var>z₀</var>), which
  * is the target position of the origin in (<var>u</var>, <var>v</var>). The two
  * {@linkplain #getReferenceDirection(int) reference directions}
  * (<var>u</var><sub>x</sub>, <var>u</var><sub>y</sub>, <var>u</var><sub>z</sub>)
@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
 public interface AffinePlacement extends Placement {
     /**
      * Gives the target of the parameter space origin. This is the vector
-     * (<var>x</var><sub>0</sub>, <var>y</var><sub>0</sub>, <var>z</var><sub>0</sub>)
+     * (<var>x₀</var>, <var>y₀</var>, <var>z₀</var>)
      * in the formulae shown in the class description.
      *
      * @return The target of the parameter space origin.

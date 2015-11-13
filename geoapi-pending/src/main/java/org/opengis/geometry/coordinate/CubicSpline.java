@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * parameter) and the one that has been reparameterized by arc length to satisfy the requirements
  * in {@link GenericCurve}.
  * <p>
- * The function describing the curve must be C<sup>2</sup>, that is, have a continuous
+ * The function describing the curve must be C², that is, have a continuous
  * 1<sup>st</sup> and 2<sup>nd</sup> derivative at all points, and pass through the
  * {@linkplain #getControlPoints control points} in the order given. Between the control points,
  * the curve segment is defined by a cubic polynomial. At each control point, the polynomial
