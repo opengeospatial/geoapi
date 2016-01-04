@@ -37,8 +37,8 @@ import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.referencing.crs.*; // Contains some import for javadoc.
-import org.opengis.parameter.*;       // Contains some import for javadoc.
+import org.opengis.referencing.crs.*;                   // Contains some import for javadoc.
+import org.opengis.parameter.*;                         // Contains some import for javadoc.
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

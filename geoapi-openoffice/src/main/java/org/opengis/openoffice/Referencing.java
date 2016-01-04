@@ -68,7 +68,7 @@ public final class Referencing extends Formulas implements XReferencing {
     /**
      * The coordinate operation factory. Will be created only when first needed.
      */
-    private transient CoordinateOperationFactory opFactory;
+    private transient CoordinateOperationFactory copFactory;
 
     /**
      * The last coordinate operation used. Cached for performance reasons.
@@ -262,10 +262,10 @@ public final class Referencing extends Formulas implements XReferencing {
         final CRSAuthorityFactory       crsFactory = crsFactory();
         sourceCRS = crsFactory.createCoordinateReferenceSystem(source);
         targetCRS = crsFactory.createCoordinateReferenceSystem(target);
-        if (opFactory == null) {
-            opFactory = FactoryFinder.getCoordinateOperationFactory();
+        if (copFactory == null) {
+            copFactory = FactoryFinder.getCoordinateOperationFactory();
         }
-        operation     = opFactory.createOperation(sourceCRS, targetCRS);
+        operation     = copFactory.createOperation(sourceCRS, targetCRS);
         lastSourceCRS = source;
         lastTargetCRS = target;
         lastOperation = operation;

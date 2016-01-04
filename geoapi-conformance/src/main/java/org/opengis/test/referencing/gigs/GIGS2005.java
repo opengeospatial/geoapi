@@ -680,8 +680,8 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      *
      * <ul>
      *   <li>EPSG coordinate operation codes: <b>19911</b>, <b>19861</b></li>
-     *   <li>EPSG coordinate operation name: <b>Laborde</b></li>
-     *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b></li>
+     *   <li>EPSG coordinate operation name: <b>Laborde Grid approximation</b>, <b>Laborde Grid</b></li>
+     *   <li>Coordinate operation method: <b>Hotine Oblique Mercator (variant B)</b>, <b>Laborde Oblique Mercator</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -690,9 +690,12 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
     @Test
     public void testLaborde() throws FactoryException {
         important  = true;
-        name       = "Laborde";
+        name       = "Laborde Grid approximation";
         methodName = "Hotine Oblique Mercator (variant B)";
         createAndVerifyProjection(19911);
+
+        name       = "Laborde Grid";
+        methodName = "Laborde Oblique Mercator";
         createAndVerifyProjection(19861);
     }
 
@@ -702,7 +705,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      * <ul>
      *   <li>EPSG coordinate operation codes: <b>19940</b></li>
      *   <li>EPSG coordinate operation name: <b>Levant zone</b></li>
-     *   <li>Coordinate operation method: <b>Lambert Conic Near Conformal</b></li>
+     *   <li>Coordinate operation method: <b>Lambert Conic Near-Conformal</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -712,7 +715,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
     public void testLevantZone() throws FactoryException {
         important  = true;
         name       = "Levant zone";
-        methodName = "Lambert Conic Near Conformal";
+        methodName = "Lambert Conic Near-Conformal";
         createAndVerifyProjection(19940);
     }
 
