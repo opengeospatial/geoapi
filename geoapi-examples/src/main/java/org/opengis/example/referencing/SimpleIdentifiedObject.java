@@ -77,8 +77,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
     }
 
     /**
-     * Returns the organization or party responsible for definition and maintenance of the
-     * {@linkplain #getCode code}. This method returns the citation given to the constructor.
+     * Returns the person or party responsible for maintenance of the namespace.
+     * This method returns the citation given to the constructor.
      *
      * @return Party responsible for definition and maintenance of the code, or {@code null} if none.
      */
@@ -88,11 +88,11 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
     }
 
     /**
-     * Returns the name or identifier of the person or organization responsible for namespace.
+     * Returns the identifier or namespace in which the code is valid.
      * The default implementation returns the {@linkplain Citation#getTitle() title} of the
      * {@linkplain #getAuthority() authority}.
      *
-     * @return The identifier code space, or {@code null} if none.
+     * @return The identifier or namespace in which the code is valid, or {@code null} if none.
      */
     @Override
     public String getCodeSpace() {

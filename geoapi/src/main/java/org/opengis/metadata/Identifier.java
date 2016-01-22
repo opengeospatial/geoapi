@@ -51,13 +51,22 @@ import static org.opengis.annotation.Specification.*;
  * {@code description} = {@code "WGS 84"} and
  * {@code authority}   = OGP geodetic committee.</div>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Identifier", specification=ISO_19115)
 public interface Identifier {
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
+     * methods. This is used for setting the value to be returned by {@link #getAuthority()}.
+     *
+     * @see #getAuthority()
+     */
+    String AUTHORITY_KEY = "authority";
+
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
@@ -97,13 +106,12 @@ public interface Identifier {
     String DESCRIPTION_KEY = "description";
 
     /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
-     * methods. This is used for setting the value to be returned by {@link #getAuthority()}.
+     * Person or party responsible for maintenance of the namespace.
      *
-     * @see #getAuthority()
+     * @return The person or party responsible for maintenance of the namespace, or {@code null} if none.
      */
-    String AUTHORITY_KEY = "authority";
+    @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
+    Citation getAuthority();
 
     /**
      * Alphanumeric value identifying an instance in the namespace.
@@ -121,7 +129,7 @@ public interface Identifier {
      *
      * <div class="note"><b>Example:</b> {@code "EPSG"}.</div>
      *
-     * @return The identifier code space, or {@code null} if none.
+     * @return The identifier or namespace in which the code is valid, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -146,7 +154,8 @@ public interface Identifier {
     /**
      * Natural language description of the meaning of the code value.
      *
-     * <div class="note"><b>Example:</b> World Geodetic System 1984.</div>
+     * <div class="note"><b>Example:</b> for {@code codeSpace = "EPSG"} and {@code code = "4326"},
+     * the description can be "WGS 84".</div>
      *
      * @return The natural language description, or {@code null} if none.
      *
@@ -154,12 +163,4 @@ public interface Identifier {
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getDescription();
-
-    /**
-     * Organization or party responsible for definition and maintenance of the {@linkplain #getCode() code}.
-     *
-     * @return Party responsible for definition and maintenance of the code, or {@code null} if none.
-     */
-    @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getAuthority();
 }

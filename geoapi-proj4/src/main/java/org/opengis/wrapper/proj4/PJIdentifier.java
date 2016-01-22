@@ -93,7 +93,7 @@ final class PJIdentifier implements Identifier, LocalName {
     }
 
     /**
-     * Returns the authority associated with this identifier, or {@code null} if none.
+     * Returns the person or party responsible for maintenance of the namespace, or {@code null} if none.
      * This authority is also used as the {@linkplain #scope() name space} of the local name.
      */
     @Override
