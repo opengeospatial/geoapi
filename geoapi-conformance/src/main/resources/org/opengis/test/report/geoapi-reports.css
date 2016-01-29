@@ -79,6 +79,10 @@ td.nospace {
 td.error {
   color: red;
 }
+td.warning {
+  color: darkred;
+  font-style: italic;
+}
 /*
  * The style for list elements that appear directly inside a cell table,
  * without enclosing <ul> element. We don't use <ul> in order to avoid

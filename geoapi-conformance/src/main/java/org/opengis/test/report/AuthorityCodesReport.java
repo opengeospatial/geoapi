@@ -187,7 +187,7 @@ public class AuthorityCodesReport extends Report {
                                                    if (code       != null) out.append(code);
                                                    if (isDeprecated)       out.append("</del>");
             out.append("</code></td><td>");        if (name       != null) out.append(name);
-            out.append("</td><td");                if (hasError)           out.append(" class=\"error\"");
+            out.append("</td><td");                if (hasError)           out.append(" class=\"error\""); else if (isDeprecated) out.append(" class=\"warning\"");
             out.append('>');                       if (remark     != null) out.append(remark);
             out.append("</td></tr>");
         }
