@@ -67,8 +67,8 @@ import org.opengis.metadata.citation.Responsibility;
  *   <li>Stored directly in the {@linkplain #properties} map by subclasses.</li>
  * </ul>
  *
- * The set of keywords, and whether a user-provided value for a given keyword is mandatory or
- * optional, is subclass-specific. However most subclasses expect at least the following keywords:
+ * The set of keywords, and whether a user-provided value for a given keyword is mandatory or optional,
+ * is subclass-specific. However most subclasses expect at least the following keywords:
  *
  * <table class="ogc">
  *   <caption>Report properties</caption>
@@ -139,9 +139,9 @@ public abstract class Report {
      * copy of the map given by the user at {@linkplain #Report(Properties) construction time},
      * or to an empty map if the user gave a {@code null} map. Subclasses can freely add, edit
      * or remove entries in this map.
-     * <p>
-     * The list of expected entries and their {@linkplain Properties#defaults default values}
-     * (if any) are subclass-specific. See the subclass javadoc for a list of expected values.
+     *
+     * <p>The list of expected entries and their {@linkplain Properties#defaults default values}
+     * (if any) are subclass-specific. See the subclass javadoc for a list of expected values.</p>
      */
     protected final Properties properties;
 
@@ -179,13 +179,11 @@ public abstract class Report {
     }
 
     /**
-     * Infers default values for the "{@code PRODUCT.NAME}", "{@code PRODUCT.VERSION}" and
-     * "{@code PRODUCT.URL}" {@linkplain #properties} from the given vendor. The vendor
-     * argument is typically the value obtained by a call to the
-     * {@linkplain org.opengis.util.Factory#getVendor()} method.
+     * Infers default values for the "{@code PRODUCT.NAME}", "{@code PRODUCT.VERSION}" and "{@code PRODUCT.URL}"
+     * {@linkplain #properties} from the given vendor. The vendor argument is typically the value obtained by a
+     * call to the {@linkplain org.opengis.util.Factory#getVendor()} method.
      *
-     * @param prefix The property key prefix (usually {@code "PRODUCT"},
-     *               but may also be {@code "FACTORY"}).
+     * @param prefix The property key prefix (usually {@code "PRODUCT"}, but may also be {@code "FACTORY"}).
      * @param vendor The vendor, or {@code null}.
      *
      * @see org.opengis.util.Factory#getVendor()
@@ -199,7 +197,7 @@ public abstract class Report {
             */
             String version = null;
             for (final Identifier identifier : IdentifiedObjects.nullSafe(vendor.getIdentifiers())) {
-                if (identifier == null) continue; // Paranoiac safety.
+                if (identifier == null) continue;               // Paranoiac safety.
                 if (title == null) {
                     title = identifier.getCode();
                 }
@@ -207,7 +205,7 @@ public abstract class Report {
                     version = identifier.getVersion();
                 }
                 if (title != null && version != null) {
-                    break; // No need to continue.
+                    break;                                      // No need to continue.
                 }
             }
             /*
@@ -216,20 +214,20 @@ public abstract class Report {
             */
             String linkage = null;
 search:     for (final Responsibility responsibility : vendor.getCitedResponsibleParties()) {
-                if (responsibility == null) continue; // Paranoiac safety.
+                if (responsibility == null) continue;                       // Paranoiac safety.
                 for (final Party party : responsibility.getParties()) {
-                    if (party == null) continue; // Paranoiac safety.
+                    if (party == null) continue;                            // Paranoiac safety.
                     if (title == null) {
                         title = toString(party.getName());
                     }
                     for (final Contact contact : party.getContactInfo()) {
-                        if (contact == null) continue; // Paranoiac safety.
+                        if (contact == null) continue;                      // Paranoiac safety.
                         for (final OnlineResource resource : contact.getOnlineResources()) {
-                            if (resource == null) continue; // Paranoiac safety.
+                            if (resource == null) continue;                 // Paranoiac safety.
                             final URI uri = resource.getLinkage();
                             if (uri != null) {
                                 linkage = uri.toString();
-                                if (title != null) { // This is the usual case.
+                                if (title != null) {                        // This is the usual case.
                                     break search;
                                 }
                             }
@@ -286,9 +284,8 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     }
 
     /**
-     * Returns a string value for the given text. If the given text is an instance
-     * of {@link InternationalString}, then this method fetches the string for the
-     * {@linkplain #locale current locale}.
+     * Returns a string value for the given text. If the given text is an instance of {@link InternationalString},
+     * then this method fetches the string for the {@linkplain #locale current locale}.
      */
     final String toString(final CharSequence text) {
         if (text == null) {
@@ -302,8 +299,7 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
 
     /**
      * Ensures that the given {@link File} object denotes a file (not a directory).
-     * If the given argument is a directory, then the {@code "FILENAME"} property
-     * value will be added.
+     * If the given argument is a directory, then the {@code "FILENAME"} property value will be added.
      */
     final File toFile(File destination) {
         if (destination.isDirectory()) {
@@ -313,19 +309,17 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     }
 
     /**
-     * Generates the HTML report in the given file or directory. If the given argument
-     * is a directory, then the path will be completed with the {@code "FILENAME"}
-     * {@linkplain #properties} value if any, or an implementation specific default
-     * filename otherwise.
+     * Generates the HTML report in the given file or directory.
+     * If the given argument is a directory, then the path will be completed with the {@code "FILENAME"}
+     * {@linkplain #properties} value if any, or an implementation specific default filename otherwise.
      *
-     * <p>Note that the target directory must exist; this method does not create any new
-     * directory.</p>
+     * <p>Note that the target directory must exist; this method does not create any new directory.</p>
      *
-     * @param  destination The destination file or directory. If this file already
-     *         exists, then its content will be overwritten without warning.
+     * @param  destination The destination file or directory.
+     *         If this file already exists, then its content will be overwritten without warning.
      * @return The file to the HTML page generated by this report. This is usually the given
      *         {@code destination} argument, unless the destination was a directory.
-     * @throws IOException If an error occurred while writing the report.
+     * @throws IOException if an error occurred while writing the report.
      */
     public abstract File write(final File destination) throws IOException;
 
@@ -335,7 +329,7 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
      *
      * @param  source The name of the resource to copy.
      * @param  directory The destination directory.
-     * @throws IOException If an error occurred during the copy.
+     * @throws IOException if an error occurred during the copy.
      */
     private static void copy(final String source, final File directory) throws IOException {
         final File file = new File(directory, source);
@@ -347,7 +341,7 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
             throw new FileNotFoundException("Resource not found: " + source);
         }
         final OutputStream out = new FileOutputStream(file);
-        try { // JDK7: Use "try with resource".
+        try {                                                               // JDK7: Use "try with resource".
             int n;
             final byte[] buffer = new byte[1024];
             while ((n = in.read(buffer)) >= 0) {
@@ -360,9 +354,9 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     }
 
     /**
-     * Copies the given resource to the given file, replacing the {@code ${FOO}} occurrences
-     * in the process. For each occurrence of a {@code ${FOO}} keyword, this method invokes
-     * the {@link #writeContent(BufferedWriter, String)} method.
+     * Copies the given resource to the given file, replacing the {@code ${FOO}} occurrences in the process.
+     * For each occurrence of a {@code ${FOO}} keyword, this method invokes the
+     * {@link #writeContent(BufferedWriter, String)} method.
      *
      * @param  source      The resource name, without path.
      * @param  destination The destination file. Will be overwritten if already presents.
@@ -440,8 +434,7 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
             throw new NoSuchElementException("Undefined property: " + key);
         }
         if (!writeLine(out, value)) {
-            throw new IOException(KEY_PREFIX + " without " + KEY_SUFFIX +
-                    " for property \"" + key + "\":\n" + value);
+            throw new IOException(KEY_PREFIX + " without " + KEY_SUFFIX + " for property \"" + key + "\":\n" + value);
         }
     }
 
@@ -513,11 +506,10 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
      * {@code add(…)} method, since they are usually slower than {@link #write(File)}.
      * Subclasses can override this method if they want to be notified about progress.
      *
-     * @param position A number ranging from 0 to {@code count}. This is typically the number
-     *        or rows created so far for the HTML table to write.
-     * @param count The maximal expected value of {@code position}. Note that this value may
-     *        change between different invocations if the report gets a better estimation about
-     *        the number of rows to be created.
+     * @param position A number ranging from 0 to {@code count}.
+     *        This is typically the number or rows created so far for the HTML table to write.
+     * @param count The maximal expected value of {@code position}. Note that this value may change between
+     *        different invocations if the report gets a better estimation about the number of rows to be created.
      */
     protected void progress(final int position, final int count) {
         final ProgressListener listener = this.listener;

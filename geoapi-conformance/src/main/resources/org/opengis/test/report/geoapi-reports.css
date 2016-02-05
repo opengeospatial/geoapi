@@ -18,19 +18,19 @@ table {
  * with the "tr.HL" style for producing a table with striping.
  */
 table.withbg {
-    background-color: aliceblue
+  background-color: aliceblue
 }
 /*
  * Table header, which may span more than one lines.
  */
 tr.sectionHead > th {
-  font-size: 14pt;
+  font-size: 12px;
   border-top-style: solid;
-  border-top-width: 1pt;
+  border-top-width: 1px;
 }
 tr.sectionTail > th {
   border-bottom-style: solid;
-  border-bottom-width: 1pt;
+  border-bottom-width: 1px;
 }
 /*
  * Headers for a sub-section in a table. This is not a real table header, but
@@ -42,16 +42,16 @@ tr.groupName > td {
   border-top-style: solid;
   border-bottom-style: solid;
   border-color: MidnightBlue;
-  border-width: 1pt;
-  padding-top: 3pt;
-  padding-bottom: 3pt;
+  border-width: 1px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   background-color: lavender;
 }
 tr.groupHead > td {
-  padding-top: 3pt;
+  padding-top: 3px;
 }
 tr.groupTail > td {
-  padding-bottom: 18pt;
+  padding-bottom: 18px;
 }
 /*
  * Highlighter for a row in a table, or for striping.
@@ -61,20 +61,28 @@ tr.HL > td {
 }
 th {
   background-color: lightskyblue;
-  height: 18pt;
+  height: 18px;
 }
 th.left-align {
-  padding-left:  6pt;
+  padding-left:  6px;
   text-align: left;
 }
 td {
-  padding-left:  6pt;
-  padding-right: 6pt;
+  padding-left:  6px;
+  padding-right: 6px;
   vertical-align: top;
 }
-td.nospace {
-  padding-left:  0pt;
-  padding-right: 0pt;
+tr.separator > td {
+  font-weight: bold;
+  padding-left: 1em;
+  background-color: white;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  padding-top: 18px;
+}
+td.narrow {
+  padding-left:  0;
+  padding-right: 0;
 }
 td.error {
   color: red;
