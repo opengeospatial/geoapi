@@ -4722,10 +4722,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6723</b></li>
-     *   <li>EPSG datum name: <b>Grand Cayman 1959</b></li>
+     *   <li>EPSG datum name: <b>Grand Cayman Geodetic Datum 1959</b></li>
      *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Grand Cayman 1959</b></li>
+     *   <li>CRS using the datum: <b>GCGD59</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -4733,8 +4733,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testGrandCayman() throws FactoryException {
         code              = 6723;
-        name              = "Grand Cayman 1959";
-        crsName           = "Grand Cayman 1959";
+        name              = "Grand Cayman Geodetic Datum 1959";
+        crsName           = "GCGD59";
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5466,10 +5466,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6141</b></li>
-     *   <li>EPSG datum name: <b>Israel</b></li>
+     *   <li>EPSG datum name: <b>Israel 1993</b></li>
      *   <li>Ellipsoid name: <b>GRS 1980</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Israel</b></li>
+     *   <li>CRS using the datum: <b>Israel 1993</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -5477,8 +5477,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testIsrael() throws FactoryException {
         code              = 6141;
-        name              = "Israel";
-        crsName           = "Israel";
+        name              = "Israel 1993";
+        crsName           = "Israel 1993";
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6234,10 +6234,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6726</b></li>
-     *   <li>EPSG datum name: <b>Little Cayman 1961</b></li>
+     *   <li>EPSG datum name: <b>Sister Islands Geodetic Datum 1961</b></li>
      *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Little Cayman 1961</b></li>
+     *   <li>CRS using the datum: <b>SIGD61</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -6245,8 +6245,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testLittleCayman() throws FactoryException {
         code              = 6726;
-        name              = "Little Cayman 1961";
-        crsName           = "Little Cayman 1961";
+        name              = "Sister Islands Geodetic Datum 1961";
+        crsName           = "SIGD61";
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();

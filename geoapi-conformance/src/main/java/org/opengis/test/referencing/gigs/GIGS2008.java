@@ -566,7 +566,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      *   <li>EPSG vertical datum code: <b>5171</b></li>
      *   <li>EPSG vertical datum name: <b>EGM96 geoid</b></li>
      *   <li>EPSG vertical CRS code: <b>5773</b></li>
-     *   <li>EPSG vertical CRS name: <b>EGM96 geoid height</b></li>
+     *   <li>EPSG vertical CRS name: <b>EGM96 height</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -577,7 +577,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         important = true;
         datumName = "EGM96 geoid";
         datumCode = 5171;
-        name      = "EGM96 geoid height";
+        name      = "EGM96 height";
         code      = 5773;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
@@ -806,7 +806,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      *   <li>EPSG vertical datum code: <b>5100</b></li>
      *   <li>EPSG vertical datum name: <b>Mean Sea Level</b></li>
      *   <li>EPSG vertical CRS code: <b>5715</b></li>
-     *   <li>EPSG vertical CRS name: <b>msl depth</b></li>
+     *   <li>EPSG vertical CRS name: <b>MSL depth</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -817,7 +817,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         important = true;
         datumName = "Mean Sea Level";
         datumCode = 5100;
-        name      = "msl depth";
+        name      = "MSL depth";
         code      = 5715;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
@@ -830,7 +830,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      *   <li>EPSG vertical datum code: <b>5100</b></li>
      *   <li>EPSG vertical datum name: <b>Mean Sea Level</b></li>
      *   <li>EPSG vertical CRS code: <b>5714</b></li>
-     *   <li>EPSG vertical CRS name: <b>msl height</b></li>
+     *   <li>EPSG vertical CRS name: <b>MSL height</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -841,7 +841,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         important = true;
         datumName = "Mean Sea Level";
         datumCode = 5100;
-        name      = "msl height";
+        name      = "MSL height";
         code      = 5714;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
@@ -902,7 +902,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      *   <li>EPSG vertical datum code: <b>5119</b></li>
      *   <li>EPSG vertical datum name: <b>Nivellement General de la France - IGN69</b></li>
      *   <li>EPSG vertical CRS code: <b>5720</b></li>
-     *   <li>EPSG vertical CRS name: <b>NGF IGN69 height</b></li>
+     *   <li>EPSG vertical CRS name: <b>NGF-IGN69 height</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -913,7 +913,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         important = true;
         datumName = "Nivellement General de la France - IGN69";
         datumCode = 5119;
-        name      = "NGF IGN69 height";
+        name      = "NGF-IGN69 height";
         code      = 5720;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
