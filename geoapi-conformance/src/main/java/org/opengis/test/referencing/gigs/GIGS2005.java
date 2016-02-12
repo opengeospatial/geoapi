@@ -400,12 +400,15 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      * Tests “Australian Map Grid zones” coordinate operation creation from the factory.
      *
      * <ul>
-     *   <li>EPSG coordinate operation codes: <b>17448</b>, <b>17449</b>, <b>17450</b>, <b>17451</b>, <b>17452</b>,
+     *   <li>EPSG coordinate operation codes: <b>17448</b> (see note), <b>17449</b>, <b>17450</b>, <b>17451</b>, <b>17452</b>,
      *       <b>17453</b>, <b>17454</b>, <b>17455</b>, <b>17456</b>, <b>17457</b>, <b>17458</b></li>
      *   <li>EPSG coordinate operation name: <b>Australian Map Grid zones</b></li>
      *   <li>Coordinate operation method: <b>Transverse Mercator</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
+     *
+     * <b>Note:</b> EPSG:17448 is tested only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * Raison is: Falls outside EEZ area.
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
@@ -414,8 +417,11 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         important  = true;
         name       = "Australian Map Grid zones";
         methodName = "Transverse Mercator";
-        for (int code = 17448; code <= 17458; code++) {    // Loop over 11 codes
+        for (int code = 17449; code <= 17458; code++) {    // Loop over 10 codes
             createAndVerifyProjection(code);
+        }
+        if (isDeprecatedObjectSupported) {
+            createAndVerifyProjection(17448);
         }
     }
 
@@ -1045,6 +1051,9 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
+     * <b>Note:</b> EPSG:12112 and 12113 are tested only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * Raison is: Method changed to accord with NGS practice.
+     *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
      */
     @Test
@@ -1068,8 +1077,6 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         createAndVerifyProjection(11732);
         createAndVerifyProjection(15391);
         createAndVerifyProjection(15392);
-        createAndVerifyProjection(12112);
-        createAndVerifyProjection(12113);
         createAndVerifyProjection(12142);
         createAndVerifyProjection(12143);
         createAndVerifyProjection(15334);
@@ -1088,6 +1095,10 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         }
         for (int code = 15357; code <= 15361; code++) {    // Loop over 5 codes
             createAndVerifyProjection(code);
+        }
+        if (isDeprecatedObjectSupported) {
+            createAndVerifyProjection(12112);
+            createAndVerifyProjection(12113);
         }
     }
 

@@ -331,6 +331,14 @@ public class Configuration implements Serializable {
                 new Key<Boolean>(Boolean.class, "isDependencyIdentificationSupported");
 
         /**
+         * Whether the authority factory supports creation of deprecated {@link IdentifiedObject} instances.
+         *
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDeprecatedObjectSupported
+         */
+        public static final Key<Boolean> isDeprecatedObjectSupported =
+                new Key<Boolean>(Boolean.class, "isDeprecatedObjectSupported");
+
+        /**
          * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
          * Implementors can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.

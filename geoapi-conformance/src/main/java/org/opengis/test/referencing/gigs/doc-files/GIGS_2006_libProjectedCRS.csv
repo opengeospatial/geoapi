@@ -61,7 +61,7 @@
 3346,6126,true,LKS94,UTM
 3347,6269,true,NAD83,UTM
 3348,6140,true,NAD83(CSRS),UTM
-3349,6326,true,WGS 84,UTM
+3832,6326,true,WGS 84,UTM
 3350-3352,6284,true,Pulkovo 1942,UTM
 3354,6705,true,Mhast (offshore),UTM
 3353,6704,true,Mhast (onshore),UTM
@@ -73,7 +73,7 @@
 26911-26912; 32156; 3736; 26990; 2253; 32140; 2278,6269,true,NAD83,State Plane zones; UTM,Check units
 2955-2956,6140,true,NAD83(CSRS),UTM
 2845; 2917; 2809; 2898,6152,true,NAD83(HARN),State Plane zones; UTM
-27038; 27039; 27040,6270,true,Nahrwan 1967,Nahrwan 1967
+27039-27040,6270,true,Nahrwan 1967,Nahrwan 1967
 2067,6158,true,Naparima 1955,UTM
 30791; 30792; 30730-30732,6307,true,Nord Sahara 1959,Voirol Unifie; UTM,Check old Voirol
 27571-27573,6807,true,NTF (Paris),Lambert zones
