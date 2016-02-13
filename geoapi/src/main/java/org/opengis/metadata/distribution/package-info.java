@@ -42,7 +42,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
+ * </tr><tr><td style="width: 50%; white-space: nowrap">
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.distribution.Distribution}
  *  ├─ {@linkplain org.opengis.metadata.distribution.Distributor}
@@ -54,7 +54,7 @@
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.distribution.MediumName}
  *  └─ {@linkplain org.opengis.metadata.distribution.MediumFormat}</pre>
- * </td><td class="sep" width="50%" nowrap>
+ * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre> {@linkplain org.opengis.metadata.distribution.Distribution}
  *  ├─ {@linkplain org.opengis.metadata.distribution.Format}
  *  ├─ {@linkplain org.opengis.metadata.distribution.Distributor}

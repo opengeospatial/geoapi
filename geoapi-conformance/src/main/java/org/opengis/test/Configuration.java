@@ -485,7 +485,7 @@ public class Configuration implements Serializable {
          * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.PseudoEpsgFactory#copFactory
-         * @see org.opengis.test.referencing.gigs.Series3000Test#copFactory
+         * @see org.opengis.test.referencing.gigs.GIGS3005#copFactory
          */
         public static final Key<CoordinateOperationFactory> copFactory =
                 new Key<CoordinateOperationFactory>(CoordinateOperationFactory.class, "copFactory");
@@ -504,7 +504,7 @@ public class Configuration implements Serializable {
          *
          * @see org.opengis.test.referencing.ObjectFactoryTest#crsFactory
          * @see org.opengis.test.referencing.PseudoEpsgFactory#crsFactory
-         * @see org.opengis.test.referencing.gigs.Series3000Test#crsFactory
+         * @see org.opengis.test.referencing.gigs.GIGS3004#crsFactory
          */
         public static final Key<CRSFactory> crsFactory =
                 new Key<CRSFactory>(CRSFactory.class, "crsFactory");
@@ -524,7 +524,6 @@ public class Configuration implements Serializable {
          *
          * @see org.opengis.test.referencing.ObjectFactoryTest#csFactory
          * @see org.opengis.test.referencing.PseudoEpsgFactory#csFactory
-         * @see org.opengis.test.referencing.gigs.Series3000Test#csFactory
          */
         public static final Key<CSFactory> csFactory =
                 new Key<CSFactory>(CSFactory.class, "csFactory");
@@ -543,7 +542,7 @@ public class Configuration implements Serializable {
          *
          * @see org.opengis.test.referencing.ObjectFactoryTest#datumFactory
          * @see org.opengis.test.referencing.PseudoEpsgFactory#datumFactory
-         * @see org.opengis.test.referencing.gigs.Series3000Test#datumFactory
+         * @see org.opengis.test.referencing.gigs.GIGS3003#datumFactory
          */
         public static final Key<DatumFactory> datumFactory =
                 new Key<DatumFactory>(DatumFactory.class, "datumFactory");

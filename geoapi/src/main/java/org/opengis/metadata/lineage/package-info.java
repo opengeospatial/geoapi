@@ -42,7 +42,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
+ * </tr><tr><td style="width: 50%; white-space: nowrap">
  * <pre>ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.lineage.Lineage}
  *  ├─ {@linkplain org.opengis.metadata.lineage.ProcessStep}
@@ -51,7 +51,7 @@
  *  ├─ {@linkplain org.opengis.metadata.lineage.Processing}
  *  ├─ {@linkplain org.opengis.metadata.lineage.Algorithm}
  *  └─ {@linkplain org.opengis.metadata.lineage.ProcessStepReport}</pre>
- * </td><td class="sep" width="50%" nowrap>
+ * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre>{@linkplain org.opengis.metadata.lineage.Lineage}
  *  ├─ {@linkplain org.opengis.metadata.lineage.Source}
  *  │   └─ {@linkplain org.opengis.metadata.lineage.NominalResolution}

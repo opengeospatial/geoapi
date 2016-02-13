@@ -55,12 +55,12 @@
  * <tr>
  *   <th>Parameter descriptor</th>
  *   <th class="sep">Parameter value</th>
- * </tr><tr><td width="50%" nowrap>
+ * </tr><tr><td style="width: 50%; white-space: nowrap">
  * <pre> {@linkplain org.opengis.referencing.IdentifiedObject}
  *  └─ {@linkplain org.opengis.parameter.GeneralParameterDescriptor}
  *      ├─ {@linkplain org.opengis.parameter.ParameterDescriptor}
  *      └─ {@linkplain org.opengis.parameter.ParameterDescriptorGroup}</pre>
- * </td><td class="sep" width="50%" nowrap>
+ * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre> {@code Object}
  *  └─ {@linkplain org.opengis.parameter.GeneralParameterValue}
  *      ├─ {@linkplain org.opengis.parameter.ParameterValue}

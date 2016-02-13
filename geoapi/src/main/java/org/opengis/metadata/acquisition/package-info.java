@@ -42,7 +42,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
+ * </tr><tr><td style="width: 50%; white-space: nowrap">
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation Acquisition}
  *  ├─ {@linkplain org.opengis.metadata.acquisition.Objective}
@@ -63,7 +63,7 @@
  *  ├─ {@linkplain org.opengis.metadata.acquisition.Priority}
  *  ├─ {@linkplain org.opengis.metadata.acquisition.GeometryType}
  *  └─ {@linkplain org.opengis.metadata.acquisition.OperationType}</pre>
- * </td><td class="sep" width="50%" nowrap>
+ * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre> {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation}
  *  ├─ {@linkplain org.opengis.metadata.acquisition.Objective}
  *  │   ├─ {@linkplain org.opengis.metadata.acquisition.ObjectiveType} «code list»

@@ -46,7 +46,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
+ * </tr><tr><td style="width: 50%; white-space: nowrap">
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
  *  │   ├─ FeatureCatalogue
@@ -64,7 +64,7 @@
  *  ├─ {@linkplain org.opengis.metadata.content.ImagingCondition}
  *  ├─ {@linkplain org.opengis.metadata.content.PolarizationOrientation}
  *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType}</pre>
- * </td><td class="sep" width="50%" nowrap>
+ * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre> {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
  * {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}
  *  └─ {@linkplain org.opengis.metadata.content.FeatureTypeInfo}

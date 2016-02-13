@@ -42,26 +42,26 @@
  *   <th class="sep">Names</th>
  *   <th class="sep">Factories</th>
  *   <th class="sep">Other</th>
- * </tr><tr><td width="25%" nowrap>
+ * </tr><tr><td style="width: 25%; white-space: nowrap">
  * <pre> ISO-19103 object
  *  ├─ {@linkplain org.opengis.util.RecordSchema}
  *  ├─ {@linkplain org.opengis.util.Type}
  *  │   └─ {@linkplain org.opengis.util.RecordType}
  *  └─ {@linkplain org.opengis.util.Record}</pre>
- * </td><td class="sep" width="25%" nowrap>
+ * </td><td class="sep" style="width: 25%; white-space: nowrap">
  * <pre> ISO-19103 object
  *  └─ {@linkplain org.opengis.util.GenericName}
  *      ├─ {@linkplain org.opengis.util.ScopedName}
  *      └─ {@linkplain org.opengis.util.LocalName}
  *          ├─ {@linkplain org.opengis.util.TypeName}
  *          └─ {@linkplain org.opengis.util.MemberName}</pre>
- * </td><td class="sep" width="25%" nowrap>
+ * </td><td class="sep" style="width: 25%; white-space: nowrap">
  * <pre> GeoAPI object
  *  └─ {@linkplain org.opengis.util.Factory}
  *      ├─ {@linkplain org.opengis.util.NameFactory}
  *      ├─ {@linkplain org.opengis.referencing.ObjectFactory}
  *      └─ {@linkplain org.opengis.referencing.AuthorityFactory}</pre>
- * </td><td class="sep" width="25%" nowrap>
+ * </td><td class="sep" style="width: 25%; white-space: nowrap">
  * <pre> GeoAPI object
  *  └─ {@linkplain org.opengis.util.InternationalString}</pre>
  * </td></tr></table>
