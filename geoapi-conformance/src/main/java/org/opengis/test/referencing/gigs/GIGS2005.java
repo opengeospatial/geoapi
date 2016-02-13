@@ -407,7 +407,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
-     * <b>Note:</b> EPSG:17448 is tested only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * <b>Note:</b> EPSG:17448 is tested only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      * Raison is: Falls outside EEZ area.
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
@@ -420,7 +420,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         for (int code = 17449; code <= 17458; code++) {    // Loop over 10 codes
             createAndVerifyProjection(code);
         }
-        if (isDeprecatedObjectSupported) {
+        if (isDeprecatedObjectCreationSupported) {
             createAndVerifyProjection(17448);
         }
     }
@@ -1051,7 +1051,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
-     * <b>Note:</b> EPSG:12112 and 12113 are tested only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * <b>Note:</b> EPSG:12112 and 12113 are tested only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      * Raison is: Method changed to accord with NGS practice.
      *
      * @throws FactoryException if an error occurred while creating the coordinate operation from the EPSG code.
@@ -1096,7 +1096,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         for (int code = 15357; code <= 15361; code++) {    // Loop over 5 codes
             createAndVerifyProjection(code);
         }
-        if (isDeprecatedObjectSupported) {
+        if (isDeprecatedObjectCreationSupported) {
             createAndVerifyProjection(12112);
             createAndVerifyProjection(12113);
         }

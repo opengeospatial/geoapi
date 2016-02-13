@@ -512,7 +512,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
 
     /**
      * Tests “Clarke 1866 Michigan” ellipsoid creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7009</b></li>
@@ -535,7 +535,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20926631.531;
         semiMinorAxis     = 20855688.674;
         inverseFlattening = Double.NaN;
-        assumeTrue(isDeprecatedObjectSupported);
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyEllipsoid();
     }
 
@@ -1555,7 +1555,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
 
     /**
      * Tests “Popular Visualisation Sphere” spheroid creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7059</b></li>
@@ -1578,7 +1578,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6378137.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
-        assumeTrue(isDeprecatedObjectSupported);
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyEllipsoid();
     }
 

@@ -333,10 +333,10 @@ public class Configuration implements Serializable {
         /**
          * Whether the authority factory supports creation of deprecated {@link IdentifiedObject} instances.
          *
-         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDeprecatedObjectSupported
+         * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDeprecatedObjectCreationSupported
          */
-        public static final Key<Boolean> isDeprecatedObjectSupported =
-                new Key<Boolean>(Boolean.class, "isDeprecatedObjectSupported");
+        public static final Key<Boolean> isDeprecatedObjectCreationSupported =
+                new Key<Boolean>(Boolean.class, "isDeprecatedObjectCreationSupported");
 
         /**
          * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.

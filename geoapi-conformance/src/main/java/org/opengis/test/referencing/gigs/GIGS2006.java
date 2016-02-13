@@ -1471,7 +1471,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
-     * If {@link #isDeprecatedObjectSupported} is {@code true}, then this method tests also:
+     * If {@link #isDeprecatedObjectCreationSupported} is {@code true}, then this method tests also:
      *
      * <ul>
      *   <li>Projected CRS codes: <b>26811</b>, <b>26812</b>, <b>26813</b></li>
@@ -1489,7 +1489,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
         datumCode       = 6267;
         createAndVerifyProjectedCRS(6201);
         createAndVerifyProjectedCRS(6202);
-        if (isDeprecatedObjectSupported) {
+        if (isDeprecatedObjectCreationSupported) {
             name      = "NAD27 Michigan";
             datumCode = 6268;
             createAndVerifyProjectedCRS(26811);

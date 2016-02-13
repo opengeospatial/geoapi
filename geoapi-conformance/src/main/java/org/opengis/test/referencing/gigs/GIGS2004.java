@@ -1864,7 +1864,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
 
     /**
      * Tests “NAD27 Michigan” geodetic datum creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6268</b></li>
@@ -1885,7 +1885,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         crsName           = "NAD27 Michigan";
         ellipsoidName     = "Clarke 1866 Michigan";
         primeMeridianName = "Greenwich";
-        assumeTrue(isDeprecatedObjectSupported);
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyDatum();
         createAndVerifyGeographicCRS(4268, GEOGRAPHIC_2D);
     }
@@ -7482,7 +7482,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
 
     /**
      * Tests “Popular Visualisation Datum” geodetic datum creation from the factory <em>(deprecated)</em>.
-     * This is test is executed only if {@link #isDeprecatedObjectSupported} is {@code true}.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6055</b></li>
@@ -7502,7 +7502,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         crsName           = "Popular Visualisation CRS";
         ellipsoidName     = "Popular Visualisation Sphere";
         primeMeridianName = "Greenwich";
-        assumeTrue(isDeprecatedObjectSupported);
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyDatum();
         createAndVerifyGeographicCRS(4055, GEOGRAPHIC_2D);
     }
