@@ -119,6 +119,11 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
     protected boolean isDependencyIdentificationSupported;
 
     /**
+     * {@code true} if the factory support creation of deprecated objects.
+     */
+    protected boolean isDeprecatedObjectCreationSupported;
+
+    /**
      * {@code true} if the tested object is particularly important to E&amp;P industry.
      * This field is set at the beginning of test methods.
      */
@@ -136,10 +141,12 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isStandardNameSupported,
                 Configuration.Key.isStandardAliasSupported,
-                Configuration.Key.isDependencyIdentificationSupported);
+                Configuration.Key.isDependencyIdentificationSupported,
+                Configuration.Key.isDeprecatedObjectCreationSupported);
         isStandardNameSupported             = isEnabled[0];
         isStandardAliasSupported            = isEnabled[1];
         isDependencyIdentificationSupported = isEnabled[2];
+        isDeprecatedObjectCreationSupported = isEnabled[3];
     }
 
     /**

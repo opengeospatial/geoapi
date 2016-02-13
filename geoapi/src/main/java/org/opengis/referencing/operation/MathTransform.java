@@ -231,29 +231,28 @@ public interface MathTransform {
                    float [] dstPts, int dstOff, int numPts) throws TransformException;
 
     /**
-     * Gets the derivative of this transform at a point. The derivative is the
-     * matrix of the non-translating portion of the approximate affine map at
-     * the point. The matrix will have dimensions corresponding to the source
-     * and target coordinate systems. If the input dimension is <var>M</var>,
-     * and the output dimension is <var>N</var>, then the matrix will have size
-     * <code>N×M</code>. The elements of the matrix
+     * Gets the derivative of this transform at a point.
+     * The derivative is the matrix of the non-translating portion of the approximate affine map at the point.
+     * The matrix will have dimensions corresponding to the source and target coordinate systems.
+     * If the input dimension is <var>M</var>, and the output dimension is <var>N</var>,
+     * then the matrix will have size <var>N</var>×<var>M</var>.
+     * The elements of the matrix
      *
-     *              <code>{e<sub>n,m</sub> : n=0..(N-1)}</code>
+     *              {e<sub>n,m</sub> : <var>n</var>=0 … (<var>N</var>-1)}
      *
      * form a vector in the output space which is parallel to the displacement
      * caused by a small change in the <var>m</var>'th ordinate in the input space.
      *
-     * <p>For example, if the input dimension is 4 and the
-     * output dimension is 3, then a small displacement</p>
+     * <p>For example, if the input dimension is 4 and the output dimension is 3,
+     * then a small displacement
      *
-     * <code>(x₀,&nbsp;x₁,&nbsp;x₂,&nbsp;x₃)</code>
+     * (<var>x₀</var>, <var>x₁</var>, <var>x₂</var>, <var>x₃</var>)
      *
      * in the input space will result in a displacement
      *
-     * <code>(y₀,&nbsp;y₁,&nbsp;y₂)</code>
+     * (<var>y₀</var>, <var>y₁</var>, <var>y₂</var>)
      *
-     * in the output space computed as below (<code>e<sub>n,m</sub></code>
-     * are the matrix elements):
+     * in the output space computed as below (e<sub>n,m</sub> are the matrix elements):
      *
      * <pre>
      *┌    ┐     ┌                    ┐ ┌    ┐

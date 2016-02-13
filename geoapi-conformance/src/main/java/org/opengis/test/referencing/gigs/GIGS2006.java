@@ -1465,10 +1465,18 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      * Tests “NAD27 Michigan”-based projected CRS creation from the factory.
      *
      * <ul>
+     *   <li>Projected CRS codes: <b>6201</b>, <b>6202</b></li>
+     *   <li>Geographic CRS name: <b>NAD27</b></li>
+     *   <li>Projection names (informative): <b>State Plane zones</b></li>
+     *   <li>Particularly important to E&amp;P industry.</li>
+     * </ul>
+     *
+     * If {@link #isDeprecatedObjectCreationSupported} is {@code true}, then this method tests also:
+     *
+     * <ul>
      *   <li>Projected CRS codes: <b>26811</b>, <b>26812</b>, <b>26813</b></li>
      *   <li>Geographic CRS name: <b>NAD27 Michigan</b></li>
      *   <li>Projection names (informative): <b>State Plane zones</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the projected CRS from the EPSG code.
@@ -1476,12 +1484,18 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     @Test
     public void testNAD27_Michigan() throws FactoryException {
         important       = true;
-        name            = "NAD27 Michigan";
+        name            = "NAD27";
         projectionNames = new String[] {"State Plane zones"};
-        datumCode       = 6268;
-        createAndVerifyProjectedCRS(26811);
-        createAndVerifyProjectedCRS(26812);
-        createAndVerifyProjectedCRS(26813);
+        datumCode       = 6267;
+        createAndVerifyProjectedCRS(6201);
+        createAndVerifyProjectedCRS(6202);
+        if (isDeprecatedObjectCreationSupported) {
+            name      = "NAD27 Michigan";
+            datumCode = 6268;
+            createAndVerifyProjectedCRS(26811);
+            createAndVerifyProjectedCRS(26812);
+            createAndVerifyProjectedCRS(26813);
+        }
     }
 
     /**
@@ -1566,7 +1580,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      * Tests “Nahrwan 1967”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b>27038</b>, <b>27039</b>, <b>27040</b></li>
+     *   <li>Projected CRS codes: <b>27039</b>, <b>27040</b></li>
      *   <li>Geographic CRS name: <b>Nahrwan 1967</b></li>
      *   <li>Projection names (informative): <b>Nahrwan 1967</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
@@ -1580,7 +1594,6 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
         name            = "Nahrwan 1967";
         projectionNames = new String[] {"Nahrwan 1967"};
         datumCode       = 6270;
-        createAndVerifyProjectedCRS(27038);
         createAndVerifyProjectedCRS(27039);
         createAndVerifyProjectedCRS(27040);
     }
@@ -2273,7 +2286,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      * Tests “WGS 84”-based projected CRS creation from the factory.
      *
      * <ul>
-     *   <li>Projected CRS codes: <b>3349</b>, <b>32601</b>, <b>32602</b>, <b>32603</b>, <b>32604</b>, <b>32605</b>,
+     *   <li>Projected CRS codes: <b>3832</b>, <b>32601</b>, <b>32602</b>, <b>32603</b>, <b>32604</b>, <b>32605</b>,
      *       <b>32606</b>, <b>32607</b>, <b>32608</b>, <b>32609</b>, <b>32610</b>, <i>…110 more</i></li>
      *   <li>Geographic CRS name: <b>WGS 84</b></li>
      *   <li>Projection names (informative): <b>UTM</b></li>
@@ -2289,7 +2302,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
         name            = "WGS 84";
         projectionNames = new String[] {"UTM"};
         datumCode       = 6326;
-        createAndVerifyProjectedCRS(3349);
+        createAndVerifyProjectedCRS(3832);
         for (int code = 32601; code <= 32660; code++) {    // Loop over 60 codes
             createAndVerifyProjectedCRS(code);
         }

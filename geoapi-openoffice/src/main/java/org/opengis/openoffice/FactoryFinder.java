@@ -41,7 +41,7 @@ final class FactoryFinder {
     private static ServiceLoader<CRSAuthorityFactory> crsFactory;
 
     /** Service registry initialized only when first needed. */
-    private static ServiceLoader<CoordinateOperationFactory> opFactory;
+    private static ServiceLoader<CoordinateOperationFactory> copFactory;
 
     /**
      * Do not allows any instantiation of this class.
@@ -112,9 +112,9 @@ final class FactoryFinder {
      * @throws NoSuchElementException If no factory were found.
      */
     static synchronized CoordinateOperationFactory getCoordinateOperationFactory() {
-        ServiceLoader<CoordinateOperationFactory> loader = opFactory;
+        ServiceLoader<CoordinateOperationFactory> loader = copFactory;
         if (loader == null) {
-            opFactory = loader = ServiceLoader.load(CoordinateOperationFactory.class, getClassLoader());
+            copFactory = loader = ServiceLoader.load(CoordinateOperationFactory.class, getClassLoader());
         }
         return getFactory(loader);
     }

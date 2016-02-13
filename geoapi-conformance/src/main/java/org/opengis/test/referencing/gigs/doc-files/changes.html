@@ -9,10 +9,22 @@
   </head>
   <body>
     <h1>Changes compared to GIGS files</h1>
-    <p>GIGS guidance notice typically requires an accuracy of 10 decimal figures. However some data
-       declared in the original Excel files do not allow such precision. This page documents the
-       necessary changes applied in order to meet the required accuracy. All new values listed below
-       come from the EPSG database version 7.9.</p>
+    <p>The changes applied to GIGS test files fall in three categories:</p>
+    <ul>
+      <li><b>Replacement of deprecated definitions:</b>
+          if the EPSG dataset specifies a replacement for a deprecated object,
+          the definition is modified to match the new object.</li>
+
+      <li><b>Renaming:</b>
+          if an object name changed in newer releases of EPSG dataset,
+          the name in the GIGS file is updated to match the new name.</li>
+
+      <li><b>Accuracy:</b>
+          GIGS guidance notice typically requires an accuracy of 10 decimal figures.
+          However some data declared in the original Excel files do not allow such precision.
+          This page documents the necessary changes applied in order to meet the required accuracy.
+          All new values listed below come from the EPSG dataset version 7.9.</li>
+    </ul>
 
     <h2><a href="GIGS_2001_libUnit.csv">GIGS_2001_libUnit.csv</a></h2>
     <table>
@@ -72,6 +84,8 @@
       <tr><td>6659</td><td>Datum name</td><td>Islands Network 1993</td><td>Islands Net 1993</td></tr>
       <tr><td>6743</td><td>Datum &amp; CRS name</td><td>Karbala 1979 (Polservice)</td><td>Karbala 1979</td></tr>
       <tr><td>6728</td><td>Datum &amp; CRS name</td><td>Pico de la Nieves</td><td>Pico de las Nieves 1984</td></tr>
+      <tr><td><s>6640</s></td><td>EPSG Datum code</td><td>6640 <strong>(deprecated)</strong></td><td>1047</td></tr>
+      <tr><td><s>6640</s></td><td>EPSG geog2D CRS Code</td><td>4640 <strong>(deprecated)</strong></td><td>4558</td></tr>
       <tr><td>6156</td><td>Datum name</td><td>Jednotne Trigonometricke Site Katastralni</td><td>System Jednotne Trigonometricke Site Katastralni</td></tr>
       <tr><td>6818</td><td>Datum name</td><td>S-JTSK (Ferro)</td><td>System Jednotne Trigonometricke Site Katastralni (Ferro)</td></tr>
     </table>
@@ -97,8 +111,9 @@
       <tr><td>3346</td><td>EPSG Datum code / Geographic CRS name</td><td>6702 / Mauritania 1999</td><td>6126 / LKS94</td></tr>
       <tr><td>3347</td><td>EPSG Datum code / Geographic CRS name</td><td>6702 / Mauritania 1999</td><td>6269 / NAD83</td></tr>
       <tr><td>3348</td><td>EPSG Datum code / Geographic CRS name</td><td>6702 / Mauritania 1999</td><td>6140 / NAD83(CSRS)</td></tr>
-      <tr><td><s>3349</s></td><td><s>EPSG Datum code / Geographic CRS name</s></td><td><s>6702 / Mauritania 1999</s></td><td><s>6326 / WGS 84</s></td></tr>
+      <tr><td><s>3349</s></td><td>EPSG projected CRS Code</td><td>3349 <b>(deprecated)</b></td><td>3832</td></tr>
       <tr><td>3350-3352</td><td>EPSG Datum code / Geographic CRS name</td><td>6702 / Mauritania 1999</td><td>6284 / Pulkovo 1942</td></tr>
+      <tr><td><s>27038</s>-27040</td><td>EPSG projected CRS Code</td><td>27038 <b>(deprecated)</b>-27040</b></td><td>27039-27040</td></tr>
     </table>
 
     <h2><a href="GIGS_2008_libVerticalDatumCRS.csv">GIGS_2008_libVerticalDatum.csv</a></h2>

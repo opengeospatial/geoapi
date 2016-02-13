@@ -511,14 +511,15 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
     }
 
     /**
-     * Tests “Clarke 1866 Michigan” ellipsoid creation from the factory.
+     * Tests “Clarke 1866 Michigan” ellipsoid creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7009</b></li>
      *   <li>EPSG ellipsoid name: <b>Clarke 1866 Michigan</b></li>
      *   <li>Semi-major axis (<var>a</var>): <b>20926631.531</b></li>
      *   <li>Semi-minor axis (<var>b</var>): <b>20855688.674</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li><b>Deprecated:</b> Ellipsoid scaling moved from datum to map projection to accord with NGS practice.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
@@ -534,6 +535,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMajorAxis     = 20926631.531;
         semiMinorAxis     = 20855688.674;
         inverseFlattening = Double.NaN;
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyEllipsoid();
     }
 
@@ -1552,13 +1554,15 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
     }
 
     /**
-     * Tests “Popular Visualisation Sphere” spheroid creation from the factory.
+     * Tests “Popular Visualisation Sphere” spheroid creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG ellipsoid code: <b>7059</b></li>
      *   <li>EPSG ellipsoid name: <b>Popular Visualisation Sphere</b></li>
      *   <li>Semi-major axis (<var>a</var>): <b>6378137</b></li>
      *   <li>Semi-minor axis (<var>b</var>): <b>6378137</b></li>
+     *   <li><b>Deprecated:</b> IOGP revised its approach to description of Popular Visualisation CRS.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the ellipsoid from the EPSG code.
@@ -1574,6 +1578,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         semiMinorAxis     = 6378137.0;
         inverseFlattening = Double.NaN;
         isSphere          = true;
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyEllipsoid();
     }
 

@@ -179,10 +179,10 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @return A newly created parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
-     * @throws InvalidParameterCardinalityException If this parameter group already contains the
+     * @throws InvalidParameterCardinalityException if this parameter group already contains the
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs() maximum number of occurences}
      *         of subgroups of the given name.
-     * @throws IllegalStateException If the group can not be added for an other raison.
+     * @throws IllegalStateException if the group can not be added for an other raison.
      *
      * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make

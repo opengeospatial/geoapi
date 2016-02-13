@@ -1863,7 +1863,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “NAD27 Michigan” geodetic datum creation from the factory.
+     * Tests “NAD27 Michigan” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6268</b></li>
@@ -1871,7 +1872,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *   <li>Ellipsoid name: <b>Clarke 1866 Michigan</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      *   <li>CRS using the datum: <b>NAD27 Michigan</b></li>
-     *   <li>Particularly important to E&amp;P industry.</li>
+     *   <li><b>Deprecated:</b> Ellipsoid scaling moved from datum to map projection to accord with NGS practice.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -1884,6 +1885,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         crsName           = "NAD27 Michigan";
         ellipsoidName     = "Clarke 1866 Michigan";
         primeMeridianName = "Greenwich";
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyDatum();
         createAndVerifyGeographicCRS(4268, GEOGRAPHIC_2D);
     }
@@ -4722,10 +4724,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6723</b></li>
-     *   <li>EPSG datum name: <b>Grand Cayman 1959</b></li>
+     *   <li>EPSG datum name: <b>Grand Cayman Geodetic Datum 1959</b></li>
      *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Grand Cayman 1959</b></li>
+     *   <li>CRS using the datum: <b>GCGD59</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -4733,8 +4735,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testGrandCayman() throws FactoryException {
         code              = 6723;
-        name              = "Grand Cayman 1959";
-        crsName           = "Grand Cayman 1959";
+        name              = "Grand Cayman Geodetic Datum 1959";
+        crsName           = "GCGD59";
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -5466,10 +5468,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6141</b></li>
-     *   <li>EPSG datum name: <b>Israel</b></li>
+     *   <li>EPSG datum name: <b>Israel 1993</b></li>
      *   <li>Ellipsoid name: <b>GRS 1980</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Israel</b></li>
+     *   <li>CRS using the datum: <b>Israel 1993</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -5477,8 +5479,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testIsrael() throws FactoryException {
         code              = 6141;
-        name              = "Israel";
-        crsName           = "Israel";
+        name              = "Israel 1993";
+        crsName           = "Israel 1993";
         ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -6234,10 +6236,10 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6726</b></li>
-     *   <li>EPSG datum name: <b>Little Cayman 1961</b></li>
+     *   <li>EPSG datum name: <b>Sister Islands Geodetic Datum 1961</b></li>
      *   <li>Ellipsoid name: <b>Clarke 1866</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Little Cayman 1961</b></li>
+     *   <li>CRS using the datum: <b>SIGD61</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -6245,8 +6247,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testLittleCayman() throws FactoryException {
         code              = 6726;
-        name              = "Little Cayman 1961";
-        crsName           = "Little Cayman 1961";
+        name              = "Sister Islands Geodetic Datum 1961";
+        crsName           = "SIGD61";
         ellipsoidName     = "Clarke 1866";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -7479,7 +7481,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “Popular Visualisation Datum” geodetic datum creation from the factory.
+     * Tests “Popular Visualisation Datum” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6055</b></li>
@@ -7487,6 +7490,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *   <li>Ellipsoid name: <b>Popular Visualisation Sphere</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      *   <li>CRS using the datum: <b>Popular Visualisation CRS</b></li>
+     *   <li><b>Deprecated:</b> OGP revised its approach to description of Popular Visualisation CRS.</li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -7498,6 +7502,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         crsName           = "Popular Visualisation CRS";
         ellipsoidName     = "Popular Visualisation Sphere";
         primeMeridianName = "Greenwich";
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyDatum();
         createAndVerifyGeographicCRS(4055, GEOGRAPHIC_2D);
     }
@@ -7842,9 +7847,9 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      * Tests “Reseau de Reference des Antilles Francaises 1991” geodetic datum creation from the factory.
      *
      * <ul>
-     *   <li>EPSG datum code: <b>6640</b></li>
+     *   <li>EPSG datum code: <b>1047</b></li>
      *   <li>EPSG datum name: <b>Reseau de Reference des Antilles Francaises 1991</b></li>
-     *   <li>Ellipsoid name: <b>WGS 84</b></li>
+     *   <li>Ellipsoid name: <b>GRS 1980</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      *   <li>CRS using the datum: <b>RRAF 1991</b></li>
      * </ul>
@@ -7853,13 +7858,13 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      */
     @Test
     public void testRRAF1991() throws FactoryException {
-        code              = 6640;
+        code              = 1047;
         name              = "Reseau de Reference des Antilles Francaises 1991";
         crsName           = "RRAF 1991";
-        ellipsoidName     = "WGS 84";
+        ellipsoidName     = "GRS 1980";
         primeMeridianName = "Greenwich";
         verifyDatum();
-        createAndVerifyGeographicCRS(4640, GEOGRAPHIC_2D);
+        createAndVerifyGeographicCRS(4558, GEOGRAPHIC_2D);
     }
 
     /**

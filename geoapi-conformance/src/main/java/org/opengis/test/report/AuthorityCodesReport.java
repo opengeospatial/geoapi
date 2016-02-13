@@ -75,16 +75,15 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * </table>
  *
  * <p><b>How to use this class:</b></p>
- * <ul>
- *   <li>Create a {@link Properties} map with the values documented in the above table. Default
- *       values exist for many keys, but may depend on the environment. It is safer to specify
- *       values explicitly when they are known, except the <cite>automatic</cite> ones.</li>
- *   <li>Create a new {@code AuthorityCodesReport} with the above properties map
- *       given to the constructor.</li>
- *   <li>Invoke one of the {@link #add(CRSAuthorityFactory) add} method
- *       for the factory of identified objects to include in the HTML page.</li>
+ * <ol>
+ *   <li>Create a {@link Properties} map with the values documented in the above table.
+ *       Default values exist for many keys, but may depend on the environment.
+ *       It is safer to specify values explicitly when they are known, except the <cite>automatic</cite> ones.</li>
+ *   <li>Create a new {@code AuthorityCodesReport} with the above properties map given to the constructor.</li>
+ *   <li>Invoke one of the {@link #add(CRSAuthorityFactory) add(…)} methods for the factory of identified objects
+ *       to include in the HTML page.</li>
  *   <li>Invoke {@link #write(File)}.</li>
- * </ul>
+ * </ol>
  *
  * @author Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -93,14 +92,23 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  */
 public class AuthorityCodesReport extends Report {
     /**
-     * A single row in the table produced by {@link AuthorityCodesReport}. Instances of this
-     * class are created by the {@link AuthorityCodesReport#createRow(String, IdentifiedObject)
-     * AuthorityCodesReport.createRow(…)} methods. Subclasses of {@code AuthorityCodesReport}
-     * can override those methods in order to modify the content of a row.
+     * A single row in the table produced by {@link AuthorityCodesReport}. Instances of this class are created by the
+     * {@link AuthorityCodesReport#createRow(String, IdentifiedObject) AuthorityCodesReport.createRow(…)} methods.
+     * Subclasses of {@code AuthorityCodesReport} can override those methods in order to modify the content of a row.
      *
-     * <p>Every {@link String} fields in this class can contain HTML elements. If some text is
-     * expected to print {@code <} or {@code >} characters, then those characters need to be
-     * escaped to their HTML entities.</p>
+     * <p>Every {@link String} fields in this class must be valid HTML. If some text is expected to print
+     * {@code <} or {@code >} characters, then those characters need to be escaped to their HTML entities.</p>
+     *
+     * <p>Content of each {@code Row} instance is written in the following order:</p>
+     * <ol>
+     *   <li>{@link #annotation} if explicitely set (the default is none).</li>
+     *   <li>{@link #code}</li>
+     *   <li>{@link #name}</li>
+     *   <li>{@link #remark}</li>
+     * </ol>
+     *
+     * <p>Other attributes ({@link #isSectionHeader}, {@link #isDeprecated} and {@link #hasError})
+     * are not directly written in the table, but affect their styling.</p>
      *
      * @author Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -112,34 +120,47 @@ public class AuthorityCodesReport extends Report {
      */
     protected static class Row implements Comparable<Row> {
         /**
-         * The authority code.
+         * The authority code in HTML.
          */
-        public final String code;
+        public String code;
 
         /**
-         * The object name, or {@code null} if none. By default, this field is set to the value of
-         * <code>{@linkplain IdentifiedObject#getName()}.{@link Identifier#getCode() getCode()}</code>.
+         * The object name in HTML, or {@code null} if none. By default, this field is set to the value of
+         * <code>{@linkplain IdentifiedObject#getName()}.{@linkplain Identifier#getCode() getCode()}</code>.
+         *
+         * <p>Users can override {@link AuthorityCodesReport#createRow(String, IdentifiedObject)} if they
+         * wish to change the value of this field.</p>
          */
         public String name;
 
         /**
-         * A remark to display after the name, or {@code null} if none. By default, this field is
-         * set to one of the following values:
+         * A remark in HTML to display after the name, or {@code null} if none.
+         * By default, this field is set to one of the following values:
          *
          * <ul>
          *   <li>If the object creation was successful, the {@link IdentifiedObject#getRemarks()}
          *       localized to the {@linkplain AuthorityCodesReport#getLocale() report locale}.</li>
          *   <li>Otherwise, the {@link FactoryException} localized message.</li>
          * </ul>
+         *
+         * <p>Users can override {@link AuthorityCodesReport#createRow(String, IdentifiedObject)}
+         * or {@link AuthorityCodesReport#createRow(String, FactoryException)} if they wish to change
+         * the value of this field.</p>
          */
         public String remark;
 
         /**
-         * {@code true} if an exception occurred while creating the identified object.
-         * If {@code true}, then the {@link #remark} field will contains the exception
-         * localized message.
+         * A small symbol to put before the {@linkplain #code} and {@linkplain #name}, or 0 (the default) if none.
+         * Implementations can use this field for putting a mark before objects having some particular characteristics,
+         * for example a CRS having unusual axes order.
          */
-        public boolean hasError;
+        public char annotation;
+
+        /**
+         * {@code true} if this row should actually be used as a section header. Users can insert rows
+         * with this flag set to {@code true} if they wish to split the large table is smaller sections.
+         */
+        public boolean isSectionHeader;
 
         /**
          * {@code true} if this authority code is deprecated, or {@code false} otherwise.
@@ -147,48 +168,34 @@ public class AuthorityCodesReport extends Report {
         public boolean isDeprecated;
 
         /**
-         * A small symbol to put before the {@linkplain #code} and {@linkplain #name},
-         * or 0 (the default) if none. Implementations can use this field for putting a
-         * mark before objects having some particular characteristics, for example a CRS
-         * having unusual axes order.
+         * {@code true} if an exception occurred while creating the identified object.
+         * If {@code true}, then the {@link #remark} field will contains the exception localized message.
          */
-        public char annotation;
+        public boolean hasError;
 
         /**
-         * Creates a new row for the given authority code.
-         *
-         * @param code The authority code.
+         * Creates a new row with all fields initialized to {@code null} or {@code false}.
          */
-        public Row(final String code) {
-            this.code = code;
-        }
-
-        /**
-         * Creates a new row initialized to a copy of the given row.
-         *
-         * @param toCopy The row to copy.
-         */
-        public Row(final Row toCopy) {
-            code         = toCopy.code;
-            name         = toCopy.name;
-            remark       = toCopy.remark;
-            hasError     = toCopy.hasError;
-            isDeprecated = toCopy.isDeprecated;
-            annotation   = toCopy.annotation;
+        public Row() {
         }
 
         /**
          * Writes this row to the given stream.
          */
         final void write(final Appendable out, final boolean highlight) throws IOException {
-            out.append("<tr");                     if (highlight)          out.append(" class=\"HL\"");
-            out.append("><td class=\"nospace\">"); if (annotation != 0)    out.append(annotation);
-            out.append("</td><td><code>");         if (isDeprecated)       out.append("<del>");
-                                                   if (code       != null) out.append(code);
-                                                   if (isDeprecated)       out.append("</del>");
-            out.append("</code></td><td>");        if (name       != null) out.append(name);
-            out.append("</td><td");                if (hasError)           out.append(" class=\"error\"");
-            out.append('>');                       if (remark     != null) out.append(remark);
+            if (isSectionHeader) {
+                out.append("<tr class=\"separator\"><td colspan=\"4\">").append(name).append("</td></tr>");
+                return;
+            }
+            out.append("<tr");                    if (highlight)       out.append(" class=\"HL\"");
+            out.append("><td class=\"narrow\">"); if (annotation != 0) out.append(annotation);
+            out.append("</td><td><code>");        if (isDeprecated)    out.append("<del>");
+                                                  if (code != null)    out.append(code);
+                                                  if (isDeprecated)    out.append("</del>");
+            out.append("</code></td><td>");       if (name != null)    out.append(name);
+            out.append("</td><td");               if (hasError)        out.append(" class=\"error\"");
+                                             else if (isDeprecated)    out.append(" class=\"warning\"");
+            out.append('>');                      if (remark != null)  out.append(remark);
             out.append("</td></tr>");
         }
 
@@ -223,7 +230,7 @@ public class AuthorityCodesReport extends Report {
             try {
                 write(buffer, false);
             } catch (IOException e) {
-                throw new AssertionError(e); // Should never happen.
+                throw new AssertionError(e);        // Should never happen.
             }
             return buffer.toString();
         }
@@ -267,8 +274,8 @@ public class AuthorityCodesReport extends Report {
     }
 
     /**
-     * Adds the Coordinate Reference Systems identified by all codes available from the given
-     * CRS authority factory. More specifically this method performs the following steps:
+     * Adds the Coordinate Reference Systems identified by all codes available from the given CRS authority factory.
+     * This method performs the following steps:
      *
      * <ul>
      *   <li>Get the list of available codes for type {@link CoordinateReferenceSystem}
@@ -309,8 +316,8 @@ public class AuthorityCodesReport extends Report {
     }
 
     /**
-     * Adds the objects identified by the given codes. More specifically this method performs
-     * the following steps:
+     * Adds the objects identified by the given codes.
+     * This method performs the following steps:
      *
      * <ul>
      *   <li>For each code, try to instantiate an object with
@@ -346,15 +353,26 @@ public class AuthorityCodesReport extends Report {
     }
 
     /**
-     * Creates a new row for the given authority code and identified object. Subclasses
-     * can override this method in order to customize the table content.
+     * Returns a new {@link Row} instance. Subclasses can override this method if they wish to
+     * instantiate a subclass of {@code Row}.
+     *
+     * @return The new, initially empty, {@code Row} instance.
+     */
+    protected Row newRow() {
+        return new Row();
+    }
+
+    /**
+     * Creates a new row for the given authority code and identified object.
+     * Subclasses can override this method in order to customize the table content.
      *
      * @param  code    The authority code of the created object.
      * @param  object  The object created from the given authority code.
      * @return The created row, or {@code null} if the row should be ignored.
      */
     protected Row createRow(final String code, final IdentifiedObject object) {
-        final Row row = new Row(escape(code));
+        final Row row = newRow();
+        row.code = escape(code);
         if (object != null) {
             final Identifier name = object.getName();
             if (name != null) {
@@ -366,15 +384,16 @@ public class AuthorityCodesReport extends Report {
     }
 
     /**
-     * Creates a new row for the given authority code and exception. Subclasses
-     * can override this method in order to customize the table content.
+     * Creates a new row for the given authority code and exception.
+     * Subclasses can override this method in order to customize the table content.
      *
      * @param  code      The authority code of the object to create.
      * @param  exception The exception that occurred while creating the identified object.
      * @return The created row, or {@code null} if the row should be ignored.
      */
     protected Row createRow(final String code, final FactoryException exception) {
-        final Row row = new Row(escape(code));
+        final Row row = newRow();
+        row.code = escape(code);
         row.hasError = true;
         if (exception != null) {
             row.remark = escape(exception.getLocalizedMessage());
@@ -386,10 +405,21 @@ public class AuthorityCodesReport extends Report {
     }
 
     /**
+     * Sorts the rows before to {@linkplain #write(File) write} them.
+     * The default implementation sort the rows by their {@linkplain Row#compareTo natural ordering}.
+     * Subclasses can override this method if they want to sort the rows otherwise,
+     * or if they want to add or remove rows before or after the sorting.
+     */
+    protected void sortRows() {
+        Collections.sort(rows);
+    }
+
+    /**
      * Formats the identified objects as a HTML page in the given file.
      *
      * @param  destination The file to generate.
      * @return The given {@code destination} file.
+     * @throws IOException if an error occurred while writing the report.
      */
     @Override
     public File write(File destination) throws IOException {
@@ -404,7 +434,7 @@ public class AuthorityCodesReport extends Report {
         defaultProperties.setProperty("PERCENT.VALIDS",     Integer.toString(100 * numValids / numRows) + '%'); // Really want rounding toward 0.
         defaultProperties.setProperty("PERCENT.ANNOTATED",  Integer.toString(Math.round(100f * numAnnotations / numRows)) + '%');
         defaultProperties.setProperty("PERCENT.DEPRECATED", Integer.toString(Math.round(100f * numDeprecated  / numRows)) + '%');
-        Collections.sort(rows);
+        sortRows();
         /*
          * The above initialization needs to be done before to start
          * the actual content writing. Now we can write the HTML table.
@@ -418,6 +448,8 @@ public class AuthorityCodesReport extends Report {
      * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
      * This operation is pretty fast; the slow operation which deserve progress
      * listeners is rather the {@link #add(CRSAuthorityFactory)} method.
+     *
+     * @throws IOException if an error occurred during the copy.
      */
     @Override
     final void writeContent(final BufferedWriter out, final String key) throws IOException {
@@ -432,6 +464,9 @@ public class AuthorityCodesReport extends Report {
             row.write(out, (c & 2) != 0);
             out.newLine();
             c++;
+            if (row.isSectionHeader) {
+                c = 0;
+            }
         }
     }
 }

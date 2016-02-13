@@ -318,7 +318,7 @@
 6749,Reseau Geodesique de Nouvelle Caledonie 91-93,,,4749,RGNC91-93,false,GRS 1980,Greenwich
 6687,Reseau Geodesique de la Polynesie Francaise,,,4687,RGPF,false,GRS 1980,Greenwich
 6627,Reseau Geodesique de la Reunion 1992,,,4627,RGR92,false,GRS 1980,Greenwich
-6640,Reseau de Reference des Antilles Francaises 1991,,,4640,RRAF 1991,false,WGS 84,Greenwich
+1047,Reseau de Reference des Antilles Francaises 1991,,,4558,RRAF 1991,false,GRS 1980,Greenwich
 6764,Ross Sea Region Geodetic Datum 2000,,,4764,RSRGD2000,false,GRS 1980,Greenwich
 6308,Stockholm 1938,,,4308,RT38,false,Bessel 1841,Greenwich
 6814,Stockholm 1938 (Stockholm),,,4814,RT38 (Stockholm),false,Bessel 1841,Stockholm

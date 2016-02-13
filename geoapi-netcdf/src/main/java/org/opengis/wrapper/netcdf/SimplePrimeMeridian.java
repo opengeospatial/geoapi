@@ -47,7 +47,7 @@ final class SimplePrimeMeridian extends NetcdfIdentifiedObject implements PrimeM
     }
 
     /**
-     * Returns the datum name, since this is typically the only way to differentiate datum.
+     * Returns the prime meridian name.
      */
     @Override
     public String delegate() {
@@ -55,7 +55,7 @@ final class SimplePrimeMeridian extends NetcdfIdentifiedObject implements PrimeM
     }
 
     /**
-     * Returns the datum name.
+     * Returns the prime meridian name.
      */
     @Override
     public String getCode() {
