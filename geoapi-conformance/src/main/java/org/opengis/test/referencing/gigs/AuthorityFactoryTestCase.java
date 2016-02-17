@@ -190,6 +190,37 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
     public abstract T getIdentifiedObject() throws FactoryException;
 
     /**
+     * Returns a name of the given object that can be compared against the expected name.
+     * The default implementation returns {@code object.getName().getCode()} or {@code null}
+     * if the given object, its name or its code is null.
+     *
+     * <p>Subclasses can override this method when testing an {@link AuthorityFactory} implementation
+     * which is known to use slightly different name than the one used in the EPSG database, or if the
+     * implementation stores the EPSG name as an {@linkplain IdentifiedObject#getAlias() alias} instead
+     * than as the {@linkplain IdentifiedObject#getName() primary name}.</p>
+     *
+     * <div class="note"><b>Example:</b> if an implementation replaces all spaces by underscores,
+     * then a subclass testing that implementation could override this method as below:
+     *
+     * <pre> &#64;Override
+     * protected String getVerifiableName(IdentifiedObject object) {
+     *    return super.getVerifiableName().replace(' ', '_');
+     * }</pre></div>
+     *
+     * Note that if the object names are too different for being compared, then subclasses can also
+     * disable name comparisons by setting {@link #isStandardNameSupported} to {@code false}.
+     *
+     * @param object The object from which to get a name than can be verified against the expected name.
+     * @return The name of the given object, eventually modified in order to match the expected name.
+     *
+     * @see #isStandardNameSupported
+     * @see #isStandardAliasSupported
+     */
+    protected String getVerifiableName(final IdentifiedObject object) {
+        return getName(object);
+    }
+
+    /**
      * Compares the given generic names with the given set of expected aliases.
      * This method verifies that the given collection contains at least the expected aliases.
      * However the collection may contain additional aliases, which will be ignored.

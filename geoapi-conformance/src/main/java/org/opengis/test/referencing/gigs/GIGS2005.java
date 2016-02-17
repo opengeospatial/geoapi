@@ -216,7 +216,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         // Map projection name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Conversion.getMethod().getName()", methodName, getName(conversion.getMethod()));
+            assertEquals("Conversion.getMethod().getName()", methodName, getVerifiableName(conversion.getMethod()));
             configurationTip = null;
         }
     }

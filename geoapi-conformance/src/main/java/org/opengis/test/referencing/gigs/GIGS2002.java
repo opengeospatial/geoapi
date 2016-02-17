@@ -278,7 +278,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         // Ellipsoid name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Ellipsoid.getName()", name, getName(ellipsoid));
+            assertEquals("Ellipsoid.getName()", name, getVerifiableName(ellipsoid));
             configurationTip = null;
         }
 

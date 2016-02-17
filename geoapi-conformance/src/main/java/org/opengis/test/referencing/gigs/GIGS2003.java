@@ -204,7 +204,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         // Prime meridian name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("PrimeMeridian.getName()", name, getName(pm));
+            assertEquals("PrimeMeridian.getName()", name, getVerifiableName(pm));
             configurationTip = null;
         }
 

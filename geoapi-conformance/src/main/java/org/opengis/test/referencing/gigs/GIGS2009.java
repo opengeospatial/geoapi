@@ -214,7 +214,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
         // Transformation name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Transformation.getName()", name, getName(transformation));
+            assertEquals("Transformation.getName()", name, getVerifiableName(transformation));
             configurationTip = null;
         }
 
@@ -225,7 +225,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
         // Operation method name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Transformation.getMethod().getName()", methodName, getName(m));
+            assertEquals("Transformation.getMethod().getName()", methodName, getVerifiableName(m));
             configurationTip = null;
         }
     }

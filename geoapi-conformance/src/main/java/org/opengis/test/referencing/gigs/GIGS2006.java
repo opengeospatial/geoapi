@@ -242,7 +242,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
             // Base geographic CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("ProjectedCRS.getBaseCRS().getName()", name, getName(crs.getBaseCRS()));
+                assertEquals("ProjectedCRS.getBaseCRS().getName()", name, getVerifiableName(crs.getBaseCRS()));
             }
             configurationTip = null;
         }

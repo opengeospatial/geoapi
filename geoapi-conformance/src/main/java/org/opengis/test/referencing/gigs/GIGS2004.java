@@ -333,7 +333,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         // Geodetic CRS name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("GeodeticCRS.getName()", crsName, getName(crs));
+            assertEquals("GeodeticCRS.getName()", crsName, getVerifiableName(crs));
             configurationTip = null;
         }
 
@@ -364,7 +364,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
 
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("GeodeticDatum.getName()", name, getName(toVerify));
+                assertEquals("GeodeticDatum.getName()", name, getVerifiableName(toVerify));
             }
             configurationTip = null;
         }
@@ -376,7 +376,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         // Ellipsoid name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals("GeodeticDatum.getEllipsoid().getName()", ellipsoidName, getName(e));
+            assertEquals("GeodeticDatum.getEllipsoid().getName()", ellipsoidName, getVerifiableName(e));
             configurationTip = null;
         }
 
@@ -387,7 +387,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         // Prime meridian name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals("GeodeticDatum.getPrimeMeridian().getName()", primeMeridianName, getName(pm));
+            assertEquals("GeodeticDatum.getPrimeMeridian().getName()", primeMeridianName, getVerifiableName(pm));
             configurationTip = null;
         }
     }
