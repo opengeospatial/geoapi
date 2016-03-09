@@ -37,6 +37,8 @@ import java.io.InvalidObjectException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -261,10 +263,18 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
             }
             try {
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
-                constructor.setAccessible(true);
+                if (!Modifier.isPublic(constructor.getModifiers())) {
+                    // TODO: use new ReflectPermission("suppressAccessChecks") when we will be allowed to compile for JDK8.
+                    AccessController.doPrivileged(new PrivilegedAction<Void>() {
+                        @Override public Void run() {
+                           constructor.setAccessible(true);
+                           return null;
+                        }
+                    });
+                }
                 return constructor.newInstance(name);
             } catch (Exception exception) { // TODO: catch ReflectiveOperationException on JDK7.
-                throw new IllegalArgumentException("Can't create code of type " + codeType.getSimpleName(), exception);
+                throw new IllegalArgumentException("Can not create code of type " + codeType.getSimpleName(), exception);
             }
         }
     }
