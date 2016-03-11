@@ -264,7 +264,6 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
             try {
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
                 if (!Modifier.isPublic(constructor.getModifiers())) {
-                    // TODO: use new ReflectPermission("suppressAccessChecks") when we will be allowed to compile for JDK8.
                     AccessController.doPrivileged(new PrivilegedAction<Void>() {
                         @Override public Void run() {
                            constructor.setAccessible(true);
