@@ -139,6 +139,20 @@ public interface CRSFactory extends ObjectFactory {
                                   VerticalCS     cs) throws FactoryException;
 
     /**
+     * Creates a parametric coordinate reference system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum Parametric datum to use in created CRS.
+     * @param  cs The Parametric coordinate system for the created CRS.
+     * @return The coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    ParametricCRS createParametricCRS(Map<String, ?> properties,
+                                  ParametricDatum  datum,
+                                  ParametricCS     cs) throws FactoryException;
+
+    /**
      * Creates a geocentric coordinate reference system from a Cartesian coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.

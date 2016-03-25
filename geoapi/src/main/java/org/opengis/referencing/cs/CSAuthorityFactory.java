@@ -154,6 +154,17 @@ public interface CSAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
+     * Returns a parametric coordinate system from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    ParametricCS createParametricCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
+
+    /**
      * Returns a coordinate system axis from a code.
      *
      * @param  code Value allocated by authority.

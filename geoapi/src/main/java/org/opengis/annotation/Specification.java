@@ -202,6 +202,27 @@ public enum Specification {
     ISO_19111((short) 2007),
 
     /**
+     * ISO 19111-2, Part 2: Extension for parametric values
+     * This is the specification for classes {@link org.opengis.referencing.crs.ParametricCRS} and associated parametric classes.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <blockquote style="font-size:small">
+     * <p>Extends the existing spatial referencing standard by defining the schema
+     * required for describing parameterized systems.</p>
+     * </blockquote>
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2016:</b> ISO 19111-2:2009(E)   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="http://www.iso.org/iso/fr/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44075">Buy from ISO</a>
+     *
+     * @since 3.2
+     */
+    ISO_19111_2((short) 2009),
+
+    /**
      * ISO 19115-1, Metadata
      * (<a href="http://www.opengeospatial.org/standards/as">OGC Topic 11</a>).
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.

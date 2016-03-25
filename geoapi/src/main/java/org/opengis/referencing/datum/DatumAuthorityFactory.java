@@ -128,6 +128,19 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**
+     * Returns a parametric datum from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @return The datum for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createParametricCRS(String)
+     */
+    ParametricDatum createParametricDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
+
+    /**
      * Returns a geodetic datum from a code.
      *
      * @param  code Value allocated by authority.
