@@ -190,4 +190,17 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     @UML(identifier="createVerticalCoordinateSystem", specification=OGC_01009)
     VerticalCRS createVerticalCRS(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
+
+    /**
+     * Returns a parametric coordinate reference system from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate reference system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createParametricDatum
+     */
+    ParametricCRS createParametricCRS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
 }
