@@ -235,6 +235,18 @@ public interface CSFactory extends ObjectFactory {
                         CoordinateSystemAxis axis) throws FactoryException;
 
     /**
+     * Creates a parametric coordinate system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis The axis.
+     * @return The coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    ParametricCS createParametricCS(Map<String, ?> properties,
+                        CoordinateSystemAxis axis) throws FactoryException;
+
+    /**
      * Creates a linear coordinate system.
      *
      * @param  properties Name and other properties to give to the new object.
