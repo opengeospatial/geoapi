@@ -47,7 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @departure historic

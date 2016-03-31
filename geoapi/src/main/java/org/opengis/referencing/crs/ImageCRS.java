@@ -73,7 +73,7 @@ public interface ImageCRS extends SingleCRS {
     AffineCS getCoordinateSystem();
 
     /**
-     * Returns the datum, which must be an image one.
+     * Returns the datum, which shall be an image one.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)

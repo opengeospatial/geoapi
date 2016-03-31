@@ -43,6 +43,7 @@ import static org.proj4.PJ.DIMENSION_MAX;
  * factory interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1
  */
@@ -599,6 +600,7 @@ public class PJFactory implements Factory {
          * @throws FactoryException if an error occurred while fetching the authority codes.
          */
         @Override
+        @SuppressWarnings("ReturnOfCollectionOrArrayField")
         public synchronized Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
             if (codes == null) {
                 codes = Collections.unmodifiableSet(ResourcesLoader.getAxisOrientations().keySet());
@@ -782,7 +784,7 @@ public class PJFactory implements Factory {
          * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
          */
         @Override
-        public ParametricCRS createParametricCRS(String code) throws NoSuchAuthorityCodeException, FactoryException {
+        public ParametricCRS createParametricCRS(String code) throws FactoryException {
             return cast(ParametricCRS.class, code);
         }
 

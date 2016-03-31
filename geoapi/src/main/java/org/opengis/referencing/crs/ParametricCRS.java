@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,25 +31,37 @@
  */
 package org.opengis.referencing.crs;
 
-import static org.opengis.annotation.Obligation.MANDATORY;
-import static org.opengis.annotation.Specification.ISO_19111;
-import static org.opengis.annotation.Specification.ISO_19111_2;
-import org.opengis.annotation.UML;
+import java.util.Map;
 import org.opengis.referencing.cs.ParametricCS;
 import org.opengis.referencing.datum.ParametricDatum;
+import org.opengis.annotation.UML;
+
+import static org.opengis.annotation.Obligation.MANDATORY;
+import static org.opengis.annotation.Specification.ISO_19111_2;
+
 
 /**
  * A 1-dimensional coordinate reference system which uses parameter values or functions.
+ * A coordinate reference system shall be of the parametric type if a physical or material
+ * property or function is used as the dimension.
+ * The values or functions can vary monotonically with height.
+ *
+ * <div class="note"><b>Examples:</b>
+ * <ul>
+ *   <li>Pressure in meteorological applications.</li>
+ *   <li>Density (isopycnals) in oceanographic applications.</li>
+ * </ul>
+ * </div>
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.ParametricCS}.</p>
- * 
+ *
  * @author  Johann Sorel (Geomatys)
  * @version 3.2
  * @since   3.2
  *
  * @see CRSAuthorityFactory#createParametricCRS(String)
- * @see CRSFactory#createParametricCRS(Map, TemporalDatum, TimeCS)
+ * @see CRSFactory#createParametricCRS(Map, ParametricDatum, ParametricCS)
  */
 @UML(identifier="SC_ParametricCRS", specification=ISO_19111_2)
 public interface ParametricCRS extends SingleCRS {
@@ -59,13 +71,13 @@ public interface ParametricCRS extends SingleCRS {
      * @return The parametric coordinate system.
      */
     @Override
-    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111_2)
     ParametricCS getCoordinateSystem();
 
     /**
-     * Returns the datum, which must be parametric.
+     * Returns the datum, which shall be parametric.
      */
     @Override
-    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111_2)
     ParametricDatum getDatum();
 }

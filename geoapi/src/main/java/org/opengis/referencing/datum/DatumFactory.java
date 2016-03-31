@@ -52,7 +52,8 @@ import static org.opengis.annotation.Specification.*;
  * {@code DatumFactory} can be used to make "special" datums.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -138,8 +139,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return The datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
-    ParametricDatum createParametricDatum(Map<String, ?>    properties
-                                    ) throws FactoryException;
+    ParametricDatum createParametricDatum(Map<String, ?> properties) throws FactoryException;
 
     /**
      * Creates an ellipsoid from radius values.

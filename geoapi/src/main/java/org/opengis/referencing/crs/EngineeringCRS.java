@@ -87,7 +87,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SC_EngineeringCRS", specification=ISO_19111)
 public interface EngineeringCRS extends SingleCRS {
     /**
-     * Returns the datum, which must be an engineering one.
+     * Returns the datum, which shall be an engineering one.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)

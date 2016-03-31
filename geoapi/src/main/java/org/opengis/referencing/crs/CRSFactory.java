@@ -58,7 +58,8 @@ import static org.opengis.annotation.Specification.*;
  * factory lets an application create such a hybrid coordinate system.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -148,9 +149,9 @@ public interface CRSFactory extends ObjectFactory {
      * @return The coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
-    ParametricCRS createParametricCRS(Map<String, ?> properties,
-                                  ParametricDatum  datum,
-                                  ParametricCS     cs) throws FactoryException;
+    ParametricCRS createParametricCRS(Map<String, ?>  properties,
+                                      ParametricDatum datum,
+                                      ParametricCS    cs) throws FactoryException;
 
     /**
      * Creates a geocentric coordinate reference system from a Cartesian coordinate system.

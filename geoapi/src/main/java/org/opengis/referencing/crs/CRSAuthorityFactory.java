@@ -46,7 +46,8 @@ import static org.opengis.annotation.Specification.*;
  * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
@@ -120,7 +121,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
      */
     @UML(identifier="createGeographicCoordinateSystem", specification=OGC_01009)
     GeographicCRS createGeographicCRS(String code)
@@ -134,7 +135,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
      */
     GeocentricCRS createGeocentricCRS(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
@@ -158,7 +159,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     ProjectedCRS createProjectedCRS(String code)
@@ -172,7 +173,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createTemporalDatum
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createTemporalDatum(String)
      */
     TemporalCRS createTemporalCRS(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
@@ -185,7 +186,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createVerticalDatum
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createVerticalDatum(String)
      */
     @UML(identifier="createVerticalCoordinateSystem", specification=OGC_01009)
     VerticalCRS createVerticalCRS(String code)
@@ -199,7 +200,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createParametricDatum
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createParametricDatum(String)
      */
     ParametricCRS createParametricCRS(String code)
             throws NoSuchAuthorityCodeException, FactoryException;

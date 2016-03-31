@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
     /**
-     * Returns the datum, which must be geodetic.
+     * Returns the datum, which shall be geodetic.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)

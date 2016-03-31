@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,8 +31,11 @@
  */
 package org.opengis.referencing.cs;
 
-import static org.opengis.annotation.Specification.ISO_19111_2;
+import java.util.Map;
 import org.opengis.annotation.UML;
+
+import static org.opengis.annotation.Specification.ISO_19111_2;
+
 
 /**
  * A 1-dimensional coordinate system containing a single axis.

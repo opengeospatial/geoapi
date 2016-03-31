@@ -52,6 +52,7 @@ package org.opengis.annotation;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Cédric Briançon (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   2.0
  *
@@ -213,7 +214,7 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2016:</b> ISO 19111-2:2009(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2009:</b> ISO 19111-2:2009(E)   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
      * @see <a href="http://www.iso.org/iso/fr/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44075">Buy from ISO</a>
@@ -397,7 +398,16 @@ public enum Specification {
      *
      * <p><b>ISO abstract:</b></p>
      * <blockquote style="font-size:small">
-     * <p>(under development)</p>
+     * <p>Defines the structure and content of a text string implementation of the abstract model for coordinate reference systems
+     * described in ISO 19111:2007 and ISO 19111-2:2009. The string defines frequently needed types of coordinate reference systems
+     * and coordinate operations in a self-contained form that is easily readable by machines and by humans.
+     * The essence is its simplicity; as a consequence there are some constraints upon the more open content allowed in ISO 19111:2007.
+     * To retain simplicity in the well-known text (WKT) description of coordinate reference systems and coordinate operations,
+     * the scope of this International Standard excludes parameter grouping and pass-through coordinate operations.
+     * The text string provides a means for humans and machines to correctly and unambiguously interpret and utilise
+     * a coordinate reference system definition with look-ups or cross references only to define coordinate operation mathematics.
+     * Because it omits metadata about the source of the data and may omit metadata about the applicability of the information,
+     * the WKT string is not suitable for the storage of definitions of coordinate reference systems or coordinate operations.</p>
      * </blockquote>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>

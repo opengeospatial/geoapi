@@ -65,7 +65,7 @@ public interface TemporalCRS extends SingleCRS {
     TimeCS getCoordinateSystem();
 
     /**
-     * Returns the datum, which must be temporal.
+     * Returns the datum, which shall be temporal.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)

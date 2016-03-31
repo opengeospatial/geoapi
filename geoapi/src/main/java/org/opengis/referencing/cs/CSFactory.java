@@ -46,7 +46,8 @@ import org.opengis.util.FactoryException;
  * and {@code CSFactory} can be used to make "special" coordinate systems.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @departure historic
@@ -244,7 +245,7 @@ public interface CSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      */
     ParametricCS createParametricCS(Map<String, ?> properties,
-                        CoordinateSystemAxis axis) throws FactoryException;
+                                    CoordinateSystemAxis axis) throws FactoryException;
 
     /**
      * Creates a linear coordinate system.

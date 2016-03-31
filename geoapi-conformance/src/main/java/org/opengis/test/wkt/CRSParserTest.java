@@ -92,6 +92,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * </div>
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1
  *
@@ -837,6 +838,38 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
+     * Parses a parametric CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>PARAMETRICCRS[“WMO standard atmosphere layer 0”,
+     *   PDATUM["Mean Sea Level“,ANCHOR[”1013.25 hPa at 15°C"]],
+     *   CS[parametric,1],
+     *   AXIS["pressure (hPa)“,up],
+     *   PARAMETRICUNIT[”HectoPascal",100.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 3</a>
+     */
+    @Test
+    public void testParametric() throws FactoryException {
+        final ParametricCRS crs = parse(ParametricCRS.class,
+                "PARAMETRICCRS[“WMO standard atmosphere layer 0”,\n" +
+                "PDATUM[“Mean Sea Level”,ANCHOR[“1013.25 hPa at 15°C”]],\n" +
+                "CS[parametric,1],\n" +
+                "AXIS[“pressure (hPa)”,up],PARAMETRICUNIT[“hPa”,100.0]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification   (crs, "WMO standard atmosphere layer 0", null);
+        verifyDatum            (crs.getDatum(), "Mean Sea Level");
+        verifyCoordinateSystem (crs.getCoordinateSystem(), ParametricCS.class, new AxisDirection[] {UP}, SI.PASCAL.times(100));
+    }
+
+    /**
      * Parses an engineering CRS with North and West axis directions.
      * The WKT parsed by this test is (except for quote characters):
      *
@@ -1317,37 +1350,5 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         assertInstanceOf("components[1]", TemporalCRS.class, components.get(1));
         verifyWGS84  ((GeodeticCRS) components.get(0), false);
         verifyGPSTime((TemporalCRS) components.get(1));
-    }
-
-    /**
-     * Parses a parametric CRS.
-     * The WKT parsed by this test is (except for quote characters):
-     *
-     * <blockquote><pre>PARAMETRICCRS[“WMO standard atmosphere layer 0”,
-     *   PDATUM["Mean Sea Level“,ANCHOR[”1013.25 hPa at 15°C"]],
-     *   CS[parametric,1],
-     *   AXIS["pressure (hPa)“,up],
-     *   PARAMETRICUNIT[”HectoPascal",100.0]]</pre></blockquote>
-     *
-     * @throws FactoryException if an error occurred during the WKT parsing.
-     *
-     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 3</a>
-     */
-    @Test
-    public void testParametric() throws FactoryException {
-        final ParametricCRS crs = parse(ParametricCRS.class,
-                "PARAMETRICCRS[“WMO standard atmosphere layer 0”,\n" +
-                "PDATUM[“Mean Sea Level”,ANCHOR[“1013.25 hPa at 15°C”]],\n" +
-                "CS[parametric,1],\n" +
-                "AXIS[“pressure (hPa)”,up],PARAMETRICUNIT[“hPa”,100.0]]");
-
-        if (isValidationEnabled) {
-            configurationTip = Configuration.Key.isValidationEnabled;
-            validators.validate(crs);
-            configurationTip = null;
-        }
-        verifyIdentification   (crs, "WMO standard atmosphere layer 0", null);
-        verifyDatum            (crs.getDatum(), "Mean Sea Level");
-        verifyCoordinateSystem (crs.getCoordinateSystem(), ParametricCS.class, new AxisDirection[] {UP}, SI.PASCAL.times(100));
     }
 }

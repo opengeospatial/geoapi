@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * referenced using code strings. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
