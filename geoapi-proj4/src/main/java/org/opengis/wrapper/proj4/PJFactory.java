@@ -457,6 +457,16 @@ public class PJFactory implements Factory {
          * @throws FactoryException always thrown.
          */
         @Override
+        public ParametricCRS createParametricCRS(Map<String, ?> properties, ParametricDatum datum, ParametricCS cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
         public ImageCRS createImageCRS(Map<String, ?> properties, ImageDatum datum, AffineCS cs) throws FactoryException {
             throw unsupportedOperation();
         }
@@ -764,6 +774,16 @@ public class PJFactory implements Factory {
         @Override
         public VerticalCRS createVerticalCRS(String code) throws FactoryException {
             return cast(VerticalCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public ParametricCRS createParametricCRS(String code) throws NoSuchAuthorityCodeException, FactoryException {
+            return cast(ParametricCRS.class, code);
         }
 
         /**

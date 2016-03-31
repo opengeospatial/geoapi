@@ -345,6 +345,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
+     */
+    @Override
+    public ParametricDatum createParametricDatum(String code) throws NoSuchAuthorityCodeException, FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
      * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
      *
      * <table class="ogc">
@@ -680,6 +693,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
+     */
+    @Override
+    public ParametricCS createParametricCS(String code) throws NoSuchAuthorityCodeException, FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
      *
      * <table class="ogc">
@@ -924,6 +950,18 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         }
     }
 
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
+     */
+    @Override
+    public ParametricCRS createParametricCRS(String code) throws NoSuchAuthorityCodeException, FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
 
 
 

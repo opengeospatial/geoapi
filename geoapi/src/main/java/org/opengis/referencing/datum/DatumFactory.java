@@ -131,6 +131,17 @@ public interface DatumFactory extends ObjectFactory {
                                       VerticalDatumType type) throws FactoryException;
 
     /**
+     * Creates a parametric datum.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @return The datum for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    ParametricDatum createParametricDatum(Map<String, ?>    properties
+                                    ) throws FactoryException;
+
+    /**
      * Creates an ellipsoid from radius values.
      *
      * @param  properties Name and other properties to give to the new object.
