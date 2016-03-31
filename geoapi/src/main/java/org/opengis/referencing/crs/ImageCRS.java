@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -73,7 +73,7 @@ public interface ImageCRS extends SingleCRS {
     AffineCS getCoordinateSystem();
 
     /**
-     * Returns the datum, which must be an image one.
+     * Returns the datum, which shall be an image one.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)

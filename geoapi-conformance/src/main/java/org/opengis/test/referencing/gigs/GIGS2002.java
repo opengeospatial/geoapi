@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -278,7 +278,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
         // Ellipsoid name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Ellipsoid.getName()", name, getName(ellipsoid));
+            assertEquals("Ellipsoid.getName()", name, getVerifiableName(ellipsoid));
             configurationTip = null;
         }
 

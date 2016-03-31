@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,7 +42,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td width="50%" nowrap>
+ * </tr><tr><td style="width: 50%; white-space: nowrap">
  * <pre>ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.lineage.Lineage}
  *  ├─ {@linkplain org.opengis.metadata.lineage.ProcessStep}
@@ -51,7 +51,7 @@
  *  ├─ {@linkplain org.opengis.metadata.lineage.Processing}
  *  ├─ {@linkplain org.opengis.metadata.lineage.Algorithm}
  *  └─ {@linkplain org.opengis.metadata.lineage.ProcessStepReport}</pre>
- * </td><td class="sep" width="50%" nowrap>
+ * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre>{@linkplain org.opengis.metadata.lineage.Lineage}
  *  ├─ {@linkplain org.opengis.metadata.lineage.Source}
  *  │   └─ {@linkplain org.opengis.metadata.lineage.NominalResolution}

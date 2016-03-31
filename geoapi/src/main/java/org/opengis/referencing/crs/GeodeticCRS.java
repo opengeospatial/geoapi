@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
     /**
-     * Returns the datum, which must be geodetic.
+     * Returns the datum, which shall be geodetic.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)

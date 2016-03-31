@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -333,7 +333,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         // Geodetic CRS name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("GeodeticCRS.getName()", crsName, getName(crs));
+            assertEquals("GeodeticCRS.getName()", crsName, getVerifiableName(crs));
             configurationTip = null;
         }
 
@@ -364,7 +364,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
 
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("GeodeticDatum.getName()", name, getName(toVerify));
+                assertEquals("GeodeticDatum.getName()", name, getVerifiableName(toVerify));
             }
             configurationTip = null;
         }
@@ -376,7 +376,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         // Ellipsoid name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals("GeodeticDatum.getEllipsoid().getName()", ellipsoidName, getName(e));
+            assertEquals("GeodeticDatum.getEllipsoid().getName()", ellipsoidName, getVerifiableName(e));
             configurationTip = null;
         }
 
@@ -387,7 +387,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         // Prime meridian name.
         if (isDependencyIdentificationSupported && isStandardNameSupported) {
             configurationTip = Configuration.Key.isDependencyIdentificationSupported;
-            assertEquals("GeodeticDatum.getPrimeMeridian().getName()", primeMeridianName, getName(pm));
+            assertEquals("GeodeticDatum.getPrimeMeridian().getName()", primeMeridianName, getVerifiableName(pm));
             configurationTip = null;
         }
     }

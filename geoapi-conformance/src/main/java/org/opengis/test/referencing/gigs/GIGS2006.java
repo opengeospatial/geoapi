@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -242,7 +242,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
             // Base geographic CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("ProjectedCRS.getBaseCRS().getName()", name, getName(crs.getBaseCRS()));
+                assertEquals("ProjectedCRS.getBaseCRS().getName()", name, getVerifiableName(crs.getBaseCRS()));
             }
             configurationTip = null;
         }
@@ -459,8 +459,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testBeijing() throws FactoryException {
         important        = true;
         name             = "Beijing 1954";
-        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
-        datumCode            = 6214;
+        projectionNames  = new String[] {"6-degree Gauss-Kruger"};
+        datumCode        = 6214;
         isNorthAxisFirst = true;
         for (int code = 21413; code <= 21423; code++) {    // Loop over 11 codes
             createAndVerifyProjectedCRS(code);
@@ -531,8 +531,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testCampoInchauspe() throws FactoryException {
         important        = true;
         name             = "Campo Inchauspe";
-        projectionNames      = new String[] {"Argentina zones", "UTM"};
-        datumCode            = 6221;
+        projectionNames  = new String[] {"Argentina zones", "UTM"};
+        datumCode        = 6221;
         isNorthAxisFirst = true;
         for (int code = 22191; code <= 22197; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
@@ -652,8 +652,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testDHDN() throws FactoryException {
         important        = true;
         name             = "DHDN";
-        projectionNames      = new String[] {"3-degree Gauss-Kruger"};
-        datumCode            = 6314;
+        projectionNames  = new String[] {"3-degree Gauss-Kruger"};
+        datumCode        = 6314;
         isNorthAxisFirst = true;
         for (int code = 31466; code <= 31469; code++) {    // Loop over 4 codes
             createAndVerifyProjectedCRS(code);
@@ -1204,8 +1204,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testMAGNA_SIRGAS() throws FactoryException {
         important        = true;
         name             = "MAGNA-SIRGAS";
-        projectionNames      = new String[] {"Colombia zones"};
-        datumCode            = 6686;
+        projectionNames  = new String[] {"Colombia zones"};
+        datumCode        = 6686;
         isNorthAxisFirst = true;
         for (int code = 3114; code <= 3118; code++) {    // Loop over 5 codes
             createAndVerifyProjectedCRS(code);
@@ -1293,8 +1293,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testLKS94() throws FactoryException {
         important        = true;
         name             = "LKS94";
-        projectionNames      = new String[] {"UTM"};
-        datumCode            = 6126;
+        projectionNames  = new String[] {"UTM"};
+        datumCode        = 6126;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3346);
     }
@@ -1315,8 +1315,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942_UTM() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942";
-        projectionNames      = new String[] {"UTM"};
-        datumCode            = 6284;
+        projectionNames  = new String[] {"UTM"};
+        datumCode        = 6284;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3350);
         createAndVerifyProjectedCRS(3351);
@@ -1684,8 +1684,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testNZGD2000() throws FactoryException {
         important        = true;
         name             = "NZGD2000";
-        projectionNames      = new String[] {"TM"};
-        datumCode            = 6167;
+        projectionNames  = new String[] {"TM"};
+        datumCode        = 6167;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(2193);
         isNorthAxisFirst = false;
@@ -1796,8 +1796,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPOSGAR94() throws FactoryException {
         important        = true;
         name             = "POSGAR 94";
-        projectionNames      = new String[] {"Argentina zones"};
-        datumCode            = 6694;
+        projectionNames  = new String[] {"Argentina zones"};
+        datumCode        = 6694;
         isNorthAxisFirst = true;
         for (int code = 22181; code <= 22187; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
@@ -1820,8 +1820,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPOSGAR98() throws FactoryException {
         important        = true;
         name             = "POSGAR 98";
-        projectionNames      = new String[] {"Argentina zones"};
-        datumCode            = 6190;
+        projectionNames  = new String[] {"Argentina zones"};
+        datumCode        = 6190;
         isNorthAxisFirst = true;
         for (int code = 22171; code <= 22177; code++) {    // Loop over 7 codes
             createAndVerifyProjectedCRS(code);
@@ -1898,8 +1898,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942";
-        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
-        datumCode            = 6284;
+        projectionNames  = new String[] {"6-degree Gauss-Kruger"};
+        datumCode        = 6284;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(28409);
         createAndVerifyProjectedCRS(28416);
@@ -1923,8 +1923,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942_58() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942(58)";
-        projectionNames      = new String[] {"6-degree Gauss-Kruger", "Stereo70"};
-        datumCode            = 6179;
+        projectionNames  = new String[] {"6-degree Gauss-Kruger", "Stereo70"};
+        datumCode        = 6179;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3334);
         createAndVerifyProjectedCRS(3335);
@@ -1948,8 +1948,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testPulkovo1942_83() throws FactoryException {
         important        = true;
         name             = "Pulkovo 1942(83)";
-        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
-        datumCode            = 6178;
+        projectionNames  = new String[] {"6-degree Gauss-Kruger"};
+        datumCode        = 6178;
         isNorthAxisFirst = true;
         createAndVerifyProjectedCRS(3836);
     }
@@ -2099,8 +2099,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testSchwarzeck() throws FactoryException {
         important         = true;
         name              = "Schwarzeck";
-        projectionNames       = new String[] {"Lo/22 zones", "UTM"};
-        datumCode             = 6293;
+        projectionNames   = new String[] {"Lo/22 zones", "UTM"};
+        datumCode         = 6293;
         isWestOrientated  = true;
         isSouthOrientated = true;
         createAndVerifyProjectedCRS(29371);
@@ -2328,8 +2328,8 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     public void testXian() throws FactoryException {
         important        = true;
         name             = "Xian 1980";
-        projectionNames      = new String[] {"6-degree Gauss-Kruger"};
-        datumCode            = 6610;
+        projectionNames  = new String[] {"6-degree Gauss-Kruger"};
+        datumCode        = 6610;
         isNorthAxisFirst = true;
         for (int code = 2338; code <= 2348; code++) {    // Loop over 11 codes
             createAndVerifyProjectedCRS(code);

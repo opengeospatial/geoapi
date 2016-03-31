@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -47,7 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @departure historic
@@ -151,6 +152,17 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      */
     TimeCS createTimeCS(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
+
+    /**
+     * Returns a parametric coordinate system from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @return The coordinate system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    ParametricCS createParametricCS(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**

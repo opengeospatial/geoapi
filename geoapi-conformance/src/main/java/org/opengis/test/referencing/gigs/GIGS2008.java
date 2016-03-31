@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -227,7 +227,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
             // Datum name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("VerticalDatum.getName()", datumName, getName(datum));
+                assertEquals("VerticalDatum.getName()", datumName, getVerifiableName(datum));
                 configurationTip = null;
             }
         }
@@ -250,7 +250,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
             // CRS name.
             if (isStandardNameSupported) {
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("VerticalCRS.getName()", name, getName(crs));
+                assertEquals("VerticalCRS.getName()", name, getVerifiableName(crs));
                 configurationTip = null;
             }
 
@@ -265,7 +265,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
                         datumCode, datum.getIdentifiers());
 
                 configurationTip = Configuration.Key.isStandardNameSupported;
-                assertEquals("VerticalCRS.getDatum().getName()", datumName, getName(datum));
+                assertEquals("VerticalCRS.getDatum().getName()", datumName, getVerifiableName(datum));
                 configurationTip = null;
             }
         }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -46,7 +46,8 @@ import org.opengis.util.FactoryException;
  * and {@code CSFactory} can be used to make "special" coordinate systems.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @departure historic
@@ -233,6 +234,18 @@ public interface CSFactory extends ObjectFactory {
      */
     TimeCS createTimeCS(Map<String, ?> properties,
                         CoordinateSystemAxis axis) throws FactoryException;
+
+    /**
+     * Creates a parametric coordinate system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis The axis.
+     * @return The coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    ParametricCS createParametricCS(Map<String, ?> properties,
+                                    CoordinateSystemAxis axis) throws FactoryException;
 
     /**
      * Creates a linear coordinate system.

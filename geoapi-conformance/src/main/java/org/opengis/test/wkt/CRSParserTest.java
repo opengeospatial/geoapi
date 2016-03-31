@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2015-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -92,6 +92,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * </div>
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1
  *
@@ -834,6 +835,38 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyDatum            (crs.getDatum(), "Time origin");
         verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class, new AxisDirection[] {FUTURE}, NonSI.DAY);
         assertEquals("TimeOrigin", new Date(315532800000L), crs.getDatum().getOrigin());
+    }
+
+    /**
+     * Parses a parametric CRS.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>PARAMETRICCRS[“WMO standard atmosphere layer 0”,
+     *   PDATUM["Mean Sea Level“,ANCHOR[”1013.25 hPa at 15°C"]],
+     *   CS[parametric,1],
+     *   AXIS["pressure (hPa)“,up],
+     *   PARAMETRICUNIT[”HectoPascal",100.0]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 3</a>
+     */
+    @Test
+    public void testParametric() throws FactoryException {
+        final ParametricCRS crs = parse(ParametricCRS.class,
+                "PARAMETRICCRS[“WMO standard atmosphere layer 0”,\n" +
+                "PDATUM[“Mean Sea Level”,ANCHOR[“1013.25 hPa at 15°C”]],\n" +
+                "CS[parametric,1],\n" +
+                "AXIS[“pressure (hPa)”,up],PARAMETRICUNIT[“hPa”,100.0]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification   (crs, "WMO standard atmosphere layer 0", null);
+        verifyDatum            (crs.getDatum(), "Mean Sea Level");
+        verifyCoordinateSystem (crs.getCoordinateSystem(), ParametricCS.class, new AxisDirection[] {UP}, SI.PASCAL.times(100));
     }
 
     /**

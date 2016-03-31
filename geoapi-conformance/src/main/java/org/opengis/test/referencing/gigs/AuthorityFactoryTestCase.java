@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -188,6 +188,37 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
+
+    /**
+     * Returns a name of the given object that can be compared against the expected name.
+     * The default implementation returns {@code object.getName().getCode()} or {@code null}
+     * if the given object, its name or its code is null.
+     *
+     * <p>Subclasses can override this method when testing an {@link AuthorityFactory} implementation
+     * which is known to use slightly different name than the one used in the EPSG database, or if the
+     * implementation stores the EPSG name as an {@linkplain IdentifiedObject#getAlias() alias} instead
+     * than as the {@linkplain IdentifiedObject#getName() primary name}.</p>
+     *
+     * <div class="note"><b>Example:</b> if an implementation replaces all spaces by underscores,
+     * then a subclass testing that implementation could override this method as below:
+     *
+     * <pre> &#64;Override
+     * protected String getVerifiableName(IdentifiedObject object) {
+     *    return super.getVerifiableName().replace(' ', '_');
+     * }</pre></div>
+     *
+     * Note that if the object names are too different for being compared, then subclasses can also
+     * disable name comparisons by setting {@link #isStandardNameSupported} to {@code false}.
+     *
+     * @param object The object from which to get a name than can be verified against the expected name.
+     * @return The name of the given object, eventually modified in order to match the expected name.
+     *
+     * @see #isStandardNameSupported
+     * @see #isStandardAliasSupported
+     */
+    protected String getVerifiableName(final IdentifiedObject object) {
+        return getName(object);
+    }
 
     /**
      * Compares the given generic names with the given set of expected aliases.

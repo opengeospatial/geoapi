@@ -44,6 +44,7 @@ import static org.proj4.PJ.DIMENSION_MAX;
  * factory interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1
  */
@@ -462,6 +463,16 @@ public class PJFactory implements Factory {
          * @throws FactoryException always thrown.
          */
         @Override
+        public ParametricCRS createParametricCRS(Map<String, ?> properties, ParametricDatum datum, ParametricCS cs) throws FactoryException {
+            throw unsupportedOperation();
+        }
+
+        /**
+         * Unconditionally throw an exception, since this functionality is not supported yet.
+         *
+         * @throws FactoryException always thrown.
+         */
+        @Override
         public ImageCRS createImageCRS(Map<String, ?> properties, ImageDatum datum, AffineCS cs) throws FactoryException {
             throw unsupportedOperation();
         }
@@ -594,6 +605,7 @@ public class PJFactory implements Factory {
          * @throws FactoryException if an error occurred while fetching the authority codes.
          */
         @Override
+        @SuppressWarnings("ReturnOfCollectionOrArrayField")
         public synchronized Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
             if (codes == null) {
                 codes = Collections.unmodifiableSet(ResourcesLoader.getAxisOrientations().keySet());
@@ -769,6 +781,16 @@ public class PJFactory implements Factory {
         @Override
         public VerticalCRS createVerticalCRS(String code) throws FactoryException {
             return cast(VerticalCRS.class, code);
+        }
+
+        /**
+         * Delegates to {@link #createCoordinateReferenceSystem(String)} and casts the result.
+         *
+         * @throws FactoryException if {@code createCoordinateReferenceSystem(code)} failed.
+         */
+        @Override
+        public ParametricCRS createParametricCRS(String code) throws FactoryException {
+            return cast(ParametricCRS.class, code);
         }
 
         /**

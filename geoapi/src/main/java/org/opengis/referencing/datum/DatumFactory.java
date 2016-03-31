@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -52,7 +52,8 @@ import static org.opengis.annotation.Specification.*;
  * {@code DatumFactory} can be used to make "special" datums.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -129,6 +130,16 @@ public interface DatumFactory extends ObjectFactory {
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
     VerticalDatum createVerticalDatum(Map<String, ?>    properties,
                                       VerticalDatumType type) throws FactoryException;
+
+    /**
+     * Creates a parametric datum.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @return The datum for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    ParametricDatum createParametricDatum(Map<String, ?> properties) throws FactoryException;
 
     /**
      * Creates an ellipsoid from radius values.

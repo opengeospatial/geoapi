@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -64,6 +64,7 @@ import static org.junit.Assume.*;
  * {@link CRSAuthorityFactory} for the EPSG database.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1
  */
@@ -338,6 +339,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      */
     @Override
     public TemporalDatum createTemporalDatum(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
+     */
+    @Override
+    public ParametricDatum createParametricDatum(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
             default:   throw noSuchAuthorityCode(id, code);
@@ -680,6 +694,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
+     */
+    @Override
+    public ParametricCS createParametricCS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
+
+    /**
      * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
      *
      * <table class="ogc">
@@ -924,6 +951,18 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         }
     }
 
+    /**
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method can not provide the requested information.
+     */
+    @Override
+    public ParametricCRS createParametricCRS(String code) throws FactoryException {
+        final int id = parseCode(code);
+        switch (id) {
+            default:   throw noSuchAuthorityCode(id, code);
+        }
+    }
 
 
 

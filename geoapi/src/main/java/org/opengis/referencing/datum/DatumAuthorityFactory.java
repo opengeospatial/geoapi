@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  * referenced using code strings. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
@@ -125,6 +126,19 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS(String)
      */
     TemporalDatum createTemporalDatum(String code)
+            throws NoSuchAuthorityCodeException, FactoryException;
+
+    /**
+     * Returns a parametric datum from a code.
+     *
+     * @param  code Value allocated by authority.
+     * @return The datum for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createParametricCRS(String)
+     */
+    ParametricDatum createParametricDatum(String code)
             throws NoSuchAuthorityCodeException, FactoryException;
 
     /**

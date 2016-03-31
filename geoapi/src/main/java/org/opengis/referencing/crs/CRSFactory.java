@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -58,7 +58,8 @@ import static org.opengis.annotation.Specification.*;
  * factory lets an application create such a hybrid coordinate system.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Johann Sorel (Geomatys)
+ * @version 3.2
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -137,6 +138,20 @@ public interface CRSFactory extends ObjectFactory {
     VerticalCRS createVerticalCRS(Map<String, ?> properties,
                                   VerticalDatum  datum,
                                   VerticalCS     cs) throws FactoryException;
+
+    /**
+     * Creates a parametric coordinate reference system.
+     *
+     * @param  properties Name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum Parametric datum to use in created CRS.
+     * @param  cs The Parametric coordinate system for the created CRS.
+     * @return The coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     */
+    ParametricCRS createParametricCRS(Map<String, ?>  properties,
+                                      ParametricDatum datum,
+                                      ParametricCS    cs) throws FactoryException;
 
     /**
      * Creates a geocentric coordinate reference system from a Cartesian coordinate system.

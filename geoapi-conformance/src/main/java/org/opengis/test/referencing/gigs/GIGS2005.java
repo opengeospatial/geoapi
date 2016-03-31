@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2015 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -216,7 +216,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
         // Map projection name.
         if (isStandardNameSupported) {
             configurationTip = Configuration.Key.isStandardNameSupported;
-            assertEquals("Conversion.getMethod().getName()", methodName, getName(conversion.getMethod()));
+            assertEquals("Conversion.getMethod().getName()", methodName, getVerifiableName(conversion.getMethod()));
             configurationTip = null;
         }
     }
