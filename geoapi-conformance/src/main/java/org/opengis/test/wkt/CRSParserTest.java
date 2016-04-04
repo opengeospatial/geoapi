@@ -1370,7 +1370,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *       ANCHOR[“Mean Sea Level = 1013.25 hPa”]],
      *         CS[parametric,1],
      *           AXIS[“pressure (P)”,unspecified],
-     *           PARAMETRICUNIT[“HectoPascal”,100]]]</pre></blockquote>
+     *           PARAMETRICUNIT[“hPa”,100]]]</pre></blockquote>
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
