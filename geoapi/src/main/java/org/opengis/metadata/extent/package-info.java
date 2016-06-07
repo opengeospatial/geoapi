@@ -54,7 +54,7 @@
  *      └─ {@linkplain org.opengis.metadata.extent.SpatialTemporalExtent}</pre>
  * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre> {@linkplain org.opengis.metadata.extent.Extent}
- *  ├─ {@linkplain org.opengis.metadata.extent.GeographicExtent}
+ *  ├─ {@linkplain org.opengis.metadata.extent.GeographicExtent} «abstract»
  *  ├─ {@linkplain org.opengis.metadata.extent.VerticalExtent}
  *  └─ {@linkplain org.opengis.metadata.extent.TemporalExtent}
  * {@linkplain org.opengis.metadata.extent.SpatialTemporalExtent}
