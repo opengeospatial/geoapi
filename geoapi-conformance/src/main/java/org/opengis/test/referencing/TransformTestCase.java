@@ -39,6 +39,7 @@ import org.opengis.util.Factory;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
+import org.opengis.referencing.operation.MathTransform1D;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.ToleranceModifiers;
@@ -549,7 +550,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * the MathTransform. We check only the parts that are significant to this test method.
          * Full MathTransform validation is not the job of this method.
          */
-        final MathTransform transform = this.transform; // Protect from changes.
+        final MathTransform transform = this.transform;                 // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
@@ -641,7 +642,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #isOverlappingArraySupported
      */
     protected float[] verifyConsistency(final float... sourceFloats) throws TransformException {
-        final MathTransform transform = this.transform; // Protect from changes.
+        final MathTransform transform = this.transform;                 // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
@@ -741,6 +742,19 @@ public strictfp abstract class TransformTestCase extends TestCase {
         }
         configurationTip = oldTip;
         /*
+         * Tests MathTransform1D methods.
+         */
+        if (transform instanceof MathTransform1D) {
+            assertEquals("MathTransform1D.getSourceDimension()", 1, sourceDimension);
+            assertEquals("MathTransform1D.getTargetDimension()", 1, targetDimension);
+            final MathTransform1D transform1D = (MathTransform1D) transform;
+            for (int i=0; i<sourceFloats.length; i++) {
+                targetDoubles[i] = transform1D.transform(sourceFloats[i]);
+            }
+            assertCoordinatesEqual("MathTransform1D.transform(double) error.",
+                    1, expectedDoubles, 0, targetDoubles, 0, numPts, CalculationType.DIRECT_TRANSFORM);
+        }
+        /*
          * Tests MathTransform2D methods.
          */
         if (transform instanceof MathTransform2D) {
@@ -808,8 +822,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      */
     protected void verifyDerivative(final double... coordinate) throws TransformException {
         assertTrue("isDerivativeSupported == false.", isDerivativeSupported);
-        final MathTransform   transform = this.transform; // Protect from changes.
-        final double[] derivativeDeltas = this.derivativeDeltas; // Protect from changes.
+        final MathTransform   transform = this.transform;                               // Protect from changes.
+        final double[] derivativeDeltas = this.derivativeDeltas;                        // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         assertNotNull("TransformTestCase.derivativeDeltas shall be assigned a value.", derivativeDeltas);
         assertTrue   ("TransformTestCase.derivativeDeltas shall not be empty.", derivativeDeltas.length != 0);
@@ -860,18 +874,24 @@ public strictfp abstract class TransformTestCase extends TestCase {
             assertSame(T1, transform.transform(S1, T1));
             assertSame(T2, transform.transform(S2, T2));
             for (int j=0; j<targetDim; j++) {
-                final double dc = (T2.getOrdinate(j) - T1.getOrdinate(j)) /  delta;    // Central difference
-                final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2); // Forward difference
-                final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2); // Backward difference
+                final double dc = (T2.getOrdinate(j) - T1.getOrdinate(j)) /  delta;         // Central difference
+                final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2);      // Forward difference
+                final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2);      // Backward difference
                 approx.setElement(j, i, dc);
                 tolmat.setElement(j, i, max(tolerances[j], max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
             }
         }
         /*
-         * Now compare the matrixes elements. If the transform implements
-         * the MathTransform2D interface, check also the consistency.
+         * Now compare the matrix elements. If the transform implements also
+         * the MathTransform1D or MathTransform2D interface, check consistency.
          */
         assertMatrixEquals(message, approx, matrix, tolmat);
+        if (transform instanceof MathTransform1D) {
+            assertEquals("MathTransform1D.getSourceDimensions()", 1, sourceDim);
+            assertEquals("MathTransform1D.getTargetDimensions()", 1, targetDim);
+            assertMatrixEquals("MathTransform1D.derivative(double) error.", matrix,
+                    new SimpleMatrix(1, 1, ((MathTransform1D) transform).derivative(coordinate[0])), tolmat);
+        }
         if (transform instanceof MathTransform2D) {
             assertEquals("MathTransform2D.getSourceDimensions()", 2, sourceDim);
             assertEquals("MathTransform2D.getTargetDimensions()", 2, targetDim);

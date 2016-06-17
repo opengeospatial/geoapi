@@ -251,6 +251,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 }
             }
         }
+        /*
+         * At this point we got the list of all code list values. Now search for a value matching
+         * the filter specified to this method.
+         */
         synchronized (values) {
             for (final CodeList<?> code : values) {
                 if (filter.accept(code)) {
@@ -261,15 +265,31 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
             if (name == null) {
                 return null;
             }
+            /*
+             * No value value found, but the caller allows us to create a new value. We need access to the constructor,
+             * which may not be public. But requesting access to private constructor is a security-sensitive operation.
+             * As a conservative approach, we will request for a privileged action only for code lists in "org.opengis"
+             * packages. Note that it still possible for users to instantiate code lists from other packages, but they
+             * will need to configure their security file for granting access from their own application in addition
+             * to GeoAPI. The "doPriviliged" block is for allowing users to grant access to GeoAPI only if they wish.
+             *
+             * TODO: the check for package name may still not sufficient on a security point of view.
+             *       We should also check if the package is sealed, and maybe check if it is signed by OGC.
+             */
             try {
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
                 if (!Modifier.isPublic(constructor.getModifiers())) {
-                    AccessController.doPrivileged(new PrivilegedAction<Void>() {
-                        @Override public Void run() {
-                           constructor.setAccessible(true);
-                           return null;
-                        }
-                    });
+                    final Package pkg = codeType.getPackage();
+                    if (pkg != null && pkg.getName().startsWith("org.opengis.")) {
+                        AccessController.doPrivileged(new PrivilegedAction<Void>() {
+                            @Override public Void run() {
+                               constructor.setAccessible(true);
+                               return null;
+                            }
+                        });
+                    } else {
+                        constructor.setAccessible(true);
+                    }
                 }
                 return constructor.newInstance(name);
             } catch (Exception exception) { // TODO: catch ReflectiveOperationException on JDK7.

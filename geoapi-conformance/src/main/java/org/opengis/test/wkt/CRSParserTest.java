@@ -842,14 +842,14 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * The WKT parsed by this test is (except for quote characters):
      *
      * <blockquote><pre>PARAMETRICCRS[“WMO standard atmosphere layer 0”,
-     *   PDATUM["Mean Sea Level“,ANCHOR[”1013.25 hPa at 15°C"]],
+     *   PDATUM[“Mean Sea Level”,ANCHOR[“1013.25 hPa at 15°C”]],
      *   CS[parametric,1],
-     *   AXIS["pressure (hPa)“,up],
-     *   PARAMETRICUNIT[”HectoPascal",100.0]]</pre></blockquote>
+     *   AXIS[“pressure (hPa)”,up],
+     *   PARAMETRICUNIT[“hPa”,100.0]]</pre></blockquote>
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
-     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 3</a>
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#87">OGC 12-063r5 §13.4 example 1</a>
      */
     @Test
     public void testParametric() throws FactoryException {
@@ -1350,5 +1350,66 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         assertInstanceOf("components[1]", TemporalCRS.class, components.get(1));
         verifyWGS84  ((GeodeticCRS) components.get(0), false);
         verifyGPSTime((TemporalCRS) components.get(1));
+    }
+
+    /**
+     * Parses a compound CRS with a parametric component.
+     * The WKT parsed by this test is (except for quote characters):
+     *
+     * <blockquote><pre>COMPOUNDCRS[“ICAO layer 0”,
+     *   GEODETICCRS[“WGS 84”,
+     *     DATUM[“World Geodetic System 1984”,
+     *       ELLIPSOID[“WGS 84”,6378137,298.257223563,
+     *         LENGTHUNIT[“metre”,1.0]]],
+     *     CS[ellipsoidal,2],
+     *       AXIS[“latitude”,north,ORDER[1]],
+     *       AXIS[“longitude”,east,ORDER[2]],
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *   PARAMETRICCRS[“WMO standard atmosphere”,
+     *     PARAMETRICDATUM[“Mean Sea Level”,
+     *       ANCHOR[“Mean Sea Level = 1013.25 hPa”]],
+     *         CS[parametric,1],
+     *           AXIS[“pressure (P)”,unspecified],
+     *           PARAMETRICUNIT[“hPa”,100]]]</pre></blockquote>
+     *
+     * @throws FactoryException if an error occurred during the WKT parsing.
+     *
+     * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html#112">OGC 12-063r5 §16.2 example 2</a>
+     */
+    @Test
+    public void testCompoundWithParametric() throws FactoryException {
+        final CompoundCRS crs = parse(CompoundCRS.class,
+                "COMPOUNDCRS[“ICAO layer 0”,\n" +
+                "  GEODETICCRS[“WGS 84”,\n" +
+                "    DATUM[“World Geodetic System 1984”,\n" +
+                "      ELLIPSOID[“WGS 84”,6378137,298.257223563,\n" +
+                "        LENGTHUNIT[“metre”,1.0]]],\n" +
+                "    CS[ellipsoidal,2],\n" +
+                "      AXIS[“latitude”,north,ORDER[1]],\n" +
+                "      AXIS[“longitude”,east,ORDER[2]],\n" +
+                "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
+                "  PARAMETRICCRS[“WMO standard atmosphere”,\n" +
+                "    PARAMETRICDATUM[“Mean Sea Level”,\n" +
+                "      ANCHOR[“Mean Sea Level = 1013.25 hPa”]],\n" +
+                "        CS[parametric,1],\n" +
+                "          AXIS[“pressure (P)”,unspecified],\n" +
+                "          PARAMETRICUNIT[“hPa”,100]]]");
+
+        if (isValidationEnabled) {
+            configurationTip = Configuration.Key.isValidationEnabled;
+            validators.validate(crs);
+            configurationTip = null;
+        }
+        verifyIdentification(crs, "ICAO layer 0", null);
+        final List<CoordinateReferenceSystem> components = crs.getComponents();
+        assertEquals("components.size()", 2, components.size());
+        assertInstanceOf("components[0]", GeodeticCRS.class, components.get(0));
+        assertInstanceOf("components[1]", ParametricCRS.class, components.get(1));
+        verifyWGS84((GeodeticCRS) components.get(0), false);
+
+        final ParametricCRS ps = (ParametricCRS) components.get(1);
+        verifyIdentification(ps, "WMO standard atmosphere", null);
+        verifyDatum(ps.getDatum(), "Mean Sea Level");
+        assertInstanceOf("coordinateSystem", ParametricCS.class, ps.getCoordinateSystem());
     }
 }
