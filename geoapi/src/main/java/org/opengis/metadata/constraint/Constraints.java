@@ -101,7 +101,7 @@ public interface Constraints {
     /**
      * Information concerning the parties to whom the resource can or cannot be released.
      *
-     * @return Information concerning the parties to whom the resource.
+     * @return Information concerning the parties to whom the resource can or cannot be released, or {@code null} if none.
      *
      * @since 3.1
      */
