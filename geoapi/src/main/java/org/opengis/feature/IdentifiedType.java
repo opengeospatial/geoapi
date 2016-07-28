@@ -77,7 +77,7 @@ public interface IdentifiedType {
      * Returns a natural language designator for the element.
      * This can be used as an alternative to the {@linkplain #getName() name} in user interfaces.
      *
-     * @return Natural language designator for the element.
+     * @return Natural language designator for the element, or {@code null} if none.
      */
     @UML(identifier="designation", obligation=OPTIONAL, specification=ISO_19109)
     InternationalString getDesignation();

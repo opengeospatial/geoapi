@@ -76,6 +76,11 @@ public interface Metadata {
     /**
      * Unique identifier for this metadata record.
      *
+     * <div class="note"><b>Note:</b>
+     * OGC 07-045 (Catalog Service Specification — ISO metadata application profile) recommends usage
+     * of a UUID (Universal Unique Identifier) as specified by <a href="http://www.ietf.org">IETF</a>
+     * to ensure identifier’s uniqueness.</div>
+     *
      * @return Unique identifier for this metadata record, or {@code null}.
      */
     @Profile(level=CORE)
@@ -84,6 +89,11 @@ public interface Metadata {
 
     /**
      * Unique identifier for this metadata file, or {@code null} if none.
+     *
+     * <div class="note"><b>Note:</b>
+     * OGC 07-045 (Catalog Service Specification — ISO metadata application profile) recommends usage
+     * of a UUID (Universal Unique Identifier) as specified by <a href="http://www.ietf.org">IETF</a>
+     * to ensure identifier’s uniqueness.</div>
      *
      * @return Unique identifier for this metadata file, or {@code null} in none.
      *
@@ -197,7 +207,7 @@ public interface Metadata {
 
     /**
      * Identification of the parent metadata record.
-     * This is non-null if this metadata is a subset (child) of another metadata.
+     * This is non-null if this metadata is a subset (child) of another metadata that is described elsewhere.
      *
      * @condition Mandatory if there is an upper object.
      *
@@ -210,6 +220,11 @@ public interface Metadata {
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).
+     *
+     * <div class="note"><b>Note:</b>
+     * OGC 07-045 (Catalog Service Specification — ISO metadata application profile) recommends usage
+     * of a UUID (Universal Unique Identifier) as specified by <a href="http://www.ietf.org">IETF</a>
+     * to ensure identifier’s uniqueness.</div>
      *
      * @return Identifier of the metadata to which this metadata is a subset, or {@code null}.
      *
