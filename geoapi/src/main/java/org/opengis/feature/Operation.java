@@ -116,6 +116,7 @@ public interface Operation extends PropertyType {
      * @param  parameters The parameters to use for executing the operation.
      *                    Can be {@code null} if the operation does not take any parameters.
      * @return The operation result, or {@code null} if this operation does not produce any result.
+     * @throws FeatureOperationException if the operation can not complete.
      */
-    Property apply(Feature feature, ParameterValueGroup parameters);
+    Property apply(Feature feature, ParameterValueGroup parameters) throws FeatureOperationException;
 }

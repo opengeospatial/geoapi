@@ -65,22 +65,22 @@
  *  └─ {@linkplain org.opengis.metadata.acquisition.OperationType}</pre>
  * </td><td class="sep" style="width: 50%; white-space: nowrap">
  * <pre> {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation}
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Requirement}
+ *  │   ├─ {@linkplain org.opengis.metadata.acquisition.RequestedDate}
+ *  │   └─ {@linkplain org.opengis.metadata.acquisition.Priority} «code list»
  *  ├─ {@linkplain org.opengis.metadata.acquisition.Objective}
  *  │   ├─ {@linkplain org.opengis.metadata.acquisition.ObjectiveType} «code list»
- *  │   ├─ {@linkplain org.opengis.metadata.acquisition.PlatformPass}
- *  │   │   └─ {@linkplain org.opengis.metadata.acquisition.Event}
- *  │   │       ├─ {@linkplain org.opengis.metadata.acquisition.Trigger} «code list»
- *  │   │       ├─ {@linkplain org.opengis.metadata.acquisition.Context} «code list»
- *  │   │       └─ {@linkplain org.opengis.metadata.acquisition.Sequence} «code list»
- *  │   ├─ {@linkplain org.opengis.metadata.acquisition.Requirement}
- *  │   │   ├─ {@linkplain org.opengis.metadata.acquisition.RequestedDate}
- *  │   │   └─ {@linkplain org.opengis.metadata.acquisition.Priority} «code list»
- *  │   └─ {@linkplain org.opengis.metadata.acquisition.Plan}
- *  │       ├─ {@linkplain org.opengis.metadata.acquisition.GeometryType} «code list»
- *  │       └─ {@linkplain org.opengis.metadata.acquisition.Operation}
- *  │           ├─ {@linkplain org.opengis.metadata.acquisition.OperationType} «code list»
- *  │           └─ {@linkplain org.opengis.metadata.acquisition.Platform}
- *  │               └─ {@linkplain org.opengis.metadata.acquisition.Instrument}
+ *  │   └─ {@linkplain org.opengis.metadata.acquisition.PlatformPass}
+ *  │       └─ {@linkplain org.opengis.metadata.acquisition.Event}
+ *  │           ├─ {@linkplain org.opengis.metadata.acquisition.Trigger} «code list»
+ *  │           ├─ {@linkplain org.opengis.metadata.acquisition.Context} «code list»
+ *  │           └─ {@linkplain org.opengis.metadata.acquisition.Sequence} «code list»
+ *  ├─ {@linkplain org.opengis.metadata.acquisition.Plan}
+ *  │   ├─ {@linkplain org.opengis.metadata.acquisition.GeometryType} «code list»
+ *  │   └─ {@linkplain org.opengis.metadata.acquisition.Operation}
+ *  │       ├─ {@linkplain org.opengis.metadata.acquisition.OperationType} «code list»
+ *  │       └─ {@linkplain org.opengis.metadata.acquisition.Platform}
+ *  │           └─ {@linkplain org.opengis.metadata.acquisition.Instrument}
  *  └─ {@linkplain org.opengis.metadata.acquisition.EnvironmentalRecord}</pre>
  * </td></tr></table>
  *

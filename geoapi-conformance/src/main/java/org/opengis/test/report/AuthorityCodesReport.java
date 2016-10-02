@@ -62,9 +62,10 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  *   <tr><td>{@code OBJECTS.KIND}</td>           <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. <cite>"Coordinate Reference Systems"</cite>).</td></tr>
  *   <tr><td>{@code FACTORY.NAME}</td>           <td align="center">&nbsp;</td>    <td>The name of the authority factory.</td></tr>
  *   <tr><td>{@code FACTORY.VERSION}</td>        <td align="center">&nbsp;</td>    <td>The version of the authority factory.</td></tr>
- *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td align="center">optional</td>  <td>An optional text to write after the factory version.</td></tr>
+ *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td align="center">optional</td>  <td>An optional text to write after the factory version (in the main text only).</td></tr>
  *   <tr><td>{@code PRODUCT.NAME}</td>           <td align="center">&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
  *   <tr><td>{@code PRODUCT.VERSION}</td>        <td align="center">&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION.SUFFIX}</td> <td align="center">optional</td>  <td>An optional text to write after the product version (in the main text only).</td></tr>
  *   <tr><td>{@code PRODUCT.URL}</td>            <td align="center">&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
  *   <tr><td>{@code JAVADOC.GEOAPI}</td>         <td align="center">predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
  *   <tr><td>{@code COUNT.OBJECTS}</td>          <td align="center">automatic</td> <td>Number of identified objects.</td></tr>
@@ -254,6 +255,7 @@ public class AuthorityCodesReport extends Report {
         defaultProperties.setProperty("TITLE", "Authority codes for ${OBJECTS.KIND}");
         defaultProperties.setProperty("OBJECTS.KIND", "Identified Objects");
         defaultProperties.setProperty("FACTORY.VERSION.SUFFIX", "");
+        defaultProperties.setProperty("PRODUCT.VERSION.SUFFIX", "");
     }
 
     /**
