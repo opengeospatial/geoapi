@@ -79,12 +79,12 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>cdm</artifactId>
-      <version>4.4.2</version> <!-- Last version compatible with JDK6. -->
+      <version>4.6.6</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.5</version> <!-- Must matches the version used by NetCDF. -->
+      <version>1.7.7</version>                  <!-- Must matches the version used by NetCDF. -->
       <scope>test</scope>
     </dependency>
   </dependencies>

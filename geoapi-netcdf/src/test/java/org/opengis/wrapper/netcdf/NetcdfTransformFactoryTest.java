@@ -152,10 +152,13 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
                 throw new AssertionError(e);
             }
             final String projectionName = projection.getClassName();
+            if (projectionName.equalsIgnoreCase("LatLonProjection")) {          // Not a map projection.
+                continue;
+            }
             /*
              * Collect the NetCDF parameter names. This code ensures that the same NetCDF
              * parameter name is not declared twice. A failure in this test would be more
-             * a NetCDF issue than a GeoAPI-wrapper one.
+             * a UCAR library issue than a GeoAPI-wrapper one.
              *
              * The values in the map are the length of parameter value arrays, or 1 if
              * the parameter values are scalar.

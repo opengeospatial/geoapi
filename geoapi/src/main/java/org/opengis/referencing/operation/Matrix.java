@@ -44,17 +44,20 @@ import static org.opengis.annotation.Specification.*;
  * which should enable straightforward implementations on top of {@code javax.vecmath}.
  * The later package provides matrix for the general case and optimized versions for 3×3 and 4×4 cases,
  * which are quite common in a transformation package.
+ *
+ * <p>Examples of third-party classes that can be used for implementing this {@code Matrix} interface:</p>
+ * <ul>
+ *   <li>Standard Java: {@link java.awt.geom.AffineTransform}</li>
+ *   <li>Java Advanced Imaging (JAI): {@link javax.media.jai.PerspectiveTransform}</li>
+ *   <li>Java3D: {@link javax.media.j3d.Transform3D}, {@link javax.vecmath.GMatrix},
+ *       {@link javax.vecmath.Matrix4d}, {@link javax.vecmath.Matrix3d}</li>
+ *   <li>Other: <a href="http://math.nist.gov/javanumerics/jama/">Jama matrix</a></li>
+ * </ul>
  * </div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
- *
- * @see javax.vecmath.Matrix3d
- * @see javax.vecmath.Matrix4d
- * @see javax.vecmath.GMatrix
- * @see java.awt.geom.AffineTransform
- * @see <a href="http://math.nist.gov/javanumerics/jama/">Jama matrix</a>
  */
 @UML(identifier="PT_Matrix", specification=OGC_01009)
 public interface Matrix {
