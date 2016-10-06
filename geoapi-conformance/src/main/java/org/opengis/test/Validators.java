@@ -53,7 +53,7 @@ import org.opengis.test.referencing.*;
  * A set of convenience static methods for validating GeoAPI implementations. Every
  * {@code validate} method defined in this class delegate their work to one of many
  * {@link Validator} objects in various packages. This class is especially convenient
- * when used with the {@code static import} feature of Java 5.
+ * when used with {@code static import} statements.
  *
  * <p>To override some validation process on a system-wide basis, vendors can change the
  * {@link #DEFAULT} static field or change the configuration of the object referenced

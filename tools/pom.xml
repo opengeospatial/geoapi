@@ -10,11 +10,11 @@
   <parent>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-parent</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
   </parent>
 
   <!-- ===========================================================
-           Sun's tools dependency   (from Maven FAQ)
+           Oracle's tools dependency   (from Maven FAQ)
        =========================================================== -->
   <profiles>
     <profile>
@@ -22,14 +22,14 @@
       <activation>
         <property>
           <name>java.vendor</name>
-          <value>Sun Microsystems Inc.</value>
+          <value>Oracle Corporation</value>
         </property>
       </activation>
       <dependencies>
         <dependency>
           <groupId>com.sun</groupId>
           <artifactId>tools</artifactId>
-          <version>1.5</version>
+          <version>1.7</version>
           <scope>system</scope>
           <systemPath>${java.home}/../lib/tools.jar</systemPath>
         </dependency>
