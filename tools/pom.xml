@@ -16,33 +16,11 @@
   </parent>
 
   <!-- ===========================================================
-           Sun's tools dependency   (from Maven FAQ)
+           Oracle's tools dependency   (from Maven FAQ)
        =========================================================== -->
   <profiles>
     <profile>
       <id>default-tools.jar</id>
-      <activation>
-        <property>
-          <name>java.vendor</name>
-          <value>Sun Microsystems Inc.</value>
-        </property>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>com.sun</groupId>
-          <artifactId>tools</artifactId>
-          <version>1.5</version>
-          <scope>system</scope>
-          <systemPath>${java.home}/../lib/tools.jar</systemPath>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <!-- Following is a copy of the above profile with only the Java vendor name changed.
-         This copy will not be needed anymore if https://issues.apache.org/jira/browse/MNG-3328
-         get fixed. -->
-    <profile>
-      <id>jdk6-tools.jar</id>
       <activation>
         <property>
           <name>java.vendor</name>
@@ -53,7 +31,7 @@
         <dependency>
           <groupId>com.sun</groupId>
           <artifactId>tools</artifactId>
-          <version>1.5</version>
+          <version>1.7</version>
           <scope>system</scope>
           <systemPath>${java.home}/../lib/tools.jar</systemPath>
         </dependency>

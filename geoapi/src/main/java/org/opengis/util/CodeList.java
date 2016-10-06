@@ -183,7 +183,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return A code matching the given name, or {@code null} if the name is null.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
@@ -308,7 +308,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *
      * @departure integration
      *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
-     *   draft of JSE 5 before the final release.
+     *   draft of Java 5 before the final release.
      */
     @Override
     public abstract E[] family();
@@ -355,7 +355,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * is the name of the public static field which declare the code.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      *
      * @return The name of this code constant.
      */
@@ -425,7 +425,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return The position of this code constants in elements declaration.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      */
     @Override
     public final int ordinal() {

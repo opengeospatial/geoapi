@@ -316,8 +316,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.5</source>          <!-- The -source argument for the Java compiler.   -->
-          <target>1.5</target>          <!-- The -target argument for the Java compiler.   -->
+          <source>1.7</source>          <!-- Same than the version required by JSR-363.    -->
+          <target>1.7</target>          <!-- Same than the version required by JSR-363.    -->
           <debug>false</debug>          <!-- Whether to include debugging information.     -->
           <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
           <encoding>${project.build.sourceEncoding}</encoding>
@@ -471,7 +471,7 @@
           <charset>${website.encoding}</charset>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
-          <source>1.5</source>            <!-- Necessary to enable javadoc to handle J2SE 1.5 features.           -->
+          <source>1.7</source>            <!-- Same than the version number used for compilation.                 -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
           <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->

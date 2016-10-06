@@ -59,7 +59,7 @@ import org.opengis.test.coverage.image.*;
  * A set of convenience static methods for validating GeoAPI implementations. Every
  * {@code validate} method defined in this class delegate their work to one of many
  * {@link Validator} objects in various packages. This class is especially convenient
- * when used with the {@code static import} feature of Java 5.
+ * when used with {@code static import} statements.
  *
  * <p><b><u>Customization</u></b><br>
  * To override some validation process on a <em>system-wide</em> basis, vendors can either

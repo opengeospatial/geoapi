@@ -14,7 +14,7 @@ GeoAPI SNAPSHOT
 
     * {{{../maven.html}Maven repositories}} (recommended way to get the binaries)
 
-  This release requires a Java environment Java\ 5 or higher. Nightly builds can be obtained from
+  Those milestones require a Java environment Java\ 7 or higher. Nightly builds can be obtained from
   the Jenkins automated build tool's {{{http://jenkins.geotoolkit.org/job/GeoAPI-3.1/}output page}}.
 
   A milestone is created on a regular basis. API changes compared to the previous versions are
