@@ -193,27 +193,27 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>2.5</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>2.6</version>
+          <version>3.0.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.18.1</version>
+          <version>2.19.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>2.4</version>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -223,32 +223,32 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.4</version>
+          <version>3.5.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>2.9.1</version>
+          <version>2.10.4</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.7</version>
+          <version>2.9</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.17</version>
+          <version>2.19.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>2.5.3</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>1.9.1</version>
+          <version>1.12</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -352,6 +352,23 @@
         </configuration>
       </plugin>
 
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.groupId}.${project.artifactId}</Bundle-Name>
+            <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
+            <Specification-Title>GeoAPI</Specification-Title>
+            <Specification-Version>${project.version}</Specification-Version>
+            <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+            <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
+            <Implementation-URL>http://www.geoapi.org</Implementation-URL>
+          </instructions>
+        </configuration>
+      </plugin>
+
 
 
       <!-- ====================================================
@@ -392,7 +409,7 @@
             <tag><name>navassoc</name>  <placement>X</placement>    <head>Associated to:</head></tag>
           </tags>
           <links>
-            <link>http://download.oracle.com/javase/6/docs/api/</link>
+            <link>http://docs.oracle.com/javase/8/docs/api/</link>
             <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
             <link>http://download.java.net/media/java3d/javadoc/1.5.1/</link>
             <link>http://jscience.org/api/</link>

@@ -43,8 +43,7 @@ import static org.opengis.annotation.Specification.*;
  * Creates {@linkplain Datum datum} objects using authority codes. External authorities are used to
  * manage definitions of objects used in this interface. The definitions of these objects are
  * referenced using code strings. A commonly used authority is <A HREF="http://www.epsg.org">EPSG</A>,
- * which is also used in the <A HREF="http://www.remotesensing.org/geotiff/geotiff.html">GeoTIFF</A>
- * standard.
+ * which is also used in the <a href="https://trac.osgeo.org/geotiff/">GeoTIFF</a> standard.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

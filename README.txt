@@ -16,9 +16,9 @@ Modules
 How to build
 ---------------------------------------------------------------------------------------------------
 
-* Download and install Java 7 or above (http://download.oracle.com/javase/7).
+* Download and install Java 7 or above: http://www.oracle.com/technetwork/java/javase/overview/index.html
 
-* Download and install Maven 3 (http://maven.apache.org).
+* Download and install Maven 3: http://maven.apache.org
 
 * Invoke "mvn install" from the command line in this directory.
 
