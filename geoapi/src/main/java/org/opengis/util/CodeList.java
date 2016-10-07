@@ -170,9 +170,14 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * If no such element is found, then a new instance is created using the constructor expecting a
      * single {@link String} argument.
      *
+     * <p><b>Implementation note:</b> The {@code codeType} class needs to be initialized before to
+     * invoke this method. This is usually the case when the caller is a static method of the
+     * {@code codeType} class. However in other situations, callers may need to initialize
+     * explicitely the given class.</p>
+     *
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
-     * @param name The name of the code to obtain.
+     * @param name The name of the code to obtain, or {@code null}.
      * @return A code matching the given name, or {@code null} if the name is null.
      *
      * @departure integration
@@ -220,14 +225,28 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
         @SuppressWarnings("rawtypes")
-        final Collection<? extends CodeList> values;
+        Collection<? extends CodeList> values;
         synchronized (VALUES) {
             values = VALUES.get(codeType);
             if (values == null) {
                 if (codeType == null) {
                     throw new IllegalArgumentException("Code type is null");
                 } else {
-                    throw new IllegalStateException("No collection of " + codeType.getSimpleName());
+                    /*
+                     * If no list has been found for the given type, maybe the class was not yet initialized.
+                     * Try to force class initialization of the given class in order to register its list of
+                     * static final constants, then check again.
+                     */
+                    final String typeName = codeType.getName();
+                    try {
+                        Class.forName(typeName, true, codeType.getClassLoader());
+                    } catch (ClassNotFoundException e) {
+                        throw new TypeNotPresentException(typeName, e);                 // Should never happen.
+                    }
+                    values = VALUES.get(codeType);
+                    if (values == null) {
+                        throw new IllegalStateException("No collection of " + codeType.getSimpleName());
+                    }
                 }
             }
         }
@@ -245,7 +264,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
                 constructor.setAccessible(true);
                 return constructor.newInstance(name);
-            } catch (Exception exception) {
+            } catch (ReflectiveOperationException exception) {
                 throw new IllegalArgumentException("Can't create code of type " + codeType.getSimpleName(), exception);
             }
         }
@@ -255,7 +274,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Returns the list of codes of the same kind than this code.
      * This is similar to the static {@code values()} method provided in {@code CodeList}
      * subclasses, except that {@code family()} does not require the class to be known at
-     * compile-time - provided that at leat one instance of the familly is available. The
+     * compile-time - provided that at leat one instance of the family is available. The
      * static {@code values()} method has the opposite constraints (does not require a code
      * instance, but the class needs to be known at compile time unless
      * {@linkplain java.lang.reflect reflection} is used).
