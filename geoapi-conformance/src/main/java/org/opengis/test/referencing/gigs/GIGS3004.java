@@ -32,9 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
@@ -162,7 +160,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
     public GIGS3004(final DatumFactory datumFactory, final CSFactory csFactory, final CRSFactory crsFactory) {
         super(csFactory, crsFactory);
         this.crsFactory   = crsFactory;
-        this.epsgFactory  = new EPSGMock(datumFactory, csFactory, validators);
+        this.epsgFactory  = new EPSGMock(units, datumFactory, csFactory, validators);
         ellipsoidData     = new GIGS3002(datumFactory);
         primeMeridianData = new GIGS3003(datumFactory);
         ellipsoidData.skipTests = true;
@@ -236,15 +234,15 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
              * Verify axes: may be two- or three-dimensional, (φ,λ) or (λ,φ) order, in angular degrees or grads.
              * Those properties are inferred from the coordinate system code.
              */
-            Unit<Angle> angularUnit = NonSI.DEGREE_ANGLE;
+            Unit<Angle> angularUnit = units.degree();
             AxisDirection[] directions = GIGS2004.GEOGRAPHIC_2D;
             switch (csCode) {
-                case 6403: angularUnit = NonSI.GRADE; break;
+                case 6403: angularUnit = units.grad(); break;
                 case 6423: directions = GIGS2004.GEOGRAPHIC_3D; break;
                 case 6424: directions = GIGS2004.GEOGRAPHIC_XY; break;
             }
             verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class,
-                    directions, angularUnit, angularUnit, SI.METRE);
+                    directions, angularUnit, angularUnit, units.metre());
         }
     }
 
@@ -266,7 +264,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
             assertNotNull("CRSFactory.createGeocentricCRS(…) shall not return null.", crs);
             validators.validate(crs);
             verifyIdentification(crs, crsName, String.valueOf(crsCode));
-            verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, GIGS2004.GEOCENTRIC, SI.METRE);
+            verifyCoordinateSystem(crs.getCoordinateSystem(), CartesianCS.class, GIGS2004.GEOCENTRIC, units.metre());
         }
     }
 

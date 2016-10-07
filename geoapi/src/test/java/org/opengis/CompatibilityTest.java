@@ -132,16 +132,19 @@ public final class CompatibilityTest {
         } else {
             throw new IllegalStateException("Unsupported version: " + newVersion);
         }
-        final File depFile;
-        depFile = new File(mavenRepository, "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar");
+        final File legacy, depFile;
+        legacy  = new File(mavenRepository, "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar");
+        depFile = new File(mavenRepository, "javax/measure/unit-api/1.0/unit-api-1.0.jar");
         oldFile = new File(mavenRepository, "org/opengis/geoapi/" + oldVersion + "/geoapi-" + oldVersion + ".jar");
         newFile = new File(mavenRepository, "org/opengis/geoapi/" + newVersion + "/geoapi-" + newVersion + ".jar");
+        assumeTrue("Required dependency not found: " + legacy,  legacy.isFile());
         assumeTrue("Required dependency not found: " + depFile, depFile.isFile());
         assumeTrue("GeoAPI " + oldVersion + " not in Maven repository.", oldFile.isFile());
         assumeTrue("GeoAPI " + newVersion + " not in Maven repository.", newFile.isFile());
+        final URL legacyDep  = legacy .toURI().toURL();
         final URL dependency = depFile.toURI().toURL();
         final ClassLoader parent = CompatibilityTest.class.getClassLoader().getParent();
-        oldAPI = new URLClassLoader(new URL[] {oldFile.toURI().toURL(), dependency}, parent);
+        oldAPI = new URLClassLoader(new URL[] {oldFile.toURI().toURL(), legacyDep},  parent);
         newAPI = new URLClassLoader(new URL[] {newFile.toURI().toURL(), dependency}, parent);
     }
 

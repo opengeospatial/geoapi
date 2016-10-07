@@ -35,8 +35,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 
 import static org.junit.Assert.*;
@@ -57,7 +56,7 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
      */
     static final Map<String,String> METHOD_NAMES;
     static {
-        final Map<String,String> m = new HashMap<String,String>();
+        final Map<String,String> m = new HashMap<>();
         assertNull(m.put("GIGS PM A", "testGreenwich"));
         assertNull(m.put("GIGS PM D", "testJakarta"));
         assertNull(m.put("GIGS PM H", "testParis"));
@@ -120,7 +119,7 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
                  * support sexagesimal units since the conversion to degrees is non-linear.
                  * Consequently, fallback on the decimal degrees instead.
                  */
-                unit = NonSI.DEGREE_ANGLE;
+                unit = units.degree();
                 longitude = longitudeInDegrees;
             } else {
                 unit = parseAngularUnit(unitName);

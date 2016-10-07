@@ -45,8 +45,8 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
  * {@link org.opengis.referencing.crs.ParametricCRS}.</p>
  *
  * @author  Johann Sorel (Geomatys)
- * @version 3.2
- * @since   3.2
+ * @version 3.1
+ * @since   3.1
  *
  * @see CSAuthorityFactory#createParametricCS(String)
  * @see CSFactory#createParametricCS(Map, CoordinateSystemAxis)

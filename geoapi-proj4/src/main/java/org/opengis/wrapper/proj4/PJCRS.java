@@ -13,8 +13,7 @@
  */
 package org.opengis.wrapper.proj4;
 
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
@@ -113,7 +112,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      */
     static final class Geocentric extends PJCRS implements GeocentricCRS {
         Geocentric(final Identifier identifier, final PJDatum datum, final int dimension) {
-            super(identifier, datum, dimension, NonSI.DEGREE_ANGLE);
+            super(identifier, datum, dimension, Units.DEGREE);
         }
     }
 
@@ -122,7 +121,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
      */
     static final class Geographic extends PJCRS implements GeographicCRS, EllipsoidalCS {
         Geographic(final Identifier identifier, final PJDatum datum, final int dimension) {
-            super(identifier, datum, dimension, NonSI.DEGREE_ANGLE);
+            super(identifier, datum, dimension, Units.DEGREE);
         }
 
         @Override

@@ -23,7 +23,6 @@ import java.util.Formatter;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.measure.unit.SI;
 
 import ucar.nc2.units.DateUnit;
 import ucar.nc2.constants.AxisType;
@@ -635,7 +634,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
                 throw new IllegalArgumentException("Unknown unit symbol: " + unitSymbol, e);
             }
             origin = unit.getDateOrigin().getTime();
-            getAxis(0).unit = SI.SECOND.times(unit.getTimeUnit().getValueInSeconds());
+            getAxis(0).unit = Units.SECOND.multiply(unit.getTimeUnit().getValueInSeconds());
         }
 
         /**

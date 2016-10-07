@@ -14,7 +14,9 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Objects;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
+import javax.measure.format.ParserException;
+import tec.units.ri.format.SimpleUnitFormat;
 
 import ucar.nc2.constants.CF;
 import ucar.nc2.constants.AxisType;
@@ -212,8 +214,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
         if (unit == null) {
             final String symbol = getUnitsString();
             if (symbol != null) try {
-                this.unit = unit = Unit.valueOf(symbol);
-            } catch (IllegalArgumentException e) {
+                this.unit = unit = SimpleUnitFormat.getInstance().parse(symbol);
+            } catch (ParserException e) {
                 // Unsupported unit symbol.
             }
         }

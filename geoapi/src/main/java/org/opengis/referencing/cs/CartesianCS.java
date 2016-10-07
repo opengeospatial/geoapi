@@ -32,7 +32,6 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.SI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -51,31 +50,31 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 1: used with a Projected CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Easting</td> <td>E</td> <td>{@link AxisDirection#EAST}</td>  <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Northing</td><td>N</td> <td>{@link AxisDirection#NORTH}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Easting</td> <td>E</td> <td>{@link AxisDirection#EAST}</td>  <td>metre</td></tr>
+ *   <tr><td>Northing</td><td>N</td> <td>{@link AxisDirection#NORTH}</td> <td>metre</td></tr>
  * </table>
  *
  * <table class="ogc">
  *   <caption>Example 2: used with a Geocentric CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Geocentric X</td><td>X</td> <td>{@link AxisDirection#GEOCENTRIC_X}</td> <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Geocentric Y</td><td>Y</td> <td>{@link AxisDirection#GEOCENTRIC_Y}</td> <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Geocentric Z</td><td>Z</td> <td>{@link AxisDirection#GEOCENTRIC_Z}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Geocentric X</td><td>X</td> <td>{@link AxisDirection#GEOCENTRIC_X}</td> <td>metre</td></tr>
+ *   <tr><td>Geocentric Y</td><td>Y</td> <td>{@link AxisDirection#GEOCENTRIC_Y}</td> <td>metre</td></tr>
+ *   <tr><td>Geocentric Z</td><td>Z</td> <td>{@link AxisDirection#GEOCENTRIC_Z}</td> <td>metre</td></tr>
  * </table>
  *
  * <table class="ogc">
  *   <caption>Example 3: used with an Engineering CRS for a station fixed to Earth</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Site north</td><td>x</td> <td>{@link AxisDirection#SOUTH_EAST}</td> <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Site east</td> <td>y</td> <td>{@link AxisDirection#SOUTH_WEST}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Site north</td><td>x</td> <td>{@link AxisDirection#SOUTH_EAST}</td> <td>metre</td></tr>
+ *   <tr><td>Site east</td> <td>y</td> <td>{@link AxisDirection#SOUTH_WEST}</td> <td>metre</td></tr>
  * </table>
  *
  * <table class="ogc">
  *   <caption>Example 4: used with an Engineering CRS for a moving platform</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Ahead</td><td>x</td> <td>{@code AxisDirection.valueOf("FORDWARD")}</td>  <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Right</td><td>y</td> <td>{@code AxisDirection.valueOf("STARBOARD")}</td> <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Ahead</td><td>x</td> <td>{@code AxisDirection.valueOf("FORDWARD")}</td>  <td>metre</td></tr>
+ *   <tr><td>Right</td><td>y</td> <td>{@code AxisDirection.valueOf("STARBOARD")}</td> <td>metre</td></tr>
+ *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>metre</td></tr>
  * </table>
  *
  * <div class="note"><b>Note:</b>
@@ -93,7 +92,7 @@ import static org.opengis.annotation.Specification.*;
  *   are perpendicular to each other.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CSAuthorityFactory#createCartesianCS(String)

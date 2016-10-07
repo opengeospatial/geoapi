@@ -32,8 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
@@ -221,8 +220,9 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
          */
         final Unit<Angle> unit = pm.getAngularUnit();
         double longitude = greenwichLongitude;
-        if (unit != null && !unit.equals(NonSI.DEGREE_ANGLE)) {
-            longitude = NonSI.DEGREE_ANGLE.getConverterTo(unit).convert(longitude);
+        final Unit<Angle> degree = units.degree();
+        if (unit != null && !unit.equals(degree)) {
+            longitude = degree.getConverterTo(unit).convert(longitude);
         }
         assertEquals("PrimeMeridian.getGreenwichLongitude()", longitude,
                 pm.getGreenwichLongitude(), ANGULAR_TOLERANCE);

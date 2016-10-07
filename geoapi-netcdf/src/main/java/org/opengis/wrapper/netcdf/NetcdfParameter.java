@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 
 import ucar.unidata.util.Parameter;
 

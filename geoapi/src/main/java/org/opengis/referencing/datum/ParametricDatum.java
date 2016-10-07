@@ -42,8 +42,8 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
  * the origin of a parametric coordinate system, including its position with respect to the Earth.
  *
  * @author  Johann Sorel (Geomatys)
- * @version 3.2
- * @since   3.2
+ * @version 3.1
+ * @since   3.1
  *
  * @see DatumAuthorityFactory#createParametricDatum(String)
  * @see DatumFactory#createParametricDatum(Map)

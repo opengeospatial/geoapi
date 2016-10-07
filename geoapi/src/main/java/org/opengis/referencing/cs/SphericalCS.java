@@ -32,8 +32,6 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -50,17 +48,17 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 1: used with a Geocentric CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Spherical latitude</td> <td>Θ</td> <td>{@link AxisDirection#NORTH}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Spherical longitude</td><td>Ω</td> <td>{@link AxisDirection#EAST}</td>  <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Geocentric radius</td>  <td>R</td> <td>{@link AxisDirection#UP}</td>    <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Spherical latitude</td> <td>Θ</td> <td>{@link AxisDirection#NORTH}</td> <td>degree</td></tr>
+ *   <tr><td>Spherical longitude</td><td>Ω</td> <td>{@link AxisDirection#EAST}</td>  <td>degree</td></tr>
+ *   <tr><td>Geocentric radius</td>  <td>R</td> <td>{@link AxisDirection#UP}</td>    <td>metre</td></tr>
  * </table>
  *
  * <table class="ogc">
  *   <caption>Example 2: used with an Engineering CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Distance</td>  <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td>         <td>{@link SI#KILOMETRE}</td></tr>
- *   <tr><td>Longitude</td> <td>φ</td> <td>{@code AxisDirection.valueOf("COUNTER_CLOCKWISE")}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                           <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Distance</td>  <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td>         <td>kilometre</td></tr>
+ *   <tr><td>Longitude</td> <td>φ</td> <td>{@code AxisDirection.valueOf("COUNTER_CLOCKWISE")}</td> <td>degree</td></tr>
+ *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                           <td>degree</td></tr>
  * </table>
  *
  * <div class="note"><b>Note:</b>
@@ -68,7 +66,7 @@ import static org.opengis.annotation.Specification.*;
  * but found in ISO 19162 as "{@code awayFrom}" and "{@code counterClockwise}".</div>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CSAuthorityFactory#createSphericalCS(String)

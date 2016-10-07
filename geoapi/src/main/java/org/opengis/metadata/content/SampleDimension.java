@@ -31,7 +31,7 @@
  */
 package org.opengis.metadata.content;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
 import org.opengis.annotation.UML;

@@ -13,9 +13,8 @@
  */
 package org.opengis.wrapper.netcdf;
 
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
 
 import org.opengis.referencing.datum.PrimeMeridian;
 
@@ -75,6 +74,6 @@ final class SimplePrimeMeridian extends NetcdfIdentifiedObject implements PrimeM
      */
     @Override
     public Unit<Angle> getAngularUnit() {
-        return NonSI.DEGREE_ANGLE;
+        return Units.DEGREE;
     }
 }

@@ -42,6 +42,7 @@ import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
 
+import org.opengis.test.Units;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
 import static org.opengis.test.Assert.*;
@@ -60,6 +61,13 @@ import static org.opengis.test.Assert.*;
  * @since   2.2
  */
 public abstract class ReferencingValidator extends Validator {
+    /**
+     * Provider of units of measurement (degree, metre, second, <i>etc</i>).
+     * This field is set to the {@linkplain Units#getDefault() default provider} for now
+     * (it may be revisited in a future GeoAPI-conformance version).
+     */
+    final Units units = Units.getDefault();
+
     /**
      * Creates a new validator instance.
      *

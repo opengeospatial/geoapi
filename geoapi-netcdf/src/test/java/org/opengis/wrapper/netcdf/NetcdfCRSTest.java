@@ -18,11 +18,10 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.logging.Logger;
 import java.io.IOException;
+import javax.measure.Unit;
+
 import ucar.nc2.dataset.NetcdfDataset;
 import ucar.nc2.dataset.CoordinateSystem;
-import javax.measure.unit.Unit;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.crs.SingleCRS;
@@ -217,8 +216,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * @param unit The expected axis unit.
      * @param axis The axis to verify.
      *
-     * @todo The unit check is disabled for now, because the JSR-275 API can not parse the
-     *       NetCDF syntax. Revisit this issue after we replaced JSR-275 API by UOM interfaces.
+     * @todo The unit check is disabled for now, because most Unit implementations can not parse the NetCDF syntax.
      */
     private void assertAxisEquals(final String name, final Unit<?> unit, final CoordinateSystemAxis axis) {
         assertNameEquals(name, axis);
@@ -254,8 +252,8 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
             final EllipsoidalCS cs = ((GeographicCRS) crs).getCoordinateSystem();
             assertAxisDirectionsEqual("GeographicCRS.cs", cs, EAST, NORTH);
-            assertAxisEquals("x", NonSI.DEGREE_ANGLE, cs.getAxis(0));
-            assertAxisEquals("y", NonSI.DEGREE_ANGLE, cs.getAxis(1));
+            assertAxisEquals("x", Units.DEGREE, cs.getAxis(0));
+            assertAxisEquals("y", Units.DEGREE, cs.getAxis(1));
             assertNameEquals("y x", crs);
         }
     }
@@ -329,9 +327,9 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             final TimeCS        time = (temporalCRS).getCoordinateSystem();
             assertAxisDirectionsEqual("GeographicCRS.cs", ellp, EAST, NORTH);
             assertAxisDirectionsEqual("TemporalCRS.cs",   time, FUTURE);
-            assertAxisEquals("lon",     NonSI.DEGREE_ANGLE, ellp.getAxis(0));
-            assertAxisEquals("lat",     NonSI.DEGREE_ANGLE, ellp.getAxis(1));
-            assertAxisEquals("valtime", NonSI.HOUR,         time.getAxis(0));
+            assertAxisEquals("lon",     Units.DEGREE, ellp.getAxis(0));
+            assertAxisEquals("lat",     Units.DEGREE, ellp.getAxis(1));
+            assertAxisEquals("valtime", Units.HOUR,   time.getAxis(0));
             assertNameEquals("valtime lat lon", crs);
             assertEquals("Time since 1992-1-1 UTC", new Date(694224000000L), temporalCRS.getDatum().getOrigin());
         }
@@ -378,10 +376,10 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertAxisDirectionsEqual("ProjectedCRS.cs", cart, EAST, NORTH);
             assertAxisDirectionsEqual("VerticalCRS.cs",  vert, UP);
             assertAxisDirectionsEqual("TemporalCRS.cs",  time, FUTURE);
-            assertAxisEquals("x0",   SI.KILOMETRE,           cart.getAxis(0));
-            assertAxisEquals("y0",   SI.KILOMETRE,           cart.getAxis(1));
-            assertAxisEquals("z0",   NonSI.FOOT.times(0.01), vert.getAxis(0));
-            assertAxisEquals("time", SI.SECOND,              time.getAxis(0));
+            assertAxisEquals("x0",   Units.KILOMETRE,           cart.getAxis(0));
+            assertAxisEquals("y0",   Units.KILOMETRE,           cart.getAxis(1));
+            assertAxisEquals("z0",   Units.FOOT.multiply(0.01), vert.getAxis(0));
+            assertAxisEquals("time", Units.SECOND,              time.getAxis(0));
             assertNameEquals("time z0 y0 x0", crs);
             assertEquals("Time since 1992-1-1 UTC", new Date(0L), temporalCRS.getDatum().getOrigin());
             /*

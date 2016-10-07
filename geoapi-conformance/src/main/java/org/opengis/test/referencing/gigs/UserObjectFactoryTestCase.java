@@ -33,8 +33,6 @@ package org.opengis.test.referencing.gigs;
 
 import java.util.Map;
 import java.util.HashMap;
-import javax.measure.unit.Unit;
-import javax.measure.quantity.Dimensionless;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.util.FactoryException;
@@ -60,11 +58,6 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase {
-    /**
-     * The "parts per million" unit.
-     */
-    static final Unit<Dimensionless> PPM = Unit.ONE.divide(1000000);
-
     /**
      * The properties to be given in argument to a {@code ObjectFactory.createXXX(String)} method.
      * This map contains at least the given entries:

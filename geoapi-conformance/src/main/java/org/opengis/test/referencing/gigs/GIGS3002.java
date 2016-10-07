@@ -32,9 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.Unit;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
 
 import org.opengis.util.Factory;
@@ -269,7 +267,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67030, "GIGS ellipsoid A");
         semiMajorAxis     = 6378137.0;
         semiMinorAxis     = 6356752.314247833;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 298.2572236;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -297,7 +295,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67001, "GIGS ellipsoid B");
         semiMajorAxis     = 6377563.396;
         semiMinorAxis     = 6356256.909237285;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 299.3249646;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -325,7 +323,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67004, "GIGS ellipsoid C");
         semiMajorAxis     = 6377397.155;
         semiMinorAxis     = 6356078.962818189;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 299.1528128;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -353,7 +351,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67022, "GIGS ellipsoid E");
         semiMajorAxis     = 6378388.0;
         semiMinorAxis     = 6356911.9461279465;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 297.0;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -381,7 +379,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67019, "GIGS ellipsoid F");
         semiMajorAxis     = 6378.137;
         semiMinorAxis     = 6356.7523141402835;
-        axisUnit          = SI.KILOMETRE;
+        axisUnit          = units.kilometre();
         inverseFlattening = 298.2572221;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -409,7 +407,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67011, "GIGS ellipsoid H");
         semiMajorAxis     = 6378249.2;
         semiMinorAxis     = 6356515.0;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 293.4660212936269;
         verifyEllipsoid();
     }
@@ -436,7 +434,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67052, "GIGS ellipsoid I");
         semiMajorAxis     = 6370997.0;
         semiMinorAxis     = 6370997.0;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = Double.POSITIVE_INFINITY;
         isSphere          = true;
         verifyEllipsoid();
@@ -464,7 +462,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67008, "GIGS ellipsoid J");
         semiMajorAxis     = 20925832.16;
         semiMinorAxis     = 20854892.013176885;
-        axisUnit          = NonSI.FOOT_SURVEY_US;
+        axisUnit          = units.footSurveyUS();
         inverseFlattening = 294.9786982;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -492,7 +490,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67036, "GIGS ellipsoid K");
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = 6356774.516088779;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 298.2471674;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -520,7 +518,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67003, "GIGS ellipsoid X");
         semiMajorAxis     = 6378160.0;
         semiMinorAxis     = 6356774.719195306;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 298.25;
         isIvfDefinitive   = true;
         verifyEllipsoid();
@@ -548,7 +546,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
         setCodeAndName(67024, "GIGS ellipsoid Y");
         semiMajorAxis     = 6378245.0;
         semiMinorAxis     = 6356863.018773047;
-        axisUnit          = SI.METRE;
+        axisUnit          = units.metre();
         inverseFlattening = 298.3;
         isIvfDefinitive   = true;
         verifyEllipsoid();

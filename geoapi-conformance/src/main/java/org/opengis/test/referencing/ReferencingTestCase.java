@@ -32,13 +32,11 @@
 package org.opengis.test.referencing;
 
 import java.util.Date;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
+import javax.measure.UnitConverter;
+import javax.measure.IncommensurableException;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import javax.measure.converter.UnitConverter;
-import javax.measure.converter.ConversionException;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
@@ -220,7 +218,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
             assertNotNull("Ellipsoid.getAxisUnit()", actualUnit);
             assertEquals("Ellipsoid.getSemiMajorAxis()", semiMajor,
                     actualUnit.getConverterTo(axisUnit).convert(ellipsoid.getSemiMajorAxis()),
-                    SI.METRE  .getConverterTo(axisUnit).convert(5E-4));
+                    units.metre().getConverterTo(axisUnit).convert(5E-4));
             assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening, ellipsoid.getInverseFlattening(), 5E-10);
         }
     }
@@ -263,7 +261,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
             assertNotNull("PrimeMeridian.getAngularUnit()", actualUnit);
             assertEquals("PrimeMeridian.getGreenwichLongitude()", greenwichLongitude,
                     actualUnit.getConverterTo(angularUnit).convert(primeMeridian.getGreenwichLongitude()),
-                    NonSI.DEGREE_ANGLE.getConverterTo(angularUnit).convert(5E-8));
+                    units.degree().getConverterTo(angularUnit).convert(5E-8));
         }
     }
 
@@ -275,17 +273,17 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * <p>If the given {@code cs} is {@code null}, then this method does nothing.
      * Deciding if {@code null} coordinate systems are allowed or not is {@link org.opengis.test.Validator}'s job.</p>
      *
-     * @param cs         The coordinate system to verify, or {@code null} if none.
-     * @param type       The expected coordinate system type.
-     * @param directions The expected axis directions. The length of this array determines the expected {@code cs} dimension.
-     * @param units      The expected axis units. If the array length is less than the {@code cs} dimension,
-     *                   then the last unit is repeated for all remaining dimensions. If the array length is
-     *                   greater, than extra units are ignored.
+     * @param  cs          the coordinate system to verify, or {@code null} if none.
+     * @param  type        the expected coordinate system type.
+     * @param  directions  the expected axis directions. The length of this array determines the expected {@code cs} dimension.
+     * @param  axisUnits   the expected axis units. If the array length is less than the {@code cs} dimension,
+     *                     then the last unit is repeated for all remaining dimensions.
+     *                     If the array length is greater, than extra units are ignored.
      *
      * @see CoordinateReferenceSystem#getCoordinateSystem()
      */
     protected void verifyCoordinateSystem(final CoordinateSystem cs, final Class<? extends CoordinateSystem> type,
-            final AxisDirection[] directions, final Unit<?>... units)
+            final AxisDirection[] directions, final Unit<?>... axisUnits)
     {
         if (cs != null) {
             assertEquals("CoordinateSystem.getDimension()", directions.length, cs.getDimension());
@@ -293,7 +291,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
                 assertNotNull("CoordinateSystem.getAxis(*)", axis);
                 assertEquals ("CoordinateSystem.getAxis(*).getDirection()", directions[i], axis.getDirection());
-                assertEquals ("CoordinateSystem.getAxis(*).getUnit()", units[Math.min(i, units.length-1)], axis.getUnit());
+                assertEquals ("CoordinateSystem.getAxis(*).getUnit()", axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit());
             }
         }
     }
@@ -457,7 +455,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                                     final UnitConverter c;
                                     try {
                                         c = u.getConverterToAny(unit);
-                                    } catch (ConversionException ex) {
+                                    } catch (IncommensurableException ex) {
                                         throw new AssertionError("Expected VerticalExtent in units of “"
                                                 + unit + "” but got units of “" + u + "”.", ex);
                                     }

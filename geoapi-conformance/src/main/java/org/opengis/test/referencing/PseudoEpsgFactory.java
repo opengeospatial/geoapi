@@ -35,9 +35,8 @@ import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import java.util.Objects;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
@@ -48,10 +47,11 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.test.ValidatorContainer;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
+import org.opengis.test.ValidatorContainer;
+import org.opengis.test.Units;
 
 import static org.junit.Assert.*;
 import static org.junit.Assume.*;
@@ -92,6 +92,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     static final double LINKS = 0.66 * FEET;
 
     /**
+     * Provider of pre-defined {@link Unit} instances (degree, metre, second, <i>etc</i>).
+     */
+    protected final Units units;
+
+    /**
      * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
     protected final DatumFactory datumFactory;
@@ -124,16 +129,18 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Creates a new pseudo-factory which will use the given factories.
      *
-     * @param datumFactory Factory for creating {@link Datum} instances.
-     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
-     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param copFactory   Factory for creating {@link Conversion} instances.
-     * @param mtFactory    Factory for creating {@link MathTransform} instances.
-     * @param validators   The set of validators to use for verifying objects conformance.
-     *                     Can not be {@code null}; if there is no particular validators,
-     *                     use {@link org.opengis.test.Validators#DEFAULT}.
+     * @param  units         provider of pre-defined {@link Unit} instances.
+     * @param  datumFactory  factory for creating {@link Datum} instances.
+     * @param  csFactory     factory for creating {@link CoordinateSystem} instances.
+     * @param  crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param  copFactory    factory for creating {@link Conversion} instances.
+     * @param  mtFactory     factory for creating {@link MathTransform} instances.
+     * @param  validators    the set of validators to use for verifying objects conformance,
+     *                       Can not be {@code null}; if there is no particular validators,
+     *                       use {@link org.opengis.test.Validators#DEFAULT}.
      */
     public PseudoEpsgFactory(
+            final Units                           units,
             final DatumFactory             datumFactory,
             final CSFactory                   csFactory,
             final CRSFactory                 crsFactory,
@@ -141,15 +148,13 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             final MathTransformFactory        mtFactory,
             final ValidatorContainer         validators)
     {
+        this.units        = Objects.requireNonNull(units, "The units can not be null. Do you mean Units.getDefault()?");
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;
         this.copFactory   = copFactory;
         this.mtFactory    = mtFactory;
-        this.validators   = validators;
-        if (validators == null) {
-            throw new NullPointerException("The validators can not be null. Do you mean Validators.DEFAULT?");
-        }
+        this.validators   = Objects.requireNonNull(validators, "The validators can not be null. Do you mean Validators.DEFAULT?");
     }
 
     /**
@@ -230,7 +235,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @return A map containing the properties for the object to create.
      */
     protected Map<String,Object> createPropertiesMap(final int code, final String name) {
-        final Map<String,Object> properties = new HashMap<String,Object>(4);
+        final Map<String,Object> properties = new HashMap<>(4);
         assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
         assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new EPSGIdentifier(code)));
         return properties;
@@ -771,16 +776,14 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      */
     @Override
     public Unit<?> createUnit(final String code) throws FactoryException {
-        final Unit<?> unit;
         final int id = parseCode(code);
         switch (id) {
-            case 9001: unit=SI.METRE; break;
+            case 9001: return units.metre();
             case 9122: // Fall through
-            case 9102: unit=NonSI.DEGREE_ANGLE; break;
-            case 9105: unit=NonSI.GRADE; break;
+            case 9102: return units.degree();
+            case 9105: return units.grad();
             default:   throw noSuchAuthorityCode(id, code);
         }
-        return unit;
     }
 
 

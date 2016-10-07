@@ -32,8 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
 
 import org.opengis.util.Factory;
@@ -295,7 +294,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
          * another unit, convert the axis lengths from the later units to metre units.
          */
         final Unit<Length> unit = ellipsoid.getAxisUnit();
-        final boolean inMetres = toMetres != 1 && (unit == null || unit.equals(SI.METRE));
+        final boolean inMetres = toMetres != 1 && (unit == null || unit.equals(units.metre()));
         double expectedAxisLength = getSemiMajorAxis(inMetres);
         assertEquals("Ellipsoid.getSemiMajorAxis()",
                 expectedAxisLength, ellipsoid.getSemiMajorAxis(), TOLERANCE*expectedAxisLength);

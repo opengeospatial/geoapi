@@ -7,7 +7,7 @@ uncompressed before use. This bundle file include all of the following:
 
   * geoapi-conformance.jar
   * geoapi-pending.jar
-  * jsr-275.jar
+  * jsr-363.jar
   * junit.jar
 
 

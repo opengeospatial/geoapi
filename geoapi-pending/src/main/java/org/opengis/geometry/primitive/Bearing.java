@@ -31,7 +31,7 @@
  */
 package org.opengis.geometry.primitive;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 
 import org.opengis.annotation.UML;

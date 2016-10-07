@@ -31,7 +31,7 @@
  */
 package org.opengis.coverage;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.MathTransform1D;
 import org.opengis.annotation.UML;

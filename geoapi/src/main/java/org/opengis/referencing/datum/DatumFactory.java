@@ -33,7 +33,7 @@ package org.opengis.referencing.datum;
 
 import java.util.Map;
 import java.util.Date;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.ObjectFactory;
@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
- * @version 3.2
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory

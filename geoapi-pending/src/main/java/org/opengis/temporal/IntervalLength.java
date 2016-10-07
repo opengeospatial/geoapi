@@ -31,7 +31,7 @@
  */
 package org.opengis.temporal;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.Obligation.*;

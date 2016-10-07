@@ -35,8 +35,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 
 import static org.junit.Assert.*;
 
@@ -56,7 +55,7 @@ public strictfp class GIGS3005Generator extends TestMethodGenerator {
      */
     static final Map<String,String> METHOD_NAMES;
     static {
-        final Map<String,String> m = new HashMap<String,String>();
+        final Map<String,String> m = new HashMap<>();
         assertNull(m.put("GIGS projection 1",       "testUTM_zone31N"));
         assertNull(m.put("GIGS projection 2",       "testBritishNationalGrid"));
         assertNull(m.put("GIGS projection 2 alt A", "testBritishNationalGrid_altA"));
@@ -197,7 +196,7 @@ public strictfp class GIGS3005Generator extends TestMethodGenerator {
                     final String unitName = data.getString(columnOffset + 2);
                     if (unitName.equalsIgnoreCase(GIGS3003Generator.SEXAGESIMAL_DEGREE)) {
                         value = data.getDouble(columnOffset + 3);
-                        unit = NonSI.DEGREE_ANGLE;
+                        unit = units.degree();
                     } else {
                         unit = parseUnit(unitName);
                         assertNotNull(unitName, unit);          // Failure here would be a geoapi-conformance bug.

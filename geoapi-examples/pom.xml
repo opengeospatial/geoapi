@@ -72,7 +72,11 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>java3d</groupId>
+      <groupId>tec.units</groupId>
+      <artifactId>unit-ri</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.vecmath</groupId>
       <artifactId>vecmath</artifactId>
     </dependency>
   </dependencies>

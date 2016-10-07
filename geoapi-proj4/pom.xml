@@ -67,6 +67,10 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>tec.units</groupId>
+      <artifactId>unit-ri</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.opengis</groupId>
       <artifactId>geoapi-conformance</artifactId>
       <version>${project.version}</version>

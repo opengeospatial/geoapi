@@ -8,11 +8,10 @@
 package org.opengis.example.referencing;
 
 import java.util.Date;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
-import javax.measure.unit.Unit;
 import javax.measure.quantity.Length;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.SI;
+import tec.units.ri.unit.Units;
 
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
@@ -74,7 +73,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
          */
         @Override
         public Unit<Angle> getAngularUnit() {
-            return NonSI.DEGREE_ANGLE;
+            return SimpleAxis.DEGREE;
         }
     }
 
@@ -137,13 +136,13 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
      * and {@linkplain #getSemiMinorAxis semi-minor} axis values. The default
-     * implementation returns {@link SI#METRE}.
+     * implementation returns {@link Units#METRE}.
      *
      * @return The axis linear unit.
      */
     @Override
     public Unit<Length> getAxisUnit() {
-        return SI.METRE;
+        return Units.METRE;
     }
 
     /**

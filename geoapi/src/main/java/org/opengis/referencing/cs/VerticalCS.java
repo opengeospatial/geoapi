@@ -32,7 +32,6 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.SI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -51,17 +50,17 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 1: positive values above sea level</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Gravity-related height</td> <td>H</td> <td>{@link AxisDirection#UP}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Gravity-related height</td> <td>H</td> <td>{@link AxisDirection#UP}</td> <td>metre</td></tr>
  * </table>
  *
  * <table class="ogc">
  *   <caption>Example 2: positive values below sea level</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Depth</td> <td>D</td> <td>{@link AxisDirection#DOWN}</td> <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Depth</td> <td>D</td> <td>{@link AxisDirection#DOWN}</td> <td>metre</td></tr>
  * </table>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CSAuthorityFactory#createVerticalCS(String)

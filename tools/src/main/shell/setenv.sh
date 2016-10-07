@@ -4,7 +4,7 @@
 # --------------------------------------------------------------
 
 export GEOAPI_VERSION=4.0-SNAPSHOT
-export JSR275_VERSION=0.9.3
-export JUNIT_VERSION=4.11
+export UOM_VERSION=1.0
+export JUNIT_VERSION=4.12
 export HAMCREST_VERSION=1.3
 export MAVEN_REPOSITORY=$HOME/.m2/repository

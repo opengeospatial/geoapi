@@ -33,11 +33,9 @@ package org.opengis.test.referencing.gigs;
 
 import java.util.List;
 import java.util.Random;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
-import javax.measure.converter.UnitConverter;
-import javax.measure.converter.ConversionException;
+import javax.measure.Unit;
+import javax.measure.UnitConverter;
+import javax.measure.IncommensurableException;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -45,6 +43,7 @@ import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.test.Configuration;
 import org.opengis.test.FactoryFilter;
+import org.opengis.test.Units;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -112,10 +111,10 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      * The base unit of the unit to create. This field will have one of the following values:
      *
      * <ul>
-     *   <li>{@link SI#METRE} if the unit to create is linear,</li>
-     *   <li>{@link SI#RADIAN} if the unit to create is angular (except sexagesimal unit),</li>
-     *   <li>{@link Unit#ONE} if the unit to create is a scale or a coefficient, or</li>
-     *   <li>(exceptionally) {@link NonSI#DEGREE_ANGLE} in the special case of {@link #testSexagesimalDegree()}.
+     *   <li>{@link Units#metre()} if the unit to create is linear,</li>
+     *   <li>{@link Units#radian()} if the unit to create is angular (except sexagesimal unit),</li>
+     *   <li>{@link Units#one()} if the unit to create is a scale or a coefficient, or</li>
+     *   <li>(exceptionally) {@link Units#degree()} in the special case of {@link #testSexagesimalDegree()}.
      *       Note that sexagesimal units also have the {@linkplain #unitToBase ratio of the unit to base unit}
      *       set to {@link Double#NaN}.</li>
      * </ul>
@@ -220,7 +219,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         final UnitConverter converter;
         try {
             converter = unit.getConverterToAny(baseUnit);
-        } catch (ConversionException e) {
+        } catch (IncommensurableException e) {
             throw new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “" + baseUnit + "”.", e);
         }
         return converter;
@@ -265,7 +264,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "metre";
         aliases    = NONE;
         unitToBase = 1.0;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -290,7 +289,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "kilometre";
         aliases    = NONE;
         unitToBase = 1000.0;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -315,7 +314,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "foot";
         aliases    = NONE;
         unitToBase = 0.3048;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -340,7 +339,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "US survey foot";
         aliases    = NONE;
         unitToBase = 0.30480060960121924;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -365,7 +364,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "German legal metre";
         aliases    = NONE;
         unitToBase = 1.0000135965;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -390,7 +389,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "Clarke's foot";
         aliases    = NONE;
         unitToBase = 0.3047972654;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -415,7 +414,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "Clarke's link";
         aliases    = NONE;
         unitToBase = 0.201166195164;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -442,7 +441,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "British chain (Sears 1922)";
         aliases    = NONE;
         unitToBase = 20.116765121552632;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -467,7 +466,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "British foot (Sears 1922)";
         aliases    = NONE;
         unitToBase = 0.3047997333333333;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -492,7 +491,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "British yard (Sears 1922)";
         aliases    = NONE;
         unitToBase = 0.9143984146160287;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -519,7 +518,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "British chain (Sears 1922 truncated)";
         aliases    = NONE;
         unitToBase = 20.116756;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -542,7 +541,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "Indian yard";
         aliases    = NONE;
         unitToBase = 0.9143985307444408;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -565,7 +564,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "Gold Coast foot";
         aliases    = NONE;
         unitToBase = 0.3047997101815088;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -588,7 +587,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "link";
         aliases    = NONE;
         unitToBase = 0.201168;
-        baseUnit   = SI.METRE;
+        baseUnit   = units.metre();
         verifyLinearConversions(createConverter());
     }
 
@@ -613,7 +612,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "radian";
         aliases    = NONE;
         unitToBase = 1.0;
-        baseUnit   = SI.RADIAN;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -638,7 +637,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "degree";
         aliases    = NONE;
         unitToBase = 0.017453292519943278;
-        baseUnit   = SI.RADIAN;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -663,7 +662,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "arc-second";
         aliases    = NONE;
         unitToBase = 4.848136811095355E-6;
-        baseUnit   = SI.RADIAN;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -688,7 +687,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "grad";
         aliases    = NONE;
         unitToBase = 0.01570796326794895;
-        baseUnit   = SI.RADIAN;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -713,7 +712,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "microradian";
         aliases    = NONE;
         unitToBase = 1E-6;
-        baseUnit   = SI.RADIAN;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -740,7 +739,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "sexagesimal DMS";
         aliases    = NONE;
         unitToBase = Double.NaN;
-        baseUnit   = NonSI.DEGREE_ANGLE;
+        baseUnit   = units.degree();
         final UnitConverter converter = createConverter();
         final double tolerance = 10*TOLERANCE;
         assertEquals(name,  10.00, converter.convert( 10.0000), tolerance);
@@ -772,7 +771,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "centesimal second";
         aliases    = NONE;
         unitToBase = 1.570796326794895E-6;
-        baseUnit   = SI.RADIAN;
+        baseUnit   = units.radian();
         verifyLinearConversions(createConverter());
     }
 
@@ -797,7 +796,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "unity";
         aliases    = NONE;
         unitToBase = 1.0;
-        baseUnit   = Unit.ONE;
+        baseUnit   = units.one();
         verifyLinearConversions(createConverter());
     }
 
@@ -822,7 +821,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "parts per million";
         aliases    = NONE;
         unitToBase = 1E-6;
-        baseUnit   = Unit.ONE;
+        baseUnit   = units.one();
         verifyLinearConversions(createConverter());
     }
 
@@ -847,7 +846,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         name       = "coefficient";
         aliases    = NONE;
         unitToBase = 1.0;
-        baseUnit   = Unit.ONE;
+        baseUnit   = units.one();
         verifyLinearConversions(createConverter());
     }
 }

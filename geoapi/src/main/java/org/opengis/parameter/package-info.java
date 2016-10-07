@@ -46,7 +46,7 @@
  *     do not contain the actual parameter value.</li>
  *   <li><b>Parameter values</b> are mutable (<var>descriptor</var>, <var>value</var>) tuples, together with convenience
  *     methods for {@linkplain org.opengis.parameter.ParameterValueGroup#parameter(java.lang.String) searching a single
- *     parameter for a given name}, {@linkplain org.opengis.parameter.ParameterValue#doubleValue(javax.measure.unit.Unit)
+ *     parameter for a given name}, {@linkplain org.opengis.parameter.ParameterValue#doubleValue(javax.measure.Unit)
  *     performing unit conversions} and getting the values as instances of some commonly used types.</li>
  * </ul>
  *

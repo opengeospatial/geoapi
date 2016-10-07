@@ -474,6 +474,12 @@ public class Configuration implements Serializable {
                 new Key<>(Boolean.class, "isToleranceRelaxed");
 
         /**
+         * The provider of {@linkplain Units units} to use for tests. If this configuration hint
+         * is not specified, then the {@linkplain Units#getDefault() default instance} is used.
+         */
+        public static final Key<Units> units = new Key<>(Units.class, "units");
+
+        /**
          * The {@linkplain MathTransformFactory Math Transform factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AffineTransformTest#mtFactory

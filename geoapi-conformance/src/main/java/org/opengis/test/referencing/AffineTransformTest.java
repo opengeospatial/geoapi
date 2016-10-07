@@ -187,7 +187,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         final Configuration op = super.configuration();
         assertNull(op.put(Configuration.Key.isNonSquareMatrixSupported,       isNonSquareMatrixSupported));
         assertNull(op.put(Configuration.Key.isNonBidimensionalSpaceSupported, isNonBidimensionalSpaceSupported));
-        assertNull(op.put(Configuration.Key.mtFactory, mtFactory));
+        assertNull(op.put(Configuration.Key.mtFactory,                        mtFactory));
         return op;
     }
 

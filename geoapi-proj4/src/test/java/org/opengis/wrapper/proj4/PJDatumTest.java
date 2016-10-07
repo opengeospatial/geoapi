@@ -13,8 +13,6 @@
  */
 package org.opengis.wrapper.proj4;
 
-import javax.measure.unit.SI;
-
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -39,7 +37,7 @@ public class PJDatumTest {
         assertEquals(6356752.314245179,       pj.getSemiMinorAxis(),     1E-9);
         assertEquals(298.257223563,           pj.getInverseFlattening(), 1E-9);
         assertEquals(0.0,                     pj.getGreenwichLongitude(), 0.0);
-        assertSame  (SI.METRE,                pj.getAxisUnit());
+        assertSame  (Units.METRE,             pj.getAxisUnit());
         assertFalse(pj.isSphere());
         assertArrayEquals(new char[] {'e', 'n', 'u'}, pj.getAxisDirections());
     }
@@ -72,8 +70,8 @@ public class PJDatumTest {
     public void testGetLinearUnit() {
         PJDatum pj;
         pj = new PJDatum(null, "+proj=merc +to_meter=" + (1 + PJDatum.EPS/2));
-        assertSame(SI.METRE, pj.getLinearUnit(false));
+        assertSame(Units.METRE, pj.getLinearUnit(false));
         pj = new PJDatum(null, "+proj=merc +to_meter=" + (1000 - PJDatum.EPS/2));
-        assertSame(SI.KILOMETRE, pj.getLinearUnit(false));
+        assertSame(Units.KILOMETRE, pj.getLinearUnit(false));
     }
 }

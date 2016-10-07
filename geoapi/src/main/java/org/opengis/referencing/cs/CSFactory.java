@@ -32,7 +32,7 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.util.FactoryException;
 
@@ -47,7 +47,7 @@ import org.opengis.util.FactoryException;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
- * @version 3.2
+ * @version 3.1
  * @since   1.0
  *
  * @departure historic

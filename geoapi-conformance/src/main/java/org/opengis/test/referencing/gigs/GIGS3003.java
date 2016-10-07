@@ -32,8 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 
 import org.opengis.util.Factory;
@@ -233,7 +232,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     public void testGreenwich() throws FactoryException {
         setCodeAndName(68901, "GIGS PM A");
         greenwichLongitude = 0.0;
-        angularUnit        = NonSI.DEGREE_ANGLE;
+        angularUnit        = units.degree();
         verifyPrimeMeridian();
     }
 
@@ -255,7 +254,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     public void testJakarta() throws FactoryException {
         setCodeAndName(68908, "GIGS PM D");
         greenwichLongitude = 106.80771944444444;
-        angularUnit        = NonSI.DEGREE_ANGLE;
+        angularUnit        = units.degree();
         verifyPrimeMeridian();
     }
 
@@ -278,7 +277,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     public void testParis() throws FactoryException {
         setCodeAndName(68903, "GIGS PM H");
         greenwichLongitude = 2.5969213;
-        angularUnit        = NonSI.GRADE;
+        angularUnit        = units.grad();
         verifyPrimeMeridian();
     }
 
@@ -300,7 +299,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     public void testBogota() throws FactoryException {
         setCodeAndName(68904, "GIGS PM I");
         greenwichLongitude = 74.08091666666667;
-        angularUnit        = NonSI.DEGREE_ANGLE;
+        angularUnit        = units.degree();
         verifyPrimeMeridian();
     }
 }
