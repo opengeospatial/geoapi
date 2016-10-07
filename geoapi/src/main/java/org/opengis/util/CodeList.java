@@ -73,8 +73,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * The values for each code list.
      */
     @SuppressWarnings("rawtypes")
-    private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES =
-            new HashMap<Class<? extends CodeList>, Collection<? extends CodeList>>();
+    private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES = new HashMap<>();
 
     /**
      * The types expected in constructors.
@@ -292,7 +291,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     }
                 }
                 return constructor.newInstance(name);
-            } catch (Exception exception) { // TODO: catch ReflectiveOperationException on JDK7.
+            } catch (ReflectiveOperationException exception) {
                 throw new IllegalArgumentException("Can not create code of type " + codeType.getSimpleName(), exception);
             }
         }

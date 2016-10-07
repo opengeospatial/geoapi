@@ -37,7 +37,6 @@ import java.io.IOException;
 import java.awt.Rectangle;
 import java.awt.image.RenderedImage;
 import javax.imageio.IIOParam;
-import javax.imageio.stream.ImageInputStream;
 
 
 /**
@@ -171,8 +170,7 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
 
     /**
      * Closes the given input or output stream if it implements the {@link Closeable} interface.
-     * Do nothing otherwise. Note that this method perform a special check for Image I/O streams,
-     * which implement the {@code Closeable} interface only since JDK7.
+     * Do nothing otherwise.
      *
      * @param  stream The input or output stream to close, or {@code null} if none.
      * @throws IOException In an error occurred while closing the stream.
@@ -180,13 +178,6 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
     static void close(final Object stream) throws IOException {
         if (stream instanceof Closeable) {
             ((Closeable) stream).close();
-        } else if (stream instanceof ImageInputStream) {
-            /*
-             * ImageInputStream extends Closeable only since JDK7. For JDK6, we need an
-             * explicit check. Note that we don't need to check for ImageOutputStream
-             * since it extends ImageInputStream.
-             */
-            ((ImageInputStream) stream).close();
         }
     }
 }

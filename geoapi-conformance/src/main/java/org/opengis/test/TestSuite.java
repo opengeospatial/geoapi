@@ -32,6 +32,7 @@
 package org.opengis.test;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Iterator;
 import java.util.Collection;
 import java.util.ServiceLoader;

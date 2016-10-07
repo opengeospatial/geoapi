@@ -214,14 +214,14 @@ public abstract strictfp class IOTestCase {
      *
      * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
      * @param  defaultLength The default value to return if the given file is not recognized.
-     *
-     * @todo Use <cite>"String in switch"</cite> when we will be allowed to compile for JDK7.
      */
     static int getFileLength(final String file, final int defaultLength) {
-        if (file.equals(THREDDS)) return  3906;
-        if (file.equals(NCEP))    return 27204;
-        if (file.equals(CIP))     return 76184;
-        if (file.equals(LANDSAT)) return 21096;
+        switch (file) {
+            case THREDDS: return  3906;
+            case NCEP:    return 27204;
+            case CIP:     return 76184;
+            case LANDSAT: return 21096;
+        }
         return defaultLength;
     }
 
@@ -247,8 +247,6 @@ public abstract strictfp class IOTestCase {
      * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
      * @return The NetCDF file.
      * @throws IOException If an error occurred while opening the file.
-     *
-     * @todo Use <cite>"try with resources"</cite> when we will be allowed to compile for JDK7.
      */
     protected NetcdfFile open(final String file) throws IOException {
         /*

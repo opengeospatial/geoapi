@@ -458,9 +458,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                                     try {
                                         c = u.getConverterToAny(unit);
                                     } catch (ConversionException ex) {
-                                        throw (AssertionError) new AssertionError(
-                                                "Expected VerticalExtent in units of “" + unit +
-                                                "” but got units of “" + u + "”.").initCause(ex);
+                                        throw new AssertionError("Expected VerticalExtent in units of “"
+                                                + unit + "” but got units of “" + u + "”.", ex);
                                     }
                                     minValue = c.convert(minValue);
                                     maxValue = c.convert(maxValue);

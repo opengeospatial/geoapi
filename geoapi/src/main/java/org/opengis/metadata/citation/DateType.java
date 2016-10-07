@@ -60,7 +60,7 @@ public final class DateType extends CodeList<DateType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<DateType> VALUES = new ArrayList<DateType>(16);
+    private static final List<DateType> VALUES = new ArrayList<>(16);
 
     /**
      * Date identifies when the resource was brought into existence.

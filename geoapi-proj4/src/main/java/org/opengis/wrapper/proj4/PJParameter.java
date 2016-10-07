@@ -355,6 +355,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
      * except that the {@linkplain #value} is initialized to the same value than the cloned parameter.
      */
     @Override
+    @SuppressWarnings("CloneDoesntCallSuperClone")          // Okay since this class is final.
     public PJParameter clone() {
         return new PJParameter(this);
     }

@@ -62,11 +62,11 @@ abstract class AbstractTaglet implements Taglet {
             try {
                 // ConfigurationImpl.getInstance() on JDK5, JDK6 or JDK7.
                 configuration = (Configuration) ConfigurationImpl.class.getMethod("getInstance", (Class[]) null).invoke((Object[]) null);
-            } catch (Exception e1) {
+            } catch (ReflectiveOperationException e1) {
                 // new ConfigurationImpl() on JDK8 (constructor is not public on previous versions).
                 try {
                     configuration = ConfigurationImpl.class.newInstance();
-                } catch (Exception e2) {
+                } catch (ReflectiveOperationException e2) {
                     throw new RuntimeException("Can't get the configuration:\n"
                             + "   1) " + e1 + '\n'
                             + "   2) " + e2 + '\n');
@@ -146,6 +146,7 @@ abstract class AbstractTaglet implements Taglet {
     /**
      * Prints a warning message.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     static void printWarning(final SourcePosition position, final String message) {
         final RootDoc root = getConfiguration().root;
         if (root != null) {

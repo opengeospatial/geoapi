@@ -72,18 +72,16 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
      */
     PJParameterGroup(final Identifier identifier, final Collection<GenericName> aliases) {
         super(identifier, aliases);
-        parameters = new ArrayList<PJParameter>();
+        parameters = new ArrayList<>();
         unmodifiable = Collections.unmodifiableList(parameters);
     }
 
     /**
      * Creates a new parameter group for the given identifier and parameters.
      */
-    PJParameterGroup(final Identifier identifier, final Collection<GenericName> aliases,
-            final PJParameter... param)
-    {
+    PJParameterGroup(final Identifier identifier, final Collection<GenericName> aliases, final PJParameter... param) {
         super(identifier, aliases);
-        parameters = new ArrayList<PJParameter>(Arrays.asList(param));
+        parameters = new ArrayList<>(Arrays.asList(param));
         unmodifiable = Collections.unmodifiableList(parameters);
     }
 
@@ -96,7 +94,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
     PJParameterGroup(final ParameterValueGroup param) throws ClassCastException {
         super(param.getDescriptor());
         final List<GeneralParameterValue> values = param.values();
-        parameters = new ArrayList<PJParameter>(values.size());
+        parameters = new ArrayList<>(values.size());
         for (final GeneralParameterValue value : values) {
             parameters.add(new PJParameter((ParameterValue) value));
         }
@@ -244,6 +242,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
      * Returns a copy of this parameter group.
      */
     @Override
+    @SuppressWarnings("CloneDoesntCallSuperClone")          // Okay since this class is final.
     public PJParameterGroup clone() {
         return new PJParameterGroup(this);
     }

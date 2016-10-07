@@ -180,7 +180,7 @@ final class IdentifiedObjects {
      * @return All name and aliases for the given code space.
      */
     public static Map<String,Boolean> getNameAndAliases(final IdentifiedObject info, final String codeSpace) {
-        final Map<String,Boolean> names = new LinkedHashMap<String,Boolean>(4);
+        final Map<String,Boolean> names = new LinkedHashMap<>(4);
         getNameComponents(info, codeSpace, false, names);
         return names;
     }

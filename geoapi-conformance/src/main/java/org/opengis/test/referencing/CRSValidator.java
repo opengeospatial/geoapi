@@ -81,7 +81,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @todo Replace by a more general mechanism straight in {@link ValidatorContainer}.
      */
-    private final ThreadLocal<Boolean> VALIDATING = new ThreadLocal<Boolean>();
+    private final ThreadLocal<Boolean> VALIDATING = new ThreadLocal<>();
 
     /**
      * {@code true} if standard names shall be enforced when such names are defined by an OGC/ISO
@@ -429,22 +429,21 @@ public class CRSValidator extends ReferencingValidator {
      */
     private static void assertStandardNames(final String type, final CoordinateSystem cs, final String[] standardNames) {
         final int dimension = cs.getDimension();
-        final Set<String> names = new LinkedHashSet<String>(dimension * 4/3 + 1);
+        final Set<String> names = new LinkedHashSet<>(dimension * 4/3 + 1);
         for (int i=0; i<dimension; i++) {
             final String name = getName(cs.getAxis(i));
             if (name != null && !names.add(toLowerCase(name.trim()))) {
                 fail(type + ": duplicated axis name: " + name);
             }
         }
-        final List<String> notFound = new ArrayList<String>(names.size());
+        final List<String> notFound = new ArrayList<>(names.size());
         for (final String name : standardNames) {
             if (!names.remove(name)) {
                 notFound.add(name);
             }
         }
         if (!names.isEmpty()) {
-            fail(type + ": Non-standard axis names: " + names +
-                    ". Expected some of " + notFound + '.');
+            fail(type + ": Non-standard axis names: " + names + ". Expected some of " + notFound + '.');
         }
     }
 

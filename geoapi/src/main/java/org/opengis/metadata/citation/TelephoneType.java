@@ -58,7 +58,7 @@ public final class TelephoneType extends CodeList<TelephoneType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<TelephoneType> VALUES = new ArrayList<TelephoneType>(3);
+    private static final List<TelephoneType> VALUES = new ArrayList<>(3);
 
     /**
      * Telephone provides voice service.

@@ -60,23 +60,23 @@ final class ResourcesLoader {
      * The Proj.4 names for OGC, EPSG or GeoTIFF projection names.
      * Will be filled when first needed.
      */
-    private static final Map<String,String> projectionNames = new HashMap<String,String>();
+    private static final Map<String,String> projectionNames = new HashMap<>();
 
     /**
      * The Proj.4 names for OGC, EPSG or GeoTIFF parameter names.
      * Will be filled when first needed.
      */
-    private static final Map<String,String> parameterNames = new HashMap<String,String>();
+    private static final Map<String,String> parameterNames = new HashMap<>();
 
     /**
      * Pool of identifiers, filled when first needed.
      */
-    private static final Map<String, List<GenericName>> aliases = new HashMap<String, List<GenericName>>();
+    private static final Map<String, List<GenericName>> aliases = new HashMap<>();
 
     /**
      * The set of all operation methods, filled when first needed.
      */
-    private static final Set<OperationMethod> methods = new LinkedHashSet<OperationMethod>();
+    private static final Set<OperationMethod> methods = new LinkedHashSet<>();
 
     /**
      * Do not allows instantiation of this class.
@@ -98,37 +98,36 @@ final class ResourcesLoader {
         IOException cause = null;
         final InputStream in = ResourcesLoader.class.getResourceAsStream(AXIS_FILE);
         if (in != null) try {
-            final Map<String,String> map = new LinkedHashMap<String,String>(5000);
-            final BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if ((line = line.trim()).isEmpty()) {
-                    continue; // Skip empty lines.
-                }
-                switch (line.charAt(0)) {
-                    case '#': {
-                        // A line of comment. Ignore.
-                        break;
+            final Map<String,String> map = new LinkedHashMap<>(5000);
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    if ((line = line.trim()).isEmpty()) {
+                        continue;                                       // Skip empty lines.
                     }
-                    case '[': {
-                        // The authority. Actually we don't parse yet
-                        // this element. Maybe a future version will do.
-                        break;
-                    }
-                    default: {
-                        int s = line.indexOf(':');
-                        final String orientation = line.substring(0, s).trim();
-                        do {
-                            final int p = s+1;
-                            s = line.indexOf(' ', p);
-                            final String code = (s >= 0) ? line.substring(p,s) : line.substring(p);
-                            map.put(code.trim(), orientation);
-                        } while (s >= 0);
-                        break;
+                    switch (line.charAt(0)) {
+                        case '#': {
+                            break;                                      // A line of comment. Ignore.
+                        }
+                        case '[': {
+                            // The authority. Actually we don't parse yet
+                            // this element. Maybe a future version will do.
+                            break;
+                        }
+                        default: {
+                            int s = line.indexOf(':');
+                            final String orientation = line.substring(0, s).trim();
+                            do {
+                                final int p = s+1;
+                                s = line.indexOf(' ', p);
+                                final String code = (s >= 0) ? line.substring(p,s) : line.substring(p);
+                                map.put(code.trim(), orientation);
+                            } while (s >= 0);
+                            break;
+                        }
                     }
                 }
             }
-            reader.close();
             return axisOrientations = map;
         } catch (IOException e) {
             cause = e;
@@ -151,20 +150,20 @@ final class ResourcesLoader {
             final String file = isParam ? PARAMETERS_FILE : PROJECTIONS_FILE;
             final InputStream in = ResourcesLoader.class.getResourceAsStream(file);
             if (in != null) try {
-                final BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-                String parameter = null;
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if ((line = line.trim()).isEmpty()) {
-                        continue; // Skip empty lines.
-                    }
-                    switch (line.charAt(0)) {
-                        case '#': /* A line of comment */   break;
-                        case '+': parameter = line;         break;
-                        default:  map.put(line, parameter); break;
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"))) {
+                    String parameter = null;
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if ((line = line.trim()).isEmpty()) {
+                            continue;                                               // Skip empty lines.
+                        }
+                        switch (line.charAt(0)) {
+                            case '#': /* A line of comment */   break;
+                            case '+': parameter = line;         break;
+                            default:  map.put(line, parameter); break;
+                        }
                     }
                 }
-                reader.close();
                 return map;
             } catch (IOException e) {
                 cause = e;
@@ -235,7 +234,7 @@ final class ResourcesLoader {
         synchronized (aliases) {
             list = aliases.get(name);
             if (list == null) {
-                list = new ArrayList<GenericName>();
+                list = new ArrayList<>();
                 for (final Map.Entry<String, String> entry : map.entrySet()) {
                     if (name.equalsIgnoreCase(entry.getValue())) {
                         list.add(new PJIdentifier(entry.getKey()));
@@ -259,7 +258,7 @@ final class ResourcesLoader {
         synchronized (methods) {
             if (methods.isEmpty()) {
                 final Map<String, String> map = getAliases(false);
-                for (final String name : new HashSet<String>(map.values())) {
+                for (final String name : new HashSet<>(map.values())) {
                     methods.add(new PJMethod(new PJIdentifier(SimpleCitation.PROJ4, name), getAliases(name, map)));
                 }
             }

@@ -59,7 +59,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<KeywordType> VALUES = new ArrayList<KeywordType>(15);
+    private static final List<KeywordType> VALUES = new ArrayList<>(15);
 
     /**
      * Keyword identifies a branch of instruction or specialized learning.

@@ -60,7 +60,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<MediumFormat> VALUES = new ArrayList<MediumFormat>(7);
+    private static final List<MediumFormat> VALUES = new ArrayList<>(7);
 
     /**
      * CoPy In / Out (UNIX file format and command).

@@ -60,7 +60,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<GeometricObjectType> VALUES = new ArrayList<GeometricObjectType>(6);
+    private static final List<GeometricObjectType> VALUES = new ArrayList<>(6);
 
     /**
      * Set of geometric primitives such that their boundaries can be represented as a

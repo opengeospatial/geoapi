@@ -58,8 +58,9 @@ final class ConfigurationTableModel extends AbstractTableModel {
     /**
      * The titles of all columns.
      */
-    private static final String[] COLUMN_TITLES = new String[3];
-    {
+    private static final String[] COLUMN_TITLES;
+    static {
+        COLUMN_TITLES = new String[3];
         COLUMN_TITLES[KEY_COLUMN]   = "Feature";
         COLUMN_TITLES[VALUE_COLUMN] = "Enabled";
         COLUMN_TITLES[PASS_COLUMN]  = "Remarks";

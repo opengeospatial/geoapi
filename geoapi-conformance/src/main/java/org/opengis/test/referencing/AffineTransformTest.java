@@ -222,7 +222,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         reference.transform(source, 0, target, 0, coordinates.length/2);
         verifyTransform(source, target);
         for (int i=0; i<coordinates.length; i++) {
-            assertEquals("Source array should be unmodified.", (double) coordinates[i], source[i], 0.0);
+            assertEquals("Source array should be unmodified.", coordinates[i], source[i], 0.0);
         }
     }
 

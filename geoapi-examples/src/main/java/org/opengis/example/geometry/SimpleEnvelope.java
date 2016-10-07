@@ -8,6 +8,7 @@
 package org.opengis.example.geometry;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.io.Serializable;
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.DirectPosition;

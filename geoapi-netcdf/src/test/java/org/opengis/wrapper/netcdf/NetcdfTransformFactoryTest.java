@@ -141,14 +141,12 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
      */
     @Test
     public void testParameterNames() throws FactoryException {
-        final Map<String,Integer> names = new LinkedHashMap<String,Integer>();
+        final Map<String,Integer> names = new LinkedHashMap<>();
         for (final Class<? extends Projection> type : projections) {
             final Projection projection;
             try {
                 projection = type.newInstance();
-            } catch (InstantiationException e) {
-                throw new AssertionError(e);
-            } catch (IllegalAccessException e) {
+            } catch (ReflectiveOperationException e) {
                 throw new AssertionError(e);
             }
             final String projectionName = projection.getClassName();
@@ -227,6 +225,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
      * <p>This method is not a real test case. Users need to invoke this method explicitely,
      * or to declare this method as a test method, in order to get the output.</p>
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void printParametersJavadoc() {
         System.out.println(" * <table cellspacing=\"0\" cellpadding=\"0\">");
         System.out.println(" *   <tr><th>NetCDF</th><th>OGC</th><th>EPSG</th></tr>");
@@ -246,6 +245,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
      * Prints a single row in the table of NetCDF parameters.
      * This method expects a {@code geoapi-netcdf} implementation.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private static void printParametersJavadocRow(final GeneralParameterDescriptor param,
             final Class<? extends Projection> type, final String prefix, final String suffix)
     {

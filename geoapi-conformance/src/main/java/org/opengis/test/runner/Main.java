@@ -59,6 +59,7 @@ public final class Main {
      * @param arguments Must be an empty string in current version. Future versions
      *        may accept some command-line arguments.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public static void main(final String[] arguments) {
         if (arguments.length == 0) {
             try {

@@ -59,7 +59,7 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<TransferFunctionType> VALUES = new ArrayList<TransferFunctionType>(3);
+    private static final List<TransferFunctionType> VALUES = new ArrayList<>(3);
 
     /**
      * Function used for transformation is first order polynomial.

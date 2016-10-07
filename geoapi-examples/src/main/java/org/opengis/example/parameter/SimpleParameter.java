@@ -559,10 +559,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
             } else {
                 number = ((Number) value).doubleValue();
             }
-        } catch (NumberFormatException e) {
-            // JDK7 developers would use multi-catch here.
-            throw new InvalidParameterValueException(e.toString(), code, value);
-        } catch (ClassCastException e) {
+        } catch (NumberFormatException | ClassCastException e) {
             throw new InvalidParameterValueException(e.toString(), code, value);
         }
         setValue(number);

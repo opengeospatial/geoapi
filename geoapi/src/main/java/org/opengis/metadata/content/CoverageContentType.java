@@ -60,7 +60,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CoverageContentType> VALUES = new ArrayList<CoverageContentType>(8);
+    private static final List<CoverageContentType> VALUES = new ArrayList<>(8);
 
     /**
      * Meaningful numerical representation of a physical parameter that is not the actual

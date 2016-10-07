@@ -59,7 +59,7 @@ public final class ObjectiveType extends CodeList<ObjectiveType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ObjectiveType> VALUES = new ArrayList<ObjectiveType>(3);
+    private static final List<ObjectiveType> VALUES = new ArrayList<>(3);
 
     /**
      * Single instance of collection.

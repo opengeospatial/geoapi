@@ -59,7 +59,7 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<BandDefinition> VALUES = new ArrayList<BandDefinition>(5);
+    private static final List<BandDefinition> VALUES = new ArrayList<>(5);
 
     /**
      * Width of a distribution equal to the distance between the outer two points on the

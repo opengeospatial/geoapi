@@ -244,9 +244,7 @@ public class ImageValidator extends Validator {
             assertTrue(actual.getCanonicalName() + " is not an instance of " +
                     expectedType.getSimpleName() + '.', expectedType.isAssignableFrom(actual));
         } catch (ClassNotFoundException e) {
-            final AssertionError error = new AssertionError("Class \"" + classname + "\" declared in " + field + " was not found.");
-            error.initCause(e); // Assertion(String, Throwable) not available in JDK6.
-            throw error;
+            throw new AssertionError("Class \"" + classname + "\" declared in " + field + " was not found.", e);
         }
     }
 

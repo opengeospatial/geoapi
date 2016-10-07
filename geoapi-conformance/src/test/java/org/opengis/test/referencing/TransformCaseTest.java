@@ -32,6 +32,7 @@
 package org.opengis.test.referencing;
 
 import java.util.Random;
+import java.awt.geom.AffineTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.junit.*;
 
@@ -104,7 +105,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     @Test
     public void testTransform() throws TransformException {
         tolerance = 0;
-        ((AffineTransform2D) transform).setToScale(10, 100);
+        ((AffineTransform) transform).setToScale(10, 100);
         validators.validate(transform);
         verifyTransform(new double[] { 1,  4,   2,  3},
                         new double[] { 10, 400, 20, 300});

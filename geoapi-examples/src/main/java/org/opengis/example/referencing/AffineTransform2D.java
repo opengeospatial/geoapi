@@ -208,7 +208,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
                 throw new NoninvertibleTransformException(e.getLocalizedMessage(), e);
             }
             tmp.inverse = this;
-            inverse = tmp; // Keep the reference only on success.
+            inverse = tmp;                      // Keep the reference only on success.
         }
         return inverse;
     }

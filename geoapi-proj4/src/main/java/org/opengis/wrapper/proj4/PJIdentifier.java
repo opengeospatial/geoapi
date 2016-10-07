@@ -14,6 +14,7 @@
 package org.opengis.wrapper.proj4;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Collections;
 import org.opengis.util.NameSpace;
 import org.opengis.util.LocalName;

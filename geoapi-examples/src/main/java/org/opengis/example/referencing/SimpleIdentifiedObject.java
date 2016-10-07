@@ -8,6 +8,7 @@
 package org.opengis.example.referencing;
 
 import java.util.Set;
+import java.util.Objects;
 import java.util.Collection;
 import java.util.Collections;
 import java.io.Serializable;

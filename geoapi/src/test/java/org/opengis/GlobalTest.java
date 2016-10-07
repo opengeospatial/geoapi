@@ -136,8 +136,9 @@ public final strictfp class GlobalTest implements FileFilter {
      *         or writing a new one.
      */
     @Test
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void generateOrVerifyIndex() throws IOException {
-        final Map<String,String> merged = new HashMap<String,String>();
+        final Map<String,String> merged = new HashMap<>();
         assertNull(merged.put("LI_ProcessStep",         "LE_ProcessStep"));
         assertNull(merged.put("LI_Source",              "LE_Source"));
         assertNull(merged.put("MD_Band",                "MI_Band"));
@@ -171,12 +172,12 @@ public final strictfp class GlobalTest implements FileFilter {
      */
     private static String load(final InputStream in) throws IOException {
         final StringBuilder buffer = new StringBuilder(20000);
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(in, ENCODING));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            buffer.append(line).append('\n');
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, ENCODING))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                buffer.append(line).append('\n');
+            }
         }
-        reader.close();
         return buffer.toString();
     }
 
@@ -204,9 +205,9 @@ public final strictfp class GlobalTest implements FileFilter {
         if (file.exists()) {
             return "\"" + file + "\" already exists.";
         }
-        final Writer out = new OutputStreamWriter(new FileOutputStream(file), ENCODING);
-        out.write(index);
-        out.close();
+        try (Writer out = new OutputStreamWriter(new FileOutputStream(file), ENCODING)) {
+            out.write(index);
+        }
         return null;
     }
 
@@ -225,7 +226,7 @@ public final strictfp class GlobalTest implements FileFilter {
      */
     private String createIndex(final Set<Specification> standards, final Map<String,String> merged) {
         final StringBuilder buffer = new StringBuilder(20000);
-        final List<String> lines = new ArrayList<String>();
+        final List<String> lines = new ArrayList<>();
         for (final Class<?> c : listClasses(UML.class)) {
             final UML uml = c.getAnnotation(UML.class);
             if (uml != null && standards.contains(uml.specification())) {
@@ -279,7 +280,7 @@ public final strictfp class GlobalTest implements FileFilter {
             name = pathname.substring(s+1);
         }
         targetDirectory = file;
-        final Set<Class<?>> classes = new HashSet<Class<?>>();
+        final Set<Class<?>> classes = new HashSet<>();
         listClasses(file, new StringBuilder(), classes);
         return classes;
     }

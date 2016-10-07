@@ -17,6 +17,8 @@
  */
 package org.proj4;
 
+import java.util.Objects;
+
 
 /**
  * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure.
@@ -81,10 +83,7 @@ public class PJ {
      * @throws IllegalArgumentException If the PJ structure can not be created.
      */
     public PJ(final PJ crs, final Type type) throws IllegalArgumentException {
-        if (crs == null) {
-            // TODO: Use Objects with JDK 7.
-            throw new NullPointerException("The CRS must be non-null.");
-        }
+        Objects.requireNonNull(crs, "The CRS must be non-null.");
         if (type != Type.GEOGRAPHIC) {
             throw new IllegalArgumentException("Can not derive the " + type + " type.");
         }

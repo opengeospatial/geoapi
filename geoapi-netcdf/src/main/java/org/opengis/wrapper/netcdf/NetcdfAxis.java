@@ -13,6 +13,7 @@
  */
 package org.opengis.wrapper.netcdf;
 
+import java.util.Objects;
 import javax.measure.unit.Unit;
 
 import ucar.nc2.constants.CF;

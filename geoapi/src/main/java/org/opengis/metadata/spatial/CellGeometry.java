@@ -59,7 +59,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CellGeometry> VALUES = new ArrayList<CellGeometry>(4);
+    private static final List<CellGeometry> VALUES = new ArrayList<>(4);
 
     /**
      * Each cell represents a point.

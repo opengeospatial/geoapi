@@ -7,6 +7,7 @@
  */
 package org.opengis.example.util;
 
+import java.util.Objects;
 import java.io.Serializable;
 import javax.naming.Name;
 import javax.naming.CompoundName;

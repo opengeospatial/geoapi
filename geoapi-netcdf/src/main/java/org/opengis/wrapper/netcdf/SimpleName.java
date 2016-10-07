@@ -14,6 +14,7 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Collections;
 import java.io.Serializable;
 

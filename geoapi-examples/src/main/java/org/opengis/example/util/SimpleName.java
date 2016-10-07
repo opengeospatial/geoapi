@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Objects;
 import java.io.Serializable;
 import javax.naming.Name;
 import javax.naming.InvalidNameException;
@@ -376,7 +377,7 @@ public class SimpleName implements GenericName, Serializable {
     @Override
     public List<LocalName> getParsedNames() {
         SimpleNameSpace parent = scope;
-        final List<LocalName> names = new ArrayList<LocalName>(name.size());
+        final List<LocalName> names = new ArrayList<>(name.size());
         final Enumeration<String> it = name.getAll();
         if (it.hasMoreElements()) try {
             final SimpleNameFactory factory = nonNull(parent).factory;

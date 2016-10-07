@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.ServiceConfigurationError;
 import java.util.logging.Level;
@@ -76,8 +77,7 @@ public strictfp abstract class TestCase {
      *
      * @see TestSuite#setFactories(Class, Factory[])
      */
-    static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES =
-            new HashMap<Class<? extends Factory>, Iterable<? extends Factory>>();
+    static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES = new HashMap<>();
 
     /**
      * The service loader to use for loading {@link FactoryFilter}.
@@ -389,7 +389,7 @@ public strictfp abstract class TestCase {
      * @since 3.1
      */
     protected static List<Factory[]> factories(final FactoryFilter filter, final Class<? extends Factory>... types) {
-        final List<Factory[]> factories = new ArrayList<Factory[]>(4);
+        final List<Factory[]> factories = new ArrayList<>(4);
         try {
             synchronized (FACTORIES) {
                 if (!factories(filter, types, factories)) {

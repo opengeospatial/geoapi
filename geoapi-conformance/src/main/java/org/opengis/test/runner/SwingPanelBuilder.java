@@ -165,6 +165,7 @@ final class SwingPanelBuilder extends GridBagConstraints {
      * Invoked by the layout manager when a component is added.
      */
     @Override
+    @SuppressWarnings("CloneDoesntCallSuperClone")          // Okay because this class is final.
     public Object clone() {
         return new GridBagConstraints(gridx, gridy, gridwidth, gridheight,
                 weightx, weighty, anchor, fill, (Insets) insets.clone(), ipadx, ipady);

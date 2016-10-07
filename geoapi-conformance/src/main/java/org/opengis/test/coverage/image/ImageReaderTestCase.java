@@ -276,7 +276,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Verify the validity of metadata attributes as documented in the
+     * Verifies the validity of metadata attributes as documented in the
      * {@link #testStreamMetadata()} and {@link #testImageMetadata()} methods.
      */
     private void validate(final IIOMetadata metadata) throws IOException {
@@ -284,10 +284,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
         if (md != null) {
             for (final Identification identification : md.getIdentificationInfo()) {
                 validators.validate(identification.getCitation());
-                if (identification instanceof DataIdentification) {
-                    for (final Extent extent : ((DataIdentification) identification).getExtents()) {
-                        validators.validate(extent);
-                    }
+                for (final Extent extent : identification.getExtents()) {
+                    validators.validate(extent);
                 }
             }
         }

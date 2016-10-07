@@ -523,7 +523,7 @@ public strictfp final class ToleranceModifiers {
                 final ToleranceModifier modifier = impl.tolerance(transform);
                 if (modifier != null) {
                     if (modifiers == null) {
-                        modifiers = new LinkedHashMap<ToleranceModifier,Boolean>();
+                        modifiers = new LinkedHashMap<>();
                     }
                     modifiers.put(modifier, null);
                 }

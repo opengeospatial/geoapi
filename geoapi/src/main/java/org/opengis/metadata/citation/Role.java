@@ -61,7 +61,7 @@ public final class Role extends CodeList<Role> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Role> VALUES = new ArrayList<Role>(20);
+    private static final List<Role> VALUES = new ArrayList<>(20);
 
     /**
      * Party that supplies the resource.

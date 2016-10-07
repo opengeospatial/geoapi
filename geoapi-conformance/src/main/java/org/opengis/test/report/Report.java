@@ -340,15 +340,13 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + source);
         }
-        final OutputStream out = new FileOutputStream(file);
-        try {                                                               // JDK7: Use "try with resource".
+        try (OutputStream out = new FileOutputStream(file)) {
             int n;
             final byte[] buffer = new byte[1024];
             while ((n = in.read(buffer)) >= 0) {
                 out.write(buffer, 0, n);
             }
         } finally {
-            out.close();
             in.close();
         }
     }

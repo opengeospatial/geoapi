@@ -78,7 +78,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      */
     public SimpleParameterGroup(final Citation authority, final String name, final SimpleParameter... param) {
         super(authority, name);
-        parameters = new ArrayList<SimpleParameter>(Arrays.asList(param));
+        parameters = new ArrayList<>(Arrays.asList(param));
         unmodifiable = Collections.unmodifiableList(parameters);
     }
 
@@ -290,7 +290,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
         final SimpleParameterGroup clone;
         try {
             clone = (SimpleParameterGroup) super.clone();
-            final List<SimpleParameter> copy = new ArrayList<SimpleParameter>(parameters);
+            final List<SimpleParameter> copy = new ArrayList<>(parameters);
             for (int i=copy.size(); --i>=0;) {
                 copy.set(i, copy.get(i).clone());
             }
@@ -298,8 +298,8 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
             field.setAccessible(true);
             field.set(clone, copy);
             unmodifiable = Collections.unmodifiableList(copy);
-        } catch (Exception e) { // JDK7 would use (CloneNotSupportedException | ReflectiveOperationException)
-            throw new AssertionError(e); // Should never happen.
+        } catch (CloneNotSupportedException | ReflectiveOperationException e) {
+            throw new AssertionError(e);                                            // Should never happen.
         }
         return clone;
     }

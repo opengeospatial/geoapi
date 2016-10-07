@@ -15,7 +15,6 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.Map;
 import org.opengis.metadata.citation.Role;
-import org.opengis.metadata.citation.DateType;
 import static org.junit.Assert.*;
 
 

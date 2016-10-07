@@ -59,7 +59,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<DimensionNameType> VALUES = new ArrayList<DimensionNameType>(8);
+    private static final List<DimensionNameType> VALUES = new ArrayList<>(8);
 
     /**
      * Ordinate (y) axis.

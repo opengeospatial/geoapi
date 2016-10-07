@@ -60,7 +60,7 @@ public final class Restriction extends CodeList<Restriction> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Restriction> VALUES = new ArrayList<Restriction>(17);
+    private static final List<Restriction> VALUES = new ArrayList<>(17);
 
     /**
      * Exclusive right to the publication, production, or sale of the rights to a literary,

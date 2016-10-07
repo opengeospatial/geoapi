@@ -32,6 +32,7 @@
 package org.opengis.test;
 
 import java.util.BitSet;
+import java.util.Objects;
 import java.util.Collection;
 import java.util.logging.Logger;
 import org.opengis.annotation.Obligation;

@@ -59,7 +59,7 @@ public final class GeometryType extends CodeList<GeometryType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<GeometryType> VALUES = new ArrayList<GeometryType>(4);
+    private static final List<GeometryType> VALUES = new ArrayList<>(4);
 
     /**
      * Single geographic point of interest.

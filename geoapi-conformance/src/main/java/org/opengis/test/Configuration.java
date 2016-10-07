@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.io.Serializable;
 
 import org.opengis.util.Factory;
@@ -139,7 +140,7 @@ public class Configuration implements Serializable {
      * Creates a new, initially empty, configuration map.
      */
     public Configuration() {
-        properties = new LinkedHashMap<Key<?>,Object>();
+        properties = new LinkedHashMap<>();
         unmodifiable = Collections.unmodifiableMap(properties);
     }
 
@@ -150,7 +151,7 @@ public class Configuration implements Serializable {
      * @throws NullPointerException if the specified configuration is null.
      */
     public Configuration(final Configuration toCopy) {
-        properties = new LinkedHashMap<Key<?>,Object>(toCopy.properties);
+        properties = new LinkedHashMap<>(toCopy.properties);
         unmodifiable = Collections.unmodifiableMap(properties);
     }
 
@@ -202,7 +203,8 @@ public class Configuration implements Serializable {
      * @param operations The operations to declare as unsupported.
      * @throws NullPointerException if a specified key is null.
      */
-    public void unsupported(final Key<Boolean>... operations) {
+    @SafeVarargs
+    public final void unsupported(final Key<Boolean>... operations) {
         for (final Key<Boolean> operation : operations) {
             put(operation, Boolean.FALSE);
         }
@@ -274,7 +276,7 @@ public class Configuration implements Serializable {
          * The list of all keys created. Contains the key constants declared in this class, and
          * any key that the user may have created. Must be declared before any key declaration.
          */
-        private static final List<Key<?>> VALUES = new ArrayList<Key<?>>(32);
+        private static final List<Key<?>> VALUES = new ArrayList<>(32);
 
         /*
          * If new constants are added, please remember to update the Configuration class javadoc.
@@ -288,7 +290,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.util.NameTest#isMultiLocaleSupported
          */
         public static final Key<Boolean> isMultiLocaleSupported =
-                new Key<Boolean>(Boolean.class, "isMultiLocaleSupported");
+                new Key<>(Boolean.class, "isMultiLocaleSupported");
 
         /**
          * Whether the {@link GenericName} instances can apply different syntax rules in different
@@ -301,7 +303,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.util.NameTest#isMixedNameSyntaxSupported
          */
         public static final Key<Boolean> isMixedNameSyntaxSupported =
-                new Key<Boolean>(Boolean.class, "isMixedNameSyntaxSupported");
+                new Key<>(Boolean.class, "isMixedNameSyntaxSupported");
 
         /**
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
@@ -310,7 +312,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isStandardNameSupported
          */
         public static final Key<Boolean> isStandardNameSupported =
-                new Key<Boolean>(Boolean.class, "isStandardNameSupported");
+                new Key<>(Boolean.class, "isStandardNameSupported");
 
         /**
          * Whether the {@link IdentifiedObject} instances have at least the
@@ -319,7 +321,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isStandardAliasSupported
          */
         public static final Key<Boolean> isStandardAliasSupported =
-                new Key<Boolean>(Boolean.class, "isStandardAliasSupported");
+                new Key<>(Boolean.class, "isStandardAliasSupported");
 
         /**
          * Whether the {@link IdentifiedObject} instances created indirectly by the factories
@@ -328,7 +330,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDependencyIdentificationSupported
          */
         public static final Key<Boolean> isDependencyIdentificationSupported =
-                new Key<Boolean>(Boolean.class, "isDependencyIdentificationSupported");
+                new Key<>(Boolean.class, "isDependencyIdentificationSupported");
 
         /**
          * Whether the authority factory supports creation of deprecated {@link IdentifiedObject} instances.
@@ -336,7 +338,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#isDeprecatedObjectCreationSupported
          */
         public static final Key<Boolean> isDeprecatedObjectCreationSupported =
-                new Key<Boolean>(Boolean.class, "isDeprecatedObjectCreationSupported");
+                new Key<>(Boolean.class, "isDeprecatedObjectCreationSupported");
 
         /**
          * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
@@ -346,7 +348,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported
          */
         public static final Key<Boolean> isDoubleToDoubleSupported =
-                new Key<Boolean>(Boolean.class, "isDoubleToDoubleSupported");
+                new Key<>(Boolean.class, "isDoubleToDoubleSupported");
 
         /**
          * Whether {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
@@ -356,7 +358,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported
          */
         public static final Key<Boolean> isFloatToFloatSupported =
-                new Key<Boolean>(Boolean.class, "isFloatToFloatSupported");
+                new Key<>(Boolean.class, "isFloatToFloatSupported");
 
         /**
          * Whether {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
@@ -366,7 +368,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported
          */
         public static final Key<Boolean> isDoubleToFloatSupported =
-                new Key<Boolean>(Boolean.class, "isDoubleToFloatSupported");
+                new Key<>(Boolean.class, "isDoubleToFloatSupported");
 
         /**
          * Whether {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
@@ -376,7 +378,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported
          */
         public static final Key<Boolean> isFloatToDoubleSupported =
-                new Key<Boolean>(Boolean.class, "isFloatToDoubleSupported");
+                new Key<>(Boolean.class, "isFloatToDoubleSupported");
 
         /**
          * Whether source and destination arrays can overlap in {@link MathTransform} operations.
@@ -396,7 +398,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isOverlappingArraySupported
          */
         public static final Key<Boolean> isOverlappingArraySupported =
-                new Key<Boolean>(Boolean.class, "isOverlappingArraySupported");
+                new Key<>(Boolean.class, "isOverlappingArraySupported");
 
         /**
          * Whether {@link MathTransform#inverse()} is supported.
@@ -406,7 +408,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported
          */
         public static final Key<Boolean> isInverseTransformSupported =
-                new Key<Boolean>(Boolean.class, "isInverseTransformSupported");
+                new Key<>(Boolean.class, "isInverseTransformSupported");
 
         /**
          * Whether {@link MathTransform#derivative(DirectPosition)} is supported.
@@ -416,7 +418,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.TransformTestCase#isDerivativeSupported
          */
         public static final Key<Boolean> isDerivativeSupported =
-                new Key<Boolean>(Boolean.class, "isDerivativeSupported");
+                new Key<>(Boolean.class, "isDerivativeSupported");
 
         /**
          * Whether {@link MathTransformFactory#createAffineTransform(Matrix)} accepts non-square matrixes.
@@ -424,7 +426,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.AffineTransformTest#isNonSquareMatrixSupported
          */
         public static final Key<Boolean> isNonSquareMatrixSupported =
-                new Key<Boolean>(Boolean.class, "isNonSquareMatrixSupported");
+                new Key<>(Boolean.class, "isNonSquareMatrixSupported");
 
         /**
          * Whether {@link MathTransformFactory} can create transforms between spaces that are
@@ -434,7 +436,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.AffineTransformTest#isNonBidimensionalSpaceSupported
          */
         public static final Key<Boolean> isNonBidimensionalSpaceSupported =
-                new Key<Boolean>(Boolean.class, "isNonBidimensionalSpaceSupported");
+                new Key<>(Boolean.class, "isNonBidimensionalSpaceSupported");
 
         /**
          * Whether (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
@@ -445,7 +447,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported
          */
         public static final Key<Boolean> isAxisSwappingSupported =
-                new Key<Boolean>(Boolean.class, "isAxisSwappingSupported");
+                new Key<>(Boolean.class, "isAxisSwappingSupported");
 
         /**
          * Whether the test methods can invoke a <code>{@linkplain TestCase#validators validators}.validate(…)}</code>
@@ -462,14 +464,14 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.wkt.CRSParserTest#isValidationEnabled
          */
         public static final Key<Boolean> isValidationEnabled =
-                new Key<Boolean>(Boolean.class, "isValidationEnabled");
+                new Key<>(Boolean.class, "isValidationEnabled");
 
         /**
          * Whether the tolerance threshold of a {@link org.opengis.test.referencing.TransformTestCase}
          * has been relaxed. This information is determined after test execution.
          */
         public static final Key<Boolean> isToleranceRelaxed =
-                new Key<Boolean>(Boolean.class, "isToleranceRelaxed");
+                new Key<>(Boolean.class, "isToleranceRelaxed");
 
         /**
          * The {@linkplain MathTransformFactory Math Transform factory} instance used for a test.
@@ -479,7 +481,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.PseudoEpsgFactory#mtFactory
          */
         public static final Key<MathTransformFactory> mtFactory =
-                new Key<MathTransformFactory>(MathTransformFactory.class, "mtFactory");
+                new Key<>(MathTransformFactory.class, "mtFactory");
 
         /**
          * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used for a test.
@@ -488,7 +490,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.GIGS3005#copFactory
          */
         public static final Key<CoordinateOperationFactory> copFactory =
-                new Key<CoordinateOperationFactory>(CoordinateOperationFactory.class, "copFactory");
+                new Key<>(CoordinateOperationFactory.class, "copFactory");
 
         /**
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
@@ -497,7 +499,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
-                new Key<CoordinateOperationAuthorityFactory>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
+                new Key<>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
 
         /**
          * The {@linkplain CRSFactory Coordinate Reference System factory} instance used for a test.
@@ -507,7 +509,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.GIGS3004#crsFactory
          */
         public static final Key<CRSFactory> crsFactory =
-                new Key<CRSFactory>(CRSFactory.class, "crsFactory");
+                new Key<>(CRSFactory.class, "crsFactory");
 
         /**
          * The {@linkplain CRSAuthorityFactory Coordinate Reference System authority factory}
@@ -517,7 +519,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
-                new Key<CRSAuthorityFactory>(CRSAuthorityFactory.class, "crsAuthorityFactory");
+                new Key<>(CRSAuthorityFactory.class, "crsAuthorityFactory");
 
         /**
          * The {@linkplain CSFactory Coordinate System factory} instance used for a test.
@@ -526,7 +528,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.PseudoEpsgFactory#csFactory
          */
         public static final Key<CSFactory> csFactory =
-                new Key<CSFactory>(CSFactory.class, "csFactory");
+                new Key<>(CSFactory.class, "csFactory");
 
         /**
          * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
@@ -535,7 +537,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<CSAuthorityFactory> csAuthorityFactory =
-                new Key<CSAuthorityFactory>(CSAuthorityFactory.class, "csAuthorityFactory");
+                new Key<>(CSAuthorityFactory.class, "csAuthorityFactory");
 
         /**
          * The {@linkplain DatumFactory Datum factory} instance used for a test.
@@ -545,7 +547,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.GIGS3003#datumFactory
          */
         public static final Key<DatumFactory> datumFactory =
-                new Key<DatumFactory>(DatumFactory.class, "datumFactory");
+                new Key<>(DatumFactory.class, "datumFactory");
 
         /**
          * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
@@ -554,7 +556,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.AuthorityFactoryTestCase
          */
         public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
-                new Key<DatumAuthorityFactory>(DatumAuthorityFactory.class, "datumAuthorityFactory");
+                new Key<>(DatumAuthorityFactory.class, "datumAuthorityFactory");
 
         /**
          * Whether the objects created by the tested {@link org.opengis.referencing.ObjectFactory} use the
@@ -576,7 +578,7 @@ public class Configuration implements Serializable {
          * @see org.opengis.test.referencing.gigs.UserObjectFactoryTestCase#isFactoryPreservingUserValues
          */
         public static final Key<Boolean> isFactoryPreservingUserValues =
-                new Key<Boolean>(Boolean.class, "isFactoryPreservingUserValues");
+                new Key<>(Boolean.class, "isFactoryPreservingUserValues");
 
         /**
          * The set of {@link Validator} instances to use for validating objects.
@@ -586,7 +588,7 @@ public class Configuration implements Serializable {
          * @see Validators#DEFAULT
          */
         public static final Key<ValidatorContainer> validators =
-                new Key<ValidatorContainer>(ValidatorContainer.class, "validators");
+                new Key<>(ValidatorContainer.class, "validators");
 
         /**
          * The type of values associated to this key.
@@ -638,7 +640,7 @@ public class Configuration implements Serializable {
                 }
                 return (Key) key;
             }
-            return new Key<T>(type, name);
+            return new Key<>(type, name);
         }
 
         /**

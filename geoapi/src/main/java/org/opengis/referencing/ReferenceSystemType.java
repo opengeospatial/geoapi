@@ -58,7 +58,7 @@ public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ReferenceSystemType> VALUES = new ArrayList<ReferenceSystemType>(28);
+    private static final List<ReferenceSystemType> VALUES = new ArrayList<>(28);
 
     /**
      * Compound spatio-parametric coordinate reference system containing an

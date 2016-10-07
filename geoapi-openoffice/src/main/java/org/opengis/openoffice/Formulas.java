@@ -44,7 +44,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
     /**
      * Informations about exported methods.
      */
-    final Map<String,MethodInfo> methods = new HashMap<String,MethodInfo>();
+    final Map<String,MethodInfo> methods = new HashMap<>();
 
     /**
      * Locale attribute required by {@code com.sun.star.lang.XLocalizable} interface.
@@ -260,7 +260,6 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
             final StringWriter buffer = new StringWriter();
             final PrintWriter out = new PrintWriter(buffer);
             exception.printStackTrace(out);
-            out.close();
             return buffer.toString();
         }
         final String message = exception.getLocalizedMessage();

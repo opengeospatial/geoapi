@@ -107,7 +107,7 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
      */
     protected UserObjectFactoryTestCase(final ObjectFactory... factories) {
         super(factories);
-        properties = new HashMap<String,Object>(4);
+        properties = new HashMap<>(4);
         @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isFactoryPreservingUserValues);
@@ -155,7 +155,7 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
      * @return Properties to be given to the {@code create(…)} method.
      */
     static Map<String,Object> properties(final int code, final String name) {
-        final Map<String,Object> properties = new HashMap<String,Object>(4);
+        final Map<String,Object> properties = new HashMap<>(4);
         assertNull(properties.put(IdentifiedObject.IDENTIFIERS_KEY, new GIGSIdentifier(code)));
         assertNull(properties.put(IdentifiedObject.NAME_KEY, name));
         return properties;

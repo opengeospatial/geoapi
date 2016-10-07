@@ -165,33 +165,32 @@ public final class CompatibilityTest {
      * @return List of new methods, or {@code null} if none.
      */
     private List<String> listNewMethods() throws IOException, ClassNotFoundException, NoSuchMethodException {
-        final List<String> newMethods = new ArrayList<String>();
+        final List<String> newMethods = new ArrayList<>();
         for (final String className : listClasses(newFile)) {
             if (className.indexOf('$') >= 0) {
-                continue; // Skip inner classes.
+                continue;                                                           // Skip inner classes.
             }
             final Class<?> newClass = Class.forName(className, false, newAPI);
             if (!Modifier.isPublic(newClass.getModifiers())) {
-                continue; // Skip non-public classes.
+                continue;                                                           // Skip non-public classes.
             }
             Class<?> oldClass;
             try {
                 oldClass = Class.forName(className, false, oldAPI);
             } catch (ClassNotFoundException e) {
-                oldClass = null; // Will mark all methods as new.
+                oldClass = null;                                                    // Will mark all methods as new.
             }
             for (final Method newMethod : newClass.getDeclaredMethods()) {
                 if (!Modifier.isPublic(newMethod.getModifiers())) {
-                    continue; // Skip non-public methods.
+                    continue;                                                       // Skip non-public methods.
                 }
                 final String methodName = newMethod.getName();
                 if (oldClass != null) try {
                     final Class<?>[] paramTypes = getParameterTypes(newMethod, oldAPI);
                     final Method oldMethod = oldClass.getMethod(methodName, paramTypes);
-                    assertArrayEquals(methodName, paramTypes, oldMethod.getParameterTypes()); // Paranoiac check (should never fail).
-                    continue; // The method existed, so do not report its has a new method.
-                } catch (ClassNotFoundException e) {
-                } catch (NoSuchMethodException e) {
+                    assertArrayEquals(methodName, paramTypes, oldMethod.getParameterTypes());   // Paranoiac check (should never fail).
+                    continue;       // The method existed, so do not report its has a new method.
+                } catch (ClassNotFoundException | NoSuchMethodException e) {
                 }
                 assertTrue(newMethods.add(newClass.getCanonicalName() + '.' + methodName));
             }
@@ -207,7 +206,7 @@ public final class CompatibilityTest {
      * @return List of incompatible changes.
      */
     private List<IncompatibleChange> createIncompatibleChangesList() throws IOException, ClassNotFoundException, NoSuchMethodException {
-        final List<IncompatibleChange> incompatibleChanges = new ArrayList<IncompatibleChange>();
+        final List<IncompatibleChange> incompatibleChanges = new ArrayList<>();
         for (final String className : listClasses(oldFile)) {
             final Class<?> oldClass = Class.forName(className, false, oldAPI);
             if (!Modifier.isPublic(oldClass.getModifiers())) {
@@ -244,7 +243,7 @@ public final class CompatibilityTest {
                     final String oldType = oldGPT[i].toString(); // TODO: use getTypeName() on JDK8.
                     final String newType = newGPT[i].toString();
                     if (!newType.equals(oldType)) {
-                        final String lineSeparator = System.getProperty("line.separator", "\n"); // TODO: Use System.lineSeparator() on JDK7.
+                        final String lineSeparator = System.lineSeparator();
                         fail("Incompatible change in argument #" + (i+1) + " of "
                                 + className + '.' + methodName + ':' + lineSeparator
                                 + "    (old) " + oldType + lineSeparator
@@ -268,7 +267,7 @@ public final class CompatibilityTest {
                 }
             }
         }
-        if (oldAPI instanceof Closeable) ((Closeable) oldAPI).close(); // For JDK7+ (not available on JDK6).
+        if (oldAPI instanceof Closeable) ((Closeable) oldAPI).close();
         if (newAPI instanceof Closeable) ((Closeable) newAPI).close();
         if (!acceptedIncompatibleChanges.isEmpty()) {
             fail("The collection of \"accepted incompatible changes\" has not been fully used.\n" +
@@ -282,17 +281,17 @@ public final class CompatibilityTest {
      * Returns the name of all classes found in the given JAR file.
      */
     private static Collection<String> listClasses(final File file) throws IOException {
-        final List<String> entries = new ArrayList<String>();
-        final JarFile jar = new JarFile(file);
-        final Enumeration<JarEntry> it = jar.entries();
-        while (it.hasMoreElements()) {
-            String entry = it.nextElement().getName();
-            if (entry.endsWith(CLASS_EXT)) {
-                entry = entry.substring(0, entry.length() - CLASS_EXT.length()).replace('/', '.');
-                assertTrue(entries.add(entry));
+        final List<String> entries = new ArrayList<>();
+        try (JarFile jar = new JarFile(file)) {
+            final Enumeration<JarEntry> it = jar.entries();
+            while (it.hasMoreElements()) {
+                String entry = it.nextElement().getName();
+                if (entry.endsWith(CLASS_EXT)) {
+                    entry = entry.substring(0, entry.length() - CLASS_EXT.length()).replace('/', '.');
+                    assertTrue(entries.add(entry));
+                }
             }
         }
-        jar.close();
         return entries;
     }
 
@@ -319,7 +318,7 @@ public final class CompatibilityTest {
      */
     private void assertNoIncompatibility(final List<IncompatibleChange> incompatibleChanges) {
         if (!incompatibleChanges.isEmpty()) {
-            final String lineSeparator = System.getProperty("line.separator", "\n"); // TODO: Use System.lineSeparator() on JDK7.
+            final String lineSeparator = System.lineSeparator();
             final StringBuilder buffer = new StringBuilder(240 * incompatibleChanges.size());
             for (final IncompatibleChange change : incompatibleChanges) {
                 change.toString(buffer, lineSeparator);
@@ -338,6 +337,7 @@ public final class CompatibilityTest {
      * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
      *         has not been found in the new release.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public static void main(final String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException {
         final CompatibilityTest c = new CompatibilityTest("3.1-SNAPSHOT", "4.0-SNAPSHOT");
         for (final IncompatibleChange change : c.acceptedIncompatibleChanges) {

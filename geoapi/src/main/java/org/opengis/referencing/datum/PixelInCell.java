@@ -64,7 +64,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PixelInCell> VALUES = new ArrayList<PixelInCell>(2);
+    private static final List<PixelInCell> VALUES = new ArrayList<>(2);
 
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.

@@ -57,8 +57,9 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     /**
      * The titles of all columns.
      */
-    private static final String[] COLUMN_TITLES = new String[4];
-    {
+    private static final String[] COLUMN_TITLES;
+    static {
+        COLUMN_TITLES = new String[4];
         COLUMN_TITLES[CLASS_COLUMN]   = "Class";
         COLUMN_TITLES[METHOD_COLUMN]  = "Method";
         COLUMN_TITLES[RESULT_COLUMN]  = "Result";
@@ -78,6 +79,7 @@ final class ResultTableModel extends AbstractTableModel implements ChangeListene
     /**
      * Creates a table model for the given data.
      */
+    @SuppressWarnings("ThisEscapedInObjectConstruction")
     ResultTableModel(final Runner data) {
         this.data = data;
         entries = data.getEntries();

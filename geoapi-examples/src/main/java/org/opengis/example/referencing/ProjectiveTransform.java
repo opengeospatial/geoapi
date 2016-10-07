@@ -7,6 +7,7 @@
  */
 package org.opengis.example.referencing;
 
+import java.util.Objects;
 import javax.vecmath.GMatrix;
 
 import org.opengis.metadata.citation.Citation;

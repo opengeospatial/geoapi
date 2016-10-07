@@ -107,7 +107,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CharacterSet> VALUES = new ArrayList<CharacterSet>(29);
+    private static final List<CharacterSet> VALUES = new ArrayList<>(29);
 
     /**
      * 16-bit fixed size Universal Character Set, based on ISO/IEC 10646.

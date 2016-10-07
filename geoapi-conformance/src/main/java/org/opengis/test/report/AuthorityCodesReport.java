@@ -251,7 +251,7 @@ public class AuthorityCodesReport extends Report {
      */
     public AuthorityCodesReport(final Properties properties) {
         super(properties);
-        rows = new ArrayList<Row>(1024);
+        rows = new ArrayList<>(1024);
         defaultProperties.setProperty("TITLE", "Authority codes for ${OBJECTS.KIND}");
         defaultProperties.setProperty("OBJECTS.KIND", "Identified Objects");
         defaultProperties.setProperty("FACTORY.VERSION.SUFFIX", "");

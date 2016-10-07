@@ -60,7 +60,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<OnLineFunction> VALUES = new ArrayList<OnLineFunction>(11);
+    private static final List<OnLineFunction> VALUES = new ArrayList<>(11);
 
     /**
      * Online instructions for transferring data from one storage device or system to another.

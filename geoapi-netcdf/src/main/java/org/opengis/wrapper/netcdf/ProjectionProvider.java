@@ -103,7 +103,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
         assert (names.length % AliasList.NAME_CAPACITY) == 0 : Arrays.toString(names);
         hasStandardParallels = hasStd2;
         parameters = new AliasList[(names.length - 1) / AliasList.NAME_CAPACITY];
-        byNames = new LinkedHashMap<String,AliasList>(names.length);
+        byNames = new LinkedHashMap<>(names.length);
         AliasList name = null;
         for (int i=0,j=0; i!=names.length;) {
             final boolean isFirst = (i == 0);
@@ -220,12 +220,18 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     private static NetcdfParameter<?> parameter(final AliasList alias) {
         final String name = alias.name;
         final double defaultValue;
-        if (name.equals("north_hemisphere")) {
-            return NetcdfParameter.create(name, alias, "true");
-        } else if (name.equals(CF.EARTH_RADIUS)) {
-            defaultValue = ProjectionImpl.EARTH_RADIUS;
-        } else {
-            defaultValue = 0;
+        switch (name) {
+            case "north_hemisphere": {
+                return NetcdfParameter.create(name, alias, "true");
+            }
+            case CF.EARTH_RADIUS: {
+                defaultValue = ProjectionImpl.EARTH_RADIUS;
+                break;
+            }
+            default: {
+                defaultValue = 0;
+                break;
+            }
         }
         return NetcdfParameter.create(name, alias, defaultValue);
     }

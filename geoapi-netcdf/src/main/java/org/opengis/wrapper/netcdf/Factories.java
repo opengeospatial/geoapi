@@ -31,8 +31,7 @@ final class Factories {
     /**
      * The factories, created when first needed.
      */
-    private static final Map<Class<? extends Factory>, Factory> FACTORIES =
-            new HashMap<Class<? extends Factory>, Factory>();
+    private static final Map<Class<? extends Factory>, Factory> FACTORIES = new HashMap<>();
 
     /**
      * Do now allow instantiation.

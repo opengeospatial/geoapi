@@ -59,7 +59,7 @@ public final class Trigger extends CodeList<Trigger> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Trigger> VALUES = new ArrayList<Trigger>(3);
+    private static final List<Trigger> VALUES = new ArrayList<>(3);
 
     /**
      * Event due to external stimuli.

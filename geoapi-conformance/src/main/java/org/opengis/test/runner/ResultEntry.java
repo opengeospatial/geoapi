@@ -165,8 +165,8 @@ final class ResultEntry {
          */
         int numTests=1, numSupported=1;
         final Configuration.Key<Boolean> configurationTip = event.getConfigurationTip();
-        final List<String[]> factories = new ArrayList<String[]>();
-        final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<Map.Entry<Configuration.Key<?>, StatusOptional>>();
+        final List<String[]> factories = new ArrayList<>();
+        final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration = new ArrayList<>();
         for (Map.Entry<Configuration.Key<?>,Object> entry : event.getSource().configuration().map().entrySet()) {
             final Configuration.Key<?> key = entry.getKey();
             final String   name  = key.name();
@@ -214,7 +214,7 @@ final class ResultEntry {
                 });
             }
         }
-        coverage = ((float) numSupported) / ((float) numTests);
+        coverage = numSupported / ((float) numTests);
         this.factories = Collections.unmodifiableList(factories);
         this.configuration = Collections.unmodifiableList(configuration);
     }

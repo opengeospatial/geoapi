@@ -221,8 +221,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         try {
             converter = unit.getConverterToAny(baseUnit);
         } catch (ConversionException e) {
-            throw (AssertionError) new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “"
-                    + baseUnit + "”.").initCause(e);
+            throw new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “" + baseUnit + "”.", e);
         }
         return converter;
     }

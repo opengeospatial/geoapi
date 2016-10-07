@@ -248,8 +248,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testGeographic() throws IOException {
-        final NetcdfDataset file = new NetcdfDataset(open(THREDDS));
-        try {
+        try (NetcdfDataset file = new NetcdfDataset(open(THREDDS))) {
             crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             validator.dispatch(crs);
             assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
@@ -258,8 +257,6 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertAxisEquals("x", NonSI.DEGREE_ANGLE, cs.getAxis(0));
             assertAxisEquals("y", NonSI.DEGREE_ANGLE, cs.getAxis(1));
             assertNameEquals("y x", crs);
-        } finally {
-            file.close();
         }
     }
 
@@ -325,8 +322,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testGeographic_XYT() throws IOException {
-        final NetcdfDataset file = new NetcdfDataset(open(NCEP));
-        try {
+        try (NetcdfDataset file = new NetcdfDataset(open(NCEP))) {
             crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             final GeographicCRS geographic = separateComponents("Expected a (geographic + time) CRS.", GeographicCRS.class, false);
             final EllipsoidalCS ellp = (geographic) .getCoordinateSystem();
@@ -338,8 +334,6 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertAxisEquals("valtime", NonSI.HOUR,         time.getAxis(0));
             assertNameEquals("valtime lat lon", crs);
             assertEquals("Time since 1992-1-1 UTC", new Date(694224000000L), temporalCRS.getDatum().getOrigin());
-        } finally {
-            file.close();
         }
     }
 
@@ -373,8 +367,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testProjected_XYZT() throws IOException {
-        final NetcdfDataset file = new NetcdfDataset(open(CIP));
-        try {
+        try (NetcdfDataset file = new NetcdfDataset(open(CIP))) {
             final List<CoordinateSystem> crsList = file.getCoordinateSystems();
             assertEquals("Unexpected number of NetCDF coordinate systems.", 2, crsList.size());
             crs = wrap(crsList.get(0), file);
@@ -402,8 +395,6 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertEquals("longitude_of_central_meridian",             -95.0,   p.parameter("longitude_of_central_meridian").doubleValue(), EPS);
             assertEquals("earth_radius",                          6371229.000, p.parameter("earth_radius").doubleValue(), EPS);
             assertArrayEquals("standard_parallel", new double[] {25.0, 25.05}, p.parameter("standard_parallel").doubleValueList(), EPS);
-        } finally {
-            file.close();
         }
     }
 }

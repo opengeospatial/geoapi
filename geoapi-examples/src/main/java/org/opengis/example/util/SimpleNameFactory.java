@@ -9,6 +9,7 @@ package org.opengis.example.util;
 
 import java.util.Map;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Properties;
 import javax.naming.Name;
 import javax.naming.CompoundName;

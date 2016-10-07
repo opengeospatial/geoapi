@@ -106,7 +106,7 @@ final class ImplementationManifest {
      * @return Information about the implementation, or {@code null} if none.
      */
     static ImplementationManifest parse(final File[] files) throws IOException {
-        final Set<File> classpath = new LinkedHashSet<File>();
+        final Set<File> classpath = new LinkedHashSet<>();
         ImplementationManifest manifest = null;
         for (final File file : files) {
             final ImplementationManifest candidate = ImplementationManifest.parse(file, classpath);
@@ -122,7 +122,7 @@ final class ImplementationManifest {
          */
         final String defcp = System.getProperty("java.class.path");
         if (defcp != null) {
-            final Set<String> currentClasspath = new HashSet<String>();
+            final Set<String> currentClasspath = new HashSet<>();
             final StringTokenizer tokens = new StringTokenizer(defcp, File.pathSeparator);
             while (tokens.hasMoreTokens()) {
                 String file = tokens.nextToken();
@@ -153,41 +153,41 @@ final class ImplementationManifest {
      * @throws IOException If an error occurred while reading the JAR file.
      */
     private static ImplementationManifest parse(final File file, final Set<File> classpath) throws IOException {
+        ImplementationManifest impl = null;
         classpath.add(file.getAbsoluteFile());
         int priority = -1;
-        final JarFile jar = new JarFile(file, false);
-        final Enumeration<JarEntry> entries = jar.entries();
-scan:   while (entries.hasMoreElements()) {
-            final String name = entries.nextElement().getName();
-            for (int i=0; i<SERVICES.length; i++) {
-                if (name.startsWith(SERVICES[i])) {
-                    priority = i;
-                    break scan;
-                }
-            }
-        }
-        ImplementationManifest impl = null;
-        final Manifest manifest = jar.getManifest();
-        if (manifest != null) {
-            final Attributes attributes = manifest.getMainAttributes();
-            if (attributes != null) {
-                if (priority >= 0) {
-                    final String title = (String) attributes.get(Attributes.Name.IMPLEMENTATION_TITLE);
-                    if (title != null) {
-                        impl = new ImplementationManifest(priority, title, attributes);
-                    }
-                }
-                final String cp = (String) attributes.get(Attributes.Name.CLASS_PATH);
-                if (cp != null) {
-                    final File directory = file.getParentFile();
-                    final StringTokenizer tokens = new StringTokenizer(cp);
-                    while (tokens.hasMoreTokens()) {
-                        classpath.add(new File(directory, tokens.nextToken()).getAbsoluteFile());
+        try (final JarFile jar = new JarFile(file, false)) {
+            final Enumeration<JarEntry> entries = jar.entries();
+scan:       while (entries.hasMoreElements()) {
+                final String name = entries.nextElement().getName();
+                for (int i=0; i<SERVICES.length; i++) {
+                    if (name.startsWith(SERVICES[i])) {
+                        priority = i;
+                        break scan;
                     }
                 }
             }
+            final Manifest manifest = jar.getManifest();
+            if (manifest != null) {
+                final Attributes attributes = manifest.getMainAttributes();
+                if (attributes != null) {
+                    if (priority >= 0) {
+                        final String title = (String) attributes.get(Attributes.Name.IMPLEMENTATION_TITLE);
+                        if (title != null) {
+                            impl = new ImplementationManifest(priority, title, attributes);
+                        }
+                    }
+                    final String cp = (String) attributes.get(Attributes.Name.CLASS_PATH);
+                    if (cp != null) {
+                        final File directory = file.getParentFile();
+                        final StringTokenizer tokens = new StringTokenizer(cp);
+                        while (tokens.hasMoreTokens()) {
+                            classpath.add(new File(directory, tokens.nextToken()).getAbsoluteFile());
+                        }
+                    }
+                }
+            }
         }
-        jar.close();
         return impl;
     }
 

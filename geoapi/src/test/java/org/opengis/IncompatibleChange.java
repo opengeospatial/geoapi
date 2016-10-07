@@ -89,7 +89,7 @@ final class IncompatibleChange {
      * Creates a set of incompatible changes from (method, oldType, newType) tuples.
      */
     private static Set<IncompatibleChange> fill(final String... types) {
-        final Set<IncompatibleChange> changes = new HashSet<IncompatibleChange>();
+        final Set<IncompatibleChange> changes = new HashSet<>();
         for (int i=0; i<types.length;) {
             final IncompatibleChange c = new IncompatibleChange(types[i++], types[i++], types[i++]);
             assertTrue(c.method, changes.add(c));
