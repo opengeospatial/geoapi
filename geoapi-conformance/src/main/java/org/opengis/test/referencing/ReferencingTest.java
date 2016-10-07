@@ -33,8 +33,9 @@ package org.opengis.test.referencing;
 
 import java.util.Map;
 import java.util.Collections;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
+import javax.measure.quantity.Angle;
+import tec.units.ri.unit.Units;
 
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -56,10 +57,15 @@ import static org.opengis.test.Validators.*;
  * instances are created using the factories given at construction time.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.3
  */
 public abstract class ReferencingTest extends TestCase {
+    /**
+     * The unit of measurement for degrees of angle.
+     */
+    static final Unit<Angle> DEGREE = Units.RADIAN.multiply(Math.PI/180);
+
     /**
      * Factory to build a coordinate reference system, or {@code null} if none.
      */
@@ -113,10 +119,10 @@ public abstract class ReferencingTest extends TestCase {
          */
         assumeNotNull(datumFactory);
         PrimeMeridian primeMeridian = datumFactory.createPrimeMeridian(
-                createMapWithName("Greenwich"), 0.0, NonSI.DEGREE_ANGLE);
+                createMapWithName("Greenwich"), 0.0, DEGREE);
         validate(primeMeridian);
         Ellipsoid ellipsoid = datumFactory.createEllipsoid(
-                createMapWithName("WGS 84"), 6378137.0, 298.257223563, SI.METRE);
+                createMapWithName("WGS 84"), 6378137.0, 298.257223563, Units.METRE);
         validate(ellipsoid);
         GeodeticDatum datum = datumFactory.createGeodeticDatum(
                 createMapWithName("World Geodetic System 1984"), ellipsoid, primeMeridian);
@@ -126,13 +132,13 @@ public abstract class ReferencingTest extends TestCase {
          */
         assumeNotNull(csFactory);
         CoordinateSystemAxis longitudeAxis = csFactory.createCoordinateSystemAxis(
-                createMapWithName("Geodetic longitude"), "\u03BB", AxisDirection.EAST, NonSI.DEGREE_ANGLE);
+                createMapWithName("Geodetic longitude"), "\u03BB", AxisDirection.EAST, DEGREE);
         validate(longitudeAxis);
         CoordinateSystemAxis latitudeAxis  = csFactory.createCoordinateSystemAxis(
-                createMapWithName("Geodetic latitude"),  "\u03C6", AxisDirection.NORTH, NonSI.DEGREE_ANGLE);
+                createMapWithName("Geodetic latitude"),  "\u03C6", AxisDirection.NORTH, DEGREE);
         validate(latitudeAxis);
         CoordinateSystemAxis heightAxis  = csFactory.createCoordinateSystemAxis(
-                createMapWithName("height"), "h", AxisDirection.UP, SI.METRE);
+                createMapWithName("height"), "h", AxisDirection.UP, Units.METRE);
         validate(heightAxis);
         EllipsoidalCS cs = csFactory.createEllipsoidalCS(
                 createMapWithName("WGS 84"), latitudeAxis, longitudeAxis, heightAxis);
@@ -154,18 +160,18 @@ public abstract class ReferencingTest extends TestCase {
         heightAxis    = cs.getAxis(2);
         assertEquals("Geodetic latitude",  latitudeAxis .getName().toString());
         assertEquals(AxisDirection.NORTH,  latitudeAxis .getDirection());
-        assertEquals(NonSI.DEGREE_ANGLE,   latitudeAxis .getUnit());
+        assertTrue  (DEGREE.isCompatible  (latitudeAxis .getUnit()));
         assertEquals("Geodetic longitude", longitudeAxis.getName().toString());
         assertEquals(AxisDirection.EAST,   longitudeAxis.getDirection());
-        assertEquals(NonSI.DEGREE_ANGLE,   longitudeAxis.getUnit());
+        assertTrue  (DEGREE.isCompatible  (longitudeAxis.getUnit()));
         assertEquals("height",             heightAxis   .getName().toString());
         assertEquals(AxisDirection.UP,     heightAxis   .getDirection());
-        assertEquals(SI.METRE,             heightAxis   .getUnit());
+        assertEquals(Units.METRE,          heightAxis   .getUnit());
 
         datum = crs.getDatum();
         assertEquals("World Geodetic System 1984", datum.getName().toString());
         primeMeridian = datum.getPrimeMeridian();
         assertEquals(0.0, primeMeridian.getGreenwichLongitude(), 0.0);
-        assertEquals(NonSI.DEGREE_ANGLE, primeMeridian.getAngularUnit());
+        assertTrue(DEGREE.isCompatible(primeMeridian.getAngularUnit()));
     }
 }

@@ -32,7 +32,7 @@
 package org.opengis.metadata.quality;
 
 import java.util.Collection;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.0
  *
  * @navassoc - - - Record

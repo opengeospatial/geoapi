@@ -33,7 +33,7 @@ package org.opengis.referencing.datum;
 
 import java.util.Map;
 import java.util.Date;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.ObjectFactory;
@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * {@code DatumFactory} can be used to make "special" datums.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory

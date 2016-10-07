@@ -158,8 +158,13 @@
     <dependencies>
       <dependency>
         <groupId>javax.measure</groupId>
-        <artifactId>jsr-275</artifactId>
-        <version>0.9.3</version>
+        <artifactId>unit-api</artifactId>
+        <version>1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>tec.units</groupId>
+        <artifactId>unit-ri</artifactId>
+        <version>1.0.1</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -173,7 +178,7 @@
   <dependencies>
     <dependency>
       <groupId>javax.measure</groupId>
-      <artifactId>jsr-275</artifactId>
+      <artifactId>unit-api</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

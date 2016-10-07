@@ -32,9 +32,8 @@
 package org.opengis.test.referencing;
 
 import java.util.Date;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
+import tec.units.ri.unit.Units;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
@@ -49,7 +48,7 @@ import static org.opengis.test.Assert.*;
  * static methods instead.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.2
  */
 public class DatumValidator extends ReferencingValidator {
@@ -97,11 +96,11 @@ public class DatumValidator extends ReferencingValidator {
         mandatory("PrimeMeridian: must have a unit of measurement.", unit);
         if (unit != null) {
             assertTrue("PrimeMeridian: unit must be compatible with degrees.",
-                    unit.isCompatible(NonSI.DEGREE_ANGLE));
+                    unit.isCompatible(ReferencingTest.DEGREE));
         }
         double longitude = object.getGreenwichLongitude();
         if (unit != null) {
-            longitude = unit.getConverterTo(NonSI.DEGREE_ANGLE).convert(longitude);
+            longitude = unit.getConverterTo(ReferencingTest.DEGREE).convert(longitude);
         }
         assertBetween("PrimeMeridian: expected longitude in [-180 ... +180°] range.", -180, +180, longitude);
     }
@@ -119,7 +118,7 @@ public class DatumValidator extends ReferencingValidator {
         final Unit<Length> unit = object.getAxisUnit();
         mandatory("Ellipsoid: must have a unit of measurement.", unit);
         if (unit != null) {
-            assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(SI.METRE));
+            assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(Units.METRE));
         }
         final double semiMajor = object.getSemiMajorAxis();
         final double semiMinor = object.getSemiMinorAxis();

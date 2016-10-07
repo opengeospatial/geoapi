@@ -31,8 +31,6 @@
  */
 package org.opengis.test.referencing;
 
-import javax.measure.unit.NonSI;
-
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
@@ -53,7 +51,7 @@ import static org.opengis.test.Validators.*;
  * authority factory given at construction time.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.3
  */
 public abstract class CRSTest extends TestCase {
@@ -97,10 +95,10 @@ public abstract class CRSTest extends TestCase {
         final CoordinateSystemAxis longitude = cs.getAxis(1);
         assertEquals("Geodetic latitude",  latitude.getName().getCode());
         assertEquals(AxisDirection.NORTH,  latitude.getDirection());
-        assertEquals(NonSI.DEGREE_ANGLE,   latitude.getUnit());
+        assertTrue(ReferencingTest.DEGREE.isCompatible(latitude.getUnit()));
         assertEquals("Geodetic longitude", longitude.getName().getCode());
         assertEquals(AxisDirection.EAST,   longitude.getDirection());
-        assertEquals(NonSI.DEGREE_ANGLE,   longitude.getUnit());
+        assertTrue(ReferencingTest.DEGREE.isCompatible(longitude.getUnit()));
         /*
          * Datum validation.
          */
@@ -108,6 +106,6 @@ public abstract class CRSTest extends TestCase {
         assertEquals("World Geodetic System 1984", datum.getName().getCode());
         final PrimeMeridian pm = datum.getPrimeMeridian();
         assertEquals(0.0, pm.getGreenwichLongitude(), 0.0);
-        assertEquals(NonSI.DEGREE_ANGLE, pm.getAngularUnit());
+        assertTrue(ReferencingTest.DEGREE.isCompatible(pm.getAngularUnit()));
     }
 }

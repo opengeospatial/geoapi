@@ -46,11 +46,11 @@ import static org.opengis.annotation.Specification.*;
  * coordinates use a coordinate reference system that uses this coordinate system.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystemAxis
- * @see javax.measure.unit.Unit
+ * @see javax.measure.Unit
  * @see org.opengis.referencing.datum.Datum
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  *

@@ -31,7 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.util.FactoryException;
@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * which is also used in the <a href="https://trac.osgeo.org/geotiff/">GeoTIFF</a> standard.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @departure historic

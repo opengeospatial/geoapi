@@ -31,7 +31,7 @@
  */
 package org.opengis.referencing.cs;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
 
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * See <A HREF="package-summary.html#AxisNames">axis name constraints</A>.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @see CoordinateSystem

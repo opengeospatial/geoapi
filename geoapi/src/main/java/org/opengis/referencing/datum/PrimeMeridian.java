@@ -31,7 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * zero.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @navassoc 1 - - Unit

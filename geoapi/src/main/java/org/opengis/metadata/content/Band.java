@@ -32,7 +32,7 @@
 package org.opengis.metadata.content;
 
 import javax.measure.quantity.Length;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.0
  *
  * @navassoc 1 - - Unit

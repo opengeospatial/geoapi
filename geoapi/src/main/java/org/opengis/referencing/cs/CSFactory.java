@@ -32,7 +32,7 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.util.FactoryException;
 
@@ -47,7 +47,7 @@ import org.opengis.util.FactoryException;
  * and {@code CSFactory} can be used to make "special" coordinate systems.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @departure historic

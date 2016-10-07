@@ -31,7 +31,7 @@
  */
 package org.opengis.referencing.datum;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
@@ -67,15 +67,15 @@ import static org.opengis.annotation.Specification.*;
  *   ISO 19111 defines the union named <code>secondDefiningParameter</code> as being either
  *   <code>semiMinorAxis</code> or <code>inverseFlattening</code>. The <code>union</code>
  *   construct (defined in some languages like C/C++) does not exist in Java. GeoAPI changed the
- *   interface to require both ellipsoidal parameters (in addition to the <code>semiMajorAxis</code> 
- *   parameter which is mandatory in any case), as was done in OGC 01-009. However, implementors 
+ *   interface to require both ellipsoidal parameters (in addition to the <code>semiMajorAxis</code>
+ *   parameter which is mandatory in any case), as was done in OGC 01-009. However, implementors
  *   could readily permit users to only provide one of the two parameters by creating a class which
- *   calculates the second parameter from the first. For precision, GeoAPI imports the 
+ *   calculates the second parameter from the first. For precision, GeoAPI imports the
  *   <code>isIvfDefinitive</code> attribute from OGC 01-009 to enable the user to establish which of
  *   the two parameters was used to define the instance.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @navassoc 1 - - Unit

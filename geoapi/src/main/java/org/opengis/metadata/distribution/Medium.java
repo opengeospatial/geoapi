@@ -32,7 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * Information about the media on which the resource can be distributed.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.0
  *
  * @navassoc 1 - - MediumName

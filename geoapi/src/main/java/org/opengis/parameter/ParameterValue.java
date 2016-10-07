@@ -32,7 +32,7 @@
 package org.opengis.parameter;
 
 import java.net.URI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @see ParameterDescriptor

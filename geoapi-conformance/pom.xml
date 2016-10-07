@@ -71,6 +71,10 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>tec.units</groupId>
+      <artifactId>unit-ri</artifactId>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>compile</scope>
