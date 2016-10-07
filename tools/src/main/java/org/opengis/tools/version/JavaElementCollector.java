@@ -121,39 +121,39 @@ final class JavaElementCollector {
         umlIdentifier = umlAnnotation.getMethod("identifier", (Class[]) null);
         umlObligation = umlAnnotation.getMethod("obligation", (Class[]) null);
         codeLists     = Class.forName("org.opengis.util.CodeList", false, loader);
-        elements      = new LinkedHashSet<JavaElement>(512);
+        elements      = new LinkedHashSet<>(512);
         /*
          * At this point, all fields Shall be initialized. Now fill the
          * 'elements' set with all public and protected API that we can find.
          */
-        final Map<String,JavaElement> packages = new HashMap<String,JavaElement>();
-        final ZipInputStream file = new ZipInputStream(new FileInputStream(jarFiles.get(0)));
-        ZipEntry entry;
-        while ((entry = file.getNextEntry()) != null) {
-            String classname = entry.getName();
-            if (classname.endsWith(".class")) {
-                classname = classname.substring(0, classname.length() - 6).replace('/', '.');
-                final Class<?> type = Class.forName(classname, false, loader);
-                if (!type.isSynthetic()) {
-                    final int modifiers = type.getModifiers();
-                    final boolean isPublic = Modifier.isPublic(modifiers);
-                    if (isPublic || Modifier.isProtected(modifiers)) {
-                        final String packageName = type.getPackage().getName();
-                        JavaElement container = packages.get(packageName);
-                        if (container == null) {
-                            container = new JavaElement(packageName);
-                            packages.put(packageName, container);
-                        }
-                        final JavaElement element = new JavaElement(this, container, type, isPublic);
-                        assert elements.contains(element);
-                        if (hierarchy != null && element.type != null) {
-                            hierarchy.put(type.getCanonicalName(), element.type);
+        final Map<String,JavaElement> packages = new HashMap<>();
+        try (ZipInputStream file = new ZipInputStream(new FileInputStream(jarFiles.get(0)))) {
+            ZipEntry entry;
+            while ((entry = file.getNextEntry()) != null) {
+                String classname = entry.getName();
+                if (classname.endsWith(".class")) {
+                    classname = classname.substring(0, classname.length() - 6).replace('/', '.');
+                    final Class<?> type = Class.forName(classname, false, loader);
+                    if (!type.isSynthetic()) {
+                        final int modifiers = type.getModifiers();
+                        final boolean isPublic = Modifier.isPublic(modifiers);
+                        if (isPublic || Modifier.isProtected(modifiers)) {
+                            final String packageName = type.getPackage().getName();
+                            JavaElement container = packages.get(packageName);
+                            if (container == null) {
+                                container = new JavaElement(packageName);
+                                packages.put(packageName, container);
+                            }
+                            final JavaElement element = new JavaElement(this, container, type, isPublic);
+                            assert elements.contains(element);
+                            if (hierarchy != null && element.type != null) {
+                                hierarchy.put(type.getCanonicalName(), element.type);
+                            }
                         }
                     }
                 }
             }
         }
-        file.close();
     }
 
     /**
@@ -188,7 +188,7 @@ final class JavaElementCollector {
          * At this point, we collected the version-dependent information.
          * Now build the list.
          */
-        final List<File> files = new ArrayList<File>();
+        final List<File> files = new ArrayList<>();
         files.add(new File(repository, version.getMavenArtefactPath(artefact)));
         if (artefact.equals("geoapi")) {
             if (!pendingIncludesCore) {
@@ -225,7 +225,7 @@ final class JavaElementCollector {
                     IllegalAccessException, InvocationTargetException
     {
         final File repository = new File(System.getProperty("user.home"), ".m2/repository");
-        final Map<String,String> hierarchy = new HashMap<String,String>();
+        final Map<String,String> hierarchy = new HashMap<>();
         final Set<JavaElement> oldAPI = collectAPI(artefact, oldVersion, repository, null);
         final Set<JavaElement> newAPI = collectAPI(artefact, newVersion, repository, hierarchy);
         for (final Iterator<JavaElement> it = oldAPI.iterator(); it.hasNext();) {
@@ -242,7 +242,7 @@ final class JavaElementCollector {
             final JavaElement element = it.next();
             element.computeChanges(oldAPI.iterator());
             if (element.isDeprecated && element.changes() == null) {
-                it.remove(); // Ignore new deprecated elements, since they shall be removed before the release.
+                it.remove();        // Ignore new deprecated elements, since they shall be removed before the release.
             }
         }
         /*

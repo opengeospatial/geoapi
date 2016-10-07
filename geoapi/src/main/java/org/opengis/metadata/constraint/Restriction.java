@@ -266,7 +266,7 @@ public final class Restriction extends CodeList<Restriction> {
      */
     public static Restriction valueOf(String code) {
         if ("LICENSE".equals(code)) {
-            code = "LICENCE"; // For compatibility between ISO 19115:2003 and ISO 19115:2014.
+            code = "LICENCE";           // For compatibility between ISO 19115:2003 and ISO 19115:2014.
         }
         return valueOf(Restriction.class, code);
     }

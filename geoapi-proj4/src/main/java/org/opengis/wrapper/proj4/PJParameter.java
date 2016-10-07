@@ -205,7 +205,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
         if (standardUnit != null) try {
             c = standardUnit.getConverterToAny(unit).convert(c);
         } catch (ConversionException e) {
-            throw new IllegalArgumentException(e); // Should never happen actually.
+            throw new IllegalArgumentException(e);              // Should never happen actually.
         }
         return c;
     }
@@ -287,7 +287,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
         if (standardUnit != null) try {
             value = unit.getConverterToAny(standardUnit).convert(value);
         } catch (ConversionException e) {
-            throw new IllegalArgumentException(e); // Should never happen actually.
+            throw new IllegalArgumentException(e);              // Should never happen actually.
         }
         this.value = value;
     }

@@ -416,7 +416,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         final double semiMajorAxis;
         double semiMinorAxis = Double.NaN;
         double inverseFlattening = Double.NaN;
-        int    unitCode = 9001; // Default unit is metre.
+        int    unitCode = 9001;                     // Default unit is metre.
         final int id = parseCode(code);
         switch (id) {
             case 7030: name="WGS 84";             semiMajorAxis=6378137;     inverseFlattening=298.257223563; break;
@@ -532,9 +532,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                      + "consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, "
                      + "positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. "
                      + "UoM: m";
-                axisCode0 = 115; // Geocentric X
-                axisCode1 = 116; // Geocentric Y
-                axisCode2 = 117; // Geocentric Z
+                axisCode0 = 115;        // Geocentric X
+                axisCode1 = 116;        // Geocentric Y
+                axisCode2 = 117;        // Geocentric Z
                 break;
             }
             default: throw noSuchAuthorityCode(id, code);
@@ -621,33 +621,33 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 name = "Ellipsoidal 2D CS. Axes: latitude, longitude. "
                      + "Orientations: north, east. "
                      + "UoM: grads. ";
-                axisCode0 = 58; // Geodetic latitude
-                axisCode1 = 59; // Geodetic longitude
+                axisCode0 = 58;         // Geodetic latitude
+                axisCode1 = 59;         // Geodetic longitude
                 break;
             }
             case 6422: {
                 name = "Ellipsoidal 2D CS. Axes: latitude, longitude. "
                      + "Orientations: north, east. "
                      + "UoM: degree";
-                axisCode0 = 106; // Geodetic latitude
-                axisCode1 = 107; // Geodetic longitude
+                axisCode0 = 106;        // Geodetic latitude
+                axisCode1 = 107;        // Geodetic longitude
                 break;
             }
             case 6423: {
                 name = "Ellipsoidal 3D CS. Axes: latitude, longitude, ellipsoidal height. "
                      + "Orientations: north, east, up. "
                      + "UoM: degree, degree, metre.";
-                axisCode0 = 108; // Geodetic latitude
-                axisCode1 = 109; // Geodetic longitude
-                axisCode2 = 110; // Ellipsoidal height
+                axisCode0 = 108;        // Geodetic latitude
+                axisCode1 = 109;        // Geodetic longitude
+                axisCode2 = 110;        // Ellipsoidal height
                 break;
             }
             case 6424: {
                 name = "Ellipsoidal 2D CS. Axes: longitude, latitude. "
                      + "Orientations: east, north. "
                      + "UoM: degree";
-                axisCode0 = 220; // Geodetic longitude
-                axisCode1 = 221; // Geodetic latitude
+                axisCode0 = 220;        // Geodetic longitude
+                axisCode1 = 221;        // Geodetic latitude
                 break;
             }
             default: throw noSuchAuthorityCode(id, code);
@@ -1030,9 +1030,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     {
         final ParameterValueGroup parameters;
         switch (code) {
-            case 19905: { // "Makassar / NEIEZ" using operation method 9804
-                parameters = factory.getDefaultParameters("Mercator (variant A)"); // Alias "Mercator (1SP)"
-                parameters.parameter("semi_major").setValue(6377397.155); // Bessel 1841
+            case 19905: {       // "Makassar / NEIEZ" using operation method 9804
+                parameters = factory.getDefaultParameters("Mercator (variant A)");                      // Alias "Mercator (1SP)"
+                parameters.parameter("semi_major").setValue(6377397.155);                               // Bessel 1841
                 parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.1528128));
                 parameters.parameter("Latitude of natural origin")    .setValue(  0.0);
                 parameters.parameter("Longitude of natural origin")   .setValue(110.0);
@@ -1041,42 +1041,42 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(900000.0);
                 break;
             }
-            case 19884: { // "Pulkovo 1942 / Caspian Sea Mercator" using operation method 9805
-                parameters = factory.getDefaultParameters("Mercator (variant B) "); // Alias "Mercator (2SP)"
-                parameters.parameter("semi_major").setValue(6378245.0); // Krassowski 1940
+            case 19884: {       // "Pulkovo 1942 / Caspian Sea Mercator" using operation method 9805
+                parameters = factory.getDefaultParameters("Mercator (variant B) ");                     // Alias "Mercator (2SP)"
+                parameters.parameter("semi_major").setValue(6378245.0);                                 // Krassowski 1940
                 parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
                 parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
                 parameters.parameter("Longitude of natural origin")      .setValue(51.0);
                 break;
             }
-            case 3856: { // "WGS 84 / Pseudo-Mercator" using operation method 1024
+            case 3856: {        // "WGS 84 / Pseudo-Mercator" using operation method 1024
                 parameters = factory.getDefaultParameters("Popular Visualisation Pseudo Mercator");
-                parameters.parameter("semi_major").setValue(6378137.0); // WGS 84
+                parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 break;
             }
-            case 310642901: { // "IGNF:MILLER" (not an official EPSG code)
+            case 310642901: {   // "IGNF:MILLER" (not an official EPSG code)
                 parameters = factory.getDefaultParameters("Miller_Cylindrical");
                 parameters.parameter("semi_major").setValue(6378137.0);
                 parameters.parameter("semi_minor").setValue(6378137.0);
                 break;
             }
-            case 19958: { // "Rectified Skew Orthomorphic Borneo Grid (metres)" using operation method 9815
+            case 19958: {       // "Rectified Skew Orthomorphic Borneo Grid (metres)" using operation method 9815
                 parameters = factory.getDefaultParameters("Hotine Oblique Mercator (variant B)");
-                parameters.parameter("semi_major").setValue(6377298.556);  // Everest 1830
+                parameters.parameter("semi_major").setValue(6377298.556);                               // Everest 1830
                 parameters.parameter("semi_minor").setValue(6377298.556 * (1 - 1/300.8017));
-                parameters.parameter("Latitude of projection centre") .setValue(  4.0); //   4°00'00"N
-                parameters.parameter("Longitude of projection centre").setValue(115.0); // 115°00'00"E
-                parameters.parameter("Azimuth of initial line").setValue(53 + (18 + 56.9537/60)/60);          //  53°18'56.9537"
-                parameters.parameter("Angle from Rectified to Skew Grid").setValue(53 + (7 + 48.3685/60)/60); //  53°07'48.3685"
+                parameters.parameter("Latitude of projection centre") .setValue(  4.0);                         //   4°00'00"N
+                parameters.parameter("Longitude of projection centre").setValue(115.0);                         // 115°00'00"E
+                parameters.parameter("Azimuth of initial line").setValue(53 + (18 + 56.9537/60)/60);            //  53°18'56.9537"
+                parameters.parameter("Angle from Rectified to Skew Grid").setValue(53 + (7 + 48.3685/60)/60);   //  53°07'48.3685"
                 parameters.parameter("Scale factor on initial line") .setValue(0.99984);
                 parameters.parameter("Easting at projection centre") .setValue(590476.87);
                 parameters.parameter("Northing at projection centre").setValue(442857.65);
                 break;
             }
-            case 19916: { // "British National Grid" using operation method 9807
+            case 19916: {       // "British National Grid" using operation method 9807
                 parameters = factory.getDefaultParameters("Transverse Mercator");
-                parameters.parameter("semi_major").setValue(6377563.396);  // Airy
+                parameters.parameter("semi_major").setValue(6377563.396);                               // Airy
                 parameters.parameter("semi_minor").setValue(6377563.396 * (1 - 1/299.32496));
                 parameters.parameter("Latitude of natural origin") .setValue(49.0);
                 parameters.parameter("Longitude of natural origin").setValue(-2.0);
@@ -1085,9 +1085,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(-100000.00);
                 break;
             }
-            case 17529: { // "South African Survey Grid zone 29" using operation method 9808
+            case 17529: {       // "South African Survey Grid zone 29" using operation method 9808
                 parameters = factory.getDefaultParameters("Transverse Mercator (South Orientated)");
-                parameters.parameter("semi_major").setValue(6378137.0); // WGS 84
+                parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of natural origin").setValue(0.0);
                 parameters.parameter("Longitude of natural origin").setValue(29.0);
@@ -1096,19 +1096,19 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(0.0);
                 break;
             }
-            case 19975: { // "Trinidad 1903 / Trinidad Grid" using operation method 9806
+            case 19975: {       // "Trinidad 1903 / Trinidad Grid" using operation method 9806
                 parameters = factory.getDefaultParameters("Cassini-Soldner");
-                parameters.parameter("semi_major").setValue(20926348.0 * FEET); // Clarke 1858
+                parameters.parameter("semi_major").setValue(20926348.0 * FEET);                         // Clarke 1858
                 parameters.parameter("semi_minor").setValue(20855233.0 * FEET);
-                parameters.parameter("Latitude of natural origin") .setValue(10 + (26 + 30.0/60)/60); // 10°26'30"N
-                parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));        // 61°20'00"W
+                parameters.parameter("Latitude of natural origin") .setValue(10 + (26 + 30.0/60)/60);   // 10°26'30"N
+                parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));          // 61°20'00"W
                 parameters.parameter("False easting") .setValue(430000.00 * LINKS);
                 parameters.parameter("False northing").setValue(325000.00 * LINKS);
                 break;
             }
-            case 19910: { // "JAD69 / Jamaica National Grid" using operation method 9801
+            case 19910: {       // "JAD69 / Jamaica National Grid" using operation method 9801
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (1SP)");
-                parameters.parameter("semi_major").setValue(6378206.4); // Clarke 1866
+                parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin")    .setValue( 18.0);
                 parameters.parameter("Longitude of natural origin")   .setValue(-77.0);
@@ -1117,44 +1117,44 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(150000.00);
                 break;
             }
-            case 14204: { // "NAD27 / Texas South Central" using operation method 9802
+            case 14204: {       // "NAD27 / Texas South Central" using operation method 9802
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP)");
-                parameters.parameter("semi_major").setValue(6378206.4); // Clarke 1866
+                parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
-                parameters.parameter("Latitude of 1st standard parallel").setValue(28 + 23.0/60); // 28°23'00"N
-                parameters.parameter("Latitude of 2nd standard parallel").setValue(30 + 17.0/60); // 30°17'00"N
-                parameters.parameter("Latitude of false origin")         .setValue(27 + 50.0/60); // 27°50'00"N
-                parameters.parameter("Longitude of false origin")        .setValue(-99.0);        // 99°00'00"W
+                parameters.parameter("Latitude of 1st standard parallel").setValue(28 + 23.0/60);       // 28°23'00"N
+                parameters.parameter("Latitude of 2nd standard parallel").setValue(30 + 17.0/60);       // 30°17'00"N
+                parameters.parameter("Latitude of false origin")         .setValue(27 + 50.0/60);       // 27°50'00"N
+                parameters.parameter("Longitude of false origin")        .setValue(-99.0);              // 99°00'00"W
                 parameters.parameter("Easting at false origin") .setValue(2000000 / R_US_FEET);
                 parameters.parameter("Northing at false origin").setValue(      0 / R_US_FEET);
                 break;
             }
-            case 6198: { // "Michigan CS27 Central zone" using operation method 1051
+            case 6198: {        // "Michigan CS27 Central zone" using operation method 1051
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Michigan)");
-                parameters.parameter("semi_major").setValue(6378206.4); // Clarke 1866
+                parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
-                parameters.parameter("Latitude of 1st standard parallel").setValue( 44 + 11.0/60);  // 44°11' N
-                parameters.parameter("Latitude of 2nd standard parallel").setValue( 45 + 42.0/60);  // 45°42' N
-                parameters.parameter("Latitude of false origin")         .setValue( 43 + 19.0/60);  // 43°19' N
-                parameters.parameter("Longitude of false origin")        .setValue(-84 - 20.0/60);  // 84°20' W
+                parameters.parameter("Latitude of 1st standard parallel").setValue( 44 + 11.0/60);      // 44°11' N
+                parameters.parameter("Latitude of 2nd standard parallel").setValue( 45 + 42.0/60);      // 45°42' N
+                parameters.parameter("Latitude of false origin")         .setValue( 43 + 19.0/60);      // 43°19' N
+                parameters.parameter("Longitude of false origin")        .setValue(-84 - 20.0/60);      // 84°20' W
                 parameters.parameter("Easting at false origin") .setValue(2000000 / R_US_FEET);
                 parameters.parameter("Northing at false origin").setValue(      0 / R_US_FEET);
                 parameters.parameter("Ellipsoid scaling factor").setValue(1.0000382);
                 break;
             }
-            case 19902: { // "Belge 1972 / Belge Lambert 72" using operation method 9803
+            case 19902: {       // "Belge 1972 / Belge Lambert 72" using operation method 9803
                 parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Belgium)");
-                parameters.parameter("semi_major").setValue(6378388.0); // International 1924
+                parameters.parameter("semi_major").setValue(6378388.0);                                 // International 1924
                 parameters.parameter("semi_minor").setValue(6378388.0 * (1 - 1/297.0));
-                parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60);    // 49°50'00.000"N
-                parameters.parameter("Latitude of 2nd standard parallel").setValue(51 + 10.0/60);    // 51°10'00.000"N
-                parameters.parameter("Latitude of false origin")         .setValue(90.0);            // 90°00'00.000"N
-                parameters.parameter("Longitude of false origin").setValue(4 + (21 + 24.983/60)/60); //  4°21'24.983"E
+                parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60);       // 49°50'00.000"N
+                parameters.parameter("Latitude of 2nd standard parallel").setValue(51 + 10.0/60);       // 51°10'00.000"N
+                parameters.parameter("Latitude of false origin")         .setValue(90.0);               // 90°00'00.000"N
+                parameters.parameter("Longitude of false origin").setValue(4 + (21 + 24.983/60)/60);    //  4°21'24.983"E
                 parameters.parameter("Easting at false origin") .setValue( 150000.01);
                 parameters.parameter("Northing at false origin").setValue(5400088.44);
                 break;
             }
-            case 19986: { // "Europe Equal Area 2001" using operation method 9820
+            case 19986: {       // "Europe Equal Area 2001" using operation method 9820
                 parameters = factory.getDefaultParameters("Lambert Azimuthal Equal Area");
                 parameters.parameter("semi_major").setValue(6378137.0);
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572221));
@@ -1164,9 +1164,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(3210000.00);
                 break;
             }
-            case 16061: { // "Universal Polar Stereographic North" using operation method 9810
+            case 16061: {       // "Universal Polar Stereographic North" using operation method 9810
                 parameters = factory.getDefaultParameters("Polar Stereographic (variant A)");
-                parameters.parameter("semi_major").setValue(6378137.0);  // WGS84
+                parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of natural origin").setValue(90.0);
                 parameters.parameter("Longitude of natural origin").setValue(0.0);
@@ -1175,9 +1175,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(2000000.00);
                 break;
             }
-            case 19993: { // "Australian Antarctic Polar Stereographic" using operation method 9829
+            case 19993: {       // "Australian Antarctic Polar Stereographic" using operation method 9829
                 parameters = factory.getDefaultParameters("Polar Stereographic (variant B)");
-                parameters.parameter("semi_major").setValue(6378137.0);  // WGS84
+                parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of standard parallel").setValue(-71.0);
                 parameters.parameter("Longitude of origin").setValue(70.0);
@@ -1185,9 +1185,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(6000000.00);
                 break;
             }
-            case 19983: { // "Petrels 1972 / Terre Adelie Polar Stereographic" using operation method 9830
+            case 19983: {       // "Petrels 1972 / Terre Adelie Polar Stereographic" using operation method 9830
                 parameters = factory.getDefaultParameters("Polar Stereographic (variant C)");
-                parameters.parameter("semi_major").setValue(6378388.0); // International 1924
+                parameters.parameter("semi_major").setValue(6378388.0);                                 // International 1924
                 parameters.parameter("semi_minor").setValue(6378388.0 * (1 - 1/297.0));
                 parameters.parameter("Latitude of standard parallel").setValue(-67.0);
                 parameters.parameter("Longitude of origin").setValue(140.0);
@@ -1195,18 +1195,18 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Northing at false origin").setValue(200000.00);
                 break;
             }
-            case 19914: { // "RD New" using operation method 9809
+            case 19914: {       // "RD New" using operation method 9809
                 parameters = factory.getDefaultParameters("Oblique Stereographic");
-                parameters.parameter("semi_major").setValue(6377397.155); // Bessel 1841
+                parameters.parameter("semi_major").setValue(6377397.155);                               // Bessel 1841
                 parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.15281));
-                parameters.parameter("Latitude of natural origin").setValue(52 + ( 9 + 22.178/60)/60); // 52°09'22.178"N
-                parameters.parameter("Longitude of natural origin").setValue(5 + (23 + 15.500/60)/60); //  5°23'15.500"E
+                parameters.parameter("Latitude of natural origin").setValue(52 + ( 9 + 22.178/60)/60);  // 52°09'22.178"N
+                parameters.parameter("Longitude of natural origin").setValue(5 + (23 + 15.500/60)/60);  //  5°23'15.500"E
                 parameters.parameter("Scale factor at natural origin").setValue(0.9999079);
                 parameters.parameter("False easting") .setValue(155000.00);
                 parameters.parameter("False northing").setValue(463000.00);
                 break;
             }
-            case 9818: {  // (not an official EPSG code) using operation method 9818
+            case 9818: {        // (not an official EPSG code) using operation method 9818
                 parameters = factory.getDefaultParameters("Polyconic");
                 parameters.parameter("semi_major").setValue(6378206.4);
                 parameters.parameter("semi_minor").setValue(6356583.8);
@@ -1216,21 +1216,21 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("False northing").setValue(0.0);
                 break;
             }
-            case 19952: { // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
+            case 19952: {       // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
                 parameters = factory.getDefaultParameters("Krovak");
-                parameters.parameter("semi_major").setValue(6377397.155);  // Bessel
+                parameters.parameter("semi_major").setValue(6377397.155);                               // Bessel
                 parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.15281));
-                parameters.parameter("Latitude of projection centre").setValue(49.5);  // 49°30'00"N
-                parameters.parameter("Longitude of origin").setValue(24 + 50.0/60);    // 24°30'00"E
+                parameters.parameter("Latitude of projection centre").setValue(49.5);                   // 49°30'00"N
+                parameters.parameter("Longitude of origin").setValue(24 + 50.0/60);                     // 24°30'00"E
                 parameters.parameter("Co-latitude of cone axis").setValue(30 + (17 + 17.3031/60)/60);
                 parameters.parameter("Latitude of pseudo standard parallel").setValue(78.5);
                 parameters.parameter("Scale factor on pseudo standard parallel").setValue(0.99990);
                 break;
             }
-            case 9605: {  // (not an official EPSG code) using operation method 9605
+            case 9605: {        // (not an official EPSG code) using operation method 9605
                 parameters = factory.getDefaultParameters("Abridged Molodensky");
-                parameters.parameter("dim").setValue(3); // Parameter defined by OGC 01-009
-                parameters.parameter("src_semi_major").setValue(6378137.0);  // WGS84
+                parameters.parameter("dim").setValue(3);                                                // Parameter defined by OGC 01-009
+                parameters.parameter("src_semi_major").setValue(6378137.0);                             // WGS84
                 parameters.parameter("src_semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("X-axis translation").setValue( 84.87);
                 parameters.parameter("Y-axis translation").setValue( 96.49);

@@ -222,7 +222,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      */
     private void createAndVerifyProjectedCRS(final int code) throws FactoryException {
         this.code = code;
-        crs = null; // For forcing the fetch of a new projected CRS.
+        crs = null;                 // For forcing the fetch of a new projected CRS.
 
         final ProjectedCRS crs = getIdentifiedObject();
         assertNotNull("ProjectedCRS", crs);

@@ -399,7 +399,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     private void readRandomSubsets(final RenderedImage completeImage, final API api,
             final int imageIndex, final int numIterations) throws IOException
     {
-        final ImageReader reader = this.reader; // Protect from changes.
+        final ImageReader reader = this.reader;                                         // Protect from changes.
         assertInputSet(reader);
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
             if (reader.getMinIndex() > imageIndex) {

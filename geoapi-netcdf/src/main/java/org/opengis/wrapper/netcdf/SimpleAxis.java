@@ -91,7 +91,7 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
         switch (abbreviation) {
             case 'λ': return "geodetic longitude";
             case 'φ': return "geodetic latitude";
-            default:  return null; // Should never happen.
+            default:  return null;                  // Should never happen.
         }
     }
 
@@ -103,7 +103,7 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
         switch (abbreviation) {
             case 'λ': return AxisDirection.EAST;
             case 'φ': return AxisDirection.NORTH;
-            default:  return null; // Should never happen.
+            default:  return null;                  // Should never happen.
         }
     }
 

@@ -64,7 +64,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
     public SimpleEnvelope(final DirectPosition lowerCorner, final DirectPosition upperCorner)
             throws MismatchedDimensionException, MismatchedReferenceSystemException
     {
-        crs = lowerCorner.getCoordinateReferenceSystem(); // May be null.
+        crs = lowerCorner.getCoordinateReferenceSystem();                           // May be null.
         if (!Objects.equals(crs, upperCorner.getCoordinateReferenceSystem())) {
             throw new MismatchedReferenceSystemException();
         }

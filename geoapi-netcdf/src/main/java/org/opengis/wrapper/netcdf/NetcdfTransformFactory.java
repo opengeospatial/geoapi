@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
 
-import ucar.unidata.geoloc.projection.*; // For javadoc.
+import ucar.unidata.geoloc.projection.*;                // For javadoc.
 
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;

@@ -254,7 +254,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
         final Configuration.Key<Boolean>[] keys = ParameterizedTransformTest.getEnabledKeys(1);
-        final int offset = keys.length - 1; // First free slot for our keys.
+        final int offset = keys.length - 1;                     // First free slot for our keys.
         keys[offset] = Configuration.Key.isAxisSwappingSupported;
         final boolean[] isEnabled = getEnabledFlags(keys);
         test = new ParameterizedTransformTest(isEnabled);
@@ -396,9 +396,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
             // a supported code. If the code was unsupported, then the test will be ignored.
             final Set<String> authorityCodes = crsAuthorityFactory.getAuthorityCodes(ProjectedCRS.class);
             if (authorityCodes == null || !authorityCodes.contains(String.valueOf(code))) {
-                assumeNoException(e); // Will mark the test as "ignored".
+                assumeNoException(e);               // Will mark the test as "ignored".
             }
-            throw e; // Will mark the test as "failed".
+            throw e;                                // Will mark the test as "failed".
         }
         assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
         object = crs;

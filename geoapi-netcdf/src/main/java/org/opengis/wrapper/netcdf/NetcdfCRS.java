@@ -188,7 +188,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         try {
             return wrap(netcdfCS, null, null);
         } catch (IOException e) {
-            throw new AssertionError(e); // Should never happen, since we didn't performed any I/O.
+            throw new AssertionError(e);    // Should never happen, since we didn't performed any I/O.
         }
     }
 

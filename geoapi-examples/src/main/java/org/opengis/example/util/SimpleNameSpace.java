@@ -52,7 +52,7 @@ public class SimpleNameSpace implements NameSpace, Serializable {
         try {
             name = new SimpleName.Local(new CompoundName("", factory.syntax));
         } catch (InvalidNameException e) {
-            throw new AssertionError(e); // Should never happen.
+            throw new AssertionError(e);                // Should never happen.
         }
     }
 

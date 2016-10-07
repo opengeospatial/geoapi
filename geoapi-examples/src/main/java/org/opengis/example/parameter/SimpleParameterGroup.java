@@ -138,7 +138,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     @Override
     @SuppressWarnings("unchecked")
     public List<GeneralParameterDescriptor> descriptors() {
-        return (List) unmodifiable; // Cast is safe only for unmodifiable list.
+        return (List) unmodifiable;                         // Cast is safe only for unmodifiable list.
     }
 
     /**
@@ -156,7 +156,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     @Override
     @SuppressWarnings("unchecked")
     public List<GeneralParameterValue> values() {
-        return (List) unmodifiable; // Cast is safe only for unmodifiable list.
+        return (List) unmodifiable;                         // Cast is safe only for unmodifiable list.
     }
 
     /**

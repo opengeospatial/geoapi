@@ -31,9 +31,9 @@
  */
 package org.opengis.geometry;
 
-import java.awt.geom.Rectangle2D; // Used in @see javadoc tags
+import java.awt.geom.Rectangle2D;                                   // Used in @see javadoc tags
 
-import org.opengis.referencing.cs.RangeMeaning; // For javadoc
+import org.opengis.referencing.cs.RangeMeaning;                     // For javadoc
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;

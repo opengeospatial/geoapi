@@ -82,13 +82,15 @@ public final class Doclet extends HtmlDoclet {
         for (final String[] option : options) {
             if (option.length == 2) {
                 final String f = option[0];
-                /*switch (option[0])*/ {
-                    if (f.equals("-d")) {
+                switch (option[0]) {
+                    case "-d": {
                         outputDirectory = option[1];
+                        break;
                     }
-                    else if (f.equals("-stylesheet") || f.equals("-stylesheetfile")) {
+                    case "-stylesheet":
+                    case "-stylesheetfile": {
                         stylesheetFile = option[1];
-                        continue; // Do not copy this option.
+                        continue;                       // Do not copy this option.
                     }
                 }
             }
@@ -192,16 +194,13 @@ public final class Doclet extends HtmlDoclet {
         });
         final byte[] buffer = new byte[4096];
         for (final File input : inputFiles) {
-            final FileInputStream  in  = new FileInputStream(input);
-            final FileOutputStream out = new FileOutputStream(new File(outputDirectory, input.getName()));
-            try {
+            try (FileInputStream  in  = new FileInputStream(input);
+                 FileOutputStream out = new FileOutputStream(new File(outputDirectory, input.getName())))
+            {
                 int c;
                 while ((c = in.read(buffer)) >= 0) {
                     out.write(buffer, 0, c);
                 }
-            } finally {
-                out.close();
-                in.close();
             }
         }
     }

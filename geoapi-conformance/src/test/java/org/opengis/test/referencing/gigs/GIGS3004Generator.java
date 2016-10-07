@@ -143,7 +143,7 @@ public strictfp class GIGS3004Generator extends TestMethodGenerator {
             }
             assertEquals("GIGS code in column 8 shall be equal to the code in column 0"
                     + " of either the same row if this row contains such value,"
-                    + " or of the previous row otherwise.", data.getInt(8), datumCode); // See the comment before the loop.
+                    + " or of the previous row otherwise.", data.getInt(8), datumCode);     // See the comment before the loop.
 
             final int      crsCode  = data.getInt    ( 5);
             final String   crsName  = replaceAsciiPrimeByUnicode(data.getString(6));

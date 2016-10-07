@@ -122,7 +122,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         synchronized (VALUES) {
             final Collection<? extends CodeList> previous = VALUES.put(codeType, values);
             if (previous != null && previous != values) {
-                VALUES.put(codeType, previous); // Roll back
+                VALUES.put(codeType, previous);                                             // Roll back
                 throw new IllegalArgumentException("List already exists: " + values);
             }
         }
@@ -241,7 +241,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     try {
                         Class.forName(typeName, true, codeType.getClassLoader());
                     } catch (ClassNotFoundException e) {
-                        throw new TypeNotPresentException(typeName, e); // Should never happen.
+                        throw new TypeNotPresentException(typeName, e);             // Should never happen.
                     }
                     values = VALUES.get(codeType);
                     if (values == null) {

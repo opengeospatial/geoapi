@@ -122,7 +122,7 @@ final class DepartureElement implements Comparable<DepartureElement> {
         String path = file.getParent().replace(File.separatorChar, '/');
         s = path.lastIndexOf("/java/");
         if (s >= 0) {
-            path = path.substring(s + 6); // 6 is the length of "/java/".
+            path = path.substring(s + 6);       // 6 is the length of "/java/".
         }
         path = path + '/' + filenameHTML + ".html";
         pathToHTML = path;
@@ -138,10 +138,10 @@ final class DepartureElement implements Comparable<DepartureElement> {
         final boolean p1 = n1.startsWith("package");
         final boolean p2 = n2.startsWith("package");
         if (p1 != p2) {
-            return p1 ? -1 : +1; // Sort packages first.
+            return p1 ? -1 : +1;            // Sort packages first.
         }
         if (member != other.member) {
-            return member ? -1 : +1; // Sort members last.
+            return member ? -1 : +1;        // Sort members last.
         }
         return n1.compareTo(n2);
     }

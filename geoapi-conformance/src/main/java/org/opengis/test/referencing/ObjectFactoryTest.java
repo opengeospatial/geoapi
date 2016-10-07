@@ -186,7 +186,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     public void testWGS84_3D() throws FactoryException {
         CoordinateSystemAxis λ, φ, h;
         EllipsoidalCS cs;
-        GeographicCRS crs; // The final product of this method.
+        GeographicCRS crs;              // The final product of this method.
         GeodeticDatum datum;
 
         // Build a geodetic datum.
@@ -231,7 +231,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     public void testGeocentric() throws FactoryException {
         final CoordinateSystemAxis X, Y, Z;
         final CartesianCS   cs;
-        final GeocentricCRS crs; // The final product of this method.
+        final GeocentricCRS crs;            // The final product of this method.
         final GeodeticDatum datum;
         final PrimeMeridian greenwich;
         final Ellipsoid     ellipsoid;
@@ -290,7 +290,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final VerticalCS      heightCS;
         final VerticalCRS     heightCRS;
         final VerticalDatum   heightDatum;
-        final CompoundCRS     crs3D; // The final product of this method.
+        final CompoundCRS     crs3D;            // The final product of this method.
 
         assumeNotNull(datumFactory);
         validators.validate(greenwich   = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, DEGREE_ANGLE));

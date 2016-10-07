@@ -222,7 +222,7 @@ public class ValidatorContainer implements Cloneable {
         try {
             return (ValidatorContainer) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e); // Should never happen.
+            throw new AssertionError(e);                    // Should never happen.
         }
     }
 

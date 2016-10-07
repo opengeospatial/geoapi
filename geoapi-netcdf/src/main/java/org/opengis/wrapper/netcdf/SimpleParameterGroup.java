@@ -152,7 +152,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     @Override
     @SuppressWarnings("unchecked")
     public List<GeneralParameterDescriptor> descriptors() {
-        return (List) parameters; // Cast is safe only for unmodifiable list.
+        return (List) parameters;                   // Cast is safe only for unmodifiable list.
     }
 
     /**
@@ -162,7 +162,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     @Override
     @SuppressWarnings("unchecked")
     public List<GeneralParameterValue> values() {
-        return (List) parameters; // Cast is safe only for unmodifiable list.
+        return (List) parameters;                   // Cast is safe only for unmodifiable list.
     }
 
     /**

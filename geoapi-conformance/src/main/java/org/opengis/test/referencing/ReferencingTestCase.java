@@ -392,7 +392,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                         break;
                     }
                     if (unknownArea == null) {
-                        unknownArea = area; // For reporting an error message if we do not find the expected area.
+                        unknownArea = area;         // For reporting an error message if we do not find the expected area.
                     }
                 }
             }

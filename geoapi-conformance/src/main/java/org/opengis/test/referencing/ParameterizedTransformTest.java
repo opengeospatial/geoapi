@@ -108,14 +108,14 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *    &#64;Test
  *    &#64;Override
  *    public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
- *        tolerance = 0.1; // Increase the tolerance value to 10 cm.
+ *        tolerance = 0.1;                              // Increase the tolerance value to 10 cm.
  *        super.testLambertAzimuthalEqualArea();
  *        // If more tests specific to this projection are wanted, do them here.
  *        // In this example, we replace the ellipsoid by a sphere and test again.
  *        // Note that spherical formulas can have an error up to 30 km compared
  *        // to ellipsoidal formulas, so we have to relax again the tolerance threshold.
  *        parameters.parameter("semi_minor").setValue(parameters.parameter("semi_major").doubleValue());
- *        tolerance = 30000; // Increase the tolerance value to 30 km.
+ *        tolerance = 30000;                            // Increase the tolerance value to 30 km.
  *        super.testLambertAzimuthalEqualArea();
  *    }
  *
@@ -312,9 +312,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
                 if (Collections.disjoint(Utilities.getNameAndAliases(parameters.getDescriptor()),
                         Utilities.getNameAndAliases(mtFactory.getAvailableMethods(type))))
                 {
-                    assumeNoException(e); // Will mark the test as "ignored".
+                    assumeNoException(e);               // Will mark the test as "ignored".
                 }
-                throw e; // Will mark the test as "failed".
+                throw e;                                // Will mark the test as "failed".
             }
             assertNotNull(description, transform);
             validators.validate(transform);
@@ -518,7 +518,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
          */
         assumeNotNull(mtFactory);
         parameters = mtFactory.getDefaultParameters("Mercator (variant C)");
-        parameters.parameter("semi_major").setValue(6378245.0); // Krassowski 1940
+        parameters.parameter("semi_major").setValue(6378245.0);                         // Krassowski 1940
         parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
         parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
         parameters.parameter("Longitude of natural origin")      .setValue(51.0);
@@ -1284,7 +1284,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      */
     @Test
     public void testPolyconic() throws FactoryException, TransformException {
-        tolerance = max(tolerance, 0.5); // The sample points are only accurate to 1 metre.
+        tolerance = max(tolerance, 0.5);                        // The sample points are only accurate to 1 metre.
         description = "American Polyconic";
         final SamplePoints sample = SamplePoints.forCRS(9818);
         createMathTransform(Projection.class, sample);

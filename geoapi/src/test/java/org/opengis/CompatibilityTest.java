@@ -210,10 +210,10 @@ public final class CompatibilityTest {
         for (final String className : listClasses(oldFile)) {
             final Class<?> oldClass = Class.forName(className, false, oldAPI);
             if (!Modifier.isPublic(oldClass.getModifiers())) {
-                continue; // Skip non-public classes.
+                continue;                                                         // Skip non-public classes.
             }
             if (deletedClasses.contains(className)) {
-                continue; // Skip intentionally deleted classes.
+                continue;                                              // Skip intentionally deleted classes.
             }
             final Class<?> newClass = Class.forName(className, false, newAPI);
             /*
@@ -226,21 +226,21 @@ public final class CompatibilityTest {
              */
             for (final Method oldMethod : oldClass.getDeclaredMethods()) {
                 if (!Modifier.isPublic(oldMethod.getModifiers())) {
-                    continue; // Skip non-public methods.
+                    continue;                                                     // Skip non-public methods.
                 }
                 final String methodName = oldMethod.getName();
                 final Class<?>[] paramTypes = getParameterTypes(oldMethod, newAPI);
                 final Method newMethod = newClass.getMethod(methodName, paramTypes);
-                assertArrayEquals(methodName, paramTypes, newMethod.getParameterTypes()); // Paranoiac check (should never fail).
+                assertArrayEquals(methodName, paramTypes, newMethod.getParameterTypes());   // Paranoiac check (should never fail).
                 /*
                  * Compare generic arguments (if any). We require an exact match,
                  * including for parameterized types.
                  */
                 final Type[] oldGPT = oldMethod.getGenericParameterTypes();
                 final Type[] newGPT = newMethod.getGenericParameterTypes();
-                assertEquals(methodName, oldGPT.length, newGPT.length); // Paranoiac check (should never fail).
+                assertEquals(methodName, oldGPT.length, newGPT.length);         // Paranoiac check (should never fail).
                 for (int i=0; i<oldGPT.length; i++) {
-                    final String oldType = oldGPT[i].toString(); // TODO: use getTypeName() on JDK8.
+                    final String oldType = oldGPT[i].toString();                // TODO: use getTypeName() on JDK8.
                     final String newType = newGPT[i].toString();
                     if (!newType.equals(oldType)) {
                         final String lineSeparator = System.lineSeparator();
@@ -256,7 +256,7 @@ public final class CompatibilityTest {
                  * as an error.
                  */
                 if (!oldMethod.isSynthetic()) {
-                    final String oldType = oldMethod.getGenericReturnType().toString(); // TODO: use getTypeName() on JDK8.
+                    final String oldType = oldMethod.getGenericReturnType().toString();     // TODO: use getTypeName() on JDK8.
                     final String newType = newMethod.getGenericReturnType().toString();
                     if (!newType.equals(oldType)) {
                         final IncompatibleChange change = new IncompatibleChange(className + '.' + methodName, oldType, newType);

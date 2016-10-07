@@ -83,8 +83,8 @@ public class GeometryValidator extends Validator {
      * some tests in this class must be aware of it.
      */
     private static boolean isPositiveToNegativeZero(final double lower, final double upper) {
-        return Double.doubleToRawLongBits(lower) == 0L &&           // Positive zero
-               Double.doubleToRawLongBits(upper) == Long.MIN_VALUE; // Negative zero
+        return Double.doubleToRawLongBits(lower) == 0L &&                       // Positive zero
+               Double.doubleToRawLongBits(upper) == Long.MIN_VALUE;             // Negative zero
     }
 
     /**
@@ -109,7 +109,7 @@ public class GeometryValidator extends Validator {
         final int dimension = object.getDimension();
         assertPositive("Envelope: dimension can not be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
-        container.validate(crs); // May be null.
+        container.validate(crs);                                                            // May be null.
         CoordinateSystem cs = null;
         if (crs != null) {
             cs = crs.getCoordinateSystem();
@@ -218,22 +218,22 @@ public class GeometryValidator extends Validator {
                     dimension, coordinate.length);
             for (int i=0; i<dimension; i++) {
                 assertEquals("DirectPosition: getOrdinate(i) shall be the same than coordinate[i].",
-                        coordinate[i], object.getOrdinate(i), 0.0); // No tolerance - we want exact match.
+                        coordinate[i], object.getOrdinate(i), 0.0);         // No tolerance - we want exact match.
             }
         }
         /*
          * Checks coordinate validity in the CRS.
          */
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
-        container.validate(crs); // May be null.
+        container.validate(crs);                                                        // May be null.
         int hashCode = 0;
         if (crs != null) {
-            final CoordinateSystem cs = crs.getCoordinateSystem(); // Assume already validated.
+            final CoordinateSystem cs = crs.getCoordinateSystem();                      // Assume already validated.
             if (cs != null) {
                 assertEquals("DirectPosition: CRS dimension must matches the position dimension.",
                         dimension, cs.getDimension());
                 for (int i=0; i<dimension; i++) {
-                    final CoordinateSystemAxis axis = cs.getAxis(i); // Assume already validated.
+                    final CoordinateSystemAxis axis = cs.getAxis(i);                    // Assume already validated.
                     if (axis != null && RangeMeaning.EXACT.equals(axis.getRangeMeaning())) {
                         final double ordinate = coordinate[i];
                         final double minimum  = axis.getMinimumValue();
@@ -259,7 +259,7 @@ public class GeometryValidator extends Validator {
             final double oldValue = coordinate[i];
             coordinate[i] *= 2;
             assertEquals("DirectPosition: coordinate array shall be cloned.",
-                    oldValue, object.getOrdinate(i), 0.0); // No tolerance - we want exact match.
+                    oldValue, object.getOrdinate(i), 0.0);                      // No tolerance - we want exact match.
         }
     }
 }

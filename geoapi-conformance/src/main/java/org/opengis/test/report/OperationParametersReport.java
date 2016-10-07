@@ -186,7 +186,7 @@ public class OperationParametersReport extends Report {
                         array[i++] = name;
                     }
                     if (names.put(cs, array) != null) {
-                        throw new AssertionError(cs); // Should never happen.
+                        throw new AssertionError(cs);                       // Should never happen.
                     }
                 }
             }
@@ -246,7 +246,7 @@ public class OperationParametersReport extends Report {
             try {
                 write(buffer, names.keySet().toArray(new String[names.size()]), false, false, false);
             } catch (IOException e) {
-                throw new AssertionError(e); // Should never happen.
+                throw new AssertionError(e);                                // Should never happen.
             }
             return buffer.toString();
         }

@@ -401,11 +401,11 @@ final class JavaElement implements Comparable<JavaElement> {
         if (c == 0) {
             final boolean isMember = kind.isMember;
             if (isMember != other.kind.isMember) {
-                return isMember ? +1 : -1; // Sort classes/interfaces before fields/methods.
+                return isMember ? +1 : -1;              // Sort classes/interfaces before fields/methods.
             }
             if (isMember) {
                 c = container.javaName.compareTo(other.container.javaName);
-                if (c != 0) return c; // Sort by class/interface name before member name.
+                if (c != 0) return c;                   // Sort by class/interface name before member name.
             }
             c = javaName.compareTo(other.javaName);
         }

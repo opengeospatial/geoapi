@@ -119,7 +119,7 @@ final class SamplePoints {
         double[] sourcePoints = null;
         double[] targetPoints = null;
         switch (crs) {
-            case 3002: {  // "Makassar / NEIEZ"
+            case 3002: {                                                    // "Makassar / NEIEZ"
                 operation = 19905;
                 fe =   3900000.00;  λ0 = 110;
                 fn =    900000.00;  φ0 =   0;
@@ -129,7 +129,7 @@ final class SamplePoints {
                 λmax = 121.0; φmax =  2.0;
                 break;
             }
-            case 3388: {  // "Pulkovo 1942 / Caspian Sea Mercator"
+            case 3388: {                                                    // "Pulkovo 1942 / Caspian Sea Mercator"
                 operation = 19884;
                 fe =         0.00;  λ0 = 51;
                 fn =         0.00;  φ0 =  0;
@@ -139,17 +139,17 @@ final class SamplePoints {
                 λmax = 54.76; φmax = 47.11;
                 break;
             }
-            case 3857: {  // "WGS 84 / Pseudo-Mercator"
+            case 3857: {                                                    // "WGS 84 / Pseudo-Mercator"
                 operation = 3856;
                 fe =         0.00;  λ0 = 0;
                 fn =         0.00;  φ0 = 0;
-                e  = -11169055.58;  λ  = -(100 +       20.0  /60);     // 100°20'00.000"W
-                n  =   2800000.00;  φ  =  ( 24 + (22 + 54.433/60)/60); //  24°22'54.433"N
+                e  = -11169055.58;  λ  = -(100 +       20.0  /60);          // 100°20'00.000"W
+                n  =   2800000.00;  φ  =  ( 24 + (22 + 54.433/60)/60);      //  24°22'54.433"N
                 λmin = -180.0; φmin = -85.0;
                 λmax =  180.0; φmax =  85.0;
                 break;
             }
-            case 310642901: {  // "IGNF:MILLER"
+            case 310642901: {                                               // "IGNF:MILLER"
                 operation = 310642901;
                 fe =         0.00;  λ0 =  0;
                 fn =         0.00;  φ0 =  0;
@@ -159,87 +159,87 @@ final class SamplePoints {
                 λmax =  180.0; φmax =  90.0;
                 break;
             }
-            case 29873: {  // "Timbalai 1948 / RSO Borneo (m)"
+            case 29873: {                                                   // "Timbalai 1948 / RSO Borneo (m)"
                 operation = 19958;
                 fe = 590476.87;  λ0 = 115;
                 fn = 442857.65;  φ0 =   4;
-                e  = 679245.73;  λ  = 115 + (48 + 19.8196/60)/60; // 115°48'19.8196"E
-                n  = 596562.78;  φ  =   5 + (23 + 14.1129/60)/60; //   5°23'14.1129"N
+                e  = 679245.73;  λ  = 115 + (48 + 19.8196/60)/60;           // 115°48'19.8196"E
+                n  = 596562.78;  φ  =   5 + (23 + 14.1129/60)/60;           //   5°23'14.1129"N
                 λmin = 109.55; φmin = 0.85;
                 λmax = 119.26; φmax = 7.35;
                 break;
             }
-            case 27700: { // "OSGB 1936 / British National Grid"
+            case 27700: {                                                   // "OSGB 1936 / British National Grid"
                 operation = 19916;
                 fe =  400000.00;  λ0 =  -2;
                 fn = -100000.00;  φ0 =  49;
-                e  =  577274.98;  λ  =    30.0/60; // 00°30'00.00"E
-                n  =   69740.49;  φ  = 50+30.0/60; // 50°30'00.00"N
+                e  =  577274.98;  λ  =    30.0/60;                          // 00°30'00.00"E
+                n  =   69740.49;  φ  = 50+30.0/60;                          // 50°30'00.00"N
                 λmin = -7.56; φmin = 49.96;
                 λmax =  1.78; φmax = 60.84;
                 break;
             }
-            case 2053: {   // "Hartebeesthoek94 / Lo29"
+            case 2053: {                                                    // "Hartebeesthoek94 / Lo29"
                 operation = 17529;
                 fe =  0;  λ0 = 29;
                 fn =  0;  φ0 =  0;
-                e  =    71984.48;  λ  =  28 + (16 + 57.479/60)/60;  // 28°16'57.479"E
-                n  =  2847342.74;  φ  = -25 - (43 + 55.302/60)/60;  // 25°43'55.302"S
+                e  =    71984.48;  λ  =  28 + (16 + 57.479/60)/60;          // 28°16'57.479"E
+                n  =  2847342.74;  φ  = -25 - (43 + 55.302/60)/60;          // 25°43'55.302"S
                 λmin = 27.99; φmin = -33.03;
                 λmax = 30.00; φmax = -22.13;
                 break;
             }
-            case 2314: {  // "Trinidad 1903 / Trinidad Grid"
+            case 2314: {                                                    // "Trinidad 1903 / Trinidad Grid"
                 operation = 19975;
-                fe =   430000.00*LINKS;  λ0 = -(61 + 20.0/60);         // 61°20'00"W
-                fn =   325000.00*LINKS;  φ0 = 10 + (26 + 30.0/60)/60;  // 10°26'30"N
+                fe =   430000.00*LINKS;  λ0 = -(61 + 20.0/60);              // 61°20'00"W
+                fn =   325000.00*LINKS;  φ0 = 10 + (26 + 30.0/60)/60;       // 10°26'30"N
                 e  =    66644.94*LINKS;  λ  = -62;
                 n  =    82536.22*LINKS;  φ  =  10;
                 λmin = -62.08; φmin =  9.83;
                 λmax = -60.00; φmax = 11.50;
                 break;
             }
-            case 24200: {  // "JAD69 / Jamaica National Grid"
+            case 24200: {                                                   // "JAD69 / Jamaica National Grid"
                 operation = 19910;
                 fe =    250000.00;  λ0 = -77.0;
                 fn =    150000.00;  φ0 =  18.0;
-                e  =    255966.58;  λ  = -(76 + (56 + 37.26/60)/60);   // 76°56'37.26"W
-                n  =    142493.51;  φ  =  (17 + (55 + 55.80/60)/60);   // 17°55'55.80"N
+                e  =    255966.58;  λ  = -(76 + (56 + 37.26/60)/60);        // 76°56'37.26"W
+                n  =    142493.51;  φ  =  (17 + (55 + 55.80/60)/60);        // 17°55'55.80"N
                 λmin = -78.4; φmin = 17.65;
                 λmax = -76.1; φmax = 18.6;
                 break;
             }
-            case 32040: { // "NAD27 / Texas South Central"
+            case 32040: {                                                   // "NAD27 / Texas South Central"
                 operation = 14204;
                 fe = 2000000.00/R_US_FEET;  λ0 = -99.0;
                 fn =       0.00/R_US_FEET;  φ0 =  27 + 50.0/60;
-                e  = 2963503.91/R_US_FEET;  λ  = -96.0;          // 96°00'00.00"W
-                n  =  254759.80/R_US_FEET;  φ  =  28 + 30.0/60;  // 28°30'00.00"N
+                e  = 2963503.91/R_US_FEET;  λ  = -96.0;                     // 96°00'00.00"W
+                n  =  254759.80/R_US_FEET;  φ  =  28 + 30.0/60;             // 28°30'00.00"N
                 λmin = -105.0; φmin = 27.82;
                 λmax = -93.41; φmax = 30.66;
                 break;
             }
-            case 6201: { // "NAD27 / Michigan Central"
+            case 6201: {                                                    // "NAD27 / Michigan Central"
                 operation = 6198;
                 fe = 2000000.00/R_US_FEET;  λ0 = -84 - 20.0/60;
                 fn =       0.00/R_US_FEET;  φ0 =  43 + 19.0/60;
-                e  = 2308335.75/R_US_FEET;  λ  = -83 - 10.0/60;  // 83°10'00.00"W
-                n  =  160210.48/R_US_FEET;  φ  =  43 + 45.0/60;  // 43°45'00.00"N
+                e  = 2308335.75/R_US_FEET;  λ  = -83 - 10.0/60;             // 83°10'00.00"W
+                n  =  160210.48/R_US_FEET;  φ  =  43 + 45.0/60;             // 43°45'00.00"N
                 λmin = -87.06; φmin = 43.80;
                 λmax = -82.27; φmax = 45.92;
                 break;
             }
-            case 31300: {  // "Belge 1972 / Belge Lambert 72"
+            case 31300: {                                                   // "Belge 1972 / Belge Lambert 72"
                 operation = 19902;
                 fe =    150000.01;  λ0 =  4 + (21 + 24.983/60)/60;
                 fn =   5400088.44;  φ0 = 90;
-                e  =    251763.20;  λ  =  5 + (48 + 26.533/60)/60;  //  5°48'26.533"E
-                n  =    153034.13;  φ  = 50 + (40 + 46.461/60)/60;  // 50°40'46.461"N
+                e  =    251763.20;  λ  =  5 + (48 + 26.533/60)/60;          //  5°48'26.533"E
+                n  =    153034.13;  φ  = 50 + (40 + 46.461/60)/60;          // 50°40'46.461"N
                 λmin = 2.54; φmin = 49.51;
                 λmax =  6.4; φmax = 51.5;
                 break;
             }
-            case 3035: {  // "ETRS89 / LAEA Europe"
+            case 3035: {                                                    // "ETRS89 / LAEA Europe"
                 operation = 19986;
                 fe =   4321000.00;  λ0 = 10;
                 fn =   3210000.00;  φ0 = 52;
@@ -249,8 +249,8 @@ final class SamplePoints {
                 λmax =  45.00; φmax = 71.15;
                 break;
             }
-            case 32661:  // "WGS 84 / UPS North (N,E)"
-            case 5041: { // "WGS 84 / UPS North (E,N)"
+            case 32661:                                                     // "WGS 84 / UPS North (N,E)"
+            case 5041: {                                                    // "WGS 84 / UPS North (E,N)"
                 operation = 16061;
                 fe =  2000000.00;  λ0 =  0;
                 fn =  2000000.00;  φ0 = 90;
@@ -260,7 +260,7 @@ final class SamplePoints {
                 λmax =  180.0; φmax = 90.0;
                 break;
             }
-            case 3032: {  // "WGS 84 / Australian Antarctic Polar Stereographic"
+            case 3032: {                                                    // "WGS 84 / Australian Antarctic Polar Stereographic"
                 operation = 19993;
                 fe =  6000000.00;  λ0 =  70;
                 fn =  6000000.00;  φ0 = -90;
@@ -270,27 +270,27 @@ final class SamplePoints {
                 λmax = 160.0; φmax = -60.0;
                 break;
             }
-            case 2985: {  // "Petrels 1972 / Terre Adelie Polar Stereographic"
+            case 2985: {                                                    // "Petrels 1972 / Terre Adelie Polar Stereographic"
                 operation = 19983;
                 fe =    300000.0;  λ0 = 140;
                 fn =    200000.0;  φ0 = -67;
-                e  =   303169.52;  λ  = 140 + ( 4 + 17.040/60)/60;   // 140°04'17.040"E
-                n  =   244055.72;  φ  = -66 - (36 + 18.820/60)/60;   // 66°36'18.820"S
+                e  =   303169.52;  λ  = 140 + ( 4 + 17.040/60)/60;          // 140°04'17.040"E
+                n  =   244055.72;  φ  = -66 - (36 + 18.820/60)/60;          // 66°36'18.820"S
                 λmin = 139.44; φmin = -66.78;
                 λmax = 141.50; φmax = -66.10;
                 break;
             }
-            case 28992: {  // "Amersfoort / RD New"
+            case 28992: {                                                   // "Amersfoort / RD New"
                 operation = 19914;
-                fe =  155000.000;  λ0 =  5 + (23 + 15.500/60)/60; //  5°23'15.500"E
-                fn =  463000.000;  φ0 = 52 + ( 9 + 22.178/60)/60; // 52°09'22.178"N
+                fe =  155000.000;  λ0 =  5 + (23 + 15.500/60)/60;           //  5°23'15.500"E
+                fn =  463000.000;  φ0 = 52 + ( 9 + 22.178/60)/60;           // 52°09'22.178"N
                 e  =  196105.283;  λ =  6;
                 n  =  557057.739;  φ = 53;
                 λmin =  3.2; φmin = 50.75;
                 λmax = 7.24; φmax = 53.75;
                 break;
             }
-            case 9818: {  // "Polyconic" (not an official EPSG code)
+            case 9818: {                                                    // "Polyconic" (not an official EPSG code)
                 operation = 9818;
                 fe =       0;  λ0 =  0;
                 fn =       0;  φ0 =  0;
@@ -304,16 +304,16 @@ final class SamplePoints {
                     0, 5540628,   73172, 5429890,   149239, 5320144,   228119, 5211397,
                     0, 3319933,   97440, 3209506,   196719, 3099882,   297742, 2991002
                 };
-                λmin = 0; φmin =  23; // Domain of table 19 of Synder.
+                λmin = 0; φmin =  23;                                       // Domain of table 19 of Synder.
                 λmax = 3; φmax =  50;
                 break;
             }
-            case 2065: {  // "CRS S-JTSK (Ferro) / Krovak"
+            case 2065: {                                                    // "CRS S-JTSK (Ferro) / Krovak"
                 operation = 19952;
-                fe =         0.00;   λ0 = 24 + 50.0/60;              // 24°50'00"E
-                fn =         0.00;   φ0 = 59 + (45 + 27.3548/60)/60; // 59°45'27.355"N
-                e  =   -568990.997;  λ  = 16 + (50 + 59.1790/60)/60; // 16°50'59.179"E
-                n  =  -1050538.643;  φ  = 50 + (12 + 32.4416/60)/60; // 50°12'32.442"N
+                fe =         0.00;   λ0 = 24 + 50.0/60;                     // 24°50'00"E
+                fn =         0.00;   φ0 = 59 + (45 + 27.3548/60)/60;        // 59°45'27.355"N
+                e  =   -568990.997;  λ  = 16 + (50 + 59.1790/60)/60;        // 16°50'59.179"E
+                n  =  -1050538.643;  φ  = 50 + (12 + 32.4416/60)/60;        // 50°12'32.442"N
                 λmin = 12.09; φmin = 47.74;
                 λmax = 22.56; φmax = 51.05;
                 // I found documentation on the web saying that 24°50'E 59°45'27"N is the
@@ -331,14 +331,14 @@ final class SamplePoints {
                 λ0 = φ0 = λ = φ = Double.NaN;
                 fe = fn = e = n = Double.NaN;
                 sourcePoints = new double[] {
-                     2 + ( 7 + 46.38/60)/60,   // Longitude
-                    53 + (48 + 33.82/60)/60,   // Latitude
-                    73.0                       // Height (m)
+                     2 + ( 7 + 46.38/60)/60,        // Longitude
+                    53 + (48 + 33.82/60)/60,        // Latitude
+                    73.0                            // Height (m)
                 };
                 targetPoints = new double[] {
-                     2 + ( 7 + 51.477/60)/60,  // Longitude
-                    53 + (48 + 36.563/60)/60,  // Latitude
-                    28.091                     // Height (m)
+                     2 + ( 7 + 51.477/60)/60,       // Longitude
+                    53 + (48 + 36.563/60)/60,       // Latitude
+                    28.091                          // Height (m)
                 };
                 λmin = -180; φmin = -80;
                 λmax = +180; φmax = +80;

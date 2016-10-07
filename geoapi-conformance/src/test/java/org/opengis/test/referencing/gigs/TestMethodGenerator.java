@@ -211,7 +211,7 @@ public strictfp abstract class TestMethodGenerator {
                             out.print("</b>, <i>…");
                             out.print(length - stopAt);
                             out.println(" more</i></li>");
-                            continue; // Because we already wrote the closing </li>.
+                            continue;                       // Because we already wrote the closing </li>.
                         }
                     } else if (value instanceof Double) {
                         final double asDouble = (Double) value;

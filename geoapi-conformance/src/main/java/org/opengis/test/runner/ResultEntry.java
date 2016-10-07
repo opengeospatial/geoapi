@@ -380,7 +380,7 @@ final class ResultEntry {
                 break;
             }
             default: {
-                return; // Don't paint anything.
+                return;                         // Do not paint anything.
             }
         }
         graphics.setColor(color.darker());

@@ -133,16 +133,16 @@ final class DataParser {
             path = new File(path, name);
             assertTrue(name, path.isDirectory());
         }
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path, file)), "UTF-8"));
-        data = new ArrayList<Object[]>();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            line = line.trim();
-            if (!line.isEmpty() && line.charAt(0) != '#') {
-                data.add(parseRow(line, columnTypes));
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(path, file)), "UTF-8"))) {
+            data = new ArrayList<>();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                line = line.trim();
+                if (!line.isEmpty() && line.charAt(0) != '#') {
+                    data.add(parseRow(line, columnTypes));
+                }
             }
         }
-        reader.close();
     }
 
     /**
@@ -166,7 +166,7 @@ final class DataParser {
                     // If we reach this point, the quote has been escaped.
                     line = line.substring(0, end) + line.substring(end+1);
                 }
-                skip = 1; // Skip the quotes.
+                skip = 1;                               // Skip the quotes.
             }
             end = line.indexOf(COLUMN_SEPARATOR, end);
             if (end < 0) {

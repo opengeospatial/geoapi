@@ -110,7 +110,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * @param position The direct position from which to copy the CRS and ordinate values.
      */
     public SimpleDirectPosition(final DirectPosition position) {
-        ordinates = position.getCoordinate(); // Array shall be a copy according DirectPosition contract.
+        ordinates = position.getCoordinate();           // Array shall be a copy according DirectPosition contract.
         crs = position.getCoordinateReferenceSystem();
     }
 

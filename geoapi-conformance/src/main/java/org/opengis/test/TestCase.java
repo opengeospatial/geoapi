@@ -407,7 +407,7 @@ public strictfp abstract class TestCase {
             // JUnit 4.10 eats the exception silently, so we need to log
             // it in order to allow users to figure out what is going.
             Logger.getLogger("org.opengis.test").log(Level.WARNING, e.toString(), e);
-            throw e; // To be caught by JUnit.
+            throw e;                                          // To be caught by JUnit.
         }
         return factories;
     }
@@ -511,13 +511,13 @@ public strictfp abstract class TestCase {
                         if (isEnabled[i]) {
                             final Boolean value = config.get(properties[i]);
                             if (value != null && !(isEnabled[i] = value)) {
-                                continue; // Leave 'atLeastOneTestIsEnabled' unchanged.
+                                continue;                       // Leave 'atLeastOneTestIsEnabled' unchanged.
                             }
                             atLeastOneTestIsEnabled = true;
                         }
                     }
                     if (!atLeastOneTestIsEnabled) {
-                        break; // No need to continue scanning the classpath.
+                        break;                                  // No need to continue scanning the classpath.
                     }
                 }
             }

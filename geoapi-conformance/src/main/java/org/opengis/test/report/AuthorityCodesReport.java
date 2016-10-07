@@ -433,7 +433,7 @@ public class AuthorityCodesReport extends Report {
             if (row.isDeprecated)    numDeprecated++;
         }
         defaultProperties.setProperty("COUNT.OBJECTS",      Integer.toString(numRows));
-        defaultProperties.setProperty("PERCENT.VALIDS",     Integer.toString(100 * numValids / numRows) + '%'); // Really want rounding toward 0.
+        defaultProperties.setProperty("PERCENT.VALIDS",     Integer.toString(100 * numValids / numRows) + '%');     // Really want rounding toward 0.
         defaultProperties.setProperty("PERCENT.ANNOTATED",  Integer.toString(Math.round(100f * numAnnotations / numRows)) + '%');
         defaultProperties.setProperty("PERCENT.DEPRECATED", Integer.toString(Math.round(100f * numDeprecated  / numRows)) + '%');
         sortRows();

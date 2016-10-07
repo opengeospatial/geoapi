@@ -200,7 +200,7 @@ public strictfp class GIGS3005Generator extends TestMethodGenerator {
                         unit = NonSI.DEGREE_ANGLE;
                     } else {
                         unit = parseUnit(unitName);
-                        assertNotNull(unitName, unit); // Failure here would be a geoapi-conformance bug.
+                        assertNotNull(unitName, unit);          // Failure here would be a geoapi-conformance bug.
                         value = Double.valueOf(data.getString(columnOffset + 1));
                     }
                     indent(2);

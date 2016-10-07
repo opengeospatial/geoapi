@@ -124,7 +124,7 @@ public strictfp class GIGS3003Generator extends TestMethodGenerator {
                 longitude = longitudeInDegrees;
             } else {
                 unit = parseAngularUnit(unitName);
-                assertNotNull(unitName, unit); // Failure here would be a geoapi-conformance bug.
+                assertNotNull(unitName, unit);      // Failure here would be a geoapi-conformance bug.
                 longitude = Double.parseDouble(data.getString(2));
             }
             /*

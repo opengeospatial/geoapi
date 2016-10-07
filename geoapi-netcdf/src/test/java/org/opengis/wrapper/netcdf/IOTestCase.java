@@ -324,7 +324,7 @@ public abstract strictfp class IOTestCase {
      */
     private static byte[] load(final String file, final InputStream in) throws IOException {
         int n, length = 0;
-        byte[] buffer = new byte[getFileLength(file, 32 * 1024)]; // Default to 32 kb.
+        byte[] buffer = new byte[getFileLength(file, 32 * 1024)];               // Default to 32 kb.
         while ((n = in.read(buffer, length, buffer.length - length)) >= 0) {
             if ((length += n) == buffer.length) {
                 buffer = Arrays.copyOf(buffer, length*2);

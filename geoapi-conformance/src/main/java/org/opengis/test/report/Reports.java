@@ -286,7 +286,7 @@ public class Reports extends Report {
             out.write("<li><a href=\"");
             out.write(escape(entry.getValue().getPath().replace(File.separatorChar, '/')));
             out.write("\">");
-            out.write(entry.getKey()); // Already escaped.
+            out.write(entry.getKey());                                  // Already escaped.
             out.write("</a></li>");
             out.newLine();
         }

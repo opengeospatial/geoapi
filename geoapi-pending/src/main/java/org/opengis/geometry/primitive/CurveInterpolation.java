@@ -34,7 +34,7 @@ package org.opengis.geometry.primitive;
 import java.util.List;
 import java.util.ArrayList;
 import org.opengis.util.CodeList;
-import org.opengis.geometry.DirectPosition; // For javadoc
+import org.opengis.geometry.DirectPosition;         // For javadoc
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -63,7 +63,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CurveInterpolation> VALUES = new ArrayList<CurveInterpolation>(10);
+    private static final List<CurveInterpolation> VALUES = new ArrayList<>(10);
 
     /**
      * The interpolation mechanism shall return {@linkplain DirectPosition direct positions}
@@ -91,7 +91,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="circularArc3Points", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation CIRCULAR_ARC_3_POINTS = new CurveInterpolation(
-                                          "CIRCULAR_ARC_3_POINTS"); // Circular arc by 3 points
+                                          "CIRCULAR_ARC_3_POINTS");             // Circular arc by 3 points
 
     /**
      * For each consecutive pair of control points, the interpolation mechanism shall return
@@ -103,7 +103,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="circularArc2PointWithBulge", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation CIRCULAR_ARC_2_POINTS_WITH_BULGE = new CurveInterpolation(
-                                          "CIRCULAR_ARC_2_POINTS_WITH_BULGE"); // Circular arc by 2 points and bulge factor
+                                          "CIRCULAR_ARC_2_POINTS_WITH_BULGE");  // Circular arc by 2 points and bulge factor
 
     /**
      * For each set of four consecutive control points, the interpolation mechanism shall return
@@ -114,7 +114,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="elliptical", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation ELLIPTICAL = new CurveInterpolation(
-                                          "ELLIPTICAL"); // Elliptical arc
+                                          "ELLIPTICAL");                        // Elliptical arc
 
     /**
      * Uses a Cornu's spiral or clothoid interpolation.
@@ -129,7 +129,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="conic", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation CONIC = new CurveInterpolation(
-                                          "CONIC"); // Conic arc
+                                          "CONIC");                             // Conic arc
     /**
      * The control points are ordered as in a line-string, but they are spanned by a polynomial
      * spline function. Normally, the degree of continuity is determined by the degree of the
@@ -137,7 +137,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="polynomialSpline", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation POLYNOMIAL_SPLINE = new CurveInterpolation(
-                                          "POLYNOMIAL_SPLINE"); // Polynomial Spline
+                                          "POLYNOMIAL_SPLINE");                 // Polynomial Spline
 
     /**
      * The control points are interpolated using initial tangents and cubic polynomials, a
@@ -145,7 +145,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="cubicSpline", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation CUBIC_SPLINE = new CurveInterpolation(
-                                          "CUBIC_SPLINE"); // Cubic Spline
+                                          "CUBIC_SPLINE");                      // Cubic Spline
 
     /**
      * The control points are ordered as in a line string, but they are spanned by a
@@ -154,7 +154,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     @UML(identifier="rationalSpline", obligation=CONDITIONAL, specification=ISO_19107)
     public static final CurveInterpolation RATIONAL_SPLINE = new CurveInterpolation(
-                                          "RATIONAL_SPLINE"); // Rational Spline
+                                          "RATIONAL_SPLINE");                   // Rational Spline
 
     /**
      * Constructs an element of the given name. The new element is

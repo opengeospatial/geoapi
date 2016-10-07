@@ -230,7 +230,7 @@ public class SupportedCodes {
                 default: {
                     warning.append(warning.length() == 0 ?
                                    "WARNING: unsupported axis orientation: (" : ", ").append(orientation);
-                    c = ' '; // Used after the loop for checking if an error occurred.
+                    c = ' ';       // Used after the loop for checking if an error occurred.
                     break;
                 }
             }

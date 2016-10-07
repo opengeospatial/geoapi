@@ -305,7 +305,7 @@ public final strictfp class GlobalTest implements FileFilter {
                     fail(e.toString());
                     continue;
                 }
-                assertTrue(classname, classes.add(c)); // Fails if a class is declared twice.
+                assertTrue(classname, classes.add(c));              // Fails if a class is declared twice.
             }
             name.setLength(length);
         }

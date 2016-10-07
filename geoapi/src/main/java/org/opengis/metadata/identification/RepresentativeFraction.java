@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *        return 1.0f / (float) denominator;
  *    }
  *    public long longValue() {
- *        return 1 / denominator; // Result is zero except for denominator = [0,1].
+ *        return 1 / denominator;       // Result is zero except for denominator = [0,1].
  *    }
  *}</pre></blockquote>
  *
