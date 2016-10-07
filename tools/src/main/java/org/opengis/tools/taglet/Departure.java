@@ -35,7 +35,6 @@ import java.io.*;
 import java.util.*;
 import com.sun.javadoc.Tag;
 import com.sun.tools.doclets.Taglet;
-import com.sun.tools.doclets.formats.html.ConfigurationImpl;
 
 
 /**
@@ -59,10 +58,10 @@ import com.sun.tools.doclets.formats.html.ConfigurationImpl;
  * The remaining is the explanation as HTML text (no javadoc tags).
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.0.1
  * @since   2.3
  */
-public final class Departure implements Taglet, Runnable {
+public final class Departure extends AbstractTaglet implements Runnable {
     /**
      * The allowed departure categories. Keys are the departure keyword, and values are descriptions
      * of that departure category. The order of elements is the order of sections to be produced by
@@ -241,7 +240,7 @@ public final class Departure implements Taglet, Runnable {
             }
         }
         if (!CATEGORIES.containsKey(category)) {
-            ConfigurationImpl.getInstance().root.printWarning(tag.position(), "Unknown category: " + category);
+            getConfiguration().root.printWarning(tag.position(), "Unknown category: " + category);
         }
         /*
          * Adds the current departure to the collection of departures.
