@@ -33,10 +33,10 @@ package org.opengis.test.referencing;
 
 import java.util.Date;
 import javax.measure.Unit;
-import tec.units.ri.unit.Units;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
+import org.opengis.test.Units;
 import org.opengis.referencing.datum.*;
 import org.opengis.test.ValidatorContainer;
 import static org.opengis.test.Assert.*;
@@ -53,12 +53,18 @@ import static org.opengis.test.Assert.*;
  */
 public class DatumValidator extends ReferencingValidator {
     /**
+     * The units of measurement to be used for the verifications.
+     */
+    private final Units units;
+
+    /**
      * Creates a new validator.
      *
      * @param container The container of this validator.
      */
     public DatumValidator(ValidatorContainer container) {
         super(container, "org.opengis.referencing.datum");
+        this.units = Units.getDefault();
     }
 
     /**
@@ -96,11 +102,11 @@ public class DatumValidator extends ReferencingValidator {
         mandatory("PrimeMeridian: must have a unit of measurement.", unit);
         if (unit != null) {
             assertTrue("PrimeMeridian: unit must be compatible with degrees.",
-                    unit.isCompatible(ReferencingTest.DEGREE));
+                    unit.isCompatible(units.degree()));
         }
         double longitude = object.getGreenwichLongitude();
         if (unit != null) {
-            longitude = unit.getConverterTo(ReferencingTest.DEGREE).convert(longitude);
+            longitude = unit.getConverterTo(units.degree()).convert(longitude);
         }
         assertBetween("PrimeMeridian: expected longitude in [-180 ... +180°] range.", -180, +180, longitude);
     }
@@ -118,7 +124,8 @@ public class DatumValidator extends ReferencingValidator {
         final Unit<Length> unit = object.getAxisUnit();
         mandatory("Ellipsoid: must have a unit of measurement.", unit);
         if (unit != null) {
-            assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(Units.METRE));
+            assertTrue("Ellipsoid: unit must be compatible with metres.",
+                    unit.isCompatible(units.metre()));
         }
         final double semiMajor = object.getSemiMajorAxis();
         final double semiMinor = object.getSemiMinorAxis();

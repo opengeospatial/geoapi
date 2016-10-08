@@ -38,6 +38,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import org.junit.Test;
+import org.opengis.test.Units;
 import org.opengis.test.TestCase;
 
 import static org.junit.Assume.*;
@@ -56,6 +57,11 @@ import static org.opengis.test.Validators.*;
  */
 public abstract class CRSTest extends TestCase {
     /**
+     * The units of measurement to be used for the tests.
+     */
+    private final Units units;
+
+    /**
      * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,
      * or {@code null} if none.
      */
@@ -68,6 +74,7 @@ public abstract class CRSTest extends TestCase {
      * @param factory Factory for creating a {@link CoordinateReferenceSystem}.
      */
     protected CRSTest(final CRSAuthorityFactory factory) {
+        this.units   = Units.getDefault();
         this.factory = factory;
     }
 
@@ -95,10 +102,10 @@ public abstract class CRSTest extends TestCase {
         final CoordinateSystemAxis longitude = cs.getAxis(1);
         assertEquals("Geodetic latitude",  latitude.getName().getCode());
         assertEquals(AxisDirection.NORTH,  latitude.getDirection());
-        assertTrue(ReferencingTest.DEGREE.isCompatible(latitude.getUnit()));
+        assertEquals(units.degree(),       latitude.getUnit());
         assertEquals("Geodetic longitude", longitude.getName().getCode());
         assertEquals(AxisDirection.EAST,   longitude.getDirection());
-        assertTrue(ReferencingTest.DEGREE.isCompatible(longitude.getUnit()));
+        assertEquals(units.degree(),       longitude.getUnit());
         /*
          * Datum validation.
          */
@@ -106,6 +113,6 @@ public abstract class CRSTest extends TestCase {
         assertEquals("World Geodetic System 1984", datum.getName().getCode());
         final PrimeMeridian pm = datum.getPrimeMeridian();
         assertEquals(0.0, pm.getGreenwichLongitude(), 0.0);
-        assertTrue(ReferencingTest.DEGREE.isCompatible(pm.getAngularUnit()));
+        assertEquals(units.degree(),pm.getAngularUnit());
     }
 }
