@@ -32,9 +32,9 @@
 package org.opengis.test.referencing.gigs;
 
 import java.util.List;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
+import javax.measure.quantity.Angle;
+import javax.measure.quantity.Length;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -309,11 +309,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65001, "GIGS projection 1");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(3.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, Unit.ONE);
-        definition.parameter("False easting").setValue(500000.0, SI.METRE);
-        definition.parameter("False northing").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -345,11 +347,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65002, "GIGS projection 2");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(49.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(-2.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, Unit.ONE);
-        definition.parameter("False easting").setValue(400000.0, SI.METRE);
-        definition.parameter("False northing").setValue(-100000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(49.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-2.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("False easting").setValue(400000.0, metre);
+        definition.parameter("False northing").setValue(-100000.0, metre);
         verifyConversion();
     }
 
@@ -378,11 +382,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65021, "GIGS projection 2 alt A");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(-2.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, Unit.ONE);
-        definition.parameter("False easting").setValue(400000.0, SI.METRE);
-        definition.parameter("False northing").setValue(-5527462.688, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-2.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("False easting").setValue(400000.0, metre);
+        definition.parameter("False northing").setValue(-5527462.688, metre);
         verifyConversion();
     }
 
@@ -411,11 +417,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65022, "GIGS projection 2 alt B");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(-2.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.999601272, Unit.ONE);
-        definition.parameter("False easting").setValue(400000.0, SI.METRE);
-        definition.parameter("False northing").setValue(-5527063.816, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-2.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.999601272, units.one());
+        definition.parameter("False easting").setValue(400000.0, metre);
+        definition.parameter("False northing").setValue(-5527063.816, metre);
         verifyConversion();
     }
 
@@ -447,11 +455,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65004, "GIGS projection 4");
         methodName = "Oblique Stereographic";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(52.1561606, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(5.3876389, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.9999079, Unit.ONE);
-        definition.parameter("False easting").setValue(155000.0, SI.METRE);
-        definition.parameter("False northing").setValue(463000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(52.1561606, degree);
+        definition.parameter("Longitude of natural origin").setValue(5.3876389, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9999079, units.one());
+        definition.parameter("False easting").setValue(155000.0, metre);
+        definition.parameter("False northing").setValue(463000.0, metre);
         verifyConversion();
     }
 
@@ -480,11 +490,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65005, "GIGS projection 5");
         methodName = "Mercator (1SP)";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(3.1922806, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.997, Unit.ONE);
-        definition.parameter("False easting").setValue(3900000.0, SI.METRE);
-        definition.parameter("False northing").setValue(900000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(3.1922806, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
+        definition.parameter("False easting").setValue(3900000.0, metre);
+        definition.parameter("False northing").setValue(900000.0, metre);
         verifyConversion();
     }
 
@@ -515,12 +527,14 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65006, "GIGS projection 6");
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(90.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of false origin").setValue(4.3674867, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 1st standard parallel").setValue(51.1666672, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339, NonSI.DEGREE_ANGLE);
-        definition.parameter("Easting at false origin").setValue(150000.013, SI.METRE);
-        definition.parameter("Northing at false origin").setValue(5400088.438, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of false origin").setValue(90.0, degree);
+        definition.parameter("Longitude of false origin").setValue(4.3674867, degree);
+        definition.parameter("Latitude of 1st standard parallel").setValue(51.1666672, degree);
+        definition.parameter("Latitude of 2nd standard parallel").setValue(49.8333339, degree);
+        definition.parameter("Easting at false origin").setValue(150000.013, metre);
+        definition.parameter("Northing at false origin").setValue(5400088.438, metre);
         verifyConversion();
     }
 
@@ -552,11 +566,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65007, "GIGS projection 7");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(141.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, Unit.ONE);
-        definition.parameter("False easting").setValue(500000.0, SI.METRE);
-        definition.parameter("False northing").setValue(1.0E7, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(141.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, metre);
+        definition.parameter("False northing").setValue(1.0E7, metre);
         verifyConversion();
     }
 
@@ -588,11 +604,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65008, "GIGS projection 8");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(147.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, Unit.ONE);
-        definition.parameter("False easting").setValue(500000.0, SI.METRE);
-        definition.parameter("False northing").setValue(1.0E7, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(147.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, metre);
+        definition.parameter("False northing").setValue(1.0E7, metre);
         verifyConversion();
     }
 
@@ -623,12 +641,14 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65009, "GIGS projection 9");
         methodName = "Albers Equal Area";
         createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of false origin").setValue(132.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Easting at false origin").setValue(0.0, SI.METRE);
-        definition.parameter("Northing at false origin").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of false origin").setValue(0.0, degree);
+        definition.parameter("Longitude of false origin").setValue(132.0, degree);
+        definition.parameter("Latitude of 1st standard parallel").setValue(-18.0, degree);
+        definition.parameter("Latitude of 2nd standard parallel").setValue(-36.0, degree);
+        definition.parameter("Easting at false origin").setValue(0.0, metre);
+        definition.parameter("Northing at false origin").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -658,11 +678,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65010, "GIGS projection 10");
         methodName = "Transverse Mercator (South Orientated)";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(21.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(1.0, Unit.ONE);
-        definition.parameter("False easting").setValue(0.0, SI.METRE);
-        definition.parameter("False northing").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(21.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("False easting").setValue(0.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -694,11 +716,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65011, "GIGS projection 11");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(-90.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(-60.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(1.0, Unit.ONE);
-        definition.parameter("False easting").setValue(5500000.0, SI.METRE);
-        definition.parameter("False northing").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(-90.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-60.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(1.0, units.one());
+        definition.parameter("False easting").setValue(5500000.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -729,10 +753,12 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65012, "GIGS projection 12");
         methodName = "American Polyconic";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(-54.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("False easting").setValue(5000000.0, SI.METRE);
-        definition.parameter("False northing").setValue(1.0E7, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-54.0, degree);
+        definition.parameter("False easting").setValue(5000000.0, metre);
+        definition.parameter("False northing").setValue(1.0E7, metre);
         verifyConversion();
     }
 
@@ -764,13 +790,15 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65013, "GIGS projection 13");
         methodName = "Hotine Oblique Mercator (variant B)";
         createDefaultParameters();
-        definition.parameter("Latitude of projection centre").setValue(4.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of projection centre").setValue(115.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Azimuth of initial line").setValue(53.3158099, NonSI.DEGREE_ANGLE);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.1301024, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor on initial line").setValue(0.99984, Unit.ONE);
-        definition.parameter("Easting at projection centre").setValue(590521.147, SI.METRE);
-        definition.parameter("Northing at projection centre").setValue(442890.861, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of projection centre").setValue(4.0, degree);
+        definition.parameter("Longitude of projection centre").setValue(115.0, degree);
+        definition.parameter("Azimuth of initial line").setValue(53.3158099, degree);
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.1301024, degree);
+        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
+        definition.parameter("Easting at projection centre").setValue(590521.147, metre);
+        definition.parameter("Northing at projection centre").setValue(442890.861, metre);
         verifyConversion();
     }
 
@@ -803,13 +831,15 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65014, "GIGS projection 14");
         methodName = "Hotine Oblique Mercator (variant A)";
         createDefaultParameters();
-        definition.parameter("Latitude of projection centre").setValue(4.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of projection centre").setValue(115.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Azimuth of initial line").setValue(53.3158099, NonSI.DEGREE_ANGLE);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.1301024, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor on initial line").setValue(0.99984, Unit.ONE);
-        definition.parameter("False easting").setValue(0.0, SI.METRE);
-        definition.parameter("False northing").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of projection centre").setValue(4.0, degree);
+        definition.parameter("Longitude of projection centre").setValue(115.0, degree);
+        definition.parameter("Azimuth of initial line").setValue(53.3158099, degree);
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(53.1301024, degree);
+        definition.parameter("Scale factor on initial line").setValue(0.99984, units.one());
+        definition.parameter("False easting").setValue(0.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -838,10 +868,12 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65015, "GIGS projection 15");
         methodName = "Cassini-Soldner";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(2.1216797, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(103.4279361, NonSI.DEGREE_ANGLE);
-        definition.parameter("False easting").setValue(-14810.562, SI.METRE);
-        definition.parameter("False northing").setValue(8758.32, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(2.1216797, degree);
+        definition.parameter("Longitude of natural origin").setValue(103.4279361, degree);
+        definition.parameter("False easting").setValue(-14810.562, metre);
+        definition.parameter("False northing").setValue(8758.32, metre);
         verifyConversion();
     }
 
@@ -870,10 +902,12 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65016, "GIGS projection 16");
         methodName = "Lambert Azimuthal Equal Area";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(52.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(10.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("False easting").setValue(4321000.0, SI.METRE);
-        definition.parameter("False northing").setValue(3210000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(52.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(10.0, degree);
+        definition.parameter("False easting").setValue(4321000.0, metre);
+        definition.parameter("False northing").setValue(3210000.0, metre);
         verifyConversion();
     }
 
@@ -904,12 +938,14 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65017, "GIGS projection 17");
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(40.3333333, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of false origin").setValue(-111.5, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 1st standard parallel").setValue(41.7833333, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.7166667, NonSI.DEGREE_ANGLE);
-        definition.parameter("Easting at false origin").setValue(1640419.948, NonSI.FOOT);
-        definition.parameter("Northing at false origin").setValue(3280839.895, NonSI.FOOT);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> foot = units.foot();
+        definition.parameter("Latitude of false origin").setValue(40.3333333, degree);
+        definition.parameter("Longitude of false origin").setValue(-111.5, degree);
+        definition.parameter("Latitude of 1st standard parallel").setValue(41.7833333, degree);
+        definition.parameter("Latitude of 2nd standard parallel").setValue(40.7166667, degree);
+        definition.parameter("Easting at false origin").setValue(1640419.948, foot);
+        definition.parameter("Northing at false origin").setValue(3280839.895, foot);
         verifyConversion();
     }
 
@@ -940,12 +976,14 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65018, "GIGS projection 18");
         methodName = "Lambert Conic Conformal (2SP)";
         createDefaultParameters();
-        definition.parameter("Latitude of false origin").setValue(40.3333333, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of false origin").setValue(-111.5, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 1st standard parallel").setValue(41.7833333, NonSI.DEGREE_ANGLE);
-        definition.parameter("Latitude of 2nd standard parallel").setValue(40.7166667, NonSI.DEGREE_ANGLE);
-        definition.parameter("Easting at false origin").setValue(1640416.667, NonSI.FOOT_SURVEY_US);
-        definition.parameter("Northing at false origin").setValue(3280833.333, NonSI.FOOT_SURVEY_US);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> footSurveyUS = units.footSurveyUS();
+        definition.parameter("Latitude of false origin").setValue(40.3333333, degree);
+        definition.parameter("Longitude of false origin").setValue(-111.5, degree);
+        definition.parameter("Latitude of 1st standard parallel").setValue(41.7833333, degree);
+        definition.parameter("Latitude of 2nd standard parallel").setValue(40.7166667, degree);
+        definition.parameter("Easting at false origin").setValue(1640416.667, footSurveyUS);
+        definition.parameter("Northing at false origin").setValue(3280833.333, footSurveyUS);
         verifyConversion();
     }
 
@@ -975,11 +1013,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65019, "GIGS projection 19");
         methodName = "Lambert Conic Conformal (1SP)";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(52.0, NonSI.GRADE);
-        definition.parameter("Longitude of natural origin").setValue(0.0, NonSI.GRADE);
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, Unit.ONE);
-        definition.parameter("False easting").setValue(600000.0, SI.METRE);
-        definition.parameter("False northing").setValue(2200000.0, SI.METRE);
+        final Unit<Angle>  grad  = units.grad();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(52.0, grad);
+        definition.parameter("Longitude of natural origin").setValue(0.0, grad);
+        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
+        definition.parameter("False easting").setValue(600000.0, metre);
+        definition.parameter("False northing").setValue(2200000.0, metre);
         verifyConversion();
     }
 
@@ -1009,11 +1049,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65023, "GIGS projection 23");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(3.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, Unit.ONE);
-        definition.parameter("False easting").setValue(1640416.667, NonSI.FOOT_SURVEY_US);
-        definition.parameter("False northing").setValue(0.0, NonSI.FOOT_SURVEY_US);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> footSurveyUS = units.footSurveyUS();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(3.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(1640416.667, footSurveyUS);
+        definition.parameter("False northing").setValue(0.0, footSurveyUS);
         verifyConversion();
     }
 
@@ -1042,10 +1084,12 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65024, "GIGS projection 24");
         methodName = "Mercator (Variant B)";
         createDefaultParameters();
-        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(51.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("False easting").setValue(0.0, SI.METRE);
-        definition.parameter("False northing").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of 1st standard parallel").setValue(42.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(51.0, degree);
+        definition.parameter("False easting").setValue(0.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 
@@ -1075,11 +1119,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65025, "GIGS projection 25");
         methodName = "Lambert Conic Conformal (1SP)";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(46.8, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(2.3372292, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.99987742, Unit.ONE);
-        definition.parameter("False easting").setValue(600000.0, SI.METRE);
-        definition.parameter("False northing").setValue(2200000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(46.8, degree);
+        definition.parameter("Longitude of natural origin").setValue(2.3372292, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.99987742, units.one());
+        definition.parameter("False easting").setValue(600000.0, metre);
+        definition.parameter("False northing").setValue(2200000.0, metre);
         verifyConversion();
     }
 
@@ -1114,13 +1160,15 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65026, "GIGS projection 26");
         methodName = "Hotine Oblique Mercator (variant B)";
         createDefaultParameters();
-        definition.parameter("Latitude of projection centre").setValue(47.14439372222222, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of projection centre").setValue(19.048571777777777, NonSI.DEGREE_ANGLE);
-        definition.parameter("Azimuth of initial line").setValue(90.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor on initial line").setValue(0.99993, Unit.ONE);
-        definition.parameter("Easting at projection centre").setValue(650000.0, SI.METRE);
-        definition.parameter("Northing at projection centre").setValue(200000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of projection centre").setValue(47.14439372222222, degree);
+        definition.parameter("Longitude of projection centre").setValue(19.048571777777777, degree);
+        definition.parameter("Azimuth of initial line").setValue(90.0, degree);
+        definition.parameter("Angle from Rectified to Skew Grid").setValue(90.0, degree);
+        definition.parameter("Scale factor on initial line").setValue(0.99993, units.one());
+        definition.parameter("Easting at projection centre").setValue(650000.0, metre);
+        definition.parameter("Northing at projection centre").setValue(200000.0, metre);
         verifyConversion();
     }
 
@@ -1152,11 +1200,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65027, "GIGS projection 27");
         methodName = "Mercator (variant A)";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(110.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.997, Unit.ONE);
-        definition.parameter("False easting").setValue(3900000.0, SI.METRE);
-        definition.parameter("False northing").setValue(900000.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(110.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.997, units.one());
+        definition.parameter("False easting").setValue(3900000.0, metre);
+        definition.parameter("False northing").setValue(900000.0, metre);
         verifyConversion();
     }
 
@@ -1188,11 +1238,13 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
         setCodeAndName(65028, "GIGS projection 28");
         methodName = "Transverse Mercator";
         createDefaultParameters();
-        definition.parameter("Latitude of natural origin").setValue(0.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Longitude of natural origin").setValue(-135.0, NonSI.DEGREE_ANGLE);
-        definition.parameter("Scale factor at natural origin").setValue(0.9996, Unit.ONE);
-        definition.parameter("False easting").setValue(500000.0, SI.METRE);
-        definition.parameter("False northing").setValue(0.0, SI.METRE);
+        final Unit<Angle> degree = units.degree();
+        final Unit<Length> metre = units.metre();
+        definition.parameter("Latitude of natural origin").setValue(0.0, degree);
+        definition.parameter("Longitude of natural origin").setValue(-135.0, degree);
+        definition.parameter("Scale factor at natural origin").setValue(0.9996, units.one());
+        definition.parameter("False easting").setValue(500000.0, metre);
+        definition.parameter("False northing").setValue(0.0, metre);
         verifyConversion();
     }
 }

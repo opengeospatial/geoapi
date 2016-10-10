@@ -107,14 +107,18 @@ public class NameValidator extends Validator {
             if (scope != null) {
                 assertTrue("NameSpace: identifier scope shall be global.", scope.isGlobal());
             }
-            // Following test is a consequence of the previous one, so we check the scope first in
-            // order to report the error as a bad scope before to reference this GeoAPI extension.
+            /*
+             * Following test is a consequence of the previous one, so we check the scope first in
+             * order to report the error as a bad scope before to reference this GeoAPI extension.
+             */
             assertSame("NameSpace: the identifier shall be fully qualified.", name, name.toFullyQualifiedName());
-        }
-        // Do not validate global namespaces because their name could be anything including
-        // an empty name, and the 'validate' method below does not accept empty collections.
-        if (!object.isGlobal()) {
-            validate(name, name.getParsedNames());
+            /*
+             * Do not validate global namespaces because their name could be anything including
+             * an empty name, and the 'validate' method below does not accept empty collections.
+             */
+            if (!object.isGlobal()) {
+                validate(name, name.getParsedNames());
+            }
         }
     }
 
@@ -221,12 +225,12 @@ public class NameValidator extends Validator {
             assertEquals("ScopedName: head.scope shall be equal to the scope.", scope, object.head().scope());
         }
         if (parsedNames != null) {
-            boolean global = scope.isGlobal();
+            boolean global = (scope != null) && scope.isGlobal();
             for (final LocalName name : parsedNames) {
                 assertNotNull("ScopedName: getParsedNames() can not contain null element.", name);
                 assertNotSame("ScopedName: the enclosing scoped name can not be in any parsed name.", object, name);
                 assertEquals("ScopedName: inconsistent value of isGlobal().", global, name.scope().isGlobal());
-                global = false; // Only the first name may be global.
+                global = false;         // Only the first name may be global.
                 validate(name);
             }
         }

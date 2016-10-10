@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Objects;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;

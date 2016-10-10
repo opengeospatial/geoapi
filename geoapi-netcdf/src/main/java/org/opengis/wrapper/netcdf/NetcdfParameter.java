@@ -15,10 +15,11 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 
 import ucar.unidata.util.Parameter;
 
@@ -119,7 +120,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * @return The GeoAPI parameter for the given NetCDF parameter.
      */
     public static NetcdfParameter<String> create(String name, Collection<GenericName> aliases, String value) {
-        return new NetcdfParameter<String>(new Parameter(name, value), aliases);
+        return new NetcdfParameter<>(new Parameter(name, value), aliases);
     }
 
     /**
@@ -132,7 +133,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * @return The GeoAPI parameter for the given NetCDF parameter.
      */
     public static NetcdfParameter<Double> create(String name, Collection<GenericName> aliases, double value) {
-        return new NetcdfParameter<Double>(new Parameter(name, value), aliases);
+        return new NetcdfParameter<>(new Parameter(name, value), aliases);
     }
 
     /**
@@ -145,7 +146,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * @return The GeoAPI parameter for the given NetCDF parameter.
      */
     public static NetcdfParameter<double[]> create(String name, Collection<GenericName> aliases, double... values) {
-        return new NetcdfParameter<double[]>(new Parameter(name, values), aliases);
+        return new NetcdfParameter<>(new Parameter(name, values), aliases);
     }
 
     /**
@@ -214,7 +215,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      */
     @Override
     public NetcdfParameter<T> createValue() {
-        return new NetcdfParameter<T>(parameter, aliases);
+        return new NetcdfParameter<>(parameter, aliases);
     }
 
     /**
@@ -623,7 +624,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
         try {
             return (NetcdfParameter<T>) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e); // Should never happen since we are cloneable.
+            throw new AssertionError(e);                // Should never happen since we are cloneable.
         }
     }
 }

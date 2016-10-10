@@ -59,7 +59,7 @@ public final class Priority extends CodeList<Priority> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Priority> VALUES = new ArrayList<Priority>(4);
+    private static final List<Priority> VALUES = new ArrayList<>(4);
 
     /**
      * Decisive importance.

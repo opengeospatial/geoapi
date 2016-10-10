@@ -20,9 +20,9 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Formatter;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.measure.unit.SI;
 
 import ucar.nc2.units.DateUnit;
 import ucar.nc2.constants.AxisType;
@@ -158,7 +158,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      */
     NetcdfCRS(final CoordinateSystem netcdfCS, final NetcdfCRS... components) {
         cs = netcdfCS;
-        final List<NetcdfAxis> axes = new ArrayList<NetcdfAxis>(netcdfCS.getRankRange());
+        final List<NetcdfAxis> axes = new ArrayList<>(netcdfCS.getRankRange());
         for (final NetcdfCRS c : components) {
             axes.addAll(Arrays.asList(c.axes));
         }
@@ -187,7 +187,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         try {
             return wrap(netcdfCS, null, null);
         } catch (IOException e) {
-            throw new AssertionError(e); // Should never happen, since we didn't performed any I/O.
+            throw new AssertionError(e);    // Should never happen, since we didn't performed any I/O.
         }
     }
 
@@ -220,7 +220,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
          * CoordinateAxis.getTaxis() and similar methods because we want to ensure that
          * the components are build in the same order than axes are found.
          */
-        final List<NetcdfCRS> components = new ArrayList<NetcdfCRS>(4);
+        final List<NetcdfCRS> components = new ArrayList<>(4);
         final List<CoordinateAxis>  axes = netcdfCS.getCoordinateAxes();
         for (int i=axes.size(); --i>=0;) {
             CoordinateAxis1D axis = (CoordinateAxis1D) axes.get(i);
@@ -634,7 +634,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
                 throw new IllegalArgumentException("Unknown unit symbol: " + unitSymbol, e);
             }
             origin = unit.getDateOrigin().getTime();
-            getAxis(0).unit = SI.SECOND.times(unit.getTimeUnit().getValueInSeconds());
+            getAxis(0).unit = Units.SECOND.multiply(unit.getTimeUnit().getValueInSeconds());
         }
 
         /**

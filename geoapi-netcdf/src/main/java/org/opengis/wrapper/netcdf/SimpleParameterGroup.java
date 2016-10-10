@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Objects;
 
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -151,7 +152,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     @Override
     @SuppressWarnings("unchecked")
     public List<GeneralParameterDescriptor> descriptors() {
-        return (List) parameters; // Cast is safe only for unmodifiable list.
+        return (List) parameters;                   // Cast is safe only for unmodifiable list.
     }
 
     /**
@@ -161,7 +162,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     @Override
     @SuppressWarnings("unchecked")
     public List<GeneralParameterValue> values() {
-        return (List) parameters; // Cast is safe only for unmodifiable list.
+        return (List) parameters;                   // Cast is safe only for unmodifiable list.
     }
 
     /**
@@ -244,9 +245,9 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
         try {
             clone = (SimpleParameterGroup) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e); // Should never happen.
+            throw new AssertionError(e);                                        // Should never happen.
         }
-        final List<NetcdfParameter<?>> copy = new ArrayList<NetcdfParameter<?>>(parameters);
+        final List<NetcdfParameter<?>> copy = new ArrayList<>(parameters);
         for (int i=copy.size(); --i>=0;) {
             copy.set(i, copy.get(i).clone());
         }

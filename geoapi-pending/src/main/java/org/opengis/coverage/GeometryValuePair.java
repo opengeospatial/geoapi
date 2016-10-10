@@ -31,9 +31,9 @@
  */
 package org.opengis.coverage;
 
-import java.util.Collection; // For javadoc
+import java.util.Collection;                    // For javadoc
 import org.opengis.util.Record;
-import org.opengis.geometry.DirectPosition;  // For javadoc
+import org.opengis.geometry.DirectPosition;     // For javadoc
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

@@ -33,6 +33,7 @@ package org.opengis.test.referencing.gigs;
 
 import org.opengis.referencing.cs.CSFactory;
 import org.opengis.referencing.datum.DatumFactory;
+import org.opengis.test.Units;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.referencing.PseudoEpsgFactory;
 
@@ -50,11 +51,12 @@ final class EPSGMock extends PseudoEpsgFactory {
     /**
      * Creates a new EPSG pseudo-factory which will use the given factories for creating coordinate system instances.
      */
-    EPSGMock(final DatumFactory       datumFactory,
+    EPSGMock(final Units              units,
+             final DatumFactory       datumFactory,
              final CSFactory          csFactory,
              final ValidatorContainer validators)
     {
-        super(datumFactory, csFactory, null, null, null, validators);
+        super(units, datumFactory, csFactory, null, null, null, validators);
     }
 
     /**

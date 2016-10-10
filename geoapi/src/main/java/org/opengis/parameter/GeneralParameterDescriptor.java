@@ -35,7 +35,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Specification;
-import org.opengis.util.MemberName; // For javadoc
+import org.opengis.util.MemberName;                     // For javadoc
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;

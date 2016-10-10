@@ -13,8 +13,7 @@
  */
 package org.opengis.wrapper.proj4;
 
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.cs.RangeMeaning;
 import org.opengis.referencing.cs.AxisDirection;
@@ -51,8 +50,8 @@ final class PJAxis extends PJObject implements CoordinateSystemAxis {
     private final char direction;
 
     /**
-     * The axis unit. If angular, then the CRS is presumed geographic or geocentric and the
-     * units is fixed to {@link NonSI#DEGREE_ANGLE} (no other angular unit is permitted).
+     * The axis unit. If angular, then the CRS is presumed geographic or geocentric
+     * and the units is fixed to {@link Units#DEGREE} (no other angular unit is permitted).
      * Otherwise the CRS is presumed projected with arbitrary linear unit.
      */
     private final Unit<?> unit;
@@ -101,7 +100,7 @@ final class PJAxis extends PJObject implements CoordinateSystemAxis {
      * In such case, the CRS is presumed geographic or geocentric.
      */
     private static boolean isAngular(final Unit<?> unit) {
-        return NonSI.DEGREE_ANGLE.isCompatible(unit);
+        return Units.RADIAN.isCompatible(unit);
     }
 
     /**

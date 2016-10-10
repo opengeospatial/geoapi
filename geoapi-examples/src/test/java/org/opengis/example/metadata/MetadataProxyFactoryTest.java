@@ -35,18 +35,18 @@ public strictfp class MetadataProxyFactoryTest {
     @Test
     public void testResponsibleParty() {
         final MetadataProxyFactory factory = new MetadataProxyFactory();
-        Map<String,Object> attributes = new HashMap<String,Object>();
+        Map<String,Object> attributes = new HashMap<>();
         assertNull(attributes.put("name", new SimpleCitation("Aristotle")));
 
         final Party party = factory.create(Party.class, attributes);
         assertEquals("Aristotle", party.getName().toString());
 
-        attributes = new HashMap<String,Object>();
+        attributes = new HashMap<>();
         assertNull(attributes.put("party", Collections.singleton(party)));
         final ResponsibleParty responsibility = factory.create(ResponsibleParty.class, attributes);
         assertEquals("Aristotle", getSingleton(responsibility.getParties()).getName().toString());
 
-        attributes = new HashMap<String,Object>();
+        attributes = new HashMap<>();
         assertNull(attributes.put("contact", Collections.singleton(responsibility)));
         final Metadata md = factory.create(Metadata.class, attributes);
         assertEquals("Aristotle", getSingleton(getSingleton(md.getContacts()).getParties()).getName().toString());

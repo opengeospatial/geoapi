@@ -33,7 +33,7 @@ package org.opengis.coverage;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection; // For javadoc
+import java.util.Collection;                    // For javadoc
 import org.opengis.util.CodeList;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;

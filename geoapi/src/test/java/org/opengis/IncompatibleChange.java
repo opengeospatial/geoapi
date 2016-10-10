@@ -70,12 +70,12 @@ final class IncompatibleChange {
     }
 
     /**
-     * Returns the accepted incompatible changes between GeoAPI 3.0 and GeoAPI 3.1.
+     * Returns the accepted incompatible changes between GeoAPI 3.0.1 and GeoAPI 3.1.
      */
     static Set<IncompatibleChange> for31() {
         return fill("org.opengis.metadata.content.Band.getUnits",
-                    "javax.measure.unit.Unit<javax.measure.quantity.Length>",
-                    "javax.measure.unit.Unit<?>");
+                    "javax.measure.Unit<javax.measure.quantity.Length>",
+                    "javax.measure.Unit<?>");
     }
 
     /**
@@ -89,7 +89,7 @@ final class IncompatibleChange {
      * Creates a set of incompatible changes from (method, oldType, newType) tuples.
      */
     private static Set<IncompatibleChange> fill(final String... types) {
-        final Set<IncompatibleChange> changes = new HashSet<IncompatibleChange>();
+        final Set<IncompatibleChange> changes = new HashSet<>();
         for (int i=0; i<types.length;) {
             final IncompatibleChange c = new IncompatibleChange(types[i++], types[i++], types[i++]);
             assertTrue(c.method, changes.add(c));

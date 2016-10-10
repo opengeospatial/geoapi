@@ -10,9 +10,9 @@ package org.opengis.openoffice;
 import java.util.Locale;
 import java.util.Collection;
 import java.util.Collections;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
+import tec.units.ri.unit.Units;
 
 import org.opengis.util.Record;
 import org.opengis.util.InternationalString;
@@ -114,7 +114,7 @@ final class Utilities {
      *
      * <ul>
      *   <li>If a {@linkplain QuantitativeResult quantitative} positional accuracy is found with a
-     *       linear unit, then this accuracy estimate is converted to {@linkplain SI#METER meters}
+     *       linear unit, then this accuracy estimate is converted to {@linkplain Units#METER meters}
      *       and returned.</li>
      *
      *   <li>Otherwise, if the operation is a {@linkplain Conversion conversion}, then returns
@@ -136,12 +136,12 @@ final class Utilities {
                 if (result instanceof QuantitativeResult) {
                     final QuantitativeResult quantity = (QuantitativeResult) result;
                     final Unit<?> unit = quantity.getValueUnit();
-                    if (unit != null && SI.METRE.isCompatible(unit)) {
+                    if (unit != null && Units.METRE.isCompatible(unit)) {
                         for (final Record record : nonNull(quantity.getValues())) {
                             for (final Object value : nonNull(record.getAttributes().values())) {
                                 if (value instanceof Number) {
                                     double v = ((Number) value).doubleValue();
-                                    v = unit.asType(Length.class).getConverterTo(SI.METRE).convert(v);
+                                    v = unit.asType(Length.class).getConverterTo(Units.METRE).convert(v);
                                     return v;
                                 }
                             }

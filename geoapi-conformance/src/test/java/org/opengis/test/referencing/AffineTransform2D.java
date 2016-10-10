@@ -168,16 +168,18 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      *
      * @return The inverse of this math transform.
      * @throws NoninvertibleTransformException if the transform is not invertible.
-     *
-     * @todo Use {@link AffineTransform#invert} when we will be allowed to compile for Java 6.
      */
     @Override
     public MathTransform2D inverse() throws NoninvertibleTransformException {
-        if (inverse == null) try {
-            inverse = new AffineTransform2D(createInverse());
-            inverse.inverse = this;
-        } catch (java.awt.geom.NoninvertibleTransformException e) {
-            throw new NoninvertibleTransformException();
+        if (inverse == null) {
+            final AffineTransform2D tmp = new AffineTransform2D(this);
+            try {
+                tmp.invert();
+            } catch (java.awt.geom.NoninvertibleTransformException e) {
+                throw new NoninvertibleTransformException(e.getLocalizedMessage(), e);
+            }
+            tmp.inverse = this;
+            inverse = tmp;                      // Keep the reference only on success.
         }
         return inverse;
     }

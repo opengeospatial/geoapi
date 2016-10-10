@@ -124,8 +124,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      */
     protected NetcdfMetadataTest(final RootValidator validator) {
         this.validator = validator;
-        expectedProperties = new LinkedHashMap<String,Object>(32);
-        actualProperties   = new LinkedHashMap<String,Object>(32);
+        expectedProperties = new LinkedHashMap<>(32);
+        actualProperties   = new LinkedHashMap<>(32);
     }
 
     /**
@@ -441,8 +441,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[0].resolution", 8.332899328159992E-4));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].resolution", 8.332465368190813E-4));
         assertNull(expected.put("dataQualityInfo.lineage.statement", "xyz2grd -R-80/-64/40/48 -I3c -Gcrm_v1.grd"));
-        final NetcdfFile file = open(THREDDS);
-        try {
+        try (NetcdfFile file = open(THREDDS)) {
             metadata = wrap(file);
             validator.validate(metadata);
             fetchMetadataProperties(THREDDS);
@@ -450,8 +449,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             if (getClass() == NetcdfMetadataTest.class) {
                 NonInheritable.assertProcessedAllRelevant(actualProperties, "crm_v1.grd", false);
             }
-        } finally {
-            file.close();
         }
     }
 
@@ -515,8 +512,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("dataQualityInfo.lineage.statement",
                 "2003-04-07 12:12:50 - created by gribtocdl              " +
                 "2005-09-26T21:50:00 - edavis - add attributes for dataset discovery"));
-        final NetcdfFile file = open(NCEP);
-        try {
+        try (NetcdfFile file = open(NCEP)) {
             metadata = wrap(file);
             validator.validate(metadata);
             fetchMetadataProperties(NCEP);
@@ -524,8 +520,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             if (getClass() == NetcdfMetadataTest.class) {
                 NonInheritable.assertProcessedAllRelevant(actualProperties, null, false);
             }
-        } finally {
-            file.close();
         }
     }
 
@@ -539,8 +533,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         final Map<String,Object> expected = expectedProperties;
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier", "Band1"));
         assertNull(expected.put("contentInfo.dimension.description",        "GDAL Band Number 1"));
-        final NetcdfFile file = open(LANDSAT);
-        try {
+        try (NetcdfFile file = open(LANDSAT)) {
             metadata = wrap(file);
             // Do not validate, because the metadata is known to be invalid
             // since the test file is not providing suffisient information.
@@ -549,8 +542,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             if (getClass() == NetcdfMetadataTest.class) {
                 NonInheritable.assertProcessedAllRelevant(actualProperties, null, true);
             }
-        } finally {
-            file.close();
         }
     }
 
@@ -586,8 +577,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier",                           "CIP"));
         assertNull(expected.put("contentInfo.dimension.description",                                  "Current Icing Product"));
         assertNull(expected.put("dataQualityInfo.lineage.statement", "U.S. National Weather Service - NCEP (WMC)"));
-        final NetcdfFile file = open(CIP);
-        try {
+        try (NetcdfFile file = open(CIP)) {
             metadata = wrap(file);
             validator.validate(metadata);
             fetchMetadataProperties(CIP);
@@ -595,8 +585,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             if (getClass() == NetcdfMetadataTest.class) {
                 NonInheritable.assertProcessedAllRelevant(actualProperties, null, false);
             }
-        } finally {
-            file.close();
         }
     }
 }

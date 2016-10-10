@@ -60,7 +60,7 @@ public final class Classification extends CodeList<Classification> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Classification> VALUES = new ArrayList<Classification>(9);
+    private static final List<Classification> VALUES = new ArrayList<>(9);
 
     /**
      * Available for general disclosure.

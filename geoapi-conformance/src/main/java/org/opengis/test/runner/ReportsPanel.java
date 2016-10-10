@@ -152,6 +152,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
     /**
      * Creates a new panel.
      */
+    @SuppressWarnings("OverridableMethodCallDuringObjectConstruction")
     ReportsPanel(final Desktop desktop, final Preferences preferences) {
         super(new GridBagLayout());
         this.desktop     = desktop;
@@ -393,7 +394,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
             setChoicesEnabled(true);
             try {
                 get();
-                progressBar.setValue(100); // Only if no exception.
+                progressBar.setValue(100);              // Only if no exception.
             } catch (Exception exception) {
                 Runner.LOGGER.log(Level.WARNING, exception.toString(), exception);
                 JOptionPane.showMessageDialog(ReportsPanel.this, exception.toString(),

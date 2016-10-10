@@ -543,9 +543,9 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             }
             if (i != 0) {
                 final char p = ogc.charAt(i-1);
-                boolean separateWords = Character.isUpperCase(c) && Character.isLowerCase(p); // Check for camel case.
+                boolean separateWords = Character.isUpperCase(c) && Character.isLowerCase(p);   // Check for camel case.
                 if (!separateWords) {
-                    separateWords = Character.isLetter(c) != Character.isLetter(p); // e.g. "iso9660" → "ISO_9660"
+                    separateWords = Character.isLetter(c) != Character.isLetter(p);             // e.g. "iso9660" → "ISO_9660"
                     if (separateWords) {
                         /*
                          * At this point we have detected that we may need to separate a word from numbers

@@ -25,7 +25,7 @@ unzip -q -n ../../geoapi-conformance/target/geoapi-conformance-$GEOAPI_VERSION.j
 unzip -q -n ../../geoapi-pending/target/geoapi-pending-$GEOAPI_VERSION.jar
 unzip -q -n $MAVEN_REPOSITORY/junit/junit/$JUNIT_VERSION/junit-$JUNIT_VERSION.jar
 unzip -q -n $MAVEN_REPOSITORY/org/hamcrest/hamcrest-core/$HAMCREST_VERSION/hamcrest-core-$HAMCREST_VERSION.jar
-unzip -q -n $MAVEN_REPOSITORY/javax/measure/jsr-275/$JSR275_VERSION/jsr-275-$JSR275_VERSION.jar
+unzip -q -n $MAVEN_REPOSITORY/javax/measure/unit-api/$UOM_VERSION/unit-api-$UOM_VERSION.jar
 rm -r META-INF/maven
 
 # Create the PACK200 bundle for the geoapi-conformance module.

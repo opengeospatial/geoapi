@@ -144,6 +144,7 @@ final class SimpleMatrix implements Matrix, Cloneable {
      * Returns a clone of this matrix.
      */
     @Override
+    @SuppressWarnings("CloneDoesntCallSuperClone")      // Okay because this class is final.
     public Matrix clone() {
         return new SimpleMatrix(this);
     }
@@ -200,9 +201,8 @@ final class SimpleMatrix implements Matrix, Cloneable {
          * Append the string values, with right-alignment.
          */
         int column = 0;
-        for (int i=0; i<values.length; i++) {
-            final String value = values[i];
-            for (int j=columnWidths[column]-value.length(); --j>=0;) {
+        for (final String value : values) {
+            for (int j = columnWidths[column] - value.length(); --j >= 0;) {
                 appendTo.append(' ');
             }
             appendTo.append(value);

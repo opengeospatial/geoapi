@@ -182,7 +182,7 @@ public strictfp class NameTest extends TestCase {
     private NameSpace createNameSpace(final GenericName name,
             final String headSeparator, final String separator)
     {
-        final Map<String,String> properties = new HashMap<String,String>(4);
+        final Map<String,String> properties = new HashMap<>(4);
         properties.put("separator", separator);
         properties.put("separator.head", headSeparator);
         return factory.createNameSpace(name, properties);
@@ -199,7 +199,7 @@ public strictfp class NameTest extends TestCase {
     @Test
     public void testInternationalString() {
         assumeNotNull(factory);
-        final Map<Locale,String> names = new HashMap<Locale,String>();
+        final Map<Locale,String> names = new HashMap<>();
         names.put(Locale.ENGLISH, "My documents");
         names.put(Locale.FRENCH,  "Mes documents");
         InternationalString localized = factory.createInternationalString(names);

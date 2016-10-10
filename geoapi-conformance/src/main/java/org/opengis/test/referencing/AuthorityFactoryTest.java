@@ -34,7 +34,6 @@ package org.opengis.test.referencing;
 import java.util.Set;
 import java.util.List;
 import java.awt.geom.Rectangle2D;
-import javax.measure.unit.NonSI;
 
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
@@ -254,7 +253,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;
         final Configuration.Key<Boolean>[] keys = ParameterizedTransformTest.getEnabledKeys(1);
-        final int offset = keys.length - 1; // First free slot for our keys.
+        final int offset = keys.length - 1;                     // First free slot for our keys.
         keys[offset] = Configuration.Key.isAxisSwappingSupported;
         final boolean[] isEnabled = getEnabledFlags(keys);
         test = new ParameterizedTransformTest(isEnabled);
@@ -299,8 +298,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * @param  pm The prime meridian from which to get the Greenwich longitude, or {@code null}.
      * @return The prime meridian in the given units, or 0 if the given prime meridian was null.
      */
-    private static double getGreenwichLongitude(final PrimeMeridian pm) {
-        return (pm != null) ? pm.getAngularUnit().getConverterTo(NonSI.DEGREE_ANGLE).convert(pm.getGreenwichLongitude()) : 0;
+    private double getGreenwichLongitude(final PrimeMeridian pm) {
+        return (pm != null) ? pm.getAngularUnit().getConverterTo(units.degree()).convert(pm.getGreenwichLongitude()) : 0;
     }
 
     /**
@@ -331,7 +330,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
                     new AxisDirection[] {
                         AxisDirection.NORTH,
                         AxisDirection.EAST
-                    }, NonSI.DEGREE_ANGLE);
+                    }, units.degree());
             verifyIdentification(cs.getAxis(0), "Geodetic latitude", null);
             verifyIdentification(cs.getAxis(1), "Geodetic longitude", null);
         }
@@ -341,7 +340,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         final GeodeticDatum datum = crs.getDatum();
         if (datum != null) {
             verifyIdentification(datum, "World Geodetic System 1984", null);
-            verifyPrimeMeridian(datum.getPrimeMeridian(), "Greenwich", 0.0, NonSI.DEGREE_ANGLE);
+            verifyPrimeMeridian(datum.getPrimeMeridian(), "Greenwich", 0.0, units.degree());
         }
     }
 
@@ -396,9 +395,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
             // a supported code. If the code was unsupported, then the test will be ignored.
             final Set<String> authorityCodes = crsAuthorityFactory.getAuthorityCodes(ProjectedCRS.class);
             if (authorityCodes == null || !authorityCodes.contains(String.valueOf(code))) {
-                assumeNoException(e); // Will mark the test as "ignored".
+                assumeNoException(e);               // Will mark the test as "ignored".
             }
-            throw e; // Will mark the test as "failed".
+            throw e;                                // Will mark the test as "failed".
         }
         assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
         object = crs;

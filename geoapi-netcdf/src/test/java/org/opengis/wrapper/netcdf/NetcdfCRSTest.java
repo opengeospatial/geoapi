@@ -18,11 +18,10 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.logging.Logger;
 import java.io.IOException;
+import javax.measure.Unit;
+
 import ucar.nc2.dataset.NetcdfDataset;
 import ucar.nc2.dataset.CoordinateSystem;
-import javax.measure.unit.Unit;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.crs.SingleCRS;
@@ -217,8 +216,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * @param unit The expected axis unit.
      * @param axis The axis to verify.
      *
-     * @todo The unit check is disabled for now, because the JSR-275 API can not parse the
-     *       NetCDF syntax. Revisit this issue after we replaced JSR-275 API by UOM interfaces.
+     * @todo The unit check is disabled for now, because most Unit implementations can not parse the NetCDF syntax.
      */
     private void assertAxisEquals(final String name, final Unit<?> unit, final CoordinateSystemAxis axis) {
         assertNameEquals(name, axis);
@@ -248,18 +246,15 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testGeographic() throws IOException {
-        final NetcdfDataset file = new NetcdfDataset(open(THREDDS));
-        try {
+        try (NetcdfDataset file = new NetcdfDataset(open(THREDDS))) {
             crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             validator.dispatch(crs);
             assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
             final EllipsoidalCS cs = ((GeographicCRS) crs).getCoordinateSystem();
             assertAxisDirectionsEqual("GeographicCRS.cs", cs, EAST, NORTH);
-            assertAxisEquals("x", NonSI.DEGREE_ANGLE, cs.getAxis(0));
-            assertAxisEquals("y", NonSI.DEGREE_ANGLE, cs.getAxis(1));
+            assertAxisEquals("x", Units.DEGREE, cs.getAxis(0));
+            assertAxisEquals("y", Units.DEGREE, cs.getAxis(1));
             assertNameEquals("y x", crs);
-        } finally {
-            file.close();
         }
     }
 
@@ -325,21 +320,18 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testGeographic_XYT() throws IOException {
-        final NetcdfDataset file = new NetcdfDataset(open(NCEP));
-        try {
+        try (NetcdfDataset file = new NetcdfDataset(open(NCEP))) {
             crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             final GeographicCRS geographic = separateComponents("Expected a (geographic + time) CRS.", GeographicCRS.class, false);
             final EllipsoidalCS ellp = (geographic) .getCoordinateSystem();
             final TimeCS        time = (temporalCRS).getCoordinateSystem();
             assertAxisDirectionsEqual("GeographicCRS.cs", ellp, EAST, NORTH);
             assertAxisDirectionsEqual("TemporalCRS.cs",   time, FUTURE);
-            assertAxisEquals("lon",     NonSI.DEGREE_ANGLE, ellp.getAxis(0));
-            assertAxisEquals("lat",     NonSI.DEGREE_ANGLE, ellp.getAxis(1));
-            assertAxisEquals("valtime", NonSI.HOUR,         time.getAxis(0));
+            assertAxisEquals("lon",     Units.DEGREE, ellp.getAxis(0));
+            assertAxisEquals("lat",     Units.DEGREE, ellp.getAxis(1));
+            assertAxisEquals("valtime", Units.HOUR,   time.getAxis(0));
             assertNameEquals("valtime lat lon", crs);
             assertEquals("Time since 1992-1-1 UTC", new Date(694224000000L), temporalCRS.getDatum().getOrigin());
-        } finally {
-            file.close();
         }
     }
 
@@ -373,8 +365,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testProjected_XYZT() throws IOException {
-        final NetcdfDataset file = new NetcdfDataset(open(CIP));
-        try {
+        try (NetcdfDataset file = new NetcdfDataset(open(CIP))) {
             final List<CoordinateSystem> crsList = file.getCoordinateSystems();
             assertEquals("Unexpected number of NetCDF coordinate systems.", 2, crsList.size());
             crs = wrap(crsList.get(0), file);
@@ -385,10 +376,10 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertAxisDirectionsEqual("ProjectedCRS.cs", cart, EAST, NORTH);
             assertAxisDirectionsEqual("VerticalCRS.cs",  vert, UP);
             assertAxisDirectionsEqual("TemporalCRS.cs",  time, FUTURE);
-            assertAxisEquals("x0",   SI.KILOMETRE,           cart.getAxis(0));
-            assertAxisEquals("y0",   SI.KILOMETRE,           cart.getAxis(1));
-            assertAxisEquals("z0",   NonSI.FOOT.times(0.01), vert.getAxis(0));
-            assertAxisEquals("time", SI.SECOND,              time.getAxis(0));
+            assertAxisEquals("x0",   Units.KILOMETRE,           cart.getAxis(0));
+            assertAxisEquals("y0",   Units.KILOMETRE,           cart.getAxis(1));
+            assertAxisEquals("z0",   Units.FOOT.multiply(0.01), vert.getAxis(0));
+            assertAxisEquals("time", Units.SECOND,              time.getAxis(0));
             assertNameEquals("time z0 y0 x0", crs);
             assertEquals("Time since 1992-1-1 UTC", new Date(0L), temporalCRS.getDatum().getOrigin());
             /*
@@ -402,8 +393,6 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertEquals("longitude_of_central_meridian",             -95.0,   p.parameter("longitude_of_central_meridian").doubleValue(), EPS);
             assertEquals("earth_radius",                          6371229.000, p.parameter("earth_radius").doubleValue(), EPS);
             assertArrayEquals("standard_parallel", new double[] {25.0, 25.05}, p.parameter("standard_parallel").doubleValueList(), EPS);
-        } finally {
-            file.close();
         }
     }
 }

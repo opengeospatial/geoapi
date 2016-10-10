@@ -8,6 +8,7 @@
 package org.opengis.example.geometry;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.io.Serializable;
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.DirectPosition;
@@ -63,7 +64,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
     public SimpleEnvelope(final DirectPosition lowerCorner, final DirectPosition upperCorner)
             throws MismatchedDimensionException, MismatchedReferenceSystemException
     {
-        crs = lowerCorner.getCoordinateReferenceSystem(); // May be null.
+        crs = lowerCorner.getCoordinateReferenceSystem();                           // May be null.
         if (!Objects.equals(crs, upperCorner.getCoordinateReferenceSystem())) {
             throw new MismatchedReferenceSystemException();
         }

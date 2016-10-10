@@ -59,7 +59,7 @@ public final class Context extends CodeList<Context> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Context> VALUES = new ArrayList<Context>(3);
+    private static final List<Context> VALUES = new ArrayList<>(3);
 
     /**
      * Event related to a specific collection.

@@ -144,10 +144,11 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
      * Creates a new frame, which contains all our JUnit runner tabs.
      * There is no menu for this application.
      */
+    @SuppressWarnings("OverridableMethodCallDuringObjectConstruction")      // Safe because this class if final.
     MainFrame() {
         super("GeoAPI conformance tests");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(800, 600); // If width is modified, please adjust column preferred widths below.
+        setSize(800, 600);                          // If width is modified, please adjust column preferred widths below.
         setLocationByPlatform(true);
         runner       = new Runner();
         results      = new ResultTableModel(runner);
@@ -187,7 +188,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             columns.getColumn(ResultTableModel.CLASS_COLUMN)  .setPreferredWidth(125);
             columns.getColumn(ResultTableModel.METHOD_COLUMN) .setPreferredWidth(175);
             columns.getColumn(ResultTableModel.RESULT_COLUMN) .setPreferredWidth( 40);
-            columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250); // Take all remaining space.
+            columns.getColumn(ResultTableModel.MESSAGE_COLUMN).setPreferredWidth(250);      // Take all remaining space.
             tabs.addTab("Tests", new JScrollPane(table));
         }
         /*

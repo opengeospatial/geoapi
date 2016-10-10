@@ -32,6 +32,7 @@
 package org.opengis.test;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Iterator;
 import java.util.Collection;
 import java.util.ServiceLoader;
@@ -174,6 +175,7 @@ public strictfp class TestSuite {
      * @param type    The factory interface for which an implementation is specified.
      * @param factory The implementations to use for the given interface.
      */
+    @SafeVarargs
     public static <T extends Factory> void setFactories(final Class<T> type, final T... factory) {
         Objects.requireNonNull(type, "Given 'type' can not be null");
         final Iterable<? extends Factory> list = Arrays.asList(factory.clone());
@@ -184,8 +186,8 @@ public strictfp class TestSuite {
 
     /**
      * Returns the factory implementations explicitely given by the last call to
-     * {@link #setFactories(Class, Factory[])} for the given interface. This method does
-     * not scan the {@code META-INF/services/<T>} entries.
+     * {@link #setFactories(Class, Factory[])} for the given interface.
+     * This method does not scan the {@code META-INF/services/<T>} entries.
      *
      * @param <T>  The compile-time type of the {@code type} class argument.
      * @param type The factory interface for which an implementations is desired.

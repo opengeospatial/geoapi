@@ -27,8 +27,7 @@ import org.opengis.coverage.grid.GridCoordinates;
  *
  * @author Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- *
- * @since 3.1
+ * @since   3.1
  */
 final class SimpleGridCoordinates implements GridCoordinates, Serializable {
     /**

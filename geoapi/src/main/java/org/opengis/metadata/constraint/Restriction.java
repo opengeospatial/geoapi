@@ -60,7 +60,7 @@ public final class Restriction extends CodeList<Restriction> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Restriction> VALUES = new ArrayList<Restriction>(17);
+    private static final List<Restriction> VALUES = new ArrayList<>(17);
 
     /**
      * Exclusive right to the publication, production, or sale of the rights to a literary,
@@ -266,7 +266,7 @@ public final class Restriction extends CodeList<Restriction> {
      */
     public static Restriction valueOf(String code) {
         if ("LICENSE".equals(code)) {
-            code = "LICENCE"; // For compatibility between ISO 19115:2003 and ISO 19115:2014.
+            code = "LICENCE";           // For compatibility between ISO 19115:2003 and ISO 19115:2014.
         }
         return valueOf(Restriction.class, code);
     }

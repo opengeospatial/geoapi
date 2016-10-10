@@ -32,11 +32,7 @@
 package org.opengis.test.referencing.gigs;
 
 import java.io.IOException;
-import javax.measure.unit.Unit;
-
-import static javax.measure.unit.SI.METRE;
-import static javax.measure.unit.SI.RADIAN;
-import static javax.measure.unit.Unit.ONE;
+import javax.measure.Unit;
 
 
 /**
@@ -81,9 +77,9 @@ public strictfp class GIGS2001Generator extends TestMethodGenerator {
             final boolean important  = data.getBoolean(4);
             final String  remarks    = data.getString (5);
             final Unit<?> base;
-            if      (type.equalsIgnoreCase("Linear")) base = METRE;
-            else if (type.equalsIgnoreCase("Angle" )) base = RADIAN;
-            else if (type.equalsIgnoreCase("Scale" )) base = ONE;
+            if      (type.equalsIgnoreCase("Linear")) base = units.metre();
+            else if (type.equalsIgnoreCase("Angle" )) base = units.radian();
+            else if (type.equalsIgnoreCase("Scale" )) base = units.one();
             else throw new IOException("Unknown type: " + type);
 
             out.println();

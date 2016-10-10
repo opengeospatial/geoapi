@@ -87,7 +87,7 @@ final class Utilities {
         if (objects == null) {
             return Collections.emptySet();
         }
-        final Set<String> names = new LinkedHashSet<String>(objects.size() * 4/3 + 1);
+        final Set<String> names = new LinkedHashSet<>(objects.size() * 4/3 + 1);
         for (final IdentifiedObject object : objects) {
             names.add(getName(object));
         }
@@ -110,7 +110,7 @@ final class Utilities {
         if (object == null) {
             return Collections.emptySet();
         }
-        final Set<String> names = new LinkedHashSet<String>();
+        final Set<String> names = new LinkedHashSet<>();
         getNameAndAliases(object, names);
         names.remove(null);
         return names;
@@ -131,7 +131,7 @@ final class Utilities {
         if (objects == null) {
             return Collections.emptySet();
         }
-        final Set<String> names = new LinkedHashSet<String>(objects.size() * 2);
+        final Set<String> names = new LinkedHashSet<>(objects.size() * 2);
         for (final IdentifiedObject object : objects) {
             if (object != null) {
                 getNameAndAliases(object, names);
@@ -169,7 +169,7 @@ final class Utilities {
      */
     static Set<AxisDirection> getAxisDirections(final CoordinateSystem cs) {
         final int dimension = cs.getDimension();
-        final Set<AxisDirection> directions = new LinkedHashSet<AxisDirection>(dimension * 4/3 + 1);
+        final Set<AxisDirection> directions = new LinkedHashSet<>(dimension * 4/3 + 1);
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = cs.getAxis(i);
             if (axis != null) {

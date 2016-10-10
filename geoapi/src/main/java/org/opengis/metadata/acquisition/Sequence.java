@@ -59,7 +59,7 @@ public final class Sequence extends CodeList<Sequence> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Sequence> VALUES = new ArrayList<Sequence>(3);
+    private static final List<Sequence> VALUES = new ArrayList<>(3);
 
     /**
      * Beginning of a collection.

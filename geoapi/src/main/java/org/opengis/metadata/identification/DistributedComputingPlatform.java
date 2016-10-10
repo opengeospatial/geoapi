@@ -67,7 +67,7 @@ public final class DistributedComputingPlatform extends CodeList<DistributedComp
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<DistributedComputingPlatform> VALUES = new ArrayList<DistributedComputingPlatform>(10);
+    private static final List<DistributedComputingPlatform> VALUES = new ArrayList<>(10);
 
     /**
      * Extensible Markup Language.

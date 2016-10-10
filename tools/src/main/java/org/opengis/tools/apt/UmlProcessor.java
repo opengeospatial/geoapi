@@ -96,8 +96,8 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Subclasses must supply a public no-argument constructor.
      */
     UmlProcessor() {
-        classes    = new EnumMap<Classes,TypeMirror>(Classes.class);
-        umlMembers = new EnumMap<UMLMember,ExecutableElement>(UMLMember.class);
+        classes    = new EnumMap<>(Classes.class);
+        umlMembers = new EnumMap<>(UMLMember.class);
     }
 
     /**
@@ -114,7 +114,7 @@ abstract class UmlProcessor extends AbstractProcessor {
             final TypeElement e = utils.getTypeElement(c.classname);
             if (e == null) {
                 if (c.isPending) {
-                    continue; // Interfaces from geoapi-pending module are optional.
+                    continue;               // Interfaces from geoapi-pending module are optional.
                 }
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Class not found: " + c.classname);
                 skip = true;
@@ -122,7 +122,7 @@ abstract class UmlProcessor extends AbstractProcessor {
             }
             classes.put(c, typeUtils.erasure(e.asType()));
             if (c == Classes.UML) {
-                final Map<String,Element> members = new HashMap<String,Element>();
+                final Map<String,Element> members = new HashMap<>();
                 for (final Element m : e.getEnclosedElements()) {
                     members.put(m.getSimpleName().toString(), m);
                 }
@@ -158,7 +158,7 @@ abstract class UmlProcessor extends AbstractProcessor {
     @Override
     public final boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
         if (!skip) {
-            skip = true; // For preventing additional execution.
+            skip = true;                // For preventing additional execution.
             final Set<? extends Element> elements = roundEnv.getRootElements();
             TypeElement[] types = new TypeElement[elements.size()];
             int count = 0;
@@ -273,7 +273,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      */
     final Collection<Element> getMembers(final TypeElement element) {
         final Elements utils = processingEnv.getElementUtils();
-        final Map<String,Element> members = new LinkedHashMap<String,Element>();
+        final Map<String,Element> members = new LinkedHashMap<>();
         for (final Element member : element.getEnclosedElements()) {
             if (!utils.isDeprecated(member)) {
                 final Set<Modifier> modifiers = member.getModifiers();

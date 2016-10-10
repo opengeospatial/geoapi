@@ -32,8 +32,6 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -49,20 +47,20 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 1: used with a two-dimensional Geographic CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>degree</td></tr>
+ *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>degree</td></tr>
  * </table>
  *
  * <table class="ogc">
  *   <caption>Example 2: used with a three-dimensional Geographic CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
- *   <tr><td>Ellipsoidal height</td><td>h</td> <td>{@link AxisDirection#UP}</td>   <td>{@link SI#METRE}</td></tr>
+ *   <tr><td>Geodetic latitude</td> <td>φ</td> <td>{@link AxisDirection#NORTH}</td><td>degree</td></tr>
+ *   <tr><td>Geodetic longitude</td><td>λ</td> <td>{@link AxisDirection#EAST}</td> <td>degree</td></tr>
+ *   <tr><td>Ellipsoidal height</td><td>h</td> <td>{@link AxisDirection#UP}</td>   <td>metre</td></tr>
  * </table>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CSAuthorityFactory#createEllipsoidalCS(String)

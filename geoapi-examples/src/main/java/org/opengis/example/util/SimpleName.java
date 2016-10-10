@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Objects;
 import java.io.Serializable;
 import javax.naming.Name;
 import javax.naming.InvalidNameException;
@@ -180,7 +181,7 @@ public class SimpleName implements GenericName, Serializable {
         @Override
         public List<LocalName> getParsedNames() {
             switch (super.depth()) {
-                case 0:  return Collections.emptyList(); // Only for the root namespace.
+                case 0:  return Collections.emptyList();                    // Only for the root namespace.
                 case 1:  return Collections.<LocalName>singletonList(this);
                 default: return super.getParsedNames();
             }
@@ -194,9 +195,9 @@ public class SimpleName implements GenericName, Serializable {
         @Override
         public LocalName head() {
             switch (super.depth()) {
-                case 0:  return null;         // Only for the root namespace; prevent never-ending loop.
-                case 1:  return this;         // The normal case, which should always be selected.
-                default: return super.head(); // Only if user modified the JNDI Name.
+                case 0:  return null;               // Only for the root namespace; prevent never-ending loop.
+                case 1:  return this;               // The normal case, which should always be selected.
+                default: return super.head();       // Only if user modified the JNDI Name.
             }
         }
 
@@ -208,9 +209,9 @@ public class SimpleName implements GenericName, Serializable {
         @Override
         public LocalName tip() {
             switch (super.depth()) {
-                case 0:  return null;         // Only for the root namespace; prevent never-ending loop.
-                case 1:  return this;         // The normal case, which should always be selected.
-                default: return super.tip();  // Only if user modified the JNDI Name.
+                case 0:  return null;               // Only for the root namespace; prevent never-ending loop.
+                case 1:  return this;               // The normal case, which should always be selected.
+                default: return super.tip();        // Only if user modified the JNDI Name.
             }
         }
     }
@@ -376,7 +377,7 @@ public class SimpleName implements GenericName, Serializable {
     @Override
     public List<LocalName> getParsedNames() {
         SimpleNameSpace parent = scope;
-        final List<LocalName> names = new ArrayList<LocalName>(name.size());
+        final List<LocalName> names = new ArrayList<>(name.size());
         final Enumeration<String> it = name.getAll();
         if (it.hasMoreElements()) try {
             final SimpleNameFactory factory = nonNull(parent).factory;

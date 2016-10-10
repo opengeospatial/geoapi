@@ -73,8 +73,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * The values for each code list.
      */
     @SuppressWarnings("rawtypes")
-    private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES =
-            new HashMap<Class<? extends CodeList>, Collection<? extends CodeList>>();
+    private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES = new HashMap<>();
 
     /**
      * The types expected in constructors.
@@ -123,7 +122,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         synchronized (VALUES) {
             final Collection<? extends CodeList> previous = VALUES.put(codeType, values);
             if (previous != null && previous != values) {
-                VALUES.put(codeType, previous); // Roll back
+                VALUES.put(codeType, previous);                                             // Roll back
                 throw new IllegalArgumentException("List already exists: " + values);
             }
         }
@@ -183,7 +182,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return A code matching the given name, or {@code null} if the name is null.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
@@ -242,7 +241,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     try {
                         Class.forName(typeName, true, codeType.getClassLoader());
                     } catch (ClassNotFoundException e) {
-                        throw new TypeNotPresentException(typeName, e); // Should never happen.
+                        throw new TypeNotPresentException(typeName, e);             // Should never happen.
                     }
                     values = VALUES.get(codeType);
                     if (values == null) {
@@ -292,7 +291,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     }
                 }
                 return constructor.newInstance(name);
-            } catch (Exception exception) { // TODO: catch ReflectiveOperationException on JDK7.
+            } catch (ReflectiveOperationException exception) {
                 throw new IllegalArgumentException("Can not create code of type " + codeType.getSimpleName(), exception);
             }
         }
@@ -308,7 +307,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *
      * @departure integration
      *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
-     *   draft of JSE 5 before the final release.
+     *   draft of Java 5 before the final release.
      */
     @Override
     public abstract E[] family();
@@ -355,7 +354,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * is the name of the public static field which declare the code.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      *
      * @return The name of this code constant.
      */
@@ -425,7 +424,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return The position of this code constants in elements declaration.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the JSE 5 <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      */
     @Override
     public final int ordinal() {

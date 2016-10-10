@@ -58,7 +58,7 @@ public final class MediumName extends CodeList<MediumName> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<MediumName> VALUES = new ArrayList<MediumName>(18);
+    private static final List<MediumName> VALUES = new ArrayList<>(18);
 
     /**
      * Read-only optical disk.

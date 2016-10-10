@@ -92,9 +92,10 @@ public class PJTest {
      * a {@code NAN} constant.
      */
     @Test
+    @SuppressWarnings("FinalizeCalledExplicitly")
     public void testNaN() {
         final PJ pj = new PJ("+proj=latlong +datum=WGS84");
-        pj.finalize(); // This cause the disposal of the internal PJ structure.
+        pj.finalize();              // This cause the disposal of the internal PJ structure.
         assertNull(pj.getType());
         assertNaN(pj.getSemiMajorAxis());
         assertNaN(pj.getSemiMinorAxis());

@@ -60,7 +60,7 @@ public final class Progress extends CodeList<Progress> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<Progress> VALUES = new ArrayList<Progress>(18);
+    private static final List<Progress> VALUES = new ArrayList<>(18);
 
     /**
      * Production of the data has been completed.

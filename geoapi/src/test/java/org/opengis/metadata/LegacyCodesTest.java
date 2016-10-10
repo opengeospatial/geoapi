@@ -55,9 +55,9 @@ public final strictfp class LegacyCodesTest {
     @Test
     public void testCharsetCodes() throws IOException {
         final Properties codes = new Properties();
-        final InputStream in = Metadata.class.getResourceAsStream("2003/charset-codes.properties");
-        codes.load(in);
-        in.close();
+        try (InputStream in = Metadata.class.getResourceAsStream("2003/charset-codes.properties")) {
+            codes.load(in);
+        }
         assertEquals("ucs2",       "UCS-2",       codes.get("ucs2"));
         assertEquals("ucs4",       "UCS-4",       codes.get("ucs4"));
         assertEquals("utf7",       "UTF-7",       codes.get("utf7"));

@@ -10,6 +10,7 @@ package org.opengis.example.metadata;
 import java.util.Set;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 import java.io.Serializable;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;

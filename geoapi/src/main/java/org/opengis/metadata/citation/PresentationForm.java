@@ -60,7 +60,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PresentationForm> VALUES = new ArrayList<PresentationForm>(21);
+    private static final List<PresentationForm> VALUES = new ArrayList<>(21);
 
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).

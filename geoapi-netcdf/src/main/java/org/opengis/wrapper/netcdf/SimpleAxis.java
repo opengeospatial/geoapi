@@ -13,8 +13,7 @@
  */
 package org.opengis.wrapper.netcdf;
 
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
@@ -91,7 +90,7 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
         switch (abbreviation) {
             case 'λ': return "geodetic longitude";
             case 'φ': return "geodetic latitude";
-            default:  return null; // Should never happen.
+            default:  return null;                  // Should never happen.
         }
     }
 
@@ -103,7 +102,7 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
         switch (abbreviation) {
             case 'λ': return AxisDirection.EAST;
             case 'φ': return AxisDirection.NORTH;
-            default:  return null; // Should never happen.
+            default:  return null;                  // Should never happen.
         }
     }
 
@@ -154,6 +153,6 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
      */
     @Override
     public Unit<?> getUnit() {
-        return NonSI.DEGREE_ANGLE;
+        return Units.DEGREE;
     }
 }

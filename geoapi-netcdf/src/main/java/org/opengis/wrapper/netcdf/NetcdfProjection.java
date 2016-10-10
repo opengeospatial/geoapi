@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Objects;
 import java.awt.Shape;
 import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
@@ -404,7 +405,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
                 dstPts[dstOff]   = pt.getLongitude();
                 dstPts[dstOff+1] = pt.getLatitude();
             } else {
-                src.set(srcPts[srcOff+1], srcPts[srcOff]); // (lat,lon)
+                src.set(srcPts[srcOff+1], srcPts[srcOff]);                          // (lat,lon)
                 final ProjectionPoint pt = projection.latLonToProj(src, dst);
                 dstPts[dstOff  ] = pt.getX();
                 dstPts[dstOff+1] = pt.getY();

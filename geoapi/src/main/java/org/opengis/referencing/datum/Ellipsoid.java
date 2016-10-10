@@ -32,7 +32,7 @@
 package org.opengis.referencing.datum;
 
 import java.util.Map;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  *   to enable the user to establish which of the two parameters was used to define the instance.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.0.1
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createEllipsoid(String)

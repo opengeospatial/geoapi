@@ -171,7 +171,7 @@ public class OperationParametersReport extends Report {
          */
         public Row(final IdentifiedObject object, final Set<String> codeSpaces) {
             name  = object.getName();
-            names = new LinkedHashMap<String,String[]>();
+            names = new LinkedHashMap<>();
             for (final String cs : codeSpaces) {
                 final Map<String,Boolean> toCopy = IdentifiedObjects.getNameAndAliases(object, cs);
                 final int size = toCopy.size();
@@ -186,7 +186,7 @@ public class OperationParametersReport extends Report {
                         array[i++] = name;
                     }
                     if (names.put(cs, array) != null) {
-                        throw new AssertionError(cs); // Should never happen.
+                        throw new AssertionError(cs);                       // Should never happen.
                     }
                 }
             }
@@ -202,9 +202,9 @@ public class OperationParametersReport extends Report {
         public Row(final Row toCopy) {
             category = toCopy.category;
             name     = toCopy.name;
-            names    = new LinkedHashMap<String,String[]>(toCopy.names);
+            names    = new LinkedHashMap<>(toCopy.names);
             if (toCopy.parameters != null) {
-                parameters = new ArrayList<Row>(toCopy.parameters);
+                parameters = new ArrayList<>(toCopy.parameters);
             }
         }
 
@@ -246,7 +246,7 @@ public class OperationParametersReport extends Report {
             try {
                 write(buffer, names.keySet().toArray(new String[names.size()]), false, false, false);
             } catch (IOException e) {
-                throw new AssertionError(e); // Should never happen.
+                throw new AssertionError(e);                                // Should never happen.
             }
             return buffer.toString();
         }
@@ -337,7 +337,7 @@ public class OperationParametersReport extends Report {
      */
     public OperationParametersReport(final Properties properties) {
         super(properties);
-        rows = new ArrayList<Row>();
+        rows = new ArrayList<>();
         defaultProperties.setProperty("TITLE", "Supported ${OBJECTS.KIND}");
     }
 
@@ -356,7 +356,7 @@ public class OperationParametersReport extends Report {
      * @param  parameters The operation parameters, or {@code null} if none.
      */
     public void add(final IdentifiedObject operation, final ParameterDescriptorGroup parameters) {
-        final Map<String, Boolean> codeSpaces = new LinkedHashMap<String, Boolean>(8);
+        final Map<String, Boolean> codeSpaces = new LinkedHashMap<>(8);
         IdentifiedObjects.getCodeSpaces(operation, codeSpaces);
         final Row group = createRow(operation, parameters, codeSpaces.keySet());
         if (group != null) {
@@ -411,7 +411,7 @@ public class OperationParametersReport extends Report {
                         (ParameterDescriptorGroup) desc : null, codeSpaces);
                 if (child != null) {
                     if (row.parameters == null) {
-                        row.parameters = new ArrayList<Row>(descriptors.size());
+                        row.parameters = new ArrayList<>(descriptors.size());
                     }
                     row.parameters.add(child);
                 }
@@ -429,7 +429,7 @@ public class OperationParametersReport extends Report {
      *         {@code "OGC"}, {@code "ESRI"}, {@code "GeoTIFF"} or {@code "NetCDF"}.
      */
     private String[] getColumnHeaders() {
-        final Set<String> codeSpaces = new LinkedHashSet<String>(8);
+        final Set<String> codeSpaces = new LinkedHashSet<>(8);
         for (final Row row : rows) {
             codeSpaces.addAll(row.names.keySet());
         }

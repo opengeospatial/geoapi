@@ -31,8 +31,8 @@
  */
 package org.opengis.style;
 
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
-import javax.measure.unit.Unit;
 
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;

@@ -18,8 +18,7 @@ import java.util.Map;
 import java.util.Collections;
 import java.util.MissingResourceException;
 import java.awt.geom.AffineTransform;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 
 import org.opengis.util.*;
@@ -275,7 +274,7 @@ public class PJFactory implements Factory {
                 double lon = pm.getGreenwichLongitude();
                 final Unit<Angle> unit = pm.getAngularUnit();
                 if (unit != null) {
-                    lon = unit.getConverterTo(NonSI.DEGREE_ANGLE).convert(lon);
+                    lon = unit.getConverterTo(Units.DEGREE).convert(lon);
                 }
                 def.append(" +pm=").append(lon);
             }

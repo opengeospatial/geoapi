@@ -52,7 +52,7 @@ public strictfp class ValidatorContainerTest {
      */
     @Test
     public void testAll() {
-        final Set<Validator> previous = new HashSet<Validator>();
+        final Set<Validator> previous = new HashSet<>();
         final ValidatorContainer container = new ValidatorContainer();
         for (final Validator validator : container.all) {
             assertTrue("Found a duplicated value.", previous.add(validator));

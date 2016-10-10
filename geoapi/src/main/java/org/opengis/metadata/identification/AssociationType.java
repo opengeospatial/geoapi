@@ -60,7 +60,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<AssociationType> VALUES = new ArrayList<AssociationType>(10);
+    private static final List<AssociationType> VALUES = new ArrayList<>(10);
 
     /**
      * Reference from one dataset to another.

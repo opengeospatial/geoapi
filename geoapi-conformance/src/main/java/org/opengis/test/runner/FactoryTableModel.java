@@ -57,8 +57,9 @@ final class FactoryTableModel extends AbstractTableModel {
     /**
      * The titles of all columns.
      */
-    private static final String[] COLUMN_TITLES = new String[4];
-    {
+    private static final String[] COLUMN_TITLES;
+    static {
+        COLUMN_TITLES = new String[4];
         COLUMN_TITLES[CATEGORY_COLUMN]        = "Category";
         COLUMN_TITLES[IMPLEMENTATION_COLUMN]  = "Implementation";
         COLUMN_TITLES[VENDOR_COLUMN]          = "Vendor";

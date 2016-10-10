@@ -248,7 +248,7 @@ public final strictfp class DescriptionsTest {
          * Get the set of keys. We will remove entries from this set as we found them.
          * When this test is finished, the set of keys should be empty.
          */
-        final Set<String> keys = new HashSet<String>();
+        final Set<String> keys = new HashSet<>();
         for (final Enumeration<String> e=resources.getKeys(); e.hasMoreElements();) {
             final String key = e.nextElement();
             assertTrue("Duplicated key" , keys.add(key));
@@ -282,7 +282,7 @@ public final strictfp class DescriptionsTest {
                 assertTrue(classIdentifier, keys.remove(classIdentifier));
                 for (final Field code : type.getDeclaredFields()) {
                     if (code.isAnnotationPresent(Deprecated.class)) {
-                        continue; // Skip deprecated fields or methods.
+                        continue;                                       // Skip deprecated fields or methods.
                     }
                     uml = code.getAnnotation(UML.class);
                     if (uml != null) {

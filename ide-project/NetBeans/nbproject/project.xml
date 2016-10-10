@@ -24,10 +24,13 @@
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>API</word>
+            <word>classpath</word>
+            <word>codespace</word>
             <word>EPSG</word>
             <word>GeoAPI</word>
             <word>geospatial</word>
             <word>GIS</word>
+            <word>javadoc</word>
             <word>JDBC</word>
             <word>metadata</word>
             <word>metres</word>

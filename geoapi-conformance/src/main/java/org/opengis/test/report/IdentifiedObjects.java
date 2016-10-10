@@ -99,7 +99,7 @@ final class IdentifiedObjects {
      *         or 0 if the two strings are equal.
      */
     static int compare(String s1, String s2) {
-        if (s1 == s2)   return  0; // Identity comparison ok here, since this is only an optimization for a common case.
+        if (s1 == s2)   return  0;  // Identity comparison ok here, since this is only an optimization for a common case.
         if (s1 == null) return +1;
         if (s2 == null) return -1;
         /*
@@ -180,7 +180,7 @@ final class IdentifiedObjects {
      * @return All name and aliases for the given code space.
      */
     public static Map<String,Boolean> getNameAndAliases(final IdentifiedObject info, final String codeSpace) {
-        final Map<String,Boolean> names = new LinkedHashMap<String,Boolean>(4);
+        final Map<String,Boolean> names = new LinkedHashMap<>(4);
         getNameComponents(info, codeSpace, false, names);
         return names;
     }
@@ -223,7 +223,7 @@ final class IdentifiedObjects {
             if (codeSpace == null || compare(codeSpace, scope.toString()) == 0) {
                 final String key = wantCodeSpaces ? scope.toString() : alias.toString();
                 if (Boolean.TRUE.equals(names.put(key, Boolean.FALSE))) {
-                    names.put(key, Boolean.TRUE); // Value TRUE has precedence.
+                    names.put(key, Boolean.TRUE);       // Value TRUE has precedence.
                 }
             }
         }

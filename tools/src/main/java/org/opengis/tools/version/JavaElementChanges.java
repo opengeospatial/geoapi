@@ -33,6 +33,7 @@ package org.opengis.tools.version;
 
 import java.io.Writer;
 import java.io.IOException;
+import java.util.Objects;
 
 
 /**

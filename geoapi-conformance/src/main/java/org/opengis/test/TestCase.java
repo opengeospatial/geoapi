@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.ServiceConfigurationError;
 import java.util.logging.Level;
@@ -76,15 +77,13 @@ public strictfp abstract class TestCase {
      *
      * @see TestSuite#setFactories(Class, Factory[])
      */
-    static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES =
-            new HashMap<Class<? extends Factory>, Iterable<? extends Factory>>();
+    static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES = new HashMap<>();
 
     /**
      * The service loader to use for loading {@link FactoryFilter}.
      *
      * <p>Accesses to this field must be synchronized on itself. If both {@code FACTORIES} and
-     * {@code FACTORY_FILTER} are synchronized, then {@code FACTORIES} must be synchronized
-     * first.</p>
+     * {@code FACTORY_FILTER} are synchronized, then {@code FACTORIES} must be synchronized first.</p>
      */
     private static ServiceLoader<FactoryFilter> factoryFilter;
 
@@ -92,8 +91,8 @@ public strictfp abstract class TestCase {
      * The service loader to use for loading {@link ImplementationDetails}.
      *
      * <p>Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
-     * and {@code IMPLEMENTATION_DETAILS} are synchronized, then {@code FACTORIES} must
-     * be synchronized first.</p>
+     * and {@code IMPLEMENTATION_DETAILS} are synchronized, then {@code FACTORIES} must be
+     * synchronized first.</p>
      */
     private static ServiceLoader<ImplementationDetails> implementationDetails;
 
@@ -257,9 +256,22 @@ public strictfp abstract class TestCase {
     private final Factory[] factories;
 
     /**
-     * The set of {@link Validator} instances to use for verifying objects conformance
-     * (never {@code null}). If no validators were explicitely specified, then the
-     * {@linkplain Validators#DEFAULT default validators} are used.
+     * Provider of units of measurement (degree, metre, second, <i>etc</i>), never {@code null}.
+     * The {@link Units#degree()}, {@link Units#metre() metre()} and other methods shall return
+     * {@link javax.measure.Unit} instances compatible with the units created by the {@link Factory}
+     * instances to be tested. Those {@code Unit<?>} instances depend on the Unit of Measurement (JSR-373)
+     * implementation used by the factories.
+     * If no units were {@linkplain org.opengis.test.Configuration.Key#units explicitely specified},
+     * then the {@linkplain Units#getDefault() default units} are used.
+     *
+     * @since 3.1
+     */
+    protected final Units units;
+
+    /**
+     * The set of {@link Validator} instances to use for verifying objects conformance (never {@code null}).
+     * If no validators were {@linkplain org.opengis.test.Configuration.Key#validators explicitely specified},
+     * then the {@linkplain Validators#DEFAULT default validators} are used.
      *
      * @since 3.1
      */
@@ -304,20 +316,33 @@ public strictfp abstract class TestCase {
     protected TestCase(final Factory... factories) {
         Objects.requireNonNull(factories, "Given 'factories' array can not be null.");
         this.factories = factories;
+        Units units = null;
+        ValidatorContainer validators = null;
         final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
         synchronized (services) {
             for (final ImplementationDetails impl : services) {
                 final Configuration config = impl.configuration(factories);
                 if (config != null) {
-                    final ValidatorContainer candidate = config.get(Configuration.Key.validators);
-                    if (candidate != null) {
-                        validators = candidate;
-                        return;
+                    if (units == null) {
+                        units = config.get(Configuration.Key.units);
+                    }
+                    if (validators == null) {
+                        validators = config.get(Configuration.Key.validators);
+                    }
+                    if (units != null && validators != null) {
+                        break;          // We got all information will we looking for, no need to continue.
                     }
                 }
             }
         }
-        Objects.requireNonNull(validators = Validators.DEFAULT, "Validators.DEFAULT shall not be null.");
+        if (units == null) {
+            units = Units.getDefault();
+        }
+        if (validators == null) {
+            Objects.requireNonNull(validators = Validators.DEFAULT, "Validators.DEFAULT shall not be null.");
+        }
+        this.units = units;
+        this.validators = validators;
     }
 
     /**
@@ -368,6 +393,7 @@ public strictfp abstract class TestCase {
      *
      * @since 3.1
      */
+    @SafeVarargs
     protected static List<Factory[]> factories(final Class<? extends Factory>... types) {
         return factories(null, types);
     }
@@ -388,8 +414,9 @@ public strictfp abstract class TestCase {
      *
      * @since 3.1
      */
+    @SafeVarargs
     protected static List<Factory[]> factories(final FactoryFilter filter, final Class<? extends Factory>... types) {
-        final List<Factory[]> factories = new ArrayList<Factory[]>(4);
+        final List<Factory[]> factories = new ArrayList<>(4);
         try {
             synchronized (FACTORIES) {
                 if (!factories(filter, types, factories)) {
@@ -407,7 +434,7 @@ public strictfp abstract class TestCase {
             // JUnit 4.10 eats the exception silently, so we need to log
             // it in order to allow users to figure out what is going.
             Logger.getLogger("org.opengis.test").log(Level.WARNING, e.toString(), e);
-            throw e; // To be caught by JUnit.
+            throw e;                                          // To be caught by JUnit.
         }
         return factories;
     }
@@ -498,6 +525,7 @@ public strictfp abstract class TestCase {
      *
      * @since 3.1
      */
+    @SafeVarargs
     protected final boolean[] getEnabledFlags(final Configuration.Key<Boolean>... properties) {
         final boolean[] isEnabled = new boolean[properties.length];
         Arrays.fill(isEnabled, true);
@@ -511,13 +539,13 @@ public strictfp abstract class TestCase {
                         if (isEnabled[i]) {
                             final Boolean value = config.get(properties[i]);
                             if (value != null && !(isEnabled[i] = value)) {
-                                continue; // Leave 'atLeastOneTestIsEnabled' unchanged.
+                                continue;                       // Leave 'atLeastOneTestIsEnabled' unchanged.
                             }
                             atLeastOneTestIsEnabled = true;
                         }
                     }
                     if (!atLeastOneTestIsEnabled) {
-                        break; // No need to continue scanning the classpath.
+                        break;                                  // No need to continue scanning the classpath.
                     }
                 }
             }
@@ -539,8 +567,8 @@ public strictfp abstract class TestCase {
      *   <li>{@link org.opengis.test.referencing.gigs.AuthorityFactoryTestCase#configuration()}</li>
      * </ul>
      *
-     * @return The configuration of the test being run, or an empty map if none. This method
-     *         returns a modifiable map in order to allow subclasses to modify it.
+     * @return the configuration of the test being run, or an empty map if none.
+     *         This method returns a modifiable map in order to allow subclasses to modify it.
      *
      * @see ImplementationDetails#configuration(Factory[])
      *
@@ -548,6 +576,7 @@ public strictfp abstract class TestCase {
      */
     public Configuration configuration() {
         final Configuration configuration = new Configuration();
+        configuration.put(Configuration.Key.units,      units);
         configuration.put(Configuration.Key.validators, validators);
         return configuration;
     }

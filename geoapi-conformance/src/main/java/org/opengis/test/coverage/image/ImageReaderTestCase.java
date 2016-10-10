@@ -276,7 +276,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Verify the validity of metadata attributes as documented in the
+     * Verifies the validity of metadata attributes as documented in the
      * {@link #testStreamMetadata()} and {@link #testImageMetadata()} methods.
      */
     private void validate(final IIOMetadata metadata) throws IOException {
@@ -284,10 +284,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
         if (md != null) {
             for (final Identification identification : md.getIdentificationInfo()) {
                 validators.validate(identification.getCitation());
-                if (identification instanceof DataIdentification) {
-                    for (final Extent extent : ((DataIdentification) identification).getExtents()) {
-                        validators.validate(extent);
-                    }
+                for (final Extent extent : identification.getExtents()) {
+                    validators.validate(extent);
                 }
             }
         }
@@ -401,7 +399,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     private void readRandomSubsets(final RenderedImage completeImage, final API api,
             final int imageIndex, final int numIterations) throws IOException
     {
-        final ImageReader reader = this.reader; // Protect from changes.
+        final ImageReader reader = this.reader;                                         // Protect from changes.
         assertInputSet(reader);
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
             if (reader.getMinIndex() > imageIndex) {

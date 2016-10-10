@@ -59,7 +59,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PolarizationOrientation> VALUES = new ArrayList<PolarizationOrientation>(6);
+    private static final List<PolarizationOrientation> VALUES = new ArrayList<>(6);
 
     /**
      * Polarization of the sensor oriented in the horizontal plane in relation to swath direction.

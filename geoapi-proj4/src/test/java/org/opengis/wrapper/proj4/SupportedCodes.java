@@ -113,6 +113,7 @@ public class SupportedCodes {
      * @param  epsgConnection    The connection to the EPSG database.
      * @throws SQLException      If an error occurred while preparing the statements.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private SupportedCodes(final File projDataDirectory, final Connection epsgConnection)
             throws SQLException
     {
@@ -124,8 +125,8 @@ public class SupportedCodes {
                 "SELECT coord_sys_name FROM epsg_coordinatesystem WHERE coord_sys_code=?");
         axisOrientationStmt = epsgConnection.prepareStatement(
                 "SELECT coord_axis_orientation FROM epsg_coordinateaxis WHERE coord_sys_code=? ORDER BY coord_axis_order");
-        cachedOrientations = new HashMap<Integer,String>(100);
-        orientationsForCode = new LinkedHashMap<String,String>(5000);
+        cachedOrientations = new HashMap<>(100);
+        orientationsForCode = new LinkedHashMap<>(5000);
         final Console console = System.console();
         out = (console != null) ? console.writer() : new PrintWriter(System.out, true);
     }
@@ -138,31 +139,32 @@ public class SupportedCodes {
      * @throws IOException  If an error occurred while reading the file.
      * @throws SQLException If an error occurred while querying the database.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private void load(final String defFile) throws IOException, SQLException {
-        final BufferedReader in = new BufferedReader(new FileReader(new File(projDataDirectory, defFile)));
-        String line;
-        while ((line = in.readLine()) != null) {
-            if (!(line = line.trim()).isEmpty() && !line.startsWith("#")) {
-                int start = line.indexOf('<');
-                if (start >= 0) {
-                    final int end = line.indexOf('>', ++start);
-                    if (end >= 0) {
-                        final String code = line.substring(start, end).trim();
-                        String orientation;
-                        try {
-                            orientation = getAxisOrientationsForCRS(Integer.parseInt(code));
-                        } catch (NumberFormatException e) {
-                            out.println("WARNING: can not parse \"" + code + "\" as an integer");
-                            orientation = DEFAULT_ORIENTATION;
-                        }
-                        if (orientationsForCode.put(code, orientation) != null) {
-                            System.out.println("WARNING: duplicated code: " + code);
+        try (BufferedReader in = new BufferedReader(new FileReader(new File(projDataDirectory, defFile)))) {
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (!(line = line.trim()).isEmpty() && !line.startsWith("#")) {
+                    int start = line.indexOf('<');
+                    if (start >= 0) {
+                        final int end = line.indexOf('>', ++start);
+                        if (end >= 0) {
+                            final String code = line.substring(start, end).trim();
+                            String orientation;
+                            try {
+                                orientation = getAxisOrientationsForCRS(Integer.parseInt(code));
+                            } catch (NumberFormatException e) {
+                                out.println("WARNING: can not parse \"" + code + "\" as an integer");
+                                orientation = DEFAULT_ORIENTATION;
+                            }
+                            if (orientationsForCode.put(code, orientation) != null) {
+                                System.out.println("WARNING: duplicated code: " + code);
+                            }
                         }
                     }
                 }
             }
         }
-        in.close();
     }
 
     /**
@@ -177,15 +179,15 @@ public class SupportedCodes {
     private String getAxisOrientationsForCRS(final int code) throws SQLException {
         int csCode=0, baseCode=0, numFound=0;
         coordSysStmt.setInt(1, code);
-        final ResultSet rs = coordSysStmt.executeQuery();
-        while (rs.next()) {
-            csCode = rs.getInt(1);
-            if ("projected".equals(rs.getString(2))) {
-                baseCode = rs.getInt(3);
+        try (ResultSet rs = coordSysStmt.executeQuery()) {
+            while (rs.next()) {
+                csCode = rs.getInt(1);
+                if ("projected".equals(rs.getString(2))) {
+                    baseCode = rs.getInt(3);
+                }
+                numFound++;
             }
-            numFound++;
         }
-        rs.close();
         if (numFound != 1) {
             out.println("WARNING: expected one record for CRS code " + code + " but found " + numFound);
             return DEFAULT_ORIENTATION;
@@ -218,17 +220,19 @@ public class SupportedCodes {
         while (rs.next()) {
             final char c;
             final String orientation = rs.getString(1);
-            // TODO: Replace code below by "string in switch" with JDK7.
-                 if (orientation.equals("east"))  c='e';
-            else if (orientation.equals("west"))  c='w';
-            else if (orientation.equals("north")) c='n';
-            else if (orientation.equals("south")) c='s';
-            else if (orientation.equals("up"))    c='u';
-            else if (orientation.equals("down"))  c='d';
-            else {
-                warning.append(warning.length() == 0 ?
-                        "WARNING: unsupported axis orientation: (" : ", ").append(orientation);
-                c = ' '; // Used after the loop for checking if an error occurred.
+            switch (orientation) {
+                case "east":  c='e'; break;
+                case "west":  c='w'; break;
+                case "north": c='n'; break;
+                case "south": c='s'; break;
+                case "up":    c='u'; break;
+                case "down":  c='d'; break;
+                default: {
+                    warning.append(warning.length() == 0 ?
+                                   "WARNING: unsupported axis orientation: (" : ", ").append(orientation);
+                    c = ' ';       // Used after the loop for checking if an error occurred.
+                    break;
+                }
             }
             buffer.append(c);
         }
@@ -280,7 +284,7 @@ public class SupportedCodes {
         //
         // Prepares one line for each orientation.
         //
-        final Map<String,StringBuilder> lists = new LinkedHashMap<String,StringBuilder>();
+        final Map<String,StringBuilder> lists = new LinkedHashMap<>();
         for (final Map.Entry<String,String> entry : orientationsForCode.entrySet()) {
             final String orientation = entry.getValue();
             StringBuilder list = lists.get(orientation);
@@ -293,16 +297,16 @@ public class SupportedCodes {
         //
         // Copies the above line to the file.
         //
-        final BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        writer.write("[EPSG]");
-        writer.newLine();
-        for (final Map.Entry<String,StringBuilder> entry : lists.entrySet()) {
-            writer.write(entry.getKey());
-            writer.write(':');
-            writer.write(entry.getValue().toString().trim());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write("[EPSG]");
             writer.newLine();
+            for (final Map.Entry<String,StringBuilder> entry : lists.entrySet()) {
+                writer.write(entry.getKey());
+                writer.write(':');
+                writer.write(entry.getValue().toString().trim());
+                writer.newLine();
+            }
         }
-        writer.close();
     }
 
     /**
@@ -337,6 +341,7 @@ public class SupportedCodes {
      * @throws IOException  If an error occurred while reading the file.
      * @throws SQLException If an error occurred while querying the database.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public static void main(final String[] args) throws IOException, SQLException {
         if (args.length != 2) {
             System.out.println("Expected arguments:");

@@ -16,9 +16,9 @@ GeoAPI 3.0
 
     * {{{../maven.html}Maven repositories}}
 
-    * {{{http://sourceforge.net/projects/geoapi/files/GeoAPI-3_0_0.zip/download}Download from SourceForge}}
+    * {{{http://sourceforge.net/projects/geoapi/files/}Download from SourceForge}}
 
-  This release requires a Java environment Java\ 5 or higher.
+  This release requires a Java environment Java\ 7 or higher.
 
 
 * Changes since GeoAPI 2.x

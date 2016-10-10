@@ -206,7 +206,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the standard nautical mile length ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE}
      * metres by minute of angle) as below:</p>
      *
-     * <blockquote><pre>derivativeDeltas = new double[] {100.0 / (60 * 1852)}; // Approximatively 100 metres.</pre></blockquote>
+     * <blockquote><pre>derivativeDeltas = new double[] {100.0 / (60 * 1852)};      // Approximatively 100 metres.</pre></blockquote>
      *
      * @see #isDerivativeSupported
      * @see #verifyDerivative(double[])
@@ -460,7 +460,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
          * the MathTransform. We check only the parts that are significant to this test method.
          * Full MathTransform validation is not the job of this method.
          */
-        final MathTransform transform = this.transform; // Protect from changes.
+        final MathTransform transform = this.transform;             // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
@@ -930,7 +930,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected float[] verifyInDomain(final double[] minOrdinates, final double[] maxOrdinates,
             final int[] numOrdinates, final Random randomGenerator) throws TransformException
     {
-        final MathTransform transform = this.transform; // Protect from changes.
+        final MathTransform transform = this.transform;             // Protect from changes.
         assertNotNull("TransformTestCase.transform shall be assigned a value.", transform);
         final int dimension = transform.getSourceDimensions();
         assertEquals("The minOrdinates array doesn't have the expected length.", dimension, minOrdinates.length);

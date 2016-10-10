@@ -9,6 +9,7 @@ package org.opengis.example.referencing;
 
 import java.util.Set;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Collections;
 
 import org.opengis.metadata.citation.Citation;

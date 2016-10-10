@@ -150,7 +150,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *        writer = new MyImageWriter();
      *    }
      *    if (optionallySetOutput) {
-     *        writer.setOutput(<var>output</var>); // Optional operation.
+     *        writer.setOutput(<var>output</var>);                  // Optional operation.
      *    }
      *}</pre></blockquote>
      *
@@ -264,7 +264,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     private ByteArrayOutputStream open(final int capacity) throws IOException {
         assertNotNull("The 'writer' field shall be set at construction time or in a method annotated by @Before.", writer);
         if (writer.getOutput() != null) {
-            return null; // The output has been set by the user himself.
+            return null;                                // The output has been set by the user himself.
         }
         final ImageWriterSpi spi = writer.getOriginatingProvider();
         if (isSupportedOutput(spi, OutputStream.class)) {
@@ -353,7 +353,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      */
     private void writeRandomSubsets(final RenderedImage image, final int numIterations) throws IOException {
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
-            prepareImageWriter(true); // Give a chance to subclasses to set their own output.
+            prepareImageWriter(true);       // Give a chance to subclasses to set their own output.
             final ImageWriteParam param = writer.getDefaultWriteParam();
             final PixelIterator expected = getIteratorOnRandomSubset(image, param);
             final ByteArrayOutputStream buffer = open(1024);

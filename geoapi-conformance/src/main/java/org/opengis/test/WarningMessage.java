@@ -53,7 +53,7 @@ final class WarningMessage {
      * Every warning messages sent in this JVM.
      * Elements in this map will be added but never removed.
      */
-    private static final Set<WarningMessage> SENT = new HashSet<WarningMessage>();
+    private static final Set<WarningMessage> SENT = new HashSet<>();
 
     /**
      * The logger where to send the message. While this logger is declared as a non-static field,

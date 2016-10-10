@@ -98,7 +98,7 @@ final class Runner extends RunListener implements TestListener {
      * Creates a new, initially empty, runner.
      */
     Runner() {
-        entries   = new LinkedHashSet<ResultEntry>();
+        entries   = new LinkedHashSet<>();
         listeners = new ChangeListener[0];
         event     = new ChangeEvent(this);
     }

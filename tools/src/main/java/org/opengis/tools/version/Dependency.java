@@ -46,7 +46,7 @@ enum Dependency {
     UNIT_OF_MEASURES {
         @Override
         public String pathInMavenRepository(final Version geoapiVersion) {
-            return "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar";
+            return "javax/measure/unit-api/1.0/unit-api-1.0.jar";
         }
     },
 
@@ -56,15 +56,14 @@ enum Dependency {
     JUNIT {
         @Override
         public String pathInMavenRepository(final Version geoapiVersion) {
-            return "junit/junit/4.11/junit-4.11.jar";
+            return "junit/junit/4.12/junit-4.12.jar";
         }
     };
 
     /**
      * Returns the path in the Maven repository for this dependency for the given GeoAPI version.
      * Those dependencies are hard-coded for now and doesn't need to be accurate for the needs of
-     * this package. We report only major changes, like switching from JSR-275 to the "units of
-     * measurement" interfaces.
+     * this package. We report only major changes, like switching from JSR-275 to the JSR-363 API.
      */
     public abstract String pathInMavenRepository(Version geoapiVersion);
 }

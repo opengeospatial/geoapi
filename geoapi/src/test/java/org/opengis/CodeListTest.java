@@ -129,6 +129,7 @@ public final strictfp class CodeListTest {
      * @throws InvocationTargetException if an error occurred while invoking {@code values()} or {@code valueOf(String)}.
      */
     @Test
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void testAll() throws NoSuchFieldException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException
     {
@@ -194,7 +195,7 @@ public final strictfp class CodeListTest {
                     candidate.setAccessible(true);
                     final Object array = candidate.get(asList);
                     capacity = ((Object[]) array).length;
-                } catch (Exception e) {
+                } catch (ReflectiveOperationException e) {
                     // Not a fatal error since it is implementation-specific.
                     System.err.println("Warning: " + e);
                     continue;

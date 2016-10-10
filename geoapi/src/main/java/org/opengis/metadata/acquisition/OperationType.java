@@ -61,7 +61,7 @@ public final class OperationType extends CodeList<OperationType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<OperationType> VALUES = new ArrayList<OperationType>(3);
+    private static final List<OperationType> VALUES = new ArrayList<>(3);
 
     /**
      * Originates from live-fly or other non-simulated operational source.

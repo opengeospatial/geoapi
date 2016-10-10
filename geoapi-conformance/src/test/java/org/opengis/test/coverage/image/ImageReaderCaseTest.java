@@ -69,7 +69,7 @@ public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
                 reader = it.next();
                 final String classname = reader.getClass().getName();
                 if (classname.startsWith("com.sun.imageio.")) {
-                    break; // Give precedence to standard reader.
+                    break;                                          // Give precedence to standard reader.
                 }
             }
             assertNotNull("No PNG image reader found.", reader);

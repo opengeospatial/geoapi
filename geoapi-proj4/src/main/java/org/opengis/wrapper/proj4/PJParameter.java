@@ -16,8 +16,8 @@ package org.opengis.wrapper.proj4;
 import java.net.URI;
 import java.util.Set;
 import java.util.Collection;
-import javax.measure.unit.Unit;
-import javax.measure.converter.ConversionException;
+import javax.measure.Unit;
+import javax.measure.IncommensurableException;
 
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -27,9 +27,6 @@ import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.InvalidParameterTypeException;
 import org.opengis.parameter.InvalidParameterValueException;
-
-import static javax.measure.unit.SI.METRE;
-import static javax.measure.unit.NonSI.DEGREE_ANGLE;
 
 
 /**
@@ -186,11 +183,12 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
      * Returns the standard unit used by Proj.4 for any value in the given unit.
      */
     private static Unit<?> getStandardUnit(final Unit<?> unit) {
-        if (unit.isCompatible(METRE))        return METRE;
-        if (unit.isCompatible(DEGREE_ANGLE)) return DEGREE_ANGLE;
-        if (unit.isCompatible(Unit.ONE))     return Unit.ONE;
+        if (unit.isCompatible(Units.METRE))  return Units.METRE;
+        if (unit.isCompatible(Units.DEGREE)) return Units.DEGREE;
+        if (unit.isCompatible(Units.ONE))    return Units.ONE;
         return null;
     }
+
     /**
      * Returns the numeric value of the operation parameter in the specified unit of measure.
      * This convenience method applies unit conversion from metres or decimal degrees as needed.
@@ -204,8 +202,8 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
         final Unit<?> standardUnit = getStandardUnit(unit);
         if (standardUnit != null) try {
             c = standardUnit.getConverterToAny(unit).convert(c);
-        } catch (ConversionException e) {
-            throw new IllegalArgumentException(e); // Should never happen actually.
+        } catch (IncommensurableException e) {
+            throw new IllegalArgumentException(e);              // Should never happen actually.
         }
         return c;
     }
@@ -286,8 +284,8 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
         final Unit<?> standardUnit = getStandardUnit(unit);
         if (standardUnit != null) try {
             value = unit.getConverterToAny(standardUnit).convert(value);
-        } catch (ConversionException e) {
-            throw new IllegalArgumentException(e); // Should never happen actually.
+        } catch (IncommensurableException e) {
+            throw new IllegalArgumentException(e);              // Should never happen actually.
         }
         this.value = value;
     }
@@ -355,6 +353,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
      * except that the {@linkplain #value} is initialized to the same value than the cloned parameter.
      */
     @Override
+    @SuppressWarnings("CloneDoesntCallSuperClone")          // Okay since this class is final.
     public PJParameter clone() {
         return new PJParameter(this);
     }

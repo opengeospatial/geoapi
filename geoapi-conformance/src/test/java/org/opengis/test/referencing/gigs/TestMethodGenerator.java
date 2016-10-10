@@ -34,12 +34,11 @@ package org.opengis.test.referencing.gigs;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.PrintStream;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
+import org.opengis.test.Units;
 
 import static org.junit.Assert.*;
 
@@ -60,6 +59,11 @@ public strictfp abstract class TestMethodGenerator {
     private static final int CALL_IN_LOOP_THRESHOLD = 4;
 
     /**
+     * Provider of unit implementations.
+     */
+    static final Units units = Units.getDefault();;
+
+    /**
      * Where to write the generated code.
      */
     final PrintStream out;
@@ -78,7 +82,7 @@ public strictfp abstract class TestMethodGenerator {
      * @param  name The unit name.
      * @return The unit for the given name, or {@code null} if unknown.
      */
-    protected static Unit<?> parseUnit(final String name) {
+    protected final Unit<?> parseUnit(final String name) {
         Unit<?> unit = parseLinearUnit(name);
         if (unit == null) {
             unit = parseAngularUnit(name);
@@ -96,11 +100,11 @@ public strictfp abstract class TestMethodGenerator {
      * @return The linear unit for the given name, or {@code null} if unknown.
      */
     protected static Unit<Length> parseLinearUnit(final String name) {
-        if (name.equalsIgnoreCase("metre"))          return SI.METRE;
-        if (name.equalsIgnoreCase("kilometre"))      return SI.KILOMETRE;
-        if (name.equalsIgnoreCase("US survey foot")) return NonSI.FOOT_SURVEY_US;
-        if (name.equalsIgnoreCase("ft(US)"))         return NonSI.FOOT_SURVEY_US;
-        if (name.equalsIgnoreCase("foot"))           return NonSI.FOOT;
+        if (name.equalsIgnoreCase("metre"))          return units.metre();
+        if (name.equalsIgnoreCase("kilometre"))      return units.kilometre();
+        if (name.equalsIgnoreCase("US survey foot")) return units.footSurveyUS();
+        if (name.equalsIgnoreCase("ft(US)"))         return units.footSurveyUS();
+        if (name.equalsIgnoreCase("foot"))           return units.foot();
         return null;
     }
 
@@ -111,10 +115,10 @@ public strictfp abstract class TestMethodGenerator {
      * @return The angular unit for the given name, or {@code null} if unknown.
      */
     protected static Unit<Angle> parseAngularUnit(final String name) {
-        if (name.equalsIgnoreCase("degree"))      return NonSI.DEGREE_ANGLE;
-        if (name.equalsIgnoreCase("grad"))        return NonSI.GRADE;
-        if (name.equalsIgnoreCase("arc-second"))  return NonSI.SECOND_ANGLE;
-        if (name.equalsIgnoreCase("microradian")) return NonSI.CENTIRADIAN;
+        if (name.equalsIgnoreCase("degree"))      return units.degree();
+        if (name.equalsIgnoreCase("grad"))        return units.grad();
+        if (name.equalsIgnoreCase("arc-second"))  return units.arcSecond();
+        if (name.equalsIgnoreCase("microradian")) return units.microradian();
         return null;
     }
 
@@ -125,8 +129,8 @@ public strictfp abstract class TestMethodGenerator {
      * @return The scale unit for the given name, or {@code null} if unknown.
      */
     protected static Unit<Dimensionless> parseScaleUnit(final String name) {
-        if (name.equalsIgnoreCase("unity"))             return Unit.ONE;
-        if (name.equalsIgnoreCase("parts per million")) return UserObjectFactoryTestCase.PPM;
+        if (name.equalsIgnoreCase("unity"))             return units.one();
+        if (name.equalsIgnoreCase("parts per million")) return units.ppm();
         return null;
     }
 
@@ -135,18 +139,18 @@ public strictfp abstract class TestMethodGenerator {
      */
     private static final Map<Unit<?>,String> UNIT_NAMES;
     static {
-        final Map<Unit<?>,String> m = new HashMap<Unit<?>,String>();
-        assertNull(m.put( Unit.ONE,                      "Unit.ONE"));
-        assertNull(m.put(   SI.METRE,                      "SI.METRE"));
-        assertNull(m.put(   SI.KILOMETRE,                  "SI.KILOMETRE"));
-        assertNull(m.put(   SI.RADIAN,                     "SI.RADIAN"));
-        assertNull(m.put(NonSI.CENTIRADIAN,             "NonSI.CENTIRADIAN"));
-        assertNull(m.put(NonSI.GRADE,                   "NonSI.GRADE"));
-        assertNull(m.put(NonSI.DEGREE_ANGLE,            "NonSI.DEGREE_ANGLE"));
-        assertNull(m.put(NonSI.SECOND_ANGLE,            "NonSI.SECOND_ANGLE"));
-        assertNull(m.put(NonSI.FOOT,                    "NonSI.FOOT"));
-        assertNull(m.put(NonSI.FOOT_SURVEY_US,          "NonSI.FOOT_SURVEY_US"));
-        assertNull(m.put(UserObjectFactoryTestCase.PPM, "UserObjectFactoryTestCase.PPM"));
+        final Map<Unit<?>,String> m = new HashMap<>();
+        assertNull(m.put(units.one(),          "Unit.ONE"));
+        assertNull(m.put(units.metre(),        "units.metre()"));
+        assertNull(m.put(units.kilometre(),    "units.kilometre()"));
+        assertNull(m.put(units.radian(),       "units.radian()"));
+        assertNull(m.put(units.microradian(),  "units.microradian()"));
+        assertNull(m.put(units.grad(),         "units.grad()"));
+        assertNull(m.put(units.degree(),       "units.degree()"));
+        assertNull(m.put(units.arcSecond(),    "units.arcSecond()"));
+        assertNull(m.put(units.foot(),         "units.foot()"));
+        assertNull(m.put(units.footSurveyUS(), "units.footSurveyUS()"));
+        assertNull(m.put(units.ppm(),          "units.ppm()"));
         UNIT_NAMES = m;
     }
 
@@ -211,7 +215,7 @@ public strictfp abstract class TestMethodGenerator {
                             out.print("</b>, <i>…");
                             out.print(length - stopAt);
                             out.println(" more</i></li>");
-                            continue; // Because we already wrote the closing </li>.
+                            continue;                       // Because we already wrote the closing </li>.
                         }
                     } else if (value instanceof Double) {
                         final double asDouble = (Double) value;

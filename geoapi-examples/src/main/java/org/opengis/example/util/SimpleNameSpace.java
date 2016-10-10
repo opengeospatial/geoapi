@@ -7,6 +7,7 @@
  */
 package org.opengis.example.util;
 
+import java.util.Objects;
 import java.io.Serializable;
 import javax.naming.Name;
 import javax.naming.CompoundName;
@@ -51,7 +52,7 @@ public class SimpleNameSpace implements NameSpace, Serializable {
         try {
             name = new SimpleName.Local(new CompoundName("", factory.syntax));
         } catch (InvalidNameException e) {
-            throw new AssertionError(e); // Should never happen.
+            throw new AssertionError(e);                // Should never happen.
         }
     }
 

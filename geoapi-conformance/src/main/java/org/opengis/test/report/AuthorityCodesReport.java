@@ -251,7 +251,7 @@ public class AuthorityCodesReport extends Report {
      */
     public AuthorityCodesReport(final Properties properties) {
         super(properties);
-        rows = new ArrayList<Row>(1024);
+        rows = new ArrayList<>(1024);
         defaultProperties.setProperty("TITLE", "Authority codes for ${OBJECTS.KIND}");
         defaultProperties.setProperty("OBJECTS.KIND", "Identified Objects");
         defaultProperties.setProperty("FACTORY.VERSION.SUFFIX", "");
@@ -433,7 +433,7 @@ public class AuthorityCodesReport extends Report {
             if (row.isDeprecated)    numDeprecated++;
         }
         defaultProperties.setProperty("COUNT.OBJECTS",      Integer.toString(numRows));
-        defaultProperties.setProperty("PERCENT.VALIDS",     Integer.toString(100 * numValids / numRows) + '%'); // Really want rounding toward 0.
+        defaultProperties.setProperty("PERCENT.VALIDS",     Integer.toString(100 * numValids / numRows) + '%');     // Really want rounding toward 0.
         defaultProperties.setProperty("PERCENT.ANNOTATED",  Integer.toString(Math.round(100f * numAnnotations / numRows)) + '%');
         defaultProperties.setProperty("PERCENT.DEPRECATED", Integer.toString(Math.round(100f * numDeprecated  / numRows)) + '%');
         sortRows();

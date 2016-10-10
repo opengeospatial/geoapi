@@ -8,6 +8,7 @@
 package org.opengis.example.metadata;
 
 import java.util.Map;
+import java.util.Objects;
 import java.lang.reflect.Proxy;
 import org.opengis.annotation.UML;
 

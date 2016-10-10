@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
 import javax.swing.Icon;
 
 import org.opengis.util.GenericName;
@@ -383,7 +383,7 @@ public interface StyleFactory {
      */
     ExtensionSymbolizer extensionSymbolizer(String name, String geometry, Description description,
             Unit<?> unit, String extensionName, Map<String, Expression> parameters);
-    
+
     /**
      * Used to represent a symbolizer intended for a vendor specific rendering process. This
      * facility should be used to control subject matter that is beyond the scope of the traditional

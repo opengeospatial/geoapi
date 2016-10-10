@@ -32,8 +32,6 @@
 package org.opengis.referencing.cs;
 
 import java.util.Map;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -49,8 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example: used with an Engineering CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Distance</td> <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td> <td>{@link SI#METRE}</td></tr>
- *   <tr><td>Bearing</td>  <td>Θ</td> <td>{@code AxisDirection.valueOf("CLOCKWISE")}</td> <td>{@link NonSI#DEGREE_ANGLE}</td></tr>
+ *   <tr><td>Distance</td> <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td> <td>metre</td></tr>
+ *   <tr><td>Bearing</td>  <td>Θ</td> <td>{@code AxisDirection.valueOf("CLOCKWISE")}</td> <td>degree</td></tr>
  * </table>
  *
  * <div class="note"><b>Note:</b>
@@ -58,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  * but found in ISO 19162 as "{@code awayFrom}" and "{@code clockwise}".</div>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CylindricalCS

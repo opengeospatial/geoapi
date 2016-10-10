@@ -10,10 +10,11 @@ package org.opengis.example.parameter;
 import java.util.Set;
 import java.net.URI;
 
-import javax.measure.converter.ConversionException;
-import javax.measure.unit.NonSI;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
+import javax.measure.IncommensurableException;
+import javax.measure.quantity.Angle;
+import tec.units.ri.AbstractUnit;
+import tec.units.ri.unit.Units;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
@@ -61,6 +62,18 @@ public class SimpleParameter extends SimpleIdentifiedObject
         implements ParameterValue<Double>, ParameterDescriptor<Double>, Cloneable
 {
     /**
+     * The unit of measurement for degrees of angle. Will be removed in a future GeoAPI version
+     * if a future Unit of Measurement implementation provides a pre-defined constant for this unit.
+     */
+    static final Unit<Angle> DEGREE = Units.RADIAN.multiply(Math.PI/180);
+
+    /**
+     * The unit of measurement for grads of angle. Will be removed in a future GeoAPI version
+     * if a future Unit of Measurement implementation provides a pre-defined constant for this unit.
+     */
+    static final Unit<Angle> GRAD = Units.RADIAN.multiply(Math.PI/200);
+
+    /**
      * Determines the range of values and the unit of measurement of a parameter.
      * This enum is stored in the {@link SimpleParameter#type} field, and used in
      * order to determine the values returned by the methods implementing the
@@ -74,27 +87,27 @@ public class SimpleParameter extends SimpleIdentifiedObject
         /**
          * Longitude as decimal degrees in the [-180° … +180°] range.
          */
-        LONGITUDE(NonSI.DEGREE_ANGLE, -180.0, +180.0),
+        LONGITUDE(DEGREE, -180.0, +180.0),
 
         /**
          * Latitude as decimal degrees in the [-90° … +90°] range.
          */
-        LATITUDE(NonSI.DEGREE_ANGLE, -90.0, +90.0),
+        LATITUDE(DEGREE, -90.0, +90.0),
 
         /**
          * Any linear value as metres, unbounded.
          */
-        LINEAR(SI.METRE, null, null),
+        LINEAR(Units.METRE, null, null),
 
         /**
          * Length as metres in the [0 … ∞] range.
          */
-        LENGTH(SI.METRE, 0.0, null),
+        LENGTH(Units.METRE, 0.0, null),
 
         /**
          * Scale as dimensionless number in the [0 … ∞] range.
          */
-        SCALE(Unit.ONE, LENGTH.minimum, null);
+        SCALE(AbstractUnit.ONE, LENGTH.minimum, null);
 
         /** Value to be returned by {@link SimpleParameter#getUnit()}. */
         final Unit<?> unit;
@@ -300,7 +313,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         }
         try {
             return type.unit.getConverterToAny(unit).convert(value);
-        } catch (ConversionException e) {
+        } catch (IncommensurableException e) {
             throw new IllegalArgumentException(e);
         }
     }
@@ -462,7 +475,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         }
         try {
             setValue(unit.getConverterToAny(type.unit).convert(value));
-        } catch (ConversionException e) {
+        } catch (IncommensurableException e) {
             throw new InvalidParameterValueException(e.getLocalizedMessage(), code, unit);
         }
     }
@@ -559,10 +572,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
             } else {
                 number = ((Number) value).doubleValue();
             }
-        } catch (NumberFormatException e) {
-            // JDK7 developers would use multi-catch here.
-            throw new InvalidParameterValueException(e.toString(), code, value);
-        } catch (ClassCastException e) {
+        } catch (NumberFormatException | ClassCastException e) {
             throw new InvalidParameterValueException(e.toString(), code, value);
         }
         setValue(number);
@@ -605,7 +615,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         try {
             return (SimpleParameter) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e); // Should never happen, since we are cloneable.
+            throw new AssertionError(e);                // Should never happen, since we are cloneable.
         }
     }
 

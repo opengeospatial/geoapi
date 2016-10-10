@@ -66,7 +66,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<AxisDirection> VALUES = new ArrayList<AxisDirection>(32);
+    private static final List<AxisDirection> VALUES = new ArrayList<>(32);
 
     /**
      * Unknown or unspecified axis orientation.

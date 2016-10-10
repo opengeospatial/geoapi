@@ -7,6 +7,7 @@
  */
 package org.opengis.example.referencing;
 
+import java.util.Objects;
 import javax.vecmath.GMatrix;
 
 import org.opengis.metadata.citation.Citation;
@@ -147,7 +148,7 @@ public class ProjectiveTransform extends SimpleTransform {
         // as documented in the method javadoc.
         //
         target.mul(matrix, source);
-        final double w = target.getElement(dstDim, 0); // =1 if the transform is affine.
+        final double w = target.getElement(dstDim, 0);          // =1 if the transform is affine.
         for (int j=0; j<dstDim; j++) {
             ptDst.setOrdinate(j, target.getElement(j, 0) / w);
         }

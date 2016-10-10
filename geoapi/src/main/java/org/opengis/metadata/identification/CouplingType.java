@@ -58,7 +58,7 @@ public final class CouplingType  extends CodeList<CouplingType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<CouplingType> VALUES = new ArrayList<CouplingType>(3);
+    private static final List<CouplingType> VALUES = new ArrayList<>(3);
 
     /**
      * Service instance is loosely coupled with a data instance, which means no

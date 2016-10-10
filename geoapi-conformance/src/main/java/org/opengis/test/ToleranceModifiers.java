@@ -165,11 +165,11 @@ public strictfp final class ToleranceModifiers {
         /** Adjusts the (λ,φ) tolerances as documented in the enclosing class. */
         @Override
         public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            tolerance[φDimension] /= (NAUTICAL_MILE * 60); // 1 nautical miles = 1852 metres in 1 minute of angle.
+            tolerance[φDimension] /= (NAUTICAL_MILE * 60);  // 1 nautical miles = 1852 metres in 1 minute of angle.
             double tol = tolerance[λDimension];
             if (tol != 0) {
                 tol /= (NAUTICAL_MILE*60 * cos(toRadians(abs(coordinate.getOrdinate(φDimension)))));
-                if (!(tol <= 360)) { // !(a<=b) rather than (a>b) in order to catch NaN.
+                if (!(tol <= 360)) {                        // !(a<=b) rather than (a>b) in order to catch NaN.
                     tol = 360;
                 }
                 tolerance[λDimension] = tol;
@@ -523,7 +523,7 @@ public strictfp final class ToleranceModifiers {
                 final ToleranceModifier modifier = impl.tolerance(transform);
                 if (modifier != null) {
                     if (modifiers == null) {
-                        modifiers = new LinkedHashMap<ToleranceModifier,Boolean>();
+                        modifiers = new LinkedHashMap<>();
                     }
                     modifiers.put(modifier, null);
                 }

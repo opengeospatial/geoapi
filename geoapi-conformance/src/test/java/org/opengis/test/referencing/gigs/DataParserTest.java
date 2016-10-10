@@ -84,11 +84,11 @@ public strictfp class DataParserTest {
 
         // We will inspect only the first 5 columns for this test.
         final DataParser data = new DataParser("GIGS_2002_libEllipsoid.csv",
-            Integer.class,  // [ 0]: EPSG Ellipsoid Code
-            Boolean.class,  // [ 1]: Particularly important to E&P industry?
-            String .class,  // [ 2]: EPSG Ellipsoid Name
-            String .class,  // [ 3]: Alias(es) given by EPSG
-            Double .class); // [ 4]: Semi-major axis (a)
+            Integer.class,      // [ 0]: EPSG Ellipsoid Code
+            Boolean.class,      // [ 1]: Particularly important to E&P industry?
+            String .class,      // [ 2]: EPSG Ellipsoid Name
+            String .class,      // [ 3]: Alias(es) given by EPSG
+            Double .class);     // [ 4]: Semi-major axis (a)
 
         int index = 0;
         boolean expectedImportant = true;
@@ -124,7 +124,7 @@ public strictfp class DataParserTest {
                     break;
                 }
                 case 7041: {
-                    expectedImportant = false; // Will apply also to all ellipsoids declared after 7041.
+                    expectedImportant = false;              // Will apply also to all ellipsoids declared after 7041.
                     break;
                 }
             }

@@ -204,7 +204,7 @@ public strictfp class GIGS2005 extends AuthorityFactoryTestCase<Conversion> {
      */
     private void createAndVerifyProjection(final int code) throws FactoryException {
         this.code = code;
-        conversion = null; // For forcing the fetch of a new operation.
+        conversion = null;              // For forcing the fetch of a new operation.
 
         final Conversion conversion = getIdentifiedObject();
         assertNotNull("Conversion", conversion);

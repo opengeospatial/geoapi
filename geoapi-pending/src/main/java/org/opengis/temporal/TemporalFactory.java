@@ -33,7 +33,8 @@ package org.opengis.temporal;
 
 import java.util.Collection;
 import java.util.Date;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
+import javax.measure.quantity.Time;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
@@ -49,9 +50,9 @@ import org.opengis.util.InternationalString;
  * @version 4.0
  */
 public interface TemporalFactory {
-    
+
     /**
-     * Creates a {@link Calendar} without any {@linkplain CalendarEra referenceFrame}. 
+     * Creates a {@link Calendar} without any {@linkplain CalendarEra referenceFrame}.
      *
      * @param name Name that uniquely identifies the temporal reference system.
      * @param domainOfValidity space and time within which the reference system is applicable.
@@ -100,7 +101,7 @@ public interface TemporalFactory {
      *                        the origin (i.e the first day) of the scale, but this is not always true.
      * @param julianReference Provide the Julian date that corresponds to the reference date.
      * @param epochOfUse      Identify the Period for which the calendar era was
-     *                        used as a basis for dating, the datatype for {@linkplain Period#getBeginning() Period.begin} 
+     *                        used as a basis for dating, the datatype for {@linkplain Period#getBeginning() Period.begin}
      *                        and {@linkplain Period#getEnding() Period.end} shall be JulianDate.
      * @return expected {@link CalendarEra}.
      */
@@ -278,14 +279,14 @@ public interface TemporalFactory {
      * @return expected {@link TemporalCoordinateSystem}.
      */
     TemporalCoordinateSystem createTemporalCoordinateSystem(Identifier name,
-            Extent domainOfValidity, Date origin, Unit<javax.measure.quantity.Duration> interval);
+            Extent domainOfValidity, Date origin, Unit<Time> interval);
 
     /**
      * Creates a {@link TemporalPosition}.
      *
      * @param frame                 The ReferenceSystem associated with this TemporalPosition,
      *                              if not specified, it is assumed to be an association to the Gregorian calendar and UTC.
-     * @param indeterminatePosition The only value for TemporalPosition unless a 
+     * @param indeterminatePosition The only value for TemporalPosition unless a
      *                              subtype of TemporalPosition is used as the data type.
      * @return expected {@link TemporalPosition}.
      */

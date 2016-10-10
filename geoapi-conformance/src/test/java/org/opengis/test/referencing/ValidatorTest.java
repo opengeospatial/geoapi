@@ -85,7 +85,7 @@ public strictfp class ValidatorTest {
      */
     @Test
     public void testAssertPerpendicularAxes() {
-        final ArrayList<AxisDirection> directions = new ArrayList<AxisDirection>(Arrays.asList(
+        final ArrayList<AxisDirection> directions = new ArrayList<>(Arrays.asList(
                 NORTH, DISPLAY_DOWN, OTHER, WEST, DISPLAY_RIGHT, FUTURE));
         CSValidator.assertPerpendicularAxes(directions);
         assertTrue("Collection is cleaned as a side effect of internal working.", directions.isEmpty());

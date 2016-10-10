@@ -59,7 +59,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<InitiativeType> VALUES = new ArrayList<InitiativeType>(15);
+    private static final List<InitiativeType> VALUES = new ArrayList<>(15);
 
     /**
      * Series of organized planned actions.

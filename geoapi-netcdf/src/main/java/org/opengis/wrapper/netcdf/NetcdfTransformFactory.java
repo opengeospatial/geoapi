@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
 
-import ucar.unidata.geoloc.projection.*; // For javadoc.
+import ucar.unidata.geoloc.projection.*;                // For javadoc.
 
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
@@ -146,8 +146,8 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      * Creates a new factory.
      */
     public NetcdfTransformFactory() {
-        providers = new LinkedHashMap<String, ProjectionProvider<?>>();
-        final Map<SimpleName,SimpleName> existings = new HashMap<SimpleName,SimpleName>();
+        providers = new LinkedHashMap<>();
+        final Map<SimpleName,SimpleName> existings = new HashMap<>();
         add(new ProjectionProvider.Albers              (existings));
         add(new ProjectionProvider.Flat                (existings));
         add(new ProjectionProvider.LambertAzimuthal    (existings));

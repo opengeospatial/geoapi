@@ -63,7 +63,7 @@ import org.opengis.test.coverage.image.*;
  * override some validation process.
  *
  * <p><b><u>Customization</u></b><br>
- * All {@code validate(...)} methods in this class are final because this class is not the extension
+ * All {@code validate(…)} methods in this class are final because this class is not the extension
  * point for overriding validation processes. Instead, extend the appropriate {@link Validator}
  * subclass and assign an instance to the corresponding field in this class. For example in order
  * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects, one
@@ -222,7 +222,7 @@ public class ValidatorContainer implements Cloneable {
         try {
             return (ValidatorContainer) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e); // Should never happen.
+            throw new AssertionError(e);                    // Should never happen.
         }
     }
 

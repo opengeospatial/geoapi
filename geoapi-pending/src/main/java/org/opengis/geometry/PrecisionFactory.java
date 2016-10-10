@@ -40,9 +40,9 @@ package org.opengis.geometry;
  * PrecisionFactory:</p>
  *
  * <pre>
- * factory.createPrecision(PrecisionType.FIXED, 1000); // three significant digits
- * factory.createPrecision(PrecisionType.FLOAT, 0); // float precision - 6 digits
- * factory.createPrecision(PrecisionType.DOUBLE, 0); // double precision - 16 digits
+ * factory.createPrecision(PrecisionType.FIXED, 1000);      // three significant digits
+ * factory.createPrecision(PrecisionType.FLOAT, 0);         // float precision - 6 digits
+ * factory.createPrecision(PrecisionType.DOUBLE, 0);        // double precision - 16 digits
  * </pre>
  *
  * Although the
@@ -71,9 +71,9 @@ public interface PrecisionFactory {
      *
      * <p>Here are a couple of examples:</p>
      * <pre>
-     * factory.createPrecision(PrecisionType.FIXED, 1000); // three significant digits
-     * factory.createPrecision(PrecisionType.FLOAT, 0); // float precision - 6 digits
-     * factory.createPrecision(PrecisionType.DOUBLE, 0); // double precision - 16 digits
+     * factory.createPrecision(PrecisionType.FIXED, 1000);      // three significant digits
+     * factory.createPrecision(PrecisionType.FLOAT, 0);         // float precision - 6 digits
+     * factory.createPrecision(PrecisionType.DOUBLE, 0);        // double precision - 16 digits
      * </pre>
      *
      * @param code PrecisionType The rounding policy used

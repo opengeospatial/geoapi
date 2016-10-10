@@ -7,10 +7,12 @@
  */
 package org.opengis.example.referencing;
 
-import javax.measure.unit.Unit;
-import javax.measure.unit.SI;
-import javax.measure.unit.NonSI;
-import javax.measure.converter.ConversionException;
+import java.util.Objects;
+import javax.measure.Unit;
+import javax.measure.quantity.Angle;
+import javax.measure.IncommensurableException;
+import tec.units.ri.unit.Units;
+import tec.units.ri.AbstractUnit;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
@@ -26,25 +28,25 @@ import org.opengis.referencing.cs.RangeMeaning;
  *
  * <blockquote><table class="ogc">
  * <caption>Axis properties inferred from the abbreviation</caption>
- * <tr><th>Symbol</th>   <th>Common name</th>     <th>Axis direction</th>                                        <th>Unit</th>                       <th>Range</th> <th>Meaning</th></tr>
- * <tr><th>λ</th> <td>geodetic longitude</td>     <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link NonSI#DEGREE_ANGLE}</td> <td>±90°</td>  <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
- * <tr><th>φ</th> <td>geodetic latitude</td>      <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link NonSI#DEGREE_ANGLE}</td> <td>±180°</td> <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
- * <tr><th>h</th> <td>ellipsoidal height</td>     <td>{@link AxisDirection#UP              UP}</td>              <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>H</th> <td>gravity-related height</td> <td>{@link AxisDirection#UP              UP}</td>              <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>d</th> <td>depth</td>                  <td>{@link AxisDirection#DOWN            DOWN}</td>            <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>r</th> <td>geocentric radius</td>      <td>{@link AxisDirection#UP              UP}</td>              <td>{@link SI#METRE}</td>           <td>[0…∞]</td> <td></td></tr>
- * <tr><th>Ω</th> <td>spherical longitude</td>    <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link NonSI#DEGREE_ANGLE}</td> <td>±90°</td>  <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
- * <tr><th>Θ</th> <td>spherical latitude</td>     <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link NonSI#DEGREE_ANGLE}</td> <td>±180°</td> <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
- * <tr><th>X</th> <td>geocentric X</td>           <td>{@link AxisDirection#GEOCENTRIC_X    GEOCENTRIC_X}</td>    <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>Y</th> <td>geocentric Y</td>           <td>{@link AxisDirection#GEOCENTRIC_Y    GEOCENTRIC_Y}</td>    <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>Z</th> <td>geocentric Z</td>           <td>{@link AxisDirection#GEOCENTRIC_Z    GEOCENTRIC_Z}</td>    <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>E</th> <td>easting</td>                <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>W</th> <td>westing</td>                <td>{@link AxisDirection#WEST            WEST}</td>            <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>N</th> <td>northing</td>               <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>S</th> <td>southing</td>               <td>{@link AxisDirection#SOUTH           SOUTH}</td>           <td>{@link SI#METRE}</td>           <td></td>      <td></td></tr>
- * <tr><th>t</th> <td>time</td>                   <td>{@link AxisDirection#FUTURE          FUTURE}</td>          <td>{@link SI#SECOND}</td>          <td></td>      <td></td></tr>
- * <tr><th>i</th> <td>column</td>                 <td>{@link AxisDirection#COLUMN_POSITIVE COLUMN_POSITIVE}</td> <td>{@link Unit#ONE}</td>           <td></td>      <td></td></tr>
- * <tr><th>j</th> <td>row</td>                    <td>{@link AxisDirection#ROW_POSITIVE    ROW_POSITIVE}</td>    <td>{@link Unit#ONE}</td>           <td></td>      <td></td></tr>
+ * <tr><th>Symbol</th>   <th>Common name</th>     <th>Axis direction</th>                                        <th>Unit</th>                     <th>Range</th> <th>Meaning</th></tr>
+ * <tr><th>λ</th> <td>geodetic longitude</td>     <td>{@link AxisDirection#EAST            EAST}</td>            <td>degree</td>                   <td>±90°</td>  <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
+ * <tr><th>φ</th> <td>geodetic latitude</td>      <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>degree</td>                   <td>±180°</td> <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
+ * <tr><th>h</th> <td>ellipsoidal height</td>     <td>{@link AxisDirection#UP              UP}</td>              <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>H</th> <td>gravity-related height</td> <td>{@link AxisDirection#UP              UP}</td>              <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>d</th> <td>depth</td>                  <td>{@link AxisDirection#DOWN            DOWN}</td>            <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>r</th> <td>geocentric radius</td>      <td>{@link AxisDirection#UP              UP}</td>              <td>{@link Units#METRE}</td>      <td>[0…∞]</td> <td></td></tr>
+ * <tr><th>Ω</th> <td>spherical longitude</td>    <td>{@link AxisDirection#EAST            EAST}</td>            <td>degree</td>                   <td>±90°</td>  <td>{@link RangeMeaning#EXACT      EXACT}</td></tr>
+ * <tr><th>Θ</th> <td>spherical latitude</td>     <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>degree</td>                   <td>±180°</td> <td>{@link RangeMeaning#WRAPAROUND WRAPAROUND}</td></tr>
+ * <tr><th>X</th> <td>geocentric X</td>           <td>{@link AxisDirection#GEOCENTRIC_X    GEOCENTRIC_X}</td>    <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>Y</th> <td>geocentric Y</td>           <td>{@link AxisDirection#GEOCENTRIC_Y    GEOCENTRIC_Y}</td>    <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>Z</th> <td>geocentric Z</td>           <td>{@link AxisDirection#GEOCENTRIC_Z    GEOCENTRIC_Z}</td>    <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>E</th> <td>easting</td>                <td>{@link AxisDirection#EAST            EAST}</td>            <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>W</th> <td>westing</td>                <td>{@link AxisDirection#WEST            WEST}</td>            <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>N</th> <td>northing</td>               <td>{@link AxisDirection#NORTH           NORTH}</td>           <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>S</th> <td>southing</td>               <td>{@link AxisDirection#SOUTH           SOUTH}</td>           <td>{@link Units#METRE}</td>      <td></td>      <td></td></tr>
+ * <tr><th>t</th> <td>time</td>                   <td>{@link AxisDirection#FUTURE          FUTURE}</td>          <td>{@link Units#SECOND}</td>     <td></td>      <td></td></tr>
+ * <tr><th>i</th> <td>column</td>                 <td>{@link AxisDirection#COLUMN_POSITIVE COLUMN_POSITIVE}</td> <td>{@link AbstractUnit#ONE}</td> <td></td>      <td></td></tr>
+ * <tr><th>j</th> <td>row</td>                    <td>{@link AxisDirection#ROW_POSITIVE    ROW_POSITIVE}</td>    <td>{@link AbstractUnit#ONE}</td> <td></td>      <td></td></tr>
  * </table></blockquote>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -56,6 +58,12 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      * For cross-version compatibility.
      */
     private static final long serialVersionUID = 3541182320484949668L;
+
+    /**
+     * The unit of measurement for degrees of angle. Will be removed in a future GeoAPI version
+     * if a future Unit of Measurement implementation provides a pre-defined constant for this unit.
+     */
+    static final Unit<Angle> DEGREE = Units.RADIAN.multiply(Math.PI/180);
 
     /**
      * The <cite>geodetic latitude</cite> axis.
@@ -124,10 +132,10 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
         }
         switch (abbreviation) {
             case 'λ': case 'Ω':
-            case 'φ': case 'Θ': unit = NonSI.DEGREE_ANGLE; break;
-            case 'i': case 'j': unit =  Unit.ONE;          break;
-            case 't':           unit =    SI.SECOND;       break;
-            default:            unit =    SI.METRE;        break;
+            case 'φ': case 'Θ': unit = DEGREE;           break;
+            case 'i': case 'j': unit = AbstractUnit.ONE; break;
+            case 't':           unit = Units.SECOND;     break;
+            default:            unit = Units.METRE;      break;
         }
     }
 
@@ -257,8 +265,8 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      */
     private double toAngularUnit(final double angle) throws IllegalStateException {
         try {
-            return NonSI.DEGREE_ANGLE.getConverterToAny(unit).convert(angle);
-        } catch (ConversionException e) {
+            return DEGREE.getConverterToAny(unit).convert(angle);
+        } catch (IncommensurableException e) {
             throw new IllegalStateException(e);
         }
     }

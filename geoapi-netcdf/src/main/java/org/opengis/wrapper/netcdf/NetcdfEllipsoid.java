@@ -13,8 +13,8 @@
  */
 package org.opengis.wrapper.netcdf;
 
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
+import java.util.Objects;
+import javax.measure.Unit;
 import javax.measure.quantity.Length;
 
 import ucar.unidata.geoloc.Earth;
@@ -102,8 +102,8 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
 
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis semi-major}
-     * and {@linkplain #getSemiMinorAxis semi-minor} axis values. The default
-     * implementation returns {@link SI#METRE}.
+     * and {@linkplain #getSemiMinorAxis semi-minor} axis values.
+     * The default implementation returns {@link Units#METRE}.
      *
      * <p><b>Do not confuse:</b></p>
      * <ul>
@@ -117,7 +117,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      */
     @Override
     public Unit<Length> getAxisUnit() {
-        return SI.METRE;
+        return Units.METRE;
     }
 
     /**

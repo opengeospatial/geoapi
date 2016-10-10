@@ -242,11 +242,11 @@ public strictfp class PixelIterator {
     public boolean next() {
         if (++band == numBands) {
             if ((x += xSubsampling) >= currentMaxX) {
-                int nextTile = tileX + 1; // Needed only when the iteration stops before the maxX of the last tile in a row.
+                int nextTile = tileX + 1;               // Needed only when the iteration stops before the maxX of the last tile in a row.
                 tileX = divide(x - image.getTileGridXOffset(), image.getTileWidth(), false);
                 if (max(nextTile, tileX) >= maxTileX) {
                     if ((y += ySubsampling) >= currentMaxY) {
-                        nextTile = tileY + 1; // Needed only when the iteration stops before the maxY of the last row of tiles.
+                        nextTile = tileY + 1;           // Needed only when the iteration stops before the maxY of the last row of tiles.
                         tileY = divide(y - image.getTileGridYOffset(), image.getTileHeight(), false);
                         if (max(nextTile, tileY) >= maxTileY) {
                             return false;
@@ -402,10 +402,10 @@ public strictfp class PixelIterator {
                     final double a = actual.getSampleDouble();
                     final double e = this.  getSampleDouble();
                     if (doubleToLongBits(a) == doubleToLongBits(e)) {
-                        continue; // All variants of NaN values are considered equal.
+                        continue;                                       // All variants of NaN values are considered equal.
                     }
                     if (abs(a-e) <= tolerance) {
-                        continue; // Negative and positive zeros are considered equal.
+                        continue;                                       // Negative and positive zeros are considered equal.
                     }
                     break;
                 }
@@ -413,10 +413,10 @@ public strictfp class PixelIterator {
                     final float a = actual.getSampleFloat();
                     final float e = this.  getSampleFloat();
                     if (floatToIntBits(a) == floatToIntBits(e)) {
-                        continue; // All variants of NaN values are considered equal.
+                        continue;                                       // All variants of NaN values are considered equal.
                     }
                     if (abs(a-e) <= tolerance) {
-                        continue; // Negative and positive zeros are considered equal.
+                        continue;                                       // Negative and positive zeros are considered equal.
                     }
                     break;
                 }

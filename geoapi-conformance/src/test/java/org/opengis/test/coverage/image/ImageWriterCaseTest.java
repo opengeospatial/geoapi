@@ -77,7 +77,7 @@ public strictfp class ImageWriterCaseTest extends ImageWriterTestCase {
                 writer = it.next();
                 final String classname = writer.getClass().getName();
                 if (classname.startsWith("com.sun.imageio.")) {
-                    break; // Give precedence to standard reader.
+                    break;                                          // Give precedence to standard writer.
                 }
             }
             assertNotNull("No PNG image writer found.", writer);

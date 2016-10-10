@@ -89,9 +89,6 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
      */
     @Override
     public ToleranceModifier tolerance(final MathTransform transform) {
-        if (false) { // Not yet enabled.
-            return ToleranceModifiers.scale(EnumSet.of(DIRECT_TRANSFORM, INVERSE_TRANSFORM), 100, 100);
-        }
-        return null;
+        return ToleranceModifiers.scale(EnumSet.of(DIRECT_TRANSFORM, INVERSE_TRANSFORM), 100, 100);
     }
 }

@@ -88,9 +88,9 @@ public class Reports extends Report {
      */
     public Reports(final Properties properties) {
         super(properties);
-        reports   = new ArrayList<Report>();
-        instances = new HashMap<Class<? extends Report>,Report>();
-        contents  = new LinkedHashMap<String,File>();
+        reports   = new ArrayList<>();
+        instances = new HashMap<>();
+        contents  = new LinkedHashMap<>();
     }
 
     /**
@@ -229,10 +229,7 @@ public class Reports extends Report {
     protected <T extends Report> T createReport(final Class<T> type) throws IllegalArgumentException {
         try {
             return type.cast(type.getConstructor(Properties.class).newInstance(properties));
-        } catch (Exception e) { // JDK7: Catch ReflectiveOperationException.
-            if (e instanceof RuntimeException) {
-                throw (RuntimeException) e;
-            }
+        } catch (ReflectiveOperationException e) {
             throw new IllegalArgumentException("Can not instantiate report of type " + type.getSimpleName(), e);
         }
     }
@@ -289,7 +286,7 @@ public class Reports extends Report {
             out.write("<li><a href=\"");
             out.write(escape(entry.getValue().getPath().replace(File.separatorChar, '/')));
             out.write("\">");
-            out.write(entry.getKey()); // Already escaped.
+            out.write(entry.getKey());                                  // Already escaped.
             out.write("</a></li>");
             out.newLine();
         }

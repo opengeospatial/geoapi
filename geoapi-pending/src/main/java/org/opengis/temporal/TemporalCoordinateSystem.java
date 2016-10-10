@@ -32,7 +32,8 @@
 package org.opengis.temporal;
 
 import java.util.Date;
-import javax.measure.unit.Unit;
+import javax.measure.Unit;
+import javax.measure.quantity.Time;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -71,7 +72,7 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
      * @return standard unit of time used to measure {@link Duration} on the axis of this {@link TemporalCoordinateSystem}.
      */
     @UML(identifier="interval", obligation=MANDATORY, specification=ISO_19108)
-    Unit<javax.measure.quantity.Duration> getInterval();
+    Unit<Time> getInterval();
 
 
     /**

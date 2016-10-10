@@ -33,8 +33,8 @@ package org.opengis.geometry.complex;
 
 import java.util.Collection;
 import org.opengis.geometry.Geometry;
-import org.opengis.geometry.primitive.Point;     // For javadoc
-import org.opengis.geometry.primitive.Primitive; // For javadoc
+import org.opengis.geometry.primitive.Point;            // For javadoc
+import org.opengis.geometry.primitive.Primitive;        // For javadoc
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

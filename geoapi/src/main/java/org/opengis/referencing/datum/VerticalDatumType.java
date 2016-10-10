@@ -75,7 +75,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<VerticalDatumType> VALUES = new ArrayList<VerticalDatumType>(4);
+    private static final List<VerticalDatumType> VALUES = new ArrayList<>(4);
 
     /**
      * In some cases, for example oil exploration and production, a geological feature, such as the top

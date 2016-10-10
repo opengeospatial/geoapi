@@ -50,10 +50,10 @@ import org.opengis.filter.identity.Identifier;
  * </ul>
  * <p>
  * You can check what kind of Identifiers are supported using:<pre><code>
- * idCapabilities.hasFID() == true; // for FeatureId
- * idCapabilities.hasEID() == true; // no idea ...
+ * idCapabilities.hasFID() == true;             // for FeatureId
+ * idCapabilities.hasEID() == true;             // no idea ...
  * </code></pre>
- * 
+ *
  * @author Chris Dillard (SYS Technologies)
  * @author Justin Deoliveira (The Open Planning Project)
  */

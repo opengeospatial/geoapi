@@ -18,9 +18,7 @@ import java.util.Set;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import javax.measure.unit.SI;
-import javax.measure.unit.Unit;
-import javax.measure.unit.NonSI;
+import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
@@ -57,14 +55,14 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      */
     @SuppressWarnings({"unchecked","rawtypes"})
     private static final Unit<Length>[] LINEAR_UNITS = new Unit[] {
-        SI.MILLIMETRE,
-        SI.CENTIMETRE,
-        NonSI.INCH,
-        NonSI.FOOT,
-        NonSI.FOOT_SURVEY_US,
-        NonSI.YARD,
-        SI.METRE,
-        SI.KILOMETRE
+        Units.MILLIMETRE,
+        Units.CENTIMETRE,
+        Units.INCH,
+        Units.FOOT,
+        Units.FOOT_SURVEY_US,
+        Units.YARD,
+        Units.METRE,
+        Units.KILOMETRE
     };
 
     /**
@@ -169,7 +167,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      */
     @Override
     public Unit<Length> getAxisUnit() {
-        return SI.METRE;
+        return Units.METRE;
     }
 
     /**
@@ -182,7 +180,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
             i = ~i;
             if (i == LINEAR_FACTORS.length || !(abs(factor - LINEAR_FACTORS[i]) <= EPS)) {
                 if (i == 0 || !(abs(factor - LINEAR_FACTORS[--i]) <= EPS)) {
-                    return (factor == 0 || Double.isNaN(factor)) ? null : SI.METRE.times(factor);
+                    return (factor == 0 || Double.isNaN(factor)) ? null : Units.METRE.multiply(factor);
                 }
             }
         }
@@ -190,12 +188,12 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns the units of the prime meridian. All angular units are converted from
-     * radians to degrees in those wrappers.
+     * Returns the units of the prime meridian.
+     * All angular units are converted from radians to degrees in those wrappers.
      */
     @Override
     public Unit<Angle> getAngularUnit() {
-        return NonSI.DEGREE_ANGLE;
+        return Units.DEGREE;
     }
 
     /**

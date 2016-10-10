@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
- * @version 3.2
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
