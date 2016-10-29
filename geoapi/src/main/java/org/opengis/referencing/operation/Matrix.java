@@ -64,7 +64,7 @@ public interface Matrix {
     /**
      * Returns the number of rows in this matrix.
      *
-     * @return The number of rows in this matrix.
+     * @return the number of rows in this matrix.
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
@@ -76,7 +76,7 @@ public interface Matrix {
     /**
      * Returns the number of columns in this matrix.
      *
-     * @return The number of columns in this matrix.
+     * @return the number of columns in this matrix.
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
@@ -88,9 +88,9 @@ public interface Matrix {
     /**
      * Retrieves the value at the specified row and column of this matrix.
      *
-     * @param row    The row number to be retrieved (zero indexed).
-     * @param column The column number to be retrieved (zero indexed).
-     * @return The value at the indexed element.
+     * @param  row     the row number to be retrieved (zero indexed).
+     * @param  column  the column number to be retrieved (zero indexed).
+     * @return the value at the indexed element.
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
@@ -102,9 +102,9 @@ public interface Matrix {
     /**
      * Modifies the value at the specified row and column of this matrix.
      *
-     * @param row    The row number to be retrieved (zero indexed).
-     * @param column The column number to be retrieved (zero indexed).
-     * @param value  The new matrix element value.
+     * @param  row     the row number of the value to set (zero indexed).
+     * @param  column  the column number of the value to set (zero indexed).
+     * @param  value   the new matrix element value.
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
