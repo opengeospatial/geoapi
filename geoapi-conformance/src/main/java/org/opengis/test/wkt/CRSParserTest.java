@@ -394,7 +394,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *  CS[ellipsoidal,2],
      *    AXIS[“latitude”,north],
      *    AXIS[“longitude”,east],
-     *    ANGLEUNIT[“degree”,0.017453292519943],
+     *    ANGLEUNIT[“degree”,0.0174532925199433],
      *  ID[“EPSG”,4269],
      *  REMARK[“1986 realisation”]]</pre></blockquote>
      *
@@ -411,7 +411,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "  CS[ellipsoidal,2],\n" +
                 "    AXIS[“latitude”,north],\n" +
                 "    AXIS[“longitude”,east],\n" +
-                "    ANGLEUNIT[“degree”,0.017453292519943],\n" +
+                "    ANGLEUNIT[“degree”,0.0174532925199433],\n" +
                 "  ID[“EPSG”,4269],\n" +
                 "  REMARK[“1986 realisation”]]");
 

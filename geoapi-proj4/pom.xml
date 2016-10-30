@@ -69,6 +69,7 @@
     <dependency>
       <groupId>tec.units</groupId>
       <artifactId>unit-ri</artifactId>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.opengis</groupId>

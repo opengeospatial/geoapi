@@ -97,8 +97,8 @@ public class Units extends PseudoFactory {
         kilometre    = metre .multiply(1000);
         foot         = metre .multiply(0.3048);
         footSurveyUS = metre .multiply(12 / 39.37);
-        degree       = radian.multiply(Math.PI/180);
-        grad         = radian.multiply(Math.PI/200);
+        degree       = radian.multiply(Math.PI / 180);
+        grad         = radian.multiply(Math.PI / 200);
         arcSecond    = radian.multiply(Math.PI / (180*60*60));
         microradian  = radian.divide(1E6);
         day          = second.multiply(24*60*60);

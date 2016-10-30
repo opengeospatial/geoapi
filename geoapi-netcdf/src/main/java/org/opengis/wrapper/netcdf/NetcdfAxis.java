@@ -16,7 +16,6 @@ package org.opengis.wrapper.netcdf;
 import java.util.Objects;
 import javax.measure.Unit;
 import javax.measure.format.ParserException;
-import tec.units.ri.format.SimpleUnitFormat;
 
 import ucar.nc2.constants.CF;
 import ucar.nc2.constants.AxisType;
@@ -60,7 +59,7 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     /**
      * Creates a new {@code NetcdfAxis} object wrapping the given NetCDF coordinate axis.
      *
-     * @param axis The NetCDF coordinate axis to wrap.
+     * @param  axis  the NetCDF coordinate axis to wrap.
      */
     public NetcdfAxis(final CoordinateAxis1D axis) {
         Objects.requireNonNull(axis);
@@ -69,6 +68,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
 
     /**
      * Returns the wrapped NetCDF axis.
+     *
+     * @return the wrapped NetCDF axis.
      */
     @Override
     public CoordinateAxis1D delegate() {
@@ -76,8 +77,10 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the axis name. The default implementation delegates to
-     * {@link CoordinateAxis1D#getShortName()}.
+     * Returns the axis name.
+     * The default implementation delegates to {@link CoordinateAxis1D#getShortName()}.
+     *
+     * @return the axis name.
      *
      * @see CoordinateAxis1D#getShortName()
      */
@@ -101,8 +104,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the axis direction. The default implementation delegates to
-     * {@link #getDirection(CoordinateAxis)}.
+     * Returns the axis direction.
+     * The default implementation delegates to {@link #getDirection(CoordinateAxis)}.
      *
      * @see CoordinateAxis1D#getAxisType()
      * @see CoordinateAxis1D#getPositive()
@@ -118,8 +121,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
      * If the direction can not be determined, then this method returns
      * {@link AxisDirection#OTHER}.
      *
-     * @param  axis The axis for which to get the direction.
-     * @return The direction of the given axis.
+     * @param  axis  the axis for which to get the direction.
+     * @return the direction of the given axis.
      */
     public static AxisDirection getDirection(final CoordinateAxis axis) {
         final AxisType type = axis.getAxisType();
@@ -140,8 +143,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the axis minimal value. The default implementation delegates
-     * to {@link CoordinateAxis1D#getMinValue()}.
+     * Returns the axis minimal value.
+     * The default implementation delegates to {@link CoordinateAxis1D#getMinValue()}.
      *
      * @see CoordinateAxis1D#getMinValue()
      */
@@ -151,8 +154,8 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the axis maximal value. The default implementation delegates
-     * to {@link CoordinateAxis1D#getMaxValue()}.
+     * Returns the axis maximal value.
+     * The default implementation delegates to {@link CoordinateAxis1D#getMaxValue()}.
      *
      * @see CoordinateAxis1D#getMaxValue()
      */
@@ -162,10 +165,10 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the number of ordinates in the NetCDF axis. This method delegates to the
-     * {@link CoordinateAxis1D#getShape(int)} method.
+     * Returns the number of ordinates in the NetCDF axis.
+     * The default implementation delegates to {@link CoordinateAxis1D#getShape(int)}.
      *
-     * @return The number or ordinates in the NetCDF axis.
+     * @return the number or ordinates in the NetCDF axis.
      */
     public int length() {
         return axis.getShape(0);
@@ -205,18 +208,18 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     /**
      * Returns the units, or {@code null} if unknown.
      *
+     * @throws ParserException if a unit has been found but its symbol can not be parsed.
+     *
      * @see CoordinateAxis1D#getUnitsString()
      * @see Unit#valueOf(CharSequence)
      */
     @Override
-    public Unit<?> getUnit() {
+    public Unit<?> getUnit() throws ParserException {
         Unit<?> unit = this.unit;
         if (unit == null) {
             final String symbol = getUnitsString();
-            if (symbol != null) try {
-                this.unit = unit = SimpleUnitFormat.getInstance().parse(symbol);
-            } catch (ParserException e) {
-                // Unsupported unit symbol.
+            if (symbol != null) {
+                this.unit = unit = Units.parse(symbol);
             }
         }
         return unit;
