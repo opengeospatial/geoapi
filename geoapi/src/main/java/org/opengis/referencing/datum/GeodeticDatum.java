@@ -58,7 +58,7 @@ public interface GeodeticDatum extends Datum {
     /**
      * Returns the ellipsoid.
      *
-     * @return The ellipsoid.
+     * @return the ellipsoid.
      */
     @UML(identifier="ellipsoid", obligation=MANDATORY, specification=ISO_19111)
     Ellipsoid getEllipsoid();
@@ -66,7 +66,7 @@ public interface GeodeticDatum extends Datum {
     /**
      * Returns the prime meridian.
      *
-     * @return The prime meridian.
+     * @return the prime meridian.
      */
     @UML(identifier="primeMeridian", obligation=MANDATORY, specification=ISO_19111)
     PrimeMeridian getPrimeMeridian();

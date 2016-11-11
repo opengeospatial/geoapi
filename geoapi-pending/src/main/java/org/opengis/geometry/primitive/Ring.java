@@ -64,7 +64,7 @@ public interface Ring extends CompositeCurve {
     /**
      * Always returns {@code true} since ring objects are simples.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @UML(identifier="isSimple", obligation=MANDATORY, specification=ISO_19107)
     boolean isSimple();

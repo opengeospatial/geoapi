@@ -62,7 +62,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
     /**
      * Creates a new grid envelope as a copy of the given one.
      *
-     * @param envelope The grid envelope to copy.
+     * @param envelope  the grid envelope to copy.
      */
     public SimpleGridEnvelope(final GridEnvelope envelope) {
         final int dimension = envelope.getDimension();
@@ -77,13 +77,11 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
     /**
      * Constructs a new grid envelope.
      *
-     * @param low
-     *          The valid minimum inclusive grid coordinate. The array contains a minimum
-     *          value (inclusive) for each dimension of the grid coverage. The lowest valid
-     *          grid coordinate is often zero, but this is not mandatory.
-     * @param high
-     *          The valid maximum grid coordinate, <strong>inclusive</strong>.
-     *          The array contains a maximum value for each dimension of the grid coverage.
+     * @param low   the valid minimum inclusive grid coordinate. The array contains a minimum
+     *              value (inclusive) for each dimension of the grid coverage. The lowest valid
+     *              grid coordinate is often zero, but this is not mandatory.
+     * @param high  the valid maximum grid coordinate, <strong>inclusive</strong>.
+     *              The array contains a maximum value for each dimension of the grid coverage.
      *
      * @see #getLow()
      * @see #getHigh()
@@ -171,7 +169,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
     /**
      * Compares the specified object with this grid envelope for equality.
      *
-     * @param object The object to compare with this grid envelope for equality.
+     * @param  object  the object to compare with this grid envelope for equality.
      * @return {@code true} if the given object is equal to this grid envelope.
      */
     @Override

@@ -53,7 +53,7 @@ public interface LegalConstraints extends Constraints {
      * Access constraints applied to assure the protection of privacy or intellectual property,
      * and any special restrictions or limitations on obtaining the resource or metadata.
      *
-     * @return Access constraints applied to assure the protection of privacy or intellectual property.
+     * @return access constraints applied to assure the protection of privacy or intellectual property.
      *
      * @condition Mandatory if
      * {@linkplain #getUseConstraints() use constraints},
@@ -68,7 +68,7 @@ public interface LegalConstraints extends Constraints {
      * Constraints applied to assure the protection of privacy or intellectual property, and any
      * special restrictions or limitations or warnings on using the resource or metadata.
      *
-     * @return Constraints applied to assure the protection of privacy or intellectual property.
+     * @return constraints applied to assure the protection of privacy or intellectual property.
      *
      * @condition Mandatory if
      * {@linkplain #getAccessConstraints() access constraints},
@@ -82,7 +82,7 @@ public interface LegalConstraints extends Constraints {
     /**
      * Other restrictions and legal prerequisites for accessing and using the resource or metadata.
      *
-     * @return Other restrictions and legal prerequisites for accessing and using the resource.
+     * @return other restrictions and legal prerequisites for accessing and using the resource.
      *
      * @condition Mandatory if the {@linkplain #getAccessConstraints() access constraints} or
      *            {@linkplain #getUseConstraints() use constraints} contain {@link Restriction#OTHER_RESTRICTIONS}.

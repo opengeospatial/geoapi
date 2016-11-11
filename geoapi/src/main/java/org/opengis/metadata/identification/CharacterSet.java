@@ -307,9 +307,8 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * Constructs an element of the given name. The new element is
      * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
-     * @param charset The Java {@link Charset} name, or {@code null} if none.
+     * @param name     the name of the new element. This name shall not be in use by another element of this type.
+     * @param charset  the Java {@link Charset} name, or {@code null} if none.
      */
     private CharacterSet(final String name, final String charset) {
         super(name, VALUES);
@@ -327,8 +326,8 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Converts the Character Set to a java Charset, if it can.
      *
-     * @return The Java Charset.
-     * @throws UnsupportedCharsetException If no support for the charset is available.
+     * @return the Java Charset.
+     * @throws UnsupportedCharsetException if no support for the charset is available.
      *
      * @see <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html">Supported encodings</a>
      */
@@ -349,7 +348,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * Those names are typically equal except for the case (programmatic names are upper case
      * while UML names are lower case) and special characters like {@code '-'}.
      *
-     * @return All names of this code constant. This array is never null and never empty.
+     * @return all names of this code constant. This array is never null and never empty.
      *
      * @since 2.3
      */
@@ -371,7 +370,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Returns the list of {@code CharacterSet}s.
      *
-     * @return The list of codes declared in the current JVM.
+     * @return the list of codes declared in the current JVM.
      */
     public static CharacterSet[] values() {
         synchronized (VALUES) {
@@ -384,7 +383,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *
-     * @return All code {@linkplain #values() values} for this code list.
+     * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
     public CharacterSet[] family() {
@@ -398,8 +397,8 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * returns {@code true}. If no existing instance is found, then a new one is created for
      * the given name.
      *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
+     * @param  code  the name of the code to fetch or to create.
+     * @return a code matching the given name.
      */
     public static CharacterSet valueOf(String code) {
         return valueOf(CharacterSet.class, code);

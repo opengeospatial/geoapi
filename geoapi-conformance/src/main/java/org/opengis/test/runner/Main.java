@@ -56,8 +56,8 @@ public final class Main {
      * starts the Swing application}. Future versions may provides different alternatives based
      * on the command-line arguments.
      *
-     * @param arguments Must be an empty string in current version. Future versions
-     *        may accept some command-line arguments.
+     * @param arguments  must be an empty string in current version.
+     *        Future versions may accept some command-line arguments.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public static void main(final String[] arguments) {

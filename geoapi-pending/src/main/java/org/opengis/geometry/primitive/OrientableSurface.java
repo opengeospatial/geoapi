@@ -67,7 +67,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      * valid definition of exterior that covers all cases.
      * </div>
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     SurfaceBoundary getBoundary();
@@ -75,7 +75,7 @@ public interface OrientableSurface extends OrientablePrimitive {
     /**
      * Returns the primitive associated with this {@code OrientableSurface}.
      *
-     * @return The primitive, or {@code null} if the association is
+     * @return the primitive, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see Surface#getProxy
@@ -90,7 +90,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      * the association in ISO 19107 is navigable only from {@code CompositeSurface} to
      * {@code OrientableSurface}, not the other way.
      *
-     * @return The owner of this orientable surface, or {@code null} if the association is
+     * @return the owner of this orientable surface, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see CompositeSurface#getGenerators

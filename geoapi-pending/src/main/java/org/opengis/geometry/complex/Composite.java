@@ -61,7 +61,7 @@ public interface Composite extends Complex {
      * {@code generators} on {@code Composite} is a subset of the
      * {@linkplain Complex#getElements elements} on {@linkplain Complex complex}.
      *
-     * @return The list of primitives in this composite.
+     * @return the list of primitives in this composite.
      *
      * @see CompositePoint#getGenerators
      * @see CompositeCurve#getGenerators

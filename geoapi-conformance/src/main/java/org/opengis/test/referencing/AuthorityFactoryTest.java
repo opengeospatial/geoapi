@@ -135,7 +135,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     protected boolean swapλφ = true;
 
     /**
-     * {@code true} If the easting and northing axes shall be swapped. This flag applies only
+     * {@code true} if the easting and northing axes shall be swapped. This flag applies only
      * to projected coordinates.
      *
      * <p><b>Default value:</b> {@code false}, since the majority of {@link ProjectedCRS} defined
@@ -227,7 +227,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
+     * @return the default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
      *
      * @since 3.1
      */
@@ -241,9 +241,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
-     * @param datumFactory Factory for creating {@link Datum} instances.
+     * @param crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param csFactory     factory for creating {@link CoordinateSystem} instances.
+     * @param datumFactory  factory for creating {@link Datum} instances.
      */
     public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
@@ -277,9 +277,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *   </li>
      * </ul>
      *
-     * @since 3.1
+     * @return the configuration of the test being run, or an empty map if none.
      *
-     * @return The configuration of the test being run, or an empty map if none.
+     * @since 3.1
      */
     @Override
     public Configuration configuration() {
@@ -295,8 +295,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Returns the longitude value relative to the Greenwich Meridian, expressed in decimal degrees.
      *
-     * @param  pm The prime meridian from which to get the Greenwich longitude, or {@code null}.
-     * @return The prime meridian in the given units, or 0 if the given prime meridian was null.
+     * @param  pm  the prime meridian from which to get the Greenwich longitude, or {@code null}.
+     * @return the prime meridian in the given units, or 0 if the given prime meridian was null.
      */
     private double getGreenwichLongitude(final PrimeMeridian pm) {
         return (pm != null) ? pm.getAngularUnit().getConverterTo(units.degree()).convert(pm.getGreenwichLongitude()) : 0;
@@ -305,10 +305,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Tests the creation of the EPSG:4326 {@link GeographicCRS}.
      *
-     * @throws NoSuchAuthorityCodeException
-     *          If the specified code is not found among the ones present in the database.
-     * @throws FactoryException
-     *          If the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
+     * @throws NoSuchAuthorityCodeException if the specified code is not found among the ones present in the database.
+     * @throws FactoryException if the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
      */
     @Test
     public void testWGS84() throws NoSuchAuthorityCodeException, FactoryException {
@@ -349,9 +347,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * directions are (East,North), but the boolean argument allows to swap and flip those
      * directions.
      *
-     * @param cs   The coordinate system to check, or {@code null}.
-     * @param swap {@code true} if the the easting and northing axes should be interchanged.
-     * @param flip {@code true} if the sign of both axes should be reversed.
+     * @param cs    the coordinate system to check, or {@code null}.
+     * @param swap  {@code true} if the the easting and northing axes should be interchanged.
+     * @param flip  {@code true} if the sign of both axes should be reversed.
      */
     private static void verifyAxisDirection(final String message, final CoordinateSystem cs,
             final boolean swap, final boolean flip)
@@ -378,9 +376,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * math transform. The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      *
-     * @param  code The EPSG code of a target Coordinate Reference System.
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If a point can not be transformed.
+     * @param  code  the EPSG code of a target Coordinate Reference System.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if a point can not be transformed.
      */
     private void runProjectionTest(final int code) throws FactoryException, TransformException {
         if (!isAxisSwappingSupported) {
@@ -514,8 +512,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testMercator1SP()
      */
@@ -535,8 +533,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testMercator2SP()
      */
@@ -557,8 +555,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testPseudoMercator()
      */
@@ -578,8 +576,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testMiller()
      */
@@ -599,8 +597,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testHotineObliqueMercator()
      */
@@ -620,8 +618,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testTransverseMercator()
      */
@@ -641,8 +639,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testCassiniSoldner()
      */
@@ -663,8 +661,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testLambertConicConformal1SP()
      */
@@ -684,8 +682,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testLambertConicConformal2SP()
      */
@@ -706,8 +704,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testLambertConicConformalBelgium()
      */
@@ -727,8 +725,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testLambertAzimuthalEqualArea()
      */
@@ -749,8 +747,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testPolarStereographicA()
      */
@@ -772,8 +770,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testPolarStereographicA()
      */
@@ -795,8 +793,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testPolarStereographicB()
      */
@@ -817,8 +815,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testObliqueStereographic()
      */
@@ -838,8 +836,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
      * </table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see ParameterizedTransformTest#testKrovak()
      */

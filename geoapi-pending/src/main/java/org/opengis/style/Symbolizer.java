@@ -124,7 +124,7 @@ public interface Symbolizer {
     /**
      * Returns the description of this symbolizer.
      *
-     * @return Description with usual informations used for user interfaces.
+     * @return description with usual informations used for user interfaces.
      */
     @XmlElement("Description")
     Description getDescription();

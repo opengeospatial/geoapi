@@ -71,9 +71,8 @@ public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the parameter name.
      */
     public InvalidParameterTypeException(String message, String parameterName) {
         super(message);
@@ -83,11 +82,9 @@ public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Creates an exception with the specified message, cause and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The parameter name.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
+     * @param parameterName  the parameter name.
      *
      * @since 3.1
      */
@@ -99,7 +96,7 @@ public class InvalidParameterTypeException extends IllegalStateException {
     /**
      * Returns the parameter name.
      *
-     * @return The parameter name.
+     * @return the parameter name.
      */
     public String getParameterName() {
         return parameterName;

@@ -58,7 +58,7 @@ public interface Element {
     /**
      * Name of the test applied to the data.
      *
-     * @return Name of the test applied to the data.
+     * @return name of the test applied to the data.
      */
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends InternationalString> getNamesOfMeasure();
@@ -66,7 +66,7 @@ public interface Element {
     /**
      * Code identifying a registered standard procedure, or {@code null} if none.
      *
-     * @return Code identifying a registered standard procedure, or {@code null}.
+     * @return code identifying a registered standard procedure, or {@code null}.
      */
     @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Identifier getMeasureIdentification();
@@ -74,7 +74,7 @@ public interface Element {
     /**
      * Description of the measure being determined.
      *
-     * @return Description of the measure being determined, or {@code null}.
+     * @return description of the measure being determined, or {@code null}.
      */
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getMeasureDescription();
@@ -82,7 +82,7 @@ public interface Element {
     /**
      * Type of method used to evaluate quality of the dataset.
      *
-     * @return Type of method used to evaluate quality, or {@code null}.
+     * @return type of method used to evaluate quality, or {@code null}.
      */
     @UML(identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     EvaluationMethodType getEvaluationMethodType();
@@ -90,7 +90,7 @@ public interface Element {
     /**
      * Description of the evaluation method.
      *
-     * @return Description of the evaluation method, or {@code null}.
+     * @return description of the evaluation method, or {@code null}.
      */
     @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getEvaluationMethodDescription();
@@ -98,7 +98,7 @@ public interface Element {
     /**
      * Reference to the procedure information, or {@code null} if none.
      *
-     * @return Reference to the procedure information, or {@code null}.
+     * @return reference to the procedure information, or {@code null}.
      */
     @UML(identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Citation getEvaluationProcedure();
@@ -113,7 +113,7 @@ public interface Element {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Date or range of dates on which a data quality measure was applied.
+     * @return date or range of dates on which a data quality measure was applied.
      *
      * @since 2.1
      */
@@ -125,7 +125,7 @@ public interface Element {
      * come of evaluating the obtained value (or set of values) against a specified
      * acceptable conformance quality level.
      *
-     * @return Set of values obtained from applying a data quality measure.
+     * @return set of values obtained from applying a data quality measure.
      *
      * @since 2.1
      */

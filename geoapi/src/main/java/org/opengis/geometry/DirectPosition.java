@@ -71,7 +71,7 @@ public interface DirectPosition extends Position {
      * coordinate reference system is implicitly assumed to take on the value of the containing
      * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
      *
-     * @return The coordinate reference system, or {@code null}.
+     * @return the coordinate reference system, or {@code null}.
      */
     @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -80,7 +80,7 @@ public interface DirectPosition extends Position {
      * The length of coordinate sequence (the number of entries). This is determined by the
      * {@linkplain #getCoordinateReferenceSystem() coordinate reference system}.
      *
-     * @return The dimensionality of this position.
+     * @return the dimensionality of this position.
      */
     @UML(identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
     int getDimension();
@@ -121,7 +121,7 @@ public interface DirectPosition extends Position {
      * Precedence is given to data integrity over {@code getOrdinates()} performance.
      * Performance concern can be avoided with usage of {@link #getOrdinate(int)}.
      *
-     * @return A copy of the coordinates. Changes in the returned array will not be reflected back
+     * @return a copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
      */
     @UML(identifier="coordinate", obligation=MANDATORY, specification=ISO_19107)
@@ -130,9 +130,9 @@ public interface DirectPosition extends Position {
     /**
      * Returns the ordinate at the specified dimension.
      *
-     * @param dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
-     * @return The coordinate at the specified dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @return the coordinate at the specified dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     double getOrdinate(int dimension) throws IndexOutOfBoundsException;
@@ -140,9 +140,9 @@ public interface DirectPosition extends Position {
     /**
      * Sets the ordinate value along the specified dimension.
      *
-     * @param dimension the dimension for the ordinate of interest.
-     * @param value the ordinate value of interest.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for the ordinate of interest.
+     * @param  value      the ordinate value of interest.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      */
@@ -166,7 +166,7 @@ public interface DirectPosition extends Position {
      *       returns {@code true}.</li>
      * </ul>
      *
-     * @param object The object to compare with this direct position for equality.
+     * @param  object  the object to compare with this direct position for equality.
      * @return {@code true} if the given object is equals to this direct position.
      *
      * @since 2.1
@@ -184,7 +184,7 @@ public interface DirectPosition extends Position {
      * where the right hand side of the addition is omitted if the coordinate reference
      * system is null.
      *
-     * @return A hash code value for this direct position.
+     * @return a hash code value for this direct position.
      *
      * @since 2.1
      */

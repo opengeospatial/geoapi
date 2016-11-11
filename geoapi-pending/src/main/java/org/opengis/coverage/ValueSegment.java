@@ -54,7 +54,7 @@ public interface ValueSegment {
      * Returns the value of the arc-length parameter of the parent
      * curve at the start of this value segment.
      *
-     * @return The value at the start of this segment.
+     * @return the value at the start of this segment.
      */
     @UML(identifier="startParameter", obligation=MANDATORY, specification=ISO_19123)
     double getStartParameter();
@@ -63,7 +63,7 @@ public interface ValueSegment {
      * Returns the value of the arc-length parameter of the parent
      * curve at the end of this value segment.
      *
-     * @return The value at the end of this segment.
+     * @return the value at the end of this segment.
      */
     @UML(identifier="endParameter", obligation=MANDATORY, specification=ISO_19123)
     double getEndParameter();
@@ -74,7 +74,7 @@ public interface ValueSegment {
      * values, usually those at the beginning and end of the value segment. Additional
      * control values are required to support interpolation by higher order functions.
      *
-     * @return The set of control points and values.
+     * @return the set of control points and values.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19123)
     Set<PointValuePair> getControlPoints();

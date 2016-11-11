@@ -349,7 +349,7 @@ final class ResultEntry {
      * Returns the URL to the javadoc of the test method. Users can follow this URL in
      * order to have more details about the test data or procedure.
      *
-     * @return The URI to the javadoc of the test method (never {@code null}).
+     * @return the URI to the javadoc of the test method (never {@code null}).
      */
     public URI getJavadocURL() {
         String method = methodName;
@@ -365,8 +365,8 @@ final class ResultEntry {
      * This method changes the graphics paint, so caller should restore it to whatever
      * paint they want to use after this method call.
      *
-     * @param graphics The graphics where to draw.
-     * @param bounds The region where to draw. <strong>Will be modified by this method</strong>.
+     * @param graphics  the graphics where to draw.
+     * @param bounds    the region where to draw. <strong>Will be modified by this method</strong>.
      */
     void drawCoverage(final Graphics2D graphics, final Rectangle bounds) {
         final Color color;

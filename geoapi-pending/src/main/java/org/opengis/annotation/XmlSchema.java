@@ -51,14 +51,14 @@ public @interface XmlSchema {
     /**
      * The URL to the schema.
      *
-     * @return The URL to the schema.
+     * @return the URL to the schema.
      */
     String URL();
 
     /**
      * The specification where this XML schema come from.
      *
-     * @return The originating specification.
+     * @return the originating specification.
      */
     Specification specification();
 }

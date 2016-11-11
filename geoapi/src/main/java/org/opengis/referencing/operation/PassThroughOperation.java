@@ -50,7 +50,7 @@ public interface PassThroughOperation extends CoordinateOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
      *
-     * @return The operation to apply on the subset of a coordinate tuple.
+     * @return the operation to apply on the subset of a coordinate tuple.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
     CoordinateOperation getOperation();

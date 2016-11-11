@@ -63,7 +63,7 @@ public interface CurveSegment extends GenericCurve {
      * segments in a more open-ended manner.
      * </div>
      *
-     * @return The owner of this curve segment, or {@code null} if the association is
+     * @return the owner of this curve segment, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see Curve#getSegments
@@ -79,7 +79,7 @@ public interface CurveSegment extends GenericCurve {
      * uses the control points and control parameters to determine the position of this
      * {@code CurveSegment}.
      *
-     * @return The interpolation mechanism used for this segment.
+     * @return the interpolation mechanism used for this segment.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();
@@ -97,7 +97,7 @@ public interface CurveSegment extends GenericCurve {
      * or higher continuity.
      * </div>
      *
-     * @return The type of continuity between this curve segment and its immediate neighbors.
+     * @return the type of continuity between this curve segment and its immediate neighbors.
      *
      * @see #getNumDerivativesInterior
      * @see #getNumDerivativesAtEnd
@@ -113,7 +113,7 @@ public interface CurveSegment extends GenericCurve {
      * "C¹" continuity. A value of "n" for any integer means the function and its
      * first <var>n</var> derivatives are continuous: "Cⁿ" continuity.
      *
-     * @return The type of continuity that is guaranteed interior to the curve.
+     * @return the type of continuity that is guaranteed interior to the curve.
      *
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesAtEnd
@@ -134,7 +134,7 @@ public interface CurveSegment extends GenericCurve {
      * or higher continuity.
      * </div>
      *
-     * @return The type of continuity between this curve segment and its immediate neighbors.
+     * @return the type of continuity between this curve segment and its immediate neighbors.
      *
      * @see #getNumDerivativesAtStart
      * @see #getNumDerivativesInterior
@@ -153,7 +153,7 @@ public interface CurveSegment extends GenericCurve {
      * the curve at the maxima of the weight functions, will be the sample points for the curve
      * segment.
      *
-     * @return The control points.
+     * @return the control points.
      *
      * @todo This interface has been removed from ISO 19107:2008 draft, since it is now
      *       inherited from {@link GenericCurve}.
@@ -177,7 +177,7 @@ public interface CurveSegment extends GenericCurve {
      * will be represented as {@linkplain Point points} in the same complex.
      * </div>
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      *
      * @todo This interface has been removed from ISO 19107:2008 draft, since it is now
      *       inherited from {@link GenericCurve}.
@@ -188,7 +188,7 @@ public interface CurveSegment extends GenericCurve {
     /**
      * Reverses the orientation of the parameterizations of the segment.
      *
-     * @return The reverse of this curve segment.
+     * @return the reverse of this curve segment.
      */
     @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
     CurveSegment reverse();

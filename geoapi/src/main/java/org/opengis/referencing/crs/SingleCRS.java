@@ -72,7 +72,7 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      * In the case of {@link GeneralDerivedCRS}, this method returns the
      * datum of the {@linkplain GeneralDerivedCRS#getBaseCRS() base CRS}.
      *
-     * @return The datum.
+     * @return the datum.
      *
      * @departure easeOfUse
      *   The ISO specification declares the datum as absent when the association is indirect.

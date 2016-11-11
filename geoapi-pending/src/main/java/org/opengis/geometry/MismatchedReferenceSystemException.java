@@ -56,7 +56,7 @@ public class MismatchedReferenceSystemException extends IllegalArgumentException
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for
+     * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public MismatchedReferenceSystemException(final String message) {
@@ -66,9 +66,9 @@ public class MismatchedReferenceSystemException extends IllegalArgumentException
     /**
      * Creates an exception with the specified message and cause.
      *
-     * @param  message The detail message. The detail message is saved for
+     * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
-     * @param  cause The cause.
+     * @param  cause  the cause.
      */
     public MismatchedReferenceSystemException(final String message, final Throwable cause) {
         super(message, cause);

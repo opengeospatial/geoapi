@@ -78,7 +78,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.
      *
-     * @return The ordered list of coordinate reference systems.
+     * @return the ordered list of coordinate reference systems.
      *
      * @departure generalization
      *   ISO 19111 said <cite>"nesting of compound CRSs shall not be permitted; the individual single systems

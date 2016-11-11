@@ -54,8 +54,8 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public ExtentValidator(final ValidatorContainer container) {
         super(container, "org.opengis.metadata.extent");
@@ -63,10 +63,10 @@ public class ExtentValidator extends MetadataValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final GeographicExtent object) {
         int n = 0;
@@ -81,7 +81,7 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Validates the geographic description.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final GeographicDescription object) {
         if (object == null) {
@@ -94,7 +94,7 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Validates the bounding polygon.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @todo Not yet implemented.
      */
@@ -110,7 +110,7 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Validates the geographic bounding box.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final GeographicBoundingBox object) {
         if (object == null) {
@@ -132,7 +132,7 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Validates the vertical extent.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final VerticalExtent object) {
         if (object == null) {
@@ -151,7 +151,7 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Validates the temporal extent.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @todo Validation of temporal primitives not yet implemented.
      */
@@ -169,7 +169,7 @@ public class ExtentValidator extends MetadataValidator {
     /**
      * Validates the given extent.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Extent object) {
         if (object == null) {

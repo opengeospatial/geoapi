@@ -59,7 +59,7 @@ public interface Canvas {
      * implement {@link CanvasState} or one of its subinterfaces, depending on the type
      * of canvas.
      *
-     * @return A snapshot of current canvas state.
+     * @return a snapshot of current canvas state.
      */
     CanvasState getState();
 
@@ -75,7 +75,7 @@ public interface Canvas {
      * Returns the controller that allows the programmer to modify the
      * {@code Canvas}'s properties.
      *
-     * @return The controller for this canvas.
+     * @return the controller for this canvas.
      */
     CanvasController getController();
 
@@ -92,7 +92,7 @@ public interface Canvas {
      * Returns the rendering hint associated with the hint name.
      *
      * @param hintKey The key of the hint.
-     * @return The rendering hint.
+     * @return the rendering hint.
      */
     Object getRenderingHint(RenderingHints.Key hintKey);
 

@@ -197,7 +197,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   <li>the current directory of a file system.</li>
      * </ul></div>
      *
-     * @return The scope of this name.
+     * @return the scope of this name.
      *
      * @since 2.1
      */
@@ -223,7 +223,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   <li>the {@link javax.naming.Name#size() Name.size()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return The depth of this name.
+     * @return the depth of this name.
      *
      * @since 2.1
      */
@@ -252,7 +252,7 @@ public interface GenericName extends Comparable<GenericName> {
      *   <li>the {@link javax.naming.Name#getAll() Name.getAll()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return The local names making this generic name, without the {@linkplain #scope() scope}.
+     * @return the local names making this generic name, without the {@linkplain #scope() scope}.
      *         Shall never be {@code null} neither empty.
      */
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
@@ -277,7 +277,7 @@ public interface GenericName extends Comparable<GenericName> {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
+     * @return the first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @departure generalization
      *   ISO defines this method in <code>ScopedName</code> only. GeoAPI defines it in the base
@@ -310,7 +310,7 @@ public interface GenericName extends Comparable<GenericName> {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
+     * @return the last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. It does not provide any additional
@@ -339,7 +339,7 @@ public interface GenericName extends Comparable<GenericName> {
      *       {@link java.nio.file.Path#toAbsolutePath() Path.toAbsolutePath()} method in Java I/O.</li>
      * </ul></div>
      *
-     * @return The fully-qualified name (never {@code null}).
+     * @return the fully-qualified name (never {@code null}).
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. It does not provide any additional
@@ -382,8 +382,8 @@ public interface GenericName extends Comparable<GenericName> {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @param scope The name to use as prefix.
-     * @return A concatenation of the given scope with this name.
+     * @param  scope  the name to use as prefix.
+     * @return a concatenation of the given scope with this name.
      *
      * @since 2.1
      */
@@ -403,8 +403,8 @@ public interface GenericName extends Comparable<GenericName> {
      *       {@link java.nio.file.Path#compareTo Path.compareTo(Path)} method in Java I/O.</li>
      * </ul></div>
      *
-     * @param  other The other object to be compared to this name.
-     * @return A negative integer, zero, or a positive integer as this name is lexicographically
+     * @param  other  the other object to be compared to this name.
+     * @return a negative integer, zero, or a positive integer as this name is lexicographically
      *         less than, equal to, or greater than the specified name.
      */
     @Override
@@ -434,7 +434,7 @@ public interface GenericName extends Comparable<GenericName> {
      *       {@link java.nio.file.Path#toString() Path.toString()} method in Java I/O.</li>
      * </ul></div>
      *
-     * @return The local-independent string representation of this name.
+     * @return the local-independent string representation of this name.
      */
     @Override
     String toString();
@@ -451,7 +451,7 @@ public interface GenericName extends Comparable<GenericName> {
      * into {@code "Mes Documents"} on French installation of Windows operating system.
      * </div>
      *
-     * @return A localizable string representation of this name.
+     * @return a localizable string representation of this name.
      *
      * @departure extension
      *   This method is not part of the ISO specification. It has been added to provide

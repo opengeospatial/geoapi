@@ -62,7 +62,7 @@ public interface ComparisonOperators {
      *
      * @param name the name of the operator.
      *
-     * @return The operator, or null.
+     * @return the operator, or null.
      */
     Operator getOperator( String name );
 }

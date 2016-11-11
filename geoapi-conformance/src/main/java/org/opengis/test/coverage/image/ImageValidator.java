@@ -56,8 +56,8 @@ public class ImageValidator extends Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public ImageValidator(final ValidatorContainer container) {
         super(container, "org.opengis.test.coverage.image");
@@ -70,7 +70,7 @@ public class ImageValidator extends Validator {
      * names are valid. Next, this method invokes {@link #validate(IIOMetadataFormat)} for each
      * metadata format (which can be null).
      *
-     * @param provider The provider to validate, or {@code null} if none.
+     * @param provider  the provider to validate, or {@code null} if none.
      */
     public void validate(final ImageReaderSpi provider) {
         if (provider != null) {
@@ -99,7 +99,7 @@ public class ImageValidator extends Validator {
      * names are valid. Next, this method invokes {@link #validate(IIOMetadataFormat)} for each
      * metadata format (which can be null).
      *
-     * @param provider The provider to validate, or {@code null} if none.
+     * @param provider  the provider to validate, or {@code null} if none.
      */
     public void validate(final ImageWriterSpi provider) {
         if (provider != null) {
@@ -124,7 +124,7 @@ public class ImageValidator extends Validator {
     /**
      * Validates the given image reader or image writer provider.
      *
-     * @param spi The provider to validate, or {@code null} if none.
+     * @param spi  the provider to validate, or {@code null} if none.
      */
     private void validateProvider(final ImageReaderWriterSpi spi, final Class<?> pluginType) {
         mandatory("ImageReaderWriterSpi: shall have a vendorName string.", spi.getVendorName());
@@ -209,8 +209,8 @@ public class ImageValidator extends Validator {
      * The array can be either null or non-empty; empty arrays are illegal.
      * Then ensures that there is no duplicated value.
      *
-     * @param field The field name, used in case of errors.
-     * @param array The array to validate, or {@code null} if none.
+     * @param field  the field name, used in case of errors.
+     * @param array  the array to validate, or {@code null} if none.
      */
     private static void validateArray(final String field, final Object[] array) {
         if (array != null) {
@@ -230,10 +230,10 @@ public class ImageValidator extends Validator {
     /**
      * Ensure that given class exists and is an instance of the given type.
      *
-     * @param field        The name of the tested field.
-     * @param expectedType The expected base class.
-     * @param loader       The loader to use for loading the class.
-     * @param classname    The name of the class to test.
+     * @param field         the name of the tested field.
+     * @param expectedType  the expected base class.
+     * @param loader        the loader to use for loading the class.
+     * @param classname     the name of the class to test.
      */
     private void validateClass(final String field, final Class<?> expectedType,
             final ClassLoader loader, final String classname)
@@ -251,7 +251,7 @@ public class ImageValidator extends Validator {
     /**
      * Validates the given metadata format.
      *
-     * @param format The metadata format to validate, or {@code null} if none.
+     * @param format  the metadata format to validate, or {@code null} if none.
      */
     public void validate(final IIOMetadataFormat format) {
         // Not yet implemented.

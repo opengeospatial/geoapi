@@ -47,7 +47,7 @@ public strictfp class GIGS2007Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
-     * @param args Ignored.
+     * @param  args  ignored.
      * @throws IOException if an error occurred while reading the test data.
      */
     public static void main(String[] args) throws IOException {
@@ -94,7 +94,7 @@ public strictfp class GIGS2007Generator extends TestMethodGenerator {
     }
 
     /**
-     * Simplify the transformation name to be used for inferring a method name.
+     * Simplifies the transformation name to be used for inferring a method name.
      */
     private static String simplify(String name) {
         if (!(name.contains("WGS")   && name.contains("ED50")) &&

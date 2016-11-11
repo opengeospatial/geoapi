@@ -56,7 +56,7 @@ public interface Contact {
      * Telephone numbers at which the organization or individual may be contacted.
      * Returns an empty collection if none.
      *
-     * @return Telephone numbers at which the organization or individual may be contacted.
+     * @return telephone numbers at which the organization or individual may be contacted.
      *
      * @since 3.1
      */
@@ -67,7 +67,7 @@ public interface Contact {
      * Telephone numbers at which the organization or individual may be contacted.
      * Returns {@code null} if none.
      *
-     * @return Telephone numbers at which the organization or individual may be contacted,
+     * @return telephone numbers at which the organization or individual may be contacted,
      *         or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getPhones()}.
@@ -79,7 +79,7 @@ public interface Contact {
      * Physical and email addresses at which the organization or individual may be contacted.
      * Returns an empty collection if none.
      *
-     * @return Physical and email addresses at which the organization or individual may be contacted.
+     * @return physical and email addresses at which the organization or individual may be contacted.
      *
      * @since 3.1
      */
@@ -90,7 +90,7 @@ public interface Contact {
      * Physical and email address at which the organization or individual may be contacted.
      * Returns {@code null} if none.
      *
-     * @return Physical and email address at which the organization or individual may be contacted,
+     * @return physical and email address at which the organization or individual may be contacted,
      *         or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getAddresses()}.
@@ -102,7 +102,7 @@ public interface Contact {
      * On-line information that can be used to contact the individual or organization.
      * Returns an empty collection if none.
      *
-     * @return On-line information that can be used to contact the individual or organization.
+     * @return on-line information that can be used to contact the individual or organization.
      *
      * @since 3.1
      */
@@ -113,7 +113,7 @@ public interface Contact {
      * On-line information that can be used to contact the individual or organization.
      * Returns {@code null} if none.
      *
-     * @return On-line information that can be used to contact the individual or organization,
+     * @return on-line information that can be used to contact the individual or organization,
      *         or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getOnlineResources()}.
@@ -125,7 +125,7 @@ public interface Contact {
      * Time period (including time zone) when individuals can contact the organization or individual.
      * Returns an empty collection if none.
      *
-     * @return Time period when individuals can contact the organization or individual.
+     * @return time period when individuals can contact the organization or individual.
      */
     @UML(identifier="hoursOfService", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getHoursOfService();
@@ -134,8 +134,8 @@ public interface Contact {
      * Supplemental instructions on how or when to contact the individual or organization.
      * Returns {@code null} if none.
      *
-     * @return Supplemental instructions on how or when to contact the individual or organization,
-     *         or {@code null}.
+     * @return supplemental instructions on how or when to contact the individual or organization,
+     *         or {@code null} if none.
      */
     @UML(identifier="contactInstructions", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getContactInstructions();
@@ -144,7 +144,7 @@ public interface Contact {
      * Type of the contact.
      * Returns {@code null} if none.
      *
-     * @return Type of the contact, or {@code null} if none.
+     * @return type of the contact, or {@code null} if none.
      *
      * @since 3.1
      */

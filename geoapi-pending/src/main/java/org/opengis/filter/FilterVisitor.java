@@ -59,7 +59,7 @@ import org.opengis.filter.temporal.TOverlaps;
 
 
 /**
- * Visitor with {@code visit} methods to be called by {@link Filter#accept Filter.accept(...)}.
+ * Visitor with {@code visit} methods to be called by {@link Filter#accept Filter.accept(…)}.
  * <p>
  * Consider: It is unclear if this visitor should be applied directly to Filter, or should be walked accross
  * the data structure by hand.  The standard complient structure is well defined, and this should negate

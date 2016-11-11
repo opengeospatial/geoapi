@@ -62,7 +62,7 @@ public interface ResponsibleParty extends Responsibility {
     /**
      * Name of the responsible person- surname, given name, title separated by a delimiter.
      *
-     * @return Name, surname, given name and title of the responsible person, or {@code null}.
+     * @return name, surname, given name and title of the responsible person, or {@code null}.
      *
      * @condition Mandatory if the {@linkplain #getOrganisationName() organisation name} and
      *            {@linkplain #getPositionName() position name} are not documented.
@@ -77,7 +77,7 @@ public interface ResponsibleParty extends Responsibility {
     /**
      * Name of the responsible organization.
      *
-     * @return Name of the responsible organization, or {@code null}.
+     * @return name of the responsible organization, or {@code null}.
      *
      * @condition Mandatory if the {@linkplain #getIndividualName() individual name} and
      *            {@linkplain #getPositionName() position name} are not documented.
@@ -92,7 +92,7 @@ public interface ResponsibleParty extends Responsibility {
     /**
      * Role or position of the responsible person.
      *
-     * @return Role or position of the responsible person, or {@code null}
+     * @return role or position of the responsible person, or {@code null}
      *
      * @condition Mandatory if the {@linkplain #getIndividualName() individual name} and
      *            {@linkplain #getOrganisationName() organisation name} are not documented.
@@ -107,7 +107,7 @@ public interface ResponsibleParty extends Responsibility {
     /**
      * Address of the responsible party.
      *
-     * @return Address of the responsible party, or {@code null}.
+     * @return address of the responsible party, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link Party#getContactInfo()}.
      */
@@ -118,7 +118,7 @@ public interface ResponsibleParty extends Responsibility {
     /**
      * Function performed by the responsible party.
      *
-     * @return Function performed by the responsible party.
+     * @return function performed by the responsible party.
      */
     // No explicit @Deprecation because the inherited Responsibility.getRole() method is not deprecated.
     @Override

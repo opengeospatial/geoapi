@@ -57,7 +57,7 @@ public interface CitationFactory extends Factory {
      * @param postalCode              ZIP or other postal code.
      * @param country                 Country of the physical address.
      * @param electronicMailAddresses Address of the electronic mailbox of the responsible organization or individual.
-     * @return The address.
+     * @return the address.
      */
     Address createAddress(
             Collection<String>  deliveryPoints,
@@ -75,7 +75,7 @@ public interface CitationFactory extends Factory {
      * @param onLineResource      On-line information that can be used to contact the individual or organization.
      * @param hoursOfService      Time period (including time zone) when individuals can contact the organization or individual.
      * @param contactInstructions Supplemental instructions on how or when to contact the individual or organization.
-     * @return The contact.
+     * @return the contact.
      */
     Contact createContact(
             Telephone           phone,
@@ -93,7 +93,7 @@ public interface CitationFactory extends Factory {
      * @param applicationProfile Name of an application profile that can be used with the online resource.
      * @param description        Detailed text description of what the online resource is/does.
      * @param function           Code for function performed by the online resource.
-     * @return The online resource.
+     * @return the online resource.
      */
     OnlineResource createOnLineResource(
             URI                 linkage,
@@ -111,7 +111,7 @@ public interface CitationFactory extends Factory {
      * @param positionName     Role or position of the responsible person.
      * @param contactInfo      Address of the responsible party.
      * @param role             Function performed by the responsible party.
-     * @return The responsible party.
+     * @return the responsible party.
      */
     ResponsibleParty createResponsibleParty(
             String              individualName,
@@ -125,7 +125,7 @@ public interface CitationFactory extends Factory {
      *
      * @param voice     Telephone number by which individuals can speak to the responsible organization or individual.
      * @param facsimile Telephone number of a facsimile machine for the responsible organization or individual.
-     * @return The telephone.
+     * @return the telephone.
      */
     Telephone createTelephone(
             String voice,

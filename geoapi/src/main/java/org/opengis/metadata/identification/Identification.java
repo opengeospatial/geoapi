@@ -68,7 +68,7 @@ public interface Identification {
     /**
      * Citation for the resource.
      *
-     * @return Citation for the resource.
+     * @return citation for the resource.
      */
     @Profile(level=CORE)
     @UML(identifier="citation", obligation=MANDATORY, specification=ISO_19115)
@@ -77,7 +77,7 @@ public interface Identification {
     /**
      * Brief narrative summary of the resource.
      *
-     * @return Brief narrative summary of the resource.
+     * @return brief narrative summary of the resource.
      */
     @Profile(level=CORE)
     @UML(identifier="abstract", obligation=MANDATORY, specification=ISO_19115)
@@ -86,7 +86,7 @@ public interface Identification {
     /**
      * Summary of the intentions with which the resource was developed.
      *
-     * @return The intentions with which the resource was developed, or {@code null}.
+     * @return the intentions with which the resource was developed, or {@code null}.
      */
     @UML(identifier="purpose", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getPurpose();
@@ -94,7 +94,7 @@ public interface Identification {
     /**
      * Recognition of those who contributed to the resource.
      *
-     * @return Recognition of those who contributed to the resource.
+     * @return recognition of those who contributed to the resource.
      */
     @UML(identifier="credit", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getCredits();
@@ -102,7 +102,7 @@ public interface Identification {
     /**
      * Status of the resource.
      *
-     * @return Status of the resource.
+     * @return status of the resource.
      */
     @UML(identifier="status", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Progress> getStatus();
@@ -111,7 +111,7 @@ public interface Identification {
      * Identification of, and means of communication with, person(s) and organisations
      * associated with the resource(s).
      *
-     * @return Means of communication with person(s) and organisations(s) associated with the resource.
+     * @return means of communication with person(s) and organisations(s) associated with the resource.
      *
      * @see org.opengis.metadata.Metadata#getContacts()
      */
@@ -122,7 +122,7 @@ public interface Identification {
     /**
      * Methods used to spatially represent geographic information.
      *
-     * @return Methods used to spatially represent geographic information.
+     * @return methods used to spatially represent geographic information.
      *
      * @since 3.1
      */
@@ -137,7 +137,7 @@ public interface Identification {
      * This element should be repeated when describing upper and lower range.
      * </div>
      *
-     * @return Factor which provides a general understanding of the density of spatial resource.
+     * @return factor which provides a general understanding of the density of spatial resource.
      *
      * @since 3.1
      */
@@ -148,7 +148,7 @@ public interface Identification {
     /**
      * Smallest resolvable temporal period in a resource.
      *
-     * @return Smallest resolvable temporal period in a resource.
+     * @return smallest resolvable temporal period in a resource.
      *
      * @since 3.1
      */
@@ -158,7 +158,7 @@ public interface Identification {
     /**
      * Main theme(s) of the resource.
      *
-     * @return Main theme(s).
+     * @return main theme(s).
      *
      * @condition Mandatory if {@link MetadataScope#getResourceScope()} equals {@link ScopeCode#DATASET}
      *            or {@link ScopeCode#SERIES}.
@@ -172,7 +172,7 @@ public interface Identification {
     /**
      * Spatial and temporal extent of the resource.
      *
-     * @return Spatial and temporal extent of the resource.
+     * @return spatial and temporal extent of the resource.
      *
      * @condition Mandatory with either a
      * {@linkplain org.opengis.metadata.extent.GeographicBoundingBox geographic bounding box} or a
@@ -192,7 +192,7 @@ public interface Identification {
      * related articles, publications, user guides, data dictionaries.
      * </div>
      *
-     * @return Other documentation associated with the resource.
+     * @return other documentation associated with the resource.
      *
      * @since 3.1
      */
@@ -206,7 +206,7 @@ public interface Identification {
      * NOAA level 1B.
      * </div>
      *
-     * @return Code that identifies the level of processing in the producers coding system of a resource.
+     * @return code that identifies the level of processing in the producers coding system of a resource.
      *
      * @since 3.1
      *
@@ -218,7 +218,7 @@ public interface Identification {
     /**
      * Information about the frequency of resource updates, and the scope of those updates.
      *
-     * @return Frequency and scope of resource updates.
+     * @return frequency and scope of resource updates.
      */
     @UML(identifier="resourceMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends MaintenanceInformation> getResourceMaintenances();
@@ -226,7 +226,7 @@ public interface Identification {
     /**
      * Graphic that illustrates the resource(s) (should include a legend for the graphic).
      *
-     * @return A graphic that illustrates the resource(s).
+     * @return a graphic that illustrates the resource(s).
      */
     @UML(identifier="graphicOverview", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends BrowseGraphic> getGraphicOverviews();
@@ -234,7 +234,7 @@ public interface Identification {
     /**
      * Description of the format of the resource(s).
      *
-     * @return Description of the format.
+     * @return description of the format.
      */
     @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Format> getResourceFormats();
@@ -242,7 +242,7 @@ public interface Identification {
     /**
      * Category keywords, their type, and reference source.
      *
-     * @return Category keywords, their type, and reference source.
+     * @return category keywords, their type, and reference source.
      */
     @UML(identifier="descriptiveKeywords", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Keywords> getDescriptiveKeywords();
@@ -251,7 +251,7 @@ public interface Identification {
      * Basic information about specific application(s) for which the resource(s)
      * has/have been or is being used by different users.
      *
-     * @return Information about specific application(s) for which the resource(s)
+     * @return information about specific application(s) for which the resource(s)
      *         has/have been or is being used.
      */
     @UML(identifier="resourceSpecificUsage", obligation=OPTIONAL, specification=ISO_19115)
@@ -260,7 +260,7 @@ public interface Identification {
     /**
      * Information about constraints which apply to the resource(s).
      *
-     * @return Constraints which apply to the resource(s).
+     * @return constraints which apply to the resource(s).
      */
     @UML(identifier="resourceConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Constraints> getResourceConstraints();
@@ -268,7 +268,7 @@ public interface Identification {
     /**
      * Associated resource information.
      *
-     * @return Associated resource information.
+     * @return associated resource information.
      *
      * @since 3.1
      */
@@ -278,7 +278,7 @@ public interface Identification {
     /**
      * Aggregate dataset information.
      *
-     * @return Aggregate dataset information.
+     * @return aggregate dataset information.
      *
      * @since 2.1
      *

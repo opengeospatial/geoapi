@@ -55,8 +55,8 @@ public class ParameterValidator extends ReferencingValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public ParameterValidator(final ValidatorContainer container) {
         super(container, "org.opengis.parameter");
@@ -64,10 +64,10 @@ public class ParameterValidator extends ReferencingValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final GeneralParameterDescriptor object) {
         int n = 0;
@@ -83,10 +83,10 @@ public class ParameterValidator extends ReferencingValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final GeneralParameterValue object) {
         int n = 0;
@@ -103,8 +103,8 @@ public class ParameterValidator extends ReferencingValidator {
     /**
      * Validates the given descriptor.
      *
-     * @param <T> The class of parameter values.
-     * @param object The object to validate, or {@code null}.
+     * @param  <T>     the class of parameter values.
+     * @param  object  the object to validate, or {@code null}.
      */
     public <T> void validate(final ParameterDescriptor<T> object) {
         if (object == null) {
@@ -143,7 +143,7 @@ public class ParameterValidator extends ReferencingValidator {
     /**
      * Validates the given descriptor.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ParameterDescriptorGroup object) {
         if (object == null) {
@@ -152,7 +152,7 @@ public class ParameterValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         final List<GeneralParameterDescriptor> descriptors = object.descriptors();
         if (requireMandatoryAttributes) {
-            // Do not invoke mandatory(...) because we allow empty collections.
+            // Do not invoke mandatory(…) because we allow empty collections.
             assertNotNull("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
         }
         if (descriptors != null) {
@@ -177,8 +177,8 @@ public class ParameterValidator extends ReferencingValidator {
     /**
      * Validates the given parameter value.
      *
-     * @param <T> The class of parameter values.
-     * @param object The object to validate, or {@code null}.
+     * @param  <T>     the class of parameter values.
+     * @param  object  the object to validate, or {@code null}.
      */
     public <T> void validate(final ParameterValue<T> object) {
         if (object == null) {
@@ -207,7 +207,7 @@ public class ParameterValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ParameterValueGroup object) {
         if (object == null) {
@@ -218,7 +218,7 @@ public class ParameterValidator extends ReferencingValidator {
         validate(descriptors);
         final List<GeneralParameterValue> values = object.values();
         if (requireMandatoryAttributes) {
-            // Do not invoke mandatory(...) because we allow empty collections.
+            // Do not invoke mandatory(…) because we allow empty collections.
             assertNotNull("ParameterValueGroup: values() should not return null.", values);
         }
         if (values == null) {

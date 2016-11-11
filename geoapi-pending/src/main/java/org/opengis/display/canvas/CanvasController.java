@@ -78,7 +78,7 @@ public interface CanvasController {
      * Graphic data will be projected to this CRS before to be display.
      *
      * @param  crs The new objective Coordinate Reference System.
-     * @throws TransformException If at least one graphic primivite can not be transformed to
+     * @throws TransformException if at least one graphic primivite can not be transformed to
      *         the specified CRS, or if the given CRS can not be accepted for an other reason.
      *
      * @see CanvasState#getObjectiveCRS

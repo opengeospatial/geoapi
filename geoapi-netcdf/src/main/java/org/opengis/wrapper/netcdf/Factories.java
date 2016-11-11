@@ -42,9 +42,9 @@ final class Factories {
     /**
      * Returns an instance of the factory of the given type.
      *
-     * @param  type The factory type.
-     * @return An instance of the factory of the given type, or {@code null}.
-     * @throws FactoryException If no factory can be found for the given type.
+     * @param  type  the factory type.
+     * @return an instance of the factory of the given type, or {@code null}.
+     * @throws FactoryException if no factory can be found for the given type.
      */
     public static <T extends Factory> T getFactory(final Class<T> type) throws FactoryException {
         synchronized (FACTORIES) {

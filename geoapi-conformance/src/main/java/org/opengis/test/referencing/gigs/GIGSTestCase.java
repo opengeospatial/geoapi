@@ -66,7 +66,7 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories The factories to be used by the test. Those factories passed verbatim to the
+     * @param factories  the factories to be used by the test. Those factories passed verbatim to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
     protected GIGSTestCase(final Factory... factories) {
@@ -85,8 +85,8 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
      *       that we have a test failure.</li>
      * </ul>
      *
-     * @param type The GeoAPI interface of the object to construct.
-     * @param code The EPSG code or name of the object to create.
+     * @param  type  the GeoAPI interface of the object to construct.
+     * @param  code  the EPSG code or name of the object to create.
      */
     final void unsupportedCode(final Class<?> type, final Object code) {
         final StringBuilder buffer = new StringBuilder(50).append(type.getSimpleName()).append('[');

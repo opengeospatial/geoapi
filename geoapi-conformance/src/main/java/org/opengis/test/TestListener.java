@@ -49,29 +49,29 @@ public interface TestListener extends EventListener {
     /**
      * Invoked when a test is about to start.
      *
-     * @param event A description of the test which is about to be run.
+     * @param event  a description of the test which is about to be run.
      */
     void starting(TestEvent event);
 
     /**
      * Invoked when a test succeeds.
      *
-     * @param event A description of the test which has been run.
+     * @param event  a description of the test which has been run.
      */
     void succeeded(TestEvent event);
 
     /**
      * Invoked when a test fails.
      *
-     * @param event     A description of the test which has been run.
-     * @param exception The exception that occurred during the execution.
+     * @param event      a description of the test which has been run.
+     * @param exception  the exception that occurred during the execution.
      */
     void failed(TestEvent event, Throwable exception);
 
     /**
      * Invoked when a test method finishes (whether passing or failing).
      *
-     * @param event A description of the test which has been run.
+     * @param event  a description of the test which has been run.
      */
     void finished(TestEvent event);
 }

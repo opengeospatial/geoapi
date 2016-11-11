@@ -71,7 +71,7 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for
+     * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public PointOutsideCoverageException(final String message) {
@@ -81,7 +81,7 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
     /**
      * Creates an exception with the specified message and point.
      *
-     * @param  message The detail message. The detail message is saved for
+     * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      * @param  location The position outside the coverage, or {@code null} if unknown.
      */
@@ -94,7 +94,7 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      * Returns the {@linkplain DirectPosition direct position}
      * which is outside the domain of the {@linkplain #getCoverage() coverage}.
      *
-     * @return The position outside the coverage, or {@code null} if unknown.
+     * @return the position outside the coverage, or {@code null} if unknown.
      *
      * @since GeoAPI 2.2
      */

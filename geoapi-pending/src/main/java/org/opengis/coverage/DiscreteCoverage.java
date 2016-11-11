@@ -58,7 +58,7 @@ public interface DiscreteCoverage extends Coverage {
     /**
      * Returns the set of <var>geometry</var>-<var>value</var> pairs included in this coverage.
      *
-     * @return The set of <var>geometry</var>-<var>value</var> pairs, or {@code null}.
+     * @return the set of <var>geometry</var>-<var>value</var> pairs, or {@code null}.
      *
      * @todo Is it duplicating {@link Coverage#list}?
      */
@@ -89,7 +89,7 @@ public interface DiscreteCoverage extends Coverage {
      * {@linkplain DomainObject objects} within the domain of the discrete coverage.
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;

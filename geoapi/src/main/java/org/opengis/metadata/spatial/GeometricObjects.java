@@ -53,7 +53,7 @@ public interface GeometricObjects {
      * Name of point and vector spatial objects used to locate zero-, one-, two- or three-dimensional
      * spatial locations in the dataset.
      *
-     * @return Name of spatial objects used to locate spatial locations in the dataset.
+     * @return name of spatial objects used to locate spatial locations in the dataset.
      */
     @UML(identifier="geometricObjectType", obligation=MANDATORY, specification=ISO_19115)
     GeometricObjectType getGeometricObjectType();
@@ -61,7 +61,7 @@ public interface GeometricObjects {
     /**
      * Total number of the point or vector object type occurring in the dataset.
      *
-     * @return Total number of the point or vector object type, or {@code null}.
+     * @return total number of the point or vector object type, or {@code null}.
      */
     @UML(identifier="geometricObjectCount", obligation=OPTIONAL, specification=ISO_19115)
     Integer getGeometricObjectCount();

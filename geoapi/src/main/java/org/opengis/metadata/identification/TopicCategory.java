@@ -313,7 +313,7 @@ public enum TopicCategory implements ControlledVocabulary {
      * method can be invoked on an instance of the {@code ControlledVocabulary} interface
      * (i.e. the enumeration type does not need to be known at compile-time).
      *
-     * @return All {@linkplain #values() values} for this enumeration.
+     * @return all {@linkplain #values() values} for this enumeration.
      */
     @Override
     public TopicCategory[] family() {

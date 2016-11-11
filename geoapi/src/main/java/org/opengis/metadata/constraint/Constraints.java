@@ -59,7 +59,7 @@ public interface Constraints {
      *
      * <div class="note"><b>Example:</b> not to be used for navigation.</div>
      *
-     * @return Limitation affecting the fitness for use of the resource.
+     * @return limitation affecting the fitness for use of the resource.
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getUseLimitations();
@@ -67,7 +67,7 @@ public interface Constraints {
     /**
      * Spatial and / or temporal extents and or levels of the application of the constraints restrictions.
      *
-     * @return Spatial and / or temporal extent, or {@code null} if none.
+     * @return extents or levels of the application of the constraints restrictions, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -78,7 +78,7 @@ public interface Constraints {
      * Graphics / symbols indicating the constraint.
      * Returns an empty collection if none.
      *
-     * @return Graphics / symbols indicating the constraint.
+     * @return graphics or symbols indicating the constraint.
      *
      * @since 3.1
      */
@@ -91,7 +91,7 @@ public interface Constraints {
      *
      * <div class="note"><b>Example:</b> copyright statement, license agreement, <i>etc</i>.</div>
      *
-     * @return Citations for the limitation of constraint, or {@code null} if none.
+     * @return citations for the limitation of constraint, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -101,7 +101,7 @@ public interface Constraints {
     /**
      * Information concerning the parties to whom the resource can or cannot be released.
      *
-     * @return Information concerning the parties to whom the resource can or cannot be released, or {@code null} if none.
+     * @return information concerning the parties to whom the resource can or cannot be released, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -112,7 +112,7 @@ public interface Constraints {
      * Parties responsible for the resource constraints.
      * Returns an empty collection if none.
      *
-     * @return Parties responsible for the resource constraints.
+     * @return parties responsible for the resource constraints.
      *
      * @since 3.1
      */

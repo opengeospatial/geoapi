@@ -54,7 +54,7 @@ public @interface UML {
      * Scripts can use this identifier in order to maps a GeoAPI method to the UML
      * entity where it come from.
      *
-     * @return The UML identifier used in the standard.
+     * @return the UML identifier used in the standard.
      */
     String identifier();
 
@@ -63,14 +63,14 @@ public @interface UML {
      * determine if a null value is allowed for the annotated method or not. If the
      * obligation is {@link Obligation#MANDATORY}, then null value are not allowed.
      *
-     * @return The obligation declared in the standard.
+     * @return the obligation declared in the standard.
      */
     Obligation obligation() default Obligation.MANDATORY;
 
     /**
      * The specification where this UML come from.
      *
-     * @return The originating specification.
+     * @return the originating specification.
      */
     Specification specification();
 
@@ -93,7 +93,7 @@ public @interface UML {
      *       type-safety, which does not exist in the Java language.</li>
      * </ul>
      *
-     * @return The specification version, or 0 for the default (usually latest) specification.
+     * @return the specification version, or 0 for the default (usually latest) specification.
      *
      * @see Specification#defaultVersion()
      *

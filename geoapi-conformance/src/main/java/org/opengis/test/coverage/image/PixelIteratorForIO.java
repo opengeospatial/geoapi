@@ -55,8 +55,8 @@ final strictfp class PixelIteratorForIO extends PixelIterator {
     /**
      * Creates a new iterator for the given image, which has been read using the given parameters.
      *
-     * @param image  The image to iterate over.
-     * @param param  The parameter which was used for producing the actual image, or {@code null}
+     * @param image  the image to iterate over.
+     * @param param  the parameter which was used for producing the actual image, or {@code null}
      *               if not. This parameter is used only for producing an error message; it has no
      *               incidence on the iteration.
      */

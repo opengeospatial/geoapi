@@ -55,7 +55,7 @@ public interface Format {
     /**
      * Citation / URL of the specification format.
      *
-     * @return Citation / URL of the specification format.
+     * @return citation / URL of the specification format.
      *
      * @since 3.1
      */
@@ -66,7 +66,7 @@ public interface Format {
     /**
      * Name of a subset, profile, or product specification of the format.
      *
-     * @return Name of a subset, profile, or product specification of the format, or {@code null}.
+     * @return name of a subset, profile, or product specification of the format, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getTitle() getTitle()}</code>.
@@ -78,7 +78,7 @@ public interface Format {
     /**
      * Name of the data transfer format(s).
      *
-     * @return Name of the data transfer format(s).
+     * @return name of the data transfer format(s).
      *
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getAlternateTitles() getAlternateTitles()}</code>.
@@ -92,7 +92,7 @@ public interface Format {
     /**
      * Version of the format (date, number, <i>etc</i>).
      *
-     * @return Version of the format.
+     * @return version of the format.
      *
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getEdition() getEdition()}</code>.
@@ -105,7 +105,7 @@ public interface Format {
     /**
      * Amendment number of the format version.
      *
-     * @return Amendment number of the format version, or {@code null}.
+     * @return amendment number of the format version, or {@code null}.
      */
     @UML(identifier="amendmentNumber", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getAmendmentNumber();
@@ -114,8 +114,8 @@ public interface Format {
      * Recommendations of algorithms or processes that can be applied to read or
      * expand resources to which compression techniques have been applied.
      *
-     * @return Processes that can be applied to read resources to which compression techniques have
-     *         been applied, or {@code null}.
+     * @return processes that can be applied to read resources to which compression techniques have been applied,
+     *         or {@code null}.
      */
     @UML(identifier="fileDecompressionTechnique", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFileDecompressionTechnique();
@@ -123,7 +123,7 @@ public interface Format {
     /**
      * Media used by the format.
      *
-     * @return Media used by the format.
+     * @return media used by the format.
      *
      * @since 3.1
      */
@@ -133,7 +133,7 @@ public interface Format {
     /**
      * Provides information about the distributor's format.
      *
-     * @return Information about the distributor's format.
+     * @return information about the distributor's format.
      */
     @UML(identifier="formatDistributor", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Distributor> getFormatDistributors();

@@ -62,7 +62,7 @@ final class PJMethod extends PJObject implements OperationMethod {
 
     /**
      * Creates a parameter group. We can not provides the descriptors for parameter values,
-     * since we don't know them...
+     * since we don not know them.
      */
     @Override
     public ParameterDescriptorGroup getParameters() {

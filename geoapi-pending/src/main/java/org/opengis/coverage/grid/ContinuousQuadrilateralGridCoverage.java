@@ -73,7 +73,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * feature attribute value at any direct position within the {@linkplain GridValueCell grid
      * value cell}. This value is often {@linkplain InterpolationMethod#BILINEAR bilinear}.
      *
-     * @return The interpolation method.
+     * @return the interpolation method.
      */
     @UML(identifier="interpolationType", obligation=MANDATORY, specification=ISO_19123)
     InterpolationMethod getInterpolationMethod();
@@ -107,7 +107,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * </div>
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list)
@@ -116,7 +116,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
     /**
      * Provides the data for the {@linkplain #evaluate evaluate} operation.
      *
-     * @return The underlying data.
+     * @return the underlying data.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19123)
     GridValuesMatrix getSource();

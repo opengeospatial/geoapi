@@ -67,7 +67,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Creates a new direct position of the given dimension.
      *
-     * @param dimension The dimension.
+     * @param  dimension  the dimension.
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];
@@ -76,7 +76,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Creates a new direct position initialized to the given ordinate values.
      *
-     * @param ordinates The ordinate values. This array is <strong>not</strong> cloned.
+     * @param ordinates  the ordinate values. This array is <strong>not</strong> cloned.
      *
      * @since 3.1
      */
@@ -135,9 +135,9 @@ final class SimpleDirectPosition implements DirectPosition {
      * Sets all ordinate values starting at the given offset in the given array.
      * This method is for internal usage by {@link TransformTestCase} only.
      *
-     * @param array     The {@code float[]} or {@code double[]} array.
-     * @param offset    Index of the first element to copy from the given array.
-     * @param useDouble If {@code false}, cast the values to floats.
+     * @param array      the {@code float[]} or {@code double[]} array.
+     * @param offset     index of the first element to copy from the given array.
+     * @param useDouble  if {@code false}, cast the values to floats.
      */
     final void setCoordinate(final Object ordinates, int offset, final boolean useDouble) {
         assertFalse("This DirectPosition shall not be modified.", unmodifiable);

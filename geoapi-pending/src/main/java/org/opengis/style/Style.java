@@ -71,7 +71,7 @@ public interface Style {
     /**
      * Returns the description of this style.
      *
-     * @return Description with usual informations used
+     * @return description with usual informations used
      * for user interfaces.
      */
     @XmlElement("Description")

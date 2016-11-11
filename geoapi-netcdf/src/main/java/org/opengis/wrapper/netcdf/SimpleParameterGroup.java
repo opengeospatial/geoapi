@@ -67,8 +67,8 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     /**
      * Creates a new parameter group of the given name.
      *
-     * @param name  The parameter group name.
-     * @param param The parameters to be included in this group.
+     * @param name   the parameter group name.
+     * @param param  the parameters to be included in this group.
      */
     SimpleParameterGroup(final AliasList name, final NetcdfParameter<?>... param) {
         parameters = Collections.unmodifiableList(Arrays.asList(param));

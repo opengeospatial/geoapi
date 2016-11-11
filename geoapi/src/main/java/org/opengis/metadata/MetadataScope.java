@@ -51,7 +51,7 @@ public interface MetadataScope {
     /**
      * Code for the scope.
      *
-     * @return Code for the scope.
+     * @return code for the scope.
      */
     @UML(identifier="resourceScope", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getResourceScope();
@@ -60,7 +60,7 @@ public interface MetadataScope {
      * Description of the scope.
      * May be {@code null} if unspecified.
      *
-     * @return The description of the scope, or {@code null} if none.
+     * @return the description of the scope, or {@code null} if none.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();

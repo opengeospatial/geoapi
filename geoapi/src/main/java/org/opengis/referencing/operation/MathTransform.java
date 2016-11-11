@@ -84,7 +84,7 @@ public interface MathTransform {
     /**
      * Gets the dimension of input points.
      *
-     * @return The dimension of input points.
+     * @return the dimension of input points.
      *
      * @see OperationMethod#getSourceDimensions()
      */
@@ -94,7 +94,7 @@ public interface MathTransform {
     /**
      * Gets the dimension of output points.
      *
-     * @return The dimension of output points.
+     * @return the dimension of output points.
      *
      * @see OperationMethod#getTargetDimensions()
      */
@@ -116,7 +116,7 @@ public interface MathTransform {
      *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
      * @throws MismatchedDimensionException if {@code ptSrc} or
      *         {@code ptDst} doesn't have the expected dimension.
-     * @throws TransformException if the point can't be transformed.
+     * @throws TransformException if the point can not be transformed.
      */
     @UML(identifier="transform", specification=OGC_01009)
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
@@ -267,7 +267,7 @@ public interface MathTransform {
      *         For example affine transform accept null value since they produces
      *         identical derivative no matter the coordinate value. But most map
      *         projection will requires a non-null value.
-     * @return The derivative at the specified point (never {@code null}).
+     * @return the derivative at the specified point (never {@code null}).
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.
      * @throws NullPointerException if the derivative depends on coordinate and {@code point} is {@code null}.
@@ -286,8 +286,8 @@ public interface MathTransform {
      * error are made. This method may fail if the transform is not one to one. However,
      * all cartographic projections should succeed.
      *
-     * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inverted.
+     * @return the inverse transform.
+     * @throws NoninvertibleTransformException if the transform can not be inverted.
      *
      * @see AffineTransform#createInverse()
      */
@@ -310,8 +310,8 @@ public interface MathTransform {
      * Version 1 of Well-Know Text is <a href="../doc-files/WKT.html">defined in extended Backus Naur form</a>.
      * This operation may fail if unsupported or if this instance contains elements that do not have WKT representation.
      *
-     * @return The <cite>Well-Known Text</cite> (WKT) for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @return the <cite>Well-Known Text</cite> (WKT) for this object.
+     * @throws UnsupportedOperationException if this object can not be formatted as WKT.
      *
      * @see MathTransformFactory#createFromWKT(String)
      */

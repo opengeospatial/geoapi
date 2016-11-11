@@ -67,7 +67,7 @@ public interface Point extends Primitive, Position {
      * allowing {@code Point} to use this technique, infinitely recursive references
      * are prevented.
      *
-     * @return The direct position.
+     * @return the direct position.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getDirectPosition();
@@ -102,7 +102,7 @@ public interface Point extends Primitive, Position {
     /**
      * Returns always {@code null}, since point has no boundary.
      *
-     * @return Always {@code null}.
+     * @return always {@code null}.
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     PrimitiveBoundary getBoundary();
@@ -119,7 +119,7 @@ public interface Point extends Primitive, Position {
      * this function shall specify the nature of the curve to be used.
      *
      * @param toPoint the destination point.
-     * @return The tangent to the curve between this point and the passed position.
+     * @return the tangent to the curve between this point and the passed position.
      */
     @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
     Bearing getBearing(Position toPoint);

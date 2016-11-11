@@ -136,7 +136,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS3004} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS3004} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -148,7 +148,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param copFactory Factory for creating {@link Conversion} instances.
+     * @param copFactory  factory for creating {@link Conversion} instances.
      */
     public GIGS3005(final CoordinateOperationFactory copFactory) {
         super(copFactory);
@@ -168,7 +168,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -220,7 +220,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
      * {@link CoordinateOperationFactory} with the current {@link #properties properties} map in argument.
      * The created object is then cached and returned in all subsequent invocations of this method.
      *
-     * @return The geodetic datum instance to test.
+     * @return the geodetic datum instance to test.
      * @throws FactoryException if an error occurred while creating the coordinate operation instance.
      */
     @Override

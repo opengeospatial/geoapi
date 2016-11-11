@@ -80,7 +80,7 @@ public interface Metadata {
      * of a UUID (Universal Unique Identifier) as specified by <a href="http://www.ietf.org">IETF</a>
      * to ensure identifier’s uniqueness.</div>
      *
-     * @return Unique identifier for this metadata record, or {@code null}.
+     * @return unique identifier for this metadata record, or {@code null}.
      */
     @Profile(level=CORE)
     @UML(identifier="metadataIdentifier", obligation=OPTIONAL, specification=ISO_19115)
@@ -94,7 +94,7 @@ public interface Metadata {
      * of a UUID (Universal Unique Identifier) as specified by <a href="http://www.ietf.org">IETF</a>
      * to ensure identifier’s uniqueness.</div>
      *
-     * @return Unique identifier for this metadata file, or {@code null} in none.
+     * @return unique identifier for this metadata file, or {@code null} in none.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataIdentifier()}
      *   in order to include the codespace attribute.
@@ -123,7 +123,7 @@ public interface Metadata {
      *   methods like <code>Locale.lookup(List&lt;Locale.LanguageRange&gt;, Collection&lt;Locale&gt;)</code>,
      *   which provides elaborated mechanism for choosing the best suited locale for a user.
      *
-     * @return Language used for documenting metadata.
+     * @return language used for documenting metadata.
      *
      * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
      * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLanguages()
@@ -139,7 +139,7 @@ public interface Metadata {
     /**
      * Language used for documenting metadata.
      *
-     * @return Language used for documenting metadata, or {@code null}.
+     * @return language used for documenting metadata, or {@code null}.
      *
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
      */
@@ -149,7 +149,7 @@ public interface Metadata {
     /**
      * Provides information about an alternatively used localized character string for a linguistic extension.
      *
-     * @return Alternatively used localized character string for a linguistic extension.
+     * @return alternatively used localized character string for a linguistic extension.
      *
      * @since 2.1
      *
@@ -173,7 +173,7 @@ public interface Metadata {
      * {@code Big5}, {@code GB2312}.
      * </div>
      *
-     * @return Character coding standards used for the metadata.
+     * @return character coding standards used for the metadata.
      *
      * @departure historic
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
@@ -192,7 +192,7 @@ public interface Metadata {
     /**
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getCharacterSets()}.
      *
-     * @return Character coding standard used for the metadata, or {@code null}.
+     * @return character coding standard used for the metadata, or {@code null}.
      */
     @Deprecated
     CharacterSet getCharacterSet();
@@ -203,7 +203,7 @@ public interface Metadata {
      *
      * @condition Mandatory if there is an upper object.
      *
-     * @return Identification of the parent metadata record, or {@code null} if none.
+     * @return identification of the parent metadata record, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -218,7 +218,7 @@ public interface Metadata {
      * of a UUID (Universal Unique Identifier) as specified by <a href="http://www.ietf.org">IETF</a>
      * to ensure identifier’s uniqueness.</div>
      *
-     * @return Identifier of the metadata to which this metadata is a subset, or {@code null}.
+     * @return identifier of the metadata to which this metadata is a subset, or {@code null}.
      *
      * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
      *            {@link ScopeCode#DATASET}.
@@ -234,7 +234,7 @@ public interface Metadata {
      *
      * @condition Mandatory if the metadata is about a resource other than a dataset.
      *
-     * @return Scope or type of resource for which metadata is provided.
+     * @return scope or type of resource for which metadata is provided.
      *
      * @since 3.1
      */
@@ -246,7 +246,7 @@ public interface Metadata {
      * Metadata for which no hierarchy is listed are interpreted to be
      * "{@linkplain ScopeCode#DATASET dataset}" metadata by default.
      *
-     * @return Scope to which the metadata applies.
+     * @return scope to which the metadata applies.
      *
      * @condition Mandatory if the metadata is about a resource other than a dataset.
      *
@@ -260,7 +260,7 @@ public interface Metadata {
     /**
      * Name of the hierarchy levels for which the metadata is provided.
      *
-     * @return Hierarchy levels for which the metadata is provided.
+     * @return hierarchy levels for which the metadata is provided.
      *
      * @condition {@linkplain #getHierarchyLevels() Hierarchy level} is not equal to
      *            {@link ScopeCode#DATASET}.
@@ -275,7 +275,7 @@ public interface Metadata {
     /**
      * Parties responsible for the metadata information.
      *
-     * @return Parties responsible for the metadata information.
+     * @return parties responsible for the metadata information.
      *
      * @see Identification#getPointOfContacts()
      *
@@ -289,7 +289,7 @@ public interface Metadata {
      * Date(s) associated with the metadata.
      * The collection shall contains at least an element for {@link DateType#CREATION}.
      *
-     * @return Date(s) associated with the metadata.
+     * @return date(s) associated with the metadata.
      *
      * @see Citation#getDates()
      *
@@ -302,7 +302,7 @@ public interface Metadata {
     /**
      * Date that the metadata was created.
      *
-     * @return Date that the metadata was created.
+     * @return date that the metadata was created.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getDateInfo()}.
      */
@@ -313,7 +313,7 @@ public interface Metadata {
     /**
      * Name of the metadata standard (including profile name) used.
      *
-     * @return Name of the metadata standard used, or {@code null}.
+     * @return name of the metadata standard used, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataStandards()}
      *   followed by {@link Citation#getTitle()}.
@@ -325,7 +325,7 @@ public interface Metadata {
     /**
      * Version (profile) of the metadata standard used.
      *
-     * @return Version of the metadata standard used, or {@code null}.
+     * @return version of the metadata standard used, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataStandards()}
      *   followed by {@link Citation#getEdition()}.
@@ -339,7 +339,7 @@ public interface Metadata {
      * Citation(s) for the standard(s) to which the metadata conform.
      * Metadata standard citations should include an identifier.
      *
-     * @return The standard(s) to which the metadata conform.
+     * @return the standard(s) to which the metadata conform.
      *
      * @see #getMetadataProfiles()
      *
@@ -353,7 +353,7 @@ public interface Metadata {
      * Citation(s) for the profile(s) of the metadata standard to which the metadata conform.
      * Metadata profile standard citations should include an identifier.
      *
-     * @return The profile(s) to which the metadata conform.
+     * @return the profile(s) to which the metadata conform.
      *
      * @see #getMetadataStandards()
      * @see #getMetadataExtensionInfo()
@@ -366,7 +366,7 @@ public interface Metadata {
     /**
      * Reference(s) to alternative metadata or metadata in a non-ISO standard for the same resource.
      *
-     * @return Reference(s) to alternative metadata (e.g. Dublin core, FGDC).
+     * @return reference(s) to alternative metadata (e.g. Dublin core, FGDC).
      *
      * @since 3.1
      */
@@ -376,7 +376,7 @@ public interface Metadata {
     /**
      * Online location(s) where the metadata is available.
      *
-     * @return Online location(s) where the metadata is available.
+     * @return online location(s) where the metadata is available.
      *
      * @since 3.1
      */
@@ -386,7 +386,7 @@ public interface Metadata {
     /**
      * Uniformed Resource Identifier (URI) of the dataset to which the metadata applies.
      *
-     * @return Uniformed Resource Identifier of the dataset, or {@code null}.
+     * @return uniformed Resource Identifier of the dataset, or {@code null}.
      *
      * @since 2.1
      *
@@ -400,7 +400,7 @@ public interface Metadata {
     /**
      * Digital representation of spatial information in the dataset.
      *
-     * @return Digital representation of spatial information in the dataset.
+     * @return digital representation of spatial information in the dataset.
      */
     @UML(identifier="spatialRepresentationInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends SpatialRepresentation> getSpatialRepresentationInfo();
@@ -408,7 +408,7 @@ public interface Metadata {
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
      *
-     * @return Spatial and temporal reference systems used in the dataset.
+     * @return spatial and temporal reference systems used in the dataset.
      */
     @Profile(level=CORE)
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
@@ -417,7 +417,7 @@ public interface Metadata {
     /**
      * Information describing metadata extensions.
      *
-     * @return Metadata extensions.
+     * @return metadata extensions.
      *
      * @see #getMetadataProfiles()
      */
@@ -427,7 +427,7 @@ public interface Metadata {
     /**
      * Basic information about the resource(s) to which the metadata applies.
      *
-     * @return The resource(s) to which the metadata applies.
+     * @return the resource(s) to which the metadata applies.
      */
     @Profile(level=CORE)
     @UML(identifier="identificationInfo", obligation=MANDATORY, specification=ISO_19115)
@@ -436,7 +436,7 @@ public interface Metadata {
     /**
      * Information about the feature and coverage characteristics.
      *
-     * @return Information about the feature and coverage characteristics.
+     * @return information about the feature and coverage characteristics.
      */
     @UML(identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ContentInformation> getContentInfo();
@@ -444,7 +444,7 @@ public interface Metadata {
     /**
      * Information about the distributor of and options for obtaining the resource(s).
      *
-     * @return The distributor of and options for obtaining the resource(s), or {@code null}.
+     * @return the distributor of and options for obtaining the resource(s), or {@code null}.
      */
     @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
@@ -453,7 +453,7 @@ public interface Metadata {
     /**
      * Overall assessment of quality of a resource(s).
      *
-     * @return Overall assessment of quality of a resource(s).
+     * @return overall assessment of quality of a resource(s).
      */
     @Profile(level=CORE)
     @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
@@ -462,7 +462,7 @@ public interface Metadata {
     /**
      * Information about the catalogue of rules defined for the portrayal of a resource(s).
      *
-     * @return The catalogue of rules defined for the portrayal of a resource(s).
+     * @return the catalogue of rules defined for the portrayal of a resource(s).
      */
     @UML(identifier="portrayalCatalogueInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo();
@@ -470,7 +470,7 @@ public interface Metadata {
     /**
      * Restrictions on the access and use of data.
      *
-     * @return Restrictions on the access and use of data.
+     * @return restrictions on the access and use of data.
      */
     @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Constraints> getMetadataConstraints();
@@ -478,7 +478,7 @@ public interface Metadata {
     /**
      * Information about the conceptual schema of a dataset.
      *
-     * @return The conceptual schema of a dataset.
+     * @return the conceptual schema of a dataset.
      */
     @UML(identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo();
@@ -486,7 +486,7 @@ public interface Metadata {
     /**
      * Information about the acquisition of the data.
      *
-     * @return The acquisition of data.
+     * @return the acquisition of data.
      */
     @UML(identifier="acquisitionInformation", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends AcquisitionInformation> getAcquisitionInformation();
@@ -494,7 +494,7 @@ public interface Metadata {
     /**
      * Information about the frequency of metadata updates, and the scope of those updates.
      *
-     * @return The frequency of metadata updates and their scope, or {@code null}.
+     * @return the frequency of metadata updates and their scope, or {@code null}.
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();
@@ -502,7 +502,7 @@ public interface Metadata {
     /**
      * Information about the provenance, sources and/or the production processes applied to the resource.
      *
-     * @return The provenance, sources and/or the production processes.
+     * @return the provenance, sources and/or the production processes.
      *
      * @since 3.1
      */

@@ -73,7 +73,7 @@ public interface GridCoverage extends Coverage {
     /**
      * Information for the packing of grid coverage values.
      *
-     * @return The information for the packing of grid coverage values.
+     * @return the information for the packing of grid coverage values.
      */
     @UML(identifier="gridPacking", obligation=MANDATORY, specification=OGC_01004)
     GridPacking getGridPacking();
@@ -82,7 +82,7 @@ public interface GridCoverage extends Coverage {
      * Information for the grid coverage geometry.
      * Grid geometry includes the valid range of grid coordinates and the georeferencing.
      *
-     * @return The information for the grid coverage geometry.
+     * @return the information for the grid coverage geometry.
      */
     @UML(identifier="gridGeometry", obligation=MANDATORY, specification=OGC_01004)
     GridGeometry getGridGeometry();
@@ -97,7 +97,7 @@ public interface GridCoverage extends Coverage {
      * The sequence is ordered by dimension.
      * If the implementation does not have optimal sizes, the sequence will be {@code null}.
      *
-     * @return The optimal size to use for each dimension when accessing grid values,
+     * @return the optimal size to use for each dimension when accessing grid values,
      *         or {@code null} if none.
      */
     @UML(identifier="optimalDataBlockSizes", obligation=OPTIONAL, specification=OGC_01004)
@@ -106,7 +106,7 @@ public interface GridCoverage extends Coverage {
     /**
      * Number of predetermined overviews for the grid.
      *
-     * @return The number of predetermined overviews for the grid.
+     * @return the number of predetermined overviews for the grid.
      */
     @UML(identifier="numOverviews", obligation=MANDATORY, specification=OGC_01004)
     int getNumOverviews();
@@ -115,7 +115,7 @@ public interface GridCoverage extends Coverage {
      * Returns the grid geometry for an overview.
      *
      * @param  index Overview index for which to retrieve grid geometry. Indices start at 0.
-     * @return The grid geometry for an overview.
+     * @return the grid geometry for an overview.
      * @throws IndexOutOfBoundsException if {@code overviewIndex} is out of bounds.
      */
     @UML(identifier="getOverviewGridGeometry", obligation=MANDATORY, specification=OGC_01004)
@@ -153,7 +153,7 @@ public interface GridCoverage extends Coverage {
      * </table></blockquote>
      *
      * @param  index Index of grid coverage overview to retrieve. Indexes start at 0.
-     * @return A pre-calculated overview for a grid coverage.
+     * @return a pre-calculated overview for a grid coverage.
      * @throws IndexOutOfBoundsException if {@code overviewIndex} is out of bounds.
      */
     @UML(identifier="getOverview", obligation=MANDATORY, specification=OGC_01004)
@@ -172,7 +172,7 @@ public interface GridCoverage extends Coverage {
      * This is intended to allow applications to establish what {@code GridCoverage}s
      * will be affected when others are updated, as well as to trace back to the "raw data".
      *
-     * @return The sources data for a grid coverage.
+     * @return the sources data for a grid coverage.
      */
     List<GridCoverage> getSources();
 
@@ -185,7 +185,7 @@ public interface GridCoverage extends Coverage {
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of boolean values for a given block in the coverage.
+     * @return a sequence of boolean values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
@@ -211,7 +211,7 @@ public interface GridCoverage extends Coverage {
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of 8 bits values for a given block in the coverage.
+     * @return a sequence of 8 bits values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
@@ -237,7 +237,7 @@ public interface GridCoverage extends Coverage {
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of 16 bits values for a given block in the coverage.
+     * @return a sequence of 16 bits values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
@@ -263,7 +263,7 @@ public interface GridCoverage extends Coverage {
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of 32 bits values for a given block in the coverage.
+     * @return a sequence of 32 bits values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
@@ -290,7 +290,7 @@ public interface GridCoverage extends Coverage {
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of float values for a given block in the coverage.
+     * @return a sequence of float values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws InvalidRangeException if {@code range} is out of this grid range bounds.
@@ -348,7 +348,7 @@ public interface GridCoverage extends Coverage {
      * @param  range Grid range for block of data to be accessed.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of double values for a given block in the coverage.
+     * @return a sequence of double values for a given block in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws InvalidRangeException if {@code range} is out of this grid range bounds.

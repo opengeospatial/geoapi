@@ -84,7 +84,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
     /**
      * Returns the origin of the rectified grid in an external coordinate reference system.
      *
-     * @return The origin of the rectified grid.
+     * @return the origin of the rectified grid.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition getOrigin();
@@ -93,7 +93,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * Returns the offset vectors that determine the grid spacing in each direction.
      * The vectors are defined in terms of the external coordinate reference system.
      *
-     * @return The offset vectors that determine the grid spacing in each direction.
+     * @return the offset vectors that determine the grid spacing in each direction.
      */
     @UML(identifier="offsetVectors", obligation=MANDATORY, specification=ISO_19123)
     List<double[]> getOffsetVectors();
@@ -102,7 +102,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * Converts through an affine transform grid coordinates to a direct position.
      *
      * @param  g The grid coordinates to convert.
-     * @return The "real world" coordinates.
+     * @return the "real world" coordinates.
      *
      * @departure rename
      *   A <code>"convertCoordinates"</code> method name would match better the ISO identifier.
@@ -118,7 +118,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * @deprecated Renamed as {@link #transformCoordinates}.
      *
      * @param  g The grid coordinates to convert.
-     * @return The "real world" coordinates.
+     * @return the "real world" coordinates.
      */
     @Deprecated
     DirectPosition convertCoordinates(GridCoordinates g);
@@ -128,7 +128,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * the nearest grid point.
      *
      * @param p The "real world" coordinates to convert.
-     * @return The grid coordinates.
+     * @return the grid coordinates.
      *
      * @departure rename
      *   A <code>"inverseConvertCoordinates"</code> method name would match better the ISO identifier.
@@ -144,7 +144,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * @deprecated Renamed as {@link #inverseTransformCoordinates}.
      *
      * @param p The "real world" coordinates to convert.
-     * @return The grid coordinates.
+     * @return the grid coordinates.
      */
     @Deprecated
     GridCoordinates inverseConvertCoordinates(DirectPosition p);

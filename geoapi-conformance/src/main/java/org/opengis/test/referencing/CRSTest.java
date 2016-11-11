@@ -87,7 +87,7 @@ public strictfp class CRSTest extends ReferencingTestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code CRSTest} constructor.
+     * @return the default set of arguments to be given to the {@code CRSTest} constructor.
      *
      * @since 3.1
      */
@@ -101,7 +101,7 @@ public strictfp class CRSTest extends ReferencingTestCase {
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
-     * @param factory Factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param factory  factory for creating {@link CoordinateReferenceSystem} instances.
      */
     public CRSTest(final CRSAuthorityFactory factory) {
         super(factory);
@@ -112,10 +112,8 @@ public strictfp class CRSTest extends ReferencingTestCase {
      * Tests the creation of the WGS84 {@linkplain CoordinateReferenceSystem crs} from the
      * EPSG code.
      *
-     * @throws NoSuchAuthorityCodeException
-     *          If the specified code is not found among the ones present in the database.
-     * @throws FactoryException
-     *          If the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
+     * @throws NoSuchAuthorityCodeException if the specified code is not found among the ones present in the database.
+     * @throws FactoryException if the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
      */
     @Test
     public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {

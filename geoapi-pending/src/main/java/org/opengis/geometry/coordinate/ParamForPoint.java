@@ -56,7 +56,7 @@ public interface ParamForPoint {
      * curve} at the same minimal distance from the passed "{@code p}", the return value may
      * be an arbitrary choice of one of the possible answers.
      *
-     * @return The parameter distance.
+     * @return the parameter distance.
      * @unitof Distance
      *
      * @since GeoAPI 2.1
@@ -66,7 +66,7 @@ public interface ParamForPoint {
     /**
      * Returns the first value in the {@linkplain #getDistances distances} set.
      *
-     * @return The parameter distance.
+     * @return the parameter distance.
      * @unitof Distance
      */
     double getDistance();
@@ -77,7 +77,7 @@ public interface ParamForPoint {
      * That is, it shall be the point on the {@linkplain GenericCurve generic curve}
      * closest to the coordinate passed in as the "{@code p}" argument.
      *
-     * @return The actual position used.
+     * @return the actual position used.
      */
     DirectPosition getPosition();
 }

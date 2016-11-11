@@ -50,7 +50,7 @@ public interface TemporalExtent {
     /**
      * Period for the content of the resource.
      *
-     * @return The period for the content.
+     * @return the period for the content.
      */
     @UML(identifier="extent", obligation=MANDATORY, specification=ISO_19108)
     TemporalPrimitive getExtent();

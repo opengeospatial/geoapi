@@ -64,7 +64,7 @@ public interface CoupledResource {
      *
      * <div class="note"><b>Examples:</b> layer name or feature type name.</div>
      *
-     * @return Scoped identifier of the resource in the context of the given service instance, or {@code null} if none.
+     * @return scoped identifier of the resource in the context of the given service instance, or {@code null} if none.
      */
     @UML(identifier="scopedName", obligation=OPTIONAL, specification=ISO_19115)
     ScopedName getScopedName();
@@ -73,7 +73,7 @@ public interface CoupledResource {
      * References to the resource on which the services operates.
      * Returns an empty collection if none.
      *
-     * @return References to the resource on which the services operates.
+     * @return references to the resource on which the services operates.
      *
      * @condition Only one of {@linkplain #getResources() resources} and resource references should be non-empty.
      *
@@ -86,7 +86,7 @@ public interface CoupledResource {
      * The tightly coupled resources.
      * Returns an empty collection if none.
      *
-     * @return Tightly coupled resources.
+     * @return tightly coupled resources.
      *
      * @condition Only one of resources and {@linkplain #getResourceReferences() resource references} should be non-empty.
      */
@@ -96,7 +96,7 @@ public interface CoupledResource {
     /**
      * The service operation.
      *
-     * @return The service operation, or {@code null} if none.
+     * @return the service operation, or {@code null} if none.
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115)
     OperationMetadata getOperation();

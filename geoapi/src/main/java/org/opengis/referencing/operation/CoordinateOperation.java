@@ -115,7 +115,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@linkplain Conversion Conversions} may have a source CRS that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
      *
-     * @return The source CRS, or {@code null} if not available.
+     * @return the source CRS, or {@code null} if not available.
      *
      * @see Conversion#getSourceCRS()
      * @see Transformation#getSourceCRS()
@@ -128,7 +128,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@linkplain Conversion Conversions} may have a target CRS that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
-     * @return The target CRS, or {@code null} if not available.
+     * @return the target CRS, or {@code null} if not available.
      *
      * @see Conversion#getTargetCRS()
      * @see Transformation#getTargetCRS()
@@ -141,7 +141,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * nature of the parameters). Mandatory when describing a transformation, and should not
      * be supplied for a conversion.
      *
-     * @return The coordinate operation version, or {@code null} in none.
+     * @return the coordinate operation version, or {@code null} in none.
      */
     @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
     String getOperationVersion();
@@ -151,7 +151,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * position error estimates for target coordinates of this coordinate
      * operation, assuming no errors in source coordinates.
      *
-     * @return The position error estimates, or an empty collection if not available.
+     * @return the position error estimates, or an empty collection if not available.
      *
      * @since 2.1
      */
@@ -161,7 +161,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Area or region or timeframe in which this coordinate operation is valid.
      *
-     * @return The coordinate operation valid domain, or {@code null} if not available.
+     * @return the coordinate operation valid domain, or {@code null} if not available.
      *
      * @since 2.1
      */
@@ -171,7 +171,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
      *
-     * @return A description of domain of usage, or {@code null} if none.
+     * @return a description of domain of usage, or {@code null} if none.
      *
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003.
@@ -189,7 +189,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * It may be {@code null} in the case of
      * {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversions}.
      *
-     * @return The transform from source to target CRS, or {@code null} if not applicable.
+     * @return the transform from source to target CRS, or {@code null} if not applicable.
      */
     @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();

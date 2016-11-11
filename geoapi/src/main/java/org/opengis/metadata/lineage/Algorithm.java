@@ -52,7 +52,7 @@ public interface Algorithm {
     /**
      * Information identifying the algorithm and version or date.
      *
-     * @return Algorithm and version or date.
+     * @return algorithm and version or date.
      */
     @UML(identifier="citation", obligation=MANDATORY, specification=ISO_19115_2)
     Citation getCitation();
@@ -60,7 +60,7 @@ public interface Algorithm {
     /**
      * Information describing the algorithm used to generate the data.
      *
-     * @return Algorithm used to generate the data.
+     * @return algorithm used to generate the data.
      */
     @UML(identifier="description", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getDescription();

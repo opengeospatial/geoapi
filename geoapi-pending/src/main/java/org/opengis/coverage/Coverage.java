@@ -88,7 +88,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Coverage {
     /**
      * Returns the coordinate reference system to which the objects in its domain are referenced.
-     * This is the CRS used when accessing a coverage or grid coverage with the {@code evaluate(...)}
+     * This is the CRS used when accessing a coverage or grid coverage with the {@code evaluate(…)}
      * methods. This coordinate reference system is usually different than coordinate system of the
      * grid. It is the target coordinate reference system of the
      * {@link org.opengis.coverage.grid.GridGeometry#getGridToCRS gridToCRS} math transform.
@@ -97,8 +97,8 @@ public interface Coverage {
      * {@link org.opengis.coverage.processing.GridCoverageProcessor} component. In this case, a new
      * instance of a grid coverage is created.</p>
      *
-     * @return The coordinate reference system used when accessing a coverage or
-     *         grid coverage with the {@code evaluate(...)} methods.
+     * @return the coordinate reference system used when accessing a coverage or
+     *         grid coverage with the {@code evaluate(…)} methods.
      */
     @UML(identifier="CRS", obligation=MANDATORY, specification=ISO_19123)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -117,7 +117,7 @@ public interface Coverage {
      * If a grid coverage does not have any associated coordinate reference system,
      * the minimum and maximum coordinate points for the envelope will be empty sequences.
      *
-     * @return The bounding box for the coverage domain in coordinate system coordinates.
+     * @return the bounding box for the coverage domain in coordinate system coordinates.
      *
      * @todo We need to explain the relationship with {@link #getDomainExtents}, if any.
      */
@@ -128,7 +128,7 @@ public interface Coverage {
      * Returns the extent of the domain of the coverage. Extents may be specified in space,
      * time or space-time. The collection must contains at least one element.
      *
-     * @return The domain extent of the coverage.
+     * @return the domain extent of the coverage.
      */
     @UML(identifier="domainExtent", obligation=MANDATORY, specification=ISO_19123)
     Set<Extent> getDomainExtents();
@@ -137,7 +137,7 @@ public interface Coverage {
      * Returns the set of domain objects in the domain.
      * The collection must contains at least one element.
      *
-     * @return The domain elements.
+     * @return the domain elements.
      */
     @UML(identifier="domainElement", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends DomainObject<?>> getDomainElements();
@@ -166,7 +166,7 @@ public interface Coverage {
      * be electronically accessible from remote locations.
      * </div>
      *
-     * @return The attribute values in the range.
+     * @return the attribute values in the range.
      */
     @UML(identifier="rangeElement", obligation=OPTIONAL, specification=ISO_19123)
     Collection<AttributeValues> getRangeElements();
@@ -177,7 +177,7 @@ public interface Coverage {
      * recursively to describe more complex structures. The range type for a specific coverage
      * shall be specified in an application schema.
      *
-     * @return The coverage range.
+     * @return the coverage range.
      */
     @UML(identifier="rangeType", obligation=MANDATORY, specification=ISO_19123)
     RecordType getRangeType();
@@ -188,7 +188,7 @@ public interface Coverage {
      * overlapping geometric objects. The geometric objects are either {@linkplain DomainObject
      * domain objects} or {@linkplain ValueObject value objects}.
      *
-     * @return The procedure for evaluating the coverage on overlapping geometries.
+     * @return the procedure for evaluating the coverage on overlapping geometries.
      */
     @UML(identifier="commonPointRule", obligation=MANDATORY, specification=ISO_19123)
     CommonPointRule getCommonPointRule();
@@ -199,7 +199,7 @@ public interface Coverage {
      * record of feature attribute values. In the case of an analytical coverage, the operation
      * shall return the empty set.
      *
-     * @return The geometry-value pairs.
+     * @return the geometry-value pairs.
      */
     @UML(identifier="list", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends GeometryValuePair> list();
@@ -215,7 +215,7 @@ public interface Coverage {
      *
      * @param s The spatial component.
      * @param t The temporal component.
-     * @return The values in the given spatio-temporal domain.
+     * @return the values in the given spatio-temporal domain.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends GeometryValuePair> select(Geometry s, Period t);
@@ -242,7 +242,7 @@ public interface Coverage {
      *
      * @param  p The search position.
      * @param  limit The maximal size of the list to be returned.
-     * @return The <var>geometry</var>-<var>value</var> pairs nearest to the given position.
+     * @return the <var>geometry</var>-<var>value</var> pairs nearest to the given position.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     List<? extends GeometryValuePair> find(DirectPosition p, int limit);
@@ -252,7 +252,7 @@ public interface Coverage {
      * position. This is a shortcut for <code>{@linkplain #find(DirectPosition,int) find}(p,1)</code>.
      *
      * @param  p The search position.
-     * @return The <var>geometry</var>-<var>value</var> pair nearest to the given position.
+     * @return the <var>geometry</var>-<var>value</var> pair nearest to the given position.
      */
     @UML(identifier="find", obligation=MANDATORY, specification=ISO_19123)
     GeometryValuePair find(DirectPosition p);
@@ -273,9 +273,9 @@ public interface Coverage {
      *
      * @param  p The position where to evaluate.
      * @param  list The field of interest, or {@code null} for every fields.
-     * @return The feature attributes.
+     * @return the feature attributes.
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list)
@@ -297,10 +297,10 @@ public interface Coverage {
      * </div>
      *
      * @param  point Point at which to find the grid values.
-     * @return The value vector for a given point in the coverage.
+     * @return the value vector for a given point in the coverage.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      * @see Raster#getDataElements(int, int, Object)
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
@@ -318,12 +318,12 @@ public interface Coverage {
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of boolean values for a given point in the coverage.
+     * @return a sequence of boolean values for a given point in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
@@ -343,12 +343,12 @@ public interface Coverage {
      * @param  point Point at which to find the coverage values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of unsigned byte values for a given point in the coverage.
+     * @return a sequence of unsigned byte values for a given point in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
@@ -368,12 +368,12 @@ public interface Coverage {
      * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of integer values for a given point in the coverage.
+     * @return a sequence of integer values for a given point in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -395,12 +395,12 @@ public interface Coverage {
      * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of float values for a given point in the coverage.
+     * @return a sequence of float values for a given point in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can't be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -426,12 +426,12 @@ public interface Coverage {
      * @param  point Point at which to find the grid values.
      * @param  destination An optionally preallocated array in which to store the values,
      *         or {@code null} if none.
-     * @return A sequence of double values for a given point in the coverage.
+     * @return a sequence of double values for a given point in the coverage.
      *         If {@code destination} was non-null, then it is returned.
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException If the point can't be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -455,7 +455,7 @@ public interface Coverage {
      * </div>
      *
      * @param  v The feature attributes.
-     * @return The domain where the attributes are found.
+     * @return the domain where the attributes are found.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends DomainObject<?>> evaluateInverse(Record v);
@@ -470,7 +470,7 @@ public interface Coverage {
      * and feedbacks on the value of this method.
      * </div>
      *
-     * @return The number of sample dimensions in the coverage.
+     * @return the number of sample dimensions in the coverage.
      */
     @UML(identifier="numSampleDimensions", obligation=MANDATORY, specification=OGC_01004)
     int getNumSampleDimensions();
@@ -519,7 +519,7 @@ public interface Coverage {
      *   dependency of <code>Coverage</code> toward <code>GridCoverage</code> and give more flexibility for
      *   use of <code>Coverage</code> with non-gridded sources.
      *
-     * @return The list of sources data for a coverage.
+     * @return the list of sources data for a coverage.
      */
     @UML(identifier="getSource, numSource", obligation=MANDATORY, specification=OGC_01004)
     List<? extends Coverage> getSources();
@@ -540,7 +540,7 @@ public interface Coverage {
      *
      * @param  xAxis Dimension to use for the <var>x</var> axis.
      * @param  yAxis Dimension to use for the <var>y</var> axis.
-     * @return A 2D view of this coverage as a renderable image.
+     * @return a 2D view of this coverage as a renderable image.
      * @throws UnsupportedOperationException if this optional operation is not supported.
      * @throws IndexOutOfBoundsException if {@code xAxis} or {@code yAxis} is out of bounds.
      */

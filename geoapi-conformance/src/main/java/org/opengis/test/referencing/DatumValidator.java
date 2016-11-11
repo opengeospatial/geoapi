@@ -56,8 +56,8 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public DatumValidator(ValidatorContainer container) {
         super(container, "org.opengis.referencing.datum");
@@ -65,10 +65,10 @@ public class DatumValidator extends ReferencingValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final Datum object) {
         int n = 0;
@@ -88,7 +88,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given prime meridian.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final PrimeMeridian object) {
         if (object == null) {
@@ -117,7 +117,7 @@ public class DatumValidator extends ReferencingValidator {
      *   <li>Consistency of semi-minor axis length with inverse flattening factor.</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Ellipsoid object) {
         if (object == null) {
@@ -147,7 +147,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given datum.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final GeodeticDatum object) {
         if (object == null) {
@@ -166,7 +166,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given datum.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final VerticalDatum object) {
         if (object == null) {
@@ -180,7 +180,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given datum.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final TemporalDatum object) {
         if (object == null) {
@@ -196,7 +196,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given datum.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ImageDatum object) {
         if (object == null) {
@@ -210,7 +210,7 @@ public class DatumValidator extends ReferencingValidator {
     /**
      * Validates the given datum.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final EngineeringDatum object) {
         if (object == null) {

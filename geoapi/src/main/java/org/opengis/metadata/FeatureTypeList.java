@@ -49,7 +49,7 @@ public interface FeatureTypeList {
     /**
      * Instance of a type defined in the spatial schema.
      *
-     * @return Instance of a type defined in the spatial schema.
+     * @return instance of a type defined in the spatial schema.
      */
     @UML(identifier="spatialObject", obligation=MANDATORY, specification=ISO_19115)
     String getSpatialObject();
@@ -57,7 +57,7 @@ public interface FeatureTypeList {
     /**
      * Name of the spatial schema used.
      *
-     * @return Name of the spatial schema used.
+     * @return name of the spatial schema used.
      */
     @UML(identifier="spatialSchemaName", obligation=MANDATORY, specification=ISO_19115)
     String getSpatialSchemaName();

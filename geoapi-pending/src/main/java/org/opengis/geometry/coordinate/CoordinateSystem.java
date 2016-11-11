@@ -65,7 +65,7 @@ public interface CoordinateSystem {
      * handedness, and provide a place for other information as needed by applications
      * classes implementing this interface.
      *
-     * @return The coordinate reference system, or {@code null}.
+     * @return the coordinate reference system, or {@code null}.
      */
     @Draft
     @UML(identifier="coordinateReferenceSystem", obligation=OPTIONAL, specification=ISO_19107)
@@ -77,7 +77,7 @@ public interface CoordinateSystem {
      * For example the dimension of (<var>X</var>, <var>Y</var>, <var>Z</var>) is 3
      * and the dimension of (<var>Longitude</var>, <var>Latitude</var>) is 2.
      *
-     * @return The dimension of this coordinate system.
+     * @return the dimension of this coordinate system.
      */
     @Draft
     @UML(identifier="dimension", obligation=MANDATORY, specification=ISO_19107)
@@ -89,7 +89,7 @@ public interface CoordinateSystem {
      * of the system may be required to understand how the mapping of {@link DirectPosition}s
      * to real locations is accomplished.
      *
-     * @return The name of this coordinate system, or {@code null} if unspecified.
+     * @return the name of this coordinate system, or {@code null} if unspecified.
      */
     @Draft
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19107)
@@ -110,7 +110,7 @@ public interface CoordinateSystem {
      * two offsets gives a system more consistent with most mathematical libraries.
      * </div>
      *
-     * @return The offsets in the coordinate arrays for storage within the direct positions,
+     * @return the offsets in the coordinate arrays for storage within the direct positions,
      *         or {@code null} for natural ordering.
      */
     @Draft
@@ -136,7 +136,7 @@ public interface CoordinateSystem {
      * An even permutation does not.
      * </div>
      *
-     * @return The coordinate system orientation, or {@code null} if unspecified.
+     * @return the coordinate system orientation, or {@code null} if unspecified.
      */
     @Draft
     @UML(identifier="orientation", obligation=OPTIONAL, specification=ISO_19107)

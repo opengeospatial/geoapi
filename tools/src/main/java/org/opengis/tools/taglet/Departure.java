@@ -126,7 +126,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
     /**
      * Returns the name of this custom tag.
      *
-     * @return The tag name.
+     * @return the tag name.
      */
     @Override
     public String getName() {
@@ -136,7 +136,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
     /**
      * Returns {@code false} since <code>@departure</code> can not be used in overview.
      *
-     * @return Always {@code false}.
+     * @return always {@code false}.
      */
     @Override
     public boolean inOverview() {
@@ -146,7 +146,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
     /**
      * Returns {@code false} since <code>@departure</code> is not an inline tag.
      *
-     * @return Always {@code false}.
+     * @return always {@code false}.
      */
     @Override
     public boolean isInlineTag() {
@@ -158,7 +158,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
      * representation.
      *
      * @param tags The tags to format.
-     * @return A string representation of the given tags.
+     * @return a string representation of the given tags.
      */
     @Override
     public String toString(final Tag[] tags) {
@@ -173,7 +173,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
      * Given the <code>Tag</code> representation of this custom tag, return its string representation.
      *
      * @param tag The tag to format.
-     * @return A string representation of the given tag.
+     * @return a string representation of the given tag.
      */
     @Override
     public String toString(final Tag tag) {

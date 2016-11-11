@@ -67,7 +67,7 @@ public interface Operation extends PropertyType {
     /**
      * Returns a description of the input parameters.
      *
-     * @return Description of the input parameters.
+     * @return description of the input parameters.
      */
     @UML(identifier="signature", obligation=MANDATORY, specification=ISO_19109)
     ParameterDescriptorGroup getParameters();
@@ -75,7 +75,7 @@ public interface Operation extends PropertyType {
     /**
      * Returns the expected result type, or {@code null} if none.
      *
-     * @return The type of the result, or {@code null} if none.
+     * @return the type of the result, or {@code null} if none.
      */
     @UML(identifier="signature", obligation=MANDATORY, specification=ISO_19109)
     IdentifiedType getResult();
@@ -111,11 +111,11 @@ public interface Operation extends PropertyType {
      * the method signature is compatible with {@code BiFunction<Feature, ParameterValueGroup, Property>} from
      * the {@link java.util.function} package.</div>
      *
-     * @param  feature    The feature on which to execute the operation.
+     * @param  feature    the feature on which to execute the operation.
      *                    Can be {@code null} if the operation does not need feature instance.
-     * @param  parameters The parameters to use for executing the operation.
+     * @param  parameters the parameters to use for executing the operation.
      *                    Can be {@code null} if the operation does not take any parameters.
-     * @return The operation result, or {@code null} if this operation does not produce any result.
+     * @return the operation result, or {@code null} if this operation does not produce any result.
      * @throws FeatureOperationException if the operation can not complete.
      */
     Property apply(Feature feature, ParameterValueGroup parameters) throws FeatureOperationException;

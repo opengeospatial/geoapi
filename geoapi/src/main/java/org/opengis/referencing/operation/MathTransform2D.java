@@ -60,12 +60,12 @@ public interface MathTransform2D extends MathTransform {
      * If {@code ptSrc} and {@code ptDst} are the same object, the input point is
      * correctly overwritten with the transformed point.
      *
-     * @param  ptSrc the coordinate point to be transformed.
-     * @param  ptDst the coordinate point that stores the result of transforming {@code ptSrc},
+     * @param  ptSrc  the coordinate point to be transformed.
+     * @param  ptDst  the coordinate point that stores the result of transforming {@code ptSrc},
      *         or {@code null} if a new point shall be created.
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
-     * @throws TransformException if the point can't be transformed.
+     * @throws TransformException if the point can not be transformed.
      *
      * @see AffineTransform#transform(Point2D, Point2D)
      */
@@ -76,8 +76,8 @@ public interface MathTransform2D extends MathTransform {
      * when applicable. It may also do the opposite (replace curves by straight lines). The returned
      * shape doesn't need to have the same number of points than the original shape.
      *
-     * @param  shape The Shape to transform.
-     * @return The transformed shape. Some implementations may returns
+     * @param  shape  the Shape to transform.
+     * @return the transformed shape. Some implementations may returns
      *         {@code shape} unmodified if this transform is identity.
      * @throws TransformException if a transform failed.
      *
@@ -90,25 +90,24 @@ public interface MathTransform2D extends MathTransform {
      * matrix of the non-translating portion of the approximate affine map at
      * the point.
      *
-     * @param  point The coordinate point where to evaluate the derivative. Null value is
+     * @param  point  the coordinate point where to evaluate the derivative. Null value is
      *         accepted only if the derivative is the same everywhere. For example affine
      *         transform accept null value since they produces identical derivative no
      *         matter the coordinate value. But most map projection will requires a non-null
      *         value.
-     * @return The derivative at the specified point as a 2×2 matrix.  This method
+     * @return the derivative at the specified point as a 2×2 matrix.  This method
      *         never returns an internal object: changing the matrix will not change the
      *         state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
      *         and {@code point} is {@code null}.
-     * @throws TransformException if the derivative can't be evaluated at the
-     *         specified point.
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     Matrix derivative(final Point2D point) throws TransformException;
 
     /**
      * Creates the inverse transform of this object.
      *
-     * @return The inverse transform.
+     * @return the inverse transform.
      * @throws NoninvertibleTransformException if the transform can not be inverted.
      *
      * @see AffineTransform#createInverse()

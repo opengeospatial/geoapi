@@ -147,7 +147,7 @@ public class Configuration implements Serializable {
     /**
      * Creates a new configuration with the same mappings as the specified configuration.
      *
-     * @param  toCopy the configuration whose mappings are to be placed in this map.
+     * @param  toCopy  the configuration whose mappings are to be placed in this map.
      * @throws NullPointerException if the specified configuration is null.
      */
     public Configuration(final Configuration toCopy) {
@@ -159,9 +159,9 @@ public class Configuration implements Serializable {
      * Returns the value to which the specified key is mapped, or {@code null}
      * if this map contains no mapping for the key.
      *
-     * @param  <T>  The value type, which is determined by the key.
-     * @param  key  The key whose associated value is to be returned.
-     * @return The value to which the specified key is mapped, or {@code null}
+     * @param  <T>  the value type, which is determined by the key.
+     * @param  key  the key whose associated value is to be returned.
+     * @return the value to which the specified key is mapped, or {@code null}
      *         if this map contains no mapping for the key.
      * @throws NullPointerException if the specified key is null.
      */
@@ -172,9 +172,9 @@ public class Configuration implements Serializable {
     /**
      * Removes the mapping for a key from this map if it is present.
      *
-     * @param  <T>  The value type, which is determined by the key.
-     * @param  key  The key whose associated value is to be removed.
-     * @return The value which was previously mapped to the specified key, or {@code null}.
+     * @param  <T>  the value type, which is determined by the key.
+     * @param  key  the key whose associated value is to be removed.
+     * @return the value which was previously mapped to the specified key, or {@code null}.
      * @throws NullPointerException if the specified key is null.
      */
     public <T> T remove(final Key<T> key) {
@@ -184,11 +184,10 @@ public class Configuration implements Serializable {
     /**
      * Associates the specified value with the specified key in this map.
      *
-     * @param  <T>  The value type, which is determined by the key.
-     * @param  key The key with which the specified value is to be associated.
-     * @param  value The value to be associated with the specified key (can be {@code null}).
-     * @return The previous value associated with {@code key}, or {@code null} if there was
-     *         no mapping for that key.
+     * @param  <T>    the value type, which is determined by the key.
+     * @param  key    the key with which the specified value is to be associated.
+     * @param  value  the value to be associated with the specified key (can be {@code null}).
+     * @return the previous value associated with {@code key}, or {@code null} if there was no mapping for that key.
      * @throws NullPointerException if the specified key is null.
      */
     public <T> T put(final Key<T> key, final T value) {
@@ -200,7 +199,7 @@ public class Configuration implements Serializable {
      * invoking <code>{@linkplain #put(Key,Object) put}(key, Boolean.False)</code> for
      * all operations given in argument.
      *
-     * @param operations The operations to declare as unsupported.
+     * @param  operations  the operations to declare as unsupported.
      * @throws NullPointerException if a specified key is null.
      */
     @SafeVarargs
@@ -213,7 +212,7 @@ public class Configuration implements Serializable {
     /**
      * Returns all entries as an unmodifiable map.
      *
-     * @return A map view over the entries in this {@code Configuration} object.
+     * @return a map view over the entries in this {@code Configuration} object.
      */
     @SuppressWarnings("ReturnOfCollectionOrArrayField")
     public Map<Key<?>,Object> map() {
@@ -231,7 +230,7 @@ public class Configuration implements Serializable {
     /**
      * Compares this configuration with the given object for equality.
      *
-     * @param other The other object to compare with this configuration.
+     * @param  other  the other object to compare with this configuration.
      */
     @Override
     public boolean equals(final Object other) {
@@ -260,7 +259,7 @@ public class Configuration implements Serializable {
      * letters"</cite> convention, but make the relationship with fields more obvious
      * and the parsing of {@link java.util.Properties} files easier.</p>
      *
-     * @param <T> The type of values associated with the key.
+     * @param  <T>  the type of values associated with the key.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -605,8 +604,8 @@ public class Configuration implements Serializable {
          * Constructs a key with the given name. The new key is
          * automatically added to the list returned by {@link #values}.
          *
-         * @param type The type of values associated to the new key.
-         * @param name The key name. This name must not be in use by any other key.
+         * @param  type  the type of values associated to the new key.
+         * @param  name  the key name. This name must not be in use by any other key.
          */
         private Key(final Class<T> type, final String name) {
             super(name, VALUES);
@@ -618,13 +617,12 @@ public class Configuration implements Serializable {
          * If no existing instance is found, then a new one is created for the given name and
          * type.
          *
-         * @param  <T>  The type of the key to fetch.
-         * @param  type The type of the key to fetch.
-         * @param  name The name of the key to fetch or to create.
-         * @return A key matching the given name.
-         * @throws NullPointerException If the given name or type is {@code null}.
-         * @throws ClassCastException If a key is found but the type is not assignable
-         *         to the given type.
+         * @param  <T>   the type of the key to fetch.
+         * @param  type  the type of the key to fetch.
+         * @param  name  the name of the key to fetch or to create.
+         * @return a key matching the given name.
+         * @throws NullPointerException if the given name or type is {@code null}.
+         * @throws ClassCastException if a key is found but the type is not assignable to the given type.
          */
         @SuppressWarnings("unchecked")
         public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
@@ -652,7 +650,7 @@ public class Configuration implements Serializable {
         /**
          * Returns the list of {@code Key}s.
          *
-         * @return The list of keys declared in the current JVM.
+         * @return the list of keys declared in the current JVM.
          */
         public static Key<?>[] values() {
             synchronized (VALUES) {
@@ -665,7 +663,7 @@ public class Configuration implements Serializable {
          * Invoking this method is equivalent to invoking {@link #values()}, except that
          * this method can be invoked on an instance of the parent {@code CodeList} class.
          *
-         * @return All code {@linkplain #values() values} for this code list.
+         * @return all code {@linkplain #values() values} for this code list.
          */
         @Override
         public Key<?>[] family() {
@@ -675,7 +673,7 @@ public class Configuration implements Serializable {
         /**
          * Returns the type of values assigned to this key.
          *
-         * @return The value type.
+         * @return the value type.
          */
         public Class<T> valueType() {
             return type;

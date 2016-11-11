@@ -141,7 +141,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS3004} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS3004} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -153,9 +153,9 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param datumFactory Factory for creating {@link Ellipsoid} and {@link PrimeMeridian} instances.
-     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
-     * @param crsFactory   Factory for creating {@link GeodeticCRS} instances.
+     * @param datumFactory  factory for creating {@link Ellipsoid} and {@link PrimeMeridian} instances.
+     * @param csFactory     factory for creating {@link CoordinateSystem} instances.
+     * @param crsFactory    factory for creating {@link GeodeticCRS} instances.
      */
     public GIGS3004(final DatumFactory datumFactory, final CSFactory csFactory, final CRSFactory crsFactory) {
         super(csFactory, crsFactory);
@@ -182,7 +182,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -199,7 +199,7 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
      * with the current {@link #properties properties} map in argument.
      * The created object is then cached and returned in all subsequent invocations of this method.
      *
-     * @return The geodetic datum instance to test.
+     * @return the geodetic datum instance to test.
      * @throws FactoryException if an error occurred while creating the geodetic datum instance.
      */
     @Override
@@ -215,9 +215,9 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
     /**
      * Creates a geographic CRS for the given properties and verify its properties after construction.
      *
-     * @param  crsCode The GIGS code of the CRS to create.
-     * @param  crsName The GIGS name of the CRS to create.
-     * @param  csCode  The EPSG code of the coordinate system.
+     * @param  crsCode  the GIGS code of the CRS to create.
+     * @param  crsName  the GIGS name of the CRS to create.
+     * @param  csCode   the EPSG code of the coordinate system.
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
     @SuppressWarnings("null")
@@ -249,9 +249,9 @@ public strictfp class GIGS3004 extends UserObjectFactoryTestCase<GeodeticDatum> 
     /**
      * Creates a geocentric CRS for the given properties and verify its properties after construction.
      *
-     * @param  crsCode The GIGS code of the CRS to create.
-     * @param  crsName The GIGS name of the CRS to create.
-     * @param  csCode  The EPSG code of the coordinate system.
+     * @param  crsCode  the GIGS code of the CRS to create.
+     * @param  crsName  the GIGS name of the CRS to create.
+     * @param  csCode   the EPSG code of the coordinate system.
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
     @SuppressWarnings("null")

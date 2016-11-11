@@ -83,9 +83,9 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * since the NetCDF class is not parameterized. Use the one of the {@link #create(Parameter,
      * Collection) create} methods instead.</p>
      *
-     * @param  parameter The parameter to wrap.
-     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
-     *         or null or an empty collection if none. This collection is not cloned.
+     * @param  parameter  the parameter to wrap.
+     * @param  aliases    an immutable collection of aliases (typically the OGC and EPSG names),
+     *                    or null or an empty collection if none. This collection is not cloned.
      */
     protected NetcdfParameter(final Parameter parameter, final Collection<GenericName> aliases) {
         Objects.requireNonNull(parameter);
@@ -97,10 +97,10 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Creates a new wrapper for the given NetCDF parameter. The {@linkplain #getValueClass()
      * value class} will be inferred from the given parameter.
      *
-     * @param  parameter The parameter to wrap.
-     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
-     *         or null or an empty collection if none. This collection is not cloned.
-     * @return The GeoAPI parameter for the given NetCDF parameter.
+     * @param  parameter  the parameter to wrap.
+     * @param  aliases    an immutable collection of aliases (typically the OGC and EPSG names),
+     *                    or null or an empty collection if none. This collection is not cloned.
+     * @return the GeoAPI parameter for the given NetCDF parameter.
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static NetcdfParameter<?> create(final Parameter parameter, final Collection<GenericName> aliases) {
@@ -113,11 +113,11 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * <p>This method does not clone the arguments. If a non-null {@code aliases} collection
      * is given to this method, it shall be immutable.</p>
      *
-     * @param  name The parameter name.
-     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
-     *         or null or an empty collection if none. This collection is not cloned.
-     * @param  value The parameter value.
-     * @return The GeoAPI parameter for the given NetCDF parameter.
+     * @param  name     the parameter name.
+     * @param  aliases  an immutable collection of aliases (typically the OGC and EPSG names),
+     *                  or null or an empty collection if none. This collection is not cloned.
+     * @param  value    the parameter value.
+     * @return the GeoAPI parameter for the given NetCDF parameter.
      */
     public static NetcdfParameter<String> create(String name, Collection<GenericName> aliases, String value) {
         return new NetcdfParameter<>(new Parameter(name, value), aliases);
@@ -126,11 +126,11 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Creates a new parameter for the given {@code double} value.
      *
-     * @param  name The parameter name.
-     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
-     *         or null or an empty collection if none. This collection is not cloned.
-     * @param  value The parameter value.
-     * @return The GeoAPI parameter for the given NetCDF parameter.
+     * @param  name     the parameter name.
+     * @param  aliases  an immutable collection of aliases (typically the OGC and EPSG names),
+     *                  or null or an empty collection if none. This collection is not cloned.
+     * @param  value    the parameter value.
+     * @return the GeoAPI parameter for the given NetCDF parameter.
      */
     public static NetcdfParameter<Double> create(String name, Collection<GenericName> aliases, double value) {
         return new NetcdfParameter<>(new Parameter(name, value), aliases);
@@ -139,11 +139,11 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Creates a new parameter for the given {@code double[]} array.
      *
-     * @param  name The parameter name.
-     * @param  aliases An immutable collection of aliases (typically the OGC and EPSG names),
-     *         or null or an empty collection if none. This collection is not cloned.
-     * @param  values The parameter values.
-     * @return The GeoAPI parameter for the given NetCDF parameter.
+     * @param  name     the parameter name.
+     * @param  aliases  an immutable collection of aliases (typically the OGC and EPSG names),
+     *                  or null or an empty collection if none. This collection is not cloned.
+     * @param  values   the parameter values.
+     * @return the GeoAPI parameter for the given NetCDF parameter.
      */
     public static NetcdfParameter<double[]> create(String name, Collection<GenericName> aliases, double... values) {
         return new NetcdfParameter<>(new Parameter(name, values), aliases);
@@ -165,7 +165,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * The name returned by this method is the NetCDF name. For the OGC or EPSG names,
      * see {@link #getAlias()}.
      *
-     * @return The NetCDF parameter name.
+     * @return the NetCDF parameter name.
      *
      * @see Parameter#getName()
      */
@@ -211,7 +211,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns a new value for this descriptor.
      *
-     * @return A new parameter value.
+     * @return a new parameter value.
      */
     @Override
     public NetcdfParameter<T> createValue() {
@@ -300,9 +300,9 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the exception to throw for a getter method invoked with a parameter of the wrong type.
      *
-     * @param  parameter The NetCDF parameter.
-     * @param  requested The requested type.
-     * @return The exception to throw.
+     * @param  parameter  the NetCDF parameter.
+     * @param  requested  the requested type.
+     * @return the exception to throw.
      */
     private static InvalidParameterTypeException invalidType(
             final Parameter parameter, final Class<?> requested)
@@ -316,7 +316,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Always throws an exception since this method doesn't know the parameter unit.
      *
-     * @throws IllegalArgumentException Always thrown.
+     * @throws IllegalArgumentException always thrown.
      */
     @Override
     public double doubleValue(final Unit<?> unit) throws IllegalArgumentException {
@@ -330,8 +330,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * {@linkplain Parameter#getLength() number of numeric values} is equals to 1,
      * then delegates to the {@link Parameter#getNumericValue()} method.
      *
-     * @return The parameter numeric value.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter numeric value.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@code double} type.
      *
      * @see Parameter#getNumericValue()
@@ -350,8 +350,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * an integer value. This method invokes {@link #doubleValue()}, casts the result
      * to the {@code int} type and ensures that there is no loss of accuracy.
      *
-     * @return The parameter numeric value.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter numeric value.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@code int} type.
      *
      * @see Parameter#getNumericValue()
@@ -371,8 +371,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * then returns {@code true} or {@code false} if the string is equals, ignoring cases, to
      * {@code "true"} or {@code "false"} respectively.
      *
-     * @return The parameter boolean value.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter boolean value.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@code boolean} type.
      *
      * @see Parameter#getStringValue()
@@ -388,8 +388,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the {@linkplain Parameter#getStringValue() parameter string value}.
      *
-     * @return The parameter string value.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter string value.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@link String} type.
      *
      * @see Parameter#getStringValue()
@@ -406,7 +406,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Always throws an exception since this method doesn't know the parameter unit.
      *
-     * @throws IllegalArgumentException Always thrown.
+     * @throws IllegalArgumentException always thrown.
      */
     @Override
     public double[] doubleValueList(final Unit<?> unit) throws IllegalArgumentException {
@@ -417,8 +417,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Returns the {@linkplain Parameter#getNumericValues() parameter numeric values}
      * as an array of floating point values.
      *
-     * @return The parameter numeric values.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter numeric values.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@code double[]} type.
      *
      * @see Parameter#getNumericValues()
@@ -438,8 +438,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * casts each value to the {@code int} type and ensures that there is no loss of
      * accuracy.
      *
-     * @return The parameter numeric values.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter numeric values.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@code int[]} type.
      *
      * @see Parameter#getNumericValues()
@@ -461,8 +461,8 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Returns the {@linkplain Parameter#getStringValue() parameter string value} as a URI.
      * This method invokes {@link #stringValue()}, then parse the string as a URI.
      *
-     * @return The parameter URI value.
-     * @throws InvalidParameterTypeException If the parameter value is not convertible
+     * @return the parameter URI value.
+     * @throws InvalidParameterTypeException if the parameter value is not convertible
      *         to the {@link URI} type.
      *
      * @see Parameter#getStringValue()
@@ -482,7 +482,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Returns the parameter value as an object. This method delegates to one of the
      * {@code fooValue()} method depending on the {@linkplain #getValueClass() value class},
      *
-     * @return The parameter value as an object.
+     * @return the parameter value as an object.
      */
     @Override
     public T getValue() {
@@ -502,9 +502,9 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the exception to throw for a setter method invoked with a parameter of the wrong type.
      *
-     * @param  parameter The NetCDF parameter.
-     * @param  value The value given by the user.
-     * @return The exception to throw.
+     * @param  parameter  the NetCDF parameter.
+     * @param  value      the value given by the user.
+     * @return the exception to throw.
      */
     private static InvalidParameterValueException invalidValue(
             final Parameter parameter, final Object value)
@@ -519,7 +519,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Unsupported operation, since the {@link Parameter} class has no information about unit
      * of measurement.
      *
-     * @throws IllegalArgumentException Always thrown.
+     * @throws IllegalArgumentException always thrown.
      */
     @Override
     public void setValue(final double[] values, final Unit<?> unit) throws IllegalArgumentException {
@@ -530,7 +530,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Unsupported operation, since the {@link Parameter} class has no information about unit
      * of measurement.
      *
-     * @throws IllegalArgumentException Always thrown.
+     * @throws IllegalArgumentException always thrown.
      */
     @Override
     public void setValue(final double value, final Unit<?> unit) throws IllegalArgumentException {
@@ -541,7 +541,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Sets this parameter to the given value. This method creates a new {@link Parameter}
      * instance with the given value.
      *
-     * @throws InvalidParameterValueException If this parameter can not accept the {@code double} type.
+     * @throws InvalidParameterValueException if this parameter can not accept the {@code double} type.
      *
      * @see Parameter#Parameter(String, double)
      */
@@ -558,7 +558,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Sets this parameter to the given value. This method casts the given value to the
      * {@code double} type and delegates to {@link #setValue(double)}.
      *
-     * @throws InvalidParameterValueException If this parameter can not accept the {@code int} type.
+     * @throws InvalidParameterValueException if this parameter can not accept the {@code int} type.
      *
      * @see Parameter#Parameter(String, double)
      */
@@ -571,7 +571,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Sets this parameter to the given boolean. This method formats the given value to the
      * {@code "true"} or {@code "false"} string, then delegates to {@link #setValue(Object)}.
      *
-     * @throws InvalidParameterValueException If this parameter can not accept the {@code boolean} type.
+     * @throws InvalidParameterValueException if this parameter can not accept the {@code boolean} type.
      *
      * @see Parameter#Parameter(String, String)
      */
@@ -584,7 +584,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * Sets this parameter to the given {@link String}, {@code double[]} or {@link Number}.
      * If the given value is a number, then this method delegates to {@link #setValue(double)}.
      *
-     * @throws InvalidParameterValueException If this parameter can not accept the given value.
+     * @throws InvalidParameterValueException if this parameter can not accept the given value.
      *
      * @see Parameter#Parameter(String, String)
      */

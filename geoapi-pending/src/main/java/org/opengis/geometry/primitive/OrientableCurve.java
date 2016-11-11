@@ -55,7 +55,7 @@ public interface OrientableCurve extends OrientablePrimitive {
      * Returns an ordered pair of points, which are the start point and end point of the curve.
      * If the curve is closed, then the boundary shall be empty.
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     CurveBoundary getBoundary();
@@ -63,7 +63,7 @@ public interface OrientableCurve extends OrientablePrimitive {
     /**
      * Returns the primitive associated with this {@code OrientableCurve}.
      *
-     * @return The primitive, or {@code null} if the association is
+     * @return the primitive, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see Curve#getProxy
@@ -78,7 +78,7 @@ public interface OrientableCurve extends OrientablePrimitive {
      * the association in ISO 19107 is navigable only from {@code CompositeCurve} to
      * {@code OrientableCurve}, not the other way.
      *
-     * @return The owner of this orientable curve, or {@code null} if the association is
+     * @return the owner of this orientable curve, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see CompositeCurve#getGenerators

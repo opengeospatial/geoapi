@@ -61,7 +61,7 @@ public interface Resolution {
     /**
      * Level of detail expressed as the scale of a comparable hardcopy map or chart.
      *
-     * @return Level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
+     * @return level of detail expressed as the scale of a comparable hardcopy, or {@code null}.
      *
      * @condition {@code distance}, {@code vertical}, {@code angularDistance} and {@code levelOfDetail} not provided.
      */
@@ -78,7 +78,7 @@ public interface Resolution {
      * together with the value.
      * </div>
      *
-     * @return The ground sample distance, or {@code null}.
+     * @return the ground sample distance, or {@code null}.
      * @unitof Distance
      *
      * @condition {@code equivalentScale}, {@code vertical}, {@code angularDistance} and {@code levelOfDetail} not provided.
@@ -96,7 +96,7 @@ public interface Resolution {
      * together with the value.
      * </div>
      *
-     * @return The vertical sampling distance, or {@code null}.
+     * @return the vertical sampling distance, or {@code null}.
      * @unitof Distance
      *
      * @condition {@code equivalentScale}, {@code distance}, {@code angularDistance} and {@code levelOfDetail} not provided.
@@ -116,7 +116,7 @@ public interface Resolution {
      * together with the value.
      * </div>
      *
-     * @return The angular sampling measure, or {@code null}.
+     * @return the angular sampling measure, or {@code null}.
      * @unitof Angle
      *
      * @condition {@code equivalentScale}, {@code distance}, {@code vertical} and {@code levelOfDetail} not provided.
@@ -130,7 +130,7 @@ public interface Resolution {
     /**
      * Brief textual description of the spatial resolution of the resource.
      *
-     * @return Textual description of the spatial resolution of the resource, or {@code null}.
+     * @return textual description of the spatial resolution of the resource, or {@code null}.
      *
      * @condition {@code equivalentScale}, {@code distance}, {@code vertical} and {@code angularDistance} not provided.
      *

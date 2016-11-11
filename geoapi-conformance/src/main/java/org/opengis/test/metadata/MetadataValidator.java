@@ -55,9 +55,9 @@ public abstract class MetadataValidator extends Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container   The set of validators to use for validating other kinds of objects
-     *                    (see {@linkplain #container field javadoc}).
-     * @param packageName The name of the package containing the classes to be validated.
+     * @param container    the set of validators to use for validating other kinds of objects
+     *                     (see {@linkplain #container field javadoc}).
+     * @param packageName  the name of the package containing the classes to be validated.
      */
     protected MetadataValidator(final ValidatorContainer container, final String packageName) {
         super(container, packageName);
@@ -68,9 +68,9 @@ public abstract class MetadataValidator extends Validator {
      * all elements are non-null and of the expected type. Callers should iterate over the
      * returned array and validate each elements, if needed.
      *
-     * @param <T>         The type of elements in the collection, or {@code null} if none.
-     * @param elementType The type of elements in the collection.
-     * @param objects     The collection to validate (never {@code null}).
+     * @param <T>          the type of elements in the collection, or {@code null} if none.
+     * @param elementType  the type of elements in the collection.
+     * @param objects      the collection to validate (never {@code null}).
      */
     final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
         assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);
@@ -90,7 +90,7 @@ public abstract class MetadataValidator extends Validator {
     /**
      * Validates the given mandatory string.
      *
-     * @param object The object to validate.
+     * @param  object  the object to validate.
      */
     final void validateMandatory(final InternationalString object) {
         mandatory("Missing mandatory metadata attribute.", object);
@@ -100,7 +100,7 @@ public abstract class MetadataValidator extends Validator {
     /**
      * Validates the given optional string.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     final void validateOptional(final InternationalString object) {
         container.validate(object);
@@ -110,7 +110,7 @@ public abstract class MetadataValidator extends Validator {
      * Returns {@code true} if the given text is {@code null}, white or
      * {@linkplain String#isEmpty() empty}.
      *
-     * @param  text The text to test, or {@code null}.
+     * @param  text  the text to test, or {@code null}.
      * @return {@code true} if the given text is null, white or empty.
      *
      * @since 3.1
@@ -123,7 +123,7 @@ public abstract class MetadataValidator extends Validator {
      * Returns {@code true} if the given collection is {@code null} or
      * {@linkplain Collection#isEmpty() empty}.
      *
-     * @param  collection The text to test, or {@code null}.
+     * @param  collection  the text to test, or {@code null}.
      * @return {@code true} if the given collection is null or empty.
      *
      * @since 3.1

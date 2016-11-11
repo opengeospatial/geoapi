@@ -113,7 +113,7 @@ public strictfp class NameTest extends TestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code NameTest} constructor.
+     * @return the default set of arguments to be given to the {@code NameTest} constructor.
      *
      * @since 3.1
      */
@@ -127,7 +127,7 @@ public strictfp class NameTest extends TestCase {
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
-     * @param factory The factory to be used for creation of instances to be tested.
+     * @param factory  the factory to be used for creation of instances to be tested.
      */
     public NameTest(final NameFactory factory) {
         super(factory);
@@ -167,17 +167,15 @@ public strictfp class NameTest extends TestCase {
      * Creates a namespace having the given name and separator.
      *
      * @param name
-     *          The name of the namespace to be returned. This argument can be created using
+     *          the name of the namespace to be returned. This argument can be created using
      *          <code>{@linkplain #createGenericName createGenericName}(null, parsedNames)</code>.
      * @param headSeparator
-     *          The separator to insert between the namespace and the {@linkplain AbstractName#head
-     *          head}. For HTTP namespace, it is {@code "://"}. For URN namespace, it is typically
-     *          {@code ":"}.
+     *          the separator to insert between the namespace and the {@linkplain AbstractName#head head}.
+     *          For HTTP namespace, it is {@code "://"}. For URN namespace, it is typically {@code ":"}.
      * @param separator
-     *          The separator to insert between {@linkplain AbstractName#getParsedNames parsed names}
-     *          in that namespace. For HTTP namespace, it is {@code "."}. For URN namespace, it is
-     *          typically {@code ":"}.
-     * @return A namespace having the given name and separator.
+     *          the separator to insert between {@linkplain AbstractName#getParsedNames parsed names} in that namespace.
+     *          For HTTP namespace, it is {@code "."}. For URN namespace, it is typically {@code ":"}.
+     * @return a namespace having the given name and separator.
      */
     private NameSpace createNameSpace(final GenericName name,
             final String headSeparator, final String separator)
@@ -316,7 +314,7 @@ public strictfp class NameTest extends TestCase {
      *   <li>{@link NameFactory#createNameSpace(GenericName, Map)}</li>
      *   <li>{@link NameFactory#parseGenericName(NameSpace, CharSequence)}</li>
      * </ul>
-     * <p>
+     *
      * This tests is executed only if {@link #isMixedNameSyntaxSupported} is {@code true}.
      */
     @Test

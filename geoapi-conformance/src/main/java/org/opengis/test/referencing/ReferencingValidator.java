@@ -71,9 +71,9 @@ public abstract class ReferencingValidator extends Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container   The set of validators to use for validating other kinds of objects
-     *                    (see {@linkplain #container field javadoc}).
-     * @param packageName The name of the package containing the classes to be validated.
+     * @param container    the set of validators to use for validating other kinds of objects
+     *                     (see {@linkplain #container field javadoc}).
+     * @param packageName  the name of the package containing the classes to be validated.
      */
     protected ReferencingValidator(final ValidatorContainer container, final String packageName) {
         super(container, packageName);
@@ -81,9 +81,9 @@ public abstract class ReferencingValidator extends Validator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this package (if any).
+     * {@code validate(…)} method defined in this package (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
      */
     public final void dispatchObject(final IdentifiedObject object) {
         int n = 0;
@@ -110,7 +110,7 @@ public abstract class ReferencingValidator extends Validator {
     /**
      * Ensures that the given identifier has a {@linkplain Identifier#getCode() code}.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Identifier object) {
         container.validate(object);
@@ -121,7 +121,7 @@ public abstract class ReferencingValidator extends Validator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param object The object to validate (can not be null).
+     * @param  object  the object to validate (can not be null).
      */
     final void validateReferenceSystem(final ReferenceSystem object) {
         validateIdentifiedObject(object);
@@ -134,7 +134,7 @@ public abstract class ReferencingValidator extends Validator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param object The object to validate (can not be null).
+     * @param  object  the object to validate (can not be null).
      */
     final void validateIdentifiedObject(final IdentifiedObject object) {
         validate(object.getName());

@@ -88,9 +88,9 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * query an authority factory} first, and compute the operation next if no operation from
      * {@code source} to {@code target} code was explicitly defined by the authority.
      *
-     * @param  sourceCRS Input coordinate reference system.
-     * @param  targetCRS Output coordinate reference system.
-     * @return A coordinate operation from {@code sourceCRS} to {@code targetCRS}.
+     * @param  sourceCRS  input coordinate reference system.
+     * @param  targetCRS  output coordinate reference system.
+     * @return a coordinate operation from {@code sourceCRS} to {@code targetCRS}.
      * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
@@ -121,10 +121,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * When invoking {@code createOperation(…)} with an operation method,
      * user can force usage of Molodenski approximation for instance.
      *
-     * @param  sourceCRS Input coordinate reference system.
-     * @param  targetCRS Output coordinate reference system.
-     * @param  method The algorithmic method for conversion or transformation.
-     * @return A coordinate operation from {@code sourceCRS} to {@code targetCRS}.
+     * @param  sourceCRS  input coordinate reference system.
+     * @param  targetCRS  output coordinate reference system.
+     * @param  method     the algorithmic method for conversion or transformation.
+     * @return a coordinate operation from {@code sourceCRS} to {@code targetCRS}.
      * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
@@ -141,10 +141,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Creates a concatenated operation from a sequence of operations.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  operations The sequence of operations.
-     * @return The concatenated operation.
+     * @param  operations  the sequence of operations.
+     * @return the concatenated operation.
      * @throws FactoryException if the object creation failed.
      *
      * @departure extension
@@ -184,12 +184,11 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      * </table>
      *
-     * @param  properties Set of properties. Shall contains at least {@code "name"}.
-     * @param  method The operation method. A value can be obtained by {@link #getOperationMethod(String)}.
-     * @param  parameters The parameter values. A default set of parameters can be obtained by
-     *         {@code method.getParameters().createValue()} and modified before to be given to
-     *         this constructor.
-     * @return The defining conversion.
+     * @param  properties  set of properties. Shall contains at least {@code "name"}.
+     * @param  method      the operation method. A value can be obtained by {@link #getOperationMethod(String)}.
+     * @param  parameters  the parameter values. A default set of parameters can be obtained by
+     *         {@code method.getParameters().createValue()} and modified before to be given to this constructor.
+     * @return the defining conversion.
      * @throws FactoryException if the object creation failed.
      *
      * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
@@ -231,11 +230,11 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      * </table>
      *
-     * @param  properties Set of properties. Shall contains at least {@code "name"}.
-     * @param  sourceDimension Number of dimensions in the source CRS of the operation method, or {@code null}.
-     * @param  targetDimension Number of dimensions in the target CRS of the operation method, or {@code null}.
-     * @param  parameters A description of the parameters for the operation method.
-     * @return The operation method.
+     * @param  properties       set of properties. Shall contains at least {@code "name"}.
+     * @param  sourceDimension  number of dimensions in the source CRS of the operation method, or {@code null}.
+     * @param  targetDimension  number of dimensions in the target CRS of the operation method, or {@code null}.
+     * @param  parameters       a description of the parameters for the operation method.
+     * @return the operation method.
      * @throws FactoryException if the object creation failed.
      *
      * @departure extension
@@ -281,8 +280,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * {@link CoordinateOperationAuthorityFactory}, or get the operation method in some other way
      * at implementor choice.
      *
-     * @param  name The name of the operation method to fetch.
-     * @return The operation method of the given name.
+     * @param  name  the name of the operation method to fetch.
+     * @return the operation method of the given name.
      * @throws NoSuchIdentifierException if no operation method of the given name is known to this factory.
      * @throws FactoryException if the method failed for some other reason.
      *

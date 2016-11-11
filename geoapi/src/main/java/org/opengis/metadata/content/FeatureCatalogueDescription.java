@@ -54,7 +54,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Indication of whether or not the cited feature catalogue complies with ISO 19110.
      * This value is optional, and therefore may be null.
      *
-     * @return Whether or not the cited feature catalogue complies with ISO 19110, or {@code null}.
+     * @return whether or not the cited feature catalogue complies with ISO 19110, or {@code null}.
      */
     @UML(identifier="complianceCode", obligation=OPTIONAL, specification=ISO_19115)
     Boolean isCompliant();
@@ -69,7 +69,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * <p>XML documents shall format languages using the ISO 639-2 language code
      * as returned by {@link Locale#getISO3Language()}.</p>
      *
-     * @return Language(s) used within the catalogue.
+     * @return language(s) used within the catalogue.
      *
      * @departure historic
      *   GeoAPI keeps the <code>getLanguages()</code> method name for compliance with the ISO 19115:2003 model
@@ -95,7 +95,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * Subset of feature types from cited feature catalogue occurring in resource
      * and count of feature instances.
      *
-     * @return Subset of feature types occurring in resource.
+     * @return subset of feature types occurring in resource.
      *
      * @departure rename
      *   Renamed from "<code>featureTypes</code>" to "<code>featureTypeInfo</code>" for the following reasons:
@@ -113,7 +113,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
     /**
      * Names of the {@linkplain #getFeatureTypes() feature types}.
      *
-     * @return Names of the feature types.
+     * @return names of the feature types.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getFeatureTypeInfo()}.
      */
@@ -123,7 +123,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
      *
-     * @return Bibliographic reference to one or more external feature catalogues.
+     * @return bibliographic reference to one or more external feature catalogues.
      */
     @UML(identifier="featureCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Citation> getFeatureCatalogueCitations();

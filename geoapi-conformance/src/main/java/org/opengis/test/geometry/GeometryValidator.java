@@ -70,8 +70,8 @@ public class GeometryValidator extends Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public GeometryValidator(final ValidatorContainer container) {
         super(container, "org.opengis.geometry");
@@ -100,7 +100,7 @@ public class GeometryValidator extends Validator {
      *       against values computed from the lower and upper ordinates.</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Envelope object) {
         if (object == null) {
@@ -200,7 +200,7 @@ public class GeometryValidator extends Validator {
      *       then the ordinate values must be between the minimum and maximum axis value.</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final DirectPosition object) {
         if (object == null) {

@@ -51,7 +51,7 @@ public interface Distributor {
     /**
      * Party from whom the resource may be obtained.
      *
-     * @return Party from whom the resource may be obtained.
+     * @return party from whom the resource may be obtained.
      */
     @UML(identifier="distributorContact", obligation=MANDATORY, specification=ISO_19115)
     Responsibility getDistributorContact();
@@ -60,7 +60,7 @@ public interface Distributor {
      * Provides information about how the resource may be obtained, and related
      * instructions and fee information.
      *
-     * @return Information about how the resource may be obtained.
+     * @return information about how the resource may be obtained.
      */
     @UML(identifier="distributionOrderProcess", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends StandardOrderProcess> getDistributionOrderProcesses();
@@ -68,7 +68,7 @@ public interface Distributor {
     /**
      * Provides information about the format used by the distributor.
      *
-     * @return Information about the format used by the distributor.
+     * @return information about the format used by the distributor.
      *
      * @condition Mandatory if {@link Distribution#getDistributionFormats()} is empty.
      */
@@ -78,7 +78,7 @@ public interface Distributor {
     /**
      * Provides information about the technical means and media used by the distributor.
      *
-     * @return Information about the technical means and media used by the distributor.
+     * @return information about the technical means and media used by the distributor.
      */
     @UML(identifier="distributorTransferOptions", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends DigitalTransferOptions> getDistributorTransferOptions();

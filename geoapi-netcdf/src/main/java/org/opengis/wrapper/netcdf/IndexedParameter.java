@@ -54,9 +54,9 @@ final class IndexedParameter extends NetcdfParameter<Double> {
      *       <var>n</var>-1 is the index of the value to read in the parameter array.</li>
      * </ul>
      *
-     * @param parameter The parameter to wrap.
-     * @param aliases An immutable collection of aliases (typically the OGC and EPSG names),
-     *        or null or an empty collection if none. This collection is not cloned.
+     * @param parameter  the parameter to wrap.
+     * @param aliases    an immutable collection of aliases (typically the OGC and EPSG names),
+     *                   or null or an empty collection if none. This collection is not cloned.
      */
     IndexedParameter(final Parameter parameter, final AliasList aliases) {
         super(parameter, aliases);
@@ -129,7 +129,7 @@ final class IndexedParameter extends NetcdfParameter<Double> {
      * Sets this parameter to the given {@link String}, {@code double[]} or {@link Number}.
      * If the given value is a number, then this method delegates to {@link #setValue(double)}.
      *
-     * @throws InvalidParameterValueException If this parameter can not accept the given value.
+     * @throws InvalidParameterValueException if this parameter can not accept the given value.
      *
      * @see Parameter#Parameter(String, String)
      */

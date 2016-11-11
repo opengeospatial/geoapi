@@ -57,7 +57,7 @@ public @interface XmlElement {
     /**
      * The name of the element in the XML schema.
      *
-     * @return The XML element name.
+     * @return the XML element name.
      */
     String value();
 }

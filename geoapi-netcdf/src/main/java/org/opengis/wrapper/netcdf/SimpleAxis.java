@@ -58,7 +58,7 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
      * Creates a new axis for the given authority, name and abbreviation. The axis direction
      * and units are inferred from the abbreviation.
      *
-     * @param abbreviation The abbreviation used for this coordinate system axes.
+     * @param abbreviation  the abbreviation used for this coordinate system axes.
      */
     private SimpleAxis(final char abbreviation) {
         this.abbreviation = abbreviation;
@@ -74,8 +74,7 @@ final class SimpleAxis extends NetcdfIdentifiedObject implements CoordinateSyste
 
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
-     * used to identify the ordinates in coordinate tuple. Examples are "λ" and
-     * "φ".
+     * used to identify the ordinates in coordinate tuple. Examples are "λ" and "φ".
      */
     @Override
     public String getAbbreviation() {

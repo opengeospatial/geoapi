@@ -62,8 +62,7 @@ public class FactoryException extends Exception {
     /**
      * Constructs an exception with the specified detail message.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      */
     public FactoryException(String message) {
         super(message);
@@ -72,8 +71,7 @@ public class FactoryException extends Exception {
     /**
      * Constructs an exception with the specified cause.
      *
-     * @param  cause The cause for this exception. The cause is saved
-     *         for later retrieval by the {@link #getCause()} method.
+     * @param cause  the cause, saved for later retrieval by the {@link #getCause()} method.
      */
     public FactoryException(Throwable cause) {
         super(cause);
@@ -84,10 +82,8 @@ public class FactoryException extends Exception {
      * The cause is the exception thrown in the underlying database
      * (e.g. {@link java.io.IOException} or {@link java.sql.SQLException}).
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param  cause The cause for this exception. The cause is saved
-     *         for later retrieval by the {@link #getCause()} method.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause    the cause, saved for later retrieval by the {@link #getCause()} method.
      */
     public FactoryException(String message, Throwable cause) {
         super(message, cause);

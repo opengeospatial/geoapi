@@ -54,7 +54,7 @@ public interface GridCoordinates {
      * <code>{@linkplain #getCoordinateValues()}.length</code>. It is
      * provided for efficiency.
      *
-     * @return The number of dimensions.
+     * @return the number of dimensions.
      */
     int getDimension();
 
@@ -64,7 +64,7 @@ public interface GridCoordinates {
      * a single coordinate shall be the number of offsets from the origin of the grid in the direction
      * of a specific axis.
      *
-     * @return A copy of the coordinates. Changes in the returned array will not be reflected
+     * @return a copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this {@code GridCoordinates} object.
      */
     @UML(identifier="coordValues", obligation=MANDATORY, specification=ISO_19123)
@@ -75,9 +75,9 @@ public interface GridCoordinates {
      * <code>{@linkplain #getCoordinateValues()}[<var>i</var>]</code>. It is provided for
      * efficiency.
      *
-     * @param  dimension The dimension for which to obtain the coordinate value.
-     * @return The coordinate value at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the coordinate value at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      */
     int getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
@@ -85,9 +85,9 @@ public interface GridCoordinates {
     /**
      * Sets the coordinate value at the specified dimension (optional operation).
      *
-     * @param  dimension The dimension for which to set the coordinate value.
-     * @param  value The new value.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to set the coordinate value.
+     * @param  value  the new value.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */

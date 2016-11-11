@@ -55,7 +55,7 @@ public interface RangeElementDescription {
     /**
      * Designation associated with a set of range elements.
      *
-     * @return Designation associated with a set of range elements.
+     * @return designation associated with a set of range elements.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getName();
@@ -63,7 +63,7 @@ public interface RangeElementDescription {
     /**
      * Description of a set of specific range elements.
      *
-     * @return Description of a set of specific range elements.
+     * @return description of a set of specific range elements.
      */
     @UML(identifier="definition", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getDefinition();
@@ -71,7 +71,7 @@ public interface RangeElementDescription {
     /**
      * Specific range elements, i.e. range elements associated with a name and their definition.
      *
-     * @return Specific range elements.
+     * @return specific range elements.
      */
     @UML(identifier="rangeElement", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Record> getRangeElements();

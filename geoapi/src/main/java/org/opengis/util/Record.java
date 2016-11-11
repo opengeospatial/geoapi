@@ -73,7 +73,7 @@ public interface Record {
      * this method can be though as the equivalent of the Java {@link Object#getClass()} method.
      * </div>
      *
-     * @return The type definition of this record, or {@code null}.
+     * @return the type definition of this record, or {@code null}.
      */
     @UML(identifier="recordType", obligation=OPTIONAL, specification=ISO_19103)
     RecordType getRecordType();
@@ -83,7 +83,7 @@ public interface Record {
      * The returned map shall not allows key addition. It may allows the replacement of values
      * for existing keys only.
      *
-     * @return The dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
+     * @return the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
      *
      * @see RecordType#getMemberTypes()
      *
@@ -102,8 +102,8 @@ public interface Record {
      * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#getMemberTypes()
      * getMemberTypes()}.get(name)</code>.
      *
-     * @param name The name of the attribute to lookup.
-     * @return The value of the attribute for the given name.
+     * @param  name  the name of the attribute to lookup.
+     * @return the value of the attribute for the given name.
      *
      * @see RecordType#locate(MemberName)
      */
@@ -116,8 +116,8 @@ public interface Record {
      * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers()
      * record type members} only.
      *
-     * @param  name  The name of the attribute to modify.
-     * @param  value The new value for the attribute.
+     * @param  name   the name of the attribute to modify.
+     * @param  value  the new value for the attribute.
      * @throws UnsupportedOperationException if this record is not modifiable.
      *
      * @departure easeOfUse

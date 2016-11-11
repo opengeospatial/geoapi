@@ -95,7 +95,7 @@ abstract class AbstractTaglet implements Taglet {
     /**
      * Returns {@code true} since this taglet can be used in package documentation.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @Override
     public boolean inPackage() {
@@ -106,7 +106,7 @@ abstract class AbstractTaglet implements Taglet {
      * Returns {@code true} since this taglet can be used in type documentation
      * (classes or interfaces).
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @Override
     public boolean inType() {
@@ -116,7 +116,7 @@ abstract class AbstractTaglet implements Taglet {
     /**
      * Returns {@code true} since this taglet can be used in constructor
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @Override
     public boolean inConstructor() {
@@ -126,7 +126,7 @@ abstract class AbstractTaglet implements Taglet {
     /**
      * Returns {@code true} since this taglet can be used in method documentation.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @Override
     public boolean inMethod() {
@@ -136,7 +136,7 @@ abstract class AbstractTaglet implements Taglet {
     /**
      * Returns {@code true} since this taglet can be used in field documentation.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @Override
     public boolean inField() {

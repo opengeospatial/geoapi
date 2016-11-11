@@ -61,7 +61,7 @@ public interface GeneralDerivedCRS extends SingleCRS {
     /**
      * Returns the base coordinate reference system.
      *
-     * @return The base coordinate reference system.
+     * @return the base coordinate reference system.
      */
     @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
     SingleCRS getBaseCRS();
@@ -69,7 +69,7 @@ public interface GeneralDerivedCRS extends SingleCRS {
     /**
      * Returns the conversion from the {@linkplain #getBaseCRS() base CRS} to this CRS.
      *
-     * @return The conversion from the base CRS.
+     * @return the conversion from the base CRS.
      *
      * @departure rename
      *   "<code>conversion</code>" may be confusing as a method name

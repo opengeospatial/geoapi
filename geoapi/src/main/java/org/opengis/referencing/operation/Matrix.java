@@ -126,7 +126,7 @@ public interface Matrix {
     /**
      * Returns a clone of this matrix.
      *
-     * @return A clone of this matrix.
+     * @return a clone of this matrix.
      */
     Matrix clone();
 }

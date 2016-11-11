@@ -54,7 +54,7 @@ public interface Instrument {
     /**
      * Complete citation of the instrument.
      *
-     * @return Complete citation of the instrument.
+     * @return complete citation of the instrument.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Citation> getCitations();
@@ -62,7 +62,7 @@ public interface Instrument {
     /**
      * Unique identification of the instrument.
      *
-     * @return Unique identification of the instrument.
+     * @return unique identification of the instrument.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Identifier getIdentifier();
@@ -70,7 +70,7 @@ public interface Instrument {
     /**
      * Name of the type of instrument. Examples: framing, line-scan, push-broom, pan-frame.
      *
-     * @return Type of instrument.
+     * @return type of instrument.
      */
     @UML(identifier="type", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getType();
@@ -78,7 +78,7 @@ public interface Instrument {
     /**
      * Textual description of the instrument.
      *
-     * @return Textual description, or {@code null}.
+     * @return textual description, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -86,7 +86,7 @@ public interface Instrument {
     /**
      * Platform on which the instrument is mounted.
      *
-     * @return Platform on which the instrument is mounted, or {@code null}.
+     * @return platform on which the instrument is mounted, or {@code null}.
      */
     @UML(identifier="mountedOn", obligation=OPTIONAL, specification=ISO_19115_2)
     Platform getMountedOn();

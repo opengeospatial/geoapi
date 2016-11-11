@@ -60,7 +60,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * The Coordinate Reference System is left unspecified.
      * All ordinate values are initialized to zero.
      *
-     * @param dimension The dimension.
+     * @param  dimension  the dimension.
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];
@@ -71,7 +71,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * The {@linkplain #getDimension() dimension} of the new direct position is the
      * dimension of the given CRS. All ordinate values are initialized to zero.
      *
-     * @param crs The coordinate reference system to associate to the new direct position.
+     * @param crs  the coordinate reference system to associate to the new direct position.
      */
     public SimpleDirectPosition(final CoordinateReferenceSystem crs) {
         ordinates = new double[crs.getCoordinateSystem().getDimension()];
@@ -87,9 +87,9 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * {@link #ordinates} field, because that field is public anyway. Defensive
      * copy would not protect the state of this object.</p>
      *
-     * @param  crs The coordinate reference system, or {@code null}.
-     * @param  ordinates The ordinate values. This array is <strong>not</strong> cloned.
-     * @throws MismatchedDimensionException If the given CRS is not null and its dimension
+     * @param  crs        the coordinate reference system, or {@code null}.
+     * @param  ordinates  the ordinate values. This array is <strong>not</strong> cloned.
+     * @throws MismatchedDimensionException if the given CRS is not null and its dimension
      *         is not equals to the length of the {@code ordinates} array.
      */
     public SimpleDirectPosition(final CoordinateReferenceSystem crs, final double... ordinates)
@@ -107,7 +107,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * Creates a new direct position initialized to the CRS and ordinate values
      * of the given direct position. This is a copy constructor.
      *
-     * @param position The direct position from which to copy the CRS and ordinate values.
+     * @param position  the direct position from which to copy the CRS and ordinate values.
      */
     public SimpleDirectPosition(final DirectPosition position) {
         ordinates = position.getCoordinate();           // Array shall be a copy according DirectPosition contract.
@@ -120,7 +120,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * this particular direct position is assumed included in a larger object with such
      * a reference to a {@linkplain CoordinateReferenceSystem coordinate reference system}.
      *
-     * @return The coordinate reference system, or {@code null}.
+     * @return the coordinate reference system, or {@code null}.
      */
     @Override
     public CoordinateReferenceSystem getCoordinateReferenceSystem() {
@@ -130,7 +130,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * The length of {@linkplain #ordinates coordinate sequence} (the number of entries).
      *
-     * @return The length of the {@link #ordinates} array.
+     * @return the length of the {@link #ordinates} array.
      */
     @Override
     public int getDimension() {
@@ -140,7 +140,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Returns a <em>copy</em> of the {@linkplain #ordinates} array.
      *
-     * @return A clone of the {@link #ordinates} array.
+     * @return a clone of the {@link #ordinates} array.
      */
     @Override
     public double[] getCoordinate() {
@@ -150,9 +150,9 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Returns the ordinate at the specified dimension.
      *
-     * @param  dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
-     * @return The value in the {@link #ordinates} array at the given index.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @return the value in the {@link #ordinates} array at the given index.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
@@ -163,9 +163,9 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Sets the ordinate value along the specified dimension.
      *
-     * @param  dimension the dimension for the ordinate of interest.
-     * @param  value the ordinate value of interest.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for the ordinate of interest.
+     * @param  value      the ordinate value of interest.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
@@ -206,7 +206,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      * {@link DirectPosition#hashCode()} javadoc. Consequently, it should be possible
      * to mix different {@code DirectPosition} implementations in the same hash map.
      *
-     * @return A hash code value for this position.
+     * @return a hash code value for this position.
      */
     @Override
     public int hashCode() {
@@ -216,7 +216,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Returns a string representation of this direct position in <cite>Well-Known Text</cite> (WKT) format.
      *
-     * @return The <cite>Well-Known Text</cite> representation of this direct position.
+     * @return the <cite>Well-Known Text</cite> representation of this direct position.
      *
      * @see <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text on Wikipedia</a>
      */

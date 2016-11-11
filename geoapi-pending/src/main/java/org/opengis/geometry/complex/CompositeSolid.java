@@ -50,9 +50,9 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 2.1
  *
  * @todo This interface extends (indirectly) both {@link org.opengis.geometry.primitive.Primitive} and
- *       {@link org.opengis.geometry.complex.Complex}. Concequently, there is a clash in the semantics
- *       of some set theoretic operation. Specifically, {@code Primitive.contains(...)}
- *       (returns FALSE for end points) is different from {@code Complex.contains(...)}
+ *       {@link org.opengis.geometry.complex.Complex}. Consequently, there is a clash in the semantics
+ *       of some set theoretic operation. Specifically, {@code Primitive.contains(…)}
+ *       (returns FALSE for end points) is different from {@code Complex.contains(…)}
  *       (returns TRUE for end points).
  */
 @UML(identifier="GM_CompositeSurface", specification=ISO_19107)
@@ -65,7 +65,7 @@ public interface CompositeSolid extends Composite, Solid {
      * {@linkplain org.opengis.geometry.primitive.Point points} on the boundary of the
      * generator set if {@linkplain Solid solids} would have to be added to the generator list.
      *
-     * @return The set of solids in this composite.
+     * @return the set of solids in this composite.
      *
      * @see Solid#getComposite
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63

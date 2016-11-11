@@ -86,7 +86,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
     /**
      * Creates a new test case for the given factory.
      *
-     * @param factory The factory to test.
+     * @param factory  the factory to test.
      */
     @SuppressWarnings({"unchecked","rawtypes"})
     protected NetcdfTransformFactoryTest(final MathTransformFactory factory) {
@@ -124,7 +124,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
      * This method is invoked when a parameter is not always declared by the
      * NetCDF projection constructor.
      *
-     * @param parameterName The parameter name.
+     * @param  parameterName  the parameter name.
      * @return {@code true} if the parameter of the given name is not always declared
      *         by the NetCDF projection constructor.
      */
@@ -137,7 +137,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
     /**
      * Ensures that the parameter names are the same than the ones created by the UCAR library.
      *
-     * @throws FactoryException If an error occurred while using the {@linkplain #factory}.
+     * @throws FactoryException if an error occurred while using the {@linkplain #factory}.
      */
     @Test
     public void testParameterNames() throws FactoryException {
@@ -204,7 +204,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
     /**
      * Tests the creation of {@link NetcdfProjection} instances.
      *
-     * @throws FactoryException If an error occurred while using the {@linkplain #factory}.
+     * @throws FactoryException if an error occurred while using the {@linkplain #factory}.
      */
     @Test
     public void testProjectionCreation() throws FactoryException {

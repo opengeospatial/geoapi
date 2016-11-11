@@ -105,8 +105,8 @@ final class SamplePoints {
      *       from WGS84 to the given CRS.</li>
      * </ul>
      *
-     * @param  crs A code from the second column of {@link PseudoEpsgFactory#createParameters(int)}.
-     * @return Sample points (never {@code null}).
+     * @param  crs  a code from the second column of {@link PseudoEpsgFactory#createParameters(int)}.
+     * @return sample points (never {@code null}).
      */
     static SamplePoints forCRS(final int crs) {
         final double λ0;   // Longitude of natural origin
@@ -356,7 +356,7 @@ final class SamplePoints {
      * Subtracts the given amount to every longitudes in the source coordinates. This method shall
      * be invoked, if needed, before the {@link #swap(double[])} and {@link #flip(double[])} methods.
      *
-     * @param primeMeridian The amount to subtracts to longitude.
+     * @param primeMeridian  the amount to subtracts to longitude.
      */
     final void rotateLongitude(final double primeMeridian) {
         for (int i=0; i<sourcePoints.length; i+=2) {

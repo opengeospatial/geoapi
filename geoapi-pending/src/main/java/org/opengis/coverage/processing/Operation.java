@@ -68,7 +68,7 @@ public interface Operation {
      * {@link GridCoverageProcessor} to instantiate
      * a new grid coverage on which the processing operation is performed.
      *
-     * @return The name of the processing operation.
+     * @return the name of the processing operation.
      *
      * @todo The return type will be changed from {@link String} to {@link Identifier}.
      */
@@ -79,7 +79,7 @@ public interface Operation {
      * Description of the processing operation.
      * If no description is available, the value will be {@code null}.
      *
-     * @return The description of the processing operation, or {@code null}.
+     * @return the description of the processing operation, or {@code null}.
      *
      * @deprecated Return type need to be changed, maybe to {@link InternationalString}.
      */
@@ -91,7 +91,7 @@ public interface Operation {
      * Vendor of the processing operation implementation.
      * If no vendor name is available, the value will be {@code null}.
      *
-     * @return The implementation vendor name, or {@code null}.
+     * @return the implementation vendor name, or {@code null}.
      *
      * @deprecated To be replaced by {@code getName().getAuthority()}.
      */
@@ -103,7 +103,7 @@ public interface Operation {
      * URL for documentation on the processing operation.
      * If no online documentation is available the string will be {@code null}.
      *
-     * @return The URL for documentation on the processing operation, or {@code null}.
+     * @return the URL for documentation on the processing operation, or {@code null}.
      *
      * @deprecated To be replaced by a method returning a {@link Citation}.
      */
@@ -114,7 +114,7 @@ public interface Operation {
     /**
      * Version number for the implementation.
      *
-     * @return The version number for the implementation, or {@code null}.
+     * @return the version number for the implementation, or {@code null}.
      *
      * @deprecated Replacement to be determined.
      */
@@ -125,7 +125,7 @@ public interface Operation {
     /**
      * Number of source grid coverages required for the operation.
      *
-     * @return The number of source grid coverages required for the operation.
+     * @return the number of source grid coverages required for the operation.
      */
     @UML(identifier="numSources", obligation=OPTIONAL, specification=OGC_01004)
     int getNumSources();
@@ -133,7 +133,7 @@ public interface Operation {
     /**
      * Retrieve the parameters information.
      *
-     * @return The parameter informations.
+     * @return the parameter informations.
      */
     @UML(identifier="getParameterInfo, numParameters", obligation=MANDATORY, specification=OGC_01004)
     ParameterValueGroup getParameters();

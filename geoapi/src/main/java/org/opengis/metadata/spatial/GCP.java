@@ -53,7 +53,7 @@ public interface GCP {
     /**
      * Geographic or map position of the control point, in either two or three dimensions.
      *
-     * @return Geographic or map position of the control point.
+     * @return geographic or map position of the control point.
      */
     @UML(identifier="geographicCoordinates", obligation=MANDATORY, specification=ISO_19115_2)
     DirectPosition getGeographicCoordinates();
@@ -61,7 +61,7 @@ public interface GCP {
     /**
      * Accuracy of a ground control point.
      *
-     * @return Accuracy of a ground control point.
+     * @return accuracy of a ground control point.
      */
     @UML(identifier="accuracyReport", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Element> getAccuracyReports();

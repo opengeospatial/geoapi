@@ -59,7 +59,7 @@ public interface GeodesicString extends CurveSegment {
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system} being used.
      * The organization of these points is identical to that in {@link LineString}.
      *
-     * @return The control points.
+     * @return the control points.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     PointArray getControlPoints();
@@ -68,7 +68,7 @@ public interface GeodesicString extends CurveSegment {
      * The interpolation for a {@code GeodesicString} is
      * "{@linkplain CurveInterpolation#GEODESIC geodesic}".
      *
-     * @return Always {@link CurveInterpolation#GEODESIC}.
+     * @return always {@link CurveInterpolation#GEODESIC}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();
@@ -76,7 +76,7 @@ public interface GeodesicString extends CurveSegment {
     /**
      * Decomposes a geodesic string into an equivalent sequence of geodesic segments.
      *
-     * @return The equivalent sequence of geodesic segments.
+     * @return the equivalent sequence of geodesic segments.
      */
     @UML(identifier="asGM_Geodesic", obligation=MANDATORY, specification=ISO_19107)
     List<Geodesic> asGeodesics();

@@ -51,7 +51,7 @@ public interface GeographicDescription extends GeographicExtent {
     /**
      * The identifier used to represent a geographic area.
      *
-     * @return The identifier used to represent a geographic area.
+     * @return the identifier used to represent a geographic area.
      */
     @UML(identifier="geographicIdentifier", obligation=MANDATORY, specification=ISO_19115)
     Identifier getGeographicIdentifier();

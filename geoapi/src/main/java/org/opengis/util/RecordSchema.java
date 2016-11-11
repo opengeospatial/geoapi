@@ -64,7 +64,7 @@ public interface RecordSchema {
      * associated with a {@linkplain NameSpace name space} which fixes this schema to a specific
      * location in the type hierarchy.
      *
-     * @return The schema name.
+     * @return the schema name.
      */
     @UML(identifier="schemaName", obligation=MANDATORY, specification=ISO_19103)
     LocalName getSchemaName();
@@ -73,7 +73,7 @@ public interface RecordSchema {
      * Returns the dictionary of all (<var>name</var>, <var>record type</var>) pairs
      * in this schema.
      *
-     * @return All (<var>name</var>, <var>record type</var>) pairs in this schema.
+     * @return all (<var>name</var>, <var>record type</var>) pairs in this schema.
      */
     @UML(identifier="description", obligation=MANDATORY, specification=ISO_19103)
     Map<TypeName, RecordType> getDescription();
@@ -83,8 +83,8 @@ public interface RecordSchema {
      * defined within this schema, then this method returns {@code null}. This is functionally equivalent
      * to <code>{@linkplain #getDescription()}.{@linkplain Map#get get}(name)</code>.
      *
-     * @param  name The name of the type to lookup.
-     * @return The type for the given name, or {@code null} if none.
+     * @param  name  the name of the type to lookup.
+     * @return the type for the given name, or {@code null} if none.
      */
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
     RecordType locate(TypeName name);

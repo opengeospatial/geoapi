@@ -89,7 +89,7 @@ final class ResourcesLoader {
      * The file format is the one created by {@link SupportedCodes#write()} in the
      * test directory.
      *
-     * @throws FactoryException If the resource file can not be loaded.
+     * @throws FactoryException if the resource file can not be loaded.
      */
     static synchronized Map<String,String> getAxisOrientations() throws FactoryException {
         if (axisOrientations != null) {
@@ -138,7 +138,7 @@ final class ResourcesLoader {
     /**
      * Returns the mapping from projection/parameter names to Proj.4 names.
      *
-     * @throws FactoryException If the resource file can not be loaded.
+     * @throws FactoryException if the resource file can not be loaded.
      */
     private static Map<String,String> getAliases(final boolean isParam) throws FactoryException {
         final Map<String,String> map = isParam ? parameterNames : projectionNames;
@@ -176,10 +176,9 @@ final class ResourcesLoader {
      * Returns the Proj.4 name for the given parameter or projection.
      * If no mapping is found, then the parameter name is returned unchanged.
      *
-     * @param  param The parameter value or group from which to get the name.
-     * @param  isParam {@code true} if we are looking for a parameter name rather
-     *         than a projection name.
-     * @return The Proj.4 name.
+     * @param  param    the parameter value or group from which to get the name.
+     * @param  isParam  {@code true} if we are looking for a parameter name rather than a projection name.
+     * @return the Proj.4 name.
      */
     static String getProjName(final GeneralParameterValue param, final boolean isParam)
             throws FactoryException

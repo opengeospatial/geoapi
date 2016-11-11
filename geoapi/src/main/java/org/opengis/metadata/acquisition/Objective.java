@@ -55,7 +55,7 @@ public interface Objective {
     /**
      * Code used to identify the objective.
      *
-     * @return Identify the objective.
+     * @return objective identifiers.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Identifier> getIdentifiers();
@@ -63,7 +63,7 @@ public interface Objective {
     /**
      * Priority applied to the target.
      *
-     * @return Priority applied, or {@code null}.
+     * @return priority applied, or {@code null}.
      */
     @UML(identifier="priority", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getPriority();
@@ -71,7 +71,7 @@ public interface Objective {
     /**
      * Collection technique for the objective.
      *
-     * @return Collection technique for the objective.
+     * @return collection technique for the objective.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends ObjectiveType> getTypes();
@@ -79,7 +79,7 @@ public interface Objective {
     /**
      * Role or purpose performed by or activity performed at the objective.
      *
-     * @return Role or purpose performed by or activity performed at the objective.
+     * @return role or purpose performed by or activity performed at the objective.
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends InternationalString> getFunctions();
@@ -88,7 +88,7 @@ public interface Objective {
      * Extent information including the bounding box, bounding polygon, vertical and
      * temporal extent of the objective.
      *
-     * @return Extent information.
+     * @return extent information.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Extent> getExtents();
@@ -96,7 +96,7 @@ public interface Objective {
     /**
      * Event or events associated with objective completion.
      *
-     * @return Events associated with objective completion.
+     * @return events associated with objective completion.
      */
     @UML(identifier="objectiveOccurence", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Event> getObjectiveOccurences();
@@ -104,7 +104,7 @@ public interface Objective {
     /**
      * Pass of the platform over the objective.
      *
-     * @return Pass of the platform.
+     * @return pass of the platform.
      */
     @UML(identifier="pass", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends PlatformPass> getPass();
@@ -112,7 +112,7 @@ public interface Objective {
     /**
      * Instrument which senses the objective data.
      *
-     * @return Instrument which senses the objective data.
+     * @return instrument which senses the objective data.
      */
     @UML(identifier="sensingInstrument", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Instrument> getSensingInstruments();

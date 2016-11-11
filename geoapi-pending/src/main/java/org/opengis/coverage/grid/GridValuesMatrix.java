@@ -56,7 +56,7 @@ public interface GridValuesMatrix extends Grid {
      * number of {@linkplain GridPoint grid points} within the section of the grid specified by
      * the {@linkplain #getExtent extent}.
      *
-     * @return The feature attribute values records.
+     * @return the feature attribute values records.
      *
      * @todo Comment (Wim): Both extracting an image for display and operation chaining require
      *       memory efficient and fast access to the data. How should the data be structured per
@@ -74,7 +74,7 @@ public interface GridValuesMatrix extends Grid {
      * Describes how the grid points are ordered for association to the elements of the sequence
      * values.
      *
-     * @return The sequencing rule.
+     * @return the sequencing rule.
      */
     @UML(identifier="sequencingRule", obligation=MANDATORY, specification=ISO_19123)
     SequenceRule getSequencingRule();
@@ -83,7 +83,7 @@ public interface GridValuesMatrix extends Grid {
      * Identifies the grid point to be associated with the first record
      * in the values sequence.
      *
-     * @return The grid point associated with the first record.
+     * @return the grid point associated with the first record.
      */
     @UML(identifier="startSequence", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getStartSequence();

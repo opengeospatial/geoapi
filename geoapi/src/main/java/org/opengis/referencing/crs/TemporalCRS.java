@@ -58,7 +58,7 @@ public interface TemporalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which shall be temporal.
      *
-     * @return The temporal coordinate system.
+     * @return the temporal coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

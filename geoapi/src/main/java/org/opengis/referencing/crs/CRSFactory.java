@@ -71,10 +71,10 @@ public interface CRSFactory extends ObjectFactory {
      * Creates a compound coordinate reference system from an ordered
      * list of {@code CoordinateReferenceSystem} instances.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  elements ordered array of {@code CoordinateReferenceSystem} objects.
-     * @return The coordinate reference system for the given properties.
+     * @param  elements  ordered array of {@code CoordinateReferenceSystem} objects.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
@@ -84,11 +84,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a engineering coordinate reference system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Engineering datum to use in created CRS.
-     * @param  cs The coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  engineering datum to use in created CRS.
+     * @param  cs     the coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createLocalCoordinateSystem", specification=OGC_01009)
@@ -99,11 +99,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates an image coordinate reference system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Image datum to use in created CRS.
-     * @param  cs The Cartesian or Oblique Cartesian coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  image datum to use in created CRS.
+     * @param  cs     the Cartesian or Oblique Cartesian coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     ImageCRS createImageCRS(Map<String, ?> properties,
@@ -113,11 +113,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a temporal coordinate reference system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Temporal datum to use in created CRS.
-     * @param  cs The Temporal coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  temporal datum to use in created CRS.
+     * @param  cs  the Temporal coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     TemporalCRS createTemporalCRS(Map<String, ?> properties,
@@ -127,11 +127,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a vertical coordinate reference system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Vertical datum to use in created CRS.
-     * @param  cs The Vertical coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  vertical datum to use in created CRS.
+     * @param  cs  the Vertical coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createVerticalCoordinateSystem", specification=OGC_01009)
@@ -142,11 +142,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a parametric coordinate reference system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Parametric datum to use in created CRS.
-     * @param  cs The Parametric coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  parametric datum to use in created CRS.
+     * @param  cs  the Parametric coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     ParametricCRS createParametricCRS(Map<String, ?>  properties,
@@ -156,11 +156,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a geocentric coordinate reference system from a Cartesian coordinate system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Geodetic datum to use in created CRS.
-     * @param  cs The Cartesian coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  geodetic datum to use in created CRS.
+     * @param  cs  the Cartesian coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     GeocentricCRS createGeocentricCRS(Map<String, ?> properties,
@@ -170,11 +170,11 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a geocentric coordinate reference system from a spherical coordinate system.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Geodetic datum to use in created CRS.
-     * @param  cs The spherical coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  geodetic datum to use in created CRS.
+     * @param  cs  the spherical coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     GeocentricCRS createGeocentricCRS(Map<String, ?> properties,
@@ -185,11 +185,11 @@ public interface CRSFactory extends ObjectFactory {
      * Creates a geographic coordinate reference system.
      * It could be <var>Latitude</var>/<var>Longitude</var> or <var>Longitude</var>/<var>Latitude</var>.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum Geodetic datum to use in created CRS.
-     * @param  cs The ellipsoidal coordinate system for the created CRS.
-     * @return The coordinate reference system for the given properties.
+     * @param  datum  geodetic datum to use in created CRS.
+     * @param  cs  the ellipsoidal coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createGeographicCoordinateSystem", specification=OGC_01009)
@@ -220,17 +220,15 @@ public interface CRSFactory extends ObjectFactory {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS Coordinate reference system to base the projection on. The number of axes
+     * @param  baseCRS  coordinate reference system to base the projection on. The number of axes
      *         must matches the {@linkplain OperationMethod#getSourceDimensions source dimensions}
      *         of the conversion from base.
-     * @param  conversionFromBase The
-     *         {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
-     * @param  derivedCS The coordinate system for the derived CRS. The number of axes must matches
-     *         the {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion
-     *         from base.
-     * @return The coordinate reference system for the given properties.
+     * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
+     * @param  derivedCS  the coordinate system for the derived CRS. The number of axes must matches the
+     *         {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion from base.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
@@ -265,17 +263,15 @@ public interface CRSFactory extends ObjectFactory {
      * are standardized for projections. See the {@linkplain MathTransformFactory#createParameterizedTransform note on
      * cartographic projections}.
      *
-     * @param  properties Name and other properties to give to the new object.
+     * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS Geographic coordinate reference system to base the projection on. The number
+     * @param  baseCRS  geographic coordinate reference system to base the projection on. The number
      *         of axes must matches the {@linkplain OperationMethod#getSourceDimensions source dimensions}
      *         of the conversion from base.
-     * @param  conversionFromBase The
-     *         {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
-     * @param  derivedCS The coordinate system for the projected CRS. The number of axes must matches
-     *         the {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion
-     *         from base.
-     * @return The coordinate reference system for the given properties.
+     * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
+     * @param  derivedCS  the coordinate system for the projected CRS. The number of axes must matches the
+     *         {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion from base.
+     * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
@@ -292,8 +288,8 @@ public interface CRSFactory extends ObjectFactory {
     /**
      * Creates a coordinate reference system object from a GML string.
      *
-     * @param  xml Coordinate reference system encoded in GML format.
-     * @return The coordinate reference system for the given GML.
+     * @param  xml  coordinate reference system encoded in GML format.
+     * @return the coordinate reference system for the given GML.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createFromXML", specification=OGC_01009)
@@ -311,8 +307,8 @@ public interface CRSFactory extends ObjectFactory {
      *
      * Implementations are encouraged, but not required, to recognize both versions.
      *
-     * @param  wkt Coordinate system encoded in Well-Known Text format.
-     * @return The coordinate reference system for the given WKT.
+     * @param  wkt  coordinate system encoded in Well-Known Text format.
+     * @return the coordinate reference system for the given WKT.
      * @throws FactoryException if the object creation failed.
      *
      * @see org.opengis.referencing.IdentifiedObject#toWKT()

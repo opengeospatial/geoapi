@@ -132,7 +132,7 @@ public final strictfp class GlobalTest implements FileFilter {
      *   <li>If the {@value #INDEX_FILENAME} file does not exist, then it will be generated.</li>
      * </ul>
      *
-     * @throws IOException If an error occurred while reading the existing {@value #INDEX_FILENAME} file
+     * @throws IOException if an error occurred while reading the existing {@value #INDEX_FILENAME} file
      *         or writing a new one.
      */
     @Test
@@ -166,9 +166,9 @@ public final strictfp class GlobalTest implements FileFilter {
      * Reads fully the given file. The file encoding is assumed to be {@link #ENCODING}.
      * This method does not skip any line and closes the given stream at end of file.
      *
-     * @param  in The input stream to read. This stream will be closed at the end of file.
-     * @return The full content of the given stream.
-     * @throws IOException If an error occurred while reading the given file.
+     * @param  in  the input stream to read. This stream will be closed at the end of file.
+     * @return the full content of the given stream.
+     * @throws IOException if an error occurred while reading the given file.
      */
     private static String load(final InputStream in) throws IOException {
         final StringBuilder buffer = new StringBuilder(20000);
@@ -184,9 +184,9 @@ public final strictfp class GlobalTest implements FileFilter {
     /**
      * Writes the given index if possible, or returns the reason why the index can not be written.
      *
-     * @param  index The full index content to write.
+     * @param  index  the full index content to write.
      * @return {@code null} on success, or the reason why this method can not write the index otherwise.
-     * @throws IOException If an I/O error occurred while writing the index.
+     * @throws IOException if an I/O error occurred while writing the index.
      */
     private String save(final String index) throws IOException {
         File file = targetDirectory;
@@ -217,12 +217,12 @@ public final strictfp class GlobalTest implements FileFilter {
      * line separator is fixed to the Linux one; we don't use the platform-specific line
      * separator in order to keep the build platform-independent.
      *
-     * @param  standards The standards to include in the index.
-     * @param  merged List of ISO 19115 interfaces (keys) which were merged with corresponding
+     * @param  standards  the standards to include in the index.
+     * @param  merged  list of ISO 19115 interfaces (keys) which were merged with corresponding
      *         ISO 19115-2 interfaces (values). This map can also be used for the types of any
      *         other standards that have been merged like the ISO 19115[-2] ones. Note that this
      *         map will be destroyed by this method.
-     * @return The index content.
+     * @return the index content.
      */
     private String createIndex(final Set<Specification> standards, final Map<String,String> merged) {
         final StringBuilder buffer = new StringBuilder(20000);
@@ -255,8 +255,8 @@ public final strictfp class GlobalTest implements FileFilter {
      * <p>This method sets the {@link #targetDirectory} to the Maven "{@code target}" directory
      * inferred from the given sample class.</p>
      *
-     * @param  sample A sample class to use for finding the Maven {@code target} directory.
-     * @return All classes found in the inferred target directory.
+     * @param  sample  a sample class to use for finding the Maven {@code target} directory.
+     * @return all classes found in the inferred target directory.
      */
     private Set<Class<?>> listClasses(final Class<?> sample) {
         String pathname = sample.getName();
@@ -315,7 +315,7 @@ public final strictfp class GlobalTest implements FileFilter {
      * Returns {@code true} if the given file is a directory or a {@code .class} file.
      * This method is used in order to filter the directory of class files.
      *
-     * @param  file The file to test.
+     * @param  file  the file to test.
      * @return {@code true} if the given file is a directory or a class file.
      */
     @Override

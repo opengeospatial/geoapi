@@ -53,7 +53,7 @@ public interface Responsibility {
     /**
      * Function performed by the responsible party.
      *
-     * @return Function performed by the responsible party.
+     * @return function performed by the responsible party.
      */
     @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
@@ -63,7 +63,7 @@ public interface Responsibility {
      * Spatial or temporal extents of the role.
      * Returns an empty collection if none.
      *
-     * @return Spatial or temporal extent of the role.
+     * @return spatial or temporal extent of the role.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtents();
@@ -72,7 +72,7 @@ public interface Responsibility {
      * Information about the parties.
      * Returns an empty collection if none.
      *
-     * @return Information about the parties.
+     * @return information about the parties.
      */
     @UML(identifier="party", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Party> getParties();

@@ -76,7 +76,7 @@ public interface Property {
      *   <li>If this property is an {@link FeatureAssociation}, then the returned object is a {@link Feature}.</li>
      * </ul>
      *
-     * @return The value of the property, or {@code null} if none.
+     * @return the value of the property, or {@code null} if none.
      */
     Object getValue();
 }

@@ -70,7 +70,7 @@ public interface VerticalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which shall be vertical.
      *
-     * @return The vertical coordinate system.
+     * @return the vertical coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

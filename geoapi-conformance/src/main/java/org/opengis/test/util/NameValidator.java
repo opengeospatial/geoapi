@@ -53,8 +53,8 @@ public class NameValidator extends Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public NameValidator(final ValidatorContainer container) {
         super(container, "org.opengis.util");
@@ -63,7 +63,7 @@ public class NameValidator extends Validator {
     /**
      * Ensures that the {@link CharSequence} methods are consistent with the {@code toString()} value.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final InternationalString object) {
         if (object == null) {
@@ -93,7 +93,7 @@ public class NameValidator extends Validator {
     /**
      * Ensures that ISO 19103 or GeoAPI restrictions apply.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final NameSpace object) {
         if (object == null) {
@@ -124,10 +124,10 @@ public class NameValidator extends Validator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final GenericName object) {
         int n = 0;
@@ -192,7 +192,7 @@ public class NameValidator extends Validator {
     /**
      * Ensures that ISO 19103 or GeoAPI restrictions apply.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final LocalName object) {
         if (object == null) {
@@ -211,7 +211,7 @@ public class NameValidator extends Validator {
     /**
      * Ensures that ISO 19103 or GeoAPI restrictions apply.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ScopedName object) {
         if (object == null) {

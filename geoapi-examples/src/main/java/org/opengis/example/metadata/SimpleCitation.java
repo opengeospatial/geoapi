@@ -76,7 +76,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * directly or indirectly, by the {@link #getTitle()}, {@link #toString()} and
      * {@link #toString(Locale)} methods.
      *
-     * @param title The citation title to be returned indirectly by {@link #getTitle()}.
+     * @param title  the citation title to be returned indirectly by {@link #getTitle()}.
      */
     public SimpleCitation(final String title) {
         Objects.requireNonNull(title);
@@ -86,7 +86,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
     /**
      * Returns the number of characters in the {@linkplain #getTitle() title}.
      *
-     * @return The number of {@code char}s in the {@linkplain #getTitle() title}.
+     * @return the number of {@code char}s in the {@linkplain #getTitle() title}.
      */
     @Override
     public int length() {
@@ -96,8 +96,8 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
     /**
      * Returns the {@linkplain #getTitle() title} character at the given index
      *
-     * @param  index The index of the {@code char} value to be returned.
-     * @return The specified {@code char} value.
+     * @param  index  the index of the {@code char} value to be returned.
+     * @return the specified {@code char} value.
      */
     @Override
     public char charAt(final int index) {
@@ -108,9 +108,9 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns a {@linkplain String#substring(int, int) substring} of the title for the
      * given range of index.
      *
-     * @param  start The start index, inclusive.
-     * @param  end   The end index, exclusive.
-     * @return The specified substring of the {@linkplain #getTitle() title}.
+     * @param  start  the start index, inclusive.
+     * @param  end    the end index, exclusive.
+     * @return the specified substring of the {@linkplain #getTitle() title}.
      */
     @Override
     public String subSequence(final int start, final int end) {
@@ -121,7 +121,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns the {@linkplain #getTitle() title} as an unlocalized string.
      * This method returns directly the string given to the constructor.
      *
-     * @return The string given to the constructor.
+     * @return the string given to the constructor.
      *
      * @see #getTitle()
      */
@@ -134,8 +134,8 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns the {@linkplain #getTitle() title}, ignoring the given locale. For localization
      * support, an other class (or a subclass of this {@code SimpleCitation} class) is required.
      *
-     * @param  locale Ignored by the {@code SimpleCitation} implementation.
-     * @return The string given to the constructor, localized if supported by the implementation.
+     * @param  locale  ignored by the {@code SimpleCitation} implementation.
+     * @return the string given to the constructor, localized if supported by the implementation.
      *
      * @see #getTitle()
      */
@@ -268,7 +268,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns online references to the cited resource.
      * The default implementation returns an empty set.
      *
-     * @return Online reference to the cited resource, or an empty collection if there is none.
+     * @return online reference to the cited resource, or an empty collection if there is none.
      */
     @Override
     public Set<OnlineResource> getOnlineResources() {
@@ -279,7 +279,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns citation graphic or logo for cited party.
      * The default implementation returns an empty set.
      *
-     * @return Graphics or logo for cited party, or an empty collection if there is none.
+     * @return graphics or logo for cited party, or an empty collection if there is none.
      */
     @Override
     public Set<BrowseGraphic> getGraphics() {
@@ -290,8 +290,8 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Compares the {@linkplain #getTitle() title} with the string representation of the given object
      * for order.
      *
-     * @param   object The object to be compared.
-     * @return  A negative integer, zero, or a positive integer as this object
+     * @param   object  the object to be compared.
+     * @return  a negative integer, zero, or a positive integer as this object
      *          is less than, equal to, or greater than the specified object.
      */
     @Override
@@ -303,8 +303,8 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns {@code true} if the given object is a {@code SimpleCitation} having a title
      * equals to this title.
      *
-     * @param  object The object to compare with this {@code SimpleCitation}, or {@code null}.
-     * @return {@code true} If the given object is equals to this {@code SimpleCitation}.
+     * @param  object  the object to compare with this {@code SimpleCitation}, or {@code null}.
+     * @return {@code true} if the given object is equals to this {@code SimpleCitation}.
      */
     @Override
     public boolean equals(final Object object) {
@@ -315,7 +315,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * Returns a hash code value for this citation. The hash code is computed from
      * the {@linkplain #getTitle() title} string given to the constructor.
      *
-     * @return A hash code value for this citation.
+     * @return a hash code value for this citation.
      */
     @Override
     public int hashCode() {

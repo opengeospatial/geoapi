@@ -75,7 +75,7 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the coordinate system, which shall be Cartesian.
      *
-     * @return The Cartesian coordinate system.
+     * @return the Cartesian coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

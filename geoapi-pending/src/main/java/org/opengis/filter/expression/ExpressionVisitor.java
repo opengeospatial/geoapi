@@ -33,7 +33,7 @@ package org.opengis.filter.expression;
 
 
 /**
- * Visitor with {@code visit} methods to be called by {@link Expression#accept Expression.accept(...)}.
+ * Visitor with {@code visit} methods to be called by {@link Expression#accept Expression.accept(…)}.
  * <p>
  * Please note that a generic visit( Expression ) entry point has not been provided, although Expression
  * forms a heirarchy for your convience it is not an open heirarchy. If you need to extend this system

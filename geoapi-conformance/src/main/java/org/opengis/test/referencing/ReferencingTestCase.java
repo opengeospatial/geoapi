@@ -86,8 +86,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
      * Creates a test case initialized to default values.
      *
-     * @param factories The factories to be used by the test. Those factories passed verbatim
-     *        to the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
+     * @param factories  the factories to be used by the test. Those factories passed verbatim
+     *                   to the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
      */
     @SuppressWarnings("unchecked")
     protected ReferencingTestCase(final Factory... factories) {
@@ -111,8 +111,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
      * Infers a value from the extent as a {@link Date} object and computes the union with a lower or upper bounds.
      *
-     * @param bound The current lower ({@code begin == true}) or upper ({@code begin == false}) bound.
-     * @param begin {@code true} for the start time, or {@code false} for the end time.
+     * @param bound  the current lower ({@code begin == true}) or upper ({@code begin == false}) bound.
+     * @param begin  {@code true} for the start time, or {@code false} for the end time.
      */
     private static Date union(final Date bound, final TemporalPrimitive extent, final boolean begin) {
         final Instant instant;
@@ -157,9 +157,9 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * If the given {@code object} is {@code null}, then this method does nothing.
      * Deciding if {@code null} objects are allowed or not is {@link org.opengis.test.Validator}'s job.
      *
-     * @param object     The object to verify, or {@code null} if none.
-     * @param name       The expected name (ignoring code space), or {@code null} if unrestricted.
-     * @param identifier The expected identifier code (ignoring code space), or {@code null} if unrestricted.
+     * @param object      the object to verify, or {@code null} if none.
+     * @param name        the expected name (ignoring code space), or {@code null} if unrestricted.
+     * @param identifier  the expected identifier code (ignoring code space), or {@code null} if unrestricted.
      */
     protected void verifyIdentification(final IdentifiedObject object, final String name, final String identifier) {
         if (object != null) {
@@ -198,11 +198,11 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * If the given {@code ellipsoid} is {@code null}, then this method does nothing.
      * Deciding if {@code null} datum are allowed or not is {@link org.opengis.test.Validator}'s job.
      *
-     * @param ellipsoid         The ellipsoid to verify, or {@code null} if none.
-     * @param name              The expected name (ignoring code space), or {@code null} if unrestricted.
-     * @param semiMajor         The expected semi-major axis length, in units given by the {@code axisUnit} argument.
-     * @param inverseFlattening The expected inverse flattening factor.
-     * @param axisUnit          The unit of the {@code semiMajor} argument (not necessarily the actual unit of the ellipsoid).
+     * @param ellipsoid          the ellipsoid to verify, or {@code null} if none.
+     * @param name               the expected name (ignoring code space), or {@code null} if unrestricted.
+     * @param semiMajor          the expected semi-major axis length, in units given by the {@code axisUnit} argument.
+     * @param inverseFlattening  the expected inverse flattening factor.
+     * @param axisUnit           the unit of the {@code semiMajor} argument (not necessarily the actual unit of the ellipsoid).
      *
      * @see GeodeticDatum#getEllipsoid()
      */
@@ -242,10 +242,10 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * If the given {@code primeMeridian} is {@code null}, then this method does nothing.
      * Deciding if {@code null} prime meridians are allowed or not is {@link org.opengis.test.Validator}'s job.
      *
-     * @param primeMeridian      The prime meridian to verify, or {@code null} if none.
-     * @param name               The expected name (ignoring code space), or {@code null} if unrestricted.
-     * @param greenwichLongitude The expected Greenwich longitude, in units given by the {@code angularUnit} argument.
-     * @param angularUnit        The unit of the {@code greenwichLongitude} argument (not necessarily the actual unit of the prime meridian).
+     * @param primeMeridian       the prime meridian to verify, or {@code null} if none.
+     * @param name                the expected name (ignoring code space), or {@code null} if unrestricted.
+     * @param greenwichLongitude  the expected Greenwich longitude, in units given by the {@code angularUnit} argument.
+     * @param angularUnit         the unit of the {@code greenwichLongitude} argument (not necessarily the actual unit of the prime meridian).
      *
      * @see GeodeticDatum#getPrimeMeridian()
      */
@@ -308,11 +308,11 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * If the given {@code group} is {@code null}, then this method does nothing.
      * Deciding if {@code null} parameters are allowed or not is {@link org.opengis.test.Validator}'s job.
      *
-     * @param group The parameter group containing the parameter to test.
-     * @param name  The name of the parameter to test.
-     * @param value The expected parameter value when expressed in units given by the {@code unit} argument.
-     * @param unit  The units of measurement of the {@code value} argument
-     *              (not necessarily the unit actually used by the implementation).
+     * @param group  the parameter group containing the parameter to test.
+     * @param name   the name of the parameter to test.
+     * @param value  the expected parameter value when expressed in units given by the {@code unit} argument.
+     * @param unit   the units of measurement of the {@code value} argument
+     *               (not necessarily the unit actually used by the implementation).
      */
     protected void verifyParameter(final ParameterValueGroup group, final String name, final double value, final Unit<?> unit) {
         if (group != null) {
@@ -351,12 +351,12 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * <p>If the given {@code extent} is {@code null}, then this method does nothing.
      * Deciding if {@code null} extents are allowed or not is {@link org.opengis.test.Validator}'s job.</p>
      *
-     * @param extent             The extent to verify, or {@code null} if none.
-     * @param description        The expected area, or {@code null} if unrestricted.
-     * @param southBoundLatitude The expected minimum latitude,  or NaN if unrestricted.
-     * @param westBoundLongitude The expected minimum longitude, or NaN if unrestricted.
-     * @param northBoundLatitude The expected maximum latitude,  or NaN if unrestricted.
-     * @param eastBoundLongitude The expected maximum longitude, or NaN if unrestricted.
+     * @param extent              the extent to verify, or {@code null} if none.
+     * @param description         the expected area, or {@code null} if unrestricted.
+     * @param southBoundLatitude  the expected minimum latitude,  or NaN if unrestricted.
+     * @param westBoundLongitude  the expected minimum longitude, or NaN if unrestricted.
+     * @param northBoundLatitude  the expected maximum latitude,  or NaN if unrestricted.
+     * @param eastBoundLongitude  the expected maximum longitude, or NaN if unrestricted.
      *
      * @see CoordinateReferenceSystem#getDomainOfValidity()
      */
@@ -424,12 +424,12 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * <p>If the given {@code extent} is {@code null}, then this method does nothing.
      * Deciding if {@code null} extents are allowed or not is {@link org.opengis.test.Validator}'s job.</p>
      *
-     * @param extent       The extent to verify, or {@code null} if none.
-     * @param minimumValue The expected minimal vertical value, or NaN if unrestricted.
-     * @param maximumValue The expected maximal vertical value, or NaN if unrestricted.
-     * @param tolerance    The tolerance threshold to use for comparison.
-     * @param unit         The unit of {@code minimumValue}, {@code maximumValue} and {@code tolerance} arguments,
-     *                     or {@code null} for skipping the unit conversion.
+     * @param extent        the extent to verify, or {@code null} if none.
+     * @param minimumValue  the expected minimal vertical value, or NaN if unrestricted.
+     * @param maximumValue  the expected maximal vertical value, or NaN if unrestricted.
+     * @param tolerance     the tolerance threshold to use for comparison.
+     * @param unit          the unit of {@code minimumValue}, {@code maximumValue} and {@code tolerance} arguments,
+     *                      or {@code null} for skipping the unit conversion.
      *
      * @see CoordinateReferenceSystem#getDomainOfValidity()
      */
@@ -488,10 +488,10 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * <p>If the given {@code extent} is {@code null}, then this method does nothing.
      * Deciding if {@code null} extents are allowed or not is {@link org.opengis.test.Validator}'s job.</p>
      *
-     * @param extent    The extent to verify, or {@code null} if none.
-     * @param startTime The expected start time, or {@code null} if unrestricted.
-     * @param endTime   The expected end time, or {@code null} if unrestricted.
-     * @param tolerance The tolerance threshold to use for comparison, in unit of days.
+     * @param extent     the extent to verify, or {@code null} if none.
+     * @param startTime  the expected start time, or {@code null} if unrestricted.
+     * @param endTime    the expected end time, or {@code null} if unrestricted.
+     * @param tolerance  the tolerance threshold to use for comparison, in unit of days.
      *
      * @see CoordinateReferenceSystem#getDomainOfValidity()
      */

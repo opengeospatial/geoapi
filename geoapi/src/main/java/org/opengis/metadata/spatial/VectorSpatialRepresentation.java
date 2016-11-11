@@ -50,7 +50,7 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
     /**
      * Code which identifies the degree of complexity of the spatial relationships.
      *
-     * @return The degree of complexity of the spatial relationships, or {@code null}.
+     * @return the degree of complexity of the spatial relationships, or {@code null}.
      */
     @UML(identifier="topologyLevel", obligation=OPTIONAL, specification=ISO_19115)
     TopologyLevel getTopologyLevel();
@@ -58,7 +58,7 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
     /**
      * Information about the geometric objects used in the dataset.
      *
-     * @return Information about the geometric objects used in the dataset, or {@code null}.
+     * @return information about the geometric objects used in the dataset, or {@code null}.
      */
     @UML(identifier="geometricObjects", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends GeometricObjects> getGeometricObjects();

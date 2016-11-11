@@ -123,7 +123,7 @@ final class SwingPanelBuilder extends GridBagConstraints {
         panel.add(tabs, this);
 
         // If new tabs are added below, make sure that the index of the "Exception"
-        // tab match the index given to 'tabs.setEnabledAt(...)' in the listener.
+        // tab match the index given to 'tabs.setEnabledAt(…)' in the listener.
         tabs.addTab("Factories",     createScrollPane(factories));
         tabs.addTab("Configuration", createScrollPane(configuration));
         tabs.addTab("Exception",     createScrollPane(exception));

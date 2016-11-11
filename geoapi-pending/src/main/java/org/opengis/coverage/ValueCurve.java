@@ -94,7 +94,7 @@ public interface ValueCurve extends ValueObject {
      *
      * @param p The position where to search for segments.
      * @param tolerance The tolerance.
-     * @return The value segments nearest to the specified position.
+     * @return the value segments nearest to the specified position.
      *
      * @todo I'm not sure to understand how the exception clause is related to the first sentence
      *       in the two first points?

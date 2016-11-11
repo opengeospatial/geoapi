@@ -70,7 +70,7 @@ public interface GridGeometry {
      * interface uses the ISO name both for consistency with ISO interfaces, and because the
      * <cite>range</cite> term is already used by ISO 19123 for a different meaning.</div>
      *
-     * @return The valid domain of a grid coverage.
+     * @return the valid domain of a grid coverage.
      *
      * @see org.opengis.coverage.grid.Grid#getExtent()
      */
@@ -90,7 +90,7 @@ public interface GridGeometry {
      * {@link org.opengis.coverage.Coverage#getCoordinateReferenceSystem()} method
      * and maps to {@linkplain PixelInCell#CELL_CENTER pixel center}.
      *
-     * @return The conversion from grid coordinates to
+     * @return the conversion from grid coordinates to
      *         {@linkplain org.opengis.coverage.Coverage#getCoordinateReferenceSystem
      *         real world earth coordinates}.
      *

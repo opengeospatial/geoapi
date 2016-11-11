@@ -64,7 +64,7 @@ public interface Source {
     /**
      * Detailed description of the level of the source data.
      *
-     * @return Description of the level of the source data, or {@code null} if none.
+     * @return description of the level of the source data, or {@code null} if none.
      *
      * @condition Mandatory if the {@linkplain #getScope() scope} is not provided.
      */
@@ -75,7 +75,7 @@ public interface Source {
      * Spatial resolution expressed as a scale factor, an angle or a level of detail.
      * May be {@code null} if none.
      *
-     * @return Spatial resolution expressed as a scale factor, an angle or a level of detail, or {@code null} if none.
+     * @return spatial resolution expressed as a scale factor, an angle or a level of detail, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -85,7 +85,7 @@ public interface Source {
     /**
      * Denominator of the representative fraction on a source map.
      *
-     * @return Representative fraction on a source map, or {@code null}.
+     * @return representative fraction on a source map, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, moved to {@link Resolution#getEquivalentScale()}.
      */
@@ -96,7 +96,7 @@ public interface Source {
     /**
      * Spatial reference system used by the source data.
      *
-     * @return Spatial reference system used by the source data, or {@code null}.
+     * @return spatial reference system used by the source data, or {@code null}.
      */
     @UML(identifier="sourceReferenceSystem", obligation=OPTIONAL, specification=ISO_19115)
     ReferenceSystem getSourceReferenceSystem();
@@ -104,7 +104,7 @@ public interface Source {
     /**
      * Recommended reference to be used for the source data.
      *
-     * @return Recommended reference to be used for the source data, or {@code null}.
+     * @return recommended reference to be used for the source data, or {@code null}.
      */
     @UML(identifier="sourceCitation", obligation=OPTIONAL, specification=ISO_19115)
     Citation getSourceCitation();
@@ -113,7 +113,7 @@ public interface Source {
      * References to metadata for the source.
      * Returns an empty collection if none.
      *
-     * @return References to metadata for the source.
+     * @return references to metadata for the source.
      *
      * @since 3.1
      */
@@ -136,7 +136,7 @@ public interface Source {
     /**
      * Information about the spatial, vertical and temporal extent of the source data.
      *
-     * @return Information about the extent of the source data.
+     * @return information about the extent of the source data.
      *
      * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
      *
@@ -149,7 +149,7 @@ public interface Source {
     /**
      * Information about process steps in which this source was used.
      *
-     * @return Information about process steps in which this source was used.
+     * @return information about process steps in which this source was used.
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ProcessStep> getSourceSteps();
@@ -157,7 +157,7 @@ public interface Source {
     /**
      * Processing level of the source data.
      *
-     * @return Processing level of the source data, or {@code null}.
+     * @return processing level of the source data, or {@code null}.
      *
      * @since 2.3
      */
@@ -165,10 +165,9 @@ public interface Source {
     Identifier getProcessedLevel();
 
     /**
-     * Distance between consistent parts (centre, left side, right side) of two adjacent
-     * pixels.
+     * Distance between consistent parts (centre, left side, right side) of two adjacent pixels.
      *
-     * @return Distance between consistent parts of two adjacent pixels.
+     * @return distance between consistent parts of two adjacent pixels.
      *
      * @since 2.3
      */

@@ -151,8 +151,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * If non-null, the returned string is {@linkplain String#trim() trimmed} and never
      * {@linkplain String#isEmpty() empty}.
      *
-     * @param  name The case-insensitive attribute name.
-     * @return The non-empty attribute value, or {@code null} if none.
+     * @param  name  the case-insensitive attribute name.
+     * @return the non-empty attribute value, or {@code null} if none.
      */
     private String getString(final String name) {
         final Attribute attribute = file.findGlobalAttributeIgnoreCase(name);
@@ -169,8 +169,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the value of the given attribute as an upper case string.
      * This method invokes {@link #getString(String)}, then change the case of the result (if non null).
      *
-     * @param  name The case-insensitive attribute name.
-     * @return The non-empty attribute value in upper-case, or {@code null} if none.
+     * @param  name  the case-insensitive attribute name.
+     * @return the non-empty attribute value in upper-case, or {@code null} if none.
      */
     private String getUpperCase(final String name) {
         final String value = getString(name);
@@ -182,8 +182,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * This method invokes {@link #getString(String)}, then wraps the result
      * (if non null) in an {@link InternationalString} implementation.
      *
-     * @param  name The case-insensitive attribute name.
-     * @return The non-empty attribute value, or {@code null} if none.
+     * @param  name  the case-insensitive attribute name.
+     * @return the non-empty attribute value, or {@code null} if none.
      */
     private InternationalString getInternationalString(final String name) {
         final String value = getString(name);
@@ -193,9 +193,9 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /**
      * Returns the value of the given attribute as a floating point value.
      *
-     * @param  name The case-insensitive attribute name.
-     * @return The attribute value, or {@code NaN} if none.
-     * @throws NumberFormatException If the number can not be parsed.
+     * @param  name  the case-insensitive attribute name.
+     * @return the attribute value, or {@code NaN} if none.
+     * @throws NumberFormatException if the number can not be parsed.
      */
     private double getDouble(final String name) throws NumberFormatException {
         final Attribute attribute = file.findGlobalAttributeIgnoreCase(name);
@@ -219,8 +219,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Returns the value of the given attribute as a date.
      * This method invokes {@link #getString(String)}, then parses the value.
      *
-     * @param  name The case-insensitive attribute name.
-     * @return The attribute value, or {@code null} if none or can not be parsed.
+     * @param  name  the case-insensitive attribute name.
+     * @return the attribute value, or {@code null} if none or can not be parsed.
      */
     private Date getDate(final String name) {
         final String value = getString(name);
@@ -233,9 +233,9 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /**
      * Parses the given ISO date, assuming proleptic Gregorian calendar and UTC time zone.
      *
-     * @param  value The date in ISO format.
-     * @return The parsed date.
-     * @throws IllegalArgumentException If the given date can not be parsed.
+     * @param  value  the date in ISO format.
+     * @return the parsed date.
+     * @throws IllegalArgumentException if the given date can not be parsed.
      */
     static Date parseDate(final String value) throws IllegalArgumentException {
         return new Date(CalendarDateFormatter.isoStringToCalendarDate(Calendar.proleptic_gregorian, value).getMillis());
@@ -298,7 +298,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      *
      * <p><b>Specified by:</b> {@link Citation}</p>
      *
-     * @return The title, or {@code null} if none.
+     * @return the title, or {@code null} if none.
      *
      * @see NetcdfFile#getTitle()
      */
@@ -407,7 +407,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * This is the creation date of the actual dataset, not necessarily the same that the
      * metadata creation time.
      *
-     * @return The creation date, or {@code null} if none.
+     * @return the creation date, or {@code null} if none.
      */
     public Date getDatasetDate() {
         return getDate("date_created");
@@ -468,7 +468,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      *
      * <p><b>Specified by:</b> {@link OnlineResource}</p>
      *
-     * @return The file creation, or {@code null} if none.
+     * @return the file creation, or {@code null} if none.
      */
     public URI getLinkage() {
         final String location = file.getLocation();
@@ -502,7 +502,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * the {@code ':'} character and the {@linkplain #getCode() identifier code}.
      * One or both of the authority and the code can be null.
      *
-     * @return The identifier code in the naming authority space, or {@code null} if null.
+     * @return the identifier code in the naming authority space, or {@code null} if null.
      */
     @Override
     public String toString() {
@@ -524,7 +524,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /**
      * Encapsulates the {@linkplain #getCodeSpace() code space} in a citation.
      *
-     * @return The authority for this metadata.
+     * @return the authority for this metadata.
      */
     @Override
     public Citation getAuthority() {
@@ -536,7 +536,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * Encapsulates the {@linkplain #getAuthority() naming authority} together with the
      * {@linkplain #getCode() identifier code} for this metadata.
      *
-     * @return The authority and the code for this metadata.
+     * @return the authority and the code for this metadata.
      *
      * @see #getAuthority()
      * @see #getCode()

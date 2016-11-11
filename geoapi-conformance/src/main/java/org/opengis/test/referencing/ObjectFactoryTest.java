@@ -115,7 +115,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
+     * @return the default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
      *
      * @since 3.1
      */
@@ -129,10 +129,10 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param datumFactory Factory for creating {@link Datum} instances.
-     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
-     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param copFactory   Factory for creating {@link Conversion} instances.
+     * @param datumFactory  factory for creating {@link Datum} instances.
+     * @param csFactory     factory for creating {@link CoordinateSystem} instances.
+     * @param crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param copFactory    factory for creating {@link Conversion} instances.
      */
     public ObjectFactoryTest(
             final DatumFactory             datumFactory,
@@ -160,8 +160,8 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      * Builds a map containing only one value, composed by the {@link IdentifiedObject#NAME_KEY}
      * identifier and the value specified.
      *
-     * @param value The value for the name key.
-     * @return A map containing only the value specified for the name key.
+     * @param  value  the value for the name key.
+     * @return a map containing only the value specified for the name key.
      */
     private static Map<String,String> name(final String value) {
         return Collections.singletonMap(IdentifiedObject.NAME_KEY, value);

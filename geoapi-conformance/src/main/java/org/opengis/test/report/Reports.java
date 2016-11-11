@@ -84,7 +84,7 @@ public class Reports extends Report {
      * Creates a new report generator using the given property values.
      * See the {@link Report} Javadoc for a list of expected values.
      *
-     * @param properties The property values, or {@code null} for the default values.
+     * @param properties  the property values, or {@code null} for the default values.
      */
     public Reports(final Properties properties) {
         super(properties);
@@ -103,11 +103,11 @@ public class Reports extends Report {
      *   <li>{@link MathTransformFactory}, given to {@link OperationParametersReport}</li>
      * </ul>
      *
-     * @param  factory The factory for which to generate a report.
-     * @param  type The factory type, usually {@code factory.getClass()}.
+     * @param  factory  the factory for which to generate a report.
+     * @param  type     the factory type, usually {@code factory.getClass()}.
      * @return {@code true} if this method will generate a report for the given factory,
      *         or {@code false} if the factory has been ignored.
-     * @throws FactoryException If an error occurred while querying the factory.
+     * @throws FactoryException if an error occurred while querying the factory.
      */
     public boolean add(final Factory factory, final Class<? extends Factory> type) throws FactoryException {
         if (!type.isInstance(factory)) {
@@ -138,10 +138,10 @@ public class Reports extends Report {
      * in the {@link org.opengis.test.TestCase#factories(Class[])} method. For each instance
      * found, {@link #add(Factory, Class)} is invoked.
      *
-     * @param  type The kind of factories to add.
+     * @param  type  the kind of factories to add.
      * @return {@code true} if this method will generate at least one report for the factories
      *         of the given type, or {@code false} otherwise.
-     * @throws FactoryException If an error occurred while querying the factories.
+     * @throws FactoryException if an error occurred while querying the factories.
      */
     public boolean addAll(final Class<? extends Factory> type) throws FactoryException {
         boolean modified = false;
@@ -157,9 +157,8 @@ public class Reports extends Report {
      * in the {@link org.opengis.test.TestCase#factories(Class[])} method. For each instance
      * found, {@link #add(Factory, Class)} is invoked.
      *
-     * @return {@code true} if this method will generate at least one report,
-     *         or {@code false} otherwise.
-     * @throws FactoryException If an error occurred while querying the factories.
+     * @return {@code true} if this method will generate at least one report, or {@code false} otherwise.
+     * @throws FactoryException if an error occurred while querying the factories.
      */
     public boolean addAll() throws FactoryException {
         return addAll(CRSAuthorityFactory.class) |
@@ -171,11 +170,10 @@ public class Reports extends Report {
      * invocation of this method. Then that report is returned. Otherwise a new report is
      * created and cached for appending.
      *
-     * @param  <T>  The compile-time type of the {@code type} argument.
-     * @param  type The kind of report to create.
-     * @return The report of the given type, or {@code null} if no report of the given
-     *         type should be generated.
-     * @throws IllegalArgumentException If the given type is not a report that can be instantiated.
+     * @param  <T>   the compile-time type of the {@code type} argument.
+     * @param  type  the kind of report to create.
+     * @return the report of the given type, or {@code null} if no report of the given type should be generated.
+     * @throws IllegalArgumentException if the given type is not a report that can be instantiated.
      */
     private <T extends Report> T getReport(final Class<T> type) throws IllegalArgumentException {
         final Report candidate = instances.get(type);
@@ -219,12 +217,10 @@ public class Reports extends Report {
      * The given type shall declare a public constructor expecting a single {@link Properties}
      * argument.</p>
      *
-     * @param  <T>  The compile-time type of the {@code type} argument.
-     * @param  type The kind of report to create.
-     * @return The report of the given type, or {@code null} if no report of the given
-     *         type should be generated.
-     * @throws IllegalArgumentException If the given type is not a kind of report that
-     *         this method can instantiate.
+     * @param  <T>   the compile-time type of the {@code type} argument.
+     * @param  type  the kind of report to create.
+     * @return the report of the given type, or {@code null} if no report of the given type should be generated.
+     * @throws IllegalArgumentException if the given type is not a kind of report that this method can instantiate.
      */
     protected <T extends Report> T createReport(final Class<T> type) throws IllegalArgumentException {
         try {
@@ -238,10 +234,10 @@ public class Reports extends Report {
      * Writes in the given directory every reports {@linkplain #add(Factory, Class) added}
      * to this {@code Reports} instance.
      *
-     * @param  directory The directory where to write the reports.
-     * @return The index file, or the main file in only one report has been created,
+     * @param  directory  the directory where to write the reports.
+     * @return the index file, or the main file in only one report has been created,
      *         or {@code null} if no report has been created.
-     * @throws IOException If an error occurred while writing a report.
+     * @throws IOException if an error occurred while writing a report.
      */
     @Override
     public File write(final File directory) throws IOException {

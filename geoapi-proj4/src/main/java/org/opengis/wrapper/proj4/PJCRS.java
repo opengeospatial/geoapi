@@ -51,10 +51,10 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
     /**
      * Creates a new CRS using the given identifier, Proj4 peer and number of dimensions.
      *
-     * @param identifier The name of the new CRS, or {@code null} if none.
-     * @param datum The geodetic datum, which is also the wrapper for Proj.4 native methods.
-     * @param dimension The number of dimensions of the new CRS. Must be at least 2.
-     * @param unit The horizontal axes unit.
+     * @param identifier  the name of the new CRS, or {@code null} if none.
+     * @param datum       the geodetic datum, which is also the wrapper for Proj.4 native methods.
+     * @param dimension   the number of dimensions of the new CRS. Must be at least 2.
+     * @param unit        the horizontal axes unit.
      */
     PJCRS(final Identifier identifier, final PJDatum datum, final int dimension, final Unit<?> unit) {
         super(identifier);
@@ -139,8 +139,8 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
          * The first element (typically {@code "enu"} is for the projected CRS itself - not
          * really used since it should already be contained in the {@link #pj} object. The
          * second element (typically {@code "neu"}) is for the base CRS.
-         * <p>
-         * This field may be {@code null} if this information was unspecified.
+         *
+         * <p>This field may be {@code null} if this information was unspecified.</p>
          */
         private final String axisOrientations;
 

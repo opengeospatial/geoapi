@@ -55,7 +55,7 @@ public interface Party {
     /**
      * Name of the party.
      *
-     * @return Name of the party, or {@code null} if none.
+     * @return name of the party, or {@code null} if none.
      *
      * @condition Mandatory if the {@linkplain Organisation#getLogo() logo} and the
      *            {@linkplain Individual#getPositionName() position name} are not documented.

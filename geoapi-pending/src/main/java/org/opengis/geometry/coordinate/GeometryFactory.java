@@ -88,9 +88,9 @@ public interface GeometryFactory {
      * @param upperCorner A coordinate position consisting of all the minimal ordinates for each
      *                    dimension for all points within the envelope.
      *
-     * @throws MismatchedReferenceSystemException If the coordinate positions don't use
+     * @throws MismatchedReferenceSystemException if the coordinate positions don't use
      *         compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If the coordinate position don't have compatible dimension.
+     * @throws MismatchedDimensionException if the coordinate position don't have compatible dimension.
      */
     Envelope createEnvelope(DirectPosition lowerCorner, DirectPosition upperCorner)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
@@ -101,9 +101,9 @@ public interface GeometryFactory {
      * @param startPoint The {@linkplain LineSegment#getStartPoint start point}.
      * @param   endPoint The {@linkplain LineSegment#getEndPoint end point}.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_LineSegment(GM_Position[2])", obligation=MANDATORY, specification=ISO_19107)
@@ -113,9 +113,9 @@ public interface GeometryFactory {
     /**
      * Takes two or more positions and creates the appropriate line string joining them.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_LineString(GM_Position[2..n])", obligation=MANDATORY, specification=ISO_19107)
@@ -128,9 +128,9 @@ public interface GeometryFactory {
      * @param startPoint The {@linkplain Geodesic#getStartPoint start point}.
      * @param   endPoint The {@linkplain Geodesic#getEndPoint end point}.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     Geodesic createGeodesic(Position startPoint, Position endPoint)
@@ -142,9 +142,9 @@ public interface GeometryFactory {
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * being used, and creates the appropriate geodesic string joining them.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_GeodesicString(GM_Position[2..n])", obligation=MANDATORY, specification=ISO_19107)
@@ -158,9 +158,9 @@ public interface GeometryFactory {
      * @param   midPoint Some point on the arc neither at the start or end.
      * @param   endPoint The {@linkplain Arc#getEndPoint end point}.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Arc(GM_Position[3])", obligation=MANDATORY, specification=ISO_19107)
@@ -214,9 +214,9 @@ public interface GeometryFactory {
      * @param      bulge The distance of the midpoint of the arc from the midpoint of the chord.
      * @param     normal A direction normal to the chord.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Arc(GM_Position[2],Real,Vector)", obligation=MANDATORY, specification=ISO_19107)
@@ -228,9 +228,9 @@ public interface GeometryFactory {
      * 3-point arcs jointing them. By the nature of an arc string, the sequence must have
      * an odd number of positions.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_ArcString(GM_Position[3, 5, 7...])", obligation=MANDATORY, specification=ISO_19107)
@@ -249,9 +249,9 @@ public interface GeometryFactory {
      * @param      bulge The distance of the midpoint of the arc from the midpoint of the chord.
      * @param     normal A direction normal to the chord.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_ArcByBulge(GM_Position[2],Real,Vector)", obligation=MANDATORY, specification=ISO_19107)
@@ -274,9 +274,9 @@ public interface GeometryFactory {
      * @param normals The directions normal to the chord. This list size shall be the same than
      *                the {@code bulge} array length.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_ArcStringByBulge(GM_Position[2..n],Real[1..n],Vector[1..n])", obligation=MANDATORY, specification=ISO_19107)
@@ -304,9 +304,9 @@ public interface GeometryFactory {
      * @param knots  The sequence of distinct knots used to define the spline basis functions.
      * @param knotSpec The type of knot distribution used in defining this spline.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_BSplineCurve(Integer,GM_PointArray,Sequence<GM_Knot>,GM_KnotType)", obligation=MANDATORY, specification=ISO_19107)
@@ -327,9 +327,9 @@ public interface GeometryFactory {
      * @param knotSpec The type of knot distribution used in defining this spline, or
      *                 {@code null} if unspecified.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_BSplineSurface(Sequence<GM_PointArray>,Integer,Sequence<GM_Knot>,GM_KnotType)", obligation=MANDATORY, specification=ISO_19107)
@@ -348,9 +348,9 @@ public interface GeometryFactory {
      *
      * @param boundary The surface boundary.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Polygon(GM_SurfaceBondary)", obligation=MANDATORY, specification=ISO_19107)
@@ -372,9 +372,9 @@ public interface GeometryFactory {
      * @param boundary The surface boundary.
      * @param spanSurface The spanning surface.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Polygon(GM_SurfaceBondary,GM_Surface)", obligation=MANDATORY, specification=ISO_19107)
@@ -390,9 +390,9 @@ public interface GeometryFactory {
      * @param  breakLines lines of a critical nature to the shape of the surface.
      * @param  maxLength Maximal length for retention.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Tin(Set<GM_Position>,Set<GM_LineString>,Set<GM_LineString>,Number)", obligation=MANDATORY, specification=ISO_19107)
@@ -405,9 +405,9 @@ public interface GeometryFactory {
      *
      * @param tiles The facet polygons. Must contains at least one polygon.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)

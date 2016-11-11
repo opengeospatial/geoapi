@@ -91,9 +91,9 @@ public strictfp class Assert extends org.junit.Assert {
      * but avoid the creation of temporary objects in the common case where the message
      * is null.</p>
      *
-     * @param  message The message, or {@code null}.
-     * @param  ext The extension to append after the message.
-     * @return The concatenated string.
+     * @param  message  the message, or {@code null}.
+     * @param  ext      the extension to append after the message.
+     * @return the concatenated string.
      */
     private static String concat(String message, final String ext) {
         if (message == null || (message = message.trim()).isEmpty()) {
@@ -118,9 +118,9 @@ public strictfp class Assert extends org.junit.Assert {
      * the type is {@code null}. If the type is not-null but the value is null, this is considered
      * as a failure.
      *
-     * @param message      Header of the exception message in case of failure, or {@code null} if none.
-     * @param expectedType The expected parent class of the value, or {@code null} if unrestricted.
-     * @param value        The value to test, or {@code null} (which is a failure).
+     * @param message       header of the exception message in case of failure, or {@code null} if none.
+     * @param expectedType  the expected parent class of the value, or {@code null} if unrestricted.
+     * @param value         the value to test, or {@code null} (which is a failure).
      */
     public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
         if (expectedType != null && !expectedType.isInstance(value)) {
@@ -142,7 +142,7 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Asserts that the given integer value is positive, including zero.
      *
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param value   The value to test.
      */
     public static void assertPositive(final String message, final int value) {
@@ -154,8 +154,8 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Asserts that the given integer value is strictly positive, excluding zero.
      *
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param value   The value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param value    the value to test.
      */
     public static void assertStrictlyPositive(final String message, final int value) {
         if (value <= 0) {
@@ -168,10 +168,10 @@ public strictfp class Assert extends org.junit.Assert {
      * asserts that if both values are non-null, then the minimum value is not greater than the
      * maximum value.
      *
-     * @param <T>     The type of values being compared.
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param minimum The lower bound of the range to test, or {@code null} if unbounded.
-     * @param maximum The upper bound of the range to test, or {@code null} if unbounded.
+     * @param <T>      the type of values being compared.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param minimum  the lower bound of the range to test, or {@code null} if unbounded.
+     * @param maximum  the upper bound of the range to test, or {@code null} if unbounded.
      */
     @SuppressWarnings("unchecked")
     public static <T> void assertValidRange(final String message, final Comparable<T> minimum, final Comparable<T> maximum) {
@@ -185,9 +185,9 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Asserts that the given minimum is smaller or equals to the given maximum.
      *
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param minimum The lower bound of the range to test.
-     * @param maximum The upper bound of the range to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param minimum  the lower bound of the range to test.
+     * @param maximum  the upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final int minimum, final int maximum) {
         if (minimum > maximum) {
@@ -199,9 +199,9 @@ public strictfp class Assert extends org.junit.Assert {
      * Asserts that the given minimum is smaller or equals to the given maximum.
      * If one bound is or both bounds are {@linkplain Double#NaN NaN}, then the test fails.
      *
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param minimum The lower bound of the range to test.
-     * @param maximum The upper bound of the range to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param minimum  the lower bound of the range to test.
+     * @param maximum  the upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final double minimum, final double maximum) {
         if (!(minimum <= maximum)) { // Use '!' for catching NaN.
@@ -213,11 +213,11 @@ public strictfp class Assert extends org.junit.Assert {
      * Asserts that the given value is inside the given range. This method does <strong>not</strong>
      * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
-     * @param <T>     The type of values being compared.
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param minimum The lower bound of the range (inclusive), or {@code null} if unbounded.
-     * @param maximum The upper bound of the range (inclusive), or {@code null} if unbounded.
-     * @param value   The value to test, or {@code null} (which is a failure).
+     * @param <T>      the type of values being compared.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param minimum  the lower bound of the range (inclusive), or {@code null} if unbounded.
+     * @param maximum  the upper bound of the range (inclusive), or {@code null} if unbounded.
+     * @param value    the value to test, or {@code null} (which is a failure).
      */
     public static <T> void assertBetween(final String message, final Comparable<T> minimum, final Comparable<T> maximum, T value) {
         if (minimum != null) {
@@ -236,10 +236,10 @@ public strictfp class Assert extends org.junit.Assert {
      * Asserts that the given value is inside the given range. This method does <strong>not</strong>
      * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param minimum The lower bound of the range, inclusive.
-     * @param maximum The upper bound of the range, inclusive.
-     * @param value   The value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param minimum  the lower bound of the range, inclusive.
+     * @param maximum  the upper bound of the range, inclusive.
+     * @param value    the value to test.
      */
     public static void assertBetween(final String message, final int minimum, final int maximum, final int value) {
         if (value < minimum) {
@@ -255,10 +255,10 @@ public strictfp class Assert extends org.junit.Assert {
      * {@linkplain Double#NaN NaN}, then this test passes silently. This method does <strong>not</strong>
      * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
-     * @param message Header of the exception message in case of failure, or {@code null} if none.
-     * @param minimum The lower bound of the range, inclusive.
-     * @param maximum The upper bound of the range, inclusive.
-     * @param value   The value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
+     * @param minimum  the lower bound of the range, inclusive.
+     * @param maximum  the upper bound of the range, inclusive.
+     * @param value    the value to test.
      */
     public static void assertBetween(final String message, final double minimum, final double maximum, final double value) {
         if (value < minimum) {
@@ -275,9 +275,9 @@ public strictfp class Assert extends org.junit.Assert {
      * empty). If the given value is null, then the test passes only if the given collection
      * contains the null element.
      *
-     * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param collection The collection where to look for inclusion, or {@code null} if unrestricted.
-     * @param value      The value to test for inclusion.
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
+     * @param collection  the collection where to look for inclusion, or {@code null} if unrestricted.
+     * @param value       the value to test for inclusion.
      */
     public static void assertContains(final String message, final Collection<?> collection, final Object value) {
         if (collection != null) {
@@ -295,9 +295,9 @@ public strictfp class Assert extends org.junit.Assert {
      * alternate titles} rather than the main {@linkplain Citation#getTitle() title}, but this method
      * tests both for safety.
      *
-     * @param message  Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected The expected title or alternate title.
-     * @param actual   The citation to test.
+     * @param message   header of the exception message in case of failure, or {@code null} if none.
+     * @param expected  the expected title or alternate title.
+     * @param actual    the citation to test.
      *
      * @since 3.1
      */
@@ -322,12 +322,12 @@ public strictfp class Assert extends org.junit.Assert {
      * If any of the above-cited properties is {@code ""##unrestricted"}, then it will not be verified.
      * This flexibility is useful in the common case where a test accepts any {@code version} value.
      *
-     * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param authority  The expected authority title or alternate title (may be {@code null}), or {@code "##unrestricted"}.
-     * @param codeSpace  The expected code space (may be {@code null}), or {@code "##unrestricted"}.
-     * @param version    The expected version    (may be {@code null}), or {@code "##unrestricted"}.
-     * @param code       The expected code value (may be {@code null}), or {@code "##unrestricted"}.
-     * @param actual     The identifier to test.
+     * @param message    header of the exception message in case of failure, or {@code null} if none.
+     * @param authority  the expected authority title or alternate title (may be {@code null}), or {@code "##unrestricted"}.
+     * @param codeSpace  the expected code space (may be {@code null}), or {@code "##unrestricted"}.
+     * @param version    the expected version    (may be {@code null}), or {@code "##unrestricted"}.
+     * @param code       the expected code value (may be {@code null}), or {@code "##unrestricted"}.
+     * @param actual     the identifier to test.
      *
      * @since 3.1
      */
@@ -348,9 +348,9 @@ public strictfp class Assert extends org.junit.Assert {
      * @deprecated Renamed {@link #assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)}
      * for avoiding confusion with the {@code Identifier} interface.
      *
-     * @param message  Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected The expected character sequence.
-     * @param value    The character sequence to compare.
+     * @param message   header of the exception message in case of failure, or {@code null} if none.
+     * @param expected  the expected character sequence.
+     * @param value     the character sequence to compare.
      */
     @Deprecated
     public static void assertIdentifierEquals(final String message, final CharSequence expected, final CharSequence value) {
@@ -366,10 +366,10 @@ public strictfp class Assert extends org.junit.Assert {
      *
      * <p><b>Examples:</b> {@code "WGS 84"} and {@code "WGS84"} as equal according this method.</p>
      *
-     * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected   The expected character sequence (may be {@code null}), or {@code "##unrestricted"}.
-     * @param actual     The character sequence to compare, or {@code null}.
-     * @param ignoreCase {@code true} for ignoring case.
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
+     * @param expected    the expected character sequence (may be {@code null}), or {@code "##unrestricted"}.
+     * @param actual      the character sequence to compare, or {@code null}.
+     * @param ignoreCase  {@code true} for ignoring case.
      *
      * @since 3.1
      */
@@ -433,9 +433,9 @@ public strictfp class Assert extends org.junit.Assert {
      * Asserts that all axes in the given coordinate system are pointing toward the given
      * directions, in the same order.
      *
-     * @param message  Header of the exception message in case of failure, or {@code null} if none.
-     * @param cs       The coordinate system to test.
-     * @param expected The expected axis directions.
+     * @param message   header of the exception message in case of failure, or {@code null} if none.
+     * @param cs        the coordinate system to test.
+     * @param expected  the expected axis directions.
      *
      * @since 3.1
      */
@@ -452,10 +452,10 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Asserts that the given matrix is equals to the expected one, up to the given tolerance value.
      *
-     * @param message   Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected  The expected matrix, which may be {@code null}.
-     * @param actual    The matrix to compare, or {@code null}.
-     * @param tolerance The tolerance threshold.
+     * @param message    header of the exception message in case of failure, or {@code null} if none.
+     * @param expected   the expected matrix, which may be {@code null}.
+     * @param actual     the matrix to compare, or {@code null}.
+     * @param tolerance  the tolerance threshold.
      *
      * @since 3.1
      *
@@ -497,11 +497,11 @@ public strictfp class Assert extends org.junit.Assert {
      *   </ol></li>
      * </ol>
      *
-     * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected   The expected shape, which may be {@code null}.
-     * @param actual     The actual shape, or {@code null}.
-     * @param toleranceX The tolerance threshold for <var>x</var> ordinate values.
-     * @param toleranceY The tolerance threshold for <var>y</var> ordinate values.
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
+     * @param expected    the expected shape, which may be {@code null}.
+     * @param actual      the actual shape, or {@code null}.
+     * @param toleranceX  the tolerance threshold for <var>x</var> ordinate values.
+     * @param toleranceY  the tolerance threshold for <var>y</var> ordinate values.
      *
      * @since 3.1
      */
@@ -540,11 +540,11 @@ public strictfp class Assert extends org.junit.Assert {
      * in such case, the tester needs to invoke the {@link Shape#getPathIterator(AffineTransform, double)}
      * method himself.
      *
-     * @param message    Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected   The expected path, which may be {@code null}.
-     * @param actual     The actual path, or {@code null}.
-     * @param toleranceX The tolerance threshold for <var>x</var> ordinate values.
-     * @param toleranceY The tolerance threshold for <var>y</var> ordinate values.
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
+     * @param expected    the expected path, which may be {@code null}.
+     * @param actual      the actual path, or {@code null}.
+     * @param toleranceX  the tolerance threshold for <var>x</var> ordinate values.
+     * @param toleranceY  the tolerance threshold for <var>y</var> ordinate values.
      *
      * @since 3.1
      */
@@ -592,11 +592,11 @@ public strictfp class Assert extends org.junit.Assert {
      * {@linkplain java.awt.image.ColorModel color model} or
      * {@linkplain java.awt.image.SampleModel#getDataType() datatype} to be equal.
      *
-     * @param message   Header of the exception message in case of failure, or {@code null} if none.
-     * @param expected  An image containing the expected values, which may be {@code null}.
-     * @param actual    The actual image containing the sample values to compare, or {@code null}.
-     * @param tolerance Tolerance threshold for floating point comparisons.
-     *                  This threshold is ignored if both images use integer datatype.
+     * @param message    header of the exception message in case of failure, or {@code null} if none.
+     * @param expected   an image containing the expected values, which may be {@code null}.
+     * @param actual     the actual image containing the sample values to compare, or {@code null}.
+     * @param tolerance  tolerance threshold for floating point comparisons.
+     *                   This threshold is ignored if both images use integer datatype.
      *
      * @see PixelIterator#assertSampleValuesEqual(PixelIterator, double)
      *

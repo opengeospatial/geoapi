@@ -57,7 +57,7 @@ public interface DigitalTransferOptions {
      * Tiles, layers, geographic areas, <cite>etc.</cite>, in which data is available.
      * Units of distribution apply to both onLine and offLine distributions.
      *
-     * @return  Tiles, layers, geographic areas, <cite>etc.</cite> in which data is available, or {@code null}.
+     * @return tiles, layers, geographic areas, <cite>etc.</cite> in which data is available, or {@code null}.
      */
     @UML(identifier="unitsOfDistribution", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getUnitsOfDistribution();
@@ -67,7 +67,7 @@ public interface DigitalTransferOptions {
      * The transfer size shall be greater than zero.
      * Returns {@code null} if the transfer size is unknown.
      *
-     * @return Estimated size of a unit in the specified transfer format in megabytes, or {@code null}.
+     * @return estimated size of a unit in the specified transfer format in megabytes, or {@code null}.
      */
     @UML(identifier="transferSize", obligation=OPTIONAL, specification=ISO_19115)
     Double getTransferSize();
@@ -75,7 +75,7 @@ public interface DigitalTransferOptions {
     /**
      * Information about online sources from which the resource can be obtained.
      *
-     * @return Online sources from which the resource can be obtained.
+     * @return online sources from which the resource can be obtained.
      */
     @Profile(level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
@@ -84,7 +84,7 @@ public interface DigitalTransferOptions {
     /**
      * Information about offline media on which the resource can be obtained.
      *
-     * @return Offline media on which the resource can be obtained.
+     * @return offline media on which the resource can be obtained.
      *
      * @since 3.1
      */
@@ -94,7 +94,7 @@ public interface DigitalTransferOptions {
     /**
      * Information about offline media on which the resource can be obtained.
      *
-     * @return Offline media on which the resource can be obtained, or {@code null}.
+     * @return offline media on which the resource can be obtained, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getOffLines()}.
      */
@@ -104,7 +104,7 @@ public interface DigitalTransferOptions {
     /**
      * Rate of occurrence of distribution.
      *
-     * @return Rate of occurrence of distribution, or {@code null} if none.
+     * @return rate of occurrence of distribution, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -114,7 +114,7 @@ public interface DigitalTransferOptions {
     /**
      * Formats of distribution.
      *
-     * @return Formats of distribution.
+     * @return formats of distribution.
      *
      * @since 3.1
      */

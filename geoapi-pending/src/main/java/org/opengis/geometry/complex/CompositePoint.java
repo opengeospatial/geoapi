@@ -57,7 +57,7 @@ public interface CompositePoint extends Composite {
     /**
      * Returns the single point in this composite.
      *
-     * @return The single point in this composite.
+     * @return the single point in this composite.
      */
     @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)

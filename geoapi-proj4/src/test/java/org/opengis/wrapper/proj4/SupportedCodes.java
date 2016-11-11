@@ -109,9 +109,9 @@ public class SupportedCodes {
     /**
      * Creates a new object generating the list of supported EPSG codes.
      *
-     * @param  projDataDirectory The root directory of Proj.4 data files.
-     * @param  epsgConnection    The connection to the EPSG database.
-     * @throws SQLException      If an error occurred while preparing the statements.
+     * @param  projDataDirectory  the root directory of Proj.4 data files.
+     * @param  epsgConnection     the connection to the EPSG database.
+     * @throws SQLException       if an error occurred while preparing the statements.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private SupportedCodes(final File projDataDirectory, final Connection epsgConnection)
@@ -135,9 +135,9 @@ public class SupportedCodes {
      * Loads the given file and stores the codes in the {@link #orientationsForCode} map,
      * together with the axis orientations.
      *
-     * @param  defFile      The definition file to read.
-     * @throws IOException  If an error occurred while reading the file.
-     * @throws SQLException If an error occurred while querying the database.
+     * @param  defFile       the definition file to read.
+     * @throws IOException   if an error occurred while reading the file.
+     * @throws SQLException  if an error occurred while querying the database.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private void load(final String defFile) throws IOException, SQLException {
@@ -172,8 +172,8 @@ public class SupportedCodes {
      * list of axis direction if the given CRS has base CRS. The first element is for the given
      * CRS, and the next element (if any) is for the base CRS.
      *
-     * @param  code The CRS code for which to get axis orientations.
-     * @return The axis directions in Proj.4 syntax as a comma-separated list.
+     * @param  code  the CRS code for which to get axis orientations.
+     * @return the axis directions in Proj.4 syntax as a comma-separated list.
      * @throws SQLException if an error occurred while querying the EPSG database.
      */
     private String getAxisOrientationsForCRS(final int code) throws SQLException {
@@ -208,8 +208,8 @@ public class SupportedCodes {
      * Returns the axis direction for the given CS code.
      * This method check the cache before to perform the actual SQL query.
      *
-     * @param  crsCode The CRS code for which to get axis orientations.
-     * @return The axis directions in Proj.4 syntax.
+     * @param  crsCode  the CRS code for which to get axis orientations.
+     * @return the axis directions in Proj.4 syntax.
      * @throws SQLException if an error occurred while querying the EPSG database.
      */
     private String getAxisOrientationsForCS(final int code) throws SQLException {
@@ -276,7 +276,7 @@ public class SupportedCodes {
     /**
      * Writes the map of axis orientations in a {@value #OUTPUT_FILE} file the in current directory.
      *
-     * @throws IOException If an error occurred while writing the file.
+     * @throws IOException if an error occurred while writing the file.
      */
     private void write() throws IOException {
         final File file = new File(OUTPUT_FILE).getAbsoluteFile();
@@ -312,7 +312,7 @@ public class SupportedCodes {
     /**
      * Closes the connection to the database. This method must be invoked when we are done.
      *
-     * @throws SQLException If an error occurred while closing the connection.
+     * @throws SQLException if an error occurred while closing the connection.
      */
     private void close() throws SQLException {
         out.flush();
@@ -337,9 +337,9 @@ public class SupportedCodes {
      *
      * The output file will be written in the current directory.
      *
-     * @param  args The command line arguments.
-     * @throws IOException  If an error occurred while reading the file.
-     * @throws SQLException If an error occurred while querying the database.
+     * @param  args  the command line arguments.
+     * @throws IOException  if an error occurred while reading the file.
+     * @throws SQLException if an error occurred while querying the database.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public static void main(final String[] args) throws IOException, SQLException {

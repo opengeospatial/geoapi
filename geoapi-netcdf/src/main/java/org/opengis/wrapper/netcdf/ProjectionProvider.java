@@ -92,12 +92,11 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      *
      * @param names The names (may contains null elements).
      *
-     * @param  projection The type of NetCDF projections to instantiate.
-     * @param  existings  The aliases created up to date. This map is updated by this method.
-     * @param  hasStd2    {@code true} if the projection has 2 standard parallels.
-     * @param  names      The projection name and aliases, followed by parameters name and aliases,
-     *                    as tuples of {@value org.opengis.wrapper.netcdf.AliasList#NAME_CAPACITY}
-     *                    elements.
+     * @param  projection  the type of NetCDF projections to instantiate.
+     * @param  existings   the aliases created up to date. This map is updated by this method.
+     * @param  hasStd2     {@code true} if the projection has 2 standard parallels.
+     * @param  names       the projection name and aliases, followed by parameters name and aliases,
+     *                     as tuples of {@value org.opengis.wrapper.netcdf.AliasList#NAME_CAPACITY} elements.
      */
     ProjectionProvider(final Map<SimpleName,SimpleName> existings, final boolean hasStd2, final String... names) {
         assert (names.length % AliasList.NAME_CAPACITY) == 0 : Arrays.toString(names);
@@ -239,9 +238,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     /**
      * Creates a new NetCDF parameter for the given name.
      *
-     * @param  parameterName The parameter name.
-     * @return The parameter value and descriptor.
-     * @throws ParameterNotFoundException If no parameter is found for the given name.
+     * @param  parameterName  the parameter name.
+     * @return the parameter value and descriptor.
+     * @throws ParameterNotFoundException if no parameter is found for the given name.
      */
     @Override
     public ParameterDescriptor<?> descriptor(final String parameterName) throws ParameterNotFoundException {
@@ -300,18 +299,18 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     /**
      * Creates the NetCDF projection from the given parameters.
      *
-     * @param  parameters The parameters, or {@code null} for creating the default projection.
-     * @return The NetCDF projection.
+     * @param  parameters  the parameters, or {@code null} for creating the default projection.
+     * @return the NetCDF projection.
      */
     protected abstract P createProjection(final ParameterValueGroup parameters);
 
     /**
      * Returns the numeric value for the parameter of the given name.
      *
-     * @param  parameters The parameter where to search
-     * @param  name The name of the parameter for which to get a value.
-     * @return The numeric value of the given parameter.
-     * @throws ParameterNotFoundException If the requested parameter has not been found.
+     * @param  parameters  the parameter where to search
+     * @param  name  the name of the parameter for which to get a value.
+     * @return the numeric value of the given parameter.
+     * @throws ParameterNotFoundException if the requested parameter has not been found.
      */
     static double value(final ParameterValueGroup parameters, final String name) throws ParameterNotFoundException {
         return parameters.parameter(name).doubleValue();
@@ -320,9 +319,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     /**
      * Returns the Earth radius from the given parameters.
      *
-     * @param  parameters The parameter from which to get the earth radius.
-     * @return The earth radius, in metres.
-     * @throws ParameterNotFoundException If the requested parameter is not present.
+     * @param  parameters  the parameter from which to get the earth radius.
+     * @return the earth radius, in metres.
+     * @throws ParameterNotFoundException if the requested parameter is not present.
      */
     static double earthRadius(final ParameterValueGroup parameters) throws ParameterNotFoundException {
         return parameters.parameter(CF.EARTH_RADIUS).doubleValue();

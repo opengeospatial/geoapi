@@ -71,7 +71,7 @@ public interface Solid extends Primitive {
      * shall face away from the interior of the solid. Each {@linkplain Shell shell}, when viewed as
      * a composite surface, shall be a cycle.
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     SolidBoundary getBoundary();
@@ -79,7 +79,7 @@ public interface Solid extends Primitive {
     /**
      * Returns the sum of the surface areas of all of the boundary components of a solid.
      *
-     * @return The area of this solid.
+     * @return the area of this solid.
      *
      * @todo In UML diagram, this operation has an {@code Area} return type.
      */
@@ -91,7 +91,7 @@ public interface Solid extends Primitive {
      * boundary shell minus the sum of the volumes interior to any interior boundary
      * shell.
      *
-     * @return The volume of this solid.
+     * @return the volume of this solid.
      *
      * @todo In UML diagram, this operation has a {@code Volume} return type.
      */

@@ -61,7 +61,7 @@ public interface GridEnvelope {
      * Returns the number of dimensions. It shall be equal to the number of dimensions
      * of {@linkplain #getLow low} and {@linkplain #getHigh high} grid coordinates.
      *
-     * @return The number of dimensions.
+     * @return the number of dimensions.
      *
      * @since GeoAPI 2.2
      */
@@ -70,7 +70,7 @@ public interface GridEnvelope {
     /**
      * Returns the minimal coordinate values for all grid points within the {@linkplain Grid grid}.
      *
-     * @return The minimal coordinate values for all grid points, inclusive.
+     * @return the minimal coordinate values for all grid points, inclusive.
      */
     @UML(identifier="low", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getLow();
@@ -78,7 +78,7 @@ public interface GridEnvelope {
     /**
      * Returns the maximal coordinate values for all grid points within the {@linkplain Grid grid}.
      *
-     * @return The maximal coordinate values for all grid points, <strong>inclusive</strong>.
+     * @return the maximal coordinate values for all grid points, <strong>inclusive</strong>.
      */
     @UML(identifier="high", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getHigh();
@@ -91,9 +91,9 @@ public interface GridEnvelope {
      * {@linkplain #getLow}.{@linkplain GridCoordinates#getCoordinateValue getCoordinateValue}(dimension)
      * </code></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the coordinate value.
-     * @return The coordinate value at the given dimension, inclusive.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the coordinate value at the given dimension, inclusive.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      *
      * @see Rectangle#x
@@ -111,9 +111,9 @@ public interface GridEnvelope {
      * {@linkplain #getHigh}.{@linkplain GridCoordinates#getCoordinateValue getCoordinateValue}(dimension)
      * </code></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the coordinate value.
-     * @return The coordinate value at the given dimension, <strong>inclusive</strong>.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the coordinate value at the given dimension, <strong>inclusive</strong>.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      *
      * @since GeoAPI 2.2
@@ -128,9 +128,9 @@ public interface GridEnvelope {
      * {@linkplain #getHigh getHigh}(dimension) - {@linkplain #getLow getLow}(dimension) + 1
      * </code></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the coordinate value.
-     * @return The coordinate value at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the coordinate value at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      *
      * @see Rectangle#width

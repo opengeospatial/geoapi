@@ -57,7 +57,7 @@ public interface Telephone {
     /**
      * Telephone number by which individuals can contact responsible organisation or individual.
      *
-     * @return Telephone number by which individuals can contact responsible organisation or individual.
+     * @return telephone number by which individuals can contact responsible organisation or individual.
      *
      * @since 3.1
      */
@@ -67,7 +67,7 @@ public interface Telephone {
     /**
      * Type of telephone number, or {@code null} if none.
      *
-     * @return Type of telephone number, or {@code null} if none.
+     * @return type of telephone number, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -77,7 +77,7 @@ public interface Telephone {
     /**
      * Telephone numbers by which individuals can speak to the responsible organization or individual.
      *
-     * @return Telephone numbers by which individuals can speak to the responsible organization or individual.
+     * @return telephone numbers by which individuals can speak to the responsible organization or individual.
      *
      * @since 2.1
      *
@@ -91,7 +91,7 @@ public interface Telephone {
     /**
      * Telephone numbers of a facsimile machine for the responsible organization or individual.
      *
-     * @return Telephone numbers of a facsimile machine for the responsible organization or individual.
+     * @return telephone numbers of a facsimile machine for the responsible organization or individual.
      *
      * @since 2.1
      *

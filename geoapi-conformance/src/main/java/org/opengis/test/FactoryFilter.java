@@ -57,14 +57,13 @@ public interface FactoryFilter {
      * {@code false} only when they really want to exclude a particular factory. For every
      * unknown factory, this method shall return {@code true}.
      *
-     * <p>If more than one {@code FactoryFilter} is found on the classpath, then the
-     * given factory will be tested only if all {@code FactoryFilter.filter(...)}
-     * calls returned {@code true}.</p>
+     * <p>If more than one {@code FactoryFilter} is found on the classpath, then the given factory
+     * will be tested only if all {@code FactoryFilter.filter(…)} calls returned {@code true}.</p>
      *
-     * @param  <T>      The compile-time type of the {@code category} argument.
-     * @param  category The factory interface ({@link org.opengis.util.NameFactory},
-     *                  {@link org.opengis.referencing.crs.CRSFactory}, <i>etc.</i>).
-     * @param  factory  The factory instance.
+     * @param  <T>       the compile-time type of the {@code category} argument.
+     * @param  category  the factory interface ({@link org.opengis.util.NameFactory},
+     *                   {@link org.opengis.referencing.crs.CRSFactory}, <i>etc.</i>).
+     * @param  factory   the factory instance.
      * @return {@code false} if the given factory should be excluded from the tests,
      *         or {@code true} otherwise.
      */
@@ -105,7 +104,7 @@ public interface FactoryFilter {
         /**
          * Creates a new filter for the given authority names.
          *
-         * @param names The authority names (typically {@code "EPSG"}).
+         * @param names  the authority names (typically {@code "EPSG"}).
          */
         public ByAuthority(String... names) {
             this.names = names = names.clone();

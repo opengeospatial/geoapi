@@ -160,8 +160,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Returns the given EPSG code as an integer.
      *
-     * @param  code The EPSG code to parse.
-     * @return The EPSG code as an integer.
+     * @param  code  the EPSG code to parse.
+     * @return the EPSG code as an integer.
      * @throws NoSuchAuthorityCodeException if the given code can not be parsed as an integer.
      */
     private static int parseCode(String code) throws NoSuchAuthorityCodeException {
@@ -186,8 +186,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Creates the exception to be thrown when the given code has not been recognized.
      *
-     * @param  code The code which has been requested.
-     * @return The exception to throw.
+     * @param  code  the code which has been requested.
+     * @return the exception to throw.
      */
     private static NoSuchAuthorityCodeException noSuchAuthorityCode(final int id, final String code) {
         final String idAsText = String.valueOf(id);
@@ -232,7 +232,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *
      * @param  code  The EPSG code of the object being built.
      * @param  name  The name of the object being built.
-     * @return A map containing the properties for the object to create.
+     * @return a map containing the properties for the object to create.
      */
     protected Map<String,Object> createPropertiesMap(final int code, final String name) {
         final Map<String,Object> properties = new HashMap<>(4);
@@ -252,8 +252,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -285,8 +285,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -373,8 +373,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>6284</td> <td>Pulkovo 1942</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -411,8 +411,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>7030</td> <td>WGS 84</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The ellipsoid for the given code.
+     * @param  code  value allocated by authority.
+     * @return the ellipsoid for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -457,8 +457,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>8908</td> <td>Jakarta</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The prime meridian for the given code.
+     * @param  code  value allocated by authority.
+     * @return the prime meridian for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -498,8 +498,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -520,8 +520,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system, consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. UoM: m</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -610,8 +610,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>6424</td> <td>Ellipsoidal 2D CS. Axes: longitude, latitude. Orientations: east, north. UoM: degree</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -727,8 +727,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>117</td>           <td>Geocentric Z</td>       <td>metre</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The axis for the given code.
+     * @param  code  value allocated by authority.
+     * @return the axis for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -770,8 +770,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>9122</td> <td>degree (supplier to define representation)</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The unit for the given code.
+     * @param  code  value allocated by authority.
+     * @return the unit for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -804,8 +804,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>4326</td> <td>WGS 84</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -866,8 +866,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>4284</td> <td>Pulkovo 1942</td></tr>
      * </table>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws FactoryException if the object creation failed.
      */
     @Override
@@ -1011,9 +1011,9 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td><i>9605</i></td> <td>4230</td> <td>ED50 to WGS 84</td>                             <td>Abridged Molodensky</td></tr>
      * </table>
      *
-     * @param  code The EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
-     * @return The coordinate operation (typically a map projection) parameters.
-     * @throws FactoryException If the given EPSG code is unknown to this factory.
+     * @param  code  the EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
+     * @return the coordinate operation (typically a map projection) parameters.
+     * @throws FactoryException if the given EPSG code is unknown to this factory.
      *
      * @see ParameterizedTransformTest
      * @see AuthorityFactoryTest

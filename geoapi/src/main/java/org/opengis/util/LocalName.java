@@ -57,7 +57,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns always 1 for a local name.
      *
-     * @return Always 1 for a local name.
+     * @return always 1 for a local name.
      */
     @Override
     int depth();
@@ -65,7 +65,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns a singleton containing only {@code this}, since this name is itself a local name.
      *
-     * @return A {@linkplain Collections#singleton singleton} containing only {@code this}.
+     * @return a {@linkplain Collections#singleton singleton} containing only {@code this}.
      */
     @Override
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
@@ -90,7 +90,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns a locale-independent string representation of this local name.
      *
-     * @return The local-independent string representation of this name.
+     * @return the local-independent string representation of this name.
      */
     @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)

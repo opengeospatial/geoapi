@@ -66,7 +66,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
     /**
      * Sets the locale to be used by this object.
      *
-     * @param locale The new OpenOffice.org locale.
+     * @param locale  t new OpenOffice.org locale.
      */
     @Override
     public final void setLocale(final Locale locale) {
@@ -77,7 +77,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
     /**
      * Returns the locale, which is used by this object.
      *
-     * @return The current OpenOffice.org locale.
+     * @return the current OpenOffice.org locale.
      */
     @Override
     public final Locale getLocale() {
@@ -87,7 +87,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
     /**
      * Returns the locale as an object from the Java standard SDK.
      *
-     * @return The current locale as a Java object.
+     * @return the current locale as a Java object.
      */
     protected final java.util.Locale getJavaLocale() {
         if (javaLocale == null) {
@@ -111,7 +111,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * private static final String __serviceName;
      * </code></blockquote>
      *
-     * @return The service name.
+     * @return the service name.
      */
     @Override
     public abstract String getServiceName();
@@ -119,7 +119,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
     /**
      * Provides the implementation name of the service implementation.
      *
-     * @return Unique name of the implementation.
+     * @return unique name of the implementation.
      */
     @Override
     public final String getImplementationName() {
@@ -132,8 +132,8 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * category name should always be in English, it is never shown to the user. It
      * is usually one of the names listed in {@code com.sun.star.sheet.XAddIn} interface.
      *
-     * @param  function The exact name of a method within its interface.
-     * @return The category name the specified function belongs to.
+     * @param  function  the exact name of a method within its interface.
+     * @return the category name the specified function belongs to.
      */
     @Override
     public final String getProgrammaticCategoryName(final String function) {
@@ -145,8 +145,8 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * Returns the user-visible name of the category the function belongs to.
      * This is used when category names are shown to the user.
      *
-     * @param  function The exact name of a method within its interface.
-     * @return The user-visible category name the specified function belongs to.
+     * @param  function  the exact name of a method within its interface.
+     * @return the user-visible category name the specified function belongs to.
      */
     @Override
     public final String getDisplayCategoryName(final String function) {
@@ -162,8 +162,8 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * Attention: The method name contains a spelling error. Due to compatibility
      * reasons the name cannot be changed.
      *
-     * @param  display The user-visible name of a function.
-     * @return The exact name of the method within its interface.
+     * @param  display  the user-visible name of a function.
+     * @return the exact name of the method within its interface.
      */
     @Override
     public final String getProgrammaticFuntionName(final String display) {
@@ -182,8 +182,8 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * so it is never stored in files. It should be a single word and is used
      * when entering or displaying formulas.
      *
-     * @param  function The exact name of a method within its interface.
-     * @return The user-visible name of the specified function.
+     * @param  function  the exact name of a method within its interface.
+     * @return the user-visible name of the specified function.
      */
     @Override
     public final String getDisplayFunctionName(final String function) {
@@ -196,8 +196,8 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * when selecting functions. It may be translated to the {@linkplain #getLocale
      * current language}.
      *
-     * @param  function The exact name of a method within its interface.
-     * @return The description of the specified function.
+     * @param  function  the exact name of a method within its interface.
+     * @return the description of the specified function.
      */
     @Override
     public final String getFunctionDescription(final String function) {
@@ -210,9 +210,9 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * shown to the user when prompting for arguments. It should be a single word and
      * may be translated to the {@linkplain #getLocale current language}.
      *
-     * @param  function The exact name of a method within its interface.
-     * @param  argument The index of the argument (0-based).
-     * @return The user-visible name of the specified argument.
+     * @param  function  the exact name of a method within its interface.
+     * @param  argument  the index of the argument (0-based).
+     * @return the user-visible name of the specified argument.
      */
     @Override
     public final String getDisplayArgumentName(final String function, int argument) {
@@ -232,9 +232,9 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * shown to the user when prompting for arguments. It may be translated to the
      * {@linkplain #getLocale current language}.
      *
-     * @param  function The exact name of a method within its interface.
-     * @param  argument The index of the argument (0-based).
-     * @return The description of the specified argument.
+     * @param  function  the exact name of a method within its interface.
+     * @param  argument  the index of the argument (0-based).
+     * @return the description of the specified argument.
      */
     @Override
     public final String getArgumentDescription(final String function, int argument) {
@@ -253,7 +253,7 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * Returns the localized message from the specified exception. If no message is available,
      * returns a default string. This method never returns a null value.
      *
-     * @return The localized message of the given exception.
+     * @return the localized message of the given exception.
      */
     static String getLocalizedMessage(final Throwable exception) {
         if (DEBUG) {
@@ -275,8 +275,8 @@ public abstract class Formulas extends WeakBase implements XAddIn, XServiceName,
      * the WARNING level since this is not a program disfunction; the failure is probably caused
      * by wrong user-specified parameters.
      *
-     * @param method The method which is handling the exception.
-     * @param exception The exception to log.
+     * @param method     the method which is handling the exception.
+     * @param exception  the exception to log.
      */
     final void reportException(final String method, final Throwable exception) {
         final LogRecord record = new LogRecord(Level.FINE, getLocalizedMessage(exception));

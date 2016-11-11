@@ -160,10 +160,10 @@ public class SimpleNameFactory implements NameFactory {
      * Creates a type name from the given character sequence. The character sequence shall
      * complies to the same restriction than {@link #createLocalName createLocalName}.
      *
-     * @param scope The {@linkplain GenericName#scope() scope} of the type name to be created,
-     *              or {@code null} for a global namespace.
-     * @param name  The type name as a string or an international string.
-     * @return The type name for the given character sequence.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the type name as a string or an international string.
+     * @return the type name for the given character sequence.
      */
     @Override
     public TypeName createTypeName(final NameSpace scope, final CharSequence name) {
@@ -174,11 +174,11 @@ public class SimpleNameFactory implements NameFactory {
     /**
      * Creates a member name from the given character sequence and attribute type.
      *
-     * @param  scope The {@linkplain GenericName#scope() scope} of the member
-     *         name to be created, or {@code null} for a global namespace.
-     * @param  name The member name as a string or an international string.
-     * @param  attributeType The type of the data associated with the record member.
-     * @return The member name for the given character sequence.
+     * @param  scope          the {@linkplain GenericName#scope() scope} of the member name to be created,
+     *                        or {@code null} for a global namespace.
+     * @param  name           the member name as a string or an international string.
+     * @param  attributeType  the type of the data associated with the record member.
+     * @return the member name for the given character sequence.
      *
      * @since 3.1
      */
@@ -191,10 +191,10 @@ public class SimpleNameFactory implements NameFactory {
     /**
      * Creates a local name from the given character sequence.
      *
-     * @param  scope The {@linkplain GenericName#scope() scope} of the local name to be created,
-     *               or {@code null} for a global namespace.
-     * @param  name  The local name as a string or an international string.
-     * @return The local name for the given character sequence.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the local name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the local name as a string or an international string.
+     * @return the local name for the given character sequence.
      */
     @Override
     public LocalName createLocalName(final NameSpace scope, final CharSequence name) {
@@ -205,11 +205,11 @@ public class SimpleNameFactory implements NameFactory {
     /**
      * Creates a local or scoped name from an array of parsed names.
      *
-     * @param  scope       The {@linkplain GenericName#scope() scope} of the generic name
-     *                     to be created, or {@code null} for a global namespace.
-     * @param  parsedNames The local names as an array of strings or international strings.
-     *                     This array must contains at least one element.
-     * @return The generic name for the given parsed names.
+     * @param  scope        the {@linkplain GenericName#scope() scope} of the generic name
+     *                      to be created, or {@code null} for a global namespace.
+     * @param  parsedNames  the local names as an array of strings or international strings.
+     *                      This array must contains at least one element.
+     * @return the generic name for the given parsed names.
      */
     @Override
     public GenericName createGenericName(final NameSpace scope, final CharSequence... parsedNames) {
@@ -230,10 +230,10 @@ public class SimpleNameFactory implements NameFactory {
      * a separator inferred from the given scope, or {@linkplain #syntax}-dependent separator if
      * the given scope is null.
      *
-     * @param scope The {@linkplain GenericName#scope() scope} of the generic name to
-     *              be created, or {@code null} for a global namespace.
-     * @param name  The qualified name, as a sequence of names separated by a scope-dependent separator.
-     * @return A name parsed from the given string.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the generic name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the qualified name, as a sequence of names separated by a scope-dependent separator.
+     * @return a name parsed from the given string.
      */
     @Override
     public GenericName parseGenericName(final NameSpace scope, final CharSequence name) {
@@ -244,9 +244,9 @@ public class SimpleNameFactory implements NameFactory {
     /**
      * Creates a new JNDI name for the given scope and character sequence.
      *
-     * @param scope The scope, or {@code null}.
-     * @param name  The name to parse.
-     * @return The parsed name.
+     * @param  scope  the scope, or {@code null}.
+     * @param  name   the name to parse.
+     * @return the parsed name.
      */
     private Name parse(final SimpleNameSpace scope, final CharSequence name) {
         try {

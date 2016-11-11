@@ -59,7 +59,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Returns the parameters in this group.
      *
-     * @return The parameter descriptors in this group.
+     * @return the parameter descriptors in this group.
      */
     @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterDescriptor> descriptors();
@@ -68,8 +68,8 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * Returns the parameter descriptor in this group for the specified
      * {@linkplain Identifier#getCode() identifier code}.
      *
-     * @param  name The case insensitive identifier code of the parameter to search for.
-     * @return The parameter for the given identifier code.
+     * @param  name  the case insensitive identifier code of the parameter to search for.
+     * @return the parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      *
      * @departure easeOfUse
@@ -96,7 +96,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *       {@code ParameterValue} entries may be created only as needed.</li>
      * </ul>
      *
-     * @return A new parameter instance initialized to the default value.
+     * @return a new parameter instance initialized to the default value.
      *
      * @departure extension
      *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of

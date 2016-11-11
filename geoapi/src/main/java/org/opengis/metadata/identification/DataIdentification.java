@@ -61,7 +61,7 @@ public interface DataIdentification extends Identification {
      * <p>XML documents shall format languages using the ISO 639-2 language code
      * as returned by {@link Locale#getISO3Language()}.</p>
      *
-     * @return Language(s) used.
+     * @return language(s) used.
      *
      * @departure historic
      *   ISO 19115:2014 defines <code>defaultLocale</code> and <code>otherLocale(s)</code> attributes, who's data
@@ -98,7 +98,7 @@ public interface DataIdentification extends Identification {
      * {@code Big5}, {@code GB2312}.
      * </div>
      *
-     * @return The character coding standard(s) used.
+     * @return the character coding standard(s) used.
      *
      * @departure historic
      *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
@@ -116,7 +116,7 @@ public interface DataIdentification extends Identification {
      * Description of the resource in the producer's processing environment, including items
      * such as the software, the computer operating system, file name, and the dataset size.
      *
-     * @return Description of the resource in the producer's processing environment, or {@code null}.
+     * @return description of the resource in the producer's processing environment, or {@code null}.
      */
     @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getEnvironmentDescription();
@@ -124,7 +124,7 @@ public interface DataIdentification extends Identification {
     /**
      * Any other descriptive information about the resource.
      *
-     * @return Other descriptive information, or {@code null}.
+     * @return other descriptive information, or {@code null}.
      */
     @UML(identifier="supplementalInformation", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getSupplementalInformation();

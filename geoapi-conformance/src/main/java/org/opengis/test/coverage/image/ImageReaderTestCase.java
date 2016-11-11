@@ -142,7 +142,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     /**
      * Creates a new test case using a random number generator initialized to the given seed.
      *
-     * @param seed The initial seed for the random numbers generator. Use a constant value if
+     * @param seed  the initial seed for the random numbers generator. Use a constant value if
      *        the tests need to be reproduced with the same sequence of image read parameters.
      */
     protected ImageReaderTestCase(final long seed) {
@@ -161,7 +161,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Invokes {@link #prepareImageReader(boolean)} with a value of {@code true}, ensures that
      * the input is set, then validate the provider.
      *
-     * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
+     * @throws IOException if an error occurred while preparing the {@linkplain #reader}.
      */
     private void prepareImageReader() throws IOException {
         prepareImageReader(true);
@@ -196,7 +196,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *
      * @param  setInput {@code true} if this method shall {@linkplain ImageReader#setInput(Object)
      *         set the reader input}, or {@code false} if this is not yet necessary.
-     * @throws IOException If an error occurred while preparing the {@linkplain #reader}.
+     * @throws IOException if an error occurred while preparing the {@linkplain #reader}.
      */
     protected abstract void prepareImageReader(boolean setInput) throws IOException;
 
@@ -215,11 +215,11 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * <p>See {@link #testStreamMetadata()} and {@link #testImageMetadata()} for a list of types
      * requested by the default {@code ImageReaderTestCase} implementation.</p>
      *
-     * @param  <T>      The compile-time type of the object to search.
-     * @param  type     The type of the object to search.
-     * @param  metadata The metadata where to search for the object.
-     * @return The user object of the given type, or {@code null} if not found.
-     * @throws IOException If this method requires an I/O operation and that operation failed.
+     * @param  <T>       the compile-time type of the object to search.
+     * @param  type      the type of the object to search.
+     * @param  metadata  the metadata where to search for the object.
+     * @return the user object of the given type, or {@code null} if not found.
+     * @throws IOException if this method requires an I/O operation and that operation failed.
      */
     protected <T> T getMetadata(final Class<T> type, final IIOMetadata metadata) throws IOException {
         T found = null;
@@ -244,10 +244,10 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * to scan the children, we will return it only if we find only one object, in order to
      * avoid ambiguity.
      *
-     * @param  <T>  The compile-time type of the object to search.
-     * @param  type The type of the object to search.
-     * @param  node The node where to search for the object, or {@code null} if none.
-     * @return The user object of the given type, or {@code null} if not found.
+     * @param  <T>   the compile-time type of the object to search.
+     * @param  type  the type of the object to search.
+     * @param  node  the node where to search for the object, or {@code null} if none.
+     * @return the user object of the given type, or {@code null} if not found.
      */
     private static <T> T getMetadata(final Class<T> type, final Node node) {
         if (node == null) { // Because IIOMetadata.getAsTree(String) may return null.
@@ -303,7 +303,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *   </ul></li>
      * </ul>
      *
-     * @throws IOException If an error occurred while reading the metadata.
+     * @throws IOException if an error occurred while reading the metadata.
      */
     @Test
     public void testStreamMetadata() throws IOException {
@@ -332,7 +332,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *   </ul></li>
      * </ul>
      *
-     * @throws IOException If an error occurred while reading the metadata.
+     * @throws IOException if an error occurred while reading the metadata.
      */
     @Test
     public void testImageMetadata() throws IOException {
@@ -390,11 +390,11 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * <p>The pixel values for each image resulting from the above read operations are
      * compared with the corresponding pixel values of the given complete image.</p>
      *
-     * @param  completeImage The complete image as returned by <code>{@linkplain #reader}.{@link ImageReader#read(int) read}(imageIndex)</code> without read parameters.
-     * @param  api           The API to use for reading the images.
-     * @param  imageIndex    Index of the images to read.
-     * @param  numIterations Maximum number of iterations to perform.
-     * @throws IOException If an error occurred while reading the image.
+     * @param  completeImage  the complete image as returned by <code>{@linkplain #reader}.{@link ImageReader#read(int) read}(imageIndex)</code> without read parameters.
+     * @param  api            the API to use for reading the images.
+     * @param  imageIndex     index of the images to read.
+     * @param  numIterations  maximum number of iterations to perform.
+     * @throws IOException if an error occurred while reading the image.
      */
     private void readRandomSubsets(final RenderedImage completeImage, final API api,
             final int imageIndex, final int numIterations) throws IOException
@@ -458,7 +458,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * </ul>
      * </div>
      *
-     * @throws IOException If an error occurred while reading the image.
+     * @throws IOException if an error occurred while reading the image.
      */
     @Test
     public void testReadAsBufferedImage() throws IOException {
@@ -471,7 +471,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method is invoked instead than
      * {@code ImageReader.read(int, ImageReadParam)}.
      *
-     * @throws IOException If an error occurred while reading the image.
+     * @throws IOException if an error occurred while reading the image.
      */
     @Test
     public void testReadAsRenderedImage() throws IOException {
@@ -486,7 +486,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *
      * <p>This test is ignored if {@link ImageReader#canReadRaster()} returns {@code false}.</p>
      *
-     * @throws IOException If an error occurred while reading the raster.
+     * @throws IOException if an error occurred while reading the raster.
      */
     @Test
     public void testReadAsRaster() throws IOException {
@@ -499,8 +499,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Implementation of the {@link #testReadAsBufferedImage()}, {@link #testReadAsRenderedImage()}
      * and {@link #testReadAsRaster()} methods.
      *
-     * @param  api The API to use for reading images.
-     * @throws IOException If an error occurred while reading the image.
+     * @param  api  the API to use for reading images.
+     * @throws IOException if an error occurred while reading the image.
      */
     private void testImageReads(final API api) throws IOException {
         prepareImageReader();
@@ -568,7 +568,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *   <li>Sets the {@link #reader} field to {@code null} for preventing accidental use.</li>
      * </ul>
      *
-     * @throws IOException In an error occurred while closing the input stream.
+     * @throws IOException if an error occurred while closing the input stream.
      *
      * @see ImageReader#reset()
      * @see ImageReader#dispose()

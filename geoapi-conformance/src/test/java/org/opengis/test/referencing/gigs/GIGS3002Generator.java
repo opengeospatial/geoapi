@@ -56,7 +56,7 @@ public strictfp class GIGS3002Generator extends TestMethodGenerator {
      */
     static final Map<String,String> METHOD_NAMES;
     static {
-        final Map<String,String> m = new HashMap<String,String>();
+        final Map<String,String> m = new HashMap<>();
         assertNull(m.put("GIGS ellipsoid A", "testWGS84"));
         assertNull(m.put("GIGS ellipsoid B", "testAiry"));
         assertNull(m.put("GIGS ellipsoid C", "testBessel"));
@@ -89,7 +89,7 @@ public strictfp class GIGS3002Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
-     * @param args Ignored.
+     * @param  args  ignored.
      * @throws IOException if an error occurred while reading the test data.
      */
     public static void main(String[] args) throws IOException {

@@ -57,7 +57,7 @@ public interface ServiceIdentification extends Identification {
      * "discovery", "view", "download", "transformation", or "invoke".
      * </div>
      *
-     * @return A service type name.
+     * @return a service type name.
      *
      * @since 3.1
      */
@@ -91,7 +91,7 @@ public interface ServiceIdentification extends Identification {
      *   <li>turnaround</li>
      * </ul>
      *
-     * @return Information about the availability of the service, or {@code null} if none.
+     * @return information about the availability of the service, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -101,7 +101,7 @@ public interface ServiceIdentification extends Identification {
     /**
      * Type of coupling between service and associated data (if exist).
      *
-     * @return Type of coupling between service and associated data, or {@code null} if none.
+     * @return type of coupling between service and associated data, or {@code null} if none.
      *
      * @condition mandatory if {@link #getCoupledResources() coupledResources} is not provided.
      *
@@ -114,7 +114,7 @@ public interface ServiceIdentification extends Identification {
      * Further description(s) of the data coupling in the case of tightly coupled services.
      * Returns an empty collection if none.
      *
-     * @return Further description of the data coupling in the case of tightly coupled services.
+     * @return further description of the data coupling in the case of tightly coupled services.
      *
      * @condition mandatory if {@link #getCouplingType() couplingType} is not provided.
      *
@@ -127,7 +127,7 @@ public interface ServiceIdentification extends Identification {
      * Provides reference(s) to the resources on which the service operates.
      * Returns an empty collection if none.
      *
-     * @return Reference(s) to the resource on which the service operates.
+     * @return reference(s) to the resource on which the service operates.
      *
      * @condition For one resource either {@code operatedDataset} or {@link #getOperatesOn() operatesOn}
      *            may be used (not both for the same resource).
@@ -141,7 +141,7 @@ public interface ServiceIdentification extends Identification {
      * Profile(s) to which the service adheres.
      * Returns an empty collection if none.
      *
-     * @return Profile(s) to which the service adheres.
+     * @return profile(s) to which the service adheres.
      *
      * @since 3.1
      */
@@ -152,7 +152,7 @@ public interface ServiceIdentification extends Identification {
      * Standard(s) to which the service adheres.
      * Returns an empty collection if none.
      *
-     * @return Standard(s) to which the service adheres.
+     * @return standard(s) to which the service adheres.
      *
      * @since 3.1
      */
@@ -163,7 +163,7 @@ public interface ServiceIdentification extends Identification {
      * Provides information about the operations that comprise the service.
      * Returns an empty collection if none.
      *
-     * @return Information about the operations that comprise the service.
+     * @return information about the operations that comprise the service.
      *
      * @since 3.1
      */
@@ -174,7 +174,7 @@ public interface ServiceIdentification extends Identification {
      * Provides information on the resources that the service operates on.
      * Returns an empty collection if none.
      *
-     * @return Information on the resources that the service operates on.
+     * @return information on the resources that the service operates on.
      *
      * @condition For one resource either {@link #getOperatedDatasets() operatedDataset}
      *            or {@code operatesOn} may be used (not both for the same resource).
@@ -188,7 +188,7 @@ public interface ServiceIdentification extends Identification {
      * Provides information about the chain applied by the service.
      * Returns an empty collection if none.
      *
-     * @return Information about the chain applied by the service.
+     * @return information about the chain applied by the service.
      *
      * @since 3.1
      */

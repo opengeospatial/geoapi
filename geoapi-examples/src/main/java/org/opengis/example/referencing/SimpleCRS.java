@@ -56,10 +56,10 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     /**
      * Creates a new CRS for the given name, datum and axes.
      *
-     * @param authority Organization responsible for definition of the CRS, or {@code null}.
-     * @param name      The name of the new CRS.
-     * @param axes      The axes to be returned by {@link #getAxis(int)}. The length of this array
-     *                  is the coordinate system dimension.
+     * @param authority  organization responsible for definition of the CRS, or {@code null}.
+     * @param name       the name of the new CRS.
+     * @param axes       the axes to be returned by {@link #getAxis(int)}.
+     *                   The length of this array is the coordinate system dimension.
      */
     public SimpleCRS(final Citation authority, final String name, final CoordinateSystemAxis... axes) {
         super(authority, name);
@@ -70,7 +70,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * Returns the coordinate system, which is represented directly by {@code this} implementation
      * class since it does not distinguish CS and CRS.
      *
-     * @return The coordinate system.
+     * @return the coordinate system.
      */
     @Override
     public CoordinateSystem getCoordinateSystem() {
@@ -80,7 +80,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     /**
      * Returns the dimension of the coordinate system.
      *
-     * @return The dimension of the coordinate system.
+     * @return the dimension of the coordinate system.
      */
     @Override
     public final int getDimension() {
@@ -90,8 +90,8 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     /**
      * Returns the coordinate axis at the given dimension.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The axis at the specified dimension.
+     * @param  dimension  the zero based index of axis.
+     * @return the axis at the specified dimension.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @Override
@@ -102,7 +102,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     /**
      * Compares this CRS with the given object for equality.
      *
-     * @param  object The object to compare with this {@code SimpleCRS}.
+     * @param  object  the object to compare with this {@code SimpleCRS}.
      * @return {@code true} if the given object is equals to this object.
      */
     @Override
@@ -149,11 +149,11 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Creates a new CRS for the given name, datum and axes.
          *
-         * @param authority Organization responsible for definition of the name, or {@code null}.
-         * @param name      The name of the new CRS.
-         * @param datum     The value to be returned by {@link #getDatum()}.
-         * @param axes      The axes to be returned by {@link #getAxis(int)}. The length of this array
-         *                  is the coordinate system dimension, which should be restricted to 2 or 3.
+         * @param authority  organization responsible for definition of the name, or {@code null}.
+         * @param name       the name of the new CRS.
+         * @param datum      the value to be returned by {@link #getDatum()}.
+         * @param axes       the axes to be returned by {@link #getAxis(int)}. The length of this array
+         *                   is the coordinate system dimension, which should be restricted to 2 or 3.
          */
         public Geographic(final Citation authority, final String name,
                 final GeodeticDatum datum, final CoordinateSystemAxis... axes)
@@ -166,7 +166,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Returns the datum.
          *
-         * @return The datum.
+         * @return the datum.
          */
         @Override
         public GeodeticDatum getDatum() {
@@ -184,7 +184,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Compares this CRS with the given object for equality.
          *
-         * @param  object The object to compare with this {@code SimpleCRS.Geographic}.
+         * @param  object  the object to compare with this {@code SimpleCRS.Geographic}.
          * @return {@code true} if the given object is equals to this object.
          */
         @Override
@@ -223,10 +223,10 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Creates a new CRS for the given name, datum and axes.
          *
-         * @param authority Organization responsible for definition of the name, or {@code null}.
-         * @param name      The name of the new CRS.
-         * @param type      The value to be returned by {@link #getVerticalDatumType()}.
-         * @param axis      The axis to be returned by {@link #getAxis(int)}.
+         * @param authority  organization responsible for definition of the name, or {@code null}.
+         * @param name       the name of the new CRS.
+         * @param type       the value to be returned by {@link #getVerticalDatumType()}.
+         * @param axis       the axis to be returned by {@link #getAxis(int)}.
          */
         public Vertical(final Citation authority, final String name,
                 final VerticalDatumType type, final CoordinateSystemAxis axis)
@@ -255,7 +255,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Returns the type of this vertical datum.
          *
-         * @return The type of this vertical datum.
+         * @return the type of this vertical datum.
          */
         @Override
         public VerticalDatumType getVerticalDatumType() {
@@ -306,10 +306,10 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Creates a new CRS for the given name, datum and axes.
          *
-         * @param authority Organization responsible for definition of the name, or {@code null}.
-         * @param name      The name of the new CRS.
-         * @param origin    The value to be returned by {@link #getOrigin()}.
-         * @param axis      The axis to be returned by {@link #getAxis(int)}.
+         * @param authority  organization responsible for definition of the name, or {@code null}.
+         * @param name       the name of the new CRS.
+         * @param origin     the value to be returned by {@link #getOrigin()}.
+         * @param axis       the axis to be returned by {@link #getAxis(int)}.
          */
         public Temporal(final Citation authority, final String name, final Date origin,
                 final CoordinateSystemAxis axis)
@@ -338,7 +338,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
          * Returns the date and time origin of this temporal datum.
          * The units can be obtained by {@code getAxis(0).getUnit()}.
          *
-         * @return The date and time origin of this temporal datum.
+         * @return the date and time origin of this temporal datum.
          */
         @Override
         public Date getOrigin() {

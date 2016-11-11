@@ -70,9 +70,9 @@ public class SimpleNameSpace implements NameSpace, Serializable {
      * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
      * which case the {@linkplain SimpleNameFactory#DEFAULT default factory} will be used.
      *
-     * @param  parent The parent of the new namespace, or {@code null} if none.
-     * @param  name The identifier of this namespace.
-     * @throws InvalidNameException If the given name violates the JNDI
+     * @param  parent  the parent of the new namespace, or {@code null} if none.
+     * @param  name    the identifier of this namespace.
+     * @throws InvalidNameException if the given name violates the JNDI
      *         {@linkplain SimpleNameFactory#syntax syntax}.
      */
     public SimpleNameSpace(final SimpleNameSpace parent, final String name) throws InvalidNameException {
@@ -93,9 +93,9 @@ public class SimpleNameSpace implements NameSpace, Serializable {
      * the {@linkplain #factory} instance from its parent, unless {@code parent} is {@code null} in
      * which case the {@linkplain SimpleNameFactory#DEFAULT default factory} will be used.
      *
-     * @param  parent The parent of the new namespace, or {@code null} if none.
-     * @param  name The identifier of this namespace.
-     * @throws InvalidNameException If the given name violates the JNDI
+     * @param  parent  the parent of the new namespace, or {@code null} if none.
+     * @param  name    the identifier of this namespace.
+     * @throws InvalidNameException if the given name violates the JNDI
      *         {@linkplain SimpleNameFactory#syntax syntax}.
      */
     public SimpleNameSpace(final SimpleNameSpace parent, Name name) throws InvalidNameException {
@@ -137,7 +137,7 @@ public class SimpleNameSpace implements NameSpace, Serializable {
      * name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal()} == true
      * </code></blockquote>
      *
-     * @return The identifier of this namespace.
+     * @return the identifier of this namespace.
      */
     @Override
     public GenericName name() {
@@ -147,7 +147,7 @@ public class SimpleNameSpace implements NameSpace, Serializable {
     /**
      * Returns a string representation of this namespace.
      *
-     * @return A string representation of this name.
+     * @return a string representation of this name.
      */
     @Override
     public String toString() {

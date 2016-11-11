@@ -53,7 +53,7 @@ public interface Boundary extends Complex {
     /**
      * Always returns {@code true} since boundary objects are cycles.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @UML(identifier="isCycle", obligation=MANDATORY, specification=ISO_19107)
     boolean isCycle();

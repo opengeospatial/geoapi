@@ -89,7 +89,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis() semi-major}
      * and {@linkplain #getSemiMinorAxis() semi-minor} axis values.
      *
-     * @return The axis linear unit.
+     * @return the axis linear unit.
      */
     @UML(identifier="getAxisUnit", specification=OGC_01009)
     Unit<Length> getAxisUnit();
@@ -98,7 +98,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * Length of the semi-major axis of the ellipsoid. This is the
      * equatorial radius in {@linkplain #getAxisUnit() axis linear unit}.
      *
-     * @return Length of semi-major axis.
+     * @return length of semi-major axis.
      * @unitof Length
      */
     @UML(identifier="semiMajorAxis", obligation=MANDATORY, specification=ISO_19111)
@@ -108,7 +108,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * Length of the semi-minor axis of the ellipsoid. This is the
      * polar radius in {@linkplain #getAxisUnit() axis linear unit}.
      *
-     * @return Length of semi-minor axis.
+     * @return length of semi-minor axis.
      * @unitof Length
      */
     @UML(identifier="secondDefiningParameter.semiMinorAxis", obligation=CONDITIONAL, specification=ISO_19111)
@@ -123,7 +123,7 @@ public interface Ellipsoid extends IdentifiedObject {
      * For perfect spheres (i.e. if {@link #isSphere()} returns {@code true}),
      * the {@link Double#POSITIVE_INFINITY POSITIVE_INFINITY} value is used.
      *
-     * @return The inverse flattening value.
+     * @return the inverse flattening value.
      * @unitof Scale
      */
     @UML(identifier="secondDefiningParameter.inverseFlattening", obligation=CONDITIONAL, specification=ISO_19111)

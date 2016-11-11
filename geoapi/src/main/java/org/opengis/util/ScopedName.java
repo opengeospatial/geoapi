@@ -106,7 +106,7 @@ public interface ScopedName extends GenericName {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return The first element in the list of {@linkplain #getParsedNames() parsed names}.
+     * @return the first element in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @since 2.2
      */
@@ -134,7 +134,7 @@ public interface ScopedName extends GenericName {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return All elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
+     * @return all elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @since 2.1
      */
@@ -163,7 +163,7 @@ public interface ScopedName extends GenericName {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return All elements except the last one in the in the list of {@linkplain #getParsedNames() parsed names}.
+     * @return all elements except the last one in the in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. It has been added in GeoAPI as a
@@ -188,7 +188,7 @@ public interface ScopedName extends GenericName {
      *       from the <cite>Java Naming and Directory Interface</cite>.</li>
      * </ul></div>
      *
-     * @return The last element in the list of {@linkplain #getParsedNames() parsed names}.
+     * @return the last element in the list of {@linkplain #getParsedNames() parsed names}.
      *
      * @since 2.1
      */

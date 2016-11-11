@@ -55,8 +55,7 @@ public class PropertyNotFoundException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      */
     public PropertyNotFoundException(final String message) {
         super(message);
@@ -65,9 +64,8 @@ public class PropertyNotFoundException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message and cause.
      *
-     * @param  message The detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
-     * @param  cause The cause.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause    the cause, saved for later retrieval by the {@link #getCause()} method.
      */
     public PropertyNotFoundException(final String message, final Throwable cause) {
         super(message, cause);

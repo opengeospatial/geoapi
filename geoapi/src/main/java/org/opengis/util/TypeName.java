@@ -90,7 +90,7 @@ public interface TypeName extends LocalName {
      * {@linkplain #toFullyQualifiedName() fully qualified name} is of the form {@code "[package].[class]"}
      * or {@code "[schema]:[type]"}.
      *
-     * @return The local name of the type.
+     * @return the local name of the type.
      */
     @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)

@@ -59,7 +59,7 @@ public interface LineString extends CurveSegment {
      * of this {@code LineString}, and the last point in the sequence is the
      * {@linkplain #getEndPoint end point} of this {@code LineString}.
      *
-     * @return The control points between which the curve is linearly interpolated.
+     * @return the control points between which the curve is linearly interpolated.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     PointArray getControlPoints();
@@ -67,7 +67,7 @@ public interface LineString extends CurveSegment {
     /**
      * Decomposes a line string into an equivalent sequence of line segments.
      *
-     * @return The sequence of line segments.
+     * @return the sequence of line segments.
      */
     @UML(identifier="asGM_LineSegment", obligation=MANDATORY, specification=ISO_19107)
     List<LineSegment> asLineSegments();

@@ -127,8 +127,8 @@ public class SimpleTransformFactory implements MathTransformFactory {
      * origin. The {@code [i][N]} element of the matrix will be 0 for <var>i</var> less than
      * {@code M}, and 1 for <var>i</var> equals {@code M}.
      *
-     * @param matrix The matrix used to define the affine transform.
-     * @return The affine transform.
+     * @param  matrix  the matrix used to define the affine transform.
+     * @return the affine transform.
      * @throws FactoryException if the object creation failed.
      *
      * @see AffineTransform2D

@@ -70,7 +70,7 @@ public class CannotEvaluateException extends RuntimeException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for
+     * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
     public CannotEvaluateException(String message) {
@@ -80,9 +80,9 @@ public class CannotEvaluateException extends RuntimeException {
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message The detail message. The detail message is saved for
+     * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
-     * @param  cause The cause for this exception. The cause is saved
+     * @param  cause  the cause for this exception. The cause is saved
      *         for later retrieval by the {@link #getCause()} method.
      */
     public CannotEvaluateException(String message, Throwable cause) {
@@ -94,7 +94,7 @@ public class CannotEvaluateException extends RuntimeException {
      * is used on a multilevel, so {@code CannotEvaluateException} can provide informative
      * details.
      *
-     * @return The coverage, or {@code null} if unknown.
+     * @return the coverage, or {@code null} if unknown.
      *
      * @since GeoAPÏ 2.2
      */

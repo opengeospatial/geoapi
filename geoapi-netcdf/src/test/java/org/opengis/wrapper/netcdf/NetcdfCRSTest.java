@@ -146,8 +146,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * to configure the given validator (for example whether to
      * {@linkplain CRSValidator#enforceStandardNames enforce standard names} or not).
      *
-     * @param validator The validator to use for validating the {@link CoordinateReferenceSystem}
-     *        instance.
+     * @param validator  the validator to use for validating the {@link CoordinateReferenceSystem} instance.
      */
     protected NetcdfCRSTest(final CRSValidator validator) {
         this.validator = validator;
@@ -158,10 +157,10 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * creates a {@link NetcdfCRS} instance. Subclasses can override this method for
      * creating their own instance.
      *
-     * @param  cs   The NetCDF coordinate system to wrap.
-     * @param  file The originating dataset file, or {@code null} if none.
-     * @return A CRS implementation created from the given NetCDF coordinate system.
-     * @throws IOException If an error occurred while wrapping the given NetCDF coordinate system.
+     * @param  cs    the NetCDF coordinate system to wrap.
+     * @param  file  the originating dataset file, or {@code null} if none.
+     * @return a CRS implementation created from the given NetCDF coordinate system.
+     * @throws IOException if an error occurred while wrapping the given NetCDF coordinate system.
      */
     protected CoordinateReferenceSystem wrap(final CoordinateSystem cs, final NetcdfDataset file) throws IOException {
         return NetcdfCRS.wrap(cs, file, Logger.getLogger("org.opengis.wrapper.netcdf"));
@@ -171,9 +170,9 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * Returns the single element from the given collection. If the given collection is null
      * or does not contains exactly one element, then an {@link AssertionError} is thrown.
      *
-     * @param  <E> The type of collection elements.
-     * @param  collection The collection from which to get the singleton.
-     * @return The singleton element from the collection.
+     * @param  <E>         the type of collection elements.
+     * @param  collection  the collection from which to get the singleton.
+     * @return the singleton element from the collection.
      */
     private static <E> E assertSingleton(final Iterable<? extends E> collection) {
         assertNotNull("Null collection.", collection);
@@ -199,8 +198,8 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * {@linkplain IdentifiedObject#getAlias() alias}), or if they use a different
      * code value.
      *
-     * @param expected The expected code value.
-     * @param object   The identified object to verify.
+     * @param expected  the expected code value.
+     * @param object    the identified object to verify.
      */
     protected void assertNameEquals(final String expected, final IdentifiedObject object) {
         final Identifier name = object.getName();
@@ -212,9 +211,9 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     /**
      * Verifies that the given axis has the expected properties.
      *
-     * @param name The expected axis name.
-     * @param unit The expected axis unit.
-     * @param axis The axis to verify.
+     * @param name  the expected axis name.
+     * @param unit  the expected axis unit.
+     * @param axis  the axis to verify.
      *
      * @todo The unit check is disabled for now, because most Unit implementations can not parse the NetCDF syntax.
      */
@@ -242,7 +241,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * The checks for CRS and axis names can be modified by overriding the
      * {@link #assertNameEquals(String, IdentifiedObject)} method.
      *
-     * @throws IOException If an error occurred while reading the test file.
+     * @throws IOException if an error occurred while reading the test file.
      */
     @Test
     public void testGeographic() throws IOException {
@@ -264,11 +263,11 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * method sets the {@linkplain #temporalCRS} field to the second component and returns the
      * first component for convenience.
      *
-     * @param <T> The compile-time type of the class specified by the {@code horizontalType} argument.
-     * @param message The message to use in case of failure.
-     * @param horizontalType The expected type of the horizontal component.
-     * @param hasVerticalCRS {@code true} if the CRS is expected to have an horizontal component.
-     * @return The first component, which should be the horizontal one.
+     * @param  <T>             the compile-time type of the class specified by the {@code horizontalType} argument.
+     * @param  message         the message to use in case of failure.
+     * @param  horizontalType  the expected type of the horizontal component.
+     * @param  hasVerticalCRS  {@code true} if the CRS is expected to have an horizontal component.
+     * @return the first component, which should be the horizontal one.
      */
     private <T extends SingleCRS> T separateComponents(final String message,
             final Class<T> horizontalType, final boolean hasVerticalCRS)
@@ -316,7 +315,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * The checks for CRS and axis names can be modified by overriding the
      * {@link #assertNameEquals(String, IdentifiedObject)} method.
      *
-     * @throws IOException If an error occurred while reading the test file.
+     * @throws IOException if an error occurred while reading the test file.
      */
     @Test
     public void testGeographic_XYT() throws IOException {
@@ -361,7 +360,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * The checks for CRS and axis names can be modified by overriding the
      * {@link #assertNameEquals(String, IdentifiedObject)} method.
      *
-     * @throws IOException If an error occurred while reading the test file.
+     * @throws IOException if an error occurred while reading the test file.
      */
     @Test
     public void testProjected_XYZT() throws IOException {

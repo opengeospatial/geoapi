@@ -142,7 +142,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS2001} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS2001} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -154,7 +154,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param csFactory Factory for creating {@link Unit} instances.
+     * @param csFactory  factory for creating {@link Unit} instances.
      */
     public GIGS2001(final CSAuthorityFactory csFactory) {
         super(csFactory);
@@ -176,7 +176,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -190,7 +190,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      * to test by invoking the {@link CSAuthorityFactory#createUnit(String)} method with the current {@link #code}
      * value in argument. The created object is then cached and returned in all subsequent invocations of this method.
      *
-     * @return The unit instance to test.
+     * @return the unit instance to test.
      * @throws FactoryException if an error occurred while creating the unit instance.
      */
     @Override
@@ -229,7 +229,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
      * Converts random values using the unit converter and compares against the expected value.
      * The expected values are obtained by multiplying the values to convert by the given factor.
      *
-     * @param  converter The converter from tested {@link #unit} to the base unit.
+     * @param  converter  the converter from tested {@link #unit} to the base unit.
      */
     private void verifyLinearConversions(final UnitConverter converter) {
         final Random random = new Random();

@@ -54,7 +54,7 @@ public interface OperationMetadata {
     /**
      * An unique identifier for this interface.
      *
-     * @return An unique identifier for this interface.
+     * @return an unique identifier for this interface.
      */
     @UML(identifier="operationName", obligation=MANDATORY, specification=ISO_19115)
     String getOperationName();
@@ -62,7 +62,7 @@ public interface OperationMetadata {
     /**
      * Distributed computing platforms (DCPs) on which the operation has been implemented.
      *
-     * @return Distributed computing platforms on which the operation has been implemented.
+     * @return distributed computing platforms on which the operation has been implemented.
      */
     @UML(identifier="distributedComputingPlatform", obligation=MANDATORY, specification=ISO_19115)
     Collection<DistributedComputingPlatform> getDistributedComputingPlatforms();
@@ -70,7 +70,7 @@ public interface OperationMetadata {
     /**
      * Free text description of the intent of the operation and the results of the operation.
      *
-     * @return Free text description of the intent of the operation and the results of the operation,
+     * @return free text description of the intent of the operation and the results of the operation,
      *         or {@code null} if none.
      */
     @UML(identifier="operationDescription", obligation=OPTIONAL, specification=ISO_19115)
@@ -80,7 +80,7 @@ public interface OperationMetadata {
      * The name used to invoke this interface within the context of the DCP.
      * The name is identical for all Distributed computing platforms (DCPs).
      *
-     * @return The name used to invoke this interface within the context of the DCP, or {@code null} if none.
+     * @return the name used to invoke this interface within the context of the DCP, or {@code null} if none.
      */
     @UML(identifier="invocationName", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getInvocationName();
@@ -88,7 +88,7 @@ public interface OperationMetadata {
     /**
      * Handle for accessing the service interface.
      *
-     * @return Handle for accessing the service interface.
+     * @return handle for accessing the service interface.
      */
     @UML(identifier="connectPoint", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends OnlineResource> getConnectPoints();
@@ -123,7 +123,7 @@ public interface OperationMetadata {
      *   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
      *   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.
      *
-     * @return The parameters that are required for this interface, or an empty collection if none.
+     * @return the parameters that are required for this interface, or an empty collection if none.
      *
      * @see org.opengis.parameter.GeneralParameterDescriptor
      */
@@ -135,7 +135,7 @@ public interface OperationMetadata {
      * The return value is structured as a list for capturing alternate predecessor paths
      * and sets for capturing parallel predecessor paths.
      *
-     * @return List of operation that must be completed immediately, or an empty list if none.
+     * @return list of operation that must be completed immediately, or an empty list if none.
      */
     @UML(identifier="dependsOn", obligation=OPTIONAL, specification=ISO_19115)
     List<? extends OperationMetadata> getDependsOn();

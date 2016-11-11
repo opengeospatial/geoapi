@@ -55,7 +55,7 @@ public interface KeywordClass {
     /**
      * A character string to label the keyword category in natural language.
      *
-     * @return The keyword category in natural language.
+     * @return the keyword category in natural language.
      */
     @UML(identifier="className", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getClassName();
@@ -78,7 +78,7 @@ public interface KeywordClass {
      * must be within the scope of this ontology.
      * </div>
      *
-     * @return A reference that binds the keyword class to a formal conceptualization.
+     * @return a reference that binds the keyword class to a formal conceptualization.
      */
     @UML(identifier="ontology", obligation=MANDATORY, specification=ISO_19115)
     Citation getOntology();

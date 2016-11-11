@@ -61,7 +61,7 @@ public interface Factory {
      * may be available for the same factory interface. Implementations can be managed by a
      * {@linkplain java.util.ServiceLoader service loader}.
      *
-     * @return The vendor for this factory implementation.
+     * @return the vendor for this factory implementation.
      */
     Citation getVendor();
 }

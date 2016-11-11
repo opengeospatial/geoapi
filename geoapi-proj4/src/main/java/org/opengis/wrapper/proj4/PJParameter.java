@@ -193,8 +193,8 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
      * Returns the numeric value of the operation parameter in the specified unit of measure.
      * This convenience method applies unit conversion from metres or decimal degrees as needed.
      *
-     * @param  unit The unit of measure for the value to be returned.
-     * @return The numeric value represented by this parameter after conversion to {@code unit}.
+     * @param  unit  the unit of measure for the value to be returned.
+     * @return the numeric value represented by this parameter after conversion to {@code unit}.
      */
     @Override
     public double doubleValue(final Unit<?> unit) {

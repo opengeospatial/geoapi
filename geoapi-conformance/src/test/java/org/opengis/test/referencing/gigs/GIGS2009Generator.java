@@ -47,7 +47,7 @@ public strictfp class GIGS2009Generator extends TestMethodGenerator {
     /**
      * Launcher.
      *
-     * @param args Ignored.
+     * @param  args  ignored.
      * @throws IOException if an error occurred while reading the test data.
      */
     public static void main(String[] args) throws IOException {

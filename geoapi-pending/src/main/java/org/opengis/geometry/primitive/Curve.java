@@ -92,7 +92,7 @@ public interface Curve extends OrientableCurve, GenericCurve {
      * this {@code Curve}. For a particular parameter interval, the {@code Curve} and
      * {@link CurveSegment} agree.
      *
-     * @return The list of curve segments. Should never be {@code null} neither empty.
+     * @return the list of curve segments. Should never be {@code null} neither empty.
      *
      * @see CurveSegment#getCurve
      * @see Surface#getPatches
@@ -105,7 +105,7 @@ public interface Curve extends OrientableCurve, GenericCurve {
     /**
      * Returns the orientable curves associated with this curve.
      *
-     * @return The orientable curves as an array of length 2.
+     * @return the orientable curves as an array of length 2.
      *
      * @see OrientableCurve#getPrimitive
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63

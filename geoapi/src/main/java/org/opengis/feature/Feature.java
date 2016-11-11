@@ -63,7 +63,7 @@ public interface Feature {
     /**
      * Returns information about the feature (name, characteristics, <i>etc.</i>).
      *
-     * @return Information about the feature.
+     * @return information about the feature.
      */
     FeatureType getType();
 
@@ -78,8 +78,8 @@ public interface Feature {
      * since it gives to implementations a chance to avoid the creation of {@link Attribute} or
      * {@link FeatureAssociation} instances.</div>
      *
-     * @param  name The property name.
-     * @return The property of the given name (never {@code null}).
+     * @param  name  the property name.
+     * @return the property of the given name (never {@code null}).
      * @throws PropertyNotFoundException if the given argument is not a property name of this feature.
      *
      * @see #getPropertyValue(String)
@@ -104,7 +104,7 @@ public interface Feature {
      * {@code Association} implementations in this feature. When default implementations are sufficient,
      * the {@link #setPropertyValue(String, Object)} method is preferred.</div>
      *
-     * @param  property The property to set.
+     * @param  property  the property to set.
      * @throws PropertyNotFoundException if the name of the given property is not a property name of this feature.
      * @throws InvalidPropertyValueException if the value of the given property is not valid.
      * @throws IllegalArgumentException if the property can not be set for another reason
@@ -133,8 +133,8 @@ public interface Feature {
      * more than one value, then this method will always return a collection for that attribute even if the collection
      * is empty.</div>
      *
-     * @param  name The property name.
-     * @return The value for the given property, or {@code null} if none.
+     * @param  name  the property name.
+     * @return the value for the given property, or {@code null} if none.
      * @throws PropertyNotFoundException if the given argument is not an attribute or association name of this feature.
      *
      * @see Attribute#getValue()
@@ -151,8 +151,8 @@ public interface Feature {
      * and offer an other method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
-     * @param  name  The property name.
-     * @param  value The new value for the given property (may be {@code null}).
+     * @param  name   the property name.
+     * @param  value  the new value for the given property (may be {@code null}).
      * @throws PropertyNotFoundException if the given name is not an attribute or association name of this feature.
      * @throws ClassCastException if the value is not assignable to the expected value class.
      * @throws InvalidPropertyValueException if the given value is not valid for a reason other than its type.

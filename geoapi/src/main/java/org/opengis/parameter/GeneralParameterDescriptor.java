@@ -147,7 +147,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
      * </div>
      *
-     * @return The name, as used by the service or operation for this parameter.
+     * @return the name, as used by the service or operation for this parameter.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
@@ -157,7 +157,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * Indication if the parameter is an input to the service, an output or both.
      * This information applies mostly to <cite>service metadata</cite>.
      *
-     * @return Indication if the parameter is an input to the service, an output or both,
+     * @return indication if the parameter is an input to the service, an output or both,
      *         or {@code null} if unspecified.
      *
      * @since 3.1
@@ -168,7 +168,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * A narrative explanation of the role of the parameter.
      *
-     * @return A narrative explanation of the role of the parameter, or {@code null} if none.
+     * @return a narrative explanation of the role of the parameter, or {@code null} if none.
      *
      * @since 3.1
      *
@@ -182,7 +182,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * The minimum number of times that values for this parameter group or parameter are required.
      * The default value is 1. A value of 0 means an optional parameter.
      *
-     * @return The minimum occurrence.
+     * @return the minimum occurrence.
      *
      * @see #getMaximumOccurs()
      */
@@ -202,7 +202,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
      *   with the <code>minimumOccurs</code> method.
      *
-     * @return The maximum occurrence, or {@link Integer#MAX_VALUE} if there is no limit.
+     * @return the maximum occurrence, or {@link Integer#MAX_VALUE} if there is no limit.
      *
      * @see #getMinimumOccurs()
      */
@@ -215,7 +215,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * The {@linkplain GeneralParameterValue#getDescriptor parameter value descriptor} for
      * the created parameter value(s) will be {@code this} object.
      *
-     * @return A new parameter initialized to its default value.
+     * @return a new parameter initialized to its default value.
      *
      * @departure extension
      *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of

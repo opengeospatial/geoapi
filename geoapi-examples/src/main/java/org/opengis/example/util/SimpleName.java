@@ -67,7 +67,7 @@ public class SimpleName implements GenericName, Serializable {
          *
          * @param  scope The scope (name space) in which the given name is local, or {@code null}.
          * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
-         * @throws IllegalArgumentException If the given name does not have exactly 1 component.
+         * @throws IllegalArgumentException if the given name does not have exactly 1 component.
          */
         public Type(final SimpleNameSpace scope, final Name name) throws IllegalArgumentException {
             super(scope, name);
@@ -98,10 +98,10 @@ public class SimpleName implements GenericName, Serializable {
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local, or {@code null}.
-         * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
-         * @param  attributeType The type of the data associated with the record member.
-         * @throws IllegalArgumentException If the given name does not have exactly 1 component.
+         * @param  scope  the scope (name space) in which the given name is local, or {@code null}.
+         * @param  name   the JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
+         * @param  attributeType  the type of the data associated with the record member.
+         * @throws IllegalArgumentException if the given name does not have exactly 1 component.
          */
         public Member(final SimpleNameSpace scope, final Name name, final TypeName attributeType)
                 throws IllegalArgumentException
@@ -147,8 +147,8 @@ public class SimpleName implements GenericName, Serializable {
          * Creates a new instance without namespace. This constructor shall be used only for the
          * creation of the root {@link NameSpace}.
          *
-         * @param  name An {@linkplain Name#isEmpty() empty} JNDI name (<strong>not</strong> cloned).
-         * @throws IllegalArgumentException If the given name is not empty.
+         * @param  name  an {@linkplain Name#isEmpty() empty} JNDI name (<strong>not</strong> cloned).
+         * @throws IllegalArgumentException if the given name is not empty.
          */
         Local(final Name name) throws IllegalArgumentException {
             super(null, name);
@@ -162,9 +162,9 @@ public class SimpleName implements GenericName, Serializable {
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local.
-         * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
-         * @throws IllegalArgumentException If the given name does not have exactly 1 component.
+         * @param  scope  the scope (name space) in which the given name is local.
+         * @param  name   the JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
+         * @throws IllegalArgumentException if the given name does not have exactly 1 component.
          */
         public Local(final SimpleNameSpace scope, final Name name) throws IllegalArgumentException {
             super(scope, name);
@@ -233,9 +233,9 @@ public class SimpleName implements GenericName, Serializable {
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local, or {@code null}.
-         * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
-         * @throws IllegalArgumentException If the given name has less than 2 components.
+         * @param  scope  the scope (name space) in which the given name is local, or {@code null}.
+         * @param  name   the JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
+         * @throws IllegalArgumentException if the given name has less than 2 components.
          */
         public Scoped(final SimpleNameSpace scope, final Name name) throws IllegalArgumentException {
             super(scope, name);
@@ -297,8 +297,8 @@ public class SimpleName implements GenericName, Serializable {
      * given JNDI name. While this implementation is robust to change in the wrapped object, it is
      * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
      *
-     * @param scope The scope (name space) in which the given name is local, or {@code null}.
-     * @param name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
+     * @param scope  the scope (name space) in which the given name is local, or {@code null}.
+     * @param name   the JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
      */
     protected SimpleName(final SimpleNameSpace scope, final Name name) {
         Objects.requireNonNull(name, "A JNDI name must be provided.");
@@ -318,9 +318,9 @@ public class SimpleName implements GenericName, Serializable {
      * Creates a new generic name for the given JNDI name. This method returns an instance of
      * {@link LocalName} or {@link ScopedName}, depending on the number of parsed components.
      *
-     * @param  scope The name scope, or {@code null} for the name of a global namespace.
-     * @param  name The JNDI name.
-     * @return The generic name.
+     * @param  scope  the name scope, or {@code null} for the name of a global namespace.
+     * @param  name   the JNDI name.
+     * @return the generic name.
      */
     static SimpleName create(final SimpleNameSpace scope, final Name name) {
         switch (name.size()) {
@@ -341,7 +341,7 @@ public class SimpleName implements GenericName, Serializable {
     /**
      * Returns a clone of the {@linkplain Name JNDI name} wrapped by this object.
      *
-     * @return A clone of {@link #name}.
+     * @return a clone of {@link #name}.
      */
     public Name jndiName() {
         return (Name) name.clone();
@@ -427,7 +427,7 @@ public class SimpleName implements GenericName, Serializable {
      * of a fully qualified name will be {@linkplain NameSpace#isGlobal() global}. If the scope
      * of this name is already global, then this method returns {@code this}.
      *
-     * @return The fully-qualified name (never {@code null}).
+     * @return the fully-qualified name (never {@code null}).
      */
     @Override
     public GenericName toFullyQualifiedName() {
@@ -448,7 +448,7 @@ public class SimpleName implements GenericName, Serializable {
      * as a concatenation of the specified {@code scope} with {@code this}.
      *
      * @param scope The name to use as prefix.
-     * @return A concatenation of the given name with this name.
+     * @return a concatenation of the given name with this name.
      *
      * @see Name#addAll(Name)
      */
@@ -468,7 +468,7 @@ public class SimpleName implements GenericName, Serializable {
      * Returns a string representation of this generic name.
      * Note that the {@linkplain #scope() scope} is not part of this string representation.
      *
-     * @return A string representation of this name.
+     * @return a string representation of this name.
      */
     @Override
     public String toString() {
@@ -479,7 +479,7 @@ public class SimpleName implements GenericName, Serializable {
      * Returns a local-dependent string representation of this generic name.
      * The default implementation wraps the {@link #toString()} value.
      *
-     * @return A localizable string representation of this name.
+     * @return a localizable string representation of this name.
      */
     @Override
     public InternationalString toInternationalString() {
@@ -490,7 +490,7 @@ public class SimpleName implements GenericName, Serializable {
      * Compares this name with the given object for lexicographical order.
      * Note that the {@linkplain #scope() scope} is not part of this comparison.
      *
-     * @param other The other object to compare to this name.
+     * @param  other  the other object to compare to this name.
      */
     @Override
     public int compareTo(final GenericName other) {
@@ -502,7 +502,7 @@ public class SimpleName implements GenericName, Serializable {
      * both the {@linkplain #scope() scope} and the {@linkplain #name} given to
      * the constructor.
      *
-     * @param  other The other object to compare to this name.
+     * @param  other  the other object to compare to this name.
      */
     @Override
     public boolean equals(final Object other) {

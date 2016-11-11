@@ -63,8 +63,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * <code>createDatum(code)</code> if the requested object is known to be a
      * {@code GeodeticDatum} instance.</p>
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -78,8 +78,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a engineering datum from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -91,8 +91,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a image datum from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -104,8 +104,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a vertical datum from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -118,8 +118,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a temporal datum from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -131,8 +131,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a parametric datum from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -144,8 +144,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a geodetic datum from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The datum for the given code.
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -161,8 +161,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an ellipsoid from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The ellipsoid for the given code.
+     * @param  code  value allocated by authority.
+     * @return the ellipsoid for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -175,8 +175,8 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a prime meridian from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The prime meridian for the given code.
+     * @param  code  value allocated by authority.
+     * @return the prime meridian for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *

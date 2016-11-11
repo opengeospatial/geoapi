@@ -69,8 +69,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * of <code>createCoordinateSystem(code)</code> if the requested object is known to be a
      * {@code CartesianCS} instance.</p>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -80,8 +80,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a Cartesian coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -91,8 +91,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a polar coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -102,8 +102,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a cylindrical coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -113,8 +113,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a spherical coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -124,8 +124,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an ellipsoidal coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -135,8 +135,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a vertical coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -146,8 +146,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a temporal coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -157,8 +157,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a parametric coordinate system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -168,8 +168,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a coordinate system axis from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The axis for the given code.
+     * @param  code  value allocated by authority.
+     * @return the axis for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -179,8 +179,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an unit of measurement from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The unit for the given code.
+     * @param  code  value allocated by authority.
+     * @return the unit for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */

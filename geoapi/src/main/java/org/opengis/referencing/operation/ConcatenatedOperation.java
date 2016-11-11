@@ -62,7 +62,7 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * The sequence can contain {@link SingleOperation}s or {@link PassThroughOperation}s,
      * but should not contain other {@code ConcatenatedOperation}s.
      *
-     * @return The sequence of operations.
+     * @return the sequence of operations.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
     List<? extends CoordinateOperation> getOperations();

@@ -90,7 +90,7 @@ public interface FeatureType extends IdentifiedType {
      * For {@code FeatureType}, the name is mandatory.
      * The feature name is often an instance of {@link org.opengis.util.TypeName}, but this is not mandatory.
      *
-     * @return The feature type name.
+     * @return the feature type name.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
@@ -117,8 +117,8 @@ public interface FeatureType extends IdentifiedType {
     /**
      * Returns the attribute, operation or association role for the given name.
      *
-     * @param  name The name of the property to search.
-     * @return The property for the given name, or {@code null} if none.
+     * @param  name  the name of the property to search.
+     * @return the property for the given name, or {@code null} if none.
      * @throws PropertyNotFoundException if the given argument is not a property name of this feature type.
      *
      * @see Feature#getProperty(String)
@@ -146,7 +146,7 @@ public interface FeatureType extends IdentifiedType {
      * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
      * to {@link Class#getSuperclass()} except that feature types allow multi-inheritance.</div>
      *
-     * @return The parents of this feature type, or an empty set if none.
+     * @return the parents of this feature type, or an empty set if none.
      */
     @UML(identifier="superType", obligation=OPTIONAL, specification=ISO_19109)
     Set<? extends FeatureType> getSuperTypes();
@@ -158,7 +158,7 @@ public interface FeatureType extends IdentifiedType {
      * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
      * to {@link Class#isAssignableFrom(Class)}.</div>
      *
-     * @param  type The type to be checked.
+     * @param  type  the type to be checked.
      * @return {@code true} if instances of the given type can be assigned to association of this type.
      */
     boolean isAssignableFrom(FeatureType type);
@@ -170,7 +170,7 @@ public interface FeatureType extends IdentifiedType {
      * if we compare {@code FeatureType} to {@link Class} and {@code Feature} to {@link Object} in the Java language,
      * then this method is equivalent to {@link Class#newInstance()}.</div>
      *
-     * @return A new feature instance.
+     * @return a new feature instance.
      * @throws FeatureInstantiationException if this feature type {@linkplain #isAbstract() is abstract}
      *         or can not be instantiated for some other reason.
      * @throws UnsupportedOperationException if this type does not support new instance creation.

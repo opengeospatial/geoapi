@@ -60,9 +60,8 @@ public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The invalid parameter name.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the invalid parameter name.
      */
     public InvalidParameterNameException(String message, String parameterName) {
         super(message);
@@ -72,11 +71,9 @@ public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message, cause and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The invalid parameter name.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
+     * @param parameterName  the invalid parameter name.
      *
      * @since 3.1
      */
@@ -88,7 +85,7 @@ public class InvalidParameterNameException extends IllegalArgumentException {
     /**
      * Returns the invalid parameter name.
      *
-     * @return The name of the invalid parameter.
+     * @return the name of the invalid parameter.
      */
     public String getParameterName() {
         return parameterName;

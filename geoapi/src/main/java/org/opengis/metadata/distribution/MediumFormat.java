@@ -110,8 +110,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * Constructs an element of the given name. The new element is
      * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The name of the new element.
-     *        This name must not be in use by an other element of this type.
+     * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private MediumFormat(final String name) {
         super(name, VALUES);
@@ -120,7 +119,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     /**
      * Returns the list of {@code MediumFormat}s.
      *
-     * @return The list of codes declared in the current JVM.
+     * @return the list of codes declared in the current JVM.
      */
     public static MediumFormat[] values() {
         synchronized (VALUES) {
@@ -133,7 +132,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *
-     * @return All code {@linkplain #values() values} for this code list.
+     * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
     public MediumFormat[] family() {
@@ -147,8 +146,8 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * returns {@code true}. If no existing instance is found, then a new one is created for
      * the given name.
      *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
+     * @param  code  the name of the code to fetch or to create.
+     * @return a code matching the given name.
      */
     public static MediumFormat valueOf(String code) {
         return valueOf(MediumFormat.class, code);

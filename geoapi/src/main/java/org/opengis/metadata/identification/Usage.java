@@ -55,7 +55,7 @@ public interface Usage {
     /**
      * Brief description of the resource and/or resource series usage.
      *
-     * @return Description of the resource usage.
+     * @return description of the resource usage.
      */
     @UML(identifier="specificUsage", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getSpecificUsage();
@@ -68,7 +68,7 @@ public interface Usage {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Date of the first use of the resource, or {@code null}.
+     * @return date of the first use of the resource, or {@code null}.
      *
      * @todo This become a collection in ISO 19115:2014.
      */
@@ -78,7 +78,7 @@ public interface Usage {
     /**
      * Applications, determined by the user for which the resource and/or resource series is not suitable.
      *
-     * @return Applications for which the resource and/or resource series is not suitable, or {@code null}.
+     * @return applications for which the resource and/or resource series is not suitable, or {@code null}.
      */
     @UML(identifier="userDeterminedLimitations", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getUserDeterminedLimitations();
@@ -87,7 +87,7 @@ public interface Usage {
      * Identification of and means of communicating with person(s) and organization(s) using the resource(s).
      * Returns an empty collection if none.
      *
-     * @return Means of communicating with person(s) and organization(s) using the resource(s).
+     * @return means of communicating with person(s) and organization(s) using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Responsibility> getUserContactInfo();
@@ -99,7 +99,7 @@ public interface Usage {
      * This has been fixed in version <var>x</var>.
      * </div>
      *
-     * @return Responses to the user-determined limitations.
+     * @return responses to the user-determined limitations.
      *
      * @since 3.1
      */
@@ -109,7 +109,7 @@ public interface Usage {
     /**
      * Publications that describe usage of data.
      *
-     * @return Publications that describe usage of data.
+     * @return publications that describe usage of data.
      *
      * @since 3.1
      */
@@ -120,7 +120,7 @@ public interface Usage {
      * Citations of a description of known issues associated with the resource
      * along with proposed solutions if available.
      *
-     * @return Citations of a description of known issues associated with the resource.
+     * @return citations of a description of known issues associated with the resource.
      *
      * @since 3.1
      */

@@ -55,7 +55,7 @@ public interface Processing {
     /**
      * Information to identify the processing package that produced the data.
      *
-     * @return Identifier of the processing package that produced the data.
+     * @return identifier of the processing package that produced the data.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Identifier getIdentifier();
@@ -63,7 +63,7 @@ public interface Processing {
     /**
      * Reference to document describing processing software.
      *
-     * @return Document describing processing software.
+     * @return document describing processing software.
      */
     @UML(identifier="softwareReference", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Citation> getSoftwareReferences();
@@ -71,7 +71,7 @@ public interface Processing {
     /**
      * Additional details about the processing procedures.
      *
-     * @return Processing procedures, or {@code null}.
+     * @return processing procedures, or {@code null}.
      */
     @UML(identifier="procedureDescription", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getProcedureDescription();
@@ -79,7 +79,7 @@ public interface Processing {
     /**
      * Reference to documentation describing the processing.
      *
-     * @return Documentation describing the processing.
+     * @return documentation describing the processing.
      */
     @UML(identifier="documentation", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Citation> getDocumentations();
@@ -87,7 +87,7 @@ public interface Processing {
     /**
      * Parameters to control the processing operations, entered at run time.
      *
-     * @return Parameters to control the processing operations, or {@code null}.
+     * @return parameters to control the processing operations, or {@code null}.
      */
     @UML(identifier="runTimeParameters", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getRunTimeParameters();
@@ -96,7 +96,7 @@ public interface Processing {
      * Details of the methodology by which geographic information was derived from the
      * instrument readings.
      *
-     * @return Methodology by which geographic information was derived from the instrument readings.
+     * @return methodology by which geographic information was derived from the instrument readings.
      */
     @UML(identifier="algorithm", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Algorithm> getAlgorithms();

@@ -28,8 +28,8 @@ public class SimpleMatrix extends GMatrix implements Matrix {
      * Creates a matrix of size {@code numRow}&nbsp;×&nbsp;{@code numCol}.
      * Elements on the diagonal (<var>j</var> == <var>i</var>) are set to 1.
      *
-     * @param numRow Number of rows.
-     * @param numCol Number of columns.
+     * @param numRow  number of rows.
+     * @param numCol  number of columns.
      */
     public SimpleMatrix(final int numRow, final int numCol) {
         super(numRow, numCol);
@@ -38,7 +38,7 @@ public class SimpleMatrix extends GMatrix implements Matrix {
     /**
      * Creates a new matrix initialized to the same content than the given matrix.
      *
-     * @param matrix The matrix to copy.
+     * @param matrix  the matrix to copy.
      */
     public SimpleMatrix(final Matrix matrix) {
         super(matrix.getNumRow(), matrix.getNumCol());

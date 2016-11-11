@@ -49,7 +49,7 @@ public abstract class ComputationFailure extends AssertionError {
     /**
      * Creates a new exception with the given message.
      *
-     * @param message The details message.
+     * @param message  the details message.
      */
     public ComputationFailure(final String message) {
         super(message);

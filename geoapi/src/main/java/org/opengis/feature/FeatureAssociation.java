@@ -52,7 +52,7 @@ public interface FeatureAssociation extends Property {
      * Returns the name of this association as defined by its {@linkplain #getRole() role}.
      * This convenience method delegates to {@link FeatureAssociationRole#getName()}.
      *
-     * @return The association name specified by its role.
+     * @return the association name specified by its role.
      */
     @Override
     GenericName getName();
@@ -60,7 +60,7 @@ public interface FeatureAssociation extends Property {
     /**
      * Returns information about the association.
      *
-     * @return Information about the association.
+     * @return information about the association.
      */
     FeatureAssociationRole getRole();
 
@@ -69,7 +69,7 @@ public interface FeatureAssociation extends Property {
      * the common case where the {@linkplain FeatureAssociationRole#getMaximumOccurs() maximum number} of
      * features is restricted to 1 or 0.
      *
-     * @return The associated feature (may be {@code null}).
+     * @return the associated feature (may be {@code null}).
      * @throws MultiValuedPropertyException if this association contains more than one value.
      *
      * @see Feature#getPropertyValue(String)
@@ -86,7 +86,7 @@ public interface FeatureAssociation extends Property {
      * and offer an other method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
-     * @param  value The new value, or {@code null}.
+     * @param  value  the new value, or {@code null}.
      * @throws InvalidPropertyValueException if this method verifies argument validity and the given value
      *         does not met the association constraints.
      *
@@ -108,7 +108,7 @@ public interface FeatureAssociation extends Property {
      * However implementations should document which policy they choose.
      * </div>
      *
-     * @return The features.
+     * @return the features.
      */
     Collection<Feature> getValues();
 
@@ -121,7 +121,7 @@ public interface FeatureAssociation extends Property {
      * and offer an other method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
-     * @param  values The new values.
+     * @param  values  the new values.
      * @throws InvalidPropertyValueException if this method verifies argument validity and the given values
      *         do not met the association constraints.
      */

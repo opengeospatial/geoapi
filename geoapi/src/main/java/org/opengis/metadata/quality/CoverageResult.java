@@ -54,7 +54,7 @@ public interface CoverageResult extends Result {
     /**
      * Method used to spatially represent the coverage result.
      *
-     * @return Spatial representation of the coverage result.
+     * @return spatial representation of the coverage result.
      */
     @UML(identifier="spatialRepresentationType", obligation=MANDATORY, specification=ISO_19115_2)
     SpatialRepresentationType getSpatialRepresentationType();
@@ -62,7 +62,7 @@ public interface CoverageResult extends Result {
     /**
      * Provides the digital representation of data quality measures composing the coverage result.
      *
-     * @return Digital representation of data quality measures composing the coverage result.
+     * @return digital representation of data quality measures composing the coverage result.
      */
     @UML(identifier="resultSpatialRepresentation", obligation=MANDATORY, specification=ISO_19115_2)
     SpatialRepresentation getResultSpatialRepresentation();
@@ -71,7 +71,7 @@ public interface CoverageResult extends Result {
      * Provides the description of the content of the result coverage, i.e. semantic definition
      * of the data quality measures.
      *
-     * @return Description of the content of the result coverage.
+     * @return description of the content of the result coverage.
      */
     @UML(identifier="resultContentDescription", obligation=MANDATORY, specification=ISO_19115_2)
     CoverageDescription getResultContentDescription();
@@ -79,7 +79,7 @@ public interface CoverageResult extends Result {
     /**
      * Provides information about the format of the result coverage data.
      *
-     * @return Format of the result coverage data.
+     * @return format of the result coverage data.
      */
     @UML(identifier="resultFormat", obligation=MANDATORY, specification=ISO_19115_2)
     Format getResultFormat();
@@ -87,7 +87,7 @@ public interface CoverageResult extends Result {
     /**
      * Provides information about the data file containing the result coverage data.
      *
-     * @return Data file containing the result coverage data.
+     * @return data file containing the result coverage data.
      */
     @UML(identifier="resultFile", obligation=MANDATORY, specification=ISO_19139)
     DataFile getResultFile();

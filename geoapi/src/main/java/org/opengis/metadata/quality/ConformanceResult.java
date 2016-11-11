@@ -53,7 +53,7 @@ public interface ConformanceResult extends Result {
     /**
      * Citation of product specification or user requirement against which data is being evaluated.
      *
-     * @return Citation of product specification or user requirement.
+     * @return citation of product specification or user requirement.
      */
     @UML(identifier="specification", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Citation getSpecification();
@@ -61,7 +61,7 @@ public interface ConformanceResult extends Result {
     /**
      * Explanation of the meaning of conformance for this result.
      *
-     * @return Explanation of the meaning of conformance.
+     * @return explanation of the meaning of conformance.
      */
     @UML(identifier="explanation", obligation=MANDATORY, specification=ISO_19115, version=2003)
     InternationalString getExplanation();
@@ -69,7 +69,7 @@ public interface ConformanceResult extends Result {
     /**
      * Indication of the conformance result.
      *
-     * @return Indication of the conformance result.
+     * @return indication of the conformance result.
      */
     @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Boolean pass();

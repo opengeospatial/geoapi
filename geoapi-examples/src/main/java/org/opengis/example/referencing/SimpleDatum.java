@@ -109,10 +109,10 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Creates a new geodetic datum for the given authority, name, and ellipsoid axis length.
      *
-     * @param authority         Organization responsible for definition of the name, or {@code null}.
-     * @param name              The name of the new CRS.
-     * @param semiMajorAxis     The value to be returned by {@link #getSemiMajorAxis()}, in metres.
-     * @param inverseFlattening The value to be returned by {@link #getInverseFlattening()}.
+     * @param authority          organization responsible for definition of the name, or {@code null}.
+     * @param name               the name of the new CRS.
+     * @param semiMajorAxis      the value to be returned by {@link #getSemiMajorAxis()}, in metres.
+     * @param inverseFlattening  the value to be returned by {@link #getInverseFlattening()}.
      */
     public SimpleDatum(final Citation authority, final String name,
             final double semiMajorAxis, final double inverseFlattening)
@@ -126,7 +126,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      * Returns the ellipsoid, which is represented directly by {@code this} implementation
      * class since it does not distinguish geodetic datum and ellipsoid.
      *
-     * @return The ellipsoid.
+     * @return the ellipsoid.
      */
     @Override
     public Ellipsoid getEllipsoid() {
@@ -138,7 +138,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      * and {@linkplain #getSemiMinorAxis semi-minor} axis values. The default
      * implementation returns {@link Units#METRE}.
      *
-     * @return The axis linear unit.
+     * @return the axis linear unit.
      */
     @Override
     public Unit<Length> getAxisUnit() {
@@ -170,8 +170,8 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Returns the value of the inverse of the flattening constant.
      *
-     * @return The inverse flattening value, or {@linkplain Double#POSITIVE_INFINITY positive
-     *         infinity} if this ellipsoid is a sphere.
+     * @return the inverse flattening value, or {@linkplain Double#POSITIVE_INFINITY positive infinity}
+     *         if this ellipsoid is a sphere.
      */
     @Override
     public double getInverseFlattening() {
@@ -184,9 +184,8 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      * not a sphere, since the constructor of this {@code SimpleDatum} class expects a
      * {@code inverseFlattening} value.
      *
-     * @return {@code true} if the {@linkplain #getInverseFlattening() inverse flattening} is
-     *         definitive, or {@code false} if the {@linkplain #getSemiMinorAxis() polar radius}
-     *         is definitive.
+     * @return {@code true} if the {@linkplain #getInverseFlattening() inverse flattening} is definitive,
+     *         or {@code false} if the {@linkplain #getSemiMinorAxis() polar radius} is definitive.
      */
     @Override
     public boolean isIvfDefinitive() {
@@ -206,7 +205,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Returns the prime meridian. The default implementation returns the Greenwich prime meridian.
      *
-     * @return The prime meridian.
+     * @return the prime meridian.
      */
     @Override
     public PrimeMeridian getPrimeMeridian() {
@@ -217,7 +216,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      * Description, possibly including coordinates, of the point or points used to anchor the datum
      * to the Earth. The default implementation returns {@code null}.
      *
-     * @return A description of the anchor point, or {@code null} if none.
+     * @return a description of the anchor point, or {@code null} if none.
      */
     @Override
     public InternationalString getAnchorPoint() {
@@ -228,7 +227,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      * The time after which this datum definition is valid.
      * The default implementation returns {@code null}.
      *
-     * @return The datum realization epoch, or {@code null} if not available.
+     * @return the datum realization epoch, or {@code null} if not available.
      */
     @Override
     public Date getRealizationEpoch() {

@@ -111,8 +111,8 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public CSValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.cs");
@@ -120,10 +120,10 @@ public class CSValidator extends ReferencingValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final CoordinateSystem object) {
         int n = 0;
@@ -148,7 +148,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given axis.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final CoordinateSystemAxis object) {
         if (object == null) {
@@ -168,7 +168,7 @@ public class CSValidator extends ReferencingValidator {
      * (e.g. {@code NORTH} with {@code EAST}). Unknown or incompatible directions
      * (e.g. {@code NORTH} with {@code FUTURE}) are ignored.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final CartesianCS object) {
         if (object == null) {
@@ -184,7 +184,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final EllipsoidalCS object) {
         if (object == null) {
@@ -199,7 +199,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final SphericalCS object) {
         if (object == null) {
@@ -214,7 +214,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final CylindricalCS object) {
         if (object == null) {
@@ -229,7 +229,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final PolarCS object) {
         if (object == null) {
@@ -244,7 +244,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final LinearCS object) {
         if (object == null) {
@@ -259,7 +259,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final VerticalCS object) {
         if (object == null) {
@@ -274,7 +274,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final TimeCS object) {
         if (object == null) {
@@ -289,7 +289,7 @@ public class CSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final UserDefinedCS object) {
         if (object == null) {
@@ -306,7 +306,7 @@ public class CSValidator extends ReferencingValidator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param object The object to validate (can not be null).
+     * @param  object  the object to validate (can not be null).
      */
     private void validateAxes(final CoordinateSystem object) {
         final int dimension = object.getDimension();

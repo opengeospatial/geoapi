@@ -62,7 +62,7 @@ public interface SurfacePatch extends GenericSurface {
      * ISO 19107 one to use surface patches in a more open-ended manner.
      * </div>
      *
-     * @return The owner of this surface patch, or {@code null} if the association is
+     * @return the owner of this surface patch, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see Surface#getPatches
@@ -78,7 +78,7 @@ public interface SurfacePatch extends GenericSurface {
      * This mechanism uses the control points and control parameters defined in the various
      * subclasses to determine the position of this {@code SurfacePatch}.
      *
-     * @return The interpolation mechanism.
+     * @return the interpolation mechanism.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     SurfaceInterpolation getInterpolation();
@@ -93,7 +93,7 @@ public interface SurfacePatch extends GenericSurface {
      * at the appropriate end point: "C¹" continuity. A value of "n" for any integer means
      * <var>n</var>-times differentiable: "Cⁿ" continuity.
      *
-     * @return The type of continuity between this surface patch and its immediate neighbors.
+     * @return the type of continuity between this surface patch and its immediate neighbors.
      */
     @UML(identifier="numDerivativesOnBoundary", obligation=MANDATORY, specification=ISO_19107)
     int getNumDerivativesOnBoundary();
@@ -109,7 +109,7 @@ public interface SurfacePatch extends GenericSurface {
      * {@linkplain Surface surface}, and other parts with {@code SurfacePatch}es (not
      * necessarily distinct).
      *
-     * @return The boundary of this {@code SurfacePatch}
+     * @return the boundary of this {@code SurfacePatch}
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     SurfaceBoundary getBoundary();

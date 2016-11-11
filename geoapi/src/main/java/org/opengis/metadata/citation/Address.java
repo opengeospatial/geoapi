@@ -55,7 +55,7 @@ public interface Address {
      * Address line for the location (as described in ISO 11180, Annex A).
      * Returns an empty collection if none.
      *
-     * @return Address line for the location.
+     * @return address line for the location.
      */
     @UML(identifier="deliveryPoint", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getDeliveryPoints();
@@ -64,7 +64,7 @@ public interface Address {
      * The city of the location.
      * Returns {@code null} if unspecified.
      *
-     * @return The city of the location, or {@code null}.
+     * @return the city of the location, or {@code null}.
      */
     @UML(identifier="city", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCity();
@@ -73,7 +73,7 @@ public interface Address {
      * State, province of the location.
      * Returns {@code null} if unspecified.
      *
-     * @return State, province of the location, or {@code null}.
+     * @return state, province of the location, or {@code null}.
      */
     @UML(identifier="administrativeArea", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getAdministrativeArea();
@@ -91,7 +91,7 @@ public interface Address {
      * Country of the physical address.
      * Returns {@code null} if unspecified.
      *
-     * @return Country of the physical address, or {@code null}.
+     * @return country of the physical address, or {@code null}.
      */
     @UML(identifier="country", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getCountry();
@@ -100,7 +100,7 @@ public interface Address {
      * Address of the electronic mailbox of the responsible organization or individual.
      * Returns an empty collection if none.
      *
-     * @return Address of the electronic mailbox of the responsible organization or individual.
+     * @return address of the electronic mailbox of the responsible organization or individual.
      */
     @UML(identifier="electronicMailAddress", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getElectronicMailAddresses();

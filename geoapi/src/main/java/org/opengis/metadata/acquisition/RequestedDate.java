@@ -58,7 +58,7 @@ public interface RequestedDate {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Preferred date and time.
+     * @return preferred date and time.
      */
     @UML(identifier="requestedDateOfCollection", obligation=MANDATORY, specification=ISO_19115_2)
     Date getRequestedDateOfCollection();
@@ -71,7 +71,7 @@ public interface RequestedDate {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Latest date and time.
+     * @return latest date and time.
      */
     @UML(identifier="latestAcceptableDate", obligation=MANDATORY, specification=ISO_19115_2)
     Date getLatestAcceptableDate();

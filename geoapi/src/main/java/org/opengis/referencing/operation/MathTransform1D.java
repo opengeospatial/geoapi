@@ -53,9 +53,9 @@ public interface MathTransform1D extends MathTransform {
     /**
      * Transforms the specified value.
      *
-     * @param value The value to transform.
+     * @param  value  the value to transform.
      * @return the transformed value.
-     * @throws TransformException if the value can't be transformed.
+     * @throws TransformException if the value can not be transformed.
      */
     double transform(double value) throws TransformException;
 
@@ -64,18 +64,17 @@ public interface MathTransform1D extends MathTransform {
      * 1×1 matrix of the non-translating portion of the approximate affine
      * map at the value.
      *
-     * @param  value The value where to evaluate the derivative.
-     * @return The derivative at the specified point.
-     * @throws TransformException if the derivative can't be evaluated at the
-     *         specified point.
+     * @param  value  the value where to evaluate the derivative.
+     * @return the derivative at the specified point.
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     double derivative(double value) throws TransformException;
 
     /**
      * Creates the inverse transform of this object.
      *
-     * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inverted.
+     * @return the inverse transform.
+     * @throws NoninvertibleTransformException if the transform can not be inverted.
      *
      * @since 2.2
      */

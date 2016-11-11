@@ -120,7 +120,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * to configure the given validator (for example whether to
      * {@linkplain RootValidator#requireMandatoryAttributes require mandatory attributes} or not).
      *
-     * @param validator The validator to use for validating the {@link Metadata} instance.
+     * @param validator  the validator to use for validating the {@link Metadata} instance.
      */
     protected NetcdfMetadataTest(final RootValidator validator) {
         this.validator = validator;
@@ -133,9 +133,9 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * creates a {@link NetcdfMetadata} instance. Subclasses can override this method for
      * creating their own instance.
      *
-     * @param  file The NetCDF file to wrap.
-     * @return A metadata implementation created from the attributes found in the given file.
-     * @throws IOException If an error occurred while wrapping the given NetCDF file.
+     * @param  file  the NetCDF file to wrap.
+     * @return a metadata implementation created from the attributes found in the given file.
+     * @throws IOException if an error occurred while wrapping the given NetCDF file.
      */
     protected Metadata wrap(final NetcdfFile file) throws IOException {
         return new NetcdfMetadata(file);
@@ -153,9 +153,9 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      *
      * Subclasses can override this method if they want to select the element in a different way.
      *
-     * @param  <E> The type of collection elements.
-     * @param  collection The collection from which to get the singleton.
-     * @return The singleton element from the collection, or {@code null} if none.
+     * @param  <E>         the type of collection elements.
+     * @param  collection  the collection from which to get the singleton.
+     * @return the singleton element from the collection, or {@code null} if none.
      */
     protected <E> E getSingleton(final Iterable<? extends E> collection) {
         if (collection != null) {
@@ -218,8 +218,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * This method fetches only the metadata properties which are mapped to NetCDF attributes,
      * and intentionally ignores all other metadata.
      *
-     * @param filename The NetCDF file being tested, typically as one of the constants defined
-     *         in the {@link IOTestCase} class.
+     * @param filename  the NetCDF file being tested,
+     *                  typically as one of the constants defined in the {@link IOTestCase} class.
      */
     protected void fetchMetadataProperties(final String filename) {
         put("metadataStandardName",    metadata.getMetadataStandardName());
@@ -373,9 +373,9 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * (i.e. have been compared) after the comparison.
      *
      *
-     * @param filename The NetCDF file being tested, typically as one of the constants defined
-     *                  in the {@link IOTestCase} class.
-     * @param eps Tolerance factor for comparing floating-point numbers.
+     * @param filename  the NetCDF file being tested,
+     *                  typically as one of the constants defined in the {@link IOTestCase} class.
+     * @param eps       tolerance factor for comparing floating-point numbers.
      */
     protected void compareProperties(final String filename, final double eps) {
         for (final Iterator<Map.Entry<String,Object>> it=actualProperties.entrySet().iterator(); it.hasNext();) {
@@ -415,7 +415,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * Note that implementations don't need to support all those metadata.
      * See the class javadoc for more information.
      *
-     * @throws IOException If the test file can not be read.
+     * @throws IOException if the test file can not be read.
      */
     @Test
     public void testTHREDDS() throws IOException {
@@ -471,7 +471,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * Note that implementations don't need to support all those metadata.
      * See the class javadoc for more information.
      *
-     * @throws IOException If the test file can not be read.
+     * @throws IOException if the test file can not be read.
      */
     @Test
     public void testNCEP() throws IOException {
@@ -526,7 +526,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#LANDSAT} file (binary format).
      *
-     * @throws IOException If the test file can not be read.
+     * @throws IOException if the test file can not be read.
      */
     @Test
     public void testLandsat() throws IOException {
@@ -548,7 +548,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#CIP} file (binary format).
      *
-     * @throws IOException If the test file can not be read.
+     * @throws IOException if the test file can not be read.
      */
     @Test
     public void testCIP() throws IOException {

@@ -61,7 +61,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     /**
      * Returns the wrapped NetCDF object on which operations are delegated.
      *
-     * @return The wrapped NetCDF object on which operations are delegated.
+     * @return the wrapped NetCDF object on which operations are delegated.
      */
     public abstract Object delegate();
 
@@ -130,7 +130,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * Returns a natural language description of this object.
      * The default implementation returns {@code null}.
      *
-     * @return The natural language description, or {@code null} if none.
+     * @return the natural language description, or {@code null} if none.
      */
     @Override
     public InternationalString getDescription() {
@@ -142,7 +142,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * none. The default implementation returns a geographic extent for the world, since most NetCDF
      * objects except {@link ucar.unidata.geoloc.Projection} are not restricted to a particular area.
      *
-     * @return The valid domain, or {@code null} if not available.
+     * @return the valid domain, or {@code null} if not available.
      *
      * @see NetcdfCRS#getDomainOfValidity()
      * @see NetcdfProjection#getDomainOfValidity()
@@ -162,7 +162,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * {@link org.opengis.referencing.operation.CoordinateOperation#getScope() CoordinateOperation}
      * property.</p>
      *
-     * @return The domain of usage, or {@code null} if none.
+     * @return the domain of usage, or {@code null} if none.
      */
     public InternationalString getScope() {
         return null;
@@ -177,7 +177,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * <p>Anchor point is a
      * {@link org.opengis.referencing.datum.Datum#getAnchorPoint() Datum} property.</p>
      *
-     * @return A description of the anchor point, or {@code null} if none.
+     * @return a description of the anchor point, or {@code null} if none.
      */
     public InternationalString getAnchorPoint() {
         return null;
@@ -190,7 +190,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * <p>Anchor point is a
      * {@link org.opengis.referencing.datum.Datum#getRealizationEpoch() Datum} property.</p>
      *
-     * @return The datum realization epoch, or {@code null} if not available.
+     * @return the datum realization epoch, or {@code null} if not available.
      */
     public Date getRealizationEpoch() {
         return null;
@@ -200,7 +200,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * Returns the NetCDF object description, or {@code null} if none.
      * The default implementation returns {@code null}.
      *
-     * @return The remarks, or {@code null} if none.
+     * @return the remarks, or {@code null} if none.
      *
      * @see NetcdfAxis#getRemarks()
      */
@@ -214,7 +214,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
      * returns {@code true} if the given object is non-null, wraps an object of the same
      * class than this object and the wrapped NetCDF objects are equal.
      *
-     * @param  other The other object to compare with this object.
+     * @param  other  the other object to compare with this object.
      * @return {@code true} if both objects are equal.
      */
     @Override

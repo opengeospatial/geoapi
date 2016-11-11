@@ -82,7 +82,7 @@ public interface NameSpace {
      * name.{@linkplain GenericName#scope() scope()}.{@linkplain #isGlobal()} == true
      * </code></blockquote>
      *
-     * @return The identifier of this namespace.
+     * @return the identifier of this namespace.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19103)
     GenericName name();

@@ -65,9 +65,8 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The name of the parameter with invalid cardinality.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the name of the parameter with invalid cardinality.
      */
     public InvalidParameterCardinalityException(String message, String parameterName) {
         super(message);
@@ -77,11 +76,9 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
     /**
      * Creates an exception with the specified message, cause and parameter name.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The name of the parameter with invalid cardinality.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
+     * @param parameterName  the name of the parameter with invalid cardinality.
      *
      * @since 3.1
      */
@@ -93,7 +90,7 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
     /**
      * Returns the name of the parameter with invalid cardinality.
      *
-     * @return The name of the parameter with invalid cardinality.
+     * @return the name of the parameter with invalid cardinality.
      */
     public String getParameterName() {
         return parameterName;

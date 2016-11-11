@@ -63,7 +63,7 @@ public interface OnlineResource {
      * {@code "http://www.statkart.no/isotc211"}.
      * </div>
      *
-     * @return Location for on-line access using a Uniform Resource Locator address or similar scheme.
+     * @return location for on-line access using a Uniform Resource Locator address or similar scheme.
      */
     @Profile(level=CORE)
     @UML(identifier="linkage", obligation=MANDATORY, specification=ISO_19115)
@@ -76,7 +76,7 @@ public interface OnlineResource {
      * ftp, http get KVP, http POST, <i>etc</i>.
      * </div>
      *
-     * @return Connection protocol to be used, or {@code null}.
+     * @return connection protocol to be used, or {@code null}.
      */
     @UML(identifier="protocol", obligation=OPTIONAL, specification=ISO_19115)
     String getProtocol();
@@ -84,7 +84,7 @@ public interface OnlineResource {
     /**
      * Name of an application profile that can be used with the online resource.
      *
-     * @return Application profile that can be used with the online resource, or {@code null}.
+     * @return application profile that can be used with the online resource, or {@code null}.
      */
     @UML(identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
     String getApplicationProfile();
@@ -92,7 +92,7 @@ public interface OnlineResource {
     /**
      * Name of the online resource.
      *
-     * @return Name of the online resource, or {@code null}.
+     * @return name of the online resource, or {@code null}.
      *
      * @since 2.1
      */
@@ -102,7 +102,7 @@ public interface OnlineResource {
     /**
      * Detailed text description of what the online resource is/does.
      *
-     * @return Text description of what the online resource is/does, or {@code null}.
+     * @return text description of what the online resource is/does, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getDescription();
@@ -110,7 +110,7 @@ public interface OnlineResource {
     /**
      * Code for function performed by the online resource.
      *
-     * @return Function performed by the online resource, or {@code null}.
+     * @return function performed by the online resource, or {@code null}.
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115)
     OnLineFunction getFunction();
@@ -127,7 +127,7 @@ public interface OnlineResource {
      * &lt;/GetFeature&gt;</pre>
      * </div>
      *
-     * @return Request used to access the resource, or {@code null}.
+     * @return request used to access the resource, or {@code null}.
      *
      * @since 3.1
      */

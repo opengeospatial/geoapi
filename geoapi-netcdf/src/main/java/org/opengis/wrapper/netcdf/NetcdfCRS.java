@@ -112,7 +112,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * than the given object. This copy constructor is provided for subclasses wanting to
      * wraps the same NetCDF coordinate system and change a few properties or methods.
      *
-     * @param crs The CRS to copy.
+     * @param crs  the CRS to copy.
      */
     protected NetcdfCRS(final NetcdfCRS crs) {
         this.cs        = crs.cs;
@@ -125,8 +125,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * The {@link CoordinateSystem#getCoordinateAxes()} is invoked at construction time and
      * every elements are assumed instances of {@link CoordinateAxis1D}.
      *
-     * @param  netcdfCS The NetCDF coordinate system to wrap.
-     * @throws ClassCastException If at least one axis is not an instance of the
+     * @param  netcdfCS  the NetCDF coordinate system to wrap.
+     * @throws ClassCastException if at least one axis is not an instance of the
      *         {@link CoordinateAxis1D} subclass.
      */
     protected NetcdfCRS(final CoordinateSystem netcdfCS) throws ClassCastException {
@@ -138,8 +138,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * coordinate system. The axes will be retained in reverse order, as documented in
      * class javadoc.
      *
-     * @param  netcdfCS The NetCDF coordinate system to wrap.
-     * @param  The axes to add, in reverse order.
+     * @param  netcdfCS    the NetCDF coordinate system to wrap.
+     * @param  netcdfAxis  the axes to add, in reverse order.
      */
     NetcdfCRS(final CoordinateSystem netcdfCS, final List<CoordinateAxis> netcdfAxis) {
         Objects.requireNonNull(netcdfCS);
@@ -178,10 +178,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * <p>If the NetCDF object contains axes of unknown type, then the returned CRS will not
      * implement any of the above-cited interfaces.</p>
      *
-     * @param  netcdfCS The NetCDF coordinate system to wrap, or {@code null} if none.
-     * @return A wrapper for the given object, or {@code null} if the argument was null.
-     * @throws ClassCastException If at least one axis is not an instance of the
-     *         {@link CoordinateAxis1D} subclass.
+     * @param  netcdfCS  the NetCDF coordinate system to wrap, or {@code null} if none.
+     * @return a wrapper for the given object, or {@code null} if the argument was null.
+     * @throws ClassCastException if at least one axis is not an instance of the {@link CoordinateAxis1D} subclass.
      */
     public static NetcdfCRS wrap(final CoordinateSystem netcdfCS) throws ClassCastException {
         try {
@@ -197,14 +196,12 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * that more accurate coordinate axes may be created if a reference to the original dataset file
      * is provided. This apply especially to {@link CoordinateAxis1DTime}.
      *
-     * @param  netcdfCS The NetCDF coordinate system to wrap, or {@code null} if none.
-     * @param  file The originating dataset file, or {@code null} if none.
-     * @param  logger An optional object where to log warnings, or {@code null} if none.
-     * @return A wrapper for the given object, or {@code null} if the {@code netcdfCS}
-     *         argument was null.
-     * @throws ClassCastException If at least one axis is not an instance of the
-     *         {@link CoordinateAxis1D} subclass.
-     * @throws IOException If an I/O operation was needed and failed.
+     * @param  netcdfCS  the NetCDF coordinate system to wrap, or {@code null} if none.
+     * @param  file      the originating dataset file, or {@code null} if none.
+     * @param  logger    an optional object where to log warnings, or {@code null} if none.
+     * @return a wrapper for the given object, or {@code null} if the {@code netcdfCS} argument was null.
+     * @throws ClassCastException if at least one axis is not an instance of the {@link CoordinateAxis1D} subclass.
+     * @throws IOException if an I/O operation was needed and failed.
      *
      * @since 3.14
      */
@@ -294,11 +291,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * Returns the lower index of the sublist containing axes of the given types.
      *
-     * @param axes  The list from which to get the sublist indices.
-     * @param upper The upper index of the sublist, inclusive.
-     * @param t1    The first axis type to accept.
-     * @param t2    The second axis type to accept.
-     * @return      The lower index of the sublist range.
+     * @param  axes   the list from which to get the sublist indices.
+     * @param  upper  the upper index of the sublist, inclusive.
+     * @param  t1     the first axis type to accept.
+     * @param  t2     the second axis type to accept.
+     * @return the lower index of the sublist range.
      */
     private static int lower(final List<CoordinateAxis> axes, int upper, final AxisType t1, final AxisType t2) {
         while (upper != 0) {
@@ -358,8 +355,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * method is reversed compared to the order of axes in the NetCDF coordinate system. See
      * the <a href="#skip-navbar_top">class javadoc</a> for more information.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The axis at the specified dimension.
+     * @param  dimension  the zero based index of axis.
+     * @return the axis at the specified dimension.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      *
      * @see CoordinateSystem#getCoordinateAxes()
@@ -372,8 +369,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * Returns the number of numeric values in the axis at the given dimension.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The number of values for the given axis.
+     * @param  dimension  the zero based index of axis.
+     * @return the number of values for the given axis.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      *
      * @see NetcdfAxis#length()
@@ -387,8 +384,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * Returns the valid minimum inclusive grid coordinate along the specified dimension,
      * which is assumed zero.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The minimum inclusive grid coordinates for the given axis.
+     * @param  dimension  the zero based index of axis.
+     * @return the minimum inclusive grid coordinates for the given axis.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @Override
@@ -399,8 +396,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * Returns the valid maximum inclusive grid coordinate along the specified dimension.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The maximum inclusive grid coordinates for the given axis.
+     * @param  dimension  the zero based index of axis.
+     * @return the maximum inclusive grid coordinates for the given axis.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @Override
@@ -413,7 +410,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * The default implementation builds the grid coordinates from the values returned by
      * {@link #getLow(int)}.
      *
-     * @return The minimal coordinate values for all grid points, inclusive.
+     * @return the minimal coordinate values for all grid points, inclusive.
      */
     @Override
     public GridCoordinates getLow() {
@@ -429,7 +426,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * The default implementation builds the grid coordinates from the values returned by
      * {@link #getHigh(int)}.
      *
-     * @return The maximal coordinate values for all grid points, <strong>inclusive</strong>.
+     * @return the maximal coordinate values for all grid points, <strong>inclusive</strong>.
      */
     @Override
     public GridCoordinates getHigh() {
@@ -445,7 +442,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * The lowest valid grid coordinate is usually zero. The highest valid
      * grid coordinates are usually the length of each axis minus 1.
      *
-     * @return The valid coordinate range of a grid coverage.
+     * @return the valid coordinate range of a grid coverage.
      */
     @Override
     public GridEnvelope getExtent() {
@@ -470,7 +467,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * Current implementation can build a transform only for regular coordinate systems.
      * A future implementation may be more general.</p>
      *
-     * @return The transform from grid to this CRS, or {@code null} if none.
+     * @return the transform from grid to this CRS, or {@code null} if none.
      */
     @Override
     public synchronized MathTransform getGridToCRS() {
@@ -488,11 +485,10 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * Current implementation can build a transform only for regular axes.
      * A future implementation may be more general.</p>
      *
-     * @param  lowerDimension Index of the first dimension for which to get the transform.
-     * @param  upperDimension Index after the last dimension for which to get the transform.
-     * @return The transform from grid to this CRS in the given range of dimensions, or
-     *         {@code null} if none.
-     * @throws IllegalArgumentException If the given dimensions are not in the
+     * @param  lowerDimension  index of the first dimension for which to get the transform.
+     * @param  upperDimension  index after the last dimension for which to get the transform.
+     * @return the transform from grid to this CRS in the given range of dimensions, or {@code null} if none.
+     * @throws IllegalArgumentException if the given dimensions are not in the
      *         [0 … {@linkplain #getDimension() dimension}] range.
      */
     public MathTransform getGridToCRS(final int lowerDimension, final int upperDimension) {
@@ -642,11 +638,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
          * a {@code CoordinateAxis1DTime} now. Otherwise returns the axis unchanged. This method
          * can be invoked before to pass the axis to the constructor, if desired.
          *
-         * @param  axis The axis to check.
-         * @param  file The originating dataset, or {@code null} if none.
-         * @param  logger An optional object where to log warnings, or {@code null} if none.
-         * @return The axis as an (@link CoordinateAxis1DTime} if possible.
-         * @throws IOException If an I/O operation was needed and failed.
+         * @param  axis    the axis to check.
+         * @param  file    the originating dataset, or {@code null} if none.
+         * @param  logger  an optional object where to log warnings, or {@code null} if none.
+         * @return the axis as an (@link CoordinateAxis1DTime} if possible.
+         * @throws IOException if an I/O operation was needed and failed.
          */
         static CoordinateAxis complete(CoordinateAxis axis, final NetcdfDataset file,
                 final Logger logger) throws IOException
@@ -861,7 +857,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         /**
          * Returns a wrapper around the NetCDF projection.
          *
-         * @throws IllegalStateException If the NetCDF coordinate system does not define a projection.
+         * @throws IllegalStateException if the NetCDF coordinate system does not define a projection.
          */
         @Override
         public synchronized Projection getConversionFromBase() {

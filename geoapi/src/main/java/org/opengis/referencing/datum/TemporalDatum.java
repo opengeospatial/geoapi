@@ -60,7 +60,7 @@ public interface TemporalDatum extends Datum {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return The date and time origin of this temporal datum.
+     * @return the date and time origin of this temporal datum.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19111)
     Date getOrigin();
@@ -69,7 +69,7 @@ public interface TemporalDatum extends Datum {
      * This attribute is defined in the {@link Datum} parent interface,
      * but is not used by a temporal datum.
      *
-     * @return Always {@code null}.
+     * @return always {@code null}.
      */
     @Override
     @UML(identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
@@ -84,7 +84,7 @@ public interface TemporalDatum extends Datum {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Always {@code null}.
+     * @return always {@code null}.
      */
     @Override
     @UML(identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)

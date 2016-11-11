@@ -123,7 +123,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS2009} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS2009} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -135,7 +135,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param copFactory Factory for creating {@link Transformation} instances.
+     * @param copFactory  factory for creating {@link Transformation} instances.
      */
     public GIGS2009(final CoordinateOperationAuthorityFactory copFactory) {
         super(copFactory);
@@ -157,7 +157,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -172,7 +172,7 @@ public strictfp class GIGS2009 extends AuthorityFactoryTestCase<Transformation> 
      * method with the current {@link #code} value in argument. The created object is then cached and returned in all
      * subsequent invocations of this method.
      *
-     * @return The transformation instance to test.
+     * @return the transformation instance to test.
      * @throws FactoryException if an error occurred while creating the transformation instance.
      */
     @Override

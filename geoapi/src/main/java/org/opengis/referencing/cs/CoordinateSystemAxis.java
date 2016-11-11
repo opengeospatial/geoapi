@@ -97,7 +97,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * This abbreviation is also used to identify the ordinates in coordinate tuple.
      * Examples are “<var>X</var>” and “<var>Y</var>”.
      *
-     * @return The coordinate system axis abbreviation.
+     * @return the coordinate system axis abbreviation.
      */
     @UML(identifier="axisAbbrev", obligation=MANDATORY, specification=ISO_19111)
     String getAbbreviation();
@@ -119,7 +119,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * <p>Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires
      * specific descriptions of the directions of its coordinate system axes.</p>
      *
-     * @return The coordinate system axis direction.
+     * @return the coordinate system axis direction.
      */
     @UML(identifier="axisDirection", obligation=MANDATORY, specification=ISO_19111)
     AxisDirection getDirection();
@@ -130,7 +130,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * whenever those coordinates use a coordinate reference system that uses a coordinate system
      * that uses this axis.
      *
-     * @return The coordinate system axis unit.
+     * @return the coordinate system axis unit.
      */
     @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
     Unit<?> getUnit();
@@ -141,7 +141,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * If there is no minimum value, then this method returns
      * {@linkplain Double#NEGATIVE_INFINITY negative infinity}.
      *
-     * @return The minimum value, or {@link Double#NEGATIVE_INFINITY} if none.
+     * @return the minimum value, or {@link Double#NEGATIVE_INFINITY} if none.
      */
     @UML(identifier="minimumValue", obligation=OPTIONAL, specification=ISO_19111)
     double getMinimumValue();
@@ -152,7 +152,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * If there is no maximum value, then this method returns
      * {@linkplain Double#POSITIVE_INFINITY positive infinity}.
      *
-     * @return The maximum value, or {@link Double#POSITIVE_INFINITY} if none.
+     * @return the maximum value, or {@link Double#POSITIVE_INFINITY} if none.
      */
     @UML(identifier="maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     double getMaximumValue();
@@ -164,7 +164,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * maximum values are included. If this element is omitted when minimum or maximum values are
      * included, the meaning is unspecified.
      *
-     * @return The range meaning, or {@code null} in none.
+     * @return the range meaning, or {@code null} in none.
      *
      * @see RangeMeaning#EXACT
      * @see RangeMeaning#WRAPAROUND

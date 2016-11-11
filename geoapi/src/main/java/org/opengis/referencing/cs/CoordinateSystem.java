@@ -61,7 +61,7 @@ public interface CoordinateSystem extends IdentifiedObject {
     /**
      * Returns the dimension of the coordinate system.
      *
-     * @return The dimension of the coordinate system.
+     * @return the dimension of the coordinate system.
      */
     int getDimension();
 
@@ -69,8 +69,8 @@ public interface CoordinateSystem extends IdentifiedObject {
      * Returns the axis for this coordinate system at the specified dimension.
      * Each coordinate system must have at least one axis.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The axis at the specified dimension.
+     * @param  dimension  the zero based index of axis.
+     * @return the axis at the specified dimension.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @UML(identifier="axis", obligation=MANDATORY, specification=ISO_19111)

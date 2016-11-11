@@ -53,7 +53,7 @@ public interface Distribution {
     /**
      * Brief description of a set of distribution options.
      *
-     * @return Brief description of a set of distribution options.
+     * @return brief description of a set of distribution options.
      *
      * @since 3.1
      */
@@ -63,7 +63,7 @@ public interface Distribution {
     /**
      * Provides a description of the format of the data to be distributed.
      *
-     * @return Description of the format of the data to be distributed.
+     * @return description of the format of the data to be distributed.
      *
      * @condition Mandatory if {@link Distributor#getDistributorFormats()} is empty.
      */
@@ -74,7 +74,7 @@ public interface Distribution {
     /**
      * Provides information about the distributor.
      *
-     * @return Information about the distributor.
+     * @return information about the distributor.
      */
     @UML(identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Distributor> getDistributors();
@@ -83,7 +83,7 @@ public interface Distribution {
      * Provides information about technical means and media by which a resource is obtained
      * from the distributor.
      *
-     * @return Technical means and media by which a resource is obtained from the distributor.
+     * @return technical means and media by which a resource is obtained from the distributor.
      */
     @Profile(level=CORE)
     @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)

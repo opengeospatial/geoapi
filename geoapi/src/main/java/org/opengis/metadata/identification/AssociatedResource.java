@@ -50,7 +50,7 @@ public interface AssociatedResource {
     /**
      * Citation information about the associated resource.
      *
-     * @return Citation information about the associated resource, or {@code null} if none.
+     * @return citation information about the associated resource, or {@code null} if none.
      *
      * @condition Mandatory if the {@linkplain #getMetadataReference() metadata reference} is not documented.
      */
@@ -60,7 +60,7 @@ public interface AssociatedResource {
     /**
      * Type of relation between the resources.
      *
-     * @return The type of relation between the resources.
+     * @return the type of relation between the resources.
      */
     @UML(identifier="associationType", obligation=MANDATORY, specification=ISO_19115)
     AssociationType getAssociationType();
@@ -68,7 +68,7 @@ public interface AssociatedResource {
     /**
      * Type of initiative under which the associated resource was produced.
      *
-     * @return The type of initiative under which the associated resource was produced, or {@code null} if none.
+     * @return the type of initiative under which the associated resource was produced, or {@code null} if none.
      */
     @UML(identifier="initiativeType", obligation=OPTIONAL, specification=ISO_19115)
     InitiativeType getInitiativeType();
@@ -76,7 +76,7 @@ public interface AssociatedResource {
     /**
      * Reference to the metadata of the associated resource.
      *
-     * @return Reference to the metadata of the associated resource, or {@code null} if none.
+     * @return reference to the metadata of the associated resource, or {@code null} if none.
      *
      * @condition Mandatory if the {@linkplain #getName() name} is not documented.
      */

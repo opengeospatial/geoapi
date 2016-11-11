@@ -58,7 +58,7 @@ public interface CanvasState {
     /**
      * Returns the title of the {@linkplain Canvas canvas}.
      *
-     * @return The canvas title.
+     * @return the canvas title.
      *
      * @see CanvasController#setTitle
      */
@@ -68,7 +68,7 @@ public interface CanvasState {
      * Returns the position of the center point of the {@linkplain Canvas canvas}.
      * The coordinate shall be in {@linkplain #getObjectiveCRS objective CRS}.
      *
-     * @return The center point in objective CRS.
+     * @return the center point in objective CRS.
      *
      * @see CanvasController#setCenter
      */
@@ -79,7 +79,7 @@ public interface CanvasState {
      * a {@linkplain ProjectedCRS projected CRS} using linear units like metre.
      * Graphic data are projected to this CRS before to be display.
      *
-     * @return The "real world" Coordinate Reference System.
+     * @return the "real world" Coordinate Reference System.
      *
      * @see CanvasController#setObjectiveCRS
      */
@@ -98,7 +98,7 @@ public interface CanvasState {
      * {@linkplain #getObjectiveCRS objective CRS}. In such implementations, the display
      * CRS changes after every zoom or translation action.
      *
-     * @return The display Coordinate Reference System.
+     * @return the display Coordinate Reference System.
      */
     CoordinateReferenceSystem getDisplayCRS();
 
@@ -116,7 +116,7 @@ public interface CanvasState {
      * affine, then the scale factors (the coefficients on the matrix diagonal when there is
      * no rotation or shear) are the map scale along the corresponding axis.
      *
-     * @return The transform from {@linkplain #getObjectiveCRS objective} to
+     * @return the transform from {@linkplain #getObjectiveCRS objective} to
      *         {@linkplain #getDisplayCRS display} CRS.
      */
     MathTransform getObjectiveToDisplayTransform();
@@ -127,7 +127,7 @@ public interface CanvasState {
      * {@linkplain MathTransform#inverse inverse} of the
      * {@linkplain #getObjectiveToDisplayTransform objective to display transform}.
      *
-     * @return The transform from {@linkplain #getDisplayCRS display} to
+     * @return the transform from {@linkplain #getDisplayCRS display} to
      *         {@linkplain #getObjectiveCRS objective} CRS.
      */
     MathTransform getDisplayToObjectiveTransform();

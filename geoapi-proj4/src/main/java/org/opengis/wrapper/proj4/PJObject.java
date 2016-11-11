@@ -45,7 +45,7 @@ class PJObject implements IdentifiedObject {
     /**
      * Creates a new identified object of the given name.
      *
-     * @param identifier The name of the new object, or {@code null} if none.
+     * @param identifier  the name of the new object, or {@code null} if none.
      */
     PJObject(final Identifier name) {
         this.name    = name;
@@ -55,7 +55,7 @@ class PJObject implements IdentifiedObject {
     /**
      * Creates a new identified object of the given name and aliases.
      *
-     * @param identifier The name of the new object, or {@code null} if none.
+     * @param identifier  the name of the new object, or {@code null} if none.
      */
     PJObject(final Identifier name, final Collection<GenericName> aliases) {
         this.name    = name;

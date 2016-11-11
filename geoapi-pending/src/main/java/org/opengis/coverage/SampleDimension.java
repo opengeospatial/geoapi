@@ -64,7 +64,7 @@ public interface SampleDimension {
      * Sample dimension title or description.
      * This string may be null or empty if no description is present.
      *
-     * @return A description for this sample dimension.
+     * @return a description for this sample dimension.
      */
     @UML(identifier="description", obligation=MANDATORY, specification=OGC_01004)
     InternationalString getDescription();
@@ -73,7 +73,7 @@ public interface SampleDimension {
      * A code value indicating grid value data type.
      * This will also indicate the number of bits for the data type.
      *
-     * @return A code value indicating grid value data type.
+     * @return a code value indicating grid value data type.
      */
     @UML(identifier="sampleDimensionType", obligation=MANDATORY, specification=OGC_01004)
     SampleDimensionType getSampleDimensionType();
@@ -93,7 +93,7 @@ public interface SampleDimension {
      *  </UL>
      * Note: If no category names exist, an empty sequence is returned.
      *
-     * @return The category names.
+     * @return the category names.
      */
     @UML(identifier="categoryNames", obligation=MANDATORY, specification=OGC_01004)
     InternationalString[] getCategoryNames();
@@ -104,7 +104,7 @@ public interface SampleDimension {
      * component. If the sample dimension is not assigned a color interpretation the
      * value is {@link ColorInterpretation#UNDEFINED UNDEFINED}.
      *
-     * @return The color interpretation of the sample dimension.
+     * @return the color interpretation of the sample dimension.
      *
      * @deprecated No replacement.
      */
@@ -118,7 +118,7 @@ public interface SampleDimension {
      * or {@link ColorInterpretation#PALETTE_INDEX PALETTE_INDEX}.
      * A palette entry type can be Gray, RGB, CMYK or HLS.
      *
-     * @return The type of color palette entry for sample dimensions which have a palette.
+     * @return the type of color palette entry for sample dimensions which have a palette.
      *
      * @deprecated No replacement.
      */
@@ -131,7 +131,7 @@ public interface SampleDimension {
      * See palette interpretation for meaning of the palette entries.
      * If the grid coverage has no color palette, {@code null} will be returned.
      *
-     * @return The color palette associated with the sample dimension.
+     * @return the color palette associated with the sample dimension.
      *
      * @see #getPaletteInterpretation
      * @see #getColorInterpretation
@@ -146,7 +146,7 @@ public interface SampleDimension {
      * Values to indicate no data values for the sample dimension.
      * For low precision sample dimensions, this will often be no data values.
      *
-     * @return The values to indicate no data values for the sample dimension.
+     * @return the values to indicate no data values for the sample dimension.
      *
      * @see #getMinimumValue
      * @see #getMaximumValue
@@ -158,7 +158,7 @@ public interface SampleDimension {
      * The minimum value occurring in the sample dimension.
      * This value can be empty if this value is not provided by the implementation.
      *
-     * @return The minimum value occurring in the sample dimension.
+     * @return the minimum value occurring in the sample dimension.
      *
      * @see #getMaximumValue
      * @see #getNoDataValues
@@ -170,7 +170,7 @@ public interface SampleDimension {
      * The maximum value occurring in the sample dimension.
      * This value can be empty if this value is not provided by the implementation.
      *
-     * @return The maximum value occurring in the sample dimension.
+     * @return the maximum value occurring in the sample dimension.
      *
      * @see #getMinimumValue
      * @see #getNoDataValues
@@ -184,7 +184,7 @@ public interface SampleDimension {
      * digital elevation data.
      * This value will be {@code null} if no unit information is available.
      *
-     * @return The unit information for this sample dimension.
+     * @return the unit information for this sample dimension.
      */
     @UML(identifier="units", obligation=MANDATORY, specification=OGC_01004)
     Unit<?> getUnits();
@@ -194,7 +194,7 @@ public interface SampleDimension {
      * This attribute is typically used when the sample dimension represents
      * elevation data. The default for this value is 0.
      *
-     * @return The offset.
+     * @return the offset.
      *
      * @see #getScale
      */
@@ -206,7 +206,7 @@ public interface SampleDimension {
      * This attribute is typically used when the sample dimension represents elevation
      * data. The default for this value is 1.
      *
-     * @return The scale factor.
+     * @return the scale factor.
      *
      * @see #getOffset
      */
@@ -226,7 +226,7 @@ public interface SampleDimension {
      *   Added this optional method as a generalization of <code>scale</code> and <code>offset</code>
      *   attributes. Note that ISO 19115-2 refers to a similar function as <cite>"the transfert function"</cite>.
      *
-     * @return The transform from sample to geophysics values, or {@code null} if
+     * @return the transform from sample to geophysics values, or {@code null} if
      *         it doesn't apply.
      *
      * @see #getScale

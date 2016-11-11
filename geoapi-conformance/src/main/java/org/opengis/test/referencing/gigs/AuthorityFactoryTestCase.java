@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
  * The tests for this series are designed to verify the correctness of geodetic parameters that
  * are delivered with the software. The comparison to be taken as truth is the EPSG Dataset.
  *
- * @param <T> The type of objects to test.
+ * @param  <T>  the type of objects to test.
  *
  * @see org.opengis.test.referencing.AuthorityFactoryTest
  * @see org.opengis.test.TestSuite
@@ -132,7 +132,7 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories The factories to be used by the test. Those factories passed verbatim to the
+     * @param factories  the factories to be used by the test. Those factories passed verbatim to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
     protected AuthorityFactoryTestCase(final AuthorityFactory... factories) {
@@ -164,7 +164,7 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -184,7 +184,7 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
      * <p>Usually, each test method creates exactly one object. But a few (relatively rare) tests may create
      * more than one object. In such case, the instance returned by this method may vary.</p>
      *
-     * @return The instance to test.
+     * @return the instance to test.
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;
@@ -210,8 +210,8 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
      * Note that if the object names are too different for being compared, then subclasses can also
      * disable name comparisons by setting {@link #isStandardNameSupported} to {@code false}.
      *
-     * @param object The object from which to get a name than can be verified against the expected name.
-     * @return The name of the given object, eventually modified in order to match the expected name.
+     * @param  object  the object from which to get a name than can be verified against the expected name.
+     * @return the name of the given object, eventually modified in order to match the expected name.
      *
      * @see #isStandardNameSupported
      * @see #isStandardAliasSupported
@@ -225,9 +225,9 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
      * This method verifies that the given collection contains at least the expected aliases.
      * However the collection may contain additional aliases, which will be ignored.
      *
-     * @param message  The prefix of the message to show in case of failure.
-     * @param expected The expected aliases.
-     * @param aliases  The actual aliases.
+     * @param message   the prefix of the message to show in case of failure.
+     * @param expected  the expected aliases.
+     * @param aliases   the actual aliases.
      */
     static void assertContainsAll(final String message, final String[] expected,
             final Collection<GenericName> aliases)
@@ -248,10 +248,10 @@ next:   for (final String search : expected) {
      * Ensures that the given collection contains at least one identifier having the given
      * codespace (ignoring case) and the given code value.
      *
-     * @param message     The message to show in case of failure.
-     * @param codespace   The code space of identifiers to search.
-     * @param expected    The expected identifier code.
-     * @param identifiers The actual identifiers.
+     * @param message      the message to show in case of failure.
+     * @param codespace    the code space of identifiers to search.
+     * @param expected     the expected identifier code.
+     * @param identifiers  the actual identifiers.
      */
     static void assertContainsCode(final String message, final String codespace, final int expected,
             final Collection<? extends Identifier> identifiers)

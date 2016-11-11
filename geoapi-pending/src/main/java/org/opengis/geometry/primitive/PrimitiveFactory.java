@@ -101,9 +101,9 @@ public interface PrimitiveFactory {
      * So that the {@linkplain SurfaceBoundary surface boundary} record contains the above-cited
      * exterior ring, and an empty set of interior rings (convex sets have no "interior" holes).
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Primitive(GM_Envelope)", obligation=MANDATORY, specification=ISO_19107)
@@ -113,7 +113,7 @@ public interface PrimitiveFactory {
     /**
      * Creates a point at the specified location specified by coordinates.
      *
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     Point createPoint(double[] coordinates)
@@ -122,9 +122,9 @@ public interface PrimitiveFactory {
     /**
      * Creates a point at the specified position.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Point(GM_Position)", obligation=MANDATORY, specification=ISO_19107)
@@ -135,9 +135,9 @@ public interface PrimitiveFactory {
      * Takes a list of {@linkplain CurveSegment curve segments} with the appropriate
      * end-to-start relationships and creates a {@linkplain Curve curve}.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Curve(GM_CurveSegment[1..n])", obligation=MANDATORY, specification=ISO_19107)
@@ -148,9 +148,9 @@ public interface PrimitiveFactory {
      * Takes a list of {@linkplain SurfacePatch surface patches} with the appropriate
      * side-toside relationships and creates a {@linkplain Surface surface}.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Surface(GM_SurfacePatch[1..n])", obligation=MANDATORY, specification=ISO_19107)
@@ -165,9 +165,9 @@ public interface PrimitiveFactory {
      * {@linkplain Curve curve} instances to be coplanar (lie in a single plane) which will
      * define the surface interior.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Surface(GM_SurfaceBoundary)", obligation=MANDATORY, specification=ISO_19107)
@@ -184,11 +184,11 @@ public interface PrimitiveFactory {
      *        this parameter may be null.
      * @param interiors All of the curve components of the boundary that are not
      *        the exterior.
-     * @throws MismatchedReferenceSystemException If geometric objects given in
+     * @throws MismatchedReferenceSystemException if geometric objects given in
      *         argument don't use a {@linkplain CoordinateReferenceSystem
      *         coordinate reference system} compatible with the one held by this
      *         factory.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     SurfaceBoundary createSurfaceBoundary(Ring exterior, List<Ring> interiors)
@@ -200,9 +200,9 @@ public interface PrimitiveFactory {
      * Since this specification is limited to 3-dimensional coordinate reference systems,
      * any solid is definable by its boundary.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     @UML(identifier="GM_Solid(GM_SolidBoundary)", obligation=MANDATORY, specification=ISO_19107)
@@ -216,9 +216,9 @@ public interface PrimitiveFactory {
      *        These curves must connect to form a continuous curve whose start
      *        point is the same as its end point.
      *
-     * @throws MismatchedReferenceSystemException If geometric objects given in argument don't
+     * @throws MismatchedReferenceSystemException if geometric objects given in argument don't
      *         use compatible {@linkplain CoordinateReferenceSystem coordinate reference system}.
-     * @throws MismatchedDimensionException If geometric objects given in argument don't have
+     * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
     Ring createRing(List<OrientableCurve> curves)

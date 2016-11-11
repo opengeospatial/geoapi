@@ -74,8 +74,8 @@ final class Utilities {
      * {@linkplain #getAlternateTitles alternate title} in the given citation matches the given
      * string. The comparison is case-insensitive and ignores leading and trailing spaces.
      *
-     * @param  citation The citation to check for.
-     * @param  title The title or alternate title to compare.
+     * @param  citation  the citation to check for.
+     * @param  title     the title or alternate title to compare.
      * @return {@code true} if the title or alternate title matches the given string.
      */
     static boolean titleMatches(final Citation citation, String title) {
@@ -124,8 +124,8 @@ final class Utilities {
      *       returns the sum of the accuracy of all components.</li>
      * </ul>
      *
-     * @param  operation The operation to inspect for accuracy.
-     * @return The accuracy estimate (always in meters), or NaN if unknown.
+     * @param  operation  the operation to inspect for accuracy.
+     * @return the accuracy estimate (always in meters), or NaN if unknown.
      */
     static double getAccuracy(final CoordinateOperation operation) {
         if (operation == null) {

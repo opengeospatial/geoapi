@@ -57,7 +57,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not control point(s) exists.
      *
-     * @return Whether or not control point(s) exists.
+     * @return whether or not control point(s) exists.
      */
     @UML(identifier="controlPointAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isControlPointAvailable();
@@ -65,7 +65,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Indication of whether or not orientation parameters are available.
      *
-     * @return Whether or not orientation parameters are available.
+     * @return whether or not orientation parameters are available.
      */
     @UML(identifier="orientationParameterAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isOrientationParameterAvailable();
@@ -73,7 +73,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Description of parameters used to describe sensor orientation.
      *
-     * @return Description of parameters used to describe sensor orientation, or {@code null}.
+     * @return description of parameters used to describe sensor orientation, or {@code null}.
      */
     @UML(identifier="orientationParameterDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getOrientationParameterDescription();
@@ -81,7 +81,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Terms which support grid data georeferencing.
      *
-     * @return Terms which support grid data georeferencing.
+     * @return terms which support grid data georeferencing.
      *
      * @since 2.1
      */
@@ -91,7 +91,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Reference providing description of the parameters.
      *
-     * @return Reference providing description of the parameters.
+     * @return reference providing description of the parameters.
      */
     @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Citation> getParameterCitations();
@@ -99,7 +99,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
     /**
      * Information that can be used to geolocate the data.
      *
-     * @return A geolocalisation of the data.
+     * @return a geolocalisation of the data.
      *
      * @since 2.3
      */

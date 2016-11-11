@@ -60,7 +60,7 @@ public interface AttributeValues {
      *       (such as brightness values in different parts of the electromagnetic spectrum).</li>
      * </ul>
      *
-     * @return The value for each attribute.
+     * @return the value for each attribute.
      */
     @UML(identifier="values", obligation=MANDATORY, specification=ISO_19123)
     Record getValues();

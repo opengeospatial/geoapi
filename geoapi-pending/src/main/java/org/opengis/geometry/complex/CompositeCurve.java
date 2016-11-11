@@ -52,9 +52,9 @@ import static org.opengis.annotation.Specification.*;
  * @since GeoAPI 1.0
  *
  * @todo This interface extends (indirectly) both {@link org.opengis.geometry.primitive.Primitive} and
- *       {@link org.opengis.geometry.complex.Complex}. Concequently, there is a clash in the semantics
- *       of some set theoretic operation. Specifically, {@code Primitive.contains(...)}
- *       (returns FALSE for end points) is different from {@code Complex.contains(...)}
+ *       {@link org.opengis.geometry.complex.Complex}. Consequently, there is a clash in the semantics
+ *       of some set theoretic operation. Specifically, {@code Primitive.contains(…)}
+ *       (returns FALSE for end points) is different from {@code Complex.contains(…)}
  *       (returns TRUE for end points).
  */
 @UML(identifier="GM_CompositeCurve", specification=ISO_19107)
@@ -66,7 +66,7 @@ public interface CompositeCurve extends Composite, OrientableCurve {
      * generator set of {@linkplain org.opengis.geometry.primitive.Curve curve} would be
      * added to the curves in the generator list.
      *
-     * @return The list of orientable curves in this composite.
+     * @return the list of orientable curves in this composite.
      *
      * @see OrientableCurve#getComposite
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63

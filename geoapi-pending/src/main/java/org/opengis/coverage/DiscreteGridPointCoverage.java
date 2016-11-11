@@ -89,7 +89,7 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * Links this discrete grid point coverage to the grid values matrix
      * for which it is an evaluator.
      *
-     * @return The underlying grid values matrix.
+     * @return the underlying grid values matrix.
      */
     @UML(identifier="valueAssignment", obligation=MANDATORY, specification=ISO_19123)
     GridValuesMatrix getValueAssignment();
@@ -147,7 +147,7 @@ public interface DiscreteGridPointCoverage extends DiscreteCoverage {
      * and return the grid point value pair associated with the specified grid position.
      *
      * @param g The position where to search for a value.
-     * @return The point and value at the specified position.
+     * @return the point and value at the specified position.
      */
     @UML(identifier="point", obligation=MANDATORY, specification=ISO_19123)
     GridPointValuePair point(GridCoordinates g);

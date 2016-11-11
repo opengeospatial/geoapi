@@ -58,7 +58,7 @@ public interface GenericCurve {
      * This differs from the boundary operator in {@link org.opengis.geometry.primitive.Primitive},
      * since it returns only the values of this point, not representative objects.
      *
-     * @return The first point on the {@code GenericCurve}.
+     * @return the first point on the {@code GenericCurve}.
      *
      * @see #getStartParam()
      * @see #getEndPoint()
@@ -71,7 +71,7 @@ public interface GenericCurve {
      * This differs from the boundary operator in {@link org.opengis.geometry.primitive.Primitive},
      * since it returns only the values of this point, not representative objects.
      *
-     * @return The last point on the {@code GenericCurve}.
+     * @return the last point on the {@code GenericCurve}.
      *
      * @see #getEndParam()
      * @see #getStartPoint()
@@ -86,7 +86,7 @@ public interface GenericCurve {
      * parameterization by arc length.
      *
      * @param s The parameter value along this curve.
-     * @return The tangent unit vector.
+     * @return the tangent unit vector.
      * @unitof Distance
      *
      * @see #getStartParam()
@@ -105,7 +105,7 @@ public interface GenericCurve {
      * start parameter of any segment (except the first) shall be equal to the end
      * parameter of the previous segment.
      *
-     * @return The parameter for the {@linkplain #getStartPoint start point}.
+     * @return the parameter for the {@linkplain #getStartPoint start point}.
      * @unitof Distance
      *
      * @see #getStartPoint()
@@ -126,7 +126,7 @@ public interface GenericCurve {
      * start parameter of any segment (except the first) shall be equal to the end
      * parameter of the previous segment.
      *
-     * @return The parameter for the {@linkplain #getEndPoint end point}.
+     * @return the parameter for the {@linkplain #getEndPoint end point}.
      * @unitof Distance
      *
      * @see #getEndPoint()
@@ -151,7 +151,7 @@ public interface GenericCurve {
      * queried.
      * </div>
      *
-     * @return The parameter used in the constructive paramerization for the start point.
+     * @return the parameter used in the constructive paramerization for the start point.
      *
      * @see #getStartParam()
      * @see #getEndConstructiveParam()
@@ -174,7 +174,7 @@ public interface GenericCurve {
      * queried.
      * </div>
      *
-     * @return The parameter used in the constructive paramerization for the end point.
+     * @return the parameter used in the constructive paramerization for the end point.
      *
      * @see #getEndParam()
      * @see #getStartConstructiveParam()
@@ -193,7 +193,7 @@ public interface GenericCurve {
      * when that curve is used to construct a parametric surface.
      *
      * @param cp The constructive parameter.
-     * @return The direct position for the given constructive parameter.
+     * @return the direct position for the given constructive parameter.
      *
      * @see #getStartConstructiveParam()
      * @see #getEndConstructiveParam()
@@ -210,7 +210,7 @@ public interface GenericCurve {
      * {@code GenericCurve} measured from the start point and added to the start parameter.
      *
      * @param s The distance from the start point and added to the start parameter.
-     * @return The direct position for the given parameter.
+     * @return the direct position for the given parameter.
      *
      * @see #getStartParam()
      * @see #getEndParam()
@@ -224,7 +224,7 @@ public interface GenericCurve {
      * If the direct position is not on the curve, the nearest point on the curve shall be used.
      *
      * @param p The direct position on the curve.
-     * @return The parameter closest to the given position.
+     * @return the parameter closest to the given position.
      *
      * @see #getStartPoint()
      * @see #getEndPoint()
@@ -254,7 +254,7 @@ public interface GenericCurve {
      *               {@linkplain #getStartPoint start point}.
      * @param point2 The second point, or {@code null} for the
      *               {@linkplain #getEndPoint end point}.
-     * @return The length between the two specified points.
+     * @return the length between the two specified points.
      * @unitof Length
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
@@ -277,7 +277,7 @@ public interface GenericCurve {
      *
      * @param cparam1 The first constructive parameter.
      * @param cparam2 The second constructive parameter.
-     * @return The length between the two specified constructive parameter.
+     * @return the length between the two specified constructive parameter.
      * @unitof Length
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
@@ -299,7 +299,7 @@ public interface GenericCurve {
      * {@linkplain org.opengis.geometry.primitive.Point points} in the same complex.
      * </div>
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      */
     @Draft
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
@@ -324,7 +324,7 @@ public interface GenericCurve {
      *   object. GeoAPI returns a {@link PointArray} object instead, in order to allow deferred point
      *   creation for implementors, and convenient access to the {@code PointArray} methods for users.
      *
-     * @return The control points.
+     * @return the control points.
      */
     @Draft
     @UML(identifier="samplePoints", obligation=MANDATORY, specification=ISO_19107)
@@ -358,7 +358,7 @@ public interface GenericCurve {
      *                   or 0 for no constraint.
      * @param maxOffset  The maximal distance between generated curve at any point and the original
      *                   curve, or 0 for no constraint.
-     * @return The an approximation of this curve as a line string.
+     * @return the an approximation of this curve as a line string.
      * @unitof Distance (for arguments)
      */
     @UML(identifier="asLineString", obligation=MANDATORY, specification=ISO_19107)
@@ -369,7 +369,7 @@ public interface GenericCurve {
      * a reversal of the ordering of parameters in the curve segments, and a reversal of the order
      * of the segments with a curve.
      *
-     * @return The reverse of the curve.
+     * @return the reverse of the curve.
      */
     @Draft
     @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)

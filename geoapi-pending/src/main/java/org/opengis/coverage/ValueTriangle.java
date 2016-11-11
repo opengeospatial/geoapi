@@ -56,7 +56,7 @@ public interface ValueTriangle extends ValueObject {
      * Returns the triangle that defines the relative position of the three
      * {@linkplain PointValuePair point-value pairs} at its vertices.
      *
-     * @return The geometry as a triangle.
+     * @return the geometry as a triangle.
      *
      * @todo The returns type in ISO-19123 is {@link Triangle}.
      */
@@ -67,7 +67,7 @@ public interface ValueTriangle extends ValueObject {
      * Returns the three <var>point</var>-<var>value</var> pairs at the vertices of this
      * value triangle.
      *
-     * @return The control values.
+     * @return the control values.
      */
     @UML(identifier="controlValue", obligation=MANDATORY, specification=ISO_19123)
     Set<PointValuePair> getControlValues();
@@ -76,7 +76,7 @@ public interface ValueTriangle extends ValueObject {
      * Returns the barycentric coordinates of the specified position as a sequence of numbers.
      *
      * @param p The position where to calculate.
-     * @return The barycentric coordinates.
+     * @return the barycentric coordinates.
      */
     @UML(identifier="point", obligation=MANDATORY, specification=ISO_19123)
     double[] point(DirectPosition p);

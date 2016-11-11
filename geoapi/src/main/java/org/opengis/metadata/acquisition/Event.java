@@ -53,7 +53,7 @@ public interface Event {
     /**
      * Event name or number.
      *
-     * @return Event name or number.
+     * @return event name or number.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Identifier getIdentifier();
@@ -61,7 +61,7 @@ public interface Event {
     /**
      * Initiator of the event.
      *
-     * @return Initiator of the event.
+     * @return initiator of the event.
      */
     @UML(identifier="trigger", obligation=MANDATORY, specification=ISO_19115_2)
     Trigger getTrigger();
@@ -69,7 +69,7 @@ public interface Event {
     /**
      * Meaning of the event.
      *
-     * @return Meaning of the event.
+     * @return meaning of the event.
      */
     @UML(identifier="context", obligation=MANDATORY, specification=ISO_19115_2)
     Context getContext();
@@ -77,7 +77,7 @@ public interface Event {
     /**
      * Relative time ordering of the event.
      *
-     * @return Relative time ordering.
+     * @return relative time ordering.
      */
     @UML(identifier="sequence", obligation=MANDATORY, specification=ISO_19115_2)
     Sequence getSequence();
@@ -90,7 +90,7 @@ public interface Event {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Time the event occurred.
+     * @return time the event occurred.
      */
     @UML(identifier="time", obligation=MANDATORY, specification=ISO_19115_2)
     Date getTime();
@@ -98,7 +98,7 @@ public interface Event {
     /**
      * Objective or objectives satisfied by an event.
      *
-     * @return Objectives satisfied by an event.
+     * @return objectives satisfied by an event.
      */
     @UML(identifier="expectedObjective", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Objective> getExpectedObjectives();
@@ -106,7 +106,7 @@ public interface Event {
     /**
      * Pass during which an event occurs.
      *
-     * @return Pass during which an event occurs, or {@code null}.
+     * @return pass during which an event occurs, or {@code null}.
      */
     @UML(identifier="relatedPass", obligation=OPTIONAL, specification=ISO_19115_2)
     PlatformPass getRelatedPass();
@@ -114,7 +114,7 @@ public interface Event {
     /**
      * Instrument or instruments for which the event is meaningful.
      *
-     * @return Instruments for which the event is meaningful.
+     * @return instruments for which the event is meaningful.
      */
     @UML(identifier="relatedSensor", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Instrument> getRelatedSensors();

@@ -52,7 +52,7 @@ public interface BoundingPolygon extends GeographicExtent {
     /**
      * The sets of points defining the bounding polygon or any other geometry (point, line).
      *
-     * @return The sets of points defining the resource boundary.
+     * @return the sets of points defining the resource boundary.
      */
     @UML(identifier="polygon", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Geometry> getPolygons();

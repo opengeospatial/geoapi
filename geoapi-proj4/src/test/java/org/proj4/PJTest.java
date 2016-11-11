@@ -66,7 +66,7 @@ public class PJTest {
      * Ensures that the native code correctly detects the case of null pointers.
      * This is important in order to ensure that we don't have a JVM crash.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test(expected = NullPointerException.class)
     public void testNullPointerException() throws TransformException {
@@ -78,7 +78,7 @@ public class PJTest {
      * Ensures that the native code correctly detects the case of index out of bounds.
      * This is important in order to ensure that we don't have a JVM crash.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testIndexOutOfBoundsException() throws TransformException {

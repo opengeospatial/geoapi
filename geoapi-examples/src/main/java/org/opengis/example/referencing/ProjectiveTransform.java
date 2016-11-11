@@ -63,11 +63,11 @@ public class ProjectiveTransform extends SimpleTransform {
     /**
      * Creates a new operation for the given name, CRS and matrix.
      *
-     * @param authority Organization responsible for definition of the name, or {@code null}.
-     * @param name      The name of the new CRS.
-     * @param sourceCRS The source CRS to be returned by {@link #getSourceCRS()}, or {@code null}.
-     * @param targetCRS The target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
-     * @param matrix    The matrix. See class javadoc for constraints on the matrix size.
+     * @param authority  organization responsible for definition of the name, or {@code null}.
+     * @param name       the name of the new CRS.
+     * @param sourceCRS  the source CRS to be returned by {@link #getSourceCRS()}, or {@code null}.
+     * @param targetCRS  the target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
+     * @param matrix     the matrix. See class javadoc for constraints on the matrix size.
      */
     public ProjectiveTransform(final Citation authority, final String name,
             final CoordinateReferenceSystem sourceCRS,
@@ -160,8 +160,8 @@ public class ProjectiveTransform extends SimpleTransform {
      * the derivative is the same at every points. Consequently the {@code point} argument
      * is ignored.
      *
-     * @param  point Ignored for a linear transform.
-     * @return The derivative (never {@code null}).
+     * @param  point  ignored for a linear transform.
+     * @return the derivative (never {@code null}).
      */
     @Override
     public Matrix derivative(final DirectPosition point) {

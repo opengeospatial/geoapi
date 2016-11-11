@@ -57,7 +57,7 @@ public interface RangeDimension {
     /**
      * Unique name or number that identifies attributes included in the coverage.
      *
-     * @return Unique name or number, or {@code null} if none.
+     * @return unique name or number, or {@code null} if none.
      */
     @UML(identifier="sequenceIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     MemberName getSequenceIdentifier();
@@ -65,7 +65,7 @@ public interface RangeDimension {
     /**
      * Description of the attribute.
      *
-     * @return Description of the attribute, or {@code null} if none.
+     * @return description of the attribute, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -75,7 +75,7 @@ public interface RangeDimension {
     /**
      * Description of the range of a cell measurement value.
      *
-     * @return Description of the range of a cell measurement value, or {@code null} if none.
+     * @return description of the range of a cell measurement value, or {@code null} if none.
      *
      * @deprecated As of ISO 19115:2014, renamed {@link #getDescription()}.
      */
@@ -87,7 +87,7 @@ public interface RangeDimension {
      * Identifiers for each attribute included in the resource. These identifiers
      * can be used to provide names for the attribute from a standard set of names.
      *
-     * @return Identifiers for each attribute included in the resource.
+     * @return identifiers for each attribute included in the resource.
      *
      * @since 3.1
      */

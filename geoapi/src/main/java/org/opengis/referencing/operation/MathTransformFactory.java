@@ -110,7 +110,7 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
      *         <code>{@linkplain Projection}.class</code> for fetching only map projection methods, <i>etc</i>.
-     * @return Methods available in this factory for coordinate operations of the given type.
+     * @return methods available in this factory for coordinate operations of the given type.
      *
      * @departure extension
      *   This method is not part of the OGC specification.
@@ -136,7 +136,7 @@ public interface MathTransformFactory extends Factory {
      * constructor that delegates its work to {@code createParameterizedTransform(…)}, for example
      * {@link #createBaseToDerived createBaseToDerived(…)}.</p>
      *
-     * @return The last method used by a {@code create(…)} constructor, or {@code null} if unknown of unsupported.
+     * @return the last method used by a {@code create(…)} constructor, or {@code null} if unknown of unsupported.
      *
      * @see #createParameterizedTransform(ParameterValueGroup)
      *
@@ -165,8 +165,8 @@ public interface MathTransformFactory extends Factory {
      * Parameters are intended to be modified by the user before to be given to the above-cited
      * {@code createParameterizedTransform(…)} constructor.</p>
      *
-     * @param  method The case insensitive name of the coordinate operation method to search for.
-     * @return A new group of parameter values for the {@code OperationMethod} identified by the given name.
+     * @param  method  the case insensitive name of the coordinate operation method to search for.
+     * @return a new group of parameter values for the {@code OperationMethod} identified by the given name.
      * @throws NoSuchIdentifierException if there is no method registered for the given name or identifier.
      *
      * @departure extension
@@ -191,10 +191,10 @@ public interface MathTransformFactory extends Factory {
      * and if they are applicable (typically for cartographic projections).
      * This inference is consistent with the EPSG database model.</p>
      *
-     * @param  baseCRS    The source coordinate reference system.
-     * @param  parameters The parameter values for the transform.
-     * @param  derivedCS  The target coordinate system.
-     * @return The parameterized transform from {@code baseCRS} to {@code derivedCS},
+     * @param  baseCRS     the source coordinate reference system.
+     * @param  parameters  the parameter values for the transform.
+     * @param  derivedCS   the target coordinate system.
+     * @return the parameterized transform from {@code baseCRS} to {@code derivedCS},
      *         including unit conversions and axis swapping.
      * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
      * @throws FactoryException if the object creation failed. This exception is thrown
@@ -249,8 +249,8 @@ public interface MathTransformFactory extends Factory {
      * libraries may resolve this conflict in different ways.
      * Users can invoke {@link #createBaseToDerived createBaseToDerived(…)} instead for more determinist results.</p>
      *
-     * @param  parameters The parameter values.
-     * @return The parameterized transform.
+     * @param  parameters  the parameter values.
+     * @return the parameterized transform.
      * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
@@ -272,8 +272,8 @@ public interface MathTransformFactory extends Factory {
      * The {@code [i][N]} element of the matrix will be 0 for <var>i</var> less than {@code M},
      * and 1 for <var>i</var> equals {@code M}.
      *
-     * @param matrix The matrix used to define the affine transform.
-     * @return The affine transform.
+     * @param  matrix  the matrix used to define the affine transform.
+     * @return the affine transform.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createAffineTransform", obligation=MANDATORY, specification=OGC_01009)
@@ -288,9 +288,9 @@ public interface MathTransformFactory extends Factory {
      * of the input space in the second transform. If you wish to concatenate more than two
      * transforms, then you can repeatedly use this constructor.</p>
      *
-     * @param  transform1 The first transform to apply to points.
-     * @param  transform2 The second transform to apply to points.
-     * @return The concatenated transform.
+     * @param  transform1  the first transform to apply to points.
+     * @param  transform2  the second transform to apply to points.
+     * @return the concatenated transform.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createConcatenatedTransform", obligation=MANDATORY, specification=OGC_01009)
@@ -304,12 +304,12 @@ public interface MathTransformFactory extends Factory {
      * through transform can convert the height values from meters to feet without affecting
      * the (<var>latitude</var>, <var>longitude</var>) values.
      *
-     * @param  firstAffectedOrdinate The lowest index of the affected ordinates.
-     * @param  subTransform Transform to use for affected ordinates.
-     * @param  numTrailingOrdinates Number of trailing ordinates to pass through.
+     * @param  firstAffectedOrdinate  the lowest index of the affected ordinates.
+     * @param  subTransform           transform to use for affected ordinates.
+     * @param  numTrailingOrdinates   number of trailing ordinates to pass through.
      *         Affected ordinates will range from {@code firstAffectedOrdinate}
      *         inclusive to {@code dimTarget-numTrailingOrdinates} exclusive.
-     * @return A pass through transform with the following dimensions:<br>
+     * @return a pass through transform with the following dimensions:<br>
      *         <pre>
      * Source: firstAffectedOrdinate + subTransform.getDimSource() + numTrailingOrdinates
      * Target: firstAffectedOrdinate + subTransform.getDimTarget() + numTrailingOrdinates</pre>
@@ -323,8 +323,8 @@ public interface MathTransformFactory extends Factory {
     /**
      * Creates a math transform object from a XML string.
      *
-     * @param  xml Math transform encoded in XML format.
-     * @return The math transform (never {@code null}).
+     * @param  xml  math transform encoded in XML format.
+     * @return the math transform (never {@code null}).
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createFromXML", obligation=MANDATORY, specification=OGC_01009)
@@ -335,8 +335,8 @@ public interface MathTransformFactory extends Factory {
      * The <a href="../doc-files/WKT.html">definition for WKT</a> is
      * shown using Extended Backus Naur Form (EBNF).
      *
-     * @param  wkt Math transform encoded in Well-Known Text format.
-     * @return The math transform (never {@code null}).
+     * @param  wkt  math transform encoded in Well-Known Text format.
+     * @return the math transform (never {@code null}).
      * @throws FactoryException if the Well-Known Text can't be parsed,
      *         or if the math transform creation failed from some other reason.
      *

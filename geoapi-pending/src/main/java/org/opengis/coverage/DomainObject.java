@@ -60,7 +60,7 @@ public interface DomainObject<G extends Geometry> {
      * Returns the set of geometries of which this domain is composed.
      * The set may be empty.
      *
-     * @return The spatial component of the domain.
+     * @return the spatial component of the domain.
      */
     @UML(identifier="spatialElement", obligation=OPTIONAL, specification=ISO_19123)
     Set<G> getSpatialElements();
@@ -69,7 +69,7 @@ public interface DomainObject<G extends Geometry> {
      * Returns the set of geometric primitives of which this domain is composed.
      * The set may be empty.
      *
-     * @return The temporal component of the domain.
+     * @return the temporal component of the domain.
      */
     @UML(identifier="temporalElement", obligation=OPTIONAL, specification=ISO_19123)
     Set<TemporalGeometricPrimitive> getTemporalElements();

@@ -84,7 +84,7 @@ public interface Envelope {
      * If non-null, it shall be the same as {@linkplain #getLowerCorner() lower corner}
      * and {@linkplain #getUpperCorner() upper corner} CRS.
      *
-     * @return The envelope CRS, or {@code null} if unknown.
+     * @return the envelope CRS, or {@code null} if unknown.
      *
      * @departure easeOfUse
      *   ISO does not define this method - the CRS or the dimension can be obtained only through
@@ -102,7 +102,7 @@ public interface Envelope {
      * even when the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}
      * is unknown.
      *
-     * @return The dimensionality of this envelope.
+     * @return the dimensionality of this envelope.
      *
      * @departure easeOfUse
      *   ISO does not define this method - the CRS or the dimension can be obtained only through
@@ -135,7 +135,7 @@ public interface Envelope {
      * name still "visually" appropriate since the <cite>lower</cite> corner still toward the
      * bottom of the map even if the left corner became the right corner.</p></blockquote>
      *
-     * @return The lower corner, typically (but not necessarily) containing minimal ordinate values.
+     * @return the lower corner, typically (but not necessarily) containing minimal ordinate values.
      */
     @UML(identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getLowerCorner();
@@ -160,7 +160,7 @@ public interface Envelope {
      * name still "visually" appropriate since the <cite>upper</cite> corner still toward the
      * top of the map even if the right corner became the left corner.</p></blockquote>
      *
-     * @return The upper corner, typically (but not necessarily) containing maximal ordinate values.
+     * @return the upper corner, typically (but not necessarily) containing maximal ordinate values.
      */
     @UML(identifier="upperCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getUpperCorner();
@@ -184,9 +184,9 @@ public interface Envelope {
      * {@linkplain Double#NEGATIVE_INFINITY negative infinity}, {@linkplain Double#NaN NaN} or other
      * value, at implementor choice.</p></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the ordinate value.
-     * @return The minimal ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the ordinate value.
+     * @return the minimal ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
@@ -221,9 +221,9 @@ public interface Envelope {
      * {@linkplain Double#POSITIVE_INFINITY positive infinity}, {@linkplain Double#NaN NaN} or other
      * value, at implementor choice.</p></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the ordinate value.
-     * @return The maximal ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the ordinate value.
+     * @return the maximal ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
@@ -260,9 +260,9 @@ public interface Envelope {
      * libraries may add different multiples of the periodicity in order to ensure that the
      * median value is inside the axis range.</p></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the ordinate value.
-     * @return The median ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the ordinate value.
+     * @return the median ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
@@ -298,9 +298,9 @@ public interface Envelope {
      * <p>Implementations are free to use variants of the above algorithm. For example some
      * libraries may add different multiples of the periodicity.</p></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the span.
-     * @return The span (typically width or height) at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the span.
+     * @return the span (typically width or height) at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse

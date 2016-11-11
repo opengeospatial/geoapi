@@ -74,7 +74,7 @@ public interface PointArray extends List<Position> {
      *
      * @deprecated Please use {@link #size()}
      *
-     * @return The array length.
+     * @return the array length.
      *
      * @see List#size
      * @see PointGrid#width
@@ -105,7 +105,7 @@ public interface PointArray extends List<Position> {
      * implicitly assumed to take on the value of the containing object's coordinate reference
      * system.
      *
-     * @return The coordinate reference system, or {@code null}.
+     * @return the coordinate reference system, or {@code null}.
      * @see DirectPosition#getCoordinateReferenceSystem
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -129,7 +129,7 @@ public interface PointArray extends List<Position> {
      * @param index The location in the array, from 0 inclusive to the array
      *        {@linkplain #length length} exclusive.
      * @param dest An optionnaly pre-allocated direct position.
-     * @return The {@code dest} argument, or a new object if {@code dest} was null.
+     * @return the {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     DirectPosition getDirectPosition(int index, DirectPosition dest) throws IndexOutOfBoundsException;
@@ -161,7 +161,7 @@ public interface PointArray extends List<Position> {
      * {@link List#get(int)} method. Favor the {@linkplain List#iterator list iterator} instead.
      *
      * @deprecated use <b>this</b>
-     * @return The list of positions in this array.
+     * @return the list of positions in this array.
      */
     @Deprecated
     @UML(identifier="column", obligation=MANDATORY, specification=ISO_19107)

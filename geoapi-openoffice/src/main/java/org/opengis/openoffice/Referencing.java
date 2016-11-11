@@ -163,10 +163,10 @@ public final class Referencing extends Formulas implements XReferencing {
      * Returns a factory for creating the service.
      * This method is called by the {@code com.sun.star.comp.loader.JavaLoader}; do not rename!
      *
-     * @param   implementation The name of the implementation for which a service is desired.
-     * @param   factories      The service manager to be used if needed.
-     * @param   registry       The registry key
-     * @return  A factory for creating the component.
+     * @param  implementation  the name of the implementation for which a service is desired.
+     * @param  factories       the service manager to be used if needed.
+     * @param  registry        the registry key
+     * @return a factory for creating the component.
      */
     public static XSingleServiceFactory __getServiceFactory(
                                         final String               implementation,
@@ -183,7 +183,7 @@ public final class Referencing extends Formulas implements XReferencing {
      * Writes the service information into the given registry key.
      * This method is called by the {@code com.sun.star.comp.loader.JavaLoader}; do not rename!
      *
-     * @param  registry     The registry key.
+     * @param  registry  the registry key.
      * @return {@code true} if the operation succeeded.
      */
     public static boolean __writeRegistryServiceInfo(final XRegistryKey registry) {
@@ -201,10 +201,9 @@ public final class Referencing extends Formulas implements XReferencing {
     }
 
     /**
-     * Provides the supported service names of the implementation, including also
-     * indirect service names.
+     * Provides the supported service names of the implementation, including also indirect service names.
      *
-     * @return Sequence of service names that are supported.
+     * @return sequence of service names that are supported.
      */
     @Override
     public String[] getSupportedServiceNames() {
@@ -214,7 +213,7 @@ public final class Referencing extends Formulas implements XReferencing {
     /**
      * Tests whether the specified service is supported, i.e. implemented by the implementation.
      *
-     * @param  name Name of service to be tested.
+     * @param  name  name of service to be tested.
      * @return {@code true} if the service is supported, {@code false} otherwise.
      */
     @Override
@@ -244,9 +243,9 @@ public final class Referencing extends Formulas implements XReferencing {
     /**
      * Returns the coordinate operation for the two specified CRS.
      *
-     * @param  source The source CRS authority code.
-     * @param  target The target CRS authority code.
-     * @return The coordinate operation.
+     * @param  source  the source CRS authority code.
+     * @param  target  the target CRS authority code.
+     * @return the coordinate operation.
      * @throws NoSuchElementException if no factory implementation has been found.
      * @throws FactoryException if the coordinate operation can't be created.
      */
@@ -276,11 +275,11 @@ public final class Referencing extends Formulas implements XReferencing {
      * Returns the Well Know Text (WKT) for the specified object using the parameter names
      * from the specified authority.
      *
-     * @param  object The object to format.
-     * @param  authority The authority name for choice of parameter names. Usually "OGC".
-     * @return The Well Know Text (WKT) for the specified object.
+     * @param  object     the object to format.
+     * @param  authority  the authority name for choice of parameter names. Usually "OGC".
+     * @return the Well Know Text (WKT) for the specified object.
      * @throws IllegalArgumentException if {@code authority} is not a string value or void.
-     * @throws UnsupportedOperationException if the object can't be formatted.
+     * @throws UnsupportedOperationException if the object can not be formatted.
      */
     private static String toWKT(final Object object, final Object authority)
             throws IllegalArgumentException, UnsupportedOperationException

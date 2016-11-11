@@ -60,7 +60,7 @@ public interface CitationDate {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Reference date for the cited resource.
+     * @return reference date for the cited resource.
      */
     @Profile(level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
@@ -69,7 +69,7 @@ public interface CitationDate {
     /**
      * Event used for reference date.
      *
-     * @return Event used for reference date.
+     * @return event used for reference date.
      */
     @Profile(level=CORE)
     @UML(identifier="dateType", obligation=MANDATORY, specification=ISO_19115)

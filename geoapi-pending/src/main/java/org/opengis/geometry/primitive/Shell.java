@@ -57,7 +57,7 @@ public interface Shell extends CompositeSurface {
     /**
      * Always returns {@code true} since shell objects are simples.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
     @UML(identifier="isSimple", obligation=MANDATORY, specification=ISO_19107)
     boolean isSimple();

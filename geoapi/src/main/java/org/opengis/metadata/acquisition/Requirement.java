@@ -55,7 +55,7 @@ public interface Requirement {
     /**
      * Identification of reference or guidance material for the requirement.
      *
-     * @return Identification of reference or guidance material, or {@code null}.
+     * @return identification of reference or guidance material, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();
@@ -63,7 +63,7 @@ public interface Requirement {
     /**
      * Unique name, or code, for the requirement.
      *
-     * @return Unique name or code.
+     * @return unique name or code.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Identifier getIdentifier();
@@ -71,7 +71,7 @@ public interface Requirement {
     /**
      * Origin of requirement.
      *
-     * @return Origin of requirement.
+     * @return origin of requirement.
      */
     @UML(identifier="requestor", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Responsibility> getRequestors();
@@ -79,7 +79,7 @@ public interface Requirement {
     /**
      * Person(s), or body(ies), to receive results of requirement.
      *
-     * @return Person(s), or body(ies), to receive results.
+     * @return person(s), or body(ies), to receive results.
      */
     @UML(identifier="recipient", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Responsibility> getRecipients();
@@ -87,7 +87,7 @@ public interface Requirement {
     /**
      * Relative ordered importance, or urgency, of the requirement.
      *
-     * @return Relative ordered importance, or urgency.
+     * @return relative ordered importance, or urgency.
      */
     @UML(identifier="priority", obligation=MANDATORY, specification=ISO_19115_2)
     Priority getPriority();
@@ -95,7 +95,7 @@ public interface Requirement {
     /**
      * Required or preferred acquisition date and time.
      *
-     * @return Required or preferred acquisition date and time.
+     * @return required or preferred acquisition date and time.
      */
     @UML(identifier="requestedDate", obligation=MANDATORY, specification=ISO_19115_2)
     RequestedDate getRequestedDate();
@@ -108,7 +108,7 @@ public interface Requirement {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Date and time after which collection is no longer valid.
+     * @return date and time after which collection is no longer valid.
      */
     @UML(identifier="expiryDate", obligation=MANDATORY, specification=ISO_19115_2)
     Date getExpiryDate();
@@ -116,7 +116,7 @@ public interface Requirement {
     /**
      * Plan that identifies solution to satisfy the requirement.
      *
-     * @return Plan that identifies solution to satisfy the requirement.
+     * @return plan that identifies solution to satisfy the requirement.
      */
     @UML(identifier="satisfiedPlan", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Plan> getSatisfiedPlans();

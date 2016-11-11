@@ -67,8 +67,7 @@ final strictfp class BogusAffineTransform2D extends AffineTransform2D {
     boolean wrongDerivative;
 
     /**
-     * Transforms the given array, introducing an erroneous value if
-     * {@link #wrongFloatToFloat} is {@code true}.
+     * Transforms the given array, introducing an erroneous value if {@link #wrongFloatToFloat} is {@code true}.
      */
     @Override
     public void transform(float[] srcPts, int srcOff, float[] dstPts, int dstOff, int numPts) {
@@ -79,8 +78,7 @@ final strictfp class BogusAffineTransform2D extends AffineTransform2D {
     }
 
     /**
-     * Returns the inverse of this transform, as an erroneous one if {@link #wrongInverse}
-     * is {@code true}.
+     * Returns the inverse of this transform, as an erroneous one if {@link #wrongInverse} is {@code true}.
      */
     @Override
     public MathTransform2D inverse() throws NoninvertibleTransformException {

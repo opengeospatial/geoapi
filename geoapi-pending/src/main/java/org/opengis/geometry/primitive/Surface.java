@@ -75,7 +75,7 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * entire {@code Surface} is one logical patch defined by linear interpolation from the
      * boundary.
      *
-     * @return The list of surface patches. Should never be {@code null} neither empty.
+     * @return the list of surface patches. Should never be {@code null} neither empty.
      *
      * @see SurfacePatch#getSurface
      * @see Curve#getSegments
@@ -88,7 +88,7 @@ public interface Surface extends OrientableSurface, GenericSurface {
     /**
      * Returns the orientable surfaces associated with this surface.
      *
-     * @return The orientable surfaces as an array of length 2.
+     * @return the orientable surfaces as an array of length 2.
      *
      * @see OrientableSurface#getPrimitive
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63

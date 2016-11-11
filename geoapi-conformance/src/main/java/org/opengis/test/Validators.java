@@ -102,10 +102,10 @@ public class Validators {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method (if any). Use this method only if the type is
+     * {@code validate(…)} method (if any). Use this method only if the type is
      * unknown at compile-time.
      *
-     * @param  object The object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
      */
     public static void dispatch(final Object object) {
         DEFAULT.dispatch(object);
@@ -114,7 +114,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see RootValidator#validate(Metadata)
      *
      * @since 3.1
@@ -126,7 +127,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Citation)
      */
     public static void validate(final Citation object) {
@@ -136,7 +138,8 @@ public class Validators {
     /**
      * Tests the conformance of the given objects.
      *
-     * @param object The objects to test, or {@code null}.
+     * @param  object  the objects to test, or {@code null}.
+     *
      * @see CitationValidator#validate(CitationDate...)
      *
      * @since 3.1
@@ -148,7 +151,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Responsibility)
      *
      * @since 3.1
@@ -160,7 +164,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Party)
      *
      * @since 3.1
@@ -172,7 +177,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Contact)
      *
      * @since 3.1
@@ -184,7 +190,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Telephone)
      *
      * @since 3.1
@@ -196,7 +203,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Address)
      *
      * @since 3.1
@@ -208,7 +216,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(OnlineResource)
      *
      * @since 3.1
@@ -220,7 +229,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(Extent)
      */
     public static void validate(final Extent object) {
@@ -230,7 +240,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(TemporalExtent)
      */
     public static void validate(final TemporalExtent object) {
@@ -240,7 +251,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(VerticalExtent)
      */
     public static void validate(final VerticalExtent object) {
@@ -250,7 +262,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#dispatch(GeographicExtent)
      */
     public static void validate(final GeographicExtent object) {
@@ -260,7 +273,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(GeographicDescription)
      */
     public static void validate(final GeographicDescription object) {
@@ -270,7 +284,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(BoundingPolygon)
      */
     public static void validate(final BoundingPolygon object) {
@@ -280,7 +295,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(GeographicBoundingBox)
      */
     public static void validate(final GeographicBoundingBox object) {
@@ -290,7 +306,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see GeometryValidator#validate(Envelope)
      */
     public static void validate(final Envelope object) {
@@ -300,7 +317,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see GeometryValidator#validate(DirectPosition)
      */
     public static void validate(final DirectPosition object) {
@@ -310,7 +328,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CRSValidator#dispatch(CoordinateReferenceSystem)
      */
     public static void validate(final CoordinateReferenceSystem object) {
@@ -320,7 +339,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CRSValidator#validate(GeocentricCRS)
      */
     public static void validate(final GeocentricCRS object) {
@@ -330,7 +350,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CRSValidator#validate(GeographicCRS)
      */
     public static void validate(final GeographicCRS object) {
@@ -340,7 +361,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(ProjectedCRS)
      */
     public static void validate(final ProjectedCRS object) {
@@ -350,7 +372,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(DerivedCRS)
      */
     public static void validate(final DerivedCRS object) {
@@ -360,7 +383,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(ImageCRS)
      */
     public static void validate(final ImageCRS object) {
@@ -370,7 +394,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(EngineeringCRS)
      */
     public static void validate(final EngineeringCRS object) {
@@ -380,7 +405,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(VerticalCRS)
      */
     public static void validate(final VerticalCRS object) {
@@ -390,7 +416,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(TemporalCRS)
      */
     public static void validate(final TemporalCRS object) {
@@ -400,7 +427,8 @@ public class Validators {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(CompoundCRS)
      */
     public static void validate(final CompoundCRS object) {
@@ -410,7 +438,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#dispatch(CoordinateSystem)
      */
     public static void validate(final CoordinateSystem object) {
@@ -420,7 +449,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(CartesianCS)
      */
     public static void validate(final CartesianCS object) {
@@ -430,7 +460,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(EllipsoidalCS)
      */
     public static void validate(final EllipsoidalCS object) {
@@ -440,7 +471,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(SphericalCS)
      */
     public static void validate(final SphericalCS object) {
@@ -450,7 +482,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(CylindricalCS)
      */
     public static void validate(final CylindricalCS object) {
@@ -460,7 +493,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(PolarCS)
      */
     public static void validate(final PolarCS object) {
@@ -470,7 +504,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(LinearCS)
      */
     public static void validate(final LinearCS object) {
@@ -480,7 +515,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(VerticalCS)
      */
     public static void validate(final VerticalCS object) {
@@ -490,7 +526,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(TimeCS)
      */
     public static void validate(final TimeCS object) {
@@ -500,7 +537,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(UserDefinedCS)
      */
     public static void validate(final UserDefinedCS object) {
@@ -510,7 +548,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(CoordinateSystemAxis)
      */
     public static void validate(final CoordinateSystemAxis object) {
@@ -520,7 +559,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#dispatch(Datum)
      */
     public static void validate(final Datum object) {
@@ -530,7 +570,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(PrimeMeridian)
      */
     public static void validate(final PrimeMeridian object) {
@@ -540,7 +581,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(Ellipsoid)
      */
     public static void validate(final Ellipsoid object) {
@@ -550,7 +592,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(GeodeticDatum)
      */
     public static void validate(final GeodeticDatum object) {
@@ -560,7 +603,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(VerticalDatum)
      */
     public static void validate(final VerticalDatum object) {
@@ -570,7 +614,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(TemporalDatum)
      */
     public static void validate(final TemporalDatum object) {
@@ -580,7 +625,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(ImageDatum)
      */
     public static void validate(final ImageDatum object) {
@@ -590,7 +636,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(EngineeringDatum)
      */
     public static void validate(final EngineeringDatum object) {
@@ -600,7 +647,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#dispatch(CoordinateOperation)
      */
     public static void validate(final CoordinateOperation object) {
@@ -610,7 +658,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(Conversion)
      */
     public static void validate(final Conversion object) {
@@ -620,7 +669,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(Transformation)
      */
     public static void validate(final Transformation object) {
@@ -630,7 +680,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(ConcatenatedOperation)
      */
     public static void validate(final ConcatenatedOperation object) {
@@ -640,7 +691,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(PassThroughOperation)
      */
     public static void validate(final PassThroughOperation object) {
@@ -650,7 +702,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(OperationMethod)
      */
     public static void validate(final OperationMethod object) {
@@ -660,7 +713,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(Formula)
      */
     public static void validate(final Formula object) {
@@ -670,7 +724,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(MathTransform)
      */
     public static void validate(final MathTransform object) {
@@ -680,7 +735,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#dispatch(GeneralParameterDescriptor)
      */
     public static void validate(final GeneralParameterDescriptor object) {
@@ -690,7 +746,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterDescriptor)
      */
     public static void validate(final ParameterDescriptor<?> object) {
@@ -700,7 +757,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterDescriptorGroup)
      */
     public static void validate(final ParameterDescriptorGroup object) {
@@ -710,7 +768,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#dispatch(GeneralParameterValue)
      */
     public static void validate(final GeneralParameterValue object) {
@@ -720,7 +779,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterValue)
      */
     public static void validate(final ParameterValue<?> object) {
@@ -730,7 +790,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterValueGroup)
      */
     public static void validate(final ParameterValueGroup object) {
@@ -740,7 +801,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ReferencingValidator#dispatchObject(IdentifiedObject)
      */
     public static void validate(final IdentifiedObject object) {
@@ -750,7 +812,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see RootValidator#validate(Identifier)
      *
      * @since 3.1
@@ -762,7 +825,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#dispatch(GenericName)
      */
     public static void validate(final GenericName object) {
@@ -772,7 +836,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(LocalName)
      */
     public static void validate(final LocalName object) {
@@ -782,7 +847,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(ScopedName)
      */
     public static void validate(final ScopedName object) {
@@ -792,7 +858,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(NameSpace)
      */
     public static void validate(final NameSpace object) {
@@ -802,7 +869,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(InternationalString)
      */
     public static void validate(final InternationalString object) {
@@ -812,7 +880,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ImageValidator#validate(ImageReaderSpi)
      */
     public static void validate(final ImageReaderSpi object) {
@@ -822,7 +891,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ImageValidator#validate(ImageWriterSpi)
      */
     public static void validate(final ImageWriterSpi object) {
@@ -832,7 +902,8 @@ public class Validators {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ImageValidator#validate(IIOMetadataFormat)
      */
     public static void validate(final IIOMetadataFormat object) {

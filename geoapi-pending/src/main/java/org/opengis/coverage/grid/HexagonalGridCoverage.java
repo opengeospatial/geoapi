@@ -115,7 +115,7 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      * value hexagons.
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list)
@@ -133,7 +133,7 @@ public interface HexagonalGridCoverage extends ContinuousCoverage {
      *   <li>The lengths of the {@linkplain RectifiedGrid#getOffsetVectors offset vectors} are equal.</li>
      * </ul>
      *
-     * @return The underlying data.
+     * @return the underlying data.
      */
     @UML(identifier="source", obligation=MANDATORY, specification=ISO_19123)
     GridValuesMatrix getSource();

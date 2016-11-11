@@ -141,11 +141,11 @@ public strictfp class PixelIterator {
     /**
      * Creates an iterator for a sub-area of the given raster.
      *
-     * @param raster       The raster to iterate over.
-     * @param subArea      Rectangle which represent raster sub area iteration, or {@code null} if none.
-     * @param xSubsampling The iteration step when moving to the next pixel.
-     * @param ySubsampling The iteration step when moving to the next scan line.
-     * @param sourceBands  The source bands, or {@code null} if none.
+     * @param raster        the raster to iterate over.
+     * @param subArea       rectangle which represent raster sub area iteration, or {@code null} if none.
+     * @param xSubsampling  the iteration step when moving to the next pixel.
+     * @param ySubsampling  the iteration step when moving to the next scan line.
+     * @param sourceBands   the source bands, or {@code null} if none.
      */
     public PixelIterator(final Raster raster, final Rectangle subArea,
             final int xSubsampling, final int ySubsampling, final int[] sourceBands)
@@ -156,11 +156,11 @@ public strictfp class PixelIterator {
     /**
      * Creates an iterator for a sub-area of the given image.
      *
-     * @param image        The image to iterate over.
-     * @param subArea      Rectangle which represent image sub area iteration, or {@code null} if none.
-     * @param xSubsampling The iteration step when moving to the next pixel.
-     * @param ySubsampling The iteration step when moving to the next scan line.
-     * @param sourceBands  The source bands, or {@code null} if none.
+     * @param image         the image to iterate over.
+     * @param subArea       rectangle which represent image sub area iteration, or {@code null} if none.
+     * @param xSubsampling  the iteration step when moving to the next pixel.
+     * @param ySubsampling  the iteration step when moving to the next scan line.
+     * @param sourceBands   the source bands, or {@code null} if none.
      */
     public PixelIterator(final RenderedImage image, final Rectangle subArea,
             final int xSubsampling, final int ySubsampling, final int[] sourceBands)
@@ -267,7 +267,7 @@ public strictfp class PixelIterator {
      * {@linkplain RenderedImage#getMinX() image X minimum} (inclusive) to that minimum
      * plus the {@linkplain RenderedImage#getWidth() image width} (exclusive).
      *
-     * @return The current <var>x</var> coordinate.
+     * @return the current <var>x</var> coordinate.
      *
      * @see RenderedImage#getMinX()
      * @see RenderedImage#getWidth()
@@ -281,7 +281,7 @@ public strictfp class PixelIterator {
      * {@linkplain RenderedImage#getMinY() image Y minimum} (inclusive) to that minimum
      * plus the {@linkplain RenderedImage#getHeight() image height} (exclusive).
      *
-     * @return The current <var>y</var> coordinate.
+     * @return the current <var>y</var> coordinate.
      *
      * @see RenderedImage#getMinY()
      * @see RenderedImage#getHeight()
@@ -296,7 +296,7 @@ public strictfp class PixelIterator {
      * the {@code sourceBands} array length (exclusive) if the array given to the
      * constructor was non-null.
      *
-     * @return The current band index.
+     * @return the current band index.
      *
      * @see SampleModel#getNumBands()
      */
@@ -308,7 +308,7 @@ public strictfp class PixelIterator {
      * Returns the type of the sample values, as one of the {@code TYPE_*} constants
      * defined in the {@link DataBuffer} class.
      *
-     * @return The type of the sample values.
+     * @return the type of the sample values.
      *
      * @see SampleModel#getDataType()
      * @see DataBuffer#TYPE_BYTE
@@ -331,7 +331,7 @@ public strictfp class PixelIterator {
      * {@linkplain DataBuffer#TYPE_INT integer}
      * {@linkplain #getDataType() datatypes}.
      *
-     * @return The sample value at the current position.
+     * @return the sample value at the current position.
      *
      * @see Raster#getSample(int, int, int)
      * @see DataBuffer#TYPE_BYTE
@@ -346,7 +346,7 @@ public strictfp class PixelIterator {
     /**
      * Returns the sample value at the current position, as a floating point number.
      *
-     * @return The sample value at the current position.
+     * @return the sample value at the current position.
      *
      * @see Raster#getSampleFloat(int, int, int)
      * @see DataBuffer#TYPE_FLOAT
@@ -358,7 +358,7 @@ public strictfp class PixelIterator {
     /**
      * Returns the sample value at the current position, as a double-precision floating point number.
      *
-     * @return The sample value at the current position.
+     * @return the sample value at the current position.
      *
      * @see Raster#getSampleDouble(int, int, int)
      * @see DataBuffer#TYPE_DOUBLE
@@ -386,12 +386,10 @@ public strictfp class PixelIterator {
      * If the images have different sizes, then an <cite>"Unexpected end of iteration"</cite>
      * exception will be thrown when the first iterator reaches the iteration end.
      *
-     * @param actual The iterator that contains the actual values to be compared with the
-     *               "expected" sample values.
-     * @param tolerance The tolerance threshold for floating point comparison.
-     *               This threshold does not apply to integer types.
-     * @throws AssertionError If a value in this iterator is not equals to a value in the given iterator
-     *          with the given tolerance threshold.
+     * @param  actual     the iterator that contains the actual values to be compared with the "expected" sample values.
+     * @param  tolerance  the tolerance threshold for floating point comparison. This threshold does not apply to integer types.
+     * @throws AssertionError if a value in this iterator is not equals to a value in the given iterator with the given
+     *         tolerance threshold.
      */
     public void assertSampleValuesEqual(final PixelIterator actual, final double tolerance) throws AssertionError {
         final int dataType = Math.max(getDataType(), actual.getDataType());

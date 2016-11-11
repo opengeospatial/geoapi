@@ -53,7 +53,7 @@ public interface Identifier {
     /**
      * Determines if the id of an object matches the value of the identifier.
      *
-     * @param object The object to perform the test against.
+     * @param  object  the object to perform the test against.
      * @return {@code true} if a match, otherwise {@code false}.
      */
     boolean matches(Object object);

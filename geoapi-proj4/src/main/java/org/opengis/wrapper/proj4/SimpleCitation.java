@@ -66,7 +66,7 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString {
     /**
      * Creates a new citation having the given title.
      *
-     * @param title The citation title to be returned by {@link #getTitle()}.
+     * @param title  the citation title to be returned by {@link #getTitle()}.
      */
     SimpleCitation(final String title) {
         this.title = title;
