@@ -4,12 +4,12 @@ Steps for creating a GeoAPI milestone in a Unix environment
 * Prepare environment
 
   Defines the version number for the GeoAPI milesone.
-  The example below uses 4.0-M03.
+  The example below uses 4.0-M06.
   Please edit as needed.
 
 ---------------------------------------------------------------------------------------------
 export GEOAPI_SNAPSHOT=4.0-SNAPSHOT
-export GEOAPI_VERSION=4.0-M03
+export GEOAPI_VERSION=4.0-M06
 ---------------------------------------------------------------------------------------------
 
 
