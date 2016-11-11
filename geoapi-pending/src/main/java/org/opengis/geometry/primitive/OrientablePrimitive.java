@@ -93,7 +93,7 @@ public interface OrientablePrimitive extends Primitive {
      * This method is <em>optional</em> since the association in ISO 19107 is navigable
      * only from {@code Primitive} to {@code OrientablePrimitive}, not the other way.
      *
-     * @return The primitive, or {@code null} if the association is
+     * @return the primitive, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see Primitive#getProxy

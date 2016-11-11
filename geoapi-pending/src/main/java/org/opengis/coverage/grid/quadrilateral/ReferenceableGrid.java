@@ -65,7 +65,7 @@ public interface ReferenceableGrid extends GridPositioning {
      * or may transform the associated sample point.
      *
      * @param g The coordinate to transform.
-     * @return The transformed coordinate.
+     * @return the transformed coordinate.
      */
     @UML(identifier="coordTransform", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition transformCoordinates(GridCoordinates g);
@@ -74,7 +74,7 @@ public interface ReferenceableGrid extends GridPositioning {
      * Transforms from a direct position to the grid coordinates of the nearest grid point.
      *
      * @param p The coordinate to transform.
-     * @return The transformed coordinate.
+     * @return the transformed coordinate.
      *
      * @todo Question (Wim): GridCoordinates are always integers, how to get
      *       the not rounded results?<br>

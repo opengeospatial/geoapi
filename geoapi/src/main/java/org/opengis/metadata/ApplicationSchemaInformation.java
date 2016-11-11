@@ -52,7 +52,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Name of the application schema used.
      *
-     * @return Name of the application schema.
+     * @return name of the application schema.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
     Citation getName();
@@ -60,7 +60,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Identification of the schema language used.
      *
-     * @return The schema language used.
+     * @return the schema language used.
      */
     @UML(identifier="schemaLanguage", obligation=MANDATORY, specification=ISO_19115)
     String getSchemaLanguage();
@@ -68,7 +68,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Formal language used in Application Schema.
      *
-     * @return Formal language used in Application Schema.
+     * @return formal language used in Application Schema.
      */
     @UML(identifier="constraintLanguage", obligation=MANDATORY, specification=ISO_19115)
     String getConstraintLanguage();
@@ -80,7 +80,7 @@ public interface ApplicationSchemaInformation {
      * {@code URI} will be replaced by {@link CharSequence} in GeoAPI 4.0.
      * </div>
      *
-     * @return Application schema as an ASCII file, or {@code null}.
+     * @return application schema as an ASCII file, or {@code null}.
      */
     @UML(identifier="schemaAscii", obligation=OPTIONAL, specification=ISO_19115)
     URI getSchemaAscii();
@@ -93,7 +93,7 @@ public interface ApplicationSchemaInformation {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Application schema as a graphics file, or {@code null}.
+     * @return application schema as a graphics file, or {@code null}.
      */
     @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     URI getGraphicsFile();
@@ -106,7 +106,7 @@ public interface ApplicationSchemaInformation {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Application schema as a software development file, or {@code null}.
+     * @return application schema as a software development file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     URI getSoftwareDevelopmentFile();
@@ -114,7 +114,7 @@ public interface ApplicationSchemaInformation {
     /**
      * Software dependent format used for the application schema software dependent file.
      *
-     * @return Format used for the application schema software file, or {@code null}.
+     * @return format used for the application schema software file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL, specification=ISO_19115)
     String getSoftwareDevelopmentFileFormat();

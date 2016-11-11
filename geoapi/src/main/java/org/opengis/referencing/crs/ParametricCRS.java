@@ -68,7 +68,7 @@ public interface ParametricCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which shall be parametric.
      *
-     * @return The parametric coordinate system.
+     * @return the parametric coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111_2)

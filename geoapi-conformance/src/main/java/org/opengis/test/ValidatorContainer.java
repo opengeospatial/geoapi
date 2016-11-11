@@ -215,7 +215,7 @@ public class ValidatorContainer implements Cloneable {
      * myContainer.crs = new CRSValidator();
      * myContainer.crs.{@linkplain CRSValidator#enforceStandardNames enforceStandardNames} = false;</pre></blockquote>
      *
-     * @return A new {@code ValidatorContainer} instance using the same {@link Validator} instances.
+     * @return a new {@code ValidatorContainer} instance using the same {@link Validator} instances.
      */
     @Override
     public ValidatorContainer clone() {
@@ -228,10 +228,10 @@ public class ValidatorContainer implements Cloneable {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      * Use this method only if the type is unknown at compile-time.
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
+     * @param  object The object to dispatch to {@code validate(…)} methods, or {@code null}.
      */
     public final void dispatch(final Object object) {
         if (object instanceof Metadata)              validate((Metadata)              object);
@@ -261,7 +261,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see RootValidator#validate(Metadata)
      *
      * @since 3.1
@@ -273,7 +274,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Citation)
      */
     public final void validate(final Citation object) {
@@ -283,7 +285,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given objects.
      *
-     * @param object The objects to test, or {@code null}.
+     * @param  object  the objects to test, or {@code null}.
+     *
      * @see CitationValidator#validate(CitationDate...)
      *
      * @since 3.1
@@ -295,7 +298,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Responsibility)
      *
      * @since 3.1
@@ -307,7 +311,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Party)
      *
      * @since 3.1
@@ -319,7 +324,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Contact)
      *
      * @since 3.1
@@ -331,7 +337,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Telephone)
      *
      * @since 3.1
@@ -343,7 +350,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(Address)
      *
      * @since 3.1
@@ -355,7 +363,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CitationValidator#validate(OnlineResource)
      *
      * @since 3.1
@@ -367,7 +376,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(Extent)
      */
     public final void validate(final Extent object) {
@@ -377,7 +387,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(TemporalExtent)
      */
     public final void validate(final TemporalExtent object) {
@@ -387,7 +398,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(VerticalExtent)
      */
     public final void validate(final VerticalExtent object) {
@@ -397,7 +409,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#dispatch(GeographicExtent)
      */
     public final void validate(final GeographicExtent object) {
@@ -407,7 +420,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(GeographicDescription)
      */
     public final void validate(final GeographicDescription object) {
@@ -417,7 +431,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(BoundingPolygon)
      */
     public final void validate(final BoundingPolygon object) {
@@ -427,7 +442,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ExtentValidator#validate(GeographicBoundingBox)
      */
     public final void validate(final GeographicBoundingBox object) {
@@ -437,7 +453,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see GeometryValidator#validate(Envelope)
      */
     public final void validate(final Envelope object) {
@@ -447,7 +464,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see GeometryValidator#validate(DirectPosition)
      */
     public final void validate(final DirectPosition object) {
@@ -457,7 +475,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CRSValidator#dispatch(CoordinateReferenceSystem)
      */
     public final void validate(final CoordinateReferenceSystem object) {
@@ -467,7 +486,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CRSValidator#validate(GeocentricCRS)
      */
     public final void validate(final GeocentricCRS object) {
@@ -477,7 +497,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CRSValidator#validate(GeographicCRS)
      */
     public final void validate(final GeographicCRS object) {
@@ -487,7 +508,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(ProjectedCRS)
      */
     public final void validate(final ProjectedCRS object) {
@@ -497,7 +519,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(DerivedCRS)
      */
     public final void validate(final DerivedCRS object) {
@@ -507,7 +530,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(ImageCRS)
      */
     public final void validate(final ImageCRS object) {
@@ -517,7 +541,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(EngineeringCRS)
      */
     public final void validate(final EngineeringCRS object) {
@@ -527,7 +552,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(VerticalCRS)
      */
     public final void validate(final VerticalCRS object) {
@@ -537,7 +563,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(TemporalCRS)
      */
     public final void validate(final TemporalCRS object) {
@@ -547,7 +574,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(CompoundCRS)
      */
     public final void validate(final CompoundCRS object) {
@@ -557,7 +585,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#dispatch(CoordinateSystem)
      */
     public final void validate(final CoordinateSystem object) {
@@ -567,7 +596,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(CartesianCS)
      */
     public final void validate(final CartesianCS object) {
@@ -577,7 +607,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(EllipsoidalCS)
      */
     public final void validate(final EllipsoidalCS object) {
@@ -587,7 +618,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(SphericalCS)
      */
     public final void validate(final SphericalCS object) {
@@ -597,7 +629,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(CylindricalCS)
      */
     public final void validate(final CylindricalCS object) {
@@ -607,7 +640,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(PolarCS)
      */
     public final void validate(final PolarCS object) {
@@ -617,7 +651,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(LinearCS)
      */
     public final void validate(final LinearCS object) {
@@ -627,7 +662,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(VerticalCS)
      */
     public final void validate(final VerticalCS object) {
@@ -637,7 +673,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(TimeCS)
      */
     public final void validate(final TimeCS object) {
@@ -647,7 +684,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(UserDefinedCS)
      */
     public final void validate(final UserDefinedCS object) {
@@ -657,7 +695,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(CoordinateSystemAxis)
      */
     public final void validate(final CoordinateSystemAxis object) {
@@ -667,7 +706,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#dispatch(Datum)
      */
     public final void validate(final Datum object) {
@@ -677,7 +717,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(PrimeMeridian)
      */
     public final void validate(final PrimeMeridian object) {
@@ -687,7 +728,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(Ellipsoid)
      */
     public final void validate(final Ellipsoid object) {
@@ -697,7 +739,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(GeodeticDatum)
      */
     public final void validate(final GeodeticDatum object) {
@@ -707,7 +750,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(VerticalDatum)
      */
     public final void validate(final VerticalDatum object) {
@@ -717,7 +761,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(TemporalDatum)
      */
     public final void validate(final TemporalDatum object) {
@@ -727,7 +772,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(ImageDatum)
      */
     public final void validate(final ImageDatum object) {
@@ -737,7 +783,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(EngineeringDatum)
      */
     public final void validate(final EngineeringDatum object) {
@@ -747,7 +794,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#dispatch(CoordinateOperation)
      */
     public final void validate(final CoordinateOperation object) {
@@ -757,7 +805,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(Conversion)
      */
     public final void validate(final Conversion object) {
@@ -767,7 +816,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(Transformation)
      */
     public final void validate(final Transformation object) {
@@ -777,7 +827,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(ConcatenatedOperation)
      */
     public final void validate(final ConcatenatedOperation object) {
@@ -787,7 +838,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(PassThroughOperation)
      */
     public final void validate(final PassThroughOperation object) {
@@ -797,7 +849,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(OperationMethod)
      */
     public final void validate(final OperationMethod object) {
@@ -807,7 +860,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(OperationMethod)
      */
     public final void validate(final Formula object) {
@@ -817,7 +871,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(MathTransform)
      */
     public final void validate(final MathTransform object) {
@@ -827,7 +882,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#dispatch(GeneralParameterDescriptor)
      */
     public final void validate(final GeneralParameterDescriptor object) {
@@ -837,7 +893,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterDescriptor)
      */
     public final void validate(final ParameterDescriptor<?> object) {
@@ -847,7 +904,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterDescriptorGroup)
      */
     public final void validate(final ParameterDescriptorGroup object) {
@@ -857,7 +915,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#dispatch(GeneralParameterValue)
      */
     public final void validate(final GeneralParameterValue object) {
@@ -867,7 +926,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterValue)
      */
     public final void validate(final ParameterValue<?> object) {
@@ -877,7 +937,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ParameterValidator#validate(ParameterValueGroup)
      */
     public final void validate(final ParameterValueGroup object) {
@@ -887,7 +948,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ReferencingValidator#dispatchObject(IdentifiedObject)
      */
     public final void validate(final IdentifiedObject object) {
@@ -897,7 +959,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see RootValidator#validate(Identifier)
      *
      * @since 3.1
@@ -909,7 +972,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#dispatch(GenericName)
      */
     public final void validate(final GenericName object) {
@@ -919,7 +983,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(LocalName)
      */
     public final void validate(final LocalName object) {
@@ -929,7 +994,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(ScopedName)
      */
     public final void validate(final ScopedName object) {
@@ -939,7 +1005,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(NameSpace)
      */
     public final void validate(final NameSpace object) {
@@ -949,7 +1016,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see NameValidator#validate(InternationalString)
      */
     public final void validate(final InternationalString object) {
@@ -959,7 +1027,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ImageValidator#validate(ImageReaderSpi)
      */
     public final void validate(final ImageReaderSpi object) {
@@ -969,7 +1038,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ImageValidator#validate(ImageWriterSpi)
      */
     public final void validate(final ImageWriterSpi object) {
@@ -979,7 +1049,8 @@ public class ValidatorContainer implements Cloneable {
     /**
      * Tests the conformance of the given object.
      *
-     * @param object The object to test, or {@code null}.
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see ImageValidator#validate(IIOMetadataFormat)
      */
     public void validate(final IIOMetadataFormat object) {

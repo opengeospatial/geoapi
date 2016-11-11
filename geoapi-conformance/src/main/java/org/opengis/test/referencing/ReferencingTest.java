@@ -73,9 +73,9 @@ public strictfp class ReferencingTest extends ObjectFactoryTest {
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param crsFactory   Factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param csFactory    Factory for creating {@link CoordinateSystem} instances.
-     * @param datumFactory Factory for creating {@link Datum} instances.
+     * @param crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
+     * @param csFactory     factory for creating {@link CoordinateSystem} instances.
+     * @param datumFactory  factory for creating {@link Datum} instances.
      */
     public ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
         super(datumFactory, csFactory, crsFactory, null);

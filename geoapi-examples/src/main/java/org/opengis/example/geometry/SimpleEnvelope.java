@@ -54,11 +54,11 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * Constructs an envelope defined by two direct positions.
      * The CRS of the envelope will be the CRS of the given direct positions, which shall be the equal.
      *
-     * @param  lowerCorner The limits in the direction of decreasing ordinate values for each dimension.
-     * @param  upperCorner The limits in the direction of increasing ordinate values for each dimension.
-     * @throws MismatchedReferenceSystemException If the CRS of the two position are not equal.
-     * @throws MismatchedDimensionException If the two positions do not have the same dimension.
-     * @throws IllegalArgumentException If an ordinate value in the lower corner is greater than
+     * @param  lowerCorner  the limits in the direction of decreasing ordinate values for each dimension.
+     * @param  upperCorner  the limits in the direction of increasing ordinate values for each dimension.
+     * @throws MismatchedReferenceSystemException if the CRS of the two position are not equal.
+     * @throws MismatchedDimensionException if the two positions do not have the same dimension.
+     * @throws IllegalArgumentException if an ordinate value in the lower corner is greater than
      *         the corresponding ordinate value in the upper corner.
      */
     public SimpleEnvelope(final DirectPosition lowerCorner, final DirectPosition upperCorner)
@@ -80,8 +80,8 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * Constructs a new envelope with the same data than the specified envelope.
      * This is a copy constructor.
      *
-     * @param envelope The envelope to copy.
-     * @throws IllegalArgumentException If an ordinate value in the lower corner is greater than
+     * @param  envelope  the envelope to copy.
+     * @throws IllegalArgumentException if an ordinate value in the lower corner is greater than
      *         the corresponding ordinate value in the upper corner.
      */
     public SimpleEnvelope(final Envelope envelope) {
@@ -117,7 +117,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
     /**
      * Returns the length of coordinate sequence (the number of entries) in this envelope.
      *
-     * @return The dimensionality of this envelope.
+     * @return the dimensionality of this envelope.
      */
     @Override
     public final int getDimension() {
@@ -127,7 +127,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
     /**
      * Returns the envelope coordinate reference system, or {@code null} if unknown.
      *
-     * @return The envelope CRS, or {@code null} if unknown.
+     * @return the envelope CRS, or {@code null} if unknown.
      */
     @Override
     public CoordinateReferenceSystem getCoordinateReferenceSystem() {
@@ -142,7 +142,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * <p>This method returns a copy of the lower corner.
      * Changes in the returned position will not be reflected in this envelope.</p>
      *
-     * @return The lower corner, typically (but not necessarily) containing minimal ordinate values.
+     * @return the lower corner, typically (but not necessarily) containing minimal ordinate values.
      */
     @Override
     public DirectPosition getLowerCorner() {
@@ -161,7 +161,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * <p>This method returns a copy of the upper corner.
      * Changes in the returned position will not be reflected in this envelope.</p>
      *
-     * @return The upper corner, typically (but not necessarily) containing maximal ordinate values.
+     * @return the upper corner, typically (but not necessarily) containing maximal ordinate values.
      */
     @Override
     public DirectPosition getUpperCorner() {
@@ -176,8 +176,8 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * Ensures that the given dimension is equals or greater than zero and lower than the
      * number of dimensions in this envelope.
      *
-     * @param  dimension The dimension to check.
-     * @throws IndexOutOfBoundsException If the given dimension is negative or not lower
+     * @param  dimension  the dimension to check.
+     * @throws IndexOutOfBoundsException if the given dimension is negative or not lower
      *         than the number of dimensions in this envelope.
      */
     private void ensureValidDimension(final int dimension) throws IndexOutOfBoundsException {
@@ -193,9 +193,9 @@ public class SimpleEnvelope implements Envelope, Serializable {
      *
      * <blockquote><pre>return getLowerCorner().getOrdinate(dimension);</pre></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the ordinate value.
-     * @return The minimal ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the ordinate value.
+     * @return the minimal ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      */
     @Override
@@ -211,9 +211,9 @@ public class SimpleEnvelope implements Envelope, Serializable {
      *
      * <blockquote><pre>return getUpperCorner().getOrdinate(dimension);</pre></blockquote>
      *
-     * @param  dimension The dimension for which to obtain the ordinate value.
-     * @return The maximal ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @param  dimension  the dimension for which to obtain the ordinate value.
+     * @return the maximal ordinate at the given dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      */
     @Override
@@ -255,7 +255,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * object is not an instance of the same {@code SimpleEnvelope} class. We do that in
      * order to preserve consistency with {@link #hashCode()}.
      *
-     * @param  object The object to compare with this envelope, or {@code null}.
+     * @param  object  the object to compare with this envelope, or {@code null}.
      * @return {@code true} if the given object is an instance of the same {@code SimpleEnvelope}
      *         class, and have equal ordinate values and equal CRS.
      */
@@ -272,7 +272,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
     /**
      * Returns an arbitrary hash code value for this envelope.
      *
-     * @return A hash code value.
+     * @return a hash code value.
      */
     @Override
     public int hashCode() {
@@ -285,7 +285,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
      * lower corner}{@code ,}{@linkplain #getUpperCorner() upper corner}{@code )}"
      * where <var>n</var> is the {@linkplain #getDimension() number of dimensions}.
      *
-     * @return This envelope as a {@code BOX2D} or {@code BOX3D} (most typical dimensions) in WKT format.
+     * @return this envelope as a {@code BOX2D} or {@code BOX3D} (most typical dimensions) in WKT format.
      */
     @Override
     public String toString() {

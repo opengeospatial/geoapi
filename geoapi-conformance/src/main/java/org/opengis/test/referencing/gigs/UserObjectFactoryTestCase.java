@@ -95,7 +95,7 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories The factories to be used by the test. Those factories passed verbatim to the
+     * @param factories  the factories to be used by the test. Those factories passed verbatim to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
     protected UserObjectFactoryTestCase(final ObjectFactory... factories) {
@@ -120,7 +120,7 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -143,9 +143,9 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
     /**
      * Creates a map containing the given name and code, to be given to object factories.
      *
-     * @param  code The GIGS (not EPSG) code of the object to create.
-     * @param  name The name of the object to create.
-     * @return Properties to be given to the {@code create(…)} method.
+     * @param  code  the GIGS (not EPSG) code of the object to create.
+     * @param  name  the name of the object to create.
+     * @return properties to be given to the {@code create(…)} method.
      */
     static Map<String,Object> properties(final int code, final String name) {
         final Map<String,Object> properties = new HashMap<>(4);
@@ -157,8 +157,8 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
     /**
      * Sets the GIGS code name in the {@link #properties} map.
      *
-     * @param code The GIGS (not EPSG) code of the object to create.
-     * @param name The name of the object to create.
+     * @param  code  the GIGS (not EPSG) code of the object to create.
+     * @param  name  the name of the object to create.
      */
     final void setCodeAndName(final int code, final String name) {
         assertNull(IdentifiedObject.NAME_KEY,        properties.put(IdentifiedObject.NAME_KEY, name));
@@ -186,7 +186,7 @@ public abstract strictfp class UserObjectFactoryTestCase<T> extends GIGSTestCase
      * the current {@link #properties} in argument. The created object is then cached and returned in subsequent
      * invocations of this method.
      *
-     * @return The instance to test.
+     * @return the instance to test.
      * @throws FactoryException if an error occurred while creating the identified object.
      */
     public abstract T getIdentifiedObject() throws FactoryException;

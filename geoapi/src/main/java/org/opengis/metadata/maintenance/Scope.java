@@ -54,7 +54,7 @@ public interface Scope {
     /**
      * Hierarchical level of the data specified by the scope.
      *
-     * @return Hierarchical level of the data.
+     * @return hierarchical level of the data.
      */
     @UML(identifier="level", obligation=MANDATORY, specification=ISO_19115)
     ScopeCode getLevel();
@@ -62,7 +62,7 @@ public interface Scope {
     /**
      * Information about the spatial, vertical and temporal extents of the resource specified by the scope.
      *
-     * @return Information about the extent of the resource.
+     * @return information about the extent of the resource.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtents();
@@ -70,7 +70,7 @@ public interface Scope {
     /**
      * Detailed description about the level of the data specified by the scope.
      *
-     * @return Detailed description about the level of the data.
+     * @return detailed description about the level of the data.
      *
      * @since 2.1
      */

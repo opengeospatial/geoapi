@@ -61,7 +61,7 @@ public interface ContinuousCoverage extends Coverage {
      * Returns the set of value objects used to evaluate the coverage. This
      * association is optional - an analytical coverage needs no value objects.
      *
-     * @return The value used to evaluate the coverage, or {@code null} if not applicable.
+     * @return the value used to evaluate the coverage, or {@code null} if not applicable.
      */
     @UML(identifier="element", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends ValueObject> getElements();
@@ -73,7 +73,7 @@ public interface ContinuousCoverage extends Coverage {
      * that maps direct position to attribute value by using a mathematical function rather than
      * by interpolation).
      *
-     * @return The interpolation method, or {@code null} if not applicable.
+     * @return the interpolation method, or {@code null} if not applicable.
      */
     @UML(identifier="interpolationType", obligation=OPTIONAL, specification=ISO_19123)
     InterpolationMethod getInterpolationMethod();
@@ -86,7 +86,7 @@ public interface ContinuousCoverage extends Coverage {
      * {@linkplain #getInterpolationMethod interpolation method}. It is a dictionary of names
      * and data types.
      *
-     * @return The interpolation parameter types, or {@code null} if not applicable.
+     * @return the interpolation parameter types, or {@code null} if not applicable.
      */
     @UML(identifier="interpolationParameterTypes", obligation=OPTIONAL, specification=ISO_19123)
     RecordType getInterpolationParameterTypes();
@@ -96,8 +96,8 @@ public interface ContinuousCoverage extends Coverage {
      * It shall return an empty set if the direct position is not on any of the
      * {@linkplain DomainObject objects} within the domain of the continuous coverage.
      *
-     * @param p The position where to locate objects.
-     * @return The objects at the given location.
+     * @param  p  the position where to locate objects.
+     * @return the objects at the given location.
      */
     @UML(identifier="locate", obligation=OPTIONAL, specification=ISO_19123)
     Set<? extends ValueObject> locate(DirectPosition p);
@@ -106,9 +106,9 @@ public interface ContinuousCoverage extends Coverage {
      * Returns the set of <var>geometry</var>-<var>value</var> pairs associated with the
      * {@linkplain ValueObject value objects} of which this continuous coverage is composed.
      *
-     * @param s The spatial component.
-     * @param t The temporal component.
-     * @return The values in the given spatio-temporal domain.
+     * @param  s  the spatial component.
+     * @param  t  the temporal component.
+     * @return the values in the given spatio-temporal domain.
      */
     @UML(identifier="select", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends GeometryValuePair> select(Geometry s, Period t);
@@ -124,7 +124,7 @@ public interface ContinuousCoverage extends Coverage {
      * position is not on any {@linkplain ValueObject value object}.
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list)
@@ -144,8 +144,8 @@ public interface ContinuousCoverage extends Coverage {
      * attribute values associated with the {@linkplain org.opengis.coverage.grid.GridPoint
      * grid points} of a grid coverage.
      *
-     * @param v The feature attributes.
-     * @return The domain where the attributes are found.
+     * @param  v  the feature attributes.
+     * @return the domain where the attributes are found.
      */
     @UML(identifier="evaluateInverse", obligation=MANDATORY, specification=ISO_19123)
     Set<? extends DomainObject<?>> evaluateInverse(Record v);

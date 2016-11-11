@@ -166,7 +166,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
      *
      * @param  t1 The first element.
      * @param  t2 The second element.
-     * @return A negative number if {@code t1} should be printed before {@code t2}, or
+     * @return a negative number if {@code t1} should be printed before {@code t2}, or
      *         a positive number if {@code t1} should be printed after {@code t2}.
      */
     @Override

@@ -87,7 +87,7 @@ public interface PositionFactory {
      * position. There will be no further reference to the position instance.
      *
      * @param position A position.
-     * @return The position which defines the coordinates for the other position.
+     * @return the position which defines the coordinates for the other position.
      */
     Position createPosition(Position position);
 

@@ -55,7 +55,7 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Description of the attribute described by the measurement value.
      *
-     * @return Description of the attribute.
+     * @return description of the attribute.
      */
     @UML(identifier="attributeDescription", obligation=MANDATORY, specification=ISO_19115)
     RecordType getAttributeDescription();
@@ -64,7 +64,7 @@ public interface CoverageDescription extends ContentInformation {
      * Identifier for the level of processing that has been applied to the resource.
      * May be {@code null} if unspecified.
      *
-     * @return Identifier for the level of processing that has been applied to the resource, or {@code null} if none.
+     * @return identifier for the level of processing that has been applied to the resource, or {@code null} if none.
      *
      * @since 3.1
      *
@@ -76,7 +76,7 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Information on attribute groups of the resource.
      *
-     * @return Information on attribute groups of the resource.
+     * @return information on attribute groups of the resource.
      *
      * @since 3.1
      */
@@ -86,7 +86,7 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Type of information represented by the cell value.
      *
-     * @return Type of information represented by the cell value.
+     * @return type of information represented by the cell value.
      *
      * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getContentTypes()}.
      */
@@ -97,7 +97,7 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Information on the dimensions of the cell measurement value.
      *
-     * @return Dimensions of the cell measurement value.
+     * @return dimensions of the cell measurement value.
      *
      * @since 2.1
      *
@@ -110,7 +110,7 @@ public interface CoverageDescription extends ContentInformation {
     /**
      * Provides the description of the specific range elements of a coverage.
      *
-     * @return Description of the specific range elements.
+     * @return description of the specific range elements.
      *
      * @since 2.3
      */

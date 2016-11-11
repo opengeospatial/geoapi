@@ -80,7 +80,7 @@ public interface GenericSurface {
      * </div>
      *
      * @param point The point on this {@code GenericSurface} where to compute the upNormal.
-     * @return The upNormal unit vector.
+     * @return the upNormal unit vector.
      */
     @UML(identifier="upNormal", obligation=MANDATORY, specification=ISO_19107)
     double[] getUpNormal(DirectPosition point);
@@ -98,7 +98,7 @@ public interface GenericSurface {
      * contribute positively to the total perimeter.
      * </div>
      *
-     * @return The perimeter.
+     * @return the perimeter.
      * @unitof Length
      */
     @UML(identifier="perimeter", obligation=MANDATORY, specification=ISO_19107)
@@ -119,7 +119,7 @@ public interface GenericSurface {
      * about the exterior of the surface patch.
      * </div>
      *
-     * @return The area.
+     * @return the area.
      * @unitof Area
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)

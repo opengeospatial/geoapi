@@ -63,7 +63,7 @@ public interface ReferenceableGrid extends Grid {
     /**
      * Returns the coordinate reference system to which this grid is referenceable.
      *
-     * @return The coordinate reference system.
+     * @return the coordinate reference system.
      */
     @UML(identifier="CoordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19123)
     CoordinateReferenceSystem getCoordinateReferenceSystem();
@@ -72,7 +72,7 @@ public interface ReferenceableGrid extends Grid {
      * Transforms a grid coordinates to a direct position.
      *
      * @param  g The grid coordinates to transform.
-     * @return The "real world" coordinates.
+     * @return the "real world" coordinates.
      */
     @UML(identifier="coordTransform", obligation=MANDATORY, specification=ISO_19123)
     DirectPosition transformCoordinates(GridCoordinates g);
@@ -81,7 +81,7 @@ public interface ReferenceableGrid extends Grid {
      * Transforms from a direct position to the grid coordinates of the nearest grid point.
      *
      * @param p The "real world" coordinates to transform.
-     * @return The grid coordinates.
+     * @return the grid coordinates.
      *
      * @todo Question (Wim): GridCoordinates are always integers, how to get
      *       the not rounded results?<br>

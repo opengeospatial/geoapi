@@ -96,7 +96,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * Constructs an element of the given name. The new element is
      * automatically added to the list returned by {@link #values()}.
      *
-     * @param name The name of the new element.
+     * @param  name  the name of the new element.
      *        This name must not be in use by an other element of this type.
      */
     private ContrastMethod(final String name) {
@@ -106,7 +106,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
     /**
      * Returns the list of {@code ContrastType}s.
      *
-     * @return The list of codes declared in the current JVM.
+     * @return the list of codes declared in the current JVM.
      */
     public static ContrastMethod[] values() {
         synchronized (VALUES) {
@@ -119,7 +119,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *
-     * @return All code {@linkplain #values() values} for this code list.
+     * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
     public ContrastMethod[] family() {
@@ -133,8 +133,8 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * returns {@code true}. If no existing instance is found, then a new one is created for
      * the given name.
      *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
+     * @param  code  the name of the code to fetch or to create.
+     * @return a code matching the given name.
      */
     public static ContrastMethod valueOf(String code) {
         return valueOf(ContrastMethod.class, code);

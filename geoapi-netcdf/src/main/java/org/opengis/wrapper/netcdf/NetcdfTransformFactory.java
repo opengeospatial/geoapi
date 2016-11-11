@@ -185,8 +185,8 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      * Returns a set of available methods for {@linkplain MathTransform math transforms}.
      * This method returns a description of all projections enumerated in the class javadoc.
      *
-     * @param  type The type of operations, or {@code null} if unspecified.
-     * @return All {@linkplain MathTransform math transform} methods available in this factory.
+     * @param  type  the type of operations, or {@code null} if unspecified.
+     * @return all {@linkplain MathTransform math transform} methods available in this factory.
      */
     @Override
     public Set<OperationMethod> getAvailableMethods(final Class<? extends SingleOperation> type) {
@@ -206,8 +206,8 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      * The {@code method} argument is the name of any operation method returned by
      * <code>{@link #getAvailableMethods getAvailableMethods}({@linkplain CoordinateOperation}.class)</code>.
      *
-     * @param  method The case insensitive name of the method to search for.
-     * @return The default parameter values.
+     * @param  method  the case insensitive name of the method to search for.
+     * @return the default parameter values.
      * @throws NoSuchIdentifierException if there is no transform registered for the specified method.
      */
     @Override
@@ -241,8 +241,8 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
      * </ul>
      *
-     * @param  parameters The parameter values.
-     * @return The parameterized transform.
+     * @param  parameters  the parameter values.
+     * @return the parameterized transform.
      * @throws FactoryException if the object creation failed. This exception is thrown
      *         if some required parameter has not been supplied, or has illegal value.
      */

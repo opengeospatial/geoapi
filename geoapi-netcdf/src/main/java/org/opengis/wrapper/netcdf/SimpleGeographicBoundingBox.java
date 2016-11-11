@@ -84,7 +84,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * Constructs a geographic bounding box from the specified rectangle. The rectangle is assumed
      * in the default NetCDF geographic CRS (implementation dependent).
      *
-     * @param bounds The rectangle to use for initializing this geographic bounding box.
+     * @param bounds  the rectangle to use for initializing this geographic bounding box.
      */
     public SimpleGeographicBoundingBox(final Rectangle2D bounds) {
         this(bounds.getMinX(), bounds.getMaxX(),
@@ -104,7 +104,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * @param southBoundLatitude The minimal <var>y</var> value.
      * @param northBoundLatitude The maximal <var>y</var> value.
      *
-     * @throws IllegalArgumentException If (<var>west bound</var> &gt; <var>east bound</var>)
+     * @throws IllegalArgumentException if (<var>west bound</var> &gt; <var>east bound</var>)
      *         or (<var>south bound</var> &gt; <var>north bound</var>). Note that
      *         {@linkplain Double#NaN NaN} values are allowed.
      */
@@ -141,7 +141,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * dataset extent. The value is expressed in longitude in
      * decimal degrees (positive east).
      *
-     * @return The western-most longitude between -180 and +180°.
+     * @return the western-most longitude between -180 and +180°.
      */
     @Override
     public double getWestBoundLongitude() {
@@ -153,7 +153,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * dataset extent. The value is expressed in longitude in
      * decimal degrees (positive east).
      *
-     * @return The eastern-most longitude between -180 and +180°.
+     * @return the eastern-most longitude between -180 and +180°.
      */
     @Override
     public double getEastBoundLongitude() {
@@ -165,7 +165,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * dataset extent. The value is expressed in latitude in
      * decimal degrees (positive north).
      *
-     * @return The southern-most latitude between -90 and +90°.
+     * @return the southern-most latitude between -90 and +90°.
      */
     @Override
     public double getSouthBoundLatitude() {
@@ -177,7 +177,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * dataset extent. The value is expressed in latitude in
      * decimal degrees (positive north).
      *
-     * @return The northern-most latitude between -90 and +90°.
+     * @return the northern-most latitude between -90 and +90°.
      */
     @Override
     public double getNorthBoundLatitude() {
@@ -200,7 +200,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * Returns the spatial and temporal extent for the referring object.
      * The default implementation unconditionally returns {@code null}.
      *
-     * @return The spatial and temporal extent, or {@code null} in none.
+     * @return the spatial and temporal extent, or {@code null} in none.
      */
     @Override
     public InternationalString getDescription() {
@@ -212,7 +212,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * The default implementation returns a singleton containing only this
      * geographic bounding box.
      *
-     * @return The geographic extent, or an empty set if none.
+     * @return the geographic extent, or an empty set if none.
      */
     @Override
     public Collection<? extends GeographicExtent> getGeographicElements() {
@@ -223,7 +223,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * Provides temporal component of the extent of the referring object.
      * The default implementation unconditionally returns an empty set.
      *
-     * @return The temporal extent, or an empty set if none.
+     * @return the temporal extent, or an empty set if none.
      */
     @Override
     public Collection<? extends TemporalExtent> getTemporalElements() {
@@ -234,7 +234,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
      * Provides vertical component of the extent of the referring object.
      * The default implementation unconditionally returns an empty set.
      *
-     * @return The vertical extent, or an empty set if none.
+     * @return the vertical extent, or an empty set if none.
      */
     @Override
     public Collection<? extends VerticalExtent> getVerticalElements() {
@@ -251,7 +251,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
     /**
      * Compares this geographic bounding box with the specified object for equality.
      *
-     * @param object The object to compare for equality.
+     * @param  object  the object to compare for equality.
      * @return {@code true} if the given object is equal to this box.
      */
     @Override
@@ -282,7 +282,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
     /**
      * Returns a string representation of this extent.
      *
-     * @return A string representation of the given box in the given locale.
+     * @return a string representation of the given box in the given locale.
      */
     @Override
     public String toString() {

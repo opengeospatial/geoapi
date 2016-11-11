@@ -65,8 +65,8 @@ public interface InternationalString extends CharSequence, Comparable<Internatio
      * then some fallback locale is used. The fallback locale is implementation-dependent, and
      * is not necessarily the same than the default locale used by the {@link #toString()} method.
      *
-     * @param  locale The desired locale for the string to be returned.
-     * @return The string in the given locale if available, or in an
+     * @param  locale  the desired locale for the string to be returned.
+     * @return the string in the given locale if available, or in an
      *         implementation-dependent fallback locale otherwise.
      *
      * @see Locale#getDefault()
@@ -82,7 +82,7 @@ public interface InternationalString extends CharSequence, Comparable<Internatio
      * <p>All methods from {@link CharSequence} operate on this string.
      * This string is also used as the criterion for {@linkplain Comparable natural ordering}.</p>
      *
-     * @return The string in the default locale.
+     * @return the string in the default locale.
      */
     @Override
     String toString();

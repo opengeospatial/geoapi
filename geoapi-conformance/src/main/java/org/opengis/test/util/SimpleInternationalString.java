@@ -53,7 +53,7 @@ final class SimpleInternationalString implements InternationalString {
     /**
      * Creates a new international string for the given text.
      *
-     * @param text The text to wrap in an {@link InternationalString}.
+     * @param text  the text to wrap in an {@link InternationalString}.
      */
     public SimpleInternationalString(final String text) {
         this.text = text;
@@ -70,8 +70,8 @@ final class SimpleInternationalString implements InternationalString {
     /**
      * Returns the character of the string at the specified index.
      *
-     * @param  index The index of the character.
-     * @return The character at the specified index.
+     * @param  index  the index of the character.
+     * @return the character at the specified index.
      * @throws IndexOutOfBoundsException if the specified index is out of bounds.
      */
     @Override
@@ -84,10 +84,10 @@ final class SimpleInternationalString implements InternationalString {
      * with the character value at the specified index and ending with the character value at
      * index {@code end - 1}.
      *
-     * @param   start The start index, inclusive.
-     * @param   end   The end index, exclusive.
+     * @param   start  the start index, inclusive.
+     * @param   end    the end index, exclusive.
      * @return  The specified subsequence.
-     * @throws  IndexOutOfBoundsException If {@code start} or {@code end} is out of range.
+     * @throws  IndexOutOfBoundsException if {@code start} or {@code end} is out of range.
      */
     @Override
     public CharSequence subSequence(final int start, final int end) throws IndexOutOfBoundsException {
@@ -113,9 +113,9 @@ final class SimpleInternationalString implements InternationalString {
     /**
      * Compares this string with the specified object for order.
      *
-     * @param object The string to compare with this string.
-     * @return A negative number if this string is before the given string, a positive
-     *         number if after, or 0 if equals.
+     * @param  object  the string to compare with this string.
+     * @return a negative number if this string is before the given string,
+     *         a positive number if after, or 0 if equals.
      */
     @Override
     public int compareTo(final InternationalString object) {
@@ -125,7 +125,7 @@ final class SimpleInternationalString implements InternationalString {
     /**
      * Compares this international string with the specified object for equality.
      *
-     * @param object The object to compare with this international string.
+     * @param  object  the object to compare with this international string.
      * @return {@code true} if the given object is equal to this string.
      */
     @Override

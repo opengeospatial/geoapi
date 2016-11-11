@@ -60,7 +60,7 @@ public interface ImageDatum extends Datum {
     /**
      * Specification of the way the image grid is associated with the image data attributes.
      *
-     * @return The way image grid is associated with image data attributes.
+     * @return the way image grid is associated with image data attributes.
      */
     @UML(identifier="pixelInCell", obligation=MANDATORY, specification=ISO_19111)
     PixelInCell getPixelInCell();

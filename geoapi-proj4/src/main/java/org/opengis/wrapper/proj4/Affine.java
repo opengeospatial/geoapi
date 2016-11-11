@@ -71,7 +71,7 @@ final class Affine extends AffineTransform implements MathTransform2D {
     /**
      * Creates a new affine transform initialized from the given matrix.
      *
-     * @throws FactoryException If the matrix size is not 3×3, or the transform is not affine.
+     * @throws FactoryException if the matrix size is not 3×3, or the transform is not affine.
      */
     static Affine create(final Matrix matrix) throws FactoryException {
         if (matrix.getNumCol() != 3 || matrix.getNumRow() != 3) {
@@ -110,8 +110,7 @@ final class Affine extends AffineTransform implements MathTransform2D {
      * @param  ptDst the coordinate point that stores the transform result, or {@code null}.
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
-     * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} doesn't have
-     *         exactly 2 dimensions.
+     * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} does not have exactly 2 dimensions.
      */
     @Override
     public DirectPosition transform(final DirectPosition ptSrc, DirectPosition ptDst) throws MismatchedDimensionException {
@@ -134,8 +133,8 @@ final class Affine extends AffineTransform implements MathTransform2D {
      * Gets the derivative of this transform at a point.
      * This method delegates its work to {@link #derivative(Point2D)}.
      *
-     * @param  point Ignored (except for the dimension, which is checked as a matter of principle).
-     * @return The derivative at the specified point (never {@code null}).
+     * @param  point  ignored (except for the dimension, which is checked as a matter of principle).
+     * @return the derivative at the specified point (never {@code null}).
      * @throws MismatchedDimensionException if {@code point} doesn't have the expected dimension.
      */
     @Override
@@ -150,8 +149,8 @@ final class Affine extends AffineTransform implements MathTransform2D {
      * Gets the derivative of this transform at a point.
      * This operation is not yet supported.
      *
-     * @param  point Ignored (except for the dimension, which is checked as a matter of principle).
-     * @return The derivative at the specified point (never {@code null}).
+     * @param  point  ignored (except for the dimension, which is checked as a matter of principle).
+     * @return the derivative at the specified point (never {@code null}).
      */
     @Override
     public Matrix derivative(final Point2D point) {

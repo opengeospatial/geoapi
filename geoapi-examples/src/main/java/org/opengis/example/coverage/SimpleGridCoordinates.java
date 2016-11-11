@@ -40,7 +40,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * Creates a grid coordinates of the specified dimension.
      * All coordinates are initially set to 0.
      *
-     * @param dimension The number of dimension.
+     * @param  dimension  the number of dimension.
      */
     public SimpleGridCoordinates(final int dimension) {
         coordinates = new int[dimension];
@@ -49,7 +49,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
     /**
      * Creates a grid coordinates initialized to the specified values.
      *
-     * @param coordinates The grid coordinates to copy.
+     * @param coordinates  the grid coordinates to copy.
      */
     public SimpleGridCoordinates(final int[] coordinates) {
         this.coordinates = coordinates.clone();
@@ -58,9 +58,9 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
     /**
      * Creates a grid coordinates initialized to the specified values in the specified range.
      *
-     * @param coordinates The coordinates to copy.
-     * @param lower Index of the first value to copy, inclusive.
-     * @param upper Index of the last value to copy, exclusive.
+     * @param coordinates  the coordinates to copy.
+     * @param lower        index of the first value to copy, inclusive.
+     * @param upper        index of the last value to copy, exclusive.
      */
     public SimpleGridCoordinates(final int[] coordinates, final int lower, final int upper) {
         this.coordinates = Arrays.copyOfRange(coordinates, lower, upper);
@@ -82,7 +82,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * a single coordinate shall be the number of offsets from the origin of the grid in the
      * direction of a specific axis.
      *
-     * @return A copy of the coordinates. Changes in the returned array will not be reflected
+     * @return a copy of the coordinates. Changes in the returned array will not be reflected
      *         back in this {@code SimpleGridCoordinates} object.
      */
     @Override
@@ -95,8 +95,8 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * <code>{@linkplain #getCoordinateValues()}[<var>i</var>]</code>. It is provided for
      * efficiency.
      *
-     * @param  dimension The dimension from 0 inclusive to {@link #getDimension} exclusive.
-     * @return The value at the requested dimension.
+     * @param  dimension  the dimension from 0 inclusive to {@link #getDimension} exclusive.
+     * @return the value at the requested dimension.
      * @throws ArrayIndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     @Override
@@ -107,8 +107,8 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
     /**
      * Sets the coordinate value at the specified dimension (optional operation).
      *
-     * @param  dimension The index of the value to set.
-     * @param  value The new value.
+     * @param  dimension  the index of the value to set.
+     * @param  value      the new value.
      * @throws ArrayIndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     @Override
@@ -119,7 +119,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
     /**
      * Compares this grid coordinates with the specified object for equality.
      *
-     * @param object The object to compares with this grid coordinates.
+     * @param  object  the object to compares with this grid coordinates.
      * @return {@code true} if the given object is equal to this grid coordinates.
      */
     @Override

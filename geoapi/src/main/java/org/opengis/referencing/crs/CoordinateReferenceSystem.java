@@ -92,7 +92,7 @@ public interface CoordinateReferenceSystem extends ReferenceSystem {
      *       and axes obtained from the coordinate system of each component.</li>
      * </ul>
      *
-     * @return The coordinate system.
+     * @return the coordinate system.
      *
      * @departure generalization
      *   ISO 19111 defines this method for <code>SC_SingleCRS</code> only. GeoAPI declares this method in

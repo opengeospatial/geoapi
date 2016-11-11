@@ -52,7 +52,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * The western-most coordinate of the limit of the resource extent.
      * The value is expressed in longitude in decimal degrees (positive east).
      *
-     * @return The western-most longitude between -180 and +180°.
+     * @return the western-most longitude between -180 and +180°.
      * @unitof Angle
      */
     @UML(identifier="westBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
@@ -62,7 +62,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * The eastern-most coordinate of the limit of the resource extent.
      * The value is expressed in longitude in decimal degrees (positive east).
      *
-     * @return The eastern-most longitude between -180 and +180°.
+     * @return the eastern-most longitude between -180 and +180°.
      * @unitof Angle
      */
     @UML(identifier="eastBoundLongitude", obligation=MANDATORY, specification=ISO_19115)
@@ -72,7 +72,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * The southern-most coordinate of the limit of the resource extent.
      * The value is expressed in latitude in decimal degrees (positive north).
      *
-     * @return The southern-most latitude between -90 and +90°.
+     * @return the southern-most latitude between -90 and +90°.
      * @unitof Angle
      */
     @UML(identifier="southBoundLatitude", obligation=MANDATORY, specification=ISO_19115)
@@ -82,7 +82,7 @@ public interface GeographicBoundingBox extends GeographicExtent {
      * The northern-most coordinate of the limit of the resource extent.
      * The value is expressed in latitude in decimal degrees (positive north).
      *
-     * @return The northern-most latitude between -90 and +90°.
+     * @return the northern-most latitude between -90 and +90°.
      * @unitof Angle
      */
     @UML(identifier="northBoundLatitude", obligation=MANDATORY, specification=ISO_19115)

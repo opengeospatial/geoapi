@@ -58,7 +58,7 @@ public interface AuthorityFactory extends Factory {
     /**
      * Returns the organization or party responsible for definition and maintenance of the database.
      *
-     * @return The organization responsible for definition of the database.
+     * @return the organization responsible for definition of the database.
      */
     @UML(identifier="getAuthority", specification=OGC_01009)
     Citation getAuthority();
@@ -83,8 +83,8 @@ public interface AuthorityFactory extends Factory {
      *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</p></li>
      * </ul>
      *
-     * @param  type The spatial reference objects type.
-     * @return The set of authority codes for spatial reference objects of the given type.
+     * @param  type  the spatial reference objects type.
+     * @return the set of authority codes for spatial reference objects of the given type.
      *         If this factory does not contain any object of the given type, then this method
      *         returns an {@linkplain java.util.Collections#EMPTY_SET empty set}.
      * @throws FactoryException if access to the underlying database failed.
@@ -98,8 +98,8 @@ public interface AuthorityFactory extends Factory {
     /**
      * Gets a description of the object corresponding to a code.
      *
-     * @param  code Value allocated by authority.
-     * @return A description of the object, or {@code null} if the object
+     * @param  code  value allocated by authority.
+     * @return a description of the object, or {@code null} if the object
      *         corresponding to the specified {@code code} has no description.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the query failed for some other reason.
@@ -118,8 +118,8 @@ public interface AuthorityFactory extends Factory {
      * createCoordinateReferenceSystem}(code)</code> instead of <code>createObject(code)</code>
      * if the requested object is known to be a {@code CoordinateReferenceSystem} instance.</p>
      *
-     * @param  code Value allocated by authority.
-     * @return The object for the given code.
+     * @param  code  value allocated by authority.
+     * @return the object for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *

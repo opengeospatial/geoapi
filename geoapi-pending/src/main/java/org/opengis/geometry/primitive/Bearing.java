@@ -56,7 +56,7 @@ public interface Bearing {
     /**
      * Returns the unit of values returned by the {@link #getAngles()} method.
      *
-     * @return The unit of angles.
+     * @return the unit of angles.
      *
      * @since GeoAPI 2.3
      */
@@ -70,7 +70,7 @@ public interface Bearing {
      * (altitude) usually represents the angle above (for positive angles) or below (for negative
      * angles) a local plane parallel to the tangent plane of the reference surface.
      *
-     * @return An array of length 0, 1 or 2 containing the azimuth and altitude angles,
+     * @return an array of length 0, 1 or 2 containing the azimuth and altitude angles,
      *         in units of {@link #getAngleUnit()}.
      */
     @UML(identifier="angle", obligation=MANDATORY, specification=ISO_19107)
@@ -81,7 +81,7 @@ public interface Bearing {
      * In this variant of bearing usually used for 3D coordinate systems, the direction is
      * express as an arbitrary vector, in the coordinate system.
      *
-     * @return The direction.
+     * @return the direction.
      */
     @UML(identifier="direction", obligation=MANDATORY, specification=ISO_19107)
     double[] getDirection();

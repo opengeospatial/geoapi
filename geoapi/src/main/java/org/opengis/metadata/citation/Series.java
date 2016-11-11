@@ -54,7 +54,7 @@ public interface Series {
      * Name of the series, or aggregate dataset, of which the dataset is a part.
      * Returns {@code null} if none.
      *
-     * @return The name of the series or aggregate dataset, or {@code null}.
+     * @return the name of the series or aggregate dataset, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();
@@ -62,7 +62,7 @@ public interface Series {
     /**
      * Information identifying the issue of the series.
      *
-     * @return Information identifying the issue of the series, or {@code null}.
+     * @return information identifying the issue of the series, or {@code null}.
      */
     @UML(identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
     String getIssueIdentification();
@@ -70,7 +70,7 @@ public interface Series {
     /**
      * Details on which pages of the publication the article was published.
      *
-     * @return Details on which pages of the publication the article was published, or {@code null}.
+     * @return details on which pages of the publication the article was published, or {@code null}.
      */
     @UML(identifier="page", obligation=OPTIONAL, specification=ISO_19115)
     String getPage();

@@ -210,7 +210,7 @@ public class AuthorityCodesReport extends Report {
          *
          * <p>Subclasses can override this method if they want a different rows ordering.</p>
          *
-         * @param  o The other row to compare with this row.
+         * @param  o  the other row to compare with this row.
          * @return -1 for sorting this row before the given row, +1 for sorting it after,
          *         or 0 if the two rows have equal ordering.
          */
@@ -223,7 +223,7 @@ public class AuthorityCodesReport extends Report {
         /**
          * Returns a string representation of this row, for debugging purpose only.
          *
-         * @return An arbitrary string representation of this row.
+         * @return an arbitrary string representation of this row.
          */
         @Override
         public String toString() {
@@ -247,7 +247,7 @@ public class AuthorityCodesReport extends Report {
      * Creates a new report generator using the given property values.
      * See the class javadoc for a list of expected values.
      *
-     * @param properties The property values, or {@code null} for the default values.
+     * @param properties  the property values, or {@code null} for the default values.
      */
     public AuthorityCodesReport(final Properties properties) {
         super(properties);
@@ -296,8 +296,8 @@ public class AuthorityCodesReport extends Report {
      * Subclasses can override the above-cited {@code createRow(…)}
      * methods in order to customize the table content.
      *
-     * @param  factory The factory from which to get Coordinate Reference System instances.
-     * @throws FactoryException If a non-recoverable error occurred while querying the factory.
+     * @param  factory  the factory from which to get Coordinate Reference System instances.
+     * @throws FactoryException if a non-recoverable error occurred while querying the factory.
      */
     public void add(final CRSAuthorityFactory factory) throws FactoryException {
         setDefault(factory);
@@ -336,9 +336,9 @@ public class AuthorityCodesReport extends Report {
      * Subclasses can override the above-cited {@code createRow(…)}
      * methods in order to customize the table content.
      *
-     * @param  factory The factory from which to get the objects.
-     * @param  codes The authority codes of the objects to create.
-     * @throws FactoryException If a non-recoverable error occurred while querying the factory.
+     * @param  factory  the factory from which to get the objects.
+     * @param  codes    the authority codes of the objects to create.
+     * @throws FactoryException if a non-recoverable error occurred while querying the factory.
      */
     public void add(final AuthorityFactory factory, final Collection<String> codes) throws FactoryException {
         setDefault(factory);
@@ -358,7 +358,7 @@ public class AuthorityCodesReport extends Report {
      * Returns a new {@link Row} instance. Subclasses can override this method if they wish to
      * instantiate a subclass of {@code Row}.
      *
-     * @return The new, initially empty, {@code Row} instance.
+     * @return the new, initially empty, {@code Row} instance.
      */
     protected Row newRow() {
         return new Row();
@@ -368,9 +368,9 @@ public class AuthorityCodesReport extends Report {
      * Creates a new row for the given authority code and identified object.
      * Subclasses can override this method in order to customize the table content.
      *
-     * @param  code    The authority code of the created object.
-     * @param  object  The object created from the given authority code.
-     * @return The created row, or {@code null} if the row should be ignored.
+     * @param  code    the authority code of the created object.
+     * @param  object  the object created from the given authority code.
+     * @return the created row, or {@code null} if the row should be ignored.
      */
     protected Row createRow(final String code, final IdentifiedObject object) {
         final Row row = newRow();
@@ -389,9 +389,9 @@ public class AuthorityCodesReport extends Report {
      * Creates a new row for the given authority code and exception.
      * Subclasses can override this method in order to customize the table content.
      *
-     * @param  code      The authority code of the object to create.
-     * @param  exception The exception that occurred while creating the identified object.
-     * @return The created row, or {@code null} if the row should be ignored.
+     * @param  code       the authority code of the object to create.
+     * @param  exception  the exception that occurred while creating the identified object.
+     * @return the created row, or {@code null} if the row should be ignored.
      */
     protected Row createRow(final String code, final FactoryException exception) {
         final Row row = newRow();
@@ -419,8 +419,8 @@ public class AuthorityCodesReport extends Report {
     /**
      * Formats the identified objects as a HTML page in the given file.
      *
-     * @param  destination The file to generate.
-     * @return The given {@code destination} file.
+     * @param  destination  the file to generate.
+     * @return the given {@code destination} file.
      * @throws IOException if an error occurred while writing the report.
      */
     @Override

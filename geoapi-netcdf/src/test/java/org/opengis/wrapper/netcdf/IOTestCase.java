@@ -212,8 +212,8 @@ public abstract strictfp class IOTestCase {
      * This method is used for creating an initial buffer of the right size when reading
      * a NetCDF file in memory.
      *
-     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
-     * @param  defaultLength The default value to return if the given file is not recognized.
+     * @param  file  the file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @param  defaultLength  the default value to return if the given file is not recognized.
      */
     static int getFileLength(final String file, final int defaultLength) {
         switch (file) {
@@ -244,9 +244,9 @@ public abstract strictfp class IOTestCase {
      * and provides a {@value #THREDDS} file in that package, then his test file will have
      * precedence over the {@code geoapi-netcdf} build-in test file.
      *
-     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
-     * @return The NetCDF file.
-     * @throws IOException If an error occurred while opening the file.
+     * @param  file  the file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @return the NetCDF file.
+     * @throws IOException if an error occurred while opening the file.
      */
     protected NetcdfFile open(final String file) throws IOException {
         /*
@@ -317,10 +317,10 @@ public abstract strictfp class IOTestCase {
      * Returns the content of the given input stream in an array of bytes. This method is used
      * for opening a NetCDF file in memory when the resource can not be opened as a file.
      *
-     * @param  file The file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
-     * @param  in The input stream. This stream will be closed by this method.
-     * @return The stream content as an array of bytes.
-     * @throws IOException If an error occurred while reading the stream content.
+     * @param  file  the file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @param  in    the input stream. This stream will be closed by this method.
+     * @return the stream content as an array of bytes.
+     * @throws IOException if an error occurred while reading the stream content.
      */
     private static byte[] load(final String file, final InputStream in) throws IOException {
         int n, length = 0;

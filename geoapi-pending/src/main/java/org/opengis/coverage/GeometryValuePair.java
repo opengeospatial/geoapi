@@ -65,7 +65,7 @@ public interface GeometryValuePair {
     /**
      * The domain object that is a member of this <var>geometry</var>-<var>value</var> pair.
      *
-     * @return The geometry member of the pair.
+     * @return the geometry member of the pair.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     DomainObject<?> getGeometry();
@@ -73,7 +73,7 @@ public interface GeometryValuePair {
     /**
      * Holds the record of feature attribute values associated with the domain object.
      *
-     * @return The value member of the pair.
+     * @return the value member of the pair.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19123)
     Record getValue();

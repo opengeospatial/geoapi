@@ -75,7 +75,7 @@ public interface RecordType extends Type {
      * this method can be though as the equivalent of the Java {@link Class#getName()} method.
      * </div>
      *
-     * @return The name that identifies this record type.
+     * @return the name that identifies this record type.
      */
     @Override
     @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
@@ -89,7 +89,7 @@ public interface RecordType extends Type {
      * this method can be though as the equivalent of the Java {@link Class#getPackage()} method.
      * </div>
      *
-     * @return The schema that contains this record type.
+     * @return the schema that contains this record type.
      */
     @UML(identifier="schema", obligation=MANDATORY, specification=ISO_19103)
     RecordSchema getContainer();
@@ -107,7 +107,7 @@ public interface RecordType extends Type {
      * this method can be though as related to the Java {@link Class#getFields()} method.
      * </div>
      *
-     * @return The dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
+     * @return the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      *
      * @see Record#getAttributes()
      */
@@ -121,7 +121,7 @@ public interface RecordType extends Type {
      * <p>This method is functionally equivalent to
      * <code>{@linkplain #getMemberTypes()}.{@linkplain Map#keySet() keySet()}</code>.</p>
      *
-     * @return The set of attribute names defined in this {@code RecordType}'s dictionary.
+     * @return the set of attribute names defined in this {@code RecordType}'s dictionary.
      *
      * @departure easeOfUse
      *   This method provides no additional information compared to the ISO standard methods,
@@ -142,8 +142,8 @@ public interface RecordType extends Type {
      * this method can be though as related to the Java {@link Class#getField(String)} method.
      * </div>
      *
-     * @param name The name of the attribute we are looking for.
-     * @return The type of of attribute of the given name, or {@code null}.
+     * @param  name  the name of the attribute we are looking for.
+     * @return the type of of attribute of the given name, or {@code null}.
      *
      * @see Record#locate(MemberName)
      */
@@ -167,7 +167,7 @@ public interface RecordType extends Type {
      * this method can be though as the equivalent of the Java {@link Class#isInstance(Object)} method.
      * </div>
      *
-     * @param record The record to test for compatibility.
+     * @param  record  the record to test for compatibility.
      * @return {@code true} if the given record is compatible with this record type.
      *
      * @departure easeOfUse

@@ -59,7 +59,7 @@ public interface OperationChainMetadata {
     /**
      * A narrative explanation of the services in the chain and resulting output.
      *
-     * @return Narrative explanation of the services in the chain and resulting output, or {@code null} if none.
+     * @return narrative explanation of the services in the chain and resulting output, or {@code null} if none.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getDescription();
@@ -67,7 +67,7 @@ public interface OperationChainMetadata {
     /**
      * Ordered information about the operations applied by the chain.
      *
-     * @return Information about the operations applied by the chain.
+     * @return information about the operations applied by the chain.
      */
     @UML(identifier="operation", obligation=MANDATORY, specification=ISO_19115)
     List<? extends OperationMetadata> getOperations();

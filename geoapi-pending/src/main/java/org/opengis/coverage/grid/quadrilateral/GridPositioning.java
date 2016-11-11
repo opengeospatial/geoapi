@@ -53,7 +53,7 @@ public interface GridPositioning {
      * but it is promoted to this superclass because it is required by both
      * {@linkplain ReferenceableGrid} and {@linkplain RectifiedGrid}.
      *
-     * @return The coordinate reference system.
+     * @return the coordinate reference system.
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
@@ -61,7 +61,7 @@ public interface GridPositioning {
      * Associates this {@code GridPositioning} object with a geometric description provided
      * by the {@link Grid} object.
      *
-     * @return The gridded data.
+     * @return the gridded data.
      */
     Grid getGrid();
 
@@ -75,7 +75,7 @@ public interface GridPositioning {
      * conversion.  The {@code targetCRS} association of the operation attribute is considered
      * mandatory in this context.
      *
-     * @return Information about the implemented coordinate operation.
+     * @return information about the implemented coordinate operation.
      */
     CoordinateOperation getOperation();
 
@@ -90,7 +90,7 @@ public interface GridPositioning {
      * is considered mandatory in this context.  This attribute shall represent the {@link CoordinateOperation}
      * which is the inverse of the operation attribute.
      *
-     * @return The inverse of {@link #getOperation}.
+     * @return the inverse of {@link #getOperation}.
      */
     CoordinateOperation getInverseOperation();
 }

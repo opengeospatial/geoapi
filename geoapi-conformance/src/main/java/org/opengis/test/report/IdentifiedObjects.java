@@ -68,8 +68,8 @@ final class IdentifiedObjects {
      * {@linkplain Identifier#getCodeSpace() code space} and
      * {@linkplain Identifier#getVersion() version}.
      *
-     * @param o1 The first operation method to compare, or {@code null}.
-     * @param o2 The second operation method to compare, or {@code null}.
+     * @param  o1  the first operation method to compare, or {@code null}.
+     * @param  o2  the second operation method to compare, or {@code null}.
      * @return -1 if {@code o1} should appears before {@code o2}, -1 for the converse,
      *         or 0 if this method can not determine an ordering for the given object.
      */
@@ -93,8 +93,8 @@ final class IdentifiedObjects {
      * comparison (since we still want a determinist order). {@code null} values (if any) are
      * ordered last.
      *
-     * @param  s1 The first string to compare, or {@code null}.
-     * @param  s2 The second string to compare, or {@code null}.
+     * @param  s1  the first string to compare, or {@code null}.
+     * @param  s2  the second string to compare, or {@code null}.
      * @return -1 if {@code s1} should appears before {@code s2}, +1 for the converse,
      *         or 0 if the two strings are equal.
      */
@@ -174,10 +174,9 @@ final class IdentifiedObjects {
      * <p>The values in the returned map are {@link Boolean#TRUE} for the primary name
      * (at most one entry) and {@link Boolean#FALSE} for aliases (all other entries).</p>
      *
-     * @param  info The object to get the name and aliases from, or {@code null}.
-     * @param  codeSpace The code space for the name and aliases to return, or {@code null}
-     *         for all code spaces.
-     * @return All name and aliases for the given code space.
+     * @param  info       the object to get the name and aliases from, or {@code null}.
+     * @param  codeSpace  the code space for the name and aliases to return, or {@code null} for all code spaces.
+     * @return all name and aliases for the given code space.
      */
     public static Map<String,Boolean> getNameAndAliases(final IdentifiedObject info, final String codeSpace) {
         final Map<String,Boolean> names = new LinkedHashMap<>(4);
@@ -192,8 +191,8 @@ final class IdentifiedObjects {
      * <p>The values in the given map will be {@link Boolean#TRUE} for the code space of the primary name
      * (at most one entry) and {@link Boolean#FALSE} for the scope of aliases (all other entries).</p>
      *
-     * @param  info The object to get the code space and scopes from, or {@code null}.
-     * @param  addTo A map where to add the code space and scopes.
+     * @param  info   the object to get the code space and scopes from, or {@code null}.
+     * @param  addTo  a map where to add the code space and scopes.
      */
     public static void getCodeSpaces(final IdentifiedObject info, Map<String, ? super Boolean> addTo) {
         getNameComponents(info, null, true, addTo);
@@ -207,7 +206,7 @@ final class IdentifiedObjects {
             final boolean wantCodeSpaces, final Map<String, ? super Boolean> names)
     {
         final Identifier identifier = info.getName();
-        if (identifier != null) { // Mandatory attribute, but be lenient.
+        if (identifier != null) {                                           // Mandatory attribute, but be lenient.
             if (codeSpace == null || compare(codeSpace, identifier.getCodeSpace()) == 0) {
                 names.put(wantCodeSpaces ? identifier.getCodeSpace() : identifier.getCode(), Boolean.TRUE);
             }
@@ -215,7 +214,7 @@ final class IdentifiedObjects {
         for (GenericName alias : nullSafe(info.getAlias())) {
             if (alias == null) continue;
             final GenericName tip = alias.tip();
-            if (tip != null) { // Should never be null, but protect ourself against broken implementations.
+            if (tip != null) {          // Should never be null, but protect ourself against broken implementations.
                 alias = tip;
             }
             final NameSpace ns = alias.scope();  if (ns    == null) continue;
@@ -236,9 +235,8 @@ final class IdentifiedObjects {
      * may be omitted, but the {@code code} is mandatory: if absent this method
      * will write "{@code null}".
      *
-     * @param  id The identifier, or {@code null}.
-     * @return The string representation of the given identifier, or {@code null}
-     *         if the given identifier was null.
+     * @param  id  the identifier, or {@code null}.
+     * @return the string representation of the given identifier, or {@code null} if the given identifier was null.
      */
     public static String toString(final Identifier id) {
         if (id == null) {

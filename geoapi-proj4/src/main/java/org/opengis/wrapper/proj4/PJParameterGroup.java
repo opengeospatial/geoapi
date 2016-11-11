@@ -88,7 +88,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
     /**
      * Creates a new parameter group as a copy of the given one.
      *
-     * @throws ClassCastException If the given parameter contains subgroups,
+     * @throws ClassCastException if the given parameter contains subgroups,
      *         which are not supported by this simple implementation.
      */
     PJParameterGroup(final ParameterValueGroup param) throws ClassCastException {

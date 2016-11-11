@@ -78,7 +78,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
     /**
      * Returns the source dimension, which is 2.
      *
-     * @return Always 2.
+     * @return always 2.
      */
     @Override
     public final int getSourceDimensions() {
@@ -88,7 +88,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
     /**
      * Returns the target dimension, which is 2.
      *
-     * @return Always 2.
+     * @return always 2.
      */
     @Override
     public final int getTargetDimensions() {
@@ -99,8 +99,8 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * Returns the given direct position as a {@link Point2D}. This is used for forwarding
      * GeoAPI method calls to {@link AffineTransform} method calls.
      *
-     * @param  point The direct position to returns as a two-dimensional point.
-     * @return The direct position as a two-dimensional point.
+     * @param  point  the direct position to returns as a two-dimensional point.
+     * @return the direct position as a two-dimensional point.
      * @throws MismatchedDimensionException if the given position is not two-dimensional.
      */
     private static Point2D.Double toPoint2D(final DirectPosition point)
@@ -115,9 +115,9 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
     /**
      * Transforms the given position.
      *
-     * @param  ptSrc The source position.
-     * @param  ptDst Pre-allocated target position, or {@code null} if none.
-     * @return The transformed position.
+     * @param  ptSrc  the source position.
+     * @param  ptDst  pre-allocated target position, or {@code null} if none.
+     * @return the transformed position.
      * @throws MismatchedDimensionException if a given position is not two-dimensional.
      */
     @Override
@@ -143,8 +143,8 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * Returns the derivative at the given position. The default implementation delegates
      * to {@link #derivative(Point2D)}.
      *
-     * @param  point The point where to evaluate the derivative.
-     * @return The derivative at the given point.
+     * @param  point  the point where to evaluate the derivative.
+     * @return the derivative at the given point.
      * @throws MismatchedDimensionException if the given position is not two-dimensional.
      */
     @Override
@@ -155,8 +155,8 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
     /**
      * Returns the derivative at the given position.
      *
-     * @param  point The point where to evaluate the derivative.
-     * @return The derivative at the given point.
+     * @param  point  the point where to evaluate the derivative.
+     * @return the derivative at the given point.
      */
     @Override
     public Matrix derivative(final Point2D point) {
@@ -166,7 +166,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
     /**
      * Returns the inverse of this math transform.
      *
-     * @return The inverse of this math transform.
+     * @return the inverse of this math transform.
      * @throws NoninvertibleTransformException if the transform is not invertible.
      */
     @Override
@@ -188,7 +188,7 @@ strictfp class AffineTransform2D extends AffineTransform implements MathTransfor
      * Returns the Well-Known Text of this math transform. Current implementation
      * thrown a {@link UnsupportedOperationException} in all cases.
      *
-     * @return The WKT of this transform.
+     * @return the WKT of this transform.
      * @throws UnsupportedOperationException if this operation is not supported.
      */
     @Override

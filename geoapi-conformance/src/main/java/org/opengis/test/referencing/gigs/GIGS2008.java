@@ -133,7 +133,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS2008} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS2008} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -145,8 +145,8 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param datumFactory Factory for creating {@link VerticalDatum} instances.
-     * @param crsFactory Factory for creating {@link VerticalCRS} instances.
+     * @param datumFactory  factory for creating {@link VerticalDatum} instances.
+     * @param crsFactory    factory for creating {@link VerticalCRS} instances.
      */
     public GIGS2008(final DatumAuthorityFactory datumFactory, final CRSAuthorityFactory crsFactory) {
         super(datumFactory, crsFactory);
@@ -170,7 +170,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -186,7 +186,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
      * current {@link #code} value in argument. The created object is then cached and returned in all subsequent
      * invocations of this method.
      *
-     * @return The vertical CRS instance to test.
+     * @return the vertical CRS instance to test.
      * @throws FactoryException if an error occurred while creating the vertical CRS instance.
      */
     @Override

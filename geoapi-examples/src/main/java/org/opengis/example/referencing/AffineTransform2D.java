@@ -66,7 +66,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
     /**
      * Creates a new transform initialized to the values of the given transform.
      *
-     * @param tr The transform to copy.
+     * @param tr  the transform to copy.
      */
     public AffineTransform2D(final AffineTransform tr) {
         super(tr);
@@ -79,7 +79,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
      * verified by the {@link SimpleTransformFactory#createAffineTransform(Matrix)}
      * method.
      *
-     * @param matrix The matrix to copy.
+     * @param matrix  the matrix to copy.
      */
     AffineTransform2D(final Matrix matrix) {
         super(matrix.getElement(0,0),
@@ -95,8 +95,8 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
      * The matrix size must be 3×3 and the last row shall contains
      * the [0 0 1] values.
      *
-     * @param  matrix The matrix to copy in this affine transform.
-     * @throws IllegalArgumentException If the matrix size is not 3×3, or the transform is not affine.
+     * @param  matrix  the matrix to copy in this affine transform.
+     * @throws IllegalArgumentException if the matrix size is not 3×3, or the transform is not affine.
      */
     public void setTransform(final Matrix matrix) throws IllegalArgumentException {
         if (matrix.getNumCol() != 3 || matrix.getNumRow() != 3) {
@@ -138,11 +138,11 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
      * Transforms the specified {@code ptSrc} and stores the result in {@code ptDst}.
      * This method delegates its work to {@link #transform(Point2D, Point2D)}.
      *
-     * @param  ptSrc the coordinate point to be transformed.
-     * @param  ptDst the coordinate point that stores the transform result, or {@code null}.
+     * @param  ptSrc  the coordinate point to be transformed.
+     * @param  ptDst  the coordinate point that stores the transform result, or {@code null}.
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
-     * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} doesn't have
+     * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} does not have
      *         exactly 2 dimensions.
      */
     @Override
@@ -166,9 +166,9 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
      * Gets the derivative of this transform at a point.
      * This method delegates its work to {@link #derivative(Point2D)}.
      *
-     * @param  point Ignored (except for the dimension, which is checked as a matter of principle).
-     * @return The derivative (never {@code null}).
-     * @throws MismatchedDimensionException if {@code point} doesn't have the expected dimension.
+     * @param  point  ignored (except for the dimension, which is checked as a matter of principle).
+     * @return the derivative (never {@code null}).
+     * @throws MismatchedDimensionException if {@code point} does not have the expected dimension.
      */
     @Override
     public Matrix derivative(final DirectPosition point) throws MismatchedDimensionException {
@@ -182,8 +182,8 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
      * Gets the derivative of this transform at a point.
      * The derivative of an affine transform is constant everywhere.
      *
-     * @param  point Ignored - may be {@code null}.
-     * @return The derivative (never {@code null}).
+     * @param  point  ignored - may be {@code null}.
+     * @return the derivative (never {@code null}).
      */
     @Override
     public Matrix derivative(final Point2D point) {

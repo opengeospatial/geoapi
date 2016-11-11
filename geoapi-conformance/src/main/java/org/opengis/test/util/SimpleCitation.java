@@ -64,7 +64,7 @@ final class SimpleCitation implements Citation {
     /**
      * Creates a new citation having the given title.
      *
-     * @param title The citation title to be returned by {@link #getTitle()}.
+     * @param title  the citation title to be returned by {@link #getTitle()}.
      */
     public SimpleCitation(final InternationalString title) {
         this.title = title;

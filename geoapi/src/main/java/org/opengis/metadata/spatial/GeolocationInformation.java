@@ -55,7 +55,7 @@ public interface GeolocationInformation {
     /**
      * Provides an overall assessment of quality of geolocation information.
      *
-     * @return An overall assessment of quality of geolocation information.
+     * @return an overall assessment of quality of geolocation information.
      */
     @UML(identifier="qualityInfo", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends DataQuality> getQualityInfo();

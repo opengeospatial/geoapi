@@ -43,7 +43,7 @@ public class PJException extends TransformException {
     /**
      * Constructs a new exception with the given message.
      *
-     * @param message A message that describe the cause for the failure.
+     * @param message  a message that describe the cause for the failure.
      */
     public PJException(final String message) {
         super(message);

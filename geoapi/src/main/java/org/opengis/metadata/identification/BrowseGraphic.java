@@ -60,7 +60,7 @@ public interface BrowseGraphic {
      *   ISO 19115 type is <code>CharacterString</code>. Since the specification clearly state that the
      *   string shall be a filename, a more specific Java type like <code>URI</code> seem appropriate.
      *
-     * @return File that contains a graphic that provides an illustration of the dataset.
+     * @return file that contains a graphic that provides an illustration of the dataset.
      */
     @UML(identifier="fileName", obligation=MANDATORY, specification=ISO_19115)
     URI getFileName();
@@ -68,7 +68,7 @@ public interface BrowseGraphic {
     /**
      * Text description of the illustration.
      *
-     * @return Text description of the illustration, or {@code null}.
+     * @return text description of the illustration, or {@code null}.
      */
     @UML(identifier="fileDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFileDescription();
@@ -82,7 +82,7 @@ public interface BrowseGraphic {
      * CGM, EPS, GIF, JPEG, PBM, PS, TIFF, XWD.
      * </div>
      *
-     * @return Format in which the illustration is encoded, or {@code null}.
+     * @return format in which the illustration is encoded, or {@code null}.
      *
      * @see javax.imageio.ImageIO#getReaderFormatNames()
      */
@@ -93,7 +93,7 @@ public interface BrowseGraphic {
      * Restriction on access and / or use of browse graphic.
      * Returns an empty collection if none.
      *
-     * @return Restriction on access and / or use of browse graphic.
+     * @return restriction on access and / or use of browse graphic.
      *
      * @since 3.1
      */
@@ -104,7 +104,7 @@ public interface BrowseGraphic {
      * Links to browse graphic.
      * Returns an empty collection if none.
      *
-     * @return Links to browse graphic.
+     * @return links to browse graphic.
      *
      * @since 3.1
      */

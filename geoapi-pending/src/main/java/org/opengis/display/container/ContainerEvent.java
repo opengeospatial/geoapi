@@ -57,7 +57,7 @@ public abstract class ContainerEvent extends EventObject {
     /**
      * Returns the source of thie event.
      *
-     * @return The source of this event, or {@code null} if unknown.
+     * @return the source of this event, or {@code null} if unknown.
      */
     @Override
     public GraphicsContainer getSource() {
@@ -67,7 +67,7 @@ public abstract class ContainerEvent extends EventObject {
     /**
      * Returns the graphics affected by this event
      *
-     * @return The graphics affected by this event.
+     * @return the graphics affected by this event.
      */
     public abstract Collection<Graphic> getGraphics();
 }

@@ -102,8 +102,8 @@ final class ImplementationManifest {
      * Parses the manifest entry of the given JAR files for information about GeoAPI
      * implementation.
      *
-     * @param  files The JAR files to parse.
-     * @return Information about the implementation, or {@code null} if none.
+     * @param  files  the JAR files to parse.
+     * @return information about the implementation, or {@code null} if none.
      */
     static ImplementationManifest parse(final File[] files) throws IOException {
         final Set<File> classpath = new LinkedHashSet<>();
@@ -147,10 +147,10 @@ final class ImplementationManifest {
      * information in an {@link ImplementationManifest} object. Otherwise this method
      * returns {@code null}.
      *
-     * @param  file The JAR file to parse.
-     * @param  classpath A set in which to add classpath information.
-     * @return Information about the implementation, or {@code null} if none.
-     * @throws IOException If an error occurred while reading the JAR file.
+     * @param  file       the JAR file to parse.
+     * @param  classpath  a set in which to add classpath information.
+     * @return information about the implementation, or {@code null} if none.
+     * @throws IOException if an error occurred while reading the JAR file.
      */
     private static ImplementationManifest parse(final File file, final Set<File> classpath) throws IOException {
         ImplementationManifest impl = null;

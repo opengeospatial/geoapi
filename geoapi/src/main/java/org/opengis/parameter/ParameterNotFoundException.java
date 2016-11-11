@@ -64,9 +64,8 @@ public class ParameterNotFoundException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message and parameter name.
      *
-     * @param message The detail message. The detail message is saved for
-     *        later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The name of the parameter which was required but not found.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the name of the parameter which was required but not found.
      */
     public ParameterNotFoundException(String message, String parameterName) {
         super(message);
@@ -76,7 +75,7 @@ public class ParameterNotFoundException extends IllegalArgumentException {
     /**
      * Returns the name of the parameter which was required but not found.
      *
-     * @return The required parameter name.
+     * @return the required parameter name.
      */
     public String getParameterName() {
         return parameterName;

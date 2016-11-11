@@ -54,7 +54,7 @@ public interface FootPrint {
      * Returns the geometry that shapes the foot print. In the simplest case this
      * can be a point, but it can also be a disc, sphere or hypersphere.
      *
-     * @return The geometry that shapes the foot print.
+     * @return the geometry that shapes the foot print.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     Geometry getGeometry();

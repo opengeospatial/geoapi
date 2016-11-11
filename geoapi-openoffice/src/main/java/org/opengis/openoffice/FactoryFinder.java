@@ -59,9 +59,9 @@ final class FactoryFinder {
     /**
      * Returns the first service provider from the given loader.
      *
-     * @param  loader The loader.
-     * @return The first factory found for the specified loader.
-     * @throws NoSuchElementException If no factory were found.
+     * @param  loader  the loader.
+     * @return the first factory found for the specified loader.
+     * @throws NoSuchElementException if no factory were found.
      */
     private static <T extends Factory> T getFactory(final ServiceLoader<T> loader) {
         final Iterator<T> it = loader.iterator();
@@ -74,10 +74,10 @@ final class FactoryFinder {
     /**
      * Returns the first service provider of the specified authority.
      *
-     * @param  loader The loader.
-     * @param  authority The authority (e.g. {@code "EPSG"}.
-     * @return The first factory found for the specified authority.
-     * @throws NoSuchElementException If no factory were found.
+     * @param  loader     the loader.
+     * @param  authority  the authority (e.g. {@code "EPSG"}.
+     * @return the first factory found for the specified authority.
+     * @throws NoSuchElementException if no factory were found.
      */
     private static <T extends AuthorityFactory> T getAuthorityFactory(final ServiceLoader<T> loader, final String authority) {
         final Iterator<T> it = loader.iterator();
@@ -93,9 +93,9 @@ final class FactoryFinder {
     /**
      * Returns the first implementation of {@link CRSAuthorityFactory}.
      *
-     * @param  The authority (e.g. {@code "EPSG"}).
-     * @return The first coordinate reference system authority factory found.
-     * @throws NoSuchElementException If no factory were found.
+     * @param  authority  the authority (e.g. {@code "EPSG"}).
+     * @return the first coordinate reference system authority factory found.
+     * @throws NoSuchElementException if no factory were found.
      */
     static synchronized CRSAuthorityFactory getCRSAuthorityFactory(final String authority) {
         ServiceLoader<CRSAuthorityFactory> loader = crsFactory;
@@ -108,8 +108,8 @@ final class FactoryFinder {
     /**
      * Returns the first implementation of {@link CoordinateOperationFactory}.
      *
-     * @return The first coordinate operation factory found.
-     * @throws NoSuchElementException If no factory were found.
+     * @return the first coordinate operation factory found.
+     * @throws NoSuchElementException if no factory were found.
      */
     static synchronized CoordinateOperationFactory getCoordinateOperationFactory() {
         ServiceLoader<CoordinateOperationFactory> loader = copFactory;

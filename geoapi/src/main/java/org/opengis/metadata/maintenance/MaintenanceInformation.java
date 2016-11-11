@@ -60,7 +60,7 @@ public interface MaintenanceInformation {
      * Frequency with which changes and additions are made to the resource after the
      * initial resource is completed.
      *
-     * @return Frequency with which changes and additions are made to the resource.
+     * @return frequency with which changes and additions are made to the resource.
      */
     @UML(identifier="maintenanceAndUpdateFrequency", obligation=MANDATORY, specification=ISO_19115)
     MaintenanceFrequency getMaintenanceAndUpdateFrequency();
@@ -69,7 +69,7 @@ public interface MaintenanceInformation {
      * Date information associated with maintenance of resource.
      * Returns an empty collection if none.
      *
-     * @return Date information associated with maintenance of resource.
+     * @return date information associated with maintenance of resource.
      *
      * @since 3.1
      */
@@ -79,11 +79,11 @@ public interface MaintenanceInformation {
     /**
      * Scheduled revision date for resource.
      *
+     * @return scheduled revision date, or {@code null}.
+     *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMaintenanceDates()} in order to enable inclusion
      *             of a {@link org.opengis.metadata.citation.DateType} to describe the type of the date.
      *             Note that {@link org.opengis.metadata.citation.DateType#NEXT_UPDATE} was added to that code list.
-     *
-     * @return Scheduled revision date, or {@code null}.
      */
     @Deprecated
     @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115, version=2003)
@@ -92,7 +92,7 @@ public interface MaintenanceInformation {
     /**
      * Maintenance period other than those defined.
      *
-     * @return The maintenance period, or {@code null}.
+     * @return the maintenance period, or {@code null}.
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
     PeriodDuration getUserDefinedMaintenanceFrequency();
@@ -110,7 +110,7 @@ public interface MaintenanceInformation {
     /**
      * Scope of data to which maintenance is applied.
      *
-     * @return Scope of data to which maintenance is applied.
+     * @return scope of data to which maintenance is applied.
      *
      * @deprecated As of ISO 19115:2014, {@code getUpdateScopes()} and {@link #getUpdateScopeDescriptions()}
      *             were combined into {@link #getMaintenanceScopes()} in order to allow specifying a scope
@@ -123,7 +123,7 @@ public interface MaintenanceInformation {
     /**
      * Additional information about the range or extent of the resource.
      *
-     * @return Additional information about the range or extent of the resource.
+     * @return additional information about the range or extent of the resource.
      *
      * @deprecated As of ISO 19115:2014, {@link #getUpdateScopes()} and {@code getUpdateScopeDescriptions()}
      *             were combined into {@link #getMaintenanceScopes()} in order to allow specifying a scope
@@ -136,7 +136,7 @@ public interface MaintenanceInformation {
     /**
      * Information regarding specific requirements for maintaining the resource.
      *
-     * @return Information regarding specific requirements for maintaining the resource.
+     * @return information regarding specific requirements for maintaining the resource.
      *
      * @since 2.1
      */
@@ -152,7 +152,7 @@ public interface MaintenanceInformation {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Means of communicating with person(s) and organization(s) with responsibility
+     * @return means of communicating with person(s) and organization(s) with responsibility
      *         for maintaining the resource.
      *
      * @since 2.1

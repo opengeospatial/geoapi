@@ -166,8 +166,8 @@ public class OperationParametersReport extends Report {
         /**
          * Creates a row to be show on the HTML page.
          *
-         * @param  object     The operation or parameter to show on the HTML page.
-         * @param  codeSpaces The code spaces for which to get the name and aliases.
+         * @param  object      the operation or parameter to show on the HTML page.
+         * @param  codeSpaces  the code spaces for which to get the name and aliases.
          */
         public Row(final IdentifiedObject object, final Set<String> codeSpaces) {
             name  = object.getName();
@@ -197,7 +197,7 @@ public class OperationParametersReport extends Report {
          * The {@link Map} and {@link List} collections are copied, but the
          * content of those collections are not cloned.
          *
-         * @param toCopy The row to copy.
+         * @param toCopy  the row to copy.
          */
         public Row(final Row toCopy) {
             category = toCopy.category;
@@ -222,7 +222,7 @@ public class OperationParametersReport extends Report {
          * <p>Subclasses can override this method if they want a different ordering
          * on the HTML page.</p>
          *
-         * @param o The other row to compare with this row.
+         * @param  o  the other row to compare with this row.
          * @return -1 if {@code this} should appears before {@code o}, -1 for the converse,
          *         or 0 if this method can not determine an ordering for the given object.
          */
@@ -238,7 +238,7 @@ public class OperationParametersReport extends Report {
         /**
          * Returns a string representation of this row, for debugging purpose only.
          *
-         * @return An arbitrary string representation of this row.
+         * @return an arbitrary string representation of this row.
          */
         @Override
         public String toString() {
@@ -254,12 +254,12 @@ public class OperationParametersReport extends Report {
         /**
         * Writes a single row with the names of the given objects.
         *
-        * @param  out     Where to write the content.
-        * @param  codeSpaces The code spaces to use in columns, typically {@link #getCodeSpaces()}.
-        * @param  isGroup {@code true} if formatting a group, or {@code false} for a parameter.
-        * @param  isHead  {@code true} if formatting the first group of parameter values in a section.
-        * @param  isTail  {@code true} if formatting the last parameter value in a group.
-        * @throws IOException If an error occurred while writing the content.
+        * @param  out         where to write the content.
+        * @param  codeSpaces  the code spaces to use in columns, typically {@link #getCodeSpaces()}.
+        * @param  isGroup     {@code true} if formatting a group, or {@code false} for a parameter.
+        * @param  isHead      {@code true} if formatting the first group of parameter values in a section.
+        * @param  isTail      {@code true} if formatting the last parameter value in a group.
+        * @throws IOException if an error occurred while writing the content.
         */
         final void write(final Appendable out, final String[] codeSpaces,
                 final boolean isGroup, final boolean isHead, final boolean isTail) throws IOException
@@ -333,7 +333,7 @@ public class OperationParametersReport extends Report {
      * Creates a new report generator using the given property values.
      * See the class javadoc for a list of expected values.
      *
-     * @param properties The property values, or {@code null} for the default values.
+     * @param properties  the property values, or {@code null} for the default values.
      */
     public OperationParametersReport(final Properties properties) {
         super(properties);
@@ -352,8 +352,8 @@ public class OperationParametersReport extends Report {
      *   <li>Add the new row to the {@linkplain #rows} list if non-null.</li>
      * </ul>
      *
-     * @param  operation  The operation to show on the HTML page.
-     * @param  parameters The operation parameters, or {@code null} if none.
+     * @param  operation   the operation to show on the HTML page.
+     * @param  parameters  the operation parameters, or {@code null} if none.
      */
     public void add(final IdentifiedObject operation, final ParameterDescriptorGroup parameters) {
         final Map<String, Boolean> codeSpaces = new LinkedHashMap<>(8);
@@ -372,7 +372,7 @@ public class OperationParametersReport extends Report {
      * <blockquote><code>{@linkplain #add(IdentifiedObject, ParameterDescriptorGroup)
      * add}(method, method.{@linkplain OperationMethod#getParameters() getParameters()});</code></blockquote>
      *
-     * @param  factory The factory for which to add available methods.
+     * @param  factory  the factory for which to add available methods.
      */
     public void add(final MathTransformFactory factory) {
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Operations");
@@ -397,10 +397,10 @@ public class OperationParametersReport extends Report {
      * iterates over all parameter descriptor and invokes this method recursively for creating
      * their rows.</p>
      *
-     * @param  operation  The operation.
-     * @param  parameters The operation parameters, or {@code null} if none.
-     * @param  codeSpaces The code spaces for which to get the name and aliases.
-     * @return The new row, or {@code null} if none.
+     * @param  operation   the operation.
+     * @param  parameters  the operation parameters, or {@code null} if none.
+     * @param  codeSpaces  the code spaces for which to get the name and aliases.
+     * @return the new row, or {@code null} if none.
      */
     protected Row createRow(final IdentifiedObject operation, final ParameterDescriptorGroup parameters, final Set<String> codeSpaces) {
         final Row row = new Row(operation, codeSpaces);
@@ -425,7 +425,7 @@ public class OperationParametersReport extends Report {
      * {@linkplain Identifier#getCodeSpace() code spaces} or
      * {@linkplain GenericName#scope() scopes}. The columns will be show in iteration order.
      *
-     * @return The name of all code spaces or scopes. Some typical values are {@code "EPSG"},
+     * @return the name of all code spaces or scopes. Some typical values are {@code "EPSG"},
      *         {@code "OGC"}, {@code "ESRI"}, {@code "GeoTIFF"} or {@code "NetCDF"}.
      */
     private String[] getColumnHeaders() {
@@ -446,8 +446,8 @@ public class OperationParametersReport extends Report {
     /**
      * Formats the current content of the {@linkplain #rows} list as a HTML page in the given file.
      *
-     * @param  destination The file to generate.
-     * @return The given {@code destination} file.
+     * @param  destination  the file to generate.
+     * @return the given {@code destination} file.
      * @throws IOException if an error occurred while writing the HTML page.
      */
     @Override
@@ -479,8 +479,8 @@ public class OperationParametersReport extends Report {
      * only if {@link #getCategory(IdentifiedObject)} returned a non-null value for at
      * least one operation.
      *
-     * @param  out Where to write the content.
-     * @throws IOException If an error occurred while writing the content.
+     * @param  out  where to write the content.
+     * @throws IOException if an error occurred while writing the content.
      */
     private void writeCategories(final BufferedWriter out) throws IOException {
         String previous = null;
@@ -513,8 +513,8 @@ public class OperationParametersReport extends Report {
     /**
      * Writes the table of operations and their parameters.
      *
-     * @param  out Where to write the content.
-     * @throws IOException If an error occurred while writing the content.
+     * @param  out  where to write the content.
+     * @throws IOException if an error occurred while writing the content.
      */
     private void writeTable(final BufferedWriter out) throws IOException {
         writeIndentation(out, indentation);

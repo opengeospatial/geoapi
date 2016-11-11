@@ -54,7 +54,7 @@ public interface Type {
      * Returns the name that identifies this type.
      * This method can be think as the equivalent of the Java {@link Class#getName()} method.
      *
-     * @return The name that identifies this type.
+     * @return the name that identifies this type.
      */
     @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
     TypeName getTypeName();

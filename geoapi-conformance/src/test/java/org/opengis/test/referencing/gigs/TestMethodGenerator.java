@@ -79,8 +79,8 @@ public strictfp abstract class TestMethodGenerator {
     /**
      * Retrieves the unit of the given name.
      *
-     * @param  name The unit name.
-     * @return The unit for the given name, or {@code null} if unknown.
+     * @param  name  the unit name.
+     * @return the unit for the given name, or {@code null} if unknown.
      */
     protected final Unit<?> parseUnit(final String name) {
         Unit<?> unit = parseLinearUnit(name);
@@ -96,8 +96,8 @@ public strictfp abstract class TestMethodGenerator {
     /**
      * Returns the linear unit (compatible with metres) of the given name.
      *
-     * @param  name The unit name.
-     * @return The linear unit for the given name, or {@code null} if unknown.
+     * @param  name  the unit name.
+     * @return the linear unit for the given name, or {@code null} if unknown.
      */
     protected static Unit<Length> parseLinearUnit(final String name) {
         if (name.equalsIgnoreCase("metre"))          return units.metre();
@@ -111,8 +111,8 @@ public strictfp abstract class TestMethodGenerator {
     /**
      * Retrieves the angular unit (compatible with degrees) of the given name.
      *
-     * @param  name The unit name.
-     * @return The angular unit for the given name, or {@code null} if unknown.
+     * @param  name  the unit name.
+     * @return the angular unit for the given name, or {@code null} if unknown.
      */
     protected static Unit<Angle> parseAngularUnit(final String name) {
         if (name.equalsIgnoreCase("degree"))      return units.degree();
@@ -125,8 +125,8 @@ public strictfp abstract class TestMethodGenerator {
     /**
      * Retrieves the scale unit (dimensionless) of the given name.
      *
-     * @param  name The unit name.
-     * @return The scale unit for the given name, or {@code null} if unknown.
+     * @param  name  the unit name.
+     * @return the scale unit for the given name, or {@code null} if unknown.
      */
     protected static Unit<Dimensionless> parseScaleUnit(final String name) {
         if (name.equalsIgnoreCase("unity"))             return units.one();
@@ -175,7 +175,7 @@ public strictfp abstract class TestMethodGenerator {
      * Prints a sequence of key-values as a list in javadoc.
      * Boolean value are treated especially: the key is printed only if the value is {@code true}.
      *
-     * @param pairs Key-value pairs.
+     * @param pairs  key-value pairs.
      */
     final void printJavadocKeyValues(final Object... pairs) {
         assertTrue("Array length shall be even", (pairs.length & 1) == 0);
@@ -365,10 +365,10 @@ public strictfp abstract class TestMethodGenerator {
      * Closes the javadoc comment block, then prints the test method signature.
      * The signature includes the {@code throws FactoryException} declaration.
      *
-     * @param nameToMethod A map of test method names to use for the given {@code name}.
+     * @param nameToMethod  a map of test method names to use for the given {@code name}.
      *        If this map does not contain an entry for the given {@code name}, then this method
      *        will generate a new name by trimming illegal characters from the given {@code name}.
-     * @param name The name to use for generating a method name.
+     * @param name  the name to use for generating a method name.
      */
     final void printTestMethodSignature(final Map<String,String> nameToMethod, final String name) {
         indent(1); out.println(" */");
@@ -414,7 +414,7 @@ public strictfp abstract class TestMethodGenerator {
      * Prints a sequence of key-values as assignments in the method body.
      * Boolean value are treated especially: the assignment is printed only if the value is {@code true}.
      *
-     * @param pairs Key-value pairs.
+     * @param pairs  key-value pairs.
      */
     final void printFieldAssignments(final Object... pairs) {
         assertTrue("Array length shall be even", (pairs.length & 1) == 0);
@@ -466,7 +466,7 @@ public strictfp abstract class TestMethodGenerator {
     /**
      * Prints the programmatic name of the given unit.
      *
-     * @param unit The unit for which to print the programmatic name.
+     * @param unit  the unit for which to print the programmatic name.
      */
     final void printProgrammaticName(final Unit<?> unit) {
         final String name = UNIT_NAMES.get(unit);
@@ -479,8 +479,8 @@ public strictfp abstract class TestMethodGenerator {
      * If this method detects a sequence of at least {@value #CALL_IN_LOOP_THRESHOLD} consecutive
      * values, then this method will invoke the given method in a loop.
      *
-     * @param method The name of the method to call (without arguments).
-     * @param codes  The arguments to give to the method.
+     * @param method  the name of the method to call (without arguments).
+     * @param codes   the arguments to give to the method.
      */
     final void printCallsToMethod(final String method, final int[] codes) {
         for (int i=0; i<codes.length; i++) {
@@ -515,7 +515,7 @@ public strictfp abstract class TestMethodGenerator {
                         out.println("(code);");
                         indent(2);
                         out.println("}");
-                        i = upper - 1;  // Skip the sequence.
+                        i = upper - 1;                      // Skip the sequence.
                         continue;
                     }
                 }

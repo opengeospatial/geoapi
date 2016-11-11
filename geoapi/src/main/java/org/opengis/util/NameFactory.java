@@ -54,9 +54,8 @@ public interface NameFactory extends Factory {
     /**
      * Creates an international string from a set of strings in different locales.
      *
-     * @param strings
-     *          String value for each locale key.
-     * @return The international string.
+     * @param  strings  string value for each locale key.
+     * @return the international string.
      */
     InternationalString createInternationalString(Map<Locale,String> strings);
 
@@ -94,12 +93,10 @@ public interface NameFactory extends Factory {
      *   <li>For HTTP namespace, {@code separator.head} = {@code "://"} and {@code separator} = {@code "."}.</li>
      * </ul></div>
      *
-     * @param name
-     *          The name of the namespace to be returned. This argument can be created using
-     *          <code>{@linkplain #createGenericName createGenericName}(null, namespace)</code>.
-     * @param properties
-     *          An optional map of properties to be assigned to the namespace, or {@code null} if none.
-     * @return A namespace having the given name and separators.
+     * @param   name       the name of the namespace to be returned. This argument can be created using
+     *                     <code>{@linkplain #createGenericName createGenericName}(null, namespace)</code>.
+     * @param  properties  an optional map of properties to be assigned to the namespace, or {@code null} if none.
+     * @return a namespace having the given name and separators.
      *
      * @since 2.3
      */
@@ -109,12 +106,10 @@ public interface NameFactory extends Factory {
      * Creates a type name from the given character sequence. The character sequence shall
      * complies to the same restriction than {@link #createLocalName createLocalName}.
      *
-     * @param scope
-     *          The {@linkplain GenericName#scope() scope} of the type name to be created,
-     *          or {@code null} for a global namespace.
-     * @param name
-     *          The type name as a string or an international string.
-     * @return The type name for the given character sequence.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the type name as a string or an international string.
+     * @return the type name for the given character sequence.
      *
      * @since 2.3
      */
@@ -123,11 +118,11 @@ public interface NameFactory extends Factory {
     /**
      * Creates a member name from the given character sequence and attribute type.
      *
-     * @param  scope The {@linkplain GenericName#scope() scope} of the member
-     *         name to be created, or {@code null} for a global namespace.
-     * @param  name The member name as a string or an international string.
-     * @param  attributeType The type of the data associated with the record member.
-     * @return The member name for the given character sequence.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the member name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the member name as a string or an international string.
+     * @param  attributeType  the type of the data associated with the record member.
+     * @return the member name for the given character sequence.
      *
      * @since 3.1
      */
@@ -139,12 +134,10 @@ public interface NameFactory extends Factory {
      * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
      * returned by {@link LocalName#toString()}.
      *
-     * @param scope
-     *          The {@linkplain GenericName#scope() scope} of the local name to be created,
-     *          or {@code null} for a global namespace.
-     * @param name
-     *          The local name as a string or an international string.
-     * @return The local name for the given character sequence.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the local name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the local name as a string or an international string.
+     * @return the local name for the given character sequence.
      *
      * @since 2.2
      */
@@ -160,13 +153,11 @@ public interface NameFactory extends Factory {
      * of {@link LocalName}. If the length is 2 or more, then this method returns an instance of
      * {@link ScopedName}.</p>
      *
-     * @param scope
-     *          The {@linkplain GenericName#scope() scope} of the generic name to be created,
-     *          or {@code null} for a global namespace.
-     * @param parsedNames
-     *          The local names as an array of strings or international strings.
-     *          This array must contains at least one element.
-     * @return The generic name for the given parsed names.
+     * @param  scope        the {@linkplain GenericName#scope() scope} of the generic name to be created,
+     *                      or {@code null} for a global namespace.
+     * @param  parsedNames  the local names as an array of strings or international strings.
+     *                      This array must contains at least one element.
+     * @return the generic name for the given parsed names.
      *
      * @since 2.2
      */
@@ -184,12 +175,10 @@ public interface NameFactory extends Factory {
      * of {@linkplain GenericName#getParsedNames parsed names} ({@code "crs"}, {@code "epsg"},
      * {@code "4326"}).</p>
      *
-     * @param scope
-     *          The {@linkplain GenericName#scope() scope} of the generic name to
-     *          be created, or {@code null} for a global namespace.
-     * @param name
-     *          The qualified name, as a sequence of names separated by a scope-dependent separator.
-     * @return A name parsed from the given string.
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the generic name to be created,
+     *                or {@code null} for a global namespace.
+     * @param  name   the qualified name, as a sequence of names separated by a scope-dependent separator.
+     * @return a name parsed from the given string.
      *
      * @since 2.2
      */

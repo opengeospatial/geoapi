@@ -78,7 +78,7 @@ public interface RepresentativeFraction {
     /**
      * The number below the line in a vulgar fraction.
      *
-     * @return The denominator.
+     * @return the denominator.
      */
     @UML(identifier = "denominator", obligation = MANDATORY, specification = ISO_19115)
     long getDenominator();
@@ -95,7 +95,7 @@ public interface RepresentativeFraction {
      *    return false;
      *}</pre></blockquote>
      *
-     * @param other The object to compare with.
+     * @param  other  the object to compare with.
      * @return {@code true} if {@code other} is a {@code RepresentedFraction} with the same
      *         {@linkplain #getDenominator() denominator} value.
      */
@@ -110,7 +110,7 @@ public interface RepresentativeFraction {
      *    return (int) getDenominator();
      *}</pre></blockquote>
      *
-     * @return A hash code value for this representative fraction.
+     * @return a hash code value for this representative fraction.
      */
     @Override
     int hashCode();

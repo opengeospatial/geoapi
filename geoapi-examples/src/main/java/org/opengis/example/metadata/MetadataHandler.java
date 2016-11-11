@@ -53,11 +53,11 @@ final class MetadataHandler implements InvocationHandler {
      * <p>The {@code equals(Object)}, {@code hashCode()} and {@code toString()} methods are handled
      * in a special way: they are delegated to the corresponding method of this handler.</p>
      *
-     * @param  proxy  The proxy object on which a method has been invoked.
-     * @param  method The method which has been invoked.
-     * @param  args   The argument given to the invoked method.
-     * @return The value to return, which may be {@code null}.
-     * @throws UnsupportedOperationException If the invoked method does not have a {@link UML}
+     * @param  proxy   the proxy object on which a method has been invoked.
+     * @param  method  the method which has been invoked.
+     * @param  args    the argument given to the invoked method.
+     * @return the value to return, which may be {@code null}.
+     * @throws UnsupportedOperationException if the invoked method does not have a {@link UML}
      *         annotation and is not one of the methods handled in a special way.
      */
     @Override

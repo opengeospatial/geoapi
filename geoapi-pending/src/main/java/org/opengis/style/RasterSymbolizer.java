@@ -159,7 +159,7 @@ public interface RasterSymbolizer extends Symbolizer {
      * PolygonSymbolizer Fill to allow the main-raster data be visible through
      * the fill.
      *
-     * @return The relevent symbolizer
+     * @return the relevent symbolizer
      */
     @XmlElement("ImageOutline")
     Symbolizer getImageOutline();

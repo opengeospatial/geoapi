@@ -56,8 +56,8 @@ public class RootValidator extends MetadataValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public RootValidator(final ValidatorContainer container) {
         super(container, "org.opengis.metadata");
@@ -66,7 +66,7 @@ public class RootValidator extends MetadataValidator {
     /**
      * Validates the given metadata.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Metadata object) {
         if (object == null) {
@@ -126,7 +126,7 @@ public class RootValidator extends MetadataValidator {
     /**
      * Validates the given identifier.
      *
-     * @param object The identifier to validate, or {@code null}.
+     * @param  object  the identifier to validate, or {@code null}.
      */
     public void validate(final Identifier object) {
         if (object == null) {

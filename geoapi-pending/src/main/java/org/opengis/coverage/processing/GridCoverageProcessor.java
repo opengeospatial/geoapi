@@ -96,7 +96,7 @@ public interface GridCoverageProcessor {
      * Each operation information will contain the name of the operation as well
      * as a list of its parameters.
      *
-     * @return The available operations.
+     * @return the available operations.
      */
     @UML(identifier="getOperation", obligation=MANDATORY, specification=OGC_01004)
     Collection<Operation> getOperations();

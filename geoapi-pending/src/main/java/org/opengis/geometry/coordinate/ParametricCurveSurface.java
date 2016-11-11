@@ -162,7 +162,7 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * </div>
      *
      * @param  t The <var>t</var> value to hold constant.
-     * @return The curve that traverses the surface.
+     * @return the curve that traverses the surface.
      */
     @UML(identifier="horizontalCurve", obligation=MANDATORY, specification=ISO_19107)
     Curve horizontalCurve(double t);
@@ -172,7 +172,7 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * <var>t</var>. This curve holds the parameter <var>s</var> constant.
      *
      * @param  s The <var>s</var> value to hold constant.
-     * @return The curve that traverses the surface.
+     * @return the curve that traverses the surface.
      */
     @UML(identifier="verticalCurve", obligation=MANDATORY, specification=ISO_19107)
     Curve verticalCurve(double s);

@@ -71,14 +71,13 @@ public interface ImplementationDetails {
      *}</pre></blockquote>
      *
      * If more than one {@code ImplementationDetails} is found on the classpath, then a logical {@code AND}
-     * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(...)}
-     * calls.
+     * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(…)} calls.
      *
      * <p>This method is invoked often (typically one or two time before every single test method),
      * so implementors may want to cache their configuration map.</p>
      *
-     * @param  factories The factories to be tested.
-     * @return The collection of tests to disable for the given factories, or {@code null} if none.
+     * @param  factories  the factories to be tested.
+     * @return the collection of tests to disable for the given factories, or {@code null} if none.
      *
      * @see TestCase#configuration()
      */
@@ -93,8 +92,8 @@ public interface ImplementationDetails {
      * <p>If more than one {@code ImplementationDetails} return a non-null value, then the threshold
      * used by GeoAPI will be the maximal value returned by all {@code ToleranceModifier} objects.</p>
      *
-     * @param  transform The transform being tested.
-     * @return An object for modifying the tolerance thresholds, or {@code null} if no change is needed.
+     * @param  transform  the transform being tested.
+     * @return an object for modifying the tolerance thresholds, or {@code null} if no change is needed.
      */
     ToleranceModifier tolerance(MathTransform transform);
 }

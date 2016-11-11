@@ -71,7 +71,7 @@ public interface TinCoverage extends ContinuousCoverage {
      * coverage. {@link Tin} includes a capability for using stop lines and break lines in the
      * triangulation.
      *
-     * @return The network that provides the structure for evaluating the coverage.
+     * @return the network that provides the structure for evaluating the coverage.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     Tin getGeometry();
@@ -105,7 +105,7 @@ public interface TinCoverage extends ContinuousCoverage {
      * PointValuePair point-value pairs} at the vertices of the value triangle.
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;

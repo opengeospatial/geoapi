@@ -147,7 +147,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS3002} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS3002} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -159,7 +159,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param datumFactory Factory for creating {@link Ellipsoid} instances.
+     * @param datumFactory  factory for creating {@link Ellipsoid} instances.
      */
     public GIGS3002(final DatumFactory datumFactory) {
         super(datumFactory);
@@ -179,7 +179,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -202,7 +202,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
      * with the current {@link #properties properties} map in argument.
      * The created object is then cached and returned in all subsequent invocations of this method.
      *
-     * @return The ellipsoid instance to test.
+     * @return the ellipsoid instance to test.
      * @throws FactoryException if an error occurred while creating the ellipsoid instance.
      */
     @Override

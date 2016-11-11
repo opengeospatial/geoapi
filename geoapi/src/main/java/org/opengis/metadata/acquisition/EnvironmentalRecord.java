@@ -56,7 +56,7 @@ public interface EnvironmentalRecord {
      * together with the value.
      * </div>
      *
-     * @return Average air temperature along the flight pass during the photo flight.
+     * @return average air temperature along the flight pass during the photo flight.
      */
     @UML(identifier="averageAirTemperature", obligation=MANDATORY, specification=ISO_19115_2)
     Double getAverageAirTemperature();
@@ -70,7 +70,7 @@ public interface EnvironmentalRecord {
      * together with the value.
      * </div>
      *
-     * @return Maximum relative humidity along the flight pass during the photo flight.
+     * @return maximum relative humidity along the flight pass during the photo flight.
      */
     @UML(identifier="maxRelativeHumidity", obligation=MANDATORY, specification=ISO_19115_2)
     Double getMaxRelativeHumidity();
@@ -84,7 +84,7 @@ public interface EnvironmentalRecord {
      * together with the value.
      * </div>
      *
-     * @return Maximum altitude during the photo flight.
+     * @return maximum altitude during the photo flight.
      */
     @UML(identifier="maxAltitude", obligation=MANDATORY, specification=ISO_19115_2)
     Double getMaxAltitude();
@@ -92,7 +92,7 @@ public interface EnvironmentalRecord {
     /**
      * Meteorological conditions in the photo flight area, in particular clouds, snow and wind.
      *
-     * @return Meteorological conditions in the photo flight area.
+     * @return meteorological conditions in the photo flight area.
      */
     @UML(identifier="meteorologicalConditions", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getMeteorologicalConditions();

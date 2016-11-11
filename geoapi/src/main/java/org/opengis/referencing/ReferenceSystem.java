@@ -97,7 +97,7 @@ public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Area or region or timeframe in which this (coordinate) reference system is valid.
      *
-     * @return The reference system valid domain, or {@code null} if not available.
+     * @return the reference system valid domain, or {@code null} if not available.
      *
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003.
@@ -114,7 +114,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      * Description of domain of usage, or limitations of usage, for which this
      * Reference System object is valid.
      *
-     * @return The domain of usage, or {@code null} if none.
+     * @return the domain of usage, or {@code null} if none.
      *
      * @departure historic
      *   This method was initially derived from the ISO 19111 specification published in 2003.

@@ -33,7 +33,7 @@ public class PJFactoryTest {
      * is the check for axis order. The result will depend on whether the axis orientations
      * map has been properly created or not.
      *
-     * @throws FactoryException If an error occurred while creating the CRS objects.
+     * @throws FactoryException if an error occurred while creating the CRS objects.
      */
     @Test
     public void testEPSG_4326() throws FactoryException {

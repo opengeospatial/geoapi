@@ -32,10 +32,10 @@ final class MethodInfo {
     /**
      * Constructs method informations.
      *
-     * @param category    The category name.
-     * @param display     The display name.
-     * @param description A description of the exported method.
-     * @param arguments   Arguments names (even index) and descriptions (odd index).
+     * @param category     the category name.
+     * @param display      the display name.
+     * @param description  a description of the exported method.
+     * @param arguments    arguments names (even index) and descriptions (odd index).
      */
     MethodInfo(final String   category,
                final String   display,

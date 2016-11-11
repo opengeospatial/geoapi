@@ -78,7 +78,7 @@ public final class TemporalOperand extends CodeList<TemporalOperand> {
     /**
      * Creates an operand in the {@code "http://www.opengis.net/fes/2.0"} namespace.
      *
-     * @param name The name of the new element. This name must not be in use by an other element of this type.
+     * @param  name  the name of the new element. This name must not be in use by an other element of this type.
      */
     private TemporalOperand(final String name) {
         super(name, VALUES);
@@ -87,7 +87,7 @@ public final class TemporalOperand extends CodeList<TemporalOperand> {
     /**
      * Returns the list of {@code TemporalOperand}s.
      *
-     * @return The list of codes declared in the current JVM.
+     * @return the list of codes declared in the current JVM.
      */
     public static TemporalOperand[] values() {
         synchronized (VALUES) {
@@ -100,7 +100,7 @@ public final class TemporalOperand extends CodeList<TemporalOperand> {
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *
-     * @return All code {@linkplain #values() values} for this code list.
+     * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
     public TemporalOperand[] family() {
@@ -114,8 +114,8 @@ public final class TemporalOperand extends CodeList<TemporalOperand> {
      * returns {@code true}. If no existing instance is found, then a new one is created for
      * the given name.
      *
-     * @param code The name of the code to fetch or to create.
-     * @return A code matching the given name.
+     * @param  code  the name of the code to fetch or to create.
+     * @return a code matching the given name.
      */
     public static TemporalOperand valueOf(final String code) {
         return valueOf(TemporalOperand.class, code);

@@ -105,10 +105,10 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      * and units are inferred from the abbreviation using the table documented in the class
      * javadoc.
      *
-     * @param  authority    Organization responsible for definition of the name, or {@code null}.
-     * @param  name         The name of the new axis.
-     * @param  abbreviation The abbreviation used for this coordinate system axes.
-     * @throws IllegalArgumentException If the abbreviation is not one of the documented ones.
+     * @param  authority     organization responsible for definition of the name, or {@code null}.
+     * @param  name          the name of the new axis.
+     * @param  abbreviation  the abbreviation used for this coordinate system axes.
+     * @throws IllegalArgumentException if the abbreviation is not one of the documented ones.
      */
     public SimpleAxis(final Citation authority, final String name, final char abbreviation)
             throws IllegalArgumentException
@@ -151,11 +151,11 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
      *   <li><var>r</var> for geocentric radius</li>
      * </ul>
      *
-     * @param authority    Organization responsible for definition of the name, or {@code null}.
-     * @param name         The name of the new axis.
-     * @param abbreviation The abbreviation used for this coordinate system axes.
-     * @param direction    Direction of this coordinate system axis.
-     * @param unit         The unit of measure used for this coordinate system axis.
+     * @param authority     organization responsible for definition of the name, or {@code null}.
+     * @param name          the name of the new axis.
+     * @param abbreviation  the abbreviation used for this coordinate system axes.
+     * @param direction     direction of this coordinate system axis.
+     * @param unit          the unit of measure used for this coordinate system axis.
      */
     public SimpleAxis(final Citation authority, final String name, final char abbreviation,
             final AxisDirection direction, final Unit<?> unit)
@@ -259,9 +259,9 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
     /**
      * Converts the given angle from degrees to the angular units used by this axis.
      *
-     * @param  angle The angle to convert.
-     * @return The converted angle.
-     * @throws IllegalStateException If this axis doesn't use angular units.
+     * @param  angle  the angle to convert.
+     * @return the converted angle.
+     * @throws IllegalStateException if this axis does not use angular units.
      */
     private double toAngularUnit(final double angle) throws IllegalStateException {
         try {
@@ -274,7 +274,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
     /**
      * Compares this axis with the given object for equality.
      *
-     * @param  object The object to compare with this {@code SimpleCRS}.
+     * @param  object  the object to compare with this {@code SimpleCRS}.
      * @return {@code true} if the given object is equals to this object.
      */
     @Override

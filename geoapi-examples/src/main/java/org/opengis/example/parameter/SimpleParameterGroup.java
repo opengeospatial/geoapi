@@ -72,9 +72,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     /**
      * Creates a new parameter group of the given authority and name.
      *
-     * @param authority Organization responsible for definition of the parameters, or {@code null}.
-     * @param name      The parameter group name.
-     * @param param     The parameters to be included in this group.
+     * @param authority  organization responsible for definition of the parameters, or {@code null}.
+     * @param name       the parameter group name.
+     * @param param      the parameters to be included in this group.
      */
     public SimpleParameterGroup(final Citation authority, final String name, final SimpleParameter... param) {
         super(authority, name);
@@ -133,7 +133,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * returns the same list than the {@link #values()} methods. However more sophisticated libraries
      * are likely to return a distinct list.</div>
      *
-     * @return The parameter descriptors in this group as an unmodifiable list.
+     * @return the parameter descriptors in this group as an unmodifiable list.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -151,7 +151,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * returns the same list than the {@link #descriptors()} methods. However more sophisticated
      * libraries are likely to return a distinct list.</div>
      *
-     * @return The parameter values in this group as an unmodifiable list.
+     * @return the parameter values in this group as an unmodifiable list.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -169,9 +169,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * essentially synonymous to {@link #parameter(String)}. However more sophisticated libraries
      * are likely to return a distinct object.</div>
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
-     *              of the parameter to search for.
-     * @return The parameter for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
+     *               of the parameter to search for.
+     * @return the parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
      */
     @Override
@@ -206,9 +206,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * essentially synonymous to {@link #descriptor(String)}. However more sophisticated libraries
      * are likely to return a distinct object.</div>
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
-     *              of the parameter to search for.
-     * @return The parameter value for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
+     *               of the parameter to search for.
+     * @return the parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      */
     @Override
@@ -225,9 +225,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Returns all subgroups with the specified name. The default implementation always
      * throws an exception, since this simple parameter group does not support subgroups.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
-     *              of the parameter group to search for.
-     * @return The set of all parameter group for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
+     *               of the parameter group to search for.
+     * @return the set of all parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      */
@@ -240,9 +240,9 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * Creates a new group of the specified name. The default implementation always
      * throws an exception, since this simple parameter group does not support subgroups.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
-     *              of the parameter group to create.
-     * @return A newly created parameter group for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
+     *               of the parameter group to create.
+     * @return a newly created parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      */

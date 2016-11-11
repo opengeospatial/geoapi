@@ -65,7 +65,7 @@ public interface Formula {
     /**
      * Formula(s) or procedure used by the operation method.
      *
-     * @return The formula used by the operation method, or {@code null} if none.
+     * @return the formula used by the operation method, or {@code null} if none.
      *
      * @condition Only one of {@code getFormula()} and {@code getCitation()} shall be supplied.
      */
@@ -76,7 +76,7 @@ public interface Formula {
      * Reference to a publication giving the formula(s) or procedure used by the
      * coordinate operation method.
      *
-     * @return Reference to a publication giving the formula, or {@code null} if none.
+     * @return reference to a publication giving the formula, or {@code null} if none.
      *
      * @condition Only one of {@code getFormula()} and {@code getCitation()} shall be supplied.
      */

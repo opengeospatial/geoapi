@@ -103,9 +103,9 @@ public class PJFactory implements Factory {
      *   </tr>
      * </table>
      *
-     * @param  properties The properties, or {@code null} if none.
-     * @return A reference identifier for the given code space and code, or {@code null}.
-     * @throws IllegalArgumentException If any of the requested value is an empty string.
+     * @param  properties  the properties, or {@code null} if none.
+     * @return a reference identifier for the given code space and code, or {@code null}.
+     * @throws IllegalArgumentException if any of the requested value is an empty string.
      */
     public static ReferenceIdentifier createIdentifier(final Map<String,?> properties) {
         if (properties != null) {
@@ -135,11 +135,11 @@ public class PJFactory implements Factory {
      * about that. Users are nevertheless encouraged to use this method for creating an identifier
      * before to invoke the other static methods in this {@code PJFactory} class.</p>
      *
-     * @param  codespace  The code space (for example {@code "EPSG"}), or {@code null} if none.
-     * @param  code The code, for example {@code "4326"}.
-     * @return A reference identifier for the given code space and code.
-     * @throws NullPointerException If the code argument is {@code null}.
-     * @throws IllegalArgumentException If any of the given argument is an empty string.
+     * @param  codespace  the code space (for example {@code "EPSG"}), or {@code null} if none.
+     * @param  code       the code, for example {@code "4326"}.
+     * @return a reference identifier for the given code space and code.
+     * @throws NullPointerException if the code argument is {@code null}.
+     * @throws IllegalArgumentException if any of the given argument is an empty string.
      */
     public static ReferenceIdentifier createIdentifier(String codespace, String code) {
         if ((code = code.trim()).isEmpty() || (codespace != null && (codespace = codespace.trim()).isEmpty())) {
@@ -154,13 +154,13 @@ public class PJFactory implements Factory {
      * will handle at most the 3 first dimensions. All supplemental dimensions will be simply
      * copied unchanged by {@link MathTransform} implementations.
      *
-     * @param  crsId The name of the CRS to create, or {@code null} if none.
-     * @param  datumId The name of the datum to create, or {@code null} if none.
-     * @param  definition The Proj.4 definition string.
-     * @param  dimension  The number of dimension of the CRS to create.
-     * @return A CRS created from the given definition string and number of dimension.
-     * @throws NullPointerException If the definition string is {@code null}.
-     * @throws IllegalArgumentException If one of the given argument has an invalid value.
+     * @param  crsId       the name of the CRS to create, or {@code null} if none.
+     * @param  datumId     the name of the datum to create, or {@code null} if none.
+     * @param  definition  the Proj.4 definition string.
+     * @param  dimension   the number of dimension of the CRS to create.
+     * @return a CRS created from the given definition string and number of dimension.
+     * @throws NullPointerException if the definition string is {@code null}.
+     * @throws IllegalArgumentException if one of the given argument has an invalid value.
      */
     public static CoordinateReferenceSystem createCRS(final ReferenceIdentifier crsId,
             final ReferenceIdentifier datumId, String definition, final int dimension)
@@ -217,12 +217,11 @@ public class PJFactory implements Factory {
      * Creates an operation for conversion or transformation between two coordinate reference systems.
      * This given source and target CRS must be instances created by this factory.
      *
-     * @param  identifier The name of the operation to create, or {@code null} if none.
-     * @param  sourceCRS  The source coordinate reference system.
-     * @param  targetCRS  The target coordinate reference system.
-     * @return A coordinate operation for transforming coordinates from the given source CRS
-     *         to the given target CRS.
-     * @throws ClassCastException If the given CRS are not instances created by this class.
+     * @param  identifier  the name of the operation to create, or {@code null} if none.
+     * @param  sourceCRS   the source coordinate reference system.
+     * @param  targetCRS   the target coordinate reference system.
+     * @return a coordinate operation for transforming coordinates from the given source CRS to the given target CRS.
+     * @throws ClassCastException if the given CRS are not instances created by this class.
      */
     public static CoordinateOperation createOperation(final ReferenceIdentifier identifier,
             final CoordinateReferenceSystem sourceCRS, final CoordinateReferenceSystem targetCRS)
@@ -266,8 +265,8 @@ public class PJFactory implements Factory {
         /**
          * Appends the prime meridian to the given definition string buffer.
          *
-         * @param def The definition string buffer.
-         * @param pm The prime meridian, or {@code null} if none.
+         * @param def  the definition string buffer.
+         * @param pm   the prime meridian, or {@code null} if none.
          */
         private static void appendPrimeMeridian(final StringBuilder def, final PrimeMeridian pm) {
             if (pm != null) {
@@ -283,10 +282,10 @@ public class PJFactory implements Factory {
         /**
          * Appends the axis directions in the given definition string buffer.
          *
-         * @param  def The definition string buffer.
-         * @param  cs The coordinate system.
-         * @param  dimension The number of dimension to format (may be lower than the CS dimension).
-         * @throws FactoryException If an axis direction is not supported.
+         * @param  def        the definition string buffer.
+         * @param  cs         the coordinate system.
+         * @param  dimension  the number of dimension to format (may be lower than the CS dimension).
+         * @throws FactoryException if an axis direction is not supported.
          */
         private static void appendAxisDirections(final StringBuilder def, final CoordinateSystem cs,
                 final int dimension) throws FactoryException
@@ -308,12 +307,12 @@ public class PJFactory implements Factory {
         /**
          * Creates a geographic or geocentric coordinate reference system.
          *
-         * @param  type {@code "latlon"} or {@code "geocent"}.
-         * @param  properties Name to give to the new object. Available properties
-         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
-         * @param  datum Geodetic datum to use in created CRS.
-         * @param  cs The ellipsoidal coordinate system for the created CRS.
-         * @return The coordinate reference system for the given properties.
+         * @param  type        {@code "latlon"} or {@code "geocent"}.
+         * @param  properties  name to give to the new object. Available properties are
+         *                     {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  datum       geodetic datum to use in created CRS.
+         * @param  cs          the ellipsoidal coordinate system for the created CRS.
+         * @return the coordinate reference system for the given properties.
          * @throws FactoryException if the object creation failed.
          */
         private CoordinateReferenceSystem createGeodeticCRS(final String type, final Map<String,?> properties,
@@ -338,11 +337,11 @@ public class PJFactory implements Factory {
         /**
          * Creates a geocentric coordinate reference system.
          *
-         * @param  properties Name to give to the new object. Available properties
-         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
-         * @param  datum Geodetic datum to use in created CRS.
-         * @param  cs The coordinate system for the created CRS.
-         * @return The coordinate reference system for the given properties.
+         * @param  properties  name to give to the new object. Available properties are
+         *                     {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  datum       geodetic datum to use in created CRS.
+         * @param  cs          the coordinate system for the created CRS.
+         * @return the coordinate reference system for the given properties.
          * @throws FactoryException if the object creation failed.
          */
         @Override
@@ -357,11 +356,11 @@ public class PJFactory implements Factory {
          * It can be <var>Latitude</var>/<var>Longitude</var> or
          * <var>Longitude</var>/<var>Latitude</var>.
          *
-         * @param  properties Name to give to the new object. Available properties
-         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
-         * @param  datum Geodetic datum to use in created CRS.
-         * @param  cs The ellipsoidal coordinate system for the created CRS.
-         * @return The coordinate reference system for the given properties.
+         * @param  properties  name to give to the new object. Available properties are
+         *                     {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  datum       geodetic datum to use in created CRS.
+         * @param  cs          the ellipsoidal coordinate system for the created CRS.
+         * @return the coordinate reference system for the given properties.
          * @throws FactoryException if the object creation failed.
          */
         @Override
@@ -376,12 +375,12 @@ public class PJFactory implements Factory {
          * The projection and parameter names in the {@code conversionFromBase} can be
          * Proj.4 names, OGC names, EPSG names or GeoTIFF names.
          *
-         * @param  properties Name to give to the new object. Available properties
-         *         are {@linkplain PJFactory#createIdentifier(Map) listed there}.
-         * @param  baseCRS Geographic coordinate reference system to base the projection on.
-         * @param  conversionFromBase The defining conversion.
-         * @param  derivedCS The coordinate system for the projected CRS.
-         * @return The coordinate reference system for the given properties.
+         * @param  properties  name to give to the new object. Available properties are
+         *                     {@linkplain PJFactory#createIdentifier(Map) listed there}.
+         * @param  baseCRS     geographic coordinate reference system to base the projection on.
+         * @param  conversionFromBase  the defining conversion.
+         * @param  derivedCS   the coordinate system for the projected CRS.
+         * @return the coordinate reference system for the given properties.
          * @throws FactoryException if the object creation failed.
          */
         @Override
@@ -628,8 +627,8 @@ public class PJFactory implements Factory {
          * Returns a hard-coded name for the given code, or {@code null} if none.
          * Only the most frequent CRS are recognized by this method.
          *
-         * @param isDatum {@code false} for creating a CRS name (the usual case), or
-         *        {@code true} for creating a datum name.
+         * @param isDatum  {@code false} for creating a CRS name (the usual case), or
+         *                 {@code true} for creating a datum name.
          */
         private static String getName(String code, final String defaultValue, final boolean isDatum) {
             final int s = code.indexOf(':');
@@ -649,9 +648,9 @@ public class PJFactory implements Factory {
          * accepted (it doesn't need to be EPSG). If no authority is given, then {@code "EPSG:"}
          * is assumed.
          *
-         * @param  code The code of the CRS object to create.
-         * @return A CRS created from the given code.
-         * @throws FactoryException If the CRS object can not be created for the given code.
+         * @param  code  the code of the CRS object to create.
+         * @return a CRS created from the given code.
+         * @throws FactoryException if the CRS object can not be created for the given code.
          */
         @Override
         public CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException {
@@ -666,14 +665,14 @@ public class PJFactory implements Factory {
             final StringBuilder definition = new StringBuilder(40);
             definition.append("+init=").append(codespace).append(':').append(code);
             if (useEpsgAxisOrder) {
-                //
-                // If the user asked to honor the EPSG axis definitions, get the axis orientation
-                // from the "axis-orientations.txt" file.   This may be a comma-separated list if
-                // there is also a definition for the base CRS. It may be 2 or 3 characters long.
-                // The number of characters determine the number of dimensions. However this will
-                // have to be adjusted before to be given to Proj.4 since the later expects
-                // exactly 3 characters.
-                //
+                /*
+                 * If the user asked to honor the EPSG axis definitions, get the axis orientation
+                 * from the "axis-orientations.txt" file.   This may be a comma-separated list if
+                 * there is also a definition for the base CRS. It may be 2 or 3 characters long.
+                 * The number of characters determine the number of dimensions. However this will
+                 * have to be adjusted before to be given to Proj.4 since the later expects
+                 * exactly 3 characters.
+                 */
                 String orientation = ResourcesLoader.getAxisOrientations().get(code);
                 if (orientation != null) {
                     definition.append(' ').append(AXIS_ORDER_PARAM).append(orientation);
@@ -845,11 +844,10 @@ public class PJFactory implements Factory {
          * systems. This given source and target CRS must be instances created by {@link PJFactory}
          * or {@link PJFactory.EPSG}.
          *
-         * @param  sourceCRS The source coordinate reference system.
-         * @param  targetCRS The target coordinate reference system.
-         * @return A coordinate operation for transforming coordinates from the given source CRS
-         *         to the given target CRS.
-         * @throws FactoryException If the given CRS are not instances recognized by this class.
+         * @param  sourceCRS  the source coordinate reference system.
+         * @param  targetCRS  the target coordinate reference system.
+         * @return a coordinate operation for transforming coordinates from the given source CRS to the given target CRS.
+         * @throws FactoryException if the given CRS are not instances recognized by this class.
          */
         @Override
         public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
@@ -887,11 +885,10 @@ public class PJFactory implements Factory {
          * <code>{@linkplain #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
          * createOperation}(sourceCRS, targetCRS)</code>.
          *
-         * @param  sourceCRS The source coordinate reference system.
-         * @param  targetCRS The target coordinate reference system.
-         * @return A coordinate operation for transforming coordinates from the given source CRS
-         *         to the given target CRS.
-         * @throws FactoryException If the given CRS are not instances recognized by this class.
+         * @param  sourceCRS  the source coordinate reference system.
+         * @param  targetCRS  the target coordinate reference system.
+         * @return a coordinate operation for transforming coordinates from the given source CRS to the given target CRS.
+         * @throws FactoryException if the given CRS are not instances recognized by this class.
          */
         @Override
         public CoordinateOperation createOperation(final CoordinateReferenceSystem sourceCRS,
@@ -1057,8 +1054,8 @@ public class PJFactory implements Factory {
          * The {@code [i][N]} element of the matrix must be 0 for <var>i</var> less than {@code M},
          * and 1 for <var>i</var> equals {@code M}.
          *
-         * @param  matrix The matrix used to define the affine transform.
-         * @return The affine transform.
+         * @param  matrix  the matrix used to define the affine transform.
+         * @return the affine transform.
          * @throws FactoryException if the object creation failed.
          */
         @Override
@@ -1074,9 +1071,9 @@ public class PJFactory implements Factory {
          * <p>This implementation can only concatenate two affine transforms,
          * or to Proj.4 transforms. All other cases are unsupported.</p>
          *
-         * @param  transform1 The first transform to apply to points.
-         * @param  transform2 The second transform to apply to points.
-         * @return The concatenated transform.
+         * @param  transform1  the first transform to apply to points.
+         * @param  transform2  the second transform to apply to points.
+         * @return the concatenated transform.
          * @throws FactoryException if the object creation failed.
          */
         @Override

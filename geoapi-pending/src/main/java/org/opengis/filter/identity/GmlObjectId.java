@@ -54,7 +54,7 @@ public interface GmlObjectId extends Identifier {
     /**
      * Evaluates the identifier value against the given GML3 construct.
      *
-     * @param object The GML3 construct to be tested.
+     * @param  object  the GML3 construct to be tested.
      * @return {@code true} if a match, otherwise {@code false}.
      */
     boolean matches(Object object);

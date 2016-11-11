@@ -60,7 +60,7 @@ public interface IdentifiedType {
      * For {@link AttributeType}, the name shall be unique in the {@code FeatureType}.
      * For {@link FeatureType}, the name shall be unique in the unit processing the data.</p>
      *
-     * @return The type name, or {@code null} if none.
+     * @return the type name, or {@code null} if none.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19109)
     GenericName getName();
@@ -68,7 +68,7 @@ public interface IdentifiedType {
     /**
      * Returns a concise definition of the element.
      *
-     * @return Concise definition of the element.
+     * @return concise definition of the element.
      */
     @UML(identifier="definition", obligation=MANDATORY, specification=ISO_19109)
     InternationalString getDefinition();
@@ -77,7 +77,7 @@ public interface IdentifiedType {
      * Returns a natural language designator for the element.
      * This can be used as an alternative to the {@linkplain #getName() name} in user interfaces.
      *
-     * @return Natural language designator for the element, or {@code null} if none.
+     * @return natural language designator for the element, or {@code null} if none.
      */
     @UML(identifier="designation", obligation=OPTIONAL, specification=ISO_19109)
     InternationalString getDesignation();
@@ -86,7 +86,7 @@ public interface IdentifiedType {
      * Returns optional information beyond that required for concise definition of the element.
      * The description may assist in understanding the element scope and application.
      *
-     * @return Information beyond that required for concise definition of the element, or {@code null} if none.
+     * @return information beyond that required for concise definition of the element, or {@code null} if none.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19109)
     InternationalString getDescription();

@@ -48,7 +48,7 @@ public abstract class CanvasEvent extends EventObject {
      * Creates a new event having the given canvas as a source.
      *
      * @param  source The canvas on which the event initially occurred.
-     * @throws IllegalArgumentException If the given source is null.
+     * @throws IllegalArgumentException if the given source is null.
      */
     public CanvasEvent(Canvas source) {
         super(source);
@@ -57,7 +57,7 @@ public abstract class CanvasEvent extends EventObject {
     /**
      * Returns the canvas on which the event occured.
      *
-     * @return The source canvas.
+     * @return the source canvas.
      */
     @Override
     public Canvas getSource() {
@@ -67,14 +67,14 @@ public abstract class CanvasEvent extends EventObject {
     /**
      * Returns the canvas state prior the change.
      *
-     * @return The old canvas state.
+     * @return the old canvas state.
      */
     public abstract CanvasState getOldState();
 
     /**
      * Returns the canvas state after the change.
      *
-     * @return The new canvas state.
+     * @return the new canvas state.
      */
     public abstract CanvasState getNewState();
 
@@ -88,7 +88,7 @@ public abstract class CanvasEvent extends EventObject {
      * and if the user pan the map, then the change is an affine transform containing
      * translation terms in metres.
      *
-     * @return The change from the {@linkplain #getOldState old state} to the
+     * @return the change from the {@linkplain #getOldState old state} to the
      *         {@linkplain #getNewState new state}, typically as an affine transform.
      */
     public abstract MathTransform getChange();
@@ -102,9 +102,9 @@ public abstract class CanvasEvent extends EventObject {
      */
     @Deprecated
     public abstract MathTransform getChange(CanvasState other);
-    
+
     public abstract RenderingState getOldRenderingstate();
-    
+
     public abstract RenderingState getNewRenderingstate();
-    
+
 }

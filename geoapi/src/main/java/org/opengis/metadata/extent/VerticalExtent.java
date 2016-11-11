@@ -63,7 +63,7 @@ public interface VerticalExtent {
     /**
      * The lowest vertical extent contained in the resource.
      *
-     * @return The lowest vertical extent.
+     * @return the lowest vertical extent.
      */
     @UML(identifier="minimumValue", obligation=MANDATORY, specification=ISO_19115)
     Double getMinimumValue();
@@ -71,7 +71,7 @@ public interface VerticalExtent {
     /**
      * The highest vertical extent contained in the resource.
      *
-     * @return The highest vertical extent.
+     * @return the highest vertical extent.
      */
     @UML(identifier="maximumValue", obligation=MANDATORY, specification=ISO_19115)
     Double getMaximumValue();
@@ -81,7 +81,7 @@ public interface VerticalExtent {
      * to which the maximum and minimum elevation values are measured.
      * The CRS identification includes unit of measure.
      *
-     * @return The vertical CRS.
+     * @return the vertical CRS.
      *
      * @since 2.1
      */

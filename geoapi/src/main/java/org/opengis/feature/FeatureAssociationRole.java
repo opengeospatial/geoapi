@@ -67,7 +67,7 @@ public interface FeatureAssociationRole extends PropertyType {
      * Returns the name of this association role.
      * For {@code FeatureAssociationRole}, the name is mandatory.
      *
-     * @return The association role name.
+     * @return the association role name.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
@@ -76,7 +76,7 @@ public interface FeatureAssociationRole extends PropertyType {
     /**
      * Returns the type of feature values.
      *
-     * @return The type of feature values.
+     * @return the type of feature values.
      */
     @UML(identifier="valueType", obligation=MANDATORY, specification=ISO_19109)
     FeatureType getValueType();
@@ -85,7 +85,7 @@ public interface FeatureAssociationRole extends PropertyType {
      * Returns the minimum number of occurrences of the association within its containing entity.
      * The returned value is greater than or equal to zero.
      *
-     * @return The minimum number of occurrences of the association within its containing entity.
+     * @return the minimum number of occurrences of the association within its containing entity.
      */
     @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
     int getMinimumOccurs();
@@ -95,7 +95,7 @@ public interface FeatureAssociationRole extends PropertyType {
      * The returned value is greater than or equal to the {@link #getMinimumOccurs()} value.
      * If there is no maximum, then this method returns {@link Integer#MAX_VALUE}.
      *
-     * @return The maximum number of occurrences of the association within its containing entity,
+     * @return the maximum number of occurrences of the association within its containing entity,
      *         or {@link Integer#MAX_VALUE} if none.
      */
     @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
@@ -104,7 +104,7 @@ public interface FeatureAssociationRole extends PropertyType {
     /**
      * Creates a new feature association instance of this role.
      *
-     * @return A new feature association instance.
+     * @return a new feature association instance.
      * @throws UnsupportedOperationException if this role does not support new instance creation.
      */
     FeatureAssociation newInstance() throws UnsupportedOperationException;

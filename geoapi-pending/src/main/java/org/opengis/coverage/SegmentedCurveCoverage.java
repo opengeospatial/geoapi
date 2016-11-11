@@ -91,7 +91,7 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      *
      * @param position The position where to search for a value curve.
      * @param tolerance The maximal distance between the curve and the specified position.
-     * @return The curve nearest to the specified position.
+     * @return the curve nearest to the specified position.
      */
     @UML(identifier="curve", obligation=MANDATORY, specification=ISO_19123)
     ValueCurve curve(DirectPosition position, double tolerance);
@@ -101,7 +101,7 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      * to <code>{@linkplain #curve(DirectPosition,double) curve}(position, 0)</code>.
      *
      * @param position The position where to search for a value curve.
-     * @return The curve nearest to the specified position.
+     * @return the curve nearest to the specified position.
      */
     @UML(identifier="curve", obligation=MANDATORY, specification=ISO_19123)
     ValueCurve curve(DirectPosition position);
@@ -126,7 +126,7 @@ public interface SegmentedCurveCoverage extends ContinuousCoverage {
      * </ul>
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException If the point can't be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;

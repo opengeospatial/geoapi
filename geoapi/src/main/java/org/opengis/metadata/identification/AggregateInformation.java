@@ -54,10 +54,9 @@ public interface AggregateInformation extends AssociatedResource {
     /**
      * Citation information about the aggregate dataset.
      *
-     * @return Citation information about the aggregate dataset, or {@code null}.
+     * @return citation information about the aggregate dataset, or {@code null}.
      *
-     * @condition {@linkplain #getAggregateDataSetIdentifier()} Aggregate data set identifier}
-     *            not provided.
+     * @condition {@linkplain #getAggregateDataSetIdentifier() Aggregate data set identifier} not provided.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getName()}.
      */
@@ -68,7 +67,7 @@ public interface AggregateInformation extends AssociatedResource {
     /**
      * Identification information about aggregate dataset.
      *
-     * @return Identification information about aggregate dataset, or {@code null}.
+     * @return identification information about aggregate dataset, or {@code null}.
      *
      * @condition {@linkplain #getAggregateDataSetName() Aggregate data set name} not provided.
      *

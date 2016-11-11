@@ -83,7 +83,7 @@ public interface Parameterization {
      * exactly this.
      * </div>
      *
-     * @return The domain of the mapping being represented by this parameterization.
+     * @return the domain of the mapping being represented by this parameterization.
      */
     @Draft
     @UML(identifier="extentOfValidity", obligation=MANDATORY, specification=ISO_19107)
@@ -120,7 +120,7 @@ public interface Parameterization {
      * {@linkplain #getExtentOfValidity() extent of validity}.
      * </div>
      *
-     * @return The coordinate system mapped by this parameterization.
+     * @return the coordinate system mapped by this parameterization.
      */
     @Draft
     @UML(identifier="range", obligation=MANDATORY, specification=ISO_19107)
@@ -131,7 +131,7 @@ public interface Parameterization {
      * system to the {@linkplain #getRange() range} coordinate system.
      *
      * @param  point The position in the {@linkplain #getDomain() domain} coordinate system.
-     * @return The given position in the {@linkplain #getRange() range} coordinate system,
+     * @return the given position in the {@linkplain #getRange() range} coordinate system,
      *         stored in a new object.
      */
     @Draft
@@ -143,7 +143,7 @@ public interface Parameterization {
      * system to the {@linkplain #getRange() range} coordinate system.
      *
      * @param  object The geometry in the {@linkplain #getDomain() domain} coordinate system.
-     * @return The given geometry in the {@linkplain #getRange() range} coordinate system,
+     * @return the given geometry in the {@linkplain #getRange() range} coordinate system,
      *         stored in a new object.
      */
     @Draft

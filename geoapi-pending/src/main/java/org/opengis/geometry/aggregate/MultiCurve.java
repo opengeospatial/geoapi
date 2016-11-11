@@ -59,7 +59,7 @@ public interface MultiCurve extends MultiPrimitive {
      * that compose this {@code MultiCurve}. The set may be modified if this geometry
      * {@linkplain #isMutable is mutable}.
      *
-     * @return The set containing the orientable curves.
+     * @return the set containing the orientable curves.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     Set<OrientableCurve> getElements();
@@ -68,7 +68,7 @@ public interface MultiCurve extends MultiPrimitive {
      * Returns the accumulated length of all {@linkplain OrientableCurve orientable curves}
      * contained in this {@code MultiCurve}.
      *
-     * @return The accumulated length.
+     * @return the accumulated length.
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19107)
     double length();

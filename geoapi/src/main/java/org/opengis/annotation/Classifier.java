@@ -64,7 +64,7 @@ public @interface Classifier {
     /**
      * Returns the type of modeling element (type, datatype, abstract or union).
      *
-     * @return The type of modeling element as declared in the OGC/ISO UML diagram.
+     * @return the type of modeling element as declared in the OGC/ISO UML diagram.
      */
     Stereotype value();
 }

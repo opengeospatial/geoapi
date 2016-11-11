@@ -545,7 +545,7 @@ public enum Specification {
      *       and version 2014 stands for <cite>ISO 19115:2014</cite>.</li>
      * </ul></div>
      *
-     * @return The default version of OGC/ISO standard for this enumeration constant.
+     * @return the default version of OGC/ISO standard for this enumeration constant.
      *
      * @see UML#version()
      *

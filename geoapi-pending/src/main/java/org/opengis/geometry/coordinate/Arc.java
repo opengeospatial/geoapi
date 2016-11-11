@@ -90,7 +90,7 @@ public interface Arc extends ArcString {
      * system used by this {@code Arc} (especially if the underlying arc has a very large
      * radius). Implementations may choose an appropriate course of action in such cases.
      *
-     * @return The center of the circle of which this arc is a portion.
+     * @return the center of the circle of which this arc is a portion.
      */
     @UML(identifier="center", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getCenter();
@@ -98,7 +98,7 @@ public interface Arc extends ArcString {
     /**
      * Calculates the radius of the circle of which this arc is a portion.
      *
-     * @return The radius of the circle of which this arc is a portion.
+     * @return the radius of the circle of which this arc is a portion.
      * @unitof Distance
      */
     @UML(identifier="radius", obligation=MANDATORY, specification=ISO_19107)
@@ -110,7 +110,7 @@ public interface Arc extends ArcString {
      * 3D case, the normal bearing angle implies that the arc is parallel to the reference circle.
      * If this is not the case, then the bearing must include altitude information.
      *
-     * @return The bearing from the {@linkplain #getCenter center} of the circle to the
+     * @return the bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getStartPoint start point} of this arc.
      *
      * @todo Inconsistent UML: "startAngle" and "startOfArc" are both used.
@@ -125,7 +125,7 @@ public interface Arc extends ArcString {
      * case, the normal bearing angle implies that the arc is parallel to the reference circle.
      * If this is not the case, then the bearing must include altitude information.
      *
-     * @return The bearing from the {@linkplain #getCenter center} of the circle to the
+     * @return the bearing from the {@linkplain #getCenter center} of the circle to the
      *         {@link #getEndPoint end point} of this arc.
      *
      * @todo Inconsistent UML: "endAngle" and "endOfArc" are both used.

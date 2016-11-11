@@ -61,7 +61,7 @@ public interface DataQuality {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return The specific data to which the data quality information applies.
+     * @return the specific data to which the data quality information applies.
      */
     @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Scope getScope();
@@ -69,7 +69,7 @@ public interface DataQuality {
     /**
      * Quantitative quality information for the data specified by the scope.
      *
-     * @return Quantitative quality information for the data.
+     * @return quantitative quality information for the data.
      *
      * @condition Mandatory if the {@linkplain #getLineage() lineage} is not provided.
      */
@@ -79,7 +79,7 @@ public interface DataQuality {
     /**
      * Non-quantitative quality information about the lineage of the data specified by the scope.
      *
-     * @return Non-quantitative quality information about the lineage of the data specified,
+     * @return non-quantitative quality information about the lineage of the data specified,
      *         or {@code null}.
      *
      * @condition Mandatory if the {@linkplain #getReports() report} is not provided.

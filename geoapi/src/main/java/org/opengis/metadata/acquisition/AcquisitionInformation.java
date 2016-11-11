@@ -52,7 +52,7 @@ public interface AcquisitionInformation {
     /**
      * Identifies the plan as implemented by the acquisition.
      *
-     * @return Plan as implemented by the acquisition.
+     * @return plan as implemented by the acquisition.
      */
     @UML(identifier="acquisitionPlan", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Plan> getAcquisitionPlans();
@@ -60,7 +60,7 @@ public interface AcquisitionInformation {
     /**
      * Identifies the requirement the data acquisition intends to satisfy.
      *
-     * @return Requirement the data acquisition intends to satisfy.
+     * @return requirement the data acquisition intends to satisfy.
      */
     @UML(identifier="acquisitionRequirement", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Requirement> getAcquisitionRequirements();
@@ -68,7 +68,7 @@ public interface AcquisitionInformation {
     /**
      * A record of the environmental circumstances during the data acquisition.
      *
-     * @return Record of the environmental circumstances, or {@code null}.
+     * @return record of the environmental circumstances, or {@code null}.
      */
     @UML(identifier="environmentalConditions", obligation=OPTIONAL, specification=ISO_19115_2)
     EnvironmentalRecord getEnvironmentalConditions();
@@ -76,7 +76,7 @@ public interface AcquisitionInformation {
     /**
      * General information about the instrument used in data acquisition.
      *
-     * @return Instrument used in data acquisition.
+     * @return instrument used in data acquisition.
      */
     @UML(identifier="instrument", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Instrument> getInstruments();
@@ -84,7 +84,7 @@ public interface AcquisitionInformation {
     /**
      * Identification of the area or object to be sensed.
      *
-     * @return Area or object to be sensed.
+     * @return area or object to be sensed.
      */
     @UML(identifier="objective", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Objective> getObjectives();
@@ -92,7 +92,7 @@ public interface AcquisitionInformation {
     /**
      * General information about an identifiable activity which provided the data.
      *
-     * @return Identifiable activity which provided the data.
+     * @return identifiable activity which provided the data.
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Operation> getOperations();
@@ -100,7 +100,7 @@ public interface AcquisitionInformation {
     /**
      * General information about the platform from which the data were taken.
      *
-     * @return Platform from which the data were taken.
+     * @return platform from which the data were taken.
      */
     @UML(identifier="platform", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Platform> getPlatforms();

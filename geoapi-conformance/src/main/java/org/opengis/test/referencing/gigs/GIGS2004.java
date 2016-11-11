@@ -187,7 +187,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS2004} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS2004} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -199,8 +199,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      * Creates a new test using the given factories. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param datumFactory Factory for creating {@link GeodeticDatum} instances.
-     * @param crsFactory Factory for creating {@link GeodeticCRS} instances.
+     * @param datumFactory  factory for creating {@link GeodeticDatum} instances.
+     * @param crsFactory    factory for creating {@link GeodeticCRS} instances.
      */
     public GIGS2004(final DatumAuthorityFactory datumFactory, final CRSAuthorityFactory crsFactory) {
         super(datumFactory);
@@ -224,7 +224,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -240,7 +240,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      * current {@link #code} value in argument. The created object is then cached and returned in all subsequent
      * invocations of this method.
      *
-     * @return The datum instance to test.
+     * @return the datum instance to test.
      * @throws FactoryException if an error occurred while creating the datum instance.
      */
     @Override
@@ -273,8 +273,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     /**
      * Creates a geographic CRS for the given code and verify its properties.
      *
-     * @param  crsCode The code of the CRS to create.
-     * @param  expectedDirections Either {@link #GEOGRAPHIC_2D} or {@link #GEOGRAPHIC_3D}.
+     * @param  crsCode             the code of the CRS to create.
+     * @param  expectedDirections  either {@link #GEOGRAPHIC_2D} or {@link #GEOGRAPHIC_3D}.
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
     private void createAndVerifyGeographicCRS(final int crsCode, final AxisDirection[] expectedDirections) throws FactoryException {
@@ -297,7 +297,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     /**
      * Creates a geodetic CRS for the given code and verify its properties.
      *
-     * @param  crsCode The code of the CRS to create.
+     * @param  crsCode  the code of the CRS to create.
      * @throws FactoryException if an error occurred while creating the CRS instance.
      */
     private void createAndVerifyGeocentricCRS(final int crsCode) throws FactoryException {
@@ -320,9 +320,9 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     /**
      * Verifies the given geographic or geocentric CRS.
      *
-     * @param crsCode The code of the created CRS.
-     * @param crs The CRS to verify.
-     * @param expectedDirections Either {@link #GEOGRAPHIC_2D}, {@link #GEOGRAPHIC_3D} or {@link #GEOCENTRIC}.
+     * @param crsCode             the code of the created CRS.
+     * @param crs                 the CRS to verify.
+     * @param expectedDirections  either {@link #GEOGRAPHIC_2D}, {@link #GEOGRAPHIC_3D} or {@link #GEOCENTRIC}.
      */
     private void verifyGeodeticCRS(final int crsCode, final GeodeticCRS crs, final AxisDirection[] expectedDirections) {
         assertNotNull("GeodeticCRS", crs);

@@ -52,7 +52,7 @@ public interface AttributeGroup {
     /**
      * Types of information represented by the value(s).
      *
-     * @return Types of information represented by the value(s).
+     * @return types of information represented by the value(s).
      */
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115)
     Collection<CoverageContentType> getContentTypes();
@@ -61,7 +61,7 @@ public interface AttributeGroup {
      * Information on an attribute of the resource.
      * Returns an empty collection if none.
      *
-     * @return Information on an attribute of the resource.
+     * @return information on an attribute of the resource.
      */
     @UML(identifier="attribute", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends RangeDimension> getAttributes();

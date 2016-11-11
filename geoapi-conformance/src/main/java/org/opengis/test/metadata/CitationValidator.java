@@ -56,8 +56,8 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public CitationValidator(final ValidatorContainer container) {
         super(container, "org.opengis.metadata.citation");
@@ -66,7 +66,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given citation.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Citation object) {
         if (object == null) {
@@ -100,7 +100,7 @@ public class CitationValidator extends MetadataValidator {
      * Those constraints are verified in their iteration order. It is possible for example to have more than one
      * (<var>validity begins</var>, <var>validity expires</var>) pair.
      *
-     * @param dates The citation dates to validate.
+     * @param dates  the citation dates to validate.
      *
      * @since 3.1
      */
@@ -151,7 +151,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given responsible party.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */
@@ -168,7 +168,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given party.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */
@@ -194,7 +194,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given contact information.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */
@@ -218,7 +218,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given telephone information.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */
@@ -232,7 +232,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given address.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */
@@ -250,7 +250,7 @@ public class CitationValidator extends MetadataValidator {
     /**
      * Validates the given online resource.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */

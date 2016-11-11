@@ -130,7 +130,7 @@ public interface IdentifiedObject {
      * Consequently this method return type will be changed to {@code Identifier} in GeoAPI 4.0.
      * </div>
      *
-     * @return The primary name.
+     * @return the primary name.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19111)
     ReferenceIdentifier getName();
@@ -138,7 +138,7 @@ public interface IdentifiedObject {
     /**
      * Alternative names by which this object is identified.
      *
-     * @return Alternative names and abbreviations, or an empty collection if there is none.
+     * @return alternative names and abbreviations, or an empty collection if there is none.
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     Collection<GenericName> getAlias();
@@ -152,7 +152,7 @@ public interface IdentifiedObject {
      * Consequently the element type will be changed to {@code Identifier} in GeoAPI 4.0.
      * </div>
      *
-     * @return This object identifiers, or an empty collection if there is none.
+     * @return this object identifiers, or an empty collection if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     Set<ReferenceIdentifier> getIdentifiers();
@@ -160,7 +160,7 @@ public interface IdentifiedObject {
     /**
      * Comments on or information about this object, including data source information.
      *
-     * @return The remarks, or {@code null} if none.
+     * @return the remarks, or {@code null} if none.
      */
     @UML(identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
     InternationalString getRemarks();
@@ -179,8 +179,8 @@ public interface IdentifiedObject {
      * This operation may fail if unsupported or if this instance contains elements that do not have
      * WKT representation.
      *
-     * @return The Well-Known Text (WKT) for this object.
-     * @throws UnsupportedOperationException If this object can not be formatted as WKT.
+     * @return the Well-Known Text (WKT) for this object.
+     * @throws UnsupportedOperationException if this object can not be formatted as WKT.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added in order to provide

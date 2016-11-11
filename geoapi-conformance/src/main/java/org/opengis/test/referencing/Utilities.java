@@ -63,8 +63,8 @@ final class Utilities {
     /**
      * Returns the name of the given object, or {@code null} if none.
      *
-     * @param  object The object for which to get the name, or {@code null}.
-     * @return The name of the given object, or {@code null}.
+     * @param  object  the object for which to get the name, or {@code null}.
+     * @return the name of the given object, or {@code null}.
      */
     public static String getName(final IdentifiedObject object) {
         if (object != null) {
@@ -80,8 +80,8 @@ final class Utilities {
      * Returns the {@linkplain IdentifiedObject#getName() names} of all objects in the given
      * collection. If the given collection is {@code null}, then this method returns an empty set.
      *
-     * @param  object The objects for which to get the names, or {@code null}.
-     * @return The names of all non-null objects (never {@code null}).
+     * @param  object  the objects for which to get the names, or {@code null}.
+     * @return the names of all non-null objects (never {@code null}).
      */
     public static Set<String> getNames(final Collection<? extends IdentifiedObject> objects) {
         if (objects == null) {
@@ -103,8 +103,8 @@ final class Utilities {
      *
      * <p>If the given object is {@code null}, then this method returns an empty set.</p>
      *
-     * @param  object The object for which to get the name and the aliases, or {@code null}.
-     * @return The name and aliases of the given object (never {@code null}).
+     * @param  object  the object for which to get the name and the aliases, or {@code null}.
+     * @return the name and aliases of the given object (never {@code null}).
      */
     public static Set<String> getNameAndAliases(final IdentifiedObject object) {
         if (object == null) {
@@ -124,8 +124,8 @@ final class Utilities {
      *
      * <p>If the given collection is {@code null}, then this method returns an empty set.</p>
      *
-     * @param  object The objects for which to get the names and the aliases, or {@code null}.
-     * @return The names and aliases of all non-null objects (never {@code null}).
+     * @param  object  the objects for which to get the names and the aliases, or {@code null}.
+     * @return the names and aliases of all non-null objects (never {@code null}).
      */
     public static Set<String> getNameAndAliases(final Collection<? extends IdentifiedObject> objects) {
         if (objects == null) {
@@ -164,8 +164,8 @@ final class Utilities {
      * The directions are in the same order than axis in the coordinate system.
      * The returned set can be safely modified by the caller.
      *
-     * @param  cs The coordinate system from which to get axis directions.
-     * @return The axis directions in a modifiable set.
+     * @param  cs  the coordinate system from which to get axis directions.
+     * @return the axis directions in a modifiable set.
      */
     static Set<AxisDirection> getAxisDirections(final CoordinateSystem cs) {
         final int dimension = cs.getDimension();

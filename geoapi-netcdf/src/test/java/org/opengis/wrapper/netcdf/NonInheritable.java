@@ -40,9 +40,9 @@ final strictfp class NonInheritable {
      * because the user may have modified the expected or the actual map, or may be testing
      * an other implementation which will read a different set of metadata.
      *
-     * @param actual        The properties actually found in the metadata object being tested.
-     * @param title         The citation title to remove (implementation specific), or {@code null} if none.
-     * @param hasNoExtent   {@code true} if the NetCDF file contains no geographic extent.
+     * @param actual       the properties actually found in the metadata object being tested.
+     * @param title        the citation title to remove (implementation specific), or {@code null} if none.
+     * @param hasNoExtent  {@code true} if the NetCDF file contains no geographic extent.
      */
     static void assertProcessedAllRelevant(final Map<String,Object> actual, final String title,
             final boolean hasNoExtent)

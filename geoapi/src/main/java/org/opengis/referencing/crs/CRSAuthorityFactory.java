@@ -64,8 +64,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * <code>createCoordinateReferenceSystem(code)</code> if the requested object is known to be a
      * {@code GeographicCRS} instance.</p>
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -82,8 +82,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a 3D coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -94,8 +94,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a derived coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -105,8 +105,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a engineering coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -116,8 +116,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a geographic coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -130,8 +130,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a geocentric coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed.
      *
@@ -143,8 +143,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a image coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -154,8 +154,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a projected coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -168,8 +168,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a temporal coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -181,8 +181,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a vertical coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -195,8 +195,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns a parametric coordinate reference system from a code.
      *
-     * @param  code Value allocated by authority.
-     * @return The coordinate reference system for the given code.
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *

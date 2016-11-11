@@ -68,7 +68,7 @@ public interface AffinePlacement extends Placement {
      * (<var>x₀</var>, <var>y₀</var>, <var>z₀</var>)
      * in the formulae shown in the class description.
      *
-     * @return The target of the parameter space origin.
+     * @return the target of the parameter space origin.
      */
     @UML(identifier="location", obligation=MANDATORY, specification=ISO_19107)
     Position getLocation();
@@ -79,9 +79,9 @@ public interface AffinePlacement extends Placement {
      * The number of directions given shall be {@link #getInDimension() inDimension}.
      * The dimension of the directions shall be {@link #getOutDimension() outDimension}.
      *
-     * @param  dimension The in dimension, as an index from 0 inclusive to
+     * @param  dimension  the in dimension, as an index from 0 inclusive to
      *         {@link #getInDimension() inDimension} exclusive.
-     * @return The direction as an array of length {@link #getOutDimension() outDimension}.
+     * @return the direction as an array of length {@link #getOutDimension() outDimension}.
      */
     @UML(identifier="refDirection", obligation=MANDATORY, specification=ISO_19107)
     double[] getReferenceDirection(int dimension);

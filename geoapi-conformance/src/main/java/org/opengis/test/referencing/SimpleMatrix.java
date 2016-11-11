@@ -61,10 +61,9 @@ final class SimpleMatrix implements Matrix, Cloneable {
     /**
      * Creates a new matrix with the given elements.
      *
-     * @param numRow  The number of rows.
-     * @param numCol  The number of columns.
-     * @param elements The elements, where columns index varies fastest.
-     *                 This array is <strong>not</strong> cloned.
+     * @param numRow    the number of rows.
+     * @param numCol    the number of columns.
+     * @param elements  the elements, where columns index varies fastest. This array is <strong>not</strong> cloned.
      */
     public SimpleMatrix(final int numRow, final int numCol, final double... elements) {
         assertEquals("Number of elements is inconsistent with the matrix size.", numRow*numCol, elements.length);

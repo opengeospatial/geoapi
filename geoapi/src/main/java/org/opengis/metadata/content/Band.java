@@ -54,7 +54,7 @@ public interface Band extends SampleDimension {
     /**
      * Shortest wavelength that the sensor is capable of collecting within a designated band.
      *
-     * @return Shortest wavelength that the sensor is capable of collecting within a designated band,
+     * @return shortest wavelength that the sensor is capable of collecting within a designated band,
      *         or {@code null} if unspecified.
      *
      * @since 3.1
@@ -65,7 +65,7 @@ public interface Band extends SampleDimension {
     /**
      * Longest wavelength that the sensor is capable of collecting within a designated band.
      *
-     * @return Longest wavelength that the sensor is capable of collecting within a designated band,
+     * @return longest wavelength that the sensor is capable of collecting within a designated band,
      *         or {@code null} if unspecified.
      *
      * @since 3.1
@@ -76,7 +76,7 @@ public interface Band extends SampleDimension {
     /**
      * Units in which sensor wavelengths are expressed.
      *
-     * @return Units in which sensor wavelengths are expressed, or {@code null} if unspecified.
+     * @return units in which sensor wavelengths are expressed, or {@code null} if unspecified.
      *
      * @since 3.1
      */
@@ -86,7 +86,7 @@ public interface Band extends SampleDimension {
     /**
      * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
      *
-     * @return Criterion for defining maximum and minimum wavelengths.
+     * @return criterion for defining maximum and minimum wavelengths.
      *
      * @since 2.3
      */
@@ -97,7 +97,7 @@ public interface Band extends SampleDimension {
      * Wavelength at which the response is the highest.
      * Returns {@code null} if unspecified.
      *
-     * @return Wavelength at which the response is the highest, or {@code null} if unspecified.
+     * @return wavelength at which the response is the highest, or {@code null} if unspecified.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
     Double getPeakResponse();
@@ -106,7 +106,7 @@ public interface Band extends SampleDimension {
      * Number of discrete numerical values in the grid data.
      * Returns {@code null} if unspecified.
      *
-     * @return Number of discrete numerical values in the grid data, or {@code null}.
+     * @return number of discrete numerical values in the grid data, or {@code null}.
      */
     @UML(identifier="toneGradation", obligation=OPTIONAL, specification=ISO_19115)
     Integer getToneGradation();
@@ -114,7 +114,7 @@ public interface Band extends SampleDimension {
     /**
      * Polarization of the radiation transmitted.
      *
-     * @return Polarization of the radiation transmitted.
+     * @return polarization of the radiation transmitted.
      *
      * @since 2.3
      */
@@ -124,7 +124,7 @@ public interface Band extends SampleDimension {
     /**
      * Polarization of the radiation detected.
      *
-     * @return Polarization of the radiation detected.
+     * @return polarization of the radiation detected.
      *
      * @since 2.3
      */

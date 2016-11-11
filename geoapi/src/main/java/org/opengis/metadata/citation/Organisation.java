@@ -52,7 +52,7 @@ public interface Organisation extends Party {
      * Graphics identifying organisation.
      * Returns an empty collection if there is none.
      *
-     * @return Graphic identifying organisation.
+     * @return graphic identifying organisation.
      *
      * @condition Mandatory if {@linkplain #getName() name} or {@linkplain Individual#getPositionName() position name}
      *            is not documented.
@@ -64,7 +64,7 @@ public interface Organisation extends Party {
      * Individuals in the named organisation.
      * Returns an empty collection if there is none.
      *
-     * @return Individuals in the named organisation.
+     * @return individuals in the named organisation.
      */
     @UML(identifier="individual", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Individual> getIndividual();

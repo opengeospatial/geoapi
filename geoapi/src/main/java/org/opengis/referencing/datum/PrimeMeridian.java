@@ -67,7 +67,7 @@ public interface PrimeMeridian extends IdentifiedObject {
      * The {@code greenwichLongitude} default value is zero, and that value shall be used
      * when the {@linkplain #getName() meridian name} value is "Greenwich".
      *
-     * @return The prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
+     * @return the prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
      * @unitof Angle
      */
     @UML(identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
@@ -81,7 +81,7 @@ public interface PrimeMeridian extends IdentifiedObject {
      *   In ISO 19111, <code>greenwichLongitude</code> is a property of type <code>Angle</code>
      *   rather than <code>double</code>, and the unit of measure is part of the <code>Angle</code> value.
      *
-     * @return The angular unit of Greenwich longitude.
+     * @return the angular unit of Greenwich longitude.
      */
     @UML(identifier="getAngularUnit", specification=OGC_01009)
     Unit<Angle> getAngularUnit();

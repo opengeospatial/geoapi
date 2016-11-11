@@ -126,7 +126,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Creates a new test case using a random number generator initialized to the given seed.
      *
-     * @param seed The initial seed for the random numbers generator. Use a constant value if
+     * @param seed  the initial seed for the random numbers generator. Use a constant value if
      *        the tests need to be reproduced with the same sequence of image write parameters.
      */
     protected ImageWriterTestCase(final long seed) {
@@ -155,11 +155,11 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *}</pre></blockquote>
      *
      * This method may be invoked with a {@code false} argument value when the methods to be
-     * tested don't need an output, for example {@link ImageWriter#canWriteRasters()}.
+     * tested do not need an output, for example {@link ImageWriter#canWriteRasters()}.
      *
      * @param  optionallySetOutput {@code true} if this method can {@linkplain ImageWriter#setOutput(Object)
      *         set the writer output} (optional operation), or {@code false} if this is not yet necessary.
-     * @throws IOException If an error occurred while preparing the {@linkplain #writer}.
+     * @throws IOException if an error occurred while preparing the {@linkplain #writer}.
      */
     protected abstract void prepareImageWriter(boolean optionallySetOutput) throws IOException;
 
@@ -183,9 +183,9 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * The default implementation does nothing (note: this may change in a future version).
      * Subclasses can override this method for providing custom metadata.
      *
-     * @param  metadata The stream or image metadata to complete before to be given to the tested image writer.
-     * @param  image The image for which to create image metadata, or {@code null} for stream metadata.
-     * @throws IOException If the implementation needs to perform an I/O operation and that operation failed.
+     * @param  metadata  the stream or image metadata to complete before to be given to the tested image writer.
+     * @param  image     the image for which to create image metadata, or {@code null} for stream metadata.
+     * @throws IOException if the implementation needs to perform an I/O operation and that operation failed.
      *
      * @see ImageWriter#getDefaultStreamMetadata(ImageWriteParam)
      * @see ImageWriter#getDefaultImageMetadata(ImageTypeSpecifier, ImageWriteParam)
@@ -235,8 +235,8 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Returns {@code true} if the writer can writes the given image.
      * If no writer provider is found, then this method assumes {@code true}.
-     * <p>
-     * This method also performs an opportunist validation of the image writer provider.
+     *
+     * <p>This method also performs an opportunist validation of the image writer provider.</p>
      */
     private boolean canEncodeImage(final RenderedImage image) throws IOException {
         prepareImageWriter(false);
@@ -256,9 +256,8 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * but still happen with some formats like NetCDF), then this method will try to set the output
      * to a temporary file.
      *
-     * @param  capacity The initial capacity. This is an approximative value, since the
-     *         actual capacity will growth as needed.
-     * @return The byte buffer, or {@code null} if this method created a temporary file instead.
+     * @param  capacity  the initial capacity. This is an approximative value, since the actual capacity will growth as needed.
+     * @return the byte buffer, or {@code null} if this method created a temporary file instead.
      * @throws IOException In an error occurred while setting the output.
      */
     private ByteArrayOutputStream open(final int capacity) throws IOException {
@@ -300,9 +299,9 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * <p>This method will use only the {@link ImageReader#read(int)} method, so the reader doesn't
      * need to support fully the {@code ImageReadParam}.</p>
      *
-     * @param  buffer The buffer returned by {@link #open(int)}, which may be {@code null}.
-     * @return The image.
-     * @throws IOException If an error occurred while closing the output or reading the image.
+     * @param  buffer  the buffer returned by {@link #open(int)}, which may be {@code null}.
+     * @return the image.
+     * @throws IOException if an error occurred while closing the output or reading the image.
      */
     private RenderedImage closeAndRead(final ByteArrayOutputStream buffer) throws IOException {
         Object input = writer.getOutput();
@@ -347,9 +346,9 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * The kind of parameters to be tested is controlled by the {@code isXXXSupported} boolean
      * fields in this class.</p>
      *
-     * @param  image The image to write.
-     * @param  numIterations Maximum number of iterations to perform.
-     * @throws IOException If an error occurred while writing the image or reading it back.
+     * @param  image          the image to write.
+     * @param  numIterations  maximum number of iterations to perform.
+     * @throws IOException if an error occurred while writing the image or reading it back.
      */
     private void writeRandomSubsets(final RenderedImage image, final int numIterations) throws IOException {
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
@@ -374,7 +373,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Implementation of the {@code testFooWrite()} methods.
      *
-     * @throws IOException If an error occurred while writing the image or reading it back.
+     * @throws IOException if an error occurred while writing the image or reading it back.
      */
     private void testImageWrites(final RenderedImage image) throws IOException {
         final boolean subregion   = isSubregionSupported;
@@ -444,7 +443,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * Then the image is read again and the pixel values are compared with the corresponding
      * pixel values of the original image.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneByteBand() throws IOException {
@@ -457,7 +456,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Same test than {@link #testOneByteBand()}, but using RGB values in three bands.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testThreeByteBands() throws IOException {
@@ -470,7 +469,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Same test than {@link #testOneByteBand()}, but using the signed {@code short} type.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneShortBand() throws IOException {
@@ -483,7 +482,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Same test than {@link #testOneByteBand()}, but using the unsigned {@code short} type.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneUnsignedShortBand() throws IOException {
@@ -496,7 +495,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Same test than {@link #testOneByteBand()}, but using the signed {@code int} type.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneIntBand() throws IOException {
@@ -509,7 +508,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Same test than {@link #testOneByteBand()}, but using the signed {@code float} type.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneFloatBand() throws IOException {
@@ -522,7 +521,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Same test than {@link #testOneByteBand()}, but using the signed {@code double} type.
      *
-     * @throws IOException If an error occurred while writing the image or or reading it back.
+     * @throws IOException if an error occurred while writing the image or or reading it back.
      */
     @Test
     public void testOneDoubleBand() throws IOException {
@@ -544,7 +543,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *   <li>Performs the same steps than above for the {@linkplain #reader}, if non-null.</li>
      * </ul>
      *
-     * @throws IOException In an error occurred while closing the output stream.
+     * @throws IOException if an error occurred while closing the output stream.
      *
      * @see ImageWriter#reset()
      * @see ImageWriter#dispose()

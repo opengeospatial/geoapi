@@ -92,7 +92,7 @@ public interface AttributeType<V> extends PropertyType {
      * Returns the name of this attribute type.
      * For {@code AttributeType}, the name is mandatory.
      *
-     * @return The attribute type name.
+     * @return the attribute type name.
      */
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19109)
@@ -101,7 +101,7 @@ public interface AttributeType<V> extends PropertyType {
     /**
      * Returns the type of attribute values.
      *
-     * @return The type of attribute values.
+     * @return the type of attribute values.
      */
     @UML(identifier="valueType", obligation=MANDATORY, specification=ISO_19109)
     Class<V> getValueClass();
@@ -123,7 +123,7 @@ public interface AttributeType<V> extends PropertyType {
      * <p>To be valid, an {@code Attribute} instance of this {@code AttributeType} shall have at least
      * this minimum number of elements in its {@link Attribute#getValues() collection of values}.</p>
      *
-     * @return The minimum number of attribute values.
+     * @return the minimum number of attribute values.
      */
     @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
     int getMinimumOccurs();
@@ -136,7 +136,7 @@ public interface AttributeType<V> extends PropertyType {
      * <p>To be valid, an {@code Attribute} instance of this {@code AttributeType} shall have no more than
      * this maximum number of elements in its {@link Attribute#getValues() collection of values}.</p>
      *
-     * @return The maximum number of attribute values, or {@link Integer#MAX_VALUE} if none.
+     * @return the maximum number of attribute values, or {@link Integer#MAX_VALUE} if none.
      */
     @UML(identifier="cardinality", obligation=MANDATORY, specification=ISO_19109)
     int getMaximumOccurs();
@@ -145,7 +145,7 @@ public interface AttributeType<V> extends PropertyType {
      * Returns the default value for the attribute.
      * This value is used when an attribute is created and no value for it is specified.
      *
-     * @return The default value for the attribute, or {@code null} if none.
+     * @return the default value for the attribute, or {@code null} if none.
      */
     V getDefaultValue();
 
@@ -161,7 +161,7 @@ public interface AttributeType<V> extends PropertyType {
      * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
      * characteristics {@linkplain #getName() name}, for more convenient lookups.
      *
-     * @return Other attribute types that describes this attribute type, or an empty map if none.
+     * @return other attribute types that describes this attribute type, or an empty map if none.
      *
      * @see Attribute#characteristics()
      */
@@ -179,7 +179,7 @@ public interface AttributeType<V> extends PropertyType {
     /**
      * Creates a new attribute instance of this type initialized to the {@linkplain #getDefaultValue() default value}.
      *
-     * @return A new attribute instance.
+     * @return a new attribute instance.
      * @throws UnsupportedOperationException if this type does not support new instance creation.
      */
     Attribute<V> newInstance() throws UnsupportedOperationException;

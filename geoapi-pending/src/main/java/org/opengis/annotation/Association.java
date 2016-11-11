@@ -54,7 +54,7 @@ public @interface Association {
     /**
      * Association name.
      *
-     * @return The association name.
+     * @return the association name.
      */
     String value();
 }

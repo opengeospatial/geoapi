@@ -78,8 +78,8 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
      * creates a {@link NetcdfProjection} instance. Subclasses can override this method for creating
      * their own instance.
      *
-     * @param  projection The NetCDF projection to wrap.
-     * @return An operation implementation created from the given projection.
+     * @param  projection  the NetCDF projection to wrap.
+     * @return an operation implementation created from the given projection.
      */
     protected SingleOperation wrap(final Projection projection) {
         return new NetcdfProjection(projection, null, null);
@@ -90,7 +90,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
      * {@link #verifyInDomain(double[], double[], int[], Random)} test method using a
      * simple {@link Mercator} implementation.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test
     public void testConsistency() throws TransformException {

@@ -111,7 +111,7 @@ public interface OperationMethod extends IdentifiedObject {
      * publication. Note that the operation method may not be analytic, in which case this
      * attribute references or contains the procedure, not an analytic formula.
      *
-     * @return The formula used by this method.
+     * @return the formula used by this method.
      */
     @UML(identifier="formulaReference", obligation=MANDATORY, specification=ISO_19111)
     Formula getFormula();
@@ -121,7 +121,7 @@ public interface OperationMethod extends IdentifiedObject {
      * Note that some operation methods work with an arbitrary number of
      * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
-     * @return The dimension of source CRS, or {@code null} if unknown.
+     * @return the dimension of source CRS, or {@code null} if unknown.
      *
      * @see MathTransform#getSourceDimensions()
      */
@@ -133,7 +133,7 @@ public interface OperationMethod extends IdentifiedObject {
      * Note that some operation methods work with an arbitrary number of
      * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
      *
-     * @return The dimension of target CRS, or {@code null} if unknown.
+     * @return the dimension of target CRS, or {@code null} if unknown.
      *
      * @see MathTransform#getTargetDimensions()
      */
@@ -143,7 +143,7 @@ public interface OperationMethod extends IdentifiedObject {
     /**
      * The set of parameters.
      *
-     * @return The parameters, or an empty group if none.
+     * @return the parameters, or an empty group if none.
      */
     @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getParameters();

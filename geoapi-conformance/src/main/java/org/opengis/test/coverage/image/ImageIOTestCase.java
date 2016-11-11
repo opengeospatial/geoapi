@@ -112,7 +112,7 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
     /**
      * Creates a new test case using a random number generator initialized to the given seed.
      *
-     * @param seed The initial seed for the random numbers generator. Use a constant value if
+     * @param seed  the initial seed for the random numbers generator. Use a constant value if
      *        the tests need to be reproduced with the same sequence of image parameters.
      */
     protected ImageIOTestCase(final long seed) {
@@ -123,9 +123,8 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
      * Returns an iterator on a random region, subsampling and source bands of the given image.
      * The selected parameters are set in the given {@code param} object.
      *
-     * @param  image The image for which to returns an iterator.
-     * @param  param The parameter where to set the random region, subsampling and source bands.
-     * @return
+     * @param  image  the image for which to returns an iterator.
+     * @param  param  the parameter where to set the random region, subsampling and source bands.
      */
     final PixelIterator getIteratorOnRandomSubset(final RenderedImage image, final IIOParam param) {
         final Rectangle region = getBounds(image);
@@ -172,8 +171,8 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
      * Closes the given input or output stream if it implements the {@link Closeable} interface.
      * Do nothing otherwise.
      *
-     * @param  stream The input or output stream to close, or {@code null} if none.
-     * @throws IOException In an error occurred while closing the stream.
+     * @param  stream  the input or output stream to close, or {@code null} if none.
+     * @throws IOException if an error occurred while closing the stream.
      */
     static void close(final Object stream) throws IOException {
         if (stream instanceof Closeable) {

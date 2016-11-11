@@ -55,7 +55,7 @@ public interface QuantitativeResult extends Result {
     /**
      * Quantitative value or values, content determined by the evaluation procedure used.
      *
-     * @return Quantitative value or values.
+     * @return quantitative value or values.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends Record> getValues();
@@ -63,7 +63,7 @@ public interface QuantitativeResult extends Result {
     /**
      * Value type for reporting a data quality result, or {@code null} if none.
      *
-     * @return Value type for reporting a data quality result, or {@code null}.
+     * @return value type for reporting a data quality result, or {@code null}.
      */
     @UML(identifier="valueType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     RecordType getValueType();
@@ -71,7 +71,7 @@ public interface QuantitativeResult extends Result {
     /**
      * Value unit for reporting a data quality result, or {@code null} if none.
      *
-     * @return Value unit for reporting a data quality result, or {@code null}.
+     * @return value unit for reporting a data quality result, or {@code null}.
      */
     @UML(identifier="valueUnit", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Unit<?> getValueUnit();
@@ -79,7 +79,7 @@ public interface QuantitativeResult extends Result {
     /**
      * Statistical method used to determine the value, or {@code null} if none.
      *
-     * @return Statistical method used to determine the value, or {@code null}.
+     * @return statistical method used to determine the value, or {@code null}.
      */
     @UML(identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     InternationalString getErrorStatistic();

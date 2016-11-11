@@ -204,7 +204,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code ParameterizedTransformTest} constructor.
+     * @return the default set of arguments to be given to the {@code ParameterizedTransformTest} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -225,7 +225,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
-     * @param factory Factory for creating {@link MathTransform} instances.
+     * @param factory  factory for creating {@link MathTransform} instances.
      */
     public ParameterizedTransformTest(final MathTransformFactory factory) {
         super(factory);
@@ -257,8 +257,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * Invoked for preparing the header of a test failure message.
      *
-     * @param buffer  The buffer in which to append the header.
-     * @param message User-supplied message to append, or {@code null}.
+     * @param buffer   the buffer in which to append the header.
+     * @param message  user-supplied message to append, or {@code null}.
      */
     @Override
     final void appendErrorHeader(final StringBuilder buffer, final String message) {
@@ -288,11 +288,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       A finer value can lead to more accurate derivative approximation by the
      *       {@link #verifyDerivative(double[]) verifyDerivative(double...)} method,
      *       at the expense of more sensitivity to the accuracy of the
-     *       {@link MathTransform#transform MathTransform.transform(...)} method being tested.</p></li>
+     *       {@link MathTransform#transform MathTransform.transform(…)} method being tested.</p></li>
      * </ul>
      *
-     * @param  type Either {@code Projection.class} or {@code Transformation.class}.
-     * @throws FactoryException If the math transform can not be created.
+     * @param  type  either {@code Projection.class} or {@code Transformation.class}.
+     * @throws FactoryException if the math transform can not be created.
      */
     private void createMathTransform(final Class<? extends SingleOperation> type, final SamplePoints sample)
             throws FactoryException
@@ -355,11 +355,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * units than the standard one. In addition to scale the units, this method scales also
      * the tolerance factor by the same factor.
      *
-     * @param mode {@link CalculationType#DIRECT_TRANSFORM} for scaling the output units (from
+     * @param mode  {@link CalculationType#DIRECT_TRANSFORM} for scaling the output units (from
      *        metres to an other linear unit), or {@link CalculationType#INVERSE_TRANSFORM} for
      *        scaling the input units (from degrees to an other angular unit).
-     * @param coordinates The source or expected target points to scale.
-     * @param scale The scale factor, from standard units to the CRS units.
+     * @param coordinates  the source or expected target points to scale.
+     * @param scale  the scale factor, from standard units to the CRS units.
      */
     final void applyUnitConversion(final CalculationType mode, final double[] coordinates, final double scale) {
         for (int i=coordinates.length; --i>=0;) {
@@ -372,7 +372,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * Tests the transform consistency using many random points inside the area of validity.
      *
-     * @throws TransformException If a point can not be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity) throws TransformException {
         verifyInDomain(new double[] {
@@ -415,8 +415,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>120°E<br>3°S</td> <td>5009726.58 m<br>569150.82 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_3002()
      */
@@ -457,8 +457,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>53°E<br>53°N</td> <td>165704.29 m<br>5171848.07 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_3388()
      */
@@ -502,8 +502,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>53°E<br>53°N</td> <td>165704.29 m<br>1351950.22 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      */
     @Test
     public void testMercatorVariantC() throws FactoryException, TransformException {
@@ -562,8 +562,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <td>-11156569.90 m<br>2796869.94 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      */
     @Test
     public void testMercatorSpherical() throws FactoryException, TransformException {
@@ -610,8 +610,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <td>-11169055.58 m<br>2800000.00 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_3857()
      */
@@ -651,8 +651,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td>275951.78 m<br>5910061.78 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testIGNF_MILLER()
      */
@@ -697,8 +697,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <td>679245.73 m<br>596562.78 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_29873()
      */
@@ -740,8 +740,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>00°30'E<br>50°30'N</td> <td>577274.98 m<br>69740.49 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_27700()
      */
@@ -783,8 +783,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>28°16'57.479"E<br>25°43'55.302"S</td> <td>71984.48 m<br>2847342.74 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      */
     @Test
     public void testTransverseMercatorSouthOrientated() throws FactoryException, TransformException {
@@ -845,8 +845,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <p align="right">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
      * </td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_2314()
      */
@@ -889,8 +889,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <td>255966.58 m<br>142493.51 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_24200()
      */
@@ -935,8 +935,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <p align="right">1 metre = 3.2808333… US feet</p>
      * </td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_32040()
      */
@@ -979,8 +979,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>5°48'26.533"E<br>50°40'46.461"N</td> <td>251763.20 m<br>153034.13 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_31300()
      */
@@ -1025,8 +1025,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <p align="right">1 metre = 3.2808333… US feet</p>
      * </td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      */
     @Test
     public void testLambertConicConformalMichigan() throws FactoryException, TransformException {
@@ -1065,8 +1065,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>5°E<br>50°N</td>  <td>3962799.45 m<br>2999718.85 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_3035()
      */
@@ -1108,8 +1108,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>44°E<br>73°N</td> <td>3320416.75 m<br>632668.43 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_5041()
      * @see AuthorityFactoryTest#testEPSG_32661()
@@ -1152,8 +1152,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>120°E<br>75°S</td> <td>7255380.79 m<br>7053389.56 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_3032()
      */
@@ -1195,8 +1195,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>140°04'17.040"E<br>66°36'18.820"S</td> <td>303169.52 m<br>244055.72 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_3032()
      */
@@ -1238,8 +1238,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>6°E<br>53°N</td>                     <td>196105.283 m<br>557057.739 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_28992()
      */
@@ -1279,8 +1279,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>See source</td> <td>See source</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      */
     @Test
     public void testPolyconic() throws FactoryException, TransformException {
@@ -1322,8 +1322,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>16°50'59.179"E<br>50°12'32.442"N</td> <td>-568990.997 m<br>-1050538.643 m</td></tr>
      * </table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      *
      * @see AuthorityFactoryTest#testEPSG_2065()
      */
@@ -1367,8 +1367,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <td>2°7'51.477"E<br>53°48'36.563"N<br>28.091 m</td>
      * </tr></table></td></tr></table>
      *
-     * @throws FactoryException If the math transform can not be created.
-     * @throws TransformException If the example point can not be transformed.
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
      */
     @Test
     public void testAbridgedMolodensky() throws FactoryException, TransformException {

@@ -54,7 +54,7 @@ public interface SampleDimension extends RangeDimension {
      * Minimum value of data values in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
-     * @return Minimum value of data values in each dimension included in the resource, or {@code null} if none.
+     * @return minimum value of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMinValue();
@@ -63,7 +63,7 @@ public interface SampleDimension extends RangeDimension {
      * Maximum value of data values in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
-     * @return Maximum value of data values in each dimension included in the resource, or {@code null} if none.
+     * @return maximum value of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMaxValue();
@@ -72,7 +72,7 @@ public interface SampleDimension extends RangeDimension {
      * Mean value of data values in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
-     * @return The mean value of data values in each dimension included in the resource, or {@code null} if none.
+     * @return the mean value of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="meanValue", obligation=OPTIONAL, specification=ISO_19115)
     Double getMeanValue();
@@ -84,7 +84,7 @@ public interface SampleDimension extends RangeDimension {
      * <div class="note"><b>Example:</b> the number of classes in a Land Cover Type coverage
      * or the number of cells with data in other types of coverages.</div>
      *
-     * @return The number of values used in a thematic classification resource, or {@code null} if none.
+     * @return the number of values used in a thematic classification resource, or {@code null} if none.
      */
     @UML(identifier="numberOfValues", obligation=OPTIONAL, specification=ISO_19115)
     Integer getNumberOfValues();
@@ -93,7 +93,7 @@ public interface SampleDimension extends RangeDimension {
      * Standard deviation of data values in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
-     * @return Standard deviation of data values in each dimension included in the resource, or {@code null} if none.
+     * @return standard deviation of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="standardDeviation", obligation=OPTIONAL, specification=ISO_19115)
     Double getStandardDeviation();
@@ -102,7 +102,7 @@ public interface SampleDimension extends RangeDimension {
      * Units of data in each dimension included in the resource.
      * May be {@code null} if unspecified.
      *
-     * @return Units of data in each dimension included in the resource, or {@code null} if none.
+     * @return units of data in each dimension included in the resource, or {@code null} if none.
      *
      * @condition Mandatory if {@linkplain #getMinValue()}, {@linkplain #getMaxValue()}
      *            or {@linkplain #getMeanValue()} are provided.
@@ -114,7 +114,7 @@ public interface SampleDimension extends RangeDimension {
      * Scale factor which has been applied to the cell value.
      * May be {@code null} if unspecified.
      *
-     * @return Scale factor which has been applied to the cell value, or {@code null} if none.
+     * @return scale factor which has been applied to the cell value, or {@code null} if none.
      */
     @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
     Double getScaleFactor();
@@ -136,7 +136,7 @@ public interface SampleDimension extends RangeDimension {
      *   for historical reasons. GeoAPI moves this property up in the hierarchy to a more natural place when
      *   not constrained by historical reasons, which is together with the offset and scale factor.
      *
-     * @return Type of transfer function.
+     * @return type of transfer function.
      */
     @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
     TransferFunctionType getTransferFunctionType();
@@ -145,7 +145,7 @@ public interface SampleDimension extends RangeDimension {
      * Maximum number of significant bits in the uncompressed representation for the value in each band of each pixel.
      * May be {@code null} if unspecified.
      *
-     * @return Maximum number of significant bits in the uncompressed representation
+     * @return maximum number of significant bits in the uncompressed representation
      *         for the value in each band of each pixel, or {@code null} if none.
      */
     @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
@@ -175,7 +175,7 @@ public interface SampleDimension extends RangeDimension {
      * Type of other attribute description.
      * May be {@code null} if unspecified.
      *
-     * @return Type of other attribute description, or {@code null} if none.
+     * @return type of other attribute description, or {@code null} if none.
      */
     @UML(identifier="otherPropertyType", obligation=OPTIONAL, specification=ISO_19115)
     RecordType getOtherPropertyType();
@@ -184,7 +184,7 @@ public interface SampleDimension extends RangeDimension {
      * Instance of other attribute type that defines attributes not explicitly included in {@link CoverageContentType}.
      * May be {@code null} if unspecified.
      *
-     * @return Instance of other/attributeType that defines attributes, or {@code null} if none.
+     * @return instance of other/attributeType that defines attributes, or {@code null} if none.
      */
     @UML(identifier="otherProperty", obligation=OPTIONAL, specification=ISO_19115)
     Record getOtherProperty();

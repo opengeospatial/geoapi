@@ -57,7 +57,7 @@ public interface Keywords {
     /**
      * Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject.
      *
-     * @return Word(s) or phrase(s) used to describe the subject.
+     * @return word(s) or phrase(s) used to describe the subject.
      */
     @UML(identifier="keyword", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends InternationalString> getKeywords();
@@ -65,7 +65,7 @@ public interface Keywords {
     /**
      * Subject matter used to group similar keywords.
      *
-     * @return Subject matter used to group similar keywords, or {@code null}.
+     * @return subject matter used to group similar keywords, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115)
     KeywordType getType();
@@ -73,7 +73,7 @@ public interface Keywords {
     /**
      * Name of the formally registered thesaurus or a similar authoritative source of keywords.
      *
-     * @return Name of registered thesaurus or similar authoritative source of keywords, or {@code null}.
+     * @return name of registered thesaurus or similar authoritative source of keywords, or {@code null}.
      */
     @UML(identifier="thesaurusName", obligation=OPTIONAL, specification=ISO_19115)
     Citation getThesaurusName();
@@ -91,7 +91,7 @@ public interface Keywords {
      * when searching it is useful for the user to be able to restrict the search to only rivers.
      * </div>
      *
-     * @return User-defined categorization of groups of keywords, or {@code null} if none.
+     * @return user-defined categorization of groups of keywords, or {@code null} if none.
      *
      * @since 3.1
      */

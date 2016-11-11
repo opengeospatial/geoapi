@@ -56,7 +56,7 @@ public interface Medium {
     /**
      * Name of the medium on which the resource can be stored or distributed.
      *
-     * @return Name of the medium, or {@code null}.
+     * @return name of the medium, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     MediumName getName();
@@ -65,7 +65,7 @@ public interface Medium {
      * Density at which the data is recorded.
      * The numbers shall be greater than zero.
      *
-     * @return Density at which the data is recorded, or {@code null}.
+     * @return density at which the data is recorded, or {@code null}.
      *
      * @since 3.1
      */
@@ -75,7 +75,7 @@ public interface Medium {
     /**
      * @deprecated As of ISO 19115:2014, replaced by {@link #getDensity()}.
      *
-     * @return Density at which the data is recorded.
+     * @return density at which the data is recorded.
      */
     @Deprecated
     Collection<Double> getDensities();
@@ -83,7 +83,7 @@ public interface Medium {
     /**
      * Units of measure for the recording density.
      *
-     * @return Units of measure for the recording density, or {@code null}.
+     * @return units of measure for the recording density, or {@code null}.
      *
      * @condition The {@linkplain #getDensities() densities} must be provided.
      */
@@ -94,7 +94,7 @@ public interface Medium {
      * Number of items in the media identified.
      * Returns {@code null} if unknown.
      *
-     * @return Number of items in the media identified, or {@code null}.
+     * @return number of items in the media identified, or {@code null}.
      */
     @UML(identifier="volumes", obligation=OPTIONAL, specification=ISO_19115)
     Integer getVolumes();
@@ -102,7 +102,7 @@ public interface Medium {
     /**
      * Method used to write to the medium.
      *
-     * @return Method used to write to the medium, or {@code null}.
+     * @return method used to write to the medium, or {@code null}.
      */
     @UML(identifier="mediumFormat", obligation=OPTIONAL, specification=ISO_19115)
     Collection<MediumFormat> getMediumFormats();
@@ -110,7 +110,7 @@ public interface Medium {
     /**
      * Description of other limitations or requirements for using the medium.
      *
-     * @return Description of other limitations for using the medium, or {@code null}.
+     * @return description of other limitations for using the medium, or {@code null}.
      */
     @UML(identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getMediumNote();
@@ -118,7 +118,7 @@ public interface Medium {
     /**
      * Unique identifier for an instance of the medium.
      *
-     * @return Unique identifier, or {@code null} if none.
+     * @return unique identifier, or {@code null} if none.
      *
      * @since 3.1
      */

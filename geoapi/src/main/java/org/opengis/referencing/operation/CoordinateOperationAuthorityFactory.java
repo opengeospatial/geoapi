@@ -59,8 +59,8 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * set to the authority of this object, and the code specified by the client, respectively. The
      * other metadata values may or may not be set.
      *
-     * @param  code Coded value for operation method.
-     * @return The operation method for the given code.
+     * @param  code  coded value for operation method.
+     * @return the operation method for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
@@ -81,8 +81,8 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * set to the authority of this object, and the code specified by the client, respectively. The
      * other metadata values may or may not be set.
      *
-     * @param  code Coded value for coordinate operation.
-     * @return The operation for the given code.
+     * @param  code  coded value for coordinate operation.
+     * @return the operation for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
@@ -100,9 +100,9 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * CoordinateReferenceSystem) CoordinateOperationFactory.createOperation}(sourceCRS, targetCRS)</code>
      * instead.
      *
-     * @param  sourceCRS   Coded value of source coordinate reference system.
-     * @param  targetCRS   Coded value of target coordinate reference system.
-     * @return The operations from {@code sourceCRS} to {@code targetCRS}.
+     * @param  sourceCRS  coded value of source coordinate reference system.
+     * @param  targetCRS  coded value of target coordinate reference system.
+     * @return the operations from {@code sourceCRS} to {@code targetCRS}.
      * @throws NoSuchAuthorityCodeException if a specified code was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */

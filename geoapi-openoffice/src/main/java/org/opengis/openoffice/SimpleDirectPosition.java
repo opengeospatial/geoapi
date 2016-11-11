@@ -29,7 +29,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Constructs a position with the specified number of dimensions.
      *
-     * @param  numDim Number of dimensions.
+     * @param  numDim  number of dimensions.
      * @throws NegativeArraySizeException if {@code numDim} is negative.
      */
     SimpleDirectPosition(final int numDim) throws NegativeArraySizeException {
@@ -40,7 +40,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * Returns always {@code this}, the direct position for this
      * {@linkplain org.opengis.geometry.coordinate.Position position}.
      *
-     * @return Always {@code this}.
+     * @return always {@code this}.
      */
     @Override
     public DirectPosition getDirectPosition() {
@@ -50,7 +50,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Returns {@code null} since we do not need to associate this direct position to their CRS.
      *
-     * @return Always {@code null}.
+     * @return always {@code null}.
      */
     @Override
     public CoordinateReferenceSystem getCoordinateReferenceSystem() {
@@ -60,7 +60,7 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * The length of coordinate sequence (the number of entries).
      *
-     * @return The dimensionality of this position.
+     * @return the dimensionality of this position.
      */
     @Override
     public int getDimension() {
@@ -71,7 +71,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * Returns a sequence of numbers that hold the coordinate of this position in its
      * reference system.
      *
-     * @return The coordinates
+     * @return the coordinates
      */
     @Override
     public double[] getCoordinate() {
@@ -81,8 +81,8 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Returns the ordinate at the specified dimension.
      *
-     * @param  dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
-     * @return The coordinate at the specified dimension.
+     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @return the coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     @Override
@@ -93,8 +93,8 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Sets the ordinate value along the specified dimension.
      *
-     * @param dimension the dimension for the ordinate of interest.
-     * @param value the ordinate value of interest.
+     * @param  dimension  the dimension for the ordinate of interest.
+     * @param  value      the ordinate value of interest.
      * @throws IndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     @Override

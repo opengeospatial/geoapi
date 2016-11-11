@@ -60,7 +60,7 @@ public interface Lineage {
     /**
      * General explanation of the data producer's knowledge about the lineage of a dataset.
      *
-     * @return Explanation of the data producer's knowledge about the lineage, or {@code null}.
+     * @return explanation of the data producer's knowledge about the lineage, or {@code null}.
      *
      * @condition Shall be provided only if {@linkplain Scope#getLevel() scope level} is
      *            {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
@@ -72,7 +72,7 @@ public interface Lineage {
     /**
      * Type of resource and / or extent to which the lineage information applies.
      *
-     * @return Type of resource and / or extent, or {@code null} if none.
+     * @return type of resource and / or extent, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -86,7 +86,7 @@ public interface Lineage {
      * a publication that describes the whole process to generate this resource (for example a dataset).
      * </div>
      *
-     * @return Additional documentation.
+     * @return additional documentation.
      *
      * @since 3.1
      */
@@ -96,7 +96,7 @@ public interface Lineage {
     /**
      * Information about events in the life of a resource specified by the scope.
      *
-     * @return Information about events in the life of a resource.
+     * @return information about events in the life of a resource.
      *
      * @condition Mandatory if {@linkplain #getStatement() statement} and
      *            {@linkplain #getSources() source} are not provided.
@@ -107,7 +107,7 @@ public interface Lineage {
     /**
      * Information about the source data used in creating the data specified by the scope.
      *
-     * @return Information about the source data.
+     * @return information about the source data.
      *
      * @condition Mandatory if {@linkplain #getStatement() statement} and
      *            {@linkplain #getProcessSteps() process step} are not provided.

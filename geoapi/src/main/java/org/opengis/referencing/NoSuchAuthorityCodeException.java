@@ -65,10 +65,9 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     /**
      * Constructs an exception with the specified detail message and authority code.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param  authority The authority, saved for retrieval by the {@link #getAuthority()} method.
-     * @param  code The invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
+     * @param  message    the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param  authority  the authority, saved for retrieval by the {@link #getAuthority()} method.
+     * @param  code       the invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
      */
     public NoSuchAuthorityCodeException(final String message, final String authority, final String code) {
         this(message, authority, code, (authority == null) ? code : (code == null) ? authority : authority + ':' + code);
@@ -78,12 +77,11 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      * Constructs an exception with the specified detail message, authority code and identifier.
      * The identifier argument is optional. If omitted, then "{@code authority:code}" will be used.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param  authority The authority, saved for retrieval by the {@link #getAuthority()} method.
-     * @param  code The invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
-     * @param  identifier The full identifier as a concatenation of the authority and the code,
-     *         saved for retrieval by the {@link #getIdentifierCode()} method.
+     * @param  message     the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param  authority   the authority, saved for retrieval by the {@link #getAuthority()} method.
+     * @param  code        the invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
+     * @param  identifier  the full identifier as a concatenation of the authority and the code,
+     *                     saved for retrieval by the {@link #getIdentifierCode()} method.
      */
     public NoSuchAuthorityCodeException(final String message, final String authority, final String code, final String identifier) {
         super(message, identifier);
@@ -94,7 +92,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     /**
      * Returns the authority.
      *
-     * @return The authority, or {@code null} if unknown.
+     * @return the authority, or {@code null} if unknown.
      */
     public String getAuthority() {
         return authority;
@@ -103,7 +101,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     /**
      * Returns the invalid authority code.
      *
-     * @return The authority code, or {@code null} if unknown.
+     * @return the authority code, or {@code null} if unknown.
      */
     public String getAuthorityCode() {
         return code;

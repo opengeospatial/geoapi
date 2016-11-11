@@ -108,7 +108,7 @@ public interface Identifier {
     /**
      * Person or party responsible for maintenance of the namespace.
      *
-     * @return The person or party responsible for maintenance of the namespace, or {@code null} if none.
+     * @return the person or party responsible for maintenance of the namespace, or {@code null} if none.
      */
     @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
     Citation getAuthority();
@@ -119,7 +119,7 @@ public interface Identifier {
      *
      * <div class="note"><b>Example:</b> {@code "4326"}.</div>
      *
-     * @return Value identifying an instance in the namespace.
+     * @return value identifying an instance in the namespace.
      */
     @UML(identifier="code", obligation=MANDATORY, specification=ISO_19115)
     String getCode();
@@ -129,7 +129,7 @@ public interface Identifier {
      *
      * <div class="note"><b>Example:</b> {@code "EPSG"}.</div>
      *
-     * @return The identifier or namespace in which the code is valid, or {@code null} if none.
+     * @return the identifier or namespace in which the code is valid, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -144,7 +144,7 @@ public interface Identifier {
      * <div class="note"><b>Example:</b>
      * the version of the underlying EPSG database.</div>
      *
-     * @return The version identifier for the namespace, or {@code null} if none.
+     * @return the version identifier for the namespace, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -157,7 +157,7 @@ public interface Identifier {
      * <div class="note"><b>Example:</b> for {@code codeSpace = "EPSG"} and {@code code = "4326"},
      * the description can be "WGS 84".</div>
      *
-     * @return The natural language description, or {@code null} if none.
+     * @return the natural language description, or {@code null} if none.
      *
      * @since 3.1
      */

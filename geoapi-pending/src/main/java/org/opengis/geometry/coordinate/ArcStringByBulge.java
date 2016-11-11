@@ -77,7 +77,7 @@ public interface ArcStringByBulge extends CurveSegment {
      *            + bulge×{@link #getNormals normal}
      * </code></blockquote>
      *
-     * @return The offset of each arc's midpoint.
+     * @return the offset of each arc's midpoint.
      */
     @UML(identifier="bulge", obligation=MANDATORY, specification=ISO_19107)
     double[] getBulges();
@@ -91,7 +91,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * <pre>numArc = {@link ArcString#getControlPoints controlPoints}.length - 1</pre>
      * </blockquote>
      *
-     * @return The number of circular arcs.
+     * @return the number of circular arcs.
      */
     @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
     int getNumArc();
@@ -110,7 +110,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * the two end points. The length of the normal sequence is exactly the same as for the
      * {@linkplain #getBulges bulge} sequence, 1 less than the control point sequence length.
      *
-     * @return The sequence of normal vectors.
+     * @return the sequence of normal vectors.
      */
     @UML(identifier="normal", obligation=MANDATORY, specification=ISO_19107)
     List<double[]> getNormals();
@@ -120,7 +120,7 @@ public interface ArcStringByBulge extends CurveSegment {
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE
      * Circular arc by 2 points and bulge factor}".
      *
-     * @return Always {@link CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE}.
+     * @return always {@link CurveInterpolation#CIRCULAR_ARC_2_POINTS_WITH_BULGE}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();

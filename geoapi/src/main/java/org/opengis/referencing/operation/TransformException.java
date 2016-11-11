@@ -75,8 +75,7 @@ public class TransformException extends Exception {
     /**
      * Constructs an exception with the specified detail message.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      */
     public TransformException(String message) {
         super(message);
@@ -85,10 +84,8 @@ public class TransformException extends Exception {
     /**
      * Constructs an exception with the specified detail message and cause.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param  cause The cause for this exception. The cause is saved
-     *         for later retrieval by the {@link #getCause()} method.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause    the cause, saved for later retrieval by the {@link #getCause()} method.
      */
     public TransformException(String message, Throwable cause) {
         super(message, cause);
@@ -99,7 +96,7 @@ public class TransformException extends Exception {
      * the untransformable coordinates with {@linkplain Double#NaN NaN} values. This information
      * is useful in the context of concatenated transforms. May be {@code null} if unknown.
      *
-     * @return The last reliable transform.
+     * @return the last reliable transform.
      *
      * @since 2.2
      */
@@ -111,7 +108,7 @@ public class TransformException extends Exception {
      * Sets the last transform that either transformed successfully all coordinates, or
      * filled the untransformable coordinates with {@linkplain Double#NaN NaN} values.
      *
-     * @param transform The last reliable transform.
+     * @param transform  the last reliable transform.
      *
      * @since 2.2
      */

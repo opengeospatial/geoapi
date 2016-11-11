@@ -57,7 +57,7 @@ public interface Georectified extends GridSpatialRepresentation {
      * Indication of whether or not geographic position points are available to test the
      * accuracy of the georeferenced grid data.
      *
-     * @return Whether or not geographic position points are available to test accuracy.
+     * @return whether or not geographic position points are available to test accuracy.
      */
     @UML(identifier="checkPointAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isCheckPointAvailable();
@@ -65,7 +65,7 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * Description of geographic position points used to test the accuracy of the georeferenced grid data.
      *
-     * @return Description of geographic position points used to test accuracy, or {@code null}.
+     * @return description of geographic position points used to test accuracy, or {@code null}.
      *
      * @condition {@linkplain #isCheckPointAvailable() Check point availability} equals {@code true}.
      */
@@ -83,7 +83,7 @@ public interface Georectified extends GridSpatialRepresentation {
      *
      * <p>The first corner point corresponds to the origin of the grid.</p>
      *
-     * @return The corner points.
+     * @return the corner points.
      */
     @UML(identifier="cornerPoints", obligation=MANDATORY, specification=ISO_19115)
     List<? extends Point> getCornerPoints();
@@ -93,7 +93,7 @@ public interface Georectified extends GridSpatialRepresentation {
      * and the grid coordinate of the cell halfway between opposite ends of the grid in the
      * spatial dimensions.
      *
-     * @return The center point, or {@code null}.
+     * @return the center point, or {@code null}.
      */
     @UML(identifier="centerPoint", obligation=OPTIONAL, specification=ISO_19115)
     Point getCenterPoint();
@@ -101,7 +101,7 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
      *
-     * @return Earth location of the pixel.
+     * @return earth location of the pixel.
      */
     @UML(identifier="pointInPixel", obligation=MANDATORY, specification=ISO_19115)
     PixelOrientation getPointInPixel();
@@ -109,7 +109,7 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * General description of the transformation.
      *
-     * @return General description of the transformation, or {@code null}.
+     * @return general description of the transformation, or {@code null}.
      */
     @UML(identifier="transformationDimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getTransformationDimensionDescription();
@@ -118,7 +118,7 @@ public interface Georectified extends GridSpatialRepresentation {
      * Information about which grid dimensions are the spatial dimensions.
      * The list should contain at most 2 elements.
      *
-     * @return Information about which grid dimensions are the spatial dimensions, or {@code null}.
+     * @return information about which grid dimensions are the spatial dimensions, or {@code null}.
      */
     @UML(identifier="transformationDimensionMapping", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getTransformationDimensionMapping();
@@ -126,7 +126,7 @@ public interface Georectified extends GridSpatialRepresentation {
     /**
      * Geographic references used to validate georectification of the data.
      *
-     * @return Geographic references used to validate georectification.
+     * @return geographic references used to validate georectification.
      *
      * @since 2.3
      */

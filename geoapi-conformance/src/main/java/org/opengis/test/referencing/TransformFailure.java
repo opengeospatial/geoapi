@@ -52,7 +52,7 @@ public class TransformFailure extends ComputationFailure {
     /**
      * Creates a new exception with the given message.
      *
-     * @param message The details message.
+     * @param message  the details message.
      */
     public TransformFailure(final String message) {
         super(message);

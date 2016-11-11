@@ -86,7 +86,7 @@ public interface Expression {
      * should return {@code null}.</p>
      *
      * @param <T> The type of the returned object.
-     * @param object The object to evaluate the expression against.
+     * @param  object  the object to evaluate the expression against.
      * @param context The type of the resulting value of the expression.
      *
      * @return Evaluates the given expression based on the content of the given object an

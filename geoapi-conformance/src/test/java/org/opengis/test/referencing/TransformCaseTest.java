@@ -100,7 +100,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     /**
      * Tests {@link #verifyTransform(double[], double[])} using a valid transform.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test
     public void testTransform() throws TransformException {
@@ -128,7 +128,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     /**
      * Tests {@link #verifyConsistency(float[])} using a valid transform.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test
     public void testConsistencyUsingValidTransform() throws TransformException {
@@ -141,7 +141,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      * Tests {@link #verifyConsistency(float[])} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test(expected=TransformFailure.class)
     public void testConsistencyUsingBogusTransform() throws TransformException {
@@ -154,7 +154,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     /**
      * Tests {@link #verifyInverse(float[])} using a valid transform.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test
     public void testInversionUsingValidTransform() throws TransformException {
@@ -167,7 +167,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      * Tests {@link #verifyInverse(float[])} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test(expected=TransformFailure.class)
     public void testInversionUsingBogusTransform() throws TransformException {
@@ -180,7 +180,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     /**
      * Tests {@link #verifyDerivative(double[])}.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      *
      * @since 3.1
      */
@@ -195,7 +195,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
      * Tests {@link #verifyDerivative(double[])} using a bogus transform.
      * A {@link TransformFailure} exception should be thrown.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      *
      * @since 3.1
      */
@@ -211,7 +211,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
     /**
      * Tests {@link TransformTestCase#verifyInDomain(double[], double[], int[], Random)}.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      *
      * @since 3.1
      */

@@ -56,7 +56,7 @@ public interface SingleOperation extends CoordinateOperation {
     /**
      * Returns the operation method.
      *
-     * @return The operation method.
+     * @return the operation method.
      *
      * @since 2.3
      */
@@ -66,7 +66,7 @@ public interface SingleOperation extends CoordinateOperation {
     /**
      * Returns the parameter values.
      *
-     * @return The parameter values.
+     * @return the parameter values.
      *
      * @since 2.3
      */

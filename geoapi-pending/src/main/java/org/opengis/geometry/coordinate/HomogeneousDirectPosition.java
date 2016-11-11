@@ -69,7 +69,7 @@ public interface HomogeneousDirectPosition extends DirectPosition {
      * {@linkplain org.opengis.geometry.coordinate.HomogeneousDirectPosition homogeneous format},
      * this is one less than the length of the array.
      *
-     * @return The dimensionality of this position.
+     * @return the dimensionality of this position.
      *
      * @todo Move this definition in the <cite>geoapi normative</cite> module if approved.
      */
@@ -81,7 +81,7 @@ public interface HomogeneousDirectPosition extends DirectPosition {
      * Returns the weight value, which is the last value in the {@linkplain #getCoordinate()
      * coordinate array}.
      *
-     * @return The weight as a positive real number.
+     * @return the weight as a positive real number.
      */
     @Draft
     @UML(identifier="weight", obligation=MANDATORY, specification=ISO_19107)
@@ -102,7 +102,7 @@ public interface HomogeneousDirectPosition extends DirectPosition {
      * is implicitly assumed to take on the value of the containing object's coordinate system.
      * And the first in the sequence of coordinate systems must be the spatial CRS from 19111.
      *
-     * @return The coordinate system, or {@code null}.
+     * @return the coordinate system, or {@code null}.
      *
      * @see #getCoordinateReferenceSystem()
      */

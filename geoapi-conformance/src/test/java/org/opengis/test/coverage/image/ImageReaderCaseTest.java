@@ -59,7 +59,7 @@ public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
     /**
      * Prepares the PNG image reader for reading our test image.
      *
-     * @throws IOException If an error occurred while preparing the reader.
+     * @throws IOException if an error occurred while preparing the reader.
      */
     @Override
     protected void prepareImageReader(final boolean setInput) throws IOException {

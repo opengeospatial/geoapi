@@ -40,7 +40,7 @@ final class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Creates a new direct position of the given dimension.
      *
-     * @param dimension The dimension.
+     * @param  dimension  the dimension.
      */
     public SimpleDirectPosition(final int dimension) {
         ordinates = new double[dimension];

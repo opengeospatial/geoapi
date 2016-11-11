@@ -133,7 +133,7 @@ public interface Datum extends IdentifiedObject {
      *   This method has been kept conformant with the specification published in 2003 for compatibility reasons.
      *   The revision published in 2007 renamed this property as <code>anchorDefinition</code>.
      *
-     * @return A description of the anchor point, or {@code null} if none.
+     * @return a description of the anchor point, or {@code null} if none.
      *
      * @see VerticalDatum#getVerticalDatumType()
      */
@@ -155,7 +155,7 @@ public interface Datum extends IdentifiedObject {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return The datum realization epoch, or {@code null} if not available.
+     * @return the datum realization epoch, or {@code null} if not available.
      */
     @UML(identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
     Date getRealizationEpoch();
@@ -163,7 +163,7 @@ public interface Datum extends IdentifiedObject {
     /**
      * Area or region or timeframe in which this datum is valid.
      *
-     * @return The datum valid domain, or {@code null} if not available.
+     * @return the datum valid domain, or {@code null} if not available.
      *
      * @since 2.1
      */
@@ -173,7 +173,7 @@ public interface Datum extends IdentifiedObject {
     /**
      * Description of domain of usage, or limitations of usage, for which this datum object is valid.
      *
-     * @return A description of domain of usage, or {@code null} if none.
+     * @return a description of domain of usage, or {@code null} if none.
      *
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003. The revision

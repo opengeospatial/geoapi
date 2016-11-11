@@ -50,7 +50,7 @@ public interface Individual extends Party {
     /**
      * Position of the individual in an organisation.
      *
-     * @return Position of the individual in an organisation, or {@code null} if none.
+     * @return position of the individual in an organisation, or {@code null} if none.
      *
      * @condition Mandatory if {@linkplain #getName() name} is not documented.
      */

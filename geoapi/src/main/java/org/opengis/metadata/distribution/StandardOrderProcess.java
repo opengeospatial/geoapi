@@ -57,7 +57,7 @@ public interface StandardOrderProcess {
      * Includes monetary units (as specified in ISO 4217).
      * The monetary units may also be available with {@link #getCurrency()}.
      *
-     * @return Fees and terms for retrieving the resource, or {@code null}.
+     * @return fees and terms for retrieving the resource, or {@code null}.
      */
     @UML(identifier="fees", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getFees();
@@ -75,7 +75,7 @@ public interface StandardOrderProcess {
      *   This method is not part of ISO specification. It has been added in GeoAPI for
      *   integration with the standard JDK library.
      *
-     * @return The fees monetary units, or {@code null} if none or unknown.
+     * @return the fees monetary units, or {@code null} if none or unknown.
      *
      * @since 3.1
      */
@@ -89,7 +89,7 @@ public interface StandardOrderProcess {
      * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
      * </div>
      *
-     * @return Date and time when the dataset will be available, or {@code null}.
+     * @return date and time when the dataset will be available, or {@code null}.
      */
     @UML(identifier="plannedAvailableDateTime", obligation=OPTIONAL, specification=ISO_19115)
     Date getPlannedAvailableDateTime();
@@ -97,7 +97,7 @@ public interface StandardOrderProcess {
     /**
      * General instructions, terms and services provided by the distributor.
      *
-     * @return General instructions, terms and services provided by the distributor, or {@code null}.
+     * @return general instructions, terms and services provided by the distributor, or {@code null}.
      */
     @UML(identifier="orderingInstructions", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getOrderingInstructions();
@@ -105,7 +105,7 @@ public interface StandardOrderProcess {
     /**
      * Typical turnaround time for the filling of an order.
      *
-     * @return Typical turnaround time for the filling of an order, or {@code null}.
+     * @return typical turnaround time for the filling of an order, or {@code null}.
      */
     @UML(identifier="turnaround", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getTurnaround();
@@ -113,7 +113,7 @@ public interface StandardOrderProcess {
     /**
      * Description of the {@linkplain #getOrderOptions() order options} record.
      *
-     * @return Description of the order options record, or {@code null} if none.
+     * @return description of the order options record, or {@code null} if none.
      *
      * @since 3.1
      *
@@ -125,7 +125,7 @@ public interface StandardOrderProcess {
     /**
      * Request/purchase choices.
      *
-     * @return Request/purchase choices.
+     * @return request/purchase choices.
      *
      * @since 3.1
      *

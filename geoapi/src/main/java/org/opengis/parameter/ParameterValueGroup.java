@@ -100,7 +100,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      *       way to remove parameter created by the {@link #parameter(String)} method.</li>
      * </ul>
      *
-     * @return The values in this group.
+     * @return the values in this group.
      */
     @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     List<GeneralParameterValue> values();
@@ -135,9 +135,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * The user have to {@linkplain #groups(String) query all subgroups} and select explicitly
      * the appropriate one to use.
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
-     *              of the parameter to search for.
-     * @return The parameter value for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
+     *               of the parameter to search for.
+     * @return the parameter value for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter value for the given identifier code.
      *
      * @departure easeOfUse
@@ -153,9 +153,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * <code>{@linkplain ParameterDescriptor#getMinimumOccurs() minimumOccurs} == 0</code>)
      * and no value were defined previously, then this method returns an empty list.</p>
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code}
-     *              of the parameter group to search for.
-     * @return The set of all parameter group for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
+     *               of the parameter group to search for.
+     * @return the set of all parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      *
@@ -174,9 +174,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * {@link #values()} list, decide which occurrences to remove if there is many of them for the
      * same name, and whether to iterate recursively into sub-groups or not.</p>
      *
-     * @param  name The case insensitive {@linkplain Identifier#getCode() identifier code} of the
-     *              parameter group to create.
-     * @return A newly created parameter group for the given identifier code.
+     * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code} of the
+     *               parameter group to create.
+     * @return a newly created parameter group for the given identifier code.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      * @throws InvalidParameterCardinalityException if this parameter group already contains the
@@ -195,7 +195,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * Returns a copy of this group of parameter values.
      * Included parameter values and subgroups are cloned recursively.
      *
-     * @return A copy of this group of parameter values.
+     * @return a copy of this group of parameter values.
      */
     @Override
     ParameterValueGroup clone();

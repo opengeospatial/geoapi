@@ -62,7 +62,7 @@ public interface GridValueCell extends ValueObject {
      *   ISO defines this method as a specialization of <code>getGeometry()</code>. We
      *   can not reflect this association in Java because of incompatible return type.
      *
-     * @return The structure of grid points.
+     * @return the structure of grid points.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     GridCell getGridCell();

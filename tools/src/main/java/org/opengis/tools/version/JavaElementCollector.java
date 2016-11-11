@@ -165,7 +165,7 @@ final class JavaElementCollector {
      * @param  repository The root of Maven local repository.
      * @param  hiearchy   An optional map in which to store type hierarchy.
      *         If non-null, this map will be filled with (type, parent) entries.
-     * @return The set of elements in the given GeoAPI version.
+     * @return the set of elements in the given GeoAPI version.
      */
     private static Set<JavaElement> collectAPI(String artefact, final Version version, final File repository,
             final Map<String,String> hierarchy)
@@ -217,7 +217,7 @@ final class JavaElementCollector {
      * @param  artefact    The artefact name, either {@code "geoapi"} or {@code "geoapi-conformance"}.
      * @param  oldVersion  The old GeoAPI version.
      * @param  newVersion  The new GeoAPI version.
-     * @return The API changes.
+     * @return the API changes.
      */
     static JavaElement[] collectAPIChanges(final String artefact,
             final Version oldVersion, final Version newVersion)

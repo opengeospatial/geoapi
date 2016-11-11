@@ -59,8 +59,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     /**
      * Creates a new object of the given authority and name.
      *
-     * @param authority The value to be returned by {@link #getAuthority()}, or {@code null} if none.
-     * @param name      The name of the new object.
+     * @param authority  the value to be returned by {@link #getAuthority()}, or {@code null} if none.
+     * @param name       the name of the new object.
      */
     public SimpleIdentifiedObject(final Citation authority, final String name) {
         Objects.requireNonNull(name);
@@ -82,7 +82,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Returns the person or party responsible for maintenance of the namespace.
      * This method returns the citation given to the constructor.
      *
-     * @return Party responsible for definition and maintenance of the code, or {@code null} if none.
+     * @return party responsible for definition and maintenance of the code, or {@code null} if none.
      */
     @Override
     public Citation getAuthority() {
@@ -94,7 +94,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * The default implementation returns the {@linkplain Citation#getTitle() title} of the
      * {@linkplain #getAuthority() authority}.
      *
-     * @return The identifier or namespace in which the code is valid, or {@code null} if none.
+     * @return the identifier or namespace in which the code is valid, or {@code null} if none.
      */
     @Override
     public String getCodeSpace() {
@@ -104,7 +104,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     /**
      * Returns the name given at construction time.
      *
-     * @return Alphanumeric value identifying an instance in the namespace.
+     * @return alphanumeric value identifying an instance in the namespace.
      */
     @Override
     public String getCode() {
@@ -124,7 +124,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Alternative names by which this object is identified.
      * The default implementation returns an empty set.
      *
-     * @return The aliases, or an empty collection if there is none.
+     * @return the aliases, or an empty collection if there is none.
      */
     @Override
     public Collection<GenericName> getAlias() {
@@ -136,7 +136,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Alternatively an identifier by which this object can be referenced.
      * The default implementation returns an empty set.
      *
-     * @return This object identifiers, or an empty set if there is none.
+     * @return this object identifiers, or an empty set if there is none.
      */
     @Override
     public Set<ReferenceIdentifier> getIdentifiers() {
@@ -147,7 +147,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Returns a natural language description of this object.
      * The default implementation returns {@code null}.
      *
-     * @return The natural language description, or {@code null} if none.
+     * @return the natural language description, or {@code null} if none.
      */
     @Override
     public InternationalString getDescription() {
@@ -161,7 +161,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      *
      * <p>The default implementation returns {@code null}.</p>
      *
-     * @return The domain of usage, or {@code null} if none.
+     * @return the domain of usage, or {@code null} if none.
      */
     public InternationalString getScope() {
         return null;
@@ -174,7 +174,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      *
      * <p>The default implementation returns {@code null}.</p>
      *
-     * @return The valid domain, or {@code null} if not available.
+     * @return the valid domain, or {@code null} if not available.
      */
     public Extent getDomainOfValidity() {
         return null;
@@ -184,7 +184,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Comments on or information about this object, including data source information.
      * The default implementation returns {@code null}.
      *
-     * @return The remarks, or {@code null} if none.
+     * @return the remarks, or {@code null} if none.
      */
     @Override
     public InternationalString getRemarks() {
@@ -195,8 +195,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * Returns a <cite>Well-Known Text</cite> (WKT) for this object. The default implementation
      * throws unconditionally the exception since we do not support WKT formatting.
      *
-     * @return The Well Know Text for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @return the Well Know Text for this object.
+     * @throws UnsupportedOperationException if this object can't be formatted as WKT.
      */
     @Override
     public String toWKT() throws UnsupportedOperationException {
@@ -219,7 +219,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     /**
      * Compares this identifier with the given object for equality.
      *
-     * @param  object The object to compare with this {@code SimpleIdentifiedObject}.
+     * @param  object  the object to compare with this {@code SimpleIdentifiedObject}.
      * @return {@code true} if the given object is equals to this object.
      */
     @Override

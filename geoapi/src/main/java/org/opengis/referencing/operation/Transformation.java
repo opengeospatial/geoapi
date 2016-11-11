@@ -57,7 +57,7 @@ public interface Transformation extends SingleOperation {
     /**
      * Returns the source CRS.
      *
-     * @return The source CRS (never {@code null}).
+     * @return the source CRS (never {@code null}).
      */
     @Override
     @UML(identifier="sourceCRS", obligation=MANDATORY, specification=ISO_19111)
@@ -66,7 +66,7 @@ public interface Transformation extends SingleOperation {
     /**
      * Returns the target CRS.
      *
-     * @return The target CRS (never {@code null}).
+     * @return the target CRS (never {@code null}).
      */
     @Override
     @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
@@ -76,7 +76,7 @@ public interface Transformation extends SingleOperation {
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
      * nature of the parameters). This attribute is mandatory in a Transformation.
      *
-     * @return The coordinate operation version.
+     * @return the coordinate operation version.
      */
     @Override
     @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)

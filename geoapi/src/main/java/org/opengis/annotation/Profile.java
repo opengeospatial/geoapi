@@ -50,7 +50,7 @@ public @interface Profile {
      * The level for the annotated element. {@link ComplianceLevel#CORE CORE} means
      * that all profiles should provides this element.
      *
-     * @return The compliance level.
+     * @return the compliance level.
      */
     ComplianceLevel level();
 }

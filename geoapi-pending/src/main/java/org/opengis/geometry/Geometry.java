@@ -74,7 +74,7 @@ public interface Geometry extends TransfiniteSet {
      * coordinate reference system}. This means that the coordinate reference system objects in a data set do
      * not keep a list of {@code Geometry}s that use them.
      *
-     * @return The coordinate reference system used in {@linkplain DirectPosition direct position}
+     * @return the coordinate reference system used in {@linkplain DirectPosition direct position}
      *         coordinates.
      *
      * @see #getCoordinateDimension
@@ -98,7 +98,7 @@ public interface Geometry extends TransfiniteSet {
      * {@code Geometry} from being a non-vector geometric representation, although those
      * types are not defined within this specification.
      *
-     * @return The minimum bounding region.
+     * @return the minimum bounding region.
      *
      * @see #getEnvelope
      * @see #getBoundary
@@ -112,7 +112,7 @@ public interface Geometry extends TransfiniteSet {
      * {@link #getCentroid} if that point is on the object. Another use of representative point may
      * be for the placement of labels in systems based on graphic presentation.
      *
-     * @return The representative point.
+     * @return the representative point.
      *
      * @see #getCentroid
      */
@@ -130,7 +130,7 @@ public interface Geometry extends TransfiniteSet {
      * constructed in response to the operation. The elements of a boundary shall be smaller in
      * dimension than the original element.
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      *
      * @see #getMbRegion
      * @see #getClosure
@@ -149,7 +149,7 @@ public interface Geometry extends TransfiniteSet {
      * {@code Geometry} is not in any {@linkplain Complex complex}, then the boundary
      * {@code Geometry}s returned may have been constructed in response to the operation.
      *
-     * @return The sets of points on the union of this object and its boundary.
+     * @return the sets of points on the union of this object and its boundary.
      *
      * @see #getBoundary
      */
@@ -232,7 +232,7 @@ public interface Geometry extends TransfiniteSet {
      * </div>
      *
      * @param  geometry The other object.
-     * @return The distance between the two objects.
+     * @return the distance between the two objects.
      * @unitof Distance
      * @since GeoAPI 2.1
      *
@@ -256,7 +256,7 @@ public interface Geometry extends TransfiniteSet {
      * dimension for any {@linkplain DirectPosition direct position} in this {@code Geometry}.
      *
      * @param point The point where to evaluate the dimension, or {@code null}.
-     * @return The inherent dimension.
+     * @return the inherent dimension.
      *
      * @see #getCoordinateDimension
      */
@@ -268,7 +268,7 @@ public interface Geometry extends TransfiniteSet {
      * be the same as the coordinate dimension of the coordinate reference system for this
      * {@code Geometry}.
      *
-     * @return The coordinate dimension.
+     * @return the coordinate dimension.
      *
      * @see #getDimension
      * @see #getCoordinateReferenceSystem
@@ -282,7 +282,7 @@ public interface Geometry extends TransfiniteSet {
      * larger {@linkplain Complex complex}, referred to as a "super complex" of the original.
      * A {@linkplain Complex complex} is maximal if there is no such larger super complex.
      *
-     * @return The set of maximal complexes within which this {@code Geometry} is contained.
+     * @return the set of maximal complexes within which this {@code Geometry} is contained.
      */
     @UML(identifier="maximalComplex", obligation=MANDATORY, specification=ISO_19107)
     Set<? extends Complex> getMaximalComplex();
@@ -293,7 +293,7 @@ public interface Geometry extends TransfiniteSet {
      * of the transformation.
      *
      * @param  newCRS The new coordinate reference system.
-     * @return The transformed {@code Geometry}.
+     * @return the transformed {@code Geometry}.
      * @throws TransformException if the transformation failed.
      */
     @UML(identifier="transform", obligation=MANDATORY, specification=ISO_19107)
@@ -309,7 +309,7 @@ public interface Geometry extends TransfiniteSet {
      * @param  transform The transform from the existing coordinate reference system
      *         to the new coordinate reference system.
      * @throws TransformException if the transformation failed.
-     * @return The transformed {@code Geometry}.
+     * @return the transformed {@code Geometry}.
      */
     Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
 
@@ -322,7 +322,7 @@ public interface Geometry extends TransfiniteSet {
      * the maximums. However, there are cases for which these two positions would be outside the
      * domain of validity of the object's coordinate reference system.
      *
-     * @return The envelope.
+     * @return the envelope.
      *
      * @see #getMbRegion
      */
@@ -336,7 +336,7 @@ public interface Geometry extends TransfiniteSet {
      * surfaces, an average is taken weighted by area. Since curves have no area they do not
      * contribute to the average.
      *
-     * @return The centroid.
+     * @return the centroid.
      *
      * @see #getRepresentativePoint
      */
@@ -351,7 +351,7 @@ public interface Geometry extends TransfiniteSet {
      * coordinate systems, a convex hull of an object in one will be very closely approximated by
      * the transformed image of the convex hull of the same object in the other.
      *
-     * @return The convex hull.
+     * @return the convex hull.
      */
     @UML(identifier="convexHull", obligation=MANDATORY, specification=ISO_19107)
     Geometry getConvexHull();
@@ -367,7 +367,7 @@ public interface Geometry extends TransfiniteSet {
      * defined.
      *
      * @param distance The distance.
-     * @return A geometry containing all points whose distance from this {@code Geometry}
+     * @return a geometry containing all points whose distance from this {@code Geometry}
      *         is less than or equal to the specified distance.
      * @unitof Distance (for the argument)
      *
@@ -385,7 +385,7 @@ public interface Geometry extends TransfiniteSet {
      *
      * <ul>
      *   <li><p>If {@code false}, then this geometry is <cite>immutable</cite>. It is
-     *       guarantee that a call to any {@code setFoo(...)} method will throws an
+     *       guarantee that a call to any {@code setFoo(…)} method will throws an
      *       {@link UnmodifiableGeometryException} (that said, <cite>immutable</cite> geometries
      *       are necessarily <cite>unmodifiable</cite>. The converse is not true, see next point
      *       below). This geometry will never change its state, and there is no need for
@@ -396,9 +396,9 @@ public interface Geometry extends TransfiniteSet {
      *       directly (as of user request) or indirectly:</p>
      *       <ul>
      *         <li><p>This geometry may be <cite>modifiable</cite>, in which case invoking
-     *             {@code setFoo(...)} methods is legal and will not throws exception.</p></li>
+     *             {@code setFoo(…)} methods is legal and will not throws exception.</p></li>
      *         <li><p>This geometry may still <cite>unmodifiable</cite>. User is not allowed to
-     *             modify it himself and invoking any {@code setFoo(...)} method will throws
+     *             modify it himself and invoking any {@code setFoo(…)} method will throws
      *             an {@link UnmodifiableGeometryException}. However, the implementation may change
      *             the geometry itself (for example a time-varying geometry).</p></li>
      *       </ul>
@@ -419,7 +419,7 @@ public interface Geometry extends TransfiniteSet {
      * Implementors are free to return {@code this} if this object is
      * already immutable.
      *
-     * @return An immutable copy of this geometry.
+     * @return an immutable copy of this geometry.
      */
     Geometry toImmutable();
 
@@ -442,7 +442,7 @@ public interface Geometry extends TransfiniteSet {
      *       the {@link Cloneable} interface.</P></LI>
      * </UL>
      *
-     * @return A clone of this geometry, which may or may not be mutable.
+     * @return a clone of this geometry, which may or may not be mutable.
      * @throws CloneNotSupportedException if this object do not support clone. This exception is
      *         never throws if this object implements {@link Cloneable}.
      *

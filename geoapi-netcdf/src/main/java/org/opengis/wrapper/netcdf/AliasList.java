@@ -57,7 +57,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     /**
      * Creates a new list for the given NetCDF name no alias.
      *
-     * @param name The NetCDF name (mandatory).
+     * @param  name  the NetCDF name (mandatory).
      */
     AliasList(final String name) {
         this.name = name;
@@ -68,10 +68,10 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     /**
      * Creates a new list for the given NetCDF name and OGC/EPSG aliases.
      *
-     * @param existings The aliases created up to date. This map is updated by this constructor.
-     * @param name      The NetCDF name (mandatory).
-     * @param ogc       The OGC name (optional).
-     * @param epsg      The EPSG name (optional).
+     * @param existings  the aliases created up to date. This map is updated by this constructor.
+     * @param name       the NetCDF name (mandatory).
+     * @param ogc        the OGC name (optional).
+     * @param epsg       the EPSG name (optional).
      */
     AliasList(final Map<SimpleName,SimpleName> existings, final String name, final String ogc, final String epsg) {
         this.name = name;
@@ -83,10 +83,10 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
      * Returns an alias for the given name in the given namespace.
      * This method returns an existing instance if possible.
      *
-     * @param  existings The aliases created up to date. This map is updated by this method.
-     * @param  namespace The alias namespace.
-     * @param  name      The alias name in the given namespace.
-     * @return An alias for the given name in the given namespace.
+     * @param  existings  the aliases created up to date. This map is updated by this method.
+     * @param  namespace  the alias namespace.
+     * @param  name       the alias name in the given namespace.
+     * @return an alias for the given name in the given namespace.
      */
     private static SimpleName alias(final Map<SimpleName,SimpleName> existings, final NameSpace namespace, final String name) {
         if (name == null) {
@@ -152,9 +152,9 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     /**
      * Returns the alias at the given index.
      *
-     * @param index Index of the alias to get.
-     * @return The alias at the given index.
-     * @throws IndexOutOfBoundsException If there is no alias at the given index.
+     * @param  index  index of the alias to get.
+     * @return the alias at the given index.
+     * @throws IndexOutOfBoundsException if there is no alias at the given index.
      */
     @Override
     public GenericName get(final int index) {

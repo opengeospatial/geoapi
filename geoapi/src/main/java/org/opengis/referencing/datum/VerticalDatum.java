@@ -66,7 +66,7 @@ public interface VerticalDatum extends Datum {
      *   for historical reasons, and because it provides some of the anchor definition information
      *   in a programmatic way more suitable to coordinate transformation engines.
      *
-     * @return The type of this vertical datum.
+     * @return the type of this vertical datum.
      *
      * @see #getAnchorPoint()
      */

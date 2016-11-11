@@ -162,7 +162,7 @@ public strictfp class TestSuite {
      * Sets the class loader to use for loading implementations. A {@code null} value restores
      * the default {@linkplain Thread#getContextClassLoader() context class loader}.
      *
-     * @param loader The class loader to use, or {@code null} for the default.
+     * @param loader  the class loader to use, or {@code null} for the default.
      */
     public static void setClassLoader(final ClassLoader loader) {
         TestCase.setClassLoader(loader);
@@ -171,9 +171,9 @@ public strictfp class TestSuite {
     /**
      * Specifies the factory implementations to use for the given factory interface.
      *
-     * @param <T>     The compile-time type of the {@code type} class argument.
-     * @param type    The factory interface for which an implementation is specified.
-     * @param factory The implementations to use for the given interface.
+     * @param <T>      the compile-time type of the {@code type} class argument.
+     * @param type     the factory interface for which an implementation is specified.
+     * @param factory  the implementations to use for the given interface.
      */
     @SafeVarargs
     public static <T extends Factory> void setFactories(final Class<T> type, final T... factory) {
@@ -189,9 +189,9 @@ public strictfp class TestSuite {
      * {@link #setFactories(Class, Factory[])} for the given interface.
      * This method does not scan the {@code META-INF/services/<T>} entries.
      *
-     * @param <T>  The compile-time type of the {@code type} class argument.
-     * @param type The factory interface for which an implementations is desired.
-     * @return     The implementations for the given interface, or {@code null} if none.
+     * @param <T>   the compile-time type of the {@code type} class argument.
+     * @param type  the factory interface for which an implementations is desired.
+     * @return      the implementations for the given interface, or {@code null} if none.
      */
     @SuppressWarnings("unchecked")
     public static <T extends Factory> T[] getFactories(final Class<T> type) {
@@ -223,7 +223,7 @@ public strictfp class TestSuite {
      * given listener has been added more than once, then only the last occurrence is removed.
      * If the given listener is not found, then this method does nothing.
      *
-     * @param listener The listener to remove. {@code null} values are silently ignored.
+     * @param listener  the listener to remove. {@code null} values are silently ignored.
      */
     public static void removeTestListener(final TestListener listener) {
         TestCase.removeTestListener(listener);

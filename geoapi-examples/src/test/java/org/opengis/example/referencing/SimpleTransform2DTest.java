@@ -65,7 +65,7 @@ public strictfp class SimpleTransform2DTest extends TransformTestCase {
      * {@link #verifyInDomain(double[], double[], int[], Random)} test method using a
      * trivial {@link SimpleTransform2D} implementation.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test
     public void testConsistency() throws TransformException {
@@ -79,7 +79,7 @@ public strictfp class SimpleTransform2DTest extends TransformTestCase {
     /**
      * Tests the {@link MathTransform2D#createTransformedShape(Shape)} method.
      *
-     * @throws TransformException Should never happen.
+     * @throws TransformException should never happen.
      */
     @Test
     public void testCreateShape() throws TransformException {

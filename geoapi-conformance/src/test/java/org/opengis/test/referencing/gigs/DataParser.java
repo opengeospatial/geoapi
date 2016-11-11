@@ -111,9 +111,9 @@ final class DataParser {
     /**
      * Loads the data from the given file.
      *
-     * @param file  The file name, without path.
-     * @param types The type of each column. The only legal values at this time are
-     *              {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
+     * @param file   the file name, without path.
+     * @param types  the type of each column. The only legal values at this time are
+     *               {@link String}, {@link Integer}, {@link Double} and {@link Boolean}.
      * @throws IOException if an error occurred while reading the test data.
      */
     DataParser(final String file, final Class<?>... columnTypes) throws IOException {
@@ -211,9 +211,9 @@ final class DataParser {
     /**
      * Returns the value in the current row at the given column.
      *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column, or {@code null} if none.
-     * @throws NoSuchElementException If there is currently no active row.
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column, or {@code null} if none.
+     * @throws NoSuchElementException if there is currently no active row.
      */
     private Object getValue(final int column) throws NoSuchElementException {
         if (currentRow != null) {
@@ -225,10 +225,10 @@ final class DataParser {
     /**
      * Returns the value in the given column as a string.
      *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column, or {@code null} if none.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not a string.
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column, or {@code null} if none.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not a string.
      */
     public String getString(final int column) {
         return (String) getValue(column);
@@ -238,14 +238,14 @@ final class DataParser {
      * Returns the value in the given column as a list of strings.
      * The original data is assumed to be a semi-colon separated list.
      *
-     * @param  column The column from which to get the value.
-     * @return The values in the given column, or an empty array if none.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not a string.
+     * @param  column  the column from which to get the value.
+     * @return the values in the given column, or an empty array if none.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not a string.
      */
     public String[] getStrings(final int column) {
         final String data = getString(column);
-        final List<String> elements = new ArrayList<String>(4);
+        final List<String> elements = new ArrayList<>(4);
         if (data != null) {
             int lower = 0;
             int upper = data.indexOf(LIST_ELEMENT_SEPARATOR);
@@ -266,10 +266,10 @@ final class DataParser {
     /**
      * Returns the value in the given column as an integer, or {@code null} if none.
      *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not an integer.
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not an integer.
      */
     public Integer getIntOptional(final int column) {
         return (Integer) getValue(column);
@@ -278,11 +278,11 @@ final class DataParser {
     /**
      * Returns the value in the given column as an integer.
      *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not an integer.
-     * @throws NullPointerException If there is no value in the given column.
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not an integer.
+     * @throws NullPointerException if there is no value in the given column.
      */
     public int getInt(final int column) {
         return (Integer) getValue(column);
@@ -291,8 +291,8 @@ final class DataParser {
     /**
      * Returns the value in the given column as a sequence of integers. The original data is
      * assumed to be a semi-colon separated list of values or range of values. Example:
-     * <p>
-     * <code>16261-16299; 16070-16089; 16099</code>
+     *
+     * <pre>16261-16299; 16070-16089; 16099</pre>
      */
     public int[] getInts(final int column) {
         final String[] strings = getStrings(column);
@@ -333,10 +333,10 @@ final class DataParser {
     /**
      * Returns the value in the given column as a double.
      *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column, or {@code Double#NaN} if none.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not a double.
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column, or {@code Double#NaN} if none.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not a double.
      */
     public double getDouble(final int column) {
         final Double value = (Double) getValue(column);
@@ -346,11 +346,11 @@ final class DataParser {
     /**
      * Returns the value in the given column as a boolean.
      *
-     * @param  column The column from which to get the value.
-     * @return The value in the given column.
-     * @throws NoSuchElementException If there is currently no active row.
-     * @throws ClassCastException If the value in the given column is not a boolean.
-     * @throws NullPointerException If there is no value in the given column.
+     * @param  column  the column from which to get the value.
+     * @return the value in the given column.
+     * @throws NoSuchElementException if there is currently no active row.
+     * @throws ClassCastException if the value in the given column is not a boolean.
+     * @throws NullPointerException if there is no value in the given column.
      */
     public boolean getBoolean(final int column) {
         return (Boolean) getValue(column);
@@ -360,15 +360,15 @@ final class DataParser {
      * Returns all non-null string values found in the given columns as keys in a map,
      * from the current position to the end of the file. The value for each key will be
      * {@code null}. The cursor position is not modified by this method call.
-     * <p>
-     * This method is used for fetching the dependencies of a test case, expressed as
-     * the GIGS names of objects built by an other test.
      *
-     * @param column The column from which to get the string values.
-     * @return A map whose keys are are all string values found in the given columns.
+     * <p>This method is used for fetching the dependencies of a test case, expressed as
+     * the GIGS names of objects built by an other test.</p>
+     *
+     * @param  column  the column from which to get the string values.
+     * @return a map whose keys are are all string values found in the given columns.
      */
     final <T> Map<String,T> getDependencies(final int column) {
-        final Map<String,T> dependencies = new HashMap<String,T>();
+        final Map<String,T> dependencies = new HashMap<>();
         final Object[] savedRow = currentRow;
         final int savedPosition = cursor;
         while (next()) {

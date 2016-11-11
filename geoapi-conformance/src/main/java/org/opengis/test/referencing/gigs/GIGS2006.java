@@ -146,7 +146,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      * subclassed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code GIGS2006} constructor.
+     * @return the default set of arguments to be given to the {@code GIGS2006} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -158,7 +158,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      * Creates a new test using the given factory. If a given factory is {@code null},
      * then the tests which depend on it will be skipped.
      *
-     * @param crsFactory Factory for creating {@link ProjectedCRS} instances.
+     * @param crsFactory  factory for creating {@link ProjectedCRS} instances.
      */
     public GIGS2006(final CRSAuthorityFactory crsFactory) {
         super(crsFactory);
@@ -180,7 +180,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      *   </li>
      * </ul>
      *
-     * @return The configuration of the test being run.
+     * @return the configuration of the test being run.
      */
     @Override
     public Configuration configuration() {
@@ -195,7 +195,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
      * {@link #code} value in argument. The created object is then cached and returned in all subsequent invocations
      * of this method.
      *
-     * @return The projected CRS instance to test.
+     * @return the projected CRS instance to test.
      * @throws FactoryException if an error occurred while creating the projected CRS instance.
      */
     @Override

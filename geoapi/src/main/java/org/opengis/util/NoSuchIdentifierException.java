@@ -64,9 +64,8 @@ public class NoSuchIdentifierException extends FactoryException {
     /**
      * Constructs an exception with the specified detail message and classification name.
      *
-     * @param  message The detail message. The detail message is saved
-     *         for later retrieval by the {@link #getMessage()} method.
-     * @param identifier The {@linkplain Identifier#getCode() identifier code}.
+     * @param message     the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param identifier  the {@linkplain Identifier#getCode() identifier code}.
      */
     public NoSuchIdentifierException(final String message, final String identifier) {
         super(message);
@@ -76,7 +75,7 @@ public class NoSuchIdentifierException extends FactoryException {
     /**
      * Returns the {@linkplain Identifier#getCode identifier code}.
      *
-     * @return The identifier code.
+     * @return the identifier code.
      */
     public String getIdentifierCode() {
         return identifier;

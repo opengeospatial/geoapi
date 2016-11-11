@@ -45,11 +45,11 @@ public class MetadataProxyFactory {
      * change to the given map of attributes will be immediately reflected in the values
      * returned by the metadata object.
      *
-     * @param  <T>        The compile-time type of the {@code type} argument.
-     * @param  type       The metadata interface for which to get an instance.
-     * @param  attributes The attribute values to give to the metadata instance.
-     * @return A metadata object which will fetch the values in the given map.
-     * @throws IllegalArgumentException If the given type is not an interface
+     * @param  <T>         the compile-time type of the {@code type} argument.
+     * @param  type        the metadata interface for which to get an instance.
+     * @param  attributes  the attribute values to give to the metadata instance.
+     * @return a metadata object which will fetch the values in the given map.
+     * @throws IllegalArgumentException if the given type is not an interface
      *         from the GeoAPI metadata package.
      */
     public <T> T create(final Class<T> type, final Map<String,?> attributes) throws IllegalArgumentException {

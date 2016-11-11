@@ -51,7 +51,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Number of independent spatial-temporal axes.
      *
-     * @return Number of independent spatial-temporal axes.
+     * @return number of independent spatial-temporal axes.
      */
     @UML(identifier="numberOfDimensions", obligation=MANDATORY, specification=ISO_19115)
     Integer getNumberOfDimensions();
@@ -59,7 +59,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Information about spatial-temporal axis properties.
      *
-     * @return Information about spatial-temporal axis properties.
+     * @return information about spatial-temporal axis properties.
      */
     @UML(identifier="axisDimensionProperties", obligation=MANDATORY, specification=ISO_19115)
     List<? extends Dimension> getAxisDimensionProperties();
@@ -67,7 +67,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Identification of grid data as point or cell.
      *
-     * @return Identification of grid data as point or cell.
+     * @return identification of grid data as point or cell.
      */
     @UML(identifier="cellGeometry", obligation=MANDATORY, specification=ISO_19115)
     CellGeometry getCellGeometry();
@@ -75,7 +75,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
     /**
      * Indication of whether or not parameters for transformation exists.
      *
-     * @return Whether or not parameters for transformation exists.
+     * @return whether or not parameters for transformation exists.
      */
     @UML(identifier="transformationParameterAvailability", obligation=MANDATORY, specification=ISO_19115)
     boolean isTransformationParameterAvailable();

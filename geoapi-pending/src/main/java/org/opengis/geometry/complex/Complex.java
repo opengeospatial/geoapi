@@ -82,7 +82,7 @@ public interface Complex extends Geometry {
     /**
      * Returns a superset of primitives that is also a complex.
      *
-     * @return The supercomplexes, or an empty array if none.
+     * @return the supercomplexes, or an empty array if none.
      *
      * @todo Consider using a Collection return type instead.
      */
@@ -93,7 +93,7 @@ public interface Complex extends Geometry {
      * Returns a subset of the primitives of that complex
      * that is, in its own right, a geometric complex.
      *
-     * @return The subcomplexes, or an empty array if none.
+     * @return the subcomplexes, or an empty array if none.
      *
      * @todo Consider using a Collection return type instead.
      */
@@ -103,7 +103,7 @@ public interface Complex extends Geometry {
     /**
      * Returns the collection of primitives contained in this complex.
      *
-     * @return The collection of primitives for this complex.
+     * @return the collection of primitives for this complex.
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     Collection<? extends Primitive> getElements();

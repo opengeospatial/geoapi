@@ -54,8 +54,8 @@ final class SimpleName implements LocalName, Serializable {
     /**
      * Creates a new instance for the given name.
      *
-     * @param  scope The scope (name space) in which the name is local, or {@code null}.
-     * @param  name  The value to be returned by {@link #toString()}.
+     * @param scope  the scope (name space) in which the name is local, or {@code null}.
+     * @param name   the value to be returned by {@link #toString()}.
      */
     public SimpleName(final NameSpace scope, final String name) {
         this.scope = scope;
@@ -66,7 +66,7 @@ final class SimpleName implements LocalName, Serializable {
      * Returns the scope (name space) in which this name is local. The scope is set on creation
      * and is not modifiable. The scope of a name determines where a name starts.
      *
-     * @return The scope of this name.
+     * @return the scope of this name.
      */
     @Override
     public NameSpace scope() {
@@ -115,7 +115,7 @@ final class SimpleName implements LocalName, Serializable {
      * of a fully qualified name will be {@linkplain NameSpace#isGlobal() global}. If the scope
      * of this name is already global, then this method returns {@code this}.
      *
-     * @return The fully-qualified name (never {@code null}).
+     * @return the fully-qualified name (never {@code null}).
      */
     @Override
     public GenericName toFullyQualifiedName() {
@@ -129,8 +129,8 @@ final class SimpleName implements LocalName, Serializable {
      * Returns this name expanded with the specified scope. One may represent this operation
      * as a concatenation of the specified {@code scope} with {@code this}.
      *
-     * @param scope The name to use as prefix.
-     * @return A concatenation of the given name with this name.
+     * @param  scope  the name to use as prefix.
+     * @return a concatenation of the given name with this name.
      */
     @Override
     public ScopedName push(final GenericName scope) {
@@ -141,7 +141,7 @@ final class SimpleName implements LocalName, Serializable {
      * Returns a string representation of this generic name.
      * Note that the {@linkplain #scope() scope} is not part of this string representation.
      *
-     * @return A string representation of this name.
+     * @return a string representation of this name.
      */
     @Override
     public String toString() {
@@ -151,7 +151,7 @@ final class SimpleName implements LocalName, Serializable {
     /**
      * Returns a local-dependent string representation of this generic name.
      *
-     * @return A localizable string representation of this name.
+     * @return a localizable string representation of this name.
      */
     @Override
     public InternationalString toInternationalString() {
@@ -163,7 +163,7 @@ final class SimpleName implements LocalName, Serializable {
      * This method compares the {@link #toString()} value of each object.
      * Note that the {@linkplain #scope() scope} is not part of this comparison.
      *
-     * @param other The other object to compare to this name.
+     * @param  other  the other object to compare to this name.
      */
     @Override
     public int compareTo(final GenericName other) {

@@ -64,10 +64,10 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Creates a new operation for the given name and CRS.
      *
-     * @param authority Organization responsible for definition of the name, or {@code null}.
-     * @param name      The name of the new operation.
-     * @param sourceCRS The source CRS to be returned by {@link #getSourceCRS()}.
-     * @param targetCRS The target CRS to be returned by {@link #getTargetCRS()}.
+     * @param authority  organization responsible for definition of the name, or {@code null}.
+     * @param name       the name of the new operation.
+     * @param sourceCRS  the source CRS to be returned by {@link #getSourceCRS()}.
+     * @param targetCRS  the target CRS to be returned by {@link #getTargetCRS()}.
      */
     protected SimpleTransform(final Citation authority, final String name,
             final CoordinateReferenceSystem sourceCRS,
@@ -81,7 +81,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Returns the source CRS.
      *
-     * @return The source CRS, or {@code null} if not available.
+     * @return the source CRS, or {@code null} if not available.
      */
     @Override
     public CoordinateReferenceSystem getSourceCRS() {
@@ -91,7 +91,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Returns the target CRS.
      *
-     * @return The target CRS, or {@code null} if not available.
+     * @return the target CRS, or {@code null} if not available.
      */
     @Override
     public CoordinateReferenceSystem getTargetCRS() {
@@ -102,7 +102,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Gets the dimension of input points. The default implementation returns
      * the dimension of the {@linkplain #getSourceCRS() source CRS}.
      *
-     * @return The dimension of input points.
+     * @return the dimension of input points.
      */
     @Override
     public int getSourceDimensions() {
@@ -113,7 +113,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Gets the dimension of target points. The default implementation returns
      * the dimension of the {@linkplain #getTargetCRS() target CRS}.
      *
-     * @return The dimension of input points.
+     * @return the dimension of input points.
      */
     @Override
     public int getTargetDimensions() {
@@ -124,7 +124,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Gets the math transform, which is represented directly by {@code this} implementation
      * class since it does not distinguish operation and transform.
      *
-     * @return The transform from source to target CRS.
+     * @return the transform from source to target CRS.
      */
     @Override
     public MathTransform getMathTransform() {
@@ -139,14 +139,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * {@code ptDst} are the same object, the input point is correctly overwritten with the
      * transformed point.
      *
-     * @param  ptSrc the specified coordinate point to be transformed.
-     * @param  ptDst the specified coordinate point that stores the result of transforming
-     *         {@code ptSrc}, or {@code null}.
-     * @return the coordinate point after transforming {@code ptSrc} and storing the result
-     *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
-     * @throws MismatchedDimensionException if {@code ptSrc} or
-     *         {@code ptDst} doesn't have the expected dimension.
-     * @throws TransformException if the point can't be transformed.
+     * @param  ptSrc  the specified coordinate point to be transformed.
+     * @param  ptDst  the specified coordinate point that stores the result of transforming {@code ptSrc}, or {@code null}.
+     * @return the coordinate point after transforming {@code ptSrc} and storing the result in {@code ptDst},
+     *         or a newly created point if {@code ptDst} was null.
+     * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} does not have the expected dimension.
+     * @throws TransformException if the point can not be transformed.
      */
     @Override
     public abstract DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
@@ -159,17 +157,16 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * <ul>
      *   <li>The source array and the target array are the same array (note that it can never be
      *       the case if the arrays are not of the same type)</li>
-     *   <li>Each source coordinate is read atomically, and each target coordinate is written
-     *       atomically (i.e. no target ordinate is written before the source ordinates are
-     *       fully read)</li>
+     *   <li>Each source coordinate is read atomically, and each target coordinate is written atomically
+     *       (i.e. no target ordinate is written before the source ordinates are fully read)</li>
      *   <li>The coordinates are read and written in increasing array index order.</li>
      * </ul>
      *
-     * @param  srcOff The offset in the source coordinate array.
-     * @param  srcDim The dimension of input points.
-     * @param  dstOff The offset in the destination coordinate array.
-     * @param  dstDim The dimension of output points.
-     * @param  numPts The number of points to transform.
+     * @param  srcOff  the offset in the source coordinate array.
+     * @param  srcDim  the dimension of input points.
+     * @param  dstOff  the offset in the destination coordinate array.
+     * @param  dstDim  the dimension of output points.
+     * @param  numPts  the number of points to transform.
      * @return {@code true} if the source array needs to be copied.
      */
     private static boolean needsCopy(final int srcOff, final int srcDim, final int dstOff, final int dstDim, final int numPts) {
@@ -194,14 +191,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  numPts  the number of point objects to be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(double[] srcPts, int srcOff, final double[] dstPts, int dstOff, int numPts)
@@ -227,14 +222,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  numPts  the number of point objects to be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(float[] srcPts, int srcOff, final float[] dstPts, int dstOff, int numPts)
@@ -260,14 +253,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  numPts  the number of point objects to be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(final float[] srcPts, int srcOff, final double[] dstPts, int dstOff, int numPts)
@@ -289,14 +280,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  numPts  the number of point objects to be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(final double[] srcPts, int srcOff, final float[] dstPts, int dstOff, int numPts)
@@ -339,9 +328,9 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Gets the derivative of this transform at a point. The default implementation throws
      * an exception in all cases.
      *
-     * @param  point The coordinate point where to evaluate the derivative.
-     * @return The derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can't be evaluated at the specified point.
+     * @param  point  the coordinate point where to evaluate the derivative.
+     * @return the derivative at the specified point (never {@code null}).
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final DirectPosition point) throws TransformException {
@@ -352,8 +341,8 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Creates the inverse transform of this object. The default implementation throws
      * an exception in all cases.
      *
-     * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inverted.
+     * @return the inverse transform.
+     * @throws NoninvertibleTransformException if the transform can not be inverted.
      */
     @Override
     public MathTransform inverse() throws NoninvertibleTransformException {
@@ -364,8 +353,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Tests whether this transform does not move any points. The default implementation
      * tests if the source and target CRS are equals.
      *
-     * @return {@code true} if this {@code MathTransform} is
-     *         an identity transform; {@code false} otherwise.
+     * @return {@code true} if this {@code MathTransform} is an identity transform; {@code false} otherwise.
      */
     @Override
     public boolean isIdentity() {
@@ -376,7 +364,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
      * nature of the parameters). The default implementation returns {@code null}.
      *
-     * @return The coordinate operation version, or {@code null} in none.
+     * @return the coordinate operation version, or {@code null} in none.
      */
     @Override
     public String getOperationVersion() {
@@ -387,7 +375,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * Estimate(s) of the impact of this operation on point accuracy.
      * The default implementation returns an empty set.
      *
-     * @return The position error estimates, or an empty set if not available.
+     * @return the position error estimates, or an empty set if not available.
      */
     @Override
     public Set<PositionalAccuracy> getCoordinateOperationAccuracy() {
@@ -397,7 +385,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Compares this transform with the given object for equality.
      *
-     * @param  object The object to compare with this {@code SimpleTransform}.
+     * @param  object  the object to compare with this {@code SimpleTransform}.
      * @return {@code true} if the given object is equals to this object.
      */
     @Override

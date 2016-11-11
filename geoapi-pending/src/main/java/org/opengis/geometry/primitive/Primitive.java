@@ -75,7 +75,7 @@ public interface Primitive extends Geometry {
      * The organization of the boundary set of a {@code Primitive} depends on the
      * type of the primitive.
      *
-     * @return The sets of positions on the boundary.
+     * @return the sets of positions on the boundary.
      */
     @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
     PrimitiveBoundary getBoundary();
@@ -96,7 +96,7 @@ public interface Primitive extends Geometry {
      * unavoidable round off, truncation, and other mathematical problems indigenous to
      * computer calculations.
      *
-     * @return The set of primitives contained into this primitive.
+     * @return the set of primitives contained into this primitive.
      *
      * @todo Using a {@link Set} returns type allows the user to add or remove element in
      *       this set at his convenience. Is it the right interpretation of this specification?
@@ -109,7 +109,7 @@ public interface Primitive extends Geometry {
     /**
      * Returns the {@code Primitive}s which are by definition coincident with this one.
      *
-     * @return The set of primitives which contains this primitive.
+     * @return the set of primitives which contains this primitive.
      *
      * @todo Using a {@link Set} returns type allows the user to add or remove element in
      *       this set at his convenience. Is it the right interpretation of this specification?
@@ -129,7 +129,7 @@ public interface Primitive extends Geometry {
      * be in several {@linkplain Complex complexes}. This association may not be navigable in this
      * direction (from primitive to complex), depending on the implementation.
      *
-     * @return The set of complexes which contains this primitive.
+     * @return the set of complexes which contains this primitive.
      */
     @UML(identifier="complex", obligation=MANDATORY, specification=ISO_19107)
     Set<Complex> getComplexes();
@@ -139,7 +139,7 @@ public interface Primitive extends Geometry {
      * the association in ISO 19107 is navigable only from {@code Composite} to
      * {@code Primitive}, not the other way.
      *
-     * @return The owner of this primitive, or {@code null} if the association is
+     * @return the owner of this primitive, or {@code null} if the association is
      *         not available or not implemented that way.
      *
      * @see Composite#getGenerators
@@ -161,7 +161,7 @@ public interface Primitive extends Geometry {
      * and is not allowed for {@linkplain Point Points} and {@linkplain Solid solids}. The
      * later should return {@code null}.
      *
-     * @return The orientable primitives as an array of length 2, or {@code null} if none.
+     * @return the orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63

@@ -56,7 +56,7 @@ public interface Operation {
      * Description of the mission on which the platform observations are made and the
      * objectives of that mission.
      *
-     * @return Description of the mission, or {@code null}.
+     * @return description of the mission, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -64,7 +64,7 @@ public interface Operation {
     /**
      * Identification of the mission.
      *
-     * @return Identification of the mission, or {@code null}.
+     * @return identification of the mission, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();
@@ -72,7 +72,7 @@ public interface Operation {
     /**
      * Unique identification of the operation.
      *
-     * @return Unique identification of the operation.
+     * @return unique identification of the operation.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Identifier getIdentifier();
@@ -80,7 +80,7 @@ public interface Operation {
     /**
      * Status of the data acquisition.
      *
-     * @return Status of the data acquisition.
+     * @return status of the data acquisition.
      */
     @UML(identifier="status", obligation=MANDATORY, specification=ISO_19115_2)
     Progress getStatus();
@@ -88,7 +88,7 @@ public interface Operation {
     /**
      * Collection technique for the operation.
      *
-     * @return Collection technique for the operation, or {@code null}.
+     * @return collection technique for the operation, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     OperationType getType();
@@ -96,7 +96,7 @@ public interface Operation {
     /**
      * Sub-missions that make up part of a larger mission.
      *
-     * @return Sub-missions.
+     * @return sub-missions.
      */
     @UML(identifier="childOperation", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Operation> getChildOperations();
@@ -104,7 +104,7 @@ public interface Operation {
     /**
      * Object(s) or area(s) of interest to be sensed.
      *
-     * @return Object(s) or area(s) of interest.
+     * @return object(s) or area(s) of interest.
      */
     @UML(identifier="objective", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Objective> getObjectives();
@@ -112,7 +112,7 @@ public interface Operation {
     /**
      * Heritage of the operation.
      *
-     * @return Heritage of the operation.
+     * @return heritage of the operation.
      */
     @UML(identifier="parentOperation", obligation=MANDATORY, specification=ISO_19115_2)
     Operation getParentOperation();
@@ -120,7 +120,7 @@ public interface Operation {
     /**
      * Plan satisfied by the operation.
      *
-     * @return Plan satisfied by the operation, or {@code null}.
+     * @return plan satisfied by the operation, or {@code null}.
      */
     @UML(identifier="plan", obligation=OPTIONAL, specification=ISO_19115_2)
     Plan getPlan();
@@ -136,7 +136,7 @@ public interface Operation {
     /**
      * Record of an event occurring during an operation.
      *
-     * @return Record of an event occurring during an operation.
+     * @return record of an event occurring during an operation.
      */
     @UML(identifier="significantEvent", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Event> getSignificantEvents();

@@ -131,7 +131,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * sub-classed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
+     * @return the default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -142,7 +142,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Creates a new test using the given factory.
      *
-     * @param crsFactory Factory for parsing {@link CoordinateReferenceSystem} instances.
+     * @param crsFactory  factory for parsing {@link CoordinateReferenceSystem} instances.
      */
     public CRSParserTest(final CRSFactory crsFactory) {
         super(crsFactory);
@@ -179,8 +179,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Asserts that the given datum has the expected name.
      *
-     * @param datum The datum to verify.
-     * @param name  The string representation of the expected name (ignoring code space).
+     * @param datum  the datum to verify.
+     * @param name   the string representation of the expected name (ignoring code space).
      */
     private static void verifyDatum(final Datum datum, final String name) {
         assertNotNull("SingleCRS.getDatum()", datum);
@@ -197,8 +197,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * implementations may keep the Greek letters φ and λ as specified in ISO 19111 while other implementations may
      * transliterate those Greek letters to the <var>P</var> and <var>L</var> Latin letters.</p>
      *
-     * @param cs The coordinate system to verify.
-     * @param abbreviations The expected abbreviations. Null elements are considered unrestricted.
+     * @param cs             the coordinate system to verify.
+     * @param abbreviations  the expected abbreviations. Null elements are considered unrestricted.
      */
     private static void verifyAxisAbbreviations(final CoordinateSystem cs, final String... abbreviations) {
         final int dimension = Math.min(abbreviations.length, cs.getDimension());
@@ -214,9 +214,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Asserts the the given character sequence is either null or equals to the given value.
      * This is used for optional elements like remarks.
      *
-     * @param property  The property being tested, for producing a message in case of assertion failure.
-     * @param expected  The expected value.
-     * @param actual    The actual value.
+     * @param property  the property being tested, for producing a message in case of assertion failure.
+     * @param expected  the expected value.
+     * @param actual    the actual value.
      */
     private static void assertNullOrEquals(final String property, final String expected, final CharSequence actual) {
         if (actual != null) {
@@ -238,8 +238,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * The use of left and right quotation marks is intended to make easier for subclasses to
      * identify the beginning and end of quoted texts.
      *
-     * @param  wkt The Well-Known Text to pre-process.
-     * @return The Well-Known Text to parse.
+     * @param  wkt  the Well-Known Text to pre-process.
+     * @return the Well-Known Text to parse.
      */
     protected String preprocessWKT(final String wkt) {
         final StringBuilder b = new StringBuilder(wkt);
@@ -258,9 +258,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Parses the given WKT.
      *
-     * @param  type The expected object type.
-     * @param  text The WKT string to parse.
-     * @return The parsed object.
+     * @param  type  the expected object type.
+     * @param  text  the WKT string to parse.
+     * @return the parsed object.
      * @throws FactoryException if an error occurred during the WKT parsing.
      */
     private <T extends CoordinateReferenceSystem> T parse(final Class<T> type, final String text) throws FactoryException {

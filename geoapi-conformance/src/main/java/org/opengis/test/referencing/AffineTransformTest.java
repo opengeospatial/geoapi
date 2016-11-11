@@ -140,7 +140,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * sub-classed by the implementor. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
-     * @return The default set of arguments to be given to the {@code AffineTransformTest} constructor.
+     * @return the default set of arguments to be given to the {@code AffineTransformTest} constructor.
      */
     @Parameterized.Parameters
     @SuppressWarnings("unchecked")
@@ -152,7 +152,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * Creates a new test using the given factory. If the given factory is {@code null},
      * then the tests will be skipped.
      *
-     * @param factory Factory for creating {@link MathTransform} instances.
+     * @param factory  factory for creating {@link MathTransform} instances.
      */
     public AffineTransformTest(final MathTransformFactory factory) {
         super(factory);
@@ -194,7 +194,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * Runs a test using the given Java2D affine transform as a reference.
      *
-     * @param reference The affine transform to use as a reference for checking the results.
+     * @param reference  the affine transform to use as a reference for checking the results.
      */
     private void runTest(final AffineTransform reference) throws FactoryException, TransformException {
         assumeNotNull(mtFactory);
@@ -247,9 +247,9 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * Tests the transform consistency using many random points inside an arbitrary domain.
      *
-     * @param  seed The random seed. We recommend a constant value for each transform or CRS to be tested.
-     * @return The generated random coordinates inside the arbitrary domain.
-     * @throws TransformException If a point can not be transformed.
+     * @param  seed  the random seed. We recommend a constant value for each transform or CRS to be tested.
+     * @return the generated random coordinates inside the arbitrary domain.
+     * @throws TransformException if a point can not be transformed.
      */
     private float[] verifyInternalConsistency(final long seed) throws TransformException {
         validators.validate(transform);

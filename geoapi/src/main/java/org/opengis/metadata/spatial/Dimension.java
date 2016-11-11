@@ -55,7 +55,7 @@ public interface Dimension {
     /**
      * Name of the axis.
      *
-     * @return Name of the axis.
+     * @return name of the axis.
      */
     @UML(identifier="dimensionName", obligation=MANDATORY, specification=ISO_19115)
     DimensionNameType getDimensionName();
@@ -63,7 +63,7 @@ public interface Dimension {
     /**
      * Number of elements along the axis.
      *
-     * @return Number of elements along the axis.
+     * @return number of elements along the axis.
      */
     @UML(identifier="dimensionSize", obligation=MANDATORY, specification=ISO_19115)
     Integer getDimensionSize();
@@ -77,7 +77,7 @@ public interface Dimension {
      * together with the value.
      * </div>
      *
-     * @return Degree of detail in the grid dataset, or {@code null}.
+     * @return degree of detail in the grid dataset, or {@code null}.
      * @unitof Measure
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
@@ -89,7 +89,7 @@ public interface Dimension {
      * <div class="note"><b>Example:</b>
      * dimensionName = "column", dimensionTitle = "longitude"</div>
      *
-     * @return Enhancement/ modifier of the dimension name, or {@code null} if none.
+     * @return enhancement/ modifier of the dimension name, or {@code null} if none.
      *
      * @since 3.1
      */
@@ -99,7 +99,7 @@ public interface Dimension {
     /**
      * Description of the axis.
      *
-     * @return Description of the axis, or {@code null} if none.
+     * @return description of the axis, or {@code null} if none.
      *
      * @since 3.1
      */

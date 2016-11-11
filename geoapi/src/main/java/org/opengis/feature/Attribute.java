@@ -68,7 +68,7 @@ public interface Attribute<V> extends Property {
      * Returns the name of this attribute as defined by its {@linkplain #getType() type}.
      * This convenience method delegates to {@link AttributeType#getName()}.
      *
-     * @return The attribute name specified by its type.
+     * @return the attribute name specified by its type.
      */
     @Override
     GenericName getName();
@@ -76,7 +76,7 @@ public interface Attribute<V> extends Property {
     /**
      * Returns information about the attribute (base Java class, domain of values, <i>etc.</i>).
      *
-     * @return Information about the attribute.
+     * @return information about the attribute.
      */
     AttributeType<V> getType();
 
@@ -85,7 +85,7 @@ public interface Attribute<V> extends Property {
      * in the common case where the {@linkplain AttributeType#getMaximumOccurs() maximum number}
      * of attribute values is restricted to 1 or 0.
      *
-     * @return The attribute value (may be {@code null}).
+     * @return the attribute value (may be {@code null}).
      * @throws MultiValuedPropertyException if this attribute contains more than one value.
      *
      * @see Feature#getPropertyValue(String)
@@ -102,7 +102,7 @@ public interface Attribute<V> extends Property {
      * and offer an other method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
-     * @param  value The new value, or {@code null} for removing all values from this attribute.
+     * @param  value  the new value, or {@code null} for removing all values from this attribute.
      * @throws InvalidPropertyValueException if this method verifies argument validity and the given value
      *         does not met the attribute constraints.
      *
@@ -124,7 +124,7 @@ public interface Attribute<V> extends Property {
      * However implementations should document which policy they choose.
      * </div>
      *
-     * @return The attribute values.
+     * @return the attribute values.
      */
     Collection<V> getValues();
 
@@ -137,7 +137,7 @@ public interface Attribute<V> extends Property {
      * and offer an other method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
-     * @param  values The new values.
+     * @param  values  the new values.
      * @throws InvalidPropertyValueException if this method verifies argument validity and the given values
      *         do not met the attribute constraints.
      */
@@ -157,7 +157,7 @@ public interface Attribute<V> extends Property {
      * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
      * characteristics {@linkplain AttributeType#getName() name}, for more convenient lookups.</p>
      *
-     * @return Other attribute types that describes this attribute type, or an empty map if none.
+     * @return other attribute types that describes this attribute type, or an empty map if none.
      *
      * @see AttributeType#characteristics()
      */

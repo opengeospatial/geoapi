@@ -106,9 +106,9 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Creates a new wrapper for the given NetCDF projection object.
      *
-     * @param projection The NetCDF projection.
-     * @param sourceCRS  The source CRS to be returned by {@link #getSourceCRS()}, or {@code null}.
-     * @param targetCRS  The target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
+     * @param projection  the NetCDF projection.
+     * @param sourceCRS   the source CRS to be returned by {@link #getSourceCRS()}, or {@code null}.
+     * @param targetCRS   the target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
      */
     public NetcdfProjection(final Projection projection,
             final GeographicCRS sourceCRS,
@@ -148,7 +148,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Returns the NetCDF projection wrapped by this adapter.
      *
-     * @return The NetCDF projection object.
+     * @return the NetCDF projection object.
      */
     @Override
     public Projection delegate() {
@@ -180,7 +180,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Returns the source CRS.
      *
-     * @return The source CRS, or {@code null} if not available.
+     * @return the source CRS, or {@code null} if not available.
      */
     @Override
     public GeographicCRS getSourceCRS() {
@@ -190,7 +190,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Returns the target CRS.
      *
-     * @return The target CRS, or {@code null} if not available.
+     * @return the target CRS, or {@code null} if not available.
      */
     @Override
     public ProjectedCRS getTargetCRS() {
@@ -201,7 +201,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Gets the dimension of input points. The default implementation returns
      * the dimension of the {@linkplain #getSourceCRS() source CRS}.
      *
-     * @return The dimension of input points.
+     * @return the dimension of input points.
      */
     @Override
     public int getSourceDimensions() {
@@ -212,7 +212,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Gets the dimension of target points. The default implementation returns
      * the dimension of the {@linkplain #getTargetCRS() target CRS}.
      *
-     * @return The dimension of input points.
+     * @return the dimension of input points.
      */
     @Override
     public int getTargetDimensions() {
@@ -223,7 +223,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Gets the math transform, which is represented directly by {@code this} implementation
      * class since it does not distinguish operation and transform.
      *
-     * @return The transform from source to target CRS.
+     * @return the transform from source to target CRS.
      */
     @Override
     public MathTransform2D getMathTransform() {
@@ -233,8 +233,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Ensures that the given position is two-dimensional.
      *
-     * @param  point The position to verify, or {@code null}.
-     * @throws MismatchedDimensionException If the given position is not two-dimensional.
+     * @param  point  the position to verify, or {@code null}.
+     * @throws MismatchedDimensionException if the given position is not two-dimensional.
      */
     private static void ensureTwoDimensional(final DirectPosition point) throws MismatchedDimensionException {
         if (point != null && point.getDimension() != 2) {
@@ -258,14 +258,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      *       for the inverse projection.</li>
      * </ul>
      *
-     * @param  ptSrc the specified coordinate point to be transformed.
-     * @param  ptDst the specified coordinate point that stores the result of transforming
-     *         {@code ptSrc}, or {@code null}.
-     * @return the coordinate point after transforming {@code ptSrc} and storing the result
-     *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
-     * @throws MismatchedDimensionException if {@code ptSrc} or
-     *         {@code ptDst} doesn't have the expected dimension.
-     * @throws TransformException if the point can't be transformed.
+     * @param  ptSrc  the specified coordinate point to be transformed.
+     * @param  ptDst  the specified coordinate point that stores the result of transforming {@code ptSrc}, or {@code null}.
+     * @return the coordinate point after transforming {@code ptSrc} and storing the result in {@code ptDst},
+     *         or a newly created point if {@code ptDst} was null.
+     * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} does not have the expected dimension.
+     * @throws TransformException if the point can not be transformed.
      */
     @Override
     public DirectPosition transform(final DirectPosition ptSrc, DirectPosition ptDst)
@@ -308,12 +306,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      *       for the inverse projection.</li>
      * </ul>
      *
-     * @param  ptSrc the coordinate point to be transformed.
-     * @param  ptDst the coordinate point that stores the result of transforming {@code ptSrc},
+     * @param  ptSrc  the coordinate point to be transformed.
+     * @param  ptDst  the coordinate point that stores the result of transforming {@code ptSrc},
      *         or {@code null} if a new point shall be created.
-     * @return the coordinate point after transforming {@code ptSrc} and storing the result
-     *         in {@code ptDst} or in a new point if {@code ptDst} was null.
-     * @throws TransformException if the point can't be transformed.
+     * @return the coordinate point after transforming {@code ptSrc} and storing the result in {@code ptDst}
+     *         or in a new point if {@code ptDst} was null.
+     * @throws TransformException if the point can not be transformed.
      */
     @Override
     public Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException {
@@ -348,11 +346,11 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      *   <li>The coordinates are read and written in increasing array index order.</li>
      * </ul>
      *
-     * @param  srcOff The offset in the source coordinate array.
-     * @param  srcDim The dimension of input points.
-     * @param  dstOff The offset in the destination coordinate array.
-     * @param  dstDim The dimension of output points.
-     * @param  numPts The number of points to transform.
+     * @param  srcOff  the offset in the source coordinate array.
+     * @param  srcDim  the dimension of input points.
+     * @param  dstOff  the offset in the destination coordinate array.
+     * @param  dstDim  the dimension of output points.
+     * @param  numPts  the number of points to transform.
      * @return {@code true} if the source array needs to be copied.
      */
     private static boolean needsCopy(final int srcOff, final int srcDim, final int dstOff, final int dstDim, final int numPts) {
@@ -380,10 +378,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * point:
      *
      * <ul>
-     *   <li>{@link Projection#latLonToProj(LatLonPoint, ProjectionPointImpl)}
-     *       for the forward projection.</li>
-     *   <li>{@link Projection#projToLatLon(ProjectionPoint, LatLonPointImpl)}
-     *       for the inverse projection.</li>
+     *   <li>{@link Projection#latLonToProj(LatLonPoint, ProjectionPointImpl)} for the forward projection.</li>
+     *   <li>{@link Projection#projToLatLon(ProjectionPoint, LatLonPointImpl)} for the inverse projection.</li>
      * </ul>
      */
     @Override
@@ -418,14 +414,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  numPts  the number of point objects to be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(float[] srcPts, int srcOff, final float[] dstPts, int dstOff, int numPts)
@@ -451,14 +445,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
+     * @param  numPts  the number of point objects to be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(final float[] srcPts, int srcOff, final double[] dstPts, int dstOff, int numPts)
@@ -480,14 +472,12 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Transforms a list of coordinate point ordinal values.
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
+     * @param  srcPts  the array containing the source point coordinates.
+     * @param  srcOff  the offset to the first point to be transformed in the source array.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed.
+     * @throws TransformException if a point can not be transformed.
      */
     @Override
     public void transform(final double[] srcPts, int srcOff, final float[] dstPts, int dstOff, int numPts)
@@ -530,8 +520,8 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Transforms the specified shape. The default implementation returns a new shape with
      * the transform of all control points.
      *
-     * @param  shape The Shape to transform.
-     * @return The transformed shape.
+     * @param  shape  the Shape to transform.
+     * @return the transformed shape.
      * @throws TransformException if a transform failed.
      */
     @Override
@@ -558,9 +548,9 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Gets the derivative of this transform at a point. This method ensures that the given
      * position is two-dimensional, then delegates to {@link #derivative(Point2D)}.
      *
-     * @param  point The coordinate point where to evaluate the derivative.
-     * @return The derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can't be evaluated at the specified point.
+     * @param  point  the coordinate point where to evaluate the derivative.
+     * @return the derivative at the specified point (never {@code null}).
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final DirectPosition point) throws TransformException {
@@ -572,9 +562,9 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Gets the derivative of this transform at a point. The default implementation throws
      * an exception in all cases.
      *
-     * @param  point The coordinate point where to evaluate the derivative.
-     * @return The derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can't be evaluated at the specified point.
+     * @param  point  the coordinate point where to evaluate the derivative.
+     * @return the derivative at the specified point (never {@code null}).
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final Point2D point) throws TransformException {
@@ -612,7 +602,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
      * nature of the parameters). The default implementation returns {@code null}.
      *
-     * @return The coordinate operation version, or {@code null} in none.
+     * @return the coordinate operation version, or {@code null} in none.
      */
     @Override
     public String getOperationVersion() {
@@ -623,7 +613,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Estimate(s) of the impact of this operation on point accuracy.
      * The default implementation returns an empty set.
      *
-     * @return The position error estimates, or an empty set if not available.
+     * @return the position error estimates, or an empty set if not available.
      */
     @Override
     public Set<PositionalAccuracy> getCoordinateOperationAccuracy() {
@@ -647,7 +637,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         /**
          * Returns the NetCDF projection wrapped by this adapter.
          *
-         * @return The NetCDF projection object.
+         * @return the NetCDF projection object.
          */
         @Override
         public Projection delegate() {
@@ -707,7 +697,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
      * Returns the operation method. The name of the returned method is the NetCDF
      * {@linkplain Projection#getClassName() projection class name}.
      *
-     * @return The operation method.
+     * @return the operation method.
      *
      * @see Projection#getClassName()
      */
@@ -745,7 +735,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     /**
      * Compares this projection with the given object for equality.
      *
-     * @param  object The object to compare with this {@code NetcdfProjection}.
+     * @param  object  the object to compare with this {@code NetcdfProjection}.
      * @return {@code true} if the given object is equals to this object.
      */
     @Override

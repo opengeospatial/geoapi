@@ -79,9 +79,9 @@ class ProgressListener {
     /**
      * Invoked by {@link Report#progress(int, int)} when the report is making some progress.
      *
-     * @param position A number ranging from 0 to {@code count}. This is typically the number
+     * @param position  a number ranging from 0 to {@code count}. This is typically the number
      *        or rows created so far for the HTML table to write.
-     * @param count The maximal expected value of {@code position}. Note that this value may
+     * @param count  the maximal expected value of {@code position}. Note that this value may
      *        change between different invocations if the report gets a better estimation about
      *        the number of rows to be created.
      */

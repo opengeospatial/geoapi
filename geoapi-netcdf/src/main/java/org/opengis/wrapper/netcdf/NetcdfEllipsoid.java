@@ -113,7 +113,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * <p>
      * This method is about the later.
      *
-     * @return The axis linear unit.
+     * @return the axis linear unit.
      */
     @Override
     public Unit<Length> getAxisUnit() {
@@ -124,7 +124,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * Returns the length of the semi-major axis of the ellipsoid.
      * The default implementation delegates to {@link Earth#getMajor()}.
      *
-     * @return Length of semi-major axis.
+     * @return length of semi-major axis.
      *
      * @see Earth#getMajor()
      */
@@ -137,7 +137,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * Returns the length of the semi-minor axis of the ellipsoid.
      * The default implementation delegates to {@link Earth#getMinor()}.
      *
-     * @return Length of semi-minor axis.
+     * @return length of semi-minor axis.
      *
      * @see Earth#getMinor()
      */
@@ -150,7 +150,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * Returns the inverse of the flattening constant.
      * The default implementation delegates to <code>1/{@linkplain Earth#getFlattening()}</code>.
      *
-     * @return The inverse flattening value, or {@link Double#POSITIVE_INFINITY} if this
+     * @return the inverse flattening value, or {@link Double#POSITIVE_INFINITY} if this
      *         ellipsoid {@linkplain #isSphere() is a sphere}.
      *
      * @see Earth#getFlattening()
@@ -189,7 +189,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      * Returns the prime meridian. The default implementation returns the Greenwich
      * prime meridian.
      *
-     * @return The prime meridian.
+     * @return the prime meridian.
      */
     @Override
     public PrimeMeridian getPrimeMeridian() {
@@ -209,7 +209,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     /**
      * Returns the geodetic datum, which is {@code this}.
      *
-     * @return This datum.
+     * @return this datum.
      */
     @Override
     public GeodeticDatum getDatum() {
@@ -219,7 +219,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     /**
      * Returns the CRS coordinate system, which is {@code this}.
      *
-     * @return This coordinate system.
+     * @return this coordinate system.
      *
      * @see #getDimension()
      * @see #getAxis(int)
@@ -242,8 +242,8 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
      *
      * This method is about the former.
      *
-     * @param  dimension The zero based index of axis.
-     * @return The coordinate system axis at the specified dimension.
+     * @param  dimension  the zero based index of axis.
+     * @return the coordinate system axis at the specified dimension.
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @Override
@@ -258,7 +258,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     /**
      * Returns the number of ellipsoidal coordinate system axes, which is 2.
      *
-     * @return The dimension of this ellipsoidal coordinate system.
+     * @return the dimension of this ellipsoidal coordinate system.
      */
     @Override
     public int getDimension() {

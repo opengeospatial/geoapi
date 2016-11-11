@@ -102,8 +102,8 @@ public class CRSValidator extends ReferencingValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public CRSValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.crs");
@@ -111,10 +111,10 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final CoordinateReferenceSystem object) {
         int n = 0;
@@ -152,7 +152,7 @@ public class CRSValidator extends ReferencingValidator {
      *       <cite>"spherical longitude"</cite> and <cite>"geocentric radius"</cite>.</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final GeocentricCRS object) {
         validate(object, true, false);
@@ -168,7 +168,7 @@ public class CRSValidator extends ReferencingValidator {
      *       <cite>"ellipsoidal height"</cite> (if 3D).</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final GeographicCRS object) {
         validate(object, false, true);
@@ -223,7 +223,7 @@ public class CRSValidator extends ReferencingValidator {
      *       <cite>"westing"</cite>.</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ProjectedCRS object) {
         if (object == null) {
@@ -251,7 +251,7 @@ public class CRSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final DerivedCRS object) {
         if (object == null) {
@@ -279,7 +279,7 @@ public class CRSValidator extends ReferencingValidator {
      * it doesn't perform a full validation; only the one not already done by the public
      * {@link #validate(ProjectedCRS)} and {@link #validate(DerivedCRS)} methods.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     private void validateGeneralDerivedCRS(final GeneralDerivedCRS object) {
         if (!Boolean.TRUE.equals(VALIDATING.get())) try {
@@ -307,7 +307,7 @@ public class CRSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ImageCRS object) {
         if (object == null) {
@@ -326,7 +326,7 @@ public class CRSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final EngineeringCRS object) {
         if (object == null) {
@@ -359,7 +359,7 @@ public class CRSValidator extends ReferencingValidator {
      *   <li><cite>"depth"</cite> or <cite>"gravity-related height"</cite>.</li>
      * </ul>
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final VerticalCRS object) {
         if (object == null) {
@@ -380,7 +380,7 @@ public class CRSValidator extends ReferencingValidator {
     /**
      * Validates the given coordinate reference system.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final TemporalCRS object) {
         if (object == null) {
@@ -400,7 +400,7 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system.
      * This method will validate every individual components in the given compound CRS.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      *
      * @since 3.1
      */
@@ -416,7 +416,7 @@ public class CRSValidator extends ReferencingValidator {
         final List<CoordinateReferenceSystem> components = object.getComponents();
         mandatory("CompoundCRS: shall have components.", components);
         if (components != null) {
-            // If the above 'mandatory(...)' call accepted an empty list, we accept it too.
+            // If the above 'mandatory(…)' call accepted an empty list, we accept it too.
             assertTrue("CompoundCRS: shall have at least 2 components.", components.size() != 1);
             for (final CoordinateReferenceSystem component : components) {
                 dispatch(component);

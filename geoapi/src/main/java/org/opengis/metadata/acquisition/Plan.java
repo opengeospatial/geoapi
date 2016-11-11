@@ -53,7 +53,7 @@ public interface Plan {
     /**
      * Manner of sampling geometry that the planner expects for collection of objective data.
      *
-     * @return Manner of sampling geometry, or {@code null}.
+     * @return manner of sampling geometry, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     GeometryType getType();
@@ -61,7 +61,7 @@ public interface Plan {
     /**
      * Current status of the plan (pending, completed, etc.)
      *
-     * @return Current status of the plan.
+     * @return current status of the plan.
      */
     @UML(identifier="status", obligation=MANDATORY, specification=ISO_19115_2)
     Progress getStatus();
@@ -69,7 +69,7 @@ public interface Plan {
     /**
      * Identification of authority requesting target collection.
      *
-     * @return Identification of authority requesting target collection.
+     * @return identification of authority requesting target collection.
      */
     @UML(identifier="citation", obligation=MANDATORY, specification=ISO_19115_2)
     Citation getCitation();
@@ -77,7 +77,7 @@ public interface Plan {
     /**
      * Identification of the activity or activities that satisfy a plan.
      *
-     * @return Identification of the activity or activities.
+     * @return identification of the activity or activities.
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Operation> getOperations();
@@ -85,7 +85,7 @@ public interface Plan {
     /**
      * Requirement satisfied by the plan.
      *
-     * @return Requirement satisfied by the plan.
+     * @return requirement satisfied by the plan.
      */
     @UML(identifier="satisfiedRequirement", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends Requirement> getSatisfiedRequirements();

@@ -66,7 +66,7 @@ public interface Conversion extends SingleOperation {
      * is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
      *
-     * @return The source CRS, or {@code null} if not available.
+     * @return the source CRS, or {@code null} if not available.
      */
     @Override
     @UML(identifier="sourceCRS", obligation=OPTIONAL, specification=ISO_19111)
@@ -77,7 +77,7 @@ public interface Conversion extends SingleOperation {
      * that is not specified here, but through
      * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
-     * @return The target CRS, or {@code null} if not available.
+     * @return the target CRS, or {@code null} if not available.
      */
     @Override
     @UML(identifier="targetCRS", obligation=OPTIONAL, specification=ISO_19111)
@@ -86,7 +86,7 @@ public interface Conversion extends SingleOperation {
     /**
      * This attribute is declared in {@link CoordinateOperation} but is not used in a conversion.
      *
-     * @return Usually {@code null}.
+     * @return usually {@code null}.
      */
     @Override
     @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)

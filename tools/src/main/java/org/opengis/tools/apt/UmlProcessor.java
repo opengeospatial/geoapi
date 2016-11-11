@@ -183,7 +183,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Returns a writer for a file in the current directory using UTF-8 encoding.
      *
      * @param  relativePath The path of the file to create, relative to the current directory.
-     * @return The writer.
+     * @return the writer.
      * @throws IOException if the writer can not be created.
      */
     static Writer openWriter(final String relativePath) throws IOException {
@@ -213,7 +213,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Returns the package name of the given type.
      *
      * @param  e The class or interface for which to get the package name.
-     * @return The package name of the given type.
+     * @return the package name of the given type.
      */
     final String getPackageName(final Element e) {
         return processingEnv.getElementUtils().getPackageOf(e).getQualifiedName().toString();
@@ -223,7 +223,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Returns the fully qualified name of the given field or method.
      *
      * @param  e A field or a method.
-     * @return The qualified name of the given field or method.
+     * @return the qualified name of the given field or method.
      */
     static String getQualifiedName(final Element e) {
         String name = e.getSimpleName().toString();
@@ -239,7 +239,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * The check for outer interface is mostly for {@code CodeList.Filter}.
      *
      * @param  e The type or member for which to get the name relative to the package.
-     * @return The element name, prefixed with its enclosing class if any.
+     * @return the element name, prefixed with its enclosing class if any.
      */
     static String getRelativeName(Element e) {
         String classname = e.getSimpleName().toString();
@@ -254,7 +254,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * If the given element is already a class or interface, then it is returned directly.
      *
      * @param  e The element for which to get the enclosing type element.
-     * @return The enclosing type element (may be {@code e} itself).
+     * @return the enclosing type element (may be {@code e} itself).
      */
     static TypeElement getTypeElement(Element e) {
         while (!isTypeElement(e)) {
@@ -269,7 +269,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * (there should be only one).
      *
      * @param  element The type of interface for which to get all declared members.
-     * @return The public non-deprecated members, in declaration order.
+     * @return the public non-deprecated members, in declaration order.
      */
     final Collection<Element> getMembers(final TypeElement element) {
         final Elements utils = processingEnv.getElementUtils();
@@ -307,7 +307,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Returns the UML annotation of the given element, or {@code null} if none.
      *
      * @param  element The element on which to get the UML annotation.
-     * @return The UML annotation, or {@code null} if none.
+     * @return the UML annotation, or {@code null} if none.
      */
     final AnnotationMirror getUML(final Element element) {
         for (final AnnotationMirror e :element.getAnnotationMirrors()) {
@@ -322,7 +322,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Returns the display name for the given UML identifier.
      *
      * @param  uml The UML annotation for which to get the display name, or {@code null}.
-     * @return The display name, or {@code null} if the given UML annotation was null.
+     * @return the display name, or {@code null} if the given UML annotation was null.
      */
     final String getDisplayName(final AnnotationMirror uml) {
         if (uml != null) {
@@ -348,7 +348,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * The returned name include the specification version number, if specified.
      *
      * @param  uml The UML annotation for which to get the specification, or {@code null}.
-     * @return The specification name, or {@code null} if the given UML annotation was null.
+     * @return the specification name, or {@code null} if the given UML annotation was null.
      */
     final String getSpecification(final AnnotationMirror uml) {
         if (uml != null) {
@@ -375,7 +375,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      * Returns {@code true} if the given type is an array, a collection, a map or any other type
      * that may hold more than one value.
      *
-     * @param  type The type to test for multi-occurrence.
+     * @param  type  the type to test for multi-occurrence.
      * @return {@code true} if the given type can hold more than one value.
      */
     final boolean isMultiOccurrence(final TypeMirror type) {

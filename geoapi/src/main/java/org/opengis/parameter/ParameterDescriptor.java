@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  *       maximum value} or an enumeration of {@linkplain #getValidValues() valid values}.</li>
  * </ul>
  *
- * @param <T> The type of parameter values.
+ * @param  <T>  the type of parameter values.
  *
  * @departure rename
  *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
@@ -76,7 +76,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Returns the class that describe the type of the parameter.
      *
-     * @return The type of parameter values.
+     * @return the type of parameter values.
      */
     @UML(identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
     Class<T> getValueClass();
@@ -89,7 +89,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * <div class="note"><b>Note:</b>
      * It is not necessary to provide this property when all values from the code list or enumeration are allowed.</div>
      *
-     * @return A finite set of valid values (usually from a {@code CodeList}),
+     * @return a finite set of valid values (usually from a {@code CodeList}),
      *         or {@code null} if it does not apply or if there is no restriction.
      *
      * @departure extension
@@ -102,7 +102,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * If there is no minimum value, or if the minimum value is inappropriate for the
      * {@linkplain #getValueClass() value class}, then this method returns {@code null}.
      *
-     * @return The minimum parameter value (often an instance of {@link Double}), or {@code null}.
+     * @return the minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable<T> getMinimumValue();
@@ -112,7 +112,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * If there is no maximum value, or if the maximum value is inappropriate for the
      * {@linkplain #getValueClass() value class}, then this method returns {@code null}.
      *
-     * @return The maximum parameter value (often an instance of {@link Double}), or {@code null}.
+     * @return the maximum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
     Comparable<T> getMaximumValue();
@@ -121,7 +121,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * Returns the default value for the parameter.
      * If there is no default value, then this method returns {@code null}.
      *
-     * @return The default value, or {@code null} in none.
+     * @return the default value, or {@code null} in none.
      */
     @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
     T getDefaultValue();
@@ -134,7 +134,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * This attribute apply only if the values is of numeric type
      * (usually an instance of {@link Double}).
      *
-     * @return The unit for numeric value, or {@code null} if it does not apply to the value type.
+     * @return the unit for numeric value, or {@code null} if it does not apply to the value type.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.

@@ -172,7 +172,7 @@ public final class Version implements Comparable<Version> {
      * The returned URL shall ends with a trailing slash character.
      *
      * @param  artefact The GeoAPI artefact ({@code "geoapi"} or {@code "geoapi-conformance"}).
-     * @return The base URL of the javadoc for this GeoAPI version.
+     * @return the base URL of the javadoc for this GeoAPI version.
      */
     final String getJavadocURL(final String artefact) {
         if (artefact.endsWith("conformance")) {
@@ -206,7 +206,7 @@ public final class Version implements Comparable<Version> {
      * Compares this version with the given version for equality.
      *
      * @param  other The other version to compare with this version.
-     * @return A negative number if the other version preceed this version,
+     * @return a negative number if the other version preceed this version,
      *         a positive number if it follows, or 0 if equals.
      */
     @Override
@@ -238,7 +238,7 @@ public final class Version implements Comparable<Version> {
     /**
      * Returns a hash code value for this version.
      *
-     * @return A hash code value for this version.
+     * @return a hash code value for this version.
      */
     @Override
     public int hashCode() {
@@ -252,7 +252,7 @@ public final class Version implements Comparable<Version> {
     /**
      * Returns a string representation of this version.
      *
-     * @return The string representation of this version number.
+     * @return the string representation of this version number.
      */
     @Override
     public String toString() {

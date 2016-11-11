@@ -101,7 +101,7 @@ public interface SortBy {
      * </ul>
      *
      * @todo Use QName
-     * @return Name of property to sort by.
+     * @return name of property to sort by.
      */
     PropertyName getPropertyName();
 

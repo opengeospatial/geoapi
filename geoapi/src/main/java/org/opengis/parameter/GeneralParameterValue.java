@@ -55,7 +55,7 @@ public interface GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter or group of parameters.
      *
-     * @return The abstract definition of this parameter or group of parameters.
+     * @return the abstract definition of this parameter or group of parameters.
      */
     @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     GeneralParameterDescriptor getDescriptor();
@@ -63,7 +63,7 @@ public interface GeneralParameterValue {
     /**
      * Returns a copy of this parameter value or group.
      *
-     * @return A copy of this parameter value or group.
+     * @return a copy of this parameter value or group.
      */
     GeneralParameterValue clone();
 }

@@ -70,7 +70,7 @@ import static org.opengis.annotation.Specification.*;
  * The type and constraints on parameter values are given by the {@linkplain #getDescriptor() descriptor},
  * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()} method.
  *
- * @param <T> The type of parameter values.
+ * @param  <T>  the type of parameter values.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
@@ -86,7 +86,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter value.
      *
-     * @return The abstract definition of this parameter value.
+     * @return the abstract definition of this parameter value.
      */
     @Override
     @UML(identifier="CC_OperationParameterValue.parameter", obligation=MANDATORY, specification=ISO_19111)
@@ -98,7 +98,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * then this method returns {@code null}. Note that "no unit" doesn't means
      * "dimensionless".
      *
-     * @return The unit of measure of the parameter value.
+     * @return the unit of measure of the parameter value.
      *
      * @see #doubleValue()
      * @see #doubleValueList()
@@ -110,8 +110,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns the numeric value of this parameter in the specified unit of measure.
      * This convenience method applies unit conversion on the fly as needed.
      *
-     * @param  unit The unit of measure for the value to be returned.
-     * @return The numeric value represented by this parameter after conversion to type
+     * @param  unit  the unit of measure for the value to be returned.
+     * @return the numeric value represented by this parameter after conversion to type
      *         {@code double} and conversion to {@code unit}.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
@@ -127,7 +127,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns the numeric value of this operation parameter.
      * The units of measurement are specified by {@link #getUnit()}.
      *
-     * @return The numeric value represented by this parameter after conversion to type {@code double}.
+     * @return the numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      * @unitof Measure
@@ -148,7 +148,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns the integer value of this parameter, usually used for a count.
      * An integer value does not have an associated unit of measure.
      *
-     * @return The numeric value represented by this parameter after conversion to type {@code int}.
+     * @return the numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
@@ -166,7 +166,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns the boolean value of this parameter.
      * A boolean value does not have an associated unit of measure.
      *
-     * @return The boolean value represented by this parameter.
+     * @return the boolean value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a boolean type.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
@@ -179,7 +179,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns the string value of this parameter.
      * A string value does not have an associated unit of measure.
      *
-     * @return The string value represented by this parameter.
+     * @return the string value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a string.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
@@ -193,8 +193,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns an ordered sequence of numeric values in the specified unit of measure.
      * This convenience method applies unit conversions on the fly as needed.
      *
-     * @param  unit The unit of measure for the value to be returned.
-     * @return The sequence of values represented by this parameter after conversion to type
+     * @param  unit  the unit of measure for the value to be returned.
+     * @return the sequence of values represented by this parameter after conversion to type
      *         {@code double} and conversion to {@code unit}.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
@@ -210,7 +210,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns an ordered sequence of two or more numeric values of this parameter,
      * where each value has the same associated unit of measure.
      *
-     * @return The sequence of values represented by this parameter.
+     * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      * @unitof Measure
@@ -232,7 +232,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * Returns an ordered sequence of two or more integer values of this parameter, usually used for counts.
      * These integer values do not have an associated unit of measure.
      *
-     * @return The sequence of values represented by this parameter.
+     * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
@@ -252,7 +252,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * as an XML encoded document. Furthermore, the referenced file or part of a file can reference
      * another part of the same or different files, as allowed in XML documents.
      *
-     * @return The reference to a file containing parameter values.
+     * @return the reference to a file containing parameter values.
      * @throws InvalidParameterTypeException if the value is not a reference to a file or an URI.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
@@ -268,7 +268,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * {@code int[]}. If no value has been set, then this method returns the
      * {@linkplain ParameterDescriptor#getDefaultValue() default value} (which may be null).
      *
-     * @return The parameter value as an object, or {@code null} if no value has been set and
+     * @return the parameter value as an object, or {@code null} if no value has been set and
      *         there is no default value.
      *
      * @see #setValue(Object)
@@ -278,8 +278,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Sets the parameter value as an array of floating point and their associated unit.
      *
-     * @param  values The parameter values.
-     * @param  unit The unit for the specified value.
+     * @param  values  the parameter values.
+     * @param  unit    the unit for the specified value.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
@@ -289,8 +289,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Sets the parameter value as a floating point and its associated unit.
      *
-     * @param  value The parameter value.
-     * @param  unit The unit for the specified values.
+     * @param  value  the parameter value.
+     * @param  unit   the unit for the specified values.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
@@ -303,7 +303,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Sets the parameter value as a floating point.
      *
-     * @param  value The parameter value.
+     * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
      *         parameter, or if the value is illegal for some other reason (for example a value out
      *         of range).
@@ -316,7 +316,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Sets the parameter value as an integer.
      *
-     * @param  value The parameter value.
+     * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the integer type is inappropriate for this parameter,
      *         or if the value is illegal for some other reason (for example a value out of range).
      *
@@ -327,7 +327,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Sets the parameter value as a boolean.
      *
-     * @param  value The parameter value.
+     * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the boolean type is inappropriate for this parameter.
      *
      * @see #booleanValue()
@@ -344,7 +344,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * parameter}("<var>name</var>").setValue(<var>value</var>)</code>) and
      * because some implementations may choose to convert a wider range of types.</p>
      *
-     * @param  value The parameter value.
+     * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the type of {@code value} is inappropriate
      *         for this parameter, or if the value is illegal for some other reason (for example
      *         the value is numeric and out of range).
@@ -356,7 +356,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Returns a copy of this parameter value.
      *
-     * @return A copy of this parameter value.
+     * @return a copy of this parameter value.
      */
     @Override
     ParameterValue<T> clone();

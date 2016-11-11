@@ -56,7 +56,7 @@ public strictfp class ProjectiveTransformTest extends AffineTransformTest {
     /**
      * Creates a new test case using the given factory.
      *
-     * @param factory The factory to use for testing affine transforms.
+     * @param factory  the factory to use for testing affine transforms.
      */
     protected ProjectiveTransformTest(final SimpleTransformFactory factory) {
         super(factory);
@@ -64,8 +64,7 @@ public strictfp class ProjectiveTransformTest extends AffineTransformTest {
     }
 
     /**
-     * Declares that our implementation can not invert such transform before
-     * to delegate to the parent class.
+     * Declares that our implementation can not invert such transform before to delegate to the parent class.
      */
     @Test
     @Override

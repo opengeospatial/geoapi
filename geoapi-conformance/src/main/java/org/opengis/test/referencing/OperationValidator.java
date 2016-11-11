@@ -57,8 +57,8 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Creates a new validator instance.
      *
-     * @param container The set of validators to use for validating other kinds of objects
-     *                  (see {@linkplain #container field javadoc}).
+     * @param container  the set of validators to use for validating other kinds of objects
+     *                   (see {@linkplain #container field javadoc}).
      */
     public OperationValidator(final ValidatorContainer container) {
         super(container, "org.opengis.referencing.operation");
@@ -66,10 +66,10 @@ public class OperationValidator extends ReferencingValidator {
 
     /**
      * For each interface implemented by the given object, invokes the corresponding
-     * {@code validate(...)} method defined in this class (if any).
+     * {@code validate(…)} method defined in this class (if any).
      *
-     * @param  object The object to dispatch to {@code validate(...)} methods, or {@code null}.
-     * @return Number of {@code validate(...)} methods invoked in this class for the given object.
+     * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
+     * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
     public int dispatch(final CoordinateOperation object) {
         int n = 0;
@@ -92,7 +92,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given "pass through" operation.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final PassThroughOperation object) {
         if (object == null) {
@@ -121,7 +121,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given concatenated operation.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final ConcatenatedOperation object) {
         if (object == null) {
@@ -195,9 +195,9 @@ public class OperationValidator extends ReferencingValidator {
 
     /**
      * Validates the given coordinate operation. This method is private because we
-     * choose to expose only non-ambiguious {@code validate} methods in public API.
+     * choose to expose only non-ambiguous {@code validate} methods in public API.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     private void validateCoordinateOperation(final CoordinateOperation object) {
         if (object == null) {
@@ -234,7 +234,7 @@ public class OperationValidator extends ReferencingValidator {
      * Validates the given operation. This method is private because we choose
      * to expose only non-ambiguous {@code validate} methods in public API.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     @SuppressWarnings("UnnecessaryUnboxing")
     private void validateOperation(final SingleOperation object) {
@@ -272,7 +272,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given conversion.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Conversion object) {
         if (object == null) {
@@ -300,7 +300,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given transformation.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Transformation object) {
         if (object == null) {
@@ -316,7 +316,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given operation method.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final OperationMethod object) {
         if (object == null) {
@@ -338,7 +338,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given formula.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final Formula object) {
         if (object == null) {
@@ -351,7 +351,7 @@ public class OperationValidator extends ReferencingValidator {
     /**
      * Validates the given math transform.
      *
-     * @param object The object to validate, or {@code null}.
+     * @param  object  the object to validate, or {@code null}.
      */
     public void validate(final MathTransform object) {
         if (object == null) {

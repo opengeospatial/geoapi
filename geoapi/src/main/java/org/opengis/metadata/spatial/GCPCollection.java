@@ -53,7 +53,7 @@ public interface GCPCollection extends GeolocationInformation {
     /**
      * Identifier of the GCP collection.
      *
-     * @return The identifier.
+     * @return the identifier.
      */
     @UML(identifier="collectionIdentification", obligation=MANDATORY, specification=ISO_19115_2)
     Integer getCollectionIdentification();
@@ -61,7 +61,7 @@ public interface GCPCollection extends GeolocationInformation {
     /**
      * Name of the GCP collection.
      *
-     * @return Name of the GCP collection.
+     * @return name of the GCP collection.
      */
     @UML(identifier="collectionName", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getCollectionName();
@@ -69,7 +69,7 @@ public interface GCPCollection extends GeolocationInformation {
     /**
      * Coordinate system in which the ground control points are defined.
      *
-     * @return Coordinate system in which the ground control points are defined.
+     * @return coordinate system in which the ground control points are defined.
      */
     @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19115_2)
     ReferenceSystem getCoordinateReferenceSystem();
@@ -77,7 +77,7 @@ public interface GCPCollection extends GeolocationInformation {
     /**
      * Ground control point(s) used in the collection.
      *
-     * @return Ground control point(s).
+     * @return ground control point(s).
      */
     @UML(identifier="gcp", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends GCP> getGCPs();

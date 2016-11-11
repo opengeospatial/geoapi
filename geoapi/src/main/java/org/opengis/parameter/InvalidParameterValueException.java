@@ -75,10 +75,9 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the parameter name.
+     * @param value          the invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, Object value) {
         super(message);
@@ -89,10 +88,9 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as a floating point.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the parameter name.
+     * @param value          the invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, double value) {
         this(message, parameterName, Double.valueOf(value));
@@ -101,10 +99,9 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified invalid value as an integer.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param parameterName  the parameter name.
+     * @param value          the invalid parameter value.
      */
     public InvalidParameterValueException(String message, String parameterName, int value) {
         this(message, parameterName, Integer.valueOf(value));
@@ -113,12 +110,10 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Creates an exception with the specified message, cause and invalid value.
      *
-     * @param message The detail message, or {@code null} if none. The detail message
-     *                is saved for later retrieval by the {@link #getMessage()} method.
-     * @param cause   The cause, or {@code null} if none. The cause is saved
-     *                for later retrieval by the {@link #getCause()} method.
-     * @param parameterName The parameter name.
-     * @param value The invalid parameter value.
+     * @param message        the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
+     * @param parameterName  the parameter name.
+     * @param value          the invalid parameter value.
      *
      * @since 3.1
      */
@@ -131,7 +126,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Returns the parameter name.
      *
-     * @return The parameter name.
+     * @return the parameter name.
      */
     public String getParameterName() {
         return parameterName;
@@ -140,7 +135,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * Returns the invalid parameter value.
      *
-     * @return The invalid parameter value.
+     * @return the invalid parameter value.
      */
     public Object getValue() {
         return value;

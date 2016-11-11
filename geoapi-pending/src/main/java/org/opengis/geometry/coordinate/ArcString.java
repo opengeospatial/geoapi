@@ -67,7 +67,7 @@ public interface ArcString extends CurveSegment {
      * <pre>numArc = ({@link #getControlPoints controlPoints}.length - 1)/2</pre>
      * </blockquote>
      *
-     * @return The number of circular arcs.
+     * @return the number of circular arcs.
      */
     @UML(identifier="numArc", obligation=MANDATORY, specification=ISO_19107)
     int getNumArc();
@@ -78,7 +78,7 @@ public interface ArcString extends CurveSegment {
      * consecutive {@linkplain Position positions} beginning with an odd offset, determine
      * another arc in the string.
      *
-     * @return The control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
+     * @return the control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
      */
     @UML(identifier="controlPoints", obligation=MANDATORY, specification=ISO_19107)
     PointArray getControlPoints();
@@ -87,7 +87,7 @@ public interface ArcString extends CurveSegment {
      * The interpolation for a {@code ArcString} is
      * "{@linkplain CurveInterpolation#CIRCULAR_ARC_3_POINTS circular arc by 3 points}".
      *
-     * @return Always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.
+     * @return always {@link CurveInterpolation#CIRCULAR_ARC_3_POINTS}.
      */
     @UML(identifier="interpolation", obligation=MANDATORY, specification=ISO_19107)
     CurveInterpolation getInterpolation();
@@ -95,7 +95,7 @@ public interface ArcString extends CurveSegment {
     /**
      * Constructs a sequence of arcs that is the geometric equivalent of this arc string.
      *
-     * @return The sequence of arcs.
+     * @return the sequence of arcs.
      */
     @UML(identifier="asGM_Arc", obligation=MANDATORY, specification=ISO_19107)
     List<Arc> asArcs();

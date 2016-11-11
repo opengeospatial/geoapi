@@ -128,7 +128,7 @@ public interface TransfiniteSet {
      * {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
-     * @return The union of both sets.
+     * @return the union of both sets.
      */
     TransfiniteSet union(TransfiniteSet pointSet);
 
@@ -137,7 +137,7 @@ public interface TransfiniteSet {
      * {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
-     * @return The intersection of both sets.
+     * @return the intersection of both sets.
      */
     TransfiniteSet intersection(TransfiniteSet pointSet);
 
@@ -146,7 +146,7 @@ public interface TransfiniteSet {
      * {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
-     * @return The difference between both sets.
+     * @return the difference between both sets.
      */
     TransfiniteSet difference(TransfiniteSet pointSet);
 
@@ -155,7 +155,7 @@ public interface TransfiniteSet {
      * passed {@code TransfiniteSet}.
      *
      * @param pointSet The second set.
-     * @return The symmetric difference between both sets.
+     * @return the symmetric difference between both sets.
      */
     TransfiniteSet symmetricDifference(TransfiniteSet pointSet);
 }

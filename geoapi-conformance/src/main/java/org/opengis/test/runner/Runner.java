@@ -106,7 +106,7 @@ final class Runner extends RunListener implements TestListener {
     /**
      * Sets the class loader to use for running the tests.
      *
-     * @param files The JAR files that contain the implementation to test.
+     * @param files  the JAR files that contain the implementation to test.
      */
     static void setClassLoader(final File... files) throws MalformedURLException {
         final URL[] urls = new URL[files.length];

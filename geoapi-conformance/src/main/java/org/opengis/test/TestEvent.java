@@ -77,7 +77,7 @@ public final class TestEvent extends EventObject {
      * Returns the {@link TestCase} instance which is been run. This allow inspection of
      * the test state, for example by invoking {@link TestCase#configuration()}.
      *
-     * @return The {@code TestCase} instance which is been run.
+     * @return the {@code TestCase} instance which is been run.
      */
     @Override
     public TestCase getSource() {
@@ -88,7 +88,7 @@ public final class TestEvent extends EventObject {
      * Returns the fully-qualified name of the class which contain the test method
      * being executed.
      *
-     * @return The name of the class which contain the test method being executed.
+     * @return the name of the class which contain the test method being executed.
      */
     public String getClassName() {
         return className;
@@ -100,7 +100,7 @@ public final class TestEvent extends EventObject {
      * because more than one {@linkplain org.opengis.util.Factory factory} has been found on
      * the classpath.
      *
-     * @return The name of the test method.
+     * @return the name of the test method.
      */
     public String getMethodName() {
         return methodName;
@@ -110,7 +110,7 @@ public final class TestEvent extends EventObject {
      * If a test failure occurred in an optional test, the configuration key for disabling
      * that test. Otherwise {@code null}.
      *
-     * @return The configuration key for disabling the optional test that failed, or {@code null}.
+     * @return the configuration key for disabling the optional test that failed, or {@code null}.
      */
     public Configuration.Key<Boolean> getConfigurationTip() {
         return configurationTip;

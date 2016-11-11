@@ -52,7 +52,7 @@ public interface MetadataExtensionInformation {
      * Information about on-line sources containing the community profile name and
      * the extended metadata elements and information for all new metadata elements.
      *
-     * @return On-line sources to community profile name and extended metadata elements, or {@code null}.
+     * @return on-line sources to community profile name and extended metadata elements, or {@code null}.
      */
     @UML(identifier="extensionOnLineResource", obligation=OPTIONAL, specification=ISO_19115)
     OnlineResource getExtensionOnLineResource();
@@ -61,7 +61,7 @@ public interface MetadataExtensionInformation {
      * Provides information about a new metadata element, not found in ISO 19115,
      * which is required to describe the resource.
      *
-     * @return New metadata element not found in ISO 19115.
+     * @return new metadata element not found in ISO 19115.
      */
     @UML(identifier="extendedElementInformation", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends ExtendedElementInformation> getExtendedElementInformation();

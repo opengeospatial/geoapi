@@ -106,8 +106,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * the {@code values} argument. This list is used for {@code values()}
      * method implementations.
      *
-     * @param name   The code name.
-     * @param values The collection to add the element to.
+     * @param name    the code name.
+     * @param values  the collection to add the element to.
      */
     @SuppressWarnings({"unchecked","rawtypes"})
     protected CodeList(String name, final Collection<E> values) {
@@ -144,7 +144,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         /**
          * Returns {@code true} if the given code matches the criterion defined by this filter.
          *
-         * @param code The code to test.
+         * @param  code  the code to test.
          * @return {@code true} if the code matches the criterion.
          */
         boolean accept(CodeList<?> code);
@@ -159,7 +159,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
          *   <li>Otherwise, no new code is created and {@code CodeList.valueOf} returns {@code null}.</li>
          * </ul>
          *
-         * @return The name of the code being looked for, or {@code null}.
+         * @return the name of the code being looked for, or {@code null}.
          */
         String codename();
     }
@@ -176,10 +176,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * {@code codeType} class. However in other situations, callers may need to initialize
      * explicitely the given class.</p>
      *
-     * @param <T> The compile-time type given as the {@code codeType} parameter.
-     * @param codeType The type of code list.
-     * @param name The name of the code to obtain, or {@code null}.
-     * @return A code matching the given name, or {@code null} if the name is null.
+     * @param  <T>       the compile-time type given as the {@code codeType} parameter.
+     * @param  codeType  the type of code list.
+     * @param  name      the name of the code to obtain, or {@code null}.
+     * @return a code matching the given name, or {@code null} if the name is null.
      *
      * @departure integration
      *   Provided by analogy with the methods in the Java <code>Enum</code> class.
@@ -215,10 +215,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *       argument, which is given the value returned by {@code codename()}.</li>
      * </ul>
      *
-     * @param <T> The compile-time type given as the {@code codeType} parameter.
-     * @param codeType The type of code list.
-     * @param filter The criterion for the code to obtain.
-     * @return A code matching the given criterion, or {@code null} if their is no match and
+     * @param  <T>       the compile-time type given as the {@code codeType} parameter.
+     * @param  codeType  the type of code list.
+     * @param  filter    the criterion for the code to obtain.
+     * @return a code matching the given criterion, or {@code null} if their is no match and
      *         {@link Filter#codename()} returns {@code null}.
      *
      * @since 2.3
@@ -303,7 +303,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * provided in {@code CodeList} subclasses, except that {@code family()} does not require the class
      * to be known at compile-time — provided that at leat one instance of the family is available.
      *
-     * @return The codes of the same kind than this code.
+     * @return the codes of the same kind than this code.
      *
      * @departure integration
      *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
@@ -330,7 +330,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Those names are typically equal except for the case (programmatic names are upper case
      * while UML names are lower case) and special characters like {@code '-'}.
      *
-     * @return All names of this code constant. This array is never null and never empty.
+     * @return all names of this code constant. This array is never null and never empty.
      *
      * @departure extension
      *   Defined because each <code>CodeList</code> has at least two names, the Java programmatic
@@ -356,7 +356,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @departure integration
      *   Provided by analogy with the methods in the Java <code>Enum</code> class.
      *
-     * @return The name of this code constant.
+     * @return the name of this code constant.
      */
     @Override
     public final String name() {
@@ -367,7 +367,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Returns the identifier declared in the {@link UML} annotation, or {@code null} if none.
      * The UML identifier shall be the ISO or OGC name for this code constant.
      *
-     * @return The ISO/OGC identifier for this code constant, or {@code null} if none.
+     * @return the ISO/OGC identifier for this code constant, or {@code null} if none.
      *
      * @departure extension
      *   Defined because each <code>CodeList</code> has a UML identifier in addition of the Java
@@ -421,7 +421,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Returns the ordinal of this code constant. This is its position in its elements declaration,
      * where the initial constant is assigned an ordinal of zero.
      *
-     * @return The position of this code constants in elements declaration.
+     * @return the position of this code constants in elements declaration.
      *
      * @departure integration
      *   Provided by analogy with the methods in the Java <code>Enum</code> class.
@@ -440,8 +440,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * same type.  The natural order implemented by this method is the order in which
      * the constants are declared.</p>
      *
-     * @param other The code constant to compare with this code.
-     * @return A negative value if the given code is less than this code,
+     * @param  other  the code constant to compare with this code.
+     * @return a negative value if the given code is less than this code,
      *         a positive value if greater or 0 if equal.
      */
     @Override
@@ -472,7 +472,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Resolves the code list to an unique instance after deserialization. The instance is resolved
      * using its {@linkplain #name() name} only (not its {@linkplain #ordinal() ordinal}).
      *
-     * @return This code list as an unique instance.
+     * @return this code list as an unique instance.
      * @throws ObjectStreamException if the deserialization failed.
      */
     @SuppressWarnings("rawtypes")

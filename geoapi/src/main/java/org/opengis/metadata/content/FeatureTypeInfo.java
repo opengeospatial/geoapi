@@ -50,7 +50,7 @@ public interface FeatureTypeInfo {
     /**
      * Name of the feature type.
      *
-     * @return Name of the feature type.
+     * @return name of the feature type.
      *
      * @see org.opengis.feature.FeatureType#getName()
      */
@@ -61,7 +61,7 @@ public interface FeatureTypeInfo {
      * Number of occurrence of feature instances for this feature types.
      * May be {@code null} if unspecified.
      *
-     * @return Number of occurrence of feature instances for this feature types, or {@code null} if none.
+     * @return number of occurrence of feature instances for this feature types, or {@code null} if none.
      */
     @UML(identifier="featureInstanceCount", obligation=OPTIONAL, specification=ISO_19115)
     Integer getFeatureInstanceCount();

@@ -77,7 +77,7 @@ public interface GeographicCRS extends GeodeticCRS {
     /**
      * Returns the coordinate system, which shall be ellipsoidal.
      *
-     * @return The ellipsoidal coordinate system.
+     * @return the ellipsoidal coordinate system.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)

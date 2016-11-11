@@ -52,7 +52,7 @@ public @interface XmlParameter {
     /**
      * The name of the element in the XML schema.
      *
-     * @return The XML parameter name.
+     * @return the XML parameter name.
      */
     String value();
 }

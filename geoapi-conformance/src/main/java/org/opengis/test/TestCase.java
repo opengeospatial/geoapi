@@ -105,7 +105,7 @@ public strictfp abstract class TestCase {
      * Sets the class loader to use for loading implementations. A {@code null} value restores
      * the default {@linkplain Thread#getContextClassLoader() context class loader}.
      *
-     * @param loader The class loader to use, or {@code null} for the default.
+     * @param loader  the class loader to use, or {@code null} for the default.
      */
     static void setClassLoader(final ClassLoader loader) {
         synchronized (FACTORIES) {
@@ -307,7 +307,7 @@ public strictfp abstract class TestCase {
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories The factories to be used by the test. Those factories will be given to
+     * @param factories  the factories to be used by the test. Those factories will be given to
      *        {@link ImplementationDetails#configuration(Factory[])} in order to decide which
      *        {@linkplain #validators} to use.
      *
@@ -381,8 +381,8 @@ public strictfp abstract class TestCase {
      * {@link TestSuite#setFactories(Class, Factory[])} method. In no factories were explicitely
      * specified, then this method searches the classpath using {@link ServiceLoader}.
      *
-     * @param  types The kind of factories to fetch.
-     * @return All combinations of factories of the given kind. Each list element is an array
+     * @param  types  the kind of factories to fetch.
+     * @return all combinations of factories of the given kind. Each list element is an array
      *         having the same length than {@code types}.
      *
      * @see org.opengis.test.util.NameTest#factories()
@@ -406,10 +406,10 @@ public strictfp abstract class TestCase {
      * <p>The main purpose of this method is to get {@link org.opengis.referencing.AuthorityFactory}
      * instances for a given authority name.</p>
      *
-     * @param  filter An optional factory filter to use in addition to any filter declared in
-     *         the classpath, or {@code null} if none.
-     * @param  types The kind of factories to fetch.
-     * @return All combinations of factories of the given kind. Each list element is an array
+     * @param  filter  an optional factory filter to use in addition to any filter declared in
+     *                 the classpath, or {@code null} if none.
+     * @param  types   the kind of factories to fetch.
+     * @return all combinations of factories of the given kind. Each list element is an array
      *         having the same length than {@code types}.
      *
      * @since 3.1
@@ -420,12 +420,12 @@ public strictfp abstract class TestCase {
         try {
             synchronized (FACTORIES) {
                 if (!factories(filter, types, factories)) {
-                    // The user has invoked TestSuite.setFactories(...), for example inside
-                    // his FactoryFilter.filter(...) method. Let be lenient and try again.
+                    // The user has invoked TestSuite.setFactories(…), for example inside
+                    // his FactoryFilter.filter(…) method. Let be lenient and try again.
                     // If the second try fails for the same raison, we will give up.
                     factories.clear();
                     if (!factories(filter, types, factories)) {
-                        throw new ServiceConfigurationError("TestSuite.setFactories(...) has been invoked "
+                        throw new ServiceConfigurationError("TestSuite.setFactories(…) has been invoked "
                                 + "in the middle of a search for factories.");
                     }
                 }
@@ -457,7 +457,7 @@ public strictfp abstract class TestCase {
                 choices = load(type);
                 final Iterable<? extends Factory> old = FACTORIES.put(type, choices);
                 if (old != null) {
-                    // TestSuite.setFactories(...) has been invoked,  maybe as a result of user
+                    // TestSuite.setFactories(…) has been invoked,  maybe as a result of user
                     // class initialization. Restores the user-provided value and declares that
                     // this operation failed.
                     FACTORIES.put(type, old);
@@ -480,8 +480,8 @@ public strictfp abstract class TestCase {
                     }
                 }
             }
-            // Check if TestSuite.setFactories(...) has been invoked while we were iterating.
-            // The method may have been invoked by a FactoryFilter.filter(...) method for
+            // Check if TestSuite.setFactories(…) has been invoked while we were iterating.
+            // The method may have been invoked by a FactoryFilter.filter(…) method for
             // example. While not an encouraged practice, we try to be a little bit more
             // robust than not checking at all.
             if (FACTORIES.get(type) != choices) {
@@ -518,10 +518,9 @@ public strictfp abstract class TestCase {
      * having the value {@link Boolean#FALSE} for a given key, then the boolean value corresponding
      * to that key is set to {@code false}.
      *
-     * @param  properties The key for which the flags are wanted.
-     * @return An array of the same length than {@code properties} in which each element at
-     *         index <var>i</var> indicates whether the {@code properties[i]} test should
-     *         be enabled.
+     * @param  properties  the key for which the flags are wanted.
+     * @return an array of the same length than {@code properties} in which each element at index
+     *         <var>i</var> indicates whether the {@code properties[i]} test should be enabled.
      *
      * @since 3.1
      */
@@ -584,7 +583,7 @@ public strictfp abstract class TestCase {
     /**
      * Implementation of the {@link TestSuite#addTestListener(TestListener)} public method.
      *
-     * @param listener The listener to add. {@code null} values are silently ignored.
+     * @param listener  the listener to add. {@code null} values are silently ignored.
      */
     static synchronized void addTestListener(final TestListener listener) {
         if (listener != null) {
@@ -597,7 +596,7 @@ public strictfp abstract class TestCase {
     /**
      * Implementation of the {@link TestSuite#removeTestListener(TestListener)} public method.
      *
-     * @param listener The listener to remove. {@code null} values are silently ignored.
+     * @param listener  the listener to remove. {@code null} values are silently ignored.
      */
     static synchronized void removeTestListener(final TestListener listener) {
         for (int i=listeners.length; --i>=0;) {

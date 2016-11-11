@@ -37,7 +37,6 @@ import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.feature.type.AttributeType;
 import org.opengis.feature.type.FeatureType;
-import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -66,7 +65,7 @@ public interface ScopeDescription {
      * “<cite>Administrative area A, B &amp; C</cite>” description.
      * </div>
      *
-     * @return Dataset to which the information applies, or {@code null}.
+     * @return dataset to which the information applies, or {@code null}.
      *
      * @since 2.1
      *
@@ -92,7 +91,7 @@ public interface ScopeDescription {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Feature types to which the information applies.
+     * @return feature types to which the information applies.
      *
      * @condition {@code attributes}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
@@ -116,7 +115,7 @@ public interface ScopeDescription {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Attribute types to which the information applies.
+     * @return attribute types to which the information applies.
      *
      * @condition {@code features}, {@code featureInstances}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
@@ -140,7 +139,7 @@ public interface ScopeDescription {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Feature instances to which the information applies.
+     * @return feature instances to which the information applies.
      *
      * @condition {@code features}, {@code attributes}, {@code attributeInstances},
      *            {@code dataset} and {@code other} not provided.
@@ -164,7 +163,7 @@ public interface ScopeDescription {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Attribute instances to which the information applies.
+     * @return attribute instances to which the information applies.
      *
      * @since 2.1
      *
@@ -183,7 +182,7 @@ public interface ScopeDescription {
      * The return type will be changed from {@code String} to {@code InternationalString} in GeoAPI 4.0.
      * </div>
      *
-     * @return Class of information that does not fall into the other categories, or {@code null}.
+     * @return class of information that does not fall into the other categories, or {@code null}.
      *
      * @since 2.1
      *

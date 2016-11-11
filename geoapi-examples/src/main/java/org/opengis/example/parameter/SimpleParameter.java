@@ -166,10 +166,10 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Creates a new parameter of the given authority and name.
      *
-     * @param authority Organization responsible for definition of the parameter, or {@code null}.
-     * @param name      The parameter name.
-     * @param type      The parameter type, which determines the range of values and the unit of measurement.
-     *                  This argument can be {@code null} if the parameter type is none of the enumerated ones.
+     * @param authority  organization responsible for definition of the parameter, or {@code null}.
+     * @param name       the parameter name.
+     * @param type       the parameter type, which determines the range of values and the unit of measurement.
+     *                   this argument can be {@code null} if the parameter type is none of the enumerated ones.
      */
     public SimpleParameter(final Citation authority, final String name, final Type type) {
         super(authority, name);
@@ -230,7 +230,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * {@linkplain #doubleValue() parameter value} as well as the {@linkplain #getDefaultValue default},
      * the {@linkplain #getMinimumValue minimum} and the {@linkplain #getMaximumValue maximum} values.
      *
-     * @return The unit of measurement, or {@code null} if unknown.
+     * @return the unit of measurement, or {@code null} if unknown.
      */
     @Override
     public Unit<?> getUnit() {
@@ -241,7 +241,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * Returns the minimum parameter value, or {@code null} if none.
      * The default implementation infers this property from the {@linkplain #type}.
      *
-     * @return The minimum parameter value, or {@code null} if unbounded.
+     * @return the minimum parameter value, or {@code null} if unbounded.
      */
     @Override
     public Comparable<Double> getMinimumValue() {
@@ -252,7 +252,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * Returns the maximum parameter value, or {@code null} if none.
      * The default implementation infers this property from the {@linkplain #type}.
      *
-     * @return The maximum parameter value, or {@code null} if unbounded.
+     * @return the maximum parameter value, or {@code null} if unbounded.
      */
     @Override
     public Comparable<Double> getMaximumValue() {
@@ -280,7 +280,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the parameter {@linkplain #value} as an object.
      *
-     * @return The parameter value as an object.
+     * @return the parameter value as an object.
      */
     @Override
     public Double getValue() {
@@ -290,7 +290,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the numeric {@linkplain #value} represented by this parameter.
      *
-     * @return The numeric value represented by this parameter.
+     * @return the numeric value represented by this parameter.
      */
     @Override
     public double doubleValue() {
@@ -301,8 +301,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * Returns the numeric value of the operation parameter in the specified unit of measure.
      * This convenience method applies unit conversion on the fly as needed.
      *
-     * @param  unit The unit of measure for the value to be returned.
-     * @return The numeric value represented by this parameter after conversion to {@code unit}.
+     * @param  unit  the unit of measure for the value to be returned.
+     * @return the numeric value represented by this parameter after conversion to {@code unit}.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws IllegalStateException if there is no unit associated to this parameter value.
      */
@@ -324,7 +324,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * casted to the {@code int} type only if this cast can be done without lost of
      * information. In all other cases an exception is thrown.
      *
-     * @return The numeric value represented by this parameter after conversion to type {@code int}.
+     * @return the numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value can not be casted to an integer type.
      */
     @Override
@@ -348,7 +348,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *   <li>Throws an exception in all other cases</li>
      * </ul>
      *
-     * @return The boolean value represented by this parameter.
+     * @return the boolean value represented by this parameter.
      * @throws InvalidParameterTypeException if the value can not be converted to a boolean.
      */
     @Override
@@ -365,7 +365,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * If {@linkplain #LENIENT lenient}, this method formats the {@linkplain #value}
      * as a string and appends the units of measurement, if any.
      *
-     * @return The numeric value and its units of measurement as a string.
+     * @return the numeric value and its units of measurement as a string.
      * @throws InvalidParameterTypeException if the value can not be converted to a string.
      *
      * @see #toString()
@@ -420,7 +420,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * has the same associated {@linkplain Unit unit of measure}. If {@linkplain #LENIENT lenient},
      * this method returns {@link #doubleValue()} in an array of length 1.
      *
-     * @return The sequence of values represented by this parameter.
+     * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value can not be converted to an array.
      */
     @Override
@@ -436,7 +436,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * If {@linkplain #LENIENT lenient}, this method returns {@link #intValue()}
      * in an array of length 1.
      *
-     * @return The sequence of values represented by this parameter.
+     * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value can not be converted to an array.
      */
     @Override
@@ -451,7 +451,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * Thrown unconditionally the exception, since this parameter implementation can not
      * represent URI.
      *
-     * @return Never returned.
+     * @return never returned.
      * @throws InvalidParameterTypeException Always thrown.
      */
     @Override
@@ -464,8 +464,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * The default implementation converts the given value to the {@linkplain #getUnit()
      * units associated to this parameter}, then delegates to {@link #setValue(double)}.
      *
-     * @param  value The parameter value.
-     * @param  unit The unit for the specified value.
+     * @param  value  the parameter value.
+     * @param  unit   the unit for the specified value.
      * @throws InvalidParameterValueException if this parameter can not be set to the given value.
      */
     @Override
@@ -482,8 +482,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Sets the parameter value as a floating point. This method ensures that the given value
-     * is inside the range of valid values, then assign the new value to the {@link #value}
-     * field.
+     * is inside the range of valid values, then assign the new value to the {@link #value} field.
      *
      * @throws InvalidParameterValueException if the parameter value is out of range.
      */
@@ -509,8 +508,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * If {@linkplain #LENIENT lenient}, this method ensures that the array length is exactly 1,
      * then delegates to {@link #setValue(double, Unit)}.
      *
-     * @param  values The parameter values.
-     * @param  unit The unit for the specified values.
+     * @param  values  the parameter values.
+     * @param  unit    the unit for the specified values.
      * @throws InvalidParameterValueException if this parameter can not be set to the given value.
      */
     @Override
@@ -558,7 +557,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * type can be any {@link Number} or {@link CharSequence} parseable as a floating point
      * number. If not lenient, then the type must be restricted to {@link Double}.
      *
-     * @param  value The parameter value.
+     * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the value can not be stored as a {@code double}.
      */
     @Override
@@ -590,7 +589,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
      * methods are likely to be defined in different objects.</div>
      *
-     * @return A new parameter with the same authority, code and type than this parameter.
+     * @return a new parameter with the same authority, code and type than this parameter.
      *
      * @see #clone()
      */

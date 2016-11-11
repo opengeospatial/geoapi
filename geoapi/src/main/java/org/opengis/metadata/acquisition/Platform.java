@@ -55,7 +55,7 @@ public interface Platform {
     /**
      * Source where information about the platform is described.
      *
-     * @return Source where information about the platform is described, or {@code null}.
+     * @return source where information about the platform is described, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
     Citation getCitation();
@@ -63,7 +63,7 @@ public interface Platform {
     /**
      * Unique identification of the platform.
      *
-     * @return Unique identification of the platform.
+     * @return unique identification of the platform.
      */
     @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
     Identifier getIdentifier();
@@ -71,7 +71,7 @@ public interface Platform {
     /**
      * Narrative description of the platform supporting the instrument.
      *
-     * @return Narrative description of the platform.
+     * @return narrative description of the platform.
      */
     @UML(identifier="description", obligation=MANDATORY, specification=ISO_19115_2)
     InternationalString getDescription();
@@ -84,7 +84,7 @@ public interface Platform {
      * This change may be applied in GeoAPI 4.0.
      * </div>
      *
-     * @return Organization responsible for building, launch, or operation of the platform.
+     * @return organization responsible for building, launch, or operation of the platform.
      */
     @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2, version=2003)
     Collection<? extends ResponsibleParty> getSponsors();
@@ -92,7 +92,7 @@ public interface Platform {
     /**
      * Instrument(s) mounted on a platform.
      *
-     * @return Instrument(s) mounted on a platform.
+     * @return instrument(s) mounted on a platform.
      */
     @UML(identifier="instrument", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Instrument> getInstruments();

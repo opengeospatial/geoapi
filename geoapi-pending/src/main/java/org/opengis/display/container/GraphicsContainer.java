@@ -57,7 +57,7 @@ public interface GraphicsContainer<G extends Graphic> {
     /**
      * Returns the canvas where this GraphicsContainer will drawn the {@linkplain Graphic graphics}.
      *
-     * @return The canvas where to drawn.
+     * @return the canvas where to drawn.
      */
     Canvas getCanvas();
 

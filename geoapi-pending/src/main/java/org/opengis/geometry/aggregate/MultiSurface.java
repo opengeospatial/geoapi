@@ -79,7 +79,7 @@ public interface MultiSurface extends MultiPrimitive {
      * about the exterior of the surface patch.
      * </div>
      *
-     * @return The area.
+     * @return the area.
      * @unitof Area
      */
     @UML(identifier="area", obligation=MANDATORY, specification=ISO_19107)

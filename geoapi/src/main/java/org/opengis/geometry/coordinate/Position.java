@@ -71,7 +71,7 @@ public interface Position {
      * Returns the direct position. This method shall never returns {@code null}, but may returns
      * {@code this} if invoked on an object which is already a {@code DirectPosition} instance.
      *
-     * @return The direct position (may be {@code this}).
+     * @return the direct position (may be {@code this}).
      *
      * @since 2.2
      */

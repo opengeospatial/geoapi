@@ -40,10 +40,10 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
     /**
      * Creates a new operation for the given name and CRS.
      *
-     * @param authority Organization responsible for definition of the name, or {@code null}.
-     * @param name      The name of the new operation.
-     * @param sourceCRS The source CRS to be returned by {@link #getSourceCRS()}.
-     * @param targetCRS The target CRS to be returned by {@link #getTargetCRS()}.
+     * @param authority  organization responsible for definition of the name, or {@code null}.
+     * @param name       the name of the new operation.
+     * @param sourceCRS  the source CRS to be returned by {@link #getSourceCRS()}.
+     * @param targetCRS  the target CRS to be returned by {@link #getTargetCRS()}.
      */
     protected SimpleTransform2D(final Citation authority, final String name,
             final CoordinateReferenceSystem sourceCRS,
@@ -71,8 +71,8 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
     /**
      * Ensures that the given position is two-dimensional.
      *
-     * @param  point The position to verify, or {@code null}.
-     * @throws MismatchedDimensionException If the given position is not two-dimensional.
+     * @param  point  the position to verify, or {@code null}.
+     * @throws MismatchedDimensionException if the given position is not two-dimensional.
      */
     private static void ensureTwoDimensional(final DirectPosition point) throws MismatchedDimensionException {
         if (point != null && point.getDimension() != 2) {
@@ -107,12 +107,12 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      * If {@code ptSrc} and {@code ptDst} are the same object, the input point is
      * correctly overwritten with the transformed point.
      *
-     * @param  ptSrc the coordinate point to be transformed.
-     * @param  ptDst the coordinate point that stores the result of transforming {@code ptSrc},
-     *         or {@code null} if a new point shall be created.
+     * @param  ptSrc  the coordinate point to be transformed.
+     * @param  ptDst  the coordinate point that stores the result of transforming {@code ptSrc},
+     *                or {@code null} if a new point shall be created.
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
-     * @throws TransformException if the point can't be transformed.
+     * @throws TransformException if the point can not be transformed.
      */
     @Override
     public abstract Point2D transform(Point2D ptSrc, Point2D ptDst) throws TransformException;
@@ -121,8 +121,8 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      * Transforms the specified shape. The default implementation returns a new shape with
      * the transform of all control points.
      *
-     * @param  shape The Shape to transform.
-     * @return The transformed shape.
+     * @param  shape  the Shape to transform.
+     * @return the transformed shape.
      * @throws TransformException if a transform failed.
      */
     @Override
@@ -149,9 +149,9 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      * Gets the derivative of this transform at a point. This method ensures that the given
      * position is two-dimensional, then delegates to {@link #derivative(Point2D)}.
      *
-     * @param  point The coordinate point where to evaluate the derivative.
-     * @return The derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can't be evaluated at the specified point.
+     * @param  point  the coordinate point where to evaluate the derivative.
+     * @return the derivative at the specified point (never {@code null}).
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final DirectPosition point) throws TransformException {
@@ -163,9 +163,9 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      * Gets the derivative of this transform at a point. The default implementation throws
      * an exception in all cases.
      *
-     * @param  point The coordinate point where to evaluate the derivative.
-     * @return The derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can't be evaluated at the specified point.
+     * @param  point  the coordinate point where to evaluate the derivative.
+     * @return the derivative at the specified point (never {@code null}).
+     * @throws TransformException if the derivative can not be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final Point2D point) throws TransformException {

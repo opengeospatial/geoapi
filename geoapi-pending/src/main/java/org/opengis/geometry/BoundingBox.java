@@ -72,7 +72,7 @@ public interface BoundingBox extends Envelope {
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#EAST East}.
      *
-     * @return The minimum ordinate along the first axis.
+     * @return the minimum ordinate along the first axis.
      */
     double getMinX();
 
@@ -82,7 +82,7 @@ public interface BoundingBox extends Envelope {
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#EAST East}.
      *
-     * @return The maximum ordinate along the first axis.
+     * @return the maximum ordinate along the first axis.
      */
     double getMaxX();
 
@@ -92,7 +92,7 @@ public interface BoundingBox extends Envelope {
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#NORTH North}.
      *
-     * @return The minimum ordinate along the second axis.
+     * @return the minimum ordinate along the second axis.
      */
     double getMinY();
 
@@ -102,7 +102,7 @@ public interface BoundingBox extends Envelope {
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#NORTH North}.
      *
-     * @return The maximum ordinate along the second axis.
+     * @return the maximum ordinate along the second axis.
      */
     double getMaxY();
 
@@ -113,7 +113,7 @@ public interface BoundingBox extends Envelope {
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#EAST East}.
      *
-     * @return The span along the first axis.
+     * @return the span along the first axis.
      */
     double getWidth();
 
@@ -124,7 +124,7 @@ public interface BoundingBox extends Envelope {
      * There is no guarantee that this axis is oriented toward
      * {@linkplain AxisDirection#NORTH North}.
      *
-     * @return The span along the second axis.
+     * @return the span along the second axis.
      */
     double getHeight();
 
@@ -216,7 +216,7 @@ public interface BoundingBox extends Envelope {
      * precomputed "objective to display" transforms.</p>
      *
      * @param  targetCRS The target CRS for the bounding box to be returned.
-     * @return A new bounding box wich includes the shape of this box transformed
+     * @return a new bounding box wich includes the shape of this box transformed
      *         to the specified target CRS.
      * @throws TransformException if no transformation path has been found from
      *         {@linkplain #getCoordinateReferenceSystem this box CRS} to the specified

@@ -74,8 +74,8 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
     /**
      * Returns the bounds of the given image.
      *
-     * @param  image The image for which to get the bounds.
-     * @return The image bounds.
+     * @param  image  the image for which to get the bounds.
+     * @return the image bounds.
      */
     static Rectangle getBounds(final RenderedImage image) {
         return new Rectangle(
@@ -88,11 +88,11 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
     /**
      * Creates a banded raster for the given data type.
      *
-     * @param  dataType The data type as one of the {@link DataBuffer} constants.
-     * @param  width    The desired raster width.
-     * @param  height   The desired raster height.
-     * @param  numBands The desired number of bands.
-     * @return A writable raster of the given type and size.
+     * @param  dataType  the data type as one of the {@link DataBuffer} constants.
+     * @param  width     the desired raster width.
+     * @param  height    the desired raster height.
+     * @param  numBands  the desired number of bands.
+     * @return a writable raster of the given type and size.
      */
     static WritableRaster createBandedRaster(final int dataType, final int width, final int height, final int numBands) {
         switch (dataType) {
@@ -112,8 +112,8 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
     /**
      * Fills the given raster with random numbers.
      *
-     * @param raster The raster to fill.
-     * @param random The random numbers generator to use.
+     * @param raster  the raster to fill.
+     * @param random  the random numbers generator to use.
      */
     static void fill(final WritableRaster raster, final Random random) {
         final int xmin = raster.getMinX();
@@ -140,12 +140,12 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
      * this method will returns a gray scale image. For three or four banded images, this method
      * will use an (A)RGB color model.
      *
-     * @param  dataType The data type as one of the {@link DataBuffer} constants.
-     * @param  width    The desired raster width.
-     * @param  height   The desired raster height.
-     * @param  numBands The desired number of bands.
-     * @return An image of the given type and size.
-     * @throws IllegalArgumentException If this method does not support the given combination
+     * @param  dataType  the data type as one of the {@link DataBuffer} constants.
+     * @param  width     the desired raster width.
+     * @param  height    the desired raster height.
+     * @param  numBands  the desired number of bands.
+     * @return an image of the given type and size.
+     * @throws IllegalArgumentException if this method does not support the given combination
      *         of number of bands and data type.
      */
     static BufferedImage createImage(final int dataType, final int width, final int height, final int numBands) {

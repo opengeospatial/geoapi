@@ -54,7 +54,7 @@ public interface Releasability {
      * Parties to which the release statement applies.
      * Returns an empty collection if none.
      *
-     * @return Parties to which the release statement applies.
+     * @return parties to which the release statement applies.
      */
     @UML(identifier="addressee", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Responsibility> getAddressees();
@@ -63,7 +63,7 @@ public interface Releasability {
      * Release statement.
      * May be {@code null} if unspecified.
      *
-     * @return Release statement, or {@code null} if none.
+     * @return release statement, or {@code null} if none.
      */
     @UML(identifier="statement", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getStatement();
@@ -72,7 +72,7 @@ public interface Releasability {
      * Components in determining releasability.
      * Returns an empty collection if none.
      *
-     * @return Components in determining releasability.
+     * @return components in determining releasability.
      */
     @UML(identifier="disseminationConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<Restriction> getDisseminationConstraints();

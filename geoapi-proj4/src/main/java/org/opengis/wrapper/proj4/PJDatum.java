@@ -92,8 +92,8 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     /**
      * Creates a new {@code PJ} structure from the given Proj4 data.
      *
-     * @param identifier The datum identifier, or {@code null} for inferring it from the definition.
-     * @param definition The Proj4 definition string.
+     * @param identifier  the datum identifier, or {@code null} for inferring it from the definition.
+     * @param definition  the Proj4 definition string.
      */
     PJDatum(ReferenceIdentifier name, final String definition) throws IllegalArgumentException {
         super(definition);
@@ -225,8 +225,8 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
      * Returns the value of the given parameter, or {@code null} if none. The given parameter key
      * shall include the {@code '+'} prefix and {@code '='} suffix, for example {@code "+proj="}.
      *
-     * @param  key The parameter name.
-     * @return The parameter value.
+     * @param  key  the parameter name.
+     * @return the parameter value.
      */
     final String getParameter(final String key) {
         int i = definition.indexOf(key);
@@ -242,8 +242,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Throws unconditionally an exception since there is no WKt formatting provided by
-     * the Proj4 library.
+     * Throws unconditionally an exception since there is no WKt formatting provided by the Proj4 library.
      */
     @Override
     public String toWKT() throws UnsupportedOperationException {

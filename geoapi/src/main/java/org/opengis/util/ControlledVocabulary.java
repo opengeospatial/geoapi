@@ -47,7 +47,7 @@ public interface ControlledVocabulary {
     /**
      * Returns the name of this enumeration constant or code list value.
      *
-     * @return The name of this enumeration constant or code list value.
+     * @return the name of this enumeration constant or code list value.
      */
     String name();
 
@@ -61,7 +61,7 @@ public interface ControlledVocabulary {
      *   <li>Any other special case, if any. See {@link CodeList#names()} for some examples.</li>
      * </ul>
      *
-     * @return All names of this constant. This array is never null and never empty.
+     * @return all names of this constant. This array is never null and never empty.
      */
     String[] names();
 
@@ -69,7 +69,7 @@ public interface ControlledVocabulary {
      * Returns the identifier declared in the {@link org.opengis.annotation.UML} annotation, or {@code null} if none.
      * The UML identifier shall be the ISO or OGC name for this enumeration or code list constant.
      *
-     * @return The ISO/OGC identifier for this constant, or {@code null} if none.
+     * @return the ISO/OGC identifier for this constant, or {@code null} if none.
      */
     String identifier();
 
@@ -77,7 +77,7 @@ public interface ControlledVocabulary {
      * Returns the ordinal of this constant. This is its position in its elements declaration,
      * where the initial constant is assigned an ordinal of zero.
      *
-     * @return The position of this constants in elements declaration.
+     * @return the position of this constants in elements declaration.
      */
     int ordinal();
 
@@ -88,7 +88,7 @@ public interface ControlledVocabulary {
      * require the class to be known at compile-time — provided that at leat one instance of the family
      * is available.
      *
-     * @return The enumeration or list of codes of the same kind than this item.
+     * @return the enumeration or list of codes of the same kind than this item.
      */
     public abstract ControlledVocabulary[] family();
 }

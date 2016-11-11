@@ -83,7 +83,7 @@ public abstract class Validator {
      * <p>The container may contain this validator instance. For example if this validator
      * is an instance of {@link org.opengis.test.referencing.CRSValidator}, then the
      * {@link ValidatorContainer#crs} field may be set to {@code this}. Doing so ensure
-     * that the proper {@code validate(...)} methods will be invoked in case of callback.</p>
+     * that the proper {@code validate(…)} methods will be invoked in case of callback.</p>
      *
      * <p><b>Tip:</b> if the other validators are not expected to callback the {@code validate}
      * methods defined in this {@code Validator} instance (for example a datum has no reason
@@ -128,9 +128,9 @@ public abstract class Validator {
     /**
      * Creates a new validator instance.
      *
-     * @param container   The set of validators to use for validating other kinds of objects
-     *                    (see {@linkplain #container field javadoc}).
-     * @param packageName The name of the package containing the classes to be validated.
+     * @param container    the set of validators to use for validating other kinds of objects
+     *                     (see {@linkplain #container field javadoc}).
+     * @param packageName  the name of the package containing the classes to be validated.
      */
     protected Validator(final ValidatorContainer container, final String packageName) {
         Objects.requireNonNull(container, "ValidatorContainer shall not be null.");
@@ -141,7 +141,7 @@ public abstract class Validator {
     /**
      * Returns {@code true} if the given object is an empty collection.
      *
-     * @param  value The object to test, or {@code null}.
+     * @param  value  the object to test, or {@code null}.
      * @return {@code true} if the given object is a non-null empty collection.
      */
     private static boolean isEmptyCollection(final Object value) {
@@ -161,8 +161,8 @@ public abstract class Validator {
      *
      * Subclasses can override this method if they want more control.
      *
-     * @param message The message to send in case of failure.
-     * @param value   The value to test for non-nullity.
+     * @param message  the message to send in case of failure.
+     * @param value    the value to test for non-nullity.
      *
      * @see #requireMandatoryAttributes
      * @see Obligation#MANDATORY
@@ -189,8 +189,8 @@ public abstract class Validator {
      *
      * Subclasses can override this method if they want more control.
      *
-     * @param message The message to send in case of failure.
-     * @param value   The value to test for nullity.
+     * @param message  the message to send in case of failure.
+     * @param value    the value to test for nullity.
      *
      * @see #enforceForbiddenAttributes
      * @see Obligation#FORBIDDEN
@@ -211,10 +211,9 @@ public abstract class Validator {
      * Delegates to {@link #mandatory(String, Object)} or {@link #forbidden(String, Object)}
      * depending on a condition.
      *
-     * @param message   The message to send in case of failure.
-     * @param value     The value to test for (non)-nullity.
-     * @param condition {@code true} if the given value is mandatory, or {@code false} if it
-     *                  is forbidden.
+     * @param message    the message to send in case of failure.
+     * @param value      the value to test for (non)-nullity.
+     * @param condition  {@code true} if the given value is mandatory, or {@code false} if it is forbidden.
      *
      * @see Obligation#CONDITIONAL
      */
@@ -239,7 +238,7 @@ public abstract class Validator {
      * <p>This method does not invoke any other {@code validate} method on collection elements.
      * It is caller responsibility to validates elements according their types.</p>
      *
-     * @param collection The collection of elements to validate, or {@code null}.
+     * @param collection  the collection of elements to validate, or {@code null}.
      *
      * @since 3.1
      */

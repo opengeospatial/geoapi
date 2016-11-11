@@ -58,7 +58,7 @@ public interface PointGrid {
      * Returns the width of this grid. All {@linkplain PointArray point array}
      * in this grid must have this {@linkplain PointArray#length length}.
      *
-     * @return The grid width.
+     * @return the grid width.
      * @see PointArray#length
      */
     int width();
@@ -67,7 +67,7 @@ public interface PointGrid {
      * Returns the length of this array. This is equivalent to
      * <code>{@linkplain #rows rows}().{@linkplain PointArray#length length}()</code>.
      *
-     * @return The grid height.
+     * @return the grid height.
      */
     int height();
 
@@ -77,7 +77,7 @@ public interface PointGrid {
      *
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
      * @param  column The column index from 0 inclusive to {@link #width} exclusive.
-     * @return The point at the given index.
+     * @return the point at the given index.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
     DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
@@ -102,7 +102,7 @@ public interface PointGrid {
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
      * @param  column The column index from 0 inclusive to {@link #width} exclusive.
      * @param  dest An optionnaly pre-allocated direct position.
-     * @return The {@code dest} argument, or a new object if {@code dest} was null.
+     * @return the {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */
     DirectPosition get(int row, int column, DirectPosition dest) throws IndexOutOfBoundsException;
@@ -128,7 +128,7 @@ public interface PointGrid {
      * are reflected in the grid, and vice-versa.
      *
      * @param  row The index from 0 inclusive to {@link #height} exclusive.
-     * @return The row at the given index.
+     * @return the row at the given index.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     PointArray getRow(int row) throws IndexOutOfBoundsException;
@@ -138,7 +138,7 @@ public interface PointGrid {
      * The list is backed by this {@code PointGrid}, so changes to any
      * {@linkplain PointArray point array} are reflected in the grid, and vice-versa.
      *
-     * @return The rows in this grid.
+     * @return the rows in this grid.
      */
     @UML(identifier="row", obligation=MANDATORY, specification=ISO_19107)
     List<PointArray> rows();

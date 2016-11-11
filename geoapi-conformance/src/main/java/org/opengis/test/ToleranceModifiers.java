@@ -127,9 +127,9 @@ public strictfp final class ToleranceModifiers {
      * In the extreme case where the coordinate to compare is located at a pole, then the
      * tolerance is 360° in longitude values.
      *
-     * @param  λDimension The dimension of longitude ordinate values (typically 0 or 1).
-     * @param  φDimension The dimension of latitude ordinate values (typically 0 or 1).
-     * @return A tolerance modifier suitable for comparing geographic coordinates.
+     * @param  λDimension  the dimension of longitude ordinate values (typically 0 or 1).
+     * @param  φDimension  the dimension of latitude ordinate values (typically 0 or 1).
+     * @return a tolerance modifier suitable for comparing geographic coordinates.
      *
      * @see ToleranceModifier#GEOGRAPHIC
      * @see ToleranceModifier#GEOGRAPHIC_φλ
@@ -212,9 +212,9 @@ public strictfp final class ToleranceModifiers {
      * the {@link CalculationType} is {@link CalculationType#INVERSE_TRANSFORM INVERSE_TRANSFORM}.
      * For all other cases, the modifier does nothing.</p>
      *
-     * @param  λDimension The dimension of longitude ordinate values (typically 0 or 1).
-     * @param  φDimension The dimension of latitude ordinate values (typically 0 or 1).
-     * @return A tolerance modifier suitable for comparing projected coordinates.
+     * @param  λDimension  the dimension of longitude ordinate values (typically 0 or 1).
+     * @param  φDimension  the dimension of latitude ordinate values (typically 0 or 1).
+     * @return a tolerance modifier suitable for comparing projected coordinates.
      *
      * @see ToleranceModifier#PROJECTION
      * @see ToleranceModifier#PROJECTION_FROM_φλ
@@ -255,9 +255,9 @@ public strictfp final class ToleranceModifiers {
      * unchanged. If the tolerance array is shorter than the factors array, the extra factors values
      * are ignored.</p>
      *
-     * @param  types The calculation types for which to apply the given scale factors.
-     * @param  factors The factors by which to multiply the tolerance values.
-     * @return A tolerance modifier that scale the tolerance thresholds, or {@code null} if
+     * @param  types    the calculation types for which to apply the given scale factors.
+     * @param  factors  the factors by which to multiply the tolerance values.
+     * @return a tolerance modifier that scale the tolerance thresholds, or {@code null} if
      *         the given set or array is empty or all the given scale factors are equals to 1.
      */
     public static ToleranceModifier scale(Set<CalculationType> types, final double... factors) {
@@ -353,8 +353,8 @@ public strictfp final class ToleranceModifiers {
      * Returns a modifier which will return the maximal tolerance threshold of all the given
      * modifiers for each dimension.
      *
-     * @param  modifiers The modifiers to iterate over.
-     * @return A filter for the maximal tolerance threshold of all the given modifiers,
+     * @param  modifiers  the modifiers to iterate over.
+     * @return a filter for the maximal tolerance threshold of all the given modifiers,
      *         or {@code null} if the given {@code modifiers} array is empty.
      */
     public static ToleranceModifier maximum(final ToleranceModifier... modifiers) {
@@ -438,10 +438,9 @@ public strictfp final class ToleranceModifiers {
      * adjusted according the first modifier, then the result is given to the second modifier
      * for an additional adjustment.
      *
-     * @param  first  The first modifier, or {@code null}.
-     * @param  second The second modifier, or {@code null}.
-     * @return The concatenation of the two given identifiers, or {@code null} if both
-     *         identifiers are {@code null}.
+     * @param  first   the first modifier, or {@code null}.
+     * @param  second  the second modifier, or {@code null}.
+     * @return the concatenation of the two given identifiers, or {@code null} if both identifiers are {@code null}.
      */
     public static ToleranceModifier concatenate(final ToleranceModifier first, final ToleranceModifier second) {
         if (first  == null) return second;
@@ -510,8 +509,8 @@ public strictfp final class ToleranceModifiers {
      * transform. Implementors can modify the tolerance threshold for particular math transforms
      * using the {@link ImplementationDetails} interface.
      *
-     * @param  transform The transform for which to get implementation-specific modifiers.
-     * @return All implementation-specific modifiers found, or an empty array if none.
+     * @param  transform  the transform for which to get implementation-specific modifiers.
+     * @return all implementation-specific modifiers found, or an empty array if none.
      *
      * @see ImplementationDetails#tolerance(MathTransform)
      */
