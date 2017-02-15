@@ -45,7 +45,7 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 public class TransformException extends Exception {
@@ -79,6 +79,17 @@ public class TransformException extends Exception {
      */
     public TransformException(String message) {
         super(message);
+    }
+
+    /**
+     * Constructs an exception with the specified cause.
+     *
+     * @param cause  the cause, saved for later retrieval by the {@link #getCause()} method.
+     *
+     * @since 3.1
+     */
+    public TransformException(Throwable cause) {
+        super(cause);
     }
 
     /**
