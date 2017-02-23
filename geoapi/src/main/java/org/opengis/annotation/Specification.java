@@ -224,6 +224,33 @@ public enum Specification {
     ISO_19111_2((short) 2009),
 
     /**
+     * ISO 19112, Spatial referencing by geographic identifiers.
+     * This is the specification for package {@link org.opengis.referencing.gazetteer}.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <blockquote style="font-size:small">
+     * <p>Defines the conceptual schema for spatial references based on geographic identifiers.
+     * It establishes a general model for spatial referencing using geographic identifiers,
+     * defines the components of a spatial reference system and defines the essential components of a gazetteer.
+     * Spatial referencing by coordinates is not addressed in this document; however, a mechanism for recording
+     * complementary coordinate references is included.</p>
+     *
+     * <p>ISO 19112 assists users in understanding the spatial references used in datasets.
+     * It enables gazetteers to be constructed in a consistent manner and supports the development of other standards
+     * in the field of geographic information. It is applicable to digital geographic data, and its principles may be
+     * extended to other forms of geographic data such as maps, charts and textual documents.</p>
+     * </blockquote>
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2003:</b> ISO 19112:2003   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=26017">Buy from ISO</a>
+     */
+    ISO_19112((short) 2003),
+
+    /**
      * ISO 19115-1, Metadata
      * (<a href="http://www.opengeospatial.org/standards/as">OGC Topic 11</a>).
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
