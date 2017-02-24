@@ -133,5 +133,5 @@ public interface Gazetteer {
      * @see ReferenceSystemUsingIdentifiers#getLocationTypes()
      */
     @UML(identifier="locationType", obligation=MANDATORY, specification=ISO_19112)
-    Collection<LocationType> getLocationTypes();
+    Collection<? extends LocationType> getLocationTypes();
 }

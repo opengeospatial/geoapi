@@ -154,5 +154,5 @@ public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
      * @see LocationType#getReferenceSystem()
      */
     @UML(identifier="locationType", obligation=MANDATORY, specification=ISO_19112)
-    Collection<LocationType> getLocationTypes();
+    Collection<? extends LocationType> getLocationTypes();
 }

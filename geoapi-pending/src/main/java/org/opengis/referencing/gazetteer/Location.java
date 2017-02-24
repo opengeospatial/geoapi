@@ -89,7 +89,7 @@ public interface Location {
      * @return other identifier(s) for the location instance, or an empty collection if none.
      */
     @UML(identifier="alternativeGeographicIdentifier", obligation=OPTIONAL, specification=ISO_19112)
-    Collection<InternationalString> getAlternativeGeographicIdentifiers();
+    Collection<? extends InternationalString> getAlternativeGeographicIdentifiers();
 
     /**
      * Date of creation of this version of the location instance.
@@ -166,7 +166,7 @@ public interface Location {
      * @see LocationType#getParents()
      */
     @UML(identifier="parent", obligation=OPTIONAL, specification=ISO_19112)
-    Collection<Location> getParents();
+    Collection<? extends Location> getParents();
 
     /**
      * Location instances of a different location type which subdivides this location instance.
@@ -176,5 +176,5 @@ public interface Location {
      * @see LocationType#getChildren()
      */
     @UML(identifier="child", obligation=OPTIONAL, specification=ISO_19112)
-    Collection<Location> getChildren();
+    Collection<? extends Location> getChildren();
 }
