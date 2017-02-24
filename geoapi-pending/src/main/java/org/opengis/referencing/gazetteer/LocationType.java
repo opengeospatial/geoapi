@@ -83,7 +83,7 @@ public interface LocationType {
      * @return method(s) of uniquely identifying location instances.
      */
     @UML(identifier="identification", obligation=MANDATORY, specification=ISO_19112)
-    Collection<InternationalString> getIdentification();
+    Collection<InternationalString> getIdentifications();
 
     /**
      * The way in which location instances are defined.
@@ -134,18 +134,18 @@ public interface LocationType {
      *
      * @return parent location types, or an empty collection if none.
      *
-     * @see Location#getParent()
+     * @see Location#getParents()
      */
     @UML(identifier="parent", obligation=OPTIONAL, specification=ISO_19112)
-    Collection<LocationType> getParent();
+    Collection<LocationType> getParents();
 
     /**
      * Child location types (location types which sub-divides this location type).
      *
      * @return child location types, or an empty collection if none.
      *
-     * @see Location#getChild()
+     * @see Location#getChildren()
      */
     @UML(identifier="child", obligation=OPTIONAL, specification=ISO_19112)
-    Collection<LocationType> getChild();
+    Collection<LocationType> getChildren();
 }

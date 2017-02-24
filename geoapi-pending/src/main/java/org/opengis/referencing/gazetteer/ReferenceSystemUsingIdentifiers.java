@@ -150,8 +150,8 @@ public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
      *
      * @return description of location type(s) in the spatial reference system.
      *
-     * @see Gazetteer#getLocationType()
+     * @see Gazetteer#getLocationTypes()
      */
     @UML(identifier="locationType", obligation=MANDATORY, specification=ISO_19112)
-    Collection<LocationType> getLocationType();
+    Collection<LocationType> getLocationTypes();
 }

@@ -130,8 +130,8 @@ public interface Gazetteer {
      *
      * @return description of location type(s) for which instances are recorded in the gazetteer.
      *
-     * @see ReferenceSystemUsingIdentifiers#getLocationType()
+     * @see ReferenceSystemUsingIdentifiers#getLocationTypes()
      */
     @UML(identifier="locationType", obligation=MANDATORY, specification=ISO_19112)
-    Collection<LocationType> getLocationType();
+    Collection<LocationType> getLocationTypes();
 }
