@@ -44,6 +44,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
+ * Spatial reference system using geographic identifiers instead than coordinates for describing locations.
  * A spatial reference system using geographic identifiers shall comprise at least one location types.
  * Each location instance shall be uniquely identified by means of a geographic identifier.
  * A spatial reference system using geographic identifiers shall be minimally described by the following attributes:
@@ -70,6 +71,24 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="SI_SpatialReferenceSystemUsingGeographicIdentifiers", specification=ISO_19112)
 public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * object factory {@code createFoo(…)} methods.
+     * This is used for setting the value to be returned by {@link #getTheme()}.
+     *
+     * @see #getTheme()
+     */
+    String THEME_KEY = "theme";
+
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * object factory {@code createFoo(…)} methods.
+     * This is used for setting the value to be returned by {@link #getOverallOwner()}.
+     *
+     * @see #getOverallOwner()
+     */
+    String OVERALL_OWNER_KEY = "overallOwner";
+
     /**
      * Identifier of the spatial reference system.
      *

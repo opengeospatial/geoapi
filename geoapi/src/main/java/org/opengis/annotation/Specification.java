@@ -247,6 +247,7 @@ public enum Specification {
      * </ul>
      *
      * @see <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=26017">Buy from ISO</a>
+     * @see <a href="https://portal.opengeospatial.org/files/?artifact_id=46964">OGC 11-122r1 Gazetteer Service — Profile of the Web Feature Service</a>
      */
     ISO_19112((short) 2003),
 
