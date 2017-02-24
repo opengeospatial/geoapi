@@ -66,6 +66,9 @@ public interface LocationType {
     /**
      * Name of the location type.
      *
+     * <div class="note"><b>Examples:</b>
+     * “administrative area”, “town”, “locality”, “street”, “property”.</div>
+     *
      * @return name of the location type.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19112)
@@ -75,7 +78,11 @@ public interface LocationType {
      * Property used as the defining characteristic of the location type.
      *
      * <div class="note"><b>Examples:</b>
-     * “administration”, “electoral”, “postal”.</div>
+     * <cite>“local administration”</cite> for administrative areas,
+     * <cite>“built environment”</cite> for towns or properties,
+     * <cite>“access”</cite> for streets,
+     * <cite>“electoral”</cite>,
+     * <cite>“postal”</cite>.</div>
      *
      * @return property used as the defining characteristic of the location type.
      *
@@ -88,7 +95,7 @@ public interface LocationType {
      * Method(s) of uniquely identifying location instances.
      *
      * <div class="note"><b>Examples:</b>
-     * “name”, “code”.</div>
+     * “name”, “code”, “unique street reference number”, “geographic address”.</div>
      *
      * @return method(s) of uniquely identifying location instances.
      */
@@ -151,6 +158,9 @@ public interface LocationType {
 
     /**
      * Parent location types (location types of which this location type is a sub-division).
+     * A location type can have more than one possible parent. For example the parent of a
+     * location type named <cite>“street”</cite> could be <cite>“locality”</cite>, <cite>“town”</cite>
+     * or <cite>“administrative area”</cite>.
      *
      * @return parent location types, or an empty collection if none.
      *
