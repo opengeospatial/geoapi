@@ -47,18 +47,19 @@ import static org.opengis.annotation.Specification.*;
  * Location instance.
  * The minimum set of attributes of each location instance is:
  * <ul>
- *   <li>geographic identifier;</li>
- *   <li>geographic extent;</li>
- *   <li>administrator.</li>
+ *   <li><b>geographic identifier</b> (the value, for example a name or code)</li>
+ *   <li><b>geographic extent</b> (the position of the identified thing)</li>
+ *   <li><b>administrator</b> (who is responsible for this identifier)</li>
+ *   <li><b>location type</b> (which specifies the nature of the identifier and its associated geographic location)</li>
  * </ul>
  *
  * The following may also be recorded:
  * <ul>
- *   <li>temporal extent;</li>
- *   <li>alternative geographic identifier;</li>
- *   <li>position;</li>
- *   <li>parent location instance;</li>
- *   <li>child location instance.</li>
+ *   <li>temporal extent</li>
+ *   <li>alternative geographic identifier</li>
+ *   <li>position</li>
+ *   <li>parent location instance</li>
+ *   <li>child location instance</li>
  * </ul>
  *
  * Position must be recorded if the geographic identifier contains insufficient information to identify location.
@@ -66,6 +67,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see LocationType
  */
 @UML(identifier="SI_LocationInstance", specification=ISO_19112)
 public interface Location {
@@ -81,6 +84,14 @@ public interface Location {
     InternationalString getGeographicIdentifier();
 
     /**
+     * Other identifier(s) for the location instance.
+     *
+     * @return other identifier(s) for the location instance, or an empty collection if none.
+     */
+    @UML(identifier="alternativeGeographicIdentifier", obligation=OPTIONAL, specification=ISO_19112)
+    Collection<InternationalString> getAlternativeGeographicIdentifiers();
+
+    /**
      * Date of creation of this version of the location instance.
      *
      * @return date of creation of this version of the location instance.
@@ -89,14 +100,6 @@ public interface Location {
      */
     @UML(identifier="temporalExtent", obligation=OPTIONAL, specification=ISO_19112)
     TemporalExtent getTemporalExtent();
-
-    /**
-     * Other identifier(s) for the location instance.
-     *
-     * @return other identifier(s) for the location instance, or an empty collection if none.
-     */
-    @UML(identifier="alternativeGeographicIdentifier", obligation=OPTIONAL, specification=ISO_19112)
-    Collection<InternationalString> getAlternativeGeographicIdentifiers();
 
     /**
      * Description of the location instance.
@@ -134,6 +137,14 @@ public interface Location {
      */
     @UML(identifier="position", obligation=CONDITIONAL, specification=ISO_19112)
     Position getPosition();
+
+    /**
+     * A description of the nature of this geographic identifier.
+     *
+     * @return the nature of the identifier and its associated geographic location.
+     */
+    @UML(identifier="locationType", obligation=MANDATORY, specification=ISO_19112)
+    LocationType getLocationType();
 
     /**
      * Name of organization responsible for defining the characteristics of the location instance.

@@ -42,14 +42,24 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Description of a location.
+ * Description of the nature (type) of a geographic identifier.
+ * Some of the mandatory properties are:
+ * <ul>
+ *   <li><b>name</b> (the name of the location type)</li>
+ *   <li><b>identification</b> (the nature of the geographic identifier, for example name or code)</li>
+ *   <li><b>definition</b> (the meaning of the location type)</li>
+ *   <li><b>territory of use</b> (geographic area within which the location type occurs)</li>
+ *   <li><b>owner</b> (who is responsible for this location type)</li>
+ * </ul>
  *
  * <p>Location types shall be immutable:
- * a new version of the location type shall be created whenever any change occurs to any of its attributes.</p
+ * a new version of the location type shall be created whenever any change occurs to any of its attributes.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see Location
  */
 @UML(identifier="SI_LocationType", specification=ISO_19112)
 public interface LocationType {
@@ -116,6 +126,16 @@ public interface LocationType {
      */
     @UML(identifier="territoryOfUse", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getTerritoryOfUse();
+
+    /**
+     * The reference system that comprises this location type.
+     *
+     * @return the reference system that comprises this location type.
+     *
+     * @see ReferenceSystemUsingIdentifiers#getLocationTypes()
+     */
+    @UML(identifier="referenceSystem", obligation=MANDATORY, specification=ISO_19112)
+    ReferenceSystemUsingIdentifiers getReferenceSystem();
 
     /**
      * Name of organization or class of organization able to create and destroy location instances.
