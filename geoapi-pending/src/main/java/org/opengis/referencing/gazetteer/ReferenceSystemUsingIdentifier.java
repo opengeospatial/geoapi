@@ -121,6 +121,7 @@ public interface ReferenceSystemUsingIdentifier extends ReferenceSystem {
      *
      * @see LocationType#getOwner()
      * @see Gazetteer#getCustodian()
+     * @see Location#getAdministrator()
      */
     @UML(identifier="overallOwner", obligation=MANDATORY, specification=ISO_19112)
     Party getOverallOwner();

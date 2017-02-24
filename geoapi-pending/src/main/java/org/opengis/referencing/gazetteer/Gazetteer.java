@@ -106,6 +106,7 @@ public interface Gazetteer {
      *
      * @return organization responsible for maintenance of the gazetteer.
      *
+     * @see Location#getAdministrator()
      * @see LocationType#getOwner()
      * @see ReferenceSystemUsingIdentifier#getOverallOwner()
      */

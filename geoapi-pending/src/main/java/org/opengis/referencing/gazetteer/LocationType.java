@@ -122,6 +122,7 @@ public interface LocationType {
      *
      * @return organization or class of organization able to create and destroy location instances.
      *
+     * @see Location#getAdministrator()
      * @see Gazetteer#getCustodian()
      * @see ReferenceSystemUsingIdentifier#getOverallOwner()
      */
@@ -132,14 +133,18 @@ public interface LocationType {
      * Parent location types (location types of which this location type is a sub-division).
      *
      * @return parent location types, or an empty collection if none.
+     *
+     * @see Location#getParent()
      */
     @UML(identifier="parent", obligation=OPTIONAL, specification=ISO_19112)
     Collection<LocationType> getParent();
 
     /**
-     * Child location types (location types which sub-divides this location type)
+     * Child location types (location types which sub-divides this location type).
      *
      * @return child location types, or an empty collection if none.
+     *
+     * @see Location#getChild()
      */
     @UML(identifier="child", obligation=OPTIONAL, specification=ISO_19112)
     Collection<LocationType> getChild();
