@@ -65,7 +65,7 @@ public interface Gazetteer {
      *
      * @departure harmonization
      *   ISO 19112 defines this property as a <code>CharacterString</code> (free text). GeoAPI changes the type
-     *   to <code>Identifier</code> for consistency with <code>ReferenceSystemUsingIdentifier.name</code> and
+     *   to <code>Identifier</code> for consistency with <code>ReferenceSystemUsingIdentifiers.name</code> and
      *   for providing a specific place where to store the version information.
      *
      * @return name of the gazetteer, including version date.
@@ -81,7 +81,7 @@ public interface Gazetteer {
      *
      * @return description of the location types contained in the gazetteer, or {@code null} if none.
      *
-     * @see ReferenceSystemUsingIdentifier#getScope()
+     * @see ReferenceSystemUsingIdentifiers#getScope()
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19112)
     InternationalString getScope();
@@ -96,7 +96,7 @@ public interface Gazetteer {
      * @return geographic domain covered by the gazetteer.
      *
      * @see LocationType#getTerritoryOfUse()
-     * @see ReferenceSystemUsingIdentifier#getDomainOfValidity()
+     * @see ReferenceSystemUsingIdentifiers#getDomainOfValidity()
      */
     @UML(identifier="territoryOfUse", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getTerritoryOfUse();
@@ -108,7 +108,7 @@ public interface Gazetteer {
      *
      * @see Location#getAdministrator()
      * @see LocationType#getOwner()
-     * @see ReferenceSystemUsingIdentifier#getOverallOwner()
+     * @see ReferenceSystemUsingIdentifiers#getOverallOwner()
      */
     @UML(identifier="custodian", obligation=MANDATORY, specification=ISO_19112)
     Party getCustodian();
@@ -130,7 +130,7 @@ public interface Gazetteer {
      *
      * @return description of location type(s) for which instances are recorded in the gazetteer.
      *
-     * @see ReferenceSystemUsingIdentifier#getLocationType()
+     * @see ReferenceSystemUsingIdentifiers#getLocationType()
      */
     @UML(identifier="locationType", obligation=MANDATORY, specification=ISO_19112)
     Collection<LocationType> getLocationType();

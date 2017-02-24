@@ -69,7 +69,7 @@ public interface LocationType {
      *
      * @return property used as the defining characteristic of the location type.
      *
-     * @see ReferenceSystemUsingIdentifier#getTheme()
+     * @see ReferenceSystemUsingIdentifiers#getTheme()
      */
     @UML(identifier="theme", obligation=MANDATORY, specification=ISO_19112)
     InternationalString getTheme();
@@ -112,7 +112,7 @@ public interface LocationType {
      * @return geographic area within which the location type occurs.
      *
      * @see Gazetteer#getTerritoryOfUse()
-     * @see ReferenceSystemUsingIdentifier#getDomainOfValidity()
+     * @see ReferenceSystemUsingIdentifiers#getDomainOfValidity()
      */
     @UML(identifier="territoryOfUse", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getTerritoryOfUse();
@@ -124,7 +124,7 @@ public interface LocationType {
      *
      * @see Location#getAdministrator()
      * @see Gazetteer#getCustodian()
-     * @see ReferenceSystemUsingIdentifier#getOverallOwner()
+     * @see ReferenceSystemUsingIdentifiers#getOverallOwner()
      */
     @UML(identifier="owner", obligation=MANDATORY, specification=ISO_19112)
     Party getOwner();

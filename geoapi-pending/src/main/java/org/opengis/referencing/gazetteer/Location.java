@@ -85,7 +85,7 @@ public interface Location {
      *
      * @return date of creation of this version of the location instance.
      *
-     * @see ReferenceSystemUsingIdentifier#getTheme()
+     * @see ReferenceSystemUsingIdentifiers#getTheme()
      */
     @UML(identifier="temporalExtent", obligation=OPTIONAL, specification=ISO_19112)
     TemporalExtent getTemporalExtent();
@@ -142,7 +142,7 @@ public interface Location {
      *
      * @see Gazetteer#getCustodian()
      * @see LocationType#getOwner()
-     * @see ReferenceSystemUsingIdentifier#getOverallOwner()
+     * @see ReferenceSystemUsingIdentifiers#getOverallOwner()
      */
     @UML(identifier="administrator", obligation=MANDATORY, specification=ISO_19112)
     Party getAdministrator();
