@@ -95,9 +95,15 @@ public interface LocationType {
      * Method(s) of uniquely identifying location instances.
      *
      * <div class="note"><b>Examples:</b>
-     * “name”, “code”, “unique street reference number”, “geographic address”.</div>
+     * “name”, “code”, “unique street reference number”, “geographic address”.
+     * A location using “name” identifications may have the “Spain” {@linkplain Location#getGeographicIdentifier()
+     * geographic identifier}, and a location using “postcode” identifications may have the “SW1P 3AD” geographic
+     * identifier.
+     * </div>
      *
      * @return method(s) of uniquely identifying location instances.
+     *
+     * @see Location#getGeographicIdentifier()
      */
     @UML(identifier="identification", obligation=MANDATORY, specification=ISO_19112)
     Collection<? extends InternationalString> getIdentifications();

@@ -44,7 +44,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Location instance.
+ * Identifiable geographic place.
+ * Properties of location instances are described by {@link LocationType}.
  * The minimum set of attributes of each location instance is:
  * <ul>
  *   <li><b>geographic identifier</b> (the value, for example a name or code)</li>
@@ -55,14 +56,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * The following may also be recorded:
  * <ul>
- *   <li>temporal extent</li>
- *   <li>alternative geographic identifier</li>
- *   <li>position</li>
- *   <li>parent location instance</li>
- *   <li>child location instance</li>
+ *   <li><b>temporal extent</b></li>
+ *   <li><b>alternative geographic identifier</b></li>
+ *   <li><b>position</b> (mandatory if the geographic identifier contains insufficient information to identify location)</li>
+ *   <li><b>parent location instance</b></li>
+ *   <li><b>child location instance</b></li>
  * </ul>
- *
- * Position must be recorded if the geographic identifier contains insufficient information to identify location.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -73,12 +72,22 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="SI_LocationInstance", specification=ISO_19112)
 public interface Location {
     /**
-     * Unique identifier for the location instance.
+     * Unique identifier for the location instance. The methods of identifying locations is specified by the
+     * {@linkplain LocationType#getIdentifications() location type identifications}.
+     *
+     * <div class="note"><b>Examples:</b>
+     * if {@link LocationType#getIdentifications()} contain “name”, then geographic identifiers may be country
+     * names like “Japan” or “France”, or places like “Eiffel Tower”. If location type identifications contain
+     * “code”, then geographic identifiers may be “SW1P 3AD” postcode.
+     * </div>
+     *
      * In order to ensure that a geographic identifier is unique within a wider geographic domain,
      * the geographic identifier may need to include an identifier of an instance of a parent location type,
      * for example “Paris, Texas”.
      *
      * @return unique identifier for the location instance.
+     *
+     * @see LocationType#getIdentifications()
      */
     @UML(identifier="geographicIdentifier", obligation=MANDATORY, specification=ISO_19112)
     InternationalString getGeographicIdentifier();
@@ -94,9 +103,7 @@ public interface Location {
     /**
      * Date of creation of this version of the location instance.
      *
-     * @return date of creation of this version of the location instance.
-     *
-     * @see ReferenceSystemUsingIdentifiers#getTheme()
+     * @return date of creation of this version of the location instance, or {@code null} if none.
      */
     @UML(identifier="temporalExtent", obligation=OPTIONAL, specification=ISO_19112)
     TemporalExtent getTemporalExtent();
@@ -107,7 +114,8 @@ public interface Location {
      * <ul>
      *   <li>As a collection of smaller geographic features.
      *       Example: the European Union, defined by its constituent countries;</li>
-     *   <li>By a bounding polygon, described by either of the following:
+     *   <li>By a {@linkplain org.opengis.metadata.extent.BoundingPolygon bounding polygon},
+     *       described by either of the following:
      *     <ul>
      *       <li>As a closed set of boundary segments (each defined by one or more geographic features).
      *           Example: a block defined by the bounding streets.</li>
@@ -117,6 +125,10 @@ public interface Location {
      * </ul>
      *
      * @return description of the location instance.
+     *
+     * @see org.opengis.metadata.extent.GeographicDescription
+     * @see org.opengis.metadata.extent.GeographicBoundingBox
+     * @see org.opengis.metadata.extent.BoundingPolygon
      */
     @UML(identifier="geographicExtent", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getGeographicExtent();
@@ -133,7 +145,7 @@ public interface Location {
      *   ISO 19112 declares the <code>GM_Point</code> type. GeoAPI uses the <code>Position</code> union
      *   for allowing the use of either <code>GM_Point</code> or <code>DirectPosition</code>.
      *
-     * @return coordinates of a representative point for the location instance.
+     * @return coordinates of a representative point for the location instance, or {@code null} if none.
      */
     @UML(identifier="position", obligation=CONDITIONAL, specification=ISO_19112)
     Position getPosition();
