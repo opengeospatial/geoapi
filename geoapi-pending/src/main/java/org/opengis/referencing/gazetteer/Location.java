@@ -33,6 +33,7 @@ package org.opengis.referencing.gazetteer;
 
 import java.util.Collection;
 import org.opengis.util.InternationalString;
+import org.opengis.geometry.Envelope;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.metadata.extent.TemporalExtent;
 import org.opengis.metadata.extent.GeographicExtent;
@@ -132,6 +133,18 @@ public interface Location {
      */
     @UML(identifier="geographicExtent", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getGeographicExtent();
+
+    /**
+     * Returns an envelope that encompass the location. This property is partially redundant with
+     * {@link #getGeographicExtent()}, except that this method allows envelopes in projected CRS.
+     *
+     * @return envelope that encompass the location, or {@code null} if none.
+     *
+     * @departure extension
+     *   This method has been added because <code>getGeographicExtent()</code> does not provide easily
+     *   the spatial extent if the location "native" CRS is projected (or any other non-geographic CRS).
+     */
+    Envelope getEnvelope();
 
     /**
      * Coordinates of a representative point for the location instance.
