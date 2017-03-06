@@ -31,14 +31,15 @@
  */
 
 /**
- * Directory mapping geographic identifiers to locations, either as descriptions or coordinates.
- * This package deals only with spatial referencing by <em>geographic identifiers</em>, as specified in
- * {@linkplain org.opengis.annotation.Specification#ISO_19112 Spatial referencing by geographic identifiers}.
- * Spatial referencing by coordinates is the subject of another package, {@link org.opengis.referencing.crs}.
+ * Mapping between geographic identifiers and locations, either as descriptions or coordinates.
+ * This package deals only with spatial referencing by <em>geographic identifiers</em>,
+ * as specified in the {@linkplain org.opengis.annotation.Specification#ISO_19112 ISO 19112} standard.
+ * Spatial referencing <em>by coordinates</em> (ISO 19111) is the subject of another package,
+ * namely {@link org.opengis.referencing.crs}.
  *
  * <p>Geographic identifiers are location descriptors such as country name, postal code or grid indexes.
  * Gazetteers provide linking mechanism between referencing using geographic identifiers (this package)
- * and referencing using coordinates (…{@link org.opengis.referencing.crs .crs} package).</p>
+ * and referencing using coordinates ({@link org.opengis.referencing.crs} package).</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

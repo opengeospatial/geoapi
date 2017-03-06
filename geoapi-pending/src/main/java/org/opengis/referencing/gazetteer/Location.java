@@ -141,8 +141,10 @@ public interface Location {
      * @return envelope that encompass the location, or {@code null} if none.
      *
      * @departure extension
-     *   This method has been added because <code>getGeographicExtent()</code> does not provide easily
-     *   the spatial extent if the location "native" CRS is projected (or any other non-geographic CRS).
+     *   This method has been added because <code>getGeographicExtent()</code> does not provide an easy
+     *   way to get the spatial extent in location "native" coordinate reference system (CRS) if that
+     *   CRS is not geographic. For example if the location provides coordinates in a projected CRS,
+     *   then its envelope can not be represented directly in a <code>GeographicBoundingBox</code>.
      */
     Envelope getEnvelope();
 
