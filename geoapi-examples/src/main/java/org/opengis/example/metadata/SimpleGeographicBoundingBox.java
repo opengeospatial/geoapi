@@ -130,9 +130,8 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     }
 
     /**
-     * Returns the western-most coordinate of the limit of the
-     * dataset extent. The value is expressed in longitude in
-     * decimal degrees (positive east).
+     * Returns the western-most coordinate of the limit of the dataset extent.
+     * The value is expressed in longitude in decimal degrees (positive east).
      *
      * @return the western-most longitude between -180 and +180°.
      */
@@ -142,9 +141,8 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     }
 
     /**
-     * Returns the eastern-most coordinate of the limit of the
-     * dataset extent. The value is expressed in longitude in
-     * decimal degrees (positive east).
+     * Returns the eastern-most coordinate of the limit of the dataset extent.
+     * The value is expressed in longitude in decimal degrees (positive east).
      *
      * @return the eastern-most longitude between -180 and +180°.
      */
@@ -154,9 +152,8 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     }
 
     /**
-     * Returns the southern-most coordinate of the limit of the
-     * dataset extent. The value is expressed in latitude in
-     * decimal degrees (positive north).
+     * Returns the southern-most coordinate of the limit of the dataset extent.
+     * The value is expressed in latitude in decimal degrees (positive north).
      *
      * @return the southern-most latitude between -90 and +90°.
      */
@@ -166,9 +163,8 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     }
 
     /**
-     * Returns the northern-most, coordinate of the limit of the
-     * dataset extent. The value is expressed in latitude in
-     * decimal degrees (positive north).
+     * Returns the northern-most, coordinate of the limit of the dataset extent.
+     * The value is expressed in latitude in decimal degrees (positive north).
      *
      * @return the northern-most latitude between -90 and +90°.
      */
@@ -275,7 +271,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     /**
      * Returns a string representation of this extent.
      *
-     * @return a string representation of the given box in the given locale.
+     * @return a string representation of this box.
      */
     @Override
     public String toString() {

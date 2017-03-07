@@ -36,7 +36,7 @@ package org.opengis.referencing.operation;
  * Thrown when {@link MathTransform#inverse()} is invoked but the transform can not be inverted.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
@@ -60,6 +60,17 @@ public class NoninvertibleTransformException extends TransformException {
      */
     public NoninvertibleTransformException(String message) {
         super(message);
+    }
+
+    /**
+     * Constructs an exception with the specified cause.
+     *
+     * @param cause  the cause, saved for later retrieval by the {@link #getCause()} method.
+     *
+     * @since 3.1
+     */
+    public NoninvertibleTransformException(Throwable cause) {
+        super(cause);
     }
 
     /**

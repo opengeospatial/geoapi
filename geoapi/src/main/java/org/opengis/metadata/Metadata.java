@@ -397,9 +397,9 @@ public interface Metadata {
     Collection<? extends OnlineResource> getMetadataLinkages();
 
     /**
-     * Uniformed Resource Identifier (URI) of the dataset to which the metadata applies.
+     * Uniform Resource Identifier (URI) of the dataset to which the metadata applies.
      *
-     * @return uniformed Resource Identifier of the dataset, or {@code null}.
+     * @return Uniform Resource Identifier of the dataset, or {@code null}.
      *
      * @since 2.1
      *
