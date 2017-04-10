@@ -62,8 +62,8 @@ import static org.opengis.annotation.Specification.*;
  * The version reference is included in the {@linkplain #getName() name} of the spatial reference system.
  *
  * @departure rename
- *   The name has been shortened by omitting the {@code Spatial} and {@code Geographic} parts of the name.
- *   This is consistent with the change of {@link #getDomainOfValidity()} return type, which had to be relaxed
+ *   The name has been shortened by omitting the <code>Spatial</code> and <code>Geographic</code> parts of the name.
+ *   This is consistent with the change of <code>getDomainOfValidity()</code> return type, which had to be relaxed
  *   from geographic extent to more generic extent.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -98,7 +98,7 @@ public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
      *   which defines the parent type, defines <code>name</code> as a <code>MD_Identifier</code>.
      *   The type in this sub-interface had to be changed to the same type than the parent interface.
      *   Furthermore ISO 19112 said that a version reference can be included in the name,
-     *   in which case {@link Identifier#getVersion()} can be used.
+     *   in which case <code>Identifier.getVersion()</code> can be used.
      *
      * @return identifier of the spatial reference system.
      */
