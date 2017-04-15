@@ -36,6 +36,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.IOException;
 
 import org.opengis.metadata.*;
 import org.opengis.metadata.acquisition.*;
@@ -120,6 +126,46 @@ public final strictfp class CodeListTest {
     };
 
     /**
+     * The root directory of Java source code, or {@code null} if unspecified.
+     */
+    private String sourceDirectory;
+
+    /**
+     * Parse the Java source code of a {@code CodeList} implementation in order to find the initial capacity.
+     * This method search for the numerical argument of the first {@code new ArrayList} instruction found in
+     * the source code. Having an accurate initial capacity is not mandatory, but avoid a little bit of memory
+     * reallocation at application startup time.
+     *
+     * @param  codeList  the code list for which to verify the initial capacity.
+     * @return the declared initial capacity.
+     * @throws IOException if an error occurred while reading the source file.
+     * @throws NumberFormatException if the initial capacity can not be parsed.
+     */
+    private int getDeclaredCapacity(final Class<?> codeList) throws IOException {
+        String line;
+        int start;
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(
+                new File(sourceDirectory, codeList.getName().replace('.', '/').concat(".java"))), "UTF-8")))
+        {
+            do {
+                line = in.readLine();
+                if (line == null) {
+                    throw new EOFException();
+                }
+                start = line.indexOf("new ArrayList");
+            } while (start < 0);
+        }
+        start = line.indexOf('(', start);
+        if (start >= 0) {
+            final int end = line.indexOf(')', ++start);
+            if (end >= 0) {
+                return Integer.parseInt(line.substring(start, end));
+            }
+        }
+        throw new NumberFormatException("Can not parse ArrayList initial capacity in following Java code line:\n" + line);
+    }
+
+    /**
      * Tests every code lists. This method ensures that the a {@code values()} and {@code family()}
      * method is defined for each code list, and verify each declared code lists.
      *
@@ -127,12 +173,14 @@ public final strictfp class CodeListTest {
      * @throws NoSuchMethodException     if a {@code values()} or {@code valueOf(String)} method is not found.
      * @throws IllegalAccessException    if a {@code values()} or {@code valueOf(String)} method is not public.
      * @throws InvocationTargetException if an error occurred while invoking {@code values()} or {@code valueOf(String)}.
+     * @throws IOException               if an error occurred while reading source code.
      */
     @Test
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void testAll() throws NoSuchFieldException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException
+            IllegalAccessException, InvocationTargetException, IOException
     {
+        sourceDirectory = System.getProperty("maven.source.directory");
         for (final Class<?> codeClass : CODE_LISTS) {
             /*
              * Gets the values() method, which should public and static.
@@ -184,23 +232,13 @@ public final strictfp class CodeListTest {
                 }
                 assertArrayEquals(arrayName + " content does not match values().", values, asList.toArray());
                 /*
-                 * Verifies if the VALUES ArrayList size was properly sized. We need to access to
-                 * private ArrayList.elementData field in order to perform this check.  Tested on
-                 * Sun's JSE 6.0. It is not mandatory to have the VALUES list properly dimensioned;
-                 * it just avoid a little bit of memory reallocation at application startup time.
+                 * Verifies if the ArrayList initial capacity match the actual list size.
+                 * It is not mandatory to have an accurate initial capacity, but it avoid
+                 * a little bit of memory reallocation at application startup time.
                  */
-                final int capacity;
-                try {
-                    final Field candidate = ArrayList.class.getDeclaredField("elementData");
-                    candidate.setAccessible(true);
-                    final Object array = candidate.get(asList);
-                    capacity = ((Object[]) array).length;
-                } catch (ReflectiveOperationException e) {
-                    // Not a fatal error since it is implementation-specific.
-                    System.err.println("Warning: " + e);
-                    continue;
+                if (sourceDirectory != null) {
+                    assertEquals(arrayName + " not properly sized.", asList.size(), getDeclaredCapacity(codeClass));
                 }
-                assertEquals(arrayName + " not properly sized.", asList.size(), capacity);
             }
             /*
              * Tests valueOf(String).
