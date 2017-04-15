@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2016 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2017 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -266,11 +266,11 @@ public final strictfp class GlobalTest implements FileFilter {
         try {
             uri = sample.getResource(name).toURI();
         } catch (URISyntaxException e) {
-            fail("Can't not create a URI for the " + pathname + " class:\n" + e);
+            fail("Can not create a URI for the " + pathname + " class:\n" + e);
             return Collections.emptySet();
         }
         File file = new File(uri);
-        while (true) { // Break condition in the middle of the loop.
+        for (;;) {                              // Break condition is in the middle of the loop.
             assertEquals("Unexpected name.", name, file.getName());
             file = file.getParentFile();
             assertNotNull("Missing parent directory.", file);
@@ -298,14 +298,16 @@ public final strictfp class GlobalTest implements FileFilter {
             } else {
                 String classname = name.toString();
                 classname = classname.substring(0, classname.lastIndexOf(".class"));
-                final Class<?> c;
-                try {
-                    c = Class.forName(classname);
-                } catch (ClassNotFoundException e) {
-                    fail(e.toString());
-                    continue;
+                if (!classname.endsWith("-info")) {
+                    final Class<?> c;
+                    try {
+                        c = Class.forName(classname);
+                    } catch (ClassNotFoundException e) {
+                        fail(e.toString());
+                        continue;
+                    }
+                    assertTrue(classname, classes.add(c));              // Fails if a class is declared twice.
                 }
-                assertTrue(classname, classes.add(c));              // Fails if a class is declared twice.
             }
             name.setLength(length);
         }
