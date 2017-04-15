@@ -172,12 +172,12 @@
       <dependency>
         <groupId>javax.measure</groupId>
         <artifactId>unit-api</artifactId>
-        <version>1.0</version>
+        <version>1.0.1-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>tec.units</groupId>
         <artifactId>unit-ri</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.3-SNAPSHOT</version>
       </dependency>
       <dependency>
         <!-- The JUnit version number appears also in the Javadoc plugin configuration,
@@ -295,8 +295,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.7</source>          <!-- Same than the version required by JSR-363.    -->
-          <target>1.7</target>          <!-- Same than the version required by JSR-363.    -->
+          <source>9</source>
+          <target>9</target>
           <debug>false</debug>          <!-- Whether to include debugging information.     -->
           <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
           <encoding>${project.build.sourceEncoding}</encoding>

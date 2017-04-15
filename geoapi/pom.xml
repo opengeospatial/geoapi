@@ -22,7 +22,7 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>GeoAPI normative</name>
   <description>
 <!-- Left alignment because this description will be copied in META-INF/MANIFEST.MF
