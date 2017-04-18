@@ -29,13 +29,13 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.tools.taglet;
+package org.opengis.tools.doclet;
 
 import java.io.File;
 import java.io.Writer;
 import java.io.IOException;
-import com.sun.javadoc.Doc;
-import com.sun.javadoc.Tag;
+import com.sun.source.doctree.DocTree;
+import javax.lang.model.element.Element;
 
 
 /**
@@ -45,7 +45,7 @@ import com.sun.javadoc.Tag;
  * {@link Departure} taglet doesn't use the {@code equals} method anyway.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 final class DepartureElement implements Comparable<DepartureElement> {
@@ -86,20 +86,22 @@ final class DepartureElement implements Comparable<DepartureElement> {
     final boolean member;
 
     /**
-     * Creates an element for the given tag.
+     * Stores a description for the given departure tag.
      */
-    DepartureElement(final Tag tag, final String text) {
-        final Doc holder = tag.holder();
-        this.file = tag.position().file();
-        this.name = holder.name();
+    DepartureElement(final Element parent, final DocTree tag, final String text) {
+        this.file = new File(BlockTaglet.getCompilationUnitTree(tag).getSourceFile().getName());
+        this.name = parent.getSimpleName().toString();
         this.text = text;
-        if      (holder.isMethod())       {member=true;  type = "Method";}
-        else if (holder.isField())        {member=true;  type = "Field";}
-        else if (holder.isEnumConstant()) {member=true;  type = "Enum";}
-        else if (holder.isEnum())         {member=false; type = "Enum";}
-        else if (holder.isInterface())    {member=false; type = "Interface";}
-        else if (holder.isClass())        {member=false; type = "Class";}
-        else                              {member=false; type = "Package";}
+        switch (parent.getKind()) {
+            case METHOD:        member=true;  type = "Method";    break;
+            case FIELD:         member=true;  type = "Field";     break;
+            case ENUM_CONSTANT: member=true;  type = "Enum";      break;
+            case ENUM:          member=false; type = "Enum";      break;
+            case INTERFACE:     member=false; type = "Interface"; break;
+            case CLASS:         member=false; type = "Class";     break;
+            case PACKAGE:       member=false; type = "Package";   break;
+            default:            member=false; type = "Unknown";   break;
+        }
         /*
          * Get the name of the file, without path or extension. An extension is applied for
          * package-info, where the package name (e.g. "org.opengis.util") is used instead.

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2013-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -30,12 +30,10 @@
  *    times remain with copyright holders.
  */
 
-
 /**
- * Javadoc taglets for processing custom tags in GeoAPI source code comments.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
- * @since   2.0
+ * Javadoc taglets and annotation processing tools for processing GeoAPI after compilation.
+ * Those tools are used mostly for javadoc generation.
  */
-package org.opengis.tools.taglet;
+module org.opengis.geoapi {
+    requires jdk.javadoc;
+}

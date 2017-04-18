@@ -32,9 +32,8 @@
 
 
 /**
- * Doclet that modify the behavior of some standard options.
- *
- * <p><b>Source:</b> this class is a copy of Apache SIS doclet, relicensed to OGC by the Doclet author.</p>
+ * Doclet that modify the behavior of some standard options, together with
+ * Javadoc taglets for processing custom tags in GeoAPI source code comments.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1
