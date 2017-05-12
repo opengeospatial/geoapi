@@ -139,6 +139,20 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.9. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

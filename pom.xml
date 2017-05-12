@@ -275,9 +275,36 @@
 
 
     <!-- ====================================================
-             Compilation
+             Configuration checks, then build
          ==================================================== -->
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.4.1</version>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>1.7</version>
+                </requireJavaVersion>
+                <dependencyConvergence/>
+              </rules>
+            </configuration>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+
+
+      <!-- ====================================================
+               Compilation
+           ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -296,10 +323,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.7</source>          <!-- Same than the version required by JSR-363.    -->
-          <target>1.7</target>          <!-- Same than the version required by JSR-363.    -->
-          <debug>false</debug>          <!-- Whether to include debugging information.     -->
-          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
+          <source>1.7</source>          <!-- Same than the version required by JSR-363. -->
+          <target>1.7</target>          <!-- Same than the version required by JSR-363. -->
+          <debug>false</debug>          <!-- Whether to include debugging information.  -->
+          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
           <useIncrementalCompilation>false</useIncrementalCompilation> <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>
