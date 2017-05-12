@@ -161,6 +161,9 @@ public interface Metadata {
 
     /**
      * The character coding standard used for the metadata set.
+     * ISO 19115:2014 represents character sets by references to the
+     * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
+     * which is represented in Java by {@link java.nio.charset.Charset}.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
      * <div class="note"><b>Examples:</b>
