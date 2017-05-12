@@ -66,6 +66,8 @@ public interface Distribution {
      * @return description of the format of the data to be distributed.
      *
      * @condition Mandatory if {@link Distributor#getDistributorFormats()} is empty.
+     *
+     * @see org.opengis.metadata.identification.Identification#getResourceFormats()
      */
     @Profile(level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
