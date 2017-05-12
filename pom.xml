@@ -177,7 +177,7 @@
       <dependency>
         <groupId>tec.units</groupId>
         <artifactId>unit-ri</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
       </dependency>
       <dependency>
         <!-- The JUnit version number appears also in the Javadoc plugin configuration,
