@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2016 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2017 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -30,9 +30,30 @@
  *    times remain with copyright holders.
  */
 
-@XmlSchema(URL="http://schemas.opengis.net/filter/1.0.0/filter.xsd", specification=OGC_02059)
+/**
+ * Determines whether a spatial operation geometric arguments satisfy the stated spatial relationship.
+ * The operator {@linkplain org.opengis.filter.Filter#evaluate evaluates} to {@code true} if the spatial
+ * relationship is satisfied. Otherwise the operator evaluates to {@code false}.
+ *
+ * The following is adapted from the <a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC®
+ * Filter Encoding 2.0 Encoding Standard</a>:
+ *
+ * <p>{@linkplain org.opengis.filter.spatial.SpatialOperator Spatial operators} are used to test whether
+ * the value of a geometric property, potentially referenced using the name of the property, and a
+ * (potentially literal) geometric value satisfy the spatial relationship implied by the operator.
+ * For example, the {@link org.opengis.filter.spatial.Overlaps} operator evaluates whether the value
+ * of the specified geometric property and the specified literal geometric value spatially overlap.</p>
+ *
+ * <p>The {@link org.opengis.filter.spatial.BBOX} element is defined as a convenient and more compact
+ * way of encoding the very common bounding box constraint based on the {@code gml:Box} geometry.
+ * The {@code BBOX} operator should identify all geometries that spatially interact with the box in some manner.</p>
+ *
+ * <p>The spatial operators {@link org.opengis.filter.spatial.DWithin} and {@link org.opengis.filter.spatial.Beyond}
+ * test whether the value of a geometric property is within or beyond a specified distance of the specified literal
+ * geometric value. Distance values are expressed using the
+ * {@linkplain org.opengis.filter.spatial.DistanceBufferOperator#getDistance distance} attribute.
+ * The content of the distance attribute represents the magnitude of the distance and the
+ * {@linkplain org.opengis.filter.spatial.DistanceBufferOperator#getDistanceUnits units}
+ * attribute is used to specify the units of measure.</p>
+ */
 package org.opengis.filter.spatial;
-
-// Annotations
-import org.opengis.annotation.XmlSchema;
-import static org.opengis.annotation.Specification.*;

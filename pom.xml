@@ -231,7 +231,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.19.1</version>
+          <version>2.20</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -306,6 +306,21 @@
           <compilerArgs>
             <arg>-Xlint:all</arg>
           </compilerArgs>
+        </configuration>
+      </plugin>
+
+
+
+    <!-- ====================================================
+             Tests
+         ==================================================== -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <maven.source.directory>${project.build.sourceDirectory}</maven.source.directory>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
 
@@ -574,7 +589,7 @@
            ==================================================== -->
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>2.19.1</version>
+        <version>2.20</version>
       </plugin>
 
 

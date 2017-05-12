@@ -29,20 +29,32 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.filter.temporal;
-
-import org.opengis.annotation.XmlElement;
 
 /**
- * Concrete {@linkplain BinaryTemporalOperator binary temporal operator} that evaluates to
- * {@code true} if the the first expression is contained by the second.
- * 
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
- * @author Johann Sorel (Geomatys)
- * @since GeoAPI 3.1
+ * Indicates the ordering requested during a data query.
+ * The following is adapted from the following specifications:
+ * <ul>
+ *   <li><a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC® Filter Encoding 2.0 Encoding Standard</a></li>
+ *   <li><a href="http://portal.opengeospatial.org/files/?artifact_id=5929">OpenGIS® Catalogue Service Implementation Specification 2.0.1</a></li>
+ * </ul>
+ *
+ * <p>An <cite>SortBy</cite> can be formed using the elements:
+ * {@link org.opengis.filter.expression.Add}, {@link org.opengis.filter.expression.Subtract},
+ * {@link org.opengis.filter.expression.Multiply}, {@link org.opengis.filter.expression.Divide},
+ * {@link org.opengis.filter.expression.PropertyName}, {@link org.opengis.filter.expression.Literal}
+ * and {@link org.opengis.filter.expression.Function}. They all belong to the substitution group
+ * expression which means that any of them can be used wherever an expression is called for. In addition,
+ * the combinaison of these elements are themselves expressions and can be used wherever an expression is
+ * called for.</p>
+ *
+ * <h3>FeatureCollections</h3>
+ * <p>The contents of a FeatureCollection are not defined with respect to order.</p>
+ *
+ * <h3>FeatureLists</h3>
+ * <p>A FeatureList represents an ordered collection of features, possibly using a
+ * siers of SortBy elements to define the intended order.</p>
+ *
+ * <h3>Catalog and Web Feature Server</h3>
+ * <p>Both the Catalog and Web Feature Server specifications all the use of SortBy during requests.</p>
  */
-@XmlElement("TContains")
-public interface TContains extends BinaryTemporalOperator {
-    /** Operator name used to check FilterCapabilities */
-    public static final String NAME = "TContains";
-}
+package org.opengis.filter.sort;

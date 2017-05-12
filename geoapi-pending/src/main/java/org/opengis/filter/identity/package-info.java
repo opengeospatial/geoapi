@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2016 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2017 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,36 +29,17 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.annotation;
-
-import java.lang.annotation.Target;
-import java.lang.annotation.Documented;
-import java.lang.annotation.Retention;
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
-
 
 /**
- * An annotation mapping a package to the XML schema from which it was derived.
+ * An <cite>Identifier</cite> indicates object identity requested during data query or reference.
+ * The following is adapted from the following specifications:
+ * <ul>
+ *   <li><a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC® Filter Encoding 2.0 Encoding Standard</a></li>
+ *   <li><a href="http://portal.opengeospatial.org/files/?artifact_id=5929">OpenGIS® Catalogue Service Implementation Specification 2.0.1</a></li>
+ * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.0
+ * <h3>Catalog and Web Feature Server</h3>
+ * <p>Both the Catalog and Web Feature Server specifications use specific identifiers (like FeatureId)
+ * during their requests and responses.</p>
  */
-@Documented
-@Target(PACKAGE)
-@Retention(RUNTIME)
-public @interface XmlSchema {
-    /**
-     * The URL to the schema.
-     *
-     * @return the URL to the schema.
-     */
-    String URL();
-
-    /**
-     * The specification where this XML schema come from.
-     *
-     * @return the originating specification.
-     */
-    Specification specification();
-}
+package org.opengis.filter.identity;

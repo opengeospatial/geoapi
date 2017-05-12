@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2016 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2017 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -30,9 +30,35 @@
  *    times remain with copyright holders.
  */
 
-@XmlSchema(URL="http://schemas.opengis.net/filter/1.0.0/filter.xsd", specification=OGC_02059)
+/**
+ * Filters {@linkplain org.opengis.feature.Feature features} according their properties.
+ * A <cite>filter expression</cite> is a construct used to constraints the property
+ * values of an object type for the purpose of identifying a subset of object instances
+ * to be operated upon in some manner.
+ *
+ * The following is adapted from the <a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC®
+ * Filter Encoding 2.0 Encoding Standard</a>:
+ *
+ * <h3>Comparison operators</h3>
+ * <p>A comparison operator is used to form expressions that evaluate the mathematical comparison between two arguments.
+ * If the arguments satisfy the comparison then the expression {@linkplain org.opengis.filter.Filter#evaluate evaluates}
+ * to {@code true}. Otherwise the expression evaluates to {@code false}.</p>
+ *
+ * <p>In addition to the standard set ({@code =}, {@code <}, {@code >}, {@code >=}, {@code <=}, {@code <>})
+ * of comparison operators, this package defines the elements {@link org.opengis.filter.PropertyIsLike},
+ * {@link org.opengis.filter.PropertyIsBetween} and {@link org.opengis.filter.PropertyIsNull}.</p>
+ *
+ * <h3>Logical operators</h3>
+ * <p>A logical operator can be used to combine one or more conditional expressions.
+ * The logical operator {@link org.opengis.filter.And} evaluates to {@code true} if all the combined
+ * expressions evaluate to {@code true}. The operator {@link org.opengis.filter.Or} operator evaluates
+ * to {@code true} is any of the combined expressions evaluate to {@code true}.
+ * The {@link org.opengis.filter.Not} operator reverses the logical value of an expression.
+ * The elements {@code And}, {@code Or} and {@code Not} can be used to combine scalar,
+ * spatial and other logical expressions to form more complex compound expressions.</p>
+ *
+ * <h3>Identity</h3>
+ * <p>Identity can be checked using {@link org.opengis.filter.Id}, selected objects
+ * will are matched against a set of {@link org.opengis.filter.identiy.Identifier}.</p>
+ */
 package org.opengis.filter;
-
-// Annotations
-import org.opengis.annotation.XmlSchema;
-import static org.opengis.annotation.Specification.*;
