@@ -468,9 +468,11 @@ public interface Metadata {
     Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo();
 
     /**
-     * Restrictions on the access and use of data.
+     * Restrictions on the access and use of metadata.
      *
-     * @return restrictions on the access and use of data.
+     * @return restrictions on the access and use of metadata.
+     *
+     * @see Identification#getResourceConstraints()
      */
     @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Constraints> getMetadataConstraints();
@@ -495,6 +497,8 @@ public interface Metadata {
      * Information about the frequency of metadata updates, and the scope of those updates.
      *
      * @return the frequency of metadata updates and their scope, or {@code null}.
+     *
+     * @see Identification#getResourceMaintenances()
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();
