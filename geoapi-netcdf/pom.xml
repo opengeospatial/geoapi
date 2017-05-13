@@ -84,7 +84,7 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>cdm</artifactId>
-      <version>4.6.6</version>
+      <version>4.6.9</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -135,6 +135,20 @@
                   </fileset>
                 </copy>
               </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.9. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <skip>true</skip>
             </configuration>
           </execution>
         </executions>
