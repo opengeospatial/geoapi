@@ -276,10 +276,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
      *
-     * @departure historic
-     *   This code was defined in an older specification (2003) and removed in more recent
-     *   edition (2007), but has been kept in GeoAPI.
-     *
      * @category Temporal
      */
     @UML(identifier="future", obligation=CONDITIONAL, specification=ISO_19111)
@@ -289,10 +285,6 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards the past.
      * This is used for {@linkplain org.opengis.referencing.crs.TemporalCRS temporal}
      * coordinate reference systems.
-     *
-     * @departure historic
-     *   This code was defined in an older specification (2003) and removed in more recent
-     *   edition (2007), but has been kept in GeoAPI.
      *
      * @category Temporal
      */
