@@ -118,7 +118,7 @@ public interface FeatureType extends IdentifiedType {
      * Returns the attribute, operation or association role for the given name.
      *
      * @param  name  the name of the property to search.
-     * @return the property for the given name, or {@code null} if none.
+     * @return the property for the given name.
      * @throws PropertyNotFoundException if the given argument is not a property name of this feature type.
      *
      * @see Feature#getProperty(String)
