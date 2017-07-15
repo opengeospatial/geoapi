@@ -37,9 +37,8 @@ import static org.proj4.PJ.DIMENSION_MAX;
 
 
 /**
- * The base class for factories of Proj4 wrappers. This base class provides static methods working
- * directly with the Proj.4 definition strings. Subclasses provides implementation of GeoAPI
- * factory interfaces.
+ * The base class for factories of {@literal Proj.4} wrappers. This base class provides static methods working
+ * directly with the Proj.4 definition strings. Subclasses provides implementation of GeoAPI factory interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
@@ -48,19 +47,18 @@ import static org.proj4.PJ.DIMENSION_MAX;
  */
 public class PJFactory implements Factory {
     /**
-     * The Proj4 parameter used for declaration of axis order. This parameter is handled in a special
-     * way by this factory: it be a comma-separated list of axis order definitions, in which case the
-     * second value is used as the axis order of the {@link ProjectedCRS#getBaseCRS()}.
+     * The {@literal Proj.4} parameter used for declaration of axis order. This parameter is handled in a special
+     * way by this factory: it can be a comma-separated list of axis order definitions, in which case the second
+     * value is used as the axis order of the {@link ProjectedCRS#getBaseCRS()}.
      *
-     * <p>An other departure from Proj.4 is that Proj.4 expect the axis parameter to be exactly
-     * 3 characters long, which our code accepts 2 characters as well. We relax the Proj.4
-     * rule because we use the number of characters for determining the number of dimensions.
-     * This is okay since 1 character = 1 axis.</p>
+     * <p>Another departure from Proj.4 is that Proj.4 expects the axis parameter to be exactly 3 characters long,
+     * while our code accepts 2 characters as well. We relax the Proj.4 rule because we use the number of characters
+     * for determining the number of dimensions. This is okay since 1 character = 1 axis.</p>
      */
     static final String AXIS_ORDER_PARAM = "+axis=";
 
     /**
-     * The character used for separating the Proj4 axis order declarations.
+     * The character used for separating the {@literal Proj.4} axis order declarations.
      */
     static final char AXIS_ORDER_SEPARATOR = ',';
 
@@ -144,16 +142,16 @@ public class PJFactory implements Factory {
     }
 
     /**
-     * Creates a new CRS from the given Proj4 definition string. The CRS can have an arbitrary
-     * number of dimensions in the [2-{@value org.proj4.PJ#DIMENSION_MAX}] range. However Proj.4
-     * will handle at most the 3 first dimensions. All supplemental dimensions will be simply
-     * copied unchanged by {@link MathTransform} implementations.
+     * Creates a new CRS from the given {@literal Proj.4} definition string. The CRS can have an arbitrary number
+     * of dimensions in the [2-{@value org.proj4.PJ#DIMENSION_MAX}] range. However Proj.4 will handle at most the
+     * 3 first dimensions. All supplemental dimensions will be simply copied unchanged by {@link MathTransform}
+     * implementations.
      *
      * @param  crsId       the name of the CRS to create, or {@code null} if none.
      * @param  datumId     the name of the datum to create, or {@code null} if none.
      * @param  definition  the Proj.4 definition string.
      * @param  dimension   the number of dimension of the CRS to create.
-     * @return a CRS created from the given definition string and number of dimension.
+     * @return a CRS created from the given definition string and number of dimensions.
      * @throws NullPointerException if the definition string is {@code null}.
      * @throws IllegalArgumentException if one of the given argument has an invalid value.
      */
@@ -181,7 +179,7 @@ public class PJFactory implements Factory {
                 if (!Character.isWhitespace(c)) break;
                 beginParam += Character.charCount(c);
             }
-            final StringBuilder modified = new StringBuilder(definition.length());
+            final StringBuilder modified = new StringBuilder(length);
             modified.append(definition, 0, beginParam);
             int endParam = PJCRS.Projected.findWordEnd(definition, beginParam);
             orientation = definition.substring(beginParam, endParam);
@@ -310,7 +308,7 @@ public class PJFactory implements Factory {
          * @return the coordinate reference system for the given properties.
          * @throws FactoryException if the object creation failed.
          */
-        private CoordinateReferenceSystem createGeodeticCRS(final String type, final Map<String,?> properties,
+        private static CoordinateReferenceSystem createGeodeticCRS(final String type, final Map<String,?> properties,
                 final GeodeticDatum datum, final CoordinateSystem cs) throws FactoryException
         {
             final int           dimension  = cs.getDimension();

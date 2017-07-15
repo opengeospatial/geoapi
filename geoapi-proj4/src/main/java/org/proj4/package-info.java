@@ -17,10 +17,9 @@
  */
 
 /**
- * Wrappers for the <a href="http://proj.osgeo.org/">Proj4</a> library. A copy of this package
- * exists also in the <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/jniwrap/">jniwrap</a>
- * directory of the Proj.4 project. This GeoAPI package differs from the Proj.4 package in the
- * following (note that this is a compatible difference):
+ * Wrappers for the <a href="http://proj.osgeo.org/">{@literal Proj.4}</a> library. A copy of this package exists also
+ * in the <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/jniwrap/">jniwrap</a> directory of the Proj.4 project.
+ * This GeoAPI package differs from the Proj.4 package in the following (note that this is a compatible difference):
  *
  * <ul>
  *   <li>{@link org.proj4.PJException} extends {@link org.opengis.referencing.operation.TransformException}

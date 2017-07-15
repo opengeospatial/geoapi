@@ -33,7 +33,7 @@ import org.proj4.PJ;
 
 
 /**
- * A math transform which delegate its work to the Proj4 native library.
+ * A math transform which delegate its work to the {@literal Proj.4} native library.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -266,7 +266,7 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     }
 
     /**
-     * The Proj4 library does not provide derivative functions.
+     * The {@literal Proj.4} library does not provide derivative functions.
      */
     @Override
     public Matrix derivative(DirectPosition point) throws TransformException {

@@ -21,9 +21,9 @@ import java.util.Objects;
 
 
 /**
- * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure.
- * Almost every methods defined in this class are native methods delegating the work to the
- * Proj.4 library. This class is the only place where such native methods are defined.
+ * Wraps the <a href="http://proj.osgeo.org/">{@literal Proj.4}</a> {@code PJ} native data structure.
+ * Almost every methods defined in this class are native methods delegating the work to the Proj.4 library.
+ * This class is the only place where such native methods are defined.
  *
  * <p>In the Proj.4 library, the {@code PJ} structure aggregates in a single place information usually
  * splitted in many different ISO 19111 interfaces: {@link org.opengis.referencing.datum.Ellipsoid},
@@ -38,34 +38,33 @@ import java.util.Objects;
  */
 public class PJ {
     /**
-     * The maximal number of dimension accepted by the {@link #transform(PJ, int, double[], int, int)}
-     * method. This upper limit is actually somewhat arbitrary. This limit exists mostly as a safety
-     * against potential misuse.
+     * The maximal number of dimension accepted by the {@link #transform(PJ, int, double[], int, int)} method.
+     * This upper limit is actually somewhat arbitrary. This limit exists mostly as a safety against potential misuse.
      */
     public static final int DIMENSION_MAX = 100;
-    // IMPLEMENTATION NOTE: if the value is modified, edit also the native C file.
 
     /**
-     * Loads the Proj4 library.
+     * Loads the {@literal Proj.4} library.
      */
     static {
         System.loadLibrary("proj");
     }
 
     /**
-     * The pointer to {@code PJ} structure allocated in the C/C++ heap. This value has no
-     * meaning in Java code. <strong>Do not modify</strong>, since this value is used by Proj4.
-     * Do not rename neither, unless you update accordingly the C code in JNI wrappers.
+     * The pointer to {@code PJ} structure allocated in the C/C++ heap. This value has no meaning in Java code.
+     * <strong>Do not modify</strong>, since this value is used by Proj.4. Do not rename neither, unless you update
+     * accordingly the C code in JNI wrappers.
      */
     private final long ptr;
 
     /**
-     * Creates a new {@code PJ} structure from the given Proj4 definition string.
+     * Creates a new {@code PJ} structure from the given {@literal Proj.4} definition string.
      *
      * @param  definition  the Proj.4 definition string.
      * @throws IllegalArgumentException if the PJ structure can not be created from the given string.
      */
     public PJ(final String definition) throws IllegalArgumentException {
+        Objects.requireNonNull(definition);
         ptr = allocatePJ(definition);
         if (ptr == 0) {
             throw new IllegalArgumentException(definition);
@@ -99,7 +98,7 @@ public class PJ {
      * to the {@link #ptr} field. The allocated structure is released by the {@link #finalize()}
      * method.
      *
-     * @param  definition  the Proj4 definition string.
+     * @param  definition  the Proj.4 definition string.
      * @return a pointer to the PJ native data structure, or 0 if the operation failed.
      */
     private static native long allocatePJ(String definition);
@@ -116,17 +115,17 @@ public class PJ {
     private static native long allocateGeoPJ(PJ projected);
 
     /**
-     * Returns the version number of the Proj4 library.
+     * Returns the version number of the {@literal Proj.4} library.
      *
      * @return the Proj.4 release string.
      */
     public static native String getVersion();
 
     /**
-     * Returns the Proj4 definition string. This is the string given to the constructor,
+     * Returns the {@literal Proj.4} definition string. This is the string given to the constructor,
      * expanded with as much information as possible.
      *
-     * @return the Proj4 definition string.
+     * @return the Proj.4 definition string.
      */
     public native String getDefinition();
 
@@ -230,10 +229,10 @@ public class PJ {
     public native double getLinearUnitToMetre(boolean vertical);
 
     /**
-     * Transforms in-place the coordinates in the given array. The coordinates array shall contain
-     * (<var>x</var>,<var>y</var>,<var>z</var>,…) tuples, where the <var>z</var> and
-     * following dimensions are optional. Note that any dimension after the <var>z</var> value
-     * are ignored.
+     * Transforms in-place the coordinates in the given array.
+     * The coordinates array shall contain (<var>x</var>,<var>y</var>,<var>z</var>,…) tuples,
+     * where the <var>z</var> and any additional dimensions are optional.
+     * Note that any dimension after the <var>z</var> value are ignored.
      *
      * <p>Input and output units:</p>
      * <ul>
@@ -248,7 +247,7 @@ public class PJ {
      * @param  numPts       number of points to transform.
      * @throws NullPointerException if the {@code target} or {@code coordinates} argument is null.
      * @throws IndexOutOfBoundsException if the {@code offset} or {@code numPts} arguments are invalid.
-     * @throws PJException if the operation failed for an other reason (provided by Proj4).
+     * @throws PJException if the operation failed for another reason (provided by Proj.4).
      *
      * @see org.opengis.referencing.operation.MathTransform#transform(double[], int, double[], int, int)
      */
@@ -271,10 +270,10 @@ public class PJ {
     public native String toString();
 
     /**
-     * Deallocates the native PJ data structure. This method can be invoked only by the garbage
-     * collector, and must be invoked exactly once (no more, no less).
-     * <strong>NEVER INVOKE THIS METHOD EXPLICITELY, NEVER OVERRIDE</strong>.
+     * Deallocates the native PJ data structure.
+     * This method should be invoked exactly once, only by the garbage collector,
      */
     @Override
+    @SuppressWarnings("FinalizeDeclaration")
     protected final native void finalize();
 }
