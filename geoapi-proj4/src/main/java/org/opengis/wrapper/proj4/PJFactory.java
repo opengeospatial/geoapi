@@ -1104,6 +1104,7 @@ public class PJFactory implements Factory {
          * @throws FactoryException alway thrown.
          */
         @Override
+        @Deprecated
         public MathTransform createFromXML(String xml) throws FactoryException {
             throw unsupportedOperation();
         }
