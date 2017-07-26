@@ -96,6 +96,9 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <debug>true</debug>  <!-- For allowing implementors to step through the test methods. -->
+          <compilerArgs>
+            <arg>--add-exports</arg> <arg>org.opengis.geoapi/org.opengis.coverage.grid=org.opengis.geoapi.conformance</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
