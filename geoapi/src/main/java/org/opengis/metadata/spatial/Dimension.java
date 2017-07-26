@@ -84,12 +84,12 @@ public interface Dimension {
     Double getResolution();
 
     /**
-     * Enhancement/ modifier of the dimension name.
+     * Enhancement / modifier of the dimension name.
      *
      * <div class="note"><b>Example:</b>
      * dimensionName = "column", dimensionTitle = "longitude"</div>
      *
-     * @return enhancement/ modifier of the dimension name, or {@code null} if none.
+     * @return enhancement / modifier of the dimension name, or {@code null} if none.
      *
      * @since 3.1
      */

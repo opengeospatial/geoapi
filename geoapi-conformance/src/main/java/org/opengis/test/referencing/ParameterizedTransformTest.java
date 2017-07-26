@@ -43,6 +43,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
@@ -71,6 +72,18 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
  * parameterized math tranforms} from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
+ *
+ * <p><b>Skipping tests for unsupported operations:</b><br>
+ * If the tested factory throws a {@link NoSuchIdentifierException} during the invocation
+ * of one of the following methods:
+ *
+ * <ul>
+ *   <li>{@link MathTransformFactory#getDefaultParameters(String)}</li>
+ *   <li>{@link MathTransformFactory#createParameterizedTransform(ParameterValueGroup)}</li>
+ * </ul>
+ *
+ * then the tests is skipped. If any other kind of exception is thrown, or if {@code NoSuchIdentifierException}
+ * is thrown under other circumstances than the invocation of above methods, then the test fails.
  *
  * <p><b>Tests and accuracy:</b><br>
  * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
@@ -269,6 +282,27 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Returns the error message for an unsupported operation method.
+     */
+    private static String unsupportedMethod(final String name) {
+        return "The “" + name + "” operation method is not supported by the tested implementation.";
+    }
+
+    /**
+     * Initialized the {@link #parameters} field to the default values for the given operation method.
+     * If the tested implementation does not support the specified operation method, then the test will
+     * be skipped.
+     */
+    private void createParameters(final String method) {
+        assumeNotNull(mtFactory);
+        try {
+            parameters = mtFactory.getDefaultParameters(method);
+        } catch (NoSuchIdentifierException e) {
+            assumeNoException(unsupportedMethod(method), e);        // Will mark the test as "ignored".
+        }
+    }
+
+    /**
      * Creates a math transform for the {@linkplain SingleOperation coordinate operation} identified by
      * {@link SamplePoints#operation} and stores the result in the {@link #transform} field.
      * The set of allowed codes is documented in second column of the
@@ -297,27 +331,37 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     private void createMathTransform(final Class<? extends SingleOperation> type, final SamplePoints sample)
             throws FactoryException
     {
-        if (parameters == null) {
-            assumeNotNull(mtFactory);
-            parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
-            validators.validate(parameters);
-        }
-        if (transform == null) {
-            assumeNotNull(mtFactory);
-            try {
+        try {
+            if (parameters == null) {
+                assumeNotNull(mtFactory);
+                parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
+                validators.validate(parameters);
+            }
+            if (transform == null) {
+                assumeNotNull(mtFactory);
                 transform = mtFactory.createParameterizedTransform(parameters);
-            } catch (NoSuchIdentifierException e) {
-                // If a code was not found, ensure that the factory does not declare that it was
-                // a supported code. If the code was unsupported, then the test will be ignored.
-                if (Collections.disjoint(Utilities.getNameAndAliases(parameters.getDescriptor()),
+                assertNotNull(description, transform);
+                validators.validate(transform);
+            }
+        } catch (NoSuchIdentifierException e) {
+            /*
+             * If a code was not found, ensure that the factory does not declare that it was
+             * a supported code. If the code was unsupported, then the test will be ignored.
+             */
+            final String message;
+            if (parameters != null) {
+                final ParameterDescriptorGroup descriptor = parameters.getDescriptor();
+                if (!Collections.disjoint(Utilities.getNameAndAliases(descriptor),
                         Utilities.getNameAndAliases(mtFactory.getAvailableMethods(type))))
                 {
-                    assumeNoException(e);               // Will mark the test as "ignored".
+                    throw e;                            // Will mark the test as "failed".
                 }
-                throw e;                                // Will mark the test as "failed".
+                message = unsupportedMethod(Utilities.getName(descriptor));
+            } else {
+                message = "The “EPSG:" + sample.operation + "” coordinate operation uses the “" + e.getIdentifierCode()
+                        + "” method, which is not supported by the tested implementation.";
             }
-            assertNotNull(description, transform);
-            validators.validate(transform);
+            assumeNoException(message, e);              // Will mark the test as "ignored".
         }
         /*
          * Set the tolerance after we have set the transform,
@@ -516,8 +560,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
          * with a different projection ("variant C" instead of "variant B") and one more parameter value
          * (the "Latitude of false origin").
          */
-        assumeNotNull(mtFactory);
-        parameters = mtFactory.getDefaultParameters("Mercator (variant C)");
+        createParameters("Mercator (variant C)");
         parameters.parameter("semi_major").setValue(6378245.0);                         // Krassowski 1940
         parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
         parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
@@ -571,8 +614,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         final SamplePoints sample = SamplePoints.forCRS(3857);
         sample.targetPoints[2] = -11156569.90;    // New Easting value.
         sample.targetPoints[3] =   2796869.94;    // New Northing value.
-        assumeNotNull(mtFactory);
-        parameters = mtFactory.getDefaultParameters("Mercator (Spherical)");
+        createParameters("Mercator (Spherical)");
         parameters.parameter("semi_major").setValue(6371007.0);
         parameters.parameter("semi_minor").setValue(6371007.0);
         validators.validate(parameters);

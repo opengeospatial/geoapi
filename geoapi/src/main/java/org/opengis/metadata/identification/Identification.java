@@ -235,6 +235,8 @@ public interface Identification {
      * Description of the format of the resource(s).
      *
      * @return description of the format.
+     *
+     * @see org.opengis.metadata.distribution.Distribution#getDistributionFormats()
      */
     @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Format> getResourceFormats();

@@ -296,6 +296,7 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      * Not yet implemented.
      */
     @Override
+    @Deprecated
     public MathTransform createFromXML(final String xml) throws FactoryException {
         throw new FactoryException("Not supported yet.");
     }

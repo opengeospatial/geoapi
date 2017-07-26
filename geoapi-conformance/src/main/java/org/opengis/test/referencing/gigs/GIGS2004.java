@@ -7608,7 +7608,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *
      * <ul>
      *   <li>EPSG datum code: <b>6740</b></li>
-     *   <li>EPSG datum name: <b>Parametrop Zemp 1990</b></li>
+     *   <li>EPSG datum name: <b>Parametry Zemli 1990</b></li>
      *   <li>Ellipsoid name: <b>PZ-90</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      *   <li>CRS using the datum: <b>PZ-90</b></li>
@@ -7619,7 +7619,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testPZ90() throws FactoryException {
         code              = 6740;
-        name              = "Parametrop Zemp 1990";
+        name              = "Parametry Zemli 1990";
         crsName           = "PZ-90";
         ellipsoidName     = "PZ-90";
         primeMeridianName = "Greenwich";
@@ -8372,7 +8372,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “St&#46; Helena 1971” geodetic datum creation from the factory.
+     * Tests “Astro DOS 71” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6710</b></li>
@@ -8387,8 +8387,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testStHelena() throws FactoryException {
         code              = 6710;
-        name              = "St. Helena 1971";
-        crsName           = "St. Helena 1971";
+        name              = "Astro DOS 71";
+        crsName           = "Astro DOS 71";
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();

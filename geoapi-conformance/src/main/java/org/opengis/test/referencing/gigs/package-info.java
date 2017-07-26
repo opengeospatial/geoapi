@@ -31,7 +31,7 @@
  */
 
 /**
- * Implements the <a href="http://www.iogp.org/Geomatics#2521115-gigs">Geospatial Integrity of Geoscience
+ * Implements the <a href="http://www.iogp.org/Geomatics/#gigs">Geospatial Integrity of Geoscience
  * Software</a> tests.
  *
  * <p><b>Changes compared to GIGS files</b><br>

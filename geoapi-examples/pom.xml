@@ -74,6 +74,7 @@
     <dependency>
       <groupId>tec.units</groupId>
       <artifactId>unit-ri</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>javax.vecmath</groupId>

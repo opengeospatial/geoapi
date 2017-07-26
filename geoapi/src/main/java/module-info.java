@@ -36,7 +36,7 @@
  * not directly referenced anywhere, it can easily be ignored by implementors.
  */
 module org.opengis.geoapi {
-    requires transitive javax.measure;
+    requires transitive java.measure;
     requires transitive static java.desktop;
 
     exports org.opengis.annotation;

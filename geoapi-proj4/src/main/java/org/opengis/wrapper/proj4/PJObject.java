@@ -24,8 +24,8 @@ import org.opengis.referencing.IdentifiedObject;
 
 
 /**
- * Base class of GeoAPI implementations in this Proj4 wrappers package. This class defines
- * empty skeleton for the GeoAPI methods that we do not support in this package.
+ * Base class of GeoAPI implementations in this {@literal Proj.4} wrappers package.
+ * This class defines empty skeleton for the GeoAPI methods that we do not support in this package.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -101,9 +101,9 @@ class PJObject implements IdentifiedObject {
     }
 
     /**
-     * Returns {@code null} since we do not define any scope in our Proj4 wrappers.
-     * Note that this method is not inherited from {@link IdentifiedObject}, but is
-     * defined in sub-interfaces like {@link org.opengis.referencing.crs.SingleCRS}.
+     * Returns {@code null} since we do not define any scope in our {@literal Proj.4} wrappers.
+     * Note that this method is not inherited from {@link IdentifiedObject}, but is defined in
+     * sub-interfaces like {@link org.opengis.referencing.crs.SingleCRS}.
      */
     public InternationalString getScope() {
         return null;
@@ -119,7 +119,7 @@ class PJObject implements IdentifiedObject {
     }
 
     /**
-     * Returns {@code null} since there is no remarks associated with our Proj4 wrappers.
+     * Returns {@code null} since there is no remarks associated with our {@literal Proj.4} wrappers.
      */
     @Override
     public InternationalString getRemarks() {

@@ -177,7 +177,8 @@
       <dependency>
         <groupId>tec.units</groupId>
         <artifactId>unit-ri</artifactId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.4-SNAPSHOT</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <!-- The JUnit version number appears also in the Javadoc plugin configuration,
@@ -273,9 +274,9 @@
 
 
 
-    <!-- ====================================================
-             Compilation
-         ==================================================== -->
+      <!-- ====================================================
+               Compilation
+           ==================================================== -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -297,8 +298,8 @@
         <configuration>
           <source>9</source>
           <target>9</target>
-          <debug>false</debug>          <!-- Whether to include debugging information.     -->
-          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
+          <debug>false</debug>          <!-- Whether to include debugging information.  -->
+          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
           <useIncrementalCompilation>false</useIncrementalCompilation> <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>

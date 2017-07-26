@@ -35,9 +35,8 @@ import static java.lang.Math.*;
 
 
 /**
- * Wraps the <a href="http://proj.osgeo.org/">Proj4</a> {@code PJ} native data structure
- * in a geodetic datum. The PJ structure combines datum, ellipsoid and prime meridian
- * information.
+ * Wraps the <a href="http://proj.osgeo.org/">{@literal Proj.4}</a> {@code PJ} native data structure
+ * in a geodetic datum. The PJ structure combines datum, ellipsoid and prime meridian information.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -85,15 +84,15 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     private final Identifier name;
 
     /**
-     * The Proj4 parameters, formatted at construction time because often used.
+     * The {@literal Proj.4} parameters, formatted at construction time because often used.
      */
     private final String definition;
 
     /**
-     * Creates a new {@code PJ} structure from the given Proj4 data.
+     * Creates a new {@code PJ} structure from the given {@literal Proj.4} data.
      *
      * @param identifier  the datum identifier, or {@code null} for inferring it from the definition.
-     * @param definition  the Proj4 definition string.
+     * @param definition  the Proj.4 definition string.
      */
     PJDatum(Identifier name, final String definition) throws IllegalArgumentException {
         super(definition);
@@ -136,7 +135,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /*
-     * Various GeoAPI method having no direct mapping in the Proj4 library.
+     * Various GeoAPI method having no direct mapping in the Proj.4 library.
      */
     @Override public Collection<GenericName>  getAlias()            {return Collections.emptySet();}
     @Override public Set<Identifier>          getIdentifiers()      {return Collections.emptySet();}
@@ -163,7 +162,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns the ellipsoid axis unit, which is assumed metres in the case of the Proj4 library.
+     * Returns the ellipsoid axis unit, which is assumed metres in the case of the {@literal Proj.4} library.
      */
     @Override
     public Unit<Length> getAxisUnit() {
@@ -197,8 +196,8 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Returns {@code true} unconditionally since the inverse eccentricity squared in definitive
-     * in the Proj4 library, and the eccentricity is directly related to the flattening.
+     * Returns {@code true} unconditionally since the inverse eccentricity squared is definitive
+     * in the {@literal Proj.4} library, and the eccentricity is directly related to the flattening.
      */
     @Override
     public boolean isIvfDefinitive() {
@@ -242,7 +241,7 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
     }
 
     /**
-     * Throws unconditionally an exception since there is no WKt formatting provided by the Proj4 library.
+     * Throws unconditionally an exception since there is no WKT formatting provided by the {@literal Proj.4} library.
      */
     @Override
     public String toWKT() throws UnsupportedOperationException {

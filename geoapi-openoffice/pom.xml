@@ -72,7 +72,7 @@
            Dependencies
        ==================================================== -->
   <properties>
-    <openoffice.version>3.2.1</openoffice.version>
+    <openoffice.version>4.1.2</openoffice.version>
     <geotk.version>3.20</geotk.version> <!-- For unopkg Maven plugin -->
   </properties>
 
@@ -91,6 +91,7 @@
     <dependency>
       <groupId>tec.units</groupId>
       <artifactId>unit-ri</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.openoffice</groupId>

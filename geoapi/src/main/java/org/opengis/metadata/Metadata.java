@@ -161,6 +161,9 @@ public interface Metadata {
 
     /**
      * The character coding standard used for the metadata set.
+     * ISO 19115:2014 represents character sets by references to the
+     * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
+     * which is represented in Java by {@link java.nio.charset.Charset}.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
      * <div class="note"><b>Examples:</b>
@@ -468,9 +471,11 @@ public interface Metadata {
     Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo();
 
     /**
-     * Restrictions on the access and use of data.
+     * Restrictions on the access and use of metadata.
      *
-     * @return restrictions on the access and use of data.
+     * @return restrictions on the access and use of metadata.
+     *
+     * @see Identification#getResourceConstraints()
      */
     @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Constraints> getMetadataConstraints();
@@ -495,6 +500,8 @@ public interface Metadata {
      * Information about the frequency of metadata updates, and the scope of those updates.
      *
      * @return the frequency of metadata updates and their scope, or {@code null}.
+     *
+     * @see Identification#getResourceMaintenances()
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceInformation getMetadataMaintenance();
