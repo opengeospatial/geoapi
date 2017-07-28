@@ -173,6 +173,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
      * in all cases since XML parsing is not implemented by this simple factory.
      */
     @Override
+    @Deprecated
     public MathTransform createFromXML(String xml) throws FactoryException {
         throw new FactoryException("XML parsing is not implemented.");
     }

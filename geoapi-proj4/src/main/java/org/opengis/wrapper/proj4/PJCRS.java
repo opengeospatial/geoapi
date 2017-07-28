@@ -28,9 +28,9 @@ import org.opengis.referencing.operation.Projection;
 
 
 /**
- * Base class of all CRS defined in the Proj4 package. The Proj.4 library does not make
- * distinction between Coordinate System and Coordinate Reference System, so we implement
- * the two interfaces by the same class.
+ * Base class of all CRS defined in the {@literal Proj.4} package. The Proj.4 library does not make
+ * distinction between Coordinate System and Coordinate Reference System, so we implement the two
+ * interfaces by the same class.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -38,7 +38,7 @@ import org.opengis.referencing.operation.Projection;
  */
 class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSystem {
     /**
-     * The geodetic datum, which is also the object to use for performing call to Proj4 functions.
+     * The geodetic datum, which is also the object to use for performing call to {@literal Proj.4} functions.
      */
     final PJDatum pj;
 
@@ -49,7 +49,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
     final CoordinateSystemAxis[] axes;
 
     /**
-     * Creates a new CRS using the given identifier, Proj4 peer and number of dimensions.
+     * Creates a new CRS using the given identifier, {@literal Proj.4} peer and number of dimensions.
      *
      * @param identifier  the name of the new CRS, or {@code null} if none.
      * @param datum       the geodetic datum, which is also the wrapper for Proj.4 native methods.
@@ -84,7 +84,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
     }
 
     /**
-     * Returns the coordinate system, which is this object since Proj4 does not distinguish CS and CRS.
+     * Returns the coordinate system, which is this object since {@literal Proj.4} does not distinguish CS and CRS.
      */
     @Override
     public CoordinateSystem getCoordinateSystem() {
@@ -173,9 +173,9 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         }
 
         /**
-         * Adds the vertical axis to the given Proj4 orientations code, if the vertical axis
-         * is missing. If this method is unsure about the given axis orientations, then it
-         * conservatively does nothing. This may cause Proj.4 to reject the axis orientations.
+         * Adds the vertical axis to the given {@literal Proj.4} orientations code, if the vertical axis is missing.
+         * If this method is unsure about the given axis orientations, then it conservatively does nothing.
+         * This may cause Proj.4 to reject the axis orientations.
          */
         static String ensure3D(String orientations) {
             if (orientations.length() == 2 && orientations.indexOf('u') < 0 & orientations.indexOf('d') < 0) {
@@ -201,7 +201,7 @@ class PJCRS extends PJObject implements CoordinateReferenceSystem, CoordinateSys
         }
 
         /**
-         * Returns the base CRS, which is inferred by the Proj4 library.
+         * Returns the base CRS, which is inferred by the {@literal Proj.4} library.
          * This method may need to change the axis order compared to the one used by Proj.4.
          */
         @Override

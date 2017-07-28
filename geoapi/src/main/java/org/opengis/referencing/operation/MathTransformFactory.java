@@ -326,7 +326,11 @@ public interface MathTransformFactory extends Factory {
      * @param  xml  math transform encoded in XML format.
      * @return the math transform (never {@code null}).
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated This method was defined in OGC 01-009 in anticipation for future normative specification,
+     *             but no XML format for math transforms have been defined.
      */
+    @Deprecated
     @UML(identifier="createFromXML", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createFromXML(String xml) throws FactoryException;
 

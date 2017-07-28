@@ -45,7 +45,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
 
     /**
      * Returns {@code true} if at least one factory in the given array is our implementation.
-     * We will returns a configuration map only for our own implementation, and don't propose
+     * We will return a configuration map only for our own implementation, and don't propose
      * anything for implementations we don't known about.
      */
     private static boolean isOurImplementation(final Factory[] factories) {
@@ -75,8 +75,8 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
                     Configuration.Key.isNonSquareMatrixSupported,
                     Configuration.Key.isNonBidimensionalSpaceSupported);
             /*
-            * Our objects are not yet strictly ISO 19111 compliant, so be lenient...
-            */
+             * Objects created from Proj.4 definition strings are not strictly ISO 19111 compliant, so be lenient.
+             */
             final ValidatorContainer validators = new ValidatorContainer();
             validators.parameter = new ParameterValidator(validators);
             validators.naming.requireMandatoryAttributes = false;
