@@ -43,8 +43,11 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @deprecated Not anymore in ISO 19115.
  */
-@UML(identifier="MD_FeatureTypeList", specification=ISO_19115)
+@Deprecated     // TODO: Before to remove, search "FeatureTypeList" in the whole code base.
+@UML(identifier="MD_FeatureTypeList", specification=ISO_19115, version=2003)
 public interface FeatureTypeList {
     /**
      * Instance of a type defined in the spatial schema.
