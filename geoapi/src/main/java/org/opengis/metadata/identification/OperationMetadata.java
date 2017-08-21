@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Describe the signature of one and only one method provided by the service.
+ * Describes the signature of one and only one method provided by the service.
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1

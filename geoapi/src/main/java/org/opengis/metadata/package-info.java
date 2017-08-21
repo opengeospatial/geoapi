@@ -50,7 +50,6 @@
  *  ├─ {@linkplain org.opengis.metadata.ApplicationSchemaInformation}
  *  ├─ {@linkplain org.opengis.metadata.MetadataExtensionInformation}
  *  ├─ {@linkplain org.opengis.metadata.ExtendedElementInformation}
- *  ├─ {@linkplain org.opengis.metadata.FeatureTypeList}
  *  └─ {@linkplain org.opengis.metadata.Identifier}
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.Datatype}
@@ -64,7 +63,6 @@
  *  │   └─ {@linkplain org.opengis.metadata.ExtendedElementInformation}
  *  │       ├─ {@linkplain org.opengis.metadata.Datatype} «code list»
  *  │       └─ {@linkplain org.opengis.annotation.Obligation} «code list»
- *  ├─ {@linkplain org.opengis.metadata.FeatureTypeList}
  *  └─ {@linkplain org.opengis.metadata.Identifier}</pre>
  * </td></tr></table>
  *
