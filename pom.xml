@@ -222,7 +222,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.1</version>
+          <version>3.6.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -485,7 +485,7 @@
            ==================================================== -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.4</version>
+        <version>3.0.0-M1</version>
         <configuration>
           <encoding>${project.build.sourceEncoding}</encoding>
           <docencoding>${website.encoding}</docencoding>
