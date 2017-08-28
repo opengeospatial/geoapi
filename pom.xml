@@ -10,10 +10,6 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <prerequisites>
-    <maven>3.0.2</maven>
-  </prerequisites>
-
 
 
   <!-- ====================================================
@@ -69,13 +65,7 @@
   -->
   <profiles>
     <profile>
-      <id>sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
+      <id>geoapi-release</id>
       <build>
         <plugins>
           <plugin>
@@ -94,8 +84,8 @@
       </build>
       <distributionManagement>
         <repository>
-          <id>sonatype-nexus-staging</id>
-          <name>Open Source Geospatial Foundation</name>
+          <id>ossrh</id>
+          <name>Open Source Software Repository Hosting</name>
           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
       </distributionManagement>
@@ -117,19 +107,7 @@
     <url>http://jenkins.geotoolkit.org/job/GeoAPI/</url>
   </ciManagement>
 
-  <issueManagement>
-    <system>JIRA</system>
-    <url>https://osgeo-org.atlassian.net/projects/GEO/issues</url>
-  </issueManagement>
-
   <mailingLists>
-    <mailingList>
-      <name>GeoAPI development (public)</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</unsubscribe>
-      <post>geoapi-devel@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=geoapi-devel</archive>
-    </mailingList>
     <mailingList>
       <name>GeoAPI Standard Working Group (OGC)</name>
       <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</subscribe>
