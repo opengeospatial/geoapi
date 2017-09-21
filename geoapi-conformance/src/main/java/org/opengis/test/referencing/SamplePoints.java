@@ -304,7 +304,7 @@ final class SamplePoints {
                     0, 5540628,   73172, 5429890,   149239, 5320144,   228119, 5211397,
                     0, 3319933,   97440, 3209506,   196719, 3099882,   297742, 2991002
                 };
-                λmin = 0; φmin =  23;                                       // Domain of table 19 of Synder.
+                λmin = 0; φmin =  23;                                       // Domain of table 19 of Snyder.
                 λmax = 3; φmax =  50;
                 break;
             }
