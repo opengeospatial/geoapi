@@ -73,13 +73,13 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  elements  ordered array of {@code CoordinateReferenceSystem} objects.
+     * @param  components  the sequence of coordinate reference systems making the compound CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
     CompoundCRS createCompoundCRS(Map<String, ?> properties,
-                                  CoordinateReferenceSystem... elements) throws FactoryException;
+                                  CoordinateReferenceSystem... components) throws FactoryException;
 
     /**
      * Creates a engineering coordinate reference system.
