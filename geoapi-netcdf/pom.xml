@@ -103,7 +103,7 @@
     <repository>
       <id>UCAR</id>
       <name>UCAR repository</name>
-      <url>https://artifacts.unidata.ucar.edu/content/repositories/unidata-releases</url>
+      <url>https://artifacts.unidata.ucar.edu/repository/unidata-releases</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
