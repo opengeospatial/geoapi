@@ -414,15 +414,6 @@
         </configuration>
       </plugin>
     </plugins>
-
-    <!-- Following is for users who need to deploy using the ssh rather then the file protocol. -->
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-         <artifactId>wagon-ssh-external</artifactId>
-         <version>2.10</version>
-      </extension>
-    </extensions>
   </build>
 
 
