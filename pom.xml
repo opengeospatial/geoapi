@@ -633,9 +633,9 @@
        ==================================================== -->
   <distributionManagement>
     <repository>
-      <id>geotoolkit</id> <!-- For snapshots only -->
-      <name>GeoToolkit repository</name>
-      <url>file:///var/www/maven.geotoolkit.org</url>
+      <id>geoapi.snapshots</id>           <!-- For snapshots and milestones only -->
+      <name>${distMgmtSnapshotsName}</name>
+      <url>${distMgmtSnapshotsUrl}</url>
     </repository>
     <site>
       <id>geoapi</id>
