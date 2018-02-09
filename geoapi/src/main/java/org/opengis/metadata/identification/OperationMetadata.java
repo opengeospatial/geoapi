@@ -127,7 +127,7 @@ public interface OperationMetadata {
      *
      * @see org.opengis.parameter.GeneralParameterDescriptor
      */
-    @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="parameter", obligation=OPTIONAL, specification=ISO_19115)     // Was "parameters" in ISO 19115:2003
     Collection<? extends ParameterDescriptor<?>> getParameters();
 
     /**

@@ -42,7 +42,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
  * @since   2.3
+ *
+ * @deprecated Not found in ISO 19115-3:2016 schemas.
  */
-@UML(identifier="QE_Usability", specification=ISO_19115_2)
+@Deprecated
+@UML(identifier="QE_Usability", specification=ISO_19115_2, version=2009)
 public interface Usability extends Element {
 }

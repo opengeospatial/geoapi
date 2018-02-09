@@ -93,14 +93,22 @@ public final strictfp class GlobalTest implements FileFilter {
             final UML uml = c.getAnnotation(UML.class);
             if (uml != null) {
                 final String identifier = uml.identifier().trim();
-                assertFalse("UML identifier is empty.", identifier.length() == 0);
+                if (identifier.isEmpty()) {
+                    if (uml.specification() != Specification.ISO_19112) {
+                        fail("UML identifier is empty in " + c);
+                    }
+                }
                 /*
                  * As a policy, we do not declare version numbers which are equal to the default version.
                  * This make easier for users to identify methods derived from older standards.
+                 * We make an exception for deprecated interfaces, when the version number is sometime
+                 * added in anticipation to a future upgrade.
                  */
                 final short version = uml.version();
                 final short defaultVersion = uml.specification().defaultVersion();
-                assertFalse(identifier, version == defaultVersion);
+                if (!c.isAnnotationPresent(Deprecated.class)) {
+                    assertFalse(identifier, version == defaultVersion);
+                }
                 /*
                  * We expect deprecated methods to be legacy from older standards.
                  * Consequently their version number shall not be the default one

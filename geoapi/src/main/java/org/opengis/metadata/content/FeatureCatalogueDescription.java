@@ -88,7 +88,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      *
      * @return whether or not the feature catalogue is included with the resource.
      */
-    @UML(identifier="includedWithDataset", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="includedWithDataset", obligation=OPTIONAL, specification=ISO_19115)
     boolean isIncludedWithDataset();
 
     /**
@@ -122,9 +122,11 @@ public interface FeatureCatalogueDescription extends ContentInformation {
 
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
+     * This citation is mandatory if the feature catalogue is not included with resource
+     * and {@code FeatureCatalogue} is not provided.
      *
      * @return bibliographic reference to one or more external feature catalogues.
      */
-    @UML(identifier="featureCatalogueCitation", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="featureCatalogueCitation", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Citation> getFeatureCatalogueCitations();
 }

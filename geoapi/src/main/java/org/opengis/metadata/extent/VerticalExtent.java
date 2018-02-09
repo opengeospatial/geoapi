@@ -81,10 +81,14 @@ public interface VerticalExtent {
      * to which the maximum and minimum elevation values are measured.
      * The CRS identification includes unit of measure.
      *
+     * <p>This property is conditional in ISO 19115-1:2016 but mandatory in GeoAPI
+     * because the alternative ({@code verticalCRSId}) is intentionally omitted in
+     * order to have a single CRS framework: the ISO 19111 one.</p>
+     *
      * @return the vertical CRS.
      *
      * @since 2.1
      */
-    @UML(identifier="verticalCRS", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="verticalCRS", obligation=CONDITIONAL, specification=ISO_19115)
     VerticalCRS getVerticalCRS();
 }

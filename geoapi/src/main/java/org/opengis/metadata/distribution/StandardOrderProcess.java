@@ -119,7 +119,7 @@ public interface StandardOrderProcess {
      *
      * @see Record#getRecordType()
      */
-    @UML(identifier="orderOptionType", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="orderOptionsType", obligation=OPTIONAL, specification=ISO_19115)
     RecordType getOrderOptionType();
 
     /**

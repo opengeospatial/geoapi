@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
  * @author  Rémi Maréchal (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="LI_ProcessStep", specification=ISO_19115)
@@ -81,7 +81,7 @@ public interface ProcessStep {
      *
      * @return date on or over which the process step occurred, or {@code null} if none.
      */
-    @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Date getDate();
 
     /**
