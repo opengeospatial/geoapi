@@ -49,7 +49,7 @@ import org.opengis.metadata.citation.OnlineResource;
 public interface ExternalMark {
 
     /**
-     * Returns on online resource defined by an URI.
+     * Returns on online resource defined by a URI.
      *
      * Both OnlineResource and InlineContent can't be null and both
      * can't be set at the same time.

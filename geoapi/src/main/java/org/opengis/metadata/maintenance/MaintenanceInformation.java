@@ -60,7 +60,7 @@ public interface MaintenanceInformation {
      *
      * @return frequency with which changes and additions are made to the resource.
      */
-    @UML(identifier="maintenanceAndUpdateFrequency", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="maintenanceAndUpdateFrequency", obligation=OPTIONAL, specification=ISO_19115)
     MaintenanceFrequency getMaintenanceAndUpdateFrequency();
 
     /**

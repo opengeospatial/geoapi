@@ -40,5 +40,5 @@ GeoAPI examples
 
   This <<<geoapi-examples>>> module follows the path of simpler libraries by merging different
   ISO concepts in the same class. While this is not a recommended approach for strict ISO 19111
-  compliance, the intend is to demonstrate that implementors can hide some of the ISO 19111
+  compliance, the intent is to demonstrate that implementors can hide some of the ISO 19111
   complexity.

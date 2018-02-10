@@ -62,7 +62,7 @@ public interface NominalResolution {
      * @return distance between consistent parts of adjacent pixels in the scan plane.
      * @unitof Distance
      */
-    @UML(identifier="scanningResolution", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="scanningResolution", obligation=CONDITIONAL, specification=ISO_19115_2)
     Double getScanningResolution();
 
     /**
@@ -78,6 +78,6 @@ public interface NominalResolution {
      * @return distance between consistent parts of adjacent pixels in the object space.
      * @unitof Distance
      */
-    @UML(identifier="groundResolution", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="groundResolution", obligation=CONDITIONAL, specification=ISO_19115_2)
     Double getGroundResolution();
 }

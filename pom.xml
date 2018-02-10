@@ -10,10 +10,6 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <prerequisites>
-    <maven>3.0.2</maven>
-  </prerequisites>
-
 
 
   <!-- ====================================================
@@ -69,13 +65,7 @@
   -->
   <profiles>
     <profile>
-      <id>sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
+      <id>geoapi-release</id>
       <build>
         <plugins>
           <plugin>
@@ -94,8 +84,8 @@
       </build>
       <distributionManagement>
         <repository>
-          <id>sonatype-nexus-staging</id>
-          <name>Open Source Geospatial Foundation</name>
+          <id>ossrh</id>
+          <name>Open Source Software Repository Hosting</name>
           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
       </distributionManagement>
@@ -117,19 +107,7 @@
     <url>http://jenkins.geotoolkit.org/job/GeoAPI/</url>
   </ciManagement>
 
-  <issueManagement>
-    <system>JIRA</system>
-    <url>https://osgeo-org.atlassian.net/projects/GEO/issues</url>
-  </issueManagement>
-
   <mailingLists>
-    <mailingList>
-      <name>GeoAPI development (public)</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/geoapi-devel</unsubscribe>
-      <post>geoapi-devel@lists.sourceforge.net</post>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=geoapi-devel</archive>
-    </mailingList>
     <mailingList>
       <name>GeoAPI Standard Working Group (OGC)</name>
       <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</subscribe>
@@ -222,7 +200,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.2</version>
+          <version>3.7.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -232,7 +210,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20</version>
+          <version>2.20.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -257,12 +235,12 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.6</version>
+          <version>3.7</version>
         </plugin>
         <plugin>
           <groupId>org.apache.felix</groupId>
           <artifactId>maven-bundle-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.5.0</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -409,15 +387,6 @@
         </configuration>
       </plugin>
     </plugins>
-
-    <!-- Following is for users who need to deploy using the ssh rather then the file protocol. -->
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-         <artifactId>wagon-ssh-external</artifactId>
-         <version>2.10</version>
-      </extension>
-    </extensions>
   </build>
 
 
@@ -458,7 +427,7 @@
            ==================================================== -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0-M1</version>
+        <version>3.0.0</version>
         <configuration>
           <encoding>${project.build.sourceEncoding}</encoding>
           <docencoding>${website.encoding}</docencoding>
@@ -590,7 +559,7 @@
            ==================================================== -->
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>2.20</version>
+        <version>2.20.1</version>
       </plugin>
 
 
@@ -644,9 +613,9 @@
        ==================================================== -->
   <distributionManagement>
     <repository>
-      <id>geotoolkit</id> <!-- For snapshots only -->
-      <name>GeoToolkit repository</name>
-      <url>file:///var/www/maven.geotoolkit.org</url>
+      <id>geoapi.snapshots</id>           <!-- For snapshots and milestones only -->
+      <name>${distMgmtSnapshotsName}</name>
+      <url>${distMgmtSnapshotsUrl}</url>
     </repository>
     <site>
       <id>geoapi</id>

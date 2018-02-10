@@ -50,12 +50,12 @@ public final strictfp class VersionTest {
      */
     @Test
     public void testDocumentedVersions() {
-        final Version v300 = new Version("3.0.0");
-        assertEquals(3, v300.major);
-        assertEquals(0, v300.minor);
-        assertEquals(0, v300.third);
-        assertFalse (v300.isMilestone());
-        assertEquals("3.0.0", v300.toString());
+        final Version v301 = new Version("3.0.1");
+        assertEquals(3, v301.major);
+        assertEquals(0, v301.minor);
+        assertEquals(1, v301.third);
+        assertFalse (v301.isMilestone());
+        assertEquals("3.0.1", v301.toString());
 
         final Version v310 = new Version("3.1.0");
         assertEquals(3, v310.major);
@@ -71,26 +71,26 @@ public final strictfp class VersionTest {
         assertFalse (v312.isMilestone());
         assertEquals("3.1.2", v312.toString());
 
-        final Version v31M = new Version("3.1-M04");
+        final Version v31M = new Version("3.1-M07");
         assertEquals(3, v31M.major);
         assertEquals(1, v31M.minor);
         assertEquals(0, v31M.third);
         assertTrue  (v31M.isMilestone());
-        assertEquals("3.1-M04", v31M.toString());
+        assertEquals("3.1-M07", v31M.toString());
 
-        assertTrue(v300.compareTo(v300) == 0);
-        assertTrue(v300.compareTo(v310) <  0);
-        assertTrue(v300.compareTo(v312) <  0);
-        assertTrue(v300.compareTo(v31M) <  0);
-        assertTrue(v310.compareTo(v300) >  0);
+        assertTrue(v301.compareTo(v301) == 0);
+        assertTrue(v301.compareTo(v310) <  0);
+        assertTrue(v301.compareTo(v312) <  0);
+        assertTrue(v301.compareTo(v31M) <  0);
+        assertTrue(v310.compareTo(v301) >  0);
         assertTrue(v310.compareTo(v310) == 0);
         assertTrue(v310.compareTo(v312) <  0);
         assertTrue(v310.compareTo(v31M) >  0);
-        assertTrue(v312.compareTo(v300) >  0);
+        assertTrue(v312.compareTo(v301) >  0);
         assertTrue(v312.compareTo(v310) >  0);
         assertTrue(v312.compareTo(v312) == 0);
         assertTrue(v312.compareTo(v31M) >  0);
-        assertTrue(v31M.compareTo(v300) >  0);
+        assertTrue(v31M.compareTo(v301) >  0);
         assertTrue(v31M.compareTo(v310) <  0);
         assertTrue(v31M.compareTo(v312) <  0);
         assertTrue(v31M.compareTo(v31M) == 0);

@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.0
  */
-@UML(identifier="MD_MediumNameCode", specification=ISO_19115)
+@UML(identifier="MD_MediumNameCode", specification=ISO_19115, version=2003)
 public final class MediumName extends CodeList<MediumName> {
     /**
      * Serial number for compatibility with different versions.

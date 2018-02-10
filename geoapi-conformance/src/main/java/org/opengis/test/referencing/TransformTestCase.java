@@ -1015,7 +1015,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final float[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
-        assertEquals(dimension, actual.length);
+        assertEquals("Coordinate array lengths differ.", dimension, actual.length);
         assertCoordinatesEqual(message, dimension, expected, 0, actual, 0, 1, mode, index);
     }
 
@@ -1024,19 +1024,19 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * If the comparison fails, the given message is completed with the expected and actual
      * values, and the index of the ordinate where the failure was found.
      *
-     * @param message  The message to print in case of failure.
-     * @param expected The array of expected ordinate values.
-     * @param actual   The array of ordinate values to check against the expected ones.
-     * @param index    The index of the coordinate point being compared, for message formatting.
-     * @param mode     Indicates if the coordinates being compared are the result of a direct or
-     *                 inverse transform, or if strict equality is requested.
+     * @param message   the message to print in case of failure.
+     * @param expected  the array of expected ordinate values.
+     * @param actual    the array of ordinate values to check against the expected ones.
+     * @param index     the index of the coordinate point being compared, for message formatting.
+     * @param mode      indicates if the coordinates being compared are the result of a direct or
+     *                  inverse transform, or if strict equality is requested.
      * @throws TransformFailure if at least one ordinate value is not equal to the expected value.
      */
     protected final void assertCoordinateEquals(final String message, final float[] expected,
             final double[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
-        assertEquals(dimension, actual.length);
+        assertEquals("Coordinate array lengths differ.", dimension, actual.length);
         assertCoordinatesEqual(message, dimension, expected, 0, actual, 0, 1, mode, index);
     }
 
@@ -1057,7 +1057,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final float[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
-        assertEquals(dimension, actual.length);
+        assertEquals("Coordinate array lengths differ.", dimension, actual.length);
         assertCoordinatesEqual(message, dimension, expected, 0, actual, 0, 1, mode, index);
     }
 
@@ -1078,7 +1078,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final double[] actual, final int index, final CalculationType mode) throws TransformFailure
     {
         final int dimension = expected.length;
-        assertEquals(dimension, actual.length);
+        assertEquals("Coordinate array lengths differ.", dimension, actual.length);
         assertCoordinatesEqual(message, dimension, expected, 0, actual, 0, 1, mode, index);
     }
 

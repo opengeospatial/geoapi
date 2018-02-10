@@ -46,8 +46,8 @@ import java.io.IOException;
  *
  * <table class="ogc">
  * <tr><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
- * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.0"}</td></tr>
- * <tr><td>{@code newVersion}</td> <td>New GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M04"}</td></tr>
+ * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.1"}</td></tr>
+ * <tr><td>{@code newVersion}</td> <td>New GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M07"}</td></tr>
  * <tr><td>{@code outputFile}</td> <td>Name of the file to create.</td> <td>{@code "Changes.html"}</td></tr>
  * </table>
  *
@@ -133,6 +133,7 @@ public final class ChangeReport {
         out.write(" and ");
         out.write(newVersion.toString());
         out.write(    "</title>\n"
+                + "    <meta charset=\"UTF-8\"/>\n"
                 + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/change-summary.css\"/>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"

@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * Type of a vertical datum.
  *
  * <div class="note"><b>Note:</b>
- * ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intend.
+ * ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intent.
  * {@link org.opengis.referencing.crs.GeographicCRS} with ellipsoidal height shall be backed by a three-dimensional
  * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should never be built as
  * {@link org.opengis.referencing.crs.CompoundCRS}. If nevertheless an ellipsoidal height is needed

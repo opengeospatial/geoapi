@@ -86,7 +86,7 @@ public interface Citation {
      * @return reference dates for the cited resource.
      */
     @Profile(level=CORE)
-    @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="date", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends CitationDate> getDates();
 
     /**

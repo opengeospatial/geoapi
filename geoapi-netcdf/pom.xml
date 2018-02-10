@@ -84,12 +84,12 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>cdm</artifactId>
-      <version>4.6.9</version>
+      <version>4.6.10</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.7</version>                  <!-- Must matches the version used by NetCDF. -->
+      <version>1.7.22</version>                 <!-- Must matches the version used by NetCDF. -->
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -103,7 +103,7 @@
     <repository>
       <id>UCAR</id>
       <name>UCAR repository</name>
-      <url>https://artifacts.unidata.ucar.edu/content/repositories/unidata-releases</url>
+      <url>https://artifacts.unidata.ucar.edu/repository/unidata-releases</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>

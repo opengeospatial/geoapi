@@ -136,11 +136,11 @@ public interface Rule {
      *
      * We use a list of {@code <? extends Symbolizer>} to enable the possibility
      * for an implementation to return a special type of Symbolizer.
-     * This doesnt mean a Rule must return a list of PointSymbolizer or
+     * This doesn't mean a Rule must return a list of PointSymbolizer or
      * TextSymbolizer only, no. The purpose of this if to offer the solution
      * to return different implementations like MutableSymbolizer or RichSymbolizer
      * and then avoid redundant cast in the code.
-     * If you dont intend to use a special interface you can override this method
+     * If you don't intend to use a special interface you can override this method
      * by symbolizers();
      *
      * @return the list of Symbolizer

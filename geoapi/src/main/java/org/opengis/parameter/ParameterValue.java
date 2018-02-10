@@ -253,7 +253,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * another part of the same or different files, as allowed in XML documents.
      *
      * @return the reference to a file containing parameter values.
-     * @throws InvalidParameterTypeException if the value is not a reference to a file or an URI.
+     * @throws InvalidParameterTypeException if the value is not a reference to a file or a URI.
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @see #getValue()
