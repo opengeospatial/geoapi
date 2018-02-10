@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
-    <title>Changes between GeoAPI 3.0.0 and 3.1-SNAPSHOT</title>
+    <title>Changes between GeoAPI 3.0.1 and 3.1-SNAPSHOT</title>
+    <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="../../css/change-summary.css"/>
   </head>
   <body><div>
@@ -12,7 +13,7 @@
       <li>Changes in the normative part of GeoAPI</li>
       <li>Changes in the conformance tests</li>
     </ol>
-    <h2>Changes between GeoAPI 3.0.0 and 3.1-SNAPSHOT</h2>
+    <h2>Changes between GeoAPI 3.0.1 and 3.1-SNAPSHOT</h2>
     <p>The following table summarizes all API changes in the <a href="http://www.geoapi.org/geoapi/index.html">normative part</a> of GeoAPI.
     It does not include the pending part, conformance tests and code examples.</p>
     <table cellspacing="0">
@@ -35,7 +36,7 @@
       <tr>
         <td><code>MD_ObligationCode</code></td>
         <td>Enumeration <code>Obligation</code></td>
-        <td>Parent set to “Enumerated”.</td>
+        <td>Parent set to “ControlledVocabulary”.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/annotation/Obligation.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Obligation.html">new</a></td>
       </tr>
@@ -79,6 +80,34 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#ISO_19109">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code>ISO_19111_2</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#ISO_19111_2">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code>ISO_19112</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#ISO_19112">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code>ISO_19115_3</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#ISO_19115_3">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code>ISO_19162</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/annotation/Specification.html#ISO_19162">new</a></td>
       </tr>
       <tr>
         <td></td>
@@ -136,6 +165,20 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/FeatureAssociationRole.html">new</a></td>
       </tr>
       <tr>
+        <td></td>
+        <td>Classe <code>FeatureInstantiationException</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/FeatureInstantiationException.html">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Classe <code>FeatureOperationException</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/FeatureOperationException.html">new</a></td>
+      </tr>
+      <tr>
         <td><code>FeatureType</code></td>
         <td>Interface <code>FeatureType</code></td>
         <td><span class="add">New</span>.</td>
@@ -150,6 +193,27 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/IdentifiedType.html">new</a></td>
       </tr>
       <tr>
+        <td></td>
+        <td>Classe <code>InvalidPropertyValueException</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/InvalidPropertyValueException.html">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Classe <code>MismatchedFeatureException</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/MismatchedFeatureException.html">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Classe <code>MultiValuedPropertyException</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/MultiValuedPropertyException.html">new</a></td>
+      </tr>
+      <tr>
         <td><code>Operation</code></td>
         <td>Interface <code>Operation</code></td>
         <td><span class="add">New</span>.</td>
@@ -162,6 +226,13 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/Property.html">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Classe <code>PropertyNotFoundException</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/feature/PropertyNotFoundException.html">new</a></td>
       </tr>
       <tr>
         <td><code>PropertyType</code></td>
@@ -189,6 +260,13 @@
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.metadata</code></th>
+      </tr>
+      <tr>
+        <td><code>MD_FeatureTypeList</code></td>
+        <td>Interface <code><del>FeatureTypeList</del></code></td>
+        <td><span class="remove">Deprecated</span>.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/FeatureTypeList.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/FeatureTypeList.html">new</a></td>
       </tr>
       <tr>
         <td><code>MD_MetadataScope</code></td>
@@ -305,18 +383,18 @@
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/Metadata.html#getDataSetUri()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getDataSetUri()">new</a></td>
       </tr>
       <tr>
+        <td><code>dateInfo</code></td>
+        <td>Method <code>getDateInfo()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getDateInfo()">new</a></td>
+      </tr>
+      <tr>
         <td><code>dateStamp</code></td>
         <td>Method <code><del>getDateStamp()</del></code></td>
         <td><span class="remove">Deprecated</span>.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/Metadata.html#getDateStamp()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getDateStamp()">new</a></td>
-      </tr>
-      <tr>
-        <td><code>dateInfo</code></td>
-        <td>Method <code>getDates()</code></td>
-        <td><span class="add">New</span>.</td>
-        <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getDates()">new</a></td>
       </tr>
       <tr>
         <td><code>fileIdentifier</code></td>
@@ -431,6 +509,23 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/Metadata.html#getResourceLineages()">new</a></td>
       </tr>
       <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.acquisition.Operation</code></th>
+      </tr>
+      <tr>
+        <td><code>identifier</code></td>
+        <td>Method <code>getIdentifier()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/acquisition/Operation.html#getIdentifier()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/acquisition/Operation.html#getIdentifier()">new</a></td>
+      </tr>
+      <tr>
+        <td><code>parentOperation</code></td>
+        <td>Method <code>getParentOperation()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/acquisition/Operation.html#getParentOperation()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/acquisition/Operation.html#getParentOperation()">new</a></td>
+      </tr>
+      <tr>
         <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.metadata.citation</code></th>
       </tr>
       <tr>
@@ -484,6 +579,13 @@
         <td><span class="remove">Deprecated</span>.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/citation/Citation.html#getCollectiveTitle()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/citation/Citation.html#getCollectiveTitle()">new</a></td>
+      </tr>
+      <tr>
+        <td><code>date</code></td>
+        <td>Method <code>getDates()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/citation/Citation.html#getDates()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/citation/Citation.html#getDates()">new</a></td>
       </tr>
       <tr>
         <td><code>graphic</code></td>
@@ -584,10 +686,10 @@
       </tr>
       <tr>
         <td><code>inForce</code></td>
-        <td>Field <code>INFORCE</code></td>
+        <td>Field <code>IN_FORCE</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/citation/DateType.html#INFORCE">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/citation/DateType.html#IN_FORCE">new</a></td>
       </tr>
       <tr>
         <td><code>lastRevision</code></td>
@@ -895,10 +997,10 @@
       </tr>
       <tr>
         <td><code>forOfficialUseOnly</code></td>
-        <td>Field <code>FOR_OFFICIAL_USE</code></td>
+        <td>Field <code>FOR_OFFICIAL_USE_ONLY</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/constraint/Classification.html#FOR_OFFICIAL_USE">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/constraint/Classification.html#FOR_OFFICIAL_USE_ONLY">new</a></td>
       </tr>
       <tr>
         <td><code>limitedDistribution</code></td>
@@ -1123,10 +1225,10 @@
       </tr>
       <tr>
         <td><code>auxillaryInformation</code></td>
-        <td>Field <code>AUXILLIARY_INFORMATION</code></td>
+        <td>Field <code>AUXILLARY_INFORMATION</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/content/CoverageContentType.html#AUXILLIARY_INFORMATION">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/content/CoverageContentType.html#AUXILLARY_INFORMATION">new</a></td>
       </tr>
       <tr>
         <td><code>coordinate</code></td>
@@ -1191,6 +1293,13 @@
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.content.FeatureCatalogueDescription</code></th>
       </tr>
       <tr>
+        <td><code>featureCatalogueCitation</code></td>
+        <td>Method <code>getFeatureCatalogueCitations()</code></td>
+        <td>Obligation changed from “MANDATORY” to “CONDITIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/content/FeatureCatalogueDescription.html#getFeatureCatalogueCitations()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/content/FeatureCatalogueDescription.html#getFeatureCatalogueCitations()">new</a></td>
+      </tr>
+      <tr>
         <td><code>featureTypes</code></td>
         <td>Method <code>getFeatureTypeInfo()</code></td>
         <td><span class="add">New</span>.</td>
@@ -1210,6 +1319,13 @@
         <td>OGC/ISO identifier changed from “language” to “locale”.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/content/FeatureCatalogueDescription.html#getLanguages()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/content/FeatureCatalogueDescription.html#getLanguages()">new</a></td>
+      </tr>
+      <tr>
+        <td><code>includedWithDataset</code></td>
+        <td>Method <code>isIncludedWithDataset()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/content/FeatureCatalogueDescription.html#isIncludedWithDataset()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/content/FeatureCatalogueDescription.html#isIncludedWithDataset()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.content.RangeDimension</code></th>
@@ -1234,6 +1350,16 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/content/RangeDimension.html#getNames()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.distribution.DataFile</code></th>
+      </tr>
+      <tr>
+        <td><code>fileFormat</code></td>
+        <td>Method <code><del>getFileFormat()</del></code></td>
+        <td><span class="remove">Deprecated</span>.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/distribution/DataFile.html#getFileFormat()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/distribution/DataFile.html#getFileFormat()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.distribution.DigitalTransferOptions</code></th>
@@ -1359,7 +1485,7 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/distribution/StandardOrderProcess.html#getCurrency()">new</a></td>
       </tr>
       <tr>
-        <td><code>orderOptionType</code></td>
+        <td><code>orderOptionsType</code></td>
         <td>Method <code>getOrderOptionType()</code></td>
         <td><span class="add">New</span>.</td>
         <td>
@@ -1381,6 +1507,16 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/extent/SpatialTemporalExtent.html#getVerticalExtent()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.extent.VerticalExtent</code></th>
+      </tr>
+      <tr>
+        <td><code>verticalCRS</code></td>
+        <td>Method <code>getVerticalCRS()</code></td>
+        <td>Obligation changed from “MANDATORY” to “CONDITIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/extent/VerticalExtent.html#getVerticalCRS()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/extent/VerticalExtent.html#getVerticalCRS()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.metadata.identification</code></th>
@@ -1490,6 +1626,20 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/AssociationType.html#IS_COMPOSED_OF">new</a></td>
       </tr>
       <tr>
+        <td></td>
+        <td>Field <code><del>LARGER_WORD_CITATION</del></code></td>
+        <td><span class="remove">Deprecated</span>, UML annotation moved to <code>LARGER_WORK_CITATION</code>.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/identification/AssociationType.html#LARGER_WORD_CITATION">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/AssociationType.html#LARGER_WORD_CITATION">new</a></td>
+      </tr>
+      <tr>
+        <td><code>largerWorkCitation</code></td>
+        <td>Field <code>LARGER_WORK_CITATION</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/AssociationType.html#LARGER_WORK_CITATION">new</a></td>
+      </tr>
+      <tr>
         <td><code>revisionOf</code></td>
         <td>Field <code>REVISION_OF</code></td>
         <td><span class="add">New</span>.</td>
@@ -1514,7 +1664,7 @@
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.identification.BrowseGraphic</code></th>
       </tr>
       <tr>
-        <td><code>imageContraints</code></td>
+        <td><code>imageConstraints</code></td>
         <td>Method <code>getImageConstraints()</code></td>
         <td><span class="add">New</span>.</td>
         <td>
@@ -1598,10 +1748,10 @@
       </tr>
       <tr>
         <td><code>dataCentre</code></td>
-        <td>Field <code>DATACENTRE</code></td>
+        <td>Field <code>DATA_CENTRE</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/KeywordType.html#DATACENTRE">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/KeywordType.html#DATA_CENTRE">new</a></td>
       </tr>
       <tr>
         <td><code>featureType</code></td>
@@ -1902,6 +2052,13 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/Usage.html#getResponses()">new</a></td>
       </tr>
       <tr>
+        <td><code>userContactInfo</code></td>
+        <td>Method <code>getUserContactInfo()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/identification/Usage.html#getUserContactInfo()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/identification/Usage.html#getUserContactInfo()">new</a></td>
+      </tr>
+      <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.lineage.Lineage</code></th>
       </tr>
       <tr>
@@ -1917,6 +2074,23 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/lineage/Lineage.html#getScope()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.lineage.NominalResolution</code></th>
+      </tr>
+      <tr>
+        <td><code>groundResolution</code></td>
+        <td>Method <code>getGroundResolution()</code></td>
+        <td>Obligation changed from “MANDATORY” to “CONDITIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/lineage/NominalResolution.html#getGroundResolution()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/lineage/NominalResolution.html#getGroundResolution()">new</a></td>
+      </tr>
+      <tr>
+        <td><code>scanningResolution</code></td>
+        <td>Method <code>getScanningResolution()</code></td>
+        <td>Obligation changed from “MANDATORY” to “CONDITIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/lineage/NominalResolution.html#getScanningResolution()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/lineage/NominalResolution.html#getScanningResolution()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.lineage.ProcessStep</code></th>
@@ -2009,10 +2183,10 @@
       </tr>
       <tr>
         <td><code>semimonthly</code></td>
-        <td>Field <code>SEMI_MONTHLY</code></td>
+        <td>Field <code>SEMIMONTHLY</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/maintenance/MaintenanceFrequency.html#SEMI_MONTHLY">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/maintenance/MaintenanceFrequency.html#SEMIMONTHLY">new</a></td>
       </tr>
       <tr>
         <td></td>
@@ -2030,6 +2204,13 @@
         <td><span class="remove">Deprecated</span>.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/maintenance/MaintenanceInformation.html#getDateOfNextUpdate()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/maintenance/MaintenanceInformation.html#getDateOfNextUpdate()">new</a></td>
+      </tr>
+      <tr>
+        <td><code>maintenanceAndUpdateFrequency</code></td>
+        <td>Method <code>getMaintenanceAndUpdateFrequency()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/maintenance/MaintenanceInformation.html#getMaintenanceAndUpdateFrequency()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/maintenance/MaintenanceInformation.html#getMaintenanceAndUpdateFrequency()">new</a></td>
       </tr>
       <tr>
         <td><code>maintenanceDate</code></td>
@@ -2143,6 +2324,13 @@
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/quality/Scope.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/quality/Scope.html">new</a></td>
       </tr>
       <tr>
+        <td><code>QE_Usability</code></td>
+        <td>Interface <code><del>Usability</del></code></td>
+        <td><span class="remove">Deprecated</span>.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/quality/Usability.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/quality/Usability.html">new</a></td>
+      </tr>
+      <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.quality.Scope</code></th>
       </tr>
       <tr>
@@ -2185,6 +2373,26 @@
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/spatial/Dimension.html#getDimensionTitle()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.spatial.Georectified</code></th>
+      </tr>
+      <tr>
+        <td><code>centrePoint</code></td>
+        <td>Method <code>getCenterPoint()</code></td>
+        <td>OGC/ISO identifier changed from “centerPoint” to “centrePoint”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/spatial/Georectified.html#getCenterPoint()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/spatial/Georectified.html#getCenterPoint()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.metadata.spatial.GridSpatialRepresentation</code></th>
+      </tr>
+      <tr>
+        <td><code>axisDimensionProperties</code></td>
+        <td>Method <code>getAxisDimensionProperties()</code></td>
+        <td>Obligation changed from “MANDATORY” to “OPTIONAL”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/metadata/spatial/GridSpatialRepresentation.html#getAxisDimensionProperties()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/metadata/spatial/GridSpatialRepresentation.html#getAxisDimensionProperties()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.parameter</code></th>
@@ -2271,6 +2479,13 @@
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/parameter/ParameterValue.html#doubleValue()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/parameter/ParameterValue.html#doubleValue()">new</a></td>
       </tr>
       <tr>
+        <td><code>CC_OperationParameterValue.parameter</code></td>
+        <td>Method <code>getDescriptor()</code></td>
+        <td>OGC/ISO identifier set to “CC_OperationParameterValue.parameter”, Obligation set to “MANDATORY”.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/parameter/ParameterValue.html#getDescriptor()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/parameter/ParameterValue.html#getDescriptor()">new</a></td>
+      </tr>
+      <tr>
         <td></td>
         <td>Method <code>getValue()</code></td>
         <td>UML annotation moved to <code>doubleValue()</code>.</td>
@@ -2288,6 +2503,76 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/ReferenceSystemType.html">new</a></td>
       </tr>
       <tr>
+        <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.referencing.crs</code></th>
+      </tr>
+      <tr>
+        <td><code>SC_ParametricCRS</code></td>
+        <td>Interface <code>ParametricCRS</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/crs/ParametricCRS.html">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.crs.CRSAuthorityFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createParametricCRS(String)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/crs/CRSAuthorityFactory.html#createParametricCRS(java.lang.String)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.crs.CRSFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createParametricCRS(Map, ParametricDatum, ParametricCS)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/crs/CRSFactory.html#createParametricCRS(java.util.Map, org.opengis.referencing.datum.ParametricDatum, org.opengis.referencing.cs.ParametricCS)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.referencing.cs</code></th>
+      </tr>
+      <tr>
+        <td><code>CS_ParametricCS</code></td>
+        <td>Interface <code>ParametricCS</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/cs/ParametricCS.html">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.cs.CSAuthorityFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createParametricCS(String)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/cs/CSAuthorityFactory.html#createParametricCS(java.lang.String)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.cs.CSFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createParametricCS(Map, CoordinateSystemAxis)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/cs/CSFactory.html#createParametricCS(java.util.Map, org.opengis.referencing.cs.CoordinateSystemAxis)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.referencing.datum</code></th>
+      </tr>
+      <tr>
+        <td><code>CD_ParametricDatum</code></td>
+        <td>Interface <code>ParametricDatum</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/datum/ParametricDatum.html">new</a></td>
+      </tr>
+      <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.datum.Datum</code></th>
       </tr>
       <tr>
@@ -2296,6 +2581,36 @@
         <td>OGC/ISO identifier changed from “anchorPoint” to “anchorDefinition”.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/referencing/datum/Datum.html#getAnchorPoint()">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/datum/Datum.html#getAnchorPoint()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.datum.DatumAuthorityFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createParametricDatum(String)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/datum/DatumAuthorityFactory.html#createParametricDatum(java.lang.String)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.datum.DatumFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createParametricDatum(Map)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/datum/DatumFactory.html#createParametricDatum(java.util.Map)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Code list <code>org.opengis.referencing.datum.PixelInCell</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>names()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/datum/PixelInCell.html#names()">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.operation.CoordinateOperationFactory</code></th>
@@ -2315,6 +2630,53 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/operation/CoordinateOperationFactory.html#getOperationMethod(java.lang.String)">new</a></td>
       </tr>
       <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.operation.MathTransformFactory</code></th>
+      </tr>
+      <tr>
+        <td><code>createFromXML</code></td>
+        <td>Method <code><del>createFromXML(String)</del></code></td>
+        <td><span class="remove">Deprecated</span>.</td>
+        <td>
+<a href="http://www.geoapi.org/3.0/javadoc/org/opengis/referencing/operation/MathTransformFactory.html#createFromXML(java.lang.String)">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/operation/MathTransformFactory.html#createFromXML(java.lang.String)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Classe <code>org.opengis.referencing.operation.NoninvertibleTransformException</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Constructor <code>NoninvertibleTransformException(Throwable)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/operation/NoninvertibleTransformException.html#NoninvertibleTransformException(java.lang.Throwable)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.referencing.operation.Projection</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>getSourceCRS()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/operation/Projection.html#getSourceCRS()">new</a></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>getTargetCRS()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/operation/Projection.html#getTargetCRS()">new</a></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Classe <code>org.opengis.referencing.operation.TransformException</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Constructor <code>TransformException(Throwable)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/referencing/operation/TransformException.html#TransformException(java.lang.Throwable)">new</a></td>
+      </tr>
+      <tr>
         <th class="section"></th><th class="section" colspan="3">Package <code>org.opengis.temporal</code></th>
       </tr>
       <tr>
@@ -2330,16 +2692,16 @@
       <tr>
         <td><code>CodeList</code></td>
         <td>Code list <code>CodeList</code></td>
-        <td>Parent changed from “Comparable” to “Enumerated”.</td>
+        <td>Parent changed from “Comparable” to “ControlledVocabulary”.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/util/CodeList.html">prev</a> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/util/CodeList.html">new</a></td>
       </tr>
       <tr>
         <td></td>
-        <td>Interface <code>Enumerated</code></td>
+        <td>Interface <code>ControlledVocabulary</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/util/Enumerated.html">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/util/ControlledVocabulary.html">new</a></td>
       </tr>
       <tr>
         <td><code>PT_FreeText</code></td>
@@ -2364,6 +2726,16 @@
         <td><span class="remove">Removed</span>.</td>
         <td>
 <a href="http://www.geoapi.org/3.0/javadoc/org/opengis/util/CodeList.html#equals(java.lang.Object)">prev</a> <span class="disabled">new</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.util.GenericName</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>compareTo(GenericName)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/snapshot/javadoc/org/opengis/util/GenericName.html#compareTo(org.opengis.util.GenericName)">new</a></td>
       </tr>
       <tr>
         <th class="section"></th><th class="section" colspan="3">Interface <code>org.opengis.util.MemberName</code></th>
@@ -2493,6 +2865,12 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/ToleranceModifiers.html">new</a></td>
       </tr>
       <tr>
+        <td>Classe <code>Units</code></td>
+        <td>Parent “Factory” removed.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html">new</a></td>
+      </tr>
+      <tr>
         <td>Classe <code>ValidatorContainer</code></td>
         <td>Parent set to “Cloneable”.</td>
         <td>
@@ -2500,6 +2878,12 @@
       </tr>
       <tr>
         <th class="section" colspan="3">Classe <code>org.opengis.test.Assert</code></th>
+      </tr>
+      <tr>
+        <td>Method <code>assertAnyTitleEquals(String, String, Citation)</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Assert.html#assertAnyTitleEquals(java.lang.String, java.lang.String, org.opengis.metadata.citation.Citation)">new</a></td>
       </tr>
       <tr>
         <td>Method <code>assertAxisDirectionsEqual(String, CoordinateSystem, AxisDirection[])</code></td>
@@ -2538,12 +2922,6 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Assert.html#assertShapeEquals(java.lang.String, java.awt.Shape, java.awt.Shape, double, double)">new</a></td>
       </tr>
       <tr>
-        <td>Method <code>assertAnyTitleEquals(String, String, Citation)</code></td>
-        <td><span class="add">New</span>.</td>
-        <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Assert.html#assertAnyTitleEquals(java.lang.String, java.lang.String, org.opengis.metadata.citation.Citation)">new</a></td>
-      </tr>
-      <tr>
         <td>Method <code>assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)</code></td>
         <td><span class="add">New</span>.</td>
         <td>
@@ -2553,22 +2931,10 @@
         <th class="section" colspan="3">Classe <code>org.opengis.test.TestCase</code></th>
       </tr>
       <tr>
-        <td>Field <code>NO_FACTORY</code></td>
-        <td><span class="add">New</span>.</td>
-        <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#NO_FACTORY">new</a></td>
-      </tr>
-      <tr>
         <td>Constructor <code>TestCase(Factory[])</code></td>
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#TestCase(org.opengis.util.Factory[])">new</a></td>
-      </tr>
-      <tr>
-        <td>Method <code>addTestListener(TestListener)</code></td>
-        <td><span class="add">New</span>.</td>
-        <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#addTestListener(org.opengis.test.TestListener)">new</a></td>
       </tr>
       <tr>
         <td>Method <code>configuration()</code></td>
@@ -2607,16 +2973,73 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#listener">new</a></td>
       </tr>
       <tr>
-        <td>Method <code>removeTestListener(TestListener)</code></td>
+        <td>Field <code>units</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#removeTestListener(org.opengis.test.TestListener)">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#units">new</a></td>
       </tr>
       <tr>
         <td>Field <code>validators</code></td>
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/TestCase.html#validators">new</a></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="3">Classe <code>org.opengis.test.Units</code></th>
+      </tr>
+      <tr>
+        <td>Constructor <code>Units(SystemOfUnits)</code></td>
+        <td>Made public.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#Units(javax.measure.spi.SystemOfUnits)">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code>arcSecond()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#arcSecond()">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code>foot()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#foot()">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code>footSurveyUS()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#footSurveyUS()">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code><del>getVendor()</del></code></td>
+        <td><span class="remove">Removed</span>.</td>
+        <td>
+<span class="disabled">prev</span> <span class="disabled">new</span></td>
+      </tr>
+      <tr>
+        <td>Method <code>grad()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#grad()">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code>hectopascal()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#hectopascal()">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code>microradian()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#microradian()">new</a></td>
+      </tr>
+      <tr>
+        <td>Method <code>pascal()</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/Units.html#pascal()">new</a></td>
       </tr>
       <tr>
         <th class="section" colspan="3">Classe <code>org.opengis.test.Validator</code></th>
@@ -2979,6 +3402,12 @@
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/ReferencingTest.html">new</a></td>
       </tr>
       <tr>
+        <td>Classe <code>ReferencingTestCase</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/ReferencingTestCase.html">new</a></td>
+      </tr>
+      <tr>
         <th class="section" colspan="3">Classe <code>org.opengis.test.referencing.CRSTest</code></th>
       </tr>
       <tr>
@@ -3279,22 +3708,100 @@
         <th class="section" colspan="3">Package <code>org.opengis.test.referencing.gigs</code></th>
       </tr>
       <tr>
+        <td>Classe <code>AuthorityFactoryTestCase</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/AuthorityFactoryTestCase.html">new</a></td>
+      </tr>
+      <tr>
         <td>Enumeration <code>Classification</code></td>
         <td><span class="add">New</span>.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/Classification.html">new</a></td>
       </tr>
       <tr>
-        <td>Classe <code>Series2000Test</code></td>
+        <td>Classe <code>GIGS2001</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/Series2000Test.html">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2001.html">new</a></td>
       </tr>
       <tr>
-        <td>Classe <code>Series3000Test</code></td>
+        <td>Classe <code>GIGS2002</code></td>
         <td><span class="add">New</span>.</td>
         <td>
-<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/Series3000Test.html">new</a></td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2002.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2003</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2003.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2004</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2004.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2005</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2005.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2006</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2006.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2007</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2007.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2008</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2008.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS2009</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS2009.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS3002</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS3002.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS3003</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS3003.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS3004</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS3004.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>GIGS3005</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/GIGS3005.html">new</a></td>
+      </tr>
+      <tr>
+        <td>Classe <code>UserObjectFactoryTestCase</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/referencing/gigs/UserObjectFactoryTestCase.html">new</a></td>
       </tr>
       <tr>
         <th class="section" colspan="3">Package <code>org.opengis.test.report</code></th>
@@ -3394,6 +3901,15 @@
         <td>Return type changed from “void” to “int”.</td>
         <td>
 <span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/util/NameValidator.html#dispatch(org.opengis.util.GenericName)">new</a></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="3">Package <code>org.opengis.test.wkt</code></th>
+      </tr>
+      <tr>
+        <td>Classe <code>CRSParserTest</code></td>
+        <td><span class="add">New</span>.</td>
+        <td>
+<span class="disabled">prev</span> <a href="http://www.geoapi.org/geoapi-conformance/apidocs/org/opengis/test/wkt/CRSParserTest.html">new</a></td>
       </tr>
     </table>
   </div></body>
