@@ -95,7 +95,7 @@ public interface Georectified extends GridSpatialRepresentation {
      *
      * @return the center point, or {@code null}.
      */
-    @UML(identifier="centerPoint", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="centrePoint", obligation=OPTIONAL, specification=ISO_19115)
     Point getCenterPoint();
 
     /**
