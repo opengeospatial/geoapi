@@ -44,10 +44,10 @@ import static org.opengis.annotation.Specification.*;
  * Description of a transfer data file.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
-@UML(identifier="MX_DataFile", specification=ISO_19139)
+@UML(identifier="MX_DataFile", specification=ISO_19115_3)
 public interface DataFile {
     /**
      * Provides the list of feature types concerned by the transfer data file. Depending on
@@ -57,14 +57,17 @@ public interface DataFile {
      *
      * @return list of features types concerned by the transfer data file.
      */
-    @UML(identifier="featureType", obligation=OPTIONAL, specification=ISO_19139)
+    @UML(identifier="featureType", obligation=OPTIONAL, specification=ISO_19115_3)
     Collection<? extends LocalName> getFeatureTypes();
 
     /**
      * Defines the format of the transfer data file.
      *
      * @return format of the transfer data file.
+     *
+     * @deprecated Removed in latest XSD schemas.
      */
-    @UML(identifier="fileFormat", obligation=MANDATORY, specification=ISO_19139)
+    @Deprecated
+    @UML(identifier="fileFormat", obligation=MANDATORY, specification=ISO_19139, version=2007)
     Format getFileFormat();
 }

@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * Designations for the operation used to acquire the dataset.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_Operation", specification=ISO_19115_2)
@@ -74,7 +74,7 @@ public interface Operation {
      *
      * @return unique identification of the operation.
      */
-    @UML(identifier="identifier", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115_2)
     Identifier getIdentifier();
 
     /**
@@ -112,9 +112,9 @@ public interface Operation {
     /**
      * Heritage of the operation.
      *
-     * @return heritage of the operation.
+     * @return heritage of the operation, or {@code null}.
      */
-    @UML(identifier="parentOperation", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="parentOperation", obligation=OPTIONAL, specification=ISO_19115_2)
     Operation getParentOperation();
 
     /**

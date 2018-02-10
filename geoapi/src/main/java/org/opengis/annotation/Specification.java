@@ -43,7 +43,7 @@ package org.opengis.annotation;
  *   <li>For OGC specifications, the version number is the OGC revision number.</li>
  *   <li>For ISO specifications, the version number is the publication year (ignoring corrigendum,
  *       which are implicit). For example if the specification is {@link #ISO_19115}, then version
- *       2003 stands for <cite>ISO 19115:2003/Cor.1:2006(E)</cite>.</li>
+ *       2003 stands for <cite>ISO 19115:2003/Cor.1:2006</cite>.</li>
  * </ul>
  * The version numbers are documented in {@code Specification} enumeration constants.
  * Versions other than the {@linkplain #defaultVersion() default version} may be declared
@@ -76,10 +76,10 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2005:</b> ISO/TS 19103:2005(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2005:</b> ISO/TS 19103:2005   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=37800">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/37800.html">ISO/TS 19103:2005 on standards catalogue</a>
      */
     ISO_19103((short) 2005),
 
@@ -100,10 +100,10 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2003:</b> ISO 19107:2003(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2003:</b> ISO 19107:2003   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=26012">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/26012.html">ISO 19107:2003 on standards catalogue</a>
      */
     ISO_19107((short) 2003),
 
@@ -124,11 +124,11 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2002:</b> ISO 19108:2002/Cor.1:2006(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2002:</b> ISO 19108:2002/Cor.1:2006   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=26013">Buy from ISO</a>
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44883">Corrigendum</a>
+     * @see <a href="https://www.iso.org/standard/26013.html">ISO 19108:2002 on standards catalogue</a>
+     * @see <a href="https://www.iso.org/standard/44883.html">Corrigendum</a>
      */
     ISO_19108((short) 2002),
 
@@ -155,7 +155,7 @@ public enum Specification {
      *   <li><b>2013:</b> ISO 19109:2013 draft   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39891">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/59193.html">ISO 19109:2015 on standards catalogue</a>
      *
      * @since 3.1
      */
@@ -193,12 +193,12 @@ public enum Specification {
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
      *   <li><b>2003:</b> OGC 03-073r1</li>
-     *   <li><b>2007:</b> ISO 19111:2007(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2007:</b> ISO 19111:2007   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
      * @see #OGC_01009
+     * @see <a href="https://www.iso.org/standard/41126.html">ISO 19111:2007 on standards catalogue</a>
      * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=39049">Download from OGC</a>
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=41126">Buy from ISO</a>
      */
     ISO_19111((short) 2007),
 
@@ -214,12 +214,12 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2009:</b> ISO 19111-2:2009(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2009:</b> ISO 19111-2:2009   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/fr/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=44075">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/fr/standard/44075.html">ISO 19111-2:2009 on standards catalogue</a>
      *
-     * @since 3.2
+     * @since 3.1
      */
     ISO_19111_2((short) 2009),
 
@@ -246,7 +246,7 @@ public enum Specification {
      *   <li><b>2003:</b> ISO 19112:2003   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=26017">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/26017.html">ISO 19112:2003 on standards catalogue</a>
      * @see <a href="https://portal.opengeospatial.org/files/?artifact_id=46964">OGC 11-122r1 Gazetteer Service — Profile of the Web Feature Service</a>
      */
     ISO_19112((short) 2003),
@@ -285,11 +285,11 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2003:</b> ISO 19115:2003/Cor.1:2006(E)</li>
-     *   <li><b>2014:</b> ISO 19115-1:2014(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2003:</b> ISO 19115:2003/Cor.1:2006</li>
+     *   <li><b>2014:</b> ISO 19115-1:2014   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/home/store/catalogue_ics/catalogue_detail_ics.htm?csnumber=53798">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/53798.html">ISO 19115-1:2014 on standards catalogue</a>
      */
     ISO_19115((short) 2014),
 
@@ -311,14 +311,55 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2009:</b> ISO 19115-2:2009(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2009:</b> ISO 19115-2:2009   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=39229">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/39229.html">ISO 19115-2:2009 on standards catalogue</a>
      *
      * @since 2.3
      */
     ISO_19115_2((short) 2009),
+
+    /**
+     * ISO 19115-3, Metadata part 3: XML schema implementation for fundamental concepts.
+     * This is the specification for package {@link org.opengis.metadata} and sub-packages.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <blockquote style="font-size:small">
+     * <p>defines an integrated XML implementation of ISO 19115‑1, ISO 19115‑2, and concepts from ISO/TS 19139
+     * by defining the following artefacts:</p>
+     *
+     * <ul>
+     *   <li>a set of XML schema required to validate metadata instance documents conforming to
+     *     conceptual model elements defined in ISO 19115‑1, ISO 19115‑2, and ISO/TS 19139;</li>
+     *   <li>a set of ISO/IEC 19757‑3 (Schematron) rules that implement validation constraints
+     *     in the ISO 19115‑1 and ISO 19115‑2 UML models that are not validated by the XML schema;</li>
+     *   <li>an Extensible Stylesheet Language Transformation (XSLT) for transforming ISO 19115-1 metadata
+     *     encoded using the ISO/TS 19139 XML schema and ISO 19115‑2 metadata encoded using the ISO/TS 19139‑2
+     *     XML schema into an equivalent document that is valid against the XML schema defined in this document.</li>
+     * </ul>
+     *
+     * <p>ISO/TS 19115-3:2016 describes the procedure used to generate XML schema from ISO geographic information
+     * conceptual models related to metadata. The procedure includes creation of an UML model for XML implementation
+     * derived from the conceptual UML model.</p>
+     *
+     * <p>This implementation model does not alter the semantics of the target conceptual model, but adds abstract
+     * classes that remove dependencies between model packages, tagged values and stereotypes required by the UML
+     * to XML transformation software, and refactors the packaging of a few elements into XML namespaces.
+     * The XML schema has been generated systematically from the UML model for XML implementation according
+     * to the rules defined in ISO/TS 19139 or ISO 19118.</p>
+     * </blockquote>
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2016:</b> ISO 19115-3:2016   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="https://www.iso.org/standard/32579.html">ISO/TS 19115-3:2016 on standards catalogue</a>
+     *
+     * @since 3.1
+     */
+    ISO_19115_3((short) 2016),
 
     /**
      * ISO 19117, Portrayal.
@@ -334,10 +375,10 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2005:</b> ISO 19117:2005(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2005:</b> ISO 19117:2005   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40395">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/40395.html">ISO 19117:2005 on standards catalogue</a>
      */
     ISO_19117((short) 2005),
 
@@ -365,12 +406,12 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2005:</b> ISO 19123:2005(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2005:</b> ISO 19123:2005   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
      * @see #OGC_01004
+     * @see <a href="https://www.iso.org/standard/40121.html">ISO 19123:2005 on standards catalogue</a>
      * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=19820">Download from OGC</a>
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=40121">Buy from ISO</a>
      */
     ISO_19123((short) 2005),
 
@@ -389,11 +430,11 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2005:</b> ISO 19128:2005(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2005:</b> ISO 19128:2005   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
+     * @see <a href="https://www.iso.org/standard/32546.html">ISO 19128:2005 on standards catalogue</a>
      * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=5316">Download from OGC</a>
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32546">Buy from ISO</a>
      */
     ISO_19128((short) 2005),
 
@@ -409,10 +450,10 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2007:</b> ISO 19139:2007(E)   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2007:</b> ISO 19139:2007   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=32557">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/32557.html">ISO/TS 19139:2007 on standards catalogue</a>
      *
      * @since 2.3
      */
@@ -443,7 +484,7 @@ public enum Specification {
      *   <li><b>2015:</b> ISO 19162:2015   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63094">Buy from ISO</a>
+     * @see <a href="https://www.iso.org/standard/63094.html">ISO 19162:2015 on standards catalogue</a>
      *
      * @since 3.1
      */
@@ -569,7 +610,7 @@ public enum Specification {
      * <div class="note"><b>Examples:</b>
      * <ul>
      *   <li>For {@link #OGC_03064}, version 10 stands for <cite>OGC 03-064r10</cite>.</li>
-     *   <li>For {@link #ISO_19115}, version 2003 stands for <cite>ISO 19115:2003/Cor.1:2006(E)</cite>
+     *   <li>For {@link #ISO_19115}, version 2003 stands for <cite>ISO 19115:2003/Cor.1:2006</cite>
      *       and version 2014 stands for <cite>ISO 19115:2014</cite>.</li>
      * </ul></div>
      *

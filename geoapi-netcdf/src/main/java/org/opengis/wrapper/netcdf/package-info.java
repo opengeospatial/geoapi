@@ -14,7 +14,7 @@
 
 /**
  * GeoAPI implementation as wrappers around the
- * <a href="http://www.unidata.ucar.edu/software/netcdf-java/">NetCDF</a> library.
+ * <a href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/">NetCDF</a> library.
  * This package provides adapters allowing usage of the following NetCDF services
  * as an implementation of GeoAPI interfaces:
  *

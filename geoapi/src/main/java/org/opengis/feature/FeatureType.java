@@ -115,6 +115,17 @@ public interface FeatureType extends IdentifiedType {
     boolean isSimple();
 
     /**
+     * Returns {@code true} if and only if an attribute, operation or association role of the given name exists
+     * in this feature type or in one of its super-types. If this method returns {@code true}, then calls to
+     * <code>{@linkplain #getProperty(String) getProperty}(name)</code> will not throw
+     * {@link PropertyNotFoundException}.
+     *
+     * @param  name  the name of the property to search.
+     * @return whether an attribute, operation or association role exists for the given name.
+     */
+//  boolean hasProperty(String name);
+
+    /**
      * Returns the attribute, operation or association role for the given name.
      *
      * @param  name  the name of the property to search.

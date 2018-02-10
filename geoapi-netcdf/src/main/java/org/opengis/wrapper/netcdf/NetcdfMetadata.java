@@ -115,7 +115,7 @@ import org.opengis.temporal.Duration;
  * @version 4.0
  * @since   3.1
  *
- * @see <a href="http://www.unidata.ucar.edu/software/netcdf-java/formats/DataDiscoveryAttConvention.html">NetCDF Attribute Convention for Dataset Discovery</a>
+ * @see <a href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/metadata/DataDiscoveryAttConvention.html">NetCDF Attribute Convention for Dataset Discovery</a>
  */
 public class NetcdfMetadata implements Metadata, DataIdentification, Identifier, CitationDate,
         Responsibility, Individual, Contact, Address, Extent, GeographicBoundingBox

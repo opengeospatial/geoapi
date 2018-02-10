@@ -449,7 +449,7 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * Returns the given string in lower cases, except for the last letter if it is single.
-     * The intend is to leave the trailing X, Y or Z case unchanged in "geocentric X",
+     * The intent is to leave the trailing X, Y or Z case unchanged in "geocentric X",
      * "geocentric Y" and "geocentric Z" axis names.
      */
     static String toLowerCase(final String name) {

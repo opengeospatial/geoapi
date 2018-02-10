@@ -121,8 +121,8 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
      * Creates a default processor.
      */
     public IndexGenerator() {
-        javaMethods    = new HashSet<String>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
-        vecmathMethods = new HashSet<String>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
+        javaMethods    = new HashSet<>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
+        vecmathMethods = new HashSet<>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
         lineSeparator  = System.getProperty("line.separator", "\n");
         notes          = new Properties();
     }
@@ -142,13 +142,13 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             skip = true;
         }
         final String notesList = options.get("notesList");
-        if (notesList != null) try {
-            final FileInputStream in = new FileInputStream(notesList);
-            notes.load(in);
-            in.close();
-        } catch (IOException e) {
-            processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
-                    "Can not read the \"" + notesList + "\" file:" + lineSeparator + e);
+        if (notesList != null) {
+            try (FileInputStream in = new FileInputStream(notesList)) {
+                notes.load(in);
+            } catch (IOException e) {
+                processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
+                        "Can not read the \"" + notesList + "\" file:" + lineSeparator + e);
+            }
         }
     }
 
@@ -349,16 +349,21 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
          */
         String note = notes.getProperty(getQualifiedName(element));
         if (note != null) {
-            if (note.equals("N")) {
-                out.write("<td class=\"new\"><a href=\"#notes\">(N)</a>");
-            } else if (note.equals("I")) {
-                out.write("<td class=\"incompatible\"><a href=\"#notes\">(I)</a>");
-            } else if (note.equals("MC")) {
-                out.write("<td class=\"warning\"><a href=\"#notes\">(MC)</a>");
-            } else {
-                processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Unknown note: " + name + " = " + note);
-                out.write("<td>");
-                out.write(note);
+            switch (note) {
+                case "N":
+                    out.write("<td class=\"new\"><a href=\"#notes\">(N)</a>");
+                    break;
+                case "I":
+                    out.write("<td class=\"incompatible\"><a href=\"#notes\">(I)</a>");
+                    break;
+                case "MC":
+                    out.write("<td class=\"warning\"><a href=\"#notes\">(MC)</a>");
+                    break;
+                default:
+                    processingEnv.getMessager().printMessage(Diagnostic.Kind.WARNING, "Unknown note: " + name + " = " + note);
+                    out.write("<td>");
+                    out.write(note);
+                    break;
             }
         } else {
             out.write("<td>");

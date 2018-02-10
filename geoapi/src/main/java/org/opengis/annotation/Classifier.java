@@ -43,7 +43,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * The UML class diagrams in ISO/OGC specifications declare some members as abstract, meaning that
  * instances of those interfaces are expected to implement one of their sub-interfaces.
  * While there is nothing like "abstract interface" and "concrete interface" in the Java language,
- * we nevertheless communicate ISO/OGC intend using this annotation.
+ * we nevertheless communicate ISO/OGC intent using this annotation.
  *
  * <p>Implementations are not required to represent "abstract interfaces" by Java abstract classes.
  * This annotation is provided merely for informative purpose for testing tools, implementations

@@ -99,7 +99,7 @@ public abstract strictfp class IOTestCase {
 
     /**
      * The {@value} test file (NetCDF classic binary format). This file was downloaded from the examples provided in the
-     * <a href="http://www.unidata.ucar.edu/software/netcdf-java/formats/DataDiscoveryAttConvention.html">NetCDF
+     * <a href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/metadata/DataDiscoveryAttConvention.html">NetCDF
      * Attribute Convention for Dataset Discovery</a> page on October 5, 2011. The global attributes
      * are listed below. Note that this particular NetCDF file specifies the geographic bounding box
      * ordinates as string values rather than numerical values. Consequently the implementations to

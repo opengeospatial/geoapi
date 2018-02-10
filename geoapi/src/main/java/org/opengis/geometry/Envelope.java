@@ -167,8 +167,9 @@ public interface Envelope {
 
     /**
      * Returns the minimal ordinate value for the specified dimension. In the typical case of
-     * envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut for the
-     * following code without the cost of creating a temporary {@link DirectPosition} object:
+     * non-empty envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut
+     * for the following code without the cost of creating a temporary {@link DirectPosition}
+     * object:
      *
      * <blockquote><code>
      * minimum = {@linkplain #getLowerCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
@@ -204,8 +205,9 @@ public interface Envelope {
 
     /**
      * Returns the maximal ordinate value for the specified dimension. In the typical case of
-     * envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut for the
-     * following code without the cost of creating a temporary {@link DirectPosition} object:
+     * non-empty envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut
+     * for the following code without the cost of creating a temporary {@link DirectPosition}
+     * object:
      *
      * <blockquote><code>
      * maximum = {@linkplain #getUpperCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);

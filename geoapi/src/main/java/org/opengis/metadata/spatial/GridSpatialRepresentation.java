@@ -61,7 +61,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
      *
      * @return information about spatial-temporal axis properties.
      */
-    @UML(identifier="axisDimensionProperties", obligation=MANDATORY, specification=ISO_19115)
+    @UML(identifier="axisDimensionProperties", obligation=OPTIONAL, specification=ISO_19115)
     List<? extends Dimension> getAxisDimensionProperties();
 
     /**

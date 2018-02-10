@@ -107,7 +107,7 @@ public interface DirectPosition extends Position {
      * There are a couple reasons for requesting a copy:
      *
      * <ul>
-     *   <li>We want an array of coordinates with the intend to modify it for computation purpose
+     *   <li>We want an array of coordinates with the intent to modify it for computation purpose
      *       (without modifying the original {@code DirectPosition}), or we want to protect the
      *       array from future {@code DirectPosition} changes.</li>
      *   <li>If {@code DirectPosition.getOrdinates()} is guaranteed to not return the backing array,

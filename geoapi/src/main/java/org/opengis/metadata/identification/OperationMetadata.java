@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 
 
 /**
- * Describe the signature of one and only one method provided by the service.
+ * Describes the signature of one and only one method provided by the service.
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
@@ -127,7 +127,7 @@ public interface OperationMetadata {
      *
      * @see org.opengis.parameter.GeneralParameterDescriptor
      */
-    @UML(identifier="parameters", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="parameter", obligation=OPTIONAL, specification=ISO_19115)     // Was "parameters" in ISO 19115:2003
     Collection<? extends ParameterDescriptor<?>> getParameters();
 
     /**

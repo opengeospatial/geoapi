@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * Result of a data quality measure organising the measured values as a coverage.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="QE_CoverageResult", specification=ISO_19115_2)
@@ -89,6 +89,6 @@ public interface CoverageResult extends Result {
      *
      * @return data file containing the result coverage data.
      */
-    @UML(identifier="resultFile", obligation=MANDATORY, specification=ISO_19139)
+    @UML(identifier="resultFile", obligation=MANDATORY, specification=ISO_19115_3)
     DataFile getResultFile();
 }
