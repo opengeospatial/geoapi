@@ -130,7 +130,7 @@ public final class CompatibilityTest {
      * @throws MalformedURLException if an error occurred while building the URL to the JAR files.
      */
     public CompatibilityTest() throws MalformedURLException {
-        this("3.0.0", "3.1-SNAPSHOT");
+        this("3.0.1", "3.1-SNAPSHOT");
     }
 
     /**
@@ -141,8 +141,8 @@ public final class CompatibilityTest {
      * @throws MalformedURLException if an error occurred while building the URL to the JAR files.
      */
     private CompatibilityTest(final String oldVersion, final String newVersion) throws MalformedURLException {
-        isOldUsingLegacyUnits = oldVersion.startsWith("2.") || oldVersion.startsWith("3.0.0");
-        isNewUsingLegacyUnits = newVersion.startsWith("2.") || newVersion.startsWith("3.0.0");
+        isOldUsingLegacyUnits = oldVersion.startsWith("2.") || oldVersion.startsWith("3.0.1");
+        isNewUsingLegacyUnits = newVersion.startsWith("2.") || newVersion.startsWith("3.0.1");
         if (newVersion.startsWith("3.1")) {
             deletedClasses = Collections.emptySet();
             acceptedIncompatibleChanges = IncompatibleChange.for31();
