@@ -94,9 +94,7 @@ public final strictfp class GlobalTest implements FileFilter {
             if (uml != null) {
                 final String identifier = uml.identifier().trim();
                 if (identifier.isEmpty()) {
-                    if (uml.specification() != Specification.ISO_19112) {
-                        fail("UML identifier is empty in " + c);
-                    }
+                    fail("UML identifier is empty in " + c);
                 }
                 /*
                  * As a policy, we do not declare version numbers which are equal to the default version.

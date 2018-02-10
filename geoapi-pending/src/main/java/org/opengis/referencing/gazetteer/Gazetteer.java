@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="", specification=ISO_19112)
+@UML(identifier="SI_Gazetteer", specification=ISO_19112)
 public interface Gazetteer {
     /**
      * Name of the gazetteer.
