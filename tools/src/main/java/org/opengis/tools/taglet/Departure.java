@@ -69,7 +69,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
      */
     private static final Map<String,String> CATEGORIES;
     static {
-        final Map<String,String> c = new LinkedHashMap<String,String>();
+        final Map<String,String> c = new LinkedHashMap<>();
         c.put("constraint",     "Departures due to constraints of the Java language");
         c.put("historic",       "Departures due to historical reasons");
         c.put("harmonization",  "Departures for harmonization between the different specifications");
@@ -209,7 +209,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
         synchronized (departures) {
             List<DepartureElement> forCategory = departures.get(category);
             if (forCategory == null) {
-                forCategory = new ArrayList<DepartureElement>();
+                forCategory = new ArrayList<>();
                 departures.put(category, forCategory);
             }
             forCategory.add(new DepartureElement(tag, text));
@@ -224,7 +224,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
     /**
      * Generates a summary of all departures.
      *
-     * @throws IOException If an error occured while writing the summary page.
+     * @throws IOException If an error occurred while writing the summary page.
      */
     private void summary() throws IOException {
         final BufferedWriter out = new BufferedWriter(new FileWriter("departures.html"));
@@ -240,7 +240,7 @@ public final class Departure extends AbstractTaglet implements Runnable {
         out.write("  <p>The following sections list all the departures from the ISO " +
                   "standards taken by the GeoAPI interface library. The rationale for " +
                   "these departures fall into the following categories:</p>"); out.newLine();
-        final Set<String> categories = new LinkedHashSet<String>(CATEGORIES.keySet());
+        final Set<String> categories = new LinkedHashSet<>(CATEGORIES.keySet());
         synchronized (departures) {
             categories.addAll(departures.keySet());
             /*
