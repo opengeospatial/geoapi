@@ -203,9 +203,15 @@ final class JavaElementCollector {
                 files.add(new File(repository, version.getMavenArtefactPath("geoapi-pending")));
             }
         }
-        files.add(new File(repository, Dependency.UNIT_OF_MEASURES.pathInMavenRepository(version)));
+        final List<Dependency> dependencies = new ArrayList<>(2);
+        dependencies.add(Dependency.UNIT_OF_MEASURES);
         if (artefact.endsWith("conformance")) {
-            files.add(new File(repository, Dependency.JUNIT.pathInMavenRepository(version)));
+            dependencies.add(Dependency.JUNIT);
+        }
+        for (final Dependency dependency : dependencies) {
+            for (final String path : dependency.pathInMavenRepository(version)) {
+                files.add(new File(repository, path));
+            }
         }
         return new JavaElementCollector(files, hierarchy).elements;
     }

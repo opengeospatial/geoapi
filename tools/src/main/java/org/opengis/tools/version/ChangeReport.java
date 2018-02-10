@@ -133,6 +133,7 @@ public final class ChangeReport {
         out.write(" and ");
         out.write(newVersion.toString());
         out.write(    "</title>\n"
+                + "    <meta charset=\"UTF-8\"/>\n"
                 + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/change-summary.css\"/>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"

@@ -45,8 +45,8 @@ enum Dependency {
      */
     UNIT_OF_MEASURES {
         @Override
-        public String pathInMavenRepository(final Version geoapiVersion) {
-            return "javax/measure/unit-api/1.0/unit-api-1.0.jar";
+        public String[] pathInMavenRepository(final Version geoapiVersion) {
+            return new String[] {"javax/measure/unit-api/1.0/unit-api-1.0.jar"};
         }
     },
 
@@ -55,8 +55,11 @@ enum Dependency {
      */
     JUNIT {
         @Override
-        public String pathInMavenRepository(final Version geoapiVersion) {
-            return "junit/junit/4.12/junit-4.12.jar";
+        public String[] pathInMavenRepository(final Version geoapiVersion) {
+            return new String[] {
+                "junit/junit/4.12/junit-4.12.jar",
+                "org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
+            };
         }
     };
 
@@ -65,5 +68,5 @@ enum Dependency {
      * Those dependencies are hard-coded for now and doesn't need to be accurate for the needs of
      * this package. We report only major changes, like switching from JSR-275 to the JSR-363 API.
      */
-    public abstract String pathInMavenRepository(Version geoapiVersion);
+    public abstract String[] pathInMavenRepository(Version geoapiVersion);
 }
