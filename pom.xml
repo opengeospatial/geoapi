@@ -102,11 +102,6 @@
     <url>https://github.com/opengeospatial/geoapi</url>
   </scm>
 
-  <ciManagement>
-    <system>jenkins</system>
-    <url>http://jenkins.geotoolkit.org/job/GeoAPI/</url>
-  </ciManagement>
-
   <mailingLists>
     <mailingList>
       <name>GeoAPI Standard Working Group (OGC)</name>
