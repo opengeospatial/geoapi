@@ -18,8 +18,6 @@ GeoAPI releases
 
     * {{{./maven.html}Maven repositories}} (recommended way to get the binaries)
 
-    * {{{http://jenkins.geotoolkit.org/job/GeoAPI}Nightly builds (last 2 weeks)}}
-
 
   The development version compatible with the last release is GeoAPI-3.1-SNAPSHOT.
 
@@ -29,8 +27,6 @@ GeoAPI releases
       (not to be included in the official release)
 
     * {{{./maven.html}Maven repositories}} (recommended way to get the binaries)
-
-    * {{{http://jenkins.geotoolkit.org/job/GeoAPI-3.1}Nightly builds (last 2 weeks)}}
 
 
 * Releases
