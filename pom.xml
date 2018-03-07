@@ -102,13 +102,18 @@
     <url>https://github.com/opengeospatial/geoapi</url>
   </scm>
 
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/opengeospatial/geoapi/issues</url>
+  </issueManagement>
+
   <mailingLists>
     <mailingList>
       <name>GeoAPI Standard Working Group (OGC)</name>
-      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</subscribe>
-      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</unsubscribe>
-      <post>geoapi-3.0.swg@lists.opengeospatial.org</post>
-      <archive>https://lists.opengeospatial.org/mailman/private/geoapi-3.0.swg</archive>
+      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</subscribe>
+      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</unsubscribe>
+      <post>geoapi.swg@lists.opengeospatial.org</post>
+      <archive>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</archive>
     </mailingList>
   </mailingLists>
 
