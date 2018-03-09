@@ -632,7 +632,7 @@
   <distributionManagement>
     <repository>
       <id>geoapi.snapshots</id>           <!-- For snapshots and milestones only -->
-      <name>${distMgmtSnapshotsName}</name>
+      <name>GeoAPI snapshots</name>
       <url>${distMgmtSnapshotsUrl}</url>
     </repository>
     <site>
