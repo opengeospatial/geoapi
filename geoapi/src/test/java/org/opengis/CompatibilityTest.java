@@ -214,6 +214,9 @@ public final class CompatibilityTest {
                 if (!Modifier.isPublic(newMethod.getModifiers())) {
                     continue;                                                       // Skip non-public methods.
                 }
+                if (newMethod.isSynthetic()) {
+                    continue;                                                       // Skip methods added by compiler.
+                }
                 final String methodName = newMethod.getName();
                 if (oldClass != null) try {
                     final Class<?>[] paramTypes = getParameterTypes(newMethod,

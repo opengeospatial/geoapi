@@ -32,8 +32,8 @@
 package org.opengis.metadata.lineage;
 
 import org.opengis.annotation.UML;
-
 import org.opengis.util.InternationalString;
+
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 

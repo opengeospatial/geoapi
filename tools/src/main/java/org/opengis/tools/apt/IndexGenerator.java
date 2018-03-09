@@ -57,7 +57,7 @@ import javax.annotation.processing.SupportedOptions;
 
 
 /**
- * Generates a list of all type and methods, together with their ISO identifier. The list will be written in the
+ * Generates a list of all types and methods, together with their ISO identifier. The list will be written in the
  * given output file (usually "{@code geoapi/src/main/javadoc/content.html}"). The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *

@@ -49,40 +49,24 @@ GeoAPI
   and scientists from around the globe motivated by diverse interests. Many
   work on GeoAPI as part of their own efforts writing client applications which
   use the API or working on libraries which implement the API.
+  In addition, a {{{http://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI Standard Working Group}}
+  has formed within the OGC to formalize GeoAPI as a published OGC standard.
 
-    * The project runs a public {{{./mail-lists.html}mailing list}} for user and
-      developer questions, other issues, and general discussion.
 
-    * The code repository is hosted in the {{{https://github.com/opengeospatial/geoapi}OGC group of projects}}.
+    * The code repository is hosted in the {{{https://github.com/opengeospatial/geoapi}OGC group of projects}} on GitHub.
 
-    * The project uses a {{{https://osgeo-org.atlassian.net/projects/GEO/issues}JIRA task tracker}}.
+    * The project uses a {{{https://github.com/opengeospatial/geoapi/issues}GitHub issue tracker}}.
 
     * GeoAPI has an {{{http://portal.opengeospatial.org/twiki/bin/view/Member/GeoAPI}OGC wiki}}
-      for the {{{https://portal.opengeospatial.org/?m=projects&a=view&project_id=294}Standard
-      Working Group}} (SWG) tasks.
+      for the Standard Working Group (SWG) tasks.
 
-  GeoAPI is free software. GeoAPI may be used, modified and redistributed by
+  GeoAPI is free software. GeoAPI may be used and redistributed by
   anyone for any purpose requiring only maintaining the copyright and license
   terms on the source code and derivative files. The copyright to the GeoAPI
   interfaces is held by the Open Geospatial Consortium.
   See {{{http://www.opengeospatial.org/ogc/software}the OGC legal page}} for details.
 
   More information can be found on the {{{./faq.html}Frequently Asked Questions}} page.
-
-
-** The GeoAPI working group of the OGC
-
-  Because of the close link between GeoAPI and the OGC, a working group has
-  formed within the OGC to formalize GeoAPI as a published OGC standard. The
-  {{{http://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI 3.0 Standard Working Group}}
-  has published its {{{./charter.html}charter}}.
-
-  The working group currently aims to produce the initial 3.0 standard containing
-  only a few, highly tested and stable packages. These include ISO-19115 Metadata
-  and ISO-19111 Spatial referencing by Coordinates.
-  Beyond this version of the specification, the working group intends to include
-  the other packages of GeoAPI as those mature and are tested enough to be
-  considered stable and trusted.
 
 
 * The GeoAPI code structure
@@ -113,5 +97,3 @@ GeoAPI
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
   projects which also use this tool can integrate GeoAPI into their Maven
   dependencies using one of the {{{./maven.html}repositories listed here}}.
-
-  GeoAPI source code is hosted on a {{{./source-repository.html}Git repository}} on GitHub.
