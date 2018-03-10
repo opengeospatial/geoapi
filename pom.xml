@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ====================================================
+<!-- =================================================================================
          Maven 2 project configuration file
          http://maven.apache.org/maven2/
-     ==================================================== -->
+
+         Build development snapshot:    mvn clean install
+         Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
+         Publish a release:             mvn clean install deploy -Pgeoapi-release
+     ================================================================================= -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,9 +16,10 @@
 
 
 
-  <!-- ====================================================
-           Project description (including license)
-       ==================================================== -->
+  <!-- =================================================================================
+           Project description (license, mailing lists, issues management, etc).
+           Those descriptions appear in the web site published on www.geoapi.org.
+       ================================================================================= -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
@@ -42,27 +47,63 @@
     </license>
   </licenses>
 
+  <scm>
+    <connection>scm:git:https://github.com/opengeospatial/geoapi</connection>
+    <url>https://github.com/opengeospatial/geoapi</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/opengeospatial/geoapi/issues</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>GeoAPI Standard Working Group (OGC)</name>
+      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</subscribe>
+      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</unsubscribe>
+      <post>geoapi.swg@lists.opengeospatial.org</post>
+      <archive>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</archive>
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+    <developer>
+      <name>GeoAPI contributors</name>
+      <organizationUrl>http://www.geoapi.org/</organizationUrl>
+      <roles>
+        <role>Java developers</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>GeoAPI Standard Working Group</name>
+      <organization>Open Geospatial Consortium</organization>
+      <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
+      <roles>
+        <role>Specification editors</role>
+      </roles>
+    </developer>
+  </developers>
 
 
-  <!-- ====================================================
-           Profiles and properties
 
-           If the Proj.4 native library is installed on the
-           local machine, then GeoAPI can be built as below:
+  <!-- =================================================================================
+           Profiles and properties controlling the build.
 
-           mvn install -DskipNativeLibraryTests=false
-       ==================================================== -->
+           The default configuration is used for building snapshots, in order to test
+           GeoAPI development by implementaters. For final releases by OGC staff, the
+           "geoapi-release" profile shall be activated like below:
+
+               mvn clean install deploy -Pgeoapi-release
+
+           Optionally, if the Proj.4 native library is installed on the local machine,
+           then GeoAPI can be built with the "-DskipNativeLibraryTests=false" option.
+       ================================================================================= -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
   </properties>
-
-  <!--
-    The default configuration is used for snapshot deployments,  in order to test GeoAPI
-    experimental features in an open source implementation. The "sign-artifacts" profile
-    shall be activated for all final releases by OGC staff.
-  -->
   <profiles>
     <profile>
       <id>geoapi-release</id>
@@ -94,57 +135,25 @@
 
 
 
-  <!-- ====================================================
-           Issue managements and mailing lists
-       ==================================================== -->
-  <scm>
-    <connection>scm:git:https://github.com/opengeospatial/geoapi</connection>
-    <url>https://github.com/opengeospatial/geoapi</url>
-  </scm>
+  <!-- =================================================================================
+           External dependencies used by GeoAPI or to be inherited by external projects
+           using GeoAPI.   The <dependencyManagement> section declares version numbers.
+           It is followed by a <dependencies> section listing the dependencies actually
+           required by the core of GeoAPI library; other dependencies are used only for
+           tests or examples.  External projects can inherit those version numbers with
+           the following fragment in their pom.xml file:
 
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/opengeospatial/geoapi/issues</url>
-  </issueManagement>
-
-  <mailingLists>
-    <mailingList>
-      <name>GeoAPI Standard Working Group (OGC)</name>
-      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</subscribe>
-      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</unsubscribe>
-      <post>geoapi.swg@lists.opengeospatial.org</post>
-      <archive>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</archive>
-    </mailingList>
-  </mailingLists>
-
-
-
-  <!-- ====================================================
-           Developers and contributors
-       ==================================================== -->
-  <developers>
-    <developer>
-      <name>GeoAPI contributors</name>
-      <organizationUrl>http://www.geoapi.org/</organizationUrl>
-      <roles>
-        <role>Java developers</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>GeoAPI 3.0 Standard Working Group</name>
-      <organization>Open Geospatial Consortium</organization>
-      <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
-      <roles>
-        <role>Specification editors</role>
-      </roles>
-    </developer>
-  </developers>
-
-
-
-  <!-- ====================================================
-           External dependencies
-       ==================================================== -->
+                <dependencyManagement>
+                  <dependencies>
+                    <dependency>
+                      <groupId>org.opengis</groupId>
+                      <artifactId>geoapi-parent</artifactId>
+                      <version>${geoapi.version}</version>
+                      <type>pom</type>
+                      <scope>import</scope>
+                    </dependency>
+                    ...
+       ================================================================================= -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -169,7 +178,6 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <!-- The vecmath dependency is used only by demo modules. -->
         <groupId>javax.vecmath</groupId>
         <artifactId>vecmath</artifactId>
         <version>1.5.2</version>
@@ -177,6 +185,7 @@
     </dependencies>
   </dependencyManagement>
 
+  <!-- All dependencies required by the core of GeoAPI interfaces. -->
   <dependencies>
     <dependency>
       <groupId>javax.measure</groupId>
@@ -191,12 +200,20 @@
 
 
 
-  <!-- ====================================================
-           Build management
-       ==================================================== -->
+  <!-- =================================================================================
+           The plugin management section declares the version numbers of all plugins
+           needed for building GeoAPI and associated documentation,  except web site
+           generation which has its own section (see <reporting>). Configuration for
+           each plugin appear after <pluginManagement> section.
+       ================================================================================= -->
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -253,13 +270,12 @@
 
 
     <!-- ====================================================
-             Configuration checks, then build
+             Configuration check before compilation
          ==================================================== -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0-M1</version>
         <executions>
           <execution>
             <id>enforce</id>
@@ -393,7 +409,7 @@
               <goal>remove-project-artifact</goal>
             </goals>
             <configuration>
-              <removeAll>false</removeAll> <!-- Remove only snapshots of this project version. -->
+              <removeAll>false</removeAll>      <!-- Remove only snapshots of this project version. -->
             </configuration>
           </execution>
         </executions>
