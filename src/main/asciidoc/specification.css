@@ -1,0 +1,7 @@
+/*
+ * Apply to information right below the title
+ * (submission date, approval date, etc.)
+ */
+#preamble > .sectionbody > .paragraph:first-of-type p {
+  font-size: 0.9em;
+}
