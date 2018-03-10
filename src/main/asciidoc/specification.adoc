@@ -52,20 +52,16 @@ Category: OGC^®^ specification +
 Editor: Martin Desruisseaux +
 Previous Version: 3.0 +
 
-Copyright © 2009-2018 Open Geospatial Consortium.
-
+Copyright © 2009-2018 Open Geospatial Consortium. +
 To obtain additional rights of use, visit http://www.opengeospatial.org/legal/[http://www.opengeospatial.org/legal/]
 
-**Warning**
-
-This document is not an OGC Standard.
+WARNING: This document is not an OGC Standard.
 It is distributed for review and comment.
 It is subject to change without notice and may not be referred to as an OGC Standard.
 
 <<<
 
-[abstract]
-== Abstract
+**Abstract**
 
 The GeoAPI Implementation Standard defines application programming interfaces (API) in some programming languages
 (currently {supported-languages}) for geospatial applications.
@@ -81,7 +77,6 @@ This standard complements existing OGC standards by defining language specific l
 This standard does not replace the core standards developing the ISO/OGC abstract model but complements those documents
 for developers by documenting the mapping of types and methods from the abstract model into some programming languages,
 providing standard interfaces in the `org.opengis` namespace and explaining the use of GeoAPI interfaces.
-
 
 
 **Keywords**
