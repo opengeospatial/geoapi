@@ -27,18 +27,3 @@ the definition of coordinate reference systems and to enable operations on coord
 The work writing interfaces matching other OGC specifications is done in the 'pending' version of the GeoAPI project.
 It is expected that these other interfaces will be proposed for standardization in subsequent revisions of this specification
 but the interfaces must first have been implemented, ideally several times, and then tested extensively by use.
-
-
-[#scope]
-== Scope
-
-Version 3.0 of GeoAPI covers the base of the OGC Abstract Model for geographic information.
-GeoAPI 3.0 provides utilities, base types, metadata structures, and geo-referencing data elements
-which enable the creation of reference systems for spatial coordinates related to the Earth
-and of mathematical operators to convert coordinates from one coordinate reference system to another.
-This version of the standard covers the specifications ISO 19103, ISO 19115, ISO 19111,
-some elements from the closely related OGC™ specification OGC 01-009 and four elements from ISO 19107
-necessary to the implementation of ISO 19111.
-Future versions of this specification are expected to expand this set of interfaces to cover the full model
-of the OGC Abstract Specification series, including notably Coverage and Feature data structures,
-with the 'pending' portion of the GeoAPI project already exploring these new areas.

@@ -1,0 +1,21 @@
+[#conformance]
+== Conformance
+
+The normative publication of the interfaces occurs in the binary format specific to each target language.
+The interfaces are distributed in a ZIP bundle along with the API documentation.
+An online version of the API documentation, which may contain fixes for errata discovered after publication of this specification,
+is available at the URLs listed below:
+
+.Distribution formats
+[options="header"]
+|==========================================================
+|                |Java                              |Python
+|Interfaces:     |Java Archive (JAR) binary         |(TODO)
+|Documentation:  |Javadoc as HTML files             |(TODO)
+|Online version: |http://www.geoapi.org/3.0/javadoc |(TODO)
+|==========================================================
+
+This specification makes certain requirements of libraries implementing this API and defines several conformance classes
+for implementations covering different packages of the API or providing different levels of complexity in their implementations.
+GeoAPI provides a test suite through which to establish conformance of GeoAPI implementations.
+These requirements and conformance classes are presented in Annex A (normative).

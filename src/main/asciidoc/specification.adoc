@@ -13,8 +13,8 @@ International Organization for Standardization (ISO) and by the Open Geospatial 
 :sectids!:
 :sectnums:
 :source-highlighter:
-:supported-languages: Java and Python
 :docinfo: shared-head
+:supported-languages: Java and Python
 
 ////
 Comment for editors: AsciiDoctor syntax is described at https://asciidoctor.org/docs/user-manual.
@@ -138,3 +138,13 @@ All questions regarding this specification should be directed to the editor or t
 <<<
 
 include::introduction.adoc[]
+
+include::scope.adoc[]
+
+include::conformance.adoc[]
+
+include::references.adoc[]
+
+include::terms.adoc[]
+
+include::conventions.adoc[]

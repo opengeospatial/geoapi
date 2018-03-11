@@ -252,7 +252,7 @@ public enum Specification {
     ISO_19112((short) 2003),
 
     /**
-     * ISO 19115-1, Metadata
+     * ISO 19115-1, Metadata part 1: fundamentals
      * (<a href="http://www.opengeospatial.org/standards/as">OGC Topic 11</a>).
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
