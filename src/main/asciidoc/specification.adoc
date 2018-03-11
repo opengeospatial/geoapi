@@ -12,7 +12,8 @@ International Organization for Standardization (ISO) and by the Open Geospatial 
 :toclevels: 3
 :sectids!:
 :sectnums:
-:source-highlighter:
+:source-highlighter: coderay
+:icons: font
 :docinfo: shared-head
 :supported-languages: Java and Python
 
@@ -148,3 +149,7 @@ include::references.adoc[]
 include::terms.adoc[]
 
 include::conventions.adoc[]
+
+<<<
+
+include::base/overview.adoc[]
