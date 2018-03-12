@@ -173,8 +173,13 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.naming.Name
  * @see NameFactory#createGenericName(NameSpace, CharSequence[])
  * @see NameFactory#parseGenericName(NameSpace, CharSequence)
+ *
+ * @todo change this discussion: a {@code NameSpace} is like a combination of {@code java.util.Map<LocalName,Object>}
+ *       with a special handling for {@code ScopedName} keys: the head of the scope identifies a new namespace
+ *       (or a sub-context in JNDI), and the tail is the name of the object to lookup in that namespace.
+ *       If the tail is itself a {@code ScopedName}, the process is repeated recursively until we reach the local name.
  */
-@Classifier(Stereotype.ABSTRACT) // This is said in the text (not the UML) of ISO 19103.
+@Classifier(Stereotype.ABSTRACT)                            // This is said in the text (not the UML) of ISO 19103.
 @UML(identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable<GenericName> {
     /**
@@ -344,7 +349,7 @@ public interface GenericName extends Comparable<GenericName> {
      * @departure easeOfUse
      *   This method is not part of ISO specification. It does not provide any additional
      *   information compared to that accessible though the standard methods defined by
-     *   ISO, but provides easier to access frequently requested information.
+     *   ISO, but makes easier to access frequently requested information.
      *
      * @since 2.1
      */
