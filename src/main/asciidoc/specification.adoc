@@ -5,16 +5,18 @@ Version 4.0, 2018-03-10: draft
 information structured following the specifications adopted by the Technical Committee 211 of the \
 International Organization for Standardization (ISO) and by the Open Geospatial Consortium (OGC).
 :keywords: GeoAPI, programming, interface, geospatial, metadata, referencing, feature
-:doctype: book
-:encoding: utf-8
-:lang: en
-:toc: left
-:toclevels: 3
+:doctype:             book
+:encoding:            utf-8
+:lang:                en
+:toc:                 left
+:toclevels:           3
 :sectids!:
 :sectnums:
-:source-highlighter: coderay
-:icons: font
-:docinfo: shared-head
+:xrefstyle:           short
+:attribute-missing:   warn
+:source-highlighter:  coderay
+:icons:               font
+:docinfo:             shared-head
 :supported-languages: Java and Python
 
 ////
@@ -24,7 +26,7 @@ Some constructs used in this document are:
 
     :foo:       Set an attribute value. Can be referenced in the document as {foo}.
     [foo]       Style to apply on a section (abstract, etc).
-    [#foo]      Anchor ID, defined manually for stability (automatic IDs are disabled by sectids!).
+    [[foo]]     Anchor ID, defined manually for stability (automatic IDs are disabled by sectids!).
     == foo      Title of level 1. Use === for level 2, ==== for level 3, etc. up to level 5.
     .foo        Title associated to a paragraph, list, table or figure. Must be above the element.
     foo +       Line break (+ must be at the end of line).
@@ -87,6 +89,7 @@ GeoAPI, programming, interface, geospatial, metadata, referencing, feature
 <<<
 
 [preface]
+[[preface]]
 == Preface
 
 This GeoAPI standard evolved from an effort at the Open Geospatial Consortium (OGC) and in the free software community
@@ -111,9 +114,14 @@ GO-1 has been retired later, but a new working group has been formed in 2009 for
 with a more restricted scope: to provide interfaces for existing OGC standards only, without defining new conceptual models.
 GeoAPI 3.0 as been released in 2011 and 3.0.1 in 2017.
 
-The GeoAPI documentation completed by the annexes A (Conformance), B (Source Java Archives) and C (Source Python prototypes)
-are normative, while the annexes D (Types and methods), E (UML diagram for referencing operation types),
-F (Departures from ISO standards) and G (Comparison with legacy OGC specifications) are informative.
+The GeoAPI documentation completed by the
+<<conformance>> (Conformance),
+<<java>> (Source Java Archives) and
+<<python>> (Source Python prototypes) are normative, while the
+<<content>> (Types and methods),
+<<examples>> (Examples),
+<<departures>> (Departures from ISO standards) and
+<<legacy>> (Comparison with legacy OGC specifications) are informative.
 
 The interfaces described in this standard follow directly, without introducing any new concepts,
 from the previously published standards of the Open Geospatial Consortium and the International Organization for Standardization.
@@ -153,3 +161,31 @@ include::conventions.adoc[]
 <<<
 
 include::base/overview.adoc[]
+
+<<<
+
+include::appendices/conformance.adoc[]
+
+<<<
+
+include::appendices/java.adoc[]
+
+<<<
+
+include::appendices/python.adoc[]
+
+<<<
+
+include::appendices/content.adoc[]
+
+<<<
+
+include::examples/annotations.adoc[]
+
+<<<
+
+include::appendices/departures.adoc[]
+
+<<<
+
+include::appendices/legacy.adoc[]

@@ -1,4 +1,4 @@
-[#terms]
+[[terms-and-definitions]]
 == Terms and definitions
 
 This document uses the specification terms defined in Subclause 5.3 of [OGC 06-121r9],

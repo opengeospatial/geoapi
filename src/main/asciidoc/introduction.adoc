@@ -1,4 +1,4 @@
-[#introduction]
+[[introduction]]
 == Introduction
 
 GeoAPI contains a series of interfaces and classes in several packages which interpret into some programming languages

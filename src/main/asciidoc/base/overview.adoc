@@ -1,4 +1,4 @@
-[#overview]
+[[overview]]
 == Geospatial API overview
 
 The GeoAPI interfaces formalizes the handling of the types defined in the specification documents
@@ -27,3 +27,5 @@ although in version 4.0 of the library only defines the elements from that speci
 
 
 include::annotations.adoc[]
+
+include::utility.adoc[]

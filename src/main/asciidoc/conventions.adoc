@@ -1,16 +1,16 @@
-[#conventions]
+[[conventions]]
 == Conventions
 
 This section provides details for conventions used in the document.
 All examples in this document illustrated by the (i) icon are informative only.
 
-[#UML]
+[[UML-notation]]
 === UML notation
 
 Unified Modeling Language (UML) static structure diagrams appearing in this document
 are used as described in Subclause 5.2 of OGC Web Services Common [OGC 06-121r9].
 
-[#abbreviations]
+[[abbreviations]]
 === Abbreviated terms
 
 The following symbols and abbreviated terms are used in this specification:

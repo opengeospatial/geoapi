@@ -1,4 +1,4 @@
-[#references]
+[[normative-references]]
 == Normative references
 
 The following normative documents contain provisions which, through reference in this text, constitute provisions of this specification,

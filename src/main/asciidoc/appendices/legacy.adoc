@@ -1,0 +1,5 @@
+[appendix]
+[[legacy]]
+== Comparison with legacy OGC specifications
+
+(TODO)

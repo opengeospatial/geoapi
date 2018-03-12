@@ -1,0 +1,40 @@
+[[annotations]]
+=== Annotated API
+
+The `org.opengis.annotation` package provides annotations which enable GeoAPI to document the source,
+original name, and obligation level of the various types and methods integrated from the various specification documents.
+
+.Annotations in Java source code
+****
+All classes, interfaces or enumeration types in GeoAPI which are based on a published standard
+shall have an `@UML` annotation documenting the standard in which are defined the type or method,
+the original name of the element and the obligation level if other than mandatory.
+As an example, the annotation label for the `ProjectedCRS` interface appears in the source code as:
+
+[source,java]
+----
+@UML(identifier = "SC_ProjectedCRS",
+     specification = ISO_19111)
+public interface ProjectedCRS extends GeneralDerivedCRS {
+    ...
+}
+----
+
+which specifies that the type was defined in ISO 19111 standard,
+in the `SC` "Coordinate Reference System" package as the type `SC_ProjectedCRS`.
+In addition, that interface contains the method `getCoordinateSystem()` with the following annotation:
+
+[source,java]
+----
+@UML(identifier    = "coordinateSystem",
+     obligation    = MANDATORY,
+     specification = ISO_19111)
+CartesianCS getCoordinateSystem();
+----
+
+which indicates that the method was defined in the same ISO 19111 specification
+but had the name `coordinateSystem` in the standard rather than the `getCoordinateSystem` name used by GeoAPI,
+and that a non-null value must be provided by every `ProjectedCRS` instance.
+****
+
+<<UML-introspection>> shows how these annotations are available at runtime by introspection.

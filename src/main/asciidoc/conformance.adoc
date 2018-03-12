@@ -1,4 +1,4 @@
-[#conformance]
+[[conformance-overview]]
 == Conformance
 
 The normative publication of the interfaces occurs in the binary format specific to each target language.
