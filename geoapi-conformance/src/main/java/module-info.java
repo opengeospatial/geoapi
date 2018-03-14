@@ -38,7 +38,8 @@
 module org.opengis.geoapi.conformance {
     requires java.prefs;
     requires java.logging;
-    requires transitive java.measure;
+    requires unit.api;                          // To be replaced by next line when it will become a named module.
+//  requires transitive java.measure;
     requires transitive org.opengis.geoapi;
     requires junit;
 
@@ -49,4 +50,9 @@ module org.opengis.geoapi.conformance {
     exports org.opengis.test.referencing.gigs;
     exports org.opengis.test.wkt;
     exports org.opengis.test.geometry;
+    exports org.opengis.test.coverage.image;
+    exports org.opengis.test.report;
+
+    uses org.opengis.test.FactoryFilter;
+    uses org.opengis.test.ImplementationDetails;
 }

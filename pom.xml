@@ -104,8 +104,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
+    <java.platform>7</java.platform>                            <!-- Same than the version required by JSR-363. -->
+    <future.source>module-info.java</future.source>
   </properties>
   <profiles>
+    <profile>
+      <id>jdk9</id>
+      <properties>
+        <java.platform>9</java.platform>
+        <future.source>(none)</future.source>
+      </properties>
+    </profile>
     <profile>
       <id>geoapi-release</id>
       <build>
@@ -160,12 +169,12 @@
       <dependency>
         <groupId>javax.measure</groupId>
         <artifactId>unit-api</artifactId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0</version>
       </dependency>
       <dependency>
         <groupId>tec.units</groupId>
         <artifactId>unit-ri</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.3</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -323,17 +332,19 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>9</source>
-          <target>9</target>
-          <debug>false</debug>          <!-- Whether to include debugging information.  -->
-          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.   -->
+          <release>${java.platform}</release>
+          <debug>false</debug>                                          <!-- Whether to include debugging information.  -->
+          <optimize>true</optimize>                                     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
-          <useIncrementalCompilation>false</useIncrementalCompilation> <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
+          <useIncrementalCompilation>false</useIncrementalCompilation>  <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
           <compilerArgs>
             <arg>-Xlint:all</arg>
           </compilerArgs>
+          <excludes>
+            <exclude>${future.source}</exclude>
+          </excludes>
         </configuration>
       </plugin>
 
@@ -349,6 +360,7 @@
           <systemPropertyVariables>
             <maven.source.directory>${project.build.sourceDirectory}</maven.source.directory>
           </systemPropertyVariables>
+          <printSummary>false</printSummary>
         </configuration>
       </plugin>
 
@@ -514,7 +526,6 @@
           <charset>${website.encoding}</charset>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
-          <source>1.7</source>            <!-- Same than the version number used for compilation.                 -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
           <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->

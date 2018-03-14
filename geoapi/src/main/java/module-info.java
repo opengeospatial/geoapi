@@ -36,7 +36,8 @@
  * not directly referenced anywhere, it can easily be ignored by implementors.
  */
 module org.opengis.geoapi {
-    requires transitive java.measure;
+    requires unit.api;                          // To be replaced by next line when it will become a named module.
+//  requires transitive java.measure;
     requires transitive static java.desktop;
 
     exports org.opengis.annotation;
