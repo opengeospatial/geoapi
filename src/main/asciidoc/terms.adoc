@@ -1,0 +1,75 @@
+[[terms-and-definitions]]
+== Terms and definitions
+
+This document uses the specification terms defined in Subclause 5.3 of [OGC 06-121r9],
+which is based on the ISO/IEC Directives, Part 2, Rules for the structure and drafting of International Standards.
+In particular:
+
+* SHALL is the verb form used to indicate a requirement to be strictly followed to conform to this specification,
+  from which no deviation is permitted.
+* SHOULD is the verb form used to indicate desirable ability or use, without mentioning or excluding other possibilities.
+* MAY is the verb form used to indicate an action permissible within the limits of this specification.
+* CAN is the verb form used for statements of possibility.
+
+For the purposes of this document, the following additional terms and definitions apply:
+
+[glossary]
+Application Programming Interface (API)::
+a formally defined set of types and methods which establish a contract between client code which uses the API
+and implementation code which provides the API
+
+conceptual model::
+model that defines concepts of a universe of discourse +
+ [ISO 19101-1]
+
+coverage::
+feature that acts as a function to return values from its range for any direct position within its spatial,
+temporal, or spatiotemporal domain +
+ [ISO 19123]
+
+dataset::
+identifiable collection of data +
+ [ISO 19115-1]
+
+dynamic attribute::
+characteristic of a feature in which its value varies with time +
+ [OGC 16-140]
+
+feature::
+Abstraction of a real world phenomena +
+[small]#Note 1 to entry: A feature can occur as a type or an instance.
+Feature type or feature instance should be used when only one is meant.# +
+ [ISO 19109]
+
+feature attribute::
+characteristic of a feature +
+[small]#Note 1 to entry: A feature attribute can occur as a type or an instance.
+Feature attribute type or feature attribute instance is used when only one is meant.# +
+ [ISO 19109]
+
+feature operation::
+operation that every instance of a feature type may perform +
+ [ISO 19109]
+
+geographic feature::
+Representation of real world phenomenon associated with a location relative to the Earth +
+ [ISO 19101-2]
+
+geometric object::
+spatial object representing a geometric set +
+ [ISO 19107:2003]
+
+Java::
+trademark of Oracle used to refer to an object oriented, single inheritance programming language
+whose syntax derives from the C programming language and which is defined by the Java Language Specification
+
+metadata::
+data about data +
+ [ISO 19115-1]
+
+property::
+facet or attribute of an object referenced by a name +
+ [ISO 19143]
+
+Python::
+(TODO)
