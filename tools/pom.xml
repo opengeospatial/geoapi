@@ -51,7 +51,8 @@
 
 
   <!-- ===========================================================
-           Compilation
+           Compilation. Force the same configuration than the one
+           declared in parent POM when "jdk9" profile is enabled.
        =========================================================== -->
   <build>
     <plugins>
@@ -62,6 +63,23 @@
           <release>9</release>
           <excludes/>                <!-- Cancel the excludes in parent pom.xml -->
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sources</id>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/jdk9</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

@@ -31,7 +31,6 @@
  */
 package org.opengis.tools.doclet;
 
-import com.sun.source.doctree.DocCommentTree;
 import java.util.Set;
 import java.util.EnumSet;
 import javax.tools.Diagnostic;
@@ -40,6 +39,7 @@ import jdk.javadoc.doclet.Reporter;
 import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
 import com.sun.source.doctree.TextTree;
+import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.doctree.UnknownBlockTagTree;
 import com.sun.source.tree.CompilationUnitTree;
 
