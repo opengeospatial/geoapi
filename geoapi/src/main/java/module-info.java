@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2013-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -30,12 +30,40 @@
  *    times remain with copyright holders.
  */
 
-
-/**
- * Javadoc taglets for processing custom tags in GeoAPI source code comments.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
- * @since   2.0
+/*
+ * The only java.desktop dependency is the java.awt.geom.Point2D class used in
+ * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
+ * not directly referenced anywhere, it can easily be ignored by implementors.
  */
-package org.opengis.tools.taglet;
+module org.opengis.geoapi {
+    requires unit.api;                          // To be replaced by next line when it will become a named module.
+//  requires transitive java.measure;
+    requires transitive static java.desktop;
+
+    exports org.opengis.annotation;
+    exports org.opengis.util;
+    exports org.opengis.metadata;
+    exports org.opengis.metadata.acquisition;
+    exports org.opengis.metadata.citation;
+    exports org.opengis.metadata.constraint;
+    exports org.opengis.metadata.content;
+    exports org.opengis.metadata.distribution;
+    exports org.opengis.metadata.extent;
+    exports org.opengis.metadata.identification;
+    exports org.opengis.metadata.lineage;
+    exports org.opengis.metadata.maintenance;
+    exports org.opengis.metadata.quality;
+    exports org.opengis.metadata.spatial;
+    exports org.opengis.parameter;
+    exports org.opengis.referencing;
+    exports org.opengis.referencing.datum;
+    exports org.opengis.referencing.cs;
+    exports org.opengis.referencing.crs;
+    exports org.opengis.referencing.operation;
+    exports org.opengis.geometry;
+    exports org.opengis.geometry.coordinate;
+    exports org.opengis.feature;
+
+    exports org.opengis.temporal;
+    exports org.opengis.geometry.primitive;
+}

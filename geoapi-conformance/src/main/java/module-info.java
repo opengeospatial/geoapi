@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2013-2016 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -30,13 +30,29 @@
  *    times remain with copyright holders.
  */
 
-
-/**
- * Doclet that modify the behavior of some standard options, together with
- * Javadoc taglets for processing custom tags in GeoAPI source code comments.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
- * @version 3.1
+/*
+ * The only java.desktop dependency is the java.awt.geom.Point2D class used in
+ * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
+ * not directly referenced anywhere, it can easily be ignored by implementors.
  */
-package org.opengis.tools.doclet;
+module org.opengis.geoapi.conformance {
+    requires java.prefs;
+    requires java.logging;
+    requires unit.api;                          // To be replaced by next line when it will become a named module.
+//  requires transitive java.measure;
+    requires transitive org.opengis.geoapi;
+    requires junit;
+
+    exports org.opengis.test;
+    exports org.opengis.test.util;
+    exports org.opengis.test.metadata;
+    exports org.opengis.test.referencing;
+    exports org.opengis.test.referencing.gigs;
+    exports org.opengis.test.wkt;
+    exports org.opengis.test.geometry;
+    exports org.opengis.test.coverage.image;
+    exports org.opengis.test.report;
+
+    uses org.opengis.test.FactoryFilter;
+    uses org.opengis.test.ImplementationDetails;
+}

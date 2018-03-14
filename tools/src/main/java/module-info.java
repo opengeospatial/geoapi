@@ -30,13 +30,10 @@
  *    times remain with copyright holders.
  */
 
-
 /**
- * Doclet that modify the behavior of some standard options, together with
- * Javadoc taglets for processing custom tags in GeoAPI source code comments.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
- * @version 3.1
+ * Javadoc taglets and annotation processing tools for processing GeoAPI after compilation.
+ * Those tools are used mostly for javadoc generation.
  */
-package org.opengis.tools.doclet;
+module org.opengis.geoapi {
+    requires jdk.javadoc;
+}
