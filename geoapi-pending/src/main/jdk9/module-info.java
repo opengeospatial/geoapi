@@ -30,29 +30,41 @@
  *    times remain with copyright holders.
  */
 
-/*
- * The only java.desktop dependency is the java.awt.geom.Point2D class used in
- * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
- * not directly referenced anywhere, it can easily be ignored by implementors.
- */
-module org.opengis.geoapi.conformance {
-    requires java.prefs;
-    requires java.logging;
+module org.opengis.geoapi.pending {
+    /*
+     * Bellow is a copy-and-paste of geoapi module information,
+     * with some additional exports at the bottom.
+     */
     requires unit.api;                          // To be replaced by next line when it will become a named module.
-//  requires transitive java.measure;
-    requires transitive org.opengis.geoapi;
-    requires junit;
+    requires transitive static java.desktop;
 
-    exports org.opengis.test;
-    exports org.opengis.test.util;
-    exports org.opengis.test.metadata;
-    exports org.opengis.test.referencing;
-    exports org.opengis.test.referencing.gigs;
-    exports org.opengis.test.wkt;
-    exports org.opengis.test.geometry;
-    exports org.opengis.test.coverage.image;
-    exports org.opengis.test.report;
+    exports org.opengis.annotation;
+    exports org.opengis.util;
+    exports org.opengis.metadata;
+    exports org.opengis.metadata.acquisition;
+    exports org.opengis.metadata.citation;
+    exports org.opengis.metadata.constraint;
+    exports org.opengis.metadata.content;
+    exports org.opengis.metadata.distribution;
+    exports org.opengis.metadata.extent;
+    exports org.opengis.metadata.identification;
+    exports org.opengis.metadata.lineage;
+    exports org.opengis.metadata.maintenance;
+    exports org.opengis.metadata.quality;
+    exports org.opengis.metadata.spatial;
+    exports org.opengis.parameter;
+    exports org.opengis.referencing;
+    exports org.opengis.referencing.datum;
+    exports org.opengis.referencing.cs;
+    exports org.opengis.referencing.crs;
+    exports org.opengis.referencing.operation;
+    exports org.opengis.geometry;
+    exports org.opengis.geometry.coordinate;
+    exports org.opengis.feature;
 
-    uses org.opengis.test.FactoryFilter;
-    uses org.opengis.test.ImplementationDetails;
+    exports org.opengis.temporal;
+    exports org.opengis.geometry.primitive;
+
+    // Additional exports
+    exports org.opengis.coverage.grid;
 }

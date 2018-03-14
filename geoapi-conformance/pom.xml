@@ -88,7 +88,6 @@
 
   <!-- ===========================================================
            Compilation, JAR packaging and Javadoc.
-           Some configuration are specific to Java 9.
        =========================================================== -->
   <build>
     <plugins>
@@ -122,32 +121,5 @@
       </plugin>
     </plugins>
   </reporting>
-
-  <profiles>
-    <profile>
-      <id>jdk9</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <compilerArgs>
-                <arg>--add-exports</arg>
-                <arg>org.opengis.geoapi/org.opengis.coverage.grid=org.opengis.geoapi.conformance</arg>
-              </compilerArgs>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <argLine>--add-exports org.opengis.geoapi/org.opengis.coverage.grid=org.opengis.geoapi.conformance</argLine>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
 </project>

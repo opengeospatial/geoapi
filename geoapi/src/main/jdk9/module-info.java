@@ -30,14 +30,15 @@
  *    times remain with copyright holders.
  */
 
-/*
- * The only java.desktop dependency is the java.awt.geom.Point2D class used in
- * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
- * not directly referenced anywhere, it can easily be ignored by implementors.
- */
 module org.opengis.geoapi {
     requires unit.api;                          // To be replaced by next line when it will become a named module.
 //  requires transitive java.measure;
+
+    /*
+     * The only java.desktop dependency is the java.awt.geom.Point2D class used in
+     * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
+     * not directly referenced anywhere, it can easily be ignored by implementors.
+     */
     requires transitive static java.desktop;
 
     exports org.opengis.annotation;

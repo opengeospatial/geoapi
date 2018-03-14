@@ -105,17 +105,46 @@
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
     <java.platform>7</java.platform>                            <!-- Same than the version required by JSR-363. -->
-    <future.source>module-info.java</future.source>
+    <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
   </properties>
   <profiles>
     <profile>
+      <!--
+        Build as Java 9 modules (experimental). We provide the module-info.java file in
+        a separated director for avoiding to confuse IDEs, and for making easier to use
+        a different module-info.java file in geoapi-pending.
+      -->
       <id>jdk9</id>
       <properties>
         <java.platform>9</java.platform>
         <future.source>(none)</future.source>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sources</id>
+                <goals>
+                  <goal>add-source</goal>
+                </goals>
+                <configuration>
+                  <sources>
+                    <source>src/main/jdk9</source>
+                  </sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
+      <!--
+        Official release: require signing the JAR files.
+      -->
       <id>geoapi-release</id>
       <build>
         <plugins>
