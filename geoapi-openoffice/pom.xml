@@ -145,6 +145,9 @@
               <RegistrationClassName>
                 org.opengis.openoffice.Referencing
               </RegistrationClassName>
+              <Automatic-Module-Name>
+                org.opengis.geoapi.openoffice
+              </Automatic-Module-Name>
             </manifestEntries>
           </archive>
         </configuration>

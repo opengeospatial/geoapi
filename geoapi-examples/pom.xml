@@ -82,4 +82,27 @@
     </dependency>
   </dependencies>
 
+
+
+  <!-- ===========================================================
+           JAR packaging (anticipation for Java 9)
+       =========================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>
+                org.opengis.geoapi.examples
+              </Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

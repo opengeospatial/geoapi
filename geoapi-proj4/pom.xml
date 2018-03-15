@@ -119,6 +119,21 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Anticipation for Java 9. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>
+                org.opengis.geoapi.proj4
+              </Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
