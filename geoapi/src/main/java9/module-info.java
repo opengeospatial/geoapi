@@ -31,7 +31,7 @@
  */
 
 module org.opengis.geoapi {
-    requires unit.api;                          // To be replaced by next line when it will become a named module.
+    requires transitive unit.api;               // To be replaced by next line when it will become a named module.
 //  requires transitive java.measure;
 
     /*
