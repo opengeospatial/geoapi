@@ -42,26 +42,12 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.IOException;
-
-import org.opengis.metadata.*;
-import org.opengis.metadata.acquisition.*;
-import org.opengis.metadata.citation.*;
-import org.opengis.metadata.constraint.*;
-import org.opengis.metadata.content.*;
-import org.opengis.metadata.distribution.*;
-import org.opengis.metadata.identification.*;
-import org.opengis.metadata.maintenance.*;
-import org.opengis.metadata.quality.*;
-import org.opengis.metadata.spatial.*;
-import org.opengis.referencing.*;
-import org.opengis.referencing.cs.*;
-import org.opengis.referencing.datum.*;
-import org.opengis.parameter.ParameterDirection;
-import org.opengis.annotation.Obligation;
-
-import org.junit.Test;
 import org.opengis.util.CodeList;
 import org.opengis.util.ControlledVocabulary;
+import org.opengis.metadata.constraint.Restriction;
+import org.opengis.metadata.identification.CharacterSet;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 
@@ -74,57 +60,6 @@ import static org.junit.Assert.*;
  * @since   2.0
  */
 public final strictfp class CodeListTest {
-    /**
-     * All code lists to be tested.
-     */
-    @SuppressWarnings("deprecation")
-    private static final Class<?>[] CODE_LISTS = {
-        AssociationType          .class,
-        AxisDirection            .class,
-        BandDefinition           .class,
-        CellGeometry             .class,
-        CharacterSet             .class,
-        Classification           .class,
-        Context                  .class,
-        CoverageContentType      .class,
-        Datatype                 .class,
-        DateType                 .class,
-        DimensionNameType        .class,
-        EvaluationMethodType     .class,
-        GeometricObjectType      .class,
-        GeometryType             .class,
-        ImagingCondition         .class,
-        InitiativeType           .class,
-        KeywordType              .class,
-        MaintenanceFrequency     .class,
-        MediumFormat             .class,
-        MediumName               .class,
-        ObjectiveType            .class,
-        Obligation               .class,
-        OnLineFunction           .class,
-        OperationType            .class,
-        ParameterDirection       .class,
-        PixelInCell              .class,
-        PixelOrientation         .class,
-        PolarizationOrientation  .class,
-        PresentationForm         .class,
-        Priority                 .class,
-        Progress                 .class,
-        RangeMeaning             .class,
-        ReferenceSystemType      .class,
-        Restriction              .class,
-        Role                     .class,
-        ScopeCode                .class,
-        Sequence                 .class,
-        SpatialRepresentationType.class,
-        TelephoneType            .class,
-        TopicCategory            .class,
-        TopologyLevel            .class,
-        TransferFunctionType     .class,
-        Trigger                  .class,
-        VerticalDatumType        .class
-    };
-
     /**
      * The root directory of Java source code, or {@code null} if unspecified.
      */
@@ -181,7 +116,7 @@ public final strictfp class CodeListTest {
             IllegalAccessException, InvocationTargetException, IOException
     {
         sourceDirectory = System.getProperty("maven.source.directory");
-        for (final Class<?> codeClass : CODE_LISTS) {
+        for (final Class<?> codeClass : Content.CONTROLLED_VOCABULARY.types()) {
             /*
              * Gets the values() method, which should public and static.
              * Then gets every CodeList instances returned by values().

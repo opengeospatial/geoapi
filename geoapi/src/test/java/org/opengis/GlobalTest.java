@@ -32,13 +32,10 @@
 package org.opengis;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.EnumSet;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,7 +63,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class GlobalTest implements FileFilter {
+public final strictfp class GlobalTest {
     /**
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.
@@ -80,16 +77,11 @@ public final strictfp class GlobalTest implements FileFilter {
     private static final String ENCODING = "ISO-8859-1";
 
     /**
-     * The Maven {@code target} directory found by the last call to {@link #listClasses(Class)}.
-     */
-    private File targetDirectory;
-
-    /**
      * Verifies the values of all UML annotations.
      */
     @Test
     public void verifyUML() {
-        for (final Class<?> c : listClasses(UML.class)) {
+        for (final Class<?> c : Content.ALL.types()) {
             final UML uml = c.getAnnotation(UML.class);
             if (uml != null) {
                 final String identifier = uml.identifier().trim();
@@ -157,8 +149,9 @@ public final strictfp class GlobalTest implements FileFilter {
         final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111), merged);
         final InputStream in = GlobalTest.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
+            final String actual = load(in);
             assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +
-                         "the content found be scanning the compiled classes.", index, load(in));
+                         "the content found be scanning the compiled classes.", index, actual);
         } else {
             final String reason = save(index);
             if (reason != null) {
@@ -195,7 +188,7 @@ public final strictfp class GlobalTest implements FileFilter {
      * @throws IOException if an I/O error occurred while writing the index.
      */
     private String save(final String index) throws IOException {
-        File file = targetDirectory;
+        File file = ContentTest.targetDirectory();
         if (file == null || !file.getName().equals("classes")) {
             return "\"" + file + "\" is not a Maven target directory.";
         }
@@ -233,7 +226,7 @@ public final strictfp class GlobalTest implements FileFilter {
     private String createIndex(final Set<Specification> standards, final Map<String,String> merged) {
         final StringBuilder buffer = new StringBuilder(20000);
         final List<String> lines = new ArrayList<>();
-        for (final Class<?> c : listClasses(UML.class)) {
+        for (final Class<?> c : Content.ALL.types()) {
             final UML uml = c.getAnnotation(UML.class);
             if (uml != null && standards.contains(uml.specification())) {
                 String identifier = uml.identifier();
@@ -250,85 +243,5 @@ public final strictfp class GlobalTest implements FileFilter {
             buffer.append(line).append('\n');
         }
         return buffer.toString();
-    }
-
-    /**
-     * Finds the Maven module containing the given class, then finds all classes in that module.
-     * Only the Maven {@code target} directory containing the given sample class is scanned; this
-     * is not necessarily the full classpath (which is not desired anyway since we don't want to
-     * include pending interfaces, test classes, <i>etc.</i>).
-     *
-     * <p>This method sets the {@link #targetDirectory} to the Maven "{@code target}" directory
-     * inferred from the given sample class.</p>
-     *
-     * @param  sample  a sample class to use for finding the Maven {@code target} directory.
-     * @return all classes found in the inferred target directory.
-     */
-    private Set<Class<?>> listClasses(final Class<?> sample) {
-        String pathname = sample.getName();
-        int s = pathname.lastIndexOf('.');
-        String name = pathname.substring(s+1) + ".class";
-        final URI uri;
-        try {
-            uri = sample.getResource(name).toURI();
-        } catch (URISyntaxException e) {
-            fail("Can not create a URI for the " + pathname + " class:\n" + e);
-            return Collections.emptySet();
-        }
-        File file = new File(uri);
-        for (;;) {                              // Break condition is in the middle of the loop.
-            assertEquals("Unexpected name.", name, file.getName());
-            file = file.getParentFile();
-            assertNotNull("Missing parent directory.", file);
-            if (s < 0) break;
-            pathname = pathname.substring(0, s);
-            s = pathname.lastIndexOf('.');
-            name = pathname.substring(s+1);
-        }
-        targetDirectory = file;
-        final Set<Class<?>> classes = new HashSet<>();
-        listClasses(file, new StringBuilder(), classes);
-        return classes;
-    }
-
-    /**
-     * Scans the given directory for {@code .class} files, and adds each class found in the given
-     * set. This method invokes itself recursively.
-     */
-    private void listClasses(final File directory, final StringBuilder name, final Set<Class<?>> classes) {
-        final int length = name.length();
-        for (final File file : directory.listFiles(this)) {
-            name.append(file.getName()).append('.');
-            if (file.isDirectory()) {
-                listClasses(file, name, classes);
-            } else {
-                String classname = name.toString();
-                classname = classname.substring(0, classname.lastIndexOf(".class"));
-                if (!classname.endsWith("-info")) {
-                    final Class<?> c;
-                    try {
-                        c = Class.forName(classname);
-                    } catch (ClassNotFoundException e) {
-                        fail(e.toString());
-                        continue;
-                    }
-                    assertTrue(classname, classes.add(c));              // Fails if a class is declared twice.
-                }
-            }
-            name.setLength(length);
-        }
-    }
-
-    /**
-     * Returns {@code true} if the given file is a directory or a {@code .class} file.
-     * This method is used in order to filter the directory of class files.
-     *
-     * @param  file  the file to test.
-     * @return {@code true} if the given file is a directory or a class file.
-     */
-    @Override
-    public boolean accept(final File file) {
-        final String name = file.getName();
-        return !file.isHidden() && (file.isDirectory() || (file.isFile() && name.endsWith(".class")));
     }
 }
