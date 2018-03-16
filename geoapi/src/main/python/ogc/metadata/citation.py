@@ -146,28 +146,6 @@ class Responsibility(ABC):
     def party(self) -> Party:
         pass
 
-class ResponsibleParty(Responsibility):
-
-    @abstractproperty
-    def contactInfo(self) -> Contact:
-        pass
-
-    @abstractproperty
-    def role(self) -> RoleCode:
-        pass
-
-    @abstractproperty
-    def individualName(self) -> str:
-        pass
-
-    @abstractproperty
-    def organisationName(self) -> str:
-        pass
-
-    @abstractproperty
-    def positionName(self) -> str:
-        pass
-
 class Individual(Party):
 
     @abstractproperty

@@ -34,8 +34,9 @@ package org.opengis.tools.export;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Date;
-import java.lang.reflect.Method;
+import java.util.GregorianCalendar;
 import java.math.BigInteger;
+import java.lang.reflect.Method;
 import org.opengis.Content;
 import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
@@ -57,6 +58,11 @@ public final strictfp class JavaToPython {
     private static final String FILE_SUFFIX = ".py";
 
     /**
+     * The current year, for formatting the Copyright header.
+     */
+    private final int currentYear;
+
+    /**
      * Content of python files to write. Keys are ISO prefixes (e.g. {@code "CI"} for "citation") and values are file contents.
      */
     private final Map<String,StringBuilder> contents;
@@ -70,6 +76,7 @@ public final strictfp class JavaToPython {
      * Creates a new Python class writer.
      */
     public JavaToPython() {
+        currentYear = new GregorianCalendar().get(GregorianCalendar.YEAR);
         contents = new HashMap<>();
         primitiveTypes = new HashMap<>(20);
         primitiveTypes.put(CharSequence        .class, "str");
@@ -114,75 +121,83 @@ public final strictfp class JavaToPython {
     private void createContent(final Content category) {
         final String lineSeparator = System.lineSeparator();
         for (final Class<?> type : category.types()) {
+            if (type.isAnnotationPresent(Deprecated.class)) {
+                continue;
+            }
             final UML uml = type.getAnnotation(UML.class);
-            if (uml != null) {
-                String identifier = uml.identifier();
-                final int splitAt = identifier.indexOf('_');
-                final String prefix;
-                if (splitAt >= 0) {
-                    prefix = identifier.substring(0, splitAt);
-                } else {
-                    switch (type.getPackage().getName()) {
-                        case "org.opengis.util":    prefix = "util"; break;
-                        case "org.opengis.feature": prefix = "FT"; break;
-                        default: {
-                            switch (identifier) {
-                                case "DirectPosition": prefix = "GM"; break;
-                                default: throw new CanNotExportException("Can not choose a module for " + identifier);
-                            }
+            if (uml == null) {
+                continue;
+            }
+            String identifier = uml.identifier();
+            final int splitAt = identifier.indexOf('_');
+            final String prefix;
+            if (splitAt >= 0) {
+                prefix = identifier.substring(0, splitAt);
+            } else {
+                switch (type.getPackage().getName()) {
+                    case "org.opengis.util":    prefix = "util"; break;
+                    case "org.opengis.feature": prefix = "FT"; break;
+                    default: {
+                        switch (identifier) {
+                            case "DirectPosition": prefix = "GM"; break;
+                            default: throw new CanNotExportException("Can not choose a module for " + identifier);
                         }
                     }
                 }
-                identifier = identifier.substring(splitAt + 1);
-                if (!identifier.isEmpty()) {
-                    StringBuilder content = contents.get(prefix);
-                    if (content == null) {
-                        content = new StringBuilder(500);
-                        content.append('#').append(lineSeparator)
-                               .append("#    GeoAPI - Programming interfaces for OGC/ISO standards").append(lineSeparator)
-                               .append("#    http://www.geoapi.org").append(lineSeparator)
-                               .append('#').append(lineSeparator)
-                               .append("#    Copyright (C) 2018 Open Geospatial Consortium, Inc.").append(lineSeparator)
-                               .append("#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal").append(lineSeparator)
-                               .append('#').append(lineSeparator)
-                               .append(lineSeparator)
-                               .append("from abc import ABC, abstractproperty").append(lineSeparator);
-                        contents.put(prefix, content);
-                    }
-                    content.append(lineSeparator);
-                    switch (category) {
-                        case INTERFACES: {
-                            content.append("class ").append(identifier).append('(');
-                            String parent = "ABC";
-                            for (final Class<?> p : type.getInterfaces()) {
-                                final String pi = nameOf(p);
-                                if (pi != null) {
-                                    parent = pi;
-                                    break;
-                                }
-                            }
-                            content.append(parent).append("):").append(lineSeparator);
-                            // TODO: insert class documentation here.
-                            for (final Method property : type.getDeclaredMethods()) {
-                                final UML def = property.getAnnotation(UML.class);
-                                if (def != null) {
-                                    final String pt = nameOf(Content.typeOf(property));
-                                    if (property.getParameterTypes().length == 0) {
-                                        content.append(lineSeparator)
-                                               .append("    @abstractproperty").append(lineSeparator)
-                                               .append("    def ").append(def.identifier()).append("(self)");
-                                        if (pt != null) {
-                                            content.append(" -> ").append(pt);
-                                        }
-                                        content.append(':').append(lineSeparator);
-                                        // TODO: insert property documentation here.
-                                        content.append("        pass").append(lineSeparator);
-                                    }
-                                }
-                            }
+            }
+            identifier = identifier.substring(splitAt + 1);
+            if (identifier.isEmpty()) {
+                continue;
+            }
+            StringBuilder content = contents.get(prefix);
+            if (content == null) {
+                content = new StringBuilder(500);
+                content.append('#').append(lineSeparator)
+                       .append("#    GeoAPI - Programming interfaces for OGC/ISO standards").append(lineSeparator)
+                       .append("#    http://www.geoapi.org").append(lineSeparator)
+                       .append('#').append(lineSeparator)
+                       .append("#    Copyright (C) ").append(currentYear).append(" Open Geospatial Consortium, Inc.").append(lineSeparator)
+                       .append("#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal").append(lineSeparator)
+                       .append('#').append(lineSeparator)
+                       .append(lineSeparator)
+                       .append("from abc import ABC, abstractproperty").append(lineSeparator);
+                contents.put(prefix, content);
+            }
+            content.append(lineSeparator);
+            switch (category) {
+                case INTERFACES: {
+                    content.append("class ").append(identifier).append('(');
+                    String parent = "ABC";
+                    for (final Class<?> p : type.getInterfaces()) {
+                        final String pi = nameOf(p);
+                        if (pi != null) {
+                            parent = pi;
                             break;
                         }
                     }
+                    content.append(parent).append("):").append(lineSeparator);
+                    // TODO: insert class documentation here.
+                    for (final Method property : type.getDeclaredMethods()) {
+                        if (property.isAnnotationPresent(Deprecated.class)) {
+                            continue;
+                        }
+                        final UML def = property.getAnnotation(UML.class);
+                        if (def != null) {
+                            final String pt = nameOf(Content.typeOf(property));
+                            if (property.getParameterTypes().length == 0) {
+                                content.append(lineSeparator)
+                                       .append("    @abstractproperty").append(lineSeparator)
+                                       .append("    def ").append(def.identifier()).append("(self)");
+                                if (pt != null) {
+                                    content.append(" -> ").append(pt);
+                                }
+                                content.append(':').append(lineSeparator);
+                                // TODO: insert property documentation here.
+                                content.append("        pass").append(lineSeparator);
+                            }
+                        }
+                    }
+                    break;
                 }
             }
         }
