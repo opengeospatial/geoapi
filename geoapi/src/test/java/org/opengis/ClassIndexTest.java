@@ -48,22 +48,18 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Verifications performed on all GeoAPI classes or interfaces.
+ * Verifies or generates the {@value #INDEX_FILENAME} file. If the file is absent, then it will be generated
+ * (the developer is responsible to ensure that all changes compared to previous version are wanted). If the
+ * file is presents, then its content will be compared with the content of the file that would have been generated.
  *
- * <ul>
- *   <li>The {@link #verifyUML()} method verifies the values of all UML annotations.</li>
- *   <li>The {@link #generateOrVerifyIndex()} method compares UML annotations against the content
- *       of the {@value #INDEX_FILENAME} file.</li>
- * </ul>
- *
- * This class is designated for working with the Maven directory layout.
- * If it does not recognize that layout, then the test is skipped.
+ * <p>This class use information provided by {@link UML} annotations. This information will be verified
+ * by {@link #verifyUML()}, which should pass before {@link #generateOrVerifyIndex()} is executed.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class GlobalTest {
+public final strictfp class ClassIndexTest {
     /**
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.
@@ -147,7 +143,7 @@ public final strictfp class GlobalTest {
         assertNull(merged.put("MD_Metadata",            "MI_Metadata"));
 
         final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111), merged);
-        final InputStream in = GlobalTest.class.getResourceAsStream(INDEX_FILENAME);
+        final InputStream in = ClassIndexTest.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
             final String actual = load(in);
             assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +

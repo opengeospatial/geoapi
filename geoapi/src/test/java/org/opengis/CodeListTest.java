@@ -52,8 +52,7 @@ import static org.junit.Assert.*;
 
 
 /**
- * Tests every {@link CodeList}.
- * This class can also opportunistically tests some enumerations.
+ * Tests every {@link CodeList} types and (opportunistically) some enumerations.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
@@ -101,8 +100,8 @@ public final strictfp class CodeListTest {
     }
 
     /**
-     * Tests every code lists. This method ensures that the a {@code values()} and {@code family()}
-     * method is defined for each code list, and verify each declared code lists.
+     * Tests the common methods in every code lists. This method ensures that the a {@code values()} and {@code family()}
+     * methods are defined for each code list, and verifies each declared code lists.
      *
      * @throws NoSuchFieldException      if a {@code CodeList} or an {@code Enum} constant can not be found.
      * @throws NoSuchMethodException     if a {@code values()} or {@code valueOf(String)} method is not found.
@@ -111,7 +110,6 @@ public final strictfp class CodeListTest {
      * @throws IOException               if an error occurred while reading source code.
      */
     @Test
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void testAll() throws NoSuchFieldException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, IOException
     {
