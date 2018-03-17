@@ -137,11 +137,6 @@ public class SchemaInformation {
     private final Deque<String> schemaLocations;
 
     /**
-     * The property on which to apply the next {@code documentation} content, or {@code null} if none.
-     */
-    private Element toDocument;
-
-    /**
      * The type and namespace of a property or type.
      */
     public static final class Element {
@@ -149,29 +144,23 @@ public class SchemaInformation {
         /** Element namespace as an URI.             */ public final String  namespace;
         /** Whether the property is mandatory.       */ public final boolean isRequired;
         /** Whether the property accepts many items. */ public final boolean isCollection;
-        /** Documentation, or {@code null} if none.  */ String documentation;
+        /** Documentation, or {@code null} if none.  */ public final String  documentation;
 
         /** Stores information about a new property or type. */
-        Element(final String typeName, final String namespace, final boolean isRequired, final boolean isCollection) {
-            this.typeName     = typeName;
-            this.namespace    = namespace;
-            this.isRequired   = isRequired;
-            this.isCollection = isCollection;
+        Element(final String typeName, final String namespace, final boolean isRequired, final boolean isCollection,
+                final String  documentation)
+        {
+            this.typeName      = typeName;
+            this.namespace     = namespace;
+            this.isRequired    = isRequired;
+            this.isCollection  = isCollection;
+            this.documentation = documentation;
         }
 
         /** Tests if this element has the same name than given element. */
         boolean nameEqual(final Element other) {
             return Objects.equals(typeName,  other.typeName)
                 && Objects.equals(namespace, other.namespace);
-        }
-
-        /**
-         * Returns the documentation, or {@code null} if none.
-         *
-         * @return the documentation, or {@code null}.
-         */
-        public String documentation() {
-            return documentation;
         }
 
         /**
@@ -334,10 +323,6 @@ public class SchemaInformation {
                     targetNamespace = oldTarget;
                     return;                             // Skip children (normally, there is none).
                 }
-                case "documentation": {
-                    setDocumentation(node.getTextContent());
-                    return;                             // Skip children (normally, there is none).
-                }
                 /*
                  * <xs:element name="(…)" type="(…)_Type">
                  * Verify that the names comply with our assumptions.
@@ -345,22 +330,22 @@ public class SchemaInformation {
                 case "element": {
                     final String name = getMandatoryAttribute(node, "name");
                     final String type = getMandatoryAttribute(node, "type");
+                    final String doc  = documentation(node);
                     if (CODELIST_TYPE.equals(type)) {
                         final Map<String,Element> properties = new HashMap<>(4);
-                        final Element info = new Element(null, targetNamespace, false, false);
-                        toDocument = info;
+                        final Element info = new Element(null, targetNamespace, false, false, doc);
                         properties.put(null, info);     // Remember namespace of the code list.
                         properties.put(name, info);     // Pseudo-property used in our CodeList adapters.
                         if (typeDefinitions.put(name, properties) != null) {
                             throw new SchemaException(String.format("Code list \"%s\" is defined twice.", name));
                         }
                     } else {
+                        // addProperty(null, …) with null as a sentinel value for class definition.
                         verifyNamingConvention(schemaLocations.getLast(), name, type, TYPE_SUFFIX);
                         preparePropertyDefinitions(type);
-                        addProperty(null, type, false, false);      // Null property name as a sentinel value for class definition.
+                        addProperty(null, type, false, false, doc);
                         currentProperties = null;
                     }
-                    if (includeDocumentation) break;    // Parse children if documentation has been requested.
                     return;                             // Ignore children (they are about documentation).
                 }
                 /*
@@ -368,7 +353,6 @@ public class SchemaInformation {
                  * <xs:complexType name="(…)_PropertyType">
                  */
                 case "complexType": {
-                    toDocument = null;
                     String name = getMandatoryAttribute(node, "name");
                     if (name.endsWith(PROPERTY_TYPE_SUFFIX)) {
                         currentPropertyType = name;
@@ -438,14 +422,9 @@ public class SchemaInformation {
                         }
                     }
                     addProperty(getMandatoryAttribute(node, "name").intern(),
-                           trim(getMandatoryAttribute(node, "type"), PROPERTY_TYPE_SUFFIX).intern(), isRequired, isCollection);
-
-                    if (includeDocumentation) break;    // Parse children if documentation has been requested.
-                    return;                             // Ignore children (they are about documentation).
-                }
-                case "documentation": {
-                    setDocumentation(node.getTextContent());
-                    return;                             // Skip children (normally, there is none).
+                           trim(getMandatoryAttribute(node, "type"), PROPERTY_TYPE_SUFFIX).intern(),
+                           isRequired, isCollection, documentation(node));
+                    return;
                 }
             }
         }
@@ -511,42 +490,59 @@ public class SchemaInformation {
      * Adds a property of the current name and type. This method is invoked during schema parsing.
      * The property namespace is assumed to be {@link #targetNamespace}.
      */
-    private void addProperty(final String name, final String type, final boolean isRequired, final boolean isCollection) throws SchemaException {
-        final Element info = new Element(type, targetNamespace, isRequired, isCollection);
+    private void addProperty(final String name, final String type, final boolean isRequired, final boolean isCollection,
+            final String documentation) throws SchemaException
+    {
+        final Element info = new Element(type, targetNamespace, isRequired, isCollection, documentation);
         final Element old = currentProperties.put(name, info);
         if (old != null && !old.nameEqual(info)) {
             throw new SchemaException(String.format("Error while parsing %s:%n" +
                     "Property \"%s\" is associated to type \"%s\", but that property was already associated to \"%s\".",
                     schemaLocations.getLast(), name, type, old));
         }
-        toDocument = info;
     }
 
     /**
-     * Sets the documentation of current element to the given value, with the first letter made upper case
+     * Returns the documentation for the given node, with the first letter made upper case
      * and a dot added at the end of the sentence. Null or empty texts are ignored.
      */
-    private void setDocumentation(String doc) {
-        if (doc != null && toDocument != null) {
-            doc = doc.trim();
-            final int length = doc.length();
-            if (length != 0) {
-                final int firstChar = doc.codePointAt(0);
-                final StringBuilder buffer = this.buffer;
-                buffer.appendCodePoint(Character.toUpperCase(firstChar))
-                      .append(doc, Character.charCount(firstChar), length);
-                if (doc.charAt(length - 1) != '.') {
-                    buffer.append('.');
+    private String documentation(Node node) {
+        if (includeDocumentation) {
+            node = node.getFirstChild();
+            while (node != null) {
+                switch (node.getNodeName()) {
+                    case "annotation": {
+                        node = node.getFirstChild();        // Expect "documentation" as a child of "annotation".
+                        continue;
+                    }
+                    case "documentation": {
+                        String doc = node.getTextContent();
+                        if (doc != null) {
+                            doc = doc.trim();
+                            final int length = doc.length();
+                            if (length != 0) {
+                                final int firstChar = doc.codePointAt(0);
+                                final StringBuilder buffer = this.buffer;
+                                buffer.appendCodePoint(Character.toUpperCase(firstChar))
+                                      .append(doc, Character.charCount(firstChar), length);
+                                if (doc.charAt(length - 1) != '.') {
+                                    buffer.append('.');
+                                }
+                                int i;
+                                while ((i = buffer.indexOf("  ")) >= 0) {
+                                    buffer.deleteCharAt(i);
+                                }
+                                doc = buffer.toString();
+                                buffer.setLength(0);
+                                return doc;
+                            }
+                        }
+                    }
                 }
-                int i;
-                while ((i = buffer.indexOf("  ")) >= 0) {
-                    buffer.deleteCharAt(i);
-                }
-                toDocument.documentation = buffer.toString();
-                buffer.setLength(0);
+                node = node.getNextSibling();
             }
         }
-        toDocument = null;
+        return null;
     }
 
     /**

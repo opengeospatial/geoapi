@@ -351,7 +351,7 @@ public final strictfp class JavaToPython {
             final StringBuilder content, final int level, final String lineSeparator)
     {
         if (element != null) {
-            final String doc = element.documentation();
+            final String doc = element.documentation;
             if (doc != null) {
                 indent(content, level).append("\"\"\"").append(doc).append("\"\"\"").append(lineSeparator);
             }
