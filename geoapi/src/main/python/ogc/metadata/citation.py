@@ -25,10 +25,6 @@ class Series(ABC):
 class Address(ABC):
 
     @abstractproperty
-    def country(self) -> str:
-        pass
-
-    @abstractproperty
     def deliveryPoint(self) -> str:
         pass
 
@@ -45,31 +41,27 @@ class Address(ABC):
         pass
 
     @abstractproperty
+    def country(self) -> str:
+        pass
+
+    @abstractproperty
     def electronicMailAddress(self) -> str:
         pass
 
 class Telephone(ABC):
 
     @abstractproperty
-    def voice(self) -> str:
-        pass
-
-    @abstractproperty
-    def facsimile(self) -> str:
+    def number(self) -> str:
         pass
 
     @abstractproperty
     def numberType(self) -> TelephoneTypeCode:
         pass
 
-    @abstractproperty
-    def number(self) -> str:
-        pass
-
 class OnlineResource(ABC):
 
     @abstractproperty
-    def name(self) -> str:
+    def linkage(self):
         pass
 
     @abstractproperty
@@ -77,11 +69,15 @@ class OnlineResource(ABC):
         pass
 
     @abstractproperty
-    def linkage(self):
+    def applicationProfile(self) -> str:
         pass
 
     @abstractproperty
-    def applicationProfile(self) -> str:
+    def name(self) -> str:
+        pass
+
+    @abstractproperty
+    def description(self) -> str:
         pass
 
     @abstractproperty
@@ -90,10 +86,6 @@ class OnlineResource(ABC):
 
     @abstractproperty
     def protocolRequest(self) -> str:
-        pass
-
-    @abstractproperty
-    def description(self) -> str:
         pass
 
 class Contact(ABC):
@@ -165,27 +157,23 @@ class Organisation(Party):
 class Date(ABC):
 
     @abstractproperty
-    def dateType(self) -> DateTypeCode:
+    def date(self) -> datetime:
         pass
 
     @abstractproperty
-    def date(self) -> datetime:
+    def dateType(self) -> DateTypeCode:
         pass
 
 class Citation(ABC):
     """Standardized resource reference."""
 
     @abstractproperty
-    def identifier(self) -> Identifier:
+    def title(self) -> str:
+        """Name by which the cited resource is known."""
         pass
 
     @abstractproperty
     def alternateTitle(self) -> str:
-        pass
-
-    @abstractproperty
-    def title(self) -> str:
-        """Name by which the cited resource is known."""
         pass
 
     @abstractproperty
@@ -198,6 +186,10 @@ class Citation(ABC):
 
     @abstractproperty
     def editionDate(self) -> datetime:
+        pass
+
+    @abstractproperty
+    def identifier(self) -> Identifier:
         pass
 
     @abstractproperty
@@ -217,10 +209,6 @@ class Citation(ABC):
         pass
 
     @abstractproperty
-    def collectiveTitle(self) -> str:
-        pass
-
-    @abstractproperty
     def ISBN(self) -> str:
         pass
 
@@ -229,9 +217,9 @@ class Citation(ABC):
         pass
 
     @abstractproperty
-    def graphic(self) -> BrowseGraphic:
+    def onlineResource(self) -> OnlineResource:
         pass
 
     @abstractproperty
-    def onlineResource(self) -> OnlineResource:
+    def graphic(self) -> BrowseGraphic:
         pass
