@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,7 +32,8 @@
 
 
 /**
- * Tools for creating or verifying interfaces from/against OGC/ISO schemas.
+ * Tools for exporting Java interfaces to other languages.
+ * This should be used only for first drafts; developers should validate the results.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1

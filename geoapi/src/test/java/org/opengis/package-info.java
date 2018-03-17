@@ -29,24 +29,12 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.tools.export;
-
 
 /**
- * Thrown when a Java element can not be exported to the target language.
+ * Tests that are global to all GeoAPI packages.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@SuppressWarnings("serial")
-public class CanNotExportException extends RuntimeException {
-    /**
-     * Constructs an exception with the specified detail message.
-     *
-     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
-     */
-    public CanNotExportException(String message) {
-        super(message);
-    }
-}
+package org.opengis;
