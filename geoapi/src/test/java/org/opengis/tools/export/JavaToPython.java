@@ -153,7 +153,7 @@ public final strictfp class JavaToPython {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
-        schema = new SchemaInformation(schemaRootDirectory, new Departures());
+        schema = new SchemaInformation(schemaRootDirectory, new Departures(), true);
         schema.loadDefaultSchemas();
     }
 
@@ -281,10 +281,10 @@ public final strictfp class JavaToPython {
                      * But Java methods are listed in no particular order. Before to write them,
                      * we should sort them in the same order than in the XSD file.
                      */
-                    final Map<String, SchemaInformation.Element> authoritative = schema.typeDefinition(uml.identifier());
-                    if (authoritative != null) {
+                    final Map<String, SchemaInformation.Element> definition = schema.getTypeDefinition(type);
+                    if (definition != null) {
                         int position = 0;
-                        for (final String name : authoritative.keySet()) {
+                        for (final String name : definition.keySet()) {
                             final Property p = properties.get(name);
                             if (p != null) {
                                 p.position = position++;
@@ -308,20 +308,52 @@ public final strictfp class JavaToPython {
                         }
                     }
                     content.append(parent).append("):").append(lineSeparator);
-                    // TODO: insert class documentation here.
+                    if (definition != null) {
+                        appendDocumentation(definition.get(null), content, 1, lineSeparator);
+                    }
                     for (final Property property : props) {
-                        content.append(lineSeparator)
-                               .append("    @abstractproperty").append(lineSeparator)
-                               .append("    def ").append(property.name).append("(self)");
+                        content.append(lineSeparator);
+                        indent(content, 1).append("@abstractproperty").append(lineSeparator);
+                        indent(content, 1).append("def ").append(property.name).append("(self)");
                         if (property.type != null) {
                             content.append(" -> ").append(property.type);
                         }
                         content.append(':').append(lineSeparator);
-                        // TODO: insert property documentation here.
-                        content.append("        pass").append(lineSeparator);
+                        if (definition != null) {
+                            appendDocumentation(definition.get(property.name), content, 2, lineSeparator);
+                        }
+                        indent(content, 2).append("pass").append(lineSeparator);
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    /**
+     * Adds spaces for the given indentation level.
+     */
+    private static StringBuilder indent(final StringBuilder content, int n) {
+        while (--n >= 0) {
+            content.append("    ");
+        }
+        return content;
+    }
+
+    /**
+     * Adds documentation for the given element if non-null and if documentation exists.
+     *
+     * @param  element  the element for which to add documentation, or {@code null}.
+     * @param  content  where to add documentation if it exists.
+     * @param  level    the indentation level to use (1 or 2).
+     */
+    private static void appendDocumentation(final SchemaInformation.Element element,
+            final StringBuilder content, final int level, final String lineSeparator)
+    {
+        if (element != null) {
+            final String doc = element.documentation();
+            if (doc != null) {
+                indent(content, level).append("\"\"\"").append(doc).append("\"\"\"").append(lineSeparator);
             }
         }
     }

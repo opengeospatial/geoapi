@@ -120,6 +120,7 @@ public class SchemaInformation {
     /**
      * A temporary buffer for miscellaneous string operations.
      * Valid only in a local scope since the content may change at any time.
+     * For making this limitation clear, its length shall bet set to 0 after each usage.
      */
     private final StringBuilder buffer;
 
@@ -136,6 +137,11 @@ public class SchemaInformation {
     private final Deque<String> schemaLocations;
 
     /**
+     * The property on which to apply the next {@code documentation} content, or {@code null} if none.
+     */
+    private Element toDocument;
+
+    /**
      * The type and namespace of a property or type.
      */
     public static final class Element {
@@ -143,6 +149,7 @@ public class SchemaInformation {
         /** Element namespace as an URI.             */ public final String  namespace;
         /** Whether the property is mandatory.       */ public final boolean isRequired;
         /** Whether the property accepts many items. */ public final boolean isCollection;
+        /** Documentation, or {@code null} if none.  */ String documentation;
 
         /** Stores information about a new property or type. */
         Element(final String typeName, final String namespace, final boolean isRequired, final boolean isCollection) {
@@ -152,12 +159,19 @@ public class SchemaInformation {
             this.isCollection = isCollection;
         }
 
-        /** Tests this element against the given element for equality. */
-        boolean equal(final Element other) {
+        /** Tests if this element has the same name than given element. */
+        boolean nameEqual(final Element other) {
             return Objects.equals(typeName,  other.typeName)
-                && Objects.equals(namespace, other.namespace)
-                && isRequired   == other.isRequired
-                && isCollection == other.isCollection;
+                && Objects.equals(namespace, other.namespace);
+        }
+
+        /**
+         * Returns the documentation, or {@code null} if none.
+         *
+         * @return the documentation, or {@code null}.
+         */
+        public String documentation() {
+            return documentation;
         }
 
         /**
@@ -222,6 +236,12 @@ public class SchemaInformation {
     private final Departures departures;
 
     /**
+     * Whether to include documentation in the {@link Element}.
+     * Setting this field to {@code false} can make parsing slightly faster.
+     */
+    private final boolean includeDocumentation;
+
+    /**
      * Creates a new verifier. If the computer contains a local copy of ISO schemas, then the {@code schemaRootDirectory}
      * argument can be set to that directory for faster schema loadings. If non-null, that directory should contain the
      * same files than <a href="http://standards.iso.org/iso/">http://standards.iso.org/iso/</a> (not necessarily with all
@@ -232,10 +252,13 @@ public class SchemaInformation {
      *
      * @param schemaRootDirectory  path to local copy of ISO schemas, or {@code null} if none.
      * @param departures           expected departures between XML schemas and GeoAPI annotations.
+     * @param document             whether to include documentation in the {@link Element}.
+     *                             Setting this argument to {@code false} can make parsing slightly faster.
      */
-    public SchemaInformation(final Path schemaRootDirectory, final Departures departures) {
+    public SchemaInformation(final Path schemaRootDirectory, final Departures departures, final boolean document) {
         this.schemaRootDirectory = schemaRootDirectory;
         this.departures = departures;
+        includeDocumentation = document;
         factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         buffer = new StringBuilder(100);
@@ -304,10 +327,15 @@ public class SchemaInformation {
                 case "include": {
                     final String oldTarget = targetNamespace;
                     final String location = schemaLocations.getLast();
+                    final String path = buffer.append(location, 0, location.lastIndexOf('/') + 1)
+                            .append(getMandatoryAttribute(node, "schemaLocation")).toString();
                     buffer.setLength(0);
-                    buffer.append(location, 0, location.lastIndexOf('/') + 1).append(getMandatoryAttribute(node, "schemaLocation"));
-                    loadSchema(buffer.toString());
+                    loadSchema(path);
                     targetNamespace = oldTarget;
+                    return;                             // Skip children (normally, there is none).
+                }
+                case "documentation": {
+                    setDocumentation(node.getTextContent());
                     return;                             // Skip children (normally, there is none).
                 }
                 /*
@@ -320,6 +348,7 @@ public class SchemaInformation {
                     if (CODELIST_TYPE.equals(type)) {
                         final Map<String,Element> properties = new HashMap<>(4);
                         final Element info = new Element(null, targetNamespace, false, false);
+                        toDocument = info;
                         properties.put(null, info);     // Remember namespace of the code list.
                         properties.put(name, info);     // Pseudo-property used in our CodeList adapters.
                         if (typeDefinitions.put(name, properties) != null) {
@@ -328,9 +357,10 @@ public class SchemaInformation {
                     } else {
                         verifyNamingConvention(schemaLocations.getLast(), name, type, TYPE_SUFFIX);
                         preparePropertyDefinitions(type);
-                        addProperty(null, type, false, false);
+                        addProperty(null, type, false, false);      // Null property name as a sentinel value for class definition.
                         currentProperties = null;
                     }
+                    if (includeDocumentation) break;    // Parse children if documentation has been requested.
                     return;                             // Ignore children (they are about documentation).
                 }
                 /*
@@ -338,6 +368,7 @@ public class SchemaInformation {
                  * <xs:complexType name="(…)_PropertyType">
                  */
                 case "complexType": {
+                    toDocument = null;
                     String name = getMandatoryAttribute(node, "name");
                     if (name.endsWith(PROPERTY_TYPE_SUFFIX)) {
                         currentPropertyType = name;
@@ -408,7 +439,13 @@ public class SchemaInformation {
                     }
                     addProperty(getMandatoryAttribute(node, "name").intern(),
                            trim(getMandatoryAttribute(node, "type"), PROPERTY_TYPE_SUFFIX).intern(), isRequired, isCollection);
-                    return;
+
+                    if (includeDocumentation) break;    // Parse children if documentation has been requested.
+                    return;                             // Ignore children (they are about documentation).
+                }
+                case "documentation": {
+                    setDocumentation(node.getTextContent());
+                    return;                             // Skip children (normally, there is none).
                 }
             }
         }
@@ -477,11 +514,39 @@ public class SchemaInformation {
     private void addProperty(final String name, final String type, final boolean isRequired, final boolean isCollection) throws SchemaException {
         final Element info = new Element(type, targetNamespace, isRequired, isCollection);
         final Element old = currentProperties.put(name, info);
-        if (old != null && !old.equal(info)) {
+        if (old != null && !old.nameEqual(info)) {
             throw new SchemaException(String.format("Error while parsing %s:%n" +
                     "Property \"%s\" is associated to type \"%s\", but that property was already associated to \"%s\".",
                     schemaLocations.getLast(), name, type, old));
         }
+        toDocument = info;
+    }
+
+    /**
+     * Sets the documentation of current element to the given value, with the first letter made upper case
+     * and a dot added at the end of the sentence. Null or empty texts are ignored.
+     */
+    private void setDocumentation(String doc) {
+        if (doc != null && toDocument != null) {
+            doc = doc.trim();
+            final int length = doc.length();
+            if (length != 0) {
+                final int firstChar = doc.codePointAt(0);
+                final StringBuilder buffer = this.buffer;
+                buffer.appendCodePoint(Character.toUpperCase(firstChar))
+                      .append(doc, Character.charCount(firstChar), length);
+                if (doc.charAt(length - 1) != '.') {
+                    buffer.append('.');
+                }
+                int i;
+                while ((i = buffer.indexOf("  ")) >= 0) {
+                    buffer.deleteCharAt(i);
+                }
+                toDocument.documentation = buffer.toString();
+                buffer.setLength(0);
+            }
+        }
+        toDocument = null;
     }
 
     /**
