@@ -34,81 +34,41 @@ package org.opengis;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Enumeration;
-import java.util.jar.JarFile;
-import java.util.jar.JarEntry;
 import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.Closeable;
 import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.lang.reflect.Type;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assume.*;
 
 
 /**
  * Verifies the compatibility of a GeoAPI JAR file compared to its previous version.
  *
- * <p>This test class also has a {@link #main(String[])} method, which only lists the methods having
- * an incompatible change. This main method is used for generating the list of incompatible changes
- * to be expected in the next major GeoAPI release.</p>
+ * <p>This test class also has a {@link #listChanges()} method, which only lists new methods and methods having
+ * an incompatible change. This is used for generating the list of incompatible changes to be expected in the next
+ * major GeoAPI release.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public final class CompatibilityTest {
+public final class CompatibilityTest implements Closeable {
     /**
-     * Filename extension of class files.
+     * The GeoAPI version used as a reference.
      */
-    private static final String CLASS_EXT = ".class";
+    private final Release oldAPI;
 
     /**
-     * The package of legacy JSR-275 (Unit of Measurement).
-     * This API has been replaced by JSR-363 (Unit of Measurement API).
+     * The GeoAPI version to compare against the reference one.
      */
-    private static final String LEGACY_UNIT_PACKAGE = "javax.measure.unit.";
-
-    /**
-     * Path to the JAR file of the GeoAPI version used as a reference.
-     */
-    private final File oldFile;
-
-    /**
-     * Path to the JAR file of the GeoAPI version to compare against the reference one.
-     */
-    private final File newFile;
-
-    /**
-     * Whether the {@linkplain #oldFile old JAR file} depends on the legacy JSR-275 API for units of measurement.
-     * If {@code false}, then the JAR depends on JSR-363 instead.
-     */
-    private final boolean isOldUsingLegacyUnits;
-
-    /**
-     * Whether the {@linkplain #newFile new JAR file} depends on the legacy JSR-275 API for units of measurement.
-     * This field should always be {@code false} (meaning that the JAR depends on JSR-363) unless we are comparing
-     * two archived versions of GeoAPI.
-     */
-    private final boolean isNewUsingLegacyUnits;
-
-    /**
-     * For loading classes in {@link #oldFile}.
-     */
-    private final ClassLoader oldAPI;
-
-    /**
-     * For loading classes in {@link #newFile}.
-     */
-    private final ClassLoader newAPI;
+    private final Release newAPI;
 
     /**
      * Classes which were intentionally deleted. Such classes should be very rare (we usually try to deprecate
@@ -123,6 +83,30 @@ public final class CompatibilityTest {
      * For major releases the amount of incompatible changes may be greater.
      */
     private final Set<IncompatibleChange> acceptedIncompatibleChanges;
+
+    /**
+     * Lists the new methods and the methods having an incompatible change.
+     *
+     * @throws IOException if an error occurred while reading a JAR file.
+     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    public static void listChanges() throws IOException, ClassNotFoundException, NoSuchMethodException {
+        try (final CompatibilityTest c = new CompatibilityTest("3.1-SNAPSHOT", "4.0-SNAPSHOT")) {
+            for (final IncompatibleChange change : c.acceptedIncompatibleChanges) {
+                System.out.println(change.method + "=I");
+            }
+            for (final IncompatibleChange change : c.createIncompatibleChangesList()) {
+                System.out.println(change.method + "=MC");
+            }
+            for (final String change : c.listNewMethods()) {
+                System.out.println(change + "=N");
+            }
+        }
+    }
 
     /**
      * Creates a new API comparator.
@@ -141,8 +125,10 @@ public final class CompatibilityTest {
      * @throws MalformedURLException if an error occurred while building the URL to the JAR files.
      */
     private CompatibilityTest(final String oldVersion, final String newVersion) throws MalformedURLException {
-        isOldUsingLegacyUnits = oldVersion.startsWith("2.") || oldVersion.startsWith("3.0.1");
-        isNewUsingLegacyUnits = newVersion.startsWith("2.") || newVersion.startsWith("3.0.1");
+        final File mavenRepository = new File(System.getProperty("user.home"), ".m2/repository");
+        final ClassLoader parent = CompatibilityTest.class.getClassLoader().getParent();
+        oldAPI = new Release(mavenRepository, oldVersion, parent);
+        newAPI = new Release(mavenRepository, newVersion, parent);
         if (newVersion.startsWith("3.1")) {
             deletedClasses = Collections.emptySet();
             acceptedIncompatibleChanges = IncompatibleChange.for31();
@@ -152,61 +138,28 @@ public final class CompatibilityTest {
         } else {
             throw new IllegalStateException("Unsupported version: " + newVersion);
         }
-        final File mavenRepository = new File(System.getProperty("user.home"), ".m2/repository");
-        oldFile = new File(mavenRepository, "org/opengis/geoapi/" + oldVersion + "/geoapi-" + oldVersion + ".jar");
-        newFile = new File(mavenRepository, "org/opengis/geoapi/" + newVersion + "/geoapi-" + newVersion + ".jar");
-        assumeTrue("GeoAPI " + oldVersion + " not in Maven repository.", oldFile.isFile());
-        assumeTrue("GeoAPI " + newVersion + " not in Maven repository.", newFile.isFile());
-
-        final File depOldFile = new File(mavenRepository, isOldUsingLegacyUnits
-                ? "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar"
-                : "javax/measure/unit-api/1.0/unit-api-1.0.jar");
-
-        final File depNewFile = new File(mavenRepository, isNewUsingLegacyUnits
-                ? "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar"
-                : "javax/measure/unit-api/1.0/unit-api-1.0.jar");
-
-        assumeTrue("Required dependency not found: " + depOldFile, depOldFile.isFile());
-        assumeTrue("Required dependency not found: " + depNewFile, depNewFile.isFile());
-        final URL oldDependency = depOldFile.toURI().toURL();
-        final URL newDependency = depNewFile.toURI().toURL();
-        final ClassLoader parent = CompatibilityTest.class.getClassLoader().getParent();
-        oldAPI = new URLClassLoader(new URL[] {oldFile.toURI().toURL(), oldDependency}, parent);
-        newAPI = new URLClassLoader(new URL[] {newFile.toURI().toURL(), newDependency}, parent);
     }
 
     /**
-     * Verifies that all changes compared to the latest GeoAPI release are compatible changes.
-     *
-     * @throws IOException if an error occurred while reading a JAR file.
-     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
-     *         has not been found in the new release.
-     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
-     *         has not been found in the new release.
-     */
-    @Test
-    public void verifyGeoAPI() throws IOException, ClassNotFoundException, NoSuchMethodException {
-        assertNoIncompatibility(createIncompatibleChangesList());
-    }
-
-    /**
-     * Returns the list of new methods found in the new GeoAPI version.
+     * Returns the list of new methods found in the new GeoAPI version. This method is not used by
+     * {@link #verifyCompatibility()} since adding new methods are compatible changes. This method
+     * is used only by {@link #listChanges()} as part of the release notes.
      *
      * @return list of new methods, or {@code null} if none.
      */
     private List<String> listNewMethods() throws IOException, ClassNotFoundException, NoSuchMethodException {
         final List<String> newMethods = new ArrayList<>();
-        for (final String className : listClasses(newFile)) {
+        for (final String className : newAPI.listClasses()) {
             if (className.indexOf('$') >= 0) {
                 continue;                                                           // Skip inner classes.
             }
-            final Class<?> newClass = Class.forName(className, false, newAPI);
+            final Class<?> newClass = newAPI.loadClass(className);
             if (!Modifier.isPublic(newClass.getModifiers())) {
                 continue;                                                           // Skip non-public classes.
             }
             Class<?> oldClass;
             try {
-                oldClass = Class.forName(className, false, oldAPI);
+                oldClass = oldAPI.loadClass(className);
             } catch (ClassNotFoundException e) {
                 oldClass = null;                                                    // Will mark all methods as new.
             }
@@ -219,8 +172,7 @@ public final class CompatibilityTest {
                 }
                 final String methodName = newMethod.getName();
                 if (oldClass != null) try {
-                    final Class<?>[] paramTypes = getParameterTypes(newMethod,
-                            oldAPI, isNewUsingLegacyUnits, isOldUsingLegacyUnits);
+                    final Class<?>[] paramTypes = oldAPI.getParameterTypes(newAPI, newMethod);
                     final Method oldMethod = oldClass.getMethod(methodName, paramTypes);
                     /*
                      * At this point we found that the method existed, so we will not report it has a new method.
@@ -242,21 +194,20 @@ public final class CompatibilityTest {
     /**
      * Returns the list of incompatible changes found between the old and the new GeoAPI version.
      * If this method is used for a JUnit test, then the expected result is an empty list.
-     * This can be verified by {@link #assertNoIncompatibility(List)}.
      *
      * @return list of incompatible changes.
      */
     private List<IncompatibleChange> createIncompatibleChangesList() throws IOException, ClassNotFoundException, NoSuchMethodException {
         final List<IncompatibleChange> incompatibleChanges = new ArrayList<>();
-        for (final String className : listClasses(oldFile)) {
-            final Class<?> oldClass = Class.forName(className, false, oldAPI);
+        for (final String className : oldAPI.listClasses()) {
+            final Class<?> oldClass = oldAPI.loadClass(className);
             if (!Modifier.isPublic(oldClass.getModifiers())) {
                 continue;                                                         // Skip non-public classes.
             }
             if (deletedClasses.contains(className)) {
                 continue;                                              // Skip intentionally deleted classes.
             }
-            final Class<?> newClass = Class.forName(className, false, newAPI);
+            final Class<?> newClass = newAPI.loadClass(className);
             /*
              * At this point we have a class from the previous GeoAPI release (oldClass) and its new version.
              * Now compare all public methods. We skip protected methods for simplicity, since we perform our
@@ -270,7 +221,7 @@ public final class CompatibilityTest {
                     continue;                                                     // Skip non-public methods.
                 }
                 final String methodName = oldMethod.getName();
-                final Class<?>[] paramTypes = getParameterTypes(oldMethod, newAPI, isOldUsingLegacyUnits, isNewUsingLegacyUnits);
+                final Class<?>[] paramTypes = newAPI.getParameterTypes(oldAPI, oldMethod);
                 final Method newMethod = newClass.getMethod(methodName, paramTypes);
                 assertArrayEquals(methodName, paramTypes, newMethod.getParameterTypes());   // Paranoiac check (should never fail).
                 /*
@@ -281,8 +232,8 @@ public final class CompatibilityTest {
                 final Type[] newGPT = newMethod.getGenericParameterTypes();
                 assertEquals(methodName, oldGPT.length, newGPT.length);         // Paranoiac check (should never fail).
                 for (int i=0; i<oldGPT.length; i++) {
-                    final String oldType = normalize(oldGPT[i].toString());     // TODO: use getTypeName() on JDK8.
-                    final String newType = normalize(newGPT[i].toString());
+                    final String oldType = Release.normalize(oldGPT[i].toString());     // TODO: use getTypeName() on JDK8.
+                    final String newType = Release.normalize(newGPT[i].toString());
                     if (!newType.equals(oldType)) {
                         final String lineSeparator = System.lineSeparator();
                         fail("Incompatible change in argument #" + (i+1) + " of "
@@ -297,8 +248,8 @@ public final class CompatibilityTest {
                  * as an error.
                  */
                 if (!oldMethod.isSynthetic()) {
-                    final String oldType = normalize(oldMethod.getGenericReturnType().toString());     // TODO: use getTypeName() on JDK8.
-                    final String newType = normalize(newMethod.getGenericReturnType().toString());
+                    final String oldType = Release.normalize(oldMethod.getGenericReturnType().toString());     // TODO: use getTypeName() on JDK8.
+                    final String newType = Release.normalize(newMethod.getGenericReturnType().toString());
                     if (!newType.equals(oldType)) {
                         final IncompatibleChange change = new IncompatibleChange(className + '.' + methodName, oldType, newType);
                         if (!acceptedIncompatibleChanges.remove(change)) {
@@ -308,8 +259,6 @@ public final class CompatibilityTest {
                 }
             }
         }
-        if (oldAPI instanceof Closeable) ((Closeable) oldAPI).close();
-        if (newAPI instanceof Closeable) ((Closeable) newAPI).close();
         if (!acceptedIncompatibleChanges.isEmpty()) {
             fail("The collection of \"accepted incompatible changes\" has not been fully used.\n" +
                  "Is this test configured with the right collection? Remaining items are:\n" +
@@ -319,75 +268,19 @@ public final class CompatibilityTest {
     }
 
     /**
-     * Returns the name of all classes found in the given JAR file.
-     */
-    private static Collection<String> listClasses(final File file) throws IOException {
-        final List<String> entries = new ArrayList<>();
-        try (JarFile jar = new JarFile(file)) {
-            final Enumeration<JarEntry> it = jar.entries();
-            while (it.hasMoreElements()) {
-                String entry = it.nextElement().getName();
-                if (entry.endsWith(CLASS_EXT)) {
-                    entry = entry.substring(0, entry.length() - CLASS_EXT.length()).replace('/', '.');
-                    assertTrue(entries.add(entry));
-                }
-            }
-        }
-        return entries;
-    }
-
-    /**
-     * Returns the parameters of the given methods, loaded using the given class loader
-     * (which may not be the same than for the method enclosing class).
+     * Verifies that all changes compared to the latest GeoAPI release are compatible changes.
+     * This test asserts that the list of incompatible changes is empty.
+     * If not, that list will be formatted in the error message.
      *
-     * @param  method  the old method from which to get parameter types converted to new API.
-     * @param  loader  the class loader to use for fetching the types of new API.
-     * @param  isOldUsingLegacyUnits  whether {@code method} depends on JSR-275 instead of JSR-363.
-     * @param  isNewUsingLegacyUnits  whether {@code loader} depends on JSR-275 instead of JSR-363.
+     * @throws IOException if an error occurred while reading a JAR file.
+     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
+     *         has not been found in the new release.
      */
-    private static Class<?>[] getParameterTypes(final Method method, final ClassLoader loader,
-            final boolean isOldUsingLegacyUnits, final boolean isNewUsingLegacyUnits)
-            throws ClassNotFoundException
-    {
-        final Class<?>[] paramTypes = method.getParameterTypes();
-        for (int i=0; i<paramTypes.length; i++) {
-            if (!paramTypes[i].isPrimitive()) {
-                /*
-                 * GeoAPI types are not represented by the same Class instances, so we need to perform
-                 * a call to Class.forName(…) for them even if the class name is exactly the same.
-                 * In the case of a migration from JSR-275 to JSR-363, we also have a class name change.
-                 */
-                String className = paramTypes[i].getName();
-                if (isOldUsingLegacyUnits != isNewUsingLegacyUnits) {
-                    if (isOldUsingLegacyUnits) {
-                        className = normalize(className);
-                    } else {
-                        if (className.equals("javax.measure.Unit")) {
-                            className = LEGACY_UNIT_PACKAGE + "Unit";
-                        }
-                    }
-                }
-                paramTypes[i] = Class.forName(className, false, loader);
-            }
-        }
-        return paramTypes;
-    }
-
-    /**
-     * Replaces JSR-275 class names by JSR-363 names.
-     */
-    private static String normalize(String className) {
-        if (className.startsWith(LEGACY_UNIT_PACKAGE)) {
-            className = "javax.measure." + className.substring(LEGACY_UNIT_PACKAGE.length());
-        }
-        return className;
-    }
-
-    /**
-     * Asserts that the {@code incompatibleChanges} list is empty.
-     * If not, the list of all incompatible changes will be formatted.
-     */
-    private void assertNoIncompatibility(final List<IncompatibleChange> incompatibleChanges) {
+    @Test
+    public void verifyCompatibility() throws IOException, ClassNotFoundException, NoSuchMethodException {
+        final List<IncompatibleChange> incompatibleChanges = createIncompatibleChangesList();
         if (!incompatibleChanges.isEmpty()) {
             final String lineSeparator = System.lineSeparator();
             final StringBuilder buffer = new StringBuilder(240 * incompatibleChanges.size());
@@ -399,26 +292,14 @@ public final class CompatibilityTest {
     }
 
     /**
-     * Lists the method having an incompatible change.
+     * Releases the resources used by this test.
      *
-     * @param  args  ignored.
-     * @throws IOException if an error occurred while reading a JAR file.
-     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
-     *         has not been found in the new release.
-     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
-     *         has not been found in the new release.
+     * @throws IOException if an error occurred while releasing the resources.
      */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    public static void main(final String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException {
-        final CompatibilityTest c = new CompatibilityTest("3.1-SNAPSHOT", "4.0-SNAPSHOT");
-        for (final IncompatibleChange change : c.acceptedIncompatibleChanges) {
-            System.out.println(change.method + "=I");
-        }
-        for (final IncompatibleChange change : c.createIncompatibleChangesList()) {
-            System.out.println(change.method + "=MC");
-        }
-        for (final String change : c.listNewMethods()) {
-            System.out.println(change + "=N");
-        }
+    @After
+    @Override
+    public void close() throws IOException {
+        oldAPI.close();
+        newAPI.close();
     }
 }
