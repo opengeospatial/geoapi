@@ -40,6 +40,7 @@ import java.util.Locale;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import org.opengis.Content;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;
@@ -57,171 +58,22 @@ import static org.junit.Assert.*;
  */
 public final strictfp class DescriptionsTest {
     /**
-     * List of metadata interfaces and code lists.
+     * Whether to test the given type.
      */
-    @SuppressWarnings("deprecation")
-    private static final Class<?>[] METADATA = {
-        org.opengis.annotation.Obligation.class,
-        org.opengis.metadata.ApplicationSchemaInformation.class,
-        org.opengis.metadata.Datatype.class,
-        org.opengis.metadata.ExtendedElementInformation.class,
-        org.opengis.metadata.FeatureTypeList.class,
-        org.opengis.metadata.Identifier.class,
-        org.opengis.metadata.Metadata.class,
-        org.opengis.metadata.MetadataExtensionInformation.class,
-        org.opengis.metadata.PortrayalCatalogueReference.class,
-        org.opengis.metadata.acquisition.AcquisitionInformation.class,
-        org.opengis.metadata.acquisition.Context.class,
-        org.opengis.metadata.acquisition.EnvironmentalRecord.class,
-        org.opengis.metadata.acquisition.Event.class,
-        org.opengis.metadata.acquisition.GeometryType.class,
-        org.opengis.metadata.acquisition.Instrument.class,
-        org.opengis.metadata.acquisition.Objective.class,
-        org.opengis.metadata.acquisition.ObjectiveType.class,
-        org.opengis.metadata.acquisition.Operation.class,
-        org.opengis.metadata.acquisition.OperationType.class,
-        org.opengis.metadata.acquisition.Plan.class,
-        org.opengis.metadata.acquisition.Platform.class,
-        org.opengis.metadata.acquisition.PlatformPass.class,
-        org.opengis.metadata.acquisition.Priority.class,
-        org.opengis.metadata.acquisition.RequestedDate.class,
-        org.opengis.metadata.acquisition.Requirement.class,
-        org.opengis.metadata.acquisition.Sequence.class,
-        org.opengis.metadata.acquisition.Trigger.class,
-        org.opengis.metadata.citation.Address.class,
-        org.opengis.metadata.citation.Citation.class,
-        org.opengis.metadata.citation.CitationDate.class,
-        org.opengis.metadata.citation.Contact.class,
-        org.opengis.metadata.citation.DateType.class,
-        org.opengis.metadata.citation.Individual.class,
-        org.opengis.metadata.citation.OnLineFunction.class,
-        org.opengis.metadata.citation.OnlineResource.class,
-        org.opengis.metadata.citation.Organisation.class,
-        org.opengis.metadata.citation.Party.class,
-        org.opengis.metadata.citation.PresentationForm.class,
-        org.opengis.metadata.citation.Responsibility.class,
-        org.opengis.metadata.citation.ResponsibleParty.class,
-        org.opengis.metadata.citation.Role.class,
-        org.opengis.metadata.citation.Series.class,
-        org.opengis.metadata.citation.Telephone.class,
-        org.opengis.metadata.citation.TelephoneType.class,
-        org.opengis.metadata.constraint.Classification.class,
-        org.opengis.metadata.constraint.Constraints.class,
-        org.opengis.metadata.constraint.LegalConstraints.class,
-        org.opengis.metadata.constraint.Restriction.class,
-        org.opengis.metadata.constraint.SecurityConstraints.class,
-        org.opengis.metadata.content.Band.class,
-        org.opengis.metadata.content.BandDefinition.class,
-        org.opengis.metadata.content.ContentInformation.class,
-        org.opengis.metadata.content.CoverageContentType.class,
-        org.opengis.metadata.content.CoverageDescription.class,
-        org.opengis.metadata.content.FeatureCatalogueDescription.class,
-        org.opengis.metadata.content.ImageDescription.class,
-        org.opengis.metadata.content.ImagingCondition.class,
-        org.opengis.metadata.content.PolarizationOrientation.class,
-        org.opengis.metadata.content.RangeDimension.class,
-        org.opengis.metadata.content.RangeElementDescription.class,
-        org.opengis.metadata.content.SampleDimension.class,
-        org.opengis.metadata.content.TransferFunctionType.class,
-        org.opengis.metadata.distribution.DataFile.class,
-        org.opengis.metadata.distribution.DigitalTransferOptions.class,
-        org.opengis.metadata.distribution.Distribution.class,
-        org.opengis.metadata.distribution.Distributor.class,
-        org.opengis.metadata.distribution.Format.class,
-        org.opengis.metadata.distribution.Medium.class,
-        org.opengis.metadata.distribution.MediumFormat.class,
-        org.opengis.metadata.distribution.MediumName.class,
-        org.opengis.metadata.distribution.StandardOrderProcess.class,
-        org.opengis.metadata.extent.BoundingPolygon.class,
-        org.opengis.metadata.extent.Extent.class,
-        org.opengis.metadata.extent.GeographicBoundingBox.class,
-        org.opengis.metadata.extent.GeographicDescription.class,
-        org.opengis.metadata.extent.GeographicExtent.class,
-        org.opengis.metadata.extent.SpatialTemporalExtent.class,
-        org.opengis.metadata.extent.TemporalExtent.class,
-        org.opengis.metadata.extent.VerticalExtent.class,
-        org.opengis.metadata.identification.AggregateInformation.class,
-        org.opengis.metadata.identification.AssociatedResource.class,
-        org.opengis.metadata.identification.AssociationType.class,
-        org.opengis.metadata.identification.BrowseGraphic.class,
-        org.opengis.metadata.identification.CharacterSet.class,
-        org.opengis.metadata.identification.CouplingType.class,
-        org.opengis.metadata.identification.CoupledResource.class,
-        org.opengis.metadata.identification.DataIdentification.class,
-        org.opengis.metadata.identification.DistributedComputingPlatform.class,
-        org.opengis.metadata.identification.Identification.class,
-        org.opengis.metadata.identification.InitiativeType.class,
-        org.opengis.metadata.identification.KeywordClass.class,
-        org.opengis.metadata.identification.KeywordType.class,
-        org.opengis.metadata.identification.Keywords.class,
-        org.opengis.metadata.identification.OperationChainMetadata.class,
-        org.opengis.metadata.identification.OperationMetadata.class,
-        org.opengis.metadata.identification.Progress.class,
-        org.opengis.metadata.identification.RepresentativeFraction.class,
-        org.opengis.metadata.identification.Resolution.class,
-        org.opengis.metadata.identification.ServiceIdentification.class,
-        org.opengis.metadata.identification.TopicCategory.class,
-        org.opengis.metadata.identification.Usage.class,
-        org.opengis.metadata.lineage.Algorithm.class,
-        org.opengis.metadata.lineage.Lineage.class,
-        org.opengis.metadata.lineage.NominalResolution.class,
-        org.opengis.metadata.lineage.Processing.class,
-        org.opengis.metadata.lineage.ProcessStep.class,
-        org.opengis.metadata.lineage.ProcessStepReport.class,
-        org.opengis.metadata.lineage.Source.class,
-        org.opengis.metadata.maintenance.MaintenanceFrequency.class,
-        org.opengis.metadata.maintenance.MaintenanceInformation.class,
-        org.opengis.metadata.maintenance.Scope.class,
-        org.opengis.metadata.maintenance.ScopeCode.class,
-        org.opengis.metadata.maintenance.ScopeDescription.class,
-        org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy.class,
-        org.opengis.metadata.quality.AccuracyOfATimeMeasurement.class,
-        org.opengis.metadata.quality.Completeness.class,
-        org.opengis.metadata.quality.CompletenessCommission.class,
-        org.opengis.metadata.quality.CompletenessOmission.class,
-        org.opengis.metadata.quality.ConceptualConsistency.class,
-        org.opengis.metadata.quality.ConformanceResult.class,
-        org.opengis.metadata.quality.CoverageResult.class,
-        org.opengis.metadata.quality.DataQuality.class,
-        org.opengis.metadata.quality.DomainConsistency.class,
-        org.opengis.metadata.quality.Element.class,
-        org.opengis.metadata.quality.EvaluationMethodType.class,
-        org.opengis.metadata.quality.FormatConsistency.class,
-        org.opengis.metadata.quality.GriddedDataPositionalAccuracy.class,
-        org.opengis.metadata.quality.LogicalConsistency.class,
-        org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy.class,
-        org.opengis.metadata.quality.PositionalAccuracy.class,
-        org.opengis.metadata.quality.QuantitativeAttributeAccuracy.class,
-        org.opengis.metadata.quality.QuantitativeResult.class,
-        org.opengis.metadata.quality.RelativeInternalPositionalAccuracy.class,
-        org.opengis.metadata.quality.Result.class,
-        org.opengis.metadata.quality.Scope.class,
-        org.opengis.metadata.quality.TemporalAccuracy.class,
-        org.opengis.metadata.quality.TemporalConsistency.class,
-        org.opengis.metadata.quality.TemporalValidity.class,
-        org.opengis.metadata.quality.ThematicAccuracy.class,
-        org.opengis.metadata.quality.ThematicClassificationCorrectness.class,
-        org.opengis.metadata.quality.TopologicalConsistency.class,
-        org.opengis.metadata.quality.Usability.class,
-        org.opengis.metadata.spatial.CellGeometry.class,
-        org.opengis.metadata.spatial.Dimension.class,
-        org.opengis.metadata.spatial.DimensionNameType.class,
-        org.opengis.metadata.spatial.GCP.class,
-        org.opengis.metadata.spatial.GCPCollection.class,
-        org.opengis.metadata.spatial.GeolocationInformation.class,
-        org.opengis.metadata.spatial.GeometricObjectType.class,
-        org.opengis.metadata.spatial.GeometricObjects.class,
-        org.opengis.metadata.spatial.Georectified.class,
-        org.opengis.metadata.spatial.Georeferenceable.class,
-        org.opengis.metadata.spatial.GridSpatialRepresentation.class,
-        org.opengis.metadata.spatial.PixelOrientation.class,
-        org.opengis.metadata.spatial.SpatialRepresentation.class,
-        org.opengis.metadata.spatial.SpatialRepresentationType.class,
-        org.opengis.metadata.spatial.TopologyLevel.class,
-        org.opengis.metadata.spatial.VectorSpatialRepresentation.class,
-        org.opengis.parameter.ParameterDirection.class,
-        org.opengis.referencing.ReferenceSystemType.class
-    };
+    private static boolean filter(final Class<?> type) {
+        if (type.getName().startsWith("org.opengis.metadata.")) {
+            // Exclude some types for which descriptions are still missing.
+            // TODO - https://github.com/opengeospatial/geoapi/issues/24
+            return (type != org.opengis.metadata.constraint.Releasability.class) &&
+                   (type != org.opengis.metadata.content.AttributeGroup.class) &&
+                   (type != org.opengis.metadata.content.FeatureTypeInfo.class) &&
+                   (type != org.opengis.metadata.MetadataScope.class);
+        }
+        // Some additional types for which descriptions are provided.
+        return (type == org.opengis.annotation.Obligation.class) ||
+               (type == org.opengis.parameter.ParameterDirection.class) ||
+               (type == org.opengis.referencing.ReferenceSystemType.class);
+    }
 
     /**
      * Asserts that the given key exists in the given resource bundle.
@@ -238,10 +90,9 @@ public final strictfp class DescriptionsTest {
     }
 
     /**
-     * Ensures that every metadata interfaces have a description, and that there is
-     * no extra definitions. This test is theoretically locale-sensitive since we search
-     * for the resources in the current locale. However it should works for every locales
-     * since the English locale is used as a fallback.
+     * Ensures that every metadata interfaces have a description, and that there is no extra definitions.
+     * This test is theoretically locale-sensitive since we search for the resources in the current locale.
+     * However it should works for every locales since the English locale is used as a fallback.
      */
     @Test
     public void testAll() {
@@ -255,7 +106,8 @@ public final strictfp class DescriptionsTest {
             final String key = e.nextElement();
             assertTrue("Duplicated key" , keys.add(key));
         }
-        for (final Class<?> type : METADATA) {
+        for (final Class<?> type : Content.ALL.types()) {
+            if (!filter(type)) continue;
             UML uml = type.getAnnotation(UML.class);
             assertNotNull("Missing UML annotation", uml);
             final String classIdentifier = uml.identifier();
