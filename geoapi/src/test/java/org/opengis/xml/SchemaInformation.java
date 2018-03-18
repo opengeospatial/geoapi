@@ -75,10 +75,9 @@ import org.opengis.annotation.Stereotype;
  */
 public class SchemaInformation {
     /**
-     * The root of ISO schemas. May be replaced by {@link #schemaRootDirectory} if a local copy
-     * is available for faster tests.
+     * The root of ISO schemas and namespaces, which is {@value}.
      */
-    private static final String SCHEMA_ROOT_DIRECTORY = "http://standards.iso.org/iso/";
+    public static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
 
     /**
      * The prefix of XML type names for properties. In ISO/OGC schemas, this prefix does not appear
@@ -254,8 +253,8 @@ public class SchemaInformation {
     }
 
     /**
-     * Loads the default set of XSD files.
-     * This method invokes {@link #loadSchema(String)} for metadata schemas.
+     * Loads the default set of XSD files. This method invokes {@link #loadSchema(String)}
+     * for a pre-defined set of metadata schemas, in approximative dependency order.
      *
      * @throws ParserConfigurationException if the XML parser can not be created.
      * @throws IOException     if an I/O error occurred while reading a file.
@@ -264,11 +263,29 @@ public class SchemaInformation {
      */
     public void loadDefaultSchemas() throws ParserConfigurationException, IOException, SAXException, SchemaException {
         for (final String p : new String[] {
+                "19115/-3/gco/1.0/gco.xsd",         // Geographic Common
+                "19115/-3/lan/1.0/lan.xsd",         // Language localization
                 "19115/-3/mcc/1.0/mcc.xsd",         // Metadata Common Classes
                 "19115/-3/gex/1.0/gex.xsd",         // Geospatial Extent
-                "19115/-3/cit/1.0/cit.xsd"})        // Citation and responsible party information
+                "19115/-3/cit/1.0/cit.xsd",         // Citation and responsible party information
+                "19115/-3/mmi/1.0/mmi.xsd",         // Metadata for maintenance information
+                "19115/-3/mrd/1.0/mrd.xsd",         // Metadata for resource distribution
+                "19115/-3/mdt/1.0/mdt.xsd",         // Metadata for data transfer
+                "19115/-3/mco/1.0/mco.xsd",         // Metadata for constraints
+                "19115/-3/mri/1.0/mri.xsd",         // Metadata for resource identification
+                "19115/-3/srv/2.0/srv.xsd",         // Metadata for services
+                "19115/-3/mac/1.0/mac.xsd",         // Metadata for acquisition
+                "19115/-3/mrc/1.0/mrc.xsd",         // Metadata for resource content
+                "19115/-3/mrl/1.0/mrl.xsd",         // Metadata for resource lineage
+                "19157/-2/mdq/1.0/mdq.xsd",         // Metadata for data quality
+                "19115/-3/mrs/1.0/mrs.xsd",         // Metadata for reference system
+                "19115/-3/msr/1.0/msr.xsd",         // Metadata for spatial representation
+                "19115/-3/mas/1.0/mas.xsd",         // Metadata for application schema
+                "19115/-3/mex/1.0/mex.xsd",         // Metadata with schema extensions
+                "19115/-3/mpc/1.0/mpc.xsd",         // Metadata for portrayal catalog
+                "19115/-3/mdb/1.0/mdb.xsd"})        // Metadata base
         {
-            loadSchema(SCHEMA_ROOT_DIRECTORY + p);
+            loadSchema(ROOT_NAMESPACE + p);
         }
     }
 
@@ -286,8 +303,8 @@ public class SchemaInformation {
     public void loadSchema(String location)
             throws ParserConfigurationException, IOException, SAXException, SchemaException
     {
-        if (schemaRootDirectory != null && location.startsWith(SCHEMA_ROOT_DIRECTORY)) {
-            location = schemaRootDirectory.resolve(location.substring(SCHEMA_ROOT_DIRECTORY.length())).toUri().toString();
+        if (schemaRootDirectory != null && location.startsWith(ROOT_NAMESPACE)) {
+            location = schemaRootDirectory.resolve(location.substring(ROOT_NAMESPACE.length())).toUri().toString();
         }
         if (!schemaLocations.contains(location)) {
             final Document doc;
@@ -619,12 +636,20 @@ public class SchemaInformation {
         if (type != null) {
             final UML uml = type.getAnnotation(UML.class);
             if (uml != null) {
-                String name = uml.identifier();
                 final Classifier c = type.getAnnotation(Classifier.class);
-                if (c != null && Stereotype.ABSTRACT.equals(c.value())) {
-                    name = "Abstract" + name;
-                }
-                return getTypeDefinition(name);
+                boolean applySpellingChange = false;
+                do {                                                // Will be executed 1 or 2 times only.
+                    String name = uml.identifier();
+                    if (applySpellingChange) {
+                        name = departures.spellingChanges.get(name);
+                        if (name == null) break;
+                    }
+                    if (c != null && Stereotype.ABSTRACT.equals(c.value())) {
+                        name = "Abstract" + name;
+                    }
+                    Map<String,Element> def = getTypeDefinition(name);
+                    if (def != null) return def;
+                } while ((applySpellingChange = !applySpellingChange));
             }
         }
         return null;

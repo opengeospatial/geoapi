@@ -57,11 +57,20 @@ public class Departures {
     public final Map<String,String> mergedTypes;
 
     /**
+     * Changes in the spelling of an identifier. The differences may be for historical reasons,
+     * or in a few cases because of a misspelling on the XSD compared to the UML.
+     *
+     * <p>Keys are the spellings used in GeoAPI {@link org.opengis.annotation.UML} annotations
+     * and values are the spellings used in XSD files.</p>
+     */
+    public final Map<String,String> spellingChanges;
+
+    /**
      * Creates new collections of departure informations. All maps in public fields ({@link #mergedTypes},
      * <i>etc.</i>) are initialized with new instances and populated.
      */
     public Departures() {
-        final Map<String,String> m = new HashMap<>(12);
+        Map<String,String> m = new HashMap<>(12);
         // ………Merge what…………………………………………………………Into……………………………………………
         m.put("MI_Band_Type",                 "MD_Band_Type");
         m.put("MI_CoverageDescription_Type",  "MD_CoverageDescription_Type");
@@ -73,5 +82,16 @@ public class Departures {
         m.put("Abstract_DataQuality_Type",    "DQ_DataQuality_Type");
         m.put("Abstract_QualityElement_Type", "AbstractDQ_Element_Type");
         mergedTypes = m;
+
+        m = new HashMap<>(12);
+        m.put("MI_PolarizationOrientationCode",                  "MI_PolarisationOrientationCode");
+        m.put("MI_Band.detectedPolarization",                    "detectedPolarisation");
+        m.put("MI_Band.transmittedPolarization",                 "transmittedPolarisation");
+        m.put("MI_EnvironmentalRecord.meteorologicalConditions", "meterologicalConditions");    // Misspelling in ISO 19115-3:2016
+        m.put("MI_Requirement.satisfiedPlan",                    "satisifiedPlan");             // Misspelling in ISO 19115-3:2016
+        m.put("LI_ProcessStep.stepDateTime",                     "dateTime");                   // Spelling change in XSD files
+        m.put("MX_DataFile.featureType",                         "featureTypes");               // Spelling change in XSD files
+        m.put("DQ_Result.valueType",                             "valueRecordType");            // TODO: verify in ISO 19157
+        spellingChanges = m;
     }
 }

@@ -87,7 +87,8 @@ public final strictfp class JavaToPython extends SourceGenerator {
     private final int currentYear;
 
     /**
-     * Content of python files to write. Keys are ISO prefixes (e.g. {@code "CI"} for "citation") and values are file contents.
+     * Content of python files to write. Keys are XML prefixes
+     * (e.g. {@code "cit"} for "citation") and values are file contents.
      */
     private final Map<String,StringBuilder> contents;
 
@@ -175,9 +176,10 @@ public final strictfp class JavaToPython extends SourceGenerator {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
-        modules = new HashMap<>(4);
-        modules.put("EX", "metadata/extent");
-        modules.put("CI", "metadata/citation");
+        modules = new HashMap<>(8);
+        modules.put("gco", "metadata/common");
+        modules.put("gex", "metadata/extent");
+        modules.put("cit", "metadata/citation");
         schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();
     }
@@ -228,25 +230,36 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 continue;
             }
             /*
-             * Get the OGC/ISO type name (NOT the Java type name) without its prefix.
-             * The prefix (e.g. "CI") is used as an OGC/ISO package name. There is not
-             * necessarily a one-to-one relationship between OGC/ISO packages and the
-             * packages of GeoAPI Java interfaces.
+             * Get the OGC/ISO type name (NOT the Java type name) without its prefix. The prefix will determine
+             * the Python module where the class will be declared.   Note that there is not always a one-to-one
+             * relationship between the prefix in class name (e.g. "CI" in "CI_Citation") and the XML namespace
+             * (e.g. "…/cit/…"). The Java package may also differ for historical reasons. For Python we use the
+             * the XML prefixes because they provide a finer modularisation, at least with ISO 19115-3 schemas.
              */
+            String prefix = null;
+            final Map<String, SchemaInformation.Element> definition = schema.getTypeDefinition(type);
+            if (definition != null) {
+                SchemaInformation.Element def = definition.get(null);
+                if (def != null && def.namespace.startsWith(SchemaInformation.ROOT_NAMESPACE)) {
+                    final int end   = def.namespace.lastIndexOf('/', def.namespace.length() - 1);
+                    final int start = def.namespace.lastIndexOf('/', end - 1);
+                    prefix = def.namespace.substring(start + 1, end);
+                }
+            }
             String typeName = uml.identifier();
             final int splitAt = typeName.indexOf('_');
-            final String packageName;
-            if (splitAt >= 0) {
-                packageName = typeName.substring(0, splitAt);
-            } else {
-                switch (type.getPackage().getName()) {
-                    case "org.opengis.util":    packageName = "base"; break;
-                    case "org.opengis.feature": packageName = "GF";   break;
-                    default: {
-                        switch (typeName) {
-                            case "DCPList":        packageName = "SV"; break;
-                            case "DirectPosition": packageName = "GM"; break;
-                            default: throw new CanNotExportException("Can not choose a module for " + typeName);
+            if (prefix == null) {
+                if (splitAt >= 0) {
+                    prefix = typeName.substring(0, splitAt);
+                } else {
+                    switch (type.getPackage().getName()) {
+                        case "org.opengis.util":    prefix = "gco"; break;
+                        case "org.opengis.feature": prefix = "GF";  break;
+                        default: {
+                            switch (typeName) {
+                                case "DirectPosition": prefix = "GM"; break;
+                                default: throw new CanNotExportException("Can not choose a module for " + typeName);
+                            }
                         }
                     }
                 }
@@ -259,7 +272,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
              * For Python language, we create one file per OGC/ISO package. Note that OGC/ISO/Java packages
              * map to Python "modules"; we do not use the "package" word in the Python sense here.
              */
-            StringBuilder content = contents.get(packageName);
+            StringBuilder content = contents.get(prefix);
             if (content == null) {
                 content = new StringBuilder(2048)
                        .append('#').append(lineSeparator)
@@ -274,7 +287,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 if (category.isControlledVocabulary()) {
                     content.append("from enum import Enum").append(lineSeparator);
                 }
-                contents.put(packageName, content);
+                contents.put(prefix, content);
             }
             content.append(lineSeparator);
             switch (category) {
@@ -342,7 +355,6 @@ public final strictfp class JavaToPython extends SourceGenerator {
                      * But Java methods are listed in no particular order. Before to write them,
                      * we should sort them in the same order than in the XSD file.
                      */
-                    final Map<String, SchemaInformation.Element> definition = schema.getTypeDefinition(type);
                     if (definition != null) {
                         int position = 0;
                         for (final String name : definition.keySet()) {
@@ -424,6 +436,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
      *
      * @throws IOException if an error occurred while reading or writing the files.
      */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void verifyOrCreateSourceFiles() throws IOException {
         createContent();
         final Path dir = sourceDirectory("python").resolve("ogc");
@@ -441,6 +454,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
             try (Writer out = new OutputStreamWriter(new FileOutputStream(file.toFile()), ENCODING)) {
                 out.append(content);
             }
+        }
+        if (!contents.isEmpty()) {
+            System.err.printf("WARNING: no Python modules created for %s.%n", contents.keySet());
         }
     }
 
