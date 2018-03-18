@@ -225,10 +225,9 @@ public class SchemaInformation {
     private final Departures departures;
 
     /**
-     * Whether to include documentation in the {@link Element}.
-     * Setting this field to {@code false} can make parsing slightly faster.
+     * Variant of the documentation to store (none, verbatim or sentences).
      */
-    private final boolean includeDocumentation;
+    private final DocumentationStyle documentationStyle;
 
     /**
      * Creates a new verifier. If the computer contains a local copy of ISO schemas, then the {@code schemaRootDirectory}
@@ -241,13 +240,12 @@ public class SchemaInformation {
      *
      * @param schemaRootDirectory  path to local copy of ISO schemas, or {@code null} if none.
      * @param departures           expected departures between XML schemas and GeoAPI annotations.
-     * @param document             whether to include documentation in the {@link Element}.
-     *                             Setting this argument to {@code false} can make parsing slightly faster.
+     * @param style                style of the documentation to store (none, verbatim or sentences).
      */
-    public SchemaInformation(final Path schemaRootDirectory, final Departures departures, final boolean document) {
+    public SchemaInformation(final Path schemaRootDirectory, final Departures departures, final DocumentationStyle style) {
         this.schemaRootDirectory = schemaRootDirectory;
-        this.departures = departures;
-        includeDocumentation = document;
+        this.departures          = departures;
+        this.documentationStyle  = style;
         factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         buffer = new StringBuilder(100);
@@ -265,7 +263,13 @@ public class SchemaInformation {
      * @throws SchemaException if a XML document can not be interpreted as an OGC/ISO schema.
      */
     public void loadDefaultSchemas() throws ParserConfigurationException, IOException, SAXException, SchemaException {
-        loadSchema(SCHEMA_ROOT_DIRECTORY + "19115/-3/cit/1.0/cit.xsd");
+        for (final String p : new String[] {
+                "19115/-3/mcc/1.0/mcc.xsd",         // Metadata Common Classes
+                "19115/-3/gex/1.0/gex.xsd",         // Geospatial Extent
+                "19115/-3/cit/1.0/cit.xsd"})        // Citation and responsible party information
+        {
+            loadSchema(SCHEMA_ROOT_DIRECTORY + p);
+        }
     }
 
     /**
@@ -507,7 +511,7 @@ public class SchemaInformation {
      * and a dot added at the end of the sentence. Null or empty texts are ignored.
      */
     private String documentation(Node node) {
-        if (includeDocumentation) {
+        if (documentationStyle != DocumentationStyle.NONE) {
             node = node.getFirstChild();
             while (node != null) {
                 switch (node.getNodeName()) {
@@ -521,19 +525,26 @@ public class SchemaInformation {
                             doc = doc.trim();
                             final int length = doc.length();
                             if (length != 0) {
-                                final int firstChar = doc.codePointAt(0);
-                                final StringBuilder buffer = this.buffer;
-                                buffer.appendCodePoint(Character.toUpperCase(firstChar))
-                                      .append(doc, Character.charCount(firstChar), length);
-                                if (doc.charAt(length - 1) != '.') {
-                                    buffer.append('.');
+                                if (documentationStyle == DocumentationStyle.SENTENCE) {
+                                    final int firstChar = doc.codePointAt(0);
+                                    final StringBuilder buffer = this.buffer;
+                                    buffer.appendCodePoint(Character.toUpperCase(firstChar))
+                                          .append(doc, Character.charCount(firstChar), length);
+                                    if (doc.charAt(length - 1) != '.') {
+                                        buffer.append('.');
+                                    }
+                                    // Replace multi-spaces by a single space.
+                                    for (int i=0; (i = buffer.indexOf("  ", i)) >= 0;) {
+                                        buffer.deleteCharAt(i);
+                                    }
+                                    // Documentation in XSD are not sentences. Make it a sentence.
+                                    int i = buffer.indexOf(" NOTE: ");
+                                    if (i > 0 && buffer.charAt(i-1) != '.') {
+                                        buffer.insert(i, '.');
+                                    }
+                                    doc = buffer.toString();
+                                    buffer.setLength(0);
                                 }
-                                int i;
-                                while ((i = buffer.indexOf("  ")) >= 0) {
-                                    buffer.deleteCharAt(i);
-                                }
-                                doc = buffer.toString();
-                                buffer.setLength(0);
                                 return doc;
                             }
                         }

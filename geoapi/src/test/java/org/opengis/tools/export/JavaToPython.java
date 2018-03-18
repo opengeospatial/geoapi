@@ -39,33 +39,47 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.math.BigInteger;
 import java.lang.reflect.Method;
+import java.io.Writer;
 import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.xml.parsers.ParserConfigurationException;
 import org.opengis.Content;
+import org.opengis.SourceGenerator;
 import org.opengis.annotation.UML;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
 import org.opengis.xml.Departures;
+import org.opengis.xml.DocumentationStyle;
 import org.opengis.xml.SchemaInformation;
 import org.opengis.xml.SchemaException;
 import org.xml.sax.SAXException;
 
+import static org.junit.Assert.*;
+
 
 /**
- * Generates Python abstract classes from Java interfaces.
+ * Generates or verifies Python abstract classes from Java interfaces.
+ * If Python files exist in the {@code geoapi/src/python/ogc} directory, they will be compared with expected content.
+ * If those files do not exist, then they will be generated from {@link UML} annotations given by Java interfaces.
  * This should be used only as a starting point before review by Python developers.
- * This class uses only the {@link UML} annotations, not the Java type or method names.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1
  * @version 3.1
  */
-public final strictfp class JavaToPython {
+public final strictfp class JavaToPython extends SourceGenerator {
     /**
      * Suffix of Python files.
      */
     private static final String FILE_SUFFIX = ".py";
+
+    /**
+     * The character encoding to use for reading and writing Python files.
+     */
+    private static final String ENCODING = "UTF-8";
 
     /**
      * The current year, for formatting the Copyright header.
@@ -76,6 +90,12 @@ public final strictfp class JavaToPython {
      * Content of python files to write. Keys are ISO prefixes (e.g. {@code "CI"} for "citation") and values are file contents.
      */
     private final Map<String,StringBuilder> contents;
+
+    /**
+     * The Python modules to create for each package prefixes. The keys are the same than in the {@link #contents} map.
+     * Values are Python filenames without {@value #FILE_SUFFIX} suffix.
+     */
+    private final Map<String,String> modules;
 
     /**
      * Python primitive types for given Java types.
@@ -155,7 +175,10 @@ public final strictfp class JavaToPython {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
-        schema = new SchemaInformation(schemaRootDirectory, new Departures(), true);
+        modules = new HashMap<>(4);
+        modules.put("EX", "metadata/extent");
+        modules.put("CI", "metadata/citation");
+        schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();
     }
 
@@ -217,8 +240,8 @@ public final strictfp class JavaToPython {
                 packageName = typeName.substring(0, splitAt);
             } else {
                 switch (type.getPackage().getName()) {
-                    case "org.opengis.util":    packageName = "util"; break;
-                    case "org.opengis.feature": packageName = "FT"; break;
+                    case "org.opengis.util":    packageName = "base"; break;
+                    case "org.opengis.feature": packageName = "GF";   break;
                     default: {
                         switch (typeName) {
                             case "DCPList":        packageName = "SV"; break;
@@ -397,11 +420,35 @@ public final strictfp class JavaToPython {
     }
 
     /**
+     * Verifies existing source Python files against expected content, or writes missing source files.
+     *
+     * @throws IOException if an error occurred while reading or writing the files.
+     */
+    public void verifyOrCreateSourceFiles() throws IOException {
+        createContent();
+        final Path dir = sourceDirectory("python").resolve("ogc");
+        for (final Map.Entry<String,String> e : modules.entrySet()) {
+            final StringBuilder content = contents.remove(e.getKey());
+            if (content == null) {
+                fail("No content found for \"" + e.getKey() + "\" prefix.");
+                continue;
+            }
+            final Path file = dir.resolve(e.getValue() + FILE_SUFFIX);
+            if (Files.exists(file)) {
+                // TODO: verify file content.
+            }
+            // We do not use Files.newBufferedWriter(Path) because buffering is useless in this case.
+            try (Writer out = new OutputStreamWriter(new FileOutputStream(file.toFile()), ENCODING)) {
+                out.append(content);
+            }
+        }
+    }
+
+    /**
      * For testing purpose only.
      */
     public static void main(String[] args) throws Exception {
         JavaToPython generator = new JavaToPython(null);
-        generator.createContent();
-        System.out.println(generator.contents.get("CI"));
+        generator.verifyOrCreateSourceFiles();
     }
 }
