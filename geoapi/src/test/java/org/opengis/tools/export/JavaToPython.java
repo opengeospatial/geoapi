@@ -176,10 +176,28 @@ public final strictfp class JavaToPython extends SourceGenerator {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
-        modules = new HashMap<>(8);
+        modules = new HashMap<>(32);
         modules.put("gco", "metadata/common");
+//      modules.put("lan", "metadata/language");            // Omitted because define only "FreeText", which is not used in here.
+        modules.put("mcc", "metadata/commonClasses");       // TODO: merge with "common" or "base"?
         modules.put("gex", "metadata/extent");
         modules.put("cit", "metadata/citation");
+        modules.put("mmi", "metadata/maintenance");
+        modules.put("mrd", "metadata/distribution");
+        modules.put("mdt", "metadata/transfer");            // TODO: merge with "distribution"?
+        modules.put("mco", "metadata/constraints");
+        modules.put("mri", "metadata/identification");
+        modules.put("srv", "metadata/service");
+        modules.put("mac", "metadata/acquisition");
+        modules.put("mrc", "metadata/content");
+        modules.put("mrl", "metadata/lineage");
+        modules.put("mdq", "metadata/dataQuality");
+        modules.put("mrs", "metadata/referenceSystem");     // TODO: merge with "spatialRepresentation"?
+        modules.put("msr", "metadata/spatialRepresentation");
+        modules.put("mas", "metadata/applicationSchema");
+        modules.put("mex", "metadata/extension");
+        modules.put("mpc", "metadata/portrayalCatalog");    // TODO: merge with another module?
+        modules.put("mdb", "metadata/base");
         schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();
     }
