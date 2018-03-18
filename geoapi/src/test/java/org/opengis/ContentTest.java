@@ -296,7 +296,6 @@ public final strictfp class ContentTest implements FileFilter {
                 s = pathname.lastIndexOf('.');
                 name = pathname.substring(s+1);
             }
-dir = new File("/Users/desruisseaux/Projets/GeoAPI/master/geoapi/target/classes");
             targetDirectory = dir;
         }
         return dir;
