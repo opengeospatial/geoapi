@@ -37,10 +37,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Arrays;
-import java.io.File;
-import java.io.FileFilter;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Files;
+import java.nio.file.FileVisitor;
+import java.nio.file.FileVisitResult;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -48,39 +50,21 @@ import org.opengis.util.CodeList;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assume.assumeTrue;
 
 
 /**
  * Verify the list of members in each {@link Content} enumeration value.
- * This class is designated for working with the Maven directory layout.
- * If it does not recognize that layout, then the test is skipped.
+ * This test compares the content with the classes found on the {@code geoapi/target/classes} directory.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class ContentTest implements FileFilter {
-    /**
-     * {@code true} if this test includes some classes from the {@code geoapi-pending} module.
-     * This is never used when building with Maven.
-     */
-    private static final boolean PENDING = false;
-
-    /**
-     * Suffix of compiled class files.
-     */
-    private static final String CLASS_SUFFIX = ".class";
-
+public final strictfp class ContentTest implements FileVisitor<Path> {
     /**
      * Suffix of {@code package-info} and {@code module-info} classes.
      */
     private static final String INFO_SUFFIX = "-info";
-
-    /**
-     * The Maven {@code target} directory found by the last call to {@link #listClasses(Class)}.
-     */
-    private static File targetDirectory;
 
     /**
      * Name of the class to load. Components are added in this buffer as we walk down the directory tree.
@@ -136,7 +120,7 @@ public final strictfp class ContentTest implements FileFilter {
         assertNull(skipDependencies.put(org.opengis.metadata.constraint.LegalConstraints.class,    org.opengis.metadata.identification.BrowseGraphic.class));
         assertNull(skipDependencies.put(org.opengis.metadata.constraint.SecurityConstraints.class, org.opengis.metadata.identification.BrowseGraphic.class));
         assertNull(skipDependencies.put(org.opengis.metadata.quality.CoverageResult.class,         org.opengis.metadata.spatial.SpatialRepresentation.class));
-        if (PENDING) {
+        if (SourceGenerator.isPendingModuleIncluded()) {
             assertNull(skipDependencies.put(org.opengis.geometry.Geometry.class,                   org.opengis.referencing.operation.MathTransform.class));
             assertNull(skipDependencies.put(org.opengis.geometry.primitive.Point.class,            org.opengis.referencing.operation.MathTransform.class));
         }
@@ -144,10 +128,12 @@ public final strictfp class ContentTest implements FileFilter {
 
     /**
      * Verifies all {@link Content} enumerations.
+     *
+     * @throws IOException if an error occurred while scanning the directory content.
      */
     @Test
-    public void verify() {
-        listClasses(targetMavenDirectory());
+    public void verify() throws IOException {
+        Files.walkFileTree(SourceGenerator.targetDirectory().resolve("org"), this);
         final Set<Class<?>> dependencies         = new HashSet<>();
         final Set<Class<?>> dependencyChecks     = new HashSet<>();
         final Set<Class<?>> circularDependencies = new HashSet<>();
@@ -267,118 +253,93 @@ public final strictfp class ContentTest implements FileFilter {
     }
 
     /**
-     * Finds the Maven module containing the given class, then returns the target directory of that module.
-     * Only the Maven {@code target} directory containing the {@code Metadata} class is scanned;
-     * this is not necessarily the full classpath (which is not desired anyway since we don't want
-     * to include pending interfaces, test classes, <i>etc.</i>).
-     */
-    static synchronized File targetDirectory() {
-        File dir = targetDirectory;
-        if (dir == null) {
-            final Class<?> sample = org.opengis.metadata.Metadata.class;        // Any class expected to exist in the target directory.
-            String pathname = sample.getName();
-            int s = pathname.lastIndexOf('.');
-            String name = pathname.substring(s+1) + CLASS_SUFFIX;
-            final URI uri;
-            try {
-                uri = sample.getResource(name).toURI();
-            } catch (URISyntaxException e) {
-                fail("Can not create a URI for the " + pathname + " class:\n" + e);
-                return null;
-            }
-            dir = new File(uri);
-            for (;;) {                                                          // Break condition is in the middle of the loop.
-                assertEquals("Unexpected name.", name, dir.getName());
-                dir = dir.getParentFile();
-                assertNotNull("Missing parent directory.", dir);
-                if (s < 0) break;
-                pathname = pathname.substring(0, s);
-                s = pathname.lastIndexOf('.');
-                name = pathname.substring(s+1);
-            }
-            targetDirectory = dir;
-        }
-        return dir;
-    }
-
-    /**
-     * Gets the {@linkplain #targetDirectory() target directory} and skip the test if the directory is not the Maven one.
-     * This is used for skipping the test if it is run from an IDE that does not use Maven.
-     */
-    private static File targetMavenDirectory() {
-        final File dir = targetDirectory();
-        if (dir != null && dir.getName().equals("classes")) {
-            final File parent = dir.getParentFile();
-            if (parent != null && parent.getName().equals("target")) {
-                return dir;
-            }
-        }
-        assumeTrue(dir + " is not a Maven target directory.", false);
-        return dir;
-    }
-
-    /**
-     * Scans the given directory for {@code .class} files, and adds each class found in the given set.
-     * This method invokes itself recursively.
-     */
-    private void listClasses(final File directory) {
-        final int length = buffer.length();
-        for (final File file : directory.listFiles(this)) {
-            buffer.append(file.getName());
-            if (file.isDirectory()) {
-                buffer.append('.');
-                listClasses(file);
-            } else {
-                buffer.setLength(buffer.length() - CLASS_SUFFIX.length());
-                final String classname = buffer.toString();
-                final Class<?> c;
-                try {
-                    c = Class.forName(classname);
-                } catch (ClassNotFoundException e) {
-                    fail(e.toString());
-                    continue;
-                }
-                if (Modifier.isPublic(c.getModifiers()) && !c.isAnnotation() && !ignoreTypes.remove(c)) {
-                    final Content category;
-                    if (c.isInterface())                          category = Content.INTERFACES;
-                    else if (CodeList .class.isAssignableFrom(c)) category = Content.CODE_LISTS;
-                    else if (Enum     .class.isAssignableFrom(c)) category = Content.ENUMERATIONS;
-                    else if (Exception.class.isAssignableFrom(c)) category = Content.EXCEPTIONS;
-                    else {
-                        fail("No category for " + c);
-                        continue;
-                    }
-                    final Set<Class<?>> members = types[category.ordinal()];
-                    assertTrue(classname, members.add(c));                      // Fails if a class is declared twice.
-                }
-            }
-            buffer.setLength(length);
-        }
-    }
-
-    /**
-     * Returns {@code true} if the given file is a directory or a {@code .class} file, but not a {@code *-info} class.
-     * This method is public as an implementation side-effect for filtering the Maven target directory content.
-     * This method should not be invoked directly.
+     * Invoked when entering in a directory. This method is public as an implementation side-effect
+     * for scanning the Maven target directory content; it should not be invoked directly.
      *
-     * @param  file  the file to test.
-     * @return {@code true} if the given file is a directory or a class file.
+     * @param  dir    the directory we are about to scan.
+     * @param  attrs  ignored.
+     * @return {@link FileVisitResult#CONTINUE}.
+     * @throws IOException if an I/O error occurred.
      */
     @Override
-    public boolean accept(final File file) {
-        if (!file.isHidden()) {
-            if (file.isDirectory()) {
-                return true;
-            }
-            if (file.isFile()) {
-                final String filename = file.getName();
-                if (filename.endsWith(CLASS_SUFFIX)) {
-                    return !filename.regionMatches(
-                            filename.length() - (CLASS_SUFFIX.length() + INFO_SUFFIX.length()), INFO_SUFFIX, 0, INFO_SUFFIX.length());
+    public FileVisitResult preVisitDirectory(final Path dir, final BasicFileAttributes attrs) throws IOException {
+        buffer.append(dir.getFileName()).append('.');
+        return FileVisitResult.CONTINUE;
+    }
+
+    /**
+     * Invoked when exiting a directory. This method is public as an implementation side-effect
+     * for scanning the Maven target directory content; it should not be invoked directly.
+     *
+     * @param  dir    the directory we finished to scan.
+     * @param  error  the error that occurred, or {@code null} if none.
+     * @return {@link FileVisitResult#CONTINUE}.
+     * @throws IOException if an I/O error occurred.
+     */
+    @Override
+    public FileVisitResult postVisitDirectory(final Path dir, final IOException error) throws IOException {
+        if (error != null) throw error;
+        buffer.setLength(buffer.lastIndexOf(".", buffer.length() - 2) + 1);
+        return FileVisitResult.CONTINUE;
+    }
+
+    /**
+     * Invoked for each files in a directory. This method processes {@code .class} files, but not a {@code *-info} classes.
+     * This method is public as an implementation side-effect for scanning the Maven target directory content; it should not
+     * be invoked directly.
+     *
+     * @param  file  the file to process.
+     * @param  attrs ignored.
+     * @return {@link FileVisitResult#CONTINUE}.
+     * @throws IOException if an I/O error occurred.
+     */
+    @Override
+    public FileVisitResult visitFile(final Path file, final BasicFileAttributes attrs) throws IOException {
+        if (!Files.isHidden(file)) {
+            String name = file.getFileName().toString();
+            if (name.endsWith(SourceGenerator.CLASS_SUFFIX)) {
+                name = name.substring(0, name.length() - SourceGenerator.CLASS_SUFFIX.length());
+                if (!name.endsWith(INFO_SUFFIX)) {
+                    final int length = buffer.length();
+                    final String classname = buffer.append(name).toString();
+                    final Class<?> c;
+                    try {
+                        c = Class.forName(classname);
+                    } catch (ClassNotFoundException e) {
+                        fail(e.toString());
+                        return FileVisitResult.TERMINATE;
+                    }
+                    if (Modifier.isPublic(c.getModifiers()) && !c.isAnnotation() && !ignoreTypes.remove(c)) {
+                        final Content category;
+                        if (c.isInterface())                          category = Content.INTERFACES;
+                        else if (CodeList .class.isAssignableFrom(c)) category = Content.CODE_LISTS;
+                        else if (Enum     .class.isAssignableFrom(c)) category = Content.ENUMERATIONS;
+                        else if (Exception.class.isAssignableFrom(c)) category = Content.EXCEPTIONS;
+                        else {
+                            fail("No category for " + c);
+                            return FileVisitResult.TERMINATE;
+                        }
+                        final Set<Class<?>> members = types[category.ordinal()];
+                        assertTrue(classname, members.add(c));                      // Fails if a class is declared twice.
+                    }
+                    buffer.setLength(length);
                 }
             }
         }
-        return false;
+        return FileVisitResult.CONTINUE;
+    }
+
+    /**
+     * Invokes when an error occurred while walking the tree.
+     *
+     * @param  file   ignored.
+     * @param  error  the error that occurred.
+     * @return never return.
+     * @throws IOException the given {@code error}.
+     */
+    @Override
+    public FileVisitResult visitFileFailed(Path file, IOException error) throws IOException {
+        throw error;
     }
 
     /**

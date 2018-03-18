@@ -31,7 +31,15 @@
  */
 package org.opengis;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.Writer;
+import java.nio.file.Path;
+import java.nio.file.Files;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
@@ -59,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class ClassIndexTest {
+public final strictfp class ClassIndexTest extends SourceGenerator {
     /**
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.
@@ -184,23 +192,11 @@ public final strictfp class ClassIndexTest {
      * @throws IOException if an I/O error occurred while writing the index.
      */
     private String save(final String index) throws IOException {
-        File file = ContentTest.targetDirectory();
-        if (file == null || !file.getName().equals("classes")) {
-            return "\"" + file + "\" is not a Maven target directory.";
-        }
-        file = file.getParentFile();
-        if (file == null || !file.getName().equals("target")) {
-            return "\"" + file + "\" is not a Maven target directory.";
-        }
-        file = new File(file.getParentFile(), "src/main/resources/org/opengis");
-        if (!file.isDirectory()) {
-            return "\"" + file + "\" is not a directory.";
-        }
-        file = new File(file, INDEX_FILENAME);
-        if (file.exists()) {
+        Path file = sourceDirectory("resources").resolve("org").resolve("opengis").resolve(INDEX_FILENAME);
+        if (Files.exists(file)) {
             return "\"" + file + "\" already exists.";
         }
-        try (Writer out = new OutputStreamWriter(new FileOutputStream(file), ENCODING)) {
+        try (Writer out = new OutputStreamWriter(new FileOutputStream(file.toFile()), ENCODING)) {
             out.write(index);
         }
         return null;
