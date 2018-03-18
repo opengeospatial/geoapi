@@ -7,6 +7,88 @@
 #
 
 from abc import ABC, abstractproperty
+from enum import Enum
+
+class DateTypeCode(Enum):
+    CREATION = "creation"
+    PUBLICATION = "publication"
+    REVISION = "revision"
+    EXPIRY = "expiry"
+    LAST_UPDATE = "lastUpdate"
+    LAST_REVISION = "lastRevision"
+    NEXT_UPDATE = "nextUpdate"
+    UNAVAILABLE = "unavailable"
+    IN_FORCE = "inForce"
+    ADOPTED = "adopted"
+    DEPRECATED = "deprecated"
+    SUPERSEDED = "superseded"
+    VALIDITY_BEGINS = "validityBegins"
+    VALIDITY_EXPIRES = "validityExpires"
+    RELEASED = "released"
+    DISTRIBUTION = "distribution"
+
+class OnLineFunctionCode(Enum):
+    DOWNLOAD = "download"
+    INFORMATION = "information"
+    OFFLINE_ACCESS = "offlineAccess"
+    ORDER = "order"
+    SEARCH = "search"
+    COMPLETE_METADATA = "completeMetadata"
+    BROWSE_GRAPHIC = "browseGraphic"
+    UPLOAD = "upload"
+    EMAIL_SERVICE = "emailService"
+    BROWSING = "browsing"
+    FILE_ACCESS = "fileAccess"
+
+class PresentationFormCode(Enum):
+    DOCUMENT_DIGITAL = "documentDigital"
+    DOCUMENT_HARDCOPY = "documentHardcopy"
+    IMAGE_DIGITAL = "imageDigital"
+    IMAGE_HARDCOPY = "imageHardcopy"
+    MAP_DIGITAL = "mapDigital"
+    MAP_HARDCOPY = "mapHardcopy"
+    MODEL_DIGITAL = "modelDigital"
+    MODEL_HARDCOPY = "modelHardcopy"
+    PROFILE_DIGITAL = "profileDigital"
+    PROFILE_HARDCOPY = "profileHardcopy"
+    TABLE_DIGITAL = "tableDigital"
+    TABLE_HARDCOPY = "tableHardcopy"
+    VIDEO_DIGITAL = "videoDigital"
+    VIDEO_HARDCOPY = "videoHardcopy"
+    AUDIO_DIGITAL = "audioDigital"
+    AUDIO_HARDCOPY = "audioHardcopy"
+    MULTIMEDIA_DIGITAL = "multimediaDigital"
+    MULTIMEDIA_HARDCOPY = "multimediaHardcopy"
+    PHYSICAL_OBJECT = "physicalObject"
+    DIAGRAM_DIGITAL = "diagramDigital"
+    DIAGRAM_HARDCOPY = "diagramHardcopy"
+
+class RoleCode(Enum):
+    RESOURCE_PROVIDER = "resourceProvider"
+    CUSTODIAN = "custodian"
+    OWNER = "owner"
+    USER = "user"
+    DISTRIBUTOR = "distributor"
+    ORIGINATOR = "originator"
+    POINT_OF_CONTACT = "pointOfContact"
+    PRINCIPAL_INVESTIGATOR = "principalInvestigator"
+    PROCESSOR = "processor"
+    PUBLISHER = "publisher"
+    AUTHOR = "author"
+    SPONSOR = "sponsor"
+    CO_AUTHOR = "coAuthor"
+    COLLABORATOR = "collaborator"
+    EDITOR = "editor"
+    MEDIATOR = "mediator"
+    RIGHTS_HOLDER = "rightsHolder"
+    CONTRIBUTOR = "contributor"
+    FUNDER = "funder"
+    STAKEHOLDER = "stakeholder"
+
+class TelephoneTypeCode(Enum):
+    VOICE = "voice"
+    FACSIMILE = "facsimile"
+    SMS = "sms"
 
 class Series(ABC):
     """Information about the series, or aggregate resource, to which a resource belongs."""

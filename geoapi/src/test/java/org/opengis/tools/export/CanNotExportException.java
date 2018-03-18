@@ -49,4 +49,14 @@ public class CanNotExportException extends RuntimeException {
     public CanNotExportException(String message) {
         super(message);
     }
+
+    /**
+     * Constructs an exception with the specified detail message and cause.
+     *
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause    the cause of this exception, saved for later retrieval by the {@link #getCause()} method.
+     */
+    public CanNotExportException(String message, Exception cause) {
+        super(message, cause);
+    }
 }

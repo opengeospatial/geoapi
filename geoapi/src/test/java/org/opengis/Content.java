@@ -399,6 +399,20 @@ public enum Content {
     }
 
     /**
+     * Returns {@code true} if this enumeration is for enumerations, code lists, or combination of both.
+     *
+     * @return {@code true} if {@link #ENUMERATIONS}, {@link #CODE_LISTS} or {@link #CONTROLLED_VOCABULARY}.
+     */
+    public boolean isControlledVocabulary() {
+        switch (this) {
+            case ENUMERATIONS:
+            case CODE_LISTS:
+            case CONTROLLED_VOCABULARY: return true;
+            default: return false;
+        }
+    }
+
+    /**
      * Returns all types in that are members of the category identified by this enumeration value.
      *
      * @return types that are members of this category.

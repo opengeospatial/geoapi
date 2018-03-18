@@ -34,6 +34,7 @@ package org.opengis.tools.export;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.math.BigInteger;
@@ -43,6 +44,7 @@ import java.nio.file.Path;
 import javax.xml.parsers.ParserConfigurationException;
 import org.opengis.Content;
 import org.opengis.annotation.UML;
+import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
 import org.opengis.xml.Departures;
 import org.opengis.xml.SchemaInformation;
@@ -133,7 +135,7 @@ public final strictfp class JavaToPython {
             throws ParserConfigurationException, IOException, SAXException, SchemaException
     {
         currentYear    = new GregorianCalendar().get(GregorianCalendar.YEAR);
-        contents       = new HashMap<>();
+        contents       = new LinkedHashMap<>();
         properties     = new HashMap<>();
         primitiveTypes = new HashMap<>(20);
         primitiveTypes.put(CharSequence        .class, "str");
@@ -176,6 +178,15 @@ public final strictfp class JavaToPython {
     }
 
     /**
+     * Creates Python files for all supported types, in approximative dependency order.
+     * The contents are stored in the {@link #contents} map.
+     */
+    private void createContent() {
+        createContent(Content.CONTROLLED_VOCABULARY);
+        createContent(Content.INTERFACES);
+    }
+
+    /**
      * Creates Python files for all types in the given category.
      * The contents are stored in the {@link #contents} map.
      */
@@ -210,6 +221,7 @@ public final strictfp class JavaToPython {
                     case "org.opengis.feature": packageName = "FT"; break;
                     default: {
                         switch (typeName) {
+                            case "DCPList":        packageName = "SV"; break;
                             case "DirectPosition": packageName = "GM"; break;
                             default: throw new CanNotExportException("Can not choose a module for " + typeName);
                         }
@@ -226,8 +238,8 @@ public final strictfp class JavaToPython {
              */
             StringBuilder content = contents.get(packageName);
             if (content == null) {
-                content = new StringBuilder(500);
-                content.append('#').append(lineSeparator)
+                content = new StringBuilder(2048)
+                       .append('#').append(lineSeparator)
                        .append("#    GeoAPI - Programming interfaces for OGC/ISO standards").append(lineSeparator)
                        .append("#    http://www.geoapi.org").append(lineSeparator)
                        .append('#').append(lineSeparator)
@@ -236,10 +248,33 @@ public final strictfp class JavaToPython {
                        .append('#').append(lineSeparator)
                        .append(lineSeparator)
                        .append("from abc import ABC, abstractproperty").append(lineSeparator);
+                if (category.isControlledVocabulary()) {
+                    content.append("from enum import Enum").append(lineSeparator);
+                }
                 contents.put(packageName, content);
             }
             content.append(lineSeparator);
             switch (category) {
+                /*
+                 * Creates a Python enumeration.
+                 */
+                case CODE_LISTS:
+                case ENUMERATIONS:
+                case CONTROLLED_VOCABULARY: {
+                    Object[] values = type.getEnumConstants();
+                    if (values == null) try {
+                        values = (Object[]) type.getMethod("values").invoke(null);
+                    } catch (ReflectiveOperationException | ClassCastException e) {
+                        throw new CanNotExportException(type + " is not a valid controlled vocabulary.", e);
+                    }
+                    content.append("class ").append(typeName).append("(Enum):").append(lineSeparator);
+                    for (int i=0; i<values.length; i++) {
+                        final ControlledVocabulary item = (ControlledVocabulary) values[i];
+                        indent(content, 1).append(item.name()).append(" = \"")
+                                          .append(item.identifier()).append('"').append(lineSeparator);
+                    }
+                    break;
+                }
                 /*
                  * Create a Python class with all properties defined in the Java interface. We use UML annotations
                  * in Java interfaces instead than elements in XSD file because the later contains a few mispellings
@@ -255,6 +290,9 @@ public final strictfp class JavaToPython {
                             continue;
                         }
                         final String name = def.identifier();
+                        if (name.indexOf('.') >= 0) {
+                            continue;                               // TODO
+                        }
                         if (property.getParameterTypes().length == 0) {
                             final Property p = new Property(name, nameOf(Content.typeOf(property)));
                             if (properties.put(name, p) != null) switch (name) {
@@ -363,7 +401,7 @@ public final strictfp class JavaToPython {
      */
     public static void main(String[] args) throws Exception {
         JavaToPython generator = new JavaToPython(null);
-        generator.createContent(Content.INTERFACES);
+        generator.createContent();
         System.out.println(generator.contents.get("CI"));
     }
 }
