@@ -27,4 +27,6 @@ include::naming.adoc[]
 
 include::records.adoc[]
 
+include::internationalization.adoc[]
+
 include::units.adoc[]

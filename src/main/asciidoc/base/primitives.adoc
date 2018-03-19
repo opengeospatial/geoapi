@@ -1,5 +1,6 @@
 [[primitives]]
 === Primitive types
+[.reference]_From ISO 19103:2015 §7.2.1_
 
 Each primitive type of the ISO/OGC specifications maps to zero, one or two object structures in GeoAPI.
 Where the mapping can be made directly to a programming language primitive type, such as `int` and `double`,
@@ -29,33 +30,3 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 [small]#(2) Sometime substituted by `java.lang.Long` or `long` where the value may exceed 2^32^.# +
 [small]#(3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.# +
 [small]#(4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.#
-
-The `InternationalString` type is an extension defined by GeoAPI to handle textual sequences
-which may potentially need to be translated for users of different locales.
-Conceptually this acts as a `CharacterString` but may, depending on the implementation,
-provide access to locale specific representations of that string.
-This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,
-to allow sending string representations in the locale of the client rather than the locale of the server running the GeoAPI implementation.
-
-[small]#Note: `InternationalString` is inspired by JSR-150 (Internationalization Service for J2EE) with support for different timezones omitted.#
-
-.Internationalization in Java
-****
-The `org.opengis.util.InternationalString` interface provides a container for multiple versions of the same text,
-each for a specific `java.util.Locale` – the identifier used in Java for a specific language, possibly in a named territory.
-
-[source,java]
-----
-NameFactory factory =  ...                      // Implementation dependent.
-InternationalString multiLingual = factory.createInternationalString(Map.of(
-        Locale.ENGLISH, "My documents",
-        Locale.FRENCH,  "Mes documents"));
-
-System.out.println(localized);         // Language at implementation choice.
-System.out.println(localized.toString(Locale.FRENCH));
-----
-
-The method to obtain factories is not specified by this standard and therefore depends on the design of the library implementation.
-Also, the locale used by default depends on the choice of the implementation so the result of the call `toString()`
-without parameters will depend on the implementation.
-****

@@ -1,5 +1,6 @@
 [[controlled-vocabulary]]
 === Controlled vocabulary
+[.reference]_From ISO 19103:2015 §6.5_
 
 GeoAPI distinguishes between two enumerated types depending on whether the complete set of literal types is known
 when the code is originally created, or if the list may be extended at run time.
@@ -20,7 +21,7 @@ Many language provides an `enum` construct for the former case and GeoAPI define
 ****
 The use of `org.opengis.util.CodeList` constructs includes accessing statically defined elements,
 defining new elements and retrieving any element defined for the code list.
-Considering, for example, `org.opengis.referencing.cs.AxisDirection`.
+Considering, for example, `org.​opengis.​referencing.​cs.​AxisDirection`.
 The following code could be used:
 
 [source,java]

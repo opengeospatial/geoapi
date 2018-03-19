@@ -1,5 +1,6 @@
 [[collections]]
 === Collections
+[.reference]_From ISO 19103:2015 §7.3_
 
 GeoAPI implements ISO 19103 collection types using the standard Collections Frameworks provided by {supported-languages}.
 A `Set` is a finite collection of objects where each object appears only once.

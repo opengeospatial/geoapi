@@ -1,5 +1,6 @@
 [[naming]]
 === Name types
+[.reference]_From ISO 19103:2015 §7.5_
 
 A name is a sequence of identifiers rooted within the context of a namespace.
 `NameSpace` defines a domain in which "names" given by character strings can be mapped to objects.

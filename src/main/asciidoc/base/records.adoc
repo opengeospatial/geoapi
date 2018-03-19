@@ -1,5 +1,6 @@
 [[records]]
 === Record types
+[.reference]_From ISO 19103:2015 §7.7_
 
 Records define new data type as an heterogeneous aggregation of component data types.
 Each data component is identified by a `MemberName` and has exactly one value per record.

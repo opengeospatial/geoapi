@@ -1,5 +1,6 @@
 [[uom]]
 === Units of measurement
+[.reference]_From ISO 19103:2015 §C.4_
 
 Measurements and their units are represented by two base classes defined in ISO 19103:
 `Measure` for the result from performing the act of ascertaining the value of a characteristic of some entity,
