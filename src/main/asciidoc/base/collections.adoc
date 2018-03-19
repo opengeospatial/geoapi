@@ -1,0 +1,23 @@
+[[collections]]
+=== Collections
+
+GeoAPI implements ISO 19103 collection types using the standard Collections Frameworks provided by {supported-languages}.
+A `Set` is a finite collection of objects where each object appears only once.
+A `Bag` is similar to a `Set` except that it may contain duplicated instances.
+The order of elements in a `Set` or a `Bag` is not specified.
+A `Sequence` is similar to a `Bag` except that elements are ordered.
+
+.Collections mapping
+[options="header"]
+|===================================================
+|ISO 19103 type |Java type              |Python type
+|`Collection`   |`java.util.Collection` |
+|`Bag`          |`java.util.Collection` |
+|`Set`          |`java.util.Set`        |
+|`Sequence`     |`java.util.List`       |
+|`Dictionary`   |`java.util.Map`        |
+|===================================================
+
+Unless otherwise required by the semantic of a property, GeoAPI preferably uses the `Collection` type in method signatures.
+The `Set` type is not the default type because enforcing element uniqueness may constraint implementations to use hash tables
+or similar algorithms, which is not always practical.

@@ -180,7 +180,7 @@ include::appendices/content.adoc[]
 
 <<<
 
-include::examples/annotations.adoc[]
+include::examples/index.adoc[]
 
 <<<
 

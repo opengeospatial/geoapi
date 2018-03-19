@@ -28,4 +28,4 @@ although in version 4.0 of the library only defines the elements from that speci
 
 include::annotations.adoc[]
 
-include::utility.adoc[]
+include::core-types.adoc[]

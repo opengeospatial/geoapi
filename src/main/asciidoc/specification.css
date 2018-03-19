@@ -13,6 +13,17 @@
 }
 
 /*
+ * Adds more space to headers.
+ */
+h2 {
+  margin-top: 80px;
+}
+
+h3 {
+  margin-top: 60px;
+}
+
+/*
  * Main content.
  */
 div.paragraph:not(.text-right) > p {

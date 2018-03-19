@@ -1,5 +1,5 @@
 [appendix]
 [[python]]
-== Source Python prototypes
+== Python prototypes
 
 (TODO)
