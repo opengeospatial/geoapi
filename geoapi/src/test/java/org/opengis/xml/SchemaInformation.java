@@ -538,33 +538,11 @@ public class SchemaInformation {
                     }
                     case "documentation": {
                         String doc = node.getTextContent();
-                        if (doc != null) {
-                            doc = doc.trim();
-                            final int length = doc.length();
-                            if (length != 0) {
-                                if (documentationStyle == DocumentationStyle.SENTENCE) {
-                                    final int firstChar = doc.codePointAt(0);
-                                    final StringBuilder buffer = this.buffer;
-                                    buffer.appendCodePoint(Character.toUpperCase(firstChar))
-                                          .append(doc, Character.charCount(firstChar), length);
-                                    if (doc.charAt(length - 1) != '.') {
-                                        buffer.append('.');
-                                    }
-                                    // Replace multi-spaces by a single space.
-                                    for (int i=0; (i = buffer.indexOf("  ", i)) >= 0;) {
-                                        buffer.deleteCharAt(i);
-                                    }
-                                    // Documentation in XSD are not sentences. Make it a sentence.
-                                    int i = buffer.indexOf(" NOTE: ");
-                                    if (i > 0 && buffer.charAt(i-1) != '.') {
-                                        buffer.insert(i, '.');
-                                    }
-                                    doc = buffer.toString();
-                                    buffer.setLength(0);
-                                }
-                                return doc;
-                            }
+                        if (doc != null && documentationStyle == DocumentationStyle.SENTENCE) {
+                            doc = DocumentationStyle.sentence(doc, buffer);
+                            buffer.setLength(0);
                         }
+                        return doc;
                     }
                 }
                 node = node.getNextSibling();

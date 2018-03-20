@@ -125,13 +125,11 @@ class ConformanceResult(Result):
         pass
 
 class CoverageResult(Result):
-    """Description: Result of a data quality measure organising the measured values as a coverage
-shortName: CoverageResult."""
+    """Result of a data quality measure organising the measured values as a coverage."""
 
     @abstractproperty
     def spatialRepresentationType(self) -> SpatialRepresentationTypeCode:
-        """Description: method used to spatially represent the coverage result
-shortName: spaRepType."""
+        """Method used to spatially represent the coverage result."""
         pass
 
     @abstractproperty

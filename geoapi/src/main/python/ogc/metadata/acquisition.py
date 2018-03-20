@@ -47,38 +47,26 @@ class TriggerCode(Enum):
     PRE_PROGRAMMED = "preProgrammed"
 
 class Instrument(ABC):
-    """Description: Designations for the measuring instruments
-FGDC: Platform_and_Instrument_Identification
-shortName: PltfrmInstId."""
+    """Designations for the measuring instruments."""
 
     @abstractproperty
     def citation(self) -> Citation:
-        """Description: complete citation of the instrument
-FGDC: Instrument_Full_Name
-Position: 1
-shortName: instNam
-Conditional: if shortName not specified."""
+        """Complete citation of the instrument."""
         pass
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: complete citation of the instrument
-FGDC: Instrument_Full_Name
-Position: 1
-shortName: instNam
-Conditional: if shortName not specified."""
+        """Complete citation of the instrument."""
         pass
 
     @abstractproperty
     def type(self) -> str:
-        """Description: Code describing the type of instrument
-shortName: instType."""
+        """Code describing the type of instrument."""
         pass
 
     @abstractproperty
     def description(self) -> str:
-        """Description: Textual description of the instrument
-shortName: instDesc."""
+        """Textual description of the instrument."""
         pass
 
     @abstractproperty
@@ -86,38 +74,26 @@ shortName: instDesc."""
         pass
 
 class Platform(ABC):
-    """Description: Designations for the platform used to acquire the dataset
-shortName: PltfrmId."""
+    """Designations for the platform used to acquire the dataset."""
 
     @abstractproperty
     def citation(self) -> Citation:
-        """Description: complete citation of the platform
-FGDC: Platform_Full_Name
-Position: 3
-shortName: pltNam
-Conditional: if shortName not specified."""
+        """Complete citation of the platform."""
         pass
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: Unique identification of the platform
-shortName: pltId."""
+        """Unique identification of the platform."""
         pass
 
     @abstractproperty
     def description(self) -> str:
-        """Description: Narrative description of the platform supporting the instrument
-FGDC: Platform_Description
-Position: 2
-shortName: pltfrmDesc."""
+        """Narrative description of the platform supporting the instrument."""
         pass
 
     @abstractproperty
     def sponsor(self) -> Responsibility:
-        """Description: organization responsible for building, launch, or operation of the platform
-FGDC: Platform_Sponsor
-Position: 6
-shortName: pltfrmSpnsr."""
+        """Organization responsible for building, launch, or operation of the platform."""
         pass
 
     @abstractproperty
@@ -125,19 +101,16 @@ shortName: pltfrmSpnsr."""
         pass
 
 class PlatformPass(ABC):
-    """Description: identification of collection coverage
-shortName: PlatformPass."""
+    """Identification of collection coverage."""
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: unique name of the pass
-shortName: passId."""
+        """Unique name of the pass."""
         pass
 
     @abstractproperty
     def extent(self) -> Object:
-        """Description: Area covered by the pass
-shortName: passExt."""
+        """Area covered by the pass."""
         pass
 
     @abstractproperty
@@ -145,37 +118,31 @@ shortName: passExt."""
         pass
 
 class Event(ABC):
-    """Description: identification of a significant collection point within an operation
-shortName: Event."""
+    """Identification of a significant collection point within an operation."""
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: Event name or number
-shortName: evtId."""
+        """Event name or number."""
         pass
 
     @abstractproperty
     def trigger(self) -> TriggerCode:
-        """Description: Initiator of the event
-shortName: evtTrig."""
+        """Initiator of the event."""
         pass
 
     @abstractproperty
     def context(self) -> ContextCode:
-        """Description: Meaning of the event
-shortName: evtCntxt."""
+        """Meaning of the event."""
         pass
 
     @abstractproperty
     def sequence(self) -> SequenceCode:
-        """Description: Relative time ordering of the event
-shortName: evtSeq."""
+        """Relative time ordering of the event."""
         pass
 
     @abstractproperty
     def time(self) -> datetime:
-        """Description: Time the event occured
-shortName: evtTime."""
+        """Time the event occured."""
         pass
 
     @abstractproperty
@@ -209,42 +176,31 @@ class EnvironmentalRecord(ABC):
         pass
 
 class Objective(ABC):
-    """Description: Describes the characteristics, spatial and temportal extent of the intended object to be observed 
-shortName: TargetId."""
+    """Describes the characteristics, spatial and temportal extent of the intended object to be observed."""
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: Registered code used to identify the objective
-Postion: 1
-shortName: targetId."""
+        """Registered code used to identify the objective."""
         pass
 
     @abstractproperty
     def priority(self) -> str:
-        """Description: priority applied to the target
-Position: 3
-shortName: trgtPriority."""
+        """Priority applied to the target."""
         pass
 
     @abstractproperty
     def type(self) -> ObjectiveTypeCode:
-        """Description: collection technique for the objective
-Position: 4
-shortName: trgtType."""
+        """Collection technique for the objective."""
         pass
 
     @abstractproperty
     def function(self) -> str:
-        """Description: function performed by or at the objective
-Position: 5
-shortName: trgtFunct."""
+        """Function performed by or at the objective."""
         pass
 
     @abstractproperty
     def extent(self) -> Extent:
-        """Description: extent information including the bounding box, bounding polygon, vertical and temporal extent of the objective
-Position: 6
-shortName: trgtExtent."""
+        """Extent information including the bounding box, bounding polygon, vertical and temporal extent of the objective."""
         pass
 
     @abstractproperty
@@ -260,49 +216,31 @@ shortName: trgtExtent."""
         pass
 
 class Operation(ABC):
-    """Description: Designations for the operation used to acquire the dataset
-shortName: MssnId."""
+    """Designations for the operation used to acquire the dataset."""
 
     @abstractproperty
     def description(self) -> str:
-        """Description: Description of the mission on which the platform observations are part and the objectives of that mission
-FGDC: Mission_Description
-Position: 3
-shortName: mssnDesc."""
+        """Description of the mission on which the platform observations are part and the objectives of that mission."""
         pass
 
     @abstractproperty
     def citation(self) -> Citation:
-        """Description: character string by which the mission is known
-FGDC: Mission_Name
-Position: 1
-shortName: pltMssnNam
-NITF_ACFTA:AC_MSN_ID."""
+        """Character string by which the mission is known."""
         pass
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: character string by which the mission is known
-FGDC: Mission_Name
-Position: 1
-shortName: pltMssnNam
-NITF_ACFTA:AC_MSN_ID."""
+        """Character string by which the mission is known."""
         pass
 
     @abstractproperty
     def status(self) -> ProgressCode:
-        """Description: status of the data acquisition
-FGDC: Mission_Start_Date
-Position: 4
-shortName: mssnStatus."""
+        """Status of the data acquisition."""
         pass
 
     @abstractproperty
     def type(self) -> OperationTypeCode:
-        """Description: status of the data acquisition
-FGDC: Mission_Start_Date
-Position: 4
-shortName: mssnStatus."""
+        """Status of the data acquisition."""
         pass
 
     @abstractproperty
@@ -315,7 +253,7 @@ shortName: mssnStatus."""
 
     @abstractproperty
     def platform(self) -> Platform:
-        """Description: Platform (or platforms) used in the operation."""
+        """Platform (or platforms) used in the operation."""
         pass
 
     @abstractproperty
@@ -331,65 +269,54 @@ shortName: mssnStatus."""
         pass
 
 class RequestedDate(ABC):
-    """Description: range of date validity
-shortName: ReqstDate."""
+    """Range of date validity."""
 
     @abstractproperty
     def requestedDateOfCollection(self) -> datetime:
-        """Description: preferred date and time of collection
-shortName: collectDate."""
+        """Preferred date and time of collection."""
         pass
 
     @abstractproperty
     def latestAcceptableDate(self) -> datetime:
-        """Description: latest date and time collection must be completed
-shortName: latestDate."""
+        """Latest date and time collection must be completed."""
         pass
 
 class Requirement(ABC):
-    """Description: requirement to be satisfied by the planned data acquisition
-shortName: Requirement."""
+    """Requirement to be satisfied by the planned data acquisition."""
 
     @abstractproperty
     def citation(self) -> Citation:
-        """Description: identification of reference or guidance material for the requirement
-shortName: reqRef."""
+        """Identification of reference or guidance material for the requirement."""
         pass
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: unique name, or code, for the requirement
-shortName: reqId."""
+        """Unique name, or code, for the requirement."""
         pass
 
     @abstractproperty
     def requestor(self) -> Responsibility:
-        """Description: origin of requirement
-shortName: requestor."""
+        """Origin of requirement."""
         pass
 
     @abstractproperty
     def recipient(self) -> Responsibility:
-        """Description: person(s), or body(ies), to recieve results of requirement
-shortName: recipient."""
+        """Person(s), or body(ies), to recieve results of requirement."""
         pass
 
     @abstractproperty
     def priority(self) -> PriorityCode:
-        """Description: relative ordered importance, or urgency, of the requirement
-shortName: reqPri."""
+        """Relative ordered importance, or urgency, of the requirement."""
         pass
 
     @abstractproperty
     def requestedDate(self) -> RequestedDate:
-        """Description: required or preferred acquisition date and time
-shortName: reqDate."""
+        """Required or preferred acquisition date and time."""
         pass
 
     @abstractproperty
     def expiryDate(self) -> datetime:
-        """Description: date and time after which collection is no longer valid
-shortName: reqExpire."""
+        """Date and time after which collection is no longer valid."""
         pass
 
     @abstractproperty
@@ -397,27 +324,21 @@ shortName: reqExpire."""
         pass
 
 class Plan(ABC):
-    """Description: Designations for the planning information related to meeting requirements
-shortName: PlanId."""
+    """Designations for the planning information related to meeting requirements."""
 
     @abstractproperty
     def type(self) -> GeometryTypeCode:
-        """Description: manner of sampling geometry the planner expects for collection of the objective data
-Postion: 2
-shortName: planType."""
+        """Manner of sampling geometry the planner expects for collection of the objective data."""
         pass
 
     @abstractproperty
     def status(self) -> ProgressCode:
-        """Description: current status of the plan (pending, completed, etc.)
-shortName: planStatus."""
+        """Current status of the plan (pending, completed, etc.)."""
         pass
 
     @abstractproperty
     def citation(self) -> Citation:
-        """Description: Identification of authority requesting target collection
-Postion: 1
-shortName: planReqId."""
+        """Identification of authority requesting target collection."""
         pass
 
     @abstractproperty
@@ -429,9 +350,7 @@ shortName: planReqId."""
         pass
 
 class AcquisitionInformation(ABC):
-    """Description: Designations for the measuring instruments and their bands, the platform carrying them, and the mission to which the data contributes
-FGDC: Platform_and_Instrument_Identification, Mission_Information
-shortName: PltfrmInstId."""
+    """Designations for the measuring instruments and their bands, the platform carrying them, and the mission to which the data contributes."""
 
     @abstractproperty
     def instrument(self) -> Instrument:

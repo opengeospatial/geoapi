@@ -174,10 +174,7 @@ class Band(SampleDimension):
 
     @abstractproperty
     def bandBoundaryDefinition(self) -> BandDefinition:
-        """Description: Designation of criterion for defining maximum and minimum wavelengths for a spectral band
-FGDC: Band_Boundry_Definition
-Position: 1
-shortName: bBndDef."""
+        """Designation of criterion for defining maximum and minimum wavelengths for a spectral band."""
         pass
 
     @abstractproperty
@@ -194,25 +191,21 @@ class ContentInformation(ABC):
 Note in 19115-3 implementation, this class is implemented by abstract class _ContentInformation in the Abstract Common Classes package."""
 
 class RangeElementDescription(ABC):
-    """Description: description of specific range elements
-shortName: RgEltDesc."""
+    """Description of specific range elements."""
 
     @abstractproperty
     def name(self) -> str:
-        """Description: designation associated with a set of range elements
-shortName: rgEltName."""
+        """Designation associated with a set of range elements."""
         pass
 
     @abstractproperty
     def definition(self) -> str:
-        """Description: description of a set of specific range elements
-shortName: rgEltDef."""
+        """Description of a set of specific range elements."""
         pass
 
     @abstractproperty
     def rangeElement(self) -> Record:
-        """Description: specific range elements, i.e. range elements associated with a name and definition defining their meaning
-shortName: rgElt."""
+        """Specific range elements, i.e. range elements associated with a name and definition defining their meaning."""
         pass
 
 class CoverageDescription(ContentInformation):

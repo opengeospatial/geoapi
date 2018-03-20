@@ -9,19 +9,16 @@
 from abc import ABC, abstractproperty
 
 class NominalResolution(ABC):
-    """Description: Distance between adjacent pixels
-shortName: nomRes."""
+    """Distance between adjacent pixels."""
 
     @abstractproperty
     def scanningResolution(self) -> float:
-        """Description: Distance between adjacent pixels in the scan plane
-shortName: scanRes."""
+        """Distance between adjacent pixels in the scan plane."""
         pass
 
     @abstractproperty
     def groundResolution(self) -> float:
-        """Description: Distance between adjacent pixels in the object space
-shortName: groundRes."""
+        """Distance between adjacent pixels in the object space."""
         pass
 
 class Source(ABC):
@@ -63,40 +60,29 @@ class Source(ABC):
 
     @abstractproperty
     def processedLevel(self) -> Identifier:
-        """Description: Processing level of the source data
-shortName: procLevel."""
+        """Processing level of the source data."""
         pass
 
     @abstractproperty
     def resolution(self) -> NominalResolution:
-        """Description: Distance between two adjacent pixels
-shortName: procResol."""
+        """Distance between two adjacent pixels."""
         pass
 
 class Algorithm(ABC):
-    """Description: Details of the methodology by which geographic information was derived from the instrument readings
-FGDC: Algorithm_Information
-shortName: Algorithm."""
+    """Details of the methodology by which geographic information was derived from the instrument readings."""
 
     @abstractproperty
     def citation(self) -> Citation:
-        """Description: information identifying the algorithm and version or date
-FGDC: Algorithm_Identifiers
-Position: 1
-shortName: algId."""
+        """Information identifying the algorithm and version or date."""
         pass
 
     @abstractproperty
     def description(self) -> str:
-        """Description: information describing the algorithm used to generate the data
-FGDC: Algorithm_Description
-Position: 2
-shortName: algDesc."""
+        """Information describing the algorithm used to generate the data."""
         pass
 
 class Processing(ABC):
-    """Description: Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step
-shortName: Procsg."""
+    """Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step."""
 
     @abstractproperty
     def algorithm(self) -> Algorithm:
@@ -104,64 +90,45 @@ shortName: Procsg."""
 
     @abstractproperty
     def identifier(self) -> Identifier:
-        """Description: Information to identify the processing package that produced the data
-FGDC: Processing_Identifiers
-Position: 1
-shortName: procInfoId."""
+        """Information to identify the processing package that produced the data."""
         pass
 
     @abstractproperty
     def softwareReference(self) -> Citation:
-        """Description: Reference to document describing processing software
-FGDC: Processing_Software_Reference
-Position: 2
-shortName: procInfoSwRef."""
+        """Reference to document describing processing software."""
         pass
 
     @abstractproperty
     def procedureDescription(self) -> str:
-        """Description: Additional details about the processing procedures
-FGDC: Processing_Procedure_Description
-Position: 3
-shortName: procInfoDesc."""
+        """Additional details about the processing procedures."""
         pass
 
     @abstractproperty
     def documentation(self) -> Citation:
-        """Description: Reference to documentation describing the processing
-FGDC: Processing_Documentation
-Position: 4
-shortName: procInfoDoc."""
+        """Reference to documentation describing the processing."""
         pass
 
     @abstractproperty
     def runTimeParameters(self) -> str:
-        """Description: Parameters to control the processing operations, entered at run time
-FGDC: Command_Line_Processing_Parameter
-Position: 5
-shortName: procInfoParam."""
+        """Parameters to control the processing operations, entered at run time."""
         pass
 
 class ProcessStepReport(ABC):
-    """Description: Report of what occured during the process step
-shortName: ProcStepRep."""
+    """Report of what occured during the process step."""
 
     @abstractproperty
     def name(self) -> str:
-        """Description: Name of the processing report
-shortName: procRepName."""
+        """Name of the processing report."""
         pass
 
     @abstractproperty
     def description(self) -> str:
-        """Description: Textual description of what occurred during the process step
-shortName: procRepDesc."""
+        """Textual description of what occurred during the process step."""
         pass
 
     @abstractproperty
     def fileType(self) -> str:
-        """Description: Type of file that contains that processing report
-shortName: procRepFilTyp."""
+        """Type of file that contains that processing report."""
         pass
 
 class ProcessStep(ABC):
