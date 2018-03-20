@@ -41,6 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Information identifying the portrayal catalogue used.
+ * The portrayal catalogue describes how the resource can be rendered for human visualisation.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
