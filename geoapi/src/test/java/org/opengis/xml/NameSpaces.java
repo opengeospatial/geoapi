@@ -85,7 +85,7 @@ public final class NameSpaces {
         m.put("mrs", "metadata/referenceSystem");     // TODO: merge with "spatialRepresentation"?
         m.put("msr", "metadata/spatialRepresentation");
         m.put("mas", "metadata/applicationSchema");
-        m.put("mex", "metadata/extension");
+        m.put("mex", "metadata/applicationSchema");     // "extension" merged with application schema.
         m.put("mpc", "metadata/portrayalCatalog");    // TODO: merge with another module?
         m.put("mdb", "metadata/base");
         prefixesToPackages = m;
