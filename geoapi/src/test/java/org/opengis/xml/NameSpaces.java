@@ -74,7 +74,7 @@ public final class NameSpaces {
         m.put("cit", "metadata/citation");
         m.put("mmi", "metadata/maintenance");
         m.put("mrd", "metadata/distribution");
-        m.put("mdt", "metadata/transfer");            // TODO: merge with "distribution"?
+        m.put("mdt", "metadata/distribution");              // "transfer" merged with distribution.
         m.put("mco", "metadata/constraints");
         m.put("mri", "metadata/identification");
         m.put("srv", "metadata/service");
@@ -82,10 +82,10 @@ public final class NameSpaces {
         m.put("mrc", "metadata/content");
         m.put("mrl", "metadata/lineage");
         m.put("mdq", "metadata/dataQuality");
-        m.put("mrs", "metadata/referenceSystem");     // TODO: merge with "spatialRepresentation"?
+        m.put("mrs", "metadata/spatialRepresentation");     // "referenceSystem" merged with spatialRepresentation
         m.put("msr", "metadata/spatialRepresentation");
         m.put("mas", "metadata/applicationSchema");
-        m.put("mex", "metadata/applicationSchema");     // "extension" merged with application schema.
+        m.put("mex", "metadata/applicationSchema");         // "extension" merged with application schema.
         m.put("mpc", "metadata/portrayalCatalog");    // TODO: merge with another module?
         m.put("mdb", "metadata/base");
         prefixesToPackages = m;

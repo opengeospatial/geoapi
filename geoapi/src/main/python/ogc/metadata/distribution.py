@@ -82,6 +82,12 @@ class Format(ABC):
     def formatDistributor(self) -> Distributor:
         pass
 
+class DataFile(ABC):
+
+    @abstractproperty
+    def featureType(self) -> LocalName:
+        pass
+
 class DigitalTransferOptions(ABC):
     """Technical means and media by which a resource is obtained from the distributor."""
 
