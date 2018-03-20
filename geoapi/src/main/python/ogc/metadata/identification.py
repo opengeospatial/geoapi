@@ -55,6 +55,26 @@ class KeywordTypeCode(Enum):
     SUB_TOPIC_CATEGORY = "subTopicCategory"
     TAXON = "taxon"
 
+class ProgressCode(Enum):
+    COMPLETED = "completed"
+    HISTORICAL_ARCHIVE = "historicalArchive"
+    OBSOLETE = "obsolete"
+    ON_GOING = "onGoing"
+    PLANNED = "planned"
+    REQUIRED = "required"
+    UNDER_DEVELOPMENT = "underDevelopment"
+    FINAL = "final"
+    PENDING = "pending"
+    RETIRED = "retired"
+    SUPERSEDED = "superseded"
+    TENTATIVE = "tentative"
+    VALID = "valid"
+    ACCEPTED = "accepted"
+    NOT_ACCEPTED = "notAccepted"
+    WITHDRAWN = "withdrawn"
+    PROPOSED = "proposed"
+    DEPRECATED = "deprecated"
+
 class TopicCategoryCode(Enum):
     FARMING = "farming"
     BIOTA = "biota"
@@ -77,6 +97,61 @@ class TopicCategoryCode(Enum):
     UTILITIES_COMMUNICATION = "utilitiesCommunication"
     EXTRA_TERRESTRIAL = "extraTerrestrial"
     DISASTER = "disaster"
+
+class Identifier(ABC):
+    """Value uniquely identifying an object within a namespace."""
+
+    @abstractproperty
+    def authority(self) -> Citation:
+        """Citation for the code namespace and optionally the person or party responsible for maintenance of that namespace."""
+        pass
+
+    @abstractproperty
+    def code(self) -> str:
+        """Alphanumeric value identifying an instance in the namespace e.g. EPSG::4326."""
+        pass
+
+    @abstractproperty
+    def codeSpace(self) -> str:
+        """Identifier or namespace in which the code is valid."""
+        pass
+
+    @abstractproperty
+    def version(self) -> str:
+        """Version identifier for the namespace."""
+        pass
+
+    @abstractproperty
+    def description(self) -> str:
+        """Natural language description of the meaning of the code value E.G for codeSpace = EPSG, code = 4326: description = WGS-84" to "for codeSpace = EPSG, code = EPSG::4326: description = WGS-84."""
+        pass
+
+class BrowseGraphic(ABC):
+    """Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)."""
+
+    @abstractproperty
+    def fileName(self):
+        """Name of the file that contains a graphic that provides an illustration of the dataset."""
+        pass
+
+    @abstractproperty
+    def fileDescription(self) -> str:
+        """Text description of the illustration."""
+        pass
+
+    @abstractproperty
+    def fileType(self) -> str:
+        pass
+
+    @abstractproperty
+    def imageConstraints(self) -> Constraints:
+        """Restriction on access and/or use of browse graphic."""
+        pass
+
+    @abstractproperty
+    def linkage(self) -> OnlineResource:
+        """Link to browse graphic."""
+        pass
 
 class KeywordClass(ABC):
     """Specification of a class to categorize keywords in a domain-specific vocabulary that has a binding to a formal ontology."""

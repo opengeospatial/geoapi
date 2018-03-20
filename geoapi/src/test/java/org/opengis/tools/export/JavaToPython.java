@@ -32,6 +32,7 @@
 package org.opengis.tools.export;
 
 import java.util.Arrays;
+import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -98,7 +99,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * The Python modules to create for each package prefixes. The keys are the same than in the {@link #contents} map.
      * Values are Python filenames without {@value #FILE_SUFFIX} suffix.
      */
-    private final Map<String,String> modules;
+    private final NameSpaces namespaces;
 
     /**
      * Python primitive types for given Java types.
@@ -189,8 +190,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
         keywords.put(org.opengis.metadata.acquisition.Objective.class,     singletonMap("pass", "platformPass"));
         keywords.put(org.opengis.metadata.quality.ConformanceResult.class, singletonMap("pass", "isConform"));
 
-        modules = NameSpaces.toPackages();
-        modules.remove("lan");            // Omitted because it defines only "FreeText", which is not used here.
+        namespaces = new NameSpaces();
         schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();
     }
@@ -285,7 +285,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
              * More than one OGC/ISO packages may map to the same Python module since we may merge
              * some small modules together.
              */
-            String module = modules.get(prefix);
+            String module = namespaces.toPackage(prefix, type);
             if (module == null) module = prefix;
             StringBuilder content = contents.get(module);
             if (content == null) {
@@ -461,7 +461,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
     public void verifyOrCreateSourceFiles() throws IOException {
         createContent();
         final Path dir = sourceDirectory("python").resolve("ogc");
-        for (final String path : modules.values()) {
+        final Set<String> modules = namespaces.packages();
+        assertNotNull(modules.remove("metadata/language"));   // Omitted because it defines only "FreeText", which is not used here.
+        for (final String path : modules) {
             final StringBuilder content = contents.remove(path);
             if (content == null) {
                 fail("No content found for \"" + path + "\" prefix.");

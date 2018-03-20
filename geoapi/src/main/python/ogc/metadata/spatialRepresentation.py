@@ -33,6 +33,14 @@ class GeometricObjectTypeCode(Enum):
     SOLID = "solid"
     SURFACE = "surface"
 
+class SpatialRepresentationTypeCode(Enum):
+    VECTOR = "vector"
+    GRID = "grid"
+    TEXT_TABLE = "textTable"
+    TIN = "tin"
+    STEREO_MODEL = "stereoModel"
+    VIDEO = "video"
+
 class TopologyLevelCode(Enum):
     GEOMETRY_ONLY = "geometryOnly"
     TOPOLOGY_1D = "topology1D"

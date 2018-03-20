@@ -32,11 +32,16 @@
 package org.opengis.xml;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.HashMap;
+import java.util.HashSet;
 
 
 /**
- * Information about XML namespaces.
+ * Mapping from XML prefixes or Java types to programmatic namespaces (modules or packages).
+ * There is not necessarily a one-to-one relationship between XML namespaces, Java packages
+ * or Python modules. For example we may merge some XML namespaces in a single programmatic
+ * namespace if keeping them separated would result in modules or packages with few classes.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1
@@ -44,24 +49,27 @@ import java.util.HashMap;
  */
 public final class NameSpaces {
     /**
-     * Do not allow (for now) instantiation of this class.
+     * Modifiable mapping from XML prefixes to packages (not necessarily Java packages).
+     * Keys are usually three-letters prefixes like {@code "cit"} for citations.
+     * Values are {@code "module/package"} strings, for example {@code "metadata/citation"}.
+     * Two keys may map to the same package if GeoAPI decides to merge some packages together.
      */
-    private NameSpaces() {
-    }
+    private final Map<String,String> prefixesToPackages;
 
     /**
-     * Returns a mapping from XML prefix to packages (not necessarily Java packages).
-     * Keys are usually three-letters name like {@code "cit"} for citations.
-     * Values are {@code "module/package"} string, for example {@code "metadata/citation"}.
-     * Two keys may map to the same package if GeoAPI decides to merge some packages together.
-     *
-     * @return a modifiable mapping from XML prefix to package names.
+     * Modifiable mapping from Java interfaces to packages (not necessarily Java packages).
+     * This is used for special cases before to test for {@link #prefixesToPackages}.
      */
-    public static Map<String,String> toPackages() {
+    private final Map<Class<?>,String> typesToPackages;
+
+    /**
+     * Creates a new mapping from XML namespaces (identified by prefixes) to programmatic namespaces.
+     */
+    public NameSpaces() {
         final Map<String,String> m = new HashMap<>(32);
-        m.put("gco", "metadata/common");
+        m.put("gco", "metadata/naming");
         m.put("lan", "metadata/language");
-        m.put("mcc", "metadata/commonClasses");       // TODO: merge with "common" or "base"?
+        m.put("mcc", "metadata/maintenance");   // Default destination for commonClasses.xsd types not listed in 'typesToPackages'.
         m.put("gex", "metadata/extent");
         m.put("cit", "metadata/citation");
         m.put("mmi", "metadata/maintenance");
@@ -80,6 +88,43 @@ public final class NameSpaces {
         m.put("mex", "metadata/extension");
         m.put("mpc", "metadata/portrayalCatalog");    // TODO: merge with another module?
         m.put("mdb", "metadata/base");
-        return m;
+        prefixesToPackages = m;
+        /*
+         * Types defined in "commonClasses.xsd". Types not listed below will go to "metadata/maintenance"
+         */
+        final Map<Class<?>,String> t = new HashMap<>(8);
+        t.put(org.opengis.metadata.Identifier.class,                        "metadata/identification");
+        t.put(org.opengis.metadata.identification.Progress.class,           "metadata/identification");
+        t.put(org.opengis.metadata.identification.BrowseGraphic.class,      "metadata/identification");
+        t.put(org.opengis.metadata.spatial.SpatialRepresentationType.class, "metadata/spatialRepresentation");
+        typesToPackages = t;
+    }
+
+    /**
+     * Returns the proposed module or package for the given type.
+     * The {@code prefix} argument is usually a three-letters prefix like {@code "cit"} for citations.
+     * Return values are {@code "module/package"} strings, for example {@code "metadata/citation"}.
+     *
+     * @param  prefix  prefix of the XML namespace (e.g. {@code "cit"} for citations.
+     * @param  type    GeoAPI interface (e.g. {@link org.opengis.metadata.citation.Citations}).
+     * @return the proposed namespace, or {@code null} if unknown.
+     */
+    public String toPackage(final String prefix, final Class<?> type) {
+        String pkg = typesToPackages.get(type);
+        if (pkg == null) {
+            pkg = prefixesToPackages.get(prefix);
+        }
+        return pkg;
+    }
+
+    /**
+     * Returns all values that may be returned by {@link #toPackage(String, Class)}.
+     * This method returns a modifiable set. Modification to the returned set will
+     * not affect this {@code NameSpaces} instance.
+     *
+     * @return all package names known to this {@code NameSpaces} instance.
+     */
+    public Set<String> packages() {
+        return new HashSet<>(prefixesToPackages.values());
     }
 }
