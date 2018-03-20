@@ -51,12 +51,14 @@ import org.opengis.SourceGenerator;
 import org.opengis.annotation.UML;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
+import org.opengis.xml.NameSpaces;
 import org.opengis.xml.Departures;
 import org.opengis.xml.DocumentationStyle;
 import org.opengis.xml.SchemaInformation;
 import org.opengis.xml.SchemaException;
 import org.xml.sax.SAXException;
 
+import static java.util.Collections.singletonMap;
 import static org.junit.Assert.*;
 
 
@@ -87,8 +89,8 @@ public final strictfp class JavaToPython extends SourceGenerator {
     private final int currentYear;
 
     /**
-     * Content of python files to write. Keys are XML prefixes
-     * (e.g. {@code "cit"} for "citation") and values are file contents.
+     * Content of python files to write. Keys are module paths
+     * (e.g. {@code "metadata/citation"}) and values are file contents.
      */
     private final Map<String,StringBuilder> contents;
 
@@ -102,6 +104,12 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * Python primitive types for given Java types.
      */
     private final Map<Class<?>, String> primitiveTypes;
+
+    /**
+     * Python keywords associated to replacements.
+     * Keys are enclosing interfaces and values are map of properties to rename in that particular interface.
+     */
+    private final Map<Class<?>, Map<String,String>> keywords;
 
     /**
      * Information read from the XML schema. This is used for determining property order.
@@ -176,28 +184,13 @@ public final strictfp class JavaToPython extends SourceGenerator {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
-        modules = new HashMap<>(32);
-        modules.put("gco", "metadata/common");
-//      modules.put("lan", "metadata/language");            // Omitted because define only "FreeText", which is not used in here.
-        modules.put("mcc", "metadata/commonClasses");       // TODO: merge with "common" or "base"?
-        modules.put("gex", "metadata/extent");
-        modules.put("cit", "metadata/citation");
-        modules.put("mmi", "metadata/maintenance");
-        modules.put("mrd", "metadata/distribution");
-        modules.put("mdt", "metadata/transfer");            // TODO: merge with "distribution"?
-        modules.put("mco", "metadata/constraints");
-        modules.put("mri", "metadata/identification");
-        modules.put("srv", "metadata/service");
-        modules.put("mac", "metadata/acquisition");
-        modules.put("mrc", "metadata/content");
-        modules.put("mrl", "metadata/lineage");
-        modules.put("mdq", "metadata/dataQuality");
-        modules.put("mrs", "metadata/referenceSystem");     // TODO: merge with "spatialRepresentation"?
-        modules.put("msr", "metadata/spatialRepresentation");
-        modules.put("mas", "metadata/applicationSchema");
-        modules.put("mex", "metadata/extension");
-        modules.put("mpc", "metadata/portrayalCatalog");    // TODO: merge with another module?
-        modules.put("mdb", "metadata/base");
+
+        keywords = new HashMap<>(4);
+        keywords.put(org.opengis.metadata.acquisition.Objective.class,     singletonMap("pass", "platformPass"));
+        keywords.put(org.opengis.metadata.quality.ConformanceResult.class, singletonMap("pass", "isConform"));
+
+        modules = NameSpaces.toPackages();
+        modules.remove("lan");            // Omitted because it defines only "FreeText", which is not used here.
         schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();
     }
@@ -287,10 +280,14 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 continue;                                       // Paranoiac check (should never happen).
             }
             /*
-             * For Python language, we create one file per OGC/ISO package. Note that OGC/ISO/Java packages
+             * For Python language, we create one file per module. Note that OGC/ISO/Java packages
              * map to Python "modules"; we do not use the "package" word in the Python sense here.
+             * More than one OGC/ISO packages may map to the same Python module since we may merge
+             * some small modules together.
              */
-            StringBuilder content = contents.get(prefix);
+            String module = modules.get(prefix);
+            if (module == null) module = prefix;
+            StringBuilder content = contents.get(module);
             if (content == null) {
                 content = new StringBuilder(2048)
                        .append('#').append(lineSeparator)
@@ -305,7 +302,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 if (category.isControlledVocabulary()) {
                     content.append("from enum import Enum").append(lineSeparator);
                 }
-                contents.put(prefix, content);
+                contents.put(module, content);
             }
             content.append(lineSeparator);
             switch (category) {
@@ -402,10 +399,16 @@ public final strictfp class JavaToPython extends SourceGenerator {
                     if (definition != null) {
                         appendDocumentation(definition.get(null), content, 1, lineSeparator);
                     }
+                    final Map<String,String> replacements = keywords.remove(type);
                     for (final Property property : props) {
+                        String name = property.name;
+                        if (replacements != null) {
+                            final String r = replacements.get(name);
+                            if (r != null) name = r;
+                        }
                         content.append(lineSeparator);
                         indent(content, 1).append("@abstractproperty").append(lineSeparator);
-                        indent(content, 1).append("def ").append(property.name).append("(self)");
+                        indent(content, 1).append("def ").append(name).append("(self)");
                         if (property.type != null) {
                             content.append(" -> ").append(property.type);
                         }
@@ -458,13 +461,13 @@ public final strictfp class JavaToPython extends SourceGenerator {
     public void verifyOrCreateSourceFiles() throws IOException {
         createContent();
         final Path dir = sourceDirectory("python").resolve("ogc");
-        for (final Map.Entry<String,String> e : modules.entrySet()) {
-            final StringBuilder content = contents.remove(e.getKey());
+        for (final String path : modules.values()) {
+            final StringBuilder content = contents.remove(path);
             if (content == null) {
-                fail("No content found for \"" + e.getKey() + "\" prefix.");
+                fail("No content found for \"" + path + "\" prefix.");
                 continue;
             }
-            final Path file = dir.resolve(e.getValue() + FILE_SUFFIX);
+            final Path file = dir.resolve(path + FILE_SUFFIX);
             if (Files.exists(file)) {
                 // TODO: verify file content.
             }
@@ -472,6 +475,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
             try (Writer out = new OutputStreamWriter(new FileOutputStream(file.toFile()), ENCODING)) {
                 out.append(content);
             }
+        }
+        if (!keywords.isEmpty()) {
+            fail("Expected types not found: " + keywords.keySet());
         }
         if (!contents.isEmpty()) {
             System.err.printf("WARNING: no Python modules created for %s.%n", contents.keySet());

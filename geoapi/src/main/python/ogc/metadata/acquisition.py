@@ -208,7 +208,7 @@ class Objective(ABC):
         pass
 
     @abstractproperty
-    def pass(self) -> PlatformPass:
+    def platformPass(self) -> PlatformPass:
         pass
 
     @abstractproperty

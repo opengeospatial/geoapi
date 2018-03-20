@@ -120,7 +120,7 @@ class ConformanceResult(Result):
         pass
 
     @abstractproperty
-    def pass(self):
+    def isConform(self):
         """Indication of the conformance result where 0 = fail and 1 = pass."""
         pass
 
