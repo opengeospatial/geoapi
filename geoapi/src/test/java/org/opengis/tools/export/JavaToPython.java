@@ -50,6 +50,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.opengis.Content;
 import org.opengis.SourceGenerator;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.Obligation;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
 import org.opengis.xml.NameSpaces;
@@ -129,12 +130,14 @@ public final strictfp class JavaToPython extends SourceGenerator {
     private static final class Property implements Comparable<Property> {
         /** The Python name (can not be null).  */ final String name;
         /** The python type, or null if none.   */ final String type;
+        /** Whether the property is mandatory.  */ final boolean mandatory;
         /** Declaration order, to be set later. */ int position;
 
-        Property(final String name, final String type) {
-            this.name = name;
-            this.type = type;
-            position  = Integer.MAX_VALUE / 2;
+        Property(final String name, final String type, final boolean mandatory) {
+            this.name      = name;
+            this.type      = type;
+            this.mandatory = mandatory;
+            this.position  = Integer.MAX_VALUE / 2;
         }
 
         /** For sorting properties in declaration order. */
@@ -345,7 +348,8 @@ public final strictfp class JavaToPython extends SourceGenerator {
                             continue;                               // TODO
                         }
                         if (property.getParameterTypes().length == 0) {
-                            final Property p = new Property(name, nameOf(Content.typeOf(property)));
+                            final Property p = new Property(name, nameOf(Content.typeOf(property)),
+                                                            def.obligation() == Obligation.MANDATORY);
                             if (properties.put(name, p) != null) switch (name) {
                                 /*
                                  * If the same property appears twice, this is theoretically an error.
@@ -406,8 +410,16 @@ public final strictfp class JavaToPython extends SourceGenerator {
                             final String r = replacements.get(name);
                             if (r != null) name = r;
                         }
+                        String classifier = "abstract";
+                        String implementation = "pass";
+                        if (!property.mandatory) {
+                            classifier = "";
+                            if (property.type != null) {
+                                implementation = "return None";
+                            }
+                        }
                         content.append(lineSeparator);
-                        indent(content, 1).append("@abstractproperty").append(lineSeparator);
+                        indent(content, 1).append('@').append(classifier).append("property").append(lineSeparator);
                         indent(content, 1).append("def ").append(name).append("(self)");
                         if (property.type != null) {
                             content.append(" -> ").append(property.type);
@@ -416,7 +428,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                         if (definition != null) {
                             appendDocumentation(definition.get(property.name), content, 2, lineSeparator);
                         }
-                        indent(content, 2).append("pass").append(lineSeparator);
+                        indent(content, 2).append(implementation).append(lineSeparator);
                     }
                     break;
                 }

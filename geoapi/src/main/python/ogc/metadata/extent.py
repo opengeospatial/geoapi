@@ -11,7 +11,7 @@ from abc import ABC, abstractproperty
 class GeographicExtent(ABC):
     """Spatial area of the resource."""
 
-    @abstractproperty
+    @property
     def extentTypeCode(self):
         """Indication of whether the geographic element encompasses an area covered by the data or an area where data is not present."""
         pass
@@ -68,9 +68,9 @@ class VerticalExtent(ABC):
         """Highest vertical extent contained in the resource."""
         pass
 
-    @abstractproperty
+    @property
     def verticalCRS(self) -> VerticalCRS:
-        pass
+        return None
 
 class TemporalExtent(ABC):
     """Time period covered by the content of the resource."""
@@ -83,10 +83,10 @@ class TemporalExtent(ABC):
 class SpatialTemporalExtent(TemporalExtent):
     """Extent with respect to date/time and spatial boundaries."""
 
-    @abstractproperty
+    @property
     def verticalExtent(self) -> VerticalExtent:
         """Vertical extent component."""
-        pass
+        return None
 
     @abstractproperty
     def spatialExtent(self) -> GeographicExtent:
@@ -95,19 +95,19 @@ class SpatialTemporalExtent(TemporalExtent):
 class Extent(ABC):
     """Extent of the resource."""
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Sets of points defining the bounding polygon or any other GM_Object geometry (point, line or polygon)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def geographicElement(self) -> GeographicExtent:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def temporalElement(self) -> TemporalExtent:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def verticalElement(self) -> VerticalExtent:
-        pass
+        return None

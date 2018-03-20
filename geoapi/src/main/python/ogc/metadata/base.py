@@ -22,25 +22,25 @@ class MetadataScope(ABC):
     def resourceScope(self) -> ScopeCode:
         pass
 
-    @abstractproperty
+    @property
     def name(self) -> str:
-        pass
+        return None
 
 class Metadata(ABC):
     """Root entity which defines metadata about a resource or resources."""
 
-    @abstractproperty
+    @property
     def metadataIdentifier(self) -> Identifier:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def parentMetadata(self) -> Citation:
         """Identifier and onlineResource for a parent metadata record."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataScope(self) -> MetadataScope:
-        pass
+        return None
 
     @abstractproperty
     def contact(self) -> Responsibility:
@@ -52,81 +52,81 @@ class Metadata(ABC):
         """Date(s) other than creation dateEG: expiry date."""
         pass
 
-    @abstractproperty
+    @property
     def metadataStandard(self) -> Citation:
         """Citation for the standards to which the metadata conforms."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataProfile(self) -> Citation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def alternativeMetadataReference(self) -> Citation:
         """Unique Identifier and onlineResource for alternative metadata."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataLinkage(self) -> OnlineResource:
         """Online location where the metadata is available."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def spatialRepresentationInfo(self) -> SpatialRepresentation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def referenceSystemInfo(self) -> ReferenceSystem:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataExtensionInfo(self) -> MetadataExtensionInformation:
-        pass
+        return None
 
     @abstractproperty
     def identificationInfo(self) -> Identification:
         pass
 
-    @abstractproperty
+    @property
     def contentInfo(self) -> ContentInformation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distributionInfo(self) -> Distribution:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def dataQualityInfo(self) -> DataQuality:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resourceLineage(self) -> Lineage:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def portrayalCatalogueInfo(self) -> PortrayalCatalogueReference:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataConstraints(self) -> Constraints:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def applicationSchemaInfo(self) -> ApplicationSchemaInformation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataMaintenance(self) -> MaintenanceInformation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def acquisitionInformation(self) -> AcquisitionInformation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def characterSet(self):
         pass
 
-    @abstractproperty
+    @property
     def language(self):
         pass

@@ -102,26 +102,26 @@ class Dimension(ABC):
         """Number of elements along the axis."""
         pass
 
-    @abstractproperty
+    @property
     def resolution(self) -> float:
         """Degree of detail in the grid dataset."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def dimensionTitle(self) -> str:
         """Enhancement/modifier of the dimension name EX for other time dimension 'runtime' or dimensionName = 'column' dimensionTitle = 'Longitude'."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def dimensionDescription(self) -> str:
         """Description of the axis."""
-        pass
+        return None
 
 class GeolocationInformation(ABC):
 
-    @abstractproperty
+    @property
     def qualityInfo(self) -> DataQuality:
-        pass
+        return None
 
 class GCP(ABC):
 
@@ -129,9 +129,9 @@ class GCP(ABC):
     def geographicCoordinates(self) -> DirectPosition:
         pass
 
-    @abstractproperty
+    @property
     def accuracyReport(self) -> Element:
-        pass
+        return None
 
 class GCPCollection(GeolocationInformation):
 
@@ -159,10 +159,10 @@ class GeometricObjects(ABC):
         """Name of point or vector objects used to locate zero-, one-, two-, or three-dimensional spatial locations in the dataset."""
         pass
 
-    @abstractproperty
+    @property
     def geometricObjectCount(self) -> int:
         """Total number of the point or vector object type occurring in the dataset."""
-        pass
+        return None
 
 class SpatialRepresentation(ABC):
     """Digital mechanism used to represent spatial information."""
@@ -175,10 +175,10 @@ class GridSpatialRepresentation(SpatialRepresentation):
         """Number of independent spatial-temporal axes."""
         pass
 
-    @abstractproperty
+    @property
     def axisDimensionProperties(self) -> Dimension:
         """Information about spatial-temporal axis properties."""
-        pass
+        return None
 
     @abstractproperty
     def cellGeometry(self) -> CellGeometryCode:
@@ -193,15 +193,15 @@ class GridSpatialRepresentation(SpatialRepresentation):
 class VectorSpatialRepresentation(SpatialRepresentation):
     """Information about the vector spatial objects in the resource."""
 
-    @abstractproperty
+    @property
     def topologyLevel(self) -> TopologyLevelCode:
         """Code which identifies the degree of complexity of the spatial relationships."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def geometricObjects(self) -> GeometricObjects:
         """Information about the geometric objects used in the resource."""
-        pass
+        return None
 
 class Georectified(GridSpatialRepresentation):
     """Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map coordinate system defined in the Spatial Referencing System (SRS) so that any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing, and orientation."""
@@ -211,39 +211,39 @@ class Georectified(GridSpatialRepresentation):
         """Indication of whether or not geographic position points are available to test the accuracy of the georeferenced grid data."""
         pass
 
-    @abstractproperty
+    @property
     def checkPointDescription(self) -> str:
         """Description of geographic position points used to test the accuracy of the georeferenced grid data."""
-        pass
+        return None
 
     @abstractproperty
     def cornerPoints(self) -> Point:
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cells at opposite ends of grid coverage along two diagonals in the grid spatial dimensions. There are four corner points in a georectified grid; at least two corner points along one diagonal are required. The first corner point corresponds to the origin of the grid."""
         pass
 
-    @abstractproperty
+    @property
     def centrePoint(self) -> Point:
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cell halfway between opposite ends of the grid in the spatial dimensions."""
-        pass
+        return None
 
     @abstractproperty
     def pointInPixel(self) -> PixelOrientationCode:
         """Point in a pixel corresponding to the Earth location of the pixel."""
         pass
 
-    @abstractproperty
+    @property
     def transformationDimensionDescription(self) -> str:
         """General description of the transformation."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def transformationDimensionMapping(self) -> str:
         """Information about which grid axes are the spatial (map) axes."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def checkPoint(self) -> GCP:
-        pass
+        return None
 
 class Georeferenceable(GridSpatialRepresentation):
     """Grid with cells irregularly spaced in any given geographic/map projection coordinate system, whose individual cells can be geolocated using geolocation information supplied with the data but cannot be geolocated from the grid properties alone."""
@@ -258,20 +258,20 @@ class Georeferenceable(GridSpatialRepresentation):
         """Indication of whether or not orientation parameters are available."""
         pass
 
-    @abstractproperty
+    @property
     def orientationParameterDescription(self) -> str:
         """Description of parameters used to describe sensor orientation."""
-        pass
+        return None
 
     @abstractproperty
     def georeferencedParameters(self) -> Record:
         """Terms which support grid data georeferencing."""
         pass
 
-    @abstractproperty
+    @property
     def parameterCitation(self) -> Citation:
         """Reference providing description of the parameters."""
-        pass
+        return None
 
     @abstractproperty
     def geolocationInformation(self) -> GeolocationInformation:

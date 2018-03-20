@@ -57,35 +57,35 @@ class ScopeCode(Enum):
 class ScopeDescription(ABC):
     """Description of the class of information covered by the information."""
 
-    @abstractproperty
+    @property
     def attributes(self) -> str:
         """Instances of attribute types to which the information applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def features(self) -> str:
         """Instances of feature types to which the information applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def featureInstances(self) -> str:
         """Feature instances to which the information applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def attributeInstances(self) -> str:
         """Attribute instances to which the information applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def dataset(self) -> str:
         """Dataset to which the information applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def other(self) -> str:
         """Class of information that does not fall into the other categories to which the information applies."""
-        pass
+        return None
 
 class Scope(ABC):
     """New: information about the scope of the resource."""
@@ -95,43 +95,43 @@ class Scope(ABC):
         """Description of the scope."""
         pass
 
-    @abstractproperty
+    @property
     def extent(self) -> Extent:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def levelDescription(self) -> ScopeDescription:
-        pass
+        return None
 
 class MaintenanceInformation(ABC):
     """Information about the scope and frequency of updating."""
 
-    @abstractproperty
+    @property
     def maintenanceAndUpdateFrequency(self) -> MaintenanceFrequencyCode:
         """Frequency with which changes and additions are made to the resource after the initial resource is completed."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def maintenanceDate(self) -> Date:
         """Date information associated with maintenance of resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def userDefinedMaintenanceFrequency(self) -> PeriodDuration:
         """Maintenance period other than those defined."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def maintenanceScope(self) -> Scope:
         """Information about the scope and extent of maintenance."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def maintenanceNote(self) -> str:
         """Information regarding specific requirements for maintaining the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def contact(self) -> Responsibility:
         """Identification of, and means of communicating with, person(s) and organisation(s) with responsibility for maintaining the metadata."""
-        pass
+        return None

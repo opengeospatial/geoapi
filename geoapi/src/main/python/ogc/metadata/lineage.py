@@ -11,62 +11,62 @@ from abc import ABC, abstractproperty
 class NominalResolution(ABC):
     """Distance between adjacent pixels."""
 
-    @abstractproperty
+    @property
     def scanningResolution(self) -> float:
         """Distance between adjacent pixels in the scan plane."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def groundResolution(self) -> float:
         """Distance between adjacent pixels in the object space."""
-        pass
+        return None
 
 class Source(ABC):
     """Information about the source resource used in creating the data specified by the scope."""
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Detailed description of the level of the source resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def sourceSpatialResolution(self) -> Resolution:
         """Level of detail expressed as a scale factor, a distance or an angle."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def sourceReferenceSystem(self) -> ReferenceSystem:
         """Spatial reference system used by the source resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def sourceCitation(self) -> Citation:
         """Recommended reference to be used for the source resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def sourceMetadata(self) -> Citation:
         """Identifier and link to source metadata."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def scope(self) -> Scope:
         """Type of resource and/or extent of the source."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def sourceStep(self) -> ProcessStep:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def processedLevel(self) -> Identifier:
         """Processing level of the source data."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resolution(self) -> NominalResolution:
         """Distance between two adjacent pixels."""
-        pass
+        return None
 
 class Algorithm(ABC):
     """Details of the methodology by which geographic information was derived from the instrument readings."""
@@ -84,34 +84,34 @@ class Algorithm(ABC):
 class Processing(ABC):
     """Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step."""
 
-    @abstractproperty
+    @property
     def algorithm(self) -> Algorithm:
-        pass
+        return None
 
     @abstractproperty
     def identifier(self) -> Identifier:
         """Information to identify the processing package that produced the data."""
         pass
 
-    @abstractproperty
+    @property
     def softwareReference(self) -> Citation:
         """Reference to document describing processing software."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def procedureDescription(self) -> str:
         """Additional details about the processing procedures."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def documentation(self) -> Citation:
         """Reference to documentation describing the processing."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def runTimeParameters(self) -> str:
         """Parameters to control the processing operations, entered at run time."""
-        pass
+        return None
 
 class ProcessStepReport(ABC):
     """Report of what occured during the process step."""
@@ -121,15 +121,15 @@ class ProcessStepReport(ABC):
         """Name of the processing report."""
         pass
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Textual description of what occurred during the process step."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def fileType(self) -> str:
         """Type of file that contains that processing report."""
-        pass
+        return None
 
 class ProcessStep(ABC):
     """Information about an event or transformation in the life of a resource including the process used to maintain the resource."""
@@ -139,68 +139,68 @@ class ProcessStep(ABC):
         """Description of the event, including related parameters or tolerances."""
         pass
 
-    @abstractproperty
+    @property
     def rationale(self) -> str:
         """Requirement or purpose for the process step."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def stepDateTime(self) -> datetime:
         """Date, time, range or period of process step."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def processor(self) -> Responsibility:
         """Identification of, and means of communication with, person(s) and organisation(s) associated with the process step."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def reference(self) -> Citation:
         """Process step documentation."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def scope(self) -> Scope:
         """Type of resource and/or extent to which the process step applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def source(self) -> Source:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def processingInformation(self) -> Processing:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def report(self) -> ProcessStepReport:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def output(self) -> Source:
-        pass
+        return None
 
 class Lineage(ABC):
     """Information about the events or source data used in constructing the data specified by the scope or lack of knowledge about lineage."""
 
-    @abstractproperty
+    @property
     def statement(self) -> str:
         """General explanation of the data producer's knowledge about the lineage of a resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def scope(self) -> Scope:
         """Type of resource and/or extent to which the lineage information applies."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def additionalDocumentation(self) -> Citation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def source(self) -> Source:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def processStep(self) -> ProcessStep:
-        pass
+        return None

@@ -108,6 +108,6 @@ class Record(ABC):
     def memberValue(self):
         pass
 
-    @abstractproperty
+    @property
     def recordType(self) -> RecordType:
-        pass
+        return None

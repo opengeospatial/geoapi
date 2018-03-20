@@ -49,10 +49,10 @@ class TriggerCode(Enum):
 class Instrument(ABC):
     """Designations for the measuring instruments."""
 
-    @abstractproperty
+    @property
     def citation(self) -> Citation:
         """Complete citation of the instrument."""
-        pass
+        return None
 
     @abstractproperty
     def identifier(self) -> Identifier:
@@ -64,22 +64,22 @@ class Instrument(ABC):
         """Code describing the type of instrument."""
         pass
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Textual description of the instrument."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def mountedOn(self) -> Platform:
-        pass
+        return None
 
 class Platform(ABC):
     """Designations for the platform used to acquire the dataset."""
 
-    @abstractproperty
+    @property
     def citation(self) -> Citation:
         """Complete citation of the platform."""
-        pass
+        return None
 
     @abstractproperty
     def identifier(self) -> Identifier:
@@ -91,10 +91,10 @@ class Platform(ABC):
         """Narrative description of the platform supporting the instrument."""
         pass
 
-    @abstractproperty
+    @property
     def sponsor(self) -> Responsibility:
         """Organization responsible for building, launch, or operation of the platform."""
-        pass
+        return None
 
     @abstractproperty
     def instrument(self) -> Instrument:
@@ -108,14 +108,14 @@ class PlatformPass(ABC):
         """Unique name of the pass."""
         pass
 
-    @abstractproperty
+    @property
     def extent(self) -> Object:
         """Area covered by the pass."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def relatedEvent(self) -> Event:
-        pass
+        return None
 
 class Event(ABC):
     """Identification of a significant collection point within an operation."""
@@ -145,17 +145,17 @@ class Event(ABC):
         """Time the event occured."""
         pass
 
-    @abstractproperty
+    @property
     def relatedPass(self) -> PlatformPass:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def relatedSensor(self) -> Instrument:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def expectedObjective(self) -> Objective:
-        pass
+        return None
 
 class EnvironmentalRecord(ABC):
 
@@ -183,33 +183,33 @@ class Objective(ABC):
         """Registered code used to identify the objective."""
         pass
 
-    @abstractproperty
+    @property
     def priority(self) -> str:
         """Priority applied to the target."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def type(self) -> ObjectiveTypeCode:
         """Collection technique for the objective."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def function(self) -> str:
         """Function performed by or at the objective."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def extent(self) -> Extent:
         """Extent information including the bounding box, bounding polygon, vertical and temporal extent of the objective."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def sensingInstrument(self) -> Instrument:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def platformPass(self) -> PlatformPass:
-        pass
+        return None
 
     @abstractproperty
     def objectiveOccurence(self) -> Event:
@@ -218,55 +218,55 @@ class Objective(ABC):
 class Operation(ABC):
     """Designations for the operation used to acquire the dataset."""
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Description of the mission on which the platform observations are part and the objectives of that mission."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def citation(self) -> Citation:
         """Character string by which the mission is known."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def identifier(self) -> Identifier:
         """Character string by which the mission is known."""
-        pass
+        return None
 
     @abstractproperty
     def status(self) -> ProgressCode:
         """Status of the data acquisition."""
         pass
 
-    @abstractproperty
+    @property
     def type(self) -> OperationTypeCode:
         """Status of the data acquisition."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def parentOperation(self) -> Operation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def childOperation(self) -> Operation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def platform(self) -> Platform:
         """Platform (or platforms) used in the operation."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def objective(self) -> Objective:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def plan(self) -> Plan:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def significantEvent(self) -> Event:
-        pass
+        return None
 
 class RequestedDate(ABC):
     """Range of date validity."""
@@ -284,10 +284,10 @@ class RequestedDate(ABC):
 class Requirement(ABC):
     """Requirement to be satisfied by the planned data acquisition."""
 
-    @abstractproperty
+    @property
     def citation(self) -> Citation:
         """Identification of reference or guidance material for the requirement."""
-        pass
+        return None
 
     @abstractproperty
     def identifier(self) -> Identifier:
@@ -319,17 +319,17 @@ class Requirement(ABC):
         """Date and time after which collection is no longer valid."""
         pass
 
-    @abstractproperty
+    @property
     def satisfiedPlan(self) -> Plan:
-        pass
+        return None
 
 class Plan(ABC):
     """Designations for the planning information related to meeting requirements."""
 
-    @abstractproperty
+    @property
     def type(self) -> GeometryTypeCode:
         """Manner of sampling geometry the planner expects for collection of the objective data."""
-        pass
+        return None
 
     @abstractproperty
     def status(self) -> ProgressCode:
@@ -341,41 +341,41 @@ class Plan(ABC):
         """Identification of authority requesting target collection."""
         pass
 
-    @abstractproperty
+    @property
     def operation(self) -> Operation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def satisfiedRequirement(self) -> Requirement:
-        pass
+        return None
 
 class AcquisitionInformation(ABC):
     """Designations for the measuring instruments and their bands, the platform carrying them, and the mission to which the data contributes."""
 
-    @abstractproperty
+    @property
     def instrument(self) -> Instrument:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def operation(self) -> Operation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def platform(self) -> Platform:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def acquisitionPlan(self) -> Plan:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def objective(self) -> Objective:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def acquisitionRequirement(self) -> Requirement:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def environmentalConditions(self) -> EnvironmentalRecord:
-        pass
+        return None

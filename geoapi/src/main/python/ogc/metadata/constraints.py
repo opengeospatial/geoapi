@@ -42,71 +42,71 @@ class RestrictionCode(Enum):
 class Releasability(ABC):
     """State, nation or organization to which resource can be released to e.g. NATO unclassified releasable to PfP."""
 
-    @abstractproperty
+    @property
     def addressee(self) -> Responsibility:
         """Party responsible for the Release statement."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def statement(self) -> str:
         """Release statement."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def disseminationConstraints(self) -> RestrictionCode:
         """Component in determining releasability."""
-        pass
+        return None
 
 class Constraints(ABC):
     """Restrictions on the access and use of a resource or metadata."""
 
-    @abstractproperty
+    @property
     def useLimitation(self) -> str:
         """Limitation affecting the fitness for use of the resource or metadata. Example, "not to be used for navigation"."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def constraintApplicationScope(self) -> Scope:
         """Spatial and temporal extent of the application of the constraint restrictions."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def graphic(self) -> BrowseGraphic:
         """Graphic /symbol indicating the constraint Eg."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def reference(self) -> Citation:
         """Citation/URL for the limitation or constraint, e.g. copyright statement, license agreement, etc."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def releasability(self) -> Releasability:
         """Information concerning the parties to whom the resource can or cannot be released and the party responsible for determining the releasibility."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def responsibleParty(self) -> Responsibility:
         """Party responsible for the resource constraints."""
-        pass
+        return None
 
 class LegalConstraints(Constraints):
     """Restrictions and legal prerequisites for accessing and using the resource or metadata."""
 
-    @abstractproperty
+    @property
     def accessConstraints(self) -> RestrictionCode:
         """Access constraints applied to assure the protection of privacy or intellectual property, and any special restrictions or limitations on obtaining the resource or metadata."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def useConstraints(self) -> RestrictionCode:
         """Constraints applied to assure the protection of privacy or intellectual property, and any special restrictions or limitations or warnings on using the resource or metadata."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def otherConstraints(self) -> str:
         """Other restrictions and legal prerequisites for accessing and using the resource or metadata."""
-        pass
+        return None
 
 class SecurityConstraints(Constraints):
     """Handling restrictions imposed on the resource or metadata for national security or similar security concerns."""
@@ -116,17 +116,17 @@ class SecurityConstraints(Constraints):
         """Name of the handling restrictions on the resource or metadata."""
         pass
 
-    @abstractproperty
+    @property
     def userNote(self) -> str:
         """Explanation of the application of the legal constraints or other restrictions and legal prerequisites for obtaining and using the resource or metadata."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def classificationSystem(self) -> str:
         """Name of the classification system."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def handlingDescription(self) -> str:
         """Additional information about the restrictions on handling the resource or metadata."""
-        pass
+        return None

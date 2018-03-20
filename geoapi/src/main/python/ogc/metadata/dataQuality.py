@@ -24,33 +24,33 @@ class Element(ABC):
     def result(self) -> Result:
         pass
 
-    @abstractproperty
+    @property
     def dateTime(self) -> datetime:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def nameOfMeasure(self) -> str:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def evaluationMethodDescription(self) -> str:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def measureIdentification(self) -> Identifier:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def evaluationMethodType(self) -> EvaluationMethodTypeCode:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def evaluationProcedure(self) -> Citation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def measureDescription(self) -> str:
-        pass
+        return None
 
 class PositionalAccuracy(Element):
     """Accuracy of the position of features."""
@@ -161,13 +161,13 @@ class QuantitativeResult(Result):
         """Value unit for reporting a data quality result."""
         pass
 
-    @abstractproperty
+    @property
     def valueType(self) -> RecordType:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def errorStatistic(self) -> str:
-        pass
+        return None
 
 class DataQuality(ABC):
     """Quality information for the data specified by a data quality scope."""
@@ -177,10 +177,10 @@ class DataQuality(ABC):
         """The specific data to which the data quality information applies."""
         pass
 
-    @abstractproperty
+    @property
     def report(self) -> Element:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def lineage(self) -> Lineage:
-        pass
+        return None

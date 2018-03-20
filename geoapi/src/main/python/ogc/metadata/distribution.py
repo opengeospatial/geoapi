@@ -21,39 +21,39 @@ class MediumFormatCode(Enum):
 class Medium(ABC):
     """Information about the media on which the resource can be distributed."""
 
-    @abstractproperty
+    @property
     def name(self) -> MediumNameCode:
         """Name of the medium on which the resource can be received."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def density(self) -> float:
         """Density at which the data is recorded."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def densityUnits(self):
         """Units of measure for the recording density."""
         pass
 
-    @abstractproperty
+    @property
     def volumes(self) -> int:
         """Number of items in the media identified."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def mediumFormat(self) -> MediumFormatCode:
         """Method used to write to the medium."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def mediumNote(self) -> str:
         """Description of other limitations or requirements for using the medium."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def identifier(self) -> Identifier:
-        pass
+        return None
 
 class Format(ABC):
     """Description of the computer language construct that specifies the representation of data objects in a record, file, message, storage device or transmission channel."""
@@ -63,96 +63,96 @@ class Format(ABC):
         """Citation/URL of the specification for the format."""
         pass
 
-    @abstractproperty
+    @property
     def amendmentNumber(self) -> str:
         """Amendment number of the format version."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def fileDecompressionTechnique(self) -> str:
         """Recommendations of algorithms or processes that can be applied to read or expand resources to which compression techniques have been applied."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def medium(self) -> Medium:
         """Medium used by the format."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def formatDistributor(self) -> Distributor:
-        pass
+        return None
 
 class DataFile(ABC):
 
-    @abstractproperty
+    @property
     def featureType(self) -> LocalName:
-        pass
+        return None
 
 class DigitalTransferOptions(ABC):
     """Technical means and media by which a resource is obtained from the distributor."""
 
-    @abstractproperty
+    @property
     def unitsOfDistribution(self) -> str:
         """Tiles, layers, geographic areas, etc., in which data is available. NOTE: unitsOfDistribution applies to both onLine and offLine distributions."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def transferSize(self) -> float:
         """Estimated size of a unit in the specified transfer format, expressed in megabytes. The transfer size is > 0.0."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def onLine(self) -> OnlineResource:
         """Information about online sources from which the resource can be obtained."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def offLine(self) -> Medium:
         """Information about offline media on which the resource can be obtained."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def transferFrequency(self) -> PeriodDuration:
         """Rate of occurrence of distribution."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distributionFormat(self) -> Format:
         """Format of distribution."""
-        pass
+        return None
 
 class StandardOrderProcess(ABC):
     """Common ways in which the resource may be obtained or received, and related instructions and fee information."""
 
-    @abstractproperty
+    @property
     def fees(self) -> str:
         """Fees and terms for retrieving the resource. Include monetary units (as specified in ISO 4217)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def plannedAvailableDateTime(self) -> datetime:
         """Date and time when the resource will be available."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def orderingInstructions(self) -> str:
         """General instructions, terms and services provided by the distributor."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def turnaround(self) -> str:
         """Typical turnaround time for the filling of an order."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def orderOptionsType(self) -> RecordType:
         """Description of the order options record."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def orderOptions(self) -> Record:
         """Request/purchase choices."""
-        pass
+        return None
 
 class Distributor(ABC):
     """Information about the distributor."""
@@ -162,33 +162,33 @@ class Distributor(ABC):
         """Party from whom the resource may be obtained. This list need not be exhaustive."""
         pass
 
-    @abstractproperty
+    @property
     def distributionOrderProcess(self) -> StandardOrderProcess:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distributorFormat(self) -> Format:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distributorTransferOptions(self) -> DigitalTransferOptions:
-        pass
+        return None
 
 class Distribution(ABC):
     """Information about the distributor of and options for obtaining the resource."""
 
-    @abstractproperty
+    @property
     def description(self) -> str:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distributionFormat(self) -> Format:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distributor(self) -> Distributor:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def transferOptions(self) -> DigitalTransferOptions:
-        pass
+        return None

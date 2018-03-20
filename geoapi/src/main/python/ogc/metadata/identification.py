@@ -101,30 +101,30 @@ class TopicCategoryCode(Enum):
 class Identifier(ABC):
     """Value uniquely identifying an object within a namespace."""
 
-    @abstractproperty
+    @property
     def authority(self) -> Citation:
         """Citation for the code namespace and optionally the person or party responsible for maintenance of that namespace."""
-        pass
+        return None
 
     @abstractproperty
     def code(self) -> str:
         """Alphanumeric value identifying an instance in the namespace e.g. EPSG::4326."""
         pass
 
-    @abstractproperty
+    @property
     def codeSpace(self) -> str:
         """Identifier or namespace in which the code is valid."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def version(self) -> str:
         """Version identifier for the namespace."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Natural language description of the meaning of the code value E.G for codeSpace = EPSG, code = 4326: description = WGS-84" to "for codeSpace = EPSG, code = EPSG::4326: description = WGS-84."""
-        pass
+        return None
 
 class BrowseGraphic(ABC):
     """Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)."""
@@ -134,24 +134,24 @@ class BrowseGraphic(ABC):
         """Name of the file that contains a graphic that provides an illustration of the dataset."""
         pass
 
-    @abstractproperty
+    @property
     def fileDescription(self) -> str:
         """Text description of the illustration."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def fileType(self) -> str:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def imageConstraints(self) -> Constraints:
         """Restriction on access and/or use of browse graphic."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def linkage(self) -> OnlineResource:
         """Link to browse graphic."""
-        pass
+        return None
 
 class KeywordClass(ABC):
     """Specification of a class to categorize keywords in a domain-specific vocabulary that has a binding to a formal ontology."""
@@ -161,7 +161,7 @@ class KeywordClass(ABC):
         """Character string to label the keyword category in natural language."""
         pass
 
-    @abstractproperty
+    @property
     def conceptIdentifier(self):
         """URI of concept in ontology specified by the ontology attribute; this concept is labeled by the className: CharacterString."""
         pass
@@ -179,19 +179,19 @@ class Keywords(ABC):
         """Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject."""
         pass
 
-    @abstractproperty
+    @property
     def type(self) -> KeywordTypeCode:
         """Subject matter used to group similar keywords."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def thesaurusName(self) -> Citation:
         """Name of the formally registered thesaurus or a similar authoritative source of keywords."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def keywordClass(self) -> KeywordClass:
-        pass
+        return None
 
 class Usage(ABC):
     """Brief description of ways in which the resource(s) is/are currently or has been used."""
@@ -201,33 +201,33 @@ class Usage(ABC):
         """Brief description of the resource and/or resource series usage."""
         pass
 
-    @abstractproperty
+    @property
     def usageDateTime(self) -> datetime:
         """Date and time of the first use or range of uses of the resource and/or resource series."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def userDeterminedLimitations(self) -> str:
         """Applications, determined by the user for which the resource and/or resource series is not suitable."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def userContactInfo(self) -> Responsibility:
         """Identification of and means of communicating with person(s) and organisation(s) using the resource(s)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def response(self) -> str:
         """Response to the user-determined limitationsE.G.. 'this has been fixed in version x'."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def additionalDocumentation(self) -> Citation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def identifiedIssues(self) -> Citation:
-        pass
+        return None
 
 class RepresentativeFraction(ABC):
     """Derived from ISO 19103 Scale where MD_RepresentativeFraction.denominator = 1 / Scale.measure And Scale.targetUnits = Scale.sourceUnits."""
@@ -240,53 +240,53 @@ class RepresentativeFraction(ABC):
 class Resolution(ABC):
     """Level of detail expressed as a scale factor, a distance or an angle."""
 
-    @abstractproperty
+    @property
     def equivalentScale(self) -> RepresentativeFraction:
         """Level of detail expressed as the scale of a comparable hardcopy map or chart."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def distance(self) -> float:
         """Horizontal ground sample distance."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def vertical(self) -> float:
         """Vertical sampling distance."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def angularDistance(self) -> float:
         """Angular sampling measure."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def levelOfDetail(self) -> str:
         """Brief textual description of the spatial resolution of the resource."""
-        pass
+        return None
 
 class AssociatedResource(ABC):
     """Associated resource information. NOTE: An associated resource is a dataset composed of a collection of datasets."""
 
-    @abstractproperty
+    @property
     def name(self) -> Citation:
         """Citation information about the associated resource."""
-        pass
+        return None
 
     @abstractproperty
     def associationType(self) -> AssociationTypeCode:
         """Type of relation between the resources."""
         pass
 
-    @abstractproperty
+    @property
     def initiativeType(self) -> InitiativeTypeCode:
         """Type of initiative under which the associated resource was produced. NOTE: the activity that resulted in the associated resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def metadataReference(self) -> Citation:
         """Reference to the metadata of the associated resource."""
-        pass
+        return None
 
 class Identification(ABC):
     """Basic information required to uniquely identify a resource or resources."""
@@ -301,103 +301,103 @@ class Identification(ABC):
         """Brief narrative summary of the content of the resource(s)."""
         pass
 
-    @abstractproperty
+    @property
     def purpose(self) -> str:
         """Summary of the intentions with which the resource(s) was developed."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def credit(self) -> str:
         """Recognition of those who contributed to the resource(s)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def status(self) -> ProgressCode:
         """Status of the resource(s)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def pointOfContact(self) -> Responsibility:
         """Identification of, and means of communication with, person(s) and organisation(s) associated with the resource(s)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def spatialRepresentationType(self) -> SpatialRepresentationTypeCode:
         """Method used to spatially represent geographic information."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def spatialResolution(self) -> Resolution:
         """Factor which provides a general understanding of the density of spatial data in the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def temporalResolution(self) -> Duration:
         """Resolution of the resource with respect to time."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def topicCategory(self) -> TopicCategoryCode:
         """Main theme(s) of the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def extent(self) -> Extent:
         """Spatial and temporal extent of the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def additionalDocumentation(self) -> Citation:
         """Other documentation associated with the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def processingLevel(self) -> Identifier:
         """Code that identifies the level of processing in the producers coding system of a resource eg. NOAA level 1B."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resourceMaintenance(self) -> MaintenanceInformation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def graphicOverview(self) -> BrowseGraphic:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resourceFormat(self) -> Format:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def descriptiveKeywords(self) -> Keywords:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resourceSpecificUsage(self) -> Usage:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resourceConstraints(self) -> Constraints:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def associatedResource(self) -> AssociatedResource:
-        pass
+        return None
 
 class DataIdentification(Identification):
     """Information required to identify a resource."""
 
-    @abstractproperty
+    @property
     def environmentDescription(self) -> str:
         """Description of the resource in the producer's processing environment, including items such as the software, the computer operating system, file name, and the dataset size."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def supplementalInformation(self) -> str:
         """Any other descriptive information about the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def characterSet(self):
         pass
 

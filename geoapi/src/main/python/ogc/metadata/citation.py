@@ -93,53 +93,53 @@ class TelephoneTypeCode(Enum):
 class Series(ABC):
     """Information about the series, or aggregate resource, to which a resource belongs."""
 
-    @abstractproperty
+    @property
     def name(self) -> str:
         """Name of the series, or aggregate resource, of which the resource is a part."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def issueIdentification(self) -> str:
         """Information identifying the issue of the series."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def page(self) -> str:
         """Details on which pages of the publication the article was published."""
-        pass
+        return None
 
 class Address(ABC):
     """Location of the responsible individual or organisation."""
 
-    @abstractproperty
+    @property
     def deliveryPoint(self) -> str:
         """Address line for the location (as described in ISO 11180, Annex A)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def city(self) -> str:
         """City of the location."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def administrativeArea(self) -> str:
         """State, province of the location."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def postalCode(self) -> str:
         """ZIP or other postal code."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def country(self) -> str:
         """Country of the physical address."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def electronicMailAddress(self) -> str:
         """Address of the electronic mailbox of the responsible organisation or individual."""
-        pass
+        return None
 
 class Telephone(ABC):
     """Telephone numbers for contacting the responsible individual or organisation."""
@@ -149,10 +149,10 @@ class Telephone(ABC):
         """Telephone number by which individuals can contact responsible organisation or individual."""
         pass
 
-    @abstractproperty
+    @property
     def numberType(self) -> TelephoneTypeCode:
         """Type of telephone responsible organisation or individual."""
-        pass
+        return None
 
 class OnlineResource(ABC):
     """Information about on-line sources from which the resource, specification, or community profile name and extended metadata elements can be obtained."""
@@ -162,80 +162,80 @@ class OnlineResource(ABC):
         """Location (address) for on-line access using a Uniform Resource Locator/Uniform Resource Identifier address or similar addressing scheme such as http://www.statkart.no/isotc211."""
         pass
 
-    @abstractproperty
+    @property
     def protocol(self) -> str:
         """Connection protocol to be used e.g. http, ftp, file."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def applicationProfile(self) -> str:
         """Name of an application profile that can be used with the online resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def name(self) -> str:
         """Name of the online resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """Detailed text description of what the online resource is/does."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def function(self) -> OnLineFunctionCode:
         """Code for function performed by the online resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def protocolRequest(self) -> str:
         """Protocol used by the accessed resource."""
-        pass
+        return None
 
 class Contact(ABC):
     """Information required to enable contact with the responsible person and/or organisation."""
 
-    @abstractproperty
+    @property
     def phone(self) -> Telephone:
         """Telephone numbers at which the organisation or individual may be contacted."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def address(self) -> Address:
         """Physical and email address at which the organisation or individual may be contacted."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def onlineResource(self) -> OnlineResource:
         """On-line information that can be used to contact the individual or organisation."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def hoursOfService(self) -> str:
         """Time period (including time zone) when individuals can contact the organisation or individual."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def contactInstructions(self) -> str:
         """Supplemental instructions on how or when to contact the individual or organisation."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def contactType(self) -> str:
-        pass
+        return None
 
 class Party(ABC):
     """Information about the individual and/or organisation of the party."""
 
-    @abstractproperty
+    @property
     def name(self) -> str:
         """Name of the party."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def contactInfo(self) -> Contact:
         """Contact information for the party."""
-        pass
+        return None
 
 class Responsibility(ABC):
     """Information about the party and their role."""
@@ -245,10 +245,10 @@ class Responsibility(ABC):
         """Function performed by the responsible party."""
         pass
 
-    @abstractproperty
+    @property
     def extent(self) -> Extent:
         """Spatial or temporal extent of the role."""
-        pass
+        return None
 
     @abstractproperty
     def party(self) -> Party:
@@ -257,22 +257,22 @@ class Responsibility(ABC):
 class Individual(Party):
     """Information about the party if the party is an individual."""
 
-    @abstractproperty
+    @property
     def positionName(self) -> str:
         """Position of the individual in an organisation."""
-        pass
+        return None
 
 class Organisation(Party):
     """Information about the party if the party is an organisation."""
 
-    @abstractproperty
+    @property
     def logo(self) -> BrowseGraphic:
         """Graphic identifying organization."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def individual(self) -> Individual:
-        pass
+        return None
 
 class Date(ABC):
     """Reference date and event used to describe it."""
@@ -295,67 +295,67 @@ class Citation(ABC):
         """Name by which the cited resource is known."""
         pass
 
-    @abstractproperty
+    @property
     def alternateTitle(self) -> str:
         """Short name or other language name by which the cited information is known. Example: DCW as an alternative title for Digital Chart of the World."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def date(self) -> Date:
         """Reference date for the cited resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def edition(self) -> str:
         """Version of the cited resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def editionDate(self) -> datetime:
         """Date of the edition."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def identifier(self) -> Identifier:
         """Value uniquely identifying an object within a namespace."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def citedResponsibleParty(self) -> Responsibility:
         """Name and position information for an individual or organisation that is responsible for the resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def presentationForm(self) -> PresentationFormCode:
         """Mode in which the resource is represented."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def series(self) -> Series:
         """Information about the series, or aggregate resource, of which the resource is a part."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def otherCitationDetails(self) -> str:
         """Other information required to complete the citation that is not recorded elsewhere."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def ISBN(self) -> str:
         """International Standard Book Number."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def ISSN(self) -> str:
         """International Standard Serial Number."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def onlineResource(self) -> OnlineResource:
         """Online reference to the cited resource."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def graphic(self) -> BrowseGraphic:
         """Citation graphic or logo for cited party."""
-        pass
+        return None

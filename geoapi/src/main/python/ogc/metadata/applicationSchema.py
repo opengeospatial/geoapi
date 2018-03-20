@@ -50,25 +50,25 @@ class ApplicationSchemaInformation(ABC):
         """Formal language used in Application Schema."""
         pass
 
-    @abstractproperty
+    @property
     def schemaAscii(self) -> str:
         """Full application schema given as an ASCII file."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def graphicsFile(self) -> OnlineResource:
         """Full application schema given as a graphics file."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def softwareDevelopmentFile(self) -> OnlineResource:
         """Full application schema given as a software development file."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def softwareDevelopmentFileFormat(self) -> str:
         """Software dependent format used for the application schema software dependent file."""
-        pass
+        return None
 
 class ExtendedElementInformation(ABC):
     """New metadata element, not found in ISO 19115, which is required to describe geographic data."""
@@ -83,30 +83,30 @@ class ExtendedElementInformation(ABC):
         """Definition of the extended element."""
         pass
 
-    @abstractproperty
+    @property
     def obligation(self) -> ObligationCode:
         """Obligation of the extended element."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def condition(self) -> str:
         """Condition under which the extended element is mandatory."""
-        pass
+        return None
 
     @abstractproperty
     def dataType(self) -> DatatypeCode:
         """Code which identifies the kind of value provided in the extended element."""
         pass
 
-    @abstractproperty
+    @property
     def maximumOccurrence(self) -> int:
         """Maximum occurrence of the extended element."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def domainValue(self) -> str:
         """Valid values that can be assigned to the extended element."""
-        pass
+        return None
 
     @abstractproperty
     def parentEntity(self) -> str:
@@ -118,10 +118,10 @@ class ExtendedElementInformation(ABC):
         """Specifies how the extended element relates to other existing elements and entities."""
         pass
 
-    @abstractproperty
+    @property
     def rationale(self) -> str:
         """Reason for creating the extended element."""
-        pass
+        return None
 
     @abstractproperty
     def source(self) -> Responsibility:
@@ -131,11 +131,11 @@ class ExtendedElementInformation(ABC):
 class MetadataExtensionInformation(ABC):
     """Information describing metadata extensions."""
 
-    @abstractproperty
+    @property
     def extensionOnLineResource(self) -> OnlineResource:
         """Information about on-line sources containing the community profile name and the extended metadata elements. Information for all new metadata elements."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def extendedElementInformation(self) -> ExtendedElementInformation:
-        pass
+        return None

@@ -44,28 +44,28 @@ class OperationMetadata(ABC):
         """Distributed computing platforms on which the operation has been implemented."""
         pass
 
-    @abstractproperty
+    @property
     def operationDescription(self) -> str:
         """Free text description of the intent of the operation and the results of the operation."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def invocationName(self) -> str:
         """The name used to invoke this interface within the context of the DCP. The name is identical for all DCPs."""
-        pass
+        return None
 
     @abstractproperty
     def connectPoint(self) -> OnlineResource:
         """Handle for accessing the service interface."""
         pass
 
-    @abstractproperty
+    @property
     def parameter(self) -> OperationParameter:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def dependsOn(self) -> OperationMetadata:
-        pass
+        return None
 
 class OperationChainMetadata(ABC):
     """Operation Chain Information."""
@@ -75,10 +75,10 @@ class OperationChainMetadata(ABC):
         """The name, as used by the service for this chain."""
         pass
 
-    @abstractproperty
+    @property
     def description(self) -> str:
         """A narrative explanation of the services in the chain and resulting output."""
-        pass
+        return None
 
     @abstractproperty
     def operation(self) -> OperationMetadata:
@@ -87,23 +87,23 @@ class OperationChainMetadata(ABC):
 class CoupledResource(ABC):
     """Links a given operationName (mandatory attribute of SV_OperationMetadata) with a data set identified by an 'identifier'."""
 
-    @abstractproperty
+    @property
     def scopedName(self) -> ScopedName:
         """Scoped identifier of the resource in the context of the given service instance. NOTE: name of the resources (i.e. dataset) as it is used by a service instance (e.g. layer name or featureTypeName)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resourceReference(self) -> Citation:
         """Reference to the dataset on which the service operates."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def operation(self) -> OperationMetadata:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def resource(self) -> DataIdentification:
-        pass
+        return None
 
 class ServiceIdentification(Identification):
     """Identification of capabilities which a service provider makes available to a service user through a set of interfaces that define a behaviour - See ISO 19119 for further information."""
@@ -113,47 +113,47 @@ class ServiceIdentification(Identification):
         """A service type name, E.G. 'discovery', 'view', 'download', 'transformation', or 'invoke'."""
         pass
 
-    @abstractproperty
+    @property
     def serviceTypeVersion(self) -> str:
         """Provide for searching based on the version of serviceType. For example, we may only be interested in OGC Catalogue V1.1 services. If version is maintained as a separate attribute, users can easily search for all services of a type regardless of the version."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def accessProperties(self) -> StandardOrderProcess:
         """Information about the availability of the service, including, 'fees' 'planned' 'available date and time' 'ordering instructions' 'turnaround'."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def couplingType(self) -> CouplingType:
         """Type of coupling between service and associated data (if exists)."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def coupledResource(self) -> CoupledResource:
         """Further description of the data coupling in the case of tightly coupled services."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def operatedDataset(self) -> Citation:
         """Provides a reference to the dataset on which the service operates."""
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def profile(self) -> Citation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def serviceStandard(self) -> Citation:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def containsOperations(self) -> OperationMetadata:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def operatesOn(self) -> DataIdentification:
-        pass
+        return None
 
-    @abstractproperty
+    @property
     def containsChain(self) -> OperationChainMetadata:
-        pass
+        return None
